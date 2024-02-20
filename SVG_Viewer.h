@@ -37,26 +37,17 @@ public:
     QGraphicsSvgItem *getTotal( void );
     QSvgRenderer *getRenderer ( void );
     QGraphicsSvgItem *getTxt();
-
     QByteArray getBytes() const;
-
     QGraphicsScene *getScene() const;
-
     QDomDocument *getDom() const;
     void setApp(QApplication newApp);
-
     QDomElement getDom_el() const;
-
     QStringList *getStrDom() const;
-
     QDomElement *getElem() const;
-
     QStringList *getStrDomValues() const;
-
     QList<unsigned int> *getIndex_elem() const;
     QList<QDomElement> *getListElem() const;
     void refresh();
-
     QStringList *getPrior_value() const;
 
 public slots:

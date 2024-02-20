@@ -1,4 +1,4 @@
-QT       += core gui
+QT += core gui
 QT += svg
 QT += xml
 QT += svgwidgets

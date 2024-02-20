@@ -3,7 +3,6 @@
 
 #include <QObject>
 #include <QMutex>
-#include "sc_main.h"
 #include "sc_run.h"
 #include "sc_config.h"
 

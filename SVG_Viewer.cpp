@@ -17,9 +17,6 @@
 #include <QWindow>
 #include <QRegularExpression>
 
-
-
-
 #define id_sep ":"
 // example id is "svg30/id345/d0", tag is "text", coming from <text id = "d0" ...>
 // but we know nothing about the tags of svg or svg/id345
@@ -252,31 +249,23 @@ SVG_Viewer::SVG_Viewer(QObject *parent)
 {
 
     QFile file(QString( QDir::currentPath()+"/debug/Schematic_Paco.svg")); // Construction of the file object according to the relative path of the SVG file
-
     file.open(QIODevice::ReadOnly); // Read-only access to SVG files
-
     scene = new QGraphicsScene(); // Building a scene into which SVG rendering will be loaded
 
 //    str_line = new QString();
-
     bytes = file.readAll(); // Read the file and assign it to the 'bytes' variable, which will be used to update the SVG rendering.
-
     dom = new QDomDocument(); // Allows access to the SVG file under a Document Object Model in order to use XML file manipulation functions
-
     txt = new QGraphicsSvgItem(); // For SVG rendering
-
     dom->setContent(bytes); // Loading the DOM according to the SVG file in memory 'bytes'.
 
 
     /* To interface systemC with SVG rendering */
-    strDom = new QStringList();
-    listElem = new QList<QDomElement>();
-
-    index_elem = new QList<unsigned int>();
-
-    elem = new QDomElement();
-    strDomValues = new QStringList();
-    prior_value = new QStringList();
+    strDom          = new QStringList();
+    listElem        = new QList<QDomElement>();
+    index_elem      = new QList<unsigned int>();
+    elem            = new QDomElement();
+    strDomValues    = new QStringList();
+    prior_value     = new QStringList();
 
     /* Update rendering according to data in 'bytes', enabling first SVG display */
     bytes = dom->toByteArray();
@@ -479,8 +468,6 @@ void SVG_Viewer::on_lineEdit_returnPressed()
 
         showDomElement(&dom_el_left);
         setColorDomElement(dom_el_left, color_left_dom);
-
-
     }
     else
     {
@@ -501,12 +488,9 @@ void SVG_Viewer::on_lineEdit_returnPressed()
 
     std::cout<<"left"<<left_txt<<std::endl;
     std::cout<<"right"<<right_txt<<std::endl;
-
     std::cout<<"enter!"<<std::endl;
-
     bytes = dom->toByteArray();
     std::cout<<bytes.toStdString()<<std::endl;
-
     auto prior_renderer = txt->renderer();
     txt->setSharedRenderer(new QSvgRenderer(bytes));
     delete prior_renderer;
@@ -523,7 +507,6 @@ void SVG_Viewer::on_verticalSlider_valueChanged(int value)
     std::cout<<value_d<<std::endl;
     txt->setScale(value_d);
 }
-
 
 
 /* All getters enabling access to attributes through another class */
