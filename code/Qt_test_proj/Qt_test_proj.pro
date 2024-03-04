@@ -19,7 +19,8 @@ else: unix:!android: target.path = /opt/$${TARGET}/bin
 
 DISTFILES += \
     Schematic_Paco.svg \
-    mux.svg
+    mux.svg \
+    mux_symp.svg
 
 HEADERS += \
     svg_link_parser.h
