@@ -1,0 +1,159 @@
+\doxysection{svg\+\_\+link\+\_\+parser.\+h}
+\hypertarget{svg__link__parser_8h_source}{}\label{svg__link__parser_8h_source}\mbox{\hyperlink{svg__link__parser_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ }
+\DoxyCodeLine{00008\ \textcolor{preprocessor}{\#ifndef\ SVG\_LINK\_PARSER\_H}}
+\DoxyCodeLine{00009\ \textcolor{preprocessor}{\#define\ SVG\_LINK\_PARSER\_H}}
+\DoxyCodeLine{00010\ }
+\DoxyCodeLine{00011\ }
+\DoxyCodeLine{00012\ \textcolor{preprocessor}{\#include\ <QXmlStreamReader>}}
+\DoxyCodeLine{00013\ \textcolor{preprocessor}{\#include\ <QFile>}}
+\DoxyCodeLine{00014\ \textcolor{preprocessor}{\#include\ <QDebug>}}
+\DoxyCodeLine{00015\ \textcolor{preprocessor}{\#include\ <QXmlStreamAttributes>}}
+\DoxyCodeLine{00016\ \textcolor{preprocessor}{\#include\ <QString>}}
+\DoxyCodeLine{00017\ \textcolor{preprocessor}{\#include\ <QDomDocument>}}
+\DoxyCodeLine{00018\ }
+\DoxyCodeLine{00019\ \textcolor{preprocessor}{\#include\ <vector>}}
+\DoxyCodeLine{00020\ }
+\DoxyCodeLine{00021\ \textcolor{preprocessor}{\#define\ DEFAULT\_WIDTH\ 1}}
+\DoxyCodeLine{00022\ \textcolor{preprocessor}{\#define\ DEFAULT\_INPUT\_NAME\ "{}in"{}}}
+\DoxyCodeLine{00023\ \textcolor{preprocessor}{\#define\ DEFAULT\_OUTPUT\_NAME\ "{}out"{}}}
+\DoxyCodeLine{00024\ }
+\DoxyCodeLine{00025\ \textcolor{preprocessor}{\#define\ IO\_NAME\_ATTRIBUTE\ "{}inkscape:label"{}}}
+\DoxyCodeLine{00026\ }
+\DoxyCodeLine{00032\ \textcolor{keyword}{class\ }\mbox{\hyperlink{class_svg_link_parser}{SvgLinkParser}}}
+\DoxyCodeLine{00033\ \{}
+\DoxyCodeLine{00034\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00039\ \ \ \ \ \mbox{\hyperlink{class_svg_link_parser_a65f4a0530d02aeea95f58623988f492c}{SvgLinkParser}}(QString\ \mbox{\hyperlink{class_svg_link_parser_a9e6420e2d99a3883707669cf57e67925}{svg\_file}});}
+\DoxyCodeLine{00040\ }
+\DoxyCodeLine{00044\ \ \ \ \ \mbox{\hyperlink{class_svg_link_parser_af69e9cc941a93eacc12f76df19584939}{\string~SvgLinkParser}}();}
+\DoxyCodeLine{00045\ }
+\DoxyCodeLine{00046\ \ \ \ \ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{class_svg_link_parser_a34a5e02d0e44b201468ce3afe79f3dc9}{links\_count}};}
+\DoxyCodeLine{00047\ }
+\DoxyCodeLine{00048\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00049\ \ \ \ \ QString\ \mbox{\hyperlink{class_svg_link_parser_a9e6420e2d99a3883707669cf57e67925}{svg\_file}};\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00050\ }
+\DoxyCodeLine{00051\ \ \ \ \ \textcolor{keyword}{const}\ QString\ \mbox{\hyperlink{class_svg_link_parser_a6c980a1e6acad5419b999cc153de77e0}{custom\_attribute}}\ =\ \textcolor{stringliteral}{"{}sim"{}};\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00052\ }
+\DoxyCodeLine{00053\ \ \ \ \ \textcolor{keyword}{const}\ QString\ \mbox{\hyperlink{class_svg_link_parser_a5a52e00977179f9ca3dc62d2ad079242}{component\_ID}}\ =\ \textcolor{stringliteral}{"{}ID"{}};\ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00054\ \ \ \ \ \textcolor{keyword}{const}\ QString\ \mbox{\hyperlink{class_svg_link_parser_a4c8fdff0eb05f847fc790128e21cfb59}{component\_type}}\ =\ \textcolor{stringliteral}{"{}type"{}};\ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00055\ \ \ \ \ \textcolor{keyword}{const}\ QString\ \mbox{\hyperlink{class_svg_link_parser_a9a5003e56db3beb4dc0bd86ebbaf44df}{component\_graphic}}\ =\ \textcolor{stringliteral}{"{}graphic"{}};\ \ \ }
+\DoxyCodeLine{00056\ \ \ \ \ \textcolor{keyword}{const}\ QString\ \mbox{\hyperlink{class_svg_link_parser_a0c3e9df0bba1499624a0418bc862c480}{component\_input}}\ =\ \textcolor{stringliteral}{"{}input"{}};\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00057\ \ \ \ \ \textcolor{keyword}{const}\ QString\ \mbox{\hyperlink{class_svg_link_parser_a41322b19b53a54335069a6eb3cc4c3a0}{component\_output}}\ =\ \textcolor{stringliteral}{"{}output"{}};\ \ \ \ \ \ }
+\DoxyCodeLine{00058\ \ \ \ \ \textcolor{keyword}{const}\ QString\ \mbox{\hyperlink{class_svg_link_parser_a91cec2219bd8a6c35105b9730d16f73c}{component\_sel}}\ =\ \textcolor{stringliteral}{"{}sel"{}};\ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00059\ \ \ \ \ \textcolor{keyword}{const}\ QString\ \mbox{\hyperlink{class_svg_link_parser_aadcbdb212e246d08a701592cc68d472e}{undefined}}\ =\ \textcolor{stringliteral}{"{}undefined"{}};\ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00060\ \ \ \ \ \textcolor{keyword}{const}\ QString\ \mbox{\hyperlink{class_svg_link_parser_a4f8007c210267b1c400f7793a823516a}{not\_found}}\ =\ \textcolor{stringliteral}{"{}not\_found"{}};\ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00061\ }
+\DoxyCodeLine{00062\ \ \ \ \ QString\ \mbox{\hyperlink{class_svg_link_parser_aaaba74bbf43552c39524da44635c86df}{log\_buffer}};\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00063\ }
+\DoxyCodeLine{00067\ \ \ \ \ \textcolor{keyword}{enum}\ \mbox{\hyperlink{class_svg_link_parser_acaa0fd62425a9899994d770853419f18}{e\_types}}\ \{}
+\DoxyCodeLine{00068\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_svg_link_parser_acaa0fd62425a9899994d770853419f18abc67284d32ef1ffc55bfe3531dd0d131}{label}},\ }
+\DoxyCodeLine{00069\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_svg_link_parser_acaa0fd62425a9899994d770853419f18a240bdd8cd2d264d73f78775afc522fb8}{type}},\ }
+\DoxyCodeLine{00070\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_svg_link_parser_acaa0fd62425a9899994d770853419f18a4ef6a6bb49a28368ac0acffb3fcbd2e9}{graphic}},\ }
+\DoxyCodeLine{00071\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_svg_link_parser_acaa0fd62425a9899994d770853419f18ac64fefd63e51705494459fd2fe5f4f1f}{input}},\ }
+\DoxyCodeLine{00072\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_svg_link_parser_acaa0fd62425a9899994d770853419f18a86b468364e73b1444b12c2192113746b}{output}},\ }
+\DoxyCodeLine{00073\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_svg_link_parser_acaa0fd62425a9899994d770853419f18a8eb539f890eab1d594cd986aba5903ac}{sel}},\ }
+\DoxyCodeLine{00074\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_svg_link_parser_acaa0fd62425a9899994d770853419f18ac7a8c023eff4978b86d842889ae42a43}{wire}}\ }
+\DoxyCodeLine{00075\ \ \ \ \ \};}
+\DoxyCodeLine{00076\ }
+\DoxyCodeLine{00080\ \ \ \ \ \textcolor{keyword}{enum}\ \mbox{\hyperlink{class_svg_link_parser_a90dd27f021c89135605463499c2b7c66}{e\_returns}}\ \{}
+\DoxyCodeLine{00081\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_svg_link_parser_a90dd27f021c89135605463499c2b7c66a38d123ffcc84473160585805756884d9}{SUCCESS}},\ }
+\DoxyCodeLine{00082\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_svg_link_parser_a90dd27f021c89135605463499c2b7c66aa27ae5ff4f4f271849a28682da19df8a}{FILE\_NOT\_FOUND}},\ }
+\DoxyCodeLine{00083\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_svg_link_parser_a90dd27f021c89135605463499c2b7c66af5173d097ed7664e10e7c849b57f08b2}{INVALID\_ARGUMENT}}\ }
+\DoxyCodeLine{00084\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ other\ error\ codes}}
+\DoxyCodeLine{00085\ \ \ \ \ \};}
+\DoxyCodeLine{00086\ }
+\DoxyCodeLine{00090\ \ \ \ \ \textcolor{keyword}{struct\ }\mbox{\hyperlink{struct_svg_link_parser_1_1s__io}{s\_io}}}
+\DoxyCodeLine{00091\ \ \ \ \ \{}
+\DoxyCodeLine{00092\ \ \ \ \ \ \ \ \ QString\ \mbox{\hyperlink{struct_svg_link_parser_1_1s__io_aeec4d21cd253c55c15c7f0f6544d7400}{name}};\ }
+\DoxyCodeLine{00093\ \ \ \ \ \ \ \ \ uint\ \mbox{\hyperlink{struct_svg_link_parser_1_1s__io_a7f73ba4d9226d0e56543dee9336e6c14}{width}};\ }
+\DoxyCodeLine{00094\ \ \ \ \ \};}
+\DoxyCodeLine{00095\ }
+\DoxyCodeLine{00099\ \ \ \ \ \textcolor{keyword}{struct\ }\mbox{\hyperlink{struct_svg_link_parser_1_1s__tree__node__info}{s\_tree\_node\_info}}}
+\DoxyCodeLine{00100\ \ \ \ \ \{}
+\DoxyCodeLine{00101\ \ \ \ \ \ \ \ \ QString\ \mbox{\hyperlink{struct_svg_link_parser_1_1s__tree__node__info_aa23174500090417acdcb7165d888601e}{tag\_name}};\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00102\ \ \ \ \ \ \ \ \ QString\ \mbox{\hyperlink{struct_svg_link_parser_1_1s__tree__node__info_a90107c5d65a556e1cf1fd22002b485a8}{id}};\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00103\ \ \ \ \ \ \ \ \ QString\ \mbox{\hyperlink{struct_svg_link_parser_1_1s__tree__node__info_aa1570b50e449fc6d795e51ae68fbe950}{label}};\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00104\ \ \ \ \ \ \ \ \ QString\ \mbox{\hyperlink{struct_svg_link_parser_1_1s__tree__node__info_af54cc315aaa9ee063995fa6c2ce933ab}{type}};\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00105\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{struct_svg_link_parser_1_1s__tree__node__info_a22d6c1ab6ca8de25e55b287b3d74eb2a}{component\_in\_width}};\ \ }
+\DoxyCodeLine{00106\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{struct_svg_link_parser_1_1s__tree__node__info_aa903241b4fb9c24717d241fc7a807a55}{component\_out\_width}};\ \ \ \ }
+\DoxyCodeLine{00107\ \ \ \ \ \ \ \ \ std::vector<s\_io>\ \mbox{\hyperlink{struct_svg_link_parser_1_1s__tree__node__info_ac3b8e832099b5c2b58f16ea3241550cd}{inputs}};\ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00108\ \ \ \ \ \ \ \ \ std::vector<s\_io>\ \mbox{\hyperlink{struct_svg_link_parser_1_1s__tree__node__info_a3f5bb6741ceb760b4697002972f1b2a9}{outputs}};\ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00109\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{struct_svg_link_parser_1_1s__tree__node__info_a379368fdf9a04e808ce9e6b6d85b1e45}{is\_parse\_error}};\ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00110\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{struct_svg_link_parser_1_1s__tree__node__info_aaf9c140fdb3731e9fafd038fed85732b}{has\_been\_parsed}};\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00111\ \ \ \ \ \ \ \ \ std::vector<QString>\ \mbox{\hyperlink{struct_svg_link_parser_1_1s__tree__node__info_af3c2aeb46770e806ed347352edf0d5e1}{error\_messages}};}
+\DoxyCodeLine{00112\ \ \ \ \ \};}
+\DoxyCodeLine{00113\ }
+\DoxyCodeLine{00117\ \ \ \ \ \textcolor{keyword}{struct\ }\mbox{\hyperlink{struct_svg_link_parser_1_1s__tree__node}{s\_tree\_node}}}
+\DoxyCodeLine{00118\ \ \ \ \ \{}
+\DoxyCodeLine{00119\ \ \ \ \ \ \ \ \ QDomElement\ \mbox{\hyperlink{struct_svg_link_parser_1_1s__tree__node_a9d8a3429549ed4bbe8cbd9feca519e54}{element}};\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00120\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{struct_svg_link_parser_1_1s__tree__node__info}{s\_tree\_node\_info}}\ \mbox{\hyperlink{struct_svg_link_parser_1_1s__tree__node_aab9e786a1a4e93ee60837937e3aec955}{infos}};\ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00121\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{struct_svg_link_parser_1_1s__tree__node_a3966e45fbf476cd6e74c07ed62cb1df7}{level}};\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00122\ \ \ \ \ \ \ \ \ std::vector<s\_tree\_node>\ \mbox{\hyperlink{struct_svg_link_parser_1_1s__tree__node_a0f5809fc1498aedbc13af5a7acac2f6d}{children}};\ \ }
+\DoxyCodeLine{00123\ \ \ \ \ \};}
+\DoxyCodeLine{00124\ }
+\DoxyCodeLine{00125\ \ \ \ \ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{class_svg_link_parser_a499f74f80718ce5d731169ae5cf6e68a}{groups\_number}};\ \ \ \ \ }
+\DoxyCodeLine{00126\ \ \ \ \ \mbox{\hyperlink{struct_svg_link_parser_1_1s__tree__node}{s\_tree\_node}}\ \mbox{\hyperlink{class_svg_link_parser_abcc9bcfe9163a5da7b22a87db3f3b997}{root}};\ \ \ \ }
+\DoxyCodeLine{00127\ }
+\DoxyCodeLine{00128\ \ \ \ \ \textcolor{keyword}{typedef}\ \textcolor{keyword}{enum}\ \mbox{\hyperlink{class_svg_link_parser_a26f178f0b7fdb5778268c85e252635c3}{I\_O}}\ \{}
+\DoxyCodeLine{00129\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_svg_link_parser_a26f178f0b7fdb5778268c85e252635c3af7345f2cfeb10fbf4559782e6e87b589}{INPUT}},\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00130\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_svg_link_parser_a26f178f0b7fdb5778268c85e252635c3a27e536b2b54b86600d2f90f10fe50bed}{OUTPUT}},\ \ \ }
+\DoxyCodeLine{00131\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_svg_link_parser_a26f178f0b7fdb5778268c85e252635c3ade3079aee47b750d556788336064f96c}{UNDEFINED}}\ \ }
+\DoxyCodeLine{00132\ \ \ \ \ \}\ \mbox{\hyperlink{class_svg_link_parser_a26f178f0b7fdb5778268c85e252635c3}{I\_O}};}
+\DoxyCodeLine{00133\ }
+\DoxyCodeLine{00134\ \ \ \ \ \textcolor{keyword}{typedef}\ \textcolor{keyword}{struct}}
+\DoxyCodeLine{00135\ \ \ \ \ \{}
+\DoxyCodeLine{00136\ \ \ \ \ \ \ \ \ QString\ \mbox{\hyperlink{struct_svg_link_parser_1_1sim___i___o_a22d26e72a3df6c478cca3a13feb0e818}{name}};\ \ \ }
+\DoxyCodeLine{00137\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{struct_svg_link_parser_1_1sim___i___o_a3faa35181e45b5a50096c51453d69eba}{width}};\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00138\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_svg_link_parser_a26f178f0b7fdb5778268c85e252635c3}{I\_O}}\ \mbox{\hyperlink{struct_svg_link_parser_1_1sim___i___o_ad091e666dcc5631708859929a092a357}{type}};\ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00139\ \ \ \ \ \}\ \mbox{\hyperlink{struct_svg_link_parser_1_1sim___i___o}{sim\_I\_O}};}
+\DoxyCodeLine{00140\ }
+\DoxyCodeLine{00144\ \ \ \ \ \textcolor{keyword}{typedef}\ \textcolor{keyword}{struct}}
+\DoxyCodeLine{00145\ \ \ \ \ \{}
+\DoxyCodeLine{00146\ \ \ \ \ \ \ \ \ QString\ \mbox{\hyperlink{struct_svg_link_parser_1_1element__io__list_a2769feda77e6d116cbcf88d6ee7c9968}{label}};\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00147\ \ \ \ \ \ \ \ \ QString\ \mbox{\hyperlink{struct_svg_link_parser_1_1element__io__list_ad42d6646bf48c44cf526ebef74e69d7a}{type}};\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00148\ \ \ \ \ \ \ \ \ uint16\_t\ \mbox{\hyperlink{struct_svg_link_parser_1_1element__io__list_ae5367a7ae09e7786108e3435c1ec8754}{attribute\_count}};\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00149\ \ \ \ \ \ \ \ \ std::vector<QString>\ \mbox{\hyperlink{struct_svg_link_parser_1_1element__io__list_ad928deb094e5f784fe773c09d6d62a5c}{inputs}};\ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00150\ \ \ \ \ \ \ \ \ std::vector<QString>\ \mbox{\hyperlink{struct_svg_link_parser_1_1element__io__list_ad01c3818cb71852f2aafb6131fa0f9a9}{outputs}};\ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00151\ \ \ \ \ \ \ \ \ std::vector<QString>\ \mbox{\hyperlink{struct_svg_link_parser_1_1element__io__list_a3628def9b127fe1cfb45ca8db962742f}{other\_attributes}};\ \ }
+\DoxyCodeLine{00152\ \ \ \ \ \}\ \mbox{\hyperlink{struct_svg_link_parser_1_1element__io__list}{element\_io\_list}};}
+\DoxyCodeLine{00153\ }
+\DoxyCodeLine{00157\ \ \ \ \ \textcolor{keyword}{typedef}\ \textcolor{keyword}{struct}}
+\DoxyCodeLine{00158\ \ \ \ \ \{}
+\DoxyCodeLine{00159\ \ \ \ \ \ \ \ \ QList<element\_io\_list>\ \mbox{\hyperlink{struct_svg_link_parser_1_1components__list_a4685669aec5a1b6a494f6d9bff5f110e}{elements}};\ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00160\ \ \ \ \ \}\ \mbox{\hyperlink{struct_svg_link_parser_1_1components__list}{components\_list}};}
+\DoxyCodeLine{00161\ }
+\DoxyCodeLine{00162\ \ \ \ \ \mbox{\hyperlink{struct_svg_link_parser_1_1components__list}{components\_list}}\ \mbox{\hyperlink{class_svg_link_parser_a9fe299fdaa08936a8d16809dc438300c}{all\_components}};\ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00163\ }
+\DoxyCodeLine{00169\ \ \ \ \ QString\ \mbox{\hyperlink{class_svg_link_parser_aaa2e30954e9cf5e3f11ef02de58f8828}{get\_attr\_for\_type}}(\mbox{\hyperlink{class_svg_link_parser_acaa0fd62425a9899994d770853419f18}{e\_types}}\ \mbox{\hyperlink{class_svg_link_parser_acaa0fd62425a9899994d770853419f18a240bdd8cd2d264d73f78775afc522fb8}{type}});}
+\DoxyCodeLine{00170\ }
+\DoxyCodeLine{00176\ \ \ \ \ QString\ \mbox{\hyperlink{class_svg_link_parser_ab8c02e9f18e4e7d13327253fc161c5ae}{get\_attr\_for\_string}}(QString\ attr);}
+\DoxyCodeLine{00177\ }
+\DoxyCodeLine{00182\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_svg_link_parser_ab3f8def9c87e15e269467ea100f42443}{parse\_group\_elements}}(\mbox{\hyperlink{struct_svg_link_parser_1_1s__tree__node}{s\_tree\_node}}\&\ node);}
+\DoxyCodeLine{00183\ }
+\DoxyCodeLine{00188\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_svg_link_parser_a1dba05d5860519e2f758a2d9870b4397}{list\_attributes}}(\textcolor{keyword}{const}\ std::vector<QDomElement>\&\ elements);}
+\DoxyCodeLine{00189\ }
+\DoxyCodeLine{00194\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_svg_link_parser_ae156fdd1961c9ce7b7b9e04c294aea9a}{parse\_svg}}(QString\ \mbox{\hyperlink{class_svg_link_parser_a9e6420e2d99a3883707669cf57e67925}{svg\_file}});}
+\DoxyCodeLine{00195\ }
+\DoxyCodeLine{00202\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_svg_link_parser_aedb64a5f36bb4ebc2eebafb7332c380f}{parse\_by\_group}}(\textcolor{keyword}{const}\ QDomNode\&\ node,\ \mbox{\hyperlink{struct_svg_link_parser_1_1s__tree__node}{s\_tree\_node}}\&\ parentNode,\ \textcolor{keywordtype}{int}\ level);}
+\DoxyCodeLine{00203\ }
+\DoxyCodeLine{00209\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_svg_link_parser_a400c08730e284c6b0312a430931e59c6}{get\_group\_header}}(\textcolor{keyword}{const}\ QDomElement\&\ element,\ \mbox{\hyperlink{struct_svg_link_parser_1_1s__tree__node__info}{s\_tree\_node\_info}}\&\ info);}
+\DoxyCodeLine{00210\ }
+\DoxyCodeLine{00216\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_svg_link_parser_a2563eac34365da26ba9b74561c0fe65c}{generate\_tree}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{struct_svg_link_parser_1_1s__tree__node}{s\_tree\_node}}\&\ node,\ \textcolor{keyword}{const}\ QString\&\ prefix);}
+\DoxyCodeLine{00217\ }
+\DoxyCodeLine{00222\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_svg_link_parser_a54f1c363e62459060fddb0eaf6980b07}{print\_tree\_in\_log}}(QString\ \mbox{\hyperlink{class_svg_link_parser_aaaba74bbf43552c39524da44635c86df}{log\_buffer}});}
+\DoxyCodeLine{00223\ }
+\DoxyCodeLine{00228\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_svg_link_parser_a85eff6d7ba9bbf3399d8d6463eff08e1}{parse\_links}}(\mbox{\hyperlink{struct_svg_link_parser_1_1s__tree__node}{s\_tree\_node}}\&\ node);}
+\DoxyCodeLine{00229\ }
+\DoxyCodeLine{00235\ \ \ \ \ QList<sim\_I\_O>\ \mbox{\hyperlink{class_svg_link_parser_a02f1043f3437c522ea892336c508644e}{get\_simulation\_IO}}(\textcolor{keyword}{const}\ QDomElement\ svg\_group\_xml);}
+\DoxyCodeLine{00236\ }
+\DoxyCodeLine{00244\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_svg_link_parser_a126510b78a5f1013a1992057a270b247}{find\_elements\_with\_attribute}}(}
+\DoxyCodeLine{00245\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ QDomElement\ elem\_to\_look\_into,}
+\DoxyCodeLine{00246\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ QString\ attr\_name,}
+\DoxyCodeLine{00247\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ QString\ attr\_value,}
+\DoxyCodeLine{00248\ \ \ \ \ \ \ \ \ QList<QDomElement>\&\ found\_elements);}
+\DoxyCodeLine{00249\ \};}
+\DoxyCodeLine{00250\ }
+\DoxyCodeLine{00251\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{//\ SVG\_LINK\_PARSER\_H}}
+
+\end{DoxyCode}

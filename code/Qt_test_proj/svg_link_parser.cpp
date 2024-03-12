@@ -243,31 +243,6 @@ void SvgLinkParser::parse_group_elements(s_tree_node& node)
         QList<sim_I_O> sim_I_Os;
         sim_I_Os = get_simulation_IO(node_xml_data);
 
-
-        /*
-        //Parse the wires
-        QList<QDomElement> wires_found;
-        find_elements_with_attribute(
-            node_xml_data,
-            get_attr_for_type(e_types::wire),
-            wires_found);
-
-        for(QDomElement wire : wires_found)
-        {
-            //Parse the wire
-            if(wire.hasAttribute(get_attr_for_string("")))
-            {
-                //Get the label
-                QString label = wire.attribute(get_attr_for_type(e_types::label));
-            }else{
-                //Error
-            }
-            //Get the input and output
-            //Get the input and output width
-            //Get the input and output type
-            //Add the wire to the list of wires
-        }
-*/
         //No header for the main element, hard code the values
         parsed_data->type = "main";
         parsed_data->component_in_width = 0;

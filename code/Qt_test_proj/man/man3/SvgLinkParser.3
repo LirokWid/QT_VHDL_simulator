@@ -1,0 +1,500 @@
+.TH "SvgLinkParser" 3 "SvgVHDL simulator" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+SvgLinkParser \- The \fBSvgLinkParser\fP class\&.  
+
+.SH SYNOPSIS
+.br
+.PP
+.PP
+\fR#include <svg_link_parser\&.h>\fP
+.SS "Classes"
+
+.in +1c
+.ti -1c
+.RI "struct \fBcomponents_list\fP"
+.br
+.RI "Struct for storing components list\&. "
+.ti -1c
+.RI "struct \fBelement_io_list\fP"
+.br
+.RI "Struct for storing element IO information\&. "
+.ti -1c
+.RI "struct \fBs_io\fP"
+.br
+.RI "Struct for storing input/output information\&. "
+.ti -1c
+.RI "struct \fBs_tree_node\fP"
+.br
+.RI "Struct for representing tree nodes\&. "
+.ti -1c
+.RI "struct \fBs_tree_node_info\fP"
+.br
+.RI "Struct for storing tree node information\&. "
+.ti -1c
+.RI "struct \fBsim_I_O\fP"
+.br
+.in -1c
+.SS "Public Member Functions"
+
+.in +1c
+.ti -1c
+.RI "\fBSvgLinkParser\fP (QString \fBsvg_file\fP)"
+.br
+.RI "\fBSvgLinkParser\fP constructor\&. "
+.ti -1c
+.RI "\fB~SvgLinkParser\fP ()"
+.br
+.RI "\fBSvgLinkParser\fP destructor\&. "
+.in -1c
+.SS "Public Attributes"
+
+.in +1c
+.ti -1c
+.RI "int \fBlinks_count\fP"
+.br
+.in -1c
+.SS "Private Types"
+
+.in +1c
+.ti -1c
+.RI "enum \fBe_types\fP { \fBlabel\fP, \fBtype\fP, \fBgraphic\fP, \fBinput\fP, \fBoutput\fP, \fBsel\fP, \fBwire\fP }"
+.br
+.RI "Enumeration for the names of the type attribute\&. "
+.ti -1c
+.RI "enum \fBe_returns\fP { \fBSUCCESS\fP, \fBFILE_NOT_FOUND\fP, \fBINVALID_ARGUMENT\fP }"
+.br
+.RI "Enumeration for return codes\&. "
+.ti -1c
+.RI "enum \fBI_O\fP { \fBINPUT\fP, \fBOUTPUT\fP, \fBUNDEFINED\fP }"
+.br
+.ti -1c
+.RI "typedef enum \fBSvgLinkParser::I_O\fP \fBI_O\fP"
+.br
+.in -1c
+.SS "Private Member Functions"
+
+.in +1c
+.ti -1c
+.RI "QString \fBget_attr_for_type\fP (\fBe_types\fP \fBtype\fP)"
+.br
+.RI "Get the attribute name for a given type\&. "
+.ti -1c
+.RI "QString \fBget_attr_for_string\fP (QString attr)"
+.br
+.RI "Get the attribute name for a given string\&. "
+.ti -1c
+.RI "void \fBparse_group_elements\fP (\fBs_tree_node\fP &node)"
+.br
+.RI "Parse group elements\&. "
+.ti -1c
+.RI "void \fBlist_attributes\fP (const std::vector< QDomElement > &elements)"
+.br
+.RI "List attributes\&. "
+.ti -1c
+.RI "void \fBparse_svg\fP (QString \fBsvg_file\fP)"
+.br
+.RI "Parse SVG file\&. "
+.ti -1c
+.RI "void \fBparse_by_group\fP (const QDomNode &node, \fBs_tree_node\fP &parentNode, int level)"
+.br
+.RI "Parse by group\&. "
+.ti -1c
+.RI "void \fBget_group_header\fP (const QDomElement &element, \fBs_tree_node_info\fP &info)"
+.br
+.RI "Get group header\&. "
+.ti -1c
+.RI "void \fBgenerate_tree\fP (const \fBs_tree_node\fP &node, const QString &prefix)"
+.br
+.RI "Generate tree\&. "
+.ti -1c
+.RI "void \fBprint_tree_in_log\fP (QString \fBlog_buffer\fP)"
+.br
+.RI "Print tree in log\&. "
+.ti -1c
+.RI "void \fBparse_links\fP (\fBs_tree_node\fP &node)"
+.br
+.RI "Parse links\&. "
+.ti -1c
+.RI "QList< \fBsim_I_O\fP > \fBget_simulation_IO\fP (const QDomElement svg_group_xml)"
+.br
+.RI "Get simulation IO\&. "
+.ti -1c
+.RI "void \fBfind_elements_with_attribute\fP (const QDomElement elem_to_look_into, const QString attr_name, const QString attr_value, QList< QDomElement > &found_elements)"
+.br
+.RI "Find elements with attribute\&. "
+.in -1c
+.SS "Private Attributes"
+
+.in +1c
+.ti -1c
+.RI "QString \fBsvg_file\fP"
+.br
+.RI "File name of the SVG file\&. "
+.ti -1c
+.RI "const QString \fBcustom_attribute\fP = 'sim'"
+.br
+.RI "Custom attribute prefix\&. "
+.ti -1c
+.RI "const QString \fBcomponent_ID\fP = 'ID'"
+.br
+.RI "Component ID attribute name\&. "
+.ti -1c
+.RI "const QString \fBcomponent_type\fP = 'type'"
+.br
+.RI "Component type attribute name\&. "
+.ti -1c
+.RI "const QString \fBcomponent_graphic\fP = 'graphic'"
+.br
+.RI "Component graphic attribute name\&. "
+.ti -1c
+.RI "const QString \fBcomponent_input\fP = 'input'"
+.br
+.RI "Component input attribute name\&. "
+.ti -1c
+.RI "const QString \fBcomponent_output\fP = 'output'"
+.br
+.RI "Component output attribute name\&. "
+.ti -1c
+.RI "const QString \fBcomponent_sel\fP = 'sel'"
+.br
+.RI "Component selection attribute name\&. "
+.ti -1c
+.RI "const QString \fBundefined\fP = 'undefined'"
+.br
+.RI "Undefined attribute value\&. "
+.ti -1c
+.RI "const QString \fBnot_found\fP = 'not_found'"
+.br
+.RI "Not found attribute value\&. "
+.ti -1c
+.RI "QString \fBlog_buffer\fP"
+.br
+.RI "Buffer for log messages\&. "
+.ti -1c
+.RI "int \fBgroups_number\fP"
+.br
+.RI "Number of groups\&. "
+.ti -1c
+.RI "\fBs_tree_node\fP \fBroot\fP"
+.br
+.RI "Root node of the tree\&. "
+.ti -1c
+.RI "\fBcomponents_list\fP \fBall_components\fP"
+.br
+.RI "All components list\&. "
+.in -1c
+.SH "Detailed Description"
+.PP 
+The \fBSvgLinkParser\fP class\&. 
+
+This class parses an SVG file and extracts electrical links from Qt_attr attributes of SVG elements\&. 
+.SH "Member Typedef Documentation"
+.PP 
+.SS "typedef enum \fBSvgLinkParser::I_O\fP \fBSvgLinkParser::I_O\fP\fR [private]\fP"
+
+.SH "Member Enumeration Documentation"
+.PP 
+.SS "enum \fBSvgLinkParser::e_returns\fP\fR [private]\fP"
+
+.PP
+Enumeration for return codes\&. 
+.PP
+\fBEnumerator\fP
+.in +1c
+.TP
+\fB\fISUCCESS \fP\fP
+Success return code\&. 
+.TP
+\fB\fIFILE_NOT_FOUND \fP\fP
+File not found return code\&. 
+.TP
+\fB\fIINVALID_ARGUMENT \fP\fP
+Invalid argument return code\&. 
+.SS "enum \fBSvgLinkParser::e_types\fP\fR [private]\fP"
+
+.PP
+Enumeration for the names of the type attribute\&. 
+.PP
+\fBEnumerator\fP
+.in +1c
+.TP
+\fB\fIlabel \fP\fP
+Label attribute type\&. 
+.TP
+\fB\fItype \fP\fP
+Type attribute type\&. 
+.TP
+\fB\fIgraphic \fP\fP
+Graphic attribute type\&. 
+.TP
+\fB\fIinput \fP\fP
+Input attribute type\&. 
+.TP
+\fB\fIoutput \fP\fP
+Output attribute type\&. 
+.TP
+\fB\fIsel \fP\fP
+Selection attribute type\&. 
+.TP
+\fB\fIwire \fP\fP
+Wire attribute type\&. 
+.SS "enum \fBSvgLinkParser::I_O\fP\fR [private]\fP"
+
+.PP
+\fBEnumerator\fP
+.in +1c
+.TP
+\fB\fIINPUT \fP\fP
+Input type\&. 
+.TP
+\fB\fIOUTPUT \fP\fP
+Output type\&. 
+.TP
+\fB\fIUNDEFINED \fP\fP
+Undefined type\&. 
+.SH "Constructor & Destructor Documentation"
+.PP 
+.SS "SvgLinkParser::SvgLinkParser (QString svg_file)"
+
+.PP
+\fBSvgLinkParser\fP constructor\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIsvg_file\fP The file path of the SVG file to parse\&. 
+.RE
+.PP
+
+.SS "SvgLinkParser::~SvgLinkParser ()"
+
+.PP
+\fBSvgLinkParser\fP destructor\&. 
+.SH "Member Function Documentation"
+.PP 
+.SS "void SvgLinkParser::find_elements_with_attribute (const QDomElement elem_to_look_into, const QString attr_name, const QString attr_value, QList< QDomElement > & found_elements)\fR [private]\fP"
+
+.PP
+Find elements with attribute\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIelem_to_look_into\fP The element to search into\&. 
+.br
+\fIattr_name\fP The attribute name\&. 
+.br
+\fIattr_value\fP The attribute value\&. 
+.br
+\fIfound_elements\fP The list of found elements\&. 
+.RE
+.PP
+
+.SS "void SvgLinkParser::generate_tree (const \fBs_tree_node\fP & node, const QString & prefix)\fR [private]\fP"
+
+.PP
+Generate tree\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fInode\fP The tree node\&. 
+.br
+\fIprefix\fP The prefix for formatting\&. 
+.RE
+.PP
+
+.SS "QString SvgLinkParser::get_attr_for_string (QString attr)\fR [private]\fP"
+
+.PP
+Get the attribute name for a given string\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIattr\fP The attribute string\&. 
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+The attribute name\&. 
+.RE
+.PP
+
+.SS "QString SvgLinkParser::get_attr_for_type (\fBe_types\fP type)\fR [private]\fP"
+
+.PP
+Get the attribute name for a given type\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fItype\fP The type of the attribute\&. 
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+The attribute name\&. 
+.RE
+.PP
+
+.SS "void SvgLinkParser::get_group_header (const QDomElement & element, \fBs_tree_node_info\fP & info)\fR [private]\fP"
+
+.PP
+Get group header\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIelement\fP The XML element\&. 
+.br
+\fIinfo\fP The node information\&. 
+.RE
+.PP
+
+.SS "QList< \fBSvgLinkParser::sim_I_O\fP > SvgLinkParser::get_simulation_IO (const QDomElement svg_group_xml)\fR [private]\fP"
+
+.PP
+Get simulation IO\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIsvg_group_xml\fP The SVG group XML\&. 
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+List of simulation IO\&. 
+.RE
+.PP
+
+.SS "void SvgLinkParser::list_attributes (const std::vector< QDomElement > & elements)\fR [private]\fP"
+
+.PP
+List attributes\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIelements\fP The vector of elements\&. 
+.RE
+.PP
+
+.SS "void SvgLinkParser::parse_by_group (const QDomNode & node, \fBs_tree_node\fP & parentNode, int level)\fR [private]\fP"
+
+.PP
+Parse by group\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fInode\fP The XML node to parse\&. 
+.br
+\fIparentNode\fP The parent node\&. 
+.br
+\fIlevel\fP The level of the node in the tree\&. 
+.RE
+.PP
+
+.SS "void SvgLinkParser::parse_group_elements (\fBs_tree_node\fP & node)\fR [private]\fP"
+
+.PP
+Parse group elements\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fInode\fP The tree node to parse\&. 
+.RE
+.PP
+
+.SS "void SvgLinkParser::parse_links (\fBs_tree_node\fP & node)\fR [private]\fP"
+
+.PP
+Parse links\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fInode\fP The tree node\&. 
+.RE
+.PP
+
+.SS "void SvgLinkParser::parse_svg (QString svg_file)\fR [private]\fP"
+
+.PP
+Parse SVG file\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIsvg_file\fP The SVG file to parse\&. 
+.RE
+.PP
+
+.SS "void SvgLinkParser::print_tree_in_log (QString log_buffer)\fR [private]\fP"
+
+.PP
+Print tree in log\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIlog_buffer\fP The log buffer\&. 
+.RE
+.PP
+
+.SH "Member Data Documentation"
+.PP 
+.SS "\fBcomponents_list\fP SvgLinkParser::all_components\fR [private]\fP"
+
+.PP
+All components list\&. 
+.SS "const QString SvgLinkParser::component_graphic = 'graphic'\fR [private]\fP"
+
+.PP
+Component graphic attribute name\&. 
+.SS "const QString SvgLinkParser::component_ID = 'ID'\fR [private]\fP"
+
+.PP
+Component ID attribute name\&. 
+.SS "const QString SvgLinkParser::component_input = 'input'\fR [private]\fP"
+
+.PP
+Component input attribute name\&. 
+.SS "const QString SvgLinkParser::component_output = 'output'\fR [private]\fP"
+
+.PP
+Component output attribute name\&. 
+.SS "const QString SvgLinkParser::component_sel = 'sel'\fR [private]\fP"
+
+.PP
+Component selection attribute name\&. 
+.SS "const QString SvgLinkParser::component_type = 'type'\fR [private]\fP"
+
+.PP
+Component type attribute name\&. 
+.SS "const QString SvgLinkParser::custom_attribute = 'sim'\fR [private]\fP"
+
+.PP
+Custom attribute prefix\&. 
+.SS "int SvgLinkParser::groups_number\fR [private]\fP"
+
+.PP
+Number of groups\&. 
+.SS "int SvgLinkParser::links_count"
+
+.SS "QString SvgLinkParser::log_buffer\fR [private]\fP"
+
+.PP
+Buffer for log messages\&. 
+.SS "const QString SvgLinkParser::not_found = 'not_found'\fR [private]\fP"
+
+.PP
+Not found attribute value\&. 
+.SS "\fBs_tree_node\fP SvgLinkParser::root\fR [private]\fP"
+
+.PP
+Root node of the tree\&. 
+.SS "QString SvgLinkParser::svg_file\fR [private]\fP"
+
+.PP
+File name of the SVG file\&. 
+.SS "const QString SvgLinkParser::undefined = 'undefined'\fR [private]\fP"
+
+.PP
+Undefined attribute value\&. 
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for SvgVHDL simulator from the source code\&.
