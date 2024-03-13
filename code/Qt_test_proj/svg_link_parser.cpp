@@ -229,9 +229,9 @@ void SvgLinkParser::parse_group_elements(s_tree_node& node)
     parsed_data->is_parse_error = false;
     parsed_data->has_been_parsed = false;
 
+
     if(node_xml_data.tagName() == "svg")
-    {
-        //Main element, contains groups, wires, inputs and outputs
+    {   //Main element, contains groups, wires, inputs and outputs
         //We should only have one svg element
         if(parsed_data->has_been_parsed)
         {
@@ -240,8 +240,12 @@ void SvgLinkParser::parse_group_elements(s_tree_node& node)
         }
 
         //Parse the simulator inputs and outputs
-        QList<sim_I_O> sim_I_Os;
-        sim_I_Os = get_simulation_IO(node_xml_data);
+        QList<s_sim_I_O> sim_I_Os;
+        sim_I_Os = parse_simulation_IO(node_xml_data);
+
+        //Parse the wires
+        QList<s_sim_wire> sim_wires;
+        sim_wires = parse_simulation_wires(node_xml_data);
 
         //No header for the main element, hard code the values
         parsed_data->type = "main";
@@ -351,12 +355,12 @@ void SvgLinkParser::parse_group_elements(s_tree_node& node)
     }
 }
 
-QList<SvgLinkParser::sim_I_O> SvgLinkParser::get_simulation_IO(const QDomElement svg_group_xml)
+QList<SvgLinkParser::s_sim_I_O> SvgLinkParser::parse_simulation_IO(const QDomElement svg_group_xml)
 {
 
     QList<QDomElement> inputs_found;
 
-    QList<sim_I_O> sim_I_Os;
+    QList<s_sim_I_O> sim_I_Os;
 
     find_elements_with_attribute(
         svg_group_xml,
@@ -369,9 +373,9 @@ QList<SvgLinkParser::sim_I_O> SvgLinkParser::get_simulation_IO(const QDomElement
     {
         //Parse the name
         QString name = DEFAULT_INPUT_NAME;
-        if(sim_input.hasAttribute(IO_NAME_ATTRIBUTE))
+        if(sim_input.hasAttribute(NAME_ATTRIBUTE))
         {
-            name = sim_input.attribute(IO_NAME_ATTRIBUTE);
+            name = sim_input.attribute(NAME_ATTRIBUTE);
         }else{
             qDebug() << "Warning: No name attribute found for input";
         }
@@ -400,9 +404,9 @@ QList<SvgLinkParser::sim_I_O> SvgLinkParser::get_simulation_IO(const QDomElement
     {
         //Parse the name
         QString name = DEFAULT_OUTPUT_NAME;
-        if(sim_output.hasAttribute(IO_NAME_ATTRIBUTE))
+        if(sim_output.hasAttribute(NAME_ATTRIBUTE))
         {
-            name = sim_output.attribute(IO_NAME_ATTRIBUTE);
+            name = sim_output.attribute(NAME_ATTRIBUTE);
         }else{
             qDebug() << "Warning: No name attribute found for output";
         }
@@ -422,6 +426,45 @@ QList<SvgLinkParser::sim_I_O> SvgLinkParser::get_simulation_IO(const QDomElement
     return sim_I_Os;
 }
 
+QList<SvgLinkParser::s_sim_wire> SvgLinkParser::parse_simulation_wires(const QDomElement svg_group_xml)
+{
+    QList<s_sim_wire> sim_wires;
+    QList<QDomElement> wires_found;
+
+    find_elements_with_attribute(
+        svg_group_xml,
+        get_attr_for_type(type),
+        "wire",
+        wires_found);
+
+    for(const QDomElement& sim_wire : wires_found)
+    {
+        //Parse the name
+        QString name = DEFAULT_WIRE_NAME;
+        if(sim_wire.hasAttribute(NAME_ATTRIBUTE))
+        {
+            name = sim_wire.attribute(NAME_ATTRIBUTE);
+        }else{
+            qDebug() << "Warning: No name attribute found for wire";
+            name = DEFAULT_WIRE_NAME + QString::number(sim_wires.size());
+        }
+
+        //Parse the connection
+        QString connection = "";
+        if(sim_wire.hasAttribute(get_attr_for_string("connection")))
+        {
+            connection = sim_wire.attribute(get_attr_for_string("connection"));
+        }else{
+            qDebug() << "Warning: No connection attribute found for wire";
+            connection = "";
+        }
+
+        //The wire width is from the connection width we'll find that info later
+        sim_wires.append({name,TO_BE_FOUND, connection});
+    }
+    return sim_wires;
+}
+
 void SvgLinkParser::find_elements_with_attribute(const QDomElement elem_to_look_into, const QString attr_name, const QString attr_value, QList<QDomElement>& found_elements)
 {
     //Find attributes with a fixed value
@@ -432,7 +475,7 @@ void SvgLinkParser::find_elements_with_attribute(const QDomElement elem_to_look_
         {
             if(child.attribute(attr_name) == attr_value)
             {
-                qDebug() << child.attribute(attr_name) << "==" << attr_value;
+                //qDebug() << child.attribute(attr_name) << "==" << attr_value;
                 found_elements.append(child);
             }
         }

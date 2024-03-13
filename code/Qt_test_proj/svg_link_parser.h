@@ -21,8 +21,9 @@
 #define DEFAULT_WIDTH 1
 #define DEFAULT_INPUT_NAME "in"
 #define DEFAULT_OUTPUT_NAME "out"
+#define DEFAULT_WIRE_NAME "wire_"
 
-#define IO_NAME_ATTRIBUTE "inkscape:label"
+#define NAME_ATTRIBUTE "inkscape:label"
 
 /**
  * @brief The SvgLinkParser class
@@ -84,6 +85,10 @@ private:
         // other error codes
     };
 
+    enum e_states {
+        TO_BE_FOUND, ///< To be found state.
+    };
+
     /**
      * @brief Struct for storing input/output information.
      */
@@ -129,14 +134,25 @@ private:
         INPUT, 		///< Input type.
         OUTPUT, 	///< Output type.
         UNDEFINED 	///< Undefined type.
-    } I_O;
+    } e_I_O;
 
     typedef struct
     {
         QString name; 	///< Name of the component.
         int width; 		///< Width of the component.
-        I_O type; 		///< Type of the component.
-    } sim_I_O;
+        e_I_O type; 	///< Type of the I/O
+    } s_sim_I_O;
+
+    /**
+     * @brief Struct for storing wire information.
+     */
+    typedef struct
+    {
+        QString name;           ///< wire name
+        int width;              ///< wire width
+        QString connected_to; 	///< connected to
+    } s_sim_wire;
+
 
     /**
      * @brief Struct for storing element IO information.
@@ -151,12 +167,16 @@ private:
         std::vector<QString> other_attributes; 	///< Vector of other attributes.
     } element_io_list;
 
+
     /**
      * @brief Struct for storing components list.
      */
     typedef struct
     {
         QList<element_io_list> elements; 		///< List of elements.
+        QList<s_sim_I_O> simulation_IO; 			///< List of simulation IO.
+        QList<s_sim_wire> simulation_wires; 		///< List of simulation wires.
+
     } components_list;
 
     components_list all_components; 			///< All components list.
@@ -176,7 +196,9 @@ private:
     QString get_attr_for_string(QString attr);
 
     /**
-     * @brief Parse group elements.
+     * @brief Parse an element from an xml group tag:
+     * It can ether parse a <svg> or a <g> tag.
+     *
      * @param node The tree node to parse.
      */
     void parse_group_elements(s_tree_node& node);
@@ -228,11 +250,18 @@ private:
     void parse_links(s_tree_node& node);
 
     /**
-     * @brief Get simulation IO.
+     * @brief Parse simulation IO.
      * @param svg_group_xml The SVG group XML.
      * @return List of simulation IO.
      */
-    QList<sim_I_O> get_simulation_IO(const QDomElement svg_group_xml);
+    QList<s_sim_I_O> parse_simulation_IO(const QDomElement svg_group_xml);
+
+    /**
+     * @brief Parse simulation wires.
+     * @param svg_group_xml The SVG group XML.
+     * @return List of simulation wires.
+     */
+    QList<s_sim_wire> parse_simulation_wires(const QDomElement svg_group_xml);
 
     /**
      * @brief Find elements with attribute.
