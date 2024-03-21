@@ -71,6 +71,8 @@ private:
         graphic, ///< Graphic attribute type.
         input, ///< Input attribute type.
         output, ///< Output attribute type.
+        inputs, ///< Inputs attribute type.
+        outputs, ///< Outputs attribute type.
         sel, ///< Selection attribute type.
         wire ///< Wire attribute type.
     };
@@ -130,18 +132,38 @@ private:
     int groups_number; 	///< Number of groups.
     s_tree_node root; 	///< Root node of the tree.
 
+
+
+
     typedef enum I_O {
         INPUT, 		///< Input type.
         OUTPUT, 	///< Output type.
         UNDEFINED 	///< Undefined type.
-    } e_I_O;
+    } e_IO_type;
 
     typedef struct
     {
-        QString name; 	///< Name of the component.
-        int width; 		///< Width of the component.
-        e_I_O type; 	///< Type of the I/O
+        bool is_parse_error;            ///< Flag indicating parsing error.
+        QList<QString> error_messages; 	///< Error message.
+    } s_parse_error;
+
+    typedef struct
+    {
+        QString name;           ///< Name of the component.
+        int width;              ///< Width of the component.
+        e_IO_type type;         ///< Type of the I/O
+        QString connected_to; 	///< Connected to (if output)
+        s_parse_error error; 	///< error
     } s_sim_I_O;
+
+/**
+ * @brief Struct for storing all the I/Os
+ * */
+    typedef struct
+    {
+        QList<s_sim_I_O> i_os; 	///< List of I/Os
+        s_parse_error error;        ///< error
+    } s_sim_I_Os;
 
     /**
      * @brief Struct for storing wire information.
@@ -151,7 +173,17 @@ private:
         QString name;           ///< wire name
         int width;              ///< wire width
         QString connected_to; 	///< connected to
+        s_parse_error error; 	///< error
     } s_sim_wire;
+
+    /**
+     * @brief Struct for storing all the wires
+     */
+    typedef struct
+    {
+        QList<s_sim_wire> wires; 	///< List of wires
+        s_parse_error error; 		///< error
+    } s_sim_wires;
 
 
     /**
@@ -174,8 +206,8 @@ private:
     typedef struct
     {
         QList<element_io_list> elements; 		///< List of elements.
-        QList<s_sim_I_O> simulation_IO; 			///< List of simulation IO.
-        QList<s_sim_wire> simulation_wires; 		///< List of simulation wires.
+        s_sim_I_Os simulation_IOs; 			///< List of simulation IO.
+        s_sim_wires simulation_wires; 		///< List of simulation wires.
 
     } components_list;
 
@@ -186,7 +218,7 @@ private:
      * @param type The type of the attribute.
      * @return The attribute name.
      */
-    QString get_attr_for_type(e_types type);
+    QString attr(e_types type);
 
     /**
      * @brief Get the attribute name for a given string.
@@ -252,16 +284,16 @@ private:
     /**
      * @brief Parse simulation IO.
      * @param svg_group_xml The SVG group XML.
-     * @return List of simulation IO.
+     * @param parsed_IOs The parsed IOs.
      */
-    QList<s_sim_I_O> parse_simulation_IO(const QDomElement svg_group_xml);
+    void parse_simulation_IOs(const QDomElement svg_group_xml, s_sim_I_Os& parsed_IOs);
 
     /**
      * @brief Parse simulation wires.
      * @param svg_group_xml The SVG group XML.
-     * @return List of simulation wires.
+     * @param parsed_wires The parsed wires.
      */
-    QList<s_sim_wire> parse_simulation_wires(const QDomElement svg_group_xml);
+    void parse_simulation_wires(const QDomElement svg_group_xml,  s_sim_wires& parsed_wires);
 
     /**
      * @brief Find elements with attribute.
@@ -275,6 +307,8 @@ private:
         const QString attr_name,
         const QString attr_value,
         QList<QDomElement>& found_elements);
+
+    void add_error_message(s_sim_I_O& sim_IO, const QString& errorMessage);
 };
 
 #endif // SVG_LINK_PARSER_H
