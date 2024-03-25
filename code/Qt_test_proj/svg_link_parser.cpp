@@ -391,9 +391,6 @@ void SvgLinkParser::parse_simulation_IOs(const QDomElement svg_group_xml, s_sim_
                 sim_IO.name = DEFAULT_INPUT_NAME + QString::number(sim_IOs.size());
                 sim_IO.error.error_messages.push_back("No name attribute found for input");
             }
-
-
-
         }
         else if (element.tagName() == "sim_output")
         {
@@ -450,7 +447,20 @@ void SvgLinkParser::parse_simulation_IOs(const QDomElement svg_group_xml, s_sim_
     }
 }
 
-// Function to handle error messages
+
+int SvgLinkParser::check_and_get_attr(const QDomElement& xml, template<s_sim_I_O,s_sim_wire>& component, const QString& attr_name)
+{
+    if(xml.hasAttribute(attr_name))
+    {
+        component.name = xml.attribute(attr_name);
+    }else{
+            QString error_message = "No name attribute found for ";
+            error_message += (IO_type == INPUT) ? "input" : "output";
+            sim_IO.name = DEFAULT_INPUT_NAME + QString::number(sim_IOs.size());
+            add_error_message(sim_IO, error_message);
+    }
+}
+
 void SvgLinkParser::add_error_message(s_sim_I_O& sim_IO, const QString& errorMessage)
 {
     sim_IO.error.is_parse_error = true;
