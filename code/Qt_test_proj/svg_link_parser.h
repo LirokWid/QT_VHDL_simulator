@@ -23,7 +23,12 @@
 #define DEFAULT_OUTPUT_NAME "out"
 #define DEFAULT_WIRE_NAME "wire_"
 
+#define CUSTOM_ATTRIBUTE "sim"
+
 #define NAME_ATTRIBUTE "inkscape:label"
+
+//Macro that returns the concatenation of the CUSTOM_ATTRIBUTE and the string passed as argument
+#define ATTR_FOR_STR(attr) (QString(CUSTOM_ATTRIBUTE) + ":" + attr)
 
 /**
  * @brief The SvgLinkParser class
@@ -49,7 +54,7 @@ public:
 private:
     QString svg_file; 								///< File name of the SVG file.
 
-    const QString custom_attribute = "sim"; 		///< Custom attribute prefix.
+    const QString custom_attribute = CUSTOM_ATTRIBUTE; 		///< Custom attribute prefix.
 
     const QString component_ID = "ID"; 				///< Component ID attribute name.
     const QString component_type = "type"; 			///< Component type attribute name.
@@ -149,9 +154,19 @@ private:
 
     typedef struct
     {
+        QList<QString> name; 	///< List of names.
+        QList<int> width; 	///< List of widths.
+    }s_outputs_list;
+
+    /**
+     * @brief Struct for storing I/Os information.
+     */
+    typedef struct
+    {
         QString name;           ///< Name of the component.
         int width;              ///< Width of the component.
         e_IO_type type;         ///< Type of the I/O
+        s_outputs_list jsp_quelNom; //TODO
         QString connected_to; 	///< Connected to (if output)
         s_parse_error error; 	///< error
     } s_sim_I_O;
@@ -287,6 +302,22 @@ private:
      * @param parsed_IOs The parsed IOs.
      */
     void parse_simulation_IOs(const QDomElement svg_group_xml, s_sim_I_Os& parsed_IOs);
+
+    /**
+     *
+     *
+     */
+    void get_list_of_outputs_name_and_width(QString outputs_string, s_outputs_list& out_struct);
+
+
+    /**
+     * @brief Get attribute value if it exist
+     * @param xml The XML element to check
+     * @param str_to_get The string to get fron the attribute
+     * @param attr_name The attribute name
+     */
+    bool check_and_get_attr(const QDomElement& xml, QString& str_to_get, QString attr_name);
+
 
     /**
      * @brief Parse simulation wires.

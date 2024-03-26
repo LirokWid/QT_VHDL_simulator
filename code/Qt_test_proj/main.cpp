@@ -10,6 +10,8 @@
 
 int main(int argc, char *argv[])
 {
+
+    qDebug() << __FILE__ << " " << __FUNCTION__ << " " << __LINE__ << " " << "Starting";
     QCoreApplication a(argc, argv);
     // Load the SVG file from the resource system
     QResource::registerResource(":/resources.qrc");
