@@ -162,10 +162,12 @@ private:
         QList<int> width;    ///< List of widths.
     };
 
+    //TODO : Merge s_outputs_list and s_inputs_list
+    
     struct s_inputs_list
     {
-        QList<QString> name; ///< List of names.
-        QList<int> width;    ///< List of widths.
+        QList<QString> name;         ///< List of names.
+        QList<int> width;            ///< List of widths.
         QList<QString> connected_to; ///< List of connected to.
     };
 
@@ -174,11 +176,11 @@ private:
      */
     struct s_sim_I_O
     {
-        QString name;               ///< Name of the component.
-        int width;                  ///< Width of the component.
-        e_IO_type type;             ///< Type of the I/O
-        QString connected_to;       ///< Connected to (if output)
-        s_parse_error error;        ///< error
+        QString name;         ///< Name of the component.
+        int width;            ///< Width of the component.
+        e_IO_type type;       ///< Type of the I/O
+        QString connected_to; ///< Connected to (if output)
+        s_parse_error error;  ///< error
     };
 
     /**
@@ -311,18 +313,21 @@ private:
     void parse_simulation_IOs(const QDomElement svg_group_xml, s_sim_I_Os &parsed_IOs);
 
     /**
-     *
-     *
+     * @brief Get a list of outputs name, width for sim:outputs attributes
+     * @param outputs_string
+     * @param out_struct
+     * @return Number of outputs found if success, -1 if error
      */
     int get_list_of_outputs_name_and_width(QString outputs_string, s_outputs_list &out_struct);
 
     /**
-     * @brief get_list_of_inputs_name_and_width
-     * @param outputs_string
+     * @brief Get a list of inputs name, width, and connection for sim:inputs attributes
+     * @param inputs_string
      * @param out_struct
-     * @return
+     * @return Number of inputs found if success, -1 if error
      */
     int get_list_of_inputs_name_and_width(QString inputs_string, s_inputs_list &out_struct);
+    
     /**
      * @brief Get attribute value if it exist
      * @param xml The XML element to check
@@ -351,6 +356,11 @@ private:
         const QString attr_value,
         QList<QDomElement> &found_elements);
 
+    /**
+     * @brief Attach an error message to a structure.
+     * @param sim_IO The simulation IO structure.
+     * @param errorMessage The error message.
+     */
     void add_error_message(s_sim_I_O &sim_IO, const QString &errorMessage);
 };
 

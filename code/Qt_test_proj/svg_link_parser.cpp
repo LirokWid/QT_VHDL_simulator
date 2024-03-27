@@ -396,9 +396,9 @@ void SvgLinkParser::parse_simulation_IOs(const QDomElement svg_group_xml, s_sim_
 
         // Get if input or output and the connections name and width
         QString type;
-        if(check_and_get_attr(element, type, ATTR_FOR_STR("type")))
+        if (check_and_get_attr(element, type, ATTR_FOR_STR("type")))
         {
-            if (type.compare("sim_input")==0)
+            if (type.compare("sim_input") == 0)
             { // If the element is an input
                 sim_IO.type = INPUT;
                 // It should have an attribute "sim:outputs" that contains the name of the output -> name:width, name:width,...
@@ -407,11 +407,11 @@ void SvgLinkParser::parse_simulation_IOs(const QDomElement svg_group_xml, s_sim_
                 if (check_and_get_attr(element, outputs_string, attr(outputs)))
                 { // If the attribute exists
                     s_outputs_list outputs_list;
-                    if(get_list_of_outputs_name_and_width(outputs_string, outputs_list) == 1)
+                    if (get_list_of_outputs_name_and_width(outputs_string, outputs_list) == 1)
                     { // If the attribute is valid (Only one output with correct syntax)
-                        if(outputs_list.name[0].compare(FLAG_NAME_FROM_INKSCAPE) == 0)
+                        if (outputs_list.name[0].compare(FLAG_NAME_FROM_INKSCAPE) == 0)
                         { // If the name of the output is FLAG_NAME_FROM_INKSCAPE, the name will be the inkscape name
-                            if(!check_and_get_attr(element, sim_IO.name, NAME_ATTRIBUTE))
+                            if (!check_and_get_attr(element, sim_IO.name, NAME_ATTRIBUTE))
                             { // If the name attribute does not exist
                                 add_error_message(sim_IO, "Trying to use inkscape name but no name attribute found");
                                 sim_IO.name = DEFAULT_INPUT_NAME + QString::number(sim_IOs.size());
@@ -437,7 +437,7 @@ void SvgLinkParser::parse_simulation_IOs(const QDomElement svg_group_xml, s_sim_
                     sim_IO.name = DEFAULT_INPUT_NAME + QString::number(sim_IOs.size());
                 }
             }
-            else if (type.compare("sim_output")==0)
+            else if (type.compare("sim_output") == 0)
             { // If the element is a simulator output
                 sim_IO.type = OUTPUT;
 
@@ -447,15 +447,16 @@ void SvgLinkParser::parse_simulation_IOs(const QDomElement svg_group_xml, s_sim_
                 if (check_and_get_attr(element, inputs_string, attr(inputs)))
                 { // If the attribute exists
                     s_inputs_list inputs_list;
-                    if(get_list_of_inputs_name_and_width(inputs_string, inputs_list) == 1)
+                    if (get_list_of_inputs_name_and_width(inputs_string, inputs_list) == 1)
                     { // If the attribute is valid (Only one input with correct syntax)
-                        if(inputs_list.name[0].compare(FLAG_NAME_FROM_INKSCAPE) == 0)
+                        if (inputs_list.name[0].compare(FLAG_NAME_FROM_INKSCAPE) == 0)
                         { // If the name of the input is FLAG_NAME_FROM_INKSCAPE, the name will be the inkscape name
-                            if(!check_and_get_attr(element, sim_IO.name, NAME_ATTRIBUTE))
+                            if (!check_and_get_attr(element, sim_IO.name, NAME_ATTRIBUTE))
                             { // If the name attribute does not exist
                                 add_error_message(sim_IO, "Trying to use inkscape name but no name attribute found");
                                 sim_IO.name = DEFAULT_INPUT_NAME + QString::number(sim_IOs.size());
-                            }                        }
+                            }
+                        }
                         else
                         { // Else, the name will be the one in the attribute
                             sim_IO.name = inputs_list.name[0];
@@ -505,9 +506,9 @@ int SvgLinkParser::get_list_of_outputs_name_and_width(QString outputs_string, s_
     {
         output = output.trimmed(); // Remove white spaces
         QStringList output_data = output.split(":");
-        if(output_data.size() == 2)
+        if (output_data.size() == 2)
         {
-         // TODO : verify that the width is a number
+            // TODO : verify that the width is a number
             out_struct.name.append(output_data[0].trimmed());
             out_struct.width.append(output_data[1].toInt());
         }
@@ -529,7 +530,7 @@ int SvgLinkParser::get_list_of_inputs_name_and_width(QString inputs_string, s_in
         input = input.trimmed(); // Remove white spaces
         QStringList output_data = input.split(":");
 
-        if(output_data.size() == 3)
+        if (output_data.size() == 3)
         {
             out_struct.name.append(output_data[0].trimmed());
             out_struct.width.append(output_data[1].toInt());
