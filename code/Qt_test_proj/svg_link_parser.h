@@ -8,7 +8,6 @@
 #ifndef SVG_LINK_PARSER_H
 #define SVG_LINK_PARSER_H
 
-
 #include <QXmlStreamReader>
 #include <QFile>
 #include <QDebug>
@@ -23,11 +22,13 @@
 #define DEFAULT_OUTPUT_NAME "out"
 #define DEFAULT_WIRE_NAME "wire_"
 
+#define FLAG_NAME_FROM_INKSCAPE "inkscape_label"
+
 #define CUSTOM_ATTRIBUTE "sim"
 
 #define NAME_ATTRIBUTE "inkscape:label"
 
-//Macro that returns the concatenation of the CUSTOM_ATTRIBUTE and the string passed as argument
+// Macro that returns the concatenation of the CUSTOM_ATTRIBUTE and the string passed as argument
 #define ATTR_FOR_STR(attr) (QString(CUSTOM_ATTRIBUTE) + ":" + attr)
 
 /**
@@ -52,47 +53,52 @@ public:
     int links_count;
 
 private:
-    QString svg_file; 								///< File name of the SVG file.
+    QString svg_file; ///< File name of the SVG file.
 
-    const QString custom_attribute = CUSTOM_ATTRIBUTE; 		///< Custom attribute prefix.
+    const QString custom_attribute = CUSTOM_ATTRIBUTE; ///< Custom attribute prefix.
 
-    const QString component_ID = "ID"; 				///< Component ID attribute name.
-    const QString component_type = "type"; 			///< Component type attribute name.
-    const QString component_graphic = "graphic"; 	///< Component graphic attribute name.
-    const QString component_input = "input"; 		///< Component input attribute name.
-    const QString component_output = "output"; 		///< Component output attribute name.
-    const QString component_sel = "sel"; 			///< Component selection attribute name.
-    const QString undefined = "undefined"; 			///< Undefined attribute value.
-    const QString not_found = "not_found"; 			///< Not found attribute value.
+    /*
+    const QString component_ID = "ID";           ///< Component ID attribute name.
+    const QString component_type = "type";       ///< Component type attribute name.
+    const QString component_graphic = "graphic"; ///< Component graphic attribute name.
+    const QString component_input = "input";     ///< Component input attribute name.
+    const QString component_output = "output";   ///< Component output attribute name.
+    const QString component_sel = "sel";         ///< Component selection attribute name.
+    const QString undefined = "undefined";       ///< Undefined attribute value.
+    const QString not_found = "not_found";       ///< Not found attribute value.
+    */
 
-    QString log_buffer; 							///< Buffer for log messages.
+    QString log_buffer; ///< Buffer for log messages.
 
     /**
      * @brief Enumeration for the names of the type attribute.
      */
-    enum e_types {
-        label, ///< Label attribute type.
-        type, ///< Type attribute type.
+    enum e_types
+    {
+        label,   ///< Label attribute type.
+        type,    ///< Type attribute type.
         graphic, ///< Graphic attribute type.
-        input, ///< Input attribute type.
-        output, ///< Output attribute type.
-        inputs, ///< Inputs attribute type.
+        input,   ///< Input attribute type.
+        output,  ///< Output attribute type.
+        inputs,  ///< Inputs attribute type.
         outputs, ///< Outputs attribute type.
-        sel, ///< Selection attribute type.
-        wire ///< Wire attribute type.
+        sel,     ///< Selection attribute type.
+        wire     ///< Wire attribute type.
     };
 
     /**
      * @brief Enumeration for return codes.
      */
-    enum e_returns {
-        SUCCESS, ///< Success return code.
-        FILE_NOT_FOUND, ///< File not found return code.
+    enum e_returns
+    {
+        SUCCESS,         ///< Success return code.
+        FILE_NOT_FOUND,  ///< File not found return code.
         INVALID_ARGUMENT ///< Invalid argument return code.
         // other error codes
     };
 
-    enum e_states {
+    enum e_states
+    {
         TO_BE_FOUND, ///< To be found state.
     };
 
@@ -102,7 +108,7 @@ private:
     struct s_io
     {
         QString name; ///< Name of the input/output.
-        uint width; ///< Width of the input/output.
+        uint width;   ///< Width of the input/output.
     };
 
     /**
@@ -110,17 +116,17 @@ private:
      */
     struct s_tree_node_info
     {
-        QString tag_name; 					///< Tag name of the node.
-        QString id; 						///< ID attribute of the node.
-        QString label; 						///< Label attribute of the node.
-        QString type; 						///< Type attribute of the node.
-        unsigned int component_in_width; 	///< Input width of the component.
-        unsigned int component_out_width; 	///< Output width of the component.
-        std::vector<s_io> inputs; 			///< Vector of input information.
-        std::vector<s_io> outputs; 			///< Vector of output information.
-        bool is_parse_error; 				///< Flag indicating parsing error.
-        bool has_been_parsed; 				///< Flag indicating node has been parsed.
-        std::vector<QString> error_messages;///< Vector of error messages.
+        QString tag_name;                    ///< Tag name of the node.
+        QString id;                          ///< ID attribute of the node.
+        QString label;                       ///< Label attribute of the node.
+        QString type;                        ///< Type attribute of the node.
+        unsigned int component_in_width;     ///< Input width of the component.
+        unsigned int component_out_width;    ///< Output width of the component.
+        std::vector<s_io> inputs;            ///< Vector of input information.
+        std::vector<s_io> outputs;           ///< Vector of output information.
+        bool is_parse_error;                 ///< Flag indicating parsing error.
+        bool has_been_parsed;                ///< Flag indicating node has been parsed.
+        std::vector<QString> error_messages; ///< Vector of error messages.
     };
 
     /**
@@ -128,105 +134,106 @@ private:
      */
     struct s_tree_node
     {
-        QDomElement element; 				///< XML element of the node.
-        s_tree_node_info infos; 			///< Information of the node.
-        int level; 							///< Level of the node in the tree.
-        std::vector<s_tree_node> children; 	///< Children nodes.
+        QDomElement element;               ///< XML element of the node.
+        s_tree_node_info infos;            ///< Information of the node.
+        int level;                         ///< Level of the node in the tree.
+        std::vector<s_tree_node> children; ///< Children nodes.
     };
 
-    int groups_number; 	///< Number of groups.
-    s_tree_node root; 	///< Root node of the tree.
+    int groups_number; ///< Number of groups.
+    s_tree_node root;  ///< Root node of the tree.
 
-
-
-
-    typedef enum I_O {
-        INPUT, 		///< Input type.
-        OUTPUT, 	///< Output type.
-        UNDEFINED 	///< Undefined type.
+    typedef enum I_O
+    {
+        INPUT,    ///< Input type.
+        OUTPUT,   ///< Output type.
+        UNDEFINED ///< Undefined type.
     } e_IO_type;
 
-    typedef struct
+    struct s_parse_error
     {
-        bool is_parse_error;            ///< Flag indicating parsing error.
-        QList<QString> error_messages; 	///< Error message.
-    } s_parse_error;
+        bool is_parse_error;           ///< Flag indicating parsing error.
+        QList<QString> error_messages; ///< Error message.
+    };
 
-    typedef struct
+    struct s_outputs_list
     {
-        QList<QString> name; 	///< List of names.
-        QList<int> width; 	///< List of widths.
-    }s_outputs_list;
+        QList<QString> name; ///< List of names.
+        QList<int> width;    ///< List of widths.
+    };
+
+    struct s_inputs_list
+    {
+        QList<QString> name; ///< List of names.
+        QList<int> width;    ///< List of widths.
+        QList<QString> connected_to; ///< List of connected to.
+    };
 
     /**
      * @brief Struct for storing I/Os information.
      */
-    typedef struct
+    struct s_sim_I_O
     {
-        QString name;           ///< Name of the component.
-        int width;              ///< Width of the component.
-        e_IO_type type;         ///< Type of the I/O
-        s_outputs_list jsp_quelNom; //TODO
-        QString connected_to; 	///< Connected to (if output)
-        s_parse_error error; 	///< error
-    } s_sim_I_O;
-
-/**
- * @brief Struct for storing all the I/Os
- * */
-    typedef struct
-    {
-        QList<s_sim_I_O> i_os; 	///< List of I/Os
+        QString name;               ///< Name of the component.
+        int width;                  ///< Width of the component.
+        e_IO_type type;             ///< Type of the I/O
+        QString connected_to;       ///< Connected to (if output)
         s_parse_error error;        ///< error
-    } s_sim_I_Os;
+    };
+
+    /**
+     * @brief Struct for storing all the I/Os
+     * */
+    struct s_sim_I_Os
+    {
+        QList<s_sim_I_O> i_os; ///< List of I/Os
+        s_parse_error error;   ///< error
+    };
 
     /**
      * @brief Struct for storing wire information.
      */
-    typedef struct
+    struct s_sim_wire
     {
-        QString name;           ///< wire name
-        int width;              ///< wire width
-        QString connected_to; 	///< connected to
-        s_parse_error error; 	///< error
-    } s_sim_wire;
+        QString name;         ///< wire name
+        int width;            ///< wire width
+        QString connected_to; ///< connected to
+        s_parse_error error;  ///< error
+    };
 
     /**
      * @brief Struct for storing all the wires
      */
-    typedef struct
+    struct s_sim_wires
     {
-        QList<s_sim_wire> wires; 	///< List of wires
-        s_parse_error error; 		///< error
-    } s_sim_wires;
-
+        QList<s_sim_wire> wires; ///< List of wires
+        s_parse_error error;     ///< error
+    };
 
     /**
      * @brief Struct for storing element IO information.
      */
-    typedef struct
+    struct element_io_list
     {
-        QString label; 							///< Label of the element.
-        QString type; 							///< Type of the element.
-        uint16_t attribute_count; 				///< Count of attributes.
-        std::vector<QString> inputs; 			///< Vector of input attributes.
-        std::vector<QString> outputs; 			///< Vector of output attributes.
-        std::vector<QString> other_attributes; 	///< Vector of other attributes.
-    } element_io_list;
-
+        QString label;                         ///< Label of the element.
+        QString type;                          ///< Type of the element.
+        uint16_t attribute_count;              ///< Count of attributes.
+        std::vector<QString> inputs;           ///< Vector of input attributes.
+        std::vector<QString> outputs;          ///< Vector of output attributes.
+        std::vector<QString> other_attributes; ///< Vector of other attributes.
+    };
 
     /**
      * @brief Struct for storing components list.
      */
-    typedef struct
+    struct components_list
     {
-        QList<element_io_list> elements; 		///< List of elements.
-        s_sim_I_Os simulation_IOs; 			///< List of simulation IO.
-        s_sim_wires simulation_wires; 		///< List of simulation wires.
+        QList<element_io_list> elements; ///< List of elements.
+        s_sim_I_Os simulation_IOs;       ///< List of simulation IO.
+        s_sim_wires simulation_wires;    ///< List of simulation wires.
+    };
 
-    } components_list;
-
-    components_list all_components; 			///< All components list.
+    components_list all_components; ///< All components list.
 
     /**
      * @brief Get the attribute name for a given type.
@@ -248,13 +255,13 @@ private:
      *
      * @param node The tree node to parse.
      */
-    void parse_group_elements(s_tree_node& node);
+    void parse_group_elements(s_tree_node &node);
 
     /**
      * @brief List attributes.
      * @param elements The vector of elements.
      */
-    void list_attributes(const std::vector<QDomElement>& elements);
+    void list_attributes(const std::vector<QDomElement> &elements);
 
     /**
      * @brief Parse SVG file.
@@ -268,21 +275,21 @@ private:
      * @param parentNode The parent node.
      * @param level The level of the node in the tree.
      */
-    void parse_by_group(const QDomNode& node, s_tree_node& parentNode, int level);
+    void parse_by_group(const QDomNode &node, s_tree_node &parentNode, int level);
 
     /**
      * @brief Get group header.
      * @param element The XML element.
      * @param info The node information.
      */
-    void get_group_header(const QDomElement& element, s_tree_node_info& info);
+    void get_group_header(const QDomElement &element, s_tree_node_info &info);
 
     /**
      * @brief Generate tree.
      * @param node The tree node.
      * @param prefix The prefix for formatting.
      */
-    void generate_tree(const s_tree_node& node, const QString& prefix);
+    void generate_tree(const s_tree_node &node, const QString &prefix);
 
     /**
      * @brief Print tree in log.
@@ -294,37 +301,42 @@ private:
      * @brief Parse links.
      * @param node The tree node.
      */
-    void parse_links(s_tree_node& node);
+    void parse_links(s_tree_node &node);
 
     /**
      * @brief Parse simulation IO.
      * @param svg_group_xml The SVG group XML.
      * @param parsed_IOs The parsed IOs.
      */
-    void parse_simulation_IOs(const QDomElement svg_group_xml, s_sim_I_Os& parsed_IOs);
+    void parse_simulation_IOs(const QDomElement svg_group_xml, s_sim_I_Os &parsed_IOs);
 
     /**
      *
      *
      */
-    void get_list_of_outputs_name_and_width(QString outputs_string, s_outputs_list& out_struct);
+    int get_list_of_outputs_name_and_width(QString outputs_string, s_outputs_list &out_struct);
 
-
+    /**
+     * @brief get_list_of_inputs_name_and_width
+     * @param outputs_string
+     * @param out_struct
+     * @return
+     */
+    int get_list_of_inputs_name_and_width(QString inputs_string, s_inputs_list &out_struct);
     /**
      * @brief Get attribute value if it exist
      * @param xml The XML element to check
      * @param str_to_get The string to get fron the attribute
      * @param attr_name The attribute name
      */
-    bool check_and_get_attr(const QDomElement& xml, QString& str_to_get, QString attr_name);
-
+    bool check_and_get_attr(const QDomElement &xml, QString &str_to_get, QString attr_name);
 
     /**
      * @brief Parse simulation wires.
      * @param svg_group_xml The SVG group XML.
      * @param parsed_wires The parsed wires.
      */
-    void parse_simulation_wires(const QDomElement svg_group_xml,  s_sim_wires& parsed_wires);
+    void parse_simulation_wires(const QDomElement svg_group_xml, s_sim_wires &parsed_wires);
 
     /**
      * @brief Find elements with attribute.
@@ -337,9 +349,9 @@ private:
         const QDomElement elem_to_look_into,
         const QString attr_name,
         const QString attr_value,
-        QList<QDomElement>& found_elements);
+        QList<QDomElement> &found_elements);
 
-    void add_error_message(s_sim_I_O& sim_IO, const QString& errorMessage);
+    void add_error_message(s_sim_I_O &sim_IO, const QString &errorMessage);
 };
 
 #endif // SVG_LINK_PARSER_H

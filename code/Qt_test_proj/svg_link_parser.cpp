@@ -6,7 +6,7 @@ SvgLinkParser::SvgLinkParser(QString svg_file)
     links_count = 0;
     root.level = 0;
 
-    if(svg_file.isEmpty())
+    if (svg_file.isEmpty())
     {
         qDebug() << "Error: Empty file name";
         return;
@@ -14,17 +14,17 @@ SvgLinkParser::SvgLinkParser(QString svg_file)
     this->svg_file = svg_file;
     parse_svg(this->svg_file);
 
-    //Get the tree of the elements in the SVG file
+    // Get the tree of the elements in the SVG file
     generate_tree(root, "  ");
     print_tree_in_log(log_buffer);
 
-    //Generate the electrical links from the SVG file
+    // Generate the electrical links from the SVG file
     parse_links(root);
 }
 
 SvgLinkParser::~SvgLinkParser()
 {
-    //Destructor
+    // Destructor
 }
 
 void SvgLinkParser::parse_svg(QString svg_file)
@@ -43,7 +43,7 @@ void SvgLinkParser::parse_svg(QString svg_file)
             qDebug() << "Failed to parse SVG file as XML.";
         }
     }
-    catch(const std::exception& e)
+    catch (const std::exception &e)
     {
         qDebug() << "Error: " << e.what();
         return;
@@ -53,9 +53,9 @@ void SvgLinkParser::parse_svg(QString svg_file)
     root.element = doc.documentElement();
     get_group_header(root.element, root.infos);
 
-    //1.Parse the SVG in different groups where <g> is the parent element and contains an ID
+    // 1.Parse the SVG in different groups where <g> is the parent element and contains an ID
     groups_number = 0;
-    parse_by_group(root.element,root,0);
+    parse_by_group(root.element, root, 0);
 
     // Output found groups
     qDebug() << "Found " << groups_number << " groups:";
@@ -63,8 +63,8 @@ void SvgLinkParser::parse_svg(QString svg_file)
     file.close();
 }
 
-void SvgLinkParser::parse_by_group(const QDomNode& node, s_tree_node& parentNode, int level)
-{//Recursively find all groups nodes in a node and return a vector of QDomElements
+void SvgLinkParser::parse_by_group(const QDomNode &node, s_tree_node &parentNode, int level)
+{ // Recursively find all groups nodes in a node and return a vector of QDomElements
     QDomNodeList children = node.childNodes();
     for (int i = 0; i < children.count(); ++i)
     {
@@ -86,30 +86,35 @@ void SvgLinkParser::parse_by_group(const QDomNode& node, s_tree_node& parentNode
     }
 }
 
-void SvgLinkParser::generate_tree(const s_tree_node& node, const QString& prefix)
+void SvgLinkParser::generate_tree(const s_tree_node &node, const QString &prefix)
 {
     QString adjusted_prefix = prefix;
     QString log_content; // Accumulate log output
 
-    if (!prefix.isEmpty()) {
+    if (!prefix.isEmpty())
+    {
         log_content += prefix;
         log_content += "|";
     }
     log_content += "- " + node.infos.tag_name;
 
-    if (!node.infos.id.isEmpty()) {
+    if (!node.infos.id.isEmpty())
+    {
         log_content += " (id: " + node.infos.id + ")";
     }
     log_content += " - Level: " + QString::number(node.level);
 
-    //Accumulate log output into a buffer
+    // Accumulate log output into a buffer
     log_buffer += log_content + "\n";
 
-
-    for (size_t i = 0; i < node.children.size(); ++i) {
-        if (i == node.children.size() - 1) {
+    for (size_t i = 0; i < node.children.size(); ++i)
+    {
+        if (i == node.children.size() - 1)
+        {
             adjusted_prefix += "   "; // Adjust prefix for the last child
-        } else {
+        }
+        else
+        {
             adjusted_prefix += "|  "; // Adjust prefix for other children
         }
         generate_tree(node.children[i], adjusted_prefix);
@@ -129,18 +134,18 @@ void SvgLinkParser::print_tree_in_log(QString buffer)
     }
 
     qDebug() << "End of SVG Groups Tree";
-    //reset the log buffer
+    // reset the log buffer
     buffer = "";
 }
 
-void SvgLinkParser::parse_links(s_tree_node& node)
+void SvgLinkParser::parse_links(s_tree_node &node)
 {
-    //Parse the current node's element
+    // Parse the current node's element
     parse_group_elements(node);
 
     qDebug() << "Parsing links for node: " << node.infos.tag_name << " (id: " << node.infos.id << ") at level " << node.level << " ...";
-    //Recursively call parse_tree_nodes()
-    for (s_tree_node& child : node.children)
+    // Recursively call parse_tree_nodes()
+    for (s_tree_node &child : node.children)
     {
         parse_links(child);
     }
@@ -156,70 +161,75 @@ QString SvgLinkParser::attr(e_types type)
     switch (type)
     {
     case e_types::label:
-        return custom_attribute+":label";
+        return custom_attribute + ":label";
         break;
     case e_types::type:
-        return custom_attribute+":type";
+        return custom_attribute + ":type";
         break;
     case e_types::graphic:
-        return custom_attribute+":graphic";
+        return custom_attribute + ":graphic";
         break;
     case e_types::input:
-        return custom_attribute+":input";
+        return custom_attribute + ":input";
         break;
     case e_types::output:
-        return custom_attribute+":output";
+        return custom_attribute + ":output";
         break;
     case e_types::inputs:
-        return custom_attribute+":inputs";
+        return custom_attribute + ":inputs";
         break;
     case e_types::outputs:
-        return custom_attribute+":outputs";
+        return custom_attribute + ":outputs";
         break;
     case e_types::sel:
-        return custom_attribute+":sel";
+        return custom_attribute + ":sel";
         break;
     case e_types::wire:
-        return custom_attribute+":wire";
+        return custom_attribute + ":wire";
         break;
     default:
         return "";
         break;
-
     }
 }
 
-void SvgLinkParser::get_group_header(const QDomElement& element, s_tree_node_info& infos)
+void SvgLinkParser::get_group_header(const QDomElement &element, s_tree_node_info &infos)
 {
-    //We should consistently have those infos
+    // We should consistently have those infos
 
-    //For the device type(MUX, AND, OR, etc)
-    if(element.hasAttribute(get_attr_for_string("device")))
+    // For the device type(MUX, AND, OR, etc)
+    if (element.hasAttribute(get_attr_for_string("device")))
     {
         infos.type = element.attribute(get_attr_for_string("device"));
-    }else{
+    }
+    else
+    {
         infos.type = "";
         infos.is_parse_error = true;
         infos.error_messages.push_back("No device attribute found");
     }
 
-    //For the i/o width
-    if(element.hasAttribute(get_attr_for_string("width")))
+    // For the i/o width
+    if (element.hasAttribute(get_attr_for_string("width")))
     {
         QString str_width = element.attribute(get_attr_for_string("width"));
-        //Width is in the form "x,y" where x is the inputs width and y the outputs width
+        // Width is in the form "x,y" where x is the inputs width and y the outputs width
         QStringList widths = str_width.split(",");
-        if(widths.size() == 2)
+        if (widths.size() == 2)
         {
             infos.component_in_width = widths[0].toInt();
             infos.component_out_width = widths[1].toInt();
-        }else{
+        }
+        else
+        {
             infos.component_in_width = 0;
             infos.component_out_width = 0;
             infos.is_parse_error = true;
             infos.error_messages.push_back("Invalid width attribute format");
         }
-    }else{
+    }
+    else
+    {
         infos.component_in_width = 0;
         infos.component_out_width = 0;
         infos.is_parse_error = true;
@@ -227,68 +237,67 @@ void SvgLinkParser::get_group_header(const QDomElement& element, s_tree_node_inf
     }
 }
 
-void SvgLinkParser::parse_group_elements(s_tree_node& node)
+void SvgLinkParser::parse_group_elements(s_tree_node &node)
 {
-    QDomElement node_xml_data = node.element;//Store the group element svg data
-    s_tree_node_info *parsed_data = &node.infos;//Store parsed data here
+    QDomElement node_xml_data = node.element;    // Store the group element svg data
+    s_tree_node_info *parsed_data = &node.infos; // Store parsed data here
 
     parsed_data->is_parse_error = false;
     parsed_data->has_been_parsed = false;
 
-
-    if(node_xml_data.tagName() == "svg")
-    {   //Main element, contains groups, wires, inputs and outputs
-        //We should only have one svg element
-        if(parsed_data->has_been_parsed)
+    if (node_xml_data.tagName() == "svg")
+    { // Main element, contains groups, wires, inputs and outputs
+        // We should only have one svg element
+        if (parsed_data->has_been_parsed)
         {
             qDebug() << "Error: Main element tried parsing again";
             return;
         }
 
-        //Parse the simulator inputs and outputs
-        parse_simulation_IOs(node_xml_data,all_components.simulation_IOs);
+        // Parse the simulator inputs and outputs
+        parse_simulation_IOs(node_xml_data, all_components.simulation_IOs);
 
-        //Parse the wires
-        parse_simulation_wires(node_xml_data, all_components.simulation_wires);
-////PARSE ERROR ???????????? TODO
+        // Parse the wires
+        parse_simulation_wires(node_xml_data, all_components.simulation_wires); // TODO : Wire parsing not working
+        ////PARSE ERROR ???????????? TODO
 
-        //No header for the main element, hard code the values
+        // No header for the main element, hard code the values
         parsed_data->type = "main";
         parsed_data->component_in_width = 0;
         parsed_data->component_out_width = 0;
 
         parsed_data->has_been_parsed = true;
-
-
-    }else if(node_xml_data.tagName() == "g")
+    }
+    else if (node_xml_data.tagName() == "g")
     {
-        //Group element, contains components
-    }else if(node_xml_data.tagName() == "")
+        // Group element, contains components
+    }
+    else if (node_xml_data.tagName() == "")
 
-    //Q_ASSERT(node_svg_data.tagName() == "g");
-    // if(node_svg_data.tagName() != "g")
-    // {
-    //     qDebug() << "Error: Not a group node";
-    // }
+        // Q_ASSERT(node_svg_data.tagName() == "g");
+        //  if(node_svg_data.tagName() != "g")
+        //  {
+        //      qDebug() << "Error: Not a group node";
+        //  }
 
-    //Firstly, parse the main group attributes (device, width)
-    get_group_header(node_xml_data, *parsed_data);
+        // Firstly, parse the main group attributes (device, width)
+        get_group_header(node_xml_data, *parsed_data);
 
-    //For every element in a node
-    //TODO : (if the node isn't a group of nodes)
-    //Find if the element is a component
-    //If it is, add it to the list of components
-    for(int i = 0; node_xml_data.isNull(); node_xml_data.nextSiblingElement())
-    {//For each node in the group
+    // For every element in a node
+    // TODO : (if the node isn't a group of nodes)
+    // Find if the element is a component
+    // If it is, add it to the list of components
+    for (int i = 0; node_xml_data.isNull(); node_xml_data.nextSiblingElement())
+    { // For each node in the group
         int breakpoint = 0;
         breakpoint++;
 
         qDebug() << "Parsing node " << breakpoint;
 
-        //FIXME: SIGSEGV here
+        // FIXME: SIGSEGV here
         QDomElement element = node_xml_data.childNodes().item(i).toElement();
 
-        //Get the element type by comparing to the list of predefined types
+        // Get the element type by comparing to the list of predefined types
 
         // Node is a text containing the label U1, U2, etc
         if (element.hasAttribute(attr(label)))
@@ -306,7 +315,7 @@ void SvgLinkParser::parse_group_elements(s_tree_node& node)
 
         // Node is a text containing the graphic
         else if (element.hasAttribute(attr(graphic)))
-        {//Do nothing yet for the graphic
+        { // Do nothing yet for the graphic
             qDebug() << "Graphic";
         }
 
@@ -315,19 +324,23 @@ void SvgLinkParser::parse_group_elements(s_tree_node& node)
         {
             s_io new_input;
             new_input.name = element.attribute(attr(input));
-            //The input width should be contained in the main group attr sim:width=10,10
-            //We need to get the width and height of the main group
-            //And overide if the input has a width attribute
-            //Get already parsed widht
-            if(element.hasAttribute(get_attr_for_string("width")))
+            // The input width should be contained in the main group attr sim:width=10,10
+            // We need to get the width and height of the main group
+            // And overide if the input has a width attribute
+            // Get already parsed widht
+            if (element.hasAttribute(get_attr_for_string("width")))
             {
                 new_input.width = element.attribute(get_attr_for_string("width")).toInt();
                 qDebug() << "Input width overidden by attribute";
-            }else{
-                if(parsed_data->component_in_width != 0)
+            }
+            else
+            {
+                if (parsed_data->component_in_width != 0)
                 {
                     new_input.width = parsed_data->component_in_width;
-                }else{
+                }
+                else
+                {
                     new_input.width = 0;
                     parsed_data->is_parse_error = true;
                     parsed_data->error_messages.push_back("No width attribute found for input");
@@ -340,158 +353,217 @@ void SvgLinkParser::parse_group_elements(s_tree_node& node)
         {
             s_io new_output;
             new_output.name = element.attribute(attr(output));
-            //Same as for input
-            if(element.hasAttribute(get_attr_for_string("width")))
+            // Same as for input
+            if (element.hasAttribute(get_attr_for_string("width")))
             {
                 new_output.width = element.attribute(get_attr_for_string("width")).toInt();
                 qDebug() << "Input width overidden by attribute";
-            }else{
-                if(parsed_data->component_in_width != 0)
+            }
+            else
+            {
+                if (parsed_data->component_in_width != 0)
                 {
                     new_output.width = parsed_data->component_out_width;
-                }else{
+                }
+                else
+                {
                     new_output.width = 0;
                     parsed_data->is_parse_error = true;
                     parsed_data->error_messages.push_back("No width attribute found for input");
                 }
             }
         }
-        //qDebug() << "Element:" << element.tagName() << "id:" << element.attribute("id")<< "custom_attr:" << element.attribute(custom_attribute);
+        // qDebug() << "Element:" << element.tagName() << "id:" << element.attribute("id")<< "custom_attr:" << element.attribute(custom_attribute);
     }
 }
 
-void SvgLinkParser::parse_simulation_IOs(const QDomElement svg_group_xml, s_sim_I_Os& parsed_IOs)
+void SvgLinkParser::parse_simulation_IOs(const QDomElement svg_group_xml, s_sim_I_Os &parsed_IOs)
 {
     QList<s_sim_I_O> sim_IOs;
-
 
     // Get both inputs and outputs in a list
     QList<QDomElement> inputs_and_outputs_found;
     find_elements_with_attribute(svg_group_xml, attr(type), "sim_input", inputs_and_outputs_found);
     find_elements_with_attribute(svg_group_xml, attr(type), "sim_output", inputs_and_outputs_found);
 
-    for(const QDomElement& element : inputs_and_outputs_found)
+    for (const QDomElement &element : inputs_and_outputs_found)
     {
-        //Create a new sim_IO object to populate with the data from the xml element
+        // Create a new sim_IO object to populate with the data from the xml element
         s_sim_I_O sim_IO;
 
         sim_IO.error.error_messages = {};
         parsed_IOs.error.is_parse_error = false;
 
-        //Get if input or output and the connections name
-        if (element.tagName() == "sim_input")
+        // Get if input or output and the connections name and width
+        QString type;
+        if(check_and_get_attr(element, type, ATTR_FOR_STR("type")))
         {
-            sim_IO.type = INPUT;
-            //It should have an attribute "sim:outputs" that contains the name of the output -> name:width, name:width,...
-            // output because the sim input outputs to the circuit
-            QString outputs_string = "";
-            if(check_and_get_attr(element,outputs_string,attr(outputs)))//TODO handle the output attribute
-            {
-                QStringList outputs = outputs_string.split(",");
-
-                if(outputs.size() == 2)
-                {
-                    outputs[0];
-                    sim_IO.width = outputs[1].toInt();
-                }else{
-                    add_error_message(sim_IO, "Invalid outputs attribute format");
+            if (type.compare("sim_input")==0)
+            { // If the element is an input
+                sim_IO.type = INPUT;
+                // It should have an attribute "sim:outputs" that contains the name of the output -> name:width, name:width,...
+                //  output because the sim input outputs to the circuit
+                QString outputs_string = "";
+                if (check_and_get_attr(element, outputs_string, attr(outputs)))
+                { // If the attribute exists
+                    s_outputs_list outputs_list;
+                    if(get_list_of_outputs_name_and_width(outputs_string, outputs_list) == 1)
+                    { // If the attribute is valid (Only one output with correct syntax)
+                        if(outputs_list.name[0].compare(FLAG_NAME_FROM_INKSCAPE) == 0)
+                        { // If the name of the output is FLAG_NAME_FROM_INKSCAPE, the name will be the inkscape name
+                            if(!check_and_get_attr(element, sim_IO.name, NAME_ATTRIBUTE))
+                            { // If the name attribute does not exist
+                                add_error_message(sim_IO, "Trying to use inkscape name but no name attribute found");
+                                sim_IO.name = DEFAULT_INPUT_NAME + QString::number(sim_IOs.size());
+                            }
+                        }
+                        else
+                        { // Else, the name will be the one in the attribute
+                            sim_IO.name = outputs_list.name[0];
+                        }
+                        sim_IO.width = outputs_list.width[0];
+                    }
+                    else
+                    { // If the attribute is not valid
+                        add_error_message(sim_IO, "Invalid outputs attribute number of outputs");
+                        sim_IO.width = DEFAULT_WIDTH;
+                        sim_IO.name = DEFAULT_INPUT_NAME + QString::number(sim_IOs.size());
+                    }
                 }
-            }else{
-                sim_IO.width = 0;
-                add_error_message(sim_IO, "No output attribute found for input");
-                sim_IO.name = DEFAULT_INPUT_NAME + QString::number(sim_IOs.size());
+                else
+                { // If the attribute does not exist
+                    sim_IO.width = DEFAULT_WIDTH;
+                    add_error_message(sim_IO, "No output attribute found for input");
+                    sim_IO.name = DEFAULT_INPUT_NAME + QString::number(sim_IOs.size());
+                }
             }
-        }
-        else if (element.tagName() == "sim_output")
-        {
-            sim_IO.type = OUTPUT;
+            else if (type.compare("sim_output")==0)
+            { // If the element is a simulator output
+                sim_IO.type = OUTPUT;
 
-            if(!check_and_get_attr(element,sim_IO.name,ATTR_FOR_STR("connection")))
-            {
-                add_error_message(sim_IO, "No connection attribute found for output");
-                sim_IO.name = DEFAULT_OUTPUT_NAME + QString::number(sim_IOs.size());
-            }
-            if(element.hasAttribute(get_attr_for_string("connection")))
-            {
-                sim_IO.connected_to = element.attribute(get_attr_for_string("connection"));
+                // It should have an attribute "inputs" that contains the name,width and the name of the output symbol it is connected to
+                // Input because the sim output takes the value from the circuit as an input
+                QString inputs_string = "";
+                if (check_and_get_attr(element, inputs_string, attr(inputs)))
+                { // If the attribute exists
+                    s_inputs_list inputs_list;
+                    if(get_list_of_inputs_name_and_width(inputs_string, inputs_list) == 1)
+                    { // If the attribute is valid (Only one input with correct syntax)
+                        if(inputs_list.name[0].compare(FLAG_NAME_FROM_INKSCAPE) == 0)
+                        { // If the name of the input is FLAG_NAME_FROM_INKSCAPE, the name will be the inkscape name
+                            if(!check_and_get_attr(element, sim_IO.name, NAME_ATTRIBUTE))
+                            { // If the name attribute does not exist
+                                add_error_message(sim_IO, "Trying to use inkscape name but no name attribute found");
+                                sim_IO.name = DEFAULT_INPUT_NAME + QString::number(sim_IOs.size());
+                            }                        }
+                        else
+                        { // Else, the name will be the one in the attribute
+                            sim_IO.name = inputs_list.name[0];
+                        }
+                        sim_IO.width = inputs_list.width[0];
+                        sim_IO.connected_to = inputs_list.connected_to[0];
+                    }
+                    else
+                    { // If the attribute is not valid
+                        add_error_message(sim_IO, "Invalid inputs attribute number of inputs");
+                        sim_IO.width = DEFAULT_WIDTH;
+                        sim_IO.name = DEFAULT_OUTPUT_NAME + QString::number(sim_IOs.size());
+                        sim_IO.connected_to = "";
+                    }
+                }
+                else
+                { // If the attribute does not exist
+                    sim_IO.width = DEFAULT_WIDTH;
+                    add_error_message(sim_IO, "No inputs attribute found for output");
+                    sim_IO.name = DEFAULT_OUTPUT_NAME + QString::number(sim_IOs.size());
+                    sim_IO.connected_to = "";
+                }
             }
             else
             {
-                sim_IO.connected_to = "";
-                add_error_message(sim_IO, "No connection attribute found for output");
+                sim_IO.type = UNDEFINED;
+                add_error_message(sim_IO, "No type attribute found for an undifined IO");
+                continue; // Skip this element
             }
-
-        }else{
+        }
+        else
+        {
             sim_IO.type = UNDEFINED;
-            QString error_message = "No type attribute found for an undifined IO";
-            add_error_message(sim_IO, error_message);
-            continue;//Skip this element
+            add_error_message(sim_IO, "No attribute found for an IO");
+            continue; // Skip this element
         }
-
-
-        //Parse the name
-        if(!check_and_get_attr(element,sim_IO,NAME_ATTRIBUTE))
-        {
-            QString error_message = "No name attribute found for ";
-            error_message += (sim_IO.type == INPUT) ? "input" : "output";
-            sim_IO.name = DEFAULT_INPUT_NAME + QString::number(sim_IOs.size());
-            add_error_message(sim_IO, error_message);
-        }
-
-
-
-
-        //Parse the width
-        if(!check_and_get_attr(element,sim_IO,get_attr_for_string("width")))
-        {
-            QString error_message = "No width attribute found for ";
-            error_message += (sim_IO.type == INPUT) ? "input" : "output";
-            sim_IO.width = DEFAULT_WIDTH;
-            add_error_message(sim_IO, error_message);
-        }
-
         parsed_IOs.i_os.push_back(sim_IO);
         parsed_IOs.error.is_parse_error |= sim_IO.error.is_parse_error;
     }
 }
 
-void SvgLinkParser::get_list_of_outputs_name_and_width(QString outputs_string, s_outputs_list& out_struct)
+int SvgLinkParser::get_list_of_outputs_name_and_width(QString outputs_string, s_outputs_list &out_struct)
 {
-    //TODO oskour ñom cerveau ne fonctionne plus
-    //Inputs should be in the form of name:width,name:width
+    // Outputs should be formated as : name:width,name:width
     QStringList outputs = outputs_string.split(",");
-    for(QString& output : outputs)
+    for (QString &output : outputs)
     {
-        output = output.trimmed(); //Remove white spaces
+        output = output.trimmed(); // Remove white spaces
         QStringList output_data = output.split(":");
         if(output_data.size() == 2)
         {
-            out_struct.name.append(output_data[0]);
+         // TODO : verify that the width is a number
+            out_struct.name.append(output_data[0].trimmed());
             out_struct.width.append(output_data[1].toInt());
         }
+        else
+        {
+            return -1;
+        }
     }
+    // Return the number of outputs found
+    return outputs.size();
 }
 
-bool SvgLinkParser::check_and_get_attr(const QDomElement& xml, QString& str_to_get, QString attr_name)
+int SvgLinkParser::get_list_of_inputs_name_and_width(QString inputs_string, s_inputs_list &out_struct)
 {
-    if(xml.hasAttribute(attr_name))
+    // Inputs should be formated as : name:width:connected_to,name:width:connected_to,...
+    QStringList inputs = inputs_string.split(",");
+    for (QString &input : inputs)
+    {
+        input = input.trimmed(); // Remove white spaces
+        QStringList output_data = input.split(":");
+
+        if(output_data.size() == 3)
+        {
+            out_struct.name.append(output_data[0].trimmed());
+            out_struct.width.append(output_data[1].toInt());
+            out_struct.connected_to.append(output_data[2].trimmed());
+        }
+        else
+        {
+            return -1;
+        }
+    }
+    // Return the number of inputs found
+    return inputs.size();
+}
+
+bool SvgLinkParser::check_and_get_attr(const QDomElement &xml, QString &str_to_get, QString attr_name)
+{
+    if (xml.hasAttribute(attr_name))
     {
         str_to_get = xml.attribute(attr_name);
         return true;
-    }else{
+    }
+    else
+    {
         return false;
     }
 }
 
-
-void SvgLinkParser::add_error_message(s_sim_I_O& sim_IO, const QString& errorMessage)
+void SvgLinkParser::add_error_message(s_sim_I_O &sim_IO, const QString &errorMessage)
 {
     sim_IO.error.is_parse_error = true;
     sim_IO.error.error_messages.push_back(errorMessage);
 }
 
-
-void SvgLinkParser::parse_simulation_wires(const QDomElement svg_group_xml, s_sim_wires& parsed_wires)
+void SvgLinkParser::parse_simulation_wires(const QDomElement svg_group_xml, s_sim_wires &parsed_wires)
 {
     QList<s_sim_wire> sim_wires;
     s_sim_wire sim_wire;
@@ -502,58 +574,61 @@ void SvgLinkParser::parse_simulation_wires(const QDomElement svg_group_xml, s_si
 
     QList<QDomElement> wires_found;
 
-    //Extract the wires from the xml of the <svg> element
+    // Extract the wires from the xml of the <svg> element
     find_elements_with_attribute(
         svg_group_xml,
         attr(type),
         "wire",
         wires_found);
 
-    for(const QDomElement& wire_found : wires_found)
+    for (const QDomElement &wire_found : wires_found)
     {
-        //Parse the name
-        if(wire_found.hasAttribute(NAME_ATTRIBUTE))
+        // Parse the name
+        if (wire_found.hasAttribute(NAME_ATTRIBUTE))
         {
             sim_wire.name = wire_found.attribute(NAME_ATTRIBUTE);
-        }else{
+        }
+        else
+        {
             QString error_message = "No name attribute found for wire ";
             sim_wire.name = DEFAULT_WIRE_NAME + QString::number(sim_wires.size());
             sim_wire.error.is_parse_error = true;
             sim_wire.error.error_messages.push_back(error_message);
         }
 
-        //Parse the connection
-        if(wire_found.hasAttribute(get_attr_for_string("connection")))
+        // Parse the connection
+        if (wire_found.hasAttribute(get_attr_for_string("connection")))
         {
             sim_wire.connected_to = wire_found.attribute(get_attr_for_string("connection"));
-        }else{
+        }
+        else
+        {
             QString error_message = "No connection attribute found for wire ";
             sim_wire.connected_to = "UNKNOWN";
             sim_wire.error.is_parse_error = true;
             sim_wire.error.error_messages.push_back(error_message + sim_wire.name);
         }
-        //The wire width is from the connection width we'll find that info later
+        // The wire width is from the connection width we'll find that info later
 
-        //Get a global error state for the wires
+        // Get a global error state for the wires
         error_on_wires |= sim_wire.error.is_parse_error;
-
 
         parsed_wires.wires.append(sim_wire);
         parsed_wires.error.is_parse_error = error_on_wires;
     }
 }
 
-void SvgLinkParser::find_elements_with_attribute(const QDomElement elem_to_look_into, const QString attr_name, const QString attr_value, QList<QDomElement>& found_elements)
+void SvgLinkParser::find_elements_with_attribute(const QDomElement elem_to_look_into, const QString attr_name, const QString attr_value, QList<QDomElement> &found_elements)
 {
-    //Find attributes with a fixed value
+    // Find attributes with a fixed value
     QDomElement child = elem_to_look_into.firstChildElement();
-    while( !child.isNull() )
+    while (!child.isNull())
     {
-        if( child.attributes().contains(attr_name))
+        if (child.attributes().contains(attr_name))
         {
-            if(child.attribute(attr_name) == attr_value)
+            if (child.attribute(attr_name) == attr_value)
             {
-                //qDebug() << child.attribute(attr_name) << "==" << attr_value;
+                // qDebug() << child.attribute(attr_name) << "==" << attr_value;
                 found_elements.append(child);
             }
         }
