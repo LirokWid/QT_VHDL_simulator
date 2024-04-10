@@ -18,8 +18,8 @@ SvgLinkParser::SvgLinkParser(QString svg_file)
     generate_tree(root, "  ");
     print_tree_in_log(log_buffer);
 
-    // Generate the electrical links from the SVG file
-    parse_links(root);
+    // Parse the components info and links from the SVG file (wire, input, output, modules, etc.)
+    parse_components(root);
 }
 
 SvgLinkParser::~SvgLinkParser()
@@ -138,16 +138,16 @@ void SvgLinkParser::print_tree_in_log(QString buffer)
     buffer = "";
 }
 
-void SvgLinkParser::parse_links(s_tree_node &node)
+void SvgLinkParser::parse_components(s_tree_node &node)
 {
     // Parse the current node's element
-    parse_group_elements(node);
+    parse_element(node);
 
-    qDebug() << "Parsing links for node: " << node.infos.tag_name << " (id: " << node.infos.id << ") at level " << node.level << " ...";
+    qDebug() << "Parsing links for node: " << node.infos.type << " at level " << node.level;
     // Recursively call parse_tree_nodes()
     for (s_tree_node &child : node.children)
     {
-        parse_links(child);
+        parse_components(child);
     }
 }
 
@@ -237,7 +237,7 @@ void SvgLinkParser::get_group_header(const QDomElement &element, s_tree_node_inf
     }
 }
 
-void SvgLinkParser::parse_group_elements(s_tree_node &node)
+void SvgLinkParser::parse_element(s_tree_node &node)
 {
     QDomElement node_xml_data = node.element;    // Store the group element svg data
     s_tree_node_info *parsed_data = &node.infos; // Store parsed data here
@@ -259,7 +259,7 @@ void SvgLinkParser::parse_group_elements(s_tree_node &node)
 
         // Parse the wires
         parse_simulation_wires(node_xml_data, all_components.simulation_wires); // TODO : Wire parsing not working
-        ////PARSE ERROR ???????????? TODO
+
 
         // No header for the main element, hard code the values
         parsed_data->type = "main";
@@ -271,6 +271,7 @@ void SvgLinkParser::parse_group_elements(s_tree_node &node)
     else if (node_xml_data.tagName() == "g")
     {
         // Group element, contains components
+        parse_one_element(node_xml_data, all_components.elements);
     }
     else if (node_xml_data.tagName() == "")
 
@@ -290,7 +291,7 @@ void SvgLinkParser::parse_group_elements(s_tree_node &node)
     for (int i = 0; node_xml_data.isNull(); node_xml_data.nextSiblingElement())
     { // For each node in the group
         int breakpoint = 0;
-        breakpoint++;
+        ++breakpoint;
 
         qDebug() << "Parsing node " << breakpoint;
 
@@ -377,6 +378,20 @@ void SvgLinkParser::parse_group_elements(s_tree_node &node)
     }
 }
 
+void SvgLinkParser::parse_one_element(const QDomElement svg_group_xml, s_elements_list &element_io)
+{
+    /**
+     * On an element, we should have the following attributes:
+     * - device: the type of the component
+     * - inputs: the list of inputs -> d0:1:IN0,d1:1:IN1   (d0:1:IN0 means input 0, width 1, connected to IN0)
+     * - outputs: the list of outputs -> d0:1,d1:1
+     */
+
+
+
+
+}
+
 void SvgLinkParser::parse_simulation_IOs(const QDomElement svg_group_xml, s_sim_I_Os &parsed_IOs)
 {
     QList<s_sim_I_O> sim_IOs;
@@ -386,13 +401,15 @@ void SvgLinkParser::parse_simulation_IOs(const QDomElement svg_group_xml, s_sim_
     find_elements_with_attribute(svg_group_xml, attr(type), "sim_input", inputs_and_outputs_found);
     find_elements_with_attribute(svg_group_xml, attr(type), "sim_output", inputs_and_outputs_found);
 
+    parsed_IOs.error.is_parse_error = false;
+
     for (const QDomElement &element : inputs_and_outputs_found)
     {
         // Create a new sim_IO object to populate with the data from the xml element
         s_sim_I_O sim_IO;
 
         sim_IO.error.error_messages = {};
-        parsed_IOs.error.is_parse_error = false;
+        sim_IO.error.is_parse_error = false;
 
         // Get if input or output and the connections name and width
         QString type;
@@ -610,6 +627,7 @@ void SvgLinkParser::parse_simulation_wires(const QDomElement svg_group_xml, s_si
             sim_wire.error.error_messages.push_back(error_message + sim_wire.name);
         }
         // The wire width is from the connection width we'll find that info later
+        sim_wire.width = 0;
 
         // Get a global error state for the wires
         error_on_wires |= sim_wire.error.is_parse_error;

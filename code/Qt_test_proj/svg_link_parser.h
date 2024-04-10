@@ -225,17 +225,23 @@ private:
         std::vector<QString> other_attributes; ///< Vector of other attributes.
     };
 
+    struct s_elements_list
+    {
+        QList<element_io_list> elements; ///< List of elements.
+        s_parse_error error;             ///< Error
+    };
+
     /**
      * @brief Struct for storing components list.
      */
     struct components_list
     {
-        QList<element_io_list> elements; ///< List of elements.
-        s_sim_I_Os simulation_IOs;       ///< List of simulation IO.
-        s_sim_wires simulation_wires;    ///< List of simulation wires.
+        s_elements_list elements;           ///< List of elements.
+        s_sim_I_Os      simulation_IOs;     ///< List of simulation IO.
+        s_sim_wires     simulation_wires;   ///< List of simulation wires.
     };
 
-    components_list all_components; ///< All components list.
+    components_list all_components; ///< All components global variable.
 
     /**
      * @brief Get the attribute name for a given type.
@@ -252,12 +258,19 @@ private:
     QString get_attr_for_string(QString attr);
 
     /**
+     * @brief parse one group element containing a component.
+     * @param svg_group_xml
+     * @param element_io
+     */
+    void parse_one_element(const QDomElement svg_group_xml, s_elements_list &element_io);
+
+    /**
      * @brief Parse an element from an xml group tag:
      * It can ether parse a <svg> or a <g> tag.
      *
      * @param node The tree node to parse.
      */
-    void parse_group_elements(s_tree_node &node);
+    void parse_element(s_tree_node &node);
 
     /**
      * @brief List attributes.
@@ -303,7 +316,7 @@ private:
      * @brief Parse links.
      * @param node The tree node.
      */
-    void parse_links(s_tree_node &node);
+    void parse_components(s_tree_node &node);
 
     /**
      * @brief Parse simulation IO.
