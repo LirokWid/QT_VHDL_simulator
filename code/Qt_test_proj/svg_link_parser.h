@@ -160,6 +160,7 @@ private:
     {
         QList<QString> name; ///< List of names.
         QList<int> width;    ///< List of widths.
+        int number;          ///< Number of outputs.
     };
 
     //TODO : Merge s_outputs_list and s_inputs_list
@@ -169,6 +170,7 @@ private:
         QList<QString> name;         ///< List of names.
         QList<int> width;            ///< List of widths.
         QList<QString> connected_to; ///< List of connected to.
+        int number;                  ///< Number of inputs.
     };
 
     /**
@@ -215,19 +217,19 @@ private:
     /**
      * @brief Struct for storing element IO information.
      */
-    struct element_io_list
+    struct s_element
     {
-        QString label;                         ///< Label of the element.
-        QString type;                          ///< Type of the element.
-        uint16_t attribute_count;              ///< Count of attributes.
-        std::vector<QString> inputs;           ///< Vector of input attributes.
-        std::vector<QString> outputs;          ///< Vector of output attributes.
-        std::vector<QString> other_attributes; ///< Vector of other attributes.
+        QString name;                      ///< Name of the element.
+        QString device;                   ///< Label of the element.
+        QString label;                   ///< Type of the element.
+        s_inputs_list inputs;           ///< Vector of input attributes.
+        s_outputs_list outputs;        ///< Vector of output attributes.
+        s_parse_error error;          ///< Error
     };
 
-    struct s_elements_list
+    struct s_elements
     {
-        QList<element_io_list> elements; ///< List of elements.
+        QList<s_element> elements_list; ///< List of elements.
         s_parse_error error;             ///< Error
     };
 
@@ -236,7 +238,7 @@ private:
      */
     struct components_list
     {
-        s_elements_list elements;           ///< List of elements.
+        s_elements      elements;           ///< List of elements.
         s_sim_I_Os      simulation_IOs;     ///< List of simulation IO.
         s_sim_wires     simulation_wires;   ///< List of simulation wires.
     };
@@ -255,14 +257,14 @@ private:
      * @param attr The attribute string.
      * @return The attribute name.
      */
-    QString get_attr_for_string(QString attr);
+    QString attr_name_for_str(QString attr);
 
     /**
      * @brief parse one group element containing a component.
      * @param svg_group_xml
      * @param element_io
      */
-    void parse_one_element(const QDomElement svg_group_xml, s_elements_list &element_io);
+    void parse_one_element(const QDomElement svg_group_xml, s_elements &elements);
 
     /**
      * @brief Parse an element from an xml group tag:
@@ -363,7 +365,7 @@ private:
      * @param attr_value The attribute value.
      * @param found_elements The list of found elements.
      */
-    void find_elements_with_attribute(
+    void list_matching_attr_with_value(
         const QDomElement elem_to_look_into,
         const QString attr_name,
         const QString attr_value,
@@ -374,7 +376,16 @@ private:
      * @param sim_IO The simulation IO structure.
      * @param errorMessage The error message.
      */
-    void add_error_message(s_sim_I_O &sim_IO, const QString &errorMessage);
+    void add_error_message(s_parse_error &error, const QString &errorMessage);
+
+    /**
+     * @brief list_matching_attr
+     * @param elem_to_look_into
+     * @param attr_name
+     * @param found_elements
+     * @return number of elements found
+     */
+    int list_matching_attr(const QDomElement elem_to_look_into, const QString attr_name, QList<QDomElement> &found_elements);
 };
 
 #endif // SVG_LINK_PARSER_H

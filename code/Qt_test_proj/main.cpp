@@ -21,3 +21,6 @@ int main(int argc, char *argv[])
     //SvgLinkParser parser2("C:\\Users\\BJRODIER\\Documents\\QT_REPO\\QT_VHDL_simulator\\code\\Qt_test_proj\\Schematic_Paco.svg");
     return 0;
 }
+
+
+//TODO selector inputs
