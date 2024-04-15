@@ -729,3 +729,4 @@ int SvgLinkParser::list_matching_attr(const QDomElement elem_to_look_into, const
     }
     return found_elements.size();
 }
+

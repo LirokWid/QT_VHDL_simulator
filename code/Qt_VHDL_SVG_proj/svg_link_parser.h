@@ -54,6 +54,17 @@ public:
      */
     ~SvgLinkParser();
 
+    //Getters
+    /**
+     * @brief Get a const reference to all_components.
+     * @return Const reference to all_components.
+     */
+    components_list get_all_components() const {
+        return this->all_components;
+    }
+
+
+
     int links_count;
 
 private:
