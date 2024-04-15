@@ -460,10 +460,10 @@ void SvgLinkParser::parse_simulation_IOs(const QDomElement svg_group_xml, s_sim_
                 QString outputs_string = "";
                 if (check_and_get_attr(element, outputs_string, attr(outputs)))
                 { // If the attribute exists
-                    s_outputs_list outputs_list;
+                    QList<s_element_io> outputs_list;
                     if (get_list_of_outputs_name_and_width(outputs_string, outputs_list) == 1)
                     { // If the attribute is valid (Only one output with correct syntax)
-                        if (outputs_list.name[0].compare(FLAG_NAME_FROM_INKSCAPE) == 0)
+                        if (outputs_list[0].name.compare(FLAG_NAME_FROM_INKSCAPE) == 0)
                         { // If the name of the output is FLAG_NAME_FROM_INKSCAPE, the name will be the inkscape name
                             if (!check_and_get_attr(element, sim_IO.name, NAME_ATTRIBUTE))
                             { // If the name attribute does not exist
@@ -473,9 +473,9 @@ void SvgLinkParser::parse_simulation_IOs(const QDomElement svg_group_xml, s_sim_
                         }
                         else
                         { // Else, the name will be the one in the attribute
-                            sim_IO.name = outputs_list.name[0];
+                            sim_IO.name = outputs_list[0].name;
                         }
-                        sim_IO.width = outputs_list.width[0];
+                        sim_IO.width = outputs_list[0].width;
                     }
                     else
                     { // If the attribute is not valid
@@ -500,10 +500,11 @@ void SvgLinkParser::parse_simulation_IOs(const QDomElement svg_group_xml, s_sim_
                 QString inputs_string = "";
                 if (check_and_get_attr(element, inputs_string, attr(inputs)))
                 { // If the attribute exists
-                    s_inputs_list inputs_list;
+                    QList<s_element_io> inputs_list;
+
                     if (get_list_of_inputs_name_and_width(inputs_string, inputs_list) == 1)
                     { // If the attribute is valid (Only one input with correct syntax)
-                        if (inputs_list.name[0].compare(FLAG_NAME_FROM_INKSCAPE) == 0)
+                        if (inputs_list[0].name.compare(FLAG_NAME_FROM_INKSCAPE) == 0)
                         { // If the name of the input is FLAG_NAME_FROM_INKSCAPE, the name will be the inkscape name
                             if (!check_and_get_attr(element, sim_IO.name, NAME_ATTRIBUTE))
                             { // If the name attribute does not exist
@@ -513,10 +514,10 @@ void SvgLinkParser::parse_simulation_IOs(const QDomElement svg_group_xml, s_sim_
                         }
                         else
                         { // Else, the name will be the one in the attribute
-                            sim_IO.name = inputs_list.name[0];
+                            sim_IO.name = inputs_list[0].name;
                         }
-                        sim_IO.width = inputs_list.width[0];
-                        sim_IO.connected_to = inputs_list.connected_to[0];
+                        sim_IO.width = inputs_list[0].width;
+                        sim_IO.connected_to = inputs_list[0].connected_to;
                     }
                     else
                     { // If the attribute is not valid
@@ -552,53 +553,57 @@ void SvgLinkParser::parse_simulation_IOs(const QDomElement svg_group_xml, s_sim_
     }
 }
 
-int SvgLinkParser::get_list_of_outputs_name_and_width(QString outputs_string, s_outputs_list &out_struct)
+int SvgLinkParser::get_list_of_outputs_name_and_width(QString outputs_string, QList<s_element_io> &outputs_list)
 {
     // Outputs should be formated as : name:width,name:width
     QStringList outputs = outputs_string.split(",");
     for (QString &output : outputs)
     {
+        s_element_io new_elem_output;
+
         output = output.trimmed(); // Remove white spaces
         QStringList output_data = output.split(":");
         if (output_data.size() == 2)
         {
             // TODO : verify that the width is a number
-            out_struct.name.append(output_data[0].trimmed());
-            out_struct.width.append(output_data[1].toInt());
+            new_elem_output.name = output_data[0].trimmed();
+            new_elem_output.width = output_data[1].toInt();
+            outputs_list.append(new_elem_output);
         }
         else
         {
-            return -1;
+            return FORMAT_ERROR;
         }
     }
     // Return the number of outputs found
-    out_struct.number = outputs.size();
-    return out_struct.number;
+    return outputs.size();
 }
 
-int SvgLinkParser::get_list_of_inputs_name_and_width(QString inputs_string, s_inputs_list &out_struct)
+int SvgLinkParser::get_list_of_inputs_name_and_width(QString inputs_string, QList<s_element_io> &inputs_list)
 {
     // Inputs should be formated as : name:width:connected_to,name:width:connected_to,...
     QStringList inputs = inputs_string.split(",");
     for (QString &input : inputs)
     {
+        s_element_io new_elem_IO;
+
         input = input.trimmed(); // Remove white spaces
         QStringList output_data = input.split(":");
 
         if (output_data.size() == 3)
-        {
-            out_struct.name.append(output_data[0].trimmed());
-            out_struct.width.append(output_data[1].toInt());
-            out_struct.connected_to.append(output_data[2].trimmed());
+        {//Make sure that the input is formated well
+            new_elem_IO.name = output_data[0].trimmed();
+            new_elem_IO.width = output_data[1].toInt();
+            new_elem_IO.connected_to = output_data[2].trimmed();
+            inputs_list.append(new_elem_IO);
         }
         else
         {
-            return -1;
+            return FORMAT_ERROR;
         }
     }
     // Return the number of inputs found
-    out_struct.number = inputs.size();
-    return out_struct.number;
+    return inputs.size();
 }
 
 bool SvgLinkParser::check_and_get_attr(const QDomElement &xml, QString &str_to_get, QString attr_name)

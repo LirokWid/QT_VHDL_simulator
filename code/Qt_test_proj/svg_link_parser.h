@@ -22,6 +22,8 @@
 #define DEFAULT_OUTPUT_NAME "out"
 #define DEFAULT_WIRE_NAME "wire_"
 
+#define FORMAT_ERROR -10
+
 #define FLAG_NAME_FROM_INKSCAPE "inkscape_label"
 
 #define CUSTOM_ATTRIBUTE "sim"
@@ -156,21 +158,14 @@ private:
         QList<QString> error_messages; ///< Error message.
     };
 
-    struct s_outputs_list
-    {
-        QList<QString> name; ///< List of names.
-        QList<int> width;    ///< List of widths.
-        int number;          ///< Number of outputs.
-    };
 
     //TODO : Merge s_outputs_list and s_inputs_list
     
-    struct s_inputs_list
+    struct s_element_io
     {
-        QList<QString> name;         ///< List of names.
-        QList<int> width;            ///< List of widths.
-        QList<QString> connected_to; ///< List of connected to.
-        int number;                  ///< Number of inputs.
+        QString name;         ///< List of names.
+        int width;            ///< List of widths.
+        QString connected_to; ///< List of connected to.
     };
 
     /**
@@ -222,9 +217,11 @@ private:
         QString name;                      ///< Name of the element.
         QString device;                   ///< Label of the element.
         QString label;                   ///< Type of the element.
-        s_inputs_list inputs;           ///< Vector of input attributes.
-        s_outputs_list outputs;        ///< Vector of output attributes.
-        s_parse_error error;          ///< Error
+        QList<s_element_io> inputs;     ///< Vector of inputs.
+        QList<s_element_io> outputs;   ///< Vector of outputs.
+        int inputs_number;            ///< Number of inputs.
+        int outputs_number;          ///< Number of outputs.
+        s_parse_error error;        ///< Error
     };
 
     struct s_elements
@@ -333,15 +330,15 @@ private:
      * @param out_struct
      * @return Number of outputs found if success, -1 if error
      */
-    int get_list_of_outputs_name_and_width(QString outputs_string, s_outputs_list &out_struct);
+    int get_list_of_outputs_name_and_width(QString outputs_string, QList<s_element_io> &outputs_list);
 
     /**
-     * @brief Get a list of inputs name, width, and connection for sim:inputs attributes
-     * @param inputs_string
+     * @brief Get a list of outputs name, width for sim:outputs attributes
+     * @param outputs_string
      * @param out_struct
-     * @return Number of inputs found if success, -1 if error
+     * @return Number of outputs found if success, -1 if error
      */
-    int get_list_of_inputs_name_and_width(QString inputs_string, s_inputs_list &out_struct);
+    int get_list_of_inputs_name_and_width(QString outputs_string, QList<s_element_io> &inputs_list);
     
     /**
      * @brief Get attribute value if it exist
