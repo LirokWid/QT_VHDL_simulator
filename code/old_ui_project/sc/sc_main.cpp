@@ -120,6 +120,8 @@ int sc_main (int argc, char *argv[]) {
     u4.clock(clk);
     u4.q(wire1);
 
+    u5.map(prefix, index, wire);
+
     u5.sel(sel);
     u5.d[0](wire1);
     u5.d[1](wire2);

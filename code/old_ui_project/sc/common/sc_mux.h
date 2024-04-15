@@ -202,6 +202,24 @@ public:
             }
         }
     }
+
+    /////////////////////////////////////////////TODO///////////////////////////////////////////////////////////
+    // Assume you've parsed name as prefix, index (eg: "d0" is prefix "d", index 0)(eg: "sel" is prefix "sel", index -1)
+    // Connect to wire
+    switch (prefix) {
+    case "d":
+        if (index == -1) // Error
+            this.d[index](wire);
+        break;
+    case "sel":
+        if (index != -1) // Error
+            this.sel(wire);
+        break;
+    case "o":
+        break;
+    default:
+        // Error
+    }
 };
 
 
