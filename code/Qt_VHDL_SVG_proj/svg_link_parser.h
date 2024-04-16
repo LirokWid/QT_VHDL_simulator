@@ -1,4 +1,6 @@
 /**
+ * @author LiroKwid
+ * @date 02-2024
  * @file svg_link_parser.h
  * @brief Header file for SvgLinkParser class.
  *
@@ -8,14 +10,13 @@
 #ifndef SVG_LINK_PARSER_H
 #define SVG_LINK_PARSER_H
 
+
 #include <QXmlStreamReader>
 #include <QFile>
 #include <QDebug>
 #include <QXmlStreamAttributes>
 #include <QString>
 #include <QDomDocument>
-
-#include <vector>
 
 #define DEBUG
 
@@ -42,31 +43,7 @@
  */
 class SvgLinkParser
 {
-public:
-    /**
-     * @brief SvgLinkParser constructor.
-     * @param svg_file The file path of the SVG file to parse.
-     */
-    SvgLinkParser(QString svg_file);
-
-    /**
-     * @brief SvgLinkParser destructor.
-     */
-    ~SvgLinkParser();
-
-    //Getters
-    /**
-     * @brief Get a const reference to all_components.
-     * @return Const reference to all_components.
-     */
-    components_list get_all_components() const {
-        return this->all_components;
-    }
-
-
-
-    int links_count;
-
+    friend class Svg_linker;
 private:
     QString svg_file; ///< File name of the SVG file.
 
@@ -137,11 +114,11 @@ private:
         QString type;                        ///< Type attribute of the node.
         unsigned int component_in_width;     ///< Input width of the component.
         unsigned int component_out_width;    ///< Output width of the component.
-        std::vector<s_io> inputs;            ///< Vector of input information.
-        std::vector<s_io> outputs;           ///< Vector of output information.
+        QList<s_io> inputs;            ///< Vector of input information.
+        QList<s_io> outputs;           ///< Vector of output information.
         bool is_parse_error;                 ///< Flag indicating parsing error.
         bool has_been_parsed;                ///< Flag indicating node has been parsed.
-        std::vector<QString> error_messages; ///< Vector of error messages.
+        QList<QString> error_messages; ///< Vector of error messages.
     };
 
     /**
@@ -152,7 +129,7 @@ private:
         QDomElement element;               ///< XML element of the node.
         s_tree_node_info infos;            ///< Information of the node.
         int level;                         ///< Level of the node in the tree.
-        std::vector<s_tree_node> children; ///< Children nodes.
+        QList<s_tree_node> children; ///< Children nodes.
     };
 
     int groups_number; ///< Number of groups.
@@ -246,14 +223,14 @@ private:
     /**
      * @brief Struct for storing components list.
      */
-    struct components_list
+    struct s_components_list
     {
         s_elements      elements;           ///< List of elements.
         s_sim_I_Os      simulation_IOs;     ///< List of simulation IO.
         s_sim_wires     simulation_wires;   ///< List of simulation wires.
     };
 
-    components_list all_components; ///< All components global variable.
+    s_components_list all_components; ///< All components private variable.
 
     /**
      * @brief Get the attribute name for a given type.
@@ -288,7 +265,7 @@ private:
      * @brief List attributes.
      * @param elements The vector of elements.
      */
-    void list_attributes(const std::vector<QDomElement> &elements);
+    void list_attributes(const QList<QDomElement> &elements);
 
     /**
      * @brief Parse SVG file.
@@ -396,6 +373,23 @@ private:
      * @return number of elements found
      */
     int list_matching_attr(const QDomElement elem_to_look_into, const QString attr_name, QList<QDomElement> &found_elements);
+
+public:
+    /**
+     * @brief SvgLinkParser constructor.
+     * @param svg_file The file path of the SVG file to parse.
+     */
+    SvgLinkParser(QString svg_file);
+
+    /**
+     * @brief SvgLinkParser destructor.
+     */
+    ~SvgLinkParser();
+
+    // Getter function for components_list
+    const s_components_list& get_components_list() const {
+        return all_components;
+    }
 };
 
 #endif // SVG_LINK_PARSER_H

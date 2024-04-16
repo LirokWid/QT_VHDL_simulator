@@ -3,7 +3,6 @@
 SvgLinkParser::SvgLinkParser(QString svg_file)
 {
     log_buffer = "";
-    links_count = 0;
     root.level = 0;
 
     if (svg_file.isEmpty())
@@ -107,7 +106,7 @@ void SvgLinkParser::generate_tree(const s_tree_node &node, const QString &prefix
     // Accumulate log output into a buffer
     log_buffer += log_content + "\n";
 
-    for (size_t i = 0; i < node.children.size(); ++i)
+    for (int i = 0; i < node.children.size(); ++i)
     {
         if (i == node.children.size() - 1)
         {
