@@ -5,8 +5,7 @@
 #include <QResource>
 #include <QtSvg>
 
-#include "svg_link_parser.h"
-#include "svg_linker.h"
+#include "SvgLinker.h"
 
 
 int main(int argc, char *argv[])
@@ -17,10 +16,10 @@ int main(int argc, char *argv[])
     // Load the SVG file from the resource system
     QResource::registerResource(":/resources.qrc");
 
-    SvgLinkParser parser1("C:\\Users\\BJRODIER\\Documents\\QT_REPO\\QT_VHDL_simulator\\code\\Qt_VHDL_SVG_proj\\mux_symp.svg");
 
-    Svg_linker linker(&parser1);
-    //SvgLinkParser parser2("C:\\Users\\BJRODIER\\Documents\\QT_REPO\\QT_VHDL_simulator\\code\\Qt_test_proj\\Schematic_Paco.svg");
+    QString svg_file(":/svg/mux_symp.svg");
+
+    SvgLinker linker(svg_file);
     return 0;
 }
 
