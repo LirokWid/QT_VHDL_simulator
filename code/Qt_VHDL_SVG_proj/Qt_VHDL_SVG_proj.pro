@@ -15,15 +15,16 @@ else: unix:!android: target.path = /opt/$${TARGET}/bin
 !isEmpty(target.path): INSTALLS += target
 
 QMAKE_INCDIR += \
-    inc \
-    src
+    parser_linker
+
 
 
 HEADERS += \
-    $$files("inc/*.h")
+    $$files("parser_linker/*.h") \
+    $$files("systemc_modules/*.h")
 
 SOURCES += \
-    $$files("src/*.cpp") \
+    $$files("parser_linker/*.cpp") \
     main.cpp
 
 
@@ -42,5 +43,11 @@ else: unix:!android: target.path = /opt/$${TARGET}/bin
 
 # SystemC
 SYSTEMC_INSTALL_PREFIX=C:/Qt/SystemC
-LIBS += -L$$SYSTEMC_INSTALL_PREFIX/lib/ -lsystemc
-INCLUDEPATH += $$SYSTEMC_INSTALLL_PREFIX/include
+LIBS        += -L$$SYSTEMC_INSTALL_PREFIX/lib/ -lsystemc
+INCLUDEPATH +=   $$SYSTEMC_INSTALL_PREFIX/include
+
+#win32:CONFIG(release, debug|release):    LIBS += -L$$PWD/../../../../../../../Qt/SystemC/lib/ -lsystemc
+#else:win32:CONFIG(debug, debug|release): LIBS += -L$$PWD/../../../../../../../Qt/SystemC/lib/ -lsystemcd
+
+#INCLUDEPATH += $$PWD/../../../../../../../Qt/SystemC/include
+#DEPENDPATH  += $$PWD/../../../../../../../Qt/SystemC/include

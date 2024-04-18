@@ -5,7 +5,7 @@
 #include <QResource>
 #include <QtSvg>
 
-#include "SvgLinker.h"
+#include "SystemcLinker.h"
 
 
 int main(int argc, char *argv[])
@@ -18,8 +18,8 @@ int main(int argc, char *argv[])
 
 
     QString svg_file(":/svg/mux_symp.svg");
-
-    SvgLinker linker(svg_file);
+    
+    SystemcLinker linker(svg_file);
     return 0;
 }
 
