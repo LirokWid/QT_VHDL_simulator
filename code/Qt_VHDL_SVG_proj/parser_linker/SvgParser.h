@@ -43,23 +43,7 @@
  */
 class SvgParser
 {
-private:
-    QString svg_file; ///< File name of the SVG file.
-
-    const QString custom_attribute = CUSTOM_ATTRIBUTE; ///< Custom attribute prefix.
-
-    /*
-    const QString component_ID = "ID";           ///< Component ID attribute name.
-    const QString component_type = "type";       ///< Component type attribute name.
-    const QString component_graphic = "graphic"; ///< Component graphic attribute name.
-    const QString component_input = "input";     ///< Component input attribute name.
-    const QString component_output = "output";   ///< Component output attribute name.
-    const QString component_sel = "sel";         ///< Component selection attribute name.
-    const QString undefined = "undefined";       ///< Undefined attribute value.
-    const QString not_found = "not_found";       ///< Not found attribute value.
-    */
-
-    QString log_buffer; ///< Buffer for log messages.
+protected:
 
     /**
      * @brief Enumeration for the names of the type attribute.
@@ -229,6 +213,26 @@ private:
         s_sim_wires     simulation_wires;   ///< List of simulation wires.
     };
 
+    s_components_list all_components; ///< All components private variable.
+
+
+private:
+    QString svg_file; ///< File name of the SVG file.
+
+    const QString custom_attribute = CUSTOM_ATTRIBUTE; ///< Custom attribute prefix.
+
+    /*
+    const QString component_ID = "ID";           ///< Component ID attribute name.
+    const QString component_type = "type";       ///< Component type attribute name.
+    const QString component_graphic = "graphic"; ///< Component graphic attribute name.
+    const QString component_input = "input";     ///< Component input attribute name.
+    const QString component_output = "output";   ///< Component output attribute name.
+    const QString component_sel = "sel";         ///< Component selection attribute name.
+    const QString undefined = "undefined";       ///< Undefined attribute value.
+    const QString not_found = "not_found";       ///< Not found attribute value.
+    */
+
+    QString log_buffer; ///< Buffer for log messages.
     /**
      * @brief Get the attribute name for a given type.
      * @param type The type of the attribute.
@@ -370,9 +374,6 @@ private:
      * @return number of elements found
      */
     int list_matching_attr(const QDomElement elem_to_look_into, const QString attr_name, QList<QDomElement> &found_elements);
-
-protected:
-    s_components_list all_components; ///< All components private variable.
 
 public:
     /**

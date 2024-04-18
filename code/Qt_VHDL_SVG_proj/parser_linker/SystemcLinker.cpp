@@ -1,38 +1,36 @@
-#include "SvgLinker.h"
-#include "SvgParser.h" // Include the header file for SvgParser
-
+#include "SystemcLinker.h"
 
 /*
- * @brief SvgLinker::SvgLinker
+ * @brief SystemcLinker::SystemcLinker
  * @param svg_file
- * Constructor for the SvgLinker class
+ * Constructor for the SystemcLinker class
  * This constructor will call the SvgParser constructor with the svg_file parameter
  * It will then get the components list from the SvgParser instance
  * It will then call the link_components function to link the components
  */
-SvgLinker::SvgLinker(QString svg_file) : SvgParser(svg_file)
+SystemcLinker::SystemcLinker(QString svg_file) : SvgParser(svg_file)
 {
-    auto x = all_components;
+    s_components_list components = all_components;
 
-#if 0
-    if(parsed_svg != nullptr)
+    //First, create the module which will be simulated by SystemC
+    for(s_element& elem  : (components.elements.elements_list))
     {
-        this->components = parsed_svg->get_components_list();
-
-
-    //link_components();
+        create_sysc_module(elem);
     }
-    else
-    {
-        qDebug() << "Parser instance is null";
-    }
-#endif
+
 }
 
-SvgLinker::~SvgLinker()
+SystemcLinker::~SystemcLinker()
 {
+}
+
+
+void SystemcLinker::create_sysc_module(const s_element& elem)
+{
+    //SC_MODULE()
 }
 /*
+
 
 void Svg_linker::link_components()
 {
