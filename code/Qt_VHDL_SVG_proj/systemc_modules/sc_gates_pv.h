@@ -5,23 +5,37 @@
 //#include <QDomNodeList>
 #include <systemc.h>
 
-template <unsigned int N = 2,
-          unsigned int W = 1>
-class SyscLogicGate_pv : public ::sc_core::sc_module {
+/**
+ * @brief The SyscLogicGate_pv::sc_core::sc_module class
+ * @details A generic SystemC module that implements a logic gate with N inputs and 1 output.
+ * The gate is combinational, i.e., the output is updated whenever any of the inputs changes.
+ * pv
+ */
+template <unsigned int N = 2, unsigned int W = 1>
+class SyscLogicGate_pv : public ::sc_core::sc_module
+{
 public:
     static_assert(N >= 2, "SyscLogicGate_pv DESIGN ERROR: N must be >= 2");
     static_assert(W >= 1, "SyscLogicGate_pv DESIGN ERROR: W must be >= 1");
 
     typedef  sc_lv<W>        data_t;
-    sc_vector<sc_in<data_t>> d;         // Data input(s)
-                                        // sc_vector of ports; name can be initialized in the constructor to 'd_0', 'd_1', and so on (instead of 'port_0', 'port_1', etc.)
-                                        // see https://stackoverflow.com/questions/35425052/how-to-initialize-a-systemc-port-name-which-is-an-array/35535730#35535730
-    sc_out<data_t>          y{"y"};     // Data output
+
+    /**
+     * Data input(s)
+     * Array of pointers so each port name can be initialized in the constructor to 'd0', 'd1', and so on (instead of 'port_0', 'port_1', etc.)
+     * mapping is done as (*mux_object.d[index])(signal_to_bind_the_port) instead of mux_object.d[index](signal_to_bind_the_port)
+     * see https://stackoverflow.com/questions/35425052/how-to-initialize-a-systemc-port-name-which-is-an-array/35535730#35535730
+     */
+    sc_vector<sc_in<data_t>> d;
+
+    // Data output
+    sc_out<data_t>          y{"y"};
 
     typedef SyscLogicGate_pv<N,W> SC_CURRENT_USER_MODULE;
     SyscLogicGate_pv<N,W>(::sc_core::sc_module_name name) : ::sc_core::sc_module(name), d("d", N) {
         SC_METHOD(combinational);
-        for (unsigned int i=0; i < N; i++) {
+        for (unsigned int i=0; i < N; i++)
+        {
             sensitive << d[i];
         }
     }

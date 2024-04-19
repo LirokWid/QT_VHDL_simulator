@@ -25,6 +25,7 @@ HEADERS += \
 
 SOURCES += \
     $$files("parser_linker/*.cpp") \
+    $$files("systemc_modules/*.cpp") \
     main.cpp
 
 
