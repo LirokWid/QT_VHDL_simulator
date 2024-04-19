@@ -1,0 +1,165 @@
+\doxysection{sc\+\_\+host\+\_\+semaphore.\+h}
+\hypertarget{sc__host__semaphore_8h_source}{}\label{sc__host__semaphore_8h_source}\index{C:/Users/BJRODIER/Documents/QT\_REPO/QT\_VHDL\_simulator/code/Ressources/SystemC/include/sysc/communication/sc\_host\_semaphore.h@{C:/Users/BJRODIER/Documents/QT\_REPO/QT\_VHDL\_simulator/code/Ressources/SystemC/include/sysc/communication/sc\_host\_semaphore.h}}
+\mbox{\hyperlink{sc__host__semaphore_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{comment}{/*****************************************************************************}}
+\DoxyCodeLine{00002\ \textcolor{comment}{}}
+\DoxyCodeLine{00003\ \textcolor{comment}{\ \ Licensed\ to\ Accellera\ Systems\ Initiative\ Inc.\ (Accellera)\ under\ one\ or}}
+\DoxyCodeLine{00004\ \textcolor{comment}{\ \ more\ contributor\ license\ agreements.\ \ See\ the\ NOTICE\ file\ distributed}}
+\DoxyCodeLine{00005\ \textcolor{comment}{\ \ with\ this\ work\ for\ additional\ information\ regarding\ copyright\ ownership.}}
+\DoxyCodeLine{00006\ \textcolor{comment}{\ \ Accellera\ licenses\ this\ file\ to\ you\ under\ the\ Apache\ License,\ Version\ 2.0}}
+\DoxyCodeLine{00007\ \textcolor{comment}{\ \ (the\ "{}License"{});\ you\ may\ not\ use\ this\ file\ except\ in\ compliance\ with\ the}}
+\DoxyCodeLine{00008\ \textcolor{comment}{\ \ License.\ \ You\ may\ obtain\ a\ copy\ of\ the\ License\ at}}
+\DoxyCodeLine{00009\ \textcolor{comment}{}}
+\DoxyCodeLine{00010\ \textcolor{comment}{\ \ \ \ http://www.apache.org/licenses/LICENSE-\/2.0}}
+\DoxyCodeLine{00011\ \textcolor{comment}{}}
+\DoxyCodeLine{00012\ \textcolor{comment}{\ \ Unless\ required\ by\ applicable\ law\ or\ agreed\ to\ in\ writing,\ software}}
+\DoxyCodeLine{00013\ \textcolor{comment}{\ \ distributed\ under\ the\ License\ is\ distributed\ on\ an\ "{}AS\ IS"{}\ BASIS,}}
+\DoxyCodeLine{00014\ \textcolor{comment}{\ \ WITHOUT\ WARRANTIES\ OR\ CONDITIONS\ OF\ ANY\ KIND,\ either\ express\ or}}
+\DoxyCodeLine{00015\ \textcolor{comment}{\ \ implied.\ \ See\ the\ License\ for\ the\ specific\ language\ governing}}
+\DoxyCodeLine{00016\ \textcolor{comment}{\ \ permissions\ and\ limitations\ under\ the\ License.}}
+\DoxyCodeLine{00017\ \textcolor{comment}{}}
+\DoxyCodeLine{00018\ \textcolor{comment}{\ *****************************************************************************/}}
+\DoxyCodeLine{00019\ }
+\DoxyCodeLine{00020\ \textcolor{comment}{/*****************************************************************************}}
+\DoxyCodeLine{00021\ \textcolor{comment}{}}
+\DoxyCodeLine{00022\ \textcolor{comment}{\ \ sc\_host\_semaphore.h\ -\/-\/\ A\ "{}real"{}\ semaphore\ for\ the\ underlying\ host\ system}}
+\DoxyCodeLine{00023\ \textcolor{comment}{}}
+\DoxyCodeLine{00024\ \textcolor{comment}{\ \ Original\ Author:\ Philipp\ A.\ Hartmann,\ Intel}}
+\DoxyCodeLine{00025\ \textcolor{comment}{}}
+\DoxyCodeLine{00026\ \textcolor{comment}{\ CHANGE\ LOG\ AT\ THE\ END\ OF\ THE\ FILE}}
+\DoxyCodeLine{00027\ \textcolor{comment}{\ *****************************************************************************/}}
+\DoxyCodeLine{00028\ }
+\DoxyCodeLine{00029\ \textcolor{preprocessor}{\#ifndef\ SC\_HOST\_SEMAPHORE\_H\_INCLUDED\_}}
+\DoxyCodeLine{00030\ \textcolor{preprocessor}{\#define\ SC\_HOST\_SEMAPHORE\_H\_INCLUDED\_}}
+\DoxyCodeLine{00031\ }
+\DoxyCodeLine{00032\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{sc__cmnhdr_8h}{sysc/kernel/sc\_cmnhdr.h}}"{}}\ \textcolor{comment}{//\ SC\_CPLUSPLUS}}
+\DoxyCodeLine{00033\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{sc__semaphore__if_8h}{sysc/communication/sc\_semaphore\_if.h}}"{}}}
+\DoxyCodeLine{00034\ }
+\DoxyCodeLine{00035\ \textcolor{preprocessor}{\#if\ SC\_CPLUSPLUS\ >=\ 201103L}}
+\DoxyCodeLine{00036\ \textcolor{preprocessor}{\#\ include\ <mutex>}}
+\DoxyCodeLine{00037\ \textcolor{preprocessor}{\#\ include\ <condition\_variable>}}
+\DoxyCodeLine{00038\ \textcolor{preprocessor}{\#elif\ !defined(WIN32)\ \&\&\ !defined(\_WIN32)\ }\textcolor{comment}{//\ use\ POSIX\ semaphore}}
+\DoxyCodeLine{00039\ \textcolor{preprocessor}{\#\ include\ <semaphore.h>}}
+\DoxyCodeLine{00040\ \textcolor{preprocessor}{\#else\ }\textcolor{comment}{//\ use\ Windows\ semaphore}}
+\DoxyCodeLine{00041\ \textcolor{preprocessor}{\#\ ifndef\ SC\_INCLUDE\_WINDOWS\_H}}
+\DoxyCodeLine{00042\ \textcolor{preprocessor}{\#\ \ \ define\ SC\_INCLUDE\_WINDOWS\_H\ }\textcolor{comment}{//\ include\ Windows.h,\ if\ needed}}
+\DoxyCodeLine{00043\ \textcolor{preprocessor}{\#\ \ \ include\ "{}\mbox{\hyperlink{sc__cmnhdr_8h}{sysc/kernel/sc\_cmnhdr.h}}"{}}}
+\DoxyCodeLine{00044\ \textcolor{preprocessor}{\#\ endif}}
+\DoxyCodeLine{00045\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{//\ SC\_CPLUSPLUS}}
+\DoxyCodeLine{00046\ }
+\DoxyCodeLine{00047\ \textcolor{keyword}{namespace\ }\mbox{\hyperlink{namespacesc__core}{sc\_core}}\ \{}
+\DoxyCodeLine{00048\ }
+\DoxyCodeLine{00049\ \textcolor{comment}{//\ -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{00050\ \textcolor{comment}{//\ \ CLASS\ :\ sc\_host\_semaphore}}
+\DoxyCodeLine{00051\ \textcolor{comment}{//}}
+\DoxyCodeLine{00052\ \textcolor{comment}{//\ \ \ Wrapping\ an\ OS\ semaphore\ on\ the\ simulation\ host}}
+\DoxyCodeLine{00053\ \textcolor{comment}{//\ -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{00054\ }
+\DoxyCodeLine{00055\ \textcolor{keyword}{class\ }\mbox{\hyperlink{sc__cmnhdr_8h_aff4a86b3f5de3ac2097081e7166fe89f}{SC\_API}}\ \mbox{\hyperlink{classsc__core_1_1sc__host__semaphore}{sc\_host\_semaphore}}\ :\ \textcolor{keyword}{public}\ \mbox{\hyperlink{classsc__core_1_1sc__semaphore__if}{sc\_semaphore\_if}}}
+\DoxyCodeLine{00056\ \{}
+\DoxyCodeLine{00057\ \textcolor{preprocessor}{\#if\ SC\_CPLUSPLUS\ >=\ 201103L}}
+\DoxyCodeLine{00058\ }
+\DoxyCodeLine{00059\ \ \ \ \ \textcolor{keyword}{struct\ }\mbox{\hyperlink{class_sysc_add__pv}{underlying\_type}}}
+\DoxyCodeLine{00060\ \ \ \ \ \{}
+\DoxyCodeLine{00061\ \ \ \ \ \ \ std::mutex\ \mbox{\hyperlink{class_sysc_add__pv}{mtx}};}
+\DoxyCodeLine{00062\ \ \ \ \ \ \ std::condition\_variable\ \mbox{\hyperlink{class_sysc_add__pv}{cond\_var}};}
+\DoxyCodeLine{00063\ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{sc__communication__ids_8h_a86cc4a9fa9ec4e4803c7d2f4ff21d512}{value}};}
+\DoxyCodeLine{00064\ \ \ \ \ \};}
+\DoxyCodeLine{00065\ }
+\DoxyCodeLine{00066\ \ \ \ \ \textcolor{keywordtype}{void}\ do\_init(\textcolor{keywordtype}{int}\ init)\ \{\ m\_sem.value\ =\ init;\ \}}
+\DoxyCodeLine{00067\ \ \ \ \ \textcolor{keywordtype}{void}\ do\_wait()}
+\DoxyCodeLine{00068\ \ \ \ \ \{}
+\DoxyCodeLine{00069\ \ \ \ \ \ \ std::unique\_lock<std::mutex>\ lock(m\_sem.mtx);}
+\DoxyCodeLine{00070\ \ \ \ \ \ \ \textcolor{keywordflow}{while}\ (m\_sem.value\ <=\ 0)\ \{}
+\DoxyCodeLine{00071\ \ \ \ \ \ \ \ \ m\_sem.cond\_var.wait(lock);}
+\DoxyCodeLine{00072\ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00073\ \ \ \ \ \ \ -\/-\/m\_sem.value;}
+\DoxyCodeLine{00074\ \ \ \ \ \}}
+\DoxyCodeLine{00075\ \ \ \ \ \textcolor{keywordtype}{bool}\ do\_trywait()}
+\DoxyCodeLine{00076\ \ \ \ \ \{}
+\DoxyCodeLine{00077\ \ \ \ \ \ \ std::unique\_lock<std::mutex>\ lock(m\_sem.mtx);}
+\DoxyCodeLine{00078\ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (m\_sem.value\ <=\ 0)}
+\DoxyCodeLine{00079\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00080\ \ \ \ \ \ \ -\/-\/m\_sem.value;}
+\DoxyCodeLine{00081\ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{true};}
+\DoxyCodeLine{00082\ \ \ \ \ \}}
+\DoxyCodeLine{00083\ \ \ \ \ \textcolor{keywordtype}{void}\ do\_post()}
+\DoxyCodeLine{00084\ \ \ \ \ \{}
+\DoxyCodeLine{00085\ \ \ \ \ \ \ std::unique\_lock<std::mutex>\ lock(m\_sem.mtx);}
+\DoxyCodeLine{00086\ \ \ \ \ \ \ ++m\_sem.value;}
+\DoxyCodeLine{00087\ \ \ \ \ \ \ m\_sem.cond\_var.notify\_one();}
+\DoxyCodeLine{00088\ \ \ \ \ \}}
+\DoxyCodeLine{00089\ \ \ \ \ \textcolor{keywordtype}{void}\ do\_destroy()\ \{\ \textcolor{comment}{/*\ no-\/op\ */}\ \}}
+\DoxyCodeLine{00090\ }
+\DoxyCodeLine{00091\ \textcolor{preprocessor}{\#elif\ defined(WIN32)\ ||\ defined(\_WIN32)\ }\textcolor{comment}{//\ use\ Windows\ Semaphore}}
+\DoxyCodeLine{00092\ }
+\DoxyCodeLine{00093\ \ \ \ \ \textcolor{keyword}{typedef}\ \mbox{\hyperlink{class_sysc_add__pv}{HANDLE}}\ \mbox{\hyperlink{class_sysc_add__pv}{underlying\_type}};}
+\DoxyCodeLine{00094\ }
+\DoxyCodeLine{00095\ \ \ \ \ \textcolor{keywordtype}{void}\ do\_init(\textcolor{keywordtype}{int}\ init)}
+\DoxyCodeLine{00096\ \ \ \ \ \{}
+\DoxyCodeLine{00097\ \ \ \ \ \ \ m\_sem\ =\ \mbox{\hyperlink{class_sysc_add__pv}{CreateSemaphore}}(\ \mbox{\hyperlink{class_sysc_add__pv}{NULL}},\ init,\ \mbox{\hyperlink{class_sysc_add__pv}{LONG\_MAX}},\ \mbox{\hyperlink{class_sysc_add__pv}{NULL}}\ );}
+\DoxyCodeLine{00098\ \ \ \ \ \ \ \mbox{\hyperlink{sc__report_8h_a74afc5942d7b28d11f360a6f03181daa}{sc\_assert}}(\ m\_sem\ !=\ \mbox{\hyperlink{class_sysc_add__pv}{NULL}}\ );}
+\DoxyCodeLine{00099\ \ \ \ \ \}}
+\DoxyCodeLine{00100\ \ \ \ \ \textcolor{keywordtype}{void}\ do\_wait()}
+\DoxyCodeLine{00101\ \ \ \ \ \ \ \{\ \mbox{\hyperlink{class_sysc_add__pv}{WaitForSingleObject}}(\ m\_sem,\ \mbox{\hyperlink{class_sysc_add__pv}{INFINITE}}\ );\ \}}
+\DoxyCodeLine{00102\ \ \ \ \ \textcolor{keywordtype}{bool}\ do\_trywait()}
+\DoxyCodeLine{00103\ \ \ \ \ \ \ \{\ \textcolor{keywordflow}{return}\ (\ \mbox{\hyperlink{class_sysc_add__pv}{WaitForSingleObject}}(\ m\_sem,\ 0\ )\ ==\ \mbox{\hyperlink{class_sysc_add__pv}{WAIT\_OBJECT\_0}}\ );\ \}}
+\DoxyCodeLine{00104\ \ \ \ \ \textcolor{keywordtype}{void}\ do\_post()}
+\DoxyCodeLine{00105\ \ \ \ \ \ \ \{\ \mbox{\hyperlink{class_sysc_add__pv}{ReleaseSemaphore}}(\ m\_sem,\ 1,\ \mbox{\hyperlink{class_sysc_add__pv}{NULL}}\ );\ \}}
+\DoxyCodeLine{00106\ \ \ \ \ \textcolor{keywordtype}{void}\ do\_destroy()}
+\DoxyCodeLine{00107\ \ \ \ \ \ \ \{\ \mbox{\hyperlink{class_sysc_add__pv}{CloseHandle}}(\ m\_sem\ );\ \}}
+\DoxyCodeLine{00108\ }
+\DoxyCodeLine{00109\ \textcolor{preprocessor}{\#else\ }\textcolor{comment}{//\ use\ POSIX\ semaphore}}
+\DoxyCodeLine{00110\ }
+\DoxyCodeLine{00111\ \ \ \ \ \textcolor{keyword}{typedef}\ \mbox{\hyperlink{class_sysc_add__pv}{sem\_t}}\ \mbox{\hyperlink{classsc__core_1_1sc__host__semaphore_af1daa4e4eff6714acd8778c788e35a9f}{underlying\_type}};}
+\DoxyCodeLine{00112\ }
+\DoxyCodeLine{00113\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classsc__core_1_1sc__host__semaphore_ae874caa72a6c237ddf5a7d99de4686dd}{do\_init}}(\textcolor{keywordtype}{int}\ init)}
+\DoxyCodeLine{00114\ \ \ \ \ \{}
+\DoxyCodeLine{00115\ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{class_sysc_add__pv}{semaphore\_initialized}}\ =\ \mbox{\hyperlink{class_sysc_add__pv}{sem\_init}}(\ \&m\_sem,\ 0,\ init\ );}
+\DoxyCodeLine{00116\ \ \ \ \ \ \ \mbox{\hyperlink{sc__report_8h_a74afc5942d7b28d11f360a6f03181daa}{sc\_assert}}(\mbox{\hyperlink{class_sysc_add__pv}{semaphore\_initialized}}\ ==\ 0);}
+\DoxyCodeLine{00117\ \ \ \ \ \}}
+\DoxyCodeLine{00118\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classsc__core_1_1sc__host__semaphore_a8c9e07f56703cfdd3c7d7189e18ada5b}{do\_wait}}()\ \ \ \ \ \ \ \ \ \{\ \mbox{\hyperlink{class_sysc_add__pv}{sem\_wait}}(\ \&m\_sem\ );\ \}}
+\DoxyCodeLine{00119\ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{classsc__core_1_1sc__host__semaphore_a9cc1dd647c2ed205cf151a6fff996e80}{do\_trywait}}()\ \ \ \ \ \ \{\ \textcolor{keywordflow}{return}\ (\ \mbox{\hyperlink{class_sysc_add__pv}{sem\_trywait}}(\ \&m\_sem\ )\ ==\ 0\ );\ \}}
+\DoxyCodeLine{00120\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classsc__core_1_1sc__host__semaphore_ae5d4f841f8aa1df58e9cb03caa9226e8}{do\_post}}()\ \ \ \ \ \ \ \ \ \{\ \mbox{\hyperlink{class_sysc_add__pv}{sem\_post}}(\ \&m\_sem\ );\ \}}
+\DoxyCodeLine{00121\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classsc__core_1_1sc__host__semaphore_a0cae3bca52ec8fc0f5e3bcb122cce4c6}{do\_destroy}}()\ \ \ \ \ \ \{\ \mbox{\hyperlink{class_sysc_add__pv}{sem\_destroy}}(\ \&m\_sem\ );\ \}}
+\DoxyCodeLine{00122\ }
+\DoxyCodeLine{00123\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{//\ platform-\/specific\ implementation}}
+\DoxyCodeLine{00124\ }
+\DoxyCodeLine{00125\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00126\ }
+\DoxyCodeLine{00127\ \ \ \ \ \textcolor{comment}{//\ constructors\ and\ destructor}}
+\DoxyCodeLine{00128\ }
+\DoxyCodeLine{00129\ \ \ \ \ \textcolor{keyword}{explicit}\ \mbox{\hyperlink{classsc__core_1_1sc__host__semaphore_a718ae86558f81bd0461859d858de2775}{sc\_host\_semaphore}}(\textcolor{keywordtype}{int}\ init\ =\ 0)\ :\ m\_sem()}
+\DoxyCodeLine{00130\ \ \ \ \ \ \ \{\ do\_init(init);\ \}}
+\DoxyCodeLine{00131\ \ \ \ \ \textcolor{keyword}{virtual}\ \mbox{\hyperlink{classsc__core_1_1sc__host__semaphore_a49dea16b028a7d0de7adc04398396115}{\string~sc\_host\_semaphore}}()}
+\DoxyCodeLine{00132\ \ \ \ \ \ \ \{\ do\_destroy();\ \}}
+\DoxyCodeLine{00133\ }
+\DoxyCodeLine{00134\ \ \ \ \ \textcolor{comment}{//\ interface\ methods}}
+\DoxyCodeLine{00135\ }
+\DoxyCodeLine{00136\ \ \ \ \ \textcolor{comment}{//\ lock\ (take)\ the\ semaphore,\ block\ if\ not\ available}}
+\DoxyCodeLine{00137\ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{classsc__core_1_1sc__host__semaphore_a48f9f843d819efe8d7d5062d0265b2c8}{wait}}()}
+\DoxyCodeLine{00138\ \ \ \ \ \ \ \{\ do\_wait();\ \textcolor{keywordflow}{return}\ 0;\ \}}
+\DoxyCodeLine{00139\ }
+\DoxyCodeLine{00140\ \ \ \ \ \textcolor{comment}{//\ lock\ (take)\ the\ semaphore,\ return\ -\/1\ if\ not\ available}}
+\DoxyCodeLine{00141\ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{classsc__core_1_1sc__host__semaphore_a7fe4c302f353b0d79493e2b2a62bdfb7}{trywait}}()}
+\DoxyCodeLine{00142\ \ \ \ \ \ \ \{\ \textcolor{keywordflow}{return}\ do\_trywait()\ ?\ 0\ :\ -\/1;\ \}}
+\DoxyCodeLine{00143\ }
+\DoxyCodeLine{00144\ \ \ \ \ \textcolor{comment}{//\ unlock\ (give)\ the\ semaphore}}
+\DoxyCodeLine{00145\ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{classsc__core_1_1sc__host__semaphore_a7d97da6d9df0435b0c3eede6313b40fd}{post}}()}
+\DoxyCodeLine{00146\ \ \ \ \ \ \ \{\ do\_post();\ \textcolor{keywordflow}{return}\ 0;\ \}}
+\DoxyCodeLine{00147\ }
+\DoxyCodeLine{00148\ \ \ \ \ \textcolor{comment}{//\ get\ the\ value\ of\ the\ semaphore\ (not\ supported)}}
+\DoxyCodeLine{00149\ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{classsc__core_1_1sc__host__semaphore_a5f8ad6f5bce4acebd98e08046525b6df}{get\_value}}()\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00150\ \textcolor{keyword}{\ \ \ \ \ \ }\{\ \mbox{\hyperlink{sc__report_8h_a74afc5942d7b28d11f360a6f03181daa}{sc\_assert}}(\textcolor{keyword}{false}\ \&\&\ \textcolor{stringliteral}{"{}not\ supported\ on\ sc\_host\_semaphore"{}});\ \textcolor{keywordflow}{return}\ -\/1;\ \}}
+\DoxyCodeLine{00151\ }
+\DoxyCodeLine{00152\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00153\ \ \ \ \ \mbox{\hyperlink{class_sysc_add__pv}{underlying\_type}}\ \mbox{\hyperlink{classsc__core_1_1sc__host__semaphore_a1f979a463a30c13fef8f750c43360fec}{m\_sem}};}
+\DoxyCodeLine{00154\ \};}
+\DoxyCodeLine{00155\ }
+\DoxyCodeLine{00156\ \}\ \textcolor{comment}{//\ namespace\ sc\_core}}
+\DoxyCodeLine{00157\ }
+\DoxyCodeLine{00158\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{//\ SC\_HOST\_SEMAPHORE\_H\_INCLUDED\_}}
+\DoxyCodeLine{00159\ \textcolor{comment}{//\ Taf!}}
+
+\end{DoxyCode}

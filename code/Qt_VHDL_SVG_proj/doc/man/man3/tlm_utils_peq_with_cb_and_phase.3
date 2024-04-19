@@ -1,0 +1,250 @@
+.TH "tlm_utils::peq_with_cb_and_phase< OWNER, TYPES >" 3 "VHDL simulator" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+tlm_utils::peq_with_cb_and_phase< OWNER, TYPES >
+.SH SYNOPSIS
+.br
+.PP
+.PP
+\fR#include <peq_with_cb_and_phase\&.h>\fP
+.PP
+Inherits \fBsc_core::sc_object\fP\&.
+.SS "Classes"
+
+.in +1c
+.ti -1c
+.RI "class \fBdelta_list\fP"
+.br
+.in -1c
+.SS "Public Member Functions"
+
+.in +1c
+.ti -1c
+.RI "\fBpeq_with_cb_and_phase\fP (\fBOWNER\fP *\fB_owner\fP, \fBcb\fP \fB_cb\fP)"
+.br
+.ti -1c
+.RI "\fBpeq_with_cb_and_phase\fP (\fBconst\fP \fBchar\fP *\fB_name\fP, \fBOWNER\fP *\fB_owner\fP, \fBcb\fP \fB_cb\fP)"
+.br
+.ti -1c
+.RI "\fB~peq_with_cb_and_phase\fP ()"
+.br
+.ti -1c
+.RI "\fBvoid\fP \fBnotify\fP (\fBtlm_payload_type\fP &t, \fBconst\fP \fBtlm_phase_type\fP &p, \fBconst\fP \fBsc_core::sc_time\fP &\fBwhen\fP)"
+.br
+.ti -1c
+.RI "\fBvoid\fP \fBnotify\fP (\fBtlm_payload_type\fP &t, \fBconst\fP \fBtlm_phase_type\fP &p)"
+.br
+.ti -1c
+.RI "\fBvoid\fP \fBcancel_all\fP ()"
+.br
+.in -1c
+
+Public Member Functions inherited from \fBsc_core::sc_object\fP
+.in +1c
+.ti -1c
+.RI "\fBconst\fP \fBchar\fP * \fBname\fP () \fBconst\fP"
+.br
+.ti -1c
+.RI "\fBconst\fP \fBchar\fP * \fBbasename\fP () \fBconst\fP"
+.br
+.ti -1c
+.RI "\fBvirtual\fP \fBvoid\fP \fBprint\fP (::std::ostream &\fBos\fP=::std::cout) \fBconst\fP"
+.br
+.ti -1c
+.RI "\fBvirtual\fP \fBvoid\fP \fBdump\fP (::std::ostream &\fBos\fP=::std::cout) \fBconst\fP"
+.br
+.ti -1c
+.RI "\fBvirtual\fP \fBvoid\fP \fBtrace\fP (\fBsc_trace_file\fP *tf) \fBconst\fP"
+.br
+.ti -1c
+.RI "\fBvirtual\fP \fBconst\fP \fBchar\fP * \fBkind\fP () \fBconst\fP"
+.br
+.ti -1c
+.RI "\fBsc_simcontext\fP * \fBsimcontext\fP () \fBconst\fP"
+.br
+.ti -1c
+.RI "\fBbool\fP \fBadd_attribute\fP (\fBsc_attr_base\fP &)"
+.br
+.ti -1c
+.RI "\fBsc_attr_base\fP * \fBget_attribute\fP (\fBconst\fP std::string &\fBname_\fP)"
+.br
+.ti -1c
+.RI "\fBconst\fP \fBsc_attr_base\fP * \fBget_attribute\fP (\fBconst\fP std::string &\fBname_\fP) \fBconst\fP"
+.br
+.ti -1c
+.RI "\fBsc_attr_base\fP * \fBremove_attribute\fP (\fBconst\fP std::string &\fBname_\fP)"
+.br
+.ti -1c
+.RI "\fBvoid\fP \fBremove_all_attributes\fP ()"
+.br
+.ti -1c
+.RI "int \fBnum_attributes\fP () \fBconst\fP"
+.br
+.ti -1c
+.RI "\fBsc_attr_cltn\fP & \fBattr_cltn\fP ()"
+.br
+.ti -1c
+.RI "\fBconst\fP \fBsc_attr_cltn\fP & \fBattr_cltn\fP () \fBconst\fP"
+.br
+.ti -1c
+.RI "\fBvirtual\fP \fBconst\fP std::vector< \fBsc_event\fP * > & \fBget_child_events\fP () \fBconst\fP"
+.br
+.ti -1c
+.RI "\fBvirtual\fP \fBconst\fP std::vector< \fBsc_object\fP * > & \fBget_child_objects\fP () \fBconst\fP"
+.br
+.ti -1c
+.RI "\fBsc_object\fP * \fBget_parent\fP () \fBconst\fP"
+.br
+.ti -1c
+.RI "\fBsc_object\fP * \fBget_parent_object\fP () \fBconst\fP"
+.br
+.in -1c
+.SS "Private Types"
+
+.in +1c
+.ti -1c
+.RI "\fBtypedef\fP TYPES::tlm_payload_type \fBtlm_payload_type\fP"
+.br
+.ti -1c
+.RI "\fBtypedef\fP TYPES::tlm_phase_type \fBtlm_phase_type\fP"
+.br
+.ti -1c
+.RI "\fBtypedef\fP std::pair< \fBtlm_payload_type\fP *, \fBtlm_phase_type\fP > \fBPAYLOAD\fP"
+.br
+.ti -1c
+.RI "\fBtypedef\fP \fBvoid\fP(OWNER::* \fBcb\fP) (\fBtlm_payload_type\fP &, \fBconst\fP \fBtlm_phase_type\fP &)"
+.br
+.in -1c
+.SS "Private Member Functions"
+
+.in +1c
+.ti -1c
+.RI "\fBvoid\fP \fBfec\fP ()"
+.br
+.in -1c
+.SS "Private Attributes"
+
+.in +1c
+.ti -1c
+.RI "\fBOWNER\fP * \fBm_owner\fP"
+.br
+.ti -1c
+.RI "\fBcb\fP \fBm_cb\fP"
+.br
+.ti -1c
+.RI "\fBtime_ordered_list\fP< \fBPAYLOAD\fP > \fBm_ppq\fP"
+.br
+.ti -1c
+.RI "\fBdelta_list\fP \fBm_uneven_delta\fP"
+.br
+.ti -1c
+.RI "\fBdelta_list\fP \fBm_even_delta\fP"
+.br
+.ti -1c
+.RI "\fBdelta_list\fP \fBm_immediate_yield\fP"
+.br
+.ti -1c
+.RI "\fBsc_core::sc_event\fP \fBm_e\fP"
+.br
+.in -1c
+.SS "Additional Inherited Members"
+
+
+Public Types inherited from \fBsc_core::sc_object\fP
+.in +1c
+.ti -1c
+.RI "\fBtypedef\fP \fBunsigned\fP \fBphase_cb_mask\fP"
+.br
+.in -1c
+
+Protected Member Functions inherited from \fBsc_core::sc_object\fP
+.in +1c
+.ti -1c
+.RI "\fBsc_object\fP ()"
+.br
+.ti -1c
+.RI "\fBsc_object\fP (\fBconst\fP \fBchar\fP *\fBnm\fP)"
+.br
+.ti -1c
+.RI "\fBsc_object\fP (\fBconst\fP \fBsc_object\fP &)"
+.br
+.ti -1c
+.RI "\fBsc_object\fP & \fBoperator=\fP (\fBconst\fP \fBsc_object\fP &)"
+.br
+.ti -1c
+.RI "\fBvirtual\fP \fB~sc_object\fP ()"
+.br
+.ti -1c
+.RI "\fBvirtual\fP \fBvoid\fP \fBadd_child_event\fP (\fBsc_event\fP *\fBevent_p\fP)"
+.br
+.ti -1c
+.RI "\fBvirtual\fP \fBvoid\fP \fBadd_child_object\fP (\fBsc_object\fP *\fBobject_p\fP)"
+.br
+.ti -1c
+.RI "\fBvirtual\fP \fBbool\fP \fBremove_child_event\fP (\fBsc_event\fP *\fBevent_p\fP)"
+.br
+.ti -1c
+.RI "\fBvirtual\fP \fBbool\fP \fBremove_child_object\fP (\fBsc_object\fP *\fBobject_p\fP)"
+.br
+.ti -1c
+.RI "\fBphase_cb_mask\fP \fBregister_simulation_phase_callback\fP (\fBphase_cb_mask\fP)"
+.br
+.ti -1c
+.RI "\fBphase_cb_mask\fP \fBunregister_simulation_phase_callback\fP (\fBphase_cb_mask\fP)"
+.br
+.in -1c
+.SH "Detailed Description"
+.PP 
+
+.SS "template<\fBtypename\fP \fBOWNER\fP, \fBtypename\fP \fBTYPES\fP = tlm::tlm_base_protocol_types>
+.br
+class tlm_utils::peq_with_cb_and_phase< OWNER, TYPES >"An event queue that can contain any number of pending notifications\&. Each notification have an associate payload\&. 
+.SH "Member Typedef Documentation"
+.PP 
+.SS "template<\fBtypename\fP \fBOWNER\fP , \fBtypename\fP \fBTYPES\fP  = tlm::tlm_base_protocol_types> \fBtypedef\fP \fBvoid\fP(OWNER::* \fBtlm_utils::peq_with_cb_and_phase\fP< \fBOWNER\fP, \fBTYPES\fP >::cb) (\fBtlm_payload_type\fP &, \fBconst\fP \fBtlm_phase_type\fP &)\fR [private]\fP"
+
+.SS "template<\fBtypename\fP \fBOWNER\fP , \fBtypename\fP \fBTYPES\fP  = tlm::tlm_base_protocol_types> \fBtypedef\fP std::pair<\fBtlm_payload_type\fP*, \fBtlm_phase_type\fP> \fBtlm_utils::peq_with_cb_and_phase\fP< \fBOWNER\fP, \fBTYPES\fP >::PAYLOAD\fR [private]\fP"
+
+.SS "template<\fBtypename\fP \fBOWNER\fP , \fBtypename\fP \fBTYPES\fP  = tlm::tlm_base_protocol_types> \fBtypedef\fP TYPES::tlm_payload_type \fBtlm_utils::peq_with_cb_and_phase\fP< \fBOWNER\fP, \fBTYPES\fP >::tlm_payload_type\fR [private]\fP"
+
+.SS "template<\fBtypename\fP \fBOWNER\fP , \fBtypename\fP \fBTYPES\fP  = tlm::tlm_base_protocol_types> \fBtypedef\fP TYPES::tlm_phase_type \fBtlm_utils::peq_with_cb_and_phase\fP< \fBOWNER\fP, \fBTYPES\fP >::tlm_phase_type\fR [private]\fP"
+
+.SH "Constructor & Destructor Documentation"
+.PP 
+.SS "template<\fBtypename\fP \fBOWNER\fP , \fBtypename\fP \fBTYPES\fP  = tlm::tlm_base_protocol_types> \fBtlm_utils::peq_with_cb_and_phase\fP< \fBOWNER\fP, \fBTYPES\fP >::peq_with_cb_and_phase (\fBOWNER\fP * _owner, \fBcb\fP _cb)\fR [inline]\fP"
+
+.SS "template<\fBtypename\fP \fBOWNER\fP , \fBtypename\fP \fBTYPES\fP  = tlm::tlm_base_protocol_types> \fBtlm_utils::peq_with_cb_and_phase\fP< \fBOWNER\fP, \fBTYPES\fP >::peq_with_cb_and_phase (\fBconst\fP \fBchar\fP * _name, \fBOWNER\fP * _owner, \fBcb\fP _cb)\fR [inline]\fP"
+
+.SS "template<\fBtypename\fP \fBOWNER\fP , \fBtypename\fP \fBTYPES\fP  = tlm::tlm_base_protocol_types> \fBtlm_utils::peq_with_cb_and_phase\fP< \fBOWNER\fP, \fBTYPES\fP >::~\fBpeq_with_cb_and_phase\fP ()\fR [inline]\fP"
+
+.SH "Member Function Documentation"
+.PP 
+.SS "template<\fBtypename\fP \fBOWNER\fP , \fBtypename\fP \fBTYPES\fP  = tlm::tlm_base_protocol_types> \fBvoid\fP \fBtlm_utils::peq_with_cb_and_phase\fP< \fBOWNER\fP, \fBTYPES\fP >::cancel_all ()\fR [inline]\fP"
+
+.SS "template<\fBtypename\fP \fBOWNER\fP , \fBtypename\fP \fBTYPES\fP  = tlm::tlm_base_protocol_types> \fBvoid\fP \fBtlm_utils::peq_with_cb_and_phase\fP< \fBOWNER\fP, \fBTYPES\fP >::fec ()\fR [inline]\fP, \fR [private]\fP"
+
+.SS "template<\fBtypename\fP \fBOWNER\fP , \fBtypename\fP \fBTYPES\fP  = tlm::tlm_base_protocol_types> \fBvoid\fP \fBtlm_utils::peq_with_cb_and_phase\fP< \fBOWNER\fP, \fBTYPES\fP >::notify (\fBtlm_payload_type\fP & t, \fBconst\fP \fBtlm_phase_type\fP & p)\fR [inline]\fP"
+
+.SS "template<\fBtypename\fP \fBOWNER\fP , \fBtypename\fP \fBTYPES\fP  = tlm::tlm_base_protocol_types> \fBvoid\fP \fBtlm_utils::peq_with_cb_and_phase\fP< \fBOWNER\fP, \fBTYPES\fP >::notify (\fBtlm_payload_type\fP & t, \fBconst\fP \fBtlm_phase_type\fP & p, \fBconst\fP \fBsc_core::sc_time\fP & when)\fR [inline]\fP"
+
+.SH "Member Data Documentation"
+.PP 
+.SS "template<\fBtypename\fP \fBOWNER\fP , \fBtypename\fP \fBTYPES\fP  = tlm::tlm_base_protocol_types> \fBcb\fP \fBtlm_utils::peq_with_cb_and_phase\fP< \fBOWNER\fP, \fBTYPES\fP >::m_cb\fR [private]\fP"
+
+.SS "template<\fBtypename\fP \fBOWNER\fP , \fBtypename\fP \fBTYPES\fP  = tlm::tlm_base_protocol_types> \fBsc_core::sc_event\fP \fBtlm_utils::peq_with_cb_and_phase\fP< \fBOWNER\fP, \fBTYPES\fP >::m_e\fR [private]\fP"
+
+.SS "template<\fBtypename\fP \fBOWNER\fP , \fBtypename\fP \fBTYPES\fP  = tlm::tlm_base_protocol_types> \fBdelta_list\fP \fBtlm_utils::peq_with_cb_and_phase\fP< \fBOWNER\fP, \fBTYPES\fP >::m_even_delta\fR [private]\fP"
+
+.SS "template<\fBtypename\fP \fBOWNER\fP , \fBtypename\fP \fBTYPES\fP  = tlm::tlm_base_protocol_types> \fBdelta_list\fP \fBtlm_utils::peq_with_cb_and_phase\fP< \fBOWNER\fP, \fBTYPES\fP >::m_immediate_yield\fR [private]\fP"
+
+.SS "template<\fBtypename\fP \fBOWNER\fP , \fBtypename\fP \fBTYPES\fP  = tlm::tlm_base_protocol_types> \fBOWNER\fP* \fBtlm_utils::peq_with_cb_and_phase\fP< \fBOWNER\fP, \fBTYPES\fP >::m_owner\fR [private]\fP"
+
+.SS "template<\fBtypename\fP \fBOWNER\fP , \fBtypename\fP \fBTYPES\fP  = tlm::tlm_base_protocol_types> \fBtime_ordered_list\fP<\fBPAYLOAD\fP> \fBtlm_utils::peq_with_cb_and_phase\fP< \fBOWNER\fP, \fBTYPES\fP >::m_ppq\fR [private]\fP"
+
+.SS "template<\fBtypename\fP \fBOWNER\fP , \fBtypename\fP \fBTYPES\fP  = tlm::tlm_base_protocol_types> \fBdelta_list\fP \fBtlm_utils::peq_with_cb_and_phase\fP< \fBOWNER\fP, \fBTYPES\fP >::m_uneven_delta\fR [private]\fP"
+
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for VHDL simulator from the source code\&.

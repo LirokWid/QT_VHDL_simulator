@@ -1,0 +1,285 @@
+.TH "sc_dt::sc_logic" 3 "VHDL simulator" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+sc_dt::sc_logic
+.SH SYNOPSIS
+.br
+.PP
+.PP
+\fR#include <sc_logic\&.h>\fP
+.SS "Public Member Functions"
+
+.in +1c
+.ti -1c
+.RI "\fBsc_logic\fP ()"
+.br
+.ti -1c
+.RI "\fBsc_logic\fP (\fBconst\fP \fBsc_logic\fP &\fBa\fP)"
+.br
+.ti -1c
+.RI "\fBsc_logic\fP (\fBsc_logic_value_t\fP v)"
+.br
+.ti -1c
+.RI "\fBsc_logic\fP (\fBbool\fP \fBa\fP)"
+.br
+.ti -1c
+.RI "\fBsc_logic\fP (\fBchar\fP \fBa\fP)"
+.br
+.ti -1c
+.RI "\fBsc_logic\fP (int \fBa\fP)"
+.br
+.ti -1c
+.RI "\fBsc_logic\fP (\fBconst\fP \fBsc_bit\fP &\fBa\fP)"
+.br
+.ti -1c
+.RI "\fB~sc_logic\fP ()"
+.br
+.ti -1c
+.RI "\fBsc_logic\fP & \fBoperator=\fP (\fBconst\fP \fBsc_logic\fP &\fBa\fP)"
+.br
+.ti -1c
+.RI "\fBsc_logic\fP & \fBoperator&=\fP (\fBconst\fP \fBsc_logic\fP &\fBb\fP)"
+.br
+.ti -1c
+.RI "\fBsc_logic\fP & \fBoperator|=\fP (\fBconst\fP \fBsc_logic\fP &\fBb\fP)"
+.br
+.ti -1c
+.RI "\fBsc_logic\fP & \fBoperator^=\fP (\fBconst\fP \fBsc_logic\fP &\fBb\fP)"
+.br
+.ti -1c
+.RI "\fBconst\fP \fBsc_logic\fP \fBoperator~\fP () \fBconst\fP"
+.br
+.ti -1c
+.RI "\fBsc_logic\fP & \fBb_not\fP ()"
+.br
+.ti -1c
+.RI "\fBsc_logic_value_t\fP \fBvalue\fP () \fBconst\fP"
+.br
+.ti -1c
+.RI "\fBbool\fP \fBis_01\fP () \fBconst\fP"
+.br
+.ti -1c
+.RI "\fBbool\fP \fBto_bool\fP () \fBconst\fP"
+.br
+.ti -1c
+.RI "\fBchar\fP \fBto_char\fP () \fBconst\fP"
+.br
+.ti -1c
+.RI "\fBvoid\fP \fBprint\fP (::std::ostream &\fBos\fP=::std::cout) \fBconst\fP"
+.br
+.ti -1c
+.RI "\fBvoid\fP \fBscan\fP (::std::istream &\fBis\fP=::std::cin)"
+.br
+.in -1c
+.SS "Static Public Member Functions"
+
+.in +1c
+.ti -1c
+.RI "\fBstatic\fP \fBvoid\fP * \fBoperator new\fP (std::size_t, \fBvoid\fP *p)"
+.br
+.ti -1c
+.RI "\fBstatic\fP \fBvoid\fP * \fBoperator new\fP (std::size_t \fBsz\fP)"
+.br
+.ti -1c
+.RI "\fBstatic\fP \fBvoid\fP \fBoperator delete\fP (\fBvoid\fP *p, std::size_t \fBsz\fP)"
+.br
+.ti -1c
+.RI "\fBstatic\fP \fBvoid\fP * \fBoperator new[]\fP (std::size_t \fBsz\fP)"
+.br
+.ti -1c
+.RI "\fBstatic\fP \fBvoid\fP \fBoperator delete[]\fP (\fBvoid\fP *p, std::size_t \fBsz\fP)"
+.br
+.in -1c
+.SS "Static Public Attributes"
+
+.in +1c
+.ti -1c
+.RI "\fBstatic\fP \fBconst\fP \fBsc_logic_value_t\fP \fBchar_to_logic\fP [128]"
+.br
+.ti -1c
+.RI "\fBstatic\fP \fBconst\fP \fBchar\fP \fBlogic_to_char\fP [4]"
+.br
+.ti -1c
+.RI "\fBstatic\fP \fBconst\fP \fBsc_logic_value_t\fP \fBand_table\fP [4][4]"
+.br
+.ti -1c
+.RI "\fBstatic\fP \fBconst\fP \fBsc_logic_value_t\fP \fBor_table\fP [4][4]"
+.br
+.ti -1c
+.RI "\fBstatic\fP \fBconst\fP \fBsc_logic_value_t\fP \fBxor_table\fP [4][4]"
+.br
+.ti -1c
+.RI "\fBstatic\fP \fBconst\fP \fBsc_logic_value_t\fP \fBnot_table\fP [4]"
+.br
+.in -1c
+.SS "Private Member Functions"
+
+.in +1c
+.ti -1c
+.RI "\fBvoid\fP \fBinvalid_01\fP () \fBconst\fP"
+.br
+.ti -1c
+.RI "\fBsc_logic\fP (\fBconst\fP \fBchar\fP *)"
+.br
+.ti -1c
+.RI "\fBsc_logic\fP & \fBoperator=\fP (\fBconst\fP \fBchar\fP *)"
+.br
+.in -1c
+.SS "Static Private Member Functions"
+
+.in +1c
+.ti -1c
+.RI "\fBstatic\fP \fBvoid\fP \fBinvalid_value\fP (\fBsc_logic_value_t\fP)"
+.br
+.ti -1c
+.RI "\fBstatic\fP \fBvoid\fP \fBinvalid_value\fP (\fBchar\fP)"
+.br
+.ti -1c
+.RI "\fBstatic\fP \fBvoid\fP \fBinvalid_value\fP (int)"
+.br
+.ti -1c
+.RI "\fBstatic\fP \fBsc_logic_value_t\fP \fBto_value\fP (\fBsc_logic_value_t\fP v)"
+.br
+.ti -1c
+.RI "\fBstatic\fP \fBsc_logic_value_t\fP \fBto_value\fP (\fBbool\fP \fBb\fP)"
+.br
+.ti -1c
+.RI "\fBstatic\fP \fBsc_logic_value_t\fP \fBto_value\fP (\fBchar\fP \fBc\fP)"
+.br
+.ti -1c
+.RI "\fBstatic\fP \fBsc_logic_value_t\fP \fBto_value\fP (int \fBi\fP)"
+.br
+.in -1c
+.SS "Private Attributes"
+
+.in +1c
+.ti -1c
+.RI "\fBsc_logic_value_t\fP \fBm_val\fP"
+.br
+.in -1c
+.SS "Friends"
+
+.in +1c
+.ti -1c
+.RI "\fBconst\fP \fBsc_logic\fP \fBoperator&\fP (\fBconst\fP \fBsc_logic\fP &, \fBconst\fP \fBsc_logic\fP &)"
+.br
+.ti -1c
+.RI "\fBconst\fP \fBsc_logic\fP \fBoperator|\fP (\fBconst\fP \fBsc_logic\fP &, \fBconst\fP \fBsc_logic\fP &)"
+.br
+.ti -1c
+.RI "\fBconst\fP \fBsc_logic\fP \fBoperator^\fP (\fBconst\fP \fBsc_logic\fP &, \fBconst\fP \fBsc_logic\fP &)"
+.br
+.ti -1c
+.RI "\fBbool\fP \fBoperator==\fP (\fBconst\fP \fBsc_logic\fP &, \fBconst\fP \fBsc_logic\fP &)"
+.br
+.ti -1c
+.RI "\fBbool\fP \fBoperator!=\fP (\fBconst\fP \fBsc_logic\fP &, \fBconst\fP \fBsc_logic\fP &)"
+.br
+.in -1c
+.SH "Constructor & Destructor Documentation"
+.PP 
+.SS "sc_dt::sc_logic::sc_logic ()\fR [inline]\fP"
+
+.SS "sc_dt::sc_logic::sc_logic (\fBconst\fP \fBsc_logic\fP & a)\fR [inline]\fP"
+
+.SS "sc_dt::sc_logic::sc_logic (\fBsc_logic_value_t\fP v)\fR [inline]\fP"
+
+.SS "sc_dt::sc_logic::sc_logic (\fBbool\fP a)\fR [inline]\fP, \fR [explicit]\fP"
+
+.SS "sc_dt::sc_logic::sc_logic (\fBchar\fP a)\fR [inline]\fP, \fR [explicit]\fP"
+
+.SS "sc_dt::sc_logic::sc_logic (int a)\fR [inline]\fP, \fR [explicit]\fP"
+
+.SS "sc_dt::sc_logic::sc_logic (\fBconst\fP \fBsc_bit\fP & a)\fR [inline]\fP, \fR [explicit]\fP"
+
+.SS "sc_dt::sc_logic::~sc_logic ()\fR [inline]\fP"
+
+.SS "sc_dt::sc_logic::sc_logic (\fBconst\fP \fBchar\fP *)\fR [explicit]\fP, \fR [private]\fP"
+
+.SH "Member Function Documentation"
+.PP 
+.SS "\fBsc_logic\fP & sc_dt::sc_logic::b_not ()\fR [inline]\fP"
+
+.SS "\fBvoid\fP sc_dt::sc_logic::invalid_01 () const\fR [private]\fP"
+
+.SS "\fBstatic\fP \fBvoid\fP sc_dt::sc_logic::invalid_value (\fBchar\fP)\fR [static]\fP, \fR [private]\fP"
+
+.SS "\fBstatic\fP \fBvoid\fP sc_dt::sc_logic::invalid_value (int)\fR [static]\fP, \fR [private]\fP"
+
+.SS "\fBstatic\fP \fBvoid\fP sc_dt::sc_logic::invalid_value (\fBsc_logic_value_t\fP)\fR [static]\fP, \fR [private]\fP"
+
+.SS "\fBbool\fP sc_dt::sc_logic::is_01 () const\fR [inline]\fP"
+
+.SS "\fBstatic\fP \fBvoid\fP sc_dt::sc_logic::operator \fBdelete\fP (\fBvoid\fP * p, std::size_t sz)\fR [inline]\fP, \fR [static]\fP"
+
+.SS "\fBstatic\fP \fBvoid\fP sc_dt::sc_logic::operator \fBdelete\fP[] (\fBvoid\fP * p, std::size_t sz)\fR [inline]\fP, \fR [static]\fP"
+
+.SS "\fBstatic\fP \fBvoid\fP * sc_dt::sc_logic::operator \fBnew\fP (std::size_t sz)\fR [inline]\fP, \fR [static]\fP"
+
+.SS "\fBstatic\fP \fBvoid\fP * sc_dt::sc_logic::operator \fBnew\fP (std::size_t, \fBvoid\fP * p)\fR [inline]\fP, \fR [static]\fP"
+
+.SS "\fBstatic\fP \fBvoid\fP * sc_dt::sc_logic::operator \fBnew\fP[] (std::size_t sz)\fR [inline]\fP, \fR [static]\fP"
+
+.SS "\fBsc_logic\fP & sc_dt::sc_logic::operator&= (\fBconst\fP \fBsc_logic\fP & b)\fR [inline]\fP"
+
+.SS "\fBsc_logic\fP & sc_dt::sc_logic::operator= (\fBconst\fP \fBchar\fP *)\fR [private]\fP"
+
+.SS "\fBsc_logic\fP & sc_dt::sc_logic::operator= (\fBconst\fP \fBsc_logic\fP & a)\fR [inline]\fP"
+
+.SS "\fBsc_logic\fP & sc_dt::sc_logic::operator^= (\fBconst\fP \fBsc_logic\fP & b)\fR [inline]\fP"
+
+.SS "\fBsc_logic\fP & sc_dt::sc_logic::operator|= (\fBconst\fP \fBsc_logic\fP & b)\fR [inline]\fP"
+
+.SS "\fBconst\fP \fBsc_logic\fP sc_dt::sc_logic::operator~ () const\fR [inline]\fP"
+
+.SS "\fBvoid\fP sc_dt::sc_logic::print (::std::ostream & os = \fR::std::cout\fP) const\fR [inline]\fP"
+
+.SS "\fBvoid\fP sc_dt::sc_logic::scan (::std::istream & is = \fR::std::cin\fP)"
+
+.SS "\fBbool\fP sc_dt::sc_logic::to_bool () const\fR [inline]\fP"
+
+.SS "\fBchar\fP sc_dt::sc_logic::to_char () const\fR [inline]\fP"
+
+.SS "\fBstatic\fP \fBsc_logic_value_t\fP sc_dt::sc_logic::to_value (\fBbool\fP b)\fR [inline]\fP, \fR [static]\fP, \fR [private]\fP"
+
+.SS "\fBstatic\fP \fBsc_logic_value_t\fP sc_dt::sc_logic::to_value (\fBchar\fP c)\fR [inline]\fP, \fR [static]\fP, \fR [private]\fP"
+
+.SS "\fBstatic\fP \fBsc_logic_value_t\fP sc_dt::sc_logic::to_value (int i)\fR [inline]\fP, \fR [static]\fP, \fR [private]\fP"
+
+.SS "\fBstatic\fP \fBsc_logic_value_t\fP sc_dt::sc_logic::to_value (\fBsc_logic_value_t\fP v)\fR [inline]\fP, \fR [static]\fP, \fR [private]\fP"
+
+.SS "\fBsc_logic_value_t\fP sc_dt::sc_logic::value () const\fR [inline]\fP"
+
+.SH "Friends And Related Symbol Documentation"
+.PP 
+.SS "\fBbool\fP operator!= (\fBconst\fP \fBsc_logic\fP & a, \fBconst\fP \fBsc_logic\fP & b)\fR [friend]\fP"
+
+.SS "\fBconst\fP \fBsc_logic\fP \fBoperator\fP& (\fBconst\fP \fBsc_logic\fP & a, \fBconst\fP \fBsc_logic\fP & b)\fR [friend]\fP"
+
+.SS "\fBbool\fP \fBoperator\fP== (\fBconst\fP \fBsc_logic\fP & a, \fBconst\fP \fBsc_logic\fP & b)\fR [friend]\fP"
+
+.SS "\fBconst\fP \fBsc_logic\fP \fBoperator\fP^ (\fBconst\fP \fBsc_logic\fP & a, \fBconst\fP \fBsc_logic\fP & b)\fR [friend]\fP"
+
+.SS "\fBconst\fP \fBsc_logic\fP \fBoperator\fP| (\fBconst\fP \fBsc_logic\fP & a, \fBconst\fP \fBsc_logic\fP & b)\fR [friend]\fP"
+
+.SH "Member Data Documentation"
+.PP 
+.SS "\fBconst\fP \fBsc_logic_value_t\fP sc_dt::sc_logic::and_table[4][4]\fR [static]\fP"
+
+.SS "\fBconst\fP \fBsc_logic_value_t\fP sc_dt::sc_logic::char_to_logic[128]\fR [static]\fP"
+
+.SS "\fBconst\fP \fBchar\fP sc_dt::sc_logic::logic_to_char[4]\fR [static]\fP"
+
+.SS "\fBsc_logic_value_t\fP sc_dt::sc_logic::m_val\fR [private]\fP"
+
+.SS "\fBconst\fP \fBsc_logic_value_t\fP sc_dt::sc_logic::not_table[4]\fR [static]\fP"
+
+.SS "\fBconst\fP \fBsc_logic_value_t\fP sc_dt::sc_logic::or_table[4][4]\fR [static]\fP"
+
+.SS "\fBconst\fP \fBsc_logic_value_t\fP sc_dt::sc_logic::xor_table[4][4]\fR [static]\fP"
+
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for VHDL simulator from the source code\&.

@@ -1,0 +1,190 @@
+.TH "tlm::tlm_dmi" 3 "VHDL simulator" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+tlm::tlm_dmi
+.SH SYNOPSIS
+.br
+.PP
+.PP
+\fR#include <tlm_dmi\&.h>\fP
+.SS "Public Types"
+
+.in +1c
+.ti -1c
+.RI "enum \fBdmi_access_e\fP { \fBDMI_ACCESS_NONE\fP = 0x00, \fBDMI_ACCESS_READ\fP = 0x01, \fBDMI_ACCESS_WRITE\fP = 0x02, \fBDMI_ACCESS_READ_WRITE\fP = DMI_ACCESS_READ | DMI_ACCESS_WRITE }"
+.br
+.in -1c
+.SS "Public Member Functions"
+
+.in +1c
+.ti -1c
+.RI "\fBtlm_dmi\fP (\fBvoid\fP)"
+.br
+.ti -1c
+.RI "\fBvoid\fP \fBinit\fP (\fBvoid\fP)"
+.br
+.ti -1c
+.RI "\fBunsigned\fP \fBchar\fP * \fBget_dmi_ptr\fP (\fBvoid\fP) \fBconst\fP"
+.br
+.ti -1c
+.RI "\fBsc_dt::uint64\fP \fBget_start_address\fP (\fBvoid\fP) \fBconst\fP"
+.br
+.ti -1c
+.RI "\fBsc_dt::uint64\fP \fBget_end_address\fP (\fBvoid\fP) \fBconst\fP"
+.br
+.ti -1c
+.RI "\fBsc_core::sc_time\fP \fBget_read_latency\fP (\fBvoid\fP) \fBconst\fP"
+.br
+.ti -1c
+.RI "\fBsc_core::sc_time\fP \fBget_write_latency\fP (\fBvoid\fP) \fBconst\fP"
+.br
+.ti -1c
+.RI "\fBdmi_access_e\fP \fBget_granted_access\fP (\fBvoid\fP) \fBconst\fP"
+.br
+.ti -1c
+.RI "\fBbool\fP \fBis_none_allowed\fP (\fBvoid\fP) \fBconst\fP"
+.br
+.ti -1c
+.RI "\fBbool\fP \fBis_read_allowed\fP (\fBvoid\fP) \fBconst\fP"
+.br
+.ti -1c
+.RI "\fBbool\fP \fBis_write_allowed\fP (\fBvoid\fP) \fBconst\fP"
+.br
+.ti -1c
+.RI "\fBbool\fP \fBis_read_write_allowed\fP (\fBvoid\fP) \fBconst\fP"
+.br
+.ti -1c
+.RI "\fBvoid\fP \fBset_dmi_ptr\fP (\fBunsigned\fP \fBchar\fP *p)"
+.br
+.ti -1c
+.RI "\fBvoid\fP \fBset_start_address\fP (\fBsc_dt::uint64\fP \fBaddr\fP)"
+.br
+.ti -1c
+.RI "\fBvoid\fP \fBset_end_address\fP (\fBsc_dt::uint64\fP \fBaddr\fP)"
+.br
+.ti -1c
+.RI "\fBvoid\fP \fBset_read_latency\fP (\fBsc_core::sc_time\fP t)"
+.br
+.ti -1c
+.RI "\fBvoid\fP \fBset_write_latency\fP (\fBsc_core::sc_time\fP t)"
+.br
+.ti -1c
+.RI "\fBvoid\fP \fBset_granted_access\fP (\fBdmi_access_e\fP \fBa\fP)"
+.br
+.ti -1c
+.RI "\fBvoid\fP \fBallow_none\fP (\fBvoid\fP)"
+.br
+.ti -1c
+.RI "\fBvoid\fP \fBallow_read\fP (\fBvoid\fP)"
+.br
+.ti -1c
+.RI "\fBvoid\fP \fBallow_write\fP (\fBvoid\fP)"
+.br
+.ti -1c
+.RI "\fBvoid\fP \fBallow_read_write\fP (\fBvoid\fP)"
+.br
+.in -1c
+.SS "Private Attributes"
+
+.in +1c
+.ti -1c
+.RI "\fBunsigned\fP \fBchar\fP * \fBm_dmi_ptr\fP"
+.br
+.ti -1c
+.RI "\fBsc_dt::uint64\fP \fBm_dmi_start_address\fP"
+.br
+.ti -1c
+.RI "\fBsc_dt::uint64\fP \fBm_dmi_end_address\fP"
+.br
+.ti -1c
+.RI "\fBdmi_access_e\fP \fBm_dmi_access\fP"
+.br
+.ti -1c
+.RI "\fBsc_core::sc_time\fP \fBm_dmi_read_latency\fP"
+.br
+.ti -1c
+.RI "\fBsc_core::sc_time\fP \fBm_dmi_write_latency\fP"
+.br
+.in -1c
+.SH "Member Enumeration Documentation"
+.PP 
+.SS "\fBenum\fP \fBtlm::tlm_dmi::dmi_access_e\fP"
+
+.PP
+\fBEnumerator\fP
+.in +1c
+.TP
+\fB\fIDMI_ACCESS_NONE \fP\fP
+.TP
+\fB\fIDMI_ACCESS_READ \fP\fP
+.TP
+\fB\fIDMI_ACCESS_WRITE \fP\fP
+.TP
+\fB\fIDMI_ACCESS_READ_WRITE \fP\fP
+.SH "Constructor & Destructor Documentation"
+.PP 
+.SS "tlm::tlm_dmi::tlm_dmi (\fBvoid\fP)\fR [inline]\fP"
+
+.SH "Member Function Documentation"
+.PP 
+.SS "\fBvoid\fP tlm::tlm_dmi::allow_none (\fBvoid\fP)\fR [inline]\fP"
+
+.SS "\fBvoid\fP tlm::tlm_dmi::allow_read (\fBvoid\fP)\fR [inline]\fP"
+
+.SS "\fBvoid\fP tlm::tlm_dmi::allow_read_write (\fBvoid\fP)\fR [inline]\fP"
+
+.SS "\fBvoid\fP tlm::tlm_dmi::allow_write (\fBvoid\fP)\fR [inline]\fP"
+
+.SS "\fBunsigned\fP \fBchar\fP * tlm::tlm_dmi::get_dmi_ptr (\fBvoid\fP) const\fR [inline]\fP"
+
+.SS "\fBsc_dt::uint64\fP tlm::tlm_dmi::get_end_address (\fBvoid\fP) const\fR [inline]\fP"
+
+.SS "\fBdmi_access_e\fP tlm::tlm_dmi::get_granted_access (\fBvoid\fP) const\fR [inline]\fP"
+
+.SS "\fBsc_core::sc_time\fP tlm::tlm_dmi::get_read_latency (\fBvoid\fP) const\fR [inline]\fP"
+
+.SS "\fBsc_dt::uint64\fP tlm::tlm_dmi::get_start_address (\fBvoid\fP) const\fR [inline]\fP"
+
+.SS "\fBsc_core::sc_time\fP tlm::tlm_dmi::get_write_latency (\fBvoid\fP) const\fR [inline]\fP"
+
+.SS "\fBvoid\fP tlm::tlm_dmi::init (\fBvoid\fP)\fR [inline]\fP"
+
+.SS "\fBbool\fP tlm::tlm_dmi::is_none_allowed (\fBvoid\fP) const\fR [inline]\fP"
+
+.SS "\fBbool\fP tlm::tlm_dmi::is_read_allowed (\fBvoid\fP) const\fR [inline]\fP"
+
+.SS "\fBbool\fP tlm::tlm_dmi::is_read_write_allowed (\fBvoid\fP) const\fR [inline]\fP"
+
+.SS "\fBbool\fP tlm::tlm_dmi::is_write_allowed (\fBvoid\fP) const\fR [inline]\fP"
+
+.SS "\fBvoid\fP tlm::tlm_dmi::set_dmi_ptr (\fBunsigned\fP \fBchar\fP * p)\fR [inline]\fP"
+
+.SS "\fBvoid\fP tlm::tlm_dmi::set_end_address (\fBsc_dt::uint64\fP addr)\fR [inline]\fP"
+
+.SS "\fBvoid\fP tlm::tlm_dmi::set_granted_access (\fBdmi_access_e\fP a)\fR [inline]\fP"
+
+.SS "\fBvoid\fP tlm::tlm_dmi::set_read_latency (\fBsc_core::sc_time\fP t)\fR [inline]\fP"
+
+.SS "\fBvoid\fP tlm::tlm_dmi::set_start_address (\fBsc_dt::uint64\fP addr)\fR [inline]\fP"
+
+.SS "\fBvoid\fP tlm::tlm_dmi::set_write_latency (\fBsc_core::sc_time\fP t)\fR [inline]\fP"
+
+.SH "Member Data Documentation"
+.PP 
+.SS "\fBdmi_access_e\fP tlm::tlm_dmi::m_dmi_access\fR [private]\fP"
+
+.SS "\fBsc_dt::uint64\fP tlm::tlm_dmi::m_dmi_end_address\fR [private]\fP"
+
+.SS "\fBunsigned\fP \fBchar\fP* tlm::tlm_dmi::m_dmi_ptr\fR [private]\fP"
+
+.SS "\fBsc_core::sc_time\fP tlm::tlm_dmi::m_dmi_read_latency\fR [private]\fP"
+
+.SS "\fBsc_dt::uint64\fP tlm::tlm_dmi::m_dmi_start_address\fR [private]\fP"
+
+.SS "\fBsc_core::sc_time\fP tlm::tlm_dmi::m_dmi_write_latency\fR [private]\fP"
+
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for VHDL simulator from the source code\&.

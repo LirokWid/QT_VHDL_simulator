@@ -1,0 +1,168 @@
+.TH "sc_core::sc_prim_channel_registry" 3 "VHDL simulator" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+sc_core::sc_prim_channel_registry
+.SH SYNOPSIS
+.br
+.PP
+.PP
+\fR#include <sc_prim_channel\&.h>\fP
+.SS "Public Member Functions"
+
+.in +1c
+.ti -1c
+.RI "\fBvoid\fP \fBinsert\fP (\fBsc_prim_channel\fP &)"
+.br
+.ti -1c
+.RI "\fBvoid\fP \fBremove\fP (\fBsc_prim_channel\fP &)"
+.br
+.ti -1c
+.RI "int \fBsize\fP () \fBconst\fP"
+.br
+.ti -1c
+.RI "\fBvoid\fP \fBrequest_update\fP (\fBsc_prim_channel\fP &)"
+.br
+.ti -1c
+.RI "\fBvoid\fP \fBasync_request_update\fP (\fBsc_prim_channel\fP &)"
+.br
+.ti -1c
+.RI "\fBbool\fP \fBpending_updates\fP () \fBconst\fP"
+.br
+.ti -1c
+.RI "\fBbool\fP \fBpending_async_updates\fP () \fBconst\fP"
+.br
+.ti -1c
+.RI "\fBbool\fP \fBasync_suspend\fP ()"
+.br
+.ti -1c
+.RI "\fBbool\fP \fBasync_attach_suspending\fP (\fBsc_prim_channel\fP &)"
+.br
+.ti -1c
+.RI "\fBbool\fP \fBasync_detach_suspending\fP (\fBsc_prim_channel\fP &)"
+.br
+.in -1c
+.SS "Private Member Functions"
+
+.in +1c
+.ti -1c
+.RI "\fBsc_prim_channel_registry\fP (\fBsc_simcontext\fP &\fBsimc_\fP)"
+.br
+.ti -1c
+.RI "\fB~sc_prim_channel_registry\fP ()"
+.br
+.ti -1c
+.RI "\fBvoid\fP \fBperform_update\fP ()"
+.br
+.ti -1c
+.RI "\fBbool\fP \fBconstruction_done\fP ()"
+.br
+.ti -1c
+.RI "\fBvoid\fP \fBelaboration_done\fP ()"
+.br
+.ti -1c
+.RI "\fBvoid\fP \fBstart_simulation\fP ()"
+.br
+.ti -1c
+.RI "\fBvoid\fP \fBsimulation_done\fP ()"
+.br
+.ti -1c
+.RI "\fBsc_prim_channel_registry\fP ()"
+.br
+.ti -1c
+.RI "\fBsc_prim_channel_registry\fP (\fBconst\fP \fBsc_prim_channel_registry\fP &)"
+.br
+.ti -1c
+.RI "\fBsc_prim_channel_registry\fP & \fBoperator=\fP (\fBconst\fP \fBsc_prim_channel_registry\fP &)"
+.br
+.in -1c
+.SS "Private Attributes"
+
+.in +1c
+.ti -1c
+.RI "\fBasync_update_list\fP * \fBm_async_update_list_p\fP"
+.br
+.ti -1c
+.RI "int \fBm_construction_done\fP"
+.br
+.ti -1c
+.RI "std::vector< \fBsc_prim_channel\fP * > \fBm_prim_channel_vec\fP"
+.br
+.ti -1c
+.RI "\fBsc_simcontext\fP * \fBm_simc\fP"
+.br
+.ti -1c
+.RI "\fBsc_prim_channel\fP * \fBm_update_list_p\fP"
+.br
+.in -1c
+.SS "Friends"
+
+.in +1c
+.ti -1c
+.RI "\fBclass\fP \fBsc_simcontext\fP"
+.br
+.in -1c
+.SH "Constructor & Destructor Documentation"
+.PP 
+.SS "sc_core::sc_prim_channel_registry::sc_prim_channel_registry (\fBsc_simcontext\fP & simc_)\fR [explicit]\fP, \fR [private]\fP"
+
+.SS "sc_core::sc_prim_channel_registry::~sc_prim_channel_registry ()\fR [private]\fP"
+
+.SS "sc_core::sc_prim_channel_registry::sc_prim_channel_registry ()\fR [private]\fP"
+
+.SS "sc_core::sc_prim_channel_registry::sc_prim_channel_registry (\fBconst\fP \fBsc_prim_channel_registry\fP &)\fR [private]\fP"
+
+.SH "Member Function Documentation"
+.PP 
+.SS "\fBbool\fP sc_core::sc_prim_channel_registry::async_attach_suspending (\fBsc_prim_channel\fP &)"
+
+.SS "\fBbool\fP sc_core::sc_prim_channel_registry::async_detach_suspending (\fBsc_prim_channel\fP &)"
+
+.SS "\fBvoid\fP sc_core::sc_prim_channel_registry::async_request_update (\fBsc_prim_channel\fP &)"
+
+.SS "\fBbool\fP sc_core::sc_prim_channel_registry::async_suspend ()"
+
+.SS "\fBbool\fP sc_core::sc_prim_channel_registry::construction_done ()\fR [private]\fP"
+
+.SS "\fBvoid\fP sc_core::sc_prim_channel_registry::elaboration_done ()\fR [private]\fP"
+
+.SS "\fBvoid\fP sc_core::sc_prim_channel_registry::insert (\fBsc_prim_channel\fP &)"
+
+.SS "\fBsc_prim_channel_registry\fP & sc_core::sc_prim_channel_registry::operator= (\fBconst\fP \fBsc_prim_channel_registry\fP &)\fR [private]\fP"
+
+.SS "\fBbool\fP sc_core::sc_prim_channel_registry::pending_async_updates () const"
+
+.SS "\fBbool\fP sc_core::sc_prim_channel_registry::pending_updates () const\fR [inline]\fP"
+
+.SS "\fBvoid\fP sc_core::sc_prim_channel_registry::perform_update ()\fR [private]\fP"
+
+.SS "\fBvoid\fP sc_core::sc_prim_channel_registry::remove (\fBsc_prim_channel\fP &)"
+
+.SS "\fBvoid\fP sc_core::sc_prim_channel_registry::request_update (\fBsc_prim_channel\fP & prim_channel_)\fR [inline]\fP"
+
+.SS "\fBvoid\fP sc_core::sc_prim_channel_registry::simulation_done ()\fR [private]\fP"
+
+.SS "int sc_core::sc_prim_channel_registry::size () const\fR [inline]\fP"
+
+.SS "\fBvoid\fP sc_core::sc_prim_channel_registry::start_simulation ()\fR [private]\fP"
+
+.SH "Friends And Related Symbol Documentation"
+.PP 
+.SS "\fBfriend\fP \fBclass\fP \fBsc_simcontext\fP\fR [friend]\fP"
+
+.SH "Member Data Documentation"
+.PP 
+.SS "\fBasync_update_list\fP* sc_core::sc_prim_channel_registry::m_async_update_list_p\fR [private]\fP"
+
+.SS "int sc_core::sc_prim_channel_registry::m_construction_done\fR [private]\fP"
+
+.SS "std::vector<\fBsc_prim_channel\fP*> sc_core::sc_prim_channel_registry::m_prim_channel_vec\fR [private]\fP"
+
+.SS "\fBsc_simcontext\fP* sc_core::sc_prim_channel_registry::m_simc\fR [private]\fP"
+
+.SS "\fBsc_prim_channel\fP* sc_core::sc_prim_channel_registry::m_update_list_p\fR [private]\fP"
+
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for VHDL simulator from the source code\&.

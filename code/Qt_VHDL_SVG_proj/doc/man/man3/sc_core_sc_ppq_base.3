@@ -1,0 +1,120 @@
+.TH "sc_core::sc_ppq_base" 3 "VHDL simulator" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+sc_core::sc_ppq_base
+.SH SYNOPSIS
+.br
+.PP
+.PP
+\fR#include <sc_pq\&.h>\fP
+.PP
+Inherited by \fBsc_core::sc_ppq< sc_core::sc_time * >\fP, \fBsc_core::sc_ppq< sc_core::sc_event_timed * >\fP, and \fBsc_core::sc_ppq< T >\fP\&.
+.SS "Public Types"
+
+.in +1c
+.ti -1c
+.RI "\fBtypedef\fP int(* \fBcompare_fn_t\fP) (\fBconst\fP \fBvoid\fP *, \fBconst\fP \fBvoid\fP *)"
+.br
+.in -1c
+.SS "Public Member Functions"
+
+.in +1c
+.ti -1c
+.RI "\fBsc_ppq_base\fP (int \fBsz\fP, \fBcompare_fn_t\fP cmp)"
+.br
+.ti -1c
+.RI "\fB~sc_ppq_base\fP ()"
+.br
+.ti -1c
+.RI "\fBvoid\fP * \fBtop\fP () \fBconst\fP"
+.br
+.ti -1c
+.RI "\fBvoid\fP * \fBextract_top\fP ()"
+.br
+.ti -1c
+.RI "\fBvoid\fP \fBinsert\fP (\fBvoid\fP *elem)"
+.br
+.ti -1c
+.RI "int \fBsize\fP () \fBconst\fP"
+.br
+.ti -1c
+.RI "\fBbool\fP \fBempty\fP () \fBconst\fP"
+.br
+.in -1c
+.SS "Protected Member Functions"
+
+.in +1c
+.ti -1c
+.RI "int \fBparent\fP (int \fBi\fP) \fBconst\fP"
+.br
+.ti -1c
+.RI "int \fBleft\fP (int \fBi\fP) \fBconst\fP"
+.br
+.ti -1c
+.RI "int \fBright\fP (int \fBi\fP) \fBconst\fP"
+.br
+.ti -1c
+.RI "\fBvoid\fP \fBheapify\fP (int \fBi\fP)"
+.br
+.in -1c
+.SS "Private Attributes"
+
+.in +1c
+.ti -1c
+.RI "\fBvoid\fP ** \fBm_heap\fP"
+.br
+.ti -1c
+.RI "int \fBm_size_alloc\fP"
+.br
+.ti -1c
+.RI "int \fBm_heap_size\fP"
+.br
+.ti -1c
+.RI "\fBcompare_fn_t\fP \fBm_compar\fP"
+.br
+.in -1c
+.SH "Member Typedef Documentation"
+.PP 
+.SS "\fBtypedef\fP int(* sc_core::sc_ppq_base::compare_fn_t) (\fBconst\fP \fBvoid\fP *, \fBconst\fP \fBvoid\fP *)"
+
+.SH "Constructor & Destructor Documentation"
+.PP 
+.SS "sc_core::sc_ppq_base::sc_ppq_base (int sz, \fBcompare_fn_t\fP cmp)"
+
+.SS "sc_core::sc_ppq_base::~sc_ppq_base ()"
+
+.SH "Member Function Documentation"
+.PP 
+.SS "\fBbool\fP sc_core::sc_ppq_base::empty () const\fR [inline]\fP"
+
+.SS "\fBvoid\fP * sc_core::sc_ppq_base::extract_top ()"
+
+.SS "\fBvoid\fP sc_core::sc_ppq_base::heapify (int i)\fR [protected]\fP"
+
+.SS "\fBvoid\fP sc_core::sc_ppq_base::insert (\fBvoid\fP * elem)"
+
+.SS "int sc_core::sc_ppq_base::left (int i) const\fR [inline]\fP, \fR [protected]\fP"
+
+.SS "int sc_core::sc_ppq_base::parent (int i) const\fR [inline]\fP, \fR [protected]\fP"
+
+.SS "int sc_core::sc_ppq_base::right (int i) const\fR [inline]\fP, \fR [protected]\fP"
+
+.SS "int sc_core::sc_ppq_base::size () const\fR [inline]\fP"
+
+.SS "\fBvoid\fP * sc_core::sc_ppq_base::top () const\fR [inline]\fP"
+
+.SH "Member Data Documentation"
+.PP 
+.SS "\fBcompare_fn_t\fP sc_core::sc_ppq_base::m_compar\fR [private]\fP"
+
+.SS "\fBvoid\fP** sc_core::sc_ppq_base::m_heap\fR [private]\fP"
+
+.SS "int sc_core::sc_ppq_base::m_heap_size\fR [private]\fP"
+
+.SS "int sc_core::sc_ppq_base::m_size_alloc\fR [private]\fP"
+
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for VHDL simulator from the source code\&.

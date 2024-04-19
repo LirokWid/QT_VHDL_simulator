@@ -1,0 +1,187 @@
+.TH "tlm::circular_buffer< T >" 3 "VHDL simulator" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+tlm::circular_buffer< T >
+.SH SYNOPSIS
+.br
+.PP
+.PP
+\fR#include <circular_buffer\&.h>\fP
+.SS "Public Member Functions"
+
+.in +1c
+.ti -1c
+.RI "\fBcircular_buffer\fP (int \fBsize\fP=0)"
+.br
+.ti -1c
+.RI "\fB~circular_buffer\fP ()"
+.br
+.ti -1c
+.RI "\fBvoid\fP \fBresize\fP (int \fBsize\fP)"
+.br
+.ti -1c
+.RI "\fBvoid\fP \fBclear\fP ()"
+.br
+.ti -1c
+.RI "\fBT\fP \fBread\fP ()"
+.br
+.ti -1c
+.RI "\fBvoid\fP \fBwrite\fP (\fBconst\fP \fBT\fP &)"
+.br
+.ti -1c
+.RI "\fBbool\fP \fBis_empty\fP () \fBconst\fP"
+.br
+.ti -1c
+.RI "\fBbool\fP \fBis_full\fP () \fBconst\fP"
+.br
+.ti -1c
+.RI "int \fBsize\fP () \fBconst\fP"
+.br
+.ti -1c
+.RI "int \fBused\fP () \fBconst\fP"
+.br
+.ti -1c
+.RI "int \fBfree\fP () \fBconst\fP"
+.br
+.ti -1c
+.RI "\fBconst\fP \fBT\fP & \fBread_data\fP () \fBconst\fP"
+.br
+.ti -1c
+.RI "\fBconst\fP \fBT\fP & \fBpeek_data\fP (int \fBi\fP) \fBconst\fP"
+.br
+.ti -1c
+.RI "\fBT\fP & \fBpoke_data\fP (int \fBi\fP)"
+.br
+.ti -1c
+.RI "\fBvoid\fP \fBdebug\fP () \fBconst\fP"
+.br
+.in -1c
+.SS "Private Member Functions"
+
+.in +1c
+.ti -1c
+.RI "\fBvoid\fP \fBincrement_write_pos\fP (int \fBi\fP=1)"
+.br
+.ti -1c
+.RI "\fBvoid\fP \fBincrement_read_pos\fP (int \fBi\fP=1)"
+.br
+.ti -1c
+.RI "\fBvoid\fP \fBinit\fP ()"
+.br
+.ti -1c
+.RI "\fBcircular_buffer\fP (\fBconst\fP \fBcircular_buffer\fP< \fBT\fP > &b)"
+.br
+.ti -1c
+.RI "\fBcircular_buffer\fP< \fBT\fP > & \fBoperator=\fP (\fBconst\fP \fBcircular_buffer\fP< \fBT\fP > &)"
+.br
+.ti -1c
+.RI "\fBvoid\fP * \fBbuf_alloc\fP (int \fBsize\fP)"
+.br
+.ti -1c
+.RI "\fBvoid\fP \fBbuf_free\fP (\fBvoid\fP *&\fBbuf\fP)"
+.br
+.ti -1c
+.RI "\fBvoid\fP \fBbuf_write\fP (\fBvoid\fP *\fBbuf\fP, int \fBn\fP, \fBconst\fP \fBT\fP &t)"
+.br
+.ti -1c
+.RI "\fBT\fP & \fBbuf_read\fP (\fBvoid\fP *\fBbuf\fP, int \fBn\fP) \fBconst\fP"
+.br
+.ti -1c
+.RI "\fBvoid\fP \fBbuf_clear\fP (\fBvoid\fP *\fBbuf\fP, int \fBn\fP)"
+.br
+.in -1c
+.SS "Private Attributes"
+
+.in +1c
+.ti -1c
+.RI "int \fBm_size\fP"
+.br
+.ti -1c
+.RI "\fBvoid\fP * \fBm_buf\fP"
+.br
+.ti -1c
+.RI "int \fBm_free\fP"
+.br
+.ti -1c
+.RI "int \fBm_used\fP"
+.br
+.ti -1c
+.RI "int \fBm_ri\fP"
+.br
+.ti -1c
+.RI "int \fBm_wi\fP"
+.br
+.in -1c
+.SH "Constructor & Destructor Documentation"
+.PP 
+.SS "template<\fBtypename\fP \fBT\fP > \fBtlm::circular_buffer\fP< \fBT\fP >::circular_buffer (int size = \fR0\fP)\fR [explicit]\fP"
+
+.SS "template<\fBtypename\fP \fBT\fP > \fBtlm::circular_buffer\fP< \fBT\fP >::~\fBcircular_buffer\fP ()"
+
+.SS "template<\fBtypename\fP \fBT\fP > \fBtlm::circular_buffer\fP< \fBT\fP >::circular_buffer (\fBconst\fP \fBcircular_buffer\fP< \fBT\fP > & b)\fR [private]\fP"
+
+.SH "Member Function Documentation"
+.PP 
+.SS "template<\fBtypename\fP \fBT\fP > \fBvoid\fP * \fBtlm::circular_buffer\fP< \fBT\fP >::buf_alloc (int size)\fR [inline]\fP, \fR [private]\fP"
+
+.SS "template<\fBtypename\fP \fBT\fP > \fBvoid\fP \fBtlm::circular_buffer\fP< \fBT\fP >::buf_clear (\fBvoid\fP * buf, int n)\fR [inline]\fP, \fR [private]\fP"
+
+.SS "template<\fBtypename\fP \fBT\fP > \fBvoid\fP \fBtlm::circular_buffer\fP< \fBT\fP >::buf_free (\fBvoid\fP *& buf)\fR [inline]\fP, \fR [private]\fP"
+
+.SS "template<\fBtypename\fP \fBT\fP > \fBT\fP & \fBtlm::circular_buffer\fP< \fBT\fP >::buf_read (\fBvoid\fP * buf, int n) const\fR [inline]\fP, \fR [private]\fP"
+
+.SS "template<\fBtypename\fP \fBT\fP > \fBvoid\fP \fBtlm::circular_buffer\fP< \fBT\fP >::buf_write (\fBvoid\fP * buf, int n, \fBconst\fP \fBT\fP & t)\fR [inline]\fP, \fR [private]\fP"
+
+.SS "template<\fBtypename\fP \fBT\fP > \fBvoid\fP \fBtlm::circular_buffer\fP< \fBT\fP >::clear ()"
+
+.SS "template<\fBtypename\fP \fBT\fP > \fBvoid\fP \fBtlm::circular_buffer\fP< \fBT\fP >::debug () const"
+
+.SS "template<\fBtypename\fP \fBT\fP > int \fBtlm::circular_buffer\fP< \fBT\fP >::free () const\fR [inline]\fP"
+
+.SS "template<\fBtypename\fP \fBT\fP > \fBvoid\fP \fBtlm::circular_buffer\fP< \fBT\fP >::increment_read_pos (int i = \fR1\fP)\fR [private]\fP"
+
+.SS "template<\fBtypename\fP \fBT\fP > \fBvoid\fP \fBtlm::circular_buffer\fP< \fBT\fP >::increment_write_pos (int i = \fR1\fP)\fR [private]\fP"
+
+.SS "template<\fBtypename\fP \fBT\fP > \fBvoid\fP \fBtlm::circular_buffer\fP< \fBT\fP >::init ()\fR [private]\fP"
+
+.SS "template<\fBtypename\fP \fBT\fP > \fBbool\fP \fBtlm::circular_buffer\fP< \fBT\fP >::is_empty () const\fR [inline]\fP"
+
+.SS "template<\fBtypename\fP \fBT\fP > \fBbool\fP \fBtlm::circular_buffer\fP< \fBT\fP >::is_full () const\fR [inline]\fP"
+
+.SS "template<\fBtypename\fP \fBT\fP > \fBcircular_buffer\fP< \fBT\fP > & \fBtlm::circular_buffer\fP< \fBT\fP >\fB::operator\fP= (\fBconst\fP \fBcircular_buffer\fP< \fBT\fP > &)\fR [private]\fP"
+
+.SS "template<\fBtypename\fP \fBT\fP > \fBconst\fP \fBT\fP & \fBtlm::circular_buffer\fP< \fBT\fP >::peek_data (int i) const\fR [inline]\fP"
+
+.SS "template<\fBtypename\fP \fBT\fP > \fBT\fP & \fBtlm::circular_buffer\fP< \fBT\fP >::poke_data (int i)\fR [inline]\fP"
+
+.SS "template<\fBtypename\fP \fBT\fP > \fBT\fP \fBtlm::circular_buffer\fP< \fBT\fP >::read ()"
+
+.SS "template<\fBtypename\fP \fBT\fP > \fBconst\fP \fBT\fP & \fBtlm::circular_buffer\fP< \fBT\fP >::read_data () const\fR [inline]\fP"
+
+.SS "template<\fBtypename\fP \fBT\fP > \fBvoid\fP \fBtlm::circular_buffer\fP< \fBT\fP >::resize (int size)"
+
+.SS "template<\fBtypename\fP \fBT\fP > int \fBtlm::circular_buffer\fP< \fBT\fP >::size () const\fR [inline]\fP"
+
+.SS "template<\fBtypename\fP \fBT\fP > int \fBtlm::circular_buffer\fP< \fBT\fP >::used () const\fR [inline]\fP"
+
+.SS "template<\fBtypename\fP \fBT\fP > \fBvoid\fP \fBtlm::circular_buffer\fP< \fBT\fP >::write (\fBconst\fP \fBT\fP & t)"
+
+.SH "Member Data Documentation"
+.PP 
+.SS "template<\fBtypename\fP \fBT\fP > \fBvoid\fP* \fBtlm::circular_buffer\fP< \fBT\fP >::m_buf\fR [private]\fP"
+
+.SS "template<\fBtypename\fP \fBT\fP > int \fBtlm::circular_buffer\fP< \fBT\fP >::m_free\fR [private]\fP"
+
+.SS "template<\fBtypename\fP \fBT\fP > int \fBtlm::circular_buffer\fP< \fBT\fP >::m_ri\fR [private]\fP"
+
+.SS "template<\fBtypename\fP \fBT\fP > int \fBtlm::circular_buffer\fP< \fBT\fP >::m_size\fR [private]\fP"
+
+.SS "template<\fBtypename\fP \fBT\fP > int \fBtlm::circular_buffer\fP< \fBT\fP >::m_used\fR [private]\fP"
+
+.SS "template<\fBtypename\fP \fBT\fP > int \fBtlm::circular_buffer\fP< \fBT\fP >::m_wi\fR [private]\fP"
+
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for VHDL simulator from the source code\&.

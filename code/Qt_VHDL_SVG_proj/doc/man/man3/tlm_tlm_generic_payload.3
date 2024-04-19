@@ -1,0 +1,377 @@
+.TH "tlm::tlm_generic_payload" 3 "VHDL simulator" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+tlm::tlm_generic_payload
+.SH SYNOPSIS
+.br
+.PP
+.PP
+\fR#include <tlm_gp\&.h>\fP
+.SS "Public Member Functions"
+
+.in +1c
+.ti -1c
+.RI "\fBtlm_generic_payload\fP ()"
+.br
+.ti -1c
+.RI "\fBtlm_generic_payload\fP (\fBtlm_mm_interface\fP *\fBmm\fP)"
+.br
+.ti -1c
+.RI "\fBvoid\fP \fBacquire\fP ()"
+.br
+.ti -1c
+.RI "\fBvoid\fP \fBrelease\fP ()"
+.br
+.ti -1c
+.RI "int \fBget_ref_count\fP () \fBconst\fP"
+.br
+.ti -1c
+.RI "\fBvoid\fP \fBset_mm\fP (\fBtlm_mm_interface\fP *\fBmm\fP)"
+.br
+.ti -1c
+.RI "\fBbool\fP \fBhas_mm\fP () \fBconst\fP"
+.br
+.ti -1c
+.RI "\fBvoid\fP \fBreset\fP ()"
+.br
+.ti -1c
+.RI "\fBvoid\fP \fBdeep_copy_from\fP (\fBconst\fP \fBtlm_generic_payload\fP &\fBother\fP)"
+.br
+.ti -1c
+.RI "\fBvoid\fP \fBupdate_original_from\fP (\fBconst\fP \fBtlm_generic_payload\fP &\fBother\fP, \fBbool\fP \fBuse_byte_enable_on_read\fP=\fBtrue\fP)"
+.br
+.ti -1c
+.RI "\fBvoid\fP \fBupdate_extensions_from\fP (\fBconst\fP \fBtlm_generic_payload\fP &\fBother\fP)"
+.br
+.ti -1c
+.RI "\fBvoid\fP \fBfree_all_extensions\fP ()"
+.br
+.ti -1c
+.RI "\fBvirtual\fP \fB~tlm_generic_payload\fP ()"
+.br
+.ti -1c
+.RI "\fBbool\fP \fBis_read\fP () \fBconst\fP"
+.br
+.ti -1c
+.RI "\fBvoid\fP \fBset_read\fP ()"
+.br
+.ti -1c
+.RI "\fBbool\fP \fBis_write\fP () \fBconst\fP"
+.br
+.ti -1c
+.RI "\fBvoid\fP \fBset_write\fP ()"
+.br
+.ti -1c
+.RI "\fBtlm_command\fP \fBget_command\fP () \fBconst\fP"
+.br
+.ti -1c
+.RI "\fBvoid\fP \fBset_command\fP (\fBconst\fP \fBtlm_command\fP \fBcommand\fP)"
+.br
+.ti -1c
+.RI "\fBsc_dt::uint64\fP \fBget_address\fP () \fBconst\fP"
+.br
+.ti -1c
+.RI "\fBvoid\fP \fBset_address\fP (\fBconst\fP \fBsc_dt::uint64\fP address)"
+.br
+.ti -1c
+.RI "\fBunsigned\fP \fBchar\fP * \fBget_data_ptr\fP () \fBconst\fP"
+.br
+.ti -1c
+.RI "\fBvoid\fP \fBset_data_ptr\fP (\fBunsigned\fP \fBchar\fP *data)"
+.br
+.ti -1c
+.RI "\fBunsigned\fP int \fBget_data_length\fP () \fBconst\fP"
+.br
+.ti -1c
+.RI "\fBvoid\fP \fBset_data_length\fP (\fBconst\fP \fBunsigned\fP int length)"
+.br
+.ti -1c
+.RI "\fBbool\fP \fBis_response_ok\fP () \fBconst\fP"
+.br
+.ti -1c
+.RI "\fBbool\fP \fBis_response_error\fP () \fBconst\fP"
+.br
+.ti -1c
+.RI "\fBtlm_response_status\fP \fBget_response_status\fP () \fBconst\fP"
+.br
+.ti -1c
+.RI "\fBvoid\fP \fBset_response_status\fP (\fBconst\fP \fBtlm_response_status\fP \fBresponse_status\fP)"
+.br
+.ti -1c
+.RI "std::string \fBget_response_string\fP () \fBconst\fP"
+.br
+.ti -1c
+.RI "\fBunsigned\fP int \fBget_streaming_width\fP () \fBconst\fP"
+.br
+.ti -1c
+.RI "\fBvoid\fP \fBset_streaming_width\fP (\fBconst\fP \fBunsigned\fP int \fBstreaming_width\fP)"
+.br
+.ti -1c
+.RI "\fBunsigned\fP \fBchar\fP * \fBget_byte_enable_ptr\fP () \fBconst\fP"
+.br
+.ti -1c
+.RI "\fBvoid\fP \fBset_byte_enable_ptr\fP (\fBunsigned\fP \fBchar\fP *byte_enable)"
+.br
+.ti -1c
+.RI "\fBunsigned\fP int \fBget_byte_enable_length\fP () \fBconst\fP"
+.br
+.ti -1c
+.RI "\fBvoid\fP \fBset_byte_enable_length\fP (\fBconst\fP \fBunsigned\fP int \fBbyte_enable_length\fP)"
+.br
+.ti -1c
+.RI "\fBvoid\fP \fBset_dmi_allowed\fP (\fBbool\fP \fBdmi_allowed\fP)"
+.br
+.ti -1c
+.RI "\fBbool\fP \fBis_dmi_allowed\fP () \fBconst\fP"
+.br
+.ti -1c
+.RI "\fBtlm_gp_option\fP \fBget_gp_option\fP () \fBconst\fP"
+.br
+.ti -1c
+.RI "\fBvoid\fP \fBset_gp_option\fP (\fBconst\fP \fBtlm_gp_option\fP \fBgp_opt\fP)"
+.br
+.ti -1c
+.RI "template<\fBtypename\fP \fBT\fP > \fBT\fP * \fBset_extension\fP (\fBT\fP *\fBext\fP)"
+.br
+.ti -1c
+.RI "\fBtlm_extension_base\fP * \fBset_extension\fP (\fBunsigned\fP int index, \fBtlm_extension_base\fP *\fBext\fP)"
+.br
+.ti -1c
+.RI "template<\fBtypename\fP \fBT\fP > \fBT\fP * \fBset_auto_extension\fP (\fBT\fP *\fBext\fP)"
+.br
+.ti -1c
+.RI "\fBtlm_extension_base\fP * \fBset_auto_extension\fP (\fBunsigned\fP int index, \fBtlm_extension_base\fP *\fBext\fP)"
+.br
+.ti -1c
+.RI "template<\fBtypename\fP \fBT\fP > \fBvoid\fP \fBget_extension\fP (\fBT\fP *&\fBext\fP) \fBconst\fP"
+.br
+.ti -1c
+.RI "template<\fBtypename\fP \fBT\fP > \fBT\fP * \fBget_extension\fP () \fBconst\fP"
+.br
+.ti -1c
+.RI "\fBtlm_extension_base\fP * \fBget_extension\fP (\fBunsigned\fP int index) \fBconst\fP"
+.br
+.ti -1c
+.RI "template<\fBtypename\fP \fBT\fP > \fBvoid\fP \fBclear_extension\fP (\fBconst\fP \fBT\fP *\fBext\fP)"
+.br
+.ti -1c
+.RI "template<\fBtypename\fP \fBT\fP > \fBvoid\fP \fBclear_extension\fP ()"
+.br
+.ti -1c
+.RI "template<\fBtypename\fP \fBT\fP > \fBvoid\fP \fBrelease_extension\fP (\fBT\fP *\fBext\fP)"
+.br
+.ti -1c
+.RI "template<\fBtypename\fP \fBT\fP > \fBvoid\fP \fBrelease_extension\fP ()"
+.br
+.ti -1c
+.RI "\fBvoid\fP \fBresize_extensions\fP ()"
+.br
+.in -1c
+.SS "Private Member Functions"
+
+.in +1c
+.ti -1c
+.RI "\fBtlm_generic_payload\fP (\fBconst\fP \fBtlm_generic_payload\fP &\fBx\fP)"
+.br
+.ti -1c
+.RI "\fBtlm_generic_payload\fP & \fBoperator=\fP (\fBconst\fP \fBtlm_generic_payload\fP &\fBx\fP)"
+.br
+.ti -1c
+.RI "\fBvoid\fP \fBclear_extension\fP (\fBunsigned\fP int index)"
+.br
+.ti -1c
+.RI "\fBvoid\fP \fBrelease_extension\fP (\fBunsigned\fP int index)"
+.br
+.in -1c
+.SS "Private Attributes"
+
+.in +1c
+.ti -1c
+.RI "\fBsc_dt::uint64\fP \fBm_address\fP"
+.br
+.ti -1c
+.RI "\fBtlm_command\fP \fBm_command\fP"
+.br
+.ti -1c
+.RI "\fBunsigned\fP \fBchar\fP * \fBm_data\fP"
+.br
+.ti -1c
+.RI "\fBunsigned\fP int \fBm_length\fP"
+.br
+.ti -1c
+.RI "\fBtlm_response_status\fP \fBm_response_status\fP"
+.br
+.ti -1c
+.RI "\fBbool\fP \fBm_dmi\fP"
+.br
+.ti -1c
+.RI "\fBunsigned\fP \fBchar\fP * \fBm_byte_enable\fP"
+.br
+.ti -1c
+.RI "\fBunsigned\fP int \fBm_byte_enable_length\fP"
+.br
+.ti -1c
+.RI "\fBunsigned\fP int \fBm_streaming_width\fP"
+.br
+.ti -1c
+.RI "\fBtlm_gp_option\fP \fBm_gp_option\fP"
+.br
+.ti -1c
+.RI "\fBtlm_array\fP< \fBtlm_extension_base\fP * > \fBm_extensions\fP"
+.br
+.ti -1c
+.RI "\fBtlm_mm_interface\fP * \fBm_mm\fP"
+.br
+.ti -1c
+.RI "\fBunsigned\fP int \fBm_ref_count\fP"
+.br
+.in -1c
+.SH "Constructor & Destructor Documentation"
+.PP 
+.SS "tlm::tlm_generic_payload::tlm_generic_payload ()"
+
+.SS "tlm::tlm_generic_payload::tlm_generic_payload (\fBtlm_mm_interface\fP * mm)\fR [explicit]\fP"
+
+.SS "tlm::tlm_generic_payload::tlm_generic_payload (\fBconst\fP \fBtlm_generic_payload\fP & x)\fR [private]\fP"
+
+.SS "\fBvirtual\fP tlm::tlm_generic_payload::~tlm_generic_payload ()\fR [virtual]\fP"
+
+.SH "Member Function Documentation"
+.PP 
+.SS "\fBvoid\fP tlm::tlm_generic_payload::acquire ()\fR [inline]\fP"
+
+.SS "template<\fBtypename\fP \fBT\fP > \fBvoid\fP tlm::tlm_generic_payload::clear_extension ()\fR [inline]\fP"
+
+.SS "template<\fBtypename\fP \fBT\fP > \fBvoid\fP tlm::tlm_generic_payload::clear_extension (\fBconst\fP \fBT\fP * ext)\fR [inline]\fP"
+
+.SS "\fBvoid\fP tlm::tlm_generic_payload::clear_extension (\fBunsigned\fP int index)\fR [private]\fP"
+
+.SS "\fBvoid\fP tlm::tlm_generic_payload::deep_copy_from (\fBconst\fP \fBtlm_generic_payload\fP & other)"
+
+.SS "\fBvoid\fP tlm::tlm_generic_payload::free_all_extensions ()"
+
+.SS "\fBsc_dt::uint64\fP tlm::tlm_generic_payload::get_address () const\fR [inline]\fP"
+
+.SS "\fBunsigned\fP int tlm::tlm_generic_payload::get_byte_enable_length () const\fR [inline]\fP"
+
+.SS "\fBunsigned\fP \fBchar\fP * tlm::tlm_generic_payload::get_byte_enable_ptr () const\fR [inline]\fP"
+
+.SS "\fBtlm_command\fP tlm::tlm_generic_payload::get_command () const\fR [inline]\fP"
+
+.SS "\fBunsigned\fP int tlm::tlm_generic_payload::get_data_length () const\fR [inline]\fP"
+
+.SS "\fBunsigned\fP \fBchar\fP * tlm::tlm_generic_payload::get_data_ptr () const\fR [inline]\fP"
+
+.SS "template<\fBtypename\fP \fBT\fP > \fBT\fP * tlm::tlm_generic_payload::get_extension () const\fR [inline]\fP"
+
+.SS "template<\fBtypename\fP \fBT\fP > \fBvoid\fP tlm::tlm_generic_payload::get_extension (\fBT\fP *& ext) const\fR [inline]\fP"
+
+.SS "\fBtlm_extension_base\fP * tlm::tlm_generic_payload::get_extension (\fBunsigned\fP int index) const"
+
+.SS "\fBtlm_gp_option\fP tlm::tlm_generic_payload::get_gp_option () const\fR [inline]\fP"
+
+.SS "int tlm::tlm_generic_payload::get_ref_count () const\fR [inline]\fP"
+
+.SS "\fBtlm_response_status\fP tlm::tlm_generic_payload::get_response_status () const\fR [inline]\fP"
+
+.SS "std::string tlm::tlm_generic_payload::get_response_string () const"
+
+.SS "\fBunsigned\fP int tlm::tlm_generic_payload::get_streaming_width () const\fR [inline]\fP"
+
+.SS "\fBbool\fP tlm::tlm_generic_payload::has_mm () const\fR [inline]\fP"
+
+.SS "\fBbool\fP tlm::tlm_generic_payload::is_dmi_allowed () const\fR [inline]\fP"
+
+.SS "\fBbool\fP tlm::tlm_generic_payload::is_read () const\fR [inline]\fP"
+
+.SS "\fBbool\fP tlm::tlm_generic_payload::is_response_error () const\fR [inline]\fP"
+
+.SS "\fBbool\fP tlm::tlm_generic_payload::is_response_ok () const\fR [inline]\fP"
+
+.SS "\fBbool\fP tlm::tlm_generic_payload::is_write () const\fR [inline]\fP"
+
+.SS "\fBtlm_generic_payload\fP & tlm::tlm_generic_payload::operator= (\fBconst\fP \fBtlm_generic_payload\fP & x)\fR [private]\fP"
+
+.SS "\fBvoid\fP tlm::tlm_generic_payload::release ()\fR [inline]\fP"
+
+.SS "template<\fBtypename\fP \fBT\fP > \fBvoid\fP tlm::tlm_generic_payload::release_extension ()\fR [inline]\fP"
+
+.SS "template<\fBtypename\fP \fBT\fP > \fBvoid\fP tlm::tlm_generic_payload::release_extension (\fBT\fP * ext)\fR [inline]\fP"
+
+.SS "\fBvoid\fP tlm::tlm_generic_payload::release_extension (\fBunsigned\fP int index)\fR [private]\fP"
+
+.SS "\fBvoid\fP tlm::tlm_generic_payload::reset ()"
+
+.SS "\fBvoid\fP tlm::tlm_generic_payload::resize_extensions ()"
+
+.SS "\fBvoid\fP tlm::tlm_generic_payload::set_address (\fBconst\fP \fBsc_dt::uint64\fP address)\fR [inline]\fP"
+
+.SS "template<\fBtypename\fP \fBT\fP > \fBT\fP * tlm::tlm_generic_payload::set_auto_extension (\fBT\fP * ext)\fR [inline]\fP"
+
+.SS "\fBtlm_extension_base\fP * tlm::tlm_generic_payload::set_auto_extension (\fBunsigned\fP int index, \fBtlm_extension_base\fP * ext)"
+
+.SS "\fBvoid\fP tlm::tlm_generic_payload::set_byte_enable_length (\fBconst\fP \fBunsigned\fP int byte_enable_length)\fR [inline]\fP"
+
+.SS "\fBvoid\fP tlm::tlm_generic_payload::set_byte_enable_ptr (\fBunsigned\fP \fBchar\fP * byte_enable)\fR [inline]\fP"
+
+.SS "\fBvoid\fP tlm::tlm_generic_payload::set_command (\fBconst\fP \fBtlm_command\fP command)\fR [inline]\fP"
+
+.SS "\fBvoid\fP tlm::tlm_generic_payload::set_data_length (\fBconst\fP \fBunsigned\fP int length)\fR [inline]\fP"
+
+.SS "\fBvoid\fP tlm::tlm_generic_payload::set_data_ptr (\fBunsigned\fP \fBchar\fP * data)\fR [inline]\fP"
+
+.SS "\fBvoid\fP tlm::tlm_generic_payload::set_dmi_allowed (\fBbool\fP dmi_allowed)\fR [inline]\fP"
+
+.SS "template<\fBtypename\fP \fBT\fP > \fBT\fP * tlm::tlm_generic_payload::set_extension (\fBT\fP * ext)\fR [inline]\fP"
+
+.SS "\fBtlm_extension_base\fP * tlm::tlm_generic_payload::set_extension (\fBunsigned\fP int index, \fBtlm_extension_base\fP * ext)"
+
+.SS "\fBvoid\fP tlm::tlm_generic_payload::set_gp_option (\fBconst\fP \fBtlm_gp_option\fP gp_opt)\fR [inline]\fP"
+
+.SS "\fBvoid\fP tlm::tlm_generic_payload::set_mm (\fBtlm_mm_interface\fP * mm)\fR [inline]\fP"
+
+.SS "\fBvoid\fP tlm::tlm_generic_payload::set_read ()\fR [inline]\fP"
+
+.SS "\fBvoid\fP tlm::tlm_generic_payload::set_response_status (\fBconst\fP \fBtlm_response_status\fP response_status)\fR [inline]\fP"
+
+.SS "\fBvoid\fP tlm::tlm_generic_payload::set_streaming_width (\fBconst\fP \fBunsigned\fP int streaming_width)\fR [inline]\fP"
+
+.SS "\fBvoid\fP tlm::tlm_generic_payload::set_write ()\fR [inline]\fP"
+
+.SS "\fBvoid\fP tlm::tlm_generic_payload::update_extensions_from (\fBconst\fP \fBtlm_generic_payload\fP & other)"
+
+.SS "\fBvoid\fP tlm::tlm_generic_payload::update_original_from (\fBconst\fP \fBtlm_generic_payload\fP & other, \fBbool\fP use_byte_enable_on_read = \fR\fBtrue\fP\fP)"
+
+.SH "Member Data Documentation"
+.PP 
+.SS "\fBsc_dt::uint64\fP tlm::tlm_generic_payload::m_address\fR [private]\fP"
+
+.SS "\fBunsigned\fP \fBchar\fP* tlm::tlm_generic_payload::m_byte_enable\fR [private]\fP"
+
+.SS "\fBunsigned\fP int tlm::tlm_generic_payload::m_byte_enable_length\fR [private]\fP"
+
+.SS "\fBtlm_command\fP tlm::tlm_generic_payload::m_command\fR [private]\fP"
+
+.SS "\fBunsigned\fP \fBchar\fP* tlm::tlm_generic_payload::m_data\fR [private]\fP"
+
+.SS "\fBbool\fP tlm::tlm_generic_payload::m_dmi\fR [private]\fP"
+
+.SS "\fBtlm_array\fP<\fBtlm_extension_base\fP*> tlm::tlm_generic_payload::m_extensions\fR [private]\fP"
+
+.SS "\fBtlm_gp_option\fP tlm::tlm_generic_payload::m_gp_option\fR [private]\fP"
+
+.SS "\fBunsigned\fP int tlm::tlm_generic_payload::m_length\fR [private]\fP"
+
+.SS "\fBtlm_mm_interface\fP* tlm::tlm_generic_payload::m_mm\fR [private]\fP"
+
+.SS "\fBunsigned\fP int tlm::tlm_generic_payload::m_ref_count\fR [private]\fP"
+
+.SS "\fBtlm_response_status\fP tlm::tlm_generic_payload::m_response_status\fR [private]\fP"
+
+.SS "\fBunsigned\fP int tlm::tlm_generic_payload::m_streaming_width\fR [private]\fP"
+
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for VHDL simulator from the source code\&.

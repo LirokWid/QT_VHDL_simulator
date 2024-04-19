@@ -1,0 +1,140 @@
+\doxysection{mips.\+h}
+\hypertarget{mips_8h_source}{}\label{mips_8h_source}\index{C:/Users/BJRODIER/Documents/QT\_REPO/QT\_VHDL\_simulator/code/Ressources/SystemC/include/sysc/packages/qt/md/mips.h@{C:/Users/BJRODIER/Documents/QT\_REPO/QT\_VHDL\_simulator/code/Ressources/SystemC/include/sysc/packages/qt/md/mips.h}}
+\mbox{\hyperlink{mips_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{comment}{/*}}
+\DoxyCodeLine{00002\ \textcolor{comment}{\ *\ QuickThreads\ -\/-\/\ Threads-\/building\ toolkit.}}
+\DoxyCodeLine{00003\ \textcolor{comment}{\ *\ Copyright\ (c)\ 1993\ by\ David\ Keppel}}
+\DoxyCodeLine{00004\ \textcolor{comment}{\ *}}
+\DoxyCodeLine{00005\ \textcolor{comment}{\ *\ Permission\ to\ use,\ copy,\ modify\ and\ distribute\ this\ software\ and}}
+\DoxyCodeLine{00006\ \textcolor{comment}{\ *\ its\ documentation\ for\ any\ purpose\ and\ without\ fee\ is\ hereby}}
+\DoxyCodeLine{00007\ \textcolor{comment}{\ *\ granted,\ provided\ that\ the\ above\ copyright\ notice\ and\ this\ notice}}
+\DoxyCodeLine{00008\ \textcolor{comment}{\ *\ appear\ in\ all\ copies.\ \ This\ software\ is\ provided\ as\ a}}
+\DoxyCodeLine{00009\ \textcolor{comment}{\ *\ proof-\/of-\/concept\ and\ for\ demonstration\ purposes;\ there\ is\ no}}
+\DoxyCodeLine{00010\ \textcolor{comment}{\ *\ representation\ about\ the\ suitability\ of\ this\ software\ for\ any}}
+\DoxyCodeLine{00011\ \textcolor{comment}{\ *\ purpose.}}
+\DoxyCodeLine{00012\ \textcolor{comment}{\ */}}
+\DoxyCodeLine{00013\ }
+\DoxyCodeLine{00014\ \textcolor{preprocessor}{\#ifndef\ QUICKTHREADS\_MIPS\_H}}
+\DoxyCodeLine{00015\ \textcolor{preprocessor}{\#define\ QUICKTHREADS\_MIPS\_H}}
+\DoxyCodeLine{00016\ }
+\DoxyCodeLine{00017\ \textcolor{keyword}{typedef}\ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{long}\ \mbox{\hyperlink{mips_8h_a7e200cdd70932f91502a9a28594c56da}{qt\_word\_t}};}
+\DoxyCodeLine{00018\ }
+\DoxyCodeLine{00019\ \textcolor{preprocessor}{\#define\ QUICKTHREADS\_GROW\_DOWN}}
+\DoxyCodeLine{00020\ }
+\DoxyCodeLine{00021\ \textcolor{comment}{/*\ Stack\ layout\ on\ the\ mips:}}
+\DoxyCodeLine{00022\ \textcolor{comment}{}}
+\DoxyCodeLine{00023\ \textcolor{comment}{\ \ \ Callee-\/save\ registers\ are:\ \$16-\/\$23,\ \$30;\ \$f20-\/\$f30.}}
+\DoxyCodeLine{00024\ \textcolor{comment}{\ \ \ Also\ save\ \$31,\ return\ pc.}}
+\DoxyCodeLine{00025\ \textcolor{comment}{}}
+\DoxyCodeLine{00026\ \textcolor{comment}{\ \ \ Non-\/varargs:}}
+\DoxyCodeLine{00027\ \textcolor{comment}{}}
+\DoxyCodeLine{00028\ \textcolor{comment}{\ \ \ +-\/-\/-\/}}
+\DoxyCodeLine{00029\ \textcolor{comment}{\ \ \ |\ \$f30\ \ \ The\ first\ clump\ is\ only\ saved\ if\ \`{}qt\_block'}}
+\DoxyCodeLine{00030\ \textcolor{comment}{\ \ \ |\ \$f28\ \ \ is\ called,\ in\ which\ case\ it\ saves\ the\ fp\ regs}}
+\DoxyCodeLine{00031\ \textcolor{comment}{\ \ \ |\ \$f26\ \ \ then\ calls\ \`{}qt\_blocki'\ to\ save\ the\ int\ regs.}}
+\DoxyCodeLine{00032\ \textcolor{comment}{\ \ \ |\ \$f24}}
+\DoxyCodeLine{00033\ \textcolor{comment}{\ \ \ |\ \$f22}}
+\DoxyCodeLine{00034\ \textcolor{comment}{\ \ \ |\ \$f20}}
+\DoxyCodeLine{00035\ \textcolor{comment}{\ \ \ |\ \$31\ ===\ return\ pc\ in\ \`{}qt\_block'}}
+\DoxyCodeLine{00036\ \textcolor{comment}{\ \ \ +-\/-\/-\/}}
+\DoxyCodeLine{00037\ \textcolor{comment}{\ \ \ |\ \$31\ ===\ return\ pc;\ on\ startup\ ==\ qt\_start}}
+\DoxyCodeLine{00038\ \textcolor{comment}{\ \ \ |\ \$30}}
+\DoxyCodeLine{00039\ \textcolor{comment}{\ \ \ |\ \$23}}
+\DoxyCodeLine{00040\ \textcolor{comment}{\ \ \ |\ \$22}}
+\DoxyCodeLine{00041\ \textcolor{comment}{\ \ \ |\ \$21}}
+\DoxyCodeLine{00042\ \textcolor{comment}{\ \ \ |\ \$20}}
+\DoxyCodeLine{00043\ \textcolor{comment}{\ \ \ |\ \$19\ \ \ \ on\ startup\ ===\ only}}
+\DoxyCodeLine{00044\ \textcolor{comment}{\ \ \ |\ \$18\ \ \ \ on\ startup\ ===\ \$a2\ ===\ userf}}
+\DoxyCodeLine{00045\ \textcolor{comment}{\ \ \ |\ \$17\ \ \ \ on\ startup\ ===\ \$a1\ ===\ pt}}
+\DoxyCodeLine{00046\ \textcolor{comment}{\ \ \ |\ \$16\ \ \ \ on\ startup\ ===\ \$a0\ ===\ pu}}
+\DoxyCodeLine{00047\ \textcolor{comment}{\ \ \ |\ <a3>\ \ \ save\ area\ req'd\ by\ MIPS\ calling\ convention}}
+\DoxyCodeLine{00048\ \textcolor{comment}{\ \ \ |\ <a2>\ \ \ save\ area\ req'd\ by\ MIPS\ calling\ convention}}
+\DoxyCodeLine{00049\ \textcolor{comment}{\ \ \ |\ <a1>\ \ \ save\ area\ req'd\ by\ MIPS\ calling\ convention}}
+\DoxyCodeLine{00050\ \textcolor{comment}{\ \ \ |\ <a0>\ \ \ save\ area\ req'd\ by\ MIPS\ calling\ convention\ \ <-\/-\/-\/\ sp}}
+\DoxyCodeLine{00051\ \textcolor{comment}{\ \ \ +-\/-\/-\/}}
+\DoxyCodeLine{00052\ \textcolor{comment}{}}
+\DoxyCodeLine{00053\ \textcolor{comment}{\ \ \ Conventions\ for\ varargs:}}
+\DoxyCodeLine{00054\ \textcolor{comment}{}}
+\DoxyCodeLine{00055\ \textcolor{comment}{\ \ \ |\ args\ ...}}
+\DoxyCodeLine{00056\ \textcolor{comment}{\ \ \ +-\/-\/-\/}}
+\DoxyCodeLine{00057\ \textcolor{comment}{\ \ \ |\ \ :}}
+\DoxyCodeLine{00058\ \textcolor{comment}{\ \ \ |\ \ :}}
+\DoxyCodeLine{00059\ \textcolor{comment}{\ \ \ |\ \$21}}
+\DoxyCodeLine{00060\ \textcolor{comment}{\ \ \ |\ \$20}}
+\DoxyCodeLine{00061\ \textcolor{comment}{\ \ \ |\ \$19\ \ \ \ on\ startup\ ===\ \`{}userf'}}
+\DoxyCodeLine{00062\ \textcolor{comment}{\ \ \ |\ \$18\ \ \ \ on\ startup\ ===\ \`{}startup'}}
+\DoxyCodeLine{00063\ \textcolor{comment}{\ \ \ |\ \$17\ \ \ \ on\ startup\ ===\ \`{}pt'}}
+\DoxyCodeLine{00064\ \textcolor{comment}{\ \ \ |\ \$16\ \ \ \ on\ startup\ ===\ \`{}cleanup'}}
+\DoxyCodeLine{00065\ \textcolor{comment}{\ \ \ |\ <a3>}}
+\DoxyCodeLine{00066\ \textcolor{comment}{\ \ \ |\ <a2>}}
+\DoxyCodeLine{00067\ \textcolor{comment}{\ \ \ |\ <a1>}}
+\DoxyCodeLine{00068\ \textcolor{comment}{\ \ \ |\ <a0>\ \ \ <-\/-\/-\/\ sp}}
+\DoxyCodeLine{00069\ \textcolor{comment}{\ \ \ +-\/-\/-\/}}
+\DoxyCodeLine{00070\ \textcolor{comment}{}}
+\DoxyCodeLine{00071\ \textcolor{comment}{\ \ \ Note:\ if\ we\ wanted\ to,\ we\ could\ muck\ about\ and\ try\ to\ get\ the\ 4}}
+\DoxyCodeLine{00072\ \textcolor{comment}{\ \ \ argument\ registers\ loaded\ in\ to,\ e.g.,\ \$22,\ \$23,\ \$30,\ and\ \$31,}}
+\DoxyCodeLine{00073\ \textcolor{comment}{\ \ \ and\ the\ return\ pc\ in,\ say,\ \$20.\ \ Then,\ the\ first\ 4\ args\ would}}
+\DoxyCodeLine{00074\ \textcolor{comment}{\ \ \ not\ need\ to\ be\ loaded\ from\ memory,\ they\ could\ just\ use}}
+\DoxyCodeLine{00075\ \textcolor{comment}{\ \ \ register-\/to-\/register\ copies.\ */}}
+\DoxyCodeLine{00076\ }
+\DoxyCodeLine{00077\ }
+\DoxyCodeLine{00078\ \textcolor{comment}{/*\ Stack\ must\ be\ doubleword\ aligned.\ */}}
+\DoxyCodeLine{00079\ \textcolor{preprocessor}{\#define\ QUICKTHREADS\_STKALIGN\ \ \ (8)\ }\textcolor{comment}{/*\ Doubleword\ aligned.\ */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{00080\ }
+\DoxyCodeLine{00081\ \textcolor{comment}{/*\ How\ much\ space\ is\ allocated\ to\ hold\ all\ the\ crud\ for}}
+\DoxyCodeLine{00082\ \textcolor{comment}{\ \ \ initialization:\ \$16-\/\$23,\ \$30,\ \$31.\ \ Just\ do\ an\ integer\ restore,}}
+\DoxyCodeLine{00083\ \textcolor{comment}{\ \ \ no\ need\ to\ restore\ floating-\/point.\ \ Four\ words\ are\ needed\ for\ the}}
+\DoxyCodeLine{00084\ \textcolor{comment}{\ \ \ argument\ save\ area\ for\ the\ helper\ function\ that\ will\ be\ called\ for}}
+\DoxyCodeLine{00085\ \textcolor{comment}{\ \ \ the\ old\ thread,\ just\ before\ the\ new\ thread\ starts\ to\ run.\ */}}
+\DoxyCodeLine{00086\ }
+\DoxyCodeLine{00087\ \textcolor{preprocessor}{\#define\ QUICKTHREADS\_STKBASE\ \ \ \ (14\ *\ 4)}}
+\DoxyCodeLine{00088\ \textcolor{preprocessor}{\#define\ QUICKTHREADS\_VSTKBASE\ \ \ QUICKTHREADS\_STKBASE}}
+\DoxyCodeLine{00089\ }
+\DoxyCodeLine{00090\ }
+\DoxyCodeLine{00091\ \textcolor{comment}{/*\ Offsets\ of\ various\ registers.\ */}}
+\DoxyCodeLine{00092\ \textcolor{preprocessor}{\#define\ QUICKTHREADS\_31\ (9+4)}}
+\DoxyCodeLine{00093\ \textcolor{preprocessor}{\#define\ QUICKTHREADS\_19\ (3+4)}}
+\DoxyCodeLine{00094\ \textcolor{preprocessor}{\#define\ QUICKTHREADS\_18\ (2+4)}}
+\DoxyCodeLine{00095\ \textcolor{preprocessor}{\#define\ QUICKTHREADS\_17\ (1+4)}}
+\DoxyCodeLine{00096\ \textcolor{preprocessor}{\#define\ QUICKTHREADS\_16\ (0+4)}}
+\DoxyCodeLine{00097\ }
+\DoxyCodeLine{00098\ }
+\DoxyCodeLine{00099\ \textcolor{comment}{/*\ When\ a\ never-\/before-\/run\ thread\ is\ restored,\ the\ return\ pc\ points}}
+\DoxyCodeLine{00100\ \textcolor{comment}{\ \ \ to\ a\ fragment\ of\ code\ that\ starts\ the\ thread\ running.\ \ For}}
+\DoxyCodeLine{00101\ \textcolor{comment}{\ \ \ non-\/vargs\ functions,\ it\ just\ calls\ the\ client's\ \`{}only'\ function.}}
+\DoxyCodeLine{00102\ \textcolor{comment}{\ \ \ For\ varargs\ functions,\ it\ calls\ the\ startup,\ user,\ and\ cleanup}}
+\DoxyCodeLine{00103\ \textcolor{comment}{\ \ \ functions.}}
+\DoxyCodeLine{00104\ \textcolor{comment}{}}
+\DoxyCodeLine{00105\ \textcolor{comment}{\ \ \ The\ varargs\ startup\ routine\ always\ reads\ 4\ words\ of\ arguments\ from}}
+\DoxyCodeLine{00106\ \textcolor{comment}{\ \ \ the\ stack.\ \ If\ there\ are\ less\ than\ 4\ words\ of\ arguments,\ then\ the}}
+\DoxyCodeLine{00107\ \textcolor{comment}{\ \ \ startup\ routine\ can\ read\ off\ the\ top\ of\ the\ stack.\ \ To\ prevent}}
+\DoxyCodeLine{00108\ \textcolor{comment}{\ \ \ errors\ we\ always\ allocate\ 4\ words.\ \ If\ there\ are\ more\ than\ 3\ words}}
+\DoxyCodeLine{00109\ \textcolor{comment}{\ \ \ of\ arguments,\ the\ 4\ preallocated\ words\ are\ simply\ wasted.\ */}}
+\DoxyCodeLine{00110\ }
+\DoxyCodeLine{00111\ \textcolor{keyword}{extern}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{mips_8h_aa2f4631bb0e6ccd7c1fb4e2be528d67d}{qt\_start}}(\textcolor{keywordtype}{void});}
+\DoxyCodeLine{00112\ \textcolor{preprocessor}{\#define\ QUICKTHREADS\_ARGS\_MD(sp)\ \ \ \ (QUICKTHREADS\_SPUT\ (sp,\ QUICKTHREADS\_31,\ qt\_start))}}
+\DoxyCodeLine{00113\ }
+\DoxyCodeLine{00114\ \textcolor{preprocessor}{\#define\ QUICKTHREADS\_VARGS\_MD0(sp,\ vabytes)\ \(\backslash\)}}
+\DoxyCodeLine{00115\ \textcolor{preprocessor}{\ \ ((qt\_t\ *)(((char\ *)(sp))\ -\/\ 4*4\ -\/\ QUICKTHREADS\_STKROUNDUP(vabytes)))}}
+\DoxyCodeLine{00116\ }
+\DoxyCodeLine{00117\ \textcolor{keyword}{extern}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{mips_8h_a0b7527956e668f9f8d8c11e8f1e18498}{qt\_vstart}}(\textcolor{keywordtype}{void});}
+\DoxyCodeLine{00118\ \textcolor{preprocessor}{\#define\ QUICKTHREADS\_VARGS\_MD1(sp)\ \ (QUICKTHREADS\_SPUT\ (sp,\ QUICKTHREADS\_31,\ qt\_vstart))}}
+\DoxyCodeLine{00119\ }
+\DoxyCodeLine{00120\ \textcolor{preprocessor}{\#define\ QUICKTHREADS\_VARGS\_DEFAULT}}
+\DoxyCodeLine{00121\ }
+\DoxyCodeLine{00122\ }
+\DoxyCodeLine{00123\ \textcolor{comment}{/*\ The\ *index*\ (positive\ offset)\ of\ where\ to\ put\ each\ value.\ */}}
+\DoxyCodeLine{00124\ \textcolor{preprocessor}{\#define\ QUICKTHREADS\_ONLY\_INDEX\ (QUICKTHREADS\_19)}}
+\DoxyCodeLine{00125\ \textcolor{preprocessor}{\#define\ QUICKTHREADS\_USER\_INDEX\ (QUICKTHREADS\_18)}}
+\DoxyCodeLine{00126\ \textcolor{preprocessor}{\#define\ QUICKTHREADS\_ARGT\_INDEX\ (QUICKTHREADS\_17)}}
+\DoxyCodeLine{00127\ \textcolor{preprocessor}{\#define\ QUICKTHREADS\_ARGU\_INDEX\ (QUICKTHREADS\_16)}}
+\DoxyCodeLine{00128\ }
+\DoxyCodeLine{00129\ \textcolor{preprocessor}{\#define\ QUICKTHREADS\_VCLEANUP\_INDEX\ (QUICKTHREADS\_16)}}
+\DoxyCodeLine{00130\ \textcolor{preprocessor}{\#define\ QUICKTHREADS\_VUSERF\_INDEX\ \ \ \ \ \ \ (QUICKTHREADS\_19)}}
+\DoxyCodeLine{00131\ \textcolor{preprocessor}{\#define\ QUICKTHREADS\_VSTARTUP\_INDEX\ (QUICKTHREADS\_18)}}
+\DoxyCodeLine{00132\ \textcolor{preprocessor}{\#define\ QUICKTHREADS\_VARGT\_INDEX\ \ \ \ \ \ \ \ (QUICKTHREADS\_17)}}
+\DoxyCodeLine{00133\ }
+\DoxyCodeLine{00134\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{/*\ ndef\ QUICKTHREADS\_MIPS\_H\ */}\textcolor{preprocessor}{}}
+
+\end{DoxyCode}

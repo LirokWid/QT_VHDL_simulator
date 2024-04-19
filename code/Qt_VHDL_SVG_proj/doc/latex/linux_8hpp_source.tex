@@ -1,0 +1,104 @@
+\doxysection{linux.\+hpp}
+\hypertarget{linux_8hpp_source}{}\label{linux_8hpp_source}\index{C:/Users/BJRODIER/Documents/QT\_REPO/QT\_VHDL\_simulator/code/Ressources/SystemC/include/sysc/packages/boost/config/platform/linux.hpp@{C:/Users/BJRODIER/Documents/QT\_REPO/QT\_VHDL\_simulator/code/Ressources/SystemC/include/sysc/packages/boost/config/platform/linux.hpp}}
+\mbox{\hyperlink{linux_8hpp}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{comment}{//\ \ (C)\ Copyright\ John\ Maddock\ 2001\ -\/\ 2003.\ }}
+\DoxyCodeLine{00002\ \textcolor{comment}{//\ \ (C)\ Copyright\ Jens\ Maurer\ 2001\ -\/\ 2003.\ }}
+\DoxyCodeLine{00003\ \textcolor{comment}{//\ \ Use,\ modification\ and\ distribution\ are\ subject\ to\ the\ }}
+\DoxyCodeLine{00004\ \textcolor{comment}{//\ \ Boost\ Software\ License,\ Version\ 1.0.\ (See\ accompanying\ file\ }}
+\DoxyCodeLine{00005\ \textcolor{comment}{//\ \ LICENSE\_1\_0.txt\ or\ copy\ at\ http://www.boost.org/LICENSE\_1\_0.txt)}}
+\DoxyCodeLine{00006\ }
+\DoxyCodeLine{00007\ \textcolor{comment}{//\ \ See\ http://www.boost.org\ for\ most\ recent\ version.}}
+\DoxyCodeLine{00008\ }
+\DoxyCodeLine{00009\ \textcolor{comment}{//\ \ linux\ specific\ config\ options:}}
+\DoxyCodeLine{00010\ }
+\DoxyCodeLine{00011\ \textcolor{preprocessor}{\#define\ SC\_BOOST\_PLATFORM\ "{}linux"{}}}
+\DoxyCodeLine{00012\ }
+\DoxyCodeLine{00013\ \textcolor{comment}{//\ make\ sure\ we\ have\ \_\_GLIBC\_PREREQ\ if\ available\ at\ all}}
+\DoxyCodeLine{00014\ \textcolor{preprocessor}{\#include\ <cstdlib>}}
+\DoxyCodeLine{00015\ }
+\DoxyCodeLine{00016\ \textcolor{comment}{//}}
+\DoxyCodeLine{00017\ \textcolor{comment}{//\ <stdint.h>\ added\ to\ glibc\ 2.1.1}}
+\DoxyCodeLine{00018\ \textcolor{comment}{//\ We\ can\ only\ test\ for\ 2.1\ though:}}
+\DoxyCodeLine{00019\ \textcolor{comment}{//}}
+\DoxyCodeLine{00020\ \textcolor{preprocessor}{\#if\ defined(\_\_GLIBC\_\_)\ \&\&\ ((\_\_GLIBC\_\_\ >\ 2)\ ||\ ((\_\_GLIBC\_\_\ ==\ 2)\ \&\&\ (\_\_GLIBC\_MINOR\_\_\ >=\ 1)))}}
+\DoxyCodeLine{00021\ \ \ \ \textcolor{comment}{//\ <stdint.h>\ defines\ int64\_t\ unconditionally,\ but\ <sys/types.h>\ defines}}
+\DoxyCodeLine{00022\ \ \ \ \textcolor{comment}{//\ int64\_t\ only\ if\ \_\_GNUC\_\_.\ \ Thus,\ assume\ a\ fully\ usable\ <stdint.h>}}
+\DoxyCodeLine{00023\ \ \ \ \textcolor{comment}{//\ only\ when\ using\ GCC.}}
+\DoxyCodeLine{00024\ \textcolor{preprocessor}{\#\ \ if\ defined\ \_\_GNUC\_\_}}
+\DoxyCodeLine{00025\ \textcolor{preprocessor}{\#\ \ \ \ define\ SC\_BOOST\_HAS\_STDINT\_H}}
+\DoxyCodeLine{00026\ \textcolor{preprocessor}{\#\ \ endif}}
+\DoxyCodeLine{00027\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00028\ }
+\DoxyCodeLine{00029\ \textcolor{preprocessor}{\#if\ defined(\_\_LIBCOMO\_\_)}}
+\DoxyCodeLine{00030\ \ \ \ \textcolor{comment}{//}}
+\DoxyCodeLine{00031\ \ \ \ \textcolor{comment}{//\ como\ on\ linux\ doesn't\ have\ std::\ c\ functions:}}
+\DoxyCodeLine{00032\ \ \ \ \textcolor{comment}{//\ NOTE:\ versions\ of\ libcomo\ prior\ to\ beta28\ have\ octal\ version\ numbering,}}
+\DoxyCodeLine{00033\ \ \ \ \textcolor{comment}{//\ e.g.\ version\ 25\ is\ 21\ (dec)}}
+\DoxyCodeLine{00034\ \ \ \ \textcolor{comment}{//}}
+\DoxyCodeLine{00035\ \textcolor{preprocessor}{\#\ \ if\ \_\_LIBCOMO\_VERSION\_\_\ <=\ 20}}
+\DoxyCodeLine{00036\ \textcolor{preprocessor}{\#\ \ \ \ define\ SC\_BOOST\_NO\_STDC\_NAMESPACE}}
+\DoxyCodeLine{00037\ \textcolor{preprocessor}{\#\ \ endif}}
+\DoxyCodeLine{00038\ }
+\DoxyCodeLine{00039\ \textcolor{preprocessor}{\#\ \ if\ \_\_LIBCOMO\_VERSION\_\_\ <=\ 21}}
+\DoxyCodeLine{00040\ \textcolor{preprocessor}{\#\ \ \ \ define\ SC\_BOOST\_NO\_SWPRINTF}}
+\DoxyCodeLine{00041\ \textcolor{preprocessor}{\#\ \ endif}}
+\DoxyCodeLine{00042\ }
+\DoxyCodeLine{00043\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00044\ }
+\DoxyCodeLine{00045\ \textcolor{comment}{//}}
+\DoxyCodeLine{00046\ \textcolor{comment}{//\ If\ glibc\ is\ past\ version\ 2\ then\ we\ definitely\ have}}
+\DoxyCodeLine{00047\ \textcolor{comment}{//\ gettimeofday,\ earlier\ versions\ may\ or\ may\ not\ have\ it:}}
+\DoxyCodeLine{00048\ \textcolor{comment}{//}}
+\DoxyCodeLine{00049\ \textcolor{preprocessor}{\#if\ defined(\_\_GLIBC\_\_)\ \&\&\ (\_\_GLIBC\_\_\ >=\ 2)}}
+\DoxyCodeLine{00050\ \textcolor{preprocessor}{\#\ \ define\ SC\_BOOST\_HAS\_GETTIMEOFDAY}}
+\DoxyCodeLine{00051\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00052\ }
+\DoxyCodeLine{00053\ \textcolor{preprocessor}{\#ifdef\ \_\_USE\_POSIX199309}}
+\DoxyCodeLine{00054\ \textcolor{preprocessor}{\#\ \ define\ SC\_BOOST\_HAS\_NANOSLEEP}}
+\DoxyCodeLine{00055\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00056\ }
+\DoxyCodeLine{00057\ \textcolor{preprocessor}{\#if\ defined(\_\_GLIBC\_\_)\ \&\&\ defined(\_\_GLIBC\_PREREQ)}}
+\DoxyCodeLine{00058\ \textcolor{comment}{//\ \_\_GLIBC\_PREREQ\ is\ available\ since\ 2.1.2}}
+\DoxyCodeLine{00059\ }
+\DoxyCodeLine{00060\ \ \ \ \textcolor{comment}{//\ swprintf\ is\ available\ since\ glibc\ 2.2.0}}
+\DoxyCodeLine{00061\ \textcolor{preprocessor}{\#\ \ if\ !\_\_GLIBC\_PREREQ(2,2)\ ||\ (!defined(\_\_USE\_ISOC99)\ \&\&\ !defined(\_\_USE\_UNIX98))}}
+\DoxyCodeLine{00062\ \textcolor{preprocessor}{\#\ \ \ \ define\ SC\_BOOST\_NO\_SWPRINTF}}
+\DoxyCodeLine{00063\ \textcolor{preprocessor}{\#\ \ endif}}
+\DoxyCodeLine{00064\ \textcolor{preprocessor}{\#else}}
+\DoxyCodeLine{00065\ \textcolor{preprocessor}{\#\ \ define\ SC\_BOOST\_NO\_SWPRINTF}}
+\DoxyCodeLine{00066\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00067\ }
+\DoxyCodeLine{00068\ \textcolor{comment}{//\ boilerplate\ code:}}
+\DoxyCodeLine{00069\ \textcolor{preprocessor}{\#define\ SC\_BOOST\_HAS\_UNISTD\_H}}
+\DoxyCodeLine{00070\ \textcolor{preprocessor}{\#include\ <\mbox{\hyperlink{posix__features_8hpp}{sysc/packages/boost/config/posix\_features.hpp}}>}}
+\DoxyCodeLine{00071\ }
+\DoxyCodeLine{00072\ \textcolor{preprocessor}{\#ifndef\ \_\_GNUC\_\_}}
+\DoxyCodeLine{00073\ \textcolor{comment}{//}}
+\DoxyCodeLine{00074\ \textcolor{comment}{//\ if\ the\ compiler\ is\ not\ gcc\ we\ still\ need\ to\ be\ able\ to\ parse}}
+\DoxyCodeLine{00075\ \textcolor{comment}{//\ the\ GNU\ system\ headers,\ some\ of\ which\ (mainly\ <stdint.h>)}}
+\DoxyCodeLine{00076\ \textcolor{comment}{//\ use\ GNU\ specific\ extensions:}}
+\DoxyCodeLine{00077\ \textcolor{comment}{//}}
+\DoxyCodeLine{00078\ \textcolor{preprocessor}{\#\ \ ifndef\ \_\_extension\_\_}}
+\DoxyCodeLine{00079\ \textcolor{preprocessor}{\#\ \ \ \ \ define\ \_\_extension\_\_}}
+\DoxyCodeLine{00080\ \textcolor{preprocessor}{\#\ \ endif}}
+\DoxyCodeLine{00081\ \textcolor{preprocessor}{\#\ \ ifndef\ \_\_const\_\_}}
+\DoxyCodeLine{00082\ \textcolor{preprocessor}{\#\ \ \ \ \ define\ \_\_const\_\_\ const}}
+\DoxyCodeLine{00083\ \textcolor{preprocessor}{\#\ \ endif}}
+\DoxyCodeLine{00084\ \textcolor{preprocessor}{\#\ \ ifndef\ \_\_volatile\_\_}}
+\DoxyCodeLine{00085\ \textcolor{preprocessor}{\#\ \ \ \ \ define\ \_\_volatile\_\_\ volatile}}
+\DoxyCodeLine{00086\ \textcolor{preprocessor}{\#\ \ endif}}
+\DoxyCodeLine{00087\ \textcolor{preprocessor}{\#\ \ ifndef\ \_\_signed\_\_}}
+\DoxyCodeLine{00088\ \textcolor{preprocessor}{\#\ \ \ \ \ define\ \_\_signed\_\_\ signed}}
+\DoxyCodeLine{00089\ \textcolor{preprocessor}{\#\ \ endif}}
+\DoxyCodeLine{00090\ \textcolor{preprocessor}{\#\ \ ifndef\ \_\_typeof\_\_}}
+\DoxyCodeLine{00091\ \textcolor{preprocessor}{\#\ \ \ \ \ define\ \_\_typeof\_\_\ typeof}}
+\DoxyCodeLine{00092\ \textcolor{preprocessor}{\#\ \ endif}}
+\DoxyCodeLine{00093\ \textcolor{preprocessor}{\#\ \ ifndef\ \_\_inline\_\_}}
+\DoxyCodeLine{00094\ \textcolor{preprocessor}{\#\ \ \ \ \ define\ \_\_inline\_\_\ inline}}
+\DoxyCodeLine{00095\ \textcolor{preprocessor}{\#\ \ endif}}
+\DoxyCodeLine{00096\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00097\ }
+\DoxyCodeLine{00098\ }
+
+\end{DoxyCode}

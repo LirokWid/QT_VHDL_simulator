@@ -1,0 +1,198 @@
+\doxysection{qt.\+h}
+\hypertarget{qt_8h_source}{}\label{qt_8h_source}\index{C:/Users/BJRODIER/Documents/QT\_REPO/QT\_VHDL\_simulator/code/Ressources/SystemC/include/sysc/packages/qt/qt.h@{C:/Users/BJRODIER/Documents/QT\_REPO/QT\_VHDL\_simulator/code/Ressources/SystemC/include/sysc/packages/qt/qt.h}}
+\mbox{\hyperlink{qt_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{comment}{/*}}
+\DoxyCodeLine{00002\ \textcolor{comment}{\ *\ QuickThreads\ -\/-\/\ Threads-\/building\ toolkit.}}
+\DoxyCodeLine{00003\ \textcolor{comment}{\ *\ Copyright\ (c)\ 1993\ by\ David\ Keppel}}
+\DoxyCodeLine{00004\ \textcolor{comment}{\ *}}
+\DoxyCodeLine{00005\ \textcolor{comment}{\ *\ Permission\ to\ use,\ copy,\ modify\ and\ distribute\ this\ software\ and}}
+\DoxyCodeLine{00006\ \textcolor{comment}{\ *\ its\ documentation\ for\ any\ purpose\ and\ without\ fee\ is\ hereby}}
+\DoxyCodeLine{00007\ \textcolor{comment}{\ *\ granted,\ provided\ that\ the\ above\ copyright\ notice\ and\ this\ notice}}
+\DoxyCodeLine{00008\ \textcolor{comment}{\ *\ appear\ in\ all\ copies.\ \ This\ software\ is\ provided\ as\ a}}
+\DoxyCodeLine{00009\ \textcolor{comment}{\ *\ proof-\/of-\/concept\ and\ for\ demonstration\ purposes;\ there\ is\ no}}
+\DoxyCodeLine{00010\ \textcolor{comment}{\ *\ representation\ about\ the\ suitability\ of\ this\ software\ for\ any}}
+\DoxyCodeLine{00011\ \textcolor{comment}{\ *\ purpose.}}
+\DoxyCodeLine{00012\ \textcolor{comment}{\ */}}
+\DoxyCodeLine{00013\ }
+\DoxyCodeLine{00014\ \textcolor{preprocessor}{\#ifndef\ QUICKTHREADS\_QT\_H}}
+\DoxyCodeLine{00015\ \textcolor{preprocessor}{\#define\ QUICKTHREADS\_QT\_H}}
+\DoxyCodeLine{00016\ }
+\DoxyCodeLine{00017\ \textcolor{preprocessor}{\#if\ !defined(SC\_USE\_PTHREADS)}}
+\DoxyCodeLine{00018\ }
+\DoxyCodeLine{00019\ \textcolor{preprocessor}{\#ifdef\ \_\_cplusplus}}
+\DoxyCodeLine{00020\ \textcolor{keyword}{extern}\ \textcolor{stringliteral}{"{}C"{}}\ \{}
+\DoxyCodeLine{00021\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00022\ }
+\DoxyCodeLine{00023\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{qtmd_8h}{sysc/packages/qt/qtmd.h}}"{}}}
+\DoxyCodeLine{00024\ }
+\DoxyCodeLine{00025\ }
+\DoxyCodeLine{00026\ \textcolor{comment}{/*\ A\ QuickThreads\ thread\ is\ represented\ by\ it's\ current\ stack\ pointer.}}
+\DoxyCodeLine{00027\ \textcolor{comment}{\ \ \ To\ restart\ a\ thread,\ you\ merely\ need\ pass\ the\ current\ sp\ (qt\_t*)\ to}}
+\DoxyCodeLine{00028\ \textcolor{comment}{\ \ \ a\ QuickThreads\ primitive.\ \ \`{}qt\_t*'\ is\ a\ location\ on\ the\ stack.\ \ To}}
+\DoxyCodeLine{00029\ \textcolor{comment}{\ \ \ improve\ type\ checking,\ represent\ it\ by\ a\ particular\ struct.\ */}}
+\DoxyCodeLine{00030\ }
+\DoxyCodeLine{00031\ \textcolor{keyword}{typedef}\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structqt__t}{qt\_t}}\ \{}
+\DoxyCodeLine{00032\ \ \ \textcolor{keywordtype}{char}\ \mbox{\hyperlink{structqt__t_a9ddd056f6e9b61a2a02031639757519f}{dummy}};}
+\DoxyCodeLine{00033\ \}\ \mbox{\hyperlink{qt_8h_a401a096f476f0653fc79cf15f1a3a9eb}{qt\_t}};}
+\DoxyCodeLine{00034\ }
+\DoxyCodeLine{00035\ }
+\DoxyCodeLine{00036\ \textcolor{comment}{/*\ Alignment\ is\ guaranteed\ to\ be\ a\ power\ of\ two.\ */}}
+\DoxyCodeLine{00037\ \textcolor{preprocessor}{\#ifndef\ QUICKTHREADS\_STKALIGN}}
+\DoxyCodeLine{00038\ \textcolor{preprocessor}{\ \ \#error\ "{}Need\ to\ know\ the\ machine-\/dependent\ stack\ alignment."{}}}
+\DoxyCodeLine{00039\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00040\ }
+\DoxyCodeLine{00041\ \textcolor{preprocessor}{\#define\ QUICKTHREADS\_STKROUNDUP(bytes)\ \(\backslash\)}}
+\DoxyCodeLine{00042\ \textcolor{preprocessor}{\ \ (((bytes)+QUICKTHREADS\_STKALIGN)\ \&\ \string~(QUICKTHREADS\_STKALIGN-\/1))}}
+\DoxyCodeLine{00043\ }
+\DoxyCodeLine{00044\ }
+\DoxyCodeLine{00045\ \textcolor{comment}{/*\ Find\ \`{}\`{}top''\ of\ the\ stack,\ space\ on\ the\ stack.\ */}}
+\DoxyCodeLine{00046\ \textcolor{preprocessor}{\#ifndef\ QUICKTHREADS\_SP}}
+\DoxyCodeLine{00047\ \textcolor{preprocessor}{\#ifdef\ QUICKTHREADS\_GROW\_DOWN}}
+\DoxyCodeLine{00048\ \textcolor{preprocessor}{\#define\ QUICKTHREADS\_SP(sto,\ size)\ \ ((qt\_t\ *)(\&((char\ *)(sto))[(size)]))}}
+\DoxyCodeLine{00049\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00050\ \textcolor{preprocessor}{\#ifdef\ QUICKTHREADS\_GROW\_UP}}
+\DoxyCodeLine{00051\ \textcolor{preprocessor}{\#define\ QUICKTHREADS\_SP(sto,\ size)\ \ ((qt\_t\ *)(sto))}}
+\DoxyCodeLine{00052\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00053\ \textcolor{preprocessor}{\#if\ !defined(QUICKTHREADS\_SP)}}
+\DoxyCodeLine{00054\ \textcolor{preprocessor}{\ \ \#error\ "{}QUICKTHREADS\_QT\_H:\ Stack\ must\ grow\ up\ or\ down!"{}}}
+\DoxyCodeLine{00055\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00056\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00057\ }
+\DoxyCodeLine{00058\ }
+\DoxyCodeLine{00059\ \textcolor{comment}{/*\ The\ type\ of\ the\ user\ function:}}
+\DoxyCodeLine{00060\ \textcolor{comment}{\ \ \ For\ non-\/varargs,\ takes\ one\ void*\ function.}}
+\DoxyCodeLine{00061\ \textcolor{comment}{\ \ \ For\ varargs,\ takes\ some\ number\ of\ arguments.\ */}}
+\DoxyCodeLine{00062\ \textcolor{keyword}{typedef}\ \textcolor{keywordtype}{void}\ *(\mbox{\hyperlink{qt_8h_afc814d4dd6b037f235187d89fc815e1b}{qt\_userf\_t}})(\textcolor{keywordtype}{void}\ *\mbox{\hyperlink{class_sysc_add__pv}{pu}});}
+\DoxyCodeLine{00063\ \textcolor{keyword}{typedef}\ \textcolor{keywordtype}{void}\ *(\mbox{\hyperlink{qt_8h_ab90b348179dc85e138df76743ee151d9}{qt\_vuserf\_t}})(\textcolor{keywordtype}{int}\ \mbox{\hyperlink{class_sysc_add__pv}{arg0}},\ ...);}
+\DoxyCodeLine{00064\ }
+\DoxyCodeLine{00065\ \textcolor{comment}{/*\ For\ non-\/varargs,\ just\ call\ a\ client-\/supplied\ function,}}
+\DoxyCodeLine{00066\ \textcolor{comment}{\ \ \ it\ does\ all\ startup\ and\ cleanup,\ and\ also\ calls\ the\ user's}}
+\DoxyCodeLine{00067\ \textcolor{comment}{\ \ \ function.\ */}}
+\DoxyCodeLine{00068\ \textcolor{keyword}{typedef}\ \mbox{\hyperlink{class_sysc_add__pv}{void}}\ (\mbox{\hyperlink{qt_8h_a4424ecf171cf80c359e40a448cbb5177}{qt\_only\_t}})(\textcolor{keywordtype}{void}\ *\mbox{\hyperlink{class_sysc_add__pv}{pu}},\ \textcolor{keywordtype}{void}\ *\mbox{\hyperlink{class_sysc_add__pv}{pt}},\ \mbox{\hyperlink{qt_8h_afc814d4dd6b037f235187d89fc815e1b}{qt\_userf\_t}}\ *\mbox{\hyperlink{class_sysc_add__pv}{userf}});}
+\DoxyCodeLine{00069\ }
+\DoxyCodeLine{00070\ \textcolor{comment}{/*\ For\ varargs,\ call\ \`{}startup',\ then\ call\ the\ user's\ function,}}
+\DoxyCodeLine{00071\ \textcolor{comment}{\ \ \ then\ call\ \`{}cleanup'.\ */}}
+\DoxyCodeLine{00072\ \textcolor{keyword}{typedef}\ \mbox{\hyperlink{class_sysc_add__pv}{void}}\ (\mbox{\hyperlink{qt_8h_a677cda38f9703e0c6d11e042275dab3c}{qt\_startup\_t}})(\textcolor{keywordtype}{void}\ *\mbox{\hyperlink{class_sysc_add__pv}{pt}});}
+\DoxyCodeLine{00073\ \textcolor{keyword}{typedef}\ \mbox{\hyperlink{class_sysc_add__pv}{void}}\ (\mbox{\hyperlink{qt_8h_ab9b0d130fb0e4418f3562062caa5b525}{qt\_cleanup\_t}})(\textcolor{keywordtype}{void}\ *\mbox{\hyperlink{class_sysc_add__pv}{pt}},\ \textcolor{keywordtype}{void}\ *\mbox{\hyperlink{class_sysc_add__pv}{vuserf\_return}});}
+\DoxyCodeLine{00074\ }
+\DoxyCodeLine{00075\ }
+\DoxyCodeLine{00076\ \textcolor{comment}{/*\ Internal\ helper\ for\ putting\ stuff\ on\ stack.\ */}}
+\DoxyCodeLine{00077\ \textcolor{preprocessor}{\#ifndef\ QUICKTHREADS\_SPUT}}
+\DoxyCodeLine{00078\ \textcolor{preprocessor}{\#define\ QUICKTHREADS\_SPUT(top,\ at,\ val)\ \(\backslash\)}}
+\DoxyCodeLine{00079\ \textcolor{preprocessor}{\ \ \ \ (((qt\_word\_t\ *)(top))[(at)]\ =\ (qt\_word\_t)(val))}}
+\DoxyCodeLine{00080\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00081\ }
+\DoxyCodeLine{00082\ }
+\DoxyCodeLine{00083\ \textcolor{comment}{/*\ Push\ arguments\ for\ the\ non-\/varargs\ case.\ */}}
+\DoxyCodeLine{00084\ \textcolor{preprocessor}{\#ifndef\ QUICKTHREADS\_ARGS}}
+\DoxyCodeLine{00085\ }
+\DoxyCodeLine{00086\ \textcolor{preprocessor}{\#ifndef\ QUICKTHREADS\_ARGS\_MD}}
+\DoxyCodeLine{00087\ \textcolor{preprocessor}{\#define\ QUICKTHREADS\_ARGS\_MD\ (0)}}
+\DoxyCodeLine{00088\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00089\ }
+\DoxyCodeLine{00090\ \textcolor{preprocessor}{\#ifndef\ QUICKTHREADS\_STKBASE}}
+\DoxyCodeLine{00091\ \textcolor{preprocessor}{\ \ \#error\ "{}Need\ to\ know\ the\ machine-\/dependent\ stack\ allocation."{}}}
+\DoxyCodeLine{00092\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00093\ }
+\DoxyCodeLine{00094\ \textcolor{comment}{/*\ All\ things\ are\ put\ on\ the\ stack\ relative\ to\ the\ final\ value\ of}}
+\DoxyCodeLine{00095\ \textcolor{comment}{\ \ \ the\ stack\ pointer.\ */}}
+\DoxyCodeLine{00096\ \textcolor{preprocessor}{\#ifdef\ QUICKTHREADS\_GROW\_DOWN}}
+\DoxyCodeLine{00097\ \textcolor{preprocessor}{\#define\ QUICKTHREADS\_ADJ(sp)\ \ \ \ (((char\ *)sp)\ -\/\ QUICKTHREADS\_STKBASE)}}
+\DoxyCodeLine{00098\ \textcolor{preprocessor}{\#else}}
+\DoxyCodeLine{00099\ \textcolor{preprocessor}{\#define\ QUICKTHREADS\_ADJ(sp)\ \ \ \ (((char\ *)sp)\ +\ QUICKTHREADS\_STKBASE)}}
+\DoxyCodeLine{00100\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00101\ }
+\DoxyCodeLine{00102\ \textcolor{preprocessor}{\#define\ QUICKTHREADS\_ARGS(sp,\ pu,\ pt,\ userf,\ only)\ \(\backslash\)}}
+\DoxyCodeLine{00103\ \textcolor{preprocessor}{\ \ \ \ (QUICKTHREADS\_ARGS\_MD\ (QUICKTHREADS\_ADJ(sp)),\ \(\backslash\)}}
+\DoxyCodeLine{00104\ \textcolor{preprocessor}{\ \ \ \ \ QUICKTHREADS\_SPUT\ (QUICKTHREADS\_ADJ(sp),\ QUICKTHREADS\_ONLY\_INDEX,\ only),\ \(\backslash\)}}
+\DoxyCodeLine{00105\ \textcolor{preprocessor}{\ \ \ \ \ QUICKTHREADS\_SPUT\ (QUICKTHREADS\_ADJ(sp),\ QUICKTHREADS\_USER\_INDEX,\ userf),\ \(\backslash\)}}
+\DoxyCodeLine{00106\ \textcolor{preprocessor}{\ \ \ \ \ QUICKTHREADS\_SPUT\ (QUICKTHREADS\_ADJ(sp),\ QUICKTHREADS\_ARGT\_INDEX,\ pt),\ \(\backslash\)}}
+\DoxyCodeLine{00107\ \textcolor{preprocessor}{\ \ \ \ \ QUICKTHREADS\_SPUT\ (QUICKTHREADS\_ADJ(sp),\ QUICKTHREADS\_ARGU\_INDEX,\ pu),\ \(\backslash\)}}
+\DoxyCodeLine{00108\ \textcolor{preprocessor}{\ \ \ \ \ ((qt\_t\ *)QUICKTHREADS\_ADJ(sp)))}}
+\DoxyCodeLine{00109\ }
+\DoxyCodeLine{00110\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00111\ }
+\DoxyCodeLine{00112\ }
+\DoxyCodeLine{00113\ \textcolor{comment}{/*\ Push\ arguments\ for\ the\ varargs\ case.}}
+\DoxyCodeLine{00114\ \textcolor{comment}{\ \ \ Has\ to\ be\ a\ function\ call\ because\ initialization\ is\ an\ expression}}
+\DoxyCodeLine{00115\ \textcolor{comment}{\ \ \ and\ we\ need\ to\ loop\ to\ copy\ nbytes\ of\ stuff\ on\ to\ the\ stack.}}
+\DoxyCodeLine{00116\ \textcolor{comment}{\ \ \ But\ that's\ probably\ OK,\ it's\ not\ terribly\ cheap,\ anyway.\ */}}
+\DoxyCodeLine{00117\ }
+\DoxyCodeLine{00118\ \textcolor{preprocessor}{\#ifdef\ QUICKTHREADS\_VARGS\_DEFAULT}}
+\DoxyCodeLine{00119\ \textcolor{preprocessor}{\#ifndef\ QUICKTHREADS\_VARGS\_MD0}}
+\DoxyCodeLine{00120\ \textcolor{preprocessor}{\#define\ QUICKTHREADS\_VARGS\_MD0(sp,\ vasize)\ \ (sp)}}
+\DoxyCodeLine{00121\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00122\ \textcolor{preprocessor}{\#ifndef\ QUICKTHREADS\_VARGS\_MD1}}
+\DoxyCodeLine{00123\ \textcolor{preprocessor}{\#define\ QUICKTHREADS\_VARGS\_MD1(sp)\ \ do\ \{\ ;\ \}\ while\ (0)}}
+\DoxyCodeLine{00124\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00125\ }
+\DoxyCodeLine{00126\ \textcolor{preprocessor}{\#ifndef\ QUICKTHREADS\_VSTKBASE}}
+\DoxyCodeLine{00127\ \textcolor{preprocessor}{\ \ \#error\ "{}Need\ base\ stack\ size\ for\ varargs\ functions."{}}}
+\DoxyCodeLine{00128\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00129\ }
+\DoxyCodeLine{00130\ \textcolor{comment}{/*\ Sometimes\ the\ stack\ pointer\ needs\ to\ munged\ a\ bit\ when\ storing}}
+\DoxyCodeLine{00131\ \textcolor{comment}{\ \ \ the\ list\ of\ arguments.\ */}}
+\DoxyCodeLine{00132\ \textcolor{preprocessor}{\#ifndef\ QUICKTHREADS\_VARGS\_ADJUST}}
+\DoxyCodeLine{00133\ \textcolor{preprocessor}{\#define\ QUICKTHREADS\_VARGS\_ADJUST(sp)\ \ \ (sp)}}
+\DoxyCodeLine{00134\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00135\ }
+\DoxyCodeLine{00136\ \textcolor{comment}{/*\ All\ things\ are\ put\ on\ the\ stack\ relative\ to\ the\ final\ value\ of}}
+\DoxyCodeLine{00137\ \textcolor{comment}{\ \ \ the\ stack\ pointer.\ */}}
+\DoxyCodeLine{00138\ \textcolor{preprocessor}{\#ifdef\ QUICKTHREADS\_GROW\_DOWN}}
+\DoxyCodeLine{00139\ \textcolor{preprocessor}{\#define\ QUICKTHREADS\_VADJ(sp)\ \ \ (((char\ *)sp)\ -\/\ QUICKTHREADS\_VSTKBASE)}}
+\DoxyCodeLine{00140\ \textcolor{preprocessor}{\#else}}
+\DoxyCodeLine{00141\ \textcolor{preprocessor}{\#define\ QUICKTHREADS\_VADJ(sp)\ \ \ (((char\ *)sp)\ +\ QUICKTHREADS\_VSTKBASE)}}
+\DoxyCodeLine{00142\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00143\ }
+\DoxyCodeLine{00144\ \textcolor{keyword}{extern}\ \mbox{\hyperlink{structqt__t}{qt\_t}}\ *\mbox{\hyperlink{axp_8h_a63fe8be03faa1389cb20b4c3debe127e}{qt\_vargs}}\ (\mbox{\hyperlink{structqt__t}{qt\_t}}\ *\mbox{\hyperlink{class_sysc_add__pv}{sp}},\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{class_sysc_add__pv}{nbytes}},\ \textcolor{keywordtype}{void}\ *\mbox{\hyperlink{class_sysc_add__pv}{vargs}},}
+\DoxyCodeLine{00145\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ *\mbox{\hyperlink{class_sysc_add__pv}{pt}},\ \mbox{\hyperlink{qt_8h_a677cda38f9703e0c6d11e042275dab3c}{qt\_startup\_t}}\ *\mbox{\hyperlink{class_sysc_add__pv}{startup}},}
+\DoxyCodeLine{00146\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{qt_8h_ab90b348179dc85e138df76743ee151d9}{qt\_vuserf\_t}}\ *\mbox{\hyperlink{class_sysc_add__pv}{vuserf}},\ \mbox{\hyperlink{qt_8h_ab9b0d130fb0e4418f3562062caa5b525}{qt\_cleanup\_t}}\ *\mbox{\hyperlink{class_sysc_add__pv}{cleanup}});}
+\DoxyCodeLine{00147\ }
+\DoxyCodeLine{00148\ \textcolor{preprocessor}{\#ifndef\ QUICKTHREADS\_VARGS}}
+\DoxyCodeLine{00149\ \textcolor{preprocessor}{\#define\ QUICKTHREADS\_VARGS(sp,\ nbytes,\ vargs,\ pt,\ startup,\ vuserf,\ cleanup)\ \(\backslash\)}}
+\DoxyCodeLine{00150\ \textcolor{preprocessor}{\ \ \ \ \ \ (qt\_vargs\ (sp,\ nbytes,\ vargs,\ pt,\ startup,\ vuserf,\ cleanup))}}
+\DoxyCodeLine{00151\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00152\ }
+\DoxyCodeLine{00153\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00154\ }
+\DoxyCodeLine{00155\ }
+\DoxyCodeLine{00156\ \textcolor{comment}{/*\ Save\ the\ state\ of\ the\ thread\ and\ call\ the\ helper\ function}}
+\DoxyCodeLine{00157\ \textcolor{comment}{\ \ \ using\ the\ stack\ of\ the\ new\ thread.\ */}}
+\DoxyCodeLine{00158\ \textcolor{keyword}{typedef}\ \textcolor{keywordtype}{void}\ *(\mbox{\hyperlink{qt_8h_af253754acd1bc62edb07ed63efac3bc4}{qt\_helper\_t}})(\mbox{\hyperlink{structqt__t}{qt\_t}}\ *\mbox{\hyperlink{class_sysc_add__pv}{old}},\ \textcolor{keywordtype}{void}\ *\mbox{\hyperlink{class_sysc_add__pv}{a0}},\ \textcolor{keywordtype}{void}\ *a1);}
+\DoxyCodeLine{00159\ \textcolor{keyword}{typedef}\ \textcolor{keywordtype}{void}\ *(\mbox{\hyperlink{qt_8h_aca6e2c1984aa2d0f4f609fa8a81e6448}{qt\_block\_t}})(\mbox{\hyperlink{qt_8h_af253754acd1bc62edb07ed63efac3bc4}{qt\_helper\_t}}\ *\mbox{\hyperlink{class_sysc_add__pv}{helper}},\ \textcolor{keywordtype}{void}\ *\mbox{\hyperlink{class_sysc_add__pv}{a0}},\ \textcolor{keywordtype}{void}\ *a1,}
+\DoxyCodeLine{00160\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structqt__t}{qt\_t}}\ *\mbox{\hyperlink{class_sysc_add__pv}{newthread}});}
+\DoxyCodeLine{00161\ }
+\DoxyCodeLine{00162\ \textcolor{comment}{/*\ Rearrange\ the\ parameters\ so\ that\ things\ passed\ to\ the\ helper}}
+\DoxyCodeLine{00163\ \textcolor{comment}{\ \ \ function\ are\ already\ in\ the\ right\ argument\ registers.\ */}}
+\DoxyCodeLine{00164\ \textcolor{preprocessor}{\#ifndef\ QUICKTHREADS\_ABORT}}
+\DoxyCodeLine{00165\ \textcolor{keyword}{extern}\ \textcolor{keywordtype}{void}\ *\mbox{\hyperlink{qt_8h_a3b59750e7329c9a4d1e18dec3866cb3d}{qt\_abort}}\ (\mbox{\hyperlink{qt_8h_af253754acd1bc62edb07ed63efac3bc4}{qt\_helper\_t}}\ *\mbox{\hyperlink{class_sysc_add__pv}{h}},\ \textcolor{keywordtype}{void}\ *\mbox{\hyperlink{class_sysc_add__pv}{a0}},\ \textcolor{keywordtype}{void}\ *a1,\ \mbox{\hyperlink{structqt__t}{qt\_t}}\ *\mbox{\hyperlink{class_sysc_add__pv}{newthread}});}
+\DoxyCodeLine{00166\ \textcolor{comment}{/*\ The\ following\ does,\ technically,\ \`{}return'\ a\ value,\ but\ the}}
+\DoxyCodeLine{00167\ \textcolor{comment}{\ \ \ user\ had\ better\ not\ rely\ on\ it,\ since\ the\ function\ never}}
+\DoxyCodeLine{00168\ \textcolor{comment}{\ \ \ returns.\ */}\ }
+\DoxyCodeLine{00169\ \textcolor{preprocessor}{\#define\ QUICKTHREADS\_ABORT(h,\ a0,\ a1,\ newthread)\ \(\backslash\)}}
+\DoxyCodeLine{00170\ \textcolor{preprocessor}{\ \ \ \ do\ \{\ qt\_abort\ (h,\ a0,\ a1,\ newthread);\ \}\ while\ (0)}}
+\DoxyCodeLine{00171\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00172\ }
+\DoxyCodeLine{00173\ \textcolor{preprocessor}{\#ifndef\ QUICKTHREADS\_BLOCK}}
+\DoxyCodeLine{00174\ \textcolor{keyword}{extern}\ \textcolor{keywordtype}{void}\ *\mbox{\hyperlink{qt_8h_a90056ce36053e88d36d9746a9e41695d}{qt\_block}}\ (\mbox{\hyperlink{qt_8h_af253754acd1bc62edb07ed63efac3bc4}{qt\_helper\_t}}\ *\mbox{\hyperlink{class_sysc_add__pv}{h}},\ \textcolor{keywordtype}{void}\ *\mbox{\hyperlink{class_sysc_add__pv}{a0}},\ \textcolor{keywordtype}{void}\ *a1,}
+\DoxyCodeLine{00175\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structqt__t}{qt\_t}}\ *\mbox{\hyperlink{class_sysc_add__pv}{newthread}});}
+\DoxyCodeLine{00176\ \textcolor{preprocessor}{\#define\ QUICKTHREADS\_BLOCK(h,\ a0,\ a1,\ newthread)\ \(\backslash\)}}
+\DoxyCodeLine{00177\ \textcolor{preprocessor}{\ \ \ \ (qt\_block\ (h,\ a0,\ a1,\ newthread))}}
+\DoxyCodeLine{00178\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00179\ }
+\DoxyCodeLine{00180\ \textcolor{preprocessor}{\#ifndef\ QUICKTHREADS\_BLOCKI}}
+\DoxyCodeLine{00181\ \textcolor{keyword}{extern}\ \textcolor{keywordtype}{void}\ *\mbox{\hyperlink{qt_8h_a8d93da481a3469fbcbb3b2a362b6c2c7}{qt\_blocki}}\ (\mbox{\hyperlink{qt_8h_af253754acd1bc62edb07ed63efac3bc4}{qt\_helper\_t}}\ *\mbox{\hyperlink{class_sysc_add__pv}{h}},\ \textcolor{keywordtype}{void}\ *\mbox{\hyperlink{class_sysc_add__pv}{a0}},\ \textcolor{keywordtype}{void}\ *a1,}
+\DoxyCodeLine{00182\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structqt__t}{qt\_t}}\ *\mbox{\hyperlink{class_sysc_add__pv}{newthread}});}
+\DoxyCodeLine{00183\ \textcolor{preprocessor}{\#define\ QUICKTHREADS\_BLOCKI(h,\ a0,\ a1,\ newthread)\ \(\backslash\)}}
+\DoxyCodeLine{00184\ \textcolor{preprocessor}{\ \ \ \ (qt\_blocki\ (h,\ a0,\ a1,\ newthread))}}
+\DoxyCodeLine{00185\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00186\ }
+\DoxyCodeLine{00187\ \textcolor{preprocessor}{\#ifdef\ \_\_cplusplus}}
+\DoxyCodeLine{00188\ \}\ \ \ \ \ \ \ \textcolor{comment}{/*\ Match\ \`{}extern\ "{}C"{}\ \{'\ at\ top.\ */}}
+\DoxyCodeLine{00189\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00190\ }
+\DoxyCodeLine{00191\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{//\ !defined(SC\_USE\_PTHREADS)}}
+\DoxyCodeLine{00192\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{/*\ ndef\ QUICKTHREADS\_H\ */}\textcolor{preprocessor}{}}
+
+\end{DoxyCode}

@@ -1,0 +1,188 @@
+.TH "C:/Users/BJRODIER/Documents/QT_REPO/QT_VHDL_simulator/code/Ressources/SystemC/include/sysc/kernel/sc_module.h" 3 "VHDL simulator" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+C:/Users/BJRODIER/Documents/QT_REPO/QT_VHDL_simulator/code/Ressources/SystemC/include/sysc/kernel/sc_module.h
+.SH SYNOPSIS
+.br
+.PP
+\fR#include 'sysc/kernel/sc_kernel_ids\&.h'\fP
+.br
+\fR#include 'sysc/kernel/sc_process\&.h'\fP
+.br
+\fR#include 'sysc/kernel/sc_module_name\&.h'\fP
+.br
+\fR#include 'sysc/kernel/sc_sensitive\&.h'\fP
+.br
+\fR#include 'sysc/kernel/sc_time\&.h'\fP
+.br
+\fR#include 'sysc/kernel/sc_wait\&.h'\fP
+.br
+\fR#include 'sysc/kernel/sc_wait_cthread\&.h'\fP
+.br
+\fR#include 'sysc/kernel/sc_process_handle\&.h'\fP
+.br
+\fR#include 'sysc/utils/sc_list\&.h'\fP
+.br
+
+.SS "Classes"
+
+.in +1c
+.ti -1c
+.RI "struct \fBsc_core::sc_bind_proxy\fP"
+.br
+.ti -1c
+.RI "class \fBsc_core::sc_module\fP"
+.br
+.in -1c
+.SS "Namespaces"
+
+.in +1c
+.ti -1c
+.RI "namespace \fBsc_core\fP"
+.br
+.in -1c
+.SS "Macros"
+
+.in +1c
+.ti -1c
+.RI "#\fBdefine\fP \fBSC_NEW\fP(\fBx\fP)   \fB::sc_core::sc_module_dynalloc\fP(\fBnew\fP \fBx\fP);"
+.br
+.ti -1c
+.RI "#\fBdefine\fP \fBSC_MODULE\fP(\fBuser_module_name\fP)       \fBstruct\fP \fBuser_module_name\fP : \fB::sc_core::sc_module\fP"
+.br
+.ti -1c
+.RI "#\fBdefine\fP \fBSC_CTOR\fP(\fBuser_module_name\fP)"
+.br
+.ti -1c
+.RI "#\fBdefine\fP \fBSC_HAS_PROCESS\fP(\fBuser_module_name\fP)       \fBtypedef\fP \fBuser_module_name\fP SC_CURRENT_USER_MODULE"
+.br
+.ti -1c
+.RI "#\fBdefine\fP \fBdeclare_method_process\fP(\fBhandle\fP,  name,  \fBhost_tag\fP,  \fBfunc\fP)"
+.br
+.ti -1c
+.RI "#\fBdefine\fP \fBdeclare_thread_process\fP(\fBhandle\fP,  name,  \fBhost_tag\fP,  \fBfunc\fP)"
+.br
+.ti -1c
+.RI "#\fBdefine\fP \fBdeclare_cthread_process\fP(\fBhandle\fP,  name,  \fBhost_tag\fP,  \fBfunc\fP,  \fBedge\fP)"
+.br
+.ti -1c
+.RI "#\fBdefine\fP \fBSC_CTHREAD\fP(\fBfunc\fP,  \fBedge\fP)"
+.br
+.ti -1c
+.RI "#\fBdefine\fP \fBSC_METHOD\fP(\fBfunc\fP)"
+.br
+.ti -1c
+.RI "#\fBdefine\fP \fBSC_THREAD\fP(\fBfunc\fP)"
+.br
+.in -1c
+.SS "Typedefs"
+
+.in +1c
+.ti -1c
+.RI "\fBtypedef\fP \fBsc_module\fP \fBsc_core::sc_channel\fP"
+.br
+.ti -1c
+.RI "\fBtypedef\fP \fBsc_module\fP \fBsc_core::sc_behavior\fP"
+.br
+.in -1c
+.SS "Functions"
+
+.in +1c
+.ti -1c
+.RI "\fBSC_API\fP \fBsc_module\fP * \fBsc_core::sc_module_dynalloc\fP (\fBsc_module\fP *)"
+.br
+.in -1c
+.SS "Variables"
+
+.in +1c
+.ti -1c
+.RI "\fBSC_API\fP \fBconst\fP \fBsc_bind_proxy\fP \fBsc_core::SC_BIND_PROXY_NIL\fP"
+.br
+.in -1c
+.SH "Macro Definition Documentation"
+.PP 
+.SS "#\fBdefine\fP declare_cthread_process(\fBhandle\fP, name, \fBhost_tag\fP, \fBfunc\fP, \fBedge\fP)"
+\fBValue:\fP.PP
+.nf
+    {                                                               \\
+        ::sc_core::sc_process_handle handle =                     \\
+	     sc_core::sc_get_curr_simcontext()\->create_cthread_process( \\
+            name,  false,          \\
+                     SC_MAKE_FUNC_PTR( host_tag, func ), this, 0 ); \\
+        this\->sensitive\&.operator() ( handle, edge );\\
+    }
+.fi
+
+.SS "#\fBdefine\fP declare_method_process(\fBhandle\fP, name, \fBhost_tag\fP, \fBfunc\fP)"
+\fBValue:\fP.PP
+.nf
+    {                                                           \\
+        ::sc_core::sc_process_handle handle =                      \\
+	    sc_core::sc_get_curr_simcontext()\->create_method_process( \\
+        name,  false, SC_MAKE_FUNC_PTR( host_tag, func ), \\
+        this, 0 ); \\
+        this\->sensitive << handle;                                        \\
+        this\->sensitive_pos << handle;                                    \\
+        this\->sensitive_neg << handle;                                    \\
+    }
+.fi
+
+.SS "#\fBdefine\fP declare_thread_process(\fBhandle\fP, name, \fBhost_tag\fP, \fBfunc\fP)"
+\fBValue:\fP.PP
+.nf
+    {                                                               \\
+        ::sc_core::sc_process_handle handle =                      \\
+	     sc_core::sc_get_curr_simcontext()\->create_thread_process( \\
+                 name,  false,           \\
+                 SC_MAKE_FUNC_PTR( host_tag, func ), this, 0 ); \\
+        this\->sensitive << handle;                                        \\
+        this\->sensitive_pos << handle;                                    \\
+        this\->sensitive_neg << handle;                                    \\
+    }
+.fi
+
+.SS "#\fBdefine\fP SC_CTHREAD(\fBfunc\fP, \fBedge\fP)"
+\fBValue:\fP.PP
+.nf
+    declare_cthread_process( func ## _handle,                                 \\
+                             #func,                                           \\
+                             SC_CURRENT_USER_MODULE,                          \\
+                             func,                                            \\
+                             edge )
+.fi
+
+.SS "#\fBdefine\fP SC_CTOR(\fBuser_module_name\fP)"
+\fBValue:\fP.PP
+.nf
+    typedef user_module_name SC_CURRENT_USER_MODULE;                          \\
+    user_module_name( ::sc_core::sc_module_name )
+.fi
+
+.SS "#\fBdefine\fP SC_HAS_PROCESS(\fBuser_module_name\fP)       \fBtypedef\fP \fBuser_module_name\fP SC_CURRENT_USER_MODULE"
+
+.SS "#\fBdefine\fP SC_METHOD(\fBfunc\fP)"
+\fBValue:\fP.PP
+.nf
+    declare_method_process( func ## _handle,                                  \\
+                            #func,                                            \\
+                            SC_CURRENT_USER_MODULE,                           \\
+                            func )
+.fi
+
+.SS "#\fBdefine\fP SC_MODULE(\fBuser_module_name\fP)       \fBstruct\fP \fBuser_module_name\fP : \fB::sc_core::sc_module\fP"
+
+.SS "#\fBdefine\fP SC_NEW(\fBx\fP)   \fB::sc_core::sc_module_dynalloc\fP(\fBnew\fP \fBx\fP);"
+
+.SS "#\fBdefine\fP SC_THREAD(\fBfunc\fP)"
+\fBValue:\fP.PP
+.nf
+    declare_thread_process( func ## _handle,                                  \\
+                            #func,                                            \\
+                            SC_CURRENT_USER_MODULE,                           \\
+                            func )
+.fi
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for VHDL simulator from the source code\&.

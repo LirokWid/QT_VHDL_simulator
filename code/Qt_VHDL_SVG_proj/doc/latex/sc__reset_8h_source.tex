@@ -1,0 +1,211 @@
+\doxysection{sc\+\_\+reset.\+h}
+\hypertarget{sc__reset_8h_source}{}\label{sc__reset_8h_source}\index{C:/Users/BJRODIER/Documents/QT\_REPO/QT\_VHDL\_simulator/code/Ressources/SystemC/include/sysc/kernel/sc\_reset.h@{C:/Users/BJRODIER/Documents/QT\_REPO/QT\_VHDL\_simulator/code/Ressources/SystemC/include/sysc/kernel/sc\_reset.h}}
+\mbox{\hyperlink{sc__reset_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{comment}{/*****************************************************************************}}
+\DoxyCodeLine{00002\ \textcolor{comment}{}}
+\DoxyCodeLine{00003\ \textcolor{comment}{\ \ Licensed\ to\ Accellera\ Systems\ Initiative\ Inc.\ (Accellera)\ under\ one\ or}}
+\DoxyCodeLine{00004\ \textcolor{comment}{\ \ more\ contributor\ license\ agreements.\ \ See\ the\ NOTICE\ file\ distributed}}
+\DoxyCodeLine{00005\ \textcolor{comment}{\ \ with\ this\ work\ for\ additional\ information\ regarding\ copyright\ ownership.}}
+\DoxyCodeLine{00006\ \textcolor{comment}{\ \ Accellera\ licenses\ this\ file\ to\ you\ under\ the\ Apache\ License,\ Version\ 2.0}}
+\DoxyCodeLine{00007\ \textcolor{comment}{\ \ (the\ "{}License"{});\ you\ may\ not\ use\ this\ file\ except\ in\ compliance\ with\ the}}
+\DoxyCodeLine{00008\ \textcolor{comment}{\ \ License.\ \ You\ may\ obtain\ a\ copy\ of\ the\ License\ at}}
+\DoxyCodeLine{00009\ \textcolor{comment}{}}
+\DoxyCodeLine{00010\ \textcolor{comment}{\ \ \ \ http://www.apache.org/licenses/LICENSE-\/2.0}}
+\DoxyCodeLine{00011\ \textcolor{comment}{}}
+\DoxyCodeLine{00012\ \textcolor{comment}{\ \ Unless\ required\ by\ applicable\ law\ or\ agreed\ to\ in\ writing,\ software}}
+\DoxyCodeLine{00013\ \textcolor{comment}{\ \ distributed\ under\ the\ License\ is\ distributed\ on\ an\ "{}AS\ IS"{}\ BASIS,}}
+\DoxyCodeLine{00014\ \textcolor{comment}{\ \ WITHOUT\ WARRANTIES\ OR\ CONDITIONS\ OF\ ANY\ KIND,\ either\ express\ or}}
+\DoxyCodeLine{00015\ \textcolor{comment}{\ \ implied.\ \ See\ the\ License\ for\ the\ specific\ language\ governing}}
+\DoxyCodeLine{00016\ \textcolor{comment}{\ \ permissions\ and\ limitations\ under\ the\ License.}}
+\DoxyCodeLine{00017\ \textcolor{comment}{}}
+\DoxyCodeLine{00018\ \textcolor{comment}{\ *****************************************************************************/}}
+\DoxyCodeLine{00019\ }
+\DoxyCodeLine{00020\ \textcolor{comment}{/*****************************************************************************}}
+\DoxyCodeLine{00021\ \textcolor{comment}{}}
+\DoxyCodeLine{00022\ \textcolor{comment}{\ \ sc\_reset.h\ -\/-\/\ Process\ reset\ support.}}
+\DoxyCodeLine{00023\ \textcolor{comment}{}}
+\DoxyCodeLine{00024\ \textcolor{comment}{\ \ Original\ Author:\ Andy\ Goodrich,\ Forte\ Design\ Systems,\ 17\ June\ 2003}}
+\DoxyCodeLine{00025\ \textcolor{comment}{}}
+\DoxyCodeLine{00026\ \textcolor{comment}{\ \ CHANGE\ LOG\ AT\ THE\ END\ OF\ THE\ FILE}}
+\DoxyCodeLine{00027\ \textcolor{comment}{\ *****************************************************************************/}}
+\DoxyCodeLine{00028\ }
+\DoxyCodeLine{00029\ \textcolor{preprocessor}{\#if\ !defined(sc\_reset\_h\_INCLUDED)}}
+\DoxyCodeLine{00030\ \textcolor{preprocessor}{\#define\ sc\_reset\_h\_INCLUDED}}
+\DoxyCodeLine{00031\ }
+\DoxyCodeLine{00032\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{sc__writer__policy_8h}{sysc/communication/sc\_writer\_policy.h}}"{}}}
+\DoxyCodeLine{00033\ }
+\DoxyCodeLine{00034\ \textcolor{preprocessor}{\#if\ defined(\_MSC\_VER)\ \&\&\ !defined(SC\_WIN\_DLL\_WARN)}}
+\DoxyCodeLine{00035\ \textcolor{preprocessor}{\#pragma\ warning(push)}}
+\DoxyCodeLine{00036\ \textcolor{preprocessor}{\#pragma\ warning(disable:\ 4251)\ }\textcolor{comment}{//\ DLL\ import\ for\ std::vector}}
+\DoxyCodeLine{00037\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00038\ }
+\DoxyCodeLine{00039\ \textcolor{keyword}{namespace\ }\mbox{\hyperlink{namespacesc__core}{sc\_core}}\ \{}
+\DoxyCodeLine{00040\ }
+\DoxyCodeLine{00041\ \textcolor{comment}{//\ FORWARD\ CLASS\ REFERENCES:}}
+\DoxyCodeLine{00042\ }
+\DoxyCodeLine{00043\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ DATA>\ \textcolor{keyword}{class\ }sc\_signal\_in\_if;}
+\DoxyCodeLine{00044\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ IF,\ sc\_writer\_policy\ POL>\ \textcolor{keyword}{class\ }sc\_signal;}
+\DoxyCodeLine{00045\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ DATA>\ \textcolor{keyword}{class\ }sc\_in;}
+\DoxyCodeLine{00046\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ DATA>\ \textcolor{keyword}{class\ }sc\_inout;}
+\DoxyCodeLine{00047\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ DATA>\ \textcolor{keyword}{class\ }sc\_out;}
+\DoxyCodeLine{00048\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ SOURCE>\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classsc__core_1_1sc__spawn__reset}{sc\_spawn\_reset}};}
+\DoxyCodeLine{00049\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classsc__core_1_1sc__reset}{sc\_reset}};}
+\DoxyCodeLine{00050\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classsc__core_1_1sc__process__b}{sc\_process\_b}};}
+\DoxyCodeLine{00051\ }
+\DoxyCodeLine{00052\ \textcolor{comment}{//==============================================================================}}
+\DoxyCodeLine{00053\ \textcolor{comment}{//\ CLASS\ sc\_reset\_target\ -\/\ RESET\ ENTRY\ FOR\ AN\ sc\_process\_b\ TARGET}}
+\DoxyCodeLine{00054\ \textcolor{comment}{//}}
+\DoxyCodeLine{00055\ \textcolor{comment}{//\ This\ class\ describes\ a\ reset\ condition\ associated\ with\ an\ sc\_process\_b}}
+\DoxyCodeLine{00056\ \textcolor{comment}{//\ instance.\ }}
+\DoxyCodeLine{00057\ \textcolor{comment}{//==============================================================================}}
+\DoxyCodeLine{00058\ \textcolor{keyword}{class\ }\mbox{\hyperlink{sc__cmnhdr_8h_aff4a86b3f5de3ac2097081e7166fe89f}{SC\_API}}\ \mbox{\hyperlink{classsc__core_1_1sc__reset__target}{sc\_reset\_target}}\ \{}
+\DoxyCodeLine{00059\ \ \ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00060\ \ \ \ \ \textcolor{keywordtype}{bool}\ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classsc__core_1_1sc__reset__target_aacb45ee9fbbe13c48f21fa00260f423e}{m\_async}};\ \ \ \ \ \textcolor{comment}{//\ true\ asynchronous\ reset,\ false\ synchronous.}}
+\DoxyCodeLine{00061\ \ \ \ \ \textcolor{keywordtype}{bool}\ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classsc__core_1_1sc__reset__target_ad1244aeb679918ddf0f70c88554c0a2e}{m\_level}};\ \ \ \ \ \textcolor{comment}{//\ level\ for\ reset.}}
+\DoxyCodeLine{00062\ \ \ \ \ \mbox{\hyperlink{classsc__core_1_1sc__process__b}{sc\_process\_b}}*\ \mbox{\hyperlink{classsc__core_1_1sc__reset__target_ace2d7ddc8bd1e80fbf0e21362d1372f4}{m\_process\_p}};\ \textcolor{comment}{//\ process\ this\ reset\ entry\ is\ for.}}
+\DoxyCodeLine{00063\ \};}
+\DoxyCodeLine{00064\ }
+\DoxyCodeLine{00065\ \textcolor{keyword}{inline}\ std::ostream\&\ \mbox{\hyperlink{namespacesc__core_a34d93a50921eda641d10eda314b888da}{operator\ <<\ }}(\ std::ostream\&\ \mbox{\hyperlink{class_sysc_add__pv}{os}},\ }
+\DoxyCodeLine{00066\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{classsc__core_1_1sc__reset__target}{sc\_reset\_target}}\&\ target\ )}
+\DoxyCodeLine{00067\ \{}
+\DoxyCodeLine{00068\ \ \ \ \ \mbox{\hyperlink{class_sysc_add__pv}{os}}\ <<\ \textcolor{stringliteral}{"{}["{}};}
+\DoxyCodeLine{00069\ \ \ \ \ \mbox{\hyperlink{class_sysc_add__pv}{os}}\ <<\ target.\mbox{\hyperlink{classsc__core_1_1sc__reset__target_aacb45ee9fbbe13c48f21fa00260f423e}{m\_async}}\ <<\ \textcolor{stringliteral}{"{},"{}};}
+\DoxyCodeLine{00070\ \ \ \ \ \mbox{\hyperlink{class_sysc_add__pv}{os}}\ <<\ target.\mbox{\hyperlink{classsc__core_1_1sc__reset__target_ad1244aeb679918ddf0f70c88554c0a2e}{m\_level}}\ <<\ \textcolor{stringliteral}{"{},"{}};}
+\DoxyCodeLine{00071\ \ \ \ \ \mbox{\hyperlink{class_sysc_add__pv}{os}}\ <<\ target.\mbox{\hyperlink{classsc__core_1_1sc__reset__target_ace2d7ddc8bd1e80fbf0e21362d1372f4}{m\_process\_p}}\ <<\ \textcolor{stringliteral}{"{},"{}};}
+\DoxyCodeLine{00072\ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{class_sysc_add__pv}{os}};}
+\DoxyCodeLine{00073\ \}}
+\DoxyCodeLine{00074\ }
+\DoxyCodeLine{00075\ }
+\DoxyCodeLine{00076\ \textcolor{comment}{//==============================================================================}}
+\DoxyCodeLine{00077\ \textcolor{comment}{//\ sc\_reset\_finder\ -\/\ place\ holder\ class\ for\ a\ port\ reset\ signal\ until\ it\ is}}
+\DoxyCodeLine{00078\ \textcolor{comment}{//\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ bound\ and\ an\ interface\ class\ is\ available.\ When\ the\ port}}
+\DoxyCodeLine{00079\ \textcolor{comment}{//\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ has\ been\ bound\ the\ information\ in\ this\ class\ will\ be\ used}}
+\DoxyCodeLine{00080\ \textcolor{comment}{//\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ to\ initialize\ its\ sc\_reset\ object\ instance.}}
+\DoxyCodeLine{00081\ \textcolor{comment}{//==============================================================================}}
+\DoxyCodeLine{00082\ \textcolor{keyword}{class\ }\mbox{\hyperlink{sc__cmnhdr_8h_aff4a86b3f5de3ac2097081e7166fe89f}{SC\_API}}\ \mbox{\hyperlink{classsc__core_1_1sc__reset__finder}{sc\_reset\_finder}}\ \{}
+\DoxyCodeLine{00083\ \ \ \ \ \textcolor{keyword}{friend}\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classsc__core_1_1sc__reset}{sc\_reset}};}
+\DoxyCodeLine{00084\ \ \ \ \ \textcolor{keyword}{friend}\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classsc__core_1_1sc__simcontext}{sc\_simcontext}};}
+\DoxyCodeLine{00085\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00086\ \ \ \ \ \mbox{\hyperlink{classsc__core_1_1sc__reset__finder_a5aeadf9792dd2d6d377ddaea4c1f4fdf}{sc\_reset\_finder}}(\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{class_sysc_add__pv}{async}},\ \textcolor{keyword}{const}\ \mbox{\hyperlink{class_sysc_add__pv}{sc\_in<bool>}}*\ \mbox{\hyperlink{class_sysc_add__pv}{port\_p}},\ \textcolor{keywordtype}{bool}\ level,}
+\DoxyCodeLine{00087\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classsc__core_1_1sc__process__b}{sc\_process\_b}}*\ \mbox{\hyperlink{class_sysc_add__pv}{target\_p}});}
+\DoxyCodeLine{00088\ \ \ \ \ \mbox{\hyperlink{classsc__core_1_1sc__reset__finder_ab45438b4f104c04104daa7c672b4b27f}{sc\_reset\_finder}}(\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{class_sysc_add__pv}{async}},\ \textcolor{keyword}{const}\ \mbox{\hyperlink{class_sysc_add__pv}{sc\_inout<bool>}}*\ \mbox{\hyperlink{class_sysc_add__pv}{port\_p}},\ \textcolor{keywordtype}{bool}\ level,}
+\DoxyCodeLine{00089\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classsc__core_1_1sc__process__b}{sc\_process\_b}}*\ \mbox{\hyperlink{class_sysc_add__pv}{target\_p}});}
+\DoxyCodeLine{00090\ \ \ \ \ \mbox{\hyperlink{classsc__core_1_1sc__reset__finder_ab39580d4ddcdeadce8a42210398d917e}{sc\_reset\_finder}}(\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{class_sysc_add__pv}{async}},\ \textcolor{keyword}{const}\ \mbox{\hyperlink{class_sysc_add__pv}{sc\_out<bool>}}*\ \mbox{\hyperlink{class_sysc_add__pv}{port\_p}},\ \textcolor{keywordtype}{bool}\ level,}
+\DoxyCodeLine{00091\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classsc__core_1_1sc__process__b}{sc\_process\_b}}*\ \mbox{\hyperlink{class_sysc_add__pv}{target\_p}});}
+\DoxyCodeLine{00092\ }
+\DoxyCodeLine{00093\ \textcolor{keyword}{protected}:}
+\DoxyCodeLine{00094\ \ \ \ \ \textcolor{keywordtype}{bool}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classsc__core_1_1sc__reset__finder_a38624f3bbc2400a9f9a8961fcc7bd6c7}{m\_async}};\ \ \ \ \ \textcolor{comment}{//\ True\ if\ asynchronous\ reset.}}
+\DoxyCodeLine{00095\ \ \ \ \ \textcolor{keywordtype}{bool}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classsc__core_1_1sc__reset__finder_a789e6209b910f7a6992d197f894e6f2b}{m\_level}};\ \ \ \ \ \textcolor{comment}{//\ Level\ for\ reset.}}
+\DoxyCodeLine{00096\ \ \ \ \ \mbox{\hyperlink{classsc__core_1_1sc__reset__finder}{sc\_reset\_finder}}*\ \ \ \ \ \ \ \mbox{\hyperlink{classsc__core_1_1sc__reset__finder_a0cf7f37e49cc548e30c13f6f1b5c16ab}{m\_next\_p}};\ \ \ \ \textcolor{comment}{//\ Next\ reset\ finder\ in\ list.}}
+\DoxyCodeLine{00097\ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{class_sysc_add__pv}{sc\_in<bool>}}*\ \ \ \ \ \mbox{\hyperlink{classsc__core_1_1sc__reset__finder_ab208433d7842b90f884cc4609062f106}{m\_in\_p}};\ \ \ \ \ \ \textcolor{comment}{//\ Port\ for\ which\ reset\ is\ needed.}}
+\DoxyCodeLine{00098\ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{class_sysc_add__pv}{sc\_inout<bool>}}*\ \ \mbox{\hyperlink{classsc__core_1_1sc__reset__finder_a15efcb4bb4b01fc05d0e6c0e4c2effa1}{m\_inout\_p}};\ \ \ \textcolor{comment}{//\ Port\ for\ which\ reset\ is\ needed.}}
+\DoxyCodeLine{00099\ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{class_sysc_add__pv}{sc\_out<bool>}}*\ \ \ \ \mbox{\hyperlink{classsc__core_1_1sc__reset__finder_a9d4dcb15be317ab9f56e46ba54b4378e}{m\_out\_p}};\ \ \ \ \ \textcolor{comment}{//\ Port\ for\ which\ reset\ is\ needed.}}
+\DoxyCodeLine{00100\ \ \ \ \ \mbox{\hyperlink{classsc__core_1_1sc__process__b}{sc\_process\_b}}*\ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classsc__core_1_1sc__reset__finder_a2b14057d9261a0221585d77b37458790}{m\_target\_p}};\ \ \textcolor{comment}{//\ Process\ to\ reset.}}
+\DoxyCodeLine{00101\ }
+\DoxyCodeLine{00102\ \textcolor{keyword}{private}:\ \textcolor{comment}{//\ disabled}}
+\DoxyCodeLine{00103\ \ \ \ \ \mbox{\hyperlink{classsc__core_1_1sc__reset__finder_aa0e78b51e704e0a4893a28ee05848bb0}{sc\_reset\_finder}}(\ \textcolor{keyword}{const}\ \mbox{\hyperlink{classsc__core_1_1sc__reset__finder}{sc\_reset\_finder}}\&\ );}
+\DoxyCodeLine{00104\ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{classsc__core_1_1sc__reset__finder}{sc\_reset\_finder}}\&\ \mbox{\hyperlink{class_sysc_add__pv}{operator\ =\ }}(\ \textcolor{keyword}{const}\ \mbox{\hyperlink{classsc__core_1_1sc__reset__finder}{sc\_reset\_finder}}\&\ );}
+\DoxyCodeLine{00105\ \};}
+\DoxyCodeLine{00106\ }
+\DoxyCodeLine{00107\ \textcolor{comment}{//==============================================================================}}
+\DoxyCodeLine{00108\ \textcolor{comment}{//\ CLASS\ sc\_reset\ -\/\ RESET\ INFORMATION\ FOR\ A\ RESET\ SIGNAL}}
+\DoxyCodeLine{00109\ \textcolor{comment}{//}}
+\DoxyCodeLine{00110\ \textcolor{comment}{//\ See\ the\ top\ of\ sc\_reset.cpp\ for\ an\ explaination\ of\ how\ the\ reset\ mechanism}}
+\DoxyCodeLine{00111\ \textcolor{comment}{//\ is\ implemented.}}
+\DoxyCodeLine{00112\ \textcolor{comment}{//==============================================================================}}
+\DoxyCodeLine{00113\ \textcolor{keyword}{class\ }\mbox{\hyperlink{sc__cmnhdr_8h_aff4a86b3f5de3ac2097081e7166fe89f}{SC\_API}}\ \mbox{\hyperlink{classsc__core_1_1sc__reset}{sc\_reset}}\ \{}
+\DoxyCodeLine{00114\ \ \ \ \ \textcolor{keyword}{friend}\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classsc__core_1_1sc__cthread__process}{sc\_cthread\_process}};}
+\DoxyCodeLine{00115\ \ \ \ \ \textcolor{keyword}{friend}\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classsc__core_1_1sc__method__process}{sc\_method\_process}};\ }
+\DoxyCodeLine{00116\ \ \ \ \ \textcolor{keyword}{friend}\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classsc__core_1_1sc__module}{sc\_module}};\ }
+\DoxyCodeLine{00117\ \ \ \ \ \textcolor{keyword}{friend}\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classsc__core_1_1sc__process__b}{sc\_process\_b}};}
+\DoxyCodeLine{00118\ \ \ \ \ \textcolor{keyword}{friend}\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classsc__core_1_1sc__signal}{sc\_signal}}<\mbox{\hyperlink{class_sysc_add__pv}{bool}},\ \mbox{\hyperlink{namespacesc__core_ae291a92ac88dd846d36d6a9cd9835607a3e4e04e6ed61133348c6f4a8d0131d25}{SC\_ONE\_WRITER}}>;}
+\DoxyCodeLine{00119\ \ \ \ \ \textcolor{keyword}{friend}\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classsc__core_1_1sc__signal}{sc\_signal}}<\mbox{\hyperlink{class_sysc_add__pv}{bool}},\ \mbox{\hyperlink{namespacesc__core_ae291a92ac88dd846d36d6a9cd9835607abfdd1eba847a6183ab527d3f51c543f5}{SC\_MANY\_WRITERS}}>;}
+\DoxyCodeLine{00120\ \ \ \ \ \textcolor{keyword}{friend}\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classsc__core_1_1sc__signal}{sc\_signal}}<\mbox{\hyperlink{class_sysc_add__pv}{bool}},\ \mbox{\hyperlink{namespacesc__core_ae291a92ac88dd846d36d6a9cd9835607a9bd426068dd960793db998491616aa6a}{SC\_UNCHECKED\_WRITERS}}>;}
+\DoxyCodeLine{00121\ \ \ \ \ \textcolor{keyword}{friend}\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classsc__core_1_1sc__simcontext}{sc\_simcontext}};}
+\DoxyCodeLine{00122\ \ \ \ \ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ SOURCE>\ \textcolor{keyword}{friend}\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classsc__core_1_1sc__spawn__reset}{sc\_spawn\_reset}};}
+\DoxyCodeLine{00123\ \ \ \ \ \textcolor{keyword}{friend}\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classsc__core_1_1sc__thread__process}{sc\_thread\_process}};}
+\DoxyCodeLine{00124\ }
+\DoxyCodeLine{00125\ \ \ \textcolor{keyword}{protected}:}
+\DoxyCodeLine{00126\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classsc__core_1_1sc__reset_a88cf7f13d1b1785a6d2d82edfb0358b1}{reconcile\_resets}}(\mbox{\hyperlink{classsc__core_1_1sc__reset__finder}{sc\_reset\_finder}}*\ \mbox{\hyperlink{class_sysc_add__pv}{reset\_finder\_q}});}
+\DoxyCodeLine{00127\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keywordtype}{void}\ }
+\DoxyCodeLine{00128\ \ \ \ \ \mbox{\hyperlink{classsc__core_1_1sc__reset_ae7d09b54e38a6f2250347859929c3374}{reset\_signal\_is}}(\textcolor{keywordtype}{bool}\ \mbox{\hyperlink{class_sysc_add__pv}{async}},\ \textcolor{keyword}{const}\ \mbox{\hyperlink{class_sysc_add__pv}{sc\_signal\_in\_if<bool>}}\&\ iface,\ }
+\DoxyCodeLine{00129\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\ level);}
+\DoxyCodeLine{00130\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keywordtype}{void}\ }
+\DoxyCodeLine{00131\ \ \ \ \ \mbox{\hyperlink{classsc__core_1_1sc__reset_ac5f468a5a6b6f08fe345d1b0c616cc1f}{reset\_signal\_is}}(\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{class_sysc_add__pv}{async}},\ \textcolor{keyword}{const}\ \mbox{\hyperlink{class_sysc_add__pv}{sc\_in<bool>}}\&\ iface,\ \textcolor{keywordtype}{bool}\ level);}
+\DoxyCodeLine{00132\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keywordtype}{void}\ }
+\DoxyCodeLine{00133\ \ \ \ \ \mbox{\hyperlink{classsc__core_1_1sc__reset_aa4b24fb1b10759bc53c63dea2f11ada9}{reset\_signal\_is}}(\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{class_sysc_add__pv}{async}},\ \textcolor{keyword}{const}\ \mbox{\hyperlink{class_sysc_add__pv}{sc\_inout<bool>}}\&\ iface,\ \textcolor{keywordtype}{bool}\ level);}
+\DoxyCodeLine{00134\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keywordtype}{void}\ }
+\DoxyCodeLine{00135\ \ \ \ \ \mbox{\hyperlink{classsc__core_1_1sc__reset_a78d2fdf2bd7357c7f3495176ae9e47e2}{reset\_signal\_is}}(\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{class_sysc_add__pv}{async}},\ \textcolor{keyword}{const}\ \mbox{\hyperlink{class_sysc_add__pv}{sc\_out<bool>}}\&\ iface,\ \textcolor{keywordtype}{bool}\ level);}
+\DoxyCodeLine{00136\ }
+\DoxyCodeLine{00137\ \ \ \textcolor{keyword}{protected}:}
+\DoxyCodeLine{00138\ \ \ \ \ \mbox{\hyperlink{classsc__core_1_1sc__reset_ab0f28fbfbe059183806280c8edbe15d3}{sc\_reset}}(\ \textcolor{keyword}{const}\ \mbox{\hyperlink{class_sysc_add__pv}{sc\_signal\_in\_if<bool>}}*\ \mbox{\hyperlink{class_sysc_add__pv}{iface\_p}}\ )\ :}
+\DoxyCodeLine{00139\ \ \ \ \ \ \ \ \ m\_iface\_p(\mbox{\hyperlink{class_sysc_add__pv}{iface\_p}}),\ m\_targets()\ \{\}}
+\DoxyCodeLine{00140\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classsc__core_1_1sc__reset_a6a4d8abc3fee9340ffc7c57685e372d0}{notify\_processes}}();}
+\DoxyCodeLine{00141\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classsc__core_1_1sc__reset_a76df1ddaa2cb5fddf32174f9de336ebd}{remove\_process}}(\ \mbox{\hyperlink{classsc__core_1_1sc__process__b}{sc\_process\_b}}*\ );}
+\DoxyCodeLine{00142\ }
+\DoxyCodeLine{00143\ \ \ \textcolor{keyword}{protected}:}
+\DoxyCodeLine{00144\ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{class_sysc_add__pv}{sc\_signal\_in\_if<bool>}}*\ \ \mbox{\hyperlink{classsc__core_1_1sc__reset_a182ac2397b431be9cfa1da1fc3b5233b}{m\_iface\_p}};\ \ \textcolor{comment}{//\ Interface\ to\ read.}}
+\DoxyCodeLine{00145\ \ \ \ \ std::vector<sc\_reset\_target>\ \ \mbox{\hyperlink{classsc__core_1_1sc__reset_a9dfa71633901f6b8c78e3b76019cc544}{m\_targets}};\ \ \textcolor{comment}{//\ List\ of\ processes\ to\ reset.}}
+\DoxyCodeLine{00146\ }
+\DoxyCodeLine{00147\ \ \ \textcolor{keyword}{private}:\ \textcolor{comment}{//\ disabled}}
+\DoxyCodeLine{00148\ \ \ \ \ \mbox{\hyperlink{classsc__core_1_1sc__reset_af82a0fd432d4ba6f1950cc2bf4e62065}{sc\_reset}}(\ \textcolor{keyword}{const}\ \mbox{\hyperlink{classsc__core_1_1sc__reset}{sc\_reset}}\&\ );}
+\DoxyCodeLine{00149\ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{classsc__core_1_1sc__reset}{sc\_reset}}\&\ \mbox{\hyperlink{class_sysc_add__pv}{operator\ =\ }}(\ \textcolor{keyword}{const}\ \mbox{\hyperlink{classsc__core_1_1sc__reset}{sc\_reset}}\&\ );}
+\DoxyCodeLine{00150\ \};}
+\DoxyCodeLine{00151\ }
+\DoxyCodeLine{00152\ \textcolor{comment}{//\ \$Log:\ sc\_reset.h,v\ \$}}
+\DoxyCodeLine{00153\ \textcolor{comment}{//\ Revision\ 1.11\ \ 2011/08/26\ 20:46:10\ \ acg}}
+\DoxyCodeLine{00154\ \textcolor{comment}{//\ \ Andy\ Goodrich:\ moved\ the\ modification\ log\ to\ the\ end\ of\ the\ file\ to}}
+\DoxyCodeLine{00155\ \textcolor{comment}{//\ \ eliminate\ source\ line\ number\ skew\ when\ check-\/ins\ are\ done.}}
+\DoxyCodeLine{00156\ \textcolor{comment}{//}}
+\DoxyCodeLine{00157\ \textcolor{comment}{//\ Revision\ 1.10\ \ 2011/08/24\ 22:05:51\ \ acg}}
+\DoxyCodeLine{00158\ \textcolor{comment}{//\ \ Torsten\ Maehne:\ initialization\ changes\ to\ remove\ warnings.}}
+\DoxyCodeLine{00159\ \textcolor{comment}{//}}
+\DoxyCodeLine{00160\ \textcolor{comment}{//\ Revision\ 1.9\ \ 2011/04/08\ 22:38:30\ \ acg}}
+\DoxyCodeLine{00161\ \textcolor{comment}{//\ \ Andy\ Goodrich:\ added\ comment\ pointing\ to\ the\ description\ of\ how\ the}}
+\DoxyCodeLine{00162\ \textcolor{comment}{//\ \ reset\ mechanism\ works\ that\ is\ in\ sc\_reset.cpp.}}
+\DoxyCodeLine{00163\ \textcolor{comment}{//}}
+\DoxyCodeLine{00164\ \textcolor{comment}{//\ Revision\ 1.8\ \ 2011/02/18\ 20:27:14\ \ acg}}
+\DoxyCodeLine{00165\ \textcolor{comment}{//\ \ Andy\ Goodrich:\ Updated\ Copyrights.}}
+\DoxyCodeLine{00166\ \textcolor{comment}{//}}
+\DoxyCodeLine{00167\ \textcolor{comment}{//\ Revision\ 1.7\ \ 2011/02/13\ 21:47:37\ \ acg}}
+\DoxyCodeLine{00168\ \textcolor{comment}{//\ \ Andy\ Goodrich:\ update\ copyright\ notice.}}
+\DoxyCodeLine{00169\ \textcolor{comment}{//}}
+\DoxyCodeLine{00170\ \textcolor{comment}{//\ Revision\ 1.6\ \ 2011/01/06\ 18:00:32\ \ acg}}
+\DoxyCodeLine{00171\ \textcolor{comment}{//\ \ Andy\ Goodrich:\ Removed\ commented\ out\ code.}}
+\DoxyCodeLine{00172\ \textcolor{comment}{//}}
+\DoxyCodeLine{00173\ \textcolor{comment}{//\ Revision\ 1.5\ \ 2010/12/07\ 20:09:14\ \ acg}}
+\DoxyCodeLine{00174\ \textcolor{comment}{//\ Andy\ Goodrich:\ removed\ sc\_signal\ signatures\ since\ already\ have\ sc\_signal\_in\_if\ signatures.}}
+\DoxyCodeLine{00175\ \textcolor{comment}{//}}
+\DoxyCodeLine{00176\ \textcolor{comment}{//\ Revision\ 1.4\ \ 2010/11/20\ 17:10:57\ \ acg}}
+\DoxyCodeLine{00177\ \textcolor{comment}{//\ \ Andy\ Goodrich:\ reset\ processing\ changes\ for\ new\ IEEE\ 1666\ standard.}}
+\DoxyCodeLine{00178\ \textcolor{comment}{//}}
+\DoxyCodeLine{00179\ \textcolor{comment}{//\ Revision\ 1.3\ \ 2009/05/22\ 16:06:29\ \ acg}}
+\DoxyCodeLine{00180\ \textcolor{comment}{//\ \ Andy\ Goodrich:\ process\ control\ updates.}}
+\DoxyCodeLine{00181\ \textcolor{comment}{//}}
+\DoxyCodeLine{00182\ \textcolor{comment}{//\ Revision\ 1.2\ \ 2008/05/22\ 17:06:26\ \ acg}}
+\DoxyCodeLine{00183\ \textcolor{comment}{//\ \ Andy\ Goodrich:\ updated\ copyright\ notice\ to\ include\ 2008.}}
+\DoxyCodeLine{00184\ \textcolor{comment}{//}}
+\DoxyCodeLine{00185\ \textcolor{comment}{//\ Revision\ 1.1.1.1\ \ 2006/12/15\ 20:20:05\ \ acg}}
+\DoxyCodeLine{00186\ \textcolor{comment}{//\ SystemC\ 2.3}}
+\DoxyCodeLine{00187\ \textcolor{comment}{//}}
+\DoxyCodeLine{00188\ \textcolor{comment}{//\ Revision\ 1.6\ \ 2006/12/02\ 20:58:19\ \ acg}}
+\DoxyCodeLine{00189\ \textcolor{comment}{//\ \ Andy\ Goodrich:\ updates\ from\ 2.2\ for\ IEEE\ 1666\ support.}}
+\DoxyCodeLine{00190\ \textcolor{comment}{//}}
+\DoxyCodeLine{00191\ \textcolor{comment}{//\ Revision\ 1.4\ \ 2006/04/11\ 23:13:21\ \ acg}}
+\DoxyCodeLine{00192\ \textcolor{comment}{//\ \ \ Andy\ Goodrich:\ Changes\ for\ reduced\ reset\ support\ that\ only\ includes}}
+\DoxyCodeLine{00193\ \textcolor{comment}{//\ \ \ sc\_cthread,\ but\ has\ preliminary\ hooks\ for\ expanding\ to\ method\ and\ thread}}
+\DoxyCodeLine{00194\ \textcolor{comment}{//\ \ \ processes\ also.}}
+\DoxyCodeLine{00195\ \textcolor{comment}{//}}
+\DoxyCodeLine{00196\ \textcolor{comment}{//\ Revision\ 1.3\ \ 2006/01/13\ 18:44:30\ \ acg}}
+\DoxyCodeLine{00197\ \textcolor{comment}{//\ Added\ \$Log\ to\ record\ CVS\ changes\ into\ the\ source.}}
+\DoxyCodeLine{00198\ }
+\DoxyCodeLine{00199\ \}\ \textcolor{comment}{//\ namespace\ sc\_core}}
+\DoxyCodeLine{00200\ }
+\DoxyCodeLine{00201\ \textcolor{preprocessor}{\#if\ defined(\_MSC\_VER)\ \&\&\ !defined(SC\_WIN\_DLL\_WARN)}}
+\DoxyCodeLine{00202\ \textcolor{preprocessor}{\#pragma\ warning(pop)}}
+\DoxyCodeLine{00203\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00204\ }
+\DoxyCodeLine{00205\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{//\ !defined(sc\_reset\_h\_INCLUDED)}}
+
+\end{DoxyCode}

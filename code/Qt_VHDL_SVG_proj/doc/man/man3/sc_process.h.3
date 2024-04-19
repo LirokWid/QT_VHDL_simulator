@@ -1,0 +1,125 @@
+.TH "C:/Users/BJRODIER/Documents/QT_REPO/QT_VHDL_simulator/code/Ressources/SystemC/include/sysc/kernel/sc_process.h" 3 "VHDL simulator" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+C:/Users/BJRODIER/Documents/QT_REPO/QT_VHDL_simulator/code/Ressources/SystemC/include/sysc/kernel/sc_process.h
+.SH SYNOPSIS
+.br
+.PP
+\fR#include 'sysc/kernel/sc_constants\&.h'\fP
+.br
+\fR#include 'sysc/kernel/sc_object\&.h'\fP
+.br
+\fR#include 'sysc/kernel/sc_kernel_ids\&.h'\fP
+.br
+\fR#include 'sysc/communication/sc_export\&.h'\fP
+.br
+
+.SS "Classes"
+
+.in +1c
+.ti -1c
+.RI "class \fBsc_core::sc_process_host\fP"
+.br
+.ti -1c
+.RI "class \fBsc_core::sc_process_monitor\fP"
+.br
+.ti -1c
+.RI "class \fBsc_core::sc_throw_it_helper\fP"
+.br
+.ti -1c
+.RI "class \fBsc_core::sc_throw_it< EXCEPT >\fP"
+.br
+.ti -1c
+.RI "class \fBsc_core::sc_process_b\fP"
+.br
+.ti -1c
+.RI "struct \fBsc_core::scoped_flag\fP"
+.br
+.in -1c
+.SS "Namespaces"
+
+.in +1c
+.ti -1c
+.RI "namespace \fBsc_core\fP"
+.br
+.in -1c
+.SS "Macros"
+
+.in +1c
+.ti -1c
+.RI "#\fBdefine\fP \fBSC_USE_MEMBER_FUNC_PTR\fP"
+.br
+.ti -1c
+.RI "#\fBdefine\fP \fBSC_DECL_HELPER_STRUCT\fP(\fBcallback_tag\fP,  \fBfunc\fP)   /*\fBEMPTY\fP*/"
+.br
+.ti -1c
+.RI "#\fBdefine\fP \fBSC_MAKE_FUNC_PTR\fP(\fBcallback_tag\fP,  \fBfunc\fP)           \fBstatic_cast\fP<\fBsc_core::SC_ENTRY_FUNC\fP>(&\fBcallback_tag::func\fP)"
+.br
+.in -1c
+.SS "Typedefs"
+
+.in +1c
+.ti -1c
+.RI "\fBtypedef\fP \fBclass\fP \fBsc_cthread_process\fP * \fBsc_core::sc_cthread_handle\fP"
+.br
+.ti -1c
+.RI "\fBtypedef\fP \fBclass\fP \fBsc_method_process\fP * \fBsc_core::sc_method_handle\fP"
+.br
+.ti -1c
+.RI "\fBtypedef\fP \fBclass\fP \fBsc_thread_process\fP * \fBsc_core::sc_thread_handle\fP"
+.br
+.ti -1c
+.RI "\fBtypedef\fP \fBvoid\fP(sc_process_host::* \fBsc_core::SC_ENTRY_FUNC\fP) ()"
+.br
+.ti -1c
+.RI "\fBtypedef\fP sc_process_b \fBsc_core::sc_process_b\fP"
+.br
+.in -1c
+.SS "Enumerations"
+
+.in +1c
+.ti -1c
+.RI "enum \fBsc_core::sc_curr_proc_kind\fP { \fBsc_core::SC_NO_PROC_\fP, \fBsc_core::SC_METHOD_PROC_\fP, \fBsc_core::SC_THREAD_PROC_\fP, \fBsc_core::SC_CTHREAD_PROC_\fP }"
+.br
+.ti -1c
+.RI "enum \fBsc_core::sc_descendant_inclusion_info\fP { \fBsc_core::SC_NO_DESCENDANTS\fP =0, \fBsc_core::SC_INCLUDE_DESCENDANTS\fP, \fBsc_core::SC_INVALID_DESCENDANTS\fP }"
+.br
+.in -1c
+.SS "Functions"
+
+.in +1c
+.ti -1c
+.RI "\fBSC_API\fP \fBconst\fP \fBchar\fP * \fBsc_core::sc_gen_unique_name\fP (\fBconst\fP \fBchar\fP *, \fBbool\fP \fBpreserve_first\fP)"
+.br
+.ti -1c
+.RI "\fBSC_API\fP \fBsc_process_handle\fP \fBsc_core::sc_get_current_process_handle\fP ()"
+.br
+.ti -1c
+.RI "\fBvoid\fP \fBsc_core::sc_thread_cor_fn\fP (\fBvoid\fP *arg)"
+.br
+.ti -1c
+.RI "\fBSC_API\fP \fBbool\fP \fBsc_core::timed_out\fP (\fBsc_simcontext\fP *)"
+.br
+.ti -1c
+.RI "\fBSC_API\fP \fBvoid\fP \fBsc_core::sc_set_stack_size\fP (\fBsc_thread_handle\fP, std::size_t)"
+.br
+.in -1c
+.SS "Variables"
+
+.in +1c
+.ti -1c
+.RI "\fBSC_API\fP \fBbool\fP \fBsc_core::sc_allow_process_control_corners\fP"
+.br
+.in -1c
+.SH "Macro Definition Documentation"
+.PP 
+.SS "#\fBdefine\fP SC_DECL_HELPER_STRUCT(\fBcallback_tag\fP, \fBfunc\fP)   /*\fBEMPTY\fP*/"
+
+.SS "#\fBdefine\fP SC_MAKE_FUNC_PTR(\fBcallback_tag\fP, \fBfunc\fP)           \fBstatic_cast\fP<\fBsc_core::SC_ENTRY_FUNC\fP>(&\fBcallback_tag::func\fP)"
+
+.SS "#\fBdefine\fP SC_USE_MEMBER_FUNC_PTR"
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for VHDL simulator from the source code\&.

@@ -1,0 +1,221 @@
+\doxysection{tlm\+\_\+fw\+\_\+bw\+\_\+ifs.\+h}
+\hypertarget{tlm__fw__bw__ifs_8h_source}{}\label{tlm__fw__bw__ifs_8h_source}\index{C:/Users/BJRODIER/Documents/QT\_REPO/QT\_VHDL\_simulator/code/Ressources/SystemC/include/tlm\_core/tlm\_2/tlm\_2\_interfaces/tlm\_fw\_bw\_ifs.h@{C:/Users/BJRODIER/Documents/QT\_REPO/QT\_VHDL\_simulator/code/Ressources/SystemC/include/tlm\_core/tlm\_2/tlm\_2\_interfaces/tlm\_fw\_bw\_ifs.h}}
+\mbox{\hyperlink{tlm__fw__bw__ifs_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{comment}{/*****************************************************************************}}
+\DoxyCodeLine{00002\ \textcolor{comment}{}}
+\DoxyCodeLine{00003\ \textcolor{comment}{\ \ Licensed\ to\ Accellera\ Systems\ Initiative\ Inc.\ (Accellera)\ under\ one\ or}}
+\DoxyCodeLine{00004\ \textcolor{comment}{\ \ more\ contributor\ license\ agreements.\ \ See\ the\ NOTICE\ file\ distributed}}
+\DoxyCodeLine{00005\ \textcolor{comment}{\ \ with\ this\ work\ for\ additional\ information\ regarding\ copyright\ ownership.}}
+\DoxyCodeLine{00006\ \textcolor{comment}{\ \ Accellera\ licenses\ this\ file\ to\ you\ under\ the\ Apache\ License,\ Version\ 2.0}}
+\DoxyCodeLine{00007\ \textcolor{comment}{\ \ (the\ "{}License"{});\ you\ may\ not\ use\ this\ file\ except\ in\ compliance\ with\ the}}
+\DoxyCodeLine{00008\ \textcolor{comment}{\ \ License.\ \ You\ may\ obtain\ a\ copy\ of\ the\ License\ at}}
+\DoxyCodeLine{00009\ \textcolor{comment}{}}
+\DoxyCodeLine{00010\ \textcolor{comment}{\ \ \ \ http://www.apache.org/licenses/LICENSE-\/2.0}}
+\DoxyCodeLine{00011\ \textcolor{comment}{}}
+\DoxyCodeLine{00012\ \textcolor{comment}{\ \ Unless\ required\ by\ applicable\ law\ or\ agreed\ to\ in\ writing,\ software}}
+\DoxyCodeLine{00013\ \textcolor{comment}{\ \ distributed\ under\ the\ License\ is\ distributed\ on\ an\ "{}AS\ IS"{}\ BASIS,}}
+\DoxyCodeLine{00014\ \textcolor{comment}{\ \ WITHOUT\ WARRANTIES\ OR\ CONDITIONS\ OF\ ANY\ KIND,\ either\ express\ or}}
+\DoxyCodeLine{00015\ \textcolor{comment}{\ \ implied.\ \ See\ the\ License\ for\ the\ specific\ language\ governing}}
+\DoxyCodeLine{00016\ \textcolor{comment}{\ \ permissions\ and\ limitations\ under\ the\ License.}}
+\DoxyCodeLine{00017\ \textcolor{comment}{}}
+\DoxyCodeLine{00018\ \textcolor{comment}{\ *****************************************************************************/}}
+\DoxyCodeLine{00019\ }
+\DoxyCodeLine{00020\ \textcolor{preprocessor}{\#ifndef\ \_\_TLM\_FW\_BW\_IFS\_H\_\_}}
+\DoxyCodeLine{00021\ \textcolor{preprocessor}{\#define\ \_\_TLM\_FW\_BW\_IFS\_H\_\_}}
+\DoxyCodeLine{00022\ }
+\DoxyCodeLine{00023\ \textcolor{preprocessor}{\#include\ <systemc>}}
+\DoxyCodeLine{00024\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{tlm__generic__payload_8h}{tlm\_core/tlm\_2/tlm\_generic\_payload/tlm\_generic\_payload.h}}"{}}}
+\DoxyCodeLine{00025\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{tlm__dmi_8h}{tlm\_core/tlm\_2/tlm\_2\_interfaces/tlm\_dmi.h}}"{}}}
+\DoxyCodeLine{00026\ }
+\DoxyCodeLine{00027\ \textcolor{keyword}{namespace\ }\mbox{\hyperlink{namespacetlm}{tlm}}\ \{}
+\DoxyCodeLine{00028\ }
+\DoxyCodeLine{00029\ \textcolor{keyword}{enum}\ \mbox{\hyperlink{namespacetlm_adac10369502c45362dded44267fea971}{tlm\_sync\_enum}}\ \{\ \mbox{\hyperlink{namespacetlm_adac10369502c45362dded44267fea971af6204a34490ffed0970e74a5a08fb389}{TLM\_ACCEPTED}},\ \mbox{\hyperlink{namespacetlm_adac10369502c45362dded44267fea971af9691927ab58a12f9e075fd128543271}{TLM\_UPDATED}},\ \mbox{\hyperlink{namespacetlm_adac10369502c45362dded44267fea971a1f3b5d4718b9ee198afca7753e5b7910}{TLM\_COMPLETED}}\ \};}
+\DoxyCodeLine{00030\ }
+\DoxyCodeLine{00032\ \textcolor{comment}{//\ Basic\ interfaces}}
+\DoxyCodeLine{00034\ \textcolor{keyword}{template}\ <\textcolor{keyword}{typename}\ \mbox{\hyperlink{class_sysc_add__pv}{TRANS}}\ =\ tlm\_generic\_payload,}
+\DoxyCodeLine{00035\ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{typename}\ \mbox{\hyperlink{class_sysc_add__pv}{PHASE}}\ =\ tlm\_phase>}
+\DoxyCodeLine{00036\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classtlm_1_1tlm__fw__nonblocking__transport__if}{tlm\_fw\_nonblocking\_transport\_if}}\ :\ \textcolor{keyword}{public}\ \textcolor{keyword}{virtual}\ \mbox{\hyperlink{classsc__core_1_1sc__interface}{sc\_core::sc\_interface}}\ \{}
+\DoxyCodeLine{00037\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00038\ \ \ \textcolor{keyword}{virtual}\ \mbox{\hyperlink{namespacetlm_adac10369502c45362dded44267fea971}{tlm\_sync\_enum}}\ \mbox{\hyperlink{classtlm_1_1tlm__fw__nonblocking__transport__if_a542b68459126ea6c9431174df4f97d14}{nb\_transport\_fw}}(\mbox{\hyperlink{class_sysc_add__pv}{TRANS}}\&\ \mbox{\hyperlink{class_sysc_add__pv}{trans}},}
+\DoxyCodeLine{00039\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_sysc_add__pv}{PHASE}}\&\ \mbox{\hyperlink{class_sysc_add__pv}{phase}},}
+\DoxyCodeLine{00040\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classsc__core_1_1sc__time}{sc\_core::sc\_time}}\&\ t)\ =\ 0;}
+\DoxyCodeLine{00041\ \};}
+\DoxyCodeLine{00042\ }
+\DoxyCodeLine{00043\ \textcolor{keyword}{template}\ <\textcolor{keyword}{typename}\ \mbox{\hyperlink{class_sysc_add__pv}{TRANS}}\ =\ \mbox{\hyperlink{classtlm_1_1tlm__generic__payload}{tlm\_generic\_payload}},}
+\DoxyCodeLine{00044\ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{typename}\ \mbox{\hyperlink{class_sysc_add__pv}{PHASE}}\ =\ \mbox{\hyperlink{classtlm_1_1tlm__phase}{tlm\_phase}}>}
+\DoxyCodeLine{00045\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classtlm_1_1tlm__bw__nonblocking__transport__if}{tlm\_bw\_nonblocking\_transport\_if}}\ :\ \textcolor{keyword}{public}\ \textcolor{keyword}{virtual}\ \mbox{\hyperlink{classsc__core_1_1sc__interface}{sc\_core::sc\_interface}}\ \{}
+\DoxyCodeLine{00046\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00047\ \ \ \textcolor{keyword}{virtual}\ \mbox{\hyperlink{namespacetlm_adac10369502c45362dded44267fea971}{tlm\_sync\_enum}}\ \mbox{\hyperlink{classtlm_1_1tlm__bw__nonblocking__transport__if_a3ec41ec9ff402632fae2d9a2c7f91022}{nb\_transport\_bw}}(\mbox{\hyperlink{class_sysc_add__pv}{TRANS}}\&\ \mbox{\hyperlink{class_sysc_add__pv}{trans}},}
+\DoxyCodeLine{00048\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_sysc_add__pv}{PHASE}}\&\ \mbox{\hyperlink{class_sysc_add__pv}{phase}},}
+\DoxyCodeLine{00049\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classsc__core_1_1sc__time}{sc\_core::sc\_time}}\&\ t)\ =\ 0;}
+\DoxyCodeLine{00050\ \};}
+\DoxyCodeLine{00051\ }
+\DoxyCodeLine{00052\ \textcolor{keyword}{template}\ <\textcolor{keyword}{typename}\ TRANS\ =\ tlm\_\textcolor{keyword}{generic}\_payload>}
+\DoxyCodeLine{00053\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classtlm_1_1tlm__blocking__transport__if}{tlm\_blocking\_transport\_if}}\ :\ \textcolor{keyword}{public}\ \textcolor{keyword}{virtual}\ \mbox{\hyperlink{classsc__core_1_1sc__interface}{sc\_core::sc\_interface}}\ \{}
+\DoxyCodeLine{00054\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00055\ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classtlm_1_1tlm__blocking__transport__if_a0d86fcef8ec8629e8325af784e34702f}{b\_transport}}(\mbox{\hyperlink{class_sysc_add__pv}{TRANS}}\&\ \mbox{\hyperlink{class_sysc_add__pv}{trans}},}
+\DoxyCodeLine{00056\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classsc__core_1_1sc__time}{sc\_core::sc\_time}}\&\ t)\ =\ 0;}
+\DoxyCodeLine{00057\ \};}
+\DoxyCodeLine{00058\ }
+\DoxyCodeLine{00060\ \textcolor{comment}{//\ DMI\ interfaces\ for\ getting\ and\ invalidating\ DMI\ pointers:}}
+\DoxyCodeLine{00062\ }
+\DoxyCodeLine{00063\ \textcolor{comment}{//\ The\ semantics\ of\ the\ forward\ interface\ are\ as\ follows:}}
+\DoxyCodeLine{00064\ \textcolor{comment}{//}}
+\DoxyCodeLine{00065\ \textcolor{comment}{//\ -\/\ An\ initiator\ that\ wants\ to\ get\ direct\ access\ to\ a\ target's\ memory\ region}}
+\DoxyCodeLine{00066\ \textcolor{comment}{//\ \ \ can\ call\ the\ get\_direct\_mem\_ptr\ method\ with\ the\ 'trans'\ parameter\ set\ to}}
+\DoxyCodeLine{00067\ \textcolor{comment}{//\ \ \ the\ address\ that\ it\ wants\ to\ gain\ access\ to.\ It\ sets\ the\ trans.m\_command}}
+\DoxyCodeLine{00068\ \textcolor{comment}{//\ \ \ to\ specify\ if\ the\ initiator\ intended\ use\ (read\ or\ write)}}
+\DoxyCodeLine{00069\ \textcolor{comment}{//\ \ \ to\ the\ target's\ DMI\ region.\ The\ initiator\ is\ responsible\ for\ calling\ the}}
+\DoxyCodeLine{00070\ \textcolor{comment}{//\ \ \ method\ with\ a\ freshly\ initialized\ tlm\_dmi\ object\ either\ by\ using\ a\ newly}}
+\DoxyCodeLine{00071\ \textcolor{comment}{//\ \ \ constructed\ object,\ or\ by\ calling\ an\ existing\ object's\ init()\ method.}}
+\DoxyCodeLine{00072\ \textcolor{comment}{//\ -\/\ Although\ a\ reference\ to\ a\ complete\ 'TRANS'\ type\ is\ passed\ to\ the\ get\_}}
+\DoxyCodeLine{00073\ \textcolor{comment}{//\ \ \ direct\_mem\_ptr\ call,\ only\ the\ address\ command,\ and\ extension\ fields\ are\ of}}
+\DoxyCodeLine{00074\ \textcolor{comment}{//\ \ \ interest\ in\ most\ cases.}}
+\DoxyCodeLine{00075\ \textcolor{comment}{//\ -\/\ Read\ and\ write\ ranges\ are\ not\ necessarily\ identical.\ If\ they\ are,\ a\ target}}
+\DoxyCodeLine{00076\ \textcolor{comment}{//\ \ \ can\ specify\ that\ the\ range\ is\ valid\ for\ all\ accesses\ with\ the\ tlm\_data}}
+\DoxyCodeLine{00077\ \textcolor{comment}{//\ \ \ m\_type\ attribute\ in\ the.}}
+\DoxyCodeLine{00078\ \textcolor{comment}{//\ -\/\ The\ interconnect,\ if\ any,\ needs\ to\ decode\ the\ address\ and\ forward\ the}}
+\DoxyCodeLine{00079\ \textcolor{comment}{//\ \ \ call\ to\ the\ corresponding\ target.\ It\ needs\ to\ handle\ the\ address\ exactly}}
+\DoxyCodeLine{00080\ \textcolor{comment}{//\ \ \ as\ the\ target\ would\ expect\ on\ a\ transaction\ call,\ e.g.\ mask\ the\ address}}
+\DoxyCodeLine{00081\ \textcolor{comment}{//\ \ \ according\ to\ the\ target's\ address\ width.}}
+\DoxyCodeLine{00082\ \textcolor{comment}{//\ -\/\ If\ the\ target\ supports\ DMI\ access\ for\ the\ given\ address,\ it\ sets\ the}}
+\DoxyCodeLine{00083\ \textcolor{comment}{//\ \ \ data\ fields\ in\ the\ DMI\ struct\ and\ returns\ true.}}
+\DoxyCodeLine{00084\ \textcolor{comment}{//\ -\/\ If\ a\ target\ does\ not\ support\ DMI\ access\ it\ needs\ to\ return\ false.}}
+\DoxyCodeLine{00085\ \textcolor{comment}{//\ \ \ The\ target\ can\ either\ set\ the\ correct\ address\ range\ in\ the\ DMI\ struct}}
+\DoxyCodeLine{00086\ \textcolor{comment}{//\ \ \ to\ indicate\ the\ memory\ region\ where\ DMI\ is\ disallowed,\ or\ it\ can\ specify}}
+\DoxyCodeLine{00087\ \textcolor{comment}{//\ \ \ the\ complete\ address\ range\ if\ it\ doesn't\ know\ it's\ memory\ range.\ In\ this}}
+\DoxyCodeLine{00088\ \textcolor{comment}{//\ \ \ case\ the\ interconnect\ is\ responsible\ for\ clipping\ the\ address\ range\ to}}
+\DoxyCodeLine{00089\ \textcolor{comment}{//\ \ \ the\ correct\ range\ that\ the\ target\ serves.}}
+\DoxyCodeLine{00090\ \textcolor{comment}{//\ -\/\ The\ interconnect\ must\ always\ translate\ the\ addresses\ to\ the\ initiator's}}
+\DoxyCodeLine{00091\ \textcolor{comment}{//\ \ \ address\ space.\ This\ must\ be\ the\ inverse\ operation\ of\ what\ the}}
+\DoxyCodeLine{00092\ \textcolor{comment}{//\ \ \ interconnect\ needed\ to\ do\ when\ forwarding\ the\ call.\ In\ case\ the}}
+\DoxyCodeLine{00093\ \textcolor{comment}{//\ \ \ component\ wants\ to\ change\ any\ member\ of\ the\ tlm\_dmi\ object,\ e.g.\ for}}
+\DoxyCodeLine{00094\ \textcolor{comment}{//\ \ \ its\ own\ latency\ to\ the\ target's\ latency,\ it\ must\ only\ do\ so\ *after*\ the}}
+\DoxyCodeLine{00095\ \textcolor{comment}{//\ \ \ target\ has\ been\ called.\ The\ target\ is\ always\ allowed\ to\ overwrite\ all}}
+\DoxyCodeLine{00096\ \textcolor{comment}{//\ \ \ values\ in\ the\ tlm\_dmi\ object.}}
+\DoxyCodeLine{00097\ \textcolor{comment}{//\ -\/\ In\ case\ the\ slave\ returned\ with\ an\ invalid\ region\ the\ bus/interconnect}}
+\DoxyCodeLine{00098\ \textcolor{comment}{//\ \ \ must\ fill\ in\ the\ complete\ address\ region\ for\ the\ particular\ slave\ in\ the}}
+\DoxyCodeLine{00099\ \textcolor{comment}{//\ \ \ DMI\ data\ structure.}}
+\DoxyCodeLine{00100\ \textcolor{comment}{//}}
+\DoxyCodeLine{00101\ \textcolor{comment}{//\ DMI\ hint\ optimization:}}
+\DoxyCodeLine{00102\ \textcolor{comment}{//}}
+\DoxyCodeLine{00103\ \textcolor{comment}{//\ Initiators\ may\ use\ the\ DMI\ hint\ in\ the\ tlm\_generic\_payload\ to\ avoid}}
+\DoxyCodeLine{00104\ \textcolor{comment}{//\ unnecessary\ DMI\ attempts.\ The\ recommended\ sequence\ of\ interface}}
+\DoxyCodeLine{00105\ \textcolor{comment}{//\ method\ calls\ would\ be:}}
+\DoxyCodeLine{00106\ \textcolor{comment}{//}}
+\DoxyCodeLine{00107\ \textcolor{comment}{//\ -\/\ The\ initiator\ first\ tries\ to\ check\ if\ it\ has\ a\ valid\ DMI\ region\ for\ the}}
+\DoxyCodeLine{00108\ \textcolor{comment}{//\ \ \ address\ that\ it\ wants\ to\ access\ next.}}
+\DoxyCodeLine{00109\ \textcolor{comment}{//\ -\/\ If\ not,\ it\ performs\ a\ normal\ transaction.}}
+\DoxyCodeLine{00110\ \textcolor{comment}{//\ -\/\ If\ the\ DMI\ hint\ in\ this\ transaction\ is\ true,\ the\ initiator\ can\ try\ and}}
+\DoxyCodeLine{00111\ \textcolor{comment}{//\ \ \ get\ the\ DMI\ region.}}
+\DoxyCodeLine{00112\ \textcolor{comment}{//}}
+\DoxyCodeLine{00113\ \textcolor{comment}{//\ Note\ that\ the\ DMI\ hint\ optimization\ is\ completely\ optional\ and\ every}}
+\DoxyCodeLine{00114\ \textcolor{comment}{//\ initiator\ model\ is\ free\ to\ ignore\ the\ DMI\ hint.\ However,\ a\ target\ is}}
+\DoxyCodeLine{00115\ \textcolor{comment}{//\ required\ to\ set\ the\ DMI\ hint\ to\ true\ if\ a\ DMI\ request\ on\ the\ given\ address}}
+\DoxyCodeLine{00116\ \textcolor{comment}{//\ with\ the\ given\ transaction\ type\ (read\ or\ write)\ would\ have\ succeeded.}}
+\DoxyCodeLine{00117\ }
+\DoxyCodeLine{00118\ \textcolor{keyword}{template}\ <\textcolor{keyword}{typename}\ TRANS\ =\ tlm\_\textcolor{keyword}{generic}\_payload>}
+\DoxyCodeLine{00119\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classtlm_1_1tlm__fw__direct__mem__if}{tlm\_fw\_direct\_mem\_if}}\ :\ \textcolor{keyword}{public}\ \textcolor{keyword}{virtual}\ \mbox{\hyperlink{classsc__core_1_1sc__interface}{sc\_core::sc\_interface}}}
+\DoxyCodeLine{00120\ \{}
+\DoxyCodeLine{00121\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00122\ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{classtlm_1_1tlm__fw__direct__mem__if_ad6a97ca72a1d8a5c7306f56fb3272812}{get\_direct\_mem\_ptr}}(\mbox{\hyperlink{class_sysc_add__pv}{TRANS}}\&\ \mbox{\hyperlink{class_sysc_add__pv}{trans}},}
+\DoxyCodeLine{00123\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classtlm_1_1tlm__dmi}{tlm\_dmi}}\&\ \ \mbox{\hyperlink{class_sysc_add__pv}{dmi\_data}})\ =\ 0;}
+\DoxyCodeLine{00124\ \};}
+\DoxyCodeLine{00125\ }
+\DoxyCodeLine{00126\ \textcolor{comment}{//\ The\ semantics\ of\ the\ backwards\ call\ is\ as\ follows:}}
+\DoxyCodeLine{00127\ \textcolor{comment}{//}}
+\DoxyCodeLine{00128\ \textcolor{comment}{//\ -\/\ An\ interconnect\ component\ or\ a\ target\ is\ required\ to\ invalidate\ all}}
+\DoxyCodeLine{00129\ \textcolor{comment}{//\ \ \ affected\ DMI\ regions\ whenever\ any\ change\ in\ the\ regions\ take\ place.}}
+\DoxyCodeLine{00130\ \textcolor{comment}{//\ \ \ The\ exact\ rule\ is\ that\ a\ component\ must\ invalidate\ all\ those\ DMI\ regions}}
+\DoxyCodeLine{00131\ \textcolor{comment}{//\ \ \ that\ it\ already\ reported,\ if\ it\ would\ answer\ the\ same\ DMI\ request}}
+\DoxyCodeLine{00132\ \textcolor{comment}{//\ \ \ with\ any\ member\ of\ the\ tlm\_dmi\ data\ structure\ set\ differently.}}
+\DoxyCodeLine{00133\ \textcolor{comment}{//\ -\/\ An\ interconnect\ component\ must\ forward\ the\ invalidate\_direct\_mem\_ptr\ call}}
+\DoxyCodeLine{00134\ \textcolor{comment}{//\ \ \ to\ all\ initiators\ that\ could\ potentially\ have\ a\ DMI\ pointer\ to\ the\ region}}
+\DoxyCodeLine{00135\ \textcolor{comment}{//\ \ \ specified\ in\ the\ method\ arguments.\ A\ safe\ implementation\ is\ to\ call}}
+\DoxyCodeLine{00136\ \textcolor{comment}{//\ \ \ every\ attached\ initiator.}}
+\DoxyCodeLine{00137\ \textcolor{comment}{//\ -\/\ An\ interconnect\ component\ must\ transform\ the\ address\ region\ of\ an}}
+\DoxyCodeLine{00138\ \textcolor{comment}{//\ \ \ incoming\ invalidate\_direct\_mem\_ptr\ to\ the\ corresponding\ address\ space}}
+\DoxyCodeLine{00139\ \textcolor{comment}{//\ \ \ for\ the\ initiators.\ Basically,\ this\ is\ the\ same\ address\ transformation}}
+\DoxyCodeLine{00140\ \textcolor{comment}{//\ \ \ that\ the\ interconnect\ does\ on\ the\ DMI\ ranges\ on\ the\ forward\ direction.}}
+\DoxyCodeLine{00141\ \textcolor{comment}{//\ -\/\ Each\ initiator\ must\ check\ if\ it\ has\ a\ pointer\ to\ the\ given\ region\ and}}
+\DoxyCodeLine{00142\ \textcolor{comment}{//\ \ \ throw\ this\ away.\ It\ is\ recommended\ that\ the\ initiator\ throws\ away\ all\ DMI}}
+\DoxyCodeLine{00143\ \textcolor{comment}{//\ \ \ regions\ that\ have\ any\ overlap\ with\ the\ given\ regions,\ but\ this\ is\ not\ a}}
+\DoxyCodeLine{00144\ \textcolor{comment}{//\ \ \ hard\ requirement.}}
+\DoxyCodeLine{00145\ \textcolor{comment}{//}}
+\DoxyCodeLine{00146\ \textcolor{comment}{//\ -\/\ A\ full\ DMI\ pointer\ invalidation,\ e.g.\ for\ a\ bus\ remap\ can\ be\ signaled}}
+\DoxyCodeLine{00147\ \textcolor{comment}{//\ \ \ by\ setting\ the\ range:\ 0x0\ -\/\ 0xffffffffffffffffull\ =\ (sc\_dt::uint64)-\/1}}
+\DoxyCodeLine{00148\ \textcolor{comment}{//\ -\/\ An\ initiator\ must\ throw\ away\ all\ DMI\ pointers\ in\ this\ case.}}
+\DoxyCodeLine{00149\ \textcolor{comment}{//}}
+\DoxyCodeLine{00150\ \textcolor{comment}{//\ -\/\ Under\ no\ circumstances\ a\ model\ is\ allowed\ to\ call\ the\ get\_direct\_mem\_ptr}}
+\DoxyCodeLine{00151\ \textcolor{comment}{//\ \ \ from\ within\ the\ invalidate\_direct\_mem\_ptr\ method,\ directly\ or\ indirectly.}}
+\DoxyCodeLine{00152\ \textcolor{comment}{//}}
+\DoxyCodeLine{00153\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classtlm_1_1tlm__bw__direct__mem__if}{tlm\_bw\_direct\_mem\_if}}\ :\ \textcolor{keyword}{public}\ \textcolor{keyword}{virtual}\ \mbox{\hyperlink{classsc__core_1_1sc__interface}{sc\_core::sc\_interface}}}
+\DoxyCodeLine{00154\ \{}
+\DoxyCodeLine{00155\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00156\ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classtlm_1_1tlm__bw__direct__mem__if_aaa1efc3defd487dc4be30e29dad7c5eb}{invalidate\_direct\_mem\_ptr}}(\mbox{\hyperlink{namespacesc__dt_a0e509e6e05abf63a5c3f08a342e4cd91}{sc\_dt::uint64}}\ \mbox{\hyperlink{class_sysc_add__pv}{start\_range}},}
+\DoxyCodeLine{00157\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacesc__dt_a0e509e6e05abf63a5c3f08a342e4cd91}{sc\_dt::uint64}}\ \mbox{\hyperlink{class_sysc_add__pv}{end\_range}})\ =\ 0;}
+\DoxyCodeLine{00158\ \};}
+\DoxyCodeLine{00159\ }
+\DoxyCodeLine{00161\ \textcolor{comment}{//\ debug\ interface\ for\ memory\ access}}
+\DoxyCodeLine{00163\ \textcolor{comment}{//}}
+\DoxyCodeLine{00164\ \textcolor{comment}{//\ This\ interface\ can\ be\ used\ to\ gain\ access\ to\ a\ targets\ memory\ or\ registers}}
+\DoxyCodeLine{00165\ \textcolor{comment}{//\ in\ a\ non-\/intrusive\ manner.\ No\ side\ effects,\ waits\ or\ event\ notifications}}
+\DoxyCodeLine{00166\ \textcolor{comment}{//\ must\ happen\ in\ the\ course\ of\ the\ method.}}
+\DoxyCodeLine{00167\ \textcolor{comment}{//}}
+\DoxyCodeLine{00168\ \textcolor{comment}{//\ Semantics:}}
+\DoxyCodeLine{00169\ \textcolor{comment}{//\ -\/\ The\ initiator\ calls\ the\ transport\_dbg\ method\ with\ transaction\ 'trans'\ as}}
+\DoxyCodeLine{00170\ \textcolor{comment}{//\ \ \ argument.\ The\ commonly\ used\ parts\ of\ trans\ for\ debug\ are:}}
+\DoxyCodeLine{00171\ \textcolor{comment}{//\ \ \ .\ address:\ The\ start\ address\ that\ it\ wants\ to\ peek\ or\ poke.}}
+\DoxyCodeLine{00172\ \textcolor{comment}{//\ \ \ .\ length:\ \ The\ number\ of\ bytes\ that\ it\ requests\ to\ read\ or\ write.}}
+\DoxyCodeLine{00173\ \textcolor{comment}{//\ \ \ .\ command:\ Indicates\ a\ read\ or\ write\ access.}}
+\DoxyCodeLine{00174\ \textcolor{comment}{//\ \ \ .\ data:\ \ \ \ A\ pointer\ to\ the\ initiator-\/allocated\ data\ buffer,\ which\ must}}
+\DoxyCodeLine{00175\ \textcolor{comment}{//\ \ \ \ \ \ \ \ \ \ \ \ \ \ be\ at\ least\ num\_bytes\ large.\ The\ data\ is\ always\ organized\ in}}
+\DoxyCodeLine{00176\ \textcolor{comment}{//\ \ \ \ \ \ \ \ \ \ \ \ \ \ the\ endianness\ of\ the\ machine.}}
+\DoxyCodeLine{00177\ \textcolor{comment}{//\ \ \ .\ extensions:\ Any\ extension\ that\ could\ affect\ the\ transaction.}}
+\DoxyCodeLine{00178\ \textcolor{comment}{//\ -\/\ The\ interconnect,\ if\ any,\ will\ decode\ the\ address\ and\ forward\ the\ call\ to}}
+\DoxyCodeLine{00179\ \textcolor{comment}{//\ \ \ the\ appropriate\ target.}}
+\DoxyCodeLine{00180\ \textcolor{comment}{//\ -\/\ The\ target\ must\ return\ the\ number\ of\ successfully\ transmitted\ bytes,\ where}}
+\DoxyCodeLine{00181\ \textcolor{comment}{//\ \ \ this\ number\ must\ be\ <=\ num\_bytes.\ Thus,\ a\ target\ can\ safely\ return\ 0\ if\ it}}
+\DoxyCodeLine{00182\ \textcolor{comment}{//\ \ \ does\ not\ support\ debug\ transactions.}}
+\DoxyCodeLine{00183\ \textcolor{comment}{//}}
+\DoxyCodeLine{00184\ \textcolor{keyword}{template}\ <\textcolor{keyword}{typename}\ TRANS\ =\ tlm\_\textcolor{keyword}{generic}\_payload>}
+\DoxyCodeLine{00185\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classtlm_1_1tlm__transport__dbg__if}{tlm\_transport\_dbg\_if}}\ :\ \textcolor{keyword}{public}\ \textcolor{keyword}{virtual}\ \mbox{\hyperlink{classsc__core_1_1sc__interface}{sc\_core::sc\_interface}}}
+\DoxyCodeLine{00186\ \{}
+\DoxyCodeLine{00187\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00188\ \ \ \textcolor{comment}{//\ The\ return\ value\ of\ defines\ the\ number\ of\ bytes\ successfully}}
+\DoxyCodeLine{00189\ \ \ \textcolor{comment}{//\ transferred.}}
+\DoxyCodeLine{00190\ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{classtlm_1_1tlm__transport__dbg__if_a52237c74db249fb83ebe6d34c0edb768}{transport\_dbg}}(\mbox{\hyperlink{class_sysc_add__pv}{TRANS}}\&\ \mbox{\hyperlink{class_sysc_add__pv}{trans}})\ =\ 0;}
+\DoxyCodeLine{00191\ \};}
+\DoxyCodeLine{00192\ }
+\DoxyCodeLine{00194\ \textcolor{comment}{//\ Combined\ interfaces}}
+\DoxyCodeLine{00196\ }
+\DoxyCodeLine{00197\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structtlm_1_1tlm__base__protocol__types}{tlm\_base\_protocol\_types}}}
+\DoxyCodeLine{00198\ \{}
+\DoxyCodeLine{00199\ \ \ \textcolor{keyword}{typedef}\ \mbox{\hyperlink{classtlm_1_1tlm__generic__payload}{tlm\_generic\_payload}}\ \mbox{\hyperlink{structtlm_1_1tlm__base__protocol__types_adfbab7801136feef68a492b3a34952ed}{tlm\_payload\_type}};}
+\DoxyCodeLine{00200\ \ \ \textcolor{keyword}{typedef}\ \mbox{\hyperlink{classtlm_1_1tlm__phase}{tlm\_phase}}\ \mbox{\hyperlink{structtlm_1_1tlm__base__protocol__types_a792bfa6063c683b4a5ad9335df0ff1be}{tlm\_phase\_type}};}
+\DoxyCodeLine{00201\ \};}
+\DoxyCodeLine{00202\ }
+\DoxyCodeLine{00203\ \textcolor{comment}{//\ The\ forward\ interface:}}
+\DoxyCodeLine{00204\ \textcolor{keyword}{template}\ <\textcolor{keyword}{typename}\ TYPES\ =\ tlm\_base\_protocol\_types>}
+\DoxyCodeLine{00205\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classtlm_1_1tlm__fw__transport__if}{tlm\_fw\_transport\_if}}}
+\DoxyCodeLine{00206\ \ \ :\ \textcolor{keyword}{public}\ \textcolor{keyword}{virtual}\ \mbox{\hyperlink{classtlm_1_1tlm__fw__nonblocking__transport__if}{tlm\_fw\_nonblocking\_transport\_if}}<\textcolor{keyword}{typename}\ TYPES::tlm\_payload\_type,}
+\DoxyCodeLine{00207\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{typename}\ TYPES::tlm\_phase\_type>}
+\DoxyCodeLine{00208\ \ \ ,\ \textcolor{keyword}{public}\ \textcolor{keyword}{virtual}\ \mbox{\hyperlink{class_sysc_add__pv}{tlm\_blocking\_transport\_if<typename\ TYPES::tlm\_payload\_type>}}}
+\DoxyCodeLine{00209\ \ \ ,\ \textcolor{keyword}{public}\ \textcolor{keyword}{virtual}\ \mbox{\hyperlink{class_sysc_add__pv}{tlm\_fw\_direct\_mem\_if<typename\ TYPES::tlm\_payload\_type>}}}
+\DoxyCodeLine{00210\ \ \ ,\ \textcolor{keyword}{public}\ \textcolor{keyword}{virtual}\ \mbox{\hyperlink{class_sysc_add__pv}{tlm\_transport\_dbg\_if<typename\ TYPES::tlm\_payload\_type>}}}
+\DoxyCodeLine{00211\ \{\};}
+\DoxyCodeLine{00212\ }
+\DoxyCodeLine{00213\ \textcolor{comment}{//\ The\ backward\ interface:}}
+\DoxyCodeLine{00214\ \textcolor{keyword}{template}\ <\textcolor{keyword}{typename}\ TYPES\ =\ tlm\_base\_protocol\_types>}
+\DoxyCodeLine{00215\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classtlm_1_1tlm__bw__transport__if}{tlm\_bw\_transport\_if}}}
+\DoxyCodeLine{00216\ \ \ :\ \textcolor{keyword}{public}\ \textcolor{keyword}{virtual}\ \mbox{\hyperlink{classtlm_1_1tlm__bw__nonblocking__transport__if}{tlm\_bw\_nonblocking\_transport\_if}}<typename\ TYPES::tlm\_payload\_type,}
+\DoxyCodeLine{00217\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ typename\ TYPES::tlm\_phase\_type>}
+\DoxyCodeLine{00218\ \ \ ,\ \textcolor{keyword}{public}\ \textcolor{keyword}{virtual}\ \mbox{\hyperlink{classtlm_1_1tlm__bw__direct__mem__if}{tlm\_bw\_direct\_mem\_if}}}
+\DoxyCodeLine{00219\ \{\};}
+\DoxyCodeLine{00220\ }
+\DoxyCodeLine{00221\ \}\ \textcolor{comment}{//\ namespace\ tlm}}
+\DoxyCodeLine{00222\ }
+\DoxyCodeLine{00223\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{/*\ \_\_TLM\_FW\_BW\_IFS\_H\_\_\ */}\textcolor{preprocessor}{}}
+
+\end{DoxyCode}

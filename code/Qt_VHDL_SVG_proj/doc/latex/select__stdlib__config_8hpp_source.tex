@@ -1,0 +1,74 @@
+\doxysection{select\+\_\+stdlib\+\_\+config.\+hpp}
+\hypertarget{select__stdlib__config_8hpp_source}{}\label{select__stdlib__config_8hpp_source}\index{C:/Users/BJRODIER/Documents/QT\_REPO/QT\_VHDL\_simulator/code/Ressources/SystemC/include/sysc/packages/boost/config/select\_stdlib\_config.hpp@{C:/Users/BJRODIER/Documents/QT\_REPO/QT\_VHDL\_simulator/code/Ressources/SystemC/include/sysc/packages/boost/config/select\_stdlib\_config.hpp}}
+\mbox{\hyperlink{select__stdlib__config_8hpp}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{comment}{//\ \ Boost\ compiler\ configuration\ selection\ header\ file}}
+\DoxyCodeLine{00002\ }
+\DoxyCodeLine{00003\ \textcolor{comment}{//\ \ (C)\ Copyright\ John\ Maddock\ 2001\ -\/\ 2003.\ }}
+\DoxyCodeLine{00004\ \textcolor{comment}{//\ \ (C)\ Copyright\ Jens\ Maurer\ 2001\ -\/\ 2002.\ }}
+\DoxyCodeLine{00005\ \textcolor{comment}{//\ \ Use,\ modification\ and\ distribution\ are\ subject\ to\ the\ }}
+\DoxyCodeLine{00006\ \textcolor{comment}{//\ \ Boost\ Software\ License,\ Version\ 1.0.\ (See\ accompanying\ file\ }}
+\DoxyCodeLine{00007\ \textcolor{comment}{//\ \ LICENSE\_1\_0.txt\ or\ copy\ at\ http://www.boost.org/LICENSE\_1\_0.txt)}}
+\DoxyCodeLine{00008\ }
+\DoxyCodeLine{00009\ }
+\DoxyCodeLine{00010\ \textcolor{comment}{//\ \ See\ http://www.boost.org\ for\ most\ recent\ version.}}
+\DoxyCodeLine{00011\ }
+\DoxyCodeLine{00012\ \textcolor{comment}{//\ locate\ which\ std\ lib\ we\ are\ using\ and\ define\ SC\_BOOST\_STDLIB\_CONFIG\ as\ needed:}}
+\DoxyCodeLine{00013\ }
+\DoxyCodeLine{00014\ \textcolor{comment}{//\ we\ need\ to\ include\ a\ std\ lib\ header\ here\ in\ order\ to\ detect\ which}}
+\DoxyCodeLine{00015\ \textcolor{comment}{//\ library\ is\ in\ use,\ use\ <utility>\ as\ it's\ about\ the\ smallest}}
+\DoxyCodeLine{00016\ \textcolor{comment}{//\ of\ the\ std\ lib\ headers\ -\/\ do\ not\ rely\ on\ this\ header\ being\ included\ -\/}}
+\DoxyCodeLine{00017\ \textcolor{comment}{//\ users\ can\ short-\/circuit\ this\ header\ if\ they\ know\ whose\ std\ lib}}
+\DoxyCodeLine{00018\ \textcolor{comment}{//\ they\ are\ using.}}
+\DoxyCodeLine{00019\ }
+\DoxyCodeLine{00020\ \textcolor{preprocessor}{\#include\ <utility>}}
+\DoxyCodeLine{00021\ }
+\DoxyCodeLine{00022\ \textcolor{preprocessor}{\#if\ defined(\_\_SGI\_STL\_PORT)\ ||\ defined(\_STLPORT\_VERSION)}}
+\DoxyCodeLine{00023\ \textcolor{comment}{//\ STLPort\ library;\ this\ \_must\_\ come\ first,\ otherwise\ since}}
+\DoxyCodeLine{00024\ \textcolor{comment}{//\ STLport\ typically\ sits\ on\ top\ of\ some\ other\ library,\ we}}
+\DoxyCodeLine{00025\ \textcolor{comment}{//\ can\ end\ up\ detecting\ that\ first\ rather\ than\ STLport:}}
+\DoxyCodeLine{00026\ \textcolor{preprocessor}{\#\ \ define\ SC\_BOOST\_STDLIB\_CONFIG\ "{}sysc/packages/boost/config/stdlib/stlport.hpp"{}}}
+\DoxyCodeLine{00027\ }
+\DoxyCodeLine{00028\ \textcolor{preprocessor}{\#elif\ defined(\_\_LIBCOMO\_\_)}}
+\DoxyCodeLine{00029\ \textcolor{comment}{//\ Comeau\ STL:}}
+\DoxyCodeLine{00030\ \textcolor{preprocessor}{\#define\ SC\_BOOST\_STDLIB\_CONFIG\ "{}sysc/packages/boost/config/stdlib/libcomo.hpp"{}}}
+\DoxyCodeLine{00031\ }
+\DoxyCodeLine{00032\ \textcolor{preprocessor}{\#elif\ defined(\_\_STD\_RWCOMPILER\_H\_\_)\ ||\ defined(\_RWSTD\_VER)}}
+\DoxyCodeLine{00033\ \textcolor{comment}{//\ Rogue\ Wave\ library:}}
+\DoxyCodeLine{00034\ \textcolor{preprocessor}{\#\ \ define\ SC\_BOOST\_STDLIB\_CONFIG\ "{}sysc/packages/boost/config/stdlib/roguewave.hpp"{}}}
+\DoxyCodeLine{00035\ }
+\DoxyCodeLine{00036\ \textcolor{preprocessor}{\#elif\ defined(\_\_GLIBCPP\_\_)\ ||\ defined(\_\_GLIBCXX\_\_)}}
+\DoxyCodeLine{00037\ \textcolor{comment}{//\ GNU\ libstdc++\ 3}}
+\DoxyCodeLine{00038\ \textcolor{preprocessor}{\#\ \ define\ SC\_BOOST\_STDLIB\_CONFIG\ "{}sysc/packages/boost/config/stdlib/libstdcpp3.hpp"{}}}
+\DoxyCodeLine{00039\ }
+\DoxyCodeLine{00040\ \textcolor{preprocessor}{\#elif\ defined(\_\_STL\_CONFIG\_H)}}
+\DoxyCodeLine{00041\ \textcolor{comment}{//\ generic\ SGI\ STL}}
+\DoxyCodeLine{00042\ \textcolor{preprocessor}{\#\ \ define\ SC\_BOOST\_STDLIB\_CONFIG\ "{}sysc/packages/boost/config/stdlib/sgi.hpp"{}}}
+\DoxyCodeLine{00043\ }
+\DoxyCodeLine{00044\ \textcolor{preprocessor}{\#elif\ defined(\_\_MSL\_CPP\_\_)}}
+\DoxyCodeLine{00045\ \textcolor{comment}{//\ MSL\ standard\ lib:}}
+\DoxyCodeLine{00046\ \textcolor{preprocessor}{\#\ \ define\ SC\_BOOST\_STDLIB\_CONFIG\ "{}sysc/packages/boost/config/stdlib/msl.hpp"{}}}
+\DoxyCodeLine{00047\ }
+\DoxyCodeLine{00048\ \textcolor{preprocessor}{\#elif\ defined(\_\_IBMCPP\_\_)}}
+\DoxyCodeLine{00049\ \textcolor{comment}{//\ take\ the\ default\ VACPP\ std\ lib}}
+\DoxyCodeLine{00050\ \textcolor{preprocessor}{\#\ \ define\ SC\_BOOST\_STDLIB\_CONFIG\ "{}sysc/packages/boost/config/stdlib/vacpp.hpp"{}}}
+\DoxyCodeLine{00051\ }
+\DoxyCodeLine{00052\ \textcolor{preprocessor}{\#elif\ defined(MSIPL\_COMPILE\_H)}}
+\DoxyCodeLine{00053\ \textcolor{comment}{//\ Modena\ C++\ standard\ library}}
+\DoxyCodeLine{00054\ \textcolor{preprocessor}{\#\ \ define\ SC\_BOOST\_STDLIB\_CONFIG\ "{}sysc/packages/boost/config/stdlib/modena.hpp"{}}}
+\DoxyCodeLine{00055\ }
+\DoxyCodeLine{00056\ \textcolor{preprocessor}{\#elif\ (defined(\_YVALS)\ \&\&\ !defined(\_\_IBMCPP\_\_))\ ||\ defined(\_CPPLIB\_VER)}}
+\DoxyCodeLine{00057\ \textcolor{comment}{//\ Dinkumware\ Library\ (this\ has\ to\ appear\ after\ any\ possible\ replacement\ libraries):}}
+\DoxyCodeLine{00058\ \textcolor{preprocessor}{\#\ \ define\ SC\_BOOST\_STDLIB\_CONFIG\ "{}sysc/packages/boost/config/stdlib/dinkumware.hpp"{}}}
+\DoxyCodeLine{00059\ }
+\DoxyCodeLine{00060\ \textcolor{preprocessor}{\#elif\ defined\ (SC\_BOOST\_ASSERT\_CONFIG)}}
+\DoxyCodeLine{00061\ \textcolor{comment}{//\ this\ must\ come\ last\ -\/\ generate\ an\ error\ if\ we\ don't}}
+\DoxyCodeLine{00062\ \textcolor{comment}{//\ recognise\ the\ library:}}
+\DoxyCodeLine{00063\ \textcolor{preprocessor}{\#\ \ error\ "{}Unknown\ standard\ library\ -\/\ please\ configure\ and\ report\ the\ results\ to\ boost.org"{}}}
+\DoxyCodeLine{00064\ }
+\DoxyCodeLine{00065\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00066\ }
+\DoxyCodeLine{00067\ }
+\DoxyCodeLine{00068\ }
+
+\end{DoxyCode}

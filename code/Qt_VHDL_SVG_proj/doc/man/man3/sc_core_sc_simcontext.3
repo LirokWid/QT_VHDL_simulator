@@ -1,0 +1,909 @@
+.TH "sc_core::sc_simcontext" 3 "VHDL simulator" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+sc_core::sc_simcontext
+.SH SYNOPSIS
+.br
+.PP
+.PP
+\fR#include <sc_simcontext\&.h>\fP
+.SS "Public Member Functions"
+
+.in +1c
+.ti -1c
+.RI "\fBsc_simcontext\fP ()"
+.br
+.ti -1c
+.RI "\fB~sc_simcontext\fP ()"
+.br
+.ti -1c
+.RI "\fBvoid\fP \fBinitialize\fP (\fBbool\fP=\fBfalse\fP)"
+.br
+.ti -1c
+.RI "\fBvoid\fP \fBcycle\fP (\fBconst\fP \fBsc_time\fP &)"
+.br
+.ti -1c
+.RI "\fBvoid\fP \fBsimulate\fP (\fBconst\fP \fBsc_time\fP &\fBduration\fP)"
+.br
+.ti -1c
+.RI "\fBvoid\fP \fBstop\fP ()"
+.br
+.ti -1c
+.RI "\fBvoid\fP \fBend\fP ()"
+.br
+.ti -1c
+.RI "\fBvoid\fP \fBreset\fP ()"
+.br
+.ti -1c
+.RI "int \fBsim_status\fP () \fBconst\fP"
+.br
+.ti -1c
+.RI "\fBbool\fP \fBelaboration_done\fP () \fBconst\fP"
+.br
+.ti -1c
+.RI "std::vector< \fBsc_thread_handle\fP > & \fBget_active_invokers\fP ()"
+.br
+.ti -1c
+.RI "\fBsc_object_manager\fP * \fBget_object_manager\fP ()"
+.br
+.ti -1c
+.RI "\fBsc_status\fP \fBget_status\fP () \fBconst\fP"
+.br
+.ti -1c
+.RI "\fBsc_object\fP * \fBactive_object\fP ()"
+.br
+.ti -1c
+.RI "\fBvoid\fP \fBhierarchy_push\fP (\fBsc_module\fP *)"
+.br
+.ti -1c
+.RI "\fBsc_module\fP * \fBhierarchy_pop\fP ()"
+.br
+.ti -1c
+.RI "\fBsc_module\fP * \fBhierarchy_curr\fP () \fBconst\fP"
+.br
+.ti -1c
+.RI "\fBsc_object\fP * \fBfirst_object\fP ()"
+.br
+.ti -1c
+.RI "\fBsc_object\fP * \fBnext_object\fP ()"
+.br
+.ti -1c
+.RI "\fBsc_object\fP * \fBfind_object\fP (\fBconst\fP \fBchar\fP *name)"
+.br
+.ti -1c
+.RI "\fBsc_module_registry\fP * \fBget_module_registry\fP ()"
+.br
+.ti -1c
+.RI "\fBsc_port_registry\fP * \fBget_port_registry\fP ()"
+.br
+.ti -1c
+.RI "\fBsc_export_registry\fP * \fBget_export_registry\fP ()"
+.br
+.ti -1c
+.RI "\fBsc_prim_channel_registry\fP * \fBget_prim_channel_registry\fP ()"
+.br
+.ti -1c
+.RI "std::string \fBconstruct_hierarchical_name\fP (\fBconst\fP \fBsc_object\fP *parent, \fBconst\fP std::string &name)"
+.br
+.ti -1c
+.RI "\fBbool\fP \fBregister_hierarchical_name\fP (\fBconst\fP \fBsc_object\fP *parent, \fBconst\fP std::string &name)"
+.br
+.ti -1c
+.RI "\fBbool\fP \fBunregister_hierarchical_name\fP (\fBconst\fP \fBsc_object\fP *parent, \fBconst\fP std::string &name)"
+.br
+.ti -1c
+.RI "\fBbool\fP \fBhierarchical_name_exists\fP (\fBconst\fP \fBsc_object\fP *parent, \fBconst\fP std::string &name)"
+.br
+.ti -1c
+.RI "\fBconst\fP \fBchar\fP * \fBget_hierarchical_name\fP (\fBconst\fP \fBsc_object\fP *parent, \fBconst\fP std::string &name)"
+.br
+.ti -1c
+.RI "\fBconst\fP \fBchar\fP * \fBgen_unique_name\fP (\fBconst\fP \fBchar\fP *\fBbasename_\fP, \fBbool\fP \fBpreserve_first\fP=\fBfalse\fP)"
+.br
+.ti -1c
+.RI "\fBsc_process_handle\fP \fBcreate_cthread_process\fP (\fBconst\fP \fBchar\fP *\fBname_p\fP, \fBbool\fP \fBfree_host\fP, \fBSC_ENTRY_FUNC\fP \fBmethod_p\fP, \fBsc_process_host\fP *\fBhost_p\fP, \fBconst\fP \fBsc_spawn_options\fP *\fBopt_p\fP)"
+.br
+.ti -1c
+.RI "\fBsc_process_handle\fP \fBcreate_method_process\fP (\fBconst\fP \fBchar\fP *\fBname_p\fP, \fBbool\fP \fBfree_host\fP, \fBSC_ENTRY_FUNC\fP \fBmethod_p\fP, \fBsc_process_host\fP *\fBhost_p\fP, \fBconst\fP \fBsc_spawn_options\fP *\fBopt_p\fP)"
+.br
+.ti -1c
+.RI "\fBsc_process_handle\fP \fBcreate_thread_process\fP (\fBconst\fP \fBchar\fP *\fBname_p\fP, \fBbool\fP \fBfree_host\fP, \fBSC_ENTRY_FUNC\fP \fBmethod_p\fP, \fBsc_process_host\fP *\fBhost_p\fP, \fBconst\fP \fBsc_spawn_options\fP *\fBopt_p\fP)"
+.br
+.ti -1c
+.RI "\fBsc_curr_proc_handle\fP \fBget_curr_proc_info\fP ()"
+.br
+.ti -1c
+.RI "\fBsc_process_b\fP * \fBget_current_writer\fP () \fBconst\fP"
+.br
+.ti -1c
+.RI "\fBbool\fP \fBwrite_check\fP () \fBconst\fP"
+.br
+.ti -1c
+.RI "\fBbool\fP \fBwrite_check_conflicts_only\fP () \fBconst\fP"
+.br
+.ti -1c
+.RI "\fBvoid\fP \fBset_curr_proc\fP (\fBsc_process_b\fP *)"
+.br
+.ti -1c
+.RI "\fBvoid\fP \fBreset_curr_proc\fP ()"
+.br
+.ti -1c
+.RI "int \fBnext_proc_id\fP ()"
+.br
+.ti -1c
+.RI "\fBvoid\fP \fBadd_trace_file\fP (\fBsc_trace_file\fP *)"
+.br
+.ti -1c
+.RI "\fBvoid\fP \fBremove_trace_file\fP (\fBsc_trace_file\fP *)"
+.br
+.ti -1c
+.RI "\fBconst\fP \fBsc_time\fP & \fBmax_time\fP () \fBconst\fP"
+.br
+.ti -1c
+.RI "\fBconst\fP \fBsc_time\fP & \fBtime_stamp\fP () \fBconst\fP"
+.br
+.ti -1c
+.RI "\fBsc_dt::uint64\fP \fBchange_stamp\fP () \fBconst\fP"
+.br
+.ti -1c
+.RI "\fBsc_dt::uint64\fP \fBdelta_count\fP () \fBconst\fP"
+.br
+.ti -1c
+.RI "\fBsc_dt::uint64\fP \fBdelta_count_at_current_time\fP () \fBconst\fP"
+.br
+.ti -1c
+.RI "\fBbool\fP \fBevent_occurred\fP (\fBsc_dt::uint64\fP \fBlast_change_count\fP) \fBconst\fP"
+.br
+.ti -1c
+.RI "\fBbool\fP \fBevaluation_phase\fP () \fBconst\fP"
+.br
+.ti -1c
+.RI "\fBbool\fP \fBis_running\fP () \fBconst\fP"
+.br
+.ti -1c
+.RI "\fBbool\fP \fBupdate_phase\fP () \fBconst\fP"
+.br
+.ti -1c
+.RI "\fBbool\fP \fBnotify_phase\fP () \fBconst\fP"
+.br
+.ti -1c
+.RI "\fBbool\fP \fBget_error\fP ()"
+.br
+.ti -1c
+.RI "\fBvoid\fP \fBset_error\fP (\fBsc_report\fP *)"
+.br
+.ti -1c
+.RI "\fBsc_cor_pkg\fP * \fBcor_pkg\fP ()"
+.br
+.ti -1c
+.RI "\fBsc_cor\fP * \fBnext_cor\fP ()"
+.br
+.ti -1c
+.RI "\fBvoid\fP \fBadd_reset_finder\fP (\fBsc_reset_finder\fP *)"
+.br
+.ti -1c
+.RI "\fBconst\fP ::std::vector< \fBsc_object\fP * > & \fBget_child_objects\fP () \fBconst\fP"
+.br
+.ti -1c
+.RI "\fBvoid\fP \fBelaborate\fP ()"
+.br
+.ti -1c
+.RI "\fBvoid\fP \fBprepare_to_simulate\fP ()"
+.br
+.ti -1c
+.RI "\fBvoid\fP \fBinitial_crunch\fP (\fBbool\fP \fBno_crunch\fP)"
+.br
+.ti -1c
+.RI "\fBbool\fP \fBnext_time\fP (\fBsc_time\fP &t) \fBconst\fP"
+.br
+.ti -1c
+.RI "\fBbool\fP \fBpending_activity_at_current_time\fP () \fBconst\fP"
+.br
+.in -1c
+.SS "Private Types"
+
+.in +1c
+.ti -1c
+.RI "enum \fBsc_signal_write_check\fP { \fBSC_SIGNAL_WRITE_CHECK_DISABLE_\fP = 0x0, \fBSC_SIGNAL_WRITE_CHECK_DEFAULT_\fP = 0x1, \fBSC_SIGNAL_WRITE_CHECK_CONFLICT_\fP = 0x2 }"
+.br
+.ti -1c
+.RI "enum \fBexecution_phases\fP { \fBphase_initialize\fP = 0, \fBphase_evaluate\fP, \fBphase_update\fP, \fBphase_notify\fP }"
+.br
+.in -1c
+.SS "Private Member Functions"
+
+.in +1c
+.ti -1c
+.RI "\fBvoid\fP \fBinit\fP ()"
+.br
+.ti -1c
+.RI "\fBvoid\fP \fBclean\fP ()"
+.br
+.ti -1c
+.RI "\fBvoid\fP \fBadd_child_event\fP (\fBsc_event\fP *)"
+.br
+.ti -1c
+.RI "\fBvoid\fP \fBadd_child_object\fP (\fBsc_object\fP *)"
+.br
+.ti -1c
+.RI "\fBvoid\fP \fBremove_child_event\fP (\fBsc_event\fP *)"
+.br
+.ti -1c
+.RI "\fBvoid\fP \fBremove_child_object\fP (\fBsc_object\fP *)"
+.br
+.ti -1c
+.RI "\fBvoid\fP \fBcrunch\fP (\fBbool\fP \fBonce\fP=\fBfalse\fP)"
+.br
+.ti -1c
+.RI "int \fBadd_delta_event\fP (\fBsc_event\fP *)"
+.br
+.ti -1c
+.RI "\fBvoid\fP \fBremove_delta_event\fP (\fBsc_event\fP *)"
+.br
+.ti -1c
+.RI "\fBvoid\fP \fBadd_timed_event\fP (\fBsc_event_timed\fP *)"
+.br
+.ti -1c
+.RI "\fBvoid\fP \fBtrace_cycle\fP (\fBbool\fP \fBdelta_cycle\fP)"
+.br
+.ti -1c
+.RI "\fBvoid\fP \fBexecute_method_next\fP (\fBsc_method_handle\fP)"
+.br
+.ti -1c
+.RI "\fBvoid\fP \fBexecute_thread_next\fP (\fBsc_thread_handle\fP)"
+.br
+.ti -1c
+.RI "\fBsc_method_handle\fP \fBpop_runnable_method\fP ()"
+.br
+.ti -1c
+.RI "\fBsc_thread_handle\fP \fBpop_runnable_thread\fP ()"
+.br
+.ti -1c
+.RI "\fBvoid\fP \fBpreempt_with\fP (\fBsc_method_handle\fP)"
+.br
+.ti -1c
+.RI "\fBvoid\fP \fBpreempt_with\fP (\fBsc_thread_handle\fP)"
+.br
+.ti -1c
+.RI "\fBvoid\fP \fBpush_runnable_method\fP (\fBsc_method_handle\fP)"
+.br
+.ti -1c
+.RI "\fBvoid\fP \fBpush_runnable_thread\fP (\fBsc_thread_handle\fP)"
+.br
+.ti -1c
+.RI "\fBvoid\fP \fBpush_runnable_method_front\fP (\fBsc_method_handle\fP)"
+.br
+.ti -1c
+.RI "\fBvoid\fP \fBpush_runnable_thread_front\fP (\fBsc_thread_handle\fP)"
+.br
+.ti -1c
+.RI "\fBvoid\fP \fBremove_runnable_method\fP (\fBsc_method_handle\fP)"
+.br
+.ti -1c
+.RI "\fBvoid\fP \fBremove_runnable_thread\fP (\fBsc_thread_handle\fP)"
+.br
+.ti -1c
+.RI "\fBvoid\fP \fBrequeue_current_process\fP ()"
+.br
+.ti -1c
+.RI "\fBvoid\fP \fBsuspend_current_process\fP ()"
+.br
+.ti -1c
+.RI "\fBvoid\fP \fBdo_sc_stop_action\fP ()"
+.br
+.ti -1c
+.RI "\fBvoid\fP \fBdo_timestep\fP (\fBconst\fP \fBsc_time\fP &)"
+.br
+.ti -1c
+.RI "\fBvoid\fP \fBmark_to_collect_process\fP (\fBsc_process_b\fP *\fBzombie_p\fP)"
+.br
+.ti -1c
+.RI "\fBvoid\fP \fBdo_collect_processes\fP ()"
+.br
+.ti -1c
+.RI "\fBsc_method_handle\fP \fBremove_process\fP (\fBsc_method_handle\fP)"
+.br
+.ti -1c
+.RI "\fBsc_thread_handle\fP \fBremove_process\fP (\fBsc_thread_handle\fP)"
+.br
+.ti -1c
+.RI "\fBsc_simcontext\fP (\fBconst\fP \fBsc_simcontext\fP &)"
+.br
+.ti -1c
+.RI "\fBsc_simcontext\fP & \fBoperator=\fP (\fBconst\fP \fBsc_simcontext\fP &)"
+.br
+.in -1c
+.SS "Private Attributes"
+
+.in +1c
+.ti -1c
+.RI "\fBsc_object_manager\fP * \fBm_object_manager\fP"
+.br
+.ti -1c
+.RI "\fBsc_module_registry\fP * \fBm_module_registry\fP"
+.br
+.ti -1c
+.RI "\fBsc_port_registry\fP * \fBm_port_registry\fP"
+.br
+.ti -1c
+.RI "\fBsc_export_registry\fP * \fBm_export_registry\fP"
+.br
+.ti -1c
+.RI "\fBsc_prim_channel_registry\fP * \fBm_prim_channel_registry\fP"
+.br
+.ti -1c
+.RI "\fBsc_phase_callback_registry\fP * \fBm_phase_cb_registry\fP"
+.br
+.ti -1c
+.RI "\fBsc_name_gen\fP * \fBm_name_gen\fP"
+.br
+.ti -1c
+.RI "sc_process_table * \fBm_process_table\fP"
+.br
+.ti -1c
+.RI "\fBsc_curr_proc_info\fP \fBm_curr_proc_info\fP"
+.br
+.ti -1c
+.RI "\fBsc_process_b\fP * \fBm_current_writer\fP"
+.br
+.ti -1c
+.RI "\fBsc_signal_write_check\fP \fBm_write_check\fP"
+.br
+.ti -1c
+.RI "int \fBm_next_proc_id\fP"
+.br
+.ti -1c
+.RI "std::vector< \fBsc_thread_handle\fP > \fBm_active_invokers\fP"
+.br
+.ti -1c
+.RI "std::vector< \fBsc_event\fP * > \fBm_child_events\fP"
+.br
+.ti -1c
+.RI "std::vector< \fBsc_object\fP * > \fBm_child_objects\fP"
+.br
+.ti -1c
+.RI "std::vector< \fBsc_event\fP * > \fBm_delta_events\fP"
+.br
+.ti -1c
+.RI "\fBsc_ppq\fP< \fBsc_event_timed\fP * > * \fBm_timed_events\fP"
+.br
+.ti -1c
+.RI "std::vector< \fBsc_trace_file\fP * > \fBm_trace_files\fP"
+.br
+.ti -1c
+.RI "\fBbool\fP \fBm_something_to_trace\fP"
+.br
+.ti -1c
+.RI "\fBsc_runnable\fP * \fBm_runnable\fP"
+.br
+.ti -1c
+.RI "\fBsc_process_list\fP * \fBm_collectable\fP"
+.br
+.ti -1c
+.RI "\fBsc_time_params\fP * \fBm_time_params\fP"
+.br
+.ti -1c
+.RI "\fBsc_time\fP \fBm_curr_time\fP"
+.br
+.ti -1c
+.RI "\fBsc_time\fP \fBm_max_time\fP"
+.br
+.ti -1c
+.RI "\fBsc_invoke_method\fP * \fBm_method_invoker_p\fP"
+.br
+.ti -1c
+.RI "\fBsc_dt::uint64\fP \fBm_change_stamp\fP"
+.br
+.ti -1c
+.RI "\fBsc_dt::uint64\fP \fBm_delta_count\fP"
+.br
+.ti -1c
+.RI "\fBsc_dt::uint64\fP \fBm_initial_delta_count_at_current_time\fP"
+.br
+.ti -1c
+.RI "\fBbool\fP \fBm_forced_stop\fP"
+.br
+.ti -1c
+.RI "\fBbool\fP \fBm_paused\fP"
+.br
+.ti -1c
+.RI "\fBbool\fP \fBm_ready_to_simulate\fP"
+.br
+.ti -1c
+.RI "\fBbool\fP \fBm_elaboration_done\fP"
+.br
+.ti -1c
+.RI "\fBexecution_phases\fP \fBm_execution_phase\fP"
+.br
+.ti -1c
+.RI "\fBsc_report\fP * \fBm_error\fP"
+.br
+.ti -1c
+.RI "\fBbool\fP \fBm_in_simulator_control\fP"
+.br
+.ti -1c
+.RI "\fBbool\fP \fBm_end_of_simulation_called\fP"
+.br
+.ti -1c
+.RI "\fBsc_status\fP \fBm_simulation_status\fP"
+.br
+.ti -1c
+.RI "\fBbool\fP \fBm_start_of_simulation_called\fP"
+.br
+.ti -1c
+.RI "\fBsc_cor_pkg\fP * \fBm_cor_pkg\fP"
+.br
+.ti -1c
+.RI "\fBsc_cor\fP * \fBm_cor\fP"
+.br
+.ti -1c
+.RI "\fBsc_reset_finder\fP * \fBm_reset_finder_q\fP"
+.br
+.in -1c
+.SS "Friends"
+
+.in +1c
+.ti -1c
+.RI "\fBstruct\fP \fBsc_invoke_method\fP"
+.br
+.ti -1c
+.RI "\fBclass\fP \fBsc_event\fP"
+.br
+.ti -1c
+.RI "\fBclass\fP \fBsc_module\fP"
+.br
+.ti -1c
+.RI "\fBclass\fP \fBsc_object\fP"
+.br
+.ti -1c
+.RI "\fBclass\fP \fBsc_time\fP"
+.br
+.ti -1c
+.RI "\fBclass\fP \fBsc_time_tuple\fP"
+.br
+.ti -1c
+.RI "\fBclass\fP \fBsc_clock\fP"
+.br
+.ti -1c
+.RI "\fBclass\fP \fBsc_method_process\fP"
+.br
+.ti -1c
+.RI "\fBclass\fP \fBsc_phase_callback_registry\fP"
+.br
+.ti -1c
+.RI "\fBclass\fP \fBsc_process_b\fP"
+.br
+.ti -1c
+.RI "\fBclass\fP \fBsc_process_handle\fP"
+.br
+.ti -1c
+.RI "\fBclass\fP \fBsc_prim_channel\fP"
+.br
+.ti -1c
+.RI "\fBclass\fP \fBsc_cthread_process\fP"
+.br
+.ti -1c
+.RI "\fBclass\fP \fBsc_thread_process\fP"
+.br
+.ti -1c
+.RI "\fBSC_API\fP \fBsc_dt::uint64\fP \fBsc_delta_count\fP ()"
+.br
+.ti -1c
+.RI "\fBSC_API\fP \fBconst\fP std::vector< \fBsc_event\fP * > & \fBsc_get_top_level_events\fP (\fBconst\fP \fBsc_simcontext\fP *\fBsimc_p\fP)"
+.br
+.ti -1c
+.RI "\fBSC_API\fP \fBconst\fP std::vector< \fBsc_object\fP * > & \fBsc_get_top_level_objects\fP (\fBconst\fP \fBsc_simcontext\fP *\fBsimc_p\fP)"
+.br
+.ti -1c
+.RI "\fBSC_API\fP \fBbool\fP \fBsc_is_running\fP (\fBconst\fP \fBsc_simcontext\fP *\fBsimc_p\fP)"
+.br
+.ti -1c
+.RI "\fBSC_API\fP \fBvoid\fP \fBsc_pause\fP ()"
+.br
+.ti -1c
+.RI "\fBSC_API\fP \fBbool\fP \fBsc_end_of_simulation_invoked\fP ()"
+.br
+.ti -1c
+.RI "\fBSC_API\fP \fBvoid\fP \fBsc_start\fP (\fBconst\fP \fBsc_time\fP &, \fBsc_starvation_policy\fP)"
+.br
+.ti -1c
+.RI "\fBSC_API\fP \fBbool\fP \fBsc_start_of_simulation_invoked\fP ()"
+.br
+.ti -1c
+.RI "\fBvoid\fP \fBsc_thread_cor_fn\fP (\fBvoid\fP *)"
+.br
+.ti -1c
+.RI "\fBSC_API\fP \fBsc_time\fP \fBsc_time_to_pending_activity\fP (\fBconst\fP \fBsc_simcontext\fP *)"
+.br
+.ti -1c
+.RI "\fBSC_API\fP \fBbool\fP \fBsc_pending_activity_at_current_time\fP (\fBconst\fP \fBsc_simcontext\fP *)"
+.br
+.ti -1c
+.RI "\fBSC_API\fP \fBbool\fP \fBsc_pending_activity_at_future_time\fP (\fBconst\fP \fBsc_simcontext\fP *)"
+.br
+.ti -1c
+.RI "\fBSC_API\fP \fBvoid\fP \fBsc_set_time_resolution\fP (\fBdouble\fP, \fBsc_time_unit\fP)"
+.br
+.ti -1c
+.RI "\fBSC_API\fP \fBsc_time\fP \fBsc_get_time_resolution\fP ()"
+.br
+.ti -1c
+.RI "\fBSC_API\fP \fBvoid\fP \fBsc_set_default_time_unit\fP (\fBdouble\fP, \fBsc_time_unit\fP)"
+.br
+.ti -1c
+.RI "\fBSC_API\fP \fBsc_time\fP \fBsc_get_default_time_unit\fP ()"
+.br
+.in -1c
+.SH "Member Enumeration Documentation"
+.PP 
+.SS "\fBenum\fP \fBsc_core::sc_simcontext::execution_phases\fP\fR [private]\fP"
+
+.PP
+\fBEnumerator\fP
+.in +1c
+.TP
+\fB\fIphase_initialize \fP\fP
+.TP
+\fB\fIphase_evaluate \fP\fP
+.TP
+\fB\fIphase_update \fP\fP
+.TP
+\fB\fIphase_notify \fP\fP
+.SS "\fBenum\fP \fBsc_core::sc_simcontext::sc_signal_write_check\fP\fR [private]\fP"
+
+.PP
+\fBEnumerator\fP
+.in +1c
+.TP
+\fB\fISC_SIGNAL_WRITE_CHECK_DISABLE_ \fP\fP
+.TP
+\fB\fISC_SIGNAL_WRITE_CHECK_DEFAULT_ \fP\fP
+.TP
+\fB\fISC_SIGNAL_WRITE_CHECK_CONFLICT_ \fP\fP
+.SH "Constructor & Destructor Documentation"
+.PP 
+.SS "sc_core::sc_simcontext::sc_simcontext ()"
+
+.SS "sc_core::sc_simcontext::~sc_simcontext ()"
+
+.SS "sc_core::sc_simcontext::sc_simcontext (\fBconst\fP \fBsc_simcontext\fP &)\fR [private]\fP"
+
+.SH "Member Function Documentation"
+.PP 
+.SS "\fBsc_object\fP * sc_core::sc_simcontext::active_object ()"
+
+.SS "\fBvoid\fP sc_core::sc_simcontext::add_child_event (\fBsc_event\fP *)\fR [private]\fP"
+
+.SS "\fBvoid\fP sc_core::sc_simcontext::add_child_object (\fBsc_object\fP *)\fR [private]\fP"
+
+.SS "int sc_core::sc_simcontext::add_delta_event (\fBsc_event\fP * e)\fR [inline]\fP, \fR [private]\fP"
+
+.SS "\fBvoid\fP sc_core::sc_simcontext::add_reset_finder (\fBsc_reset_finder\fP *)"
+
+.SS "\fBvoid\fP sc_core::sc_simcontext::add_timed_event (\fBsc_event_timed\fP * et)\fR [inline]\fP, \fR [private]\fP"
+
+.SS "\fBvoid\fP sc_core::sc_simcontext::add_trace_file (\fBsc_trace_file\fP *)"
+
+.SS "\fBsc_dt::uint64\fP sc_core::sc_simcontext::change_stamp () const\fR [inline]\fP"
+
+.SS "\fBvoid\fP sc_core::sc_simcontext::clean ()\fR [private]\fP"
+
+.SS "std::string sc_core::sc_simcontext::construct_hierarchical_name (\fBconst\fP \fBsc_object\fP * parent, \fBconst\fP std::string & name)"
+
+.SS "\fBsc_cor_pkg\fP * sc_core::sc_simcontext::cor_pkg ()\fR [inline]\fP"
+
+.SS "\fBsc_process_handle\fP sc_core::sc_simcontext::create_cthread_process (\fBconst\fP \fBchar\fP * name_p, \fBbool\fP free_host, \fBSC_ENTRY_FUNC\fP method_p, \fBsc_process_host\fP * host_p, \fBconst\fP \fBsc_spawn_options\fP * opt_p)"
+
+.SS "\fBsc_process_handle\fP sc_core::sc_simcontext::create_method_process (\fBconst\fP \fBchar\fP * name_p, \fBbool\fP free_host, \fBSC_ENTRY_FUNC\fP method_p, \fBsc_process_host\fP * host_p, \fBconst\fP \fBsc_spawn_options\fP * opt_p)"
+
+.SS "\fBsc_process_handle\fP sc_core::sc_simcontext::create_thread_process (\fBconst\fP \fBchar\fP * name_p, \fBbool\fP free_host, \fBSC_ENTRY_FUNC\fP method_p, \fBsc_process_host\fP * host_p, \fBconst\fP \fBsc_spawn_options\fP * opt_p)"
+
+.SS "\fBvoid\fP sc_core::sc_simcontext::crunch (\fBbool\fP once = \fR\fBfalse\fP\fP)\fR [private]\fP"
+
+.SS "\fBvoid\fP sc_core::sc_simcontext::cycle (\fBconst\fP \fBsc_time\fP &)"
+
+.SS "\fBsc_dt::uint64\fP sc_core::sc_simcontext::delta_count () const"
+
+.SS "\fBsc_dt::uint64\fP sc_core::sc_simcontext::delta_count_at_current_time () const\fR [inline]\fP"
+
+.SS "\fBvoid\fP sc_core::sc_simcontext::do_collect_processes ()\fR [private]\fP"
+
+.SS "\fBvoid\fP sc_core::sc_simcontext::do_sc_stop_action ()\fR [private]\fP"
+
+.SS "\fBvoid\fP sc_core::sc_simcontext::do_timestep (\fBconst\fP \fBsc_time\fP &)\fR [private]\fP"
+
+.SS "\fBvoid\fP sc_core::sc_simcontext::elaborate ()"
+
+.SS "\fBbool\fP sc_core::sc_simcontext::elaboration_done () const\fR [inline]\fP"
+
+.SS "\fBvoid\fP sc_core::sc_simcontext::end ()"
+
+.SS "\fBbool\fP sc_core::sc_simcontext::evaluation_phase () const\fR [inline]\fP"
+
+.SS "\fBbool\fP sc_core::sc_simcontext::event_occurred (\fBsc_dt::uint64\fP last_change_count) const\fR [inline]\fP"
+
+.SS "\fBvoid\fP sc_core::sc_simcontext::execute_method_next (\fBsc_method_handle\fP method_h)\fR [inline]\fP, \fR [private]\fP"
+
+.SS "\fBvoid\fP sc_core::sc_simcontext::execute_thread_next (\fBsc_thread_handle\fP thread_h)\fR [inline]\fP, \fR [private]\fP"
+
+.SS "\fBsc_object\fP * sc_core::sc_simcontext::find_object (\fBconst\fP \fBchar\fP * name)"
+
+.SS "\fBsc_object\fP * sc_core::sc_simcontext::first_object ()"
+
+.SS "\fBconst\fP \fBchar\fP * sc_core::sc_simcontext::gen_unique_name (\fBconst\fP \fBchar\fP * basename_, \fBbool\fP preserve_first = \fR\fBfalse\fP\fP)"
+
+.SS "std::vector< \fBsc_thread_handle\fP > & sc_core::sc_simcontext::get_active_invokers ()\fR [inline]\fP"
+
+.SS "\fBconst\fP ::std::vector< \fBsc_object\fP * > & sc_core::sc_simcontext::get_child_objects () const"
+
+.SS "\fBsc_curr_proc_handle\fP sc_core::sc_simcontext::get_curr_proc_info ()\fR [inline]\fP"
+
+.SS "\fBsc_process_b\fP * sc_core::sc_simcontext::get_current_writer () const\fR [inline]\fP"
+
+.SS "\fBbool\fP sc_core::sc_simcontext::get_error ()\fR [inline]\fP"
+
+.SS "\fBsc_export_registry\fP * sc_core::sc_simcontext::get_export_registry ()\fR [inline]\fP"
+
+.SS "\fBconst\fP \fBchar\fP * sc_core::sc_simcontext::get_hierarchical_name (\fBconst\fP \fBsc_object\fP * parent, \fBconst\fP std::string & name)"
+
+.SS "\fBsc_module_registry\fP * sc_core::sc_simcontext::get_module_registry ()\fR [inline]\fP"
+
+.SS "\fBsc_object_manager\fP * sc_core::sc_simcontext::get_object_manager ()\fR [inline]\fP"
+
+.SS "\fBsc_port_registry\fP * sc_core::sc_simcontext::get_port_registry ()\fR [inline]\fP"
+
+.SS "\fBsc_prim_channel_registry\fP * sc_core::sc_simcontext::get_prim_channel_registry ()\fR [inline]\fP"
+
+.SS "\fBsc_status\fP sc_core::sc_simcontext::get_status () const\fR [inline]\fP"
+
+.SS "\fBbool\fP sc_core::sc_simcontext::hierarchical_name_exists (\fBconst\fP \fBsc_object\fP * parent, \fBconst\fP std::string & name)"
+
+.SS "\fBsc_module\fP * sc_core::sc_simcontext::hierarchy_curr () const"
+
+.SS "\fBsc_module\fP * sc_core::sc_simcontext::hierarchy_pop ()"
+
+.SS "\fBvoid\fP sc_core::sc_simcontext::hierarchy_push (\fBsc_module\fP *)"
+
+.SS "\fBvoid\fP sc_core::sc_simcontext::init ()\fR [private]\fP"
+
+.SS "\fBvoid\fP sc_core::sc_simcontext::initial_crunch (\fBbool\fP no_crunch)\fR [inline]\fP"
+
+.SS "\fBvoid\fP sc_core::sc_simcontext::initialize (\fBbool\fP = \fR\fBfalse\fP\fP)"
+
+.SS "\fBbool\fP sc_core::sc_simcontext::is_running () const"
+
+.SS "\fBvoid\fP sc_core::sc_simcontext::mark_to_collect_process (\fBsc_process_b\fP * zombie_p)\fR [private]\fP"
+
+.SS "\fBconst\fP \fBsc_time\fP & sc_core::sc_simcontext::max_time () const\fR [inline]\fP"
+
+.SS "\fBsc_cor\fP * sc_core::sc_simcontext::next_cor ()"
+
+.SS "\fBsc_object\fP * sc_core::sc_simcontext::next_object ()"
+
+.SS "int sc_core::sc_simcontext::next_proc_id ()\fR [inline]\fP"
+
+.SS "\fBbool\fP sc_core::sc_simcontext::next_time (\fBsc_time\fP & t) const"
+
+.SS "\fBbool\fP sc_core::sc_simcontext::notify_phase () const\fR [inline]\fP"
+
+.SS "\fBsc_simcontext\fP & sc_core::sc_simcontext::operator= (\fBconst\fP \fBsc_simcontext\fP &)\fR [private]\fP"
+
+.SS "\fBbool\fP sc_core::sc_simcontext::pending_activity_at_current_time () const"
+
+.SS "\fBsc_method_handle\fP sc_core::sc_simcontext::pop_runnable_method ()\fR [inline]\fP, \fR [private]\fP"
+
+.SS "\fBsc_thread_handle\fP sc_core::sc_simcontext::pop_runnable_thread ()\fR [inline]\fP, \fR [private]\fP"
+
+.SS "\fBvoid\fP sc_core::sc_simcontext::preempt_with (\fBsc_method_handle\fP)\fR [private]\fP"
+
+.SS "\fBvoid\fP sc_core::sc_simcontext::preempt_with (\fBsc_thread_handle\fP thread_h)\fR [inline]\fP, \fR [private]\fP"
+
+.SS "\fBvoid\fP sc_core::sc_simcontext::prepare_to_simulate ()"
+
+.SS "\fBvoid\fP sc_core::sc_simcontext::push_runnable_method (\fBsc_method_handle\fP method_h)\fR [inline]\fP, \fR [private]\fP"
+
+.SS "\fBvoid\fP sc_core::sc_simcontext::push_runnable_method_front (\fBsc_method_handle\fP method_h)\fR [inline]\fP, \fR [private]\fP"
+
+.SS "\fBvoid\fP sc_core::sc_simcontext::push_runnable_thread (\fBsc_thread_handle\fP thread_h)\fR [inline]\fP, \fR [private]\fP"
+
+.SS "\fBvoid\fP sc_core::sc_simcontext::push_runnable_thread_front (\fBsc_thread_handle\fP thread_h)\fR [inline]\fP, \fR [private]\fP"
+
+.SS "\fBbool\fP sc_core::sc_simcontext::register_hierarchical_name (\fBconst\fP \fBsc_object\fP * parent, \fBconst\fP std::string & name)"
+
+.SS "\fBvoid\fP sc_core::sc_simcontext::remove_child_event (\fBsc_event\fP *)\fR [private]\fP"
+
+.SS "\fBvoid\fP sc_core::sc_simcontext::remove_child_object (\fBsc_object\fP *)\fR [private]\fP"
+
+.SS "\fBvoid\fP sc_core::sc_simcontext::remove_delta_event (\fBsc_event\fP *)\fR [private]\fP"
+
+.SS "\fBsc_method_handle\fP sc_core::sc_simcontext::remove_process (\fBsc_method_handle\fP)\fR [private]\fP"
+
+.SS "\fBsc_thread_handle\fP sc_core::sc_simcontext::remove_process (\fBsc_thread_handle\fP)\fR [private]\fP"
+
+.SS "\fBvoid\fP sc_core::sc_simcontext::remove_runnable_method (\fBsc_method_handle\fP method_h)\fR [inline]\fP, \fR [private]\fP"
+
+.SS "\fBvoid\fP sc_core::sc_simcontext::remove_runnable_thread (\fBsc_thread_handle\fP thread_h)\fR [inline]\fP, \fR [private]\fP"
+
+.SS "\fBvoid\fP sc_core::sc_simcontext::remove_trace_file (\fBsc_trace_file\fP *)"
+
+.SS "\fBvoid\fP sc_core::sc_simcontext::requeue_current_process ()\fR [private]\fP"
+
+.SS "\fBvoid\fP sc_core::sc_simcontext::reset ()"
+
+.SS "\fBvoid\fP sc_core::sc_simcontext::reset_curr_proc ()\fR [inline]\fP"
+
+.SS "\fBvoid\fP sc_core::sc_simcontext::set_curr_proc (\fBsc_process_b\fP * process_h)\fR [inline]\fP"
+
+.SS "\fBvoid\fP sc_core::sc_simcontext::set_error (\fBsc_report\fP * err)\fR [inline]\fP"
+
+.SS "int sc_core::sc_simcontext::sim_status () const\fR [inline]\fP"
+
+.SS "\fBvoid\fP sc_core::sc_simcontext::simulate (\fBconst\fP \fBsc_time\fP & duration)"
+
+.SS "\fBvoid\fP sc_core::sc_simcontext::stop ()"
+
+.SS "\fBvoid\fP sc_core::sc_simcontext::suspend_current_process ()\fR [private]\fP"
+
+.SS "\fBconst\fP \fBsc_time\fP & sc_core::sc_simcontext::time_stamp () const\fR [inline]\fP"
+
+.SS "\fBvoid\fP sc_core::sc_simcontext::trace_cycle (\fBbool\fP delta_cycle)\fR [private]\fP"
+
+.SS "\fBbool\fP sc_core::sc_simcontext::unregister_hierarchical_name (\fBconst\fP \fBsc_object\fP * parent, \fBconst\fP std::string & name)"
+
+.SS "\fBbool\fP sc_core::sc_simcontext::update_phase () const\fR [inline]\fP"
+
+.SS "\fBbool\fP sc_core::sc_simcontext::write_check () const\fR [inline]\fP"
+
+.SS "\fBbool\fP sc_core::sc_simcontext::write_check_conflicts_only () const\fR [inline]\fP"
+
+.SH "Friends And Related Symbol Documentation"
+.PP 
+.SS "\fBfriend\fP \fBclass\fP \fBsc_clock\fP\fR [friend]\fP"
+
+.SS "\fBfriend\fP \fBclass\fP \fBsc_cthread_process\fP\fR [friend]\fP"
+
+.SS "\fBSC_API\fP \fBsc_dt::uint64\fP sc_delta_count ()\fR [friend]\fP"
+
+.SS "\fBSC_API\fP \fBbool\fP sc_end_of_simulation_invoked ()\fR [friend]\fP"
+
+.SS "\fBfriend\fP \fBclass\fP \fBsc_event\fP\fR [friend]\fP"
+
+.SS "\fBSC_API\fP \fBsc_time\fP sc_get_default_time_unit ()\fR [friend]\fP"
+
+.SS "\fBSC_API\fP \fBsc_time\fP sc_get_time_resolution ()\fR [friend]\fP"
+
+.SS "\fBSC_API\fP \fBconst\fP std::vector< \fBsc_event\fP * > & sc_get_top_level_events (\fBconst\fP \fBsc_simcontext\fP * simc_p = \fR\fBsc_get_curr_simcontext\fP()\fP)\fR [friend]\fP"
+
+.SS "\fBSC_API\fP \fBconst\fP std::vector< \fBsc_object\fP * > & sc_get_top_level_objects (\fBconst\fP \fBsc_simcontext\fP * simc_p = \fR\fBsc_get_curr_simcontext\fP()\fP)\fR [friend]\fP"
+
+.SS "\fBfriend\fP \fBstruct\fP sc_invoke_method\fR [friend]\fP"
+
+.SS "\fBSC_API\fP \fBbool\fP sc_is_running (\fBconst\fP \fBsc_simcontext\fP * simc_p = \fR\fBsc_get_curr_simcontext\fP()\fP)\fR [friend]\fP"
+
+.SS "\fBfriend\fP \fBclass\fP \fBsc_method_process\fP\fR [friend]\fP"
+
+.SS "\fBfriend\fP \fBclass\fP \fBsc_module\fP\fR [friend]\fP"
+
+.SS "\fBfriend\fP \fBclass\fP \fBsc_object\fP\fR [friend]\fP"
+
+.SS "\fBSC_API\fP \fBvoid\fP sc_pause ()\fR [friend]\fP"
+
+.SS "\fBSC_API\fP \fBbool\fP sc_pending_activity_at_current_time (\fBconst\fP \fBsc_simcontext\fP * simc_p = \fR\fBsc_get_curr_simcontext\fP()\fP)\fR [friend]\fP"
+
+.SS "\fBSC_API\fP \fBbool\fP sc_pending_activity_at_future_time (\fBconst\fP \fBsc_simcontext\fP * simc_p = \fR\fBsc_get_curr_simcontext\fP()\fP)\fR [friend]\fP"
+
+.SS "\fBfriend\fP \fBclass\fP \fBsc_phase_callback_registry\fP\fR [friend]\fP"
+
+.SS "\fBfriend\fP \fBclass\fP \fBsc_prim_channel\fP\fR [friend]\fP"
+
+.SS "\fBfriend\fP \fBclass\fP \fBsc_process_b\fP\fR [friend]\fP"
+
+.SS "\fBfriend\fP \fBclass\fP \fBsc_process_handle\fP\fR [friend]\fP"
+
+.SS "\fBSC_API\fP \fBvoid\fP sc_set_default_time_unit (\fBdouble\fP, \fBsc_time_unit\fP)\fR [friend]\fP"
+
+.SS "\fBSC_API\fP \fBvoid\fP sc_set_time_resolution (\fBdouble\fP, \fBsc_time_unit\fP)\fR [friend]\fP"
+
+.SS "\fBSC_API\fP \fBvoid\fP sc_start (\fBconst\fP \fBsc_time\fP &, \fBsc_starvation_policy\fP)\fR [friend]\fP"
+
+.SS "\fBSC_API\fP \fBbool\fP sc_start_of_simulation_invoked ()\fR [friend]\fP"
+
+.SS "\fBvoid\fP sc_thread_cor_fn (\fBvoid\fP *)\fR [friend]\fP"
+
+.SS "\fBfriend\fP \fBclass\fP \fBsc_thread_process\fP\fR [friend]\fP"
+
+.SS "\fBfriend\fP \fBclass\fP \fBsc_time\fP\fR [friend]\fP"
+
+.SS "\fBSC_API\fP \fBsc_time\fP sc_time_to_pending_activity (\fBconst\fP \fBsc_simcontext\fP *)\fR [friend]\fP"
+
+.SS "\fBfriend\fP \fBclass\fP \fBsc_time_tuple\fP\fR [friend]\fP"
+
+.SH "Member Data Documentation"
+.PP 
+.SS "std::vector<\fBsc_thread_handle\fP> sc_core::sc_simcontext::m_active_invokers\fR [private]\fP"
+
+.SS "\fBsc_dt::uint64\fP sc_core::sc_simcontext::m_change_stamp\fR [private]\fP"
+
+.SS "std::vector<\fBsc_event\fP*> sc_core::sc_simcontext::m_child_events\fR [private]\fP"
+
+.SS "std::vector<\fBsc_object\fP*> sc_core::sc_simcontext::m_child_objects\fR [private]\fP"
+
+.SS "\fBsc_process_list\fP* sc_core::sc_simcontext::m_collectable\fR [private]\fP"
+
+.SS "\fBsc_cor\fP* sc_core::sc_simcontext::m_cor\fR [private]\fP"
+
+.SS "\fBsc_cor_pkg\fP* sc_core::sc_simcontext::m_cor_pkg\fR [private]\fP"
+
+.SS "\fBsc_curr_proc_info\fP sc_core::sc_simcontext::m_curr_proc_info\fR [private]\fP"
+
+.SS "\fBsc_time\fP sc_core::sc_simcontext::m_curr_time\fR [private]\fP"
+
+.SS "\fBsc_process_b\fP* sc_core::sc_simcontext::m_current_writer\fR [private]\fP"
+
+.SS "\fBsc_dt::uint64\fP sc_core::sc_simcontext::m_delta_count\fR [private]\fP"
+
+.SS "std::vector<\fBsc_event\fP*> sc_core::sc_simcontext::m_delta_events\fR [private]\fP"
+
+.SS "\fBbool\fP sc_core::sc_simcontext::m_elaboration_done\fR [private]\fP"
+
+.SS "\fBbool\fP sc_core::sc_simcontext::m_end_of_simulation_called\fR [private]\fP"
+
+.SS "\fBsc_report\fP* sc_core::sc_simcontext::m_error\fR [private]\fP"
+
+.SS "\fBexecution_phases\fP sc_core::sc_simcontext::m_execution_phase\fR [private]\fP"
+
+.SS "\fBsc_export_registry\fP* sc_core::sc_simcontext::m_export_registry\fR [private]\fP"
+
+.SS "\fBbool\fP sc_core::sc_simcontext::m_forced_stop\fR [private]\fP"
+
+.SS "\fBbool\fP sc_core::sc_simcontext::m_in_simulator_control\fR [private]\fP"
+
+.SS "\fBsc_dt::uint64\fP sc_core::sc_simcontext::m_initial_delta_count_at_current_time\fR [private]\fP"
+
+.SS "\fBsc_time\fP sc_core::sc_simcontext::m_max_time\fR [mutable]\fP, \fR [private]\fP"
+
+.SS "\fBsc_invoke_method\fP* sc_core::sc_simcontext::m_method_invoker_p\fR [private]\fP"
+
+.SS "\fBsc_module_registry\fP* sc_core::sc_simcontext::m_module_registry\fR [private]\fP"
+
+.SS "\fBsc_name_gen\fP* sc_core::sc_simcontext::m_name_gen\fR [private]\fP"
+
+.SS "int sc_core::sc_simcontext::m_next_proc_id\fR [private]\fP"
+
+.SS "\fBsc_object_manager\fP* sc_core::sc_simcontext::m_object_manager\fR [private]\fP"
+
+.SS "\fBbool\fP sc_core::sc_simcontext::m_paused\fR [private]\fP"
+
+.SS "\fBsc_phase_callback_registry\fP* sc_core::sc_simcontext::m_phase_cb_registry\fR [private]\fP"
+
+.SS "\fBsc_port_registry\fP* sc_core::sc_simcontext::m_port_registry\fR [private]\fP"
+
+.SS "\fBsc_prim_channel_registry\fP* sc_core::sc_simcontext::m_prim_channel_registry\fR [private]\fP"
+
+.SS "sc_process_table* sc_core::sc_simcontext::m_process_table\fR [private]\fP"
+
+.SS "\fBbool\fP sc_core::sc_simcontext::m_ready_to_simulate\fR [private]\fP"
+
+.SS "\fBsc_reset_finder\fP* sc_core::sc_simcontext::m_reset_finder_q\fR [private]\fP"
+
+.SS "\fBsc_runnable\fP* sc_core::sc_simcontext::m_runnable\fR [private]\fP"
+
+.SS "\fBsc_status\fP sc_core::sc_simcontext::m_simulation_status\fR [private]\fP"
+
+.SS "\fBbool\fP sc_core::sc_simcontext::m_something_to_trace\fR [private]\fP"
+
+.SS "\fBbool\fP sc_core::sc_simcontext::m_start_of_simulation_called\fR [private]\fP"
+
+.SS "\fBsc_time_params\fP* sc_core::sc_simcontext::m_time_params\fR [private]\fP"
+
+.SS "\fBsc_ppq\fP<\fBsc_event_timed\fP*>* sc_core::sc_simcontext::m_timed_events\fR [private]\fP"
+
+.SS "std::vector<\fBsc_trace_file\fP*> sc_core::sc_simcontext::m_trace_files\fR [private]\fP"
+
+.SS "\fBsc_signal_write_check\fP sc_core::sc_simcontext::m_write_check\fR [private]\fP"
+
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for VHDL simulator from the source code\&.

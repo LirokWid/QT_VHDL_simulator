@@ -1,0 +1,973 @@
+\doxysection{Svg\+Parser Class Reference}
+\hypertarget{class_svg_parser}{}\label{class_svg_parser}\index{SvgParser@{SvgParser}}
+
+
+The \doxylink{class_svg_parser}{Svg\+Parser} class.  
+
+
+
+
+{\ttfamily \#include $<$Svg\+Parser.\+h$>$}
+
+
+
+Inheritance diagram for Svg\+Parser\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=161pt]{class_svg_parser__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for Svg\+Parser\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_svg_parser__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{struct_svg_parser_1_1s__components__list}{s\+\_\+components\+\_\+list}}
+\begin{DoxyCompactList}\small\item\em Struct for storing components list. \end{DoxyCompactList}\item 
+struct \mbox{\hyperlink{struct_svg_parser_1_1s__element}{s\+\_\+element}}
+\begin{DoxyCompactList}\small\item\em Struct for storing element IO information. \end{DoxyCompactList}\item 
+struct \mbox{\hyperlink{struct_svg_parser_1_1s__element__io}{s\+\_\+element\+\_\+io}}
+\item 
+struct \mbox{\hyperlink{struct_svg_parser_1_1s__elements}{s\+\_\+elements}}
+\item 
+struct \mbox{\hyperlink{struct_svg_parser_1_1s__io}{s\+\_\+io}}
+\begin{DoxyCompactList}\small\item\em Struct for storing input/output information. \end{DoxyCompactList}\item 
+struct \mbox{\hyperlink{struct_svg_parser_1_1s__parse__error}{s\+\_\+parse\+\_\+error}}
+\item 
+struct \mbox{\hyperlink{struct_svg_parser_1_1s__sim___i___o}{s\+\_\+sim\+\_\+\+I\+\_\+O}}
+\begin{DoxyCompactList}\small\item\em Struct for storing I/\+Os information. \end{DoxyCompactList}\item 
+struct \mbox{\hyperlink{struct_svg_parser_1_1s__sim___i___os}{s\+\_\+sim\+\_\+\+I\+\_\+\+Os}}
+\begin{DoxyCompactList}\small\item\em Struct for storing all the I/\+Os. \end{DoxyCompactList}\item 
+struct \mbox{\hyperlink{struct_svg_parser_1_1s__sim__wire}{s\+\_\+sim\+\_\+wire}}
+\begin{DoxyCompactList}\small\item\em Struct for storing wire information. \end{DoxyCompactList}\item 
+struct \mbox{\hyperlink{struct_svg_parser_1_1s__sim__wires}{s\+\_\+sim\+\_\+wires}}
+\begin{DoxyCompactList}\small\item\em Struct for storing all the wires. \end{DoxyCompactList}\item 
+struct \mbox{\hyperlink{struct_svg_parser_1_1s__tree__node}{s\+\_\+tree\+\_\+node}}
+\begin{DoxyCompactList}\small\item\em Struct for representing tree nodes. \end{DoxyCompactList}\item 
+struct \mbox{\hyperlink{struct_svg_parser_1_1s__tree__node__info}{s\+\_\+tree\+\_\+node\+\_\+info}}
+\begin{DoxyCompactList}\small\item\em Struct for storing tree node information. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_svg_parser_a08ab30a33d6e990de56d3f961758688c}{Svg\+Parser}} (\mbox{\hyperlink{class_sysc_add__pv}{QString}} \mbox{\hyperlink{class_svg_parser_afe8534e237ea4ef6823f92d31f3b2d55}{svg\+\_\+file}})
+\begin{DoxyCompactList}\small\item\em \doxylink{class_svg_parser}{Svg\+Parser} constructor. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{class_svg_parser_a4f02bb9c4f12ea90e819239adceec2ef}{\texorpdfstring{$\sim$}{\string~}\+Svg\+Parser}} ()
+\begin{DoxyCompactList}\small\item\em \doxylink{class_svg_parser}{Svg\+Parser} destructor. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{class_sysc_add__pv}{const}} \mbox{\hyperlink{struct_svg_parser_1_1s__components__list}{s\+\_\+components\+\_\+list}} \& \mbox{\hyperlink{class_svg_parser_a5b9fbf0fb9ed24a0a8139be7fb3b213e}{get\+\_\+components\+\_\+list}} () \mbox{\hyperlink{class_sysc_add__pv}{const}}
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Protected Types}
+\begin{DoxyCompactItemize}
+\item 
+enum \mbox{\hyperlink{class_svg_parser_a1a6610dfc34ac22dc62e08f5ec06fd7d}{e\+\_\+types}} \{ \newline
+\mbox{\hyperlink{class_svg_parser_a1a6610dfc34ac22dc62e08f5ec06fd7daabffa67b0d68ce6cfe32bc74f96309bc}{label}}
+, \mbox{\hyperlink{class_svg_parser_a1a6610dfc34ac22dc62e08f5ec06fd7da8e103b8a5b699f7a2bc8e1d910d91c98}{type}}
+, \mbox{\hyperlink{class_svg_parser_a1a6610dfc34ac22dc62e08f5ec06fd7daab4ab6d7cd4a1263361c3b727d547e88}{graphic}}
+, \mbox{\hyperlink{class_svg_parser_a1a6610dfc34ac22dc62e08f5ec06fd7daf4eb04fd3a1a4d6452ec8769713a328c}{input}}
+, \newline
+\mbox{\hyperlink{class_svg_parser_a1a6610dfc34ac22dc62e08f5ec06fd7da9cadd1d7a353abcfd077f71353006635}{output}}
+, \mbox{\hyperlink{class_svg_parser_a1a6610dfc34ac22dc62e08f5ec06fd7daa5f692dc85cfc5506ad51f558e6b1536}{inputs}}
+, \mbox{\hyperlink{class_svg_parser_a1a6610dfc34ac22dc62e08f5ec06fd7da9225761ee04ec312c4ed69a477c4126a}{outputs}}
+, \mbox{\hyperlink{class_svg_parser_a1a6610dfc34ac22dc62e08f5ec06fd7dab7045e7d8b939af168cafa3d3c11428e}{sel}}
+, \newline
+\mbox{\hyperlink{class_svg_parser_a1a6610dfc34ac22dc62e08f5ec06fd7daf1f6e118c2bb50fa283a5faab8a90d1a}{wire}}
+ \}
+\begin{DoxyCompactList}\small\item\em Enumeration for the names of the type attribute. \end{DoxyCompactList}\item 
+enum \mbox{\hyperlink{class_svg_parser_a7e2b269495f661cb35ff248c5e910da0}{e\+\_\+returns}} \{ \mbox{\hyperlink{class_svg_parser_a7e2b269495f661cb35ff248c5e910da0ac4a77e49f4b7d3bd70bdc7b34346fe8e}{SUCCESS}}
+, \mbox{\hyperlink{class_svg_parser_a7e2b269495f661cb35ff248c5e910da0a2fe6acb6dc51ced00d2382501a011530}{FILE\+\_\+\+NOT\+\_\+\+FOUND}}
+, \mbox{\hyperlink{class_svg_parser_a7e2b269495f661cb35ff248c5e910da0ad76e177628f62f29601a3436b1c02213}{INVALID\+\_\+\+ARGUMENT}}
+ \}
+\begin{DoxyCompactList}\small\item\em Enumeration for return codes. \end{DoxyCompactList}\item 
+enum \mbox{\hyperlink{class_svg_parser_a3d9eb960ab5134b22a28c33ed12068c0}{e\+\_\+states}} \{ \mbox{\hyperlink{class_svg_parser_a3d9eb960ab5134b22a28c33ed12068c0aa1db35d65fe2cc7d0b50df099b781b9a}{TO\+\_\+\+BE\+\_\+\+FOUND}}
+ \}
+\item 
+enum \mbox{\hyperlink{class_svg_parser_ac8fe796a6c6559b77c72025f6da4c2cb}{I\+\_\+O}} \{ \mbox{\hyperlink{class_svg_parser_ac8fe796a6c6559b77c72025f6da4c2cba6f8f5af8f2174e5f81c4aea7604fe91c}{INPUT}}
+, \mbox{\hyperlink{class_svg_parser_ac8fe796a6c6559b77c72025f6da4c2cbac0a16a46f7125e7ad2d363fff69eb616}{OUTPUT}}
+, \mbox{\hyperlink{class_svg_parser_ac8fe796a6c6559b77c72025f6da4c2cba1e6b030cce8595264bbae60d912f5e94}{UNDEFINED}}
+ \}
+\item 
+\mbox{\hyperlink{class_sysc_add__pv}{typedef}} \mbox{\hyperlink{class_sysc_add__pv}{enum}} \mbox{\hyperlink{class_svg_parser_ac8fe796a6c6559b77c72025f6da4c2cb}{Svg\+Parser\+::\+I\+\_\+O}} \mbox{\hyperlink{class_svg_parser_a04a249e4a72a11be24788702a2f0c4a2}{e\+\_\+\+IO\+\_\+type}}
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+int \mbox{\hyperlink{class_svg_parser_a3f28b52f36daba1e190bfb9df9edfdb6}{groups\+\_\+number}}
+\begin{DoxyCompactList}\small\item\em Number of groups. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{struct_svg_parser_1_1s__tree__node}{s\+\_\+tree\+\_\+node}} \mbox{\hyperlink{class_svg_parser_aab62b63b54d4ad90f0f02843634878ca}{root}}
+\begin{DoxyCompactList}\small\item\em Root node of the tree. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{struct_svg_parser_1_1s__components__list}{s\+\_\+components\+\_\+list}} \mbox{\hyperlink{class_svg_parser_af7db32b6cbb2304d3aa6b542accb3950}{all\+\_\+components}}
+\begin{DoxyCompactList}\small\item\em All components private variable. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Private Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_sysc_add__pv}{QString}} \mbox{\hyperlink{class_svg_parser_a66123fc99b88502f478def472be32739}{attr}} (\mbox{\hyperlink{class_svg_parser_a1a6610dfc34ac22dc62e08f5ec06fd7d}{e\+\_\+types}} \mbox{\hyperlink{class_svg_parser_a1a6610dfc34ac22dc62e08f5ec06fd7da8e103b8a5b699f7a2bc8e1d910d91c98}{type}})
+\begin{DoxyCompactList}\small\item\em Get the attribute name for a given type. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{class_sysc_add__pv}{QString}} \mbox{\hyperlink{class_svg_parser_ac3863fe5c758038ea3e30024cf8a1c97}{attr\+\_\+name\+\_\+for\+\_\+str}} (\mbox{\hyperlink{class_sysc_add__pv}{QString}} \mbox{\hyperlink{class_svg_parser_a66123fc99b88502f478def472be32739}{attr}})
+\begin{DoxyCompactList}\small\item\em Get the attribute name for a given string. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{class_sysc_add__pv}{void}} \mbox{\hyperlink{class_svg_parser_ac4724a09ac43f9a5c2d4db736d5f862c}{parse\+\_\+one\+\_\+element}} (\mbox{\hyperlink{class_sysc_add__pv}{const}} \mbox{\hyperlink{class_sysc_add__pv}{QDom\+Element}} \mbox{\hyperlink{class_sysc_add__pv}{svg\+\_\+group\+\_\+xml}}, \mbox{\hyperlink{struct_svg_parser_1_1s__elements}{s\+\_\+elements}} \&elements)
+\begin{DoxyCompactList}\small\item\em parse one group element containing a component. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{class_sysc_add__pv}{void}} \mbox{\hyperlink{class_svg_parser_ab7d5e462b694d59a374ca49a4b5c1571}{parse\+\_\+element}} (\mbox{\hyperlink{struct_svg_parser_1_1s__tree__node}{s\+\_\+tree\+\_\+node}} \&\mbox{\hyperlink{class_sysc_add__pv}{node}})
+\begin{DoxyCompactList}\small\item\em Parse an element from an xml group tag\+: It can ether parse a $<$svg$>$ or a $<$g$>$ tag. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{class_sysc_add__pv}{void}} \mbox{\hyperlink{class_svg_parser_a9b6ee98528a19fe578d39617f4e9dbd2}{list\+\_\+attributes}} (\mbox{\hyperlink{class_sysc_add__pv}{const}} \mbox{\hyperlink{class_sysc_add__pv}{QList}}$<$ \mbox{\hyperlink{class_sysc_add__pv}{QDom\+Element}} $>$ \&elements)
+\begin{DoxyCompactList}\small\item\em List attributes. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{class_sysc_add__pv}{void}} \mbox{\hyperlink{class_svg_parser_a3b0673eb56925fc23972c4f7387dec6c}{parse\+\_\+svg}} (\mbox{\hyperlink{class_sysc_add__pv}{QString}} \mbox{\hyperlink{class_svg_parser_afe8534e237ea4ef6823f92d31f3b2d55}{svg\+\_\+file}})
+\begin{DoxyCompactList}\small\item\em Parse SVG file. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{class_sysc_add__pv}{void}} \mbox{\hyperlink{class_svg_parser_adbab513079ca2e59bb51c16c620c13ae}{parse\+\_\+by\+\_\+group}} (\mbox{\hyperlink{class_sysc_add__pv}{const}} \mbox{\hyperlink{class_sysc_add__pv}{QDom\+Node}} \&\mbox{\hyperlink{class_sysc_add__pv}{node}}, \mbox{\hyperlink{struct_svg_parser_1_1s__tree__node}{s\+\_\+tree\+\_\+node}} \&\mbox{\hyperlink{class_sysc_add__pv}{parent\+Node}}, int level)
+\begin{DoxyCompactList}\small\item\em Parse by group. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{class_sysc_add__pv}{void}} \mbox{\hyperlink{class_svg_parser_a17c28dbd0783522c260e8755d096c2f6}{get\+\_\+group\+\_\+header}} (\mbox{\hyperlink{class_sysc_add__pv}{const}} \mbox{\hyperlink{class_sysc_add__pv}{QDom\+Element}} \&element, \mbox{\hyperlink{struct_svg_parser_1_1s__tree__node__info}{s\+\_\+tree\+\_\+node\+\_\+info}} \&\mbox{\hyperlink{class_sysc_add__pv}{info}})
+\begin{DoxyCompactList}\small\item\em Get group header. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{class_sysc_add__pv}{void}} \mbox{\hyperlink{class_svg_parser_aafa73eb9379c74232d7f28e1737c69e5}{generate\+\_\+tree}} (\mbox{\hyperlink{class_sysc_add__pv}{const}} \mbox{\hyperlink{struct_svg_parser_1_1s__tree__node}{s\+\_\+tree\+\_\+node}} \&\mbox{\hyperlink{class_sysc_add__pv}{node}}, \mbox{\hyperlink{class_sysc_add__pv}{const}} \mbox{\hyperlink{class_sysc_add__pv}{QString}} \&\mbox{\hyperlink{class_sysc_add__pv}{prefix}})
+\begin{DoxyCompactList}\small\item\em Generate tree. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{class_sysc_add__pv}{void}} \mbox{\hyperlink{class_svg_parser_a0159a93dd3f520b3674448c9b438711e}{print\+\_\+tree\+\_\+in\+\_\+log}} (\mbox{\hyperlink{class_sysc_add__pv}{QString}} \mbox{\hyperlink{class_svg_parser_a5deab3df2249e89e2fa12ffdb85b64a9}{log\+\_\+buffer}})
+\begin{DoxyCompactList}\small\item\em Print tree in log. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{class_sysc_add__pv}{void}} \mbox{\hyperlink{class_svg_parser_a93bed464f3592b1fdfe04daad7e70b8c}{parse\+\_\+components}} (\mbox{\hyperlink{struct_svg_parser_1_1s__tree__node}{s\+\_\+tree\+\_\+node}} \&\mbox{\hyperlink{class_sysc_add__pv}{node}})
+\begin{DoxyCompactList}\small\item\em Parse links. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{class_sysc_add__pv}{void}} \mbox{\hyperlink{class_svg_parser_ab266e9f5f95a329f74caad9568f38b47}{parse\+\_\+simulation\+\_\+\+IOs}} (\mbox{\hyperlink{class_sysc_add__pv}{const}} \mbox{\hyperlink{class_sysc_add__pv}{QDom\+Element}} \mbox{\hyperlink{class_sysc_add__pv}{svg\+\_\+group\+\_\+xml}}, \mbox{\hyperlink{struct_svg_parser_1_1s__sim___i___os}{s\+\_\+sim\+\_\+\+I\+\_\+\+Os}} \&\mbox{\hyperlink{class_sysc_add__pv}{parsed\+\_\+\+IOs}})
+\begin{DoxyCompactList}\small\item\em Parse simulation IO. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{class_svg_parser_a24b27d188c1c8524d1d09a6144d0ec72}{get\+\_\+list\+\_\+of\+\_\+outputs\+\_\+name\+\_\+and\+\_\+width}} (\mbox{\hyperlink{class_sysc_add__pv}{QString}} \mbox{\hyperlink{class_sysc_add__pv}{outputs\+\_\+string}}, \mbox{\hyperlink{class_sysc_add__pv}{QList}}$<$ \mbox{\hyperlink{struct_svg_parser_1_1s__element__io}{s\+\_\+element\+\_\+io}} $>$ \&\mbox{\hyperlink{class_sysc_add__pv}{outputs\+\_\+list}})
+\begin{DoxyCompactList}\small\item\em Get a list of outputs name, width for sim\+:outputs attributes. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{class_svg_parser_ad0d0c67fed4aa61342785233ba46cd42}{get\+\_\+list\+\_\+of\+\_\+inputs\+\_\+name\+\_\+and\+\_\+width}} (\mbox{\hyperlink{class_sysc_add__pv}{QString}} \mbox{\hyperlink{class_sysc_add__pv}{outputs\+\_\+string}}, \mbox{\hyperlink{class_sysc_add__pv}{QList}}$<$ \mbox{\hyperlink{struct_svg_parser_1_1s__element__io}{s\+\_\+element\+\_\+io}} $>$ \&\mbox{\hyperlink{class_sysc_add__pv}{inputs\+\_\+list}})
+\begin{DoxyCompactList}\small\item\em Get a list of outputs name, width for sim\+:outputs attributes. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{class_sysc_add__pv}{bool}} \mbox{\hyperlink{class_svg_parser_a98c62f923879cb8151abe44f26f3eb7c}{check\+\_\+and\+\_\+get\+\_\+attr}} (\mbox{\hyperlink{class_sysc_add__pv}{const}} \mbox{\hyperlink{class_sysc_add__pv}{QDom\+Element}} \&\mbox{\hyperlink{class_sysc_add__pv}{xml}}, \mbox{\hyperlink{class_sysc_add__pv}{QString}} \&\mbox{\hyperlink{class_sysc_add__pv}{str\+\_\+to\+\_\+get}}, \mbox{\hyperlink{class_sysc_add__pv}{QString}} \mbox{\hyperlink{class_sysc_add__pv}{attr\+\_\+name}})
+\begin{DoxyCompactList}\small\item\em Get attribute value if it exist. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{class_sysc_add__pv}{void}} \mbox{\hyperlink{class_svg_parser_a2bb10ec9f2abe71d336a2de2dad6e5cf}{parse\+\_\+simulation\+\_\+wires}} (\mbox{\hyperlink{class_sysc_add__pv}{const}} \mbox{\hyperlink{class_sysc_add__pv}{QDom\+Element}} \mbox{\hyperlink{class_sysc_add__pv}{svg\+\_\+group\+\_\+xml}}, \mbox{\hyperlink{struct_svg_parser_1_1s__sim__wires}{s\+\_\+sim\+\_\+wires}} \&\mbox{\hyperlink{class_sysc_add__pv}{parsed\+\_\+wires}})
+\begin{DoxyCompactList}\small\item\em Parse simulation wires. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{class_sysc_add__pv}{void}} \mbox{\hyperlink{class_svg_parser_a846d0c97b118d10b364c1659aec12933}{list\+\_\+matching\+\_\+attr\+\_\+with\+\_\+value}} (\mbox{\hyperlink{class_sysc_add__pv}{const}} \mbox{\hyperlink{class_sysc_add__pv}{QDom\+Element}} \mbox{\hyperlink{class_sysc_add__pv}{elem\+\_\+to\+\_\+look\+\_\+into}}, \mbox{\hyperlink{class_sysc_add__pv}{const}} \mbox{\hyperlink{class_sysc_add__pv}{QString}} \mbox{\hyperlink{class_sysc_add__pv}{attr\+\_\+name}}, \mbox{\hyperlink{class_sysc_add__pv}{const}} \mbox{\hyperlink{class_sysc_add__pv}{QString}} \mbox{\hyperlink{class_sysc_add__pv}{attr\+\_\+value}}, \mbox{\hyperlink{class_sysc_add__pv}{QList}}$<$ \mbox{\hyperlink{class_sysc_add__pv}{QDom\+Element}} $>$ \&\mbox{\hyperlink{class_sysc_add__pv}{found\+\_\+elements}})
+\begin{DoxyCompactList}\small\item\em Find elements with attribute. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{class_sysc_add__pv}{void}} \mbox{\hyperlink{class_svg_parser_a66a21f2e45fbfd5d2612b009a665f8eb}{add\+\_\+error\+\_\+message}} (\mbox{\hyperlink{struct_svg_parser_1_1s__parse__error}{s\+\_\+parse\+\_\+error}} \&\mbox{\hyperlink{sc__kernel__ids_8h_ab1af4ffd287f872c714356cb48070734}{error}}, \mbox{\hyperlink{class_sysc_add__pv}{const}} \mbox{\hyperlink{class_sysc_add__pv}{QString}} \&\mbox{\hyperlink{class_sysc_add__pv}{error\+Message}})
+\begin{DoxyCompactList}\small\item\em Attach an error message to a structure. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{class_svg_parser_a808061ffac177f6774ba3e682d206ea5}{list\+\_\+matching\+\_\+attr}} (\mbox{\hyperlink{class_sysc_add__pv}{const}} \mbox{\hyperlink{class_sysc_add__pv}{QDom\+Element}} \mbox{\hyperlink{class_sysc_add__pv}{elem\+\_\+to\+\_\+look\+\_\+into}}, \mbox{\hyperlink{class_sysc_add__pv}{const}} \mbox{\hyperlink{class_sysc_add__pv}{QString}} \mbox{\hyperlink{class_sysc_add__pv}{attr\+\_\+name}}, \mbox{\hyperlink{class_sysc_add__pv}{QList}}$<$ \mbox{\hyperlink{class_sysc_add__pv}{QDom\+Element}} $>$ \&\mbox{\hyperlink{class_sysc_add__pv}{found\+\_\+elements}})
+\begin{DoxyCompactList}\small\item\em list\+\_\+matching\+\_\+attr \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_sysc_add__pv}{QString}} \mbox{\hyperlink{class_svg_parser_afe8534e237ea4ef6823f92d31f3b2d55}{svg\+\_\+file}}
+\begin{DoxyCompactList}\small\item\em File name of the SVG file. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{class_sysc_add__pv}{const}} \mbox{\hyperlink{class_sysc_add__pv}{QString}} \mbox{\hyperlink{class_svg_parser_a744a14989c558dc574520c0175e82ad1}{custom\+\_\+attribute}} = \mbox{\hyperlink{_svg_parser_8h_a07030bb2b1f7d18dbad893dcced78228}{CUSTOM\+\_\+\+ATTRIBUTE}}
+\begin{DoxyCompactList}\small\item\em Custom attribute prefix. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{class_sysc_add__pv}{QString}} \mbox{\hyperlink{class_svg_parser_a5deab3df2249e89e2fa12ffdb85b64a9}{log\+\_\+buffer}}
+\begin{DoxyCompactList}\small\item\em Buffer for log messages. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+The \doxylink{class_svg_parser}{Svg\+Parser} class. 
+
+This class parses an SVG file and extracts electrical links from Qt\+\_\+attr attributes of SVG elements. 
+
+\doxysubsection{Member Typedef Documentation}
+\Hypertarget{class_svg_parser_a04a249e4a72a11be24788702a2f0c4a2}\label{class_svg_parser_a04a249e4a72a11be24788702a2f0c4a2} 
+\index{SvgParser@{SvgParser}!e\_IO\_type@{e\_IO\_type}}
+\index{e\_IO\_type@{e\_IO\_type}!SvgParser@{SvgParser}}
+\doxysubsubsection{\texorpdfstring{e\_IO\_type}{e\_IO\_type}}
+{\footnotesize\ttfamily \mbox{\hyperlink{class_sysc_add__pv}{typedef}} \mbox{\hyperlink{class_sysc_add__pv}{enum}} \mbox{\hyperlink{class_svg_parser_ac8fe796a6c6559b77c72025f6da4c2cb}{Svg\+Parser\+::\+I\+\_\+O}} \mbox{\hyperlink{class_svg_parser_a04a249e4a72a11be24788702a2f0c4a2}{Svg\+Parser\+::e\+\_\+\+IO\+\_\+type}}\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+\doxysubsection{Member Enumeration Documentation}
+\Hypertarget{class_svg_parser_a7e2b269495f661cb35ff248c5e910da0}\label{class_svg_parser_a7e2b269495f661cb35ff248c5e910da0} 
+\index{SvgParser@{SvgParser}!e\_returns@{e\_returns}}
+\index{e\_returns@{e\_returns}!SvgParser@{SvgParser}}
+\doxysubsubsection{\texorpdfstring{e\_returns}{e\_returns}}
+{\footnotesize\ttfamily \mbox{\hyperlink{class_sysc_add__pv}{enum}} \mbox{\hyperlink{class_svg_parser_a7e2b269495f661cb35ff248c5e910da0}{Svg\+Parser\+::e\+\_\+returns}}\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+Enumeration for return codes. 
+
+\begin{DoxyEnumFields}{Enumerator}
+\raisebox{\heightof{T}}[0pt][0pt]{\index{SUCCESS@{SUCCESS}!SvgParser@{SvgParser}}\index{SvgParser@{SvgParser}!SUCCESS@{SUCCESS}}}\Hypertarget{class_svg_parser_a7e2b269495f661cb35ff248c5e910da0ac4a77e49f4b7d3bd70bdc7b34346fe8e}\label{class_svg_parser_a7e2b269495f661cb35ff248c5e910da0ac4a77e49f4b7d3bd70bdc7b34346fe8e} 
+SUCCESS&Success return code. \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{FILE\_NOT\_FOUND@{FILE\_NOT\_FOUND}!SvgParser@{SvgParser}}\index{SvgParser@{SvgParser}!FILE\_NOT\_FOUND@{FILE\_NOT\_FOUND}}}\Hypertarget{class_svg_parser_a7e2b269495f661cb35ff248c5e910da0a2fe6acb6dc51ced00d2382501a011530}\label{class_svg_parser_a7e2b269495f661cb35ff248c5e910da0a2fe6acb6dc51ced00d2382501a011530} 
+FILE\+\_\+\+NOT\+\_\+\+FOUND&File not found return code. \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{INVALID\_ARGUMENT@{INVALID\_ARGUMENT}!SvgParser@{SvgParser}}\index{SvgParser@{SvgParser}!INVALID\_ARGUMENT@{INVALID\_ARGUMENT}}}\Hypertarget{class_svg_parser_a7e2b269495f661cb35ff248c5e910da0ad76e177628f62f29601a3436b1c02213}\label{class_svg_parser_a7e2b269495f661cb35ff248c5e910da0ad76e177628f62f29601a3436b1c02213} 
+INVALID\+\_\+\+ARGUMENT&Invalid argument return code. \\
+\hline
+
+\end{DoxyEnumFields}
+\Hypertarget{class_svg_parser_a3d9eb960ab5134b22a28c33ed12068c0}\label{class_svg_parser_a3d9eb960ab5134b22a28c33ed12068c0} 
+\index{SvgParser@{SvgParser}!e\_states@{e\_states}}
+\index{e\_states@{e\_states}!SvgParser@{SvgParser}}
+\doxysubsubsection{\texorpdfstring{e\_states}{e\_states}}
+{\footnotesize\ttfamily \mbox{\hyperlink{class_sysc_add__pv}{enum}} \mbox{\hyperlink{class_svg_parser_a3d9eb960ab5134b22a28c33ed12068c0}{Svg\+Parser\+::e\+\_\+states}}\hspace{0.3cm}{\ttfamily [protected]}}
+
+\begin{DoxyEnumFields}{Enumerator}
+\raisebox{\heightof{T}}[0pt][0pt]{\index{TO\_BE\_FOUND@{TO\_BE\_FOUND}!SvgParser@{SvgParser}}\index{SvgParser@{SvgParser}!TO\_BE\_FOUND@{TO\_BE\_FOUND}}}\Hypertarget{class_svg_parser_a3d9eb960ab5134b22a28c33ed12068c0aa1db35d65fe2cc7d0b50df099b781b9a}\label{class_svg_parser_a3d9eb960ab5134b22a28c33ed12068c0aa1db35d65fe2cc7d0b50df099b781b9a} 
+TO\+\_\+\+BE\+\_\+\+FOUND&To be found state. \\
+\hline
+
+\end{DoxyEnumFields}
+\Hypertarget{class_svg_parser_a1a6610dfc34ac22dc62e08f5ec06fd7d}\label{class_svg_parser_a1a6610dfc34ac22dc62e08f5ec06fd7d} 
+\index{SvgParser@{SvgParser}!e\_types@{e\_types}}
+\index{e\_types@{e\_types}!SvgParser@{SvgParser}}
+\doxysubsubsection{\texorpdfstring{e\_types}{e\_types}}
+{\footnotesize\ttfamily \mbox{\hyperlink{class_sysc_add__pv}{enum}} \mbox{\hyperlink{class_svg_parser_a1a6610dfc34ac22dc62e08f5ec06fd7d}{Svg\+Parser\+::e\+\_\+types}}\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+Enumeration for the names of the type attribute. 
+
+\begin{DoxyEnumFields}{Enumerator}
+\raisebox{\heightof{T}}[0pt][0pt]{\index{label@{label}!SvgParser@{SvgParser}}\index{SvgParser@{SvgParser}!label@{label}}}\Hypertarget{class_svg_parser_a1a6610dfc34ac22dc62e08f5ec06fd7daabffa67b0d68ce6cfe32bc74f96309bc}\label{class_svg_parser_a1a6610dfc34ac22dc62e08f5ec06fd7daabffa67b0d68ce6cfe32bc74f96309bc} 
+label&Label attribute type. \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{type@{type}!SvgParser@{SvgParser}}\index{SvgParser@{SvgParser}!type@{type}}}\Hypertarget{class_svg_parser_a1a6610dfc34ac22dc62e08f5ec06fd7da8e103b8a5b699f7a2bc8e1d910d91c98}\label{class_svg_parser_a1a6610dfc34ac22dc62e08f5ec06fd7da8e103b8a5b699f7a2bc8e1d910d91c98} 
+type&Type attribute type. \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{graphic@{graphic}!SvgParser@{SvgParser}}\index{SvgParser@{SvgParser}!graphic@{graphic}}}\Hypertarget{class_svg_parser_a1a6610dfc34ac22dc62e08f5ec06fd7daab4ab6d7cd4a1263361c3b727d547e88}\label{class_svg_parser_a1a6610dfc34ac22dc62e08f5ec06fd7daab4ab6d7cd4a1263361c3b727d547e88} 
+graphic&Graphic attribute type. \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{input@{input}!SvgParser@{SvgParser}}\index{SvgParser@{SvgParser}!input@{input}}}\Hypertarget{class_svg_parser_a1a6610dfc34ac22dc62e08f5ec06fd7daf4eb04fd3a1a4d6452ec8769713a328c}\label{class_svg_parser_a1a6610dfc34ac22dc62e08f5ec06fd7daf4eb04fd3a1a4d6452ec8769713a328c} 
+input&Input attribute type. \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{output@{output}!SvgParser@{SvgParser}}\index{SvgParser@{SvgParser}!output@{output}}}\Hypertarget{class_svg_parser_a1a6610dfc34ac22dc62e08f5ec06fd7da9cadd1d7a353abcfd077f71353006635}\label{class_svg_parser_a1a6610dfc34ac22dc62e08f5ec06fd7da9cadd1d7a353abcfd077f71353006635} 
+output&Output attribute type. \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{inputs@{inputs}!SvgParser@{SvgParser}}\index{SvgParser@{SvgParser}!inputs@{inputs}}}\Hypertarget{class_svg_parser_a1a6610dfc34ac22dc62e08f5ec06fd7daa5f692dc85cfc5506ad51f558e6b1536}\label{class_svg_parser_a1a6610dfc34ac22dc62e08f5ec06fd7daa5f692dc85cfc5506ad51f558e6b1536} 
+inputs&Inputs attribute type. \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{outputs@{outputs}!SvgParser@{SvgParser}}\index{SvgParser@{SvgParser}!outputs@{outputs}}}\Hypertarget{class_svg_parser_a1a6610dfc34ac22dc62e08f5ec06fd7da9225761ee04ec312c4ed69a477c4126a}\label{class_svg_parser_a1a6610dfc34ac22dc62e08f5ec06fd7da9225761ee04ec312c4ed69a477c4126a} 
+outputs&Outputs attribute type. \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{sel@{sel}!SvgParser@{SvgParser}}\index{SvgParser@{SvgParser}!sel@{sel}}}\Hypertarget{class_svg_parser_a1a6610dfc34ac22dc62e08f5ec06fd7dab7045e7d8b939af168cafa3d3c11428e}\label{class_svg_parser_a1a6610dfc34ac22dc62e08f5ec06fd7dab7045e7d8b939af168cafa3d3c11428e} 
+sel&Selection attribute type. \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{wire@{wire}!SvgParser@{SvgParser}}\index{SvgParser@{SvgParser}!wire@{wire}}}\Hypertarget{class_svg_parser_a1a6610dfc34ac22dc62e08f5ec06fd7daf1f6e118c2bb50fa283a5faab8a90d1a}\label{class_svg_parser_a1a6610dfc34ac22dc62e08f5ec06fd7daf1f6e118c2bb50fa283a5faab8a90d1a} 
+wire&Wire attribute type. \\
+\hline
+
+\end{DoxyEnumFields}
+\Hypertarget{class_svg_parser_ac8fe796a6c6559b77c72025f6da4c2cb}\label{class_svg_parser_ac8fe796a6c6559b77c72025f6da4c2cb} 
+\index{SvgParser@{SvgParser}!I\_O@{I\_O}}
+\index{I\_O@{I\_O}!SvgParser@{SvgParser}}
+\doxysubsubsection{\texorpdfstring{I\_O}{I\_O}}
+{\footnotesize\ttfamily \mbox{\hyperlink{class_sysc_add__pv}{enum}} \mbox{\hyperlink{class_svg_parser_ac8fe796a6c6559b77c72025f6da4c2cb}{Svg\+Parser\+::\+I\+\_\+O}}\hspace{0.3cm}{\ttfamily [protected]}}
+
+\begin{DoxyEnumFields}{Enumerator}
+\raisebox{\heightof{T}}[0pt][0pt]{\index{INPUT@{INPUT}!SvgParser@{SvgParser}}\index{SvgParser@{SvgParser}!INPUT@{INPUT}}}\Hypertarget{class_svg_parser_ac8fe796a6c6559b77c72025f6da4c2cba6f8f5af8f2174e5f81c4aea7604fe91c}\label{class_svg_parser_ac8fe796a6c6559b77c72025f6da4c2cba6f8f5af8f2174e5f81c4aea7604fe91c} 
+INPUT&Input type. \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{OUTPUT@{OUTPUT}!SvgParser@{SvgParser}}\index{SvgParser@{SvgParser}!OUTPUT@{OUTPUT}}}\Hypertarget{class_svg_parser_ac8fe796a6c6559b77c72025f6da4c2cbac0a16a46f7125e7ad2d363fff69eb616}\label{class_svg_parser_ac8fe796a6c6559b77c72025f6da4c2cbac0a16a46f7125e7ad2d363fff69eb616} 
+OUTPUT&Output type. \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{UNDEFINED@{UNDEFINED}!SvgParser@{SvgParser}}\index{SvgParser@{SvgParser}!UNDEFINED@{UNDEFINED}}}\Hypertarget{class_svg_parser_ac8fe796a6c6559b77c72025f6da4c2cba1e6b030cce8595264bbae60d912f5e94}\label{class_svg_parser_ac8fe796a6c6559b77c72025f6da4c2cba1e6b030cce8595264bbae60d912f5e94} 
+UNDEFINED&Undefined type. \\
+\hline
+
+\end{DoxyEnumFields}
+
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{class_svg_parser_a08ab30a33d6e990de56d3f961758688c}\label{class_svg_parser_a08ab30a33d6e990de56d3f961758688c} 
+\index{SvgParser@{SvgParser}!SvgParser@{SvgParser}}
+\index{SvgParser@{SvgParser}!SvgParser@{SvgParser}}
+\doxysubsubsection{\texorpdfstring{SvgParser()}{SvgParser()}}
+{\footnotesize\ttfamily Svg\+Parser\+::\+Svg\+Parser (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_sysc_add__pv}{QString}}}]{svg\+\_\+file }\end{DoxyParamCaption})}
+
+
+
+\doxylink{class_svg_parser}{Svg\+Parser} constructor. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em svg\+\_\+file} & The file path of the SVG file to parse. \\
+\hline
+\end{DoxyParams}
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_svg_parser_a08ab30a33d6e990de56d3f961758688c_cgraph}
+\end{center}
+\end{figure}
+\Hypertarget{class_svg_parser_a4f02bb9c4f12ea90e819239adceec2ef}\label{class_svg_parser_a4f02bb9c4f12ea90e819239adceec2ef} 
+\index{SvgParser@{SvgParser}!````~SvgParser@{\texorpdfstring{$\sim$}{\string~}SvgParser}}
+\index{````~SvgParser@{\texorpdfstring{$\sim$}{\string~}SvgParser}!SvgParser@{SvgParser}}
+\doxysubsubsection{\texorpdfstring{\texorpdfstring{$\sim$}{\string~}SvgParser()}{\string~SvgParser()}}
+{\footnotesize\ttfamily Svg\+Parser\+::\texorpdfstring{$\sim$}{\string~}\+Svg\+Parser (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+\doxylink{class_svg_parser}{Svg\+Parser} destructor. 
+
+
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{class_svg_parser_a66a21f2e45fbfd5d2612b009a665f8eb}\label{class_svg_parser_a66a21f2e45fbfd5d2612b009a665f8eb} 
+\index{SvgParser@{SvgParser}!add\_error\_message@{add\_error\_message}}
+\index{add\_error\_message@{add\_error\_message}!SvgParser@{SvgParser}}
+\doxysubsubsection{\texorpdfstring{add\_error\_message()}{add\_error\_message()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{class_sysc_add__pv}{void}} Svg\+Parser\+::add\+\_\+error\+\_\+message (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_svg_parser_1_1s__parse__error}{s\+\_\+parse\+\_\+error}} \&}]{error,  }\item[{\mbox{\hyperlink{class_sysc_add__pv}{const}} \mbox{\hyperlink{class_sysc_add__pv}{QString}} \&}]{error\+Message }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Attach an error message to a structure. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em sim\+\_\+\+IO} & The simulation IO structure. \\
+\hline
+{\em error\+Message} & The error message. \\
+\hline
+\end{DoxyParams}
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_svg_parser_a66a21f2e45fbfd5d2612b009a665f8eb_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{class_svg_parser_a66123fc99b88502f478def472be32739}\label{class_svg_parser_a66123fc99b88502f478def472be32739} 
+\index{SvgParser@{SvgParser}!attr@{attr}}
+\index{attr@{attr}!SvgParser@{SvgParser}}
+\doxysubsubsection{\texorpdfstring{attr()}{attr()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{class_sysc_add__pv}{QString}} Svg\+Parser\+::attr (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_svg_parser_a1a6610dfc34ac22dc62e08f5ec06fd7d}{e\+\_\+types}}}]{type }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Get the attribute name for a given type. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em type} & The type of the attribute. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The attribute name. 
+\end{DoxyReturn}
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_svg_parser_a66123fc99b88502f478def472be32739_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{class_svg_parser_ac3863fe5c758038ea3e30024cf8a1c97}\label{class_svg_parser_ac3863fe5c758038ea3e30024cf8a1c97} 
+\index{SvgParser@{SvgParser}!attr\_name\_for\_str@{attr\_name\_for\_str}}
+\index{attr\_name\_for\_str@{attr\_name\_for\_str}!SvgParser@{SvgParser}}
+\doxysubsubsection{\texorpdfstring{attr\_name\_for\_str()}{attr\_name\_for\_str()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{class_sysc_add__pv}{QString}} Svg\+Parser\+::attr\+\_\+name\+\_\+for\+\_\+str (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_sysc_add__pv}{QString}}}]{attr }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Get the attribute name for a given string. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em attr} & The attribute string. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The attribute name. 
+\end{DoxyReturn}
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=306pt]{class_svg_parser_ac3863fe5c758038ea3e30024cf8a1c97_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_svg_parser_ac3863fe5c758038ea3e30024cf8a1c97_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{class_svg_parser_a98c62f923879cb8151abe44f26f3eb7c}\label{class_svg_parser_a98c62f923879cb8151abe44f26f3eb7c} 
+\index{SvgParser@{SvgParser}!check\_and\_get\_attr@{check\_and\_get\_attr}}
+\index{check\_and\_get\_attr@{check\_and\_get\_attr}!SvgParser@{SvgParser}}
+\doxysubsubsection{\texorpdfstring{check\_and\_get\_attr()}{check\_and\_get\_attr()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{class_sysc_add__pv}{bool}} Svg\+Parser\+::check\+\_\+and\+\_\+get\+\_\+attr (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_sysc_add__pv}{const}} \mbox{\hyperlink{class_sysc_add__pv}{QDom\+Element}} \&}]{xml,  }\item[{\mbox{\hyperlink{class_sysc_add__pv}{QString}} \&}]{str\+\_\+to\+\_\+get,  }\item[{\mbox{\hyperlink{class_sysc_add__pv}{QString}}}]{attr\+\_\+name }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Get attribute value if it exist. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em xml} & The XML element to check \\
+\hline
+{\em str\+\_\+to\+\_\+get} & The string to get fron the attribute \\
+\hline
+{\em attr\+\_\+name} & The attribute name \\
+\hline
+\end{DoxyParams}
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_svg_parser_a98c62f923879cb8151abe44f26f3eb7c_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{class_svg_parser_aafa73eb9379c74232d7f28e1737c69e5}\label{class_svg_parser_aafa73eb9379c74232d7f28e1737c69e5} 
+\index{SvgParser@{SvgParser}!generate\_tree@{generate\_tree}}
+\index{generate\_tree@{generate\_tree}!SvgParser@{SvgParser}}
+\doxysubsubsection{\texorpdfstring{generate\_tree()}{generate\_tree()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{class_sysc_add__pv}{void}} Svg\+Parser\+::generate\+\_\+tree (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_sysc_add__pv}{const}} \mbox{\hyperlink{struct_svg_parser_1_1s__tree__node}{s\+\_\+tree\+\_\+node}} \&}]{node,  }\item[{\mbox{\hyperlink{class_sysc_add__pv}{const}} \mbox{\hyperlink{class_sysc_add__pv}{QString}} \&}]{prefix }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Generate tree. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em node} & The tree node. \\
+\hline
+{\em prefix} & The prefix for formatting. \\
+\hline
+\end{DoxyParams}
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_svg_parser_aafa73eb9379c74232d7f28e1737c69e5_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_svg_parser_aafa73eb9379c74232d7f28e1737c69e5_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{class_svg_parser_a5b9fbf0fb9ed24a0a8139be7fb3b213e}\label{class_svg_parser_a5b9fbf0fb9ed24a0a8139be7fb3b213e} 
+\index{SvgParser@{SvgParser}!get\_components\_list@{get\_components\_list}}
+\index{get\_components\_list@{get\_components\_list}!SvgParser@{SvgParser}}
+\doxysubsubsection{\texorpdfstring{get\_components\_list()}{get\_components\_list()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{class_sysc_add__pv}{const}} \mbox{\hyperlink{struct_svg_parser_1_1s__components__list}{s\+\_\+components\+\_\+list}} \& Svg\+Parser\+::get\+\_\+components\+\_\+list (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+\Hypertarget{class_svg_parser_a17c28dbd0783522c260e8755d096c2f6}\label{class_svg_parser_a17c28dbd0783522c260e8755d096c2f6} 
+\index{SvgParser@{SvgParser}!get\_group\_header@{get\_group\_header}}
+\index{get\_group\_header@{get\_group\_header}!SvgParser@{SvgParser}}
+\doxysubsubsection{\texorpdfstring{get\_group\_header()}{get\_group\_header()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{class_sysc_add__pv}{void}} Svg\+Parser\+::get\+\_\+group\+\_\+header (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_sysc_add__pv}{const}} \mbox{\hyperlink{class_sysc_add__pv}{QDom\+Element}} \&}]{element,  }\item[{\mbox{\hyperlink{struct_svg_parser_1_1s__tree__node__info}{s\+\_\+tree\+\_\+node\+\_\+info}} \&}]{info }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Get group header. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em element} & The XML element. \\
+\hline
+{\em info} & The node information. \\
+\hline
+\end{DoxyParams}
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_svg_parser_a17c28dbd0783522c260e8755d096c2f6_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_svg_parser_a17c28dbd0783522c260e8755d096c2f6_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{class_svg_parser_ad0d0c67fed4aa61342785233ba46cd42}\label{class_svg_parser_ad0d0c67fed4aa61342785233ba46cd42} 
+\index{SvgParser@{SvgParser}!get\_list\_of\_inputs\_name\_and\_width@{get\_list\_of\_inputs\_name\_and\_width}}
+\index{get\_list\_of\_inputs\_name\_and\_width@{get\_list\_of\_inputs\_name\_and\_width}!SvgParser@{SvgParser}}
+\doxysubsubsection{\texorpdfstring{get\_list\_of\_inputs\_name\_and\_width()}{get\_list\_of\_inputs\_name\_and\_width()}}
+{\footnotesize\ttfamily int Svg\+Parser\+::get\+\_\+list\+\_\+of\+\_\+inputs\+\_\+name\+\_\+and\+\_\+width (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_sysc_add__pv}{QString}}}]{outputs\+\_\+string,  }\item[{\mbox{\hyperlink{class_sysc_add__pv}{QList}}$<$ \mbox{\hyperlink{struct_svg_parser_1_1s__element__io}{s\+\_\+element\+\_\+io}} $>$ \&}]{inputs\+\_\+list }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Get a list of outputs name, width for sim\+:outputs attributes. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em outputs\+\_\+string} & \\
+\hline
+{\em out\+\_\+struct} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Number of outputs found if success, -\/1 if error 
+\end{DoxyReturn}
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_svg_parser_ad0d0c67fed4aa61342785233ba46cd42_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_svg_parser_ad0d0c67fed4aa61342785233ba46cd42_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{class_svg_parser_a24b27d188c1c8524d1d09a6144d0ec72}\label{class_svg_parser_a24b27d188c1c8524d1d09a6144d0ec72} 
+\index{SvgParser@{SvgParser}!get\_list\_of\_outputs\_name\_and\_width@{get\_list\_of\_outputs\_name\_and\_width}}
+\index{get\_list\_of\_outputs\_name\_and\_width@{get\_list\_of\_outputs\_name\_and\_width}!SvgParser@{SvgParser}}
+\doxysubsubsection{\texorpdfstring{get\_list\_of\_outputs\_name\_and\_width()}{get\_list\_of\_outputs\_name\_and\_width()}}
+{\footnotesize\ttfamily int Svg\+Parser\+::get\+\_\+list\+\_\+of\+\_\+outputs\+\_\+name\+\_\+and\+\_\+width (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_sysc_add__pv}{QString}}}]{outputs\+\_\+string,  }\item[{\mbox{\hyperlink{class_sysc_add__pv}{QList}}$<$ \mbox{\hyperlink{struct_svg_parser_1_1s__element__io}{s\+\_\+element\+\_\+io}} $>$ \&}]{outputs\+\_\+list }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Get a list of outputs name, width for sim\+:outputs attributes. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em outputs\+\_\+string} & \\
+\hline
+{\em out\+\_\+struct} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Number of outputs found if success, -\/1 if error 
+\end{DoxyReturn}
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_svg_parser_a24b27d188c1c8524d1d09a6144d0ec72_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_svg_parser_a24b27d188c1c8524d1d09a6144d0ec72_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{class_svg_parser_a9b6ee98528a19fe578d39617f4e9dbd2}\label{class_svg_parser_a9b6ee98528a19fe578d39617f4e9dbd2} 
+\index{SvgParser@{SvgParser}!list\_attributes@{list\_attributes}}
+\index{list\_attributes@{list\_attributes}!SvgParser@{SvgParser}}
+\doxysubsubsection{\texorpdfstring{list\_attributes()}{list\_attributes()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{class_sysc_add__pv}{void}} Svg\+Parser\+::list\+\_\+attributes (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_sysc_add__pv}{const}} \mbox{\hyperlink{class_sysc_add__pv}{QList}}$<$ \mbox{\hyperlink{class_sysc_add__pv}{QDom\+Element}} $>$ \&}]{elements }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+List attributes. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em elements} & The vector of elements. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{class_svg_parser_a808061ffac177f6774ba3e682d206ea5}\label{class_svg_parser_a808061ffac177f6774ba3e682d206ea5} 
+\index{SvgParser@{SvgParser}!list\_matching\_attr@{list\_matching\_attr}}
+\index{list\_matching\_attr@{list\_matching\_attr}!SvgParser@{SvgParser}}
+\doxysubsubsection{\texorpdfstring{list\_matching\_attr()}{list\_matching\_attr()}}
+{\footnotesize\ttfamily int Svg\+Parser\+::list\+\_\+matching\+\_\+attr (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_sysc_add__pv}{const}} \mbox{\hyperlink{class_sysc_add__pv}{QDom\+Element}}}]{elem\+\_\+to\+\_\+look\+\_\+into,  }\item[{\mbox{\hyperlink{class_sysc_add__pv}{const}} \mbox{\hyperlink{class_sysc_add__pv}{QString}}}]{attr\+\_\+name,  }\item[{\mbox{\hyperlink{class_sysc_add__pv}{QList}}$<$ \mbox{\hyperlink{class_sysc_add__pv}{QDom\+Element}} $>$ \&}]{found\+\_\+elements }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+list\+\_\+matching\+\_\+attr 
+
+
+\begin{DoxyParams}{Parameters}
+{\em elem\+\_\+to\+\_\+look\+\_\+into} & \\
+\hline
+{\em attr\+\_\+name} & \\
+\hline
+{\em found\+\_\+elements} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+number of elements found 
+\end{DoxyReturn}
+\Hypertarget{class_svg_parser_a846d0c97b118d10b364c1659aec12933}\label{class_svg_parser_a846d0c97b118d10b364c1659aec12933} 
+\index{SvgParser@{SvgParser}!list\_matching\_attr\_with\_value@{list\_matching\_attr\_with\_value}}
+\index{list\_matching\_attr\_with\_value@{list\_matching\_attr\_with\_value}!SvgParser@{SvgParser}}
+\doxysubsubsection{\texorpdfstring{list\_matching\_attr\_with\_value()}{list\_matching\_attr\_with\_value()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{class_sysc_add__pv}{void}} Svg\+Parser\+::list\+\_\+matching\+\_\+attr\+\_\+with\+\_\+value (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_sysc_add__pv}{const}} \mbox{\hyperlink{class_sysc_add__pv}{QDom\+Element}}}]{elem\+\_\+to\+\_\+look\+\_\+into,  }\item[{\mbox{\hyperlink{class_sysc_add__pv}{const}} \mbox{\hyperlink{class_sysc_add__pv}{QString}}}]{attr\+\_\+name,  }\item[{\mbox{\hyperlink{class_sysc_add__pv}{const}} \mbox{\hyperlink{class_sysc_add__pv}{QString}}}]{attr\+\_\+value,  }\item[{\mbox{\hyperlink{class_sysc_add__pv}{QList}}$<$ \mbox{\hyperlink{class_sysc_add__pv}{QDom\+Element}} $>$ \&}]{found\+\_\+elements }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Find elements with attribute. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em elem\+\_\+to\+\_\+look\+\_\+into} & The element to search into. \\
+\hline
+{\em attr\+\_\+name} & The attribute name. \\
+\hline
+{\em attr\+\_\+value} & The attribute value. \\
+\hline
+{\em found\+\_\+elements} & The list of found elements. \\
+\hline
+\end{DoxyParams}
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_svg_parser_a846d0c97b118d10b364c1659aec12933_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{class_svg_parser_adbab513079ca2e59bb51c16c620c13ae}\label{class_svg_parser_adbab513079ca2e59bb51c16c620c13ae} 
+\index{SvgParser@{SvgParser}!parse\_by\_group@{parse\_by\_group}}
+\index{parse\_by\_group@{parse\_by\_group}!SvgParser@{SvgParser}}
+\doxysubsubsection{\texorpdfstring{parse\_by\_group()}{parse\_by\_group()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{class_sysc_add__pv}{void}} Svg\+Parser\+::parse\+\_\+by\+\_\+group (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_sysc_add__pv}{const}} \mbox{\hyperlink{class_sysc_add__pv}{QDom\+Node}} \&}]{node,  }\item[{\mbox{\hyperlink{struct_svg_parser_1_1s__tree__node}{s\+\_\+tree\+\_\+node}} \&}]{parent\+Node,  }\item[{int}]{level }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Parse by group. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em node} & The XML node to parse. \\
+\hline
+{\em parent\+Node} & The parent node. \\
+\hline
+{\em level} & The level of the node in the tree. \\
+\hline
+\end{DoxyParams}
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_svg_parser_adbab513079ca2e59bb51c16c620c13ae_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_svg_parser_adbab513079ca2e59bb51c16c620c13ae_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{class_svg_parser_a93bed464f3592b1fdfe04daad7e70b8c}\label{class_svg_parser_a93bed464f3592b1fdfe04daad7e70b8c} 
+\index{SvgParser@{SvgParser}!parse\_components@{parse\_components}}
+\index{parse\_components@{parse\_components}!SvgParser@{SvgParser}}
+\doxysubsubsection{\texorpdfstring{parse\_components()}{parse\_components()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{class_sysc_add__pv}{void}} Svg\+Parser\+::parse\+\_\+components (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_svg_parser_1_1s__tree__node}{s\+\_\+tree\+\_\+node}} \&}]{node }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Parse links. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em node} & The tree node. \\
+\hline
+\end{DoxyParams}
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_svg_parser_a93bed464f3592b1fdfe04daad7e70b8c_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_svg_parser_a93bed464f3592b1fdfe04daad7e70b8c_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{class_svg_parser_ab7d5e462b694d59a374ca49a4b5c1571}\label{class_svg_parser_ab7d5e462b694d59a374ca49a4b5c1571} 
+\index{SvgParser@{SvgParser}!parse\_element@{parse\_element}}
+\index{parse\_element@{parse\_element}!SvgParser@{SvgParser}}
+\doxysubsubsection{\texorpdfstring{parse\_element()}{parse\_element()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{class_sysc_add__pv}{void}} Svg\+Parser\+::parse\+\_\+element (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{struct_svg_parser_1_1s__tree__node}{s\+\_\+tree\+\_\+node}} \&}]{node }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Parse an element from an xml group tag\+: It can ether parse a $<$svg$>$ or a $<$g$>$ tag. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em node} & The tree node to parse. \\
+\hline
+\end{DoxyParams}
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_svg_parser_ab7d5e462b694d59a374ca49a4b5c1571_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_svg_parser_ab7d5e462b694d59a374ca49a4b5c1571_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{class_svg_parser_ac4724a09ac43f9a5c2d4db736d5f862c}\label{class_svg_parser_ac4724a09ac43f9a5c2d4db736d5f862c} 
+\index{SvgParser@{SvgParser}!parse\_one\_element@{parse\_one\_element}}
+\index{parse\_one\_element@{parse\_one\_element}!SvgParser@{SvgParser}}
+\doxysubsubsection{\texorpdfstring{parse\_one\_element()}{parse\_one\_element()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{class_sysc_add__pv}{void}} Svg\+Parser\+::parse\+\_\+one\+\_\+element (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_sysc_add__pv}{const}} \mbox{\hyperlink{class_sysc_add__pv}{QDom\+Element}}}]{svg\+\_\+group\+\_\+xml,  }\item[{\mbox{\hyperlink{struct_svg_parser_1_1s__elements}{s\+\_\+elements}} \&}]{elements }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+parse one group element containing a component. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em svg\+\_\+group\+\_\+xml} & \\
+\hline
+{\em element\+\_\+io} & \\
+\hline
+\end{DoxyParams}
+On an element, we should have the following attributes\+:
+\begin{DoxyItemize}
+\item device\+: the type of the component
+\item label \+: the schematic name of the component
+\item inputs\+: the list of inputs -\/\texorpdfstring{$>$}{>} d0\+:1\+:IN0,d1\+:1\+:IN1 (d0\+:1\+:IN0 means input 0, width 1, connected to IN0)
+\item outputs\+: the list of outputs -\/\texorpdfstring{$>$}{>} d0\+:1,d1\+:1
+\end{DoxyItemize}Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_svg_parser_ac4724a09ac43f9a5c2d4db736d5f862c_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_svg_parser_ac4724a09ac43f9a5c2d4db736d5f862c_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{class_svg_parser_ab266e9f5f95a329f74caad9568f38b47}\label{class_svg_parser_ab266e9f5f95a329f74caad9568f38b47} 
+\index{SvgParser@{SvgParser}!parse\_simulation\_IOs@{parse\_simulation\_IOs}}
+\index{parse\_simulation\_IOs@{parse\_simulation\_IOs}!SvgParser@{SvgParser}}
+\doxysubsubsection{\texorpdfstring{parse\_simulation\_IOs()}{parse\_simulation\_IOs()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{class_sysc_add__pv}{void}} Svg\+Parser\+::parse\+\_\+simulation\+\_\+\+IOs (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_sysc_add__pv}{const}} \mbox{\hyperlink{class_sysc_add__pv}{QDom\+Element}}}]{svg\+\_\+group\+\_\+xml,  }\item[{\mbox{\hyperlink{struct_svg_parser_1_1s__sim___i___os}{s\+\_\+sim\+\_\+\+I\+\_\+\+Os}} \&}]{parsed\+\_\+\+IOs }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Parse simulation IO. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em svg\+\_\+group\+\_\+xml} & The SVG group XML. \\
+\hline
+{\em parsed\+\_\+\+IOs} & The parsed IOs. \\
+\hline
+\end{DoxyParams}
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_svg_parser_ab266e9f5f95a329f74caad9568f38b47_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_svg_parser_ab266e9f5f95a329f74caad9568f38b47_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{class_svg_parser_a2bb10ec9f2abe71d336a2de2dad6e5cf}\label{class_svg_parser_a2bb10ec9f2abe71d336a2de2dad6e5cf} 
+\index{SvgParser@{SvgParser}!parse\_simulation\_wires@{parse\_simulation\_wires}}
+\index{parse\_simulation\_wires@{parse\_simulation\_wires}!SvgParser@{SvgParser}}
+\doxysubsubsection{\texorpdfstring{parse\_simulation\_wires()}{parse\_simulation\_wires()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{class_sysc_add__pv}{void}} Svg\+Parser\+::parse\+\_\+simulation\+\_\+wires (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_sysc_add__pv}{const}} \mbox{\hyperlink{class_sysc_add__pv}{QDom\+Element}}}]{svg\+\_\+group\+\_\+xml,  }\item[{\mbox{\hyperlink{struct_svg_parser_1_1s__sim__wires}{s\+\_\+sim\+\_\+wires}} \&}]{parsed\+\_\+wires }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Parse simulation wires. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em svg\+\_\+group\+\_\+xml} & The SVG group XML. \\
+\hline
+{\em parsed\+\_\+wires} & The parsed wires. \\
+\hline
+\end{DoxyParams}
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_svg_parser_a2bb10ec9f2abe71d336a2de2dad6e5cf_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_svg_parser_a2bb10ec9f2abe71d336a2de2dad6e5cf_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{class_svg_parser_a3b0673eb56925fc23972c4f7387dec6c}\label{class_svg_parser_a3b0673eb56925fc23972c4f7387dec6c} 
+\index{SvgParser@{SvgParser}!parse\_svg@{parse\_svg}}
+\index{parse\_svg@{parse\_svg}!SvgParser@{SvgParser}}
+\doxysubsubsection{\texorpdfstring{parse\_svg()}{parse\_svg()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{class_sysc_add__pv}{void}} Svg\+Parser\+::parse\+\_\+svg (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_sysc_add__pv}{QString}}}]{svg\+\_\+file }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Parse SVG file. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em svg\+\_\+file} & The SVG file to parse. \\
+\hline
+\end{DoxyParams}
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_svg_parser_a3b0673eb56925fc23972c4f7387dec6c_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=336pt]{class_svg_parser_a3b0673eb56925fc23972c4f7387dec6c_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{class_svg_parser_a0159a93dd3f520b3674448c9b438711e}\label{class_svg_parser_a0159a93dd3f520b3674448c9b438711e} 
+\index{SvgParser@{SvgParser}!print\_tree\_in\_log@{print\_tree\_in\_log}}
+\index{print\_tree\_in\_log@{print\_tree\_in\_log}!SvgParser@{SvgParser}}
+\doxysubsubsection{\texorpdfstring{print\_tree\_in\_log()}{print\_tree\_in\_log()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{class_sysc_add__pv}{void}} Svg\+Parser\+::print\+\_\+tree\+\_\+in\+\_\+log (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_sysc_add__pv}{QString}}}]{log\+\_\+buffer }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Print tree in log. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em log\+\_\+buffer} & The log buffer. \\
+\hline
+\end{DoxyParams}
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_svg_parser_a0159a93dd3f520b3674448c9b438711e_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=333pt]{class_svg_parser_a0159a93dd3f520b3674448c9b438711e_icgraph}
+\end{center}
+\end{figure}
+
+
+\doxysubsection{Member Data Documentation}
+\Hypertarget{class_svg_parser_af7db32b6cbb2304d3aa6b542accb3950}\label{class_svg_parser_af7db32b6cbb2304d3aa6b542accb3950} 
+\index{SvgParser@{SvgParser}!all\_components@{all\_components}}
+\index{all\_components@{all\_components}!SvgParser@{SvgParser}}
+\doxysubsubsection{\texorpdfstring{all\_components}{all\_components}}
+{\footnotesize\ttfamily \mbox{\hyperlink{struct_svg_parser_1_1s__components__list}{s\+\_\+components\+\_\+list}} Svg\+Parser\+::all\+\_\+components\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+All components private variable. 
+
+\Hypertarget{class_svg_parser_a744a14989c558dc574520c0175e82ad1}\label{class_svg_parser_a744a14989c558dc574520c0175e82ad1} 
+\index{SvgParser@{SvgParser}!custom\_attribute@{custom\_attribute}}
+\index{custom\_attribute@{custom\_attribute}!SvgParser@{SvgParser}}
+\doxysubsubsection{\texorpdfstring{custom\_attribute}{custom\_attribute}}
+{\footnotesize\ttfamily \mbox{\hyperlink{class_sysc_add__pv}{const}} \mbox{\hyperlink{class_sysc_add__pv}{QString}} Svg\+Parser\+::custom\+\_\+attribute = \mbox{\hyperlink{_svg_parser_8h_a07030bb2b1f7d18dbad893dcced78228}{CUSTOM\+\_\+\+ATTRIBUTE}}\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Custom attribute prefix. 
+
+\Hypertarget{class_svg_parser_a3f28b52f36daba1e190bfb9df9edfdb6}\label{class_svg_parser_a3f28b52f36daba1e190bfb9df9edfdb6} 
+\index{SvgParser@{SvgParser}!groups\_number@{groups\_number}}
+\index{groups\_number@{groups\_number}!SvgParser@{SvgParser}}
+\doxysubsubsection{\texorpdfstring{groups\_number}{groups\_number}}
+{\footnotesize\ttfamily int Svg\+Parser\+::groups\+\_\+number\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+Number of groups. 
+
+\Hypertarget{class_svg_parser_a5deab3df2249e89e2fa12ffdb85b64a9}\label{class_svg_parser_a5deab3df2249e89e2fa12ffdb85b64a9} 
+\index{SvgParser@{SvgParser}!log\_buffer@{log\_buffer}}
+\index{log\_buffer@{log\_buffer}!SvgParser@{SvgParser}}
+\doxysubsubsection{\texorpdfstring{log\_buffer}{log\_buffer}}
+{\footnotesize\ttfamily \mbox{\hyperlink{class_sysc_add__pv}{QString}} Svg\+Parser\+::log\+\_\+buffer\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Buffer for log messages. 
+
+\Hypertarget{class_svg_parser_aab62b63b54d4ad90f0f02843634878ca}\label{class_svg_parser_aab62b63b54d4ad90f0f02843634878ca} 
+\index{SvgParser@{SvgParser}!root@{root}}
+\index{root@{root}!SvgParser@{SvgParser}}
+\doxysubsubsection{\texorpdfstring{root}{root}}
+{\footnotesize\ttfamily \mbox{\hyperlink{struct_svg_parser_1_1s__tree__node}{s\+\_\+tree\+\_\+node}} Svg\+Parser\+::root\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+Root node of the tree. 
+
+\Hypertarget{class_svg_parser_afe8534e237ea4ef6823f92d31f3b2d55}\label{class_svg_parser_afe8534e237ea4ef6823f92d31f3b2d55} 
+\index{SvgParser@{SvgParser}!svg\_file@{svg\_file}}
+\index{svg\_file@{svg\_file}!SvgParser@{SvgParser}}
+\doxysubsubsection{\texorpdfstring{svg\_file}{svg\_file}}
+{\footnotesize\ttfamily \mbox{\hyperlink{class_sysc_add__pv}{QString}} Svg\+Parser\+::svg\+\_\+file\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+File name of the SVG file. 
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+parser\+\_\+linker/\mbox{\hyperlink{_svg_parser_8h}{Svg\+Parser.\+h}}\item 
+parser\+\_\+linker/\mbox{\hyperlink{_svg_parser_8cpp}{Svg\+Parser.\+cpp}}\end{DoxyCompactItemize}

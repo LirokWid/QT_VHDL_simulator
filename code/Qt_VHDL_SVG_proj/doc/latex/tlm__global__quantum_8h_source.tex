@@ -1,0 +1,88 @@
+\doxysection{tlm\+\_\+global\+\_\+quantum.\+h}
+\hypertarget{tlm__global__quantum_8h_source}{}\label{tlm__global__quantum_8h_source}\index{C:/Users/BJRODIER/Documents/QT\_REPO/QT\_VHDL\_simulator/code/Ressources/SystemC/include/tlm\_core/tlm\_2/tlm\_quantum/tlm\_global\_quantum.h@{C:/Users/BJRODIER/Documents/QT\_REPO/QT\_VHDL\_simulator/code/Ressources/SystemC/include/tlm\_core/tlm\_2/tlm\_quantum/tlm\_global\_quantum.h}}
+\mbox{\hyperlink{tlm__global__quantum_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{comment}{/*****************************************************************************}}
+\DoxyCodeLine{00002\ \textcolor{comment}{}}
+\DoxyCodeLine{00003\ \textcolor{comment}{\ \ Licensed\ to\ Accellera\ Systems\ Initiative\ Inc.\ (Accellera)\ under\ one\ or}}
+\DoxyCodeLine{00004\ \textcolor{comment}{\ \ more\ contributor\ license\ agreements.\ \ See\ the\ NOTICE\ file\ distributed}}
+\DoxyCodeLine{00005\ \textcolor{comment}{\ \ with\ this\ work\ for\ additional\ information\ regarding\ copyright\ ownership.}}
+\DoxyCodeLine{00006\ \textcolor{comment}{\ \ Accellera\ licenses\ this\ file\ to\ you\ under\ the\ Apache\ License,\ Version\ 2.0}}
+\DoxyCodeLine{00007\ \textcolor{comment}{\ \ (the\ "{}License"{});\ you\ may\ not\ use\ this\ file\ except\ in\ compliance\ with\ the}}
+\DoxyCodeLine{00008\ \textcolor{comment}{\ \ License.\ \ You\ may\ obtain\ a\ copy\ of\ the\ License\ at}}
+\DoxyCodeLine{00009\ \textcolor{comment}{}}
+\DoxyCodeLine{00010\ \textcolor{comment}{\ \ \ \ http://www.apache.org/licenses/LICENSE-\/2.0}}
+\DoxyCodeLine{00011\ \textcolor{comment}{}}
+\DoxyCodeLine{00012\ \textcolor{comment}{\ \ Unless\ required\ by\ applicable\ law\ or\ agreed\ to\ in\ writing,\ software}}
+\DoxyCodeLine{00013\ \textcolor{comment}{\ \ distributed\ under\ the\ License\ is\ distributed\ on\ an\ "{}AS\ IS"{}\ BASIS,}}
+\DoxyCodeLine{00014\ \textcolor{comment}{\ \ WITHOUT\ WARRANTIES\ OR\ CONDITIONS\ OF\ ANY\ KIND,\ either\ express\ or}}
+\DoxyCodeLine{00015\ \textcolor{comment}{\ \ implied.\ \ See\ the\ License\ for\ the\ specific\ language\ governing}}
+\DoxyCodeLine{00016\ \textcolor{comment}{\ \ permissions\ and\ limitations\ under\ the\ License.}}
+\DoxyCodeLine{00017\ \textcolor{comment}{}}
+\DoxyCodeLine{00018\ \textcolor{comment}{\ *****************************************************************************/}}
+\DoxyCodeLine{00019\ }
+\DoxyCodeLine{00020\ \textcolor{preprocessor}{\#ifndef\ TLM\_CORE\_TLM2\_TLM\_GLOBAL\_QUANTUM\_H\_INCLUDED\_}}
+\DoxyCodeLine{00021\ \textcolor{preprocessor}{\#define\ TLM\_CORE\_TLM2\_TLM\_GLOBAL\_QUANTUM\_H\_INCLUDED\_}}
+\DoxyCodeLine{00022\ }
+\DoxyCodeLine{00023\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{sc__time_8h}{sysc/kernel/sc\_time.h}}"{}}}
+\DoxyCodeLine{00024\ }
+\DoxyCodeLine{00025\ \textcolor{keyword}{namespace\ }\mbox{\hyperlink{namespacetlm}{tlm}}\ \{}
+\DoxyCodeLine{00026\ }
+\DoxyCodeLine{00027\ \textcolor{comment}{//}}
+\DoxyCodeLine{00028\ \textcolor{comment}{//\ tlm\_global\_quantum\ class}}
+\DoxyCodeLine{00029\ \textcolor{comment}{//}}
+\DoxyCodeLine{00030\ \textcolor{comment}{//\ The\ global\ quantum\ is\ the\ maximum\ time\ an\ initiator\ can\ run\ ahead\ of}}
+\DoxyCodeLine{00031\ \textcolor{comment}{//\ SystemC\ time.\ All\ initiators\ should\ synchronize\ on\ timingpoints\ that}}
+\DoxyCodeLine{00032\ \textcolor{comment}{//\ are\ multiples\ of\ the\ global\ quantum\ value.}}
+\DoxyCodeLine{00033\ \textcolor{comment}{//}}
+\DoxyCodeLine{00034\ \textcolor{comment}{//\ sc\_set\_time\_resolution\ can\ only\ be\ called\ before\ the\ first}}
+\DoxyCodeLine{00035\ \textcolor{comment}{//\ sc\_time\ object\ is\ created.\ This\ means\ that\ after\ setting\ the}}
+\DoxyCodeLine{00036\ \textcolor{comment}{//\ global\ quantum\ it\ will\ not\ be\ possible\ to\ call\ sc\_set\_time\_resolution.}}
+\DoxyCodeLine{00037\ \textcolor{comment}{//\ If\ sc\_set\_time\_resolution\ must\ be\ called\ this\ must\ be\ done\ before}}
+\DoxyCodeLine{00038\ \textcolor{comment}{//\ the\ global\ quantum\ is\ set.}}
+\DoxyCodeLine{00039\ \textcolor{comment}{//}}
+\DoxyCodeLine{00040\ }
+\DoxyCodeLine{00041\ \textcolor{keyword}{class\ }\mbox{\hyperlink{sc__cmnhdr_8h_aff4a86b3f5de3ac2097081e7166fe89f}{SC\_API}}\ \mbox{\hyperlink{classtlm_1_1tlm__global__quantum}{tlm\_global\_quantum}}}
+\DoxyCodeLine{00042\ \{}
+\DoxyCodeLine{00043\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00044\ \ \ \textcolor{comment}{//}}
+\DoxyCodeLine{00045\ \ \ \textcolor{comment}{//\ Returns\ a\ reference\ to\ the\ tlm\_global\_quantum\ singleton}}
+\DoxyCodeLine{00046\ \ \ \textcolor{comment}{//}}
+\DoxyCodeLine{00047\ \ \ \textcolor{keyword}{static}\ \mbox{\hyperlink{classtlm_1_1tlm__global__quantum}{tlm\_global\_quantum}}\&\ \mbox{\hyperlink{classtlm_1_1tlm__global__quantum_a47695c1a7989496917be83144ef3c12c}{instance}}();}
+\DoxyCodeLine{00048\ }
+\DoxyCodeLine{00049\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00050\ }
+\DoxyCodeLine{00051\ \ \ \textcolor{comment}{//}}
+\DoxyCodeLine{00052\ \ \ \textcolor{comment}{//\ Setter/getter\ for\ the\ global\ quantum}}
+\DoxyCodeLine{00053\ \ \ \textcolor{comment}{//}}
+\DoxyCodeLine{00054\ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classtlm_1_1tlm__global__quantum_a277e4602b4f619930e98cc9d3c742b50}{set}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{classsc__core_1_1sc__time}{sc\_core::sc\_time}}\&\ t)}
+\DoxyCodeLine{00055\ \ \ \{}
+\DoxyCodeLine{00056\ \ \ \ \ m\_global\_quantum\ =\ t;}
+\DoxyCodeLine{00057\ \ \ \}}
+\DoxyCodeLine{00058\ }
+\DoxyCodeLine{00059\ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{classsc__core_1_1sc__time}{sc\_core::sc\_time}}\&\ \mbox{\hyperlink{classtlm_1_1tlm__global__quantum_ad0bc86600942b3d6e617bca72043ea2b}{get}}()\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00060\ \textcolor{keyword}{\ \ }\{}
+\DoxyCodeLine{00061\ \ \ \ \ \textcolor{keywordflow}{return}\ m\_global\_quantum;}
+\DoxyCodeLine{00062\ \ \ \}}
+\DoxyCodeLine{00063\ }
+\DoxyCodeLine{00064\ \ \ \textcolor{comment}{//}}
+\DoxyCodeLine{00065\ \ \ \textcolor{comment}{//\ This\ function\ will\ calculate\ the\ maximum\ value\ for\ the\ next\ local}}
+\DoxyCodeLine{00066\ \ \ \textcolor{comment}{//\ quantum\ for\ an\ initiator.\ All\ initiators\ should\ synchronize\ on}}
+\DoxyCodeLine{00067\ \ \ \textcolor{comment}{//\ integer\ multiples\ of\ the\ global\ quantum\ value.\ The\ value\ for\ the}}
+\DoxyCodeLine{00068\ \ \ \textcolor{comment}{//\ local\ quantum\ of\ an\ initiator\ can\ be\ smaller,\ but\ should\ never\ be}}
+\DoxyCodeLine{00069\ \ \ \textcolor{comment}{//\ greater\ than\ the\ value\ returned\ by\ this\ method.}}
+\DoxyCodeLine{00070\ \ \ \textcolor{comment}{//}}
+\DoxyCodeLine{00071\ \ \ \mbox{\hyperlink{classsc__core_1_1sc__time}{sc\_core::sc\_time}}\ \mbox{\hyperlink{classtlm_1_1tlm__global__quantum_ad265a9c3d73da7bf40de2673c728f83b}{compute\_local\_quantum}}();}
+\DoxyCodeLine{00072\ }
+\DoxyCodeLine{00073\ \textcolor{keyword}{protected}:}
+\DoxyCodeLine{00074\ \ \ \mbox{\hyperlink{classtlm_1_1tlm__global__quantum_a74ac4a67a86670dcb2fb0809f0f93e0d}{tlm\_global\_quantum}}();}
+\DoxyCodeLine{00075\ }
+\DoxyCodeLine{00076\ \textcolor{keyword}{protected}:}
+\DoxyCodeLine{00077\ \ \ \mbox{\hyperlink{classsc__core_1_1sc__time}{sc\_core::sc\_time}}\ \mbox{\hyperlink{classtlm_1_1tlm__global__quantum_a0ee092f0e644c2b2a05ca3f8d56eb49c}{m\_global\_quantum}};}
+\DoxyCodeLine{00078\ \};}
+\DoxyCodeLine{00079\ }
+\DoxyCodeLine{00080\ \}\ \textcolor{comment}{//\ namespace\ tlm}}
+\DoxyCodeLine{00081\ }
+\DoxyCodeLine{00082\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{//\ TLM\_CORE\_TLM2\_TLM\_GLOBAL\_QUANTUM\_H\_INCLUDED\_}}
+
+\end{DoxyCode}

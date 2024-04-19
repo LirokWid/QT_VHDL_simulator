@@ -1,0 +1,165 @@
+\doxysection{intel.\+hpp}
+\hypertarget{config_2compiler_2intel_8hpp_source}{}\label{config_2compiler_2intel_8hpp_source}\index{C:/Users/BJRODIER/Documents/QT\_REPO/QT\_VHDL\_simulator/code/Ressources/SystemC/include/sysc/packages/boost/config/compiler/intel.hpp@{C:/Users/BJRODIER/Documents/QT\_REPO/QT\_VHDL\_simulator/code/Ressources/SystemC/include/sysc/packages/boost/config/compiler/intel.hpp}}
+\mbox{\hyperlink{config_2compiler_2intel_8hpp}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{comment}{//\ \ (C)\ Copyright\ John\ Maddock\ 2001.\ }}
+\DoxyCodeLine{00002\ \textcolor{comment}{//\ \ (C)\ Copyright\ Peter\ Dimov\ 2001.\ }}
+\DoxyCodeLine{00003\ \textcolor{comment}{//\ \ (C)\ Copyright\ Jens\ Maurer\ 2001.\ }}
+\DoxyCodeLine{00004\ \textcolor{comment}{//\ \ (C)\ Copyright\ David\ Abrahams\ 2002\ -\/\ 2003.\ }}
+\DoxyCodeLine{00005\ \textcolor{comment}{//\ \ (C)\ Copyright\ Aleksey\ Gurtovoy\ 2002\ -\/\ 2003.\ }}
+\DoxyCodeLine{00006\ \textcolor{comment}{//\ \ (C)\ Copyright\ Guillaume\ Melquiond\ 2002\ -\/\ 2003.\ }}
+\DoxyCodeLine{00007\ \textcolor{comment}{//\ \ (C)\ Copyright\ Beman\ Dawes\ 2003.\ }}
+\DoxyCodeLine{00008\ \textcolor{comment}{//\ \ (C)\ Copyright\ Martin\ Wille\ 2003.\ }}
+\DoxyCodeLine{00009\ \textcolor{comment}{//\ \ Use,\ modification\ and\ distribution\ are\ subject\ to\ the\ }}
+\DoxyCodeLine{00010\ \textcolor{comment}{//\ \ Boost\ Software\ License,\ Version\ 1.0.\ (See\ accompanying\ file\ }}
+\DoxyCodeLine{00011\ \textcolor{comment}{//\ \ LICENSE\_1\_0.txt\ or\ copy\ at\ http://www.boost.org/LICENSE\_1\_0.txt)}}
+\DoxyCodeLine{00012\ }
+\DoxyCodeLine{00013\ \textcolor{comment}{//\ \ See\ http://www.boost.org\ for\ most\ recent\ version.}}
+\DoxyCodeLine{00014\ }
+\DoxyCodeLine{00015\ \textcolor{comment}{//\ \ Intel\ compiler\ setup:}}
+\DoxyCodeLine{00016\ }
+\DoxyCodeLine{00017\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{common__edg_8hpp}{sysc/packages/boost/config/compiler/common\_edg.hpp}}"{}}}
+\DoxyCodeLine{00018\ }
+\DoxyCodeLine{00019\ \textcolor{preprocessor}{\#if\ defined(\_\_INTEL\_COMPILER)}}
+\DoxyCodeLine{00020\ \textcolor{preprocessor}{\#\ \ define\ SC\_BOOST\_INTEL\_CXX\_VERSION\ \_\_INTEL\_COMPILER}}
+\DoxyCodeLine{00021\ \textcolor{preprocessor}{\#elif\ defined(\_\_ICL)}}
+\DoxyCodeLine{00022\ \textcolor{preprocessor}{\#\ \ define\ SC\_BOOST\_INTEL\_CXX\_VERSION\ \_\_ICL}}
+\DoxyCodeLine{00023\ \textcolor{preprocessor}{\#elif\ defined(\_\_ICC)}}
+\DoxyCodeLine{00024\ \textcolor{preprocessor}{\#\ \ define\ SC\_BOOST\_INTEL\_CXX\_VERSION\ \_\_ICC}}
+\DoxyCodeLine{00025\ \textcolor{preprocessor}{\#elif\ defined(\_\_ECC)}}
+\DoxyCodeLine{00026\ \textcolor{preprocessor}{\#\ \ define\ SC\_BOOST\_INTEL\_CXX\_VERSION\ \_\_ECC}}
+\DoxyCodeLine{00027\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00028\ }
+\DoxyCodeLine{00029\ \textcolor{preprocessor}{\#define\ SC\_BOOST\_COMPILER\ "{}Intel\ C++\ version\ "{}\ SC\_BOOST\_STRINGIZE(SC\_BOOST\_INTEL\_CXX\_VERSION)}}
+\DoxyCodeLine{00030\ \textcolor{preprocessor}{\#define\ SC\_BOOST\_INTEL\ SC\_BOOST\_INTEL\_CXX\_VERSION}}
+\DoxyCodeLine{00031\ }
+\DoxyCodeLine{00032\ \textcolor{preprocessor}{\#if\ defined(\_WIN32)\ ||\ defined(\_WIN64)}}
+\DoxyCodeLine{00033\ \textcolor{preprocessor}{\#\ \ define\ SC\_BOOST\_INTEL\_WIN\ SC\_BOOST\_INTEL}}
+\DoxyCodeLine{00034\ \textcolor{preprocessor}{\#else}}
+\DoxyCodeLine{00035\ \textcolor{preprocessor}{\#\ \ define\ SC\_BOOST\_INTEL\_LINUX\ SC\_BOOST\_INTEL}}
+\DoxyCodeLine{00036\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00037\ }
+\DoxyCodeLine{00038\ \textcolor{preprocessor}{\#if\ (SC\_BOOST\_INTEL\_CXX\_VERSION\ <=\ 500)\ \&\&\ defined(\_MSC\_VER)}}
+\DoxyCodeLine{00039\ \textcolor{preprocessor}{\#\ \ define\ SC\_BOOST\_NO\_EXPLICIT\_FUNCTION\_TEMPLATE\_ARGUMENTS}}
+\DoxyCodeLine{00040\ \textcolor{preprocessor}{\#\ \ define\ SC\_BOOST\_NO\_TEMPLATE\_TEMPLATES}}
+\DoxyCodeLine{00041\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00042\ }
+\DoxyCodeLine{00043\ \textcolor{preprocessor}{\#if\ (SC\_BOOST\_INTEL\_CXX\_VERSION\ <=\ 600)}}
+\DoxyCodeLine{00044\ }
+\DoxyCodeLine{00045\ \textcolor{preprocessor}{\#\ \ if\ defined(\_MSC\_VER)\ \&\&\ (\_MSC\_VER\ <=\ 1300)\ }\textcolor{comment}{//\ added\ check\ for\ <=\ VC\ 7\ (Peter\ Dimov)}}
+\DoxyCodeLine{00046\ }
+\DoxyCodeLine{00047\ \textcolor{comment}{//\ Boost\ libraries\ assume\ strong\ standard\ conformance\ unless\ otherwise}}
+\DoxyCodeLine{00048\ \textcolor{comment}{//\ indicated\ by\ a\ config\ macro.\ As\ configured\ by\ Intel,\ the\ EDG\ front-\/end}}
+\DoxyCodeLine{00049\ \textcolor{comment}{//\ requires\ certain\ compiler\ options\ be\ set\ to\ achieve\ that\ strong\ conformance.}}
+\DoxyCodeLine{00050\ \textcolor{comment}{//\ Particularly\ /Qoption,c,-\/-\/arg\_dep\_lookup\ (reported\ by\ Kirk\ Klobe\ \&\ Thomas\ Witt)}}
+\DoxyCodeLine{00051\ \textcolor{comment}{//\ and\ /Zc:wchar\_t,forScope.\ See\ boost-\/root/tools/build/intel-\/win32-\/tools.jam\ for}}
+\DoxyCodeLine{00052\ \textcolor{comment}{//\ details\ as\ they\ apply\ to\ particular\ versions\ of\ the\ compiler.\ When\ the}}
+\DoxyCodeLine{00053\ \textcolor{comment}{//\ compiler\ does\ not\ predefine\ a\ macro\ indicating\ if\ an\ option\ has\ been\ set,}}
+\DoxyCodeLine{00054\ \textcolor{comment}{//\ this\ config\ file\ simply\ assumes\ the\ option\ has\ been\ set.}}
+\DoxyCodeLine{00055\ \textcolor{comment}{//\ Thus\ SC\_BOOST\_NO\_ARGUMENT\_DEPENDENT\_LOOKUP\ will\ not\ be\ defined,\ even\ if}}
+\DoxyCodeLine{00056\ \textcolor{comment}{//\ the\ compiler\ option\ is\ not\ enabled.}}
+\DoxyCodeLine{00057\ }
+\DoxyCodeLine{00058\ \textcolor{preprocessor}{\#\ \ \ \ \ define\ SC\_BOOST\_NO\_SWPRINTF}}
+\DoxyCodeLine{00059\ \textcolor{preprocessor}{\#\ \ endif}}
+\DoxyCodeLine{00060\ }
+\DoxyCodeLine{00061\ \textcolor{comment}{//\ Void\ returns,\ 64\ bit\ integrals\ don't\ work\ when\ emulating\ VC\ 6\ (Peter\ Dimov)}}
+\DoxyCodeLine{00062\ }
+\DoxyCodeLine{00063\ \textcolor{preprocessor}{\#\ \ if\ defined(\_MSC\_VER)\ \&\&\ (\_MSC\_VER\ <=\ 1200)}}
+\DoxyCodeLine{00064\ \textcolor{preprocessor}{\#\ \ \ \ \ define\ SC\_BOOST\_NO\_VOID\_RETURNS}}
+\DoxyCodeLine{00065\ \textcolor{preprocessor}{\#\ \ \ \ \ define\ SC\_BOOST\_NO\_INTEGRAL\_INT64\_T}}
+\DoxyCodeLine{00066\ \textcolor{preprocessor}{\#\ \ endif}}
+\DoxyCodeLine{00067\ }
+\DoxyCodeLine{00068\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00069\ }
+\DoxyCodeLine{00070\ \textcolor{preprocessor}{\#if\ (SC\_BOOST\_INTEL\_CXX\_VERSION\ <=\ 710)\ \&\&\ defined(\_WIN32)}}
+\DoxyCodeLine{00071\ \textcolor{preprocessor}{\#\ \ define\ SC\_BOOST\_NO\_POINTER\_TO\_MEMBER\_TEMPLATE\_PARAMETERS}}
+\DoxyCodeLine{00072\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00073\ }
+\DoxyCodeLine{00074\ \textcolor{comment}{//\ See\ http://aspn.activestate.com/ASPN/Mail/Message/boost/1614864}}
+\DoxyCodeLine{00075\ \textcolor{preprocessor}{\#if\ SC\_BOOST\_INTEL\_CXX\_VERSION\ <\ 600}}
+\DoxyCodeLine{00076\ \textcolor{preprocessor}{\#\ \ define\ SC\_BOOST\_NO\_INTRINSIC\_WCHAR\_T}}
+\DoxyCodeLine{00077\ \textcolor{preprocessor}{\#else}}
+\DoxyCodeLine{00078\ \textcolor{comment}{//\ We\ should\ test\ the\ macro\ \_WCHAR\_T\_DEFINED\ to\ check\ if\ the\ compiler}}
+\DoxyCodeLine{00079\ \textcolor{comment}{//\ supports\ wchar\_t\ natively.\ *BUT*\ there\ is\ a\ problem\ here:\ the\ standard}}
+\DoxyCodeLine{00080\ \textcolor{comment}{//\ headers\ define\ this\ macro\ if\ they\ typedef\ wchar\_t.\ Anyway,\ we're\ lucky}}
+\DoxyCodeLine{00081\ \textcolor{comment}{//\ because\ they\ define\ it\ without\ a\ value,\ while\ Intel\ C++\ defines\ it}}
+\DoxyCodeLine{00082\ \textcolor{comment}{//\ to\ 1.\ So\ we\ can\ check\ its\ value\ to\ see\ if\ the\ macro\ was\ defined\ natively\ }}
+\DoxyCodeLine{00083\ \textcolor{comment}{//\ or\ not.\ }}
+\DoxyCodeLine{00084\ \textcolor{comment}{//\ Under\ UNIX,\ the\ situation\ is\ exactly\ the\ same,\ but\ the\ macro\ \_WCHAR\_T\ }}
+\DoxyCodeLine{00085\ \textcolor{comment}{//\ is\ used\ instead.}}
+\DoxyCodeLine{00086\ \textcolor{preprocessor}{\#\ \ if\ ((\_WCHAR\_T\_DEFINED\ +\ 0)\ ==\ 0)\ \&\&\ ((\_WCHAR\_T\ +\ 0)\ ==\ 0)}}
+\DoxyCodeLine{00087\ \textcolor{preprocessor}{\#\ \ \ \ define\ SC\_BOOST\_NO\_INTRINSIC\_WCHAR\_T}}
+\DoxyCodeLine{00088\ \textcolor{preprocessor}{\#\ \ endif}}
+\DoxyCodeLine{00089\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00090\ }
+\DoxyCodeLine{00091\ \textcolor{preprocessor}{\#if\ defined(\_\_GNUC\_\_)\ \&\&\ !defined(SC\_BOOST\_FUNCTION\_SCOPE\_USING\_DECLARATION\_BREAKS\_ADL)}}
+\DoxyCodeLine{00092\ \textcolor{comment}{//}}
+\DoxyCodeLine{00093\ \textcolor{comment}{//\ Figure\ out\ when\ Intel\ is\ emulating\ this\ gcc\ bug:}}
+\DoxyCodeLine{00094\ \textcolor{comment}{//}}
+\DoxyCodeLine{00095\ \textcolor{preprocessor}{\#\ \ if\ ((\_\_GNUC\_\_\ ==\ 3)\ \&\&\ (\_\_GNUC\_MINOR\_\_\ <=\ 2))\ ||\ (SC\_BOOST\_INTEL\ <=\ 900)}}
+\DoxyCodeLine{00096\ \textcolor{preprocessor}{\#\ \ \ \ \ define\ SC\_BOOST\_FUNCTION\_SCOPE\_USING\_DECLARATION\_BREAKS\_ADL}}
+\DoxyCodeLine{00097\ \textcolor{preprocessor}{\#\ \ endif}}
+\DoxyCodeLine{00098\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00099\ }
+\DoxyCodeLine{00100\ \textcolor{comment}{//}}
+\DoxyCodeLine{00101\ \textcolor{comment}{//\ Verify\ that\ we\ have\ actually\ got\ SC\_BOOST\_NO\_INTRINSIC\_WCHAR\_T}}
+\DoxyCodeLine{00102\ \textcolor{comment}{//\ set\ correctly,\ if\ we\ don't\ do\ this\ now,\ we\ will\ get\ errors\ later}}
+\DoxyCodeLine{00103\ \textcolor{comment}{//\ in\ type\_traits\ code\ among\ other\ things,\ getting\ this\ correct}}
+\DoxyCodeLine{00104\ \textcolor{comment}{//\ for\ the\ Intel\ compiler\ is\ actually\ remarkably\ fragile\ and\ tricky:}}
+\DoxyCodeLine{00105\ \textcolor{comment}{//}}
+\DoxyCodeLine{00106\ \textcolor{preprocessor}{\#if\ defined(SC\_BOOST\_NO\_INTRINSIC\_WCHAR\_T)}}
+\DoxyCodeLine{00107\ \textcolor{preprocessor}{\#include\ <cwchar>}}
+\DoxyCodeLine{00108\ \textcolor{keyword}{namespace\ }\mbox{\hyperlink{namespacesc__boost}{sc\_boost}}\ \{}
+\DoxyCodeLine{00109\ \textcolor{keyword}{template}<\ \textcolor{keyword}{typename}\ T\ >\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structsc__boost_1_1assert__no__intrinsic__wchar__t}{assert\_no\_intrinsic\_wchar\_t}};}
+\DoxyCodeLine{00110\ \textcolor{keyword}{template}<>\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structsc__boost_1_1assert__no__intrinsic__wchar__t}{assert\_no\_intrinsic\_wchar\_t}}<\mbox{\hyperlink{class_sysc_add__pv}{wchar\_t}}>\ \{\ \textcolor{keyword}{typedef}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{structsc__boost_1_1assert__no__intrinsic__wchar__t_3_01wchar__t_01_4_addc2b207cb1829dc6cbc5a5b9694e8f3}{type}};\ \};}
+\DoxyCodeLine{00111\ \textcolor{comment}{//\ if\ you\ see\ an\ error\ here\ then\ you\ need\ to\ unset\ SC\_BOOST\_NO\_INTRINSIC\_WCHAR\_T}}
+\DoxyCodeLine{00112\ \textcolor{comment}{//\ where\ it\ is\ defined\ above:}}
+\DoxyCodeLine{00113\ \textcolor{keyword}{typedef}\ \mbox{\hyperlink{structsc__boost_1_1assert__no__intrinsic__wchar__t}{assert\_no\_intrinsic\_wchar\_t<unsigned\ short>::type}}\ \mbox{\hyperlink{namespacesc__boost_a12ad5ebb85106588ff42b76fa1ff3560}{assert\_no\_intrinsic\_wchar\_t\_}};}
+\DoxyCodeLine{00114\ \}\ \textcolor{comment}{//\ namespace\ sc\_boost}}
+\DoxyCodeLine{00115\ \textcolor{preprocessor}{\#else}}
+\DoxyCodeLine{00116\ \textcolor{keyword}{namespace\ }\mbox{\hyperlink{namespacesc__boost}{sc\_boost}}\ \{}
+\DoxyCodeLine{00117\ \textcolor{keyword}{template}<\ \textcolor{keyword}{typename}\ T\ >\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{class_sysc_add__pv}{assert\_intrinsic\_wchar\_t}};}
+\DoxyCodeLine{00118\ \textcolor{keyword}{template}<>\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{class_sysc_add__pv}{assert\_intrinsic\_wchar\_t}}<\mbox{\hyperlink{class_sysc_add__pv}{wchar\_t}}>\ \{\};}
+\DoxyCodeLine{00119\ \textcolor{comment}{//\ if\ you\ see\ an\ error\ here\ then\ define\ SC\_BOOST\_NO\_INTRINSIC\_WCHAR\_T\ on\ the\ command\ line:}}
+\DoxyCodeLine{00120\ \textcolor{keyword}{template}<>\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{class_sysc_add__pv}{assert\_intrinsic\_wchar\_t}}<\mbox{\hyperlink{class_sysc_add__pv}{unsigned}}\ \mbox{\hyperlink{sc__bit__ids_8h_af2b4988bf5cb782d5f4046ebc6b70886}{short}}>\ \{\};}
+\DoxyCodeLine{00121\ \}\ \textcolor{comment}{//\ namespace\ sc\_boost}}
+\DoxyCodeLine{00122\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00123\ }
+\DoxyCodeLine{00124\ \textcolor{preprocessor}{\#if\ \_MSC\_VER+0\ >=\ 1000}}
+\DoxyCodeLine{00125\ \textcolor{preprocessor}{\#\ \ if\ \_MSC\_VER\ >=\ 1200}}
+\DoxyCodeLine{00126\ \textcolor{preprocessor}{\#\ \ \ \ \ define\ SC\_BOOST\_HAS\_MS\_INT64}}
+\DoxyCodeLine{00127\ \textcolor{preprocessor}{\#\ \ endif}}
+\DoxyCodeLine{00128\ \textcolor{preprocessor}{\#\ \ define\ SC\_BOOST\_NO\_SWPRINTF}}
+\DoxyCodeLine{00129\ \textcolor{preprocessor}{\#elif\ defined(\_WIN32)}}
+\DoxyCodeLine{00130\ \textcolor{preprocessor}{\#\ \ define\ SC\_BOOST\_DISABLE\_WIN32}}
+\DoxyCodeLine{00131\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00132\ }
+\DoxyCodeLine{00133\ \textcolor{comment}{//\ I\ checked\ version\ 6.0\ build\ 020312Z,\ it\ implements\ the\ NRVO.}}
+\DoxyCodeLine{00134\ \textcolor{comment}{//\ Correct\ this\ as\ you\ find\ out\ which\ version\ of\ the\ compiler}}
+\DoxyCodeLine{00135\ \textcolor{comment}{//\ implemented\ the\ NRVO\ first.\ \ (Daniel\ Frey)}}
+\DoxyCodeLine{00136\ \textcolor{preprocessor}{\#if\ (SC\_BOOST\_INTEL\_CXX\_VERSION\ >=\ 600)}}
+\DoxyCodeLine{00137\ \textcolor{preprocessor}{\#\ \ define\ SC\_BOOST\_HAS\_NRVO}}
+\DoxyCodeLine{00138\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00139\ }
+\DoxyCodeLine{00140\ \textcolor{comment}{//}}
+\DoxyCodeLine{00141\ \textcolor{comment}{//\ versions\ check:}}
+\DoxyCodeLine{00142\ \textcolor{comment}{//\ we\ don't\ support\ Intel\ prior\ to\ version\ 5.0:}}
+\DoxyCodeLine{00143\ \textcolor{preprocessor}{\#if\ SC\_BOOST\_INTEL\_CXX\_VERSION\ <\ 500}}
+\DoxyCodeLine{00144\ \textcolor{preprocessor}{\#\ \ error\ "{}Compiler\ not\ supported\ or\ configured\ -\/\ please\ reconfigure"{}}}
+\DoxyCodeLine{00145\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00146\ \textcolor{comment}{//}}
+\DoxyCodeLine{00147\ \textcolor{comment}{//\ last\ known\ and\ checked\ version:}}
+\DoxyCodeLine{00148\ \textcolor{preprocessor}{\#if\ (SC\_BOOST\_INTEL\_CXX\_VERSION\ >\ 900)}}
+\DoxyCodeLine{00149\ \textcolor{preprocessor}{\#\ \ if\ defined(SC\_BOOST\_ASSERT\_CONFIG)}}
+\DoxyCodeLine{00150\ \textcolor{preprocessor}{\#\ \ \ \ \ error\ "{}Unknown\ compiler\ version\ -\/\ please\ run\ the\ configure\ tests\ and\ report\ the\ results"{}}}
+\DoxyCodeLine{00151\ \textcolor{preprocessor}{\#\ \ elif\ defined(\_MSC\_VER)}}
+\DoxyCodeLine{00152\ \textcolor{preprocessor}{\#\ \ \ \ \ pragma\ message("{}Unknown\ compiler\ version\ -\/\ please\ run\ the\ configure\ tests\ and\ report\ the\ results"{})}}
+\DoxyCodeLine{00153\ \textcolor{preprocessor}{\#\ \ endif}}
+\DoxyCodeLine{00154\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00155\ }
+\DoxyCodeLine{00156\ }
+\DoxyCodeLine{00157\ }
+\DoxyCodeLine{00158\ }
+\DoxyCodeLine{00159\ }
+
+\end{DoxyCode}

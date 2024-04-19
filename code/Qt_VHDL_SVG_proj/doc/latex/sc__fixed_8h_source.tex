@@ -1,0 +1,666 @@
+\doxysection{sc\+\_\+fixed.\+h}
+\hypertarget{sc__fixed_8h_source}{}\label{sc__fixed_8h_source}\index{C:/Users/BJRODIER/Documents/QT\_REPO/QT\_VHDL\_simulator/code/Ressources/SystemC/include/sysc/datatypes/fx/sc\_fixed.h@{C:/Users/BJRODIER/Documents/QT\_REPO/QT\_VHDL\_simulator/code/Ressources/SystemC/include/sysc/datatypes/fx/sc\_fixed.h}}
+\mbox{\hyperlink{sc__fixed_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{comment}{/*****************************************************************************}}
+\DoxyCodeLine{00002\ \textcolor{comment}{}}
+\DoxyCodeLine{00003\ \textcolor{comment}{\ \ Licensed\ to\ Accellera\ Systems\ Initiative\ Inc.\ (Accellera)\ under\ one\ or}}
+\DoxyCodeLine{00004\ \textcolor{comment}{\ \ more\ contributor\ license\ agreements.\ \ See\ the\ NOTICE\ file\ distributed}}
+\DoxyCodeLine{00005\ \textcolor{comment}{\ \ with\ this\ work\ for\ additional\ information\ regarding\ copyright\ ownership.}}
+\DoxyCodeLine{00006\ \textcolor{comment}{\ \ Accellera\ licenses\ this\ file\ to\ you\ under\ the\ Apache\ License,\ Version\ 2.0}}
+\DoxyCodeLine{00007\ \textcolor{comment}{\ \ (the\ "{}License"{});\ you\ may\ not\ use\ this\ file\ except\ in\ compliance\ with\ the}}
+\DoxyCodeLine{00008\ \textcolor{comment}{\ \ License.\ \ You\ may\ obtain\ a\ copy\ of\ the\ License\ at}}
+\DoxyCodeLine{00009\ \textcolor{comment}{}}
+\DoxyCodeLine{00010\ \textcolor{comment}{\ \ \ \ http://www.apache.org/licenses/LICENSE-\/2.0}}
+\DoxyCodeLine{00011\ \textcolor{comment}{}}
+\DoxyCodeLine{00012\ \textcolor{comment}{\ \ Unless\ required\ by\ applicable\ law\ or\ agreed\ to\ in\ writing,\ software}}
+\DoxyCodeLine{00013\ \textcolor{comment}{\ \ distributed\ under\ the\ License\ is\ distributed\ on\ an\ "{}AS\ IS"{}\ BASIS,}}
+\DoxyCodeLine{00014\ \textcolor{comment}{\ \ WITHOUT\ WARRANTIES\ OR\ CONDITIONS\ OF\ ANY\ KIND,\ either\ express\ or}}
+\DoxyCodeLine{00015\ \textcolor{comment}{\ \ implied.\ \ See\ the\ License\ for\ the\ specific\ language\ governing}}
+\DoxyCodeLine{00016\ \textcolor{comment}{\ \ permissions\ and\ limitations\ under\ the\ License.}}
+\DoxyCodeLine{00017\ \textcolor{comment}{}}
+\DoxyCodeLine{00018\ \textcolor{comment}{\ *****************************************************************************/}}
+\DoxyCodeLine{00019\ }
+\DoxyCodeLine{00020\ \textcolor{comment}{/*****************************************************************************}}
+\DoxyCodeLine{00021\ \textcolor{comment}{}}
+\DoxyCodeLine{00022\ \textcolor{comment}{\ \ sc\_fixed.h\ -\/\ }}
+\DoxyCodeLine{00023\ \textcolor{comment}{}}
+\DoxyCodeLine{00024\ \textcolor{comment}{\ \ Original\ Author:\ Martin\ Janssen,\ Synopsys,\ Inc.}}
+\DoxyCodeLine{00025\ \textcolor{comment}{}}
+\DoxyCodeLine{00026\ \textcolor{comment}{\ *****************************************************************************/}}
+\DoxyCodeLine{00027\ }
+\DoxyCodeLine{00028\ \textcolor{comment}{/*****************************************************************************}}
+\DoxyCodeLine{00029\ \textcolor{comment}{}}
+\DoxyCodeLine{00030\ \textcolor{comment}{\ \ MODIFICATION\ LOG\ -\/\ modifiers,\ enter\ your\ name,\ affiliation,\ date\ and}}
+\DoxyCodeLine{00031\ \textcolor{comment}{\ \ changes\ you\ are\ making\ here.}}
+\DoxyCodeLine{00032\ \textcolor{comment}{}}
+\DoxyCodeLine{00033\ \textcolor{comment}{\ \ \ \ \ \ Name,\ Affiliation,\ Date:}}
+\DoxyCodeLine{00034\ \textcolor{comment}{\ \ Description\ of\ Modification:}}
+\DoxyCodeLine{00035\ \textcolor{comment}{}}
+\DoxyCodeLine{00036\ \textcolor{comment}{\ *****************************************************************************/}}
+\DoxyCodeLine{00037\ }
+\DoxyCodeLine{00038\ \textcolor{comment}{//\ \$Log:\ sc\_fixed.h,v\ \$}}
+\DoxyCodeLine{00039\ \textcolor{comment}{//\ Revision\ 1.2\ \ 2011/01/19\ 18:57:40\ \ acg}}
+\DoxyCodeLine{00040\ \textcolor{comment}{//\ \ Andy\ Goodrich:\ changes\ for\ IEEE\_1666\_2011.}}
+\DoxyCodeLine{00041\ \textcolor{comment}{//}}
+\DoxyCodeLine{00042\ \textcolor{comment}{//\ Revision\ 1.1.1.1\ \ 2006/12/15\ 20:20:04\ \ acg}}
+\DoxyCodeLine{00043\ \textcolor{comment}{//\ SystemC\ 2.3}}
+\DoxyCodeLine{00044\ \textcolor{comment}{//}}
+\DoxyCodeLine{00045\ \textcolor{comment}{//\ Revision\ 1.3\ \ 2006/01/13\ 18:53:57\ \ acg}}
+\DoxyCodeLine{00046\ \textcolor{comment}{//\ Andy\ Goodrich:\ added\ \$Log\ command\ so\ that\ CVS\ comments\ are\ reproduced\ in}}
+\DoxyCodeLine{00047\ \textcolor{comment}{//\ the\ source.}}
+\DoxyCodeLine{00048\ \textcolor{comment}{//}}
+\DoxyCodeLine{00049\ }
+\DoxyCodeLine{00050\ \textcolor{preprocessor}{\#ifndef\ SC\_FIXED\_H}}
+\DoxyCodeLine{00051\ \textcolor{preprocessor}{\#define\ SC\_FIXED\_H}}
+\DoxyCodeLine{00052\ }
+\DoxyCodeLine{00053\ }
+\DoxyCodeLine{00054\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{sc__fix_8h}{sysc/datatypes/fx/sc\_fix.h}}"{}}}
+\DoxyCodeLine{00055\ }
+\DoxyCodeLine{00056\ }
+\DoxyCodeLine{00057\ \textcolor{keyword}{namespace\ }\mbox{\hyperlink{namespacesc__dt}{sc\_dt}}}
+\DoxyCodeLine{00058\ \{}
+\DoxyCodeLine{00059\ }
+\DoxyCodeLine{00060\ \textcolor{comment}{//\ classes\ defined\ in\ this\ module}}
+\DoxyCodeLine{00061\ \textcolor{keyword}{template}\ <\textcolor{keywordtype}{int}\ W,\ \textcolor{keywordtype}{int}\ I,\ sc\_q\_mode\ Q,\ sc\_o\_mode\ O,\ \textcolor{keywordtype}{int}\ N>\ \textcolor{keyword}{class\ }sc\_fixed;}
+\DoxyCodeLine{00062\ \textcolor{keyword}{template}\ <\textcolor{keywordtype}{int}\ W,\ \textcolor{keywordtype}{int}\ I,\ sc\_q\_mode\ Q,\ sc\_o\_mode\ O,\ \textcolor{keywordtype}{int}\ N>\ \textcolor{keyword}{class\ }sc\_fixed\_fast;}
+\DoxyCodeLine{00063\ }
+\DoxyCodeLine{00064\ }
+\DoxyCodeLine{00065\ \textcolor{comment}{//\ -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{00066\ \textcolor{comment}{//\ \ TEMPLATE\ CLASS\ :\ sc\_fixed}}
+\DoxyCodeLine{00067\ \textcolor{comment}{//}}
+\DoxyCodeLine{00068\ \textcolor{comment}{//\ \ "{}Constrained"{}\ signed\ fixed-\/point\ class;\ arbitrary\ precision.}}
+\DoxyCodeLine{00069\ \textcolor{comment}{//\ -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{00070\ }
+\DoxyCodeLine{00071\ \textcolor{keyword}{template}\ <\textcolor{keywordtype}{int}\ \mbox{\hyperlink{class_sysc_add__pv}{W}},\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{class_sysc_add__pv}{I}},}
+\DoxyCodeLine{00072\ \ \ \ \ \ \ \mbox{\hyperlink{namespacesc__dt_a231ecdcc13fcad8eb53b7020c93bb721}{sc\_q\_mode}}\ \mbox{\hyperlink{class_sysc_add__pv}{Q}}\ =\ \mbox{\hyperlink{namespacesc__dt_a5c2d016b13dfc62ab0fb86e3d41a8bfb}{SC\_DEFAULT\_Q\_MODE\_}},}
+\DoxyCodeLine{00073\ \ \ \ \ \ \ \mbox{\hyperlink{namespacesc__dt_af938546ec8f720ce20f21c3b0931c2e5}{sc\_o\_mode}}\ \mbox{\hyperlink{class_sysc_add__pv}{O}}\ =\ \mbox{\hyperlink{namespacesc__dt_aa450d625be656c8cd2b7b800a8376a76}{SC\_DEFAULT\_O\_MODE\_}},\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{class_sysc_add__pv}{N}}\ =\ \mbox{\hyperlink{namespacesc__dt_afccd3909356b1dbf4b8f848928b3bd03}{SC\_DEFAULT\_N\_BITS\_}}>}
+\DoxyCodeLine{00074\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classsc__dt_1_1sc__fixed}{sc\_fixed}}\ :\ \textcolor{keyword}{public}\ \mbox{\hyperlink{classsc__dt_1_1sc__fix}{sc\_fix}}}
+\DoxyCodeLine{00075\ \{}
+\DoxyCodeLine{00076\ }
+\DoxyCodeLine{00077\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00078\ }
+\DoxyCodeLine{00079\ \ \ \ \ \textcolor{comment}{//\ constructors}}
+\DoxyCodeLine{00080\ }
+\DoxyCodeLine{00081\ \ \ \ \ \textcolor{keyword}{explicit}\ \mbox{\hyperlink{classsc__dt_1_1sc__fixed_a5bfdf310e7cf1c3948591bff364e9c1d}{sc\_fixed}}(\ \mbox{\hyperlink{classsc__dt_1_1sc__fxnum__observer}{sc\_fxnum\_observer}}*\ =\ 0\ );}
+\DoxyCodeLine{00082\ \ \ \ \ \textcolor{keyword}{explicit}\ \mbox{\hyperlink{classsc__dt_1_1sc__fixed_a5bfdf310e7cf1c3948591bff364e9c1d}{sc\_fixed}}(\ \textcolor{keyword}{const}\ \mbox{\hyperlink{classsc__dt_1_1sc__fxcast__switch}{sc\_fxcast\_switch}}\&,\ \mbox{\hyperlink{classsc__dt_1_1sc__fxnum__observer}{sc\_fxnum\_observer}}*\ =\ 0\ );}
+\DoxyCodeLine{00083\ }
+\DoxyCodeLine{00084\ \textcolor{preprocessor}{\#define\ DECL\_CTORS\_T\_A(tp)\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}}
+\DoxyCodeLine{00085\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ \ \ \ \ \ sc\_fixed(\ tp,\ sc\_fxnum\_observer*\ =\ 0\ );\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}}
+\DoxyCodeLine{00086\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ \ \ \ \ \ sc\_fixed(\ tp,\ const\ sc\_fxcast\_switch\&,\ sc\_fxnum\_observer*\ =\ 0\ );}}
+\DoxyCodeLine{00087\ }
+\DoxyCodeLine{00088\ \textcolor{preprocessor}{\#define\ DECL\_CTORS\_T\_B(tp)\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}}
+\DoxyCodeLine{00089\ \textcolor{preprocessor}{\ \ \ \ explicit\ sc\_fixed(\ tp,\ sc\_fxnum\_observer*\ =\ 0\ );\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}}
+\DoxyCodeLine{00090\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ \ \ \ \ \ sc\_fixed(\ tp,\ const\ sc\_fxcast\_switch\&,\ sc\_fxnum\_observer*\ =\ 0\ );}}
+\DoxyCodeLine{00091\ }
+\DoxyCodeLine{00092\ \ \ \ \ \mbox{\hyperlink{sc__fix_8h_a0806659dff0c9f2f91cbf08de13c0ecf}{DECL\_CTORS\_T\_A}}(\textcolor{keywordtype}{int})}
+\DoxyCodeLine{00093\ \ \ \ \ \mbox{\hyperlink{sc__fix_8h_a0806659dff0c9f2f91cbf08de13c0ecf}{DECL\_CTORS\_T\_A}}(\textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{int})}
+\DoxyCodeLine{00094\ \ \ \ \ \mbox{\hyperlink{sc__fix_8h_a0806659dff0c9f2f91cbf08de13c0ecf}{DECL\_CTORS\_T\_A}}(\textcolor{keywordtype}{long})}
+\DoxyCodeLine{00095\ \ \ \ \ \mbox{\hyperlink{sc__fix_8h_a0806659dff0c9f2f91cbf08de13c0ecf}{DECL\_CTORS\_T\_A}}(\textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{long})}
+\DoxyCodeLine{00096\ \ \ \ \ \mbox{\hyperlink{sc__fix_8h_a0806659dff0c9f2f91cbf08de13c0ecf}{DECL\_CTORS\_T\_A}}(\textcolor{keywordtype}{float})}
+\DoxyCodeLine{00097\ \ \ \ \ \mbox{\hyperlink{sc__fix_8h_a0806659dff0c9f2f91cbf08de13c0ecf}{DECL\_CTORS\_T\_A}}(\textcolor{keywordtype}{double})}
+\DoxyCodeLine{00098\ \ \ \ \ \mbox{\hyperlink{sc__fix_8h_a0806659dff0c9f2f91cbf08de13c0ecf}{DECL\_CTORS\_T\_A}}(\textcolor{keyword}{const}\ \textcolor{keywordtype}{char}*)}
+\DoxyCodeLine{00099\ \ \ \ \ \mbox{\hyperlink{sc__fix_8h_a0806659dff0c9f2f91cbf08de13c0ecf}{DECL\_CTORS\_T\_A}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{classsc__dt_1_1sc__fxnum_aa226f4d5df4d442309db0fa035fc3a97}{sc\_fxval}}\&)}
+\DoxyCodeLine{00100\ \ \ \ \ \mbox{\hyperlink{sc__fix_8h_a0806659dff0c9f2f91cbf08de13c0ecf}{DECL\_CTORS\_T\_A}}(\textcolor{keyword}{const}\ sc\_fxval\_fast\&)}
+\DoxyCodeLine{00101\ \ \ \ \ \mbox{\hyperlink{sc__fix_8h_a0806659dff0c9f2f91cbf08de13c0ecf}{DECL\_CTORS\_T\_A}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{classsc__dt_1_1sc__fxnum_a8bfd431fab585a2100355728f782b602}{sc\_fxnum}}\&)}
+\DoxyCodeLine{00102\ \ \ \ \ \mbox{\hyperlink{sc__fix_8h_a0806659dff0c9f2f91cbf08de13c0ecf}{DECL\_CTORS\_T\_A}}(\textcolor{keyword}{const}\ sc\_fxnum\_fast\&)}
+\DoxyCodeLine{00103\ \textcolor{preprocessor}{\#ifndef\ SC\_FX\_EXCLUDE\_OTHER}}
+\DoxyCodeLine{00104\ \ \ \ \ \mbox{\hyperlink{sc__fix_8h_a4e3a0139b5778e36ae38658e3ce1c058}{DECL\_CTORS\_T\_B}}(int64)}
+\DoxyCodeLine{00105\ \ \ \ \ \mbox{\hyperlink{sc__fix_8h_a4e3a0139b5778e36ae38658e3ce1c058}{DECL\_CTORS\_T\_B}}(uint64)}
+\DoxyCodeLine{00106\ \ \ \ \ \mbox{\hyperlink{sc__fix_8h_a4e3a0139b5778e36ae38658e3ce1c058}{DECL\_CTORS\_T\_B}}(\textcolor{keyword}{const}\ sc\_int\_base\&)}
+\DoxyCodeLine{00107\ \ \ \ \ \mbox{\hyperlink{sc__fix_8h_a4e3a0139b5778e36ae38658e3ce1c058}{DECL\_CTORS\_T\_B}}(\textcolor{keyword}{const}\ sc\_uint\_base\&)}
+\DoxyCodeLine{00108\ \ \ \ \ \mbox{\hyperlink{sc__fix_8h_a4e3a0139b5778e36ae38658e3ce1c058}{DECL\_CTORS\_T\_B}}(\textcolor{keyword}{const}\ sc\_signed\&)}
+\DoxyCodeLine{00109\ \ \ \ \ \mbox{\hyperlink{sc__fix_8h_a4e3a0139b5778e36ae38658e3ce1c058}{DECL\_CTORS\_T\_B}}(\textcolor{keyword}{const}\ sc\_unsigned\&)}
+\DoxyCodeLine{00110\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00111\ }
+\DoxyCodeLine{00112\ \textcolor{preprocessor}{\#undef\ DECL\_CTORS\_T\_A}}
+\DoxyCodeLine{00113\ \textcolor{preprocessor}{\#undef\ DECL\_CTORS\_T\_B}}
+\DoxyCodeLine{00114\ }
+\DoxyCodeLine{00115\ \ \ \ \ \textcolor{comment}{//\ copy\ constructor}}
+\DoxyCodeLine{00116\ }
+\DoxyCodeLine{00117\ \ \ \ \ \mbox{\hyperlink{classsc__dt_1_1sc__fixed_a5bfdf310e7cf1c3948591bff364e9c1d}{sc\_fixed}}(\ \textcolor{keyword}{const}\ \mbox{\hyperlink{class_sysc_add__pv}{sc\_fixed<W,I,Q,O,N>}}\&\ );}
+\DoxyCodeLine{00118\ }
+\DoxyCodeLine{00119\ }
+\DoxyCodeLine{00120\ \ \ \ \ \textcolor{comment}{//\ assignment\ operators}}
+\DoxyCodeLine{00121\ }
+\DoxyCodeLine{00122\ \ \ \ \ \mbox{\hyperlink{classsc__dt_1_1sc__fixed_a5bfdf310e7cf1c3948591bff364e9c1d}{sc\_fixed}}\&\ \mbox{\hyperlink{classsc__dt_1_1sc__fixed_a976646db4efc03a15dcd540694323787}{operator\ =\ }}(\ \textcolor{keyword}{const}\ \mbox{\hyperlink{class_sysc_add__pv}{sc\_fixed<W,I,Q,O,N>}}\&\ );}
+\DoxyCodeLine{00123\ }
+\DoxyCodeLine{00124\ \textcolor{preprocessor}{\#define\ DECL\_ASN\_OP\_T(op,tp)\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}}
+\DoxyCodeLine{00125\ \textcolor{preprocessor}{\ \ \ \ sc\_fixed\&\ operator\ op\ (\ tp\ );}}
+\DoxyCodeLine{00126\ }
+\DoxyCodeLine{00127\ \textcolor{preprocessor}{\#ifndef\ SC\_FX\_EXCLUDE\_OTHER}}
+\DoxyCodeLine{00128\ \textcolor{preprocessor}{\#define\ DECL\_ASN\_OP\_OTHER(op)\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}}
+\DoxyCodeLine{00129\ \textcolor{preprocessor}{\ \ \ \ DECL\_ASN\_OP\_T(op,int64)\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}}
+\DoxyCodeLine{00130\ \textcolor{preprocessor}{\ \ \ \ DECL\_ASN\_OP\_T(op,uint64)\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}}
+\DoxyCodeLine{00131\ \textcolor{preprocessor}{\ \ \ \ DECL\_ASN\_OP\_T(op,const\ sc\_int\_base\&)\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}}
+\DoxyCodeLine{00132\ \textcolor{preprocessor}{\ \ \ \ DECL\_ASN\_OP\_T(op,const\ sc\_uint\_base\&)\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}}
+\DoxyCodeLine{00133\ \textcolor{preprocessor}{\ \ \ \ DECL\_ASN\_OP\_T(op,const\ sc\_signed\&)\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}}
+\DoxyCodeLine{00134\ \textcolor{preprocessor}{\ \ \ \ DECL\_ASN\_OP\_T(op,const\ sc\_unsigned\&)}}
+\DoxyCodeLine{00135\ \textcolor{preprocessor}{\#else}}
+\DoxyCodeLine{00136\ \textcolor{preprocessor}{\#define\ DECL\_ASN\_OP\_OTHER(op)}}
+\DoxyCodeLine{00137\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00138\ }
+\DoxyCodeLine{00139\ \textcolor{preprocessor}{\#define\ DECL\_ASN\_OP(op)\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}}
+\DoxyCodeLine{00140\ \textcolor{preprocessor}{\ \ \ \ DECL\_ASN\_OP\_T(op,int)\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}}
+\DoxyCodeLine{00141\ \textcolor{preprocessor}{\ \ \ \ DECL\_ASN\_OP\_T(op,unsigned\ int)\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}}
+\DoxyCodeLine{00142\ \textcolor{preprocessor}{\ \ \ \ DECL\_ASN\_OP\_T(op,long)\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}}
+\DoxyCodeLine{00143\ \textcolor{preprocessor}{\ \ \ \ DECL\_ASN\_OP\_T(op,unsigned\ long)\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}}
+\DoxyCodeLine{00144\ \textcolor{preprocessor}{\ \ \ \ DECL\_ASN\_OP\_T(op,float)\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}}
+\DoxyCodeLine{00145\ \textcolor{preprocessor}{\ \ \ \ DECL\_ASN\_OP\_T(op,double)\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}}
+\DoxyCodeLine{00146\ \textcolor{preprocessor}{\ \ \ \ DECL\_ASN\_OP\_T(op,const\ char*)\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}}
+\DoxyCodeLine{00147\ \textcolor{preprocessor}{\ \ \ \ DECL\_ASN\_OP\_T(op,const\ sc\_fxval\&)\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}}
+\DoxyCodeLine{00148\ \textcolor{preprocessor}{\ \ \ \ DECL\_ASN\_OP\_T(op,const\ sc\_fxval\_fast\&)\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}}
+\DoxyCodeLine{00149\ \textcolor{preprocessor}{\ \ \ \ DECL\_ASN\_OP\_T(op,const\ sc\_fxnum\&)\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}}
+\DoxyCodeLine{00150\ \textcolor{preprocessor}{\ \ \ \ DECL\_ASN\_OP\_T(op,const\ sc\_fxnum\_fast\&)\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}}
+\DoxyCodeLine{00151\ \textcolor{preprocessor}{\ \ \ \ DECL\_ASN\_OP\_OTHER(op)}}
+\DoxyCodeLine{00152\ }
+\DoxyCodeLine{00153\ \ \ \ \ \mbox{\hyperlink{sc__fix_8h_afcdb41d438a4d3542f00f4f12ddd2409}{DECL\_ASN\_OP}}(=)}
+\DoxyCodeLine{00154\ }
+\DoxyCodeLine{00155\ \ \ \ \ \mbox{\hyperlink{sc__fix_8h_afcdb41d438a4d3542f00f4f12ddd2409}{DECL\_ASN\_OP}}(*=)}
+\DoxyCodeLine{00156\ \ \ \ \ \mbox{\hyperlink{sc__fix_8h_afcdb41d438a4d3542f00f4f12ddd2409}{DECL\_ASN\_OP}}(/=)}
+\DoxyCodeLine{00157\ \ \ \ \ \mbox{\hyperlink{sc__fix_8h_afcdb41d438a4d3542f00f4f12ddd2409}{DECL\_ASN\_OP}}(+=)}
+\DoxyCodeLine{00158\ \ \ \ \ \mbox{\hyperlink{sc__fix_8h_afcdb41d438a4d3542f00f4f12ddd2409}{DECL\_ASN\_OP}}(-\/=)}
+\DoxyCodeLine{00159\ }
+\DoxyCodeLine{00160\ \ \ \ \ \mbox{\hyperlink{sc__fix_8h_ac919eecc0ae9d82c36ee542530f37cfd}{DECL\_ASN\_OP\_T}}(<<=,\textcolor{keywordtype}{int})}
+\DoxyCodeLine{00161\ \ \ \ \ \mbox{\hyperlink{sc__fix_8h_ac919eecc0ae9d82c36ee542530f37cfd}{DECL\_ASN\_OP\_T}}(>>=,\textcolor{keywordtype}{int})}
+\DoxyCodeLine{00162\ }
+\DoxyCodeLine{00163\ \ \ \ \ \mbox{\hyperlink{sc__fix_8h_ac919eecc0ae9d82c36ee542530f37cfd}{DECL\_ASN\_OP\_T}}(\&=,\mbox{\hyperlink{class_sysc_add__pv}{const}}\ \mbox{\hyperlink{classsc__dt_1_1sc__fix_afe27017f13e8bc054258350525baa821}{sc\_fix}}\&)}
+\DoxyCodeLine{00164\ \ \ \ \ \mbox{\hyperlink{sc__fix_8h_ac919eecc0ae9d82c36ee542530f37cfd}{DECL\_ASN\_OP\_T}}(\&=,\mbox{\hyperlink{class_sysc_add__pv}{const}}\ sc\_fix\_fast\&)}
+\DoxyCodeLine{00165\ \ \ \ \ \mbox{\hyperlink{sc__fix_8h_ac919eecc0ae9d82c36ee542530f37cfd}{DECL\_ASN\_OP\_T}}(|=,\mbox{\hyperlink{class_sysc_add__pv}{const}}\ \mbox{\hyperlink{classsc__dt_1_1sc__fix_afe27017f13e8bc054258350525baa821}{sc\_fix}}\&)}
+\DoxyCodeLine{00166\ \ \ \ \ \mbox{\hyperlink{sc__fix_8h_ac919eecc0ae9d82c36ee542530f37cfd}{DECL\_ASN\_OP\_T}}(|=,\mbox{\hyperlink{class_sysc_add__pv}{const}}\ sc\_fix\_fast\&)}
+\DoxyCodeLine{00167\ \ \ \ \ \mbox{\hyperlink{sc__fix_8h_ac919eecc0ae9d82c36ee542530f37cfd}{DECL\_ASN\_OP\_T}}(\string^=,\mbox{\hyperlink{class_sysc_add__pv}{const}}\ \mbox{\hyperlink{classsc__dt_1_1sc__fix_afe27017f13e8bc054258350525baa821}{sc\_fix}}\&)}
+\DoxyCodeLine{00168\ \ \ \ \ \mbox{\hyperlink{sc__fix_8h_ac919eecc0ae9d82c36ee542530f37cfd}{DECL\_ASN\_OP\_T}}(\string^=,\mbox{\hyperlink{class_sysc_add__pv}{const}}\ sc\_fix\_fast\&)}
+\DoxyCodeLine{00169\ }
+\DoxyCodeLine{00170\ \textcolor{preprocessor}{\#undef\ DECL\_ASN\_OP\_T}}
+\DoxyCodeLine{00171\ \textcolor{preprocessor}{\#undef\ DECL\_ASN\_OP\_OTHER}}
+\DoxyCodeLine{00172\ \textcolor{preprocessor}{\#undef\ DECL\_ASN\_OP}}
+\DoxyCodeLine{00173\ }
+\DoxyCodeLine{00174\ }
+\DoxyCodeLine{00175\ \ \ \ \ \textcolor{comment}{//\ auto-\/increment\ and\ auto-\/decrement}}
+\DoxyCodeLine{00176\ }
+\DoxyCodeLine{00177\ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{classsc__dt_1_1sc__fxnum_aa226f4d5df4d442309db0fa035fc3a97}{sc\_fxval}}\ \mbox{\hyperlink{classsc__dt_1_1sc__fixed_aaafbc0912cd487c3a6d5b7c2a882e8e2}{operator\ ++\ }}(\ \textcolor{keywordtype}{int}\ );}
+\DoxyCodeLine{00178\ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{classsc__dt_1_1sc__fxnum_aa226f4d5df4d442309db0fa035fc3a97}{sc\_fxval}}\ \mbox{\hyperlink{classsc__dt_1_1sc__fixed_a23a593fdccf0664e8807a1fe220382cc}{operator\ -\/-\/\ }}(\ \textcolor{keywordtype}{int}\ );}
+\DoxyCodeLine{00179\ }
+\DoxyCodeLine{00180\ \ \ \ \ \mbox{\hyperlink{classsc__dt_1_1sc__fixed_a5bfdf310e7cf1c3948591bff364e9c1d}{sc\_fixed}}\&\ \mbox{\hyperlink{classsc__dt_1_1sc__fixed_aaafbc0912cd487c3a6d5b7c2a882e8e2}{operator\ ++\ }}();}
+\DoxyCodeLine{00181\ \ \ \ \ \mbox{\hyperlink{classsc__dt_1_1sc__fixed_a5bfdf310e7cf1c3948591bff364e9c1d}{sc\_fixed}}\&\ \mbox{\hyperlink{classsc__dt_1_1sc__fixed_a23a593fdccf0664e8807a1fe220382cc}{operator\ -\/-\/\ }}();}
+\DoxyCodeLine{00182\ }
+\DoxyCodeLine{00183\ \};}
+\DoxyCodeLine{00184\ }
+\DoxyCodeLine{00185\ }
+\DoxyCodeLine{00186\ \textcolor{comment}{//\ -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{00187\ \textcolor{comment}{//\ \ TEMPLATE\ CLASS\ :\ sc\_fixed\_fast}}
+\DoxyCodeLine{00188\ \textcolor{comment}{//}}
+\DoxyCodeLine{00189\ \textcolor{comment}{//\ \ "{}Constrained"{}\ signed\ fixed-\/point\ class;\ limited\ precision.}}
+\DoxyCodeLine{00190\ \textcolor{comment}{//\ -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{00191\ }
+\DoxyCodeLine{00192\ \textcolor{keyword}{template}\ <\textcolor{keywordtype}{int}\ \mbox{\hyperlink{class_sysc_add__pv}{W}},\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{class_sysc_add__pv}{I}},}
+\DoxyCodeLine{00193\ \ \ \ \ \ \ \mbox{\hyperlink{namespacesc__dt_a231ecdcc13fcad8eb53b7020c93bb721}{sc\_q\_mode}}\ \mbox{\hyperlink{class_sysc_add__pv}{Q}}\ =\ \mbox{\hyperlink{namespacesc__dt_a5c2d016b13dfc62ab0fb86e3d41a8bfb}{SC\_DEFAULT\_Q\_MODE\_}},}
+\DoxyCodeLine{00194\ \ \ \ \ \ \ \mbox{\hyperlink{namespacesc__dt_af938546ec8f720ce20f21c3b0931c2e5}{sc\_o\_mode}}\ \mbox{\hyperlink{class_sysc_add__pv}{O}}\ =\ \mbox{\hyperlink{namespacesc__dt_aa450d625be656c8cd2b7b800a8376a76}{SC\_DEFAULT\_O\_MODE\_}},\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{class_sysc_add__pv}{N}}\ =\ \mbox{\hyperlink{namespacesc__dt_afccd3909356b1dbf4b8f848928b3bd03}{SC\_DEFAULT\_N\_BITS\_}}>}
+\DoxyCodeLine{00195\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classsc__dt_1_1sc__fixed__fast}{sc\_fixed\_fast}}\ :\ \textcolor{keyword}{public}\ \mbox{\hyperlink{classsc__dt_1_1sc__fix__fast}{sc\_fix\_fast}}}
+\DoxyCodeLine{00196\ \{}
+\DoxyCodeLine{00197\ }
+\DoxyCodeLine{00198\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00199\ }
+\DoxyCodeLine{00200\ \ \ \ \ \textcolor{comment}{//\ constructors}}
+\DoxyCodeLine{00201\ }
+\DoxyCodeLine{00202\ \ \ \ \ \textcolor{keyword}{explicit}\ \mbox{\hyperlink{classsc__dt_1_1sc__fixed__fast_a3d61df6423c9adbd1d591b6ef9ef8fb2}{sc\_fixed\_fast}}(\ \mbox{\hyperlink{classsc__dt_1_1sc__fxnum__fast__observer}{sc\_fxnum\_fast\_observer}}*\ =\ 0\ );}
+\DoxyCodeLine{00203\ \ \ \ \ \textcolor{keyword}{explicit}\ \mbox{\hyperlink{classsc__dt_1_1sc__fixed__fast_a3d61df6423c9adbd1d591b6ef9ef8fb2}{sc\_fixed\_fast}}(\ \textcolor{keyword}{const}\ \mbox{\hyperlink{classsc__dt_1_1sc__fxcast__switch}{sc\_fxcast\_switch}}\&,}
+\DoxyCodeLine{00204\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classsc__dt_1_1sc__fxnum__fast__observer}{sc\_fxnum\_fast\_observer}}*\ =\ 0\ );}
+\DoxyCodeLine{00205\ }
+\DoxyCodeLine{00206\ \textcolor{preprocessor}{\#define\ DECL\_CTORS\_T\_A(tp)\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}}
+\DoxyCodeLine{00207\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ \ \ \ \ \ sc\_fixed\_fast(\ tp,\ sc\_fxnum\_fast\_observer*\ =\ 0\ );\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}}
+\DoxyCodeLine{00208\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ \ \ \ \ \ sc\_fixed\_fast(\ tp,\ const\ sc\_fxcast\_switch\&,\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}}
+\DoxyCodeLine{00209\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ sc\_fxnum\_fast\_observer*\ =\ 0\ );}}
+\DoxyCodeLine{00210\ }
+\DoxyCodeLine{00211\ \textcolor{preprocessor}{\#define\ DECL\_CTORS\_T\_B(tp)\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}}
+\DoxyCodeLine{00212\ \textcolor{preprocessor}{\ \ \ \ explicit\ sc\_fixed\_fast(\ tp,\ sc\_fxnum\_fast\_observer*\ =\ 0\ );\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}}
+\DoxyCodeLine{00213\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ \ \ \ \ \ sc\_fixed\_fast(\ tp,\ const\ sc\_fxcast\_switch\&,\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}}
+\DoxyCodeLine{00214\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ sc\_fxnum\_fast\_observer*\ =\ 0\ );}}
+\DoxyCodeLine{00215\ }
+\DoxyCodeLine{00216\ \ \ \ \ \mbox{\hyperlink{sc__fix_8h_a0806659dff0c9f2f91cbf08de13c0ecf}{DECL\_CTORS\_T\_A}}(\textcolor{keywordtype}{int})}
+\DoxyCodeLine{00217\ \ \ \ \ \mbox{\hyperlink{sc__fix_8h_a0806659dff0c9f2f91cbf08de13c0ecf}{DECL\_CTORS\_T\_A}}(\textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{int})}
+\DoxyCodeLine{00218\ \ \ \ \ \mbox{\hyperlink{sc__fix_8h_a0806659dff0c9f2f91cbf08de13c0ecf}{DECL\_CTORS\_T\_A}}(\textcolor{keywordtype}{long})}
+\DoxyCodeLine{00219\ \ \ \ \ \mbox{\hyperlink{sc__fix_8h_a0806659dff0c9f2f91cbf08de13c0ecf}{DECL\_CTORS\_T\_A}}(\textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{long})}
+\DoxyCodeLine{00220\ \ \ \ \ \mbox{\hyperlink{sc__fix_8h_a0806659dff0c9f2f91cbf08de13c0ecf}{DECL\_CTORS\_T\_A}}(\textcolor{keywordtype}{float})}
+\DoxyCodeLine{00221\ \ \ \ \ \mbox{\hyperlink{sc__fix_8h_a0806659dff0c9f2f91cbf08de13c0ecf}{DECL\_CTORS\_T\_A}}(\textcolor{keywordtype}{double})}
+\DoxyCodeLine{00222\ \ \ \ \ \mbox{\hyperlink{sc__fix_8h_a0806659dff0c9f2f91cbf08de13c0ecf}{DECL\_CTORS\_T\_A}}(\textcolor{keyword}{const}\ \textcolor{keywordtype}{char}*)}
+\DoxyCodeLine{00223\ \ \ \ \ \mbox{\hyperlink{sc__fix_8h_a0806659dff0c9f2f91cbf08de13c0ecf}{DECL\_CTORS\_T\_A}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{classsc__dt_1_1sc__fxval}{sc\_fxval}}\&)}
+\DoxyCodeLine{00224\ \ \ \ \ \mbox{\hyperlink{sc__fix_8h_a0806659dff0c9f2f91cbf08de13c0ecf}{DECL\_CTORS\_T\_A}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{classsc__dt_1_1sc__fxval__fast}{sc\_fxval\_fast}}\&)}
+\DoxyCodeLine{00225\ \ \ \ \ \mbox{\hyperlink{sc__fix_8h_a0806659dff0c9f2f91cbf08de13c0ecf}{DECL\_CTORS\_T\_A}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{classsc__dt_1_1sc__fxnum}{sc\_fxnum}}\&)}
+\DoxyCodeLine{00226\ \ \ \ \ \mbox{\hyperlink{sc__fix_8h_a0806659dff0c9f2f91cbf08de13c0ecf}{DECL\_CTORS\_T\_A}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{classsc__dt_1_1sc__fxnum__fast}{sc\_fxnum\_fast}}\&)}
+\DoxyCodeLine{00227\ \textcolor{preprocessor}{\#ifndef\ SC\_FX\_EXCLUDE\_OTHER}}
+\DoxyCodeLine{00228\ \ \ \ \ \mbox{\hyperlink{sc__fix_8h_a4e3a0139b5778e36ae38658e3ce1c058}{DECL\_CTORS\_T\_B}}(\mbox{\hyperlink{class_sysc_add__pv}{int64}})}
+\DoxyCodeLine{00229\ \ \ \ \ \mbox{\hyperlink{sc__fix_8h_a4e3a0139b5778e36ae38658e3ce1c058}{DECL\_CTORS\_T\_B}}(\mbox{\hyperlink{class_sysc_add__pv}{uint64}})}
+\DoxyCodeLine{00230\ \ \ \ \ \mbox{\hyperlink{sc__fix_8h_a4e3a0139b5778e36ae38658e3ce1c058}{DECL\_CTORS\_T\_B}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{classsc__dt_1_1sc__int__base}{sc\_int\_base}}\&)}
+\DoxyCodeLine{00231\ \ \ \ \ \mbox{\hyperlink{sc__fix_8h_a4e3a0139b5778e36ae38658e3ce1c058}{DECL\_CTORS\_T\_B}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{classsc__dt_1_1sc__uint__base}{sc\_uint\_base}}\&)}
+\DoxyCodeLine{00232\ \ \ \ \ \mbox{\hyperlink{sc__fix_8h_a4e3a0139b5778e36ae38658e3ce1c058}{DECL\_CTORS\_T\_B}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{classsc__dt_1_1sc__signed}{sc\_signed}}\&)}
+\DoxyCodeLine{00233\ \ \ \ \ \mbox{\hyperlink{sc__fix_8h_a4e3a0139b5778e36ae38658e3ce1c058}{DECL\_CTORS\_T\_B}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{classsc__dt_1_1sc__unsigned}{sc\_unsigned}}\&)}
+\DoxyCodeLine{00234\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00235\ }
+\DoxyCodeLine{00236\ \textcolor{preprocessor}{\#undef\ DECL\_CTORS\_T\_A}}
+\DoxyCodeLine{00237\ \textcolor{preprocessor}{\#undef\ DECL\_CTORS\_T\_B}}
+\DoxyCodeLine{00238\ }
+\DoxyCodeLine{00239\ \ \ \ \ \textcolor{comment}{//\ copy\ constructor}}
+\DoxyCodeLine{00240\ }
+\DoxyCodeLine{00241\ \ \ \ \ \mbox{\hyperlink{classsc__dt_1_1sc__fixed__fast_a3d61df6423c9adbd1d591b6ef9ef8fb2}{sc\_fixed\_fast}}(\ \textcolor{keyword}{const}\ \mbox{\hyperlink{class_sysc_add__pv}{sc\_fixed\_fast<W,I,Q,O,N>}}\&\ );}
+\DoxyCodeLine{00242\ }
+\DoxyCodeLine{00243\ }
+\DoxyCodeLine{00244\ \ \ \ \ \textcolor{comment}{//\ assignment\ operators}}
+\DoxyCodeLine{00245\ }
+\DoxyCodeLine{00246\ \ \ \ \ \mbox{\hyperlink{classsc__dt_1_1sc__fixed__fast}{sc\_fixed\_fast}}\&\ \mbox{\hyperlink{classsc__dt_1_1sc__fixed__fast_a8027980b49cd66350dab05251aa90753}{operator\ =\ }}(\ \textcolor{keyword}{const}\ \mbox{\hyperlink{class_sysc_add__pv}{sc\_fixed\_fast<W,I,Q,O,N>}}\&\ );}
+\DoxyCodeLine{00247\ }
+\DoxyCodeLine{00248\ \textcolor{preprocessor}{\#define\ DECL\_ASN\_OP\_T(op,tp)\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}}
+\DoxyCodeLine{00249\ \textcolor{preprocessor}{\ \ \ \ sc\_fixed\_fast\&\ operator\ op\ (\ tp\ );}}
+\DoxyCodeLine{00250\ }
+\DoxyCodeLine{00251\ \textcolor{preprocessor}{\#ifndef\ SC\_FX\_EXCLUDE\_OTHER}}
+\DoxyCodeLine{00252\ \textcolor{preprocessor}{\#define\ DECL\_ASN\_OP\_OTHER(op)\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}}
+\DoxyCodeLine{00253\ \textcolor{preprocessor}{\ \ \ \ DECL\_ASN\_OP\_T(op,int64)\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}}
+\DoxyCodeLine{00254\ \textcolor{preprocessor}{\ \ \ \ DECL\_ASN\_OP\_T(op,uint64)\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}}
+\DoxyCodeLine{00255\ \textcolor{preprocessor}{\ \ \ \ DECL\_ASN\_OP\_T(op,const\ sc\_int\_base\&)\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}}
+\DoxyCodeLine{00256\ \textcolor{preprocessor}{\ \ \ \ DECL\_ASN\_OP\_T(op,const\ sc\_uint\_base\&)\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}}
+\DoxyCodeLine{00257\ \textcolor{preprocessor}{\ \ \ \ DECL\_ASN\_OP\_T(op,const\ sc\_signed\&)\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}}
+\DoxyCodeLine{00258\ \textcolor{preprocessor}{\ \ \ \ DECL\_ASN\_OP\_T(op,const\ sc\_unsigned\&)}}
+\DoxyCodeLine{00259\ \textcolor{preprocessor}{\#else}}
+\DoxyCodeLine{00260\ \textcolor{preprocessor}{\#define\ DECL\_ASN\_OP\_OTHER(op)}}
+\DoxyCodeLine{00261\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00262\ }
+\DoxyCodeLine{00263\ \textcolor{preprocessor}{\#define\ DECL\_ASN\_OP(op)\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}}
+\DoxyCodeLine{00264\ \textcolor{preprocessor}{\ \ \ \ DECL\_ASN\_OP\_T(op,int)\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}}
+\DoxyCodeLine{00265\ \textcolor{preprocessor}{\ \ \ \ DECL\_ASN\_OP\_T(op,unsigned\ int)\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}}
+\DoxyCodeLine{00266\ \textcolor{preprocessor}{\ \ \ \ DECL\_ASN\_OP\_T(op,long)\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}}
+\DoxyCodeLine{00267\ \textcolor{preprocessor}{\ \ \ \ DECL\_ASN\_OP\_T(op,unsigned\ long)\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}}
+\DoxyCodeLine{00268\ \textcolor{preprocessor}{\ \ \ \ DECL\_ASN\_OP\_T(op,float)\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}}
+\DoxyCodeLine{00269\ \textcolor{preprocessor}{\ \ \ \ DECL\_ASN\_OP\_T(op,double)\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}}
+\DoxyCodeLine{00270\ \textcolor{preprocessor}{\ \ \ \ DECL\_ASN\_OP\_T(op,const\ char*)\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}}
+\DoxyCodeLine{00271\ \textcolor{preprocessor}{\ \ \ \ DECL\_ASN\_OP\_T(op,const\ sc\_fxval\&)\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}}
+\DoxyCodeLine{00272\ \textcolor{preprocessor}{\ \ \ \ DECL\_ASN\_OP\_T(op,const\ sc\_fxval\_fast\&)\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}}
+\DoxyCodeLine{00273\ \textcolor{preprocessor}{\ \ \ \ DECL\_ASN\_OP\_T(op,const\ sc\_fxnum\&)\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}}
+\DoxyCodeLine{00274\ \textcolor{preprocessor}{\ \ \ \ DECL\_ASN\_OP\_T(op,const\ sc\_fxnum\_fast\&)\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}}
+\DoxyCodeLine{00275\ \textcolor{preprocessor}{\ \ \ \ DECL\_ASN\_OP\_OTHER(op)}}
+\DoxyCodeLine{00276\ }
+\DoxyCodeLine{00277\ \ \ \ \ \mbox{\hyperlink{sc__fix_8h_afcdb41d438a4d3542f00f4f12ddd2409}{DECL\_ASN\_OP}}(=)}
+\DoxyCodeLine{00278\ }
+\DoxyCodeLine{00279\ \ \ \ \ \mbox{\hyperlink{sc__fix_8h_afcdb41d438a4d3542f00f4f12ddd2409}{DECL\_ASN\_OP}}(*=)}
+\DoxyCodeLine{00280\ \ \ \ \ \mbox{\hyperlink{sc__fix_8h_afcdb41d438a4d3542f00f4f12ddd2409}{DECL\_ASN\_OP}}(/=)}
+\DoxyCodeLine{00281\ \ \ \ \ \mbox{\hyperlink{sc__fix_8h_afcdb41d438a4d3542f00f4f12ddd2409}{DECL\_ASN\_OP}}(+=)}
+\DoxyCodeLine{00282\ \ \ \ \ \mbox{\hyperlink{sc__fix_8h_afcdb41d438a4d3542f00f4f12ddd2409}{DECL\_ASN\_OP}}(-\/=)}
+\DoxyCodeLine{00283\ }
+\DoxyCodeLine{00284\ \ \ \ \ \mbox{\hyperlink{sc__fix_8h_ac919eecc0ae9d82c36ee542530f37cfd}{DECL\_ASN\_OP\_T}}(<<=,\textcolor{keywordtype}{int})}
+\DoxyCodeLine{00285\ \ \ \ \ \mbox{\hyperlink{sc__fix_8h_ac919eecc0ae9d82c36ee542530f37cfd}{DECL\_ASN\_OP\_T}}(>>=,\textcolor{keywordtype}{int})}
+\DoxyCodeLine{00286\ }
+\DoxyCodeLine{00287\ \ \ \ \ \mbox{\hyperlink{sc__fix_8h_ac919eecc0ae9d82c36ee542530f37cfd}{DECL\_ASN\_OP\_T}}(\&=,\textcolor{keyword}{const}\ \mbox{\hyperlink{classsc__dt_1_1sc__fix}{sc\_fix}}\&)}
+\DoxyCodeLine{00288\ \ \ \ \ \mbox{\hyperlink{sc__fix_8h_ac919eecc0ae9d82c36ee542530f37cfd}{DECL\_ASN\_OP\_T}}(\&=,\textcolor{keyword}{const}\ \mbox{\hyperlink{classsc__dt_1_1sc__fix__fast}{sc\_fix\_fast}}\&)}
+\DoxyCodeLine{00289\ \ \ \ \ \mbox{\hyperlink{sc__fix_8h_ac919eecc0ae9d82c36ee542530f37cfd}{DECL\_ASN\_OP\_T}}(|=,\textcolor{keyword}{const}\ \mbox{\hyperlink{classsc__dt_1_1sc__fix}{sc\_fix}}\&)}
+\DoxyCodeLine{00290\ \ \ \ \ \mbox{\hyperlink{sc__fix_8h_ac919eecc0ae9d82c36ee542530f37cfd}{DECL\_ASN\_OP\_T}}(|=,\textcolor{keyword}{const}\ \mbox{\hyperlink{classsc__dt_1_1sc__fix__fast}{sc\_fix\_fast}}\&)}
+\DoxyCodeLine{00291\ \ \ \ \ \mbox{\hyperlink{sc__fix_8h_ac919eecc0ae9d82c36ee542530f37cfd}{DECL\_ASN\_OP\_T}}(\string^=,\textcolor{keyword}{const}\ \mbox{\hyperlink{classsc__dt_1_1sc__fix}{sc\_fix}}\&)}
+\DoxyCodeLine{00292\ \ \ \ \ \mbox{\hyperlink{sc__fix_8h_ac919eecc0ae9d82c36ee542530f37cfd}{DECL\_ASN\_OP\_T}}(\string^=,\textcolor{keyword}{const}\ \mbox{\hyperlink{classsc__dt_1_1sc__fix__fast}{sc\_fix\_fast}}\&)}
+\DoxyCodeLine{00293\ }
+\DoxyCodeLine{00294\ \textcolor{preprocessor}{\#undef\ DECL\_ASN\_OP\_T}}
+\DoxyCodeLine{00295\ \textcolor{preprocessor}{\#undef\ DECL\_ASN\_OP\_OTHER}}
+\DoxyCodeLine{00296\ \textcolor{preprocessor}{\#undef\ DECL\_ASN\_OP}}
+\DoxyCodeLine{00297\ }
+\DoxyCodeLine{00298\ }
+\DoxyCodeLine{00299\ \ \ \ \ \textcolor{comment}{//\ auto-\/increment\ and\ auto-\/decrement}}
+\DoxyCodeLine{00300\ }
+\DoxyCodeLine{00301\ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{classsc__dt_1_1sc__fxval__fast}{sc\_fxval\_fast}}\ \mbox{\hyperlink{classsc__dt_1_1sc__fixed__fast_ac89bd20d0249c39eee8c19609d999217}{operator\ ++\ }}(\ \textcolor{keywordtype}{int}\ );}
+\DoxyCodeLine{00302\ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{classsc__dt_1_1sc__fxval__fast}{sc\_fxval\_fast}}\ \mbox{\hyperlink{classsc__dt_1_1sc__fixed__fast_a6840072252dbc4062292a239c8eff503}{operator\ -\/-\/\ }}(\ \textcolor{keywordtype}{int}\ );}
+\DoxyCodeLine{00303\ }
+\DoxyCodeLine{00304\ \ \ \ \ \mbox{\hyperlink{classsc__dt_1_1sc__fixed__fast}{sc\_fixed\_fast}}\&\ \mbox{\hyperlink{classsc__dt_1_1sc__fixed__fast_ac89bd20d0249c39eee8c19609d999217}{operator\ ++\ }}();}
+\DoxyCodeLine{00305\ \ \ \ \ \mbox{\hyperlink{classsc__dt_1_1sc__fixed__fast}{sc\_fixed\_fast}}\&\ \mbox{\hyperlink{classsc__dt_1_1sc__fixed__fast_a6840072252dbc4062292a239c8eff503}{operator\ -\/-\/\ }}();}
+\DoxyCodeLine{00306\ }
+\DoxyCodeLine{00307\ \};}
+\DoxyCodeLine{00308\ }
+\DoxyCodeLine{00309\ }
+\DoxyCodeLine{00310\ \textcolor{comment}{//\ IIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIII}}
+\DoxyCodeLine{00311\ }
+\DoxyCodeLine{00312\ \textcolor{comment}{//\ -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{00313\ \textcolor{comment}{//\ \ TEMPLATE\ CLASS\ :\ sc\_fixed}}
+\DoxyCodeLine{00314\ \textcolor{comment}{//}}
+\DoxyCodeLine{00315\ \textcolor{comment}{//\ \ "{}Constrained"{}\ signed\ fixed-\/point\ class;\ arbitrary\ precision.}}
+\DoxyCodeLine{00316\ \textcolor{comment}{//\ -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{00317\ }
+\DoxyCodeLine{00318\ \textcolor{keyword}{template}<\textcolor{keywordtype}{int}\ W,\ \textcolor{keywordtype}{int}\ I,\ sc\_q\_mode\ Q,\ sc\_o\_mode\ O,\ \textcolor{keywordtype}{int}\ N>}
+\DoxyCodeLine{00319\ \textcolor{keyword}{inline}}
+\DoxyCodeLine{00320\ \mbox{\hyperlink{classsc__dt_1_1sc__fixed_a5bfdf310e7cf1c3948591bff364e9c1d}{sc\_fixed<W,I,Q,O,N>::sc\_fixed}}(\ \mbox{\hyperlink{classsc__dt_1_1sc__fxnum__observer}{sc\_fxnum\_observer}}*\ \mbox{\hyperlink{class_sysc_add__pv}{observer\_}}\ )}
+\DoxyCodeLine{00321\ :\ \mbox{\hyperlink{classsc__dt_1_1sc__fix}{sc\_fix}}(\ \mbox{\hyperlink{class_sysc_add__pv}{W}},\ \mbox{\hyperlink{class_sysc_add__pv}{I}},\ \mbox{\hyperlink{class_sysc_add__pv}{Q}},\ \mbox{\hyperlink{class_sysc_add__pv}{O}},\ \mbox{\hyperlink{class_sysc_add__pv}{N}},\ \mbox{\hyperlink{class_sysc_add__pv}{observer\_}}\ )}
+\DoxyCodeLine{00322\ \{\}}
+\DoxyCodeLine{00323\ }
+\DoxyCodeLine{00324\ \textcolor{keyword}{template}<\textcolor{keywordtype}{int}\ W,\ \textcolor{keywordtype}{int}\ I,\ sc\_q\_mode\ Q,\ sc\_o\_mode\ O,\ \textcolor{keywordtype}{int}\ N>}
+\DoxyCodeLine{00325\ \textcolor{keyword}{inline}}
+\DoxyCodeLine{00326\ \mbox{\hyperlink{classsc__dt_1_1sc__fixed_a5bfdf310e7cf1c3948591bff364e9c1d}{sc\_fixed<W,I,Q,O,N>::sc\_fixed}}(\ \textcolor{keyword}{const}\ \mbox{\hyperlink{classsc__dt_1_1sc__fxcast__switch}{sc\_fxcast\_switch}}\&\ \mbox{\hyperlink{class_sysc_add__pv}{cast\_sw}},}
+\DoxyCodeLine{00327\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classsc__dt_1_1sc__fxnum__observer}{sc\_fxnum\_observer}}*\ \mbox{\hyperlink{class_sysc_add__pv}{observer\_}}\ )}
+\DoxyCodeLine{00328\ :\ \mbox{\hyperlink{classsc__dt_1_1sc__fix}{sc\_fix}}(\ \mbox{\hyperlink{class_sysc_add__pv}{W}},\ \mbox{\hyperlink{class_sysc_add__pv}{I}},\ \mbox{\hyperlink{class_sysc_add__pv}{Q}},\ \mbox{\hyperlink{class_sysc_add__pv}{O}},\ \mbox{\hyperlink{class_sysc_add__pv}{N}},\ \mbox{\hyperlink{class_sysc_add__pv}{cast\_sw}},\ \mbox{\hyperlink{class_sysc_add__pv}{observer\_}}\ )}
+\DoxyCodeLine{00329\ \{\}}
+\DoxyCodeLine{00330\ }
+\DoxyCodeLine{00331\ \textcolor{preprocessor}{\#define\ DEFN\_CTORS\_T(tp)\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}}
+\DoxyCodeLine{00332\ \textcolor{preprocessor}{template<int\ W,\ int\ I,\ sc\_q\_mode\ Q,\ sc\_o\_mode\ O,\ int\ N>\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}}
+\DoxyCodeLine{00333\ \textcolor{preprocessor}{inline\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}}
+\DoxyCodeLine{00334\ \textcolor{preprocessor}{sc\_fixed<W,I,Q,O,N>::sc\_fixed(\ tp\ a,\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}}
+\DoxyCodeLine{00335\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ sc\_fxnum\_observer*\ observer\_\ )\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}}
+\DoxyCodeLine{00336\ \textcolor{preprocessor}{:\ sc\_fix(\ a,\ W,\ I,\ Q,\ O,\ N,\ observer\_\ )\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}}
+\DoxyCodeLine{00337\ \textcolor{preprocessor}{\{\}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}}
+\DoxyCodeLine{00338\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}}
+\DoxyCodeLine{00339\ \textcolor{preprocessor}{template<int\ W,\ int\ I,\ sc\_q\_mode\ Q,\ sc\_o\_mode\ O,\ int\ N>\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}}
+\DoxyCodeLine{00340\ \textcolor{preprocessor}{inline\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}}
+\DoxyCodeLine{00341\ \textcolor{preprocessor}{sc\_fixed<W,I,Q,O,N>::sc\_fixed(\ tp\ a,\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}}
+\DoxyCodeLine{00342\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ const\ sc\_fxcast\_switch\&\ cast\_sw,\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}}
+\DoxyCodeLine{00343\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ sc\_fxnum\_observer*\ observer\_\ )\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}}
+\DoxyCodeLine{00344\ \textcolor{preprocessor}{:\ sc\_fix(\ a,\ W,\ I,\ Q,\ O,\ N,\ cast\_sw,\ observer\_\ )\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}}
+\DoxyCodeLine{00345\ \textcolor{preprocessor}{\{\}}}
+\DoxyCodeLine{00346\ }
+\DoxyCodeLine{00347\ \mbox{\hyperlink{sc__fixed_8h_aa5e9f01b5c610018f766d9fad60886a0}{DEFN\_CTORS\_T}}(\textcolor{keywordtype}{int})}
+\DoxyCodeLine{00348\ \mbox{\hyperlink{sc__fixed_8h_aa5e9f01b5c610018f766d9fad60886a0}{DEFN\_CTORS\_T}}(\textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{int})}
+\DoxyCodeLine{00349\ \mbox{\hyperlink{sc__fixed_8h_aa5e9f01b5c610018f766d9fad60886a0}{DEFN\_CTORS\_T}}(\textcolor{keywordtype}{long})}
+\DoxyCodeLine{00350\ \mbox{\hyperlink{sc__fixed_8h_aa5e9f01b5c610018f766d9fad60886a0}{DEFN\_CTORS\_T}}(\textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{long})}
+\DoxyCodeLine{00351\ \mbox{\hyperlink{sc__fixed_8h_aa5e9f01b5c610018f766d9fad60886a0}{DEFN\_CTORS\_T}}(\textcolor{keywordtype}{float})}
+\DoxyCodeLine{00352\ \mbox{\hyperlink{sc__fixed_8h_aa5e9f01b5c610018f766d9fad60886a0}{DEFN\_CTORS\_T}}(\textcolor{keywordtype}{double})}
+\DoxyCodeLine{00353\ \mbox{\hyperlink{sc__fixed_8h_aa5e9f01b5c610018f766d9fad60886a0}{DEFN\_CTORS\_T}}(\textcolor{keyword}{const}\ \textcolor{keywordtype}{char}*)}
+\DoxyCodeLine{00354\ \mbox{\hyperlink{sc__fixed_8h_aa5e9f01b5c610018f766d9fad60886a0}{DEFN\_CTORS\_T}}(\textcolor{keyword}{const}\ sc\_fxval\&)}
+\DoxyCodeLine{00355\ \mbox{\hyperlink{sc__fixed_8h_aa5e9f01b5c610018f766d9fad60886a0}{DEFN\_CTORS\_T}}(\textcolor{keyword}{const}\ sc\_fxval\_fast\&)}
+\DoxyCodeLine{00356\ \mbox{\hyperlink{sc__fixed_8h_aa5e9f01b5c610018f766d9fad60886a0}{DEFN\_CTORS\_T}}(\textcolor{keyword}{const}\ sc\_fxnum\&)}
+\DoxyCodeLine{00357\ \mbox{\hyperlink{sc__fixed_8h_aa5e9f01b5c610018f766d9fad60886a0}{DEFN\_CTORS\_T}}(\textcolor{keyword}{const}\ sc\_fxnum\_fast\&)}
+\DoxyCodeLine{00358\ \textcolor{preprocessor}{\#ifndef\ SC\_FX\_EXCLUDE\_OTHER}}
+\DoxyCodeLine{00359\ \mbox{\hyperlink{sc__fixed_8h_aa5e9f01b5c610018f766d9fad60886a0}{DEFN\_CTORS\_T}}(int64)}
+\DoxyCodeLine{00360\ \mbox{\hyperlink{sc__fixed_8h_aa5e9f01b5c610018f766d9fad60886a0}{DEFN\_CTORS\_T}}(uint64)}
+\DoxyCodeLine{00361\ \mbox{\hyperlink{sc__fixed_8h_aa5e9f01b5c610018f766d9fad60886a0}{DEFN\_CTORS\_T}}(\textcolor{keyword}{const}\ sc\_int\_base\&)}
+\DoxyCodeLine{00362\ \mbox{\hyperlink{sc__fixed_8h_aa5e9f01b5c610018f766d9fad60886a0}{DEFN\_CTORS\_T}}(\textcolor{keyword}{const}\ sc\_uint\_base\&)}
+\DoxyCodeLine{00363\ \mbox{\hyperlink{sc__fixed_8h_aa5e9f01b5c610018f766d9fad60886a0}{DEFN\_CTORS\_T}}(\textcolor{keyword}{const}\ sc\_signed\&)}
+\DoxyCodeLine{00364\ \mbox{\hyperlink{sc__fixed_8h_aa5e9f01b5c610018f766d9fad60886a0}{DEFN\_CTORS\_T}}(\textcolor{keyword}{const}\ sc\_unsigned\&)}
+\DoxyCodeLine{00365\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00366\ }
+\DoxyCodeLine{00367\ \textcolor{preprocessor}{\#undef\ DEFN\_CTORS\_T}}
+\DoxyCodeLine{00368\ }
+\DoxyCodeLine{00369\ \textcolor{comment}{//\ copy\ constructor}}
+\DoxyCodeLine{00370\ }
+\DoxyCodeLine{00371\ \textcolor{keyword}{template}<\textcolor{keywordtype}{int}\ W,\ \textcolor{keywordtype}{int}\ I,\ sc\_q\_mode\ Q,\ sc\_o\_mode\ O,\ \textcolor{keywordtype}{int}\ N>}
+\DoxyCodeLine{00372\ \textcolor{keyword}{inline}}
+\DoxyCodeLine{00373\ \mbox{\hyperlink{classsc__dt_1_1sc__fixed_a5bfdf310e7cf1c3948591bff364e9c1d}{sc\_fixed<W,I,Q,O,N>::sc\_fixed}}(\ \textcolor{keyword}{const}\ \mbox{\hyperlink{class_sysc_add__pv}{sc\_fixed<W,I,Q,O,N>}}\&\ \mbox{\hyperlink{class_sysc_add__pv}{a}}\ )}
+\DoxyCodeLine{00374\ :\ \mbox{\hyperlink{classsc__dt_1_1sc__fix}{sc\_fix}}(\ \mbox{\hyperlink{class_sysc_add__pv}{a}},\ \mbox{\hyperlink{class_sysc_add__pv}{W}},\ \mbox{\hyperlink{class_sysc_add__pv}{I}},\ \mbox{\hyperlink{class_sysc_add__pv}{Q}},\ \mbox{\hyperlink{class_sysc_add__pv}{O}},\ \mbox{\hyperlink{class_sysc_add__pv}{N}}\ )}
+\DoxyCodeLine{00375\ \{\}}
+\DoxyCodeLine{00376\ }
+\DoxyCodeLine{00377\ }
+\DoxyCodeLine{00378\ \textcolor{comment}{//\ assignment\ operators}}
+\DoxyCodeLine{00379\ }
+\DoxyCodeLine{00380\ \textcolor{keyword}{template}<\textcolor{keywordtype}{int}\ W,\ \textcolor{keywordtype}{int}\ I,\ sc\_q\_mode\ Q,\ sc\_o\_mode\ O,\ \textcolor{keywordtype}{int}\ N>}
+\DoxyCodeLine{00381\ \textcolor{keyword}{inline}}
+\DoxyCodeLine{00382\ \mbox{\hyperlink{class_sysc_add__pv}{sc\_fixed<W,I,Q,O,N>}}\&}
+\DoxyCodeLine{00383\ \mbox{\hyperlink{classsc__dt_1_1sc__fixed_a976646db4efc03a15dcd540694323787}{sc\_fixed<W,I,Q,O,N>::operator\ =\ }}(\ \textcolor{keyword}{const}\ \mbox{\hyperlink{class_sysc_add__pv}{sc\_fixed<W,I,Q,O,N>}}\&\ \mbox{\hyperlink{class_sysc_add__pv}{a}}\ )}
+\DoxyCodeLine{00384\ \{}
+\DoxyCodeLine{00385\ \ \ \ \ \mbox{\hyperlink{classsc__dt_1_1sc__fix_a853434db4aa6e60ce573fa77454e20c1}{sc\_fix::operator\ =\ }}(\ \mbox{\hyperlink{class_sysc_add__pv}{a}}\ );}
+\DoxyCodeLine{00386\ \ \ \ \ \textcolor{keywordflow}{return}\ *\textcolor{keyword}{this};}
+\DoxyCodeLine{00387\ \}}
+\DoxyCodeLine{00388\ }
+\DoxyCodeLine{00389\ \textcolor{preprocessor}{\#define\ DEFN\_ASN\_OP\_T(op,tp)\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}}
+\DoxyCodeLine{00390\ \textcolor{preprocessor}{template<int\ W,\ int\ I,\ sc\_q\_mode\ Q,\ sc\_o\_mode\ O,\ int\ N>\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}}
+\DoxyCodeLine{00391\ \textcolor{preprocessor}{inline\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}}
+\DoxyCodeLine{00392\ \textcolor{preprocessor}{sc\_fixed<W,I,Q,O,N>\&\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}}
+\DoxyCodeLine{00393\ \textcolor{preprocessor}{sc\_fixed<W,I,Q,O,N>::operator\ op\ (\ tp\ a\ )\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}}
+\DoxyCodeLine{00394\ \textcolor{preprocessor}{\{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}}
+\DoxyCodeLine{00395\ \textcolor{preprocessor}{\ \ \ \ sc\_fix::operator\ op\ (\ a\ );\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}}
+\DoxyCodeLine{00396\ \textcolor{preprocessor}{\ \ \ \ return\ *this;\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}}
+\DoxyCodeLine{00397\ \textcolor{preprocessor}{\}}}
+\DoxyCodeLine{00398\ }
+\DoxyCodeLine{00399\ \textcolor{preprocessor}{\#ifndef\ SC\_FX\_EXCLUDE\_OTHER}}
+\DoxyCodeLine{00400\ \textcolor{preprocessor}{\#define\ DEFN\_ASN\_OP\_OTHER(op)\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}}
+\DoxyCodeLine{00401\ \textcolor{preprocessor}{DEFN\_ASN\_OP\_T(op,int64)\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}}
+\DoxyCodeLine{00402\ \textcolor{preprocessor}{DEFN\_ASN\_OP\_T(op,uint64)\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}}
+\DoxyCodeLine{00403\ \textcolor{preprocessor}{DEFN\_ASN\_OP\_T(op,const\ sc\_int\_base\&)\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}}
+\DoxyCodeLine{00404\ \textcolor{preprocessor}{DEFN\_ASN\_OP\_T(op,const\ sc\_uint\_base\&)\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}}
+\DoxyCodeLine{00405\ \textcolor{preprocessor}{DEFN\_ASN\_OP\_T(op,const\ sc\_signed\&)\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}}
+\DoxyCodeLine{00406\ \textcolor{preprocessor}{DEFN\_ASN\_OP\_T(op,const\ sc\_unsigned\&)}}
+\DoxyCodeLine{00407\ \textcolor{preprocessor}{\#else}}
+\DoxyCodeLine{00408\ \textcolor{preprocessor}{\#define\ DEFN\_ASN\_OP\_OTHER(op)}}
+\DoxyCodeLine{00409\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00410\ }
+\DoxyCodeLine{00411\ \textcolor{preprocessor}{\#define\ DEFN\_ASN\_OP(op)\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}}
+\DoxyCodeLine{00412\ \textcolor{preprocessor}{DEFN\_ASN\_OP\_T(op,int)\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}}
+\DoxyCodeLine{00413\ \textcolor{preprocessor}{DEFN\_ASN\_OP\_T(op,unsigned\ int)\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}}
+\DoxyCodeLine{00414\ \textcolor{preprocessor}{DEFN\_ASN\_OP\_T(op,long)\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}}
+\DoxyCodeLine{00415\ \textcolor{preprocessor}{DEFN\_ASN\_OP\_T(op,unsigned\ long)\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}}
+\DoxyCodeLine{00416\ \textcolor{preprocessor}{DEFN\_ASN\_OP\_T(op,float)\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}}
+\DoxyCodeLine{00417\ \textcolor{preprocessor}{DEFN\_ASN\_OP\_T(op,double)\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}}
+\DoxyCodeLine{00418\ \textcolor{preprocessor}{DEFN\_ASN\_OP\_T(op,const\ char*)\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}}
+\DoxyCodeLine{00419\ \textcolor{preprocessor}{DEFN\_ASN\_OP\_T(op,const\ sc\_fxval\&)\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}}
+\DoxyCodeLine{00420\ \textcolor{preprocessor}{DEFN\_ASN\_OP\_T(op,const\ sc\_fxval\_fast\&)\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}}
+\DoxyCodeLine{00421\ \textcolor{preprocessor}{DEFN\_ASN\_OP\_T(op,const\ sc\_fxnum\&)\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}}
+\DoxyCodeLine{00422\ \textcolor{preprocessor}{DEFN\_ASN\_OP\_T(op,const\ sc\_fxnum\_fast\&)\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}}
+\DoxyCodeLine{00423\ \textcolor{preprocessor}{DEFN\_ASN\_OP\_OTHER(op)}}
+\DoxyCodeLine{00424\ }
+\DoxyCodeLine{00425\ \mbox{\hyperlink{sc__bit_8h_a813e7689c7ceca0d2f103e0373b5e6ad}{DEFN\_ASN\_OP}}(=)}
+\DoxyCodeLine{00426\ }
+\DoxyCodeLine{00427\ \mbox{\hyperlink{sc__bit_8h_a813e7689c7ceca0d2f103e0373b5e6ad}{DEFN\_ASN\_OP}}(*=)}
+\DoxyCodeLine{00428\ \mbox{\hyperlink{sc__bit_8h_a813e7689c7ceca0d2f103e0373b5e6ad}{DEFN\_ASN\_OP}}(/=)}
+\DoxyCodeLine{00429\ \mbox{\hyperlink{sc__bit_8h_a813e7689c7ceca0d2f103e0373b5e6ad}{DEFN\_ASN\_OP}}(+=)}
+\DoxyCodeLine{00430\ \mbox{\hyperlink{sc__bit_8h_a813e7689c7ceca0d2f103e0373b5e6ad}{DEFN\_ASN\_OP}}(-\/=)}
+\DoxyCodeLine{00431\ }
+\DoxyCodeLine{00432\ \mbox{\hyperlink{sc__bit_8h_a8d20a45ac165ec7ca334e44a0bdd33fa}{DEFN\_ASN\_OP\_T}}(<<=,\textcolor{keywordtype}{int})}
+\DoxyCodeLine{00433\ \mbox{\hyperlink{sc__bit_8h_a8d20a45ac165ec7ca334e44a0bdd33fa}{DEFN\_ASN\_OP\_T}}(>>=,\textcolor{keywordtype}{int})}
+\DoxyCodeLine{00434\ }
+\DoxyCodeLine{00435\ \mbox{\hyperlink{sc__bit_8h_a8d20a45ac165ec7ca334e44a0bdd33fa}{DEFN\_ASN\_OP\_T}}(\&=,\mbox{\hyperlink{class_sysc_add__pv}{const}}\ sc\_fix\&)}
+\DoxyCodeLine{00436\ \mbox{\hyperlink{sc__bit_8h_a8d20a45ac165ec7ca334e44a0bdd33fa}{DEFN\_ASN\_OP\_T}}(\&=,\mbox{\hyperlink{class_sysc_add__pv}{const}}\ sc\_fix\_fast\&)}
+\DoxyCodeLine{00437\ \mbox{\hyperlink{sc__bit_8h_a8d20a45ac165ec7ca334e44a0bdd33fa}{DEFN\_ASN\_OP\_T}}(|=,\mbox{\hyperlink{class_sysc_add__pv}{const}}\ sc\_fix\&)}
+\DoxyCodeLine{00438\ \mbox{\hyperlink{sc__bit_8h_a8d20a45ac165ec7ca334e44a0bdd33fa}{DEFN\_ASN\_OP\_T}}(|=,\mbox{\hyperlink{class_sysc_add__pv}{const}}\ sc\_fix\_fast\&)}
+\DoxyCodeLine{00439\ \mbox{\hyperlink{sc__bit_8h_a8d20a45ac165ec7ca334e44a0bdd33fa}{DEFN\_ASN\_OP\_T}}(\string^=,\mbox{\hyperlink{class_sysc_add__pv}{const}}\ sc\_fix\&)}
+\DoxyCodeLine{00440\ \mbox{\hyperlink{sc__bit_8h_a8d20a45ac165ec7ca334e44a0bdd33fa}{DEFN\_ASN\_OP\_T}}(\string^=,\mbox{\hyperlink{class_sysc_add__pv}{const}}\ sc\_fix\_fast\&)}
+\DoxyCodeLine{00441\ }
+\DoxyCodeLine{00442\ \textcolor{preprocessor}{\#undef\ DEFN\_ASN\_OP\_T}}
+\DoxyCodeLine{00443\ \textcolor{preprocessor}{\#undef\ DEFN\_ASN\_OP\_OTHER}}
+\DoxyCodeLine{00444\ \textcolor{preprocessor}{\#undef\ DEFN\_ASN\_OP}}
+\DoxyCodeLine{00445\ }
+\DoxyCodeLine{00446\ }
+\DoxyCodeLine{00447\ \textcolor{comment}{//\ auto-\/increment\ and\ auto-\/decrement}}
+\DoxyCodeLine{00448\ }
+\DoxyCodeLine{00449\ \textcolor{keyword}{template}<\textcolor{keywordtype}{int}\ W,\ \textcolor{keywordtype}{int}\ I,\ sc\_q\_mode\ Q,\ sc\_o\_mode\ O,\ \textcolor{keywordtype}{int}\ N>}
+\DoxyCodeLine{00450\ \textcolor{keyword}{inline}}
+\DoxyCodeLine{00451\ \textcolor{keyword}{const}\ sc\_fxval}
+\DoxyCodeLine{00452\ \mbox{\hyperlink{classsc__dt_1_1sc__fixed_aaafbc0912cd487c3a6d5b7c2a882e8e2}{sc\_fixed<W,I,Q,O,N>::operator\ ++\ }}(\ \textcolor{keywordtype}{int}\ )}
+\DoxyCodeLine{00453\ \{}
+\DoxyCodeLine{00454\ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{classsc__dt_1_1sc__fxval}{sc\_fxval}}(\ sc\_fix::operator\ ++\ (\ 0\ )\ );}
+\DoxyCodeLine{00455\ \}}
+\DoxyCodeLine{00456\ }
+\DoxyCodeLine{00457\ \textcolor{keyword}{template}<\textcolor{keywordtype}{int}\ W,\ \textcolor{keywordtype}{int}\ I,\ sc\_q\_mode\ Q,\ sc\_o\_mode\ O,\ \textcolor{keywordtype}{int}\ N>}
+\DoxyCodeLine{00458\ \textcolor{keyword}{inline}}
+\DoxyCodeLine{00459\ \textcolor{keyword}{const}\ \mbox{\hyperlink{classsc__dt_1_1sc__fxval}{sc\_fxval}}}
+\DoxyCodeLine{00460\ \mbox{\hyperlink{classsc__dt_1_1sc__fixed_a23a593fdccf0664e8807a1fe220382cc}{sc\_fixed<W,I,Q,O,N>::operator\ -\/-\/\ }}(\ \textcolor{keywordtype}{int}\ )}
+\DoxyCodeLine{00461\ \{}
+\DoxyCodeLine{00462\ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{classsc__dt_1_1sc__fxval}{sc\_fxval}}(\ sc\_fix::operator\ -\/-\/\ (\ 0\ )\ );}
+\DoxyCodeLine{00463\ \}}
+\DoxyCodeLine{00464\ }
+\DoxyCodeLine{00465\ \textcolor{keyword}{template}<\textcolor{keywordtype}{int}\ W,\ \textcolor{keywordtype}{int}\ I,\ sc\_q\_mode\ Q,\ sc\_o\_mode\ O,\ \textcolor{keywordtype}{int}\ N>}
+\DoxyCodeLine{00466\ \textcolor{keyword}{inline}}
+\DoxyCodeLine{00467\ \mbox{\hyperlink{class_sysc_add__pv}{sc\_fixed<W,I,Q,O,N>}}\&}
+\DoxyCodeLine{00468\ \mbox{\hyperlink{classsc__dt_1_1sc__fixed_aaafbc0912cd487c3a6d5b7c2a882e8e2}{sc\_fixed<W,I,Q,O,N>::operator\ ++\ }}()}
+\DoxyCodeLine{00469\ \{}
+\DoxyCodeLine{00470\ \ \ \ \ \mbox{\hyperlink{classsc__dt_1_1sc__fix_ae18ad590ea7092805514905c7e6e8641}{sc\_fix::operator\ ++\ }}();}
+\DoxyCodeLine{00471\ \ \ \ \ \textcolor{keywordflow}{return}\ *\textcolor{keyword}{this};}
+\DoxyCodeLine{00472\ \}}
+\DoxyCodeLine{00473\ }
+\DoxyCodeLine{00474\ \textcolor{keyword}{template}<\textcolor{keywordtype}{int}\ W,\ \textcolor{keywordtype}{int}\ I,\ sc\_q\_mode\ Q,\ sc\_o\_mode\ O,\ \textcolor{keywordtype}{int}\ N>}
+\DoxyCodeLine{00475\ \textcolor{keyword}{inline}}
+\DoxyCodeLine{00476\ \mbox{\hyperlink{class_sysc_add__pv}{sc\_fixed<W,I,Q,O,N>}}\&}
+\DoxyCodeLine{00477\ \mbox{\hyperlink{classsc__dt_1_1sc__fixed_a23a593fdccf0664e8807a1fe220382cc}{sc\_fixed<W,I,Q,O,N>::operator\ -\/-\/\ }}()}
+\DoxyCodeLine{00478\ \{}
+\DoxyCodeLine{00479\ \ \ \ \ \mbox{\hyperlink{classsc__dt_1_1sc__fix_ac4736f8f57a2c71eab9b78713e01928c}{sc\_fix::operator\ -\/-\/\ }}();}
+\DoxyCodeLine{00480\ \ \ \ \ \textcolor{keywordflow}{return}\ *\textcolor{keyword}{this};}
+\DoxyCodeLine{00481\ \}}
+\DoxyCodeLine{00482\ }
+\DoxyCodeLine{00483\ }
+\DoxyCodeLine{00484\ \textcolor{comment}{//\ -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{00485\ \textcolor{comment}{//\ \ TEMPLATE\ CLASS\ :\ sc\_fixed\_fast}}
+\DoxyCodeLine{00486\ \textcolor{comment}{//}}
+\DoxyCodeLine{00487\ \textcolor{comment}{//\ \ "{}Constrained"{}\ signed\ fixed-\/point\ class;\ limited\ precision.}}
+\DoxyCodeLine{00488\ \textcolor{comment}{//\ -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{00489\ }
+\DoxyCodeLine{00490\ \textcolor{keyword}{template}<\textcolor{keywordtype}{int}\ W,\ \textcolor{keywordtype}{int}\ I,\ sc\_q\_mode\ Q,\ sc\_o\_mode\ O,\ \textcolor{keywordtype}{int}\ N>}
+\DoxyCodeLine{00491\ \textcolor{keyword}{inline}}
+\DoxyCodeLine{00492\ \mbox{\hyperlink{classsc__dt_1_1sc__fixed__fast_a3d61df6423c9adbd1d591b6ef9ef8fb2}{sc\_fixed\_fast<W,I,Q,O,N>::sc\_fixed\_fast}}(\ \mbox{\hyperlink{classsc__dt_1_1sc__fxnum__fast__observer}{sc\_fxnum\_fast\_observer}}*\ \mbox{\hyperlink{class_sysc_add__pv}{observer\_}}\ )}
+\DoxyCodeLine{00493\ :\ \mbox{\hyperlink{classsc__dt_1_1sc__fix__fast}{sc\_fix\_fast}}(\ \mbox{\hyperlink{class_sysc_add__pv}{W}},\ \mbox{\hyperlink{class_sysc_add__pv}{I}},\ \mbox{\hyperlink{class_sysc_add__pv}{Q}},\ \mbox{\hyperlink{class_sysc_add__pv}{O}},\ \mbox{\hyperlink{class_sysc_add__pv}{N}},\ \mbox{\hyperlink{class_sysc_add__pv}{observer\_}}\ )}
+\DoxyCodeLine{00494\ \{\}}
+\DoxyCodeLine{00495\ }
+\DoxyCodeLine{00496\ \textcolor{keyword}{template}<\textcolor{keywordtype}{int}\ W,\ \textcolor{keywordtype}{int}\ I,\ sc\_q\_mode\ Q,\ sc\_o\_mode\ O,\ \textcolor{keywordtype}{int}\ N>}
+\DoxyCodeLine{00497\ \textcolor{keyword}{inline}}
+\DoxyCodeLine{00498\ \mbox{\hyperlink{classsc__dt_1_1sc__fixed__fast_a3d61df6423c9adbd1d591b6ef9ef8fb2}{sc\_fixed\_fast<W,I,Q,O,N>::sc\_fixed\_fast}}(\ \textcolor{keyword}{const}\ \mbox{\hyperlink{classsc__dt_1_1sc__fxcast__switch}{sc\_fxcast\_switch}}\&\ \mbox{\hyperlink{class_sysc_add__pv}{cast\_sw}},}
+\DoxyCodeLine{00499\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classsc__dt_1_1sc__fxnum__fast__observer}{sc\_fxnum\_fast\_observer}}*\ \mbox{\hyperlink{class_sysc_add__pv}{observer\_}}\ )}
+\DoxyCodeLine{00500\ :\ \mbox{\hyperlink{classsc__dt_1_1sc__fix__fast}{sc\_fix\_fast}}(\ \mbox{\hyperlink{class_sysc_add__pv}{W}},\ \mbox{\hyperlink{class_sysc_add__pv}{I}},\ \mbox{\hyperlink{class_sysc_add__pv}{Q}},\ \mbox{\hyperlink{class_sysc_add__pv}{O}},\ \mbox{\hyperlink{class_sysc_add__pv}{N}},\ \mbox{\hyperlink{class_sysc_add__pv}{cast\_sw}},\ \mbox{\hyperlink{class_sysc_add__pv}{observer\_}}\ )}
+\DoxyCodeLine{00501\ \{\}}
+\DoxyCodeLine{00502\ }
+\DoxyCodeLine{00503\ \textcolor{preprocessor}{\#define\ DEFN\_CTORS\_T(tp)\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}}
+\DoxyCodeLine{00504\ \textcolor{preprocessor}{template<int\ W,\ int\ I,\ sc\_q\_mode\ Q,\ sc\_o\_mode\ O,\ int\ N>\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}}
+\DoxyCodeLine{00505\ \textcolor{preprocessor}{inline\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}}
+\DoxyCodeLine{00506\ \textcolor{preprocessor}{sc\_fixed\_fast<W,I,Q,O,N>::sc\_fixed\_fast(\ tp\ a,\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}}
+\DoxyCodeLine{00507\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ sc\_fxnum\_fast\_observer*\ observer\_\ )\ \ \(\backslash\)}}
+\DoxyCodeLine{00508\ \textcolor{preprocessor}{:\ sc\_fix\_fast(\ a,\ W,\ I,\ Q,\ O,\ N,\ observer\_\ )\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}}
+\DoxyCodeLine{00509\ \textcolor{preprocessor}{\{\}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}}
+\DoxyCodeLine{00510\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}}
+\DoxyCodeLine{00511\ \textcolor{preprocessor}{template<int\ W,\ int\ I,\ sc\_q\_mode\ Q,\ sc\_o\_mode\ O,\ int\ N>\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}}
+\DoxyCodeLine{00512\ \textcolor{preprocessor}{inline\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}}
+\DoxyCodeLine{00513\ \textcolor{preprocessor}{sc\_fixed\_fast<W,I,Q,O,N>::sc\_fixed\_fast(\ tp\ a,\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}}
+\DoxyCodeLine{00514\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ const\ sc\_fxcast\_switch\&\ cast\_sw,\ \ \ \ \ \(\backslash\)}}
+\DoxyCodeLine{00515\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ sc\_fxnum\_fast\_observer*\ observer\_\ )\ \ \(\backslash\)}}
+\DoxyCodeLine{00516\ \textcolor{preprocessor}{:\ sc\_fix\_fast(\ a,\ W,\ I,\ Q,\ O,\ N,\ cast\_sw,\ observer\_\ )\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}}
+\DoxyCodeLine{00517\ \textcolor{preprocessor}{\{\}}}
+\DoxyCodeLine{00518\ }
+\DoxyCodeLine{00519\ \mbox{\hyperlink{sc__fixed_8h_aa5e9f01b5c610018f766d9fad60886a0}{DEFN\_CTORS\_T}}(\textcolor{keywordtype}{int})}
+\DoxyCodeLine{00520\ \mbox{\hyperlink{sc__fixed_8h_aa5e9f01b5c610018f766d9fad60886a0}{DEFN\_CTORS\_T}}(\textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{int})}
+\DoxyCodeLine{00521\ \mbox{\hyperlink{sc__fixed_8h_aa5e9f01b5c610018f766d9fad60886a0}{DEFN\_CTORS\_T}}(\textcolor{keywordtype}{long})}
+\DoxyCodeLine{00522\ \mbox{\hyperlink{sc__fixed_8h_aa5e9f01b5c610018f766d9fad60886a0}{DEFN\_CTORS\_T}}(\textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{long})}
+\DoxyCodeLine{00523\ \mbox{\hyperlink{sc__fixed_8h_aa5e9f01b5c610018f766d9fad60886a0}{DEFN\_CTORS\_T}}(\textcolor{keywordtype}{float})}
+\DoxyCodeLine{00524\ \mbox{\hyperlink{sc__fixed_8h_aa5e9f01b5c610018f766d9fad60886a0}{DEFN\_CTORS\_T}}(\textcolor{keywordtype}{double})}
+\DoxyCodeLine{00525\ \mbox{\hyperlink{sc__fixed_8h_aa5e9f01b5c610018f766d9fad60886a0}{DEFN\_CTORS\_T}}(\textcolor{keyword}{const}\ \textcolor{keywordtype}{char}*)}
+\DoxyCodeLine{00526\ \mbox{\hyperlink{sc__fixed_8h_aa5e9f01b5c610018f766d9fad60886a0}{DEFN\_CTORS\_T}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{classsc__dt_1_1sc__fxval}{sc\_fxval}}\&)}
+\DoxyCodeLine{00527\ \mbox{\hyperlink{sc__fixed_8h_aa5e9f01b5c610018f766d9fad60886a0}{DEFN\_CTORS\_T}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{classsc__dt_1_1sc__fxval__fast}{sc\_fxval\_fast}}\&)}
+\DoxyCodeLine{00528\ \mbox{\hyperlink{sc__fixed_8h_aa5e9f01b5c610018f766d9fad60886a0}{DEFN\_CTORS\_T}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{classsc__dt_1_1sc__fxnum}{sc\_fxnum}}\&)}
+\DoxyCodeLine{00529\ \mbox{\hyperlink{sc__fixed_8h_aa5e9f01b5c610018f766d9fad60886a0}{DEFN\_CTORS\_T}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{classsc__dt_1_1sc__fxnum__fast}{sc\_fxnum\_fast}}\&)}
+\DoxyCodeLine{00530\ \textcolor{preprocessor}{\#ifndef\ SC\_FX\_EXCLUDE\_OTHER}}
+\DoxyCodeLine{00531\ \mbox{\hyperlink{sc__fixed_8h_aa5e9f01b5c610018f766d9fad60886a0}{DEFN\_CTORS\_T}}(\mbox{\hyperlink{class_sysc_add__pv}{int64}})}
+\DoxyCodeLine{00532\ \mbox{\hyperlink{sc__fixed_8h_aa5e9f01b5c610018f766d9fad60886a0}{DEFN\_CTORS\_T}}(\mbox{\hyperlink{class_sysc_add__pv}{uint64}})}
+\DoxyCodeLine{00533\ \mbox{\hyperlink{sc__fixed_8h_aa5e9f01b5c610018f766d9fad60886a0}{DEFN\_CTORS\_T}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{classsc__dt_1_1sc__int__base}{sc\_int\_base}}\&)}
+\DoxyCodeLine{00534\ \mbox{\hyperlink{sc__fixed_8h_aa5e9f01b5c610018f766d9fad60886a0}{DEFN\_CTORS\_T}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{classsc__dt_1_1sc__uint__base}{sc\_uint\_base}}\&)}
+\DoxyCodeLine{00535\ \mbox{\hyperlink{sc__fixed_8h_aa5e9f01b5c610018f766d9fad60886a0}{DEFN\_CTORS\_T}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{classsc__dt_1_1sc__signed}{sc\_signed}}\&)}
+\DoxyCodeLine{00536\ \mbox{\hyperlink{sc__fixed_8h_aa5e9f01b5c610018f766d9fad60886a0}{DEFN\_CTORS\_T}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{classsc__dt_1_1sc__unsigned}{sc\_unsigned}}\&)}
+\DoxyCodeLine{00537\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00538\ }
+\DoxyCodeLine{00539\ \textcolor{preprocessor}{\#undef\ DEFN\_CTORS\_T}}
+\DoxyCodeLine{00540\ }
+\DoxyCodeLine{00541\ \textcolor{comment}{//\ copy\ constructor}}
+\DoxyCodeLine{00542\ }
+\DoxyCodeLine{00543\ \textcolor{keyword}{template}<\textcolor{keywordtype}{int}\ W,\ \textcolor{keywordtype}{int}\ I,\ sc\_q\_mode\ Q,\ sc\_o\_mode\ O,\ \textcolor{keywordtype}{int}\ N>}
+\DoxyCodeLine{00544\ \textcolor{keyword}{inline}}
+\DoxyCodeLine{00545\ \mbox{\hyperlink{classsc__dt_1_1sc__fixed__fast_a3d61df6423c9adbd1d591b6ef9ef8fb2}{sc\_fixed\_fast<W,I,Q,O,N>::sc\_fixed\_fast}}(\ \textcolor{keyword}{const}\ \mbox{\hyperlink{class_sysc_add__pv}{sc\_fixed\_fast<W,I,Q,O,N>}}\&\ \mbox{\hyperlink{class_sysc_add__pv}{a}}\ )}
+\DoxyCodeLine{00546\ :\ \mbox{\hyperlink{classsc__dt_1_1sc__fix__fast}{sc\_fix\_fast}}(\ \mbox{\hyperlink{class_sysc_add__pv}{a}},\ \mbox{\hyperlink{class_sysc_add__pv}{W}},\ \mbox{\hyperlink{class_sysc_add__pv}{I}},\ \mbox{\hyperlink{class_sysc_add__pv}{Q}},\ \mbox{\hyperlink{class_sysc_add__pv}{O}},\ \mbox{\hyperlink{class_sysc_add__pv}{N}}\ )}
+\DoxyCodeLine{00547\ \{\}}
+\DoxyCodeLine{00548\ }
+\DoxyCodeLine{00549\ }
+\DoxyCodeLine{00550\ \textcolor{comment}{//\ assignment\ operators}}
+\DoxyCodeLine{00551\ }
+\DoxyCodeLine{00552\ \textcolor{keyword}{template}<\textcolor{keywordtype}{int}\ W,\ \textcolor{keywordtype}{int}\ I,\ sc\_q\_mode\ Q,\ sc\_o\_mode\ O,\ \textcolor{keywordtype}{int}\ N>}
+\DoxyCodeLine{00553\ \textcolor{keyword}{inline}}
+\DoxyCodeLine{00554\ \mbox{\hyperlink{class_sysc_add__pv}{sc\_fixed\_fast<W,I,Q,O,N>}}\&}
+\DoxyCodeLine{00555\ \mbox{\hyperlink{classsc__dt_1_1sc__fixed__fast_a8027980b49cd66350dab05251aa90753}{sc\_fixed\_fast<W,I,Q,O,N>::operator\ =\ }}(\ \textcolor{keyword}{const}\ \mbox{\hyperlink{class_sysc_add__pv}{sc\_fixed\_fast<W,I,Q,O,N>}}\&\ \mbox{\hyperlink{class_sysc_add__pv}{a}}\ )}
+\DoxyCodeLine{00556\ \{}
+\DoxyCodeLine{00557\ \ \ \ \ \mbox{\hyperlink{classsc__dt_1_1sc__fix__fast_ae030e1cefdf9ff6640043b82da26033b}{sc\_fix\_fast::operator\ =\ }}(\ \mbox{\hyperlink{class_sysc_add__pv}{a}}\ );}
+\DoxyCodeLine{00558\ \ \ \ \ \textcolor{keywordflow}{return}\ *\textcolor{keyword}{this};}
+\DoxyCodeLine{00559\ \}}
+\DoxyCodeLine{00560\ }
+\DoxyCodeLine{00561\ \textcolor{preprocessor}{\#define\ DEFN\_ASN\_OP\_T(op,tp)\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}}
+\DoxyCodeLine{00562\ \textcolor{preprocessor}{template<int\ W,\ int\ I,\ sc\_q\_mode\ Q,\ sc\_o\_mode\ O,\ int\ N>\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}}
+\DoxyCodeLine{00563\ \textcolor{preprocessor}{inline\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}}
+\DoxyCodeLine{00564\ \textcolor{preprocessor}{sc\_fixed\_fast<W,I,Q,O,N>\&\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}}
+\DoxyCodeLine{00565\ \textcolor{preprocessor}{sc\_fixed\_fast<W,I,Q,O,N>::operator\ op\ (\ tp\ a\ )\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}}
+\DoxyCodeLine{00566\ \textcolor{preprocessor}{\{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}}
+\DoxyCodeLine{00567\ \textcolor{preprocessor}{\ \ \ \ sc\_fix\_fast::operator\ op\ (\ a\ );\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}}
+\DoxyCodeLine{00568\ \textcolor{preprocessor}{\ \ \ \ return\ *this;\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}}
+\DoxyCodeLine{00569\ \textcolor{preprocessor}{\}}}
+\DoxyCodeLine{00570\ }
+\DoxyCodeLine{00571\ \textcolor{preprocessor}{\#ifndef\ SC\_FX\_EXCLUDE\_OTHER}}
+\DoxyCodeLine{00572\ \textcolor{preprocessor}{\#define\ DEFN\_ASN\_OP\_OTHER(op)\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}}
+\DoxyCodeLine{00573\ \textcolor{preprocessor}{DEFN\_ASN\_OP\_T(op,int64)\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}}
+\DoxyCodeLine{00574\ \textcolor{preprocessor}{DEFN\_ASN\_OP\_T(op,uint64)\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}}
+\DoxyCodeLine{00575\ \textcolor{preprocessor}{DEFN\_ASN\_OP\_T(op,const\ sc\_int\_base\&)\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}}
+\DoxyCodeLine{00576\ \textcolor{preprocessor}{DEFN\_ASN\_OP\_T(op,const\ sc\_uint\_base\&)\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}}
+\DoxyCodeLine{00577\ \textcolor{preprocessor}{DEFN\_ASN\_OP\_T(op,const\ sc\_signed\&)\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}}
+\DoxyCodeLine{00578\ \textcolor{preprocessor}{DEFN\_ASN\_OP\_T(op,const\ sc\_unsigned\&)}}
+\DoxyCodeLine{00579\ \textcolor{preprocessor}{\#else}}
+\DoxyCodeLine{00580\ \textcolor{preprocessor}{\#define\ DEFN\_ASN\_OP\_OTHER(op)}}
+\DoxyCodeLine{00581\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00582\ }
+\DoxyCodeLine{00583\ \textcolor{preprocessor}{\#define\ DEFN\_ASN\_OP(op)\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}}
+\DoxyCodeLine{00584\ \textcolor{preprocessor}{DEFN\_ASN\_OP\_T(op,int)\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}}
+\DoxyCodeLine{00585\ \textcolor{preprocessor}{DEFN\_ASN\_OP\_T(op,unsigned\ int)\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}}
+\DoxyCodeLine{00586\ \textcolor{preprocessor}{DEFN\_ASN\_OP\_T(op,long)\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}}
+\DoxyCodeLine{00587\ \textcolor{preprocessor}{DEFN\_ASN\_OP\_T(op,unsigned\ long)\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}}
+\DoxyCodeLine{00588\ \textcolor{preprocessor}{DEFN\_ASN\_OP\_T(op,float)\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}}
+\DoxyCodeLine{00589\ \textcolor{preprocessor}{DEFN\_ASN\_OP\_T(op,double)\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}}
+\DoxyCodeLine{00590\ \textcolor{preprocessor}{DEFN\_ASN\_OP\_T(op,const\ char*)\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}}
+\DoxyCodeLine{00591\ \textcolor{preprocessor}{DEFN\_ASN\_OP\_T(op,const\ sc\_fxval\&)\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}}
+\DoxyCodeLine{00592\ \textcolor{preprocessor}{DEFN\_ASN\_OP\_T(op,const\ sc\_fxval\_fast\&)\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}}
+\DoxyCodeLine{00593\ \textcolor{preprocessor}{DEFN\_ASN\_OP\_T(op,const\ sc\_fxnum\&)\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}}
+\DoxyCodeLine{00594\ \textcolor{preprocessor}{DEFN\_ASN\_OP\_T(op,const\ sc\_fxnum\_fast\&)\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}}
+\DoxyCodeLine{00595\ \textcolor{preprocessor}{DEFN\_ASN\_OP\_OTHER(op)}}
+\DoxyCodeLine{00596\ }
+\DoxyCodeLine{00597\ \mbox{\hyperlink{sc__bit_8h_a813e7689c7ceca0d2f103e0373b5e6ad}{DEFN\_ASN\_OP}}(=)}
+\DoxyCodeLine{00598\ }
+\DoxyCodeLine{00599\ \mbox{\hyperlink{sc__bit_8h_a813e7689c7ceca0d2f103e0373b5e6ad}{DEFN\_ASN\_OP}}(*=)}
+\DoxyCodeLine{00600\ \mbox{\hyperlink{sc__bit_8h_a813e7689c7ceca0d2f103e0373b5e6ad}{DEFN\_ASN\_OP}}(/=)}
+\DoxyCodeLine{00601\ \mbox{\hyperlink{sc__bit_8h_a813e7689c7ceca0d2f103e0373b5e6ad}{DEFN\_ASN\_OP}}(+=)}
+\DoxyCodeLine{00602\ \mbox{\hyperlink{sc__bit_8h_a813e7689c7ceca0d2f103e0373b5e6ad}{DEFN\_ASN\_OP}}(-\/=)}
+\DoxyCodeLine{00603\ }
+\DoxyCodeLine{00604\ \mbox{\hyperlink{sc__bit_8h_a8d20a45ac165ec7ca334e44a0bdd33fa}{DEFN\_ASN\_OP\_T}}(<<=,\textcolor{keywordtype}{int})}
+\DoxyCodeLine{00605\ \mbox{\hyperlink{sc__bit_8h_a8d20a45ac165ec7ca334e44a0bdd33fa}{DEFN\_ASN\_OP\_T}}(>>=,\textcolor{keywordtype}{int})}
+\DoxyCodeLine{00606\ }
+\DoxyCodeLine{00607\ \mbox{\hyperlink{sc__bit_8h_a8d20a45ac165ec7ca334e44a0bdd33fa}{DEFN\_ASN\_OP\_T}}(\&=,\mbox{\hyperlink{class_sysc_add__pv}{const}}\ \mbox{\hyperlink{classsc__dt_1_1sc__fix}{sc\_fix}}\&)}
+\DoxyCodeLine{00608\ \mbox{\hyperlink{sc__bit_8h_a8d20a45ac165ec7ca334e44a0bdd33fa}{DEFN\_ASN\_OP\_T}}(\&=,\mbox{\hyperlink{class_sysc_add__pv}{const}}\ \mbox{\hyperlink{classsc__dt_1_1sc__fix__fast}{sc\_fix\_fast}}\&)}
+\DoxyCodeLine{00609\ \mbox{\hyperlink{sc__bit_8h_a8d20a45ac165ec7ca334e44a0bdd33fa}{DEFN\_ASN\_OP\_T}}(|=,\mbox{\hyperlink{class_sysc_add__pv}{const}}\ \mbox{\hyperlink{classsc__dt_1_1sc__fix}{sc\_fix}}\&)}
+\DoxyCodeLine{00610\ \mbox{\hyperlink{sc__bit_8h_a8d20a45ac165ec7ca334e44a0bdd33fa}{DEFN\_ASN\_OP\_T}}(|=,\mbox{\hyperlink{class_sysc_add__pv}{const}}\ \mbox{\hyperlink{classsc__dt_1_1sc__fix__fast}{sc\_fix\_fast}}\&)}
+\DoxyCodeLine{00611\ \mbox{\hyperlink{sc__bit_8h_a8d20a45ac165ec7ca334e44a0bdd33fa}{DEFN\_ASN\_OP\_T}}(\string^=,\mbox{\hyperlink{class_sysc_add__pv}{const}}\ \mbox{\hyperlink{classsc__dt_1_1sc__fix}{sc\_fix}}\&)}
+\DoxyCodeLine{00612\ \mbox{\hyperlink{sc__bit_8h_a8d20a45ac165ec7ca334e44a0bdd33fa}{DEFN\_ASN\_OP\_T}}(\string^=,\mbox{\hyperlink{class_sysc_add__pv}{const}}\ \mbox{\hyperlink{classsc__dt_1_1sc__fix__fast}{sc\_fix\_fast}}\&)}
+\DoxyCodeLine{00613\ }
+\DoxyCodeLine{00614\ \textcolor{preprocessor}{\#undef\ DEFN\_ASN\_OP\_T}}
+\DoxyCodeLine{00615\ \textcolor{preprocessor}{\#undef\ DEFN\_ASN\_OP\_OTHER}}
+\DoxyCodeLine{00616\ \textcolor{preprocessor}{\#undef\ DEFN\_ASN\_OP}}
+\DoxyCodeLine{00617\ }
+\DoxyCodeLine{00618\ }
+\DoxyCodeLine{00619\ \textcolor{comment}{//\ auto-\/increment\ and\ auto-\/decrement}}
+\DoxyCodeLine{00620\ }
+\DoxyCodeLine{00621\ \textcolor{keyword}{template}<\textcolor{keywordtype}{int}\ W,\ \textcolor{keywordtype}{int}\ I,\ sc\_q\_mode\ Q,\ sc\_o\_mode\ O,\ \textcolor{keywordtype}{int}\ N>}
+\DoxyCodeLine{00622\ \textcolor{keyword}{inline}}
+\DoxyCodeLine{00623\ \textcolor{keyword}{const}\ \mbox{\hyperlink{classsc__dt_1_1sc__fxval__fast}{sc\_fxval\_fast}}}
+\DoxyCodeLine{00624\ \mbox{\hyperlink{classsc__dt_1_1sc__fixed__fast_ac89bd20d0249c39eee8c19609d999217}{sc\_fixed\_fast<W,I,Q,O,N>::operator\ ++\ }}(\ \textcolor{keywordtype}{int}\ )}
+\DoxyCodeLine{00625\ \{}
+\DoxyCodeLine{00626\ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{classsc__dt_1_1sc__fxval__fast}{sc\_fxval\_fast}}(\ sc\_fix\_fast::operator\ ++\ (\ 0\ )\ );}
+\DoxyCodeLine{00627\ \}}
+\DoxyCodeLine{00628\ }
+\DoxyCodeLine{00629\ \textcolor{keyword}{template}<\textcolor{keywordtype}{int}\ W,\ \textcolor{keywordtype}{int}\ I,\ sc\_q\_mode\ Q,\ sc\_o\_mode\ O,\ \textcolor{keywordtype}{int}\ N>}
+\DoxyCodeLine{00630\ \textcolor{keyword}{inline}}
+\DoxyCodeLine{00631\ \textcolor{keyword}{const}\ \mbox{\hyperlink{classsc__dt_1_1sc__fxval__fast}{sc\_fxval\_fast}}}
+\DoxyCodeLine{00632\ \mbox{\hyperlink{classsc__dt_1_1sc__fixed__fast_a6840072252dbc4062292a239c8eff503}{sc\_fixed\_fast<W,I,Q,O,N>::operator\ -\/-\/\ }}(\ \textcolor{keywordtype}{int}\ )}
+\DoxyCodeLine{00633\ \{}
+\DoxyCodeLine{00634\ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{classsc__dt_1_1sc__fxval__fast}{sc\_fxval\_fast}}(\ sc\_fix\_fast::operator\ -\/-\/\ (\ 0\ )\ );}
+\DoxyCodeLine{00635\ \}}
+\DoxyCodeLine{00636\ }
+\DoxyCodeLine{00637\ \textcolor{keyword}{template}<\textcolor{keywordtype}{int}\ W,\ \textcolor{keywordtype}{int}\ I,\ sc\_q\_mode\ Q,\ sc\_o\_mode\ O,\ \textcolor{keywordtype}{int}\ N>}
+\DoxyCodeLine{00638\ \textcolor{keyword}{inline}}
+\DoxyCodeLine{00639\ \mbox{\hyperlink{class_sysc_add__pv}{sc\_fixed\_fast<W,I,Q,O,N>}}\&}
+\DoxyCodeLine{00640\ \mbox{\hyperlink{classsc__dt_1_1sc__fixed__fast_ac89bd20d0249c39eee8c19609d999217}{sc\_fixed\_fast<W,I,Q,O,N>::operator\ ++\ }}()}
+\DoxyCodeLine{00641\ \{}
+\DoxyCodeLine{00642\ \ \ \ \ \mbox{\hyperlink{classsc__dt_1_1sc__fix__fast_ac394836101b52942b6084c31d9a53526}{sc\_fix\_fast::operator\ ++\ }}();}
+\DoxyCodeLine{00643\ \ \ \ \ \textcolor{keywordflow}{return}\ *\textcolor{keyword}{this};}
+\DoxyCodeLine{00644\ \}}
+\DoxyCodeLine{00645\ }
+\DoxyCodeLine{00646\ \textcolor{keyword}{template}<\textcolor{keywordtype}{int}\ W,\ \textcolor{keywordtype}{int}\ I,\ sc\_q\_mode\ Q,\ sc\_o\_mode\ O,\ \textcolor{keywordtype}{int}\ N>}
+\DoxyCodeLine{00647\ \textcolor{keyword}{inline}}
+\DoxyCodeLine{00648\ \mbox{\hyperlink{class_sysc_add__pv}{sc\_fixed\_fast<W,I,Q,O,N>}}\&}
+\DoxyCodeLine{00649\ \mbox{\hyperlink{classsc__dt_1_1sc__fixed__fast_a6840072252dbc4062292a239c8eff503}{sc\_fixed\_fast<W,I,Q,O,N>::operator\ -\/-\/\ }}()}
+\DoxyCodeLine{00650\ \{}
+\DoxyCodeLine{00651\ \ \ \ \ \mbox{\hyperlink{classsc__dt_1_1sc__fix__fast_a75ee6fb734a296a7ad424d2d071d7ae0}{sc\_fix\_fast::operator\ -\/-\/\ }}();}
+\DoxyCodeLine{00652\ \ \ \ \ \textcolor{keywordflow}{return}\ *\textcolor{keyword}{this};}
+\DoxyCodeLine{00653\ \}}
+\DoxyCodeLine{00654\ }
+\DoxyCodeLine{00655\ \}\ \textcolor{comment}{//\ namespace\ sc\_dt}}
+\DoxyCodeLine{00656\ }
+\DoxyCodeLine{00657\ }
+\DoxyCodeLine{00658\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00659\ }
+\DoxyCodeLine{00660\ \textcolor{comment}{//\ Taf!}}
+
+\end{DoxyCode}

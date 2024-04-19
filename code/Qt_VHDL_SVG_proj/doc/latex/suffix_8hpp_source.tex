@@ -1,0 +1,553 @@
+\doxysection{suffix.\+hpp}
+\hypertarget{suffix_8hpp_source}{}\label{suffix_8hpp_source}\index{C:/Users/BJRODIER/Documents/QT\_REPO/QT\_VHDL\_simulator/code/Ressources/SystemC/include/sysc/packages/boost/config/suffix.hpp@{C:/Users/BJRODIER/Documents/QT\_REPO/QT\_VHDL\_simulator/code/Ressources/SystemC/include/sysc/packages/boost/config/suffix.hpp}}
+\mbox{\hyperlink{suffix_8hpp}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{comment}{//\ \ Boost\ config.hpp\ configuration\ header\ file\ \ -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\///}}
+\DoxyCodeLine{00002\ }
+\DoxyCodeLine{00003\ \textcolor{comment}{//\ \ (C)\ Copyright\ John\ Maddock\ 2001\ -\/\ 2003.}}
+\DoxyCodeLine{00004\ \textcolor{comment}{//\ \ (C)\ Copyright\ Darin\ Adler\ 2001.}}
+\DoxyCodeLine{00005\ \textcolor{comment}{//\ \ (C)\ Copyright\ Peter\ Dimov\ 2001.}}
+\DoxyCodeLine{00006\ \textcolor{comment}{//\ \ (C)\ Copyright\ Bill\ Kempf\ 2002.}}
+\DoxyCodeLine{00007\ \textcolor{comment}{//\ \ (C)\ Copyright\ Jens\ Maurer\ 2002.}}
+\DoxyCodeLine{00008\ \textcolor{comment}{//\ \ (C)\ Copyright\ David\ Abrahams\ 2002\ -\/\ 2003.}}
+\DoxyCodeLine{00009\ \textcolor{comment}{//\ \ (C)\ Copyright\ Gennaro\ Prota\ 2003.}}
+\DoxyCodeLine{00010\ \textcolor{comment}{//\ \ (C)\ Copyright\ Eric\ Friedman\ 2003.}}
+\DoxyCodeLine{00011\ \textcolor{comment}{//\ \ Use,\ modification\ and\ distribution\ are\ subject\ to\ the}}
+\DoxyCodeLine{00012\ \textcolor{comment}{//\ \ Boost\ Software\ License,\ Version\ 1.0.\ (See\ accompanying\ file}}
+\DoxyCodeLine{00013\ \textcolor{comment}{//\ \ LICENSE\_1\_0.txt\ or\ copy\ at\ http://www.boost.org/LICENSE\_1\_0.txt)}}
+\DoxyCodeLine{00014\ }
+\DoxyCodeLine{00015\ \textcolor{comment}{//\ \ See\ http://www.boost.org\ for\ most\ recent\ version.}}
+\DoxyCodeLine{00016\ }
+\DoxyCodeLine{00017\ \textcolor{comment}{//\ \ Boost\ config.hpp\ policy\ and\ rationale\ documentation\ has\ been\ moved\ to}}
+\DoxyCodeLine{00018\ \textcolor{comment}{//\ \ http://www.boost.org/libs/config}}
+\DoxyCodeLine{00019\ \textcolor{comment}{//}}
+\DoxyCodeLine{00020\ \textcolor{comment}{//\ \ This\ file\ is\ intended\ to\ be\ stable,\ and\ relatively\ unchanging.}}
+\DoxyCodeLine{00021\ \textcolor{comment}{//\ \ It\ should\ contain\ boilerplate\ code\ only\ -\/\ no\ compiler\ specific}}
+\DoxyCodeLine{00022\ \textcolor{comment}{//\ \ code\ unless\ it\ is\ unavoidable\ -\/\ no\ changes\ unless\ unavoidable.}}
+\DoxyCodeLine{00023\ }
+\DoxyCodeLine{00024\ \textcolor{preprocessor}{\#ifndef\ SC\_BOOST\_CONFIG\_SUFFIX\_HPP}}
+\DoxyCodeLine{00025\ \textcolor{preprocessor}{\#define\ SC\_BOOST\_CONFIG\_SUFFIX\_HPP}}
+\DoxyCodeLine{00026\ }
+\DoxyCodeLine{00027\ \textcolor{comment}{//}}
+\DoxyCodeLine{00028\ \textcolor{comment}{//\ look\ for\ long\ long\ by\ looking\ for\ the\ appropriate\ macros\ in\ <limits.h>.}}
+\DoxyCodeLine{00029\ \textcolor{comment}{//\ Note\ that\ we\ use\ limits.h\ rather\ than\ climits\ for\ maximal\ portability,}}
+\DoxyCodeLine{00030\ \textcolor{comment}{//\ remember\ that\ since\ these\ just\ declare\ a\ bunch\ of\ macros,\ there\ should\ be}}
+\DoxyCodeLine{00031\ \textcolor{comment}{//\ no\ namespace\ issues\ from\ this.}}
+\DoxyCodeLine{00032\ \textcolor{comment}{//}}
+\DoxyCodeLine{00033\ \textcolor{preprocessor}{\#include\ <limits.h>}}
+\DoxyCodeLine{00034\ \textcolor{preprocessor}{\#\ if\ !defined(SC\_BOOST\_HAS\_LONG\_LONG)\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}}
+\DoxyCodeLine{00035\ \textcolor{preprocessor}{\ \ \ \&\&\ !defined(SC\_BOOST\_MSVC)\ \&\&\ !defined(\_\_BORLANDC\_\_)\ \ \ \ \ \(\backslash\)}}
+\DoxyCodeLine{00036\ \textcolor{preprocessor}{\ \ \ \&\&\ (defined(ULLONG\_MAX)\ ||\ defined(ULONG\_LONG\_MAX)\ ||\ defined(ULONGLONG\_MAX))}}
+\DoxyCodeLine{00037\ \textcolor{preprocessor}{\#\ \ define\ SC\_BOOST\_HAS\_LONG\_LONG}}
+\DoxyCodeLine{00038\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00039\ }
+\DoxyCodeLine{00040\ \textcolor{comment}{//\ TODO:\ Remove\ the\ following\ lines\ after\ the\ 1.33\ release\ because\ the\ presence}}
+\DoxyCodeLine{00041\ \textcolor{comment}{//\ of\ an\ integral\ 64\ bit\ type\ has\ nothing\ to\ do\ with\ support\ for\ long\ long.}}
+\DoxyCodeLine{00042\ }
+\DoxyCodeLine{00043\ \textcolor{preprocessor}{\#if\ !defined(SC\_BOOST\_HAS\_LONG\_LONG)\ \&\&\ !defined(SC\_BOOST\_NO\_INTEGRAL\_INT64\_T)\ \&\&\ !defined(\_\_DECCXX\_VER)}}
+\DoxyCodeLine{00044\ \textcolor{preprocessor}{\#\ \ define\ SC\_BOOST\_NO\_INTEGRAL\_INT64\_T}}
+\DoxyCodeLine{00045\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00046\ }
+\DoxyCodeLine{00047\ \textcolor{comment}{//\ GCC\ 3.x\ will\ clean\ up\ all\ of\ those\ nasty\ macro\ definitions\ that}}
+\DoxyCodeLine{00048\ \textcolor{comment}{//\ SC\_BOOST\_NO\_CTYPE\_FUNCTIONS\ is\ intended\ to\ help\ work\ around,\ so\ undefine}}
+\DoxyCodeLine{00049\ \textcolor{comment}{//\ it\ under\ GCC\ 3.x.}}
+\DoxyCodeLine{00050\ \textcolor{preprocessor}{\#if\ defined(\_\_GNUC\_\_)\ \&\&\ (\_\_GNUC\_\_\ >=\ 3)\ \&\&\ defined(SC\_BOOST\_NO\_CTYPE\_FUNCTIONS)}}
+\DoxyCodeLine{00051\ \textcolor{preprocessor}{\#\ \ undef\ SC\_BOOST\_NO\_CTYPE\_FUNCTIONS}}
+\DoxyCodeLine{00052\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00053\ }
+\DoxyCodeLine{00054\ }
+\DoxyCodeLine{00055\ \textcolor{comment}{//}}
+\DoxyCodeLine{00056\ \textcolor{comment}{//\ Assume\ any\ extensions\ are\ in\ namespace\ std::\ unless\ stated\ otherwise:}}
+\DoxyCodeLine{00057\ \textcolor{comment}{//}}
+\DoxyCodeLine{00058\ \textcolor{preprocessor}{\#\ \ ifndef\ SC\_BOOST\_STD\_EXTENSION\_NAMESPACE}}
+\DoxyCodeLine{00059\ \textcolor{preprocessor}{\#\ \ \ \ define\ SC\_BOOST\_STD\_EXTENSION\_NAMESPACE\ std}}
+\DoxyCodeLine{00060\ \textcolor{preprocessor}{\#\ \ endif}}
+\DoxyCodeLine{00061\ }
+\DoxyCodeLine{00062\ \textcolor{comment}{//}}
+\DoxyCodeLine{00063\ \textcolor{comment}{//\ If\ cv-\/qualified\ specializations\ are\ not\ allowed,\ then\ neither\ are\ cv-\/void\ ones:}}
+\DoxyCodeLine{00064\ \textcolor{comment}{//}}
+\DoxyCodeLine{00065\ \textcolor{preprocessor}{\#\ \ if\ defined(SC\_BOOST\_NO\_CV\_SPECIALIZATIONS)\ \(\backslash\)}}
+\DoxyCodeLine{00066\ \textcolor{preprocessor}{\ \ \ \ \ \ \&\&\ !defined(SC\_BOOST\_NO\_CV\_VOID\_SPECIALIZATIONS)}}
+\DoxyCodeLine{00067\ \textcolor{preprocessor}{\#\ \ \ \ \ define\ SC\_BOOST\_NO\_CV\_VOID\_SPECIALIZATIONS}}
+\DoxyCodeLine{00068\ \textcolor{preprocessor}{\#\ \ endif}}
+\DoxyCodeLine{00069\ }
+\DoxyCodeLine{00070\ \textcolor{comment}{//}}
+\DoxyCodeLine{00071\ \textcolor{comment}{//\ If\ there\ is\ no\ numeric\_limits\ template,\ then\ it\ can't\ have\ any\ compile\ time}}
+\DoxyCodeLine{00072\ \textcolor{comment}{//\ constants\ either!}}
+\DoxyCodeLine{00073\ \textcolor{comment}{//}}
+\DoxyCodeLine{00074\ \textcolor{preprocessor}{\#\ \ if\ defined(SC\_BOOST\_NO\_LIMITS)\ \(\backslash\)}}
+\DoxyCodeLine{00075\ \textcolor{preprocessor}{\ \ \ \ \ \ \&\&\ !defined(SC\_BOOST\_NO\_LIMITS\_COMPILE\_TIME\_CONSTANTS)}}
+\DoxyCodeLine{00076\ \textcolor{preprocessor}{\#\ \ \ \ \ define\ SC\_BOOST\_NO\_LIMITS\_COMPILE\_TIME\_CONSTANTS}}
+\DoxyCodeLine{00077\ \textcolor{preprocessor}{\#\ \ \ \ \ define\ SC\_BOOST\_NO\_MS\_INT64\_NUMERIC\_LIMITS}}
+\DoxyCodeLine{00078\ \textcolor{preprocessor}{\#\ \ \ \ \ define\ SC\_BOOST\_NO\_LONG\_LONG\_NUMERIC\_LIMITS}}
+\DoxyCodeLine{00079\ \textcolor{preprocessor}{\#\ \ endif}}
+\DoxyCodeLine{00080\ }
+\DoxyCodeLine{00081\ \textcolor{comment}{//}}
+\DoxyCodeLine{00082\ \textcolor{comment}{//\ if\ there\ is\ no\ long\ long\ then\ there\ is\ no\ specialisation}}
+\DoxyCodeLine{00083\ \textcolor{comment}{//\ for\ numeric\_limits<long\ long>\ either:}}
+\DoxyCodeLine{00084\ \textcolor{comment}{//}}
+\DoxyCodeLine{00085\ \textcolor{preprocessor}{\#if\ !defined(SC\_BOOST\_HAS\_LONG\_LONG)\ \&\&\ !defined(SC\_BOOST\_NO\_LONG\_LONG\_NUMERIC\_LIMITS)}}
+\DoxyCodeLine{00086\ \textcolor{preprocessor}{\#\ \ define\ SC\_BOOST\_NO\_LONG\_LONG\_NUMERIC\_LIMITS}}
+\DoxyCodeLine{00087\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00088\ }
+\DoxyCodeLine{00089\ \textcolor{comment}{//}}
+\DoxyCodeLine{00090\ \textcolor{comment}{//\ if\ there\ is\ no\ \_\_int64\ then\ there\ is\ no\ specialisation}}
+\DoxyCodeLine{00091\ \textcolor{comment}{//\ for\ numeric\_limits<\_\_int64>\ either:}}
+\DoxyCodeLine{00092\ \textcolor{comment}{//}}
+\DoxyCodeLine{00093\ \textcolor{preprocessor}{\#if\ !defined(SC\_BOOST\_HAS\_MS\_INT64)\ \&\&\ !defined(SC\_BOOST\_NO\_MS\_INT64\_NUMERIC\_LIMITS)}}
+\DoxyCodeLine{00094\ \textcolor{preprocessor}{\#\ \ define\ SC\_BOOST\_NO\_MS\_INT64\_NUMERIC\_LIMITS}}
+\DoxyCodeLine{00095\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00096\ }
+\DoxyCodeLine{00097\ \textcolor{comment}{//}}
+\DoxyCodeLine{00098\ \textcolor{comment}{//\ if\ member\ templates\ are\ supported\ then\ so\ is\ the}}
+\DoxyCodeLine{00099\ \textcolor{comment}{//\ VC6\ subset\ of\ member\ templates:}}
+\DoxyCodeLine{00100\ \textcolor{comment}{//}}
+\DoxyCodeLine{00101\ \textcolor{preprocessor}{\#\ \ if\ !defined(SC\_BOOST\_NO\_MEMBER\_TEMPLATES)\ \(\backslash\)}}
+\DoxyCodeLine{00102\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \&\&\ !defined(SC\_BOOST\_MSVC6\_MEMBER\_TEMPLATES)}}
+\DoxyCodeLine{00103\ \textcolor{preprocessor}{\#\ \ \ \ \ define\ SC\_BOOST\_MSVC6\_MEMBER\_TEMPLATES}}
+\DoxyCodeLine{00104\ \textcolor{preprocessor}{\#\ \ endif}}
+\DoxyCodeLine{00105\ }
+\DoxyCodeLine{00106\ \textcolor{comment}{//}}
+\DoxyCodeLine{00107\ \textcolor{comment}{//\ Without\ partial\ specialization,\ can't\ test\ for\ partial\ specialisation\ bugs:}}
+\DoxyCodeLine{00108\ \textcolor{comment}{//}}
+\DoxyCodeLine{00109\ \textcolor{preprocessor}{\#\ \ if\ defined(SC\_BOOST\_NO\_TEMPLATE\_PARTIAL\_SPECIALIZATION)\ \(\backslash\)}}
+\DoxyCodeLine{00110\ \textcolor{preprocessor}{\ \ \ \ \ \ \&\&\ !defined(SC\_BOOST\_BCB\_PARTIAL\_SPECIALIZATION\_BUG)}}
+\DoxyCodeLine{00111\ \textcolor{preprocessor}{\#\ \ \ \ \ define\ SC\_BOOST\_BCB\_PARTIAL\_SPECIALIZATION\_BUG}}
+\DoxyCodeLine{00112\ \textcolor{preprocessor}{\#\ \ endif}}
+\DoxyCodeLine{00113\ }
+\DoxyCodeLine{00114\ \textcolor{comment}{//}}
+\DoxyCodeLine{00115\ \textcolor{comment}{//\ Without\ partial\ specialization,\ we\ can't\ have\ array-\/type\ partial\ specialisations:}}
+\DoxyCodeLine{00116\ \textcolor{comment}{//}}
+\DoxyCodeLine{00117\ \textcolor{preprocessor}{\#\ \ if\ defined(SC\_BOOST\_NO\_TEMPLATE\_PARTIAL\_SPECIALIZATION)\ \(\backslash\)}}
+\DoxyCodeLine{00118\ \textcolor{preprocessor}{\ \ \ \ \ \ \&\&\ !defined(SC\_BOOST\_NO\_ARRAY\_TYPE\_SPECIALIZATIONS)}}
+\DoxyCodeLine{00119\ \textcolor{preprocessor}{\#\ \ \ \ \ define\ SC\_BOOST\_NO\_ARRAY\_TYPE\_SPECIALIZATIONS}}
+\DoxyCodeLine{00120\ \textcolor{preprocessor}{\#\ \ endif}}
+\DoxyCodeLine{00121\ }
+\DoxyCodeLine{00122\ \textcolor{comment}{//}}
+\DoxyCodeLine{00123\ \textcolor{comment}{//\ Without\ partial\ specialization,\ std::iterator\_traits\ can't\ work:}}
+\DoxyCodeLine{00124\ \textcolor{comment}{//}}
+\DoxyCodeLine{00125\ \textcolor{preprocessor}{\#\ \ if\ defined(SC\_BOOST\_NO\_TEMPLATE\_PARTIAL\_SPECIALIZATION)\ \(\backslash\)}}
+\DoxyCodeLine{00126\ \textcolor{preprocessor}{\ \ \ \ \ \ \&\&\ !defined(SC\_BOOST\_NO\_STD\_ITERATOR\_TRAITS)}}
+\DoxyCodeLine{00127\ \textcolor{preprocessor}{\#\ \ \ \ \ define\ SC\_BOOST\_NO\_STD\_ITERATOR\_TRAITS}}
+\DoxyCodeLine{00128\ \textcolor{preprocessor}{\#\ \ endif}}
+\DoxyCodeLine{00129\ }
+\DoxyCodeLine{00130\ \textcolor{comment}{//}}
+\DoxyCodeLine{00131\ \textcolor{comment}{//\ Without\ member\ template\ support,\ we\ can't\ have\ template\ constructors}}
+\DoxyCodeLine{00132\ \textcolor{comment}{//\ in\ the\ standard\ library\ either:}}
+\DoxyCodeLine{00133\ \textcolor{comment}{//}}
+\DoxyCodeLine{00134\ \textcolor{preprocessor}{\#\ \ if\ defined(SC\_BOOST\_NO\_MEMBER\_TEMPLATES)\ \(\backslash\)}}
+\DoxyCodeLine{00135\ \textcolor{preprocessor}{\ \ \ \ \ \ \&\&\ !defined(SC\_BOOST\_MSVC6\_MEMBER\_TEMPLATES)\ \(\backslash\)}}
+\DoxyCodeLine{00136\ \textcolor{preprocessor}{\ \ \ \ \ \ \&\&\ !defined(SC\_BOOST\_NO\_TEMPLATED\_ITERATOR\_CONSTRUCTORS)}}
+\DoxyCodeLine{00137\ \textcolor{preprocessor}{\#\ \ \ \ \ define\ SC\_BOOST\_NO\_TEMPLATED\_ITERATOR\_CONSTRUCTORS}}
+\DoxyCodeLine{00138\ \textcolor{preprocessor}{\#\ \ endif}}
+\DoxyCodeLine{00139\ }
+\DoxyCodeLine{00140\ \textcolor{comment}{//}}
+\DoxyCodeLine{00141\ \textcolor{comment}{//\ Without\ member\ template\ support,\ we\ can't\ have\ a\ conforming}}
+\DoxyCodeLine{00142\ \textcolor{comment}{//\ std::allocator\ template\ either:}}
+\DoxyCodeLine{00143\ \textcolor{comment}{//}}
+\DoxyCodeLine{00144\ \textcolor{preprocessor}{\#\ \ if\ defined(SC\_BOOST\_NO\_MEMBER\_TEMPLATES)\ \(\backslash\)}}
+\DoxyCodeLine{00145\ \textcolor{preprocessor}{\ \ \ \ \ \ \&\&\ !defined(SC\_BOOST\_MSVC6\_MEMBER\_TEMPLATES)\ \(\backslash\)}}
+\DoxyCodeLine{00146\ \textcolor{preprocessor}{\ \ \ \ \ \ \&\&\ !defined(SC\_BOOST\_NO\_STD\_ALLOCATOR)}}
+\DoxyCodeLine{00147\ \textcolor{preprocessor}{\#\ \ \ \ \ define\ SC\_BOOST\_NO\_STD\_ALLOCATOR}}
+\DoxyCodeLine{00148\ \textcolor{preprocessor}{\#\ \ endif}}
+\DoxyCodeLine{00149\ }
+\DoxyCodeLine{00150\ \textcolor{comment}{//}}
+\DoxyCodeLine{00151\ \textcolor{comment}{//\ without\ ADL\ support\ then\ using\ declarations\ will\ break\ ADL\ as\ well:}}
+\DoxyCodeLine{00152\ \textcolor{comment}{//}}
+\DoxyCodeLine{00153\ \textcolor{preprocessor}{\#if\ defined(SC\_BOOST\_NO\_ARGUMENT\_DEPENDENT\_LOOKUP)\ \&\&\ !defined(SC\_BOOST\_FUNCTION\_SCOPE\_USING\_DECLARATION\_BREAKS\_ADL)}}
+\DoxyCodeLine{00154\ \textcolor{preprocessor}{\#\ \ define\ SC\_BOOST\_FUNCTION\_SCOPE\_USING\_DECLARATION\_BREAKS\_ADL}}
+\DoxyCodeLine{00155\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00156\ }
+\DoxyCodeLine{00157\ \textcolor{comment}{//}}
+\DoxyCodeLine{00158\ \textcolor{comment}{//\ If\ we\ have\ a\ standard\ allocator,\ then\ we\ have\ a\ partial\ one\ as\ well:}}
+\DoxyCodeLine{00159\ \textcolor{comment}{//}}
+\DoxyCodeLine{00160\ \textcolor{preprocessor}{\#if\ !defined(SC\_BOOST\_NO\_STD\_ALLOCATOR)}}
+\DoxyCodeLine{00161\ \textcolor{preprocessor}{\#\ \ define\ SC\_BOOST\_HAS\_PARTIAL\_STD\_ALLOCATOR}}
+\DoxyCodeLine{00162\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00163\ }
+\DoxyCodeLine{00164\ \textcolor{comment}{//}}
+\DoxyCodeLine{00165\ \textcolor{comment}{//\ We\ can't\ have\ a\ working\ std::use\_facet\ if\ there\ is\ no\ std::locale:}}
+\DoxyCodeLine{00166\ \textcolor{comment}{//}}
+\DoxyCodeLine{00167\ \textcolor{preprocessor}{\#\ \ if\ defined(SC\_BOOST\_NO\_STD\_LOCALE)\ \&\&\ !defined(SC\_BOOST\_NO\_STD\_USE\_FACET)}}
+\DoxyCodeLine{00168\ \textcolor{preprocessor}{\#\ \ \ \ \ define\ SC\_BOOST\_NO\_STD\_USE\_FACET}}
+\DoxyCodeLine{00169\ \textcolor{preprocessor}{\#\ \ endif}}
+\DoxyCodeLine{00170\ }
+\DoxyCodeLine{00171\ \textcolor{comment}{//}}
+\DoxyCodeLine{00172\ \textcolor{comment}{//\ We\ can't\ have\ a\ std::messages\ facet\ if\ there\ is\ no\ std::locale:}}
+\DoxyCodeLine{00173\ \textcolor{comment}{//}}
+\DoxyCodeLine{00174\ \textcolor{preprocessor}{\#\ \ if\ defined(SC\_BOOST\_NO\_STD\_LOCALE)\ \&\&\ !defined(SC\_BOOST\_NO\_STD\_MESSAGES)}}
+\DoxyCodeLine{00175\ \textcolor{preprocessor}{\#\ \ \ \ \ define\ SC\_BOOST\_NO\_STD\_MESSAGES}}
+\DoxyCodeLine{00176\ \textcolor{preprocessor}{\#\ \ endif}}
+\DoxyCodeLine{00177\ }
+\DoxyCodeLine{00178\ \textcolor{comment}{//}}
+\DoxyCodeLine{00179\ \textcolor{comment}{//\ We\ can't\ have\ a\ working\ std::wstreambuf\ if\ there\ is\ no\ std::locale:}}
+\DoxyCodeLine{00180\ \textcolor{comment}{//}}
+\DoxyCodeLine{00181\ \textcolor{preprocessor}{\#\ \ if\ defined(SC\_BOOST\_NO\_STD\_LOCALE)\ \&\&\ !defined(SC\_BOOST\_NO\_STD\_WSTREAMBUF)}}
+\DoxyCodeLine{00182\ \textcolor{preprocessor}{\#\ \ \ \ \ define\ SC\_BOOST\_NO\_STD\_WSTREAMBUF}}
+\DoxyCodeLine{00183\ \textcolor{preprocessor}{\#\ \ endif}}
+\DoxyCodeLine{00184\ }
+\DoxyCodeLine{00185\ \textcolor{comment}{//}}
+\DoxyCodeLine{00186\ \textcolor{comment}{//\ We\ can't\ have\ a\ <cwctype>\ if\ there\ is\ no\ <cwchar>:}}
+\DoxyCodeLine{00187\ \textcolor{comment}{//}}
+\DoxyCodeLine{00188\ \textcolor{preprocessor}{\#\ \ if\ defined(SC\_BOOST\_NO\_CWCHAR)\ \&\&\ !defined(SC\_BOOST\_NO\_CWCTYPE)}}
+\DoxyCodeLine{00189\ \textcolor{preprocessor}{\#\ \ \ \ \ define\ SC\_BOOST\_NO\_CWCTYPE}}
+\DoxyCodeLine{00190\ \textcolor{preprocessor}{\#\ \ endif}}
+\DoxyCodeLine{00191\ }
+\DoxyCodeLine{00192\ \textcolor{comment}{//}}
+\DoxyCodeLine{00193\ \textcolor{comment}{//\ We\ can't\ have\ a\ swprintf\ if\ there\ is\ no\ <cwchar>:}}
+\DoxyCodeLine{00194\ \textcolor{comment}{//}}
+\DoxyCodeLine{00195\ \textcolor{preprocessor}{\#\ \ if\ defined(SC\_BOOST\_NO\_CWCHAR)\ \&\&\ !defined(SC\_BOOST\_NO\_SWPRINTF)}}
+\DoxyCodeLine{00196\ \textcolor{preprocessor}{\#\ \ \ \ \ define\ SC\_BOOST\_NO\_SWPRINTF}}
+\DoxyCodeLine{00197\ \textcolor{preprocessor}{\#\ \ endif}}
+\DoxyCodeLine{00198\ }
+\DoxyCodeLine{00199\ \textcolor{comment}{//}}
+\DoxyCodeLine{00200\ \textcolor{comment}{//\ If\ Win32\ support\ is\ turned\ off,\ then\ we\ must\ turn\ off}}
+\DoxyCodeLine{00201\ \textcolor{comment}{//\ threading\ support\ also,\ unless\ there\ is\ some\ other}}
+\DoxyCodeLine{00202\ \textcolor{comment}{//\ thread\ API\ enabled:}}
+\DoxyCodeLine{00203\ \textcolor{comment}{//}}
+\DoxyCodeLine{00204\ \textcolor{preprocessor}{\#if\ defined(SC\_BOOST\_DISABLE\_WIN32)\ \&\&\ defined(\_WIN32)\ \(\backslash\)}}
+\DoxyCodeLine{00205\ \textcolor{preprocessor}{\ \ \ \&\&\ !defined(SC\_BOOST\_DISABLE\_THREADS)\ \&\&\ !defined(SC\_BOOST\_HAS\_PTHREADS)}}
+\DoxyCodeLine{00206\ \textcolor{preprocessor}{\#\ \ define\ SC\_BOOST\_DISABLE\_THREADS}}
+\DoxyCodeLine{00207\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00208\ }
+\DoxyCodeLine{00209\ \textcolor{comment}{//}}
+\DoxyCodeLine{00210\ \textcolor{comment}{//\ Turn\ on\ threading\ support\ if\ the\ compiler\ thinks\ that\ it's\ in}}
+\DoxyCodeLine{00211\ \textcolor{comment}{//\ multithreaded\ mode.\ \ We\ put\ this\ here\ because\ there\ are\ only\ a}}
+\DoxyCodeLine{00212\ \textcolor{comment}{//\ limited\ number\ of\ macros\ that\ identify\ this\ (if\ there's\ any\ missing}}
+\DoxyCodeLine{00213\ \textcolor{comment}{//\ from\ here\ then\ add\ to\ the\ appropriate\ compiler\ section):}}
+\DoxyCodeLine{00214\ \textcolor{comment}{//}}
+\DoxyCodeLine{00215\ \textcolor{preprocessor}{\#if\ (defined(\_\_MT\_\_)\ ||\ defined(\_MT)\ ||\ defined(\_REENTRANT)\ \(\backslash\)}}
+\DoxyCodeLine{00216\ \textcolor{preprocessor}{\ \ \ \ ||\ defined(\_PTHREADS))\ \&\&\ !defined(SC\_BOOST\_HAS\_THREADS)}}
+\DoxyCodeLine{00217\ \textcolor{preprocessor}{\#\ \ define\ SC\_BOOST\_HAS\_THREADS}}
+\DoxyCodeLine{00218\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00219\ }
+\DoxyCodeLine{00220\ \textcolor{comment}{//}}
+\DoxyCodeLine{00221\ \textcolor{comment}{//\ Turn\ threading\ support\ off\ if\ SC\_BOOST\_DISABLE\_THREADS\ is\ defined:}}
+\DoxyCodeLine{00222\ \textcolor{comment}{//}}
+\DoxyCodeLine{00223\ \textcolor{preprocessor}{\#if\ defined(SC\_BOOST\_DISABLE\_THREADS)\ \&\&\ defined(SC\_BOOST\_HAS\_THREADS)}}
+\DoxyCodeLine{00224\ \textcolor{preprocessor}{\#\ \ undef\ SC\_BOOST\_HAS\_THREADS}}
+\DoxyCodeLine{00225\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00226\ }
+\DoxyCodeLine{00227\ \textcolor{comment}{//}}
+\DoxyCodeLine{00228\ \textcolor{comment}{//\ Turn\ threading\ support\ off\ if\ we\ don't\ recognise\ the\ threading\ API:}}
+\DoxyCodeLine{00229\ \textcolor{comment}{//}}
+\DoxyCodeLine{00230\ \textcolor{preprocessor}{\#if\ defined(SC\_BOOST\_HAS\_THREADS)\ \&\&\ !defined(SC\_BOOST\_HAS\_PTHREADS)\(\backslash\)}}
+\DoxyCodeLine{00231\ \textcolor{preprocessor}{\ \ \ \ \ \ \&\&\ !defined(SC\_BOOST\_HAS\_WINTHREADS)\ \&\&\ !defined(SC\_BOOST\_HAS\_BETHREADS)\(\backslash\)}}
+\DoxyCodeLine{00232\ \textcolor{preprocessor}{\ \ \ \ \ \ \&\&\ !defined(SC\_BOOST\_HAS\_MPTASKS)}}
+\DoxyCodeLine{00233\ \textcolor{preprocessor}{\#\ \ undef\ SC\_BOOST\_HAS\_THREADS}}
+\DoxyCodeLine{00234\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00235\ }
+\DoxyCodeLine{00236\ \textcolor{comment}{//}}
+\DoxyCodeLine{00237\ \textcolor{comment}{//\ Turn\ threading\ detail\ macros\ off\ if\ we\ don't\ (want\ to)\ use\ threading}}
+\DoxyCodeLine{00238\ \textcolor{comment}{//}}
+\DoxyCodeLine{00239\ \textcolor{preprocessor}{\#ifndef\ SC\_BOOST\_HAS\_THREADS}}
+\DoxyCodeLine{00240\ \textcolor{preprocessor}{\#\ \ undef\ SC\_BOOST\_HAS\_PTHREADS}}
+\DoxyCodeLine{00241\ \textcolor{preprocessor}{\#\ \ undef\ SC\_BOOST\_HAS\_PTHREAD\_MUTEXATTR\_SETTYPE}}
+\DoxyCodeLine{00242\ \textcolor{preprocessor}{\#\ \ undef\ SC\_BOOST\_HAS\_WINTHREADS}}
+\DoxyCodeLine{00243\ \textcolor{preprocessor}{\#\ \ undef\ SC\_BOOST\_HAS\_BETHREADS}}
+\DoxyCodeLine{00244\ \textcolor{preprocessor}{\#\ \ undef\ SC\_BOOST\_HAS\_MPTASKS}}
+\DoxyCodeLine{00245\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00246\ }
+\DoxyCodeLine{00247\ \textcolor{comment}{//}}
+\DoxyCodeLine{00248\ \textcolor{comment}{//\ If\ the\ compiler\ claims\ to\ be\ C99\ conformant,\ then\ it\ had\ better}}
+\DoxyCodeLine{00249\ \textcolor{comment}{//\ have\ a\ <stdint.h>:}}
+\DoxyCodeLine{00250\ \textcolor{comment}{//}}
+\DoxyCodeLine{00251\ \textcolor{preprocessor}{\#\ \ if\ defined(\_\_STDC\_VERSION\_\_)\ \&\&\ (\_\_STDC\_VERSION\_\_\ >=\ 199901)}}
+\DoxyCodeLine{00252\ \textcolor{preprocessor}{\#\ \ \ \ \ define\ SC\_BOOST\_HAS\_STDINT\_H}}
+\DoxyCodeLine{00253\ \textcolor{preprocessor}{\#\ \ endif}}
+\DoxyCodeLine{00254\ }
+\DoxyCodeLine{00255\ \textcolor{comment}{//}}
+\DoxyCodeLine{00256\ \textcolor{comment}{//\ Define\ SC\_BOOST\_NO\_SLIST\ and\ SC\_BOOST\_NO\_HASH\ if\ required.}}
+\DoxyCodeLine{00257\ \textcolor{comment}{//\ Note\ that\ this\ is\ for\ backwards\ compatibility\ only.}}
+\DoxyCodeLine{00258\ \textcolor{comment}{//}}
+\DoxyCodeLine{00259\ \textcolor{preprocessor}{\#\ \ ifndef\ SC\_BOOST\_HAS\_SLIST}}
+\DoxyCodeLine{00260\ \textcolor{preprocessor}{\#\ \ \ \ \ define\ SC\_BOOST\_NO\_SLIST}}
+\DoxyCodeLine{00261\ \textcolor{preprocessor}{\#\ \ endif}}
+\DoxyCodeLine{00262\ }
+\DoxyCodeLine{00263\ \textcolor{preprocessor}{\#\ \ ifndef\ SC\_BOOST\_HAS\_HASH}}
+\DoxyCodeLine{00264\ \textcolor{preprocessor}{\#\ \ \ \ \ define\ SC\_BOOST\_NO\_HASH}}
+\DoxyCodeLine{00265\ \textcolor{preprocessor}{\#\ \ endif}}
+\DoxyCodeLine{00266\ }
+\DoxyCodeLine{00267\ \textcolor{comment}{//\ \ SC\_BOOST\_HAS\_ABI\_HEADERS}}
+\DoxyCodeLine{00268\ \textcolor{comment}{//\ \ This\ macro\ gets\ set\ if\ we\ have\ headers\ that\ fix\ the\ ABI,}}
+\DoxyCodeLine{00269\ \textcolor{comment}{//\ \ and\ prevent\ ODR\ violations\ when\ linking\ to\ external\ libraries:}}
+\DoxyCodeLine{00270\ \textcolor{preprocessor}{\#if\ defined(SC\_BOOST\_ABI\_PREFIX)\ \&\&\ defined(SC\_BOOST\_ABI\_SUFFIX)\ \&\&\ !defined(SC\_BOOST\_HAS\_ABI\_HEADERS)}}
+\DoxyCodeLine{00271\ \textcolor{preprocessor}{\#\ \ define\ SC\_BOOST\_HAS\_ABI\_HEADERS}}
+\DoxyCodeLine{00272\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00273\ }
+\DoxyCodeLine{00274\ \textcolor{preprocessor}{\#if\ defined(SC\_BOOST\_HAS\_ABI\_HEADERS)\ \&\&\ defined(SC\_BOOST\_DISABLE\_ABI\_HEADERS)}}
+\DoxyCodeLine{00275\ \textcolor{preprocessor}{\#\ \ undef\ SC\_BOOST\_HAS\_ABI\_HEADERS}}
+\DoxyCodeLine{00276\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00277\ }
+\DoxyCodeLine{00278\ \textcolor{comment}{//\ \ SC\_BOOST\_NO\_STDC\_NAMESPACE\ workaround\ \ -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\///}}
+\DoxyCodeLine{00279\ \textcolor{comment}{//\ \ Because\ std::size\_t\ usage\ is\ so\ common,\ even\ in\ boost\ headers\ which\ do\ not}}
+\DoxyCodeLine{00280\ \textcolor{comment}{//\ \ otherwise\ use\ the\ C\ library,\ the\ <cstddef>\ workaround\ is\ included\ here\ so}}
+\DoxyCodeLine{00281\ \textcolor{comment}{//\ \ that\ ugly\ workaround\ code\ need\ not\ appear\ in\ many\ other\ boost\ headers.}}
+\DoxyCodeLine{00282\ \textcolor{comment}{//\ \ NOTE\ WELL:\ This\ is\ a\ workaround\ for\ non-\/conforming\ compilers;\ <cstddef>}}
+\DoxyCodeLine{00283\ \textcolor{comment}{//\ \ must\ still\ be\ \#included\ in\ the\ usual\ places\ so\ that\ <cstddef>\ inclusion}}
+\DoxyCodeLine{00284\ \textcolor{comment}{//\ \ works\ as\ expected\ with\ standard\ conforming\ compilers.\ \ The\ resulting}}
+\DoxyCodeLine{00285\ \textcolor{comment}{//\ \ double\ inclusion\ of\ <cstddef>\ is\ harmless.}}
+\DoxyCodeLine{00286\ }
+\DoxyCodeLine{00287\ \textcolor{preprocessor}{\#\ ifdef\ SC\_BOOST\_NO\_STDC\_NAMESPACE}}
+\DoxyCodeLine{00288\ \textcolor{preprocessor}{\#\ \ \ include\ <cstddef>}}
+\DoxyCodeLine{00289\ \ \ \ \ \textcolor{keyword}{namespace\ }std\ \{\ \mbox{\hyperlink{class_sysc_add__pv_a57417948111cea94689e3dbc33fd51d1}{using\ ::ptrdiff\_t}};\ using\ ::size\_t;\ \}}
+\DoxyCodeLine{00290\ \textcolor{preprocessor}{\#\ endif}}
+\DoxyCodeLine{00291\ }
+\DoxyCodeLine{00292\ \textcolor{comment}{//\ \ Workaround\ for\ the\ unfortunate\ min/max\ macros\ defined\ by\ some\ platform\ headers}}
+\DoxyCodeLine{00293\ }
+\DoxyCodeLine{00294\ \textcolor{preprocessor}{\#define\ SC\_BOOST\_PREVENT\_MACRO\_SUBSTITUTION}}
+\DoxyCodeLine{00295\ }
+\DoxyCodeLine{00296\ \textcolor{preprocessor}{\#ifndef\ SC\_BOOST\_USING\_STD\_MIN}}
+\DoxyCodeLine{00297\ \textcolor{preprocessor}{\#\ \ define\ SC\_BOOST\_USING\_STD\_MIN()\ using\ std::min}}
+\DoxyCodeLine{00298\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00299\ }
+\DoxyCodeLine{00300\ \textcolor{preprocessor}{\#ifndef\ SC\_BOOST\_USING\_STD\_MAX}}
+\DoxyCodeLine{00301\ \textcolor{preprocessor}{\#\ \ define\ SC\_BOOST\_USING\_STD\_MAX()\ using\ std::max}}
+\DoxyCodeLine{00302\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00303\ }
+\DoxyCodeLine{00304\ \textcolor{comment}{//\ \ SC\_BOOST\_NO\_STD\_MIN\_MAX\ workaround\ \ -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\///}}
+\DoxyCodeLine{00305\ }
+\DoxyCodeLine{00306\ \textcolor{preprocessor}{\#\ \ ifdef\ SC\_BOOST\_NO\_STD\_MIN\_MAX}}
+\DoxyCodeLine{00307\ }
+\DoxyCodeLine{00308\ \textcolor{keyword}{namespace\ }std\ \{}
+\DoxyCodeLine{00309\ \ \ \textcolor{keyword}{template}\ <\textcolor{keyword}{class}\ \_Tp>}
+\DoxyCodeLine{00310\ \ \ \textcolor{keyword}{inline}\ \textcolor{keyword}{const}\ \mbox{\hyperlink{class_sysc_add__pv}{\_Tp}}\&\ \mbox{\hyperlink{class_sysc_add__pv}{min}}\ \mbox{\hyperlink{suffix_8hpp_a887f284c8a771dd81dbb97d0401abd43}{SC\_BOOST\_PREVENT\_MACRO\_SUBSTITUTION}}\ (\textcolor{keyword}{const}\ \mbox{\hyperlink{class_sysc_add__pv}{\_Tp}}\&\ \mbox{\hyperlink{class_sysc_add__pv}{\_\_a}},\ \textcolor{keyword}{const}\ \mbox{\hyperlink{class_sysc_add__pv}{\_Tp}}\&\ \mbox{\hyperlink{class_sysc_add__pv}{\_\_b}})\ \{}
+\DoxyCodeLine{00311\ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{class_sysc_add__pv}{\_\_b}}\ <\ \mbox{\hyperlink{class_sysc_add__pv}{\_\_a}}\ ?\ \mbox{\hyperlink{class_sysc_add__pv}{\_\_b}}\ :\ \mbox{\hyperlink{class_sysc_add__pv}{\_\_a}};}
+\DoxyCodeLine{00312\ \ \ \}}
+\DoxyCodeLine{00313\ \ \ \textcolor{keyword}{template}\ <\textcolor{keyword}{class}\ \_Tp>}
+\DoxyCodeLine{00314\ \ \ \textcolor{keyword}{inline}\ \textcolor{keyword}{const}\ \mbox{\hyperlink{class_sysc_add__pv}{\_Tp}}\&\ \mbox{\hyperlink{class_sysc_add__pv}{max}}\ \mbox{\hyperlink{suffix_8hpp_a887f284c8a771dd81dbb97d0401abd43}{SC\_BOOST\_PREVENT\_MACRO\_SUBSTITUTION}}\ (\textcolor{keyword}{const}\ \mbox{\hyperlink{class_sysc_add__pv}{\_Tp}}\&\ \mbox{\hyperlink{class_sysc_add__pv}{\_\_a}},\ \textcolor{keyword}{const}\ \mbox{\hyperlink{class_sysc_add__pv}{\_Tp}}\&\ \mbox{\hyperlink{class_sysc_add__pv}{\_\_b}})\ \{}
+\DoxyCodeLine{00315\ \ \ \ \ \textcolor{keywordflow}{return}\ \ \mbox{\hyperlink{class_sysc_add__pv}{\_\_a}}\ <\ \mbox{\hyperlink{class_sysc_add__pv}{\_\_b}}\ ?\ \mbox{\hyperlink{class_sysc_add__pv}{\_\_b}}\ :\ \mbox{\hyperlink{class_sysc_add__pv}{\_\_a}};}
+\DoxyCodeLine{00316\ \ \ \}}
+\DoxyCodeLine{00317\ \}}
+\DoxyCodeLine{00318\ }
+\DoxyCodeLine{00319\ \textcolor{preprocessor}{\#\ \ endif}}
+\DoxyCodeLine{00320\ }
+\DoxyCodeLine{00321\ \textcolor{comment}{//\ SC\_BOOST\_STATIC\_CONSTANT\ workaround\ -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/\ //}}
+\DoxyCodeLine{00322\ \textcolor{comment}{//\ On\ compilers\ which\ don't\ allow\ in-\/class\ initialization\ of\ static\ integral}}
+\DoxyCodeLine{00323\ \textcolor{comment}{//\ constant\ members,\ we\ must\ use\ enums\ as\ a\ workaround\ if\ we\ want\ the\ constants}}
+\DoxyCodeLine{00324\ \textcolor{comment}{//\ to\ be\ available\ at\ compile-\/time.\ This\ macro\ gives\ us\ a\ convenient\ way\ to}}
+\DoxyCodeLine{00325\ \textcolor{comment}{//\ declare\ such\ constants.}}
+\DoxyCodeLine{00326\ }
+\DoxyCodeLine{00327\ \textcolor{preprocessor}{\#\ \ ifdef\ SC\_BOOST\_NO\_INCLASS\_MEMBER\_INITIALIZATION}}
+\DoxyCodeLine{00328\ \textcolor{preprocessor}{\#\ \ \ \ \ \ \ define\ SC\_BOOST\_STATIC\_CONSTANT(type,\ assignment)\ enum\ \{\ assignment\ \}}}
+\DoxyCodeLine{00329\ \textcolor{preprocessor}{\#\ \ else}}
+\DoxyCodeLine{00330\ \textcolor{preprocessor}{\#\ \ \ \ \ define\ SC\_BOOST\_STATIC\_CONSTANT(type,\ assignment)\ static\ const\ type\ assignment}}
+\DoxyCodeLine{00331\ \textcolor{preprocessor}{\#\ \ endif}}
+\DoxyCodeLine{00332\ }
+\DoxyCodeLine{00333\ \textcolor{comment}{//\ SC\_BOOST\_USE\_FACET\ /\ HAS\_FACET\ workaround\ -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\///}}
+\DoxyCodeLine{00334\ \textcolor{comment}{//\ When\ the\ standard\ library\ does\ not\ have\ a\ conforming\ std::use\_facet\ there}}
+\DoxyCodeLine{00335\ \textcolor{comment}{//\ are\ various\ workarounds\ available,\ but\ they\ differ\ from\ library\ to\ library.}}
+\DoxyCodeLine{00336\ \textcolor{comment}{//\ The\ same\ problem\ occurs\ with\ has\_facet.}}
+\DoxyCodeLine{00337\ \textcolor{comment}{//\ These\ macros\ provide\ a\ consistent\ way\ to\ access\ a\ locale's\ facets.}}
+\DoxyCodeLine{00338\ \textcolor{comment}{//\ Usage:}}
+\DoxyCodeLine{00339\ \textcolor{comment}{//\ \ \ \ replace}}
+\DoxyCodeLine{00340\ \textcolor{comment}{//\ \ \ \ \ \ \ std::use\_facet<Type>(loc);}}
+\DoxyCodeLine{00341\ \textcolor{comment}{//\ \ \ \ with}}
+\DoxyCodeLine{00342\ \textcolor{comment}{//\ \ \ \ \ \ \ SC\_BOOST\_USE\_FACET(Type,\ loc);}}
+\DoxyCodeLine{00343\ \textcolor{comment}{//\ \ \ \ Note\ do\ not\ add\ a\ std::\ prefix\ to\ the\ front\ of\ SC\_BOOST\_USE\_FACET!}}
+\DoxyCodeLine{00344\ \textcolor{comment}{//\ \ Use\ for\ SC\_BOOST\_HAS\_FACET\ is\ analagous.}}
+\DoxyCodeLine{00345\ }
+\DoxyCodeLine{00346\ \textcolor{preprocessor}{\#if\ defined(SC\_BOOST\_NO\_STD\_USE\_FACET)}}
+\DoxyCodeLine{00347\ \textcolor{preprocessor}{\#\ \ ifdef\ SC\_BOOST\_HAS\_TWO\_ARG\_USE\_FACET}}
+\DoxyCodeLine{00348\ \textcolor{preprocessor}{\#\ \ \ \ \ define\ SC\_BOOST\_USE\_FACET(Type,\ loc)\ std::use\_facet(loc,\ static\_cast<Type*>(0))}}
+\DoxyCodeLine{00349\ \textcolor{preprocessor}{\#\ \ \ \ \ define\ SC\_BOOST\_HAS\_FACET(Type,\ loc)\ std::has\_facet(loc,\ static\_cast<Type*>(0))}}
+\DoxyCodeLine{00350\ \textcolor{preprocessor}{\#\ \ elif\ defined(SC\_BOOST\_HAS\_MACRO\_USE\_FACET)}}
+\DoxyCodeLine{00351\ \textcolor{preprocessor}{\#\ \ \ \ \ define\ SC\_BOOST\_USE\_FACET(Type,\ loc)\ std::\_USE(loc,\ Type)}}
+\DoxyCodeLine{00352\ \textcolor{preprocessor}{\#\ \ \ \ \ define\ SC\_BOOST\_HAS\_FACET(Type,\ loc)\ std::\_HAS(loc,\ Type)}}
+\DoxyCodeLine{00353\ \textcolor{preprocessor}{\#\ \ elif\ defined(SC\_BOOST\_HAS\_STLP\_USE\_FACET)}}
+\DoxyCodeLine{00354\ \textcolor{preprocessor}{\#\ \ \ \ \ define\ SC\_BOOST\_USE\_FACET(Type,\ loc)\ (*std::\_Use\_facet<Type\ >(loc))}}
+\DoxyCodeLine{00355\ \textcolor{preprocessor}{\#\ \ \ \ \ define\ SC\_BOOST\_HAS\_FACET(Type,\ loc)\ std::has\_facet<\ Type\ >(loc)}}
+\DoxyCodeLine{00356\ \textcolor{preprocessor}{\#\ \ endif}}
+\DoxyCodeLine{00357\ \textcolor{preprocessor}{\#else}}
+\DoxyCodeLine{00358\ \textcolor{preprocessor}{\#\ \ define\ SC\_BOOST\_USE\_FACET(Type,\ loc)\ std::use\_facet<\ Type\ >(loc)}}
+\DoxyCodeLine{00359\ \textcolor{preprocessor}{\#\ \ define\ SC\_BOOST\_HAS\_FACET(Type,\ loc)\ std::has\_facet<\ Type\ >(loc)}}
+\DoxyCodeLine{00360\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00361\ }
+\DoxyCodeLine{00362\ \textcolor{comment}{//\ SC\_BOOST\_NESTED\_TEMPLATE\ workaround\ -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\///}}
+\DoxyCodeLine{00363\ \textcolor{comment}{//\ Member\ templates\ are\ supported\ by\ some\ compilers\ even\ though\ they\ can't\ use}}
+\DoxyCodeLine{00364\ \textcolor{comment}{//\ the\ A::template\ member<U>\ syntax,\ as\ a\ workaround\ replace:}}
+\DoxyCodeLine{00365\ \textcolor{comment}{//}}
+\DoxyCodeLine{00366\ \textcolor{comment}{//\ typedef\ typename\ A::template\ rebind<U>\ binder;}}
+\DoxyCodeLine{00367\ \textcolor{comment}{//}}
+\DoxyCodeLine{00368\ \textcolor{comment}{//\ with:}}
+\DoxyCodeLine{00369\ \textcolor{comment}{//}}
+\DoxyCodeLine{00370\ \textcolor{comment}{//\ typedef\ typename\ A::SC\_BOOST\_NESTED\_TEMPLATE\ rebind<U>\ binder;}}
+\DoxyCodeLine{00371\ }
+\DoxyCodeLine{00372\ \textcolor{preprocessor}{\#ifndef\ SC\_BOOST\_NO\_MEMBER\_TEMPLATE\_KEYWORD}}
+\DoxyCodeLine{00373\ \textcolor{preprocessor}{\#\ \ define\ SC\_BOOST\_NESTED\_TEMPLATE\ template}}
+\DoxyCodeLine{00374\ \textcolor{preprocessor}{\#else}}
+\DoxyCodeLine{00375\ \textcolor{preprocessor}{\#\ \ define\ SC\_BOOST\_NESTED\_TEMPLATE}}
+\DoxyCodeLine{00376\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00377\ }
+\DoxyCodeLine{00378\ \textcolor{comment}{//\ SC\_BOOST\_UNREACHABLE\_RETURN(x)\ workaround\ -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\///}}
+\DoxyCodeLine{00379\ \textcolor{comment}{//\ Normally\ evaluates\ to\ nothing,\ unless\ SC\_BOOST\_NO\_UNREACHABLE\_RETURN\_DETECTION}}
+\DoxyCodeLine{00380\ \textcolor{comment}{//\ is\ defined,\ in\ which\ case\ it\ evaluates\ to\ return\ x;\ Use\ when\ you\ have\ a\ return}}
+\DoxyCodeLine{00381\ \textcolor{comment}{//\ statement\ that\ can\ never\ be\ reached.}}
+\DoxyCodeLine{00382\ }
+\DoxyCodeLine{00383\ \textcolor{preprocessor}{\#ifdef\ SC\_BOOST\_NO\_UNREACHABLE\_RETURN\_DETECTION}}
+\DoxyCodeLine{00384\ \textcolor{preprocessor}{\#\ \ define\ SC\_BOOST\_UNREACHABLE\_RETURN(x)\ return\ x;}}
+\DoxyCodeLine{00385\ \textcolor{preprocessor}{\#else}}
+\DoxyCodeLine{00386\ \textcolor{preprocessor}{\#\ \ define\ SC\_BOOST\_UNREACHABLE\_RETURN(x)}}
+\DoxyCodeLine{00387\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00388\ }
+\DoxyCodeLine{00389\ \textcolor{comment}{//\ SC\_BOOST\_DEDUCED\_TYPENAME\ workaround\ -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\///}}
+\DoxyCodeLine{00390\ \textcolor{comment}{//}}
+\DoxyCodeLine{00391\ \textcolor{comment}{//\ Some\ compilers\ don't\ support\ the\ use\ of\ \`{}typename'\ for\ dependent}}
+\DoxyCodeLine{00392\ \textcolor{comment}{//\ types\ in\ deduced\ contexts,\ e.g.}}
+\DoxyCodeLine{00393\ \textcolor{comment}{//}}
+\DoxyCodeLine{00394\ \textcolor{comment}{//\ \ \ \ \ template\ <class\ T>\ void\ f(T,\ typename\ T::type);}}
+\DoxyCodeLine{00395\ \textcolor{comment}{//\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \string^\string^\string^\string^\string^\string^\string^\string^}}
+\DoxyCodeLine{00396\ \textcolor{comment}{//\ Replace\ these\ declarations\ with:}}
+\DoxyCodeLine{00397\ \textcolor{comment}{//}}
+\DoxyCodeLine{00398\ \textcolor{comment}{//\ \ \ \ \ template\ <class\ T>\ void\ f(T,\ SC\_BOOST\_DEDUCED\_TYPENAME\ T::type);}}
+\DoxyCodeLine{00399\ }
+\DoxyCodeLine{00400\ \textcolor{preprocessor}{\#ifndef\ SC\_BOOST\_NO\_DEDUCED\_TYPENAME}}
+\DoxyCodeLine{00401\ \textcolor{preprocessor}{\#\ \ define\ SC\_BOOST\_DEDUCED\_TYPENAME\ typename}}
+\DoxyCodeLine{00402\ \textcolor{preprocessor}{\#else}}
+\DoxyCodeLine{00403\ \textcolor{preprocessor}{\#\ \ define\ SC\_BOOST\_DEDUCED\_TYPENAME}}
+\DoxyCodeLine{00404\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00405\ }
+\DoxyCodeLine{00406\ \textcolor{comment}{//\ long\ long\ workaround\ -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\///}}
+\DoxyCodeLine{00407\ \textcolor{comment}{//\ On\ gcc\ (and\ maybe\ other\ compilers?)\ long\ long\ is\ alway\ supported}}
+\DoxyCodeLine{00408\ \textcolor{comment}{//\ but\ it's\ use\ may\ generate\ either\ warnings\ (with\ -\/ansi),\ or\ errors}}
+\DoxyCodeLine{00409\ \textcolor{comment}{//\ (with\ -\/pedantic\ -\/ansi)\ unless\ it's\ use\ is\ prefixed\ by\ \_\_extension\_\_}}
+\DoxyCodeLine{00410\ \textcolor{comment}{//}}
+\DoxyCodeLine{00411\ \textcolor{preprocessor}{\#if\ defined(SC\_BOOST\_HAS\_LONG\_LONG)}}
+\DoxyCodeLine{00412\ \textcolor{keyword}{namespace\ }\mbox{\hyperlink{namespacesc__boost}{sc\_boost}}\{}
+\DoxyCodeLine{00413\ \textcolor{preprocessor}{\#\ \ ifdef\ \_\_GNUC\_\_}}
+\DoxyCodeLine{00414\ \ \ \ \mbox{\hyperlink{linux_8hpp_a586c6a171eb0104d519dc0eda5284ef7}{\_\_extension\_\_}}\ \textcolor{keyword}{typedef}\ \textcolor{keywordtype}{long}\ \textcolor{keywordtype}{long}\ \mbox{\hyperlink{class_sysc_add__pv}{long\_long\_type}};}
+\DoxyCodeLine{00415\ \ \ \ \mbox{\hyperlink{linux_8hpp_a586c6a171eb0104d519dc0eda5284ef7}{\_\_extension\_\_}}\ \textcolor{keyword}{typedef}\ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{long}\ \textcolor{keywordtype}{long}\ \mbox{\hyperlink{class_sysc_add__pv}{ulong\_long\_type}};}
+\DoxyCodeLine{00416\ \textcolor{preprocessor}{\#\ \ else}}
+\DoxyCodeLine{00417\ \ \ \ \textcolor{keyword}{typedef}\ \textcolor{keywordtype}{long}\ \textcolor{keywordtype}{long}\ \mbox{\hyperlink{class_sysc_add__pv}{long\_long\_type}};}
+\DoxyCodeLine{00418\ \ \ \ \textcolor{keyword}{typedef}\ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{long}\ \textcolor{keywordtype}{long}\ \mbox{\hyperlink{class_sysc_add__pv}{ulong\_long\_type}};}
+\DoxyCodeLine{00419\ \textcolor{preprocessor}{\#\ \ endif}}
+\DoxyCodeLine{00420\ \}}
+\DoxyCodeLine{00421\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00422\ }
+\DoxyCodeLine{00423\ \textcolor{comment}{//\ SC\_BOOST\_[APPEND\_]EXPLICIT\_TEMPLATE\_[NON\_]TYPE\ macros\ -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\///}}
+\DoxyCodeLine{00424\ \textcolor{comment}{//}}
+\DoxyCodeLine{00425\ \textcolor{comment}{//\ Some\ compilers\ have\ problems\ with\ function\ templates\ whose}}
+\DoxyCodeLine{00426\ \textcolor{comment}{//\ template\ parameters\ don't\ appear\ in\ the\ function\ parameter}}
+\DoxyCodeLine{00427\ \textcolor{comment}{//\ list\ (basically\ they\ just\ link\ one\ instantiation\ of\ the}}
+\DoxyCodeLine{00428\ \textcolor{comment}{//\ template\ in\ the\ final\ executable).\ These\ macros\ provide\ a}}
+\DoxyCodeLine{00429\ \textcolor{comment}{//\ uniform\ way\ to\ cope\ with\ the\ problem\ with\ no\ effects\ on\ the}}
+\DoxyCodeLine{00430\ \textcolor{comment}{//\ calling\ syntax.}}
+\DoxyCodeLine{00431\ }
+\DoxyCodeLine{00432\ \textcolor{comment}{//\ Example:}}
+\DoxyCodeLine{00433\ \textcolor{comment}{//}}
+\DoxyCodeLine{00434\ \textcolor{comment}{//\ \ \#include\ <iostream>}}
+\DoxyCodeLine{00435\ \textcolor{comment}{//\ \ \#include\ <ostream>}}
+\DoxyCodeLine{00436\ \textcolor{comment}{//\ \ \#include\ <typeinfo>}}
+\DoxyCodeLine{00437\ \textcolor{comment}{//}}
+\DoxyCodeLine{00438\ \textcolor{comment}{//\ \ template\ <int\ n>}}
+\DoxyCodeLine{00439\ \textcolor{comment}{//\ \ void\ f()\ \{\ std::cout\ <<\ n\ <<\ '\ ';\ \}}}
+\DoxyCodeLine{00440\ \textcolor{comment}{//}}
+\DoxyCodeLine{00441\ \textcolor{comment}{//\ \ template\ <typename\ T>}}
+\DoxyCodeLine{00442\ \textcolor{comment}{//\ \ void\ g()\ \{\ std::cout\ <<\ typeid(T).name()\ <<\ '\ ';\ \}}}
+\DoxyCodeLine{00443\ \textcolor{comment}{//}}
+\DoxyCodeLine{00444\ \textcolor{comment}{//\ \ int\ main()\ \{}}
+\DoxyCodeLine{00445\ \textcolor{comment}{//\ \ \ \ f<1>();}}
+\DoxyCodeLine{00446\ \textcolor{comment}{//\ \ \ \ f<2>();}}
+\DoxyCodeLine{00447\ \textcolor{comment}{//}}
+\DoxyCodeLine{00448\ \textcolor{comment}{//\ \ \ \ g<int>();}}
+\DoxyCodeLine{00449\ \textcolor{comment}{//\ \ \ \ g<double>();}}
+\DoxyCodeLine{00450\ \textcolor{comment}{//\ \ \}}}
+\DoxyCodeLine{00451\ \textcolor{comment}{//}}
+\DoxyCodeLine{00452\ \textcolor{comment}{//\ With\ VC++\ 6.0\ the\ output\ is:}}
+\DoxyCodeLine{00453\ \textcolor{comment}{//}}
+\DoxyCodeLine{00454\ \textcolor{comment}{//\ \ \ 2\ 2\ double\ double}}
+\DoxyCodeLine{00455\ \textcolor{comment}{//}}
+\DoxyCodeLine{00456\ \textcolor{comment}{//\ To\ fix\ it,\ write}}
+\DoxyCodeLine{00457\ \textcolor{comment}{//}}
+\DoxyCodeLine{00458\ \textcolor{comment}{//\ \ \ template\ <int\ n>}}
+\DoxyCodeLine{00459\ \textcolor{comment}{//\ \ \ void\ f(SC\_BOOST\_EXPLICIT\_TEMPLATE\_NON\_TYPE(int,\ n))\ \{\ ...\ \}}}
+\DoxyCodeLine{00460\ \textcolor{comment}{//}}
+\DoxyCodeLine{00461\ \textcolor{comment}{//\ \ \ template\ <typename\ T>}}
+\DoxyCodeLine{00462\ \textcolor{comment}{//\ \ \ void\ g(SC\_BOOST\_EXPLICIT\_TEMPLATE\_TYPE(T))\ \{\ ...\ \}}}
+\DoxyCodeLine{00463\ \textcolor{comment}{//}}
+\DoxyCodeLine{00464\ }
+\DoxyCodeLine{00465\ }
+\DoxyCodeLine{00466\ \textcolor{preprocessor}{\#if\ defined\ SC\_BOOST\_NO\_EXPLICIT\_FUNCTION\_TEMPLATE\_ARGUMENTS}}
+\DoxyCodeLine{00467\ }
+\DoxyCodeLine{00468\ \textcolor{preprocessor}{\#\ \ include\ "{}\mbox{\hyperlink{type_8hpp}{sysc/packages/boost/type.hpp}}"{}}}
+\DoxyCodeLine{00469\ \textcolor{preprocessor}{\#\ \ include\ "{}\mbox{\hyperlink{non__type_8hpp}{sysc/packages/boost/non\_type.hpp}}"{}}}
+\DoxyCodeLine{00470\ }
+\DoxyCodeLine{00471\ \textcolor{preprocessor}{\#\ \ define\ SC\_BOOST\_EXPLICIT\_TEMPLATE\_TYPE(t)\ \ \ \ \ \ \ \ \ sc\_boost::type<t>*\ =\ 0}}
+\DoxyCodeLine{00472\ \textcolor{preprocessor}{\#\ \ define\ SC\_BOOST\_EXPLICIT\_TEMPLATE\_TYPE\_SPEC(t)\ \ \ \ sc\_boost::type<t>*}}
+\DoxyCodeLine{00473\ \textcolor{preprocessor}{\#\ \ define\ SC\_BOOST\_EXPLICIT\_TEMPLATE\_NON\_TYPE(t,\ v)\ \ sc\_boost::non\_type<t,\ v>*\ =\ 0}}
+\DoxyCodeLine{00474\ \textcolor{preprocessor}{\#\ \ define\ SC\_BOOST\_EXPLICIT\_TEMPLATE\_NON\_TYPE\_SPEC(t,\ v)\ \ sc\_boost::non\_type<t,\ v>*}}
+\DoxyCodeLine{00475\ }
+\DoxyCodeLine{00476\ \textcolor{preprocessor}{\#\ \ define\ SC\_BOOST\_APPEND\_EXPLICIT\_TEMPLATE\_TYPE(t)\ \ \ \ \ \ \ \ \ \(\backslash\)}}
+\DoxyCodeLine{00477\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ \ \ \ \ \ ,\ SC\_BOOST\_EXPLICIT\_TEMPLATE\_TYPE(t)}}
+\DoxyCodeLine{00478\ \textcolor{preprocessor}{\#\ \ define\ SC\_BOOST\_APPEND\_EXPLICIT\_TEMPLATE\_TYPE\_SPEC(t)\ \ \ \ \(\backslash\)}}
+\DoxyCodeLine{00479\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ \ \ \ \ \ ,\ SC\_BOOST\_EXPLICIT\_TEMPLATE\_TYPE\_SPEC(t)}}
+\DoxyCodeLine{00480\ \textcolor{preprocessor}{\#\ \ define\ SC\_BOOST\_APPEND\_EXPLICIT\_TEMPLATE\_NON\_TYPE(t,\ v)\ \ \(\backslash\)}}
+\DoxyCodeLine{00481\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ \ \ \ \ \ ,\ SC\_BOOST\_EXPLICIT\_TEMPLATE\_NON\_TYPE(t,\ v)}}
+\DoxyCodeLine{00482\ \textcolor{preprocessor}{\#\ \ define\ SC\_BOOST\_APPEND\_EXPLICIT\_TEMPLATE\_NON\_TYPE\_SPEC(t,\ v)\ \ \(\backslash\)}}
+\DoxyCodeLine{00483\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ \ \ \ \ \ ,\ SC\_BOOST\_EXPLICIT\_TEMPLATE\_NON\_TYPE\_SPEC(t,\ v)}}
+\DoxyCodeLine{00484\ }
+\DoxyCodeLine{00485\ \textcolor{preprocessor}{\#else}}
+\DoxyCodeLine{00486\ }
+\DoxyCodeLine{00487\ \textcolor{comment}{//\ no\ workaround\ needed:\ expand\ to\ nothing}}
+\DoxyCodeLine{00488\ }
+\DoxyCodeLine{00489\ \textcolor{preprocessor}{\#\ \ define\ SC\_BOOST\_EXPLICIT\_TEMPLATE\_TYPE(t)}}
+\DoxyCodeLine{00490\ \textcolor{preprocessor}{\#\ \ define\ SC\_BOOST\_EXPLICIT\_TEMPLATE\_TYPE\_SPEC(t)}}
+\DoxyCodeLine{00491\ \textcolor{preprocessor}{\#\ \ define\ SC\_BOOST\_EXPLICIT\_TEMPLATE\_NON\_TYPE(t,\ v)}}
+\DoxyCodeLine{00492\ \textcolor{preprocessor}{\#\ \ define\ SC\_BOOST\_EXPLICIT\_TEMPLATE\_NON\_TYPE\_SPEC(t,\ v)}}
+\DoxyCodeLine{00493\ }
+\DoxyCodeLine{00494\ \textcolor{preprocessor}{\#\ \ define\ SC\_BOOST\_APPEND\_EXPLICIT\_TEMPLATE\_TYPE(t)}}
+\DoxyCodeLine{00495\ \textcolor{preprocessor}{\#\ \ define\ SC\_BOOST\_APPEND\_EXPLICIT\_TEMPLATE\_TYPE\_SPEC(t)}}
+\DoxyCodeLine{00496\ \textcolor{preprocessor}{\#\ \ define\ SC\_BOOST\_APPEND\_EXPLICIT\_TEMPLATE\_NON\_TYPE(t,\ v)}}
+\DoxyCodeLine{00497\ \textcolor{preprocessor}{\#\ \ define\ SC\_BOOST\_APPEND\_EXPLICIT\_TEMPLATE\_NON\_TYPE\_SPEC(t,\ v)}}
+\DoxyCodeLine{00498\ }
+\DoxyCodeLine{00499\ }
+\DoxyCodeLine{00500\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{//\ defined\ SC\_BOOST\_NO\_EXPLICIT\_FUNCTION\_TEMPLATE\_ARGUMENTS}}
+\DoxyCodeLine{00501\ }
+\DoxyCodeLine{00502\ }
+\DoxyCodeLine{00503\ \textcolor{comment}{//\ -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\///}}
+\DoxyCodeLine{00504\ }
+\DoxyCodeLine{00505\ \textcolor{comment}{//}}
+\DoxyCodeLine{00506\ \textcolor{comment}{//\ Helper\ macro\ SC\_BOOST\_STRINGIZE:}}
+\DoxyCodeLine{00507\ \textcolor{comment}{//\ Converts\ the\ parameter\ X\ to\ a\ string\ after\ macro\ replacement}}
+\DoxyCodeLine{00508\ \textcolor{comment}{//\ on\ X\ has\ been\ performed.}}
+\DoxyCodeLine{00509\ \textcolor{comment}{//}}
+\DoxyCodeLine{00510\ \textcolor{preprocessor}{\#define\ SC\_BOOST\_STRINGIZE(X)\ SC\_BOOST\_DO\_STRINGIZE(X)}}
+\DoxyCodeLine{00511\ \textcolor{preprocessor}{\#define\ SC\_BOOST\_DO\_STRINGIZE(X)\ \#X}}
+\DoxyCodeLine{00512\ }
+\DoxyCodeLine{00513\ \textcolor{comment}{//}}
+\DoxyCodeLine{00514\ \textcolor{comment}{//\ Helper\ macro\ SC\_BOOST\_JOIN:}}
+\DoxyCodeLine{00515\ \textcolor{comment}{//\ The\ following\ piece\ of\ macro\ magic\ joins\ the\ two}}
+\DoxyCodeLine{00516\ \textcolor{comment}{//\ arguments\ together,\ even\ when\ one\ of\ the\ arguments\ is}}
+\DoxyCodeLine{00517\ \textcolor{comment}{//\ itself\ a\ macro\ (see\ 16.3.1\ in\ C++\ standard).\ \ The\ key}}
+\DoxyCodeLine{00518\ \textcolor{comment}{//\ is\ that\ macro\ expansion\ of\ macro\ arguments\ does\ not}}
+\DoxyCodeLine{00519\ \textcolor{comment}{//\ occur\ in\ SC\_BOOST\_DO\_JOIN2\ but\ does\ in\ SC\_BOOST\_DO\_JOIN.}}
+\DoxyCodeLine{00520\ \textcolor{comment}{//}}
+\DoxyCodeLine{00521\ \textcolor{preprocessor}{\#define\ SC\_BOOST\_JOIN(\ X,\ Y\ )\ SC\_BOOST\_DO\_JOIN(\ X,\ Y\ )}}
+\DoxyCodeLine{00522\ \textcolor{preprocessor}{\#define\ SC\_BOOST\_DO\_JOIN(\ X,\ Y\ )\ SC\_BOOST\_DO\_JOIN2(X,Y)}}
+\DoxyCodeLine{00523\ \textcolor{preprocessor}{\#define\ SC\_BOOST\_DO\_JOIN2(\ X,\ Y\ )\ X\#\#Y}}
+\DoxyCodeLine{00524\ }
+\DoxyCodeLine{00525\ \textcolor{comment}{//}}
+\DoxyCodeLine{00526\ \textcolor{comment}{//\ Set\ some\ default\ values\ for\ compiler/library/platform\ names.}}
+\DoxyCodeLine{00527\ \textcolor{comment}{//\ These\ are\ for\ debugging\ config\ setup\ only:}}
+\DoxyCodeLine{00528\ \textcolor{comment}{//}}
+\DoxyCodeLine{00529\ \textcolor{preprocessor}{\#\ \ ifndef\ SC\_BOOST\_COMPILER}}
+\DoxyCodeLine{00530\ \textcolor{preprocessor}{\#\ \ \ \ \ define\ SC\_BOOST\_COMPILER\ "{}Unknown\ ISO\ C++\ Compiler"{}}}
+\DoxyCodeLine{00531\ \textcolor{preprocessor}{\#\ \ endif}}
+\DoxyCodeLine{00532\ \textcolor{preprocessor}{\#\ \ ifndef\ SC\_BOOST\_STDLIB}}
+\DoxyCodeLine{00533\ \textcolor{preprocessor}{\#\ \ \ \ \ define\ SC\_BOOST\_STDLIB\ "{}Unknown\ ISO\ standard\ library"{}}}
+\DoxyCodeLine{00534\ \textcolor{preprocessor}{\#\ \ endif}}
+\DoxyCodeLine{00535\ \textcolor{preprocessor}{\#\ \ ifndef\ SC\_BOOST\_PLATFORM}}
+\DoxyCodeLine{00536\ \textcolor{preprocessor}{\#\ \ \ \ \ if\ defined(unix)\ ||\ defined(\_\_unix)\ ||\ defined(\_XOPEN\_SOURCE)\ \(\backslash\)}}
+\DoxyCodeLine{00537\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ \ ||\ defined(\_POSIX\_SOURCE)}}
+\DoxyCodeLine{00538\ \textcolor{preprocessor}{\#\ \ \ \ \ \ \ \ define\ SC\_BOOST\_PLATFORM\ "{}Generic\ Unix"{}}}
+\DoxyCodeLine{00539\ \textcolor{preprocessor}{\#\ \ \ \ \ else}}
+\DoxyCodeLine{00540\ \textcolor{preprocessor}{\#\ \ \ \ \ \ \ \ define\ SC\_BOOST\_PLATFORM\ "{}Unknown"{}}}
+\DoxyCodeLine{00541\ \textcolor{preprocessor}{\#\ \ \ \ \ endif}}
+\DoxyCodeLine{00542\ \textcolor{preprocessor}{\#\ \ endif}}
+\DoxyCodeLine{00543\ }
+\DoxyCodeLine{00544\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00545\ }
+\DoxyCodeLine{00546\ }
+\DoxyCodeLine{00547\ }
+
+\end{DoxyCode}

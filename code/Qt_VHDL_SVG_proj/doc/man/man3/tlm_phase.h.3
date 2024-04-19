@@ -1,0 +1,103 @@
+.TH "C:/Users/BJRODIER/Documents/QT_REPO/QT_VHDL_simulator/code/Ressources/SystemC/include/tlm_core/tlm_2/tlm_generic_payload/tlm_phase.h" 3 "VHDL simulator" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+C:/Users/BJRODIER/Documents/QT_REPO/QT_VHDL_simulator/code/Ressources/SystemC/include/tlm_core/tlm_2/tlm_generic_payload/tlm_phase.h
+.SH SYNOPSIS
+.br
+.PP
+\fR#include <string>\fP
+.br
+\fR#include <iostream>\fP
+.br
+\fR#include <typeinfo>\fP
+.br
+\fR#include <vector>\fP
+.br
+\fR#include 'sysc/kernel/sc_cmnhdr\&.h'\fP
+.br
+\fR#include 'sysc/kernel/sc_macros\&.h'\fP
+.br
+
+.SS "Classes"
+
+.in +1c
+.ti -1c
+.RI "class \fBtlm::tlm_phase\fP"
+.br
+.in -1c
+.SS "Namespaces"
+
+.in +1c
+.ti -1c
+.RI "namespace \fBtlm\fP"
+.br
+.in -1c
+.SS "Macros"
+
+.in +1c
+.ti -1c
+.RI "#\fBdefine\fP \fBTLM_DECLARE_EXTENDED_PHASE\fP(\fBname_arg\fP)"
+.br
+.ti -1c
+.RI "#\fBdefine\fP \fBDECLARE_EXTENDED_PHASE\fP(\fBNameArg\fP)       \fBTLM_DECLARE_EXTENDED_PHASE\fP( \fBNameArg\fP )"
+.br
+.in -1c
+.SS "Functions"
+
+.in +1c
+.ti -1c
+.RI "std::ostream & \fBtlm::operator<<\fP (std::ostream &s, \fBconst\fP \fBtlm_phase\fP &p)"
+.br
+.in -1c
+.SS "Variables"
+
+.in +1c
+.ti -1c
+.RI "\fBUNINITIALIZED_PHASE\fP =0"
+.br
+.ti -1c
+.RI "\fBBEGIN_REQ\fP =1"
+.br
+.ti -1c
+.RI "\fBEND_REQ\fP"
+.br
+.ti -1c
+.RI "\fBBEGIN_RESP\fP"
+.br
+.in -1c
+.SH "Macro Definition Documentation"
+.PP 
+.SS "#\fBdefine\fP DECLARE_EXTENDED_PHASE(\fBNameArg\fP)       \fBTLM_DECLARE_EXTENDED_PHASE\fP( \fBNameArg\fP )"
+
+.SS "#\fBdefine\fP TLM_DECLARE_EXTENDED_PHASE(\fBname_arg\fP)"
+\fBValue:\fP.PP
+.nf
+  static class SC_CONCAT_HELPER_(tlm_phase_, name_arg) \\
+    : public ::tlm::tlm_phase \\
+  { \\
+    typedef SC_CONCAT_HELPER_(tlm_phase_, name_arg) this_type; \\
+  public: \\
+    SC_CONCAT_HELPER_(tlm_phase_, name_arg)() /* register extended phase */ \\
+      : ::tlm::tlm_phase( typeid(*this), SC_STRINGIFY_HELPER_(name_arg) ) \\
+    {} \\
+    \\
+    static const this_type& get_phase() /* needed only for IEEE 1666\-2011 */ \\
+      { static this_type this_; return this_; } \\
+  } \\
+  const name_arg
+.fi
+
+.SH "Variable Documentation"
+.PP 
+.SS "BEGIN_REQ =1"
+
+.SS "BEGIN_RESP"
+
+.SS "END_REQ"
+
+.SS "UNINITIALIZED_PHASE =0"
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for VHDL simulator from the source code\&.

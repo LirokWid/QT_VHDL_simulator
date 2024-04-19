@@ -1,0 +1,379 @@
+\doxysection{sc\+\_\+simcontext\+\_\+int.\+h}
+\hypertarget{sc__simcontext__int_8h_source}{}\label{sc__simcontext__int_8h_source}\index{C:/Users/BJRODIER/Documents/QT\_REPO/QT\_VHDL\_simulator/code/Ressources/SystemC/include/sysc/kernel/sc\_simcontext\_int.h@{C:/Users/BJRODIER/Documents/QT\_REPO/QT\_VHDL\_simulator/code/Ressources/SystemC/include/sysc/kernel/sc\_simcontext\_int.h}}
+\mbox{\hyperlink{sc__simcontext__int_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{comment}{/*****************************************************************************}}
+\DoxyCodeLine{00002\ \textcolor{comment}{}}
+\DoxyCodeLine{00003\ \textcolor{comment}{\ \ Licensed\ to\ Accellera\ Systems\ Initiative\ Inc.\ (Accellera)\ under\ one\ or}}
+\DoxyCodeLine{00004\ \textcolor{comment}{\ \ more\ contributor\ license\ agreements.\ \ See\ the\ NOTICE\ file\ distributed}}
+\DoxyCodeLine{00005\ \textcolor{comment}{\ \ with\ this\ work\ for\ additional\ information\ regarding\ copyright\ ownership.}}
+\DoxyCodeLine{00006\ \textcolor{comment}{\ \ Accellera\ licenses\ this\ file\ to\ you\ under\ the\ Apache\ License,\ Version\ 2.0}}
+\DoxyCodeLine{00007\ \textcolor{comment}{\ \ (the\ "{}License"{});\ you\ may\ not\ use\ this\ file\ except\ in\ compliance\ with\ the}}
+\DoxyCodeLine{00008\ \textcolor{comment}{\ \ License.\ \ You\ may\ obtain\ a\ copy\ of\ the\ License\ at}}
+\DoxyCodeLine{00009\ \textcolor{comment}{}}
+\DoxyCodeLine{00010\ \textcolor{comment}{\ \ \ \ http://www.apache.org/licenses/LICENSE-\/2.0}}
+\DoxyCodeLine{00011\ \textcolor{comment}{}}
+\DoxyCodeLine{00012\ \textcolor{comment}{\ \ Unless\ required\ by\ applicable\ law\ or\ agreed\ to\ in\ writing,\ software}}
+\DoxyCodeLine{00013\ \textcolor{comment}{\ \ distributed\ under\ the\ License\ is\ distributed\ on\ an\ "{}AS\ IS"{}\ BASIS,}}
+\DoxyCodeLine{00014\ \textcolor{comment}{\ \ WITHOUT\ WARRANTIES\ OR\ CONDITIONS\ OF\ ANY\ KIND,\ either\ express\ or}}
+\DoxyCodeLine{00015\ \textcolor{comment}{\ \ implied.\ \ See\ the\ License\ for\ the\ specific\ language\ governing}}
+\DoxyCodeLine{00016\ \textcolor{comment}{\ \ permissions\ and\ limitations\ under\ the\ License.}}
+\DoxyCodeLine{00017\ \textcolor{comment}{}}
+\DoxyCodeLine{00018\ \textcolor{comment}{\ *****************************************************************************/}}
+\DoxyCodeLine{00019\ }
+\DoxyCodeLine{00020\ \textcolor{comment}{/*****************************************************************************}}
+\DoxyCodeLine{00021\ \textcolor{comment}{}}
+\DoxyCodeLine{00022\ \textcolor{comment}{\ \ sc\_simcontext\_int.h\ -\/-\/\ For\ inline\ definitions\ of\ some\ utility\ functions.}}
+\DoxyCodeLine{00023\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ DO\ NOT\ EXPORT\ THIS\ INCLUDE\ FILE.\ Include\ this\ file}}
+\DoxyCodeLine{00024\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ after\ "{}sc\_process\_int.h"{}\ so\ that\ we\ can\ get\ the\ base}}
+\DoxyCodeLine{00025\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ class\ right.}}
+\DoxyCodeLine{00026\ \textcolor{comment}{}}
+\DoxyCodeLine{00027\ \textcolor{comment}{\ \ Original\ Author:\ Stan\ Y.\ Liao,\ Synopsys,\ Inc.}}
+\DoxyCodeLine{00028\ \textcolor{comment}{}}
+\DoxyCodeLine{00029\ \textcolor{comment}{\ \ CHANGE\ LOG\ AT\ THE\ END\ OF\ THE\ FILE}}
+\DoxyCodeLine{00030\ \textcolor{comment}{\ *****************************************************************************/}}
+\DoxyCodeLine{00031\ }
+\DoxyCodeLine{00032\ \textcolor{preprocessor}{\#ifndef\ SC\_SIMCONTEXT\_INT\_H}}
+\DoxyCodeLine{00033\ \textcolor{preprocessor}{\#define\ SC\_SIMCONTEXT\_INT\_H}}
+\DoxyCodeLine{00034\ }
+\DoxyCodeLine{00035\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{sc__simcontext_8h}{sysc/kernel/sc\_simcontext.h}}"{}}}
+\DoxyCodeLine{00036\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{sc__runnable_8h}{sysc/kernel/sc\_runnable.h}}"{}}}
+\DoxyCodeLine{00037\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{sc__runnable__int_8h}{sysc/kernel/sc\_runnable\_int.h}}"{}}}
+\DoxyCodeLine{00038\ }
+\DoxyCodeLine{00039\ \textcolor{comment}{//\ DEBUGGING\ MACROS:}}
+\DoxyCodeLine{00040\ \textcolor{comment}{//}}
+\DoxyCodeLine{00041\ \textcolor{comment}{//\ DEBUG\_MSG(NAME,P,MSG)}}
+\DoxyCodeLine{00042\ \textcolor{comment}{//\ \ \ \ \ MSG\ \ =\ message\ to\ print}}
+\DoxyCodeLine{00043\ \textcolor{comment}{//\ \ \ \ \ NAME\ =\ name\ that\ must\ match\ the\ process\ for\ the\ message\ to\ print,\ or}}
+\DoxyCodeLine{00044\ \textcolor{comment}{//\ \ \ \ \ \ \ \ \ \ \ \ null\ if\ the\ message\ should\ be\ printed\ unconditionally.}}
+\DoxyCodeLine{00045\ \textcolor{comment}{//\ \ \ \ \ P\ \ \ \ =\ pointer\ to\ process\ message\ is\ for,\ or\ NULL\ in\ which\ case\ the}}
+\DoxyCodeLine{00046\ \textcolor{comment}{//\ \ \ \ \ \ \ \ \ \ \ \ message\ will\ not\ print.}}
+\DoxyCodeLine{00047\ \textcolor{preprocessor}{\#if\ 0}}
+\DoxyCodeLine{00048\ \textcolor{preprocessor}{\#\ \ \ include\ <cstring>}}
+\DoxyCodeLine{00049\ \textcolor{preprocessor}{\#\ \ \ define\ DEBUG\_NAME\ "{}"{}}}
+\DoxyCodeLine{00050\ \textcolor{preprocessor}{\#\ \ \ define\ DEBUG\_MSG(NAME,P,MSG)\ \(\backslash\)}}
+\DoxyCodeLine{00051\ \textcolor{preprocessor}{\ \ \ \ \{\ \(\backslash\)}}
+\DoxyCodeLine{00052\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ if\ (\ P\ \&\&\ (\ (std::strlen(NAME)==0)\ ||\ !std::strcmp(NAME,P-\/>name()))\ )\ \(\backslash\)}}
+\DoxyCodeLine{00053\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ \ \ std::cout\ <<\ "{}****\ "{}\ <<\ sc\_time\_stamp()\ <<\ "{}\ ("{}\ \ \(\backslash\)}}
+\DoxyCodeLine{00054\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ <<\ sc\_get\_current\_process\_name("{}**\ NONE\ **"{})\ <<\ "{}):\ "{}\ <<\ MSG\ \(\backslash\)}}
+\DoxyCodeLine{00055\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ \ \ \ \ <<\ "{}\ -\/\ "{}\ <<\ P-\/>name()\ <<\ std::endl;\ \(\backslash\)}}
+\DoxyCodeLine{00056\ \textcolor{preprocessor}{\ \ \ \ \}}}
+\DoxyCodeLine{00057\ \textcolor{preprocessor}{\#else}}
+\DoxyCodeLine{00058\ \textcolor{preprocessor}{\#\ \ \ define\ DEBUG\_MSG(NAME,P,MSG)}}
+\DoxyCodeLine{00059\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00060\ }
+\DoxyCodeLine{00061\ }
+\DoxyCodeLine{00062\ \textcolor{keyword}{namespace\ }\mbox{\hyperlink{namespacesc__core}{sc\_core}}\ \{}
+\DoxyCodeLine{00063\ }
+\DoxyCodeLine{00064\ \textcolor{keyword}{inline}}
+\DoxyCodeLine{00065\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{char}*}
+\DoxyCodeLine{00066\ \mbox{\hyperlink{namespacesc__core_a6819ecec5c7ad19175bf196a9d8da6d4}{sc\_get\_current\_process\_name}}(\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{char}\ *\ \mbox{\hyperlink{class_sysc_add__pv}{if\_empty}}\ =\ \mbox{\hyperlink{class_sysc_add__pv}{NULL}}\ )}
+\DoxyCodeLine{00067\ \{}
+\DoxyCodeLine{00068\ \ \ \ \ \mbox{\hyperlink{classsc__core_1_1sc__process__b}{sc\_process\_b}}*\ \mbox{\hyperlink{class_sysc_add__pv}{active\_p}};\ \textcolor{comment}{//\ active\ process\ to\ get\ name\ of.}}
+\DoxyCodeLine{00069\ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keywordtype}{char}*\ \ \ \mbox{\hyperlink{class_sysc_add__pv}{result}};\ \ \ \textcolor{comment}{//\ name\ of\ active\ process.}}
+\DoxyCodeLine{00070\ }
+\DoxyCodeLine{00071\ \ \ \ \ \mbox{\hyperlink{class_sysc_add__pv}{active\_p}}\ =\ \mbox{\hyperlink{namespacesc__core_a84d407a02a02ab5bc1ce70aacfca86c4}{sc\_get\_curr\_simcontext}}()-\/>\mbox{\hyperlink{classsc__core_1_1sc__simcontext_a805d160dbea38fffa421c1ed47b97388}{get\_curr\_proc\_info}}()-\/>\mbox{\hyperlink{structsc__core_1_1sc__curr__proc__info_a9ba8ebd2fd58a14681c533f900ed84de}{process\_handle}};}
+\DoxyCodeLine{00072\ \ \ \ \ \textcolor{keywordflow}{if}\ (\ \mbox{\hyperlink{class_sysc_add__pv}{active\_p}}\ )}
+\DoxyCodeLine{00073\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_sysc_add__pv}{result}}\ =\ \mbox{\hyperlink{class_sysc_add__pv}{active\_p}}-\/>\mbox{\hyperlink{classsc__core_1_1sc__object_a4da9c6e99326cd2619958e049625bc58}{name}}();}
+\DoxyCodeLine{00074\ \ \ \ \ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{00075\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_sysc_add__pv}{result}}\ =\ \mbox{\hyperlink{class_sysc_add__pv}{if\_empty}};}
+\DoxyCodeLine{00076\ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{class_sysc_add__pv}{result}};}
+\DoxyCodeLine{00077\ \}}
+\DoxyCodeLine{00078\ }
+\DoxyCodeLine{00079\ \textcolor{comment}{//\ We\ use\ m\_current\_writer\ rather\ than\ m\_curr\_proc\_info.process\_handle\ to}}
+\DoxyCodeLine{00080\ \textcolor{comment}{//\ return\ the\ active\ process\ for\ sc\_signal<T>::check\_write\ since\ that\ lets}}
+\DoxyCodeLine{00081\ \textcolor{comment}{//\ us\ turn\ it\ off\ a\ library\ compile\ time,\ and\ only\ incur\ the\ overhead\ at}}
+\DoxyCodeLine{00082\ \textcolor{comment}{//\ the\ time\ of\ process\ switches\ rather\ than\ having\ to\ interrogate\ an}}
+\DoxyCodeLine{00083\ \textcolor{comment}{//\ additional\ switch\ every\ time\ a\ signal\ is\ written.}}
+\DoxyCodeLine{00084\ }
+\DoxyCodeLine{00085\ \textcolor{keyword}{inline}}
+\DoxyCodeLine{00086\ \textcolor{keywordtype}{void}}
+\DoxyCodeLine{00087\ \mbox{\hyperlink{classsc__core_1_1sc__simcontext_ab22fd16892cd874ab61d91fa53f06eb1}{sc\_simcontext::set\_curr\_proc}}(\ \mbox{\hyperlink{classsc__core_1_1sc__process__b}{sc\_process\_b}}*\ \mbox{\hyperlink{class_sysc_add__pv}{process\_h}}\ )}
+\DoxyCodeLine{00088\ \{}
+\DoxyCodeLine{00089\ \ \ \ \ \mbox{\hyperlink{classsc__core_1_1sc__simcontext_a6afdd68cff434e87f79cfbffc1e336e5}{m\_curr\_proc\_info}}.\mbox{\hyperlink{structsc__core_1_1sc__curr__proc__info_a9ba8ebd2fd58a14681c533f900ed84de}{process\_handle}}\ =\ \mbox{\hyperlink{class_sysc_add__pv}{process\_h}};}
+\DoxyCodeLine{00090\ \ \ \ \ \mbox{\hyperlink{classsc__core_1_1sc__simcontext_a6afdd68cff434e87f79cfbffc1e336e5}{m\_curr\_proc\_info}}.\mbox{\hyperlink{structsc__core_1_1sc__curr__proc__info_aca0737ff785c30a7dc9bd9c0d2fadbc6}{kind}}\ \ \ \ \ \ \ \ \ \ \ =\ \mbox{\hyperlink{class_sysc_add__pv}{process\_h}}-\/>proc\_kind();}
+\DoxyCodeLine{00091\ \ \ \ \ \mbox{\hyperlink{classsc__core_1_1sc__simcontext_ad3f561a2be45b0606fd4cf1684f4b544}{m\_current\_writer}}\ =}
+\DoxyCodeLine{00092\ \ \ \ \ \ \ (\mbox{\hyperlink{classsc__core_1_1sc__simcontext_a42fd5af9247688f66f70bb7c2dd190d5}{m\_write\_check}}\ !=\ \mbox{\hyperlink{classsc__core_1_1sc__simcontext_a6da3b02458ebb338f5ca431cc62fb1e3aed7867920c0601f48c645c77dd26b2ef}{SC\_SIGNAL\_WRITE\_CHECK\_DISABLE\_}})\ ?\ \mbox{\hyperlink{class_sysc_add__pv}{process\_h}}\ :\ 0;}
+\DoxyCodeLine{00093\ \}}
+\DoxyCodeLine{00094\ }
+\DoxyCodeLine{00095\ \textcolor{keyword}{inline}}
+\DoxyCodeLine{00096\ \textcolor{keywordtype}{void}}
+\DoxyCodeLine{00097\ \mbox{\hyperlink{classsc__core_1_1sc__simcontext_af5b11d35ff1809f83aa792ce4be29ba2}{sc\_simcontext::reset\_curr\_proc}}()}
+\DoxyCodeLine{00098\ \{}
+\DoxyCodeLine{00099\ \ \ \ \ \mbox{\hyperlink{classsc__core_1_1sc__simcontext_a6afdd68cff434e87f79cfbffc1e336e5}{m\_curr\_proc\_info}}.\mbox{\hyperlink{structsc__core_1_1sc__curr__proc__info_a9ba8ebd2fd58a14681c533f900ed84de}{process\_handle}}\ =\ 0;}
+\DoxyCodeLine{00100\ \ \ \ \ \mbox{\hyperlink{classsc__core_1_1sc__simcontext_a6afdd68cff434e87f79cfbffc1e336e5}{m\_curr\_proc\_info}}.\mbox{\hyperlink{structsc__core_1_1sc__curr__proc__info_aca0737ff785c30a7dc9bd9c0d2fadbc6}{kind}}\ \ \ \ \ \ \ \ \ \ \ =\ \mbox{\hyperlink{namespacesc__core_a55cfb0f6c35416b69482b689d24ed045a3da47e1b40676e185c64e09ca47f2b26}{SC\_NO\_PROC\_}};}
+\DoxyCodeLine{00101\ \ \ \ \ \mbox{\hyperlink{classsc__core_1_1sc__simcontext_ad3f561a2be45b0606fd4cf1684f4b544}{m\_current\_writer}}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ =\ 0;}
+\DoxyCodeLine{00102\ \ \ \ \ \mbox{\hyperlink{classsc__core_1_1sc__process__b_a48edb38a4b7e32433804933444cabd5e}{sc\_process\_b::m\_last\_created\_process\_p}}\ =\ 0;}
+\DoxyCodeLine{00103\ \}}
+\DoxyCodeLine{00104\ }
+\DoxyCodeLine{00105\ \textcolor{keyword}{inline}}
+\DoxyCodeLine{00106\ \textcolor{keywordtype}{void}}
+\DoxyCodeLine{00107\ \mbox{\hyperlink{classsc__core_1_1sc__simcontext_ace842253ce67011bfa65504ccdc52a0b}{sc\_simcontext::execute\_method\_next}}(\ \mbox{\hyperlink{namespacesc__core_a241f0ad0f913c222aa11123bdc0ec330}{sc\_method\_handle}}\ \mbox{\hyperlink{class_sysc_add__pv}{method\_h}}\ )}
+\DoxyCodeLine{00108\ \{}
+\DoxyCodeLine{00109\ \ \ \ \ \mbox{\hyperlink{classsc__core_1_1sc__simcontext_a6c718dc283147088da7f79a907e12c8d}{m\_runnable}}-\/>\mbox{\hyperlink{classsc__core_1_1sc__runnable_a94d489fc7ae649460c62b8661d2a4e28}{execute\_method\_next}}(\ \mbox{\hyperlink{class_sysc_add__pv}{method\_h}}\ );}
+\DoxyCodeLine{00110\ \}}
+\DoxyCodeLine{00111\ }
+\DoxyCodeLine{00112\ \textcolor{keyword}{inline}}
+\DoxyCodeLine{00113\ \textcolor{keywordtype}{void}}
+\DoxyCodeLine{00114\ \mbox{\hyperlink{classsc__core_1_1sc__simcontext_a23819da3b599957a1497cd2763e741df}{sc\_simcontext::execute\_thread\_next}}(\ \mbox{\hyperlink{namespacesc__core_a624b4003393c71616779c6342b40c076}{sc\_thread\_handle}}\ \mbox{\hyperlink{class_sysc_add__pv}{thread\_h}}\ )}
+\DoxyCodeLine{00115\ \{}
+\DoxyCodeLine{00116\ \ \ \ \ \mbox{\hyperlink{classsc__core_1_1sc__simcontext_a6c718dc283147088da7f79a907e12c8d}{m\_runnable}}-\/>\mbox{\hyperlink{classsc__core_1_1sc__runnable_a39bee2036a6731976222445a56175f1b}{execute\_thread\_next}}(\ \mbox{\hyperlink{class_sysc_add__pv}{thread\_h}}\ );}
+\DoxyCodeLine{00117\ \}}
+\DoxyCodeLine{00118\ }
+\DoxyCodeLine{00119\ \textcolor{comment}{//\ +-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{00120\ \textcolor{comment}{//\ |"{}sc\_simcontext::preempt\_with"{}}}
+\DoxyCodeLine{00121\ \textcolor{comment}{//\ |}}
+\DoxyCodeLine{00122\ \textcolor{comment}{//\ |\ This\ method\ executes\ the\ supplied\ thread\ immediately,\ suspending\ the}}
+\DoxyCodeLine{00123\ \textcolor{comment}{//\ |\ caller.\ After\ executing\ the\ supplied\ thread\ the\ caller's\ execution\ will}}
+\DoxyCodeLine{00124\ \textcolor{comment}{//\ |\ be\ restored.\ It\ is\ used\ to\ allow\ a\ thread\ to\ immediately\ throw\ an}}
+\DoxyCodeLine{00125\ \textcolor{comment}{//\ |\ exception,\ e.g.,\ when\ the\ thread's\ kill\_process()\ method\ was\ called.}}
+\DoxyCodeLine{00126\ \textcolor{comment}{//\ |\ There\ are\ three\ cases\ to\ consider:}}
+\DoxyCodeLine{00127\ \textcolor{comment}{//\ |\ \ \ (1)\ The\ caller\ is\ a\ method,\ e.g.,\ murder\ by\ method.}}
+\DoxyCodeLine{00128\ \textcolor{comment}{//\ |\ \ \ (2)\ The\ caller\ is\ another\ thread\ instance,\ e.g.,\ murder\ by\ thread.}}
+\DoxyCodeLine{00129\ \textcolor{comment}{//\ |\ \ \ (3)\ The\ caller\ is\ this\ thread\ instance,\ e.g.,\ suicide.}}
+\DoxyCodeLine{00130\ \textcolor{comment}{//\ |}}
+\DoxyCodeLine{00131\ \textcolor{comment}{//\ |\ Arguments:}}
+\DoxyCodeLine{00132\ \textcolor{comment}{//\ |\ \ \ \ \ thread\_h\ -\/>\ thread\ to\ be\ executed.}}
+\DoxyCodeLine{00133\ \textcolor{comment}{//\ +-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{00134\ \textcolor{keyword}{inline}}
+\DoxyCodeLine{00135\ \textcolor{keywordtype}{void}}
+\DoxyCodeLine{00136\ \mbox{\hyperlink{classsc__core_1_1sc__simcontext_a12a8b1805b57a8b72fad92a2e3953e6e}{sc\_simcontext::preempt\_with}}(\ \mbox{\hyperlink{namespacesc__core_a624b4003393c71616779c6342b40c076}{sc\_thread\_handle}}\ \mbox{\hyperlink{class_sysc_add__pv}{thread\_h}}\ )}
+\DoxyCodeLine{00137\ \{}
+\DoxyCodeLine{00138\ \ \ \ \ \mbox{\hyperlink{namespacesc__core_a624b4003393c71616779c6342b40c076}{sc\_thread\_handle}}\ \ \mbox{\hyperlink{class_sysc_add__pv}{active\_p}};\ \ \ \ \textcolor{comment}{//\ active\ thread\ or\ null.}}
+\DoxyCodeLine{00139\ \ \ \ \ \mbox{\hyperlink{structsc__core_1_1sc__curr__proc__info}{sc\_curr\_proc\_info}}\ \mbox{\hyperlink{class_sysc_add__pv}{caller\_info}};\ \textcolor{comment}{//\ process\ info\ for\ caller.}}
+\DoxyCodeLine{00140\ }
+\DoxyCodeLine{00141\ \ \ \ \ \textcolor{comment}{//\ Determine\ the\ active\ process\ and\ take\ the\ thread\ to\ be\ run\ off\ the}}
+\DoxyCodeLine{00142\ \ \ \ \ \textcolor{comment}{//\ run\ queue,\ if\ its\ there,\ since\ we\ will\ be\ explicitly\ causing\ its}}
+\DoxyCodeLine{00143\ \ \ \ \ \textcolor{comment}{//\ execution.}}
+\DoxyCodeLine{00144\ }
+\DoxyCodeLine{00145\ \ \ \ \ \mbox{\hyperlink{class_sysc_add__pv}{active\_p}}\ =\ \textcolor{keyword}{dynamic\_cast<}\mbox{\hyperlink{namespacesc__core_a624b4003393c71616779c6342b40c076}{sc\_thread\_handle}}\textcolor{keyword}{>}(\mbox{\hyperlink{namespacesc__core_ad3aa291207c28551259ce33cdd47db6d}{sc\_get\_current\_process\_b}}());}
+\DoxyCodeLine{00146\ \ \ \ \ \textcolor{keywordflow}{if}\ (\ \mbox{\hyperlink{class_sysc_add__pv}{thread\_h}}-\/>next\_runnable()\ !=\ \mbox{\hyperlink{class_sysc_add__pv}{NULL}}\ )}
+\DoxyCodeLine{00147\ \ \ \ \ \mbox{\hyperlink{classsc__core_1_1sc__simcontext_a20aa720812bea1276e9b2b416047f0fe}{remove\_runnable\_thread}}(\ \mbox{\hyperlink{class_sysc_add__pv}{thread\_h}}\ );}
+\DoxyCodeLine{00148\ }
+\DoxyCodeLine{00149\ \ \ \ \ \textcolor{comment}{//\ THE\ CALLER\ IS\ A\ METHOD:}}
+\DoxyCodeLine{00150\ \ \ \ \ \textcolor{comment}{//}}
+\DoxyCodeLine{00151\ \ \ \ \ \textcolor{comment}{//\ \ \ (a)\ Set\ the\ current\ process\ information\ to\ our\ thread.}}
+\DoxyCodeLine{00152\ \ \ \ \ \textcolor{comment}{//\ \ \ (b)\ If\ the\ method\ was\ called\ by\ an\ invoker\ thread\ push\ that\ thread}}
+\DoxyCodeLine{00153\ \ \ \ \ \textcolor{comment}{//\ \ \ \ \ \ \ onto\ the\ front\ of\ the\ run\ queue,\ this\ will\ cause\ the\ method}}
+\DoxyCodeLine{00154\ \ \ \ \ \textcolor{comment}{//\ \ \ \ \ \ \ to\ be\ resumed\ after\ this\ thread\ waits.}}
+\DoxyCodeLine{00155\ \ \ \ \ \textcolor{comment}{//\ \ \ (c)\ Invoke\ our\ thread\ directly\ by-\/passing\ the\ run\ queue.}}
+\DoxyCodeLine{00156\ \ \ \ \ \textcolor{comment}{//\ \ \ (d)\ Restore\ the\ process\ info\ to\ the\ caller.}}
+\DoxyCodeLine{00157\ \ \ \ \ \textcolor{comment}{//\ \ \ (e)\ Check\ to\ see\ if\ the\ calling\ method\ should\ throw\ an\ exception}}
+\DoxyCodeLine{00158\ \ \ \ \ \textcolor{comment}{//\ \ \ \ \ \ \ because\ of\ activity\ that\ occurred\ during\ the\ preemption.}}
+\DoxyCodeLine{00159\ }
+\DoxyCodeLine{00160\ \ \ \ \ \textcolor{keywordflow}{if}\ (\ \mbox{\hyperlink{class_sysc_add__pv}{active\_p}}\ ==\ \mbox{\hyperlink{class_sysc_add__pv}{NULL}}\ )}
+\DoxyCodeLine{00161\ \ \ \ \ \{}
+\DoxyCodeLine{00162\ \ \ \ \ std::vector<sc\_thread\_handle>*\ \mbox{\hyperlink{class_sysc_add__pv}{invokers\_p}};\ \ \textcolor{comment}{//\ active\ invokers\ stack.}}
+\DoxyCodeLine{00163\ \ \ \ \ \mbox{\hyperlink{namespacesc__core_a624b4003393c71616779c6342b40c076}{sc\_thread\_handle}}\ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_sysc_add__pv}{invoke\_thread\_p}};\ \textcolor{comment}{//\ latest\ invocation\ thread.}}
+\DoxyCodeLine{00164\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacesc__core_a241f0ad0f913c222aa11123bdc0ec330}{sc\_method\_handle}}\ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_sysc_add__pv}{method\_p}};\ \ \ \ \ \ \ \ \textcolor{comment}{//\ active\ method.}}
+\DoxyCodeLine{00165\ }
+\DoxyCodeLine{00166\ \ \ \ \ \mbox{\hyperlink{class_sysc_add__pv}{method\_p}}\ =\ \textcolor{keyword}{dynamic\_cast<}\mbox{\hyperlink{namespacesc__core_a241f0ad0f913c222aa11123bdc0ec330}{sc\_method\_handle}}\textcolor{keyword}{>}(\mbox{\hyperlink{namespacesc__core_ad3aa291207c28551259ce33cdd47db6d}{sc\_get\_current\_process\_b}}());}
+\DoxyCodeLine{00167\ \ \ \ \ \mbox{\hyperlink{class_sysc_add__pv}{invokers\_p}}\ =\ \&\mbox{\hyperlink{classsc__core_1_1sc__simcontext_ab30b0f7dafd9594e1a1060fa93e752b5}{get\_active\_invokers}}();}
+\DoxyCodeLine{00168\ \ \ \ \ \mbox{\hyperlink{class_sysc_add__pv}{caller\_info}}\ =\ \mbox{\hyperlink{classsc__core_1_1sc__simcontext_a6afdd68cff434e87f79cfbffc1e336e5}{m\_curr\_proc\_info}};}
+\DoxyCodeLine{00169\ \ \ \ \ \textcolor{keywordflow}{if}\ (\ \mbox{\hyperlink{class_sysc_add__pv}{invokers\_p}}-\/>size()\ !=\ 0\ )}
+\DoxyCodeLine{00170\ \ \ \ \ \{}
+\DoxyCodeLine{00171\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_sysc_add__pv}{invoke\_thread\_p}}\ =\ \mbox{\hyperlink{class_sysc_add__pv}{invokers\_p}}-\/>back();}
+\DoxyCodeLine{00172\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{sc__method__process_8h_a50c4771b351410a2a97e1be09e93686d}{DEBUG\_MSG}}(\ \mbox{\hyperlink{class_sysc_add__pv}{DEBUG\_NAME}},\ \mbox{\hyperlink{class_sysc_add__pv}{invoke\_thread\_p}},}
+\DoxyCodeLine{00173\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}queueing\ invocation\ thread\ to\ execute\ next"{}}\ );}
+\DoxyCodeLine{00174\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classsc__core_1_1sc__simcontext_a23819da3b599957a1497cd2763e741df}{execute\_thread\_next}}(\mbox{\hyperlink{class_sysc_add__pv}{invoke\_thread\_p}});}
+\DoxyCodeLine{00175\ \ \ \ \ \}}
+\DoxyCodeLine{00176\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{sc__method__process_8h_a50c4771b351410a2a97e1be09e93686d}{DEBUG\_MSG}}(\ \mbox{\hyperlink{class_sysc_add__pv}{DEBUG\_NAME}},\ \mbox{\hyperlink{class_sysc_add__pv}{thread\_h}},\ \textcolor{stringliteral}{"{}preempting\ method\ with\ thread"{}}\ );}
+\DoxyCodeLine{00177\ \ \ \ \ \mbox{\hyperlink{classsc__core_1_1sc__simcontext_ab22fd16892cd874ab61d91fa53f06eb1}{set\_curr\_proc}}(\ (\mbox{\hyperlink{classsc__core_1_1sc__process__b}{sc\_process\_b}}*)\mbox{\hyperlink{class_sysc_add__pv}{thread\_h}}\ );}
+\DoxyCodeLine{00178\ \ \ \ \ \mbox{\hyperlink{classsc__core_1_1sc__simcontext_a2c26cd84a1e533ee9ab629c5c63e6d2b}{m\_cor\_pkg}}-\/>\mbox{\hyperlink{classsc__core_1_1sc__cor__pkg_a7c3f9c7683cc6310ec563b3fe8e550d3}{yield}}(\ \mbox{\hyperlink{class_sysc_add__pv}{thread\_h}}-\/>m\_cor\_p\ );}
+\DoxyCodeLine{00179\ \ \ \ \ \mbox{\hyperlink{classsc__core_1_1sc__simcontext_a6afdd68cff434e87f79cfbffc1e336e5}{m\_curr\_proc\_info}}\ =\ \mbox{\hyperlink{class_sysc_add__pv}{caller\_info}};}
+\DoxyCodeLine{00180\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{sc__method__process_8h_a50c4771b351410a2a97e1be09e93686d}{DEBUG\_MSG}}(\mbox{\hyperlink{class_sysc_add__pv}{DEBUG\_NAME}},\ \mbox{\hyperlink{class_sysc_add__pv}{thread\_h}},\ \textcolor{stringliteral}{"{}back\ from\ preempting\ method\ w/thread"{}});}
+\DoxyCodeLine{00181\ \ \ \ \ \mbox{\hyperlink{class_sysc_add__pv}{method\_p}}-\/>check\_for\_throws();}
+\DoxyCodeLine{00182\ \ \ \ \ \}}
+\DoxyCodeLine{00183\ }
+\DoxyCodeLine{00184\ \ \ \ \ \textcolor{comment}{//\ CALLER\ IS\ A\ THREAD,\ BUT\ NOT\ THE\ THREAD\ TO\ BE\ RUN:}}
+\DoxyCodeLine{00185\ \ \ \ \ \textcolor{comment}{//}}
+\DoxyCodeLine{00186\ \ \ \ \ \textcolor{comment}{//\ \ \ (a)\ Push\ the\ calling\ thread\ onto\ the\ front\ of\ the\ runnable\ queue}}
+\DoxyCodeLine{00187\ \ \ \ \ \textcolor{comment}{//\ \ \ \ \ \ \ so\ it\ be\ the\ first\ thread\ to\ be\ run\ after\ this\ thread.}}
+\DoxyCodeLine{00188\ \ \ \ \ \textcolor{comment}{//\ \ \ (b)\ Push\ the\ thread\ to\ be\ run\ onto\ the\ front\ of\ the\ runnable\ queue\ so}}
+\DoxyCodeLine{00189\ \ \ \ \ \textcolor{comment}{//\ \ \ \ \ \ \ it\ will\ execute\ when\ we\ suspend\ the\ calling\ thread.}}
+\DoxyCodeLine{00190\ \ \ \ \ \textcolor{comment}{//\ \ \ (c)\ Suspend\ the\ active\ thread.}}
+\DoxyCodeLine{00191\ }
+\DoxyCodeLine{00192\ \ \ \ \ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}\ (\ \mbox{\hyperlink{class_sysc_add__pv}{active\_p}}\ !=\ \mbox{\hyperlink{class_sysc_add__pv}{thread\_h}}\ )}
+\DoxyCodeLine{00193\ \ \ \ \ \{}
+\DoxyCodeLine{00194\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{sc__method__process_8h_a50c4771b351410a2a97e1be09e93686d}{DEBUG\_MSG}}(\ \mbox{\hyperlink{class_sysc_add__pv}{DEBUG\_NAME}},\ \mbox{\hyperlink{class_sysc_add__pv}{thread\_h}},}
+\DoxyCodeLine{00195\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}preempting\ active\ thread\ with\ thread"{}}\ );}
+\DoxyCodeLine{00196\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classsc__core_1_1sc__simcontext_a23819da3b599957a1497cd2763e741df}{execute\_thread\_next}}(\ \mbox{\hyperlink{class_sysc_add__pv}{active\_p}}\ );}
+\DoxyCodeLine{00197\ \ \ \ \ \mbox{\hyperlink{classsc__core_1_1sc__simcontext_a23819da3b599957a1497cd2763e741df}{execute\_thread\_next}}(\ \mbox{\hyperlink{class_sysc_add__pv}{thread\_h}}\ );}
+\DoxyCodeLine{00198\ \ \ \ \ \mbox{\hyperlink{class_sysc_add__pv}{active\_p}}-\/>suspend\_me();}
+\DoxyCodeLine{00199\ \ \ \ \ \}}
+\DoxyCodeLine{00200\ }
+\DoxyCodeLine{00201\ \ \ \ \ \textcolor{comment}{//\ CALLER\ IS\ THE\ THREAD\ TO\ BE\ RUN:}}
+\DoxyCodeLine{00202\ \ \ \ \ \textcolor{comment}{//}}
+\DoxyCodeLine{00203\ \ \ \ \ \textcolor{comment}{//\ \ \ (a)\ Push\ the\ thread\ to\ be\ run\ onto\ the\ front\ of\ the\ runnable\ queue\ so}}
+\DoxyCodeLine{00204\ \ \ \ \ \textcolor{comment}{//\ \ \ \ \ \ \ it\ will\ execute\ when\ we\ suspend\ the\ calling\ thread.}}
+\DoxyCodeLine{00205\ \ \ \ \ \textcolor{comment}{//\ \ \ (b)\ Suspend\ the\ active\ thread.}}
+\DoxyCodeLine{00206\ }
+\DoxyCodeLine{00207\ \ \ \ \ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{00208\ \ \ \ \ \{}
+\DoxyCodeLine{00209\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{sc__method__process_8h_a50c4771b351410a2a97e1be09e93686d}{DEBUG\_MSG}}(\mbox{\hyperlink{class_sysc_add__pv}{DEBUG\_NAME}},\mbox{\hyperlink{class_sysc_add__pv}{thread\_h}},\textcolor{stringliteral}{"{}self\ preemption\ of\ active\ thread"{}});}
+\DoxyCodeLine{00210\ \ \ \ \ \mbox{\hyperlink{classsc__core_1_1sc__simcontext_a23819da3b599957a1497cd2763e741df}{execute\_thread\_next}}(\ \mbox{\hyperlink{class_sysc_add__pv}{thread\_h}}\ );}
+\DoxyCodeLine{00211\ \ \ \ \ \mbox{\hyperlink{class_sysc_add__pv}{active\_p}}-\/>suspend\_me();}
+\DoxyCodeLine{00212\ \ \ \ \ \}}
+\DoxyCodeLine{00213\ \}}
+\DoxyCodeLine{00214\ }
+\DoxyCodeLine{00215\ }
+\DoxyCodeLine{00216\ \textcolor{keyword}{inline}}
+\DoxyCodeLine{00217\ \textcolor{keywordtype}{void}}
+\DoxyCodeLine{00218\ \mbox{\hyperlink{classsc__core_1_1sc__simcontext_ac0c672af1522646748c5b0902d504cad}{sc\_simcontext::push\_runnable\_method}}(\ \mbox{\hyperlink{namespacesc__core_a241f0ad0f913c222aa11123bdc0ec330}{sc\_method\_handle}}\ \mbox{\hyperlink{class_sysc_add__pv}{method\_h}}\ )}
+\DoxyCodeLine{00219\ \{}
+\DoxyCodeLine{00220\ \ \ \ \ \mbox{\hyperlink{classsc__core_1_1sc__simcontext_a6c718dc283147088da7f79a907e12c8d}{m\_runnable}}-\/>\mbox{\hyperlink{classsc__core_1_1sc__runnable_adb7cad7b6eded23b17882cf92c2ee7ad}{push\_back\_method}}(\ \mbox{\hyperlink{class_sysc_add__pv}{method\_h}}\ );}
+\DoxyCodeLine{00221\ \}}
+\DoxyCodeLine{00222\ }
+\DoxyCodeLine{00223\ \textcolor{keyword}{inline}}
+\DoxyCodeLine{00224\ \textcolor{keywordtype}{void}}
+\DoxyCodeLine{00225\ \mbox{\hyperlink{classsc__core_1_1sc__simcontext_aeeb88d76e58d19c4259857e26914799c}{sc\_simcontext::push\_runnable\_method\_front}}(\ \mbox{\hyperlink{namespacesc__core_a241f0ad0f913c222aa11123bdc0ec330}{sc\_method\_handle}}\ \mbox{\hyperlink{class_sysc_add__pv}{method\_h}}\ )}
+\DoxyCodeLine{00226\ \{}
+\DoxyCodeLine{00227\ \ \ \ \ \mbox{\hyperlink{classsc__core_1_1sc__simcontext_a6c718dc283147088da7f79a907e12c8d}{m\_runnable}}-\/>\mbox{\hyperlink{classsc__core_1_1sc__runnable_ae2995bc36b3cb0244eb1a0a76ae4f879}{push\_front\_method}}(\ \mbox{\hyperlink{class_sysc_add__pv}{method\_h}}\ );}
+\DoxyCodeLine{00228\ \}}
+\DoxyCodeLine{00229\ }
+\DoxyCodeLine{00230\ \textcolor{keyword}{inline}}
+\DoxyCodeLine{00231\ \textcolor{keywordtype}{void}}
+\DoxyCodeLine{00232\ \mbox{\hyperlink{classsc__core_1_1sc__simcontext_a253f366141c3e48a489aefeb039a6ce8}{sc\_simcontext::push\_runnable\_thread}}(\ \mbox{\hyperlink{namespacesc__core_a624b4003393c71616779c6342b40c076}{sc\_thread\_handle}}\ \mbox{\hyperlink{class_sysc_add__pv}{thread\_h}}\ )}
+\DoxyCodeLine{00233\ \{}
+\DoxyCodeLine{00234\ \ \ \ \ \mbox{\hyperlink{classsc__core_1_1sc__simcontext_a6c718dc283147088da7f79a907e12c8d}{m\_runnable}}-\/>\mbox{\hyperlink{classsc__core_1_1sc__runnable_a840d9587ece497f2c64ba35f0babc790}{push\_back\_thread}}(\ \mbox{\hyperlink{class_sysc_add__pv}{thread\_h}}\ );}
+\DoxyCodeLine{00235\ \}}
+\DoxyCodeLine{00236\ }
+\DoxyCodeLine{00237\ \textcolor{keyword}{inline}}
+\DoxyCodeLine{00238\ \textcolor{keywordtype}{void}}
+\DoxyCodeLine{00239\ \mbox{\hyperlink{classsc__core_1_1sc__simcontext_ab607f06ed02934ce45fc4e0cf4ee7242}{sc\_simcontext::push\_runnable\_thread\_front}}(\ \mbox{\hyperlink{namespacesc__core_a624b4003393c71616779c6342b40c076}{sc\_thread\_handle}}\ \mbox{\hyperlink{class_sysc_add__pv}{thread\_h}}\ )}
+\DoxyCodeLine{00240\ \{}
+\DoxyCodeLine{00241\ \ \ \ \ \mbox{\hyperlink{classsc__core_1_1sc__simcontext_a6c718dc283147088da7f79a907e12c8d}{m\_runnable}}-\/>\mbox{\hyperlink{classsc__core_1_1sc__runnable_a22e36e2799e565725d22e9a77964a95d}{push\_front\_thread}}(\ \mbox{\hyperlink{class_sysc_add__pv}{thread\_h}}\ );}
+\DoxyCodeLine{00242\ \}}
+\DoxyCodeLine{00243\ }
+\DoxyCodeLine{00244\ }
+\DoxyCodeLine{00245\ \textcolor{keyword}{inline}}
+\DoxyCodeLine{00246\ \mbox{\hyperlink{namespacesc__core_a241f0ad0f913c222aa11123bdc0ec330}{sc\_method\_handle}}}
+\DoxyCodeLine{00247\ \mbox{\hyperlink{classsc__core_1_1sc__simcontext_a56cc37bc52ca389cec3b527a012efcd9}{sc\_simcontext::pop\_runnable\_method}}()}
+\DoxyCodeLine{00248\ \{}
+\DoxyCodeLine{00249\ \ \ \ \ \mbox{\hyperlink{namespacesc__core_a241f0ad0f913c222aa11123bdc0ec330}{sc\_method\_handle}}\ \mbox{\hyperlink{class_sysc_add__pv}{method\_h}}\ =\ \mbox{\hyperlink{classsc__core_1_1sc__simcontext_a6c718dc283147088da7f79a907e12c8d}{m\_runnable}}-\/>\mbox{\hyperlink{classsc__core_1_1sc__runnable_ae824571559dacd7de8601e144dfd452e}{pop\_method}}();}
+\DoxyCodeLine{00250\ \ \ \ \ \textcolor{keywordflow}{if}(\ \mbox{\hyperlink{class_sysc_add__pv}{method\_h}}\ ==\ 0\ )\ \{}
+\DoxyCodeLine{00251\ \ \ \ \ \mbox{\hyperlink{classsc__core_1_1sc__simcontext_af5b11d35ff1809f83aa792ce4be29ba2}{reset\_curr\_proc}}();}
+\DoxyCodeLine{00252\ \ \ \ \ \textcolor{keywordflow}{return}\ 0;}
+\DoxyCodeLine{00253\ \ \ \ \ \}}
+\DoxyCodeLine{00254\ \ \ \ \ \mbox{\hyperlink{classsc__core_1_1sc__simcontext_ab22fd16892cd874ab61d91fa53f06eb1}{set\_curr\_proc}}(\ (\mbox{\hyperlink{classsc__core_1_1sc__process__b}{sc\_process\_b}}*)\mbox{\hyperlink{class_sysc_add__pv}{method\_h}}\ );}
+\DoxyCodeLine{00255\ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{class_sysc_add__pv}{method\_h}};}
+\DoxyCodeLine{00256\ \}}
+\DoxyCodeLine{00257\ }
+\DoxyCodeLine{00258\ \textcolor{keyword}{inline}}
+\DoxyCodeLine{00259\ \mbox{\hyperlink{namespacesc__core_a624b4003393c71616779c6342b40c076}{sc\_thread\_handle}}}
+\DoxyCodeLine{00260\ \mbox{\hyperlink{classsc__core_1_1sc__simcontext_a4443e0cd4e225fdfb04dcc164d4bb240}{sc\_simcontext::pop\_runnable\_thread}}()}
+\DoxyCodeLine{00261\ \{}
+\DoxyCodeLine{00262\ \ \ \ \ \mbox{\hyperlink{namespacesc__core_a624b4003393c71616779c6342b40c076}{sc\_thread\_handle}}\ \mbox{\hyperlink{class_sysc_add__pv}{thread\_h}}\ =\ \mbox{\hyperlink{classsc__core_1_1sc__simcontext_a6c718dc283147088da7f79a907e12c8d}{m\_runnable}}-\/>\mbox{\hyperlink{classsc__core_1_1sc__runnable_afee0c05abfda18740ad7d427c612f523}{pop\_thread}}();}
+\DoxyCodeLine{00263\ \ \ \ \ \textcolor{keywordflow}{if}(\ \mbox{\hyperlink{class_sysc_add__pv}{thread\_h}}\ ==\ 0\ )\ \{}
+\DoxyCodeLine{00264\ \ \ \ \ \mbox{\hyperlink{classsc__core_1_1sc__simcontext_af5b11d35ff1809f83aa792ce4be29ba2}{reset\_curr\_proc}}();}
+\DoxyCodeLine{00265\ \ \ \ \ \textcolor{keywordflow}{return}\ 0;}
+\DoxyCodeLine{00266\ \ \ \ \ \}}
+\DoxyCodeLine{00267\ \ \ \ \ \mbox{\hyperlink{classsc__core_1_1sc__simcontext_ab22fd16892cd874ab61d91fa53f06eb1}{set\_curr\_proc}}(\ (\mbox{\hyperlink{classsc__core_1_1sc__process__b}{sc\_process\_b}}*)\mbox{\hyperlink{class_sysc_add__pv}{thread\_h}}\ );}
+\DoxyCodeLine{00268\ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{class_sysc_add__pv}{thread\_h}};}
+\DoxyCodeLine{00269\ \}}
+\DoxyCodeLine{00270\ }
+\DoxyCodeLine{00271\ \textcolor{keyword}{inline}}
+\DoxyCodeLine{00272\ \textcolor{keywordtype}{void}}
+\DoxyCodeLine{00273\ \mbox{\hyperlink{classsc__core_1_1sc__simcontext_a7fd377dc22be0d045015f8849ff24534}{sc\_simcontext::remove\_runnable\_method}}(\ \mbox{\hyperlink{namespacesc__core_a241f0ad0f913c222aa11123bdc0ec330}{sc\_method\_handle}}\ \mbox{\hyperlink{class_sysc_add__pv}{method\_h}}\ )}
+\DoxyCodeLine{00274\ \{}
+\DoxyCodeLine{00275\ \ \ \ \ \mbox{\hyperlink{classsc__core_1_1sc__simcontext_a6c718dc283147088da7f79a907e12c8d}{m\_runnable}}-\/>\mbox{\hyperlink{classsc__core_1_1sc__runnable_a79126ce283e9e1e14a71d06aaf30ca8e}{remove\_method}}(\ \mbox{\hyperlink{class_sysc_add__pv}{method\_h}}\ );}
+\DoxyCodeLine{00276\ \}}
+\DoxyCodeLine{00277\ }
+\DoxyCodeLine{00278\ \textcolor{keyword}{inline}}
+\DoxyCodeLine{00279\ \textcolor{keywordtype}{void}}
+\DoxyCodeLine{00280\ \mbox{\hyperlink{classsc__core_1_1sc__simcontext_a20aa720812bea1276e9b2b416047f0fe}{sc\_simcontext::remove\_runnable\_thread}}(\ \mbox{\hyperlink{namespacesc__core_a624b4003393c71616779c6342b40c076}{sc\_thread\_handle}}\ \mbox{\hyperlink{class_sysc_add__pv}{thread\_h}}\ )}
+\DoxyCodeLine{00281\ \{}
+\DoxyCodeLine{00282\ \ \ \ \ \mbox{\hyperlink{classsc__core_1_1sc__simcontext_a6c718dc283147088da7f79a907e12c8d}{m\_runnable}}-\/>\mbox{\hyperlink{classsc__core_1_1sc__runnable_aa1e1024be4438bbea4845cc629a4a352}{remove\_thread}}(\ \mbox{\hyperlink{class_sysc_add__pv}{thread\_h}}\ );}
+\DoxyCodeLine{00283\ \}}
+\DoxyCodeLine{00284\ }
+\DoxyCodeLine{00285\ \textcolor{keyword}{inline}}
+\DoxyCodeLine{00286\ std::vector<sc\_thread\_handle>\&}
+\DoxyCodeLine{00287\ \mbox{\hyperlink{classsc__core_1_1sc__simcontext_ab30b0f7dafd9594e1a1060fa93e752b5}{sc\_simcontext::get\_active\_invokers}}()}
+\DoxyCodeLine{00288\ \{}
+\DoxyCodeLine{00289\ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{classsc__core_1_1sc__simcontext_a6ffe488ab3b88e18d032564a96c84e28}{m\_active\_invokers}};}
+\DoxyCodeLine{00290\ \}}
+\DoxyCodeLine{00291\ }
+\DoxyCodeLine{00292\ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{bool}}
+\DoxyCodeLine{00293\ \mbox{\hyperlink{classsc__core_1_1sc__simcontext_a47b112d587874254beab60f548c9749f}{sc\_simcontext::write\_check\_conflicts\_only}}()\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00294\ \textcolor{keyword}{}\{}
+\DoxyCodeLine{00295\ \ \ \ \ \textcolor{keywordflow}{return}\ (\ \mbox{\hyperlink{classsc__core_1_1sc__simcontext_a42fd5af9247688f66f70bb7c2dd190d5}{m\_write\_check}}\ ==\ \mbox{\hyperlink{classsc__core_1_1sc__simcontext_a6da3b02458ebb338f5ca431cc62fb1e3a7d4e50ec739eecb6b4deeb420522511c}{SC\_SIGNAL\_WRITE\_CHECK\_CONFLICT\_}}\ );}
+\DoxyCodeLine{00296\ \}}
+\DoxyCodeLine{00297\ }
+\DoxyCodeLine{00298\ \textcolor{comment}{//\ -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{00299\ }
+\DoxyCodeLine{00300\ \textcolor{keyword}{extern}\ \mbox{\hyperlink{sc__cmnhdr_8h_aff4a86b3f5de3ac2097081e7166fe89f}{SC\_API}}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{namespacesc__core_a9a832d187e9202eb961b71c5d93f61f8}{sc\_defunct\_process\_function}}(\ \mbox{\hyperlink{classsc__core_1_1sc__module}{sc\_module}}*\ );}
+\DoxyCodeLine{00301\ }
+\DoxyCodeLine{00302\ }
+\DoxyCodeLine{00303\ \}\ \textcolor{comment}{//\ namespace\ sc\_core}}
+\DoxyCodeLine{00304\ }
+\DoxyCodeLine{00305\ \textcolor{preprocessor}{\#undef\ DEBUG\_MSG}}
+\DoxyCodeLine{00306\ \textcolor{preprocessor}{\#undef\ DEBUG\_NAME}}
+\DoxyCodeLine{00307\ }
+\DoxyCodeLine{00308\ \textcolor{comment}{//\ \$Log:\ sc\_simcontext\_int.h,v\ \$}}
+\DoxyCodeLine{00309\ \textcolor{comment}{//\ Revision\ 1.14\ \ 2011/08/29\ 18:04:32\ \ acg}}
+\DoxyCodeLine{00310\ \textcolor{comment}{//\ \ Philipp\ A.\ Hartmann:\ miscellaneous\ clean\ ups.}}
+\DoxyCodeLine{00311\ \textcolor{comment}{//}}
+\DoxyCodeLine{00312\ \textcolor{comment}{//\ Revision\ 1.13\ \ 2011/08/26\ 20:46:11\ \ acg}}
+\DoxyCodeLine{00313\ \textcolor{comment}{//\ \ Andy\ Goodrich:\ moved\ the\ modification\ log\ to\ the\ end\ of\ the\ file\ to}}
+\DoxyCodeLine{00314\ \textcolor{comment}{//\ \ eliminate\ source\ line\ number\ skew\ when\ check-\/ins\ are\ done.}}
+\DoxyCodeLine{00315\ \textcolor{comment}{//}}
+\DoxyCodeLine{00316\ \textcolor{comment}{//\ Revision\ 1.12\ \ 2011/07/29\ 22:45:06\ \ acg}}
+\DoxyCodeLine{00317\ \textcolor{comment}{//\ \ Andy\ Goodrich:\ added\ invocation\ of\ sc\_method\_process::check\_for\_throws()}}
+\DoxyCodeLine{00318\ \textcolor{comment}{//\ \ to\ the\ preempt\_with()\ code\ to\ handle\ case\ where\ the\ preempting\ process}}
+\DoxyCodeLine{00319\ \textcolor{comment}{//\ \ causes\ a\ throw\ on\ the\ invoking\ method\ process.}}
+\DoxyCodeLine{00320\ \textcolor{comment}{//}}
+\DoxyCodeLine{00321\ \textcolor{comment}{//\ Revision\ 1.11\ \ 2011/04/13\ 02:45:11\ \ acg}}
+\DoxyCodeLine{00322\ \textcolor{comment}{//\ \ Andy\ Goodrich:\ eliminated\ warning\ message\ that\ occurred\ if\ the\ DEBUG\_MSG}}
+\DoxyCodeLine{00323\ \textcolor{comment}{//\ \ macro\ was\ used.}}
+\DoxyCodeLine{00324\ \textcolor{comment}{//}}
+\DoxyCodeLine{00325\ \textcolor{comment}{//\ Revision\ 1.10\ \ 2011/04/11\ 22:05:48\ \ acg}}
+\DoxyCodeLine{00326\ \textcolor{comment}{//\ \ Andy\ Goodrich:\ use\ the\ DEBUG\_NAME\ macro\ in\ DEBUG\_MSG\ invocations.}}
+\DoxyCodeLine{00327\ \textcolor{comment}{//}}
+\DoxyCodeLine{00328\ \textcolor{comment}{//\ Revision\ 1.9\ \ 2011/04/10\ 22:12:32\ \ acg}}
+\DoxyCodeLine{00329\ \textcolor{comment}{//\ \ Andy\ Goodrich:\ adding\ debugging\ macros.}}
+\DoxyCodeLine{00330\ \textcolor{comment}{//}}
+\DoxyCodeLine{00331\ \textcolor{comment}{//\ Revision\ 1.8\ \ 2011/04/08\ 18:26:07\ \ acg}}
+\DoxyCodeLine{00332\ \textcolor{comment}{//\ \ Andy\ Goodrich:\ added\ execute\_method\_next()\ to\ handle\ method\ dispatch}}
+\DoxyCodeLine{00333\ \textcolor{comment}{//\ \ \ for\ asynchronous\ notifications\ that\ occur\ outside\ the\ evaluation\ phase.}}
+\DoxyCodeLine{00334\ \textcolor{comment}{//}}
+\DoxyCodeLine{00335\ \textcolor{comment}{//\ Revision\ 1.7\ \ 2011/02/18\ 20:27:14\ \ acg}}
+\DoxyCodeLine{00336\ \textcolor{comment}{//\ \ Andy\ Goodrich:\ Updated\ Copyrights.}}
+\DoxyCodeLine{00337\ \textcolor{comment}{//}}
+\DoxyCodeLine{00338\ \textcolor{comment}{//\ Revision\ 1.6\ \ 2011/02/13\ 21:47:38\ \ acg}}
+\DoxyCodeLine{00339\ \textcolor{comment}{//\ \ Andy\ Goodrich:\ update\ copyright\ notice.}}
+\DoxyCodeLine{00340\ \textcolor{comment}{//}}
+\DoxyCodeLine{00341\ \textcolor{comment}{//\ Revision\ 1.5\ \ 2011/02/08\ 08:17:50\ \ acg}}
+\DoxyCodeLine{00342\ \textcolor{comment}{//\ \ Andy\ Goodrich:\ fixed\ bug\ in\ preempt\_with()\ where\ I\ was\ resetting\ the}}
+\DoxyCodeLine{00343\ \textcolor{comment}{//\ \ process\ context\ rather\ than\ saving\ and\ restoring\ it.}}
+\DoxyCodeLine{00344\ \textcolor{comment}{//}}
+\DoxyCodeLine{00345\ \textcolor{comment}{//\ Revision\ 1.4\ \ 2011/02/01\ 21:12:56\ \ acg}}
+\DoxyCodeLine{00346\ \textcolor{comment}{//\ \ Andy\ Goodrich:\ addition\ of\ preempt\_with()\ method\ to\ allow\ immediate}}
+\DoxyCodeLine{00347\ \textcolor{comment}{//\ \ execution\ of\ threads\ for\ throws.}}
+\DoxyCodeLine{00348\ \textcolor{comment}{//}}
+\DoxyCodeLine{00349\ \textcolor{comment}{//\ Revision\ 1.3\ \ 2011/01/25\ 20:50:37\ \ acg}}
+\DoxyCodeLine{00350\ \textcolor{comment}{//\ \ Andy\ Goodrich:\ changes\ for\ IEEE\ 1666\ 2011.}}
+\DoxyCodeLine{00351\ \textcolor{comment}{//}}
+\DoxyCodeLine{00352\ \textcolor{comment}{//\ Revision\ 1.2\ \ 2008/05/22\ 17:06:26\ \ acg}}
+\DoxyCodeLine{00353\ \textcolor{comment}{//\ \ Andy\ Goodrich:\ updated\ copyright\ notice\ to\ include\ 2008.}}
+\DoxyCodeLine{00354\ \textcolor{comment}{//}}
+\DoxyCodeLine{00355\ \textcolor{comment}{//\ Revision\ 1.1.1.1\ \ 2006/12/15\ 20:20:05\ \ acg}}
+\DoxyCodeLine{00356\ \textcolor{comment}{//\ SystemC\ 2.3}}
+\DoxyCodeLine{00357\ \textcolor{comment}{//}}
+\DoxyCodeLine{00358\ \textcolor{comment}{//\ Revision\ 1.6\ \ 2006/05/26\ 20:33:16\ \ acg}}
+\DoxyCodeLine{00359\ \textcolor{comment}{//\ \ \ Andy\ Goodrich:\ changes\ required\ by\ additional\ platform\ compilers\ (i.e.,}}
+\DoxyCodeLine{00360\ \textcolor{comment}{//\ \ \ Microsoft\ VC++,\ Sun\ Forte,\ HP\ aCC).}}
+\DoxyCodeLine{00361\ \textcolor{comment}{//}}
+\DoxyCodeLine{00362\ \textcolor{comment}{//\ Revision\ 1.5\ \ 2006/01/19\ 00:29:52\ \ acg}}
+\DoxyCodeLine{00363\ \textcolor{comment}{//\ Andy\ Goodrich:\ Yet\ another\ implementation\ for\ signal\ write\ checking.\ This}}
+\DoxyCodeLine{00364\ \textcolor{comment}{//\ one\ uses\ an\ environment\ variable\ SC\_SIGNAL\_WRITE\_CHECK,\ that\ when\ set\ to}}
+\DoxyCodeLine{00365\ \textcolor{comment}{//\ DISABLE\ will\ disable\ write\ checking\ on\ signals.}}
+\DoxyCodeLine{00366\ \textcolor{comment}{//}}
+\DoxyCodeLine{00367\ \textcolor{comment}{//\ Revision\ 1.4\ \ 2006/01/18\ 21:42:37\ \ acg}}
+\DoxyCodeLine{00368\ \textcolor{comment}{//\ Andy\ Goodrich:\ Changes\ for\ check\ writer\ support.}}
+\DoxyCodeLine{00369\ \textcolor{comment}{//}}
+\DoxyCodeLine{00370\ \textcolor{comment}{//\ Revision\ 1.3\ \ 2006/01/13\ 18:44:30\ \ acg}}
+\DoxyCodeLine{00371\ \textcolor{comment}{//\ Added\ \$Log\ to\ record\ CVS\ changes\ into\ the\ source.}}
+\DoxyCodeLine{00372\ }
+\DoxyCodeLine{00373\ \textcolor{preprocessor}{\#endif}}
+
+\end{DoxyCode}

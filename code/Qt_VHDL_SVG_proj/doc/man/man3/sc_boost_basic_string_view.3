@@ -1,0 +1,452 @@
+.TH "sc_boost::basic_string_view< charT, traits >" 3 "VHDL simulator" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+sc_boost::basic_string_view< charT, traits >
+.SH SYNOPSIS
+.br
+.PP
+.PP
+\fR#include <string_view\&.hpp>\fP
+.SS "Public Types"
+
+.in +1c
+.ti -1c
+.RI "\fBtypedef\fP \fBtraits\fP \fBtraits_type\fP"
+.br
+.ti -1c
+.RI "\fBtypedef\fP \fBcharT\fP \fBvalue_type\fP"
+.br
+.ti -1c
+.RI "\fBtypedef\fP \fBcharT\fP * \fBpointer\fP"
+.br
+.ti -1c
+.RI "\fBtypedef\fP \fBconst\fP \fBcharT\fP * \fBconst_pointer\fP"
+.br
+.ti -1c
+.RI "\fBtypedef\fP \fBcharT\fP & \fBreference\fP"
+.br
+.ti -1c
+.RI "\fBtypedef\fP \fBconst\fP \fBcharT\fP & \fBconst_reference\fP"
+.br
+.ti -1c
+.RI "\fBtypedef\fP \fBconst_pointer\fP \fBconst_iterator\fP"
+.br
+.ti -1c
+.RI "\fBtypedef\fP \fBconst_iterator\fP \fBiterator\fP"
+.br
+.ti -1c
+.RI "\fBtypedef\fP std::reverse_iterator< \fBconst_iterator\fP > \fBconst_reverse_iterator\fP"
+.br
+.ti -1c
+.RI "\fBtypedef\fP \fBconst_reverse_iterator\fP \fBreverse_iterator\fP"
+.br
+.ti -1c
+.RI "\fBtypedef\fP std::size_t \fBsize_type\fP"
+.br
+.ti -1c
+.RI "\fBtypedef\fP std::ptrdiff_t \fBdifference_type\fP"
+.br
+.in -1c
+.SS "Public Member Functions"
+
+.in +1c
+.ti -1c
+.RI "\fBSC_BOOST_CONSTEXPR\fP \fBbasic_string_view\fP () \fBSC_BOOST_NOEXCEPT\fP"
+.br
+.ti -1c
+.RI "\fBSC_BOOST_CONSTEXPR\fP \fBbasic_string_view\fP (\fBconst\fP \fBbasic_string_view\fP &\fBrhs\fP) \fBSC_BOOST_NOEXCEPT\fP"
+.br
+.ti -1c
+.RI "\fBbasic_string_view\fP & \fBoperator=\fP (\fBconst\fP \fBbasic_string_view\fP &\fBrhs\fP) \fBSC_BOOST_NOEXCEPT\fP"
+.br
+.ti -1c
+.RI "template<\fBtypename\fP \fBAllocator\fP > \fBbasic_string_view\fP (\fBconst\fP std::basic_string< \fBcharT\fP, \fBtraits\fP, \fBAllocator\fP > &\fBstr\fP) \fBSC_BOOST_NOEXCEPT\fP"
+.br
+.ti -1c
+.RI "\fBSC_BOOST_CONSTEXPR\fP \fBbasic_string_view\fP (\fBconst\fP \fBcharT\fP *\fBstr\fP)"
+.br
+.ti -1c
+.RI "\fBSC_BOOST_CONSTEXPR\fP \fBbasic_string_view\fP (\fBconst\fP \fBcharT\fP *\fBstr\fP, \fBsize_type\fP len)"
+.br
+.ti -1c
+.RI "\fBSC_BOOST_CONSTEXPR\fP \fBconst_iterator\fP \fBbegin\fP () \fBconst\fP \fBSC_BOOST_NOEXCEPT\fP"
+.br
+.ti -1c
+.RI "\fBSC_BOOST_CONSTEXPR\fP \fBconst_iterator\fP \fBcbegin\fP () \fBconst\fP \fBSC_BOOST_NOEXCEPT\fP"
+.br
+.ti -1c
+.RI "\fBSC_BOOST_CONSTEXPR\fP \fBconst_iterator\fP \fBend\fP () \fBconst\fP \fBSC_BOOST_NOEXCEPT\fP"
+.br
+.ti -1c
+.RI "\fBSC_BOOST_CONSTEXPR\fP \fBconst_iterator\fP \fBcend\fP () \fBconst\fP \fBSC_BOOST_NOEXCEPT\fP"
+.br
+.ti -1c
+.RI "\fBconst_reverse_iterator\fP \fBrbegin\fP () \fBconst\fP \fBSC_BOOST_NOEXCEPT\fP"
+.br
+.ti -1c
+.RI "\fBconst_reverse_iterator\fP \fBcrbegin\fP () \fBconst\fP \fBSC_BOOST_NOEXCEPT\fP"
+.br
+.ti -1c
+.RI "\fBconst_reverse_iterator\fP \fBrend\fP () \fBconst\fP \fBSC_BOOST_NOEXCEPT\fP"
+.br
+.ti -1c
+.RI "\fBconst_reverse_iterator\fP \fBcrend\fP () \fBconst\fP \fBSC_BOOST_NOEXCEPT\fP"
+.br
+.ti -1c
+.RI "\fBSC_BOOST_CONSTEXPR\fP \fBsize_type\fP \fBsize\fP () \fBconst\fP \fBSC_BOOST_NOEXCEPT\fP"
+.br
+.ti -1c
+.RI "\fBSC_BOOST_CONSTEXPR\fP \fBsize_type\fP \fBlength\fP () \fBconst\fP \fBSC_BOOST_NOEXCEPT\fP"
+.br
+.ti -1c
+.RI "\fBSC_BOOST_CONSTEXPR\fP \fBsize_type\fP \fBmax_size\fP () \fBconst\fP \fBSC_BOOST_NOEXCEPT\fP"
+.br
+.ti -1c
+.RI "\fBSC_BOOST_CONSTEXPR\fP \fBbool\fP \fBempty\fP () \fBconst\fP \fBSC_BOOST_NOEXCEPT\fP"
+.br
+.ti -1c
+.RI "\fBSC_BOOST_CONSTEXPR\fP \fBconst_reference\fP \fBoperator[]\fP (\fBsize_type\fP pos) \fBconst\fP \fBSC_BOOST_NOEXCEPT\fP"
+.br
+.ti -1c
+.RI "\fBSC_BOOST_CONSTEXPR\fP \fBconst_reference\fP \fBat\fP (size_t pos) \fBconst\fP"
+.br
+.ti -1c
+.RI "\fBSC_BOOST_CONSTEXPR\fP \fBconst_reference\fP \fBfront\fP () \fBconst\fP"
+.br
+.ti -1c
+.RI "\fBSC_BOOST_CONSTEXPR\fP \fBconst_reference\fP \fBback\fP () \fBconst\fP"
+.br
+.ti -1c
+.RI "\fBSC_BOOST_CONSTEXPR\fP \fBconst_pointer\fP \fBdata\fP () \fBconst\fP \fBSC_BOOST_NOEXCEPT\fP"
+.br
+.ti -1c
+.RI "\fBvoid\fP \fBclear\fP () \fBSC_BOOST_NOEXCEPT\fP"
+.br
+.ti -1c
+.RI "\fBSC_BOOST_CXX14_CONSTEXPR\fP \fBvoid\fP \fBremove_prefix\fP (\fBsize_type\fP \fBn\fP)"
+.br
+.ti -1c
+.RI "\fBSC_BOOST_CXX14_CONSTEXPR\fP \fBvoid\fP \fBremove_suffix\fP (\fBsize_type\fP \fBn\fP)"
+.br
+.ti -1c
+.RI "\fBSC_BOOST_CXX14_CONSTEXPR\fP \fBvoid\fP \fBswap\fP (\fBbasic_string_view\fP &s) \fBSC_BOOST_NOEXCEPT\fP"
+.br
+.ti -1c
+.RI "std::basic_string< \fBcharT\fP, \fBtraits\fP > \fBto_string\fP () \fBconst\fP"
+.br
+.ti -1c
+.RI "template<\fBtypename\fP \fBAllocator\fP > std::basic_string< \fBcharT\fP, \fBtraits\fP, \fBAllocator\fP > \fBto_string\fP (\fBconst\fP \fBAllocator\fP &\fBa\fP) \fBconst\fP"
+.br
+.ti -1c
+.RI "\fBsize_type\fP \fBcopy\fP (\fBcharT\fP *s, \fBsize_type\fP \fBn\fP, \fBsize_type\fP pos=0) \fBconst\fP"
+.br
+.ti -1c
+.RI "\fBSC_BOOST_CXX14_CONSTEXPR\fP \fBbasic_string_view\fP \fBsubstr\fP (\fBsize_type\fP pos, \fBsize_type\fP \fBn\fP=\fBnpos\fP) \fBconst\fP"
+.br
+.ti -1c
+.RI "\fBSC_BOOST_CXX14_CONSTEXPR\fP int \fBcompare\fP (\fBbasic_string_view\fP \fBx\fP) \fBconst\fP \fBSC_BOOST_NOEXCEPT\fP"
+.br
+.ti -1c
+.RI "\fBSC_BOOST_CXX14_CONSTEXPR\fP int \fBcompare\fP (\fBsize_type\fP \fBpos1\fP, \fBsize_type\fP \fBn1\fP, \fBbasic_string_view\fP \fBx\fP) \fBconst\fP \fBSC_BOOST_NOEXCEPT\fP"
+.br
+.ti -1c
+.RI "\fBSC_BOOST_CXX14_CONSTEXPR\fP int \fBcompare\fP (\fBsize_type\fP \fBpos1\fP, \fBsize_type\fP \fBn1\fP, \fBbasic_string_view\fP \fBx\fP, \fBsize_type\fP \fBpos2\fP, \fBsize_type\fP \fBn2\fP) \fBconst\fP"
+.br
+.ti -1c
+.RI "\fBSC_BOOST_CXX14_CONSTEXPR\fP int \fBcompare\fP (\fBconst\fP \fBcharT\fP *\fBx\fP) \fBconst\fP"
+.br
+.ti -1c
+.RI "\fBSC_BOOST_CXX14_CONSTEXPR\fP int \fBcompare\fP (\fBsize_type\fP \fBpos1\fP, \fBsize_type\fP \fBn1\fP, \fBconst\fP \fBcharT\fP *\fBx\fP) \fBconst\fP"
+.br
+.ti -1c
+.RI "\fBSC_BOOST_CXX14_CONSTEXPR\fP int \fBcompare\fP (\fBsize_type\fP \fBpos1\fP, \fBsize_type\fP \fBn1\fP, \fBconst\fP \fBcharT\fP *\fBx\fP, \fBsize_type\fP \fBn2\fP) \fBconst\fP"
+.br
+.ti -1c
+.RI "\fBSC_BOOST_CONSTEXPR\fP \fBbool\fP \fBstarts_with\fP (\fBcharT\fP \fBc\fP) \fBconst\fP \fBSC_BOOST_NOEXCEPT\fP"
+.br
+.ti -1c
+.RI "\fBSC_BOOST_CONSTEXPR\fP \fBbool\fP \fBstarts_with\fP (\fBbasic_string_view\fP \fBx\fP) \fBconst\fP \fBSC_BOOST_NOEXCEPT\fP"
+.br
+.ti -1c
+.RI "\fBSC_BOOST_CONSTEXPR\fP \fBbool\fP \fBends_with\fP (\fBcharT\fP \fBc\fP) \fBconst\fP \fBSC_BOOST_NOEXCEPT\fP"
+.br
+.ti -1c
+.RI "\fBSC_BOOST_CONSTEXPR\fP \fBbool\fP \fBends_with\fP (\fBbasic_string_view\fP \fBx\fP) \fBconst\fP \fBSC_BOOST_NOEXCEPT\fP"
+.br
+.ti -1c
+.RI "\fBSC_BOOST_CXX14_CONSTEXPR\fP \fBsize_type\fP \fBfind\fP (\fBbasic_string_view\fP s, \fBsize_type\fP pos=0) \fBconst\fP \fBSC_BOOST_NOEXCEPT\fP"
+.br
+.ti -1c
+.RI "\fBSC_BOOST_CXX14_CONSTEXPR\fP \fBsize_type\fP \fBfind\fP (\fBcharT\fP \fBc\fP, \fBsize_type\fP pos=0) \fBconst\fP \fBSC_BOOST_NOEXCEPT\fP"
+.br
+.ti -1c
+.RI "\fBSC_BOOST_CXX14_CONSTEXPR\fP \fBsize_type\fP \fBfind\fP (\fBconst\fP \fBcharT\fP *s, \fBsize_type\fP pos, \fBsize_type\fP \fBn\fP) \fBconst\fP \fBSC_BOOST_NOEXCEPT\fP"
+.br
+.ti -1c
+.RI "\fBSC_BOOST_CXX14_CONSTEXPR\fP \fBsize_type\fP \fBfind\fP (\fBconst\fP \fBcharT\fP *s, \fBsize_type\fP pos=0) \fBconst\fP \fBSC_BOOST_NOEXCEPT\fP"
+.br
+.ti -1c
+.RI "\fBSC_BOOST_CXX14_CONSTEXPR\fP \fBsize_type\fP \fBrfind\fP (\fBbasic_string_view\fP s, \fBsize_type\fP pos=\fBnpos\fP) \fBconst\fP \fBSC_BOOST_NOEXCEPT\fP"
+.br
+.ti -1c
+.RI "\fBSC_BOOST_CXX14_CONSTEXPR\fP \fBsize_type\fP \fBrfind\fP (\fBcharT\fP \fBc\fP, \fBsize_type\fP pos=\fBnpos\fP) \fBconst\fP \fBSC_BOOST_NOEXCEPT\fP"
+.br
+.ti -1c
+.RI "\fBSC_BOOST_CXX14_CONSTEXPR\fP \fBsize_type\fP \fBrfind\fP (\fBconst\fP \fBcharT\fP *s, \fBsize_type\fP pos, \fBsize_type\fP \fBn\fP) \fBconst\fP \fBSC_BOOST_NOEXCEPT\fP"
+.br
+.ti -1c
+.RI "\fBSC_BOOST_CXX14_CONSTEXPR\fP \fBsize_type\fP \fBrfind\fP (\fBconst\fP \fBcharT\fP *s, \fBsize_type\fP pos=\fBnpos\fP) \fBconst\fP \fBSC_BOOST_NOEXCEPT\fP"
+.br
+.ti -1c
+.RI "\fBSC_BOOST_CXX14_CONSTEXPR\fP \fBsize_type\fP \fBfind_first_of\fP (\fBbasic_string_view\fP s, \fBsize_type\fP pos=0) \fBconst\fP \fBSC_BOOST_NOEXCEPT\fP"
+.br
+.ti -1c
+.RI "\fBSC_BOOST_CXX14_CONSTEXPR\fP \fBsize_type\fP \fBfind_first_of\fP (\fBcharT\fP \fBc\fP, \fBsize_type\fP pos=0) \fBconst\fP \fBSC_BOOST_NOEXCEPT\fP"
+.br
+.ti -1c
+.RI "\fBSC_BOOST_CXX14_CONSTEXPR\fP \fBsize_type\fP \fBfind_first_of\fP (\fBconst\fP \fBcharT\fP *s, \fBsize_type\fP pos, \fBsize_type\fP \fBn\fP) \fBconst\fP \fBSC_BOOST_NOEXCEPT\fP"
+.br
+.ti -1c
+.RI "\fBSC_BOOST_CXX14_CONSTEXPR\fP \fBsize_type\fP \fBfind_first_of\fP (\fBconst\fP \fBcharT\fP *s, \fBsize_type\fP pos=0) \fBconst\fP \fBSC_BOOST_NOEXCEPT\fP"
+.br
+.ti -1c
+.RI "\fBSC_BOOST_CXX14_CONSTEXPR\fP \fBsize_type\fP \fBfind_last_of\fP (\fBbasic_string_view\fP s, \fBsize_type\fP pos=\fBnpos\fP) \fBconst\fP \fBSC_BOOST_NOEXCEPT\fP"
+.br
+.ti -1c
+.RI "\fBSC_BOOST_CXX14_CONSTEXPR\fP \fBsize_type\fP \fBfind_last_of\fP (\fBcharT\fP \fBc\fP, \fBsize_type\fP pos=\fBnpos\fP) \fBconst\fP \fBSC_BOOST_NOEXCEPT\fP"
+.br
+.ti -1c
+.RI "\fBSC_BOOST_CXX14_CONSTEXPR\fP \fBsize_type\fP \fBfind_last_of\fP (\fBconst\fP \fBcharT\fP *s, \fBsize_type\fP pos, \fBsize_type\fP \fBn\fP) \fBconst\fP \fBSC_BOOST_NOEXCEPT\fP"
+.br
+.ti -1c
+.RI "\fBSC_BOOST_CXX14_CONSTEXPR\fP \fBsize_type\fP \fBfind_last_of\fP (\fBconst\fP \fBcharT\fP *s, \fBsize_type\fP pos=\fBnpos\fP) \fBconst\fP \fBSC_BOOST_NOEXCEPT\fP"
+.br
+.ti -1c
+.RI "\fBSC_BOOST_CXX14_CONSTEXPR\fP \fBsize_type\fP \fBfind_first_not_of\fP (\fBbasic_string_view\fP s, \fBsize_type\fP pos=0) \fBconst\fP \fBSC_BOOST_NOEXCEPT\fP"
+.br
+.ti -1c
+.RI "\fBSC_BOOST_CXX14_CONSTEXPR\fP \fBsize_type\fP \fBfind_first_not_of\fP (\fBcharT\fP \fBc\fP, \fBsize_type\fP pos=0) \fBconst\fP \fBSC_BOOST_NOEXCEPT\fP"
+.br
+.ti -1c
+.RI "\fBSC_BOOST_CXX14_CONSTEXPR\fP \fBsize_type\fP \fBfind_first_not_of\fP (\fBconst\fP \fBcharT\fP *s, \fBsize_type\fP pos, \fBsize_type\fP \fBn\fP) \fBconst\fP \fBSC_BOOST_NOEXCEPT\fP"
+.br
+.ti -1c
+.RI "\fBSC_BOOST_CXX14_CONSTEXPR\fP \fBsize_type\fP \fBfind_first_not_of\fP (\fBconst\fP \fBcharT\fP *s, \fBsize_type\fP pos=0) \fBconst\fP \fBSC_BOOST_NOEXCEPT\fP"
+.br
+.ti -1c
+.RI "\fBSC_BOOST_CXX14_CONSTEXPR\fP \fBsize_type\fP \fBfind_last_not_of\fP (\fBbasic_string_view\fP s, \fBsize_type\fP pos=\fBnpos\fP) \fBconst\fP \fBSC_BOOST_NOEXCEPT\fP"
+.br
+.ti -1c
+.RI "\fBSC_BOOST_CXX14_CONSTEXPR\fP \fBsize_type\fP \fBfind_last_not_of\fP (\fBcharT\fP \fBc\fP, \fBsize_type\fP pos=\fBnpos\fP) \fBconst\fP \fBSC_BOOST_NOEXCEPT\fP"
+.br
+.ti -1c
+.RI "\fBSC_BOOST_CXX14_CONSTEXPR\fP \fBsize_type\fP \fBfind_last_not_of\fP (\fBconst\fP \fBcharT\fP *s, \fBsize_type\fP pos, \fBsize_type\fP \fBn\fP) \fBconst\fP \fBSC_BOOST_NOEXCEPT\fP"
+.br
+.ti -1c
+.RI "\fBSC_BOOST_CXX14_CONSTEXPR\fP \fBsize_type\fP \fBfind_last_not_of\fP (\fBconst\fP \fBcharT\fP *s, \fBsize_type\fP pos=\fBnpos\fP) \fBconst\fP \fBSC_BOOST_NOEXCEPT\fP"
+.br
+.in -1c
+.SS "Static Public Attributes"
+
+.in +1c
+.ti -1c
+.RI "\fBstatic\fP \fBSC_BOOST_CONSTEXPR_OR_CONST\fP \fBsize_type\fP \fBnpos\fP = \fBsize_type\fP(\-1)"
+.br
+.in -1c
+.SS "Private Member Functions"
+
+.in +1c
+.ti -1c
+.RI "template<\fBtypename\fP \fBr_iter\fP > \fBsize_type\fP \fBreverse_distance\fP (\fBr_iter\fP first, \fBr_iter\fP last) \fBconst\fP \fBSC_BOOST_NOEXCEPT\fP"
+.br
+.ti -1c
+.RI "template<\fBtypename\fP \fBIterator\fP > \fBIterator\fP \fBfind_not_of\fP (\fBIterator\fP first, \fBIterator\fP last, \fBbasic_string_view\fP s) \fBconst\fP \fBSC_BOOST_NOEXCEPT\fP"
+.br
+.in -1c
+.SS "Private Attributes"
+
+.in +1c
+.ti -1c
+.RI "\fBconst\fP \fBcharT\fP * \fBptr_\fP"
+.br
+.ti -1c
+.RI "std::size_t \fBlen_\fP"
+.br
+.in -1c
+.SH "Member Typedef Documentation"
+.PP 
+.SS "template<\fBtypename\fP \fBcharT\fP , \fBtypename\fP \fBtraits\fP > \fBtypedef\fP \fBconst_pointer\fP \fBsc_boost::basic_string_view\fP< \fBcharT\fP, \fBtraits\fP >::const_iterator"
+
+.SS "template<\fBtypename\fP \fBcharT\fP , \fBtypename\fP \fBtraits\fP > \fBtypedef\fP \fBconst\fP \fBcharT\fP* \fBsc_boost::basic_string_view\fP< \fBcharT\fP, \fBtraits\fP >::const_pointer"
+
+.SS "template<\fBtypename\fP \fBcharT\fP , \fBtypename\fP \fBtraits\fP > \fBtypedef\fP \fBconst\fP \fBcharT\fP& \fBsc_boost::basic_string_view\fP< \fBcharT\fP, \fBtraits\fP >::const_reference"
+
+.SS "template<\fBtypename\fP \fBcharT\fP , \fBtypename\fP \fBtraits\fP > \fBtypedef\fP std::reverse_iterator<\fBconst_iterator\fP> \fBsc_boost::basic_string_view\fP< \fBcharT\fP, \fBtraits\fP >::const_reverse_iterator"
+
+.SS "template<\fBtypename\fP \fBcharT\fP , \fBtypename\fP \fBtraits\fP > \fBtypedef\fP std::ptrdiff_t \fBsc_boost::basic_string_view\fP< \fBcharT\fP, \fBtraits\fP >::difference_type"
+
+.SS "template<\fBtypename\fP \fBcharT\fP , \fBtypename\fP \fBtraits\fP > \fBtypedef\fP \fBconst_iterator\fP \fBsc_boost::basic_string_view\fP< \fBcharT\fP, \fBtraits\fP >::iterator"
+
+.SS "template<\fBtypename\fP \fBcharT\fP , \fBtypename\fP \fBtraits\fP > \fBtypedef\fP \fBcharT\fP* \fBsc_boost::basic_string_view\fP< \fBcharT\fP, \fBtraits\fP >::pointer"
+
+.SS "template<\fBtypename\fP \fBcharT\fP , \fBtypename\fP \fBtraits\fP > \fBtypedef\fP \fBcharT\fP& \fBsc_boost::basic_string_view\fP< \fBcharT\fP, \fBtraits\fP >::reference"
+
+.SS "template<\fBtypename\fP \fBcharT\fP , \fBtypename\fP \fBtraits\fP > \fBtypedef\fP \fBconst_reverse_iterator\fP \fBsc_boost::basic_string_view\fP< \fBcharT\fP, \fBtraits\fP >::reverse_iterator"
+
+.SS "template<\fBtypename\fP \fBcharT\fP , \fBtypename\fP \fBtraits\fP > \fBtypedef\fP std::size_t \fBsc_boost::basic_string_view\fP< \fBcharT\fP, \fBtraits\fP >::size_type"
+
+.SS "template<\fBtypename\fP \fBcharT\fP , \fBtypename\fP \fBtraits\fP > \fBtypedef\fP \fBtraits\fP \fBsc_boost::basic_string_view\fP< \fBcharT\fP, \fBtraits\fP >::traits_type"
+
+.SS "template<\fBtypename\fP \fBcharT\fP , \fBtypename\fP \fBtraits\fP > \fBtypedef\fP \fBcharT\fP \fBsc_boost::basic_string_view\fP< \fBcharT\fP, \fBtraits\fP >::value_type"
+
+.SH "Constructor & Destructor Documentation"
+.PP 
+.SS "template<\fBtypename\fP \fBcharT\fP , \fBtypename\fP \fBtraits\fP > \fBSC_BOOST_CONSTEXPR\fP \fBsc_boost::basic_string_view\fP< \fBcharT\fP, \fBtraits\fP >::basic_string_view ()\fR [inline]\fP"
+
+.SS "template<\fBtypename\fP \fBcharT\fP , \fBtypename\fP \fBtraits\fP > \fBSC_BOOST_CONSTEXPR\fP \fBsc_boost::basic_string_view\fP< \fBcharT\fP, \fBtraits\fP >::basic_string_view (\fBconst\fP \fBbasic_string_view\fP< \fBcharT\fP, \fBtraits\fP > & rhs)\fR [inline]\fP"
+
+.SS "template<\fBtypename\fP \fBcharT\fP , \fBtypename\fP \fBtraits\fP > template<\fBtypename\fP \fBAllocator\fP > \fBsc_boost::basic_string_view\fP< \fBcharT\fP, \fBtraits\fP >::basic_string_view (\fBconst\fP std::basic_string< \fBcharT\fP, \fBtraits\fP, \fBAllocator\fP > & str)\fR [inline]\fP"
+
+.SS "template<\fBtypename\fP \fBcharT\fP , \fBtypename\fP \fBtraits\fP > \fBSC_BOOST_CONSTEXPR\fP \fBsc_boost::basic_string_view\fP< \fBcharT\fP, \fBtraits\fP >::basic_string_view (\fBconst\fP \fBcharT\fP * str)\fR [inline]\fP"
+
+.SS "template<\fBtypename\fP \fBcharT\fP , \fBtypename\fP \fBtraits\fP > \fBSC_BOOST_CONSTEXPR\fP \fBsc_boost::basic_string_view\fP< \fBcharT\fP, \fBtraits\fP >::basic_string_view (\fBconst\fP \fBcharT\fP * str, \fBsize_type\fP len)\fR [inline]\fP"
+
+.SH "Member Function Documentation"
+.PP 
+.SS "template<\fBtypename\fP \fBcharT\fP , \fBtypename\fP \fBtraits\fP > \fBSC_BOOST_CONSTEXPR\fP \fBconst_reference\fP \fBsc_boost::basic_string_view\fP< \fBcharT\fP, \fBtraits\fP >::at (size_t pos) const\fR [inline]\fP"
+
+.SS "template<\fBtypename\fP \fBcharT\fP , \fBtypename\fP \fBtraits\fP > \fBSC_BOOST_CONSTEXPR\fP \fBconst_reference\fP \fBsc_boost::basic_string_view\fP< \fBcharT\fP, \fBtraits\fP >::back () const\fR [inline]\fP"
+
+.SS "template<\fBtypename\fP \fBcharT\fP , \fBtypename\fP \fBtraits\fP > \fBSC_BOOST_CONSTEXPR\fP \fBconst_iterator\fP \fBsc_boost::basic_string_view\fP< \fBcharT\fP, \fBtraits\fP >::begin () const\fR [inline]\fP"
+
+.SS "template<\fBtypename\fP \fBcharT\fP , \fBtypename\fP \fBtraits\fP > \fBSC_BOOST_CONSTEXPR\fP \fBconst_iterator\fP \fBsc_boost::basic_string_view\fP< \fBcharT\fP, \fBtraits\fP >::cbegin () const\fR [inline]\fP"
+
+.SS "template<\fBtypename\fP \fBcharT\fP , \fBtypename\fP \fBtraits\fP > \fBSC_BOOST_CONSTEXPR\fP \fBconst_iterator\fP \fBsc_boost::basic_string_view\fP< \fBcharT\fP, \fBtraits\fP >::cend () const\fR [inline]\fP"
+
+.SS "template<\fBtypename\fP \fBcharT\fP , \fBtypename\fP \fBtraits\fP > \fBvoid\fP \fBsc_boost::basic_string_view\fP< \fBcharT\fP, \fBtraits\fP >::clear ()\fR [inline]\fP"
+
+.SS "template<\fBtypename\fP \fBcharT\fP , \fBtypename\fP \fBtraits\fP > \fBSC_BOOST_CXX14_CONSTEXPR\fP int \fBsc_boost::basic_string_view\fP< \fBcharT\fP, \fBtraits\fP >::compare (\fBbasic_string_view\fP< \fBcharT\fP, \fBtraits\fP > x) const\fR [inline]\fP"
+
+.SS "template<\fBtypename\fP \fBcharT\fP , \fBtypename\fP \fBtraits\fP > \fBSC_BOOST_CXX14_CONSTEXPR\fP int \fBsc_boost::basic_string_view\fP< \fBcharT\fP, \fBtraits\fP >::compare (\fBconst\fP \fBcharT\fP * x) const\fR [inline]\fP"
+
+.SS "template<\fBtypename\fP \fBcharT\fP , \fBtypename\fP \fBtraits\fP > \fBSC_BOOST_CXX14_CONSTEXPR\fP int \fBsc_boost::basic_string_view\fP< \fBcharT\fP, \fBtraits\fP >::compare (\fBsize_type\fP pos1, \fBsize_type\fP n1, \fBbasic_string_view\fP< \fBcharT\fP, \fBtraits\fP > x) const\fR [inline]\fP"
+
+.SS "template<\fBtypename\fP \fBcharT\fP , \fBtypename\fP \fBtraits\fP > \fBSC_BOOST_CXX14_CONSTEXPR\fP int \fBsc_boost::basic_string_view\fP< \fBcharT\fP, \fBtraits\fP >::compare (\fBsize_type\fP pos1, \fBsize_type\fP n1, \fBbasic_string_view\fP< \fBcharT\fP, \fBtraits\fP > x, \fBsize_type\fP pos2, \fBsize_type\fP n2) const\fR [inline]\fP"
+
+.SS "template<\fBtypename\fP \fBcharT\fP , \fBtypename\fP \fBtraits\fP > \fBSC_BOOST_CXX14_CONSTEXPR\fP int \fBsc_boost::basic_string_view\fP< \fBcharT\fP, \fBtraits\fP >::compare (\fBsize_type\fP pos1, \fBsize_type\fP n1, \fBconst\fP \fBcharT\fP * x) const\fR [inline]\fP"
+
+.SS "template<\fBtypename\fP \fBcharT\fP , \fBtypename\fP \fBtraits\fP > \fBSC_BOOST_CXX14_CONSTEXPR\fP int \fBsc_boost::basic_string_view\fP< \fBcharT\fP, \fBtraits\fP >::compare (\fBsize_type\fP pos1, \fBsize_type\fP n1, \fBconst\fP \fBcharT\fP * x, \fBsize_type\fP n2) const\fR [inline]\fP"
+
+.SS "template<\fBtypename\fP \fBcharT\fP , \fBtypename\fP \fBtraits\fP > \fBsize_type\fP \fBsc_boost::basic_string_view\fP< \fBcharT\fP, \fBtraits\fP >::copy (\fBcharT\fP * s, \fBsize_type\fP n, \fBsize_type\fP pos = \fR0\fP) const\fR [inline]\fP"
+
+.SS "template<\fBtypename\fP \fBcharT\fP , \fBtypename\fP \fBtraits\fP > \fBconst_reverse_iterator\fP \fBsc_boost::basic_string_view\fP< \fBcharT\fP, \fBtraits\fP >::crbegin () const\fR [inline]\fP"
+
+.SS "template<\fBtypename\fP \fBcharT\fP , \fBtypename\fP \fBtraits\fP > \fBconst_reverse_iterator\fP \fBsc_boost::basic_string_view\fP< \fBcharT\fP, \fBtraits\fP >::crend () const\fR [inline]\fP"
+
+.SS "template<\fBtypename\fP \fBcharT\fP , \fBtypename\fP \fBtraits\fP > \fBSC_BOOST_CONSTEXPR\fP \fBconst_pointer\fP \fBsc_boost::basic_string_view\fP< \fBcharT\fP, \fBtraits\fP >::data () const\fR [inline]\fP"
+
+.SS "template<\fBtypename\fP \fBcharT\fP , \fBtypename\fP \fBtraits\fP > \fBSC_BOOST_CONSTEXPR\fP \fBbool\fP \fBsc_boost::basic_string_view\fP< \fBcharT\fP, \fBtraits\fP >::empty () const\fR [inline]\fP"
+
+.SS "template<\fBtypename\fP \fBcharT\fP , \fBtypename\fP \fBtraits\fP > \fBSC_BOOST_CONSTEXPR\fP \fBconst_iterator\fP \fBsc_boost::basic_string_view\fP< \fBcharT\fP, \fBtraits\fP >::end () const\fR [inline]\fP"
+
+.SS "template<\fBtypename\fP \fBcharT\fP , \fBtypename\fP \fBtraits\fP > \fBSC_BOOST_CONSTEXPR\fP \fBbool\fP \fBsc_boost::basic_string_view\fP< \fBcharT\fP, \fBtraits\fP >::ends_with (\fBbasic_string_view\fP< \fBcharT\fP, \fBtraits\fP > x) const\fR [inline]\fP"
+
+.SS "template<\fBtypename\fP \fBcharT\fP , \fBtypename\fP \fBtraits\fP > \fBSC_BOOST_CONSTEXPR\fP \fBbool\fP \fBsc_boost::basic_string_view\fP< \fBcharT\fP, \fBtraits\fP >::ends_with (\fBcharT\fP c) const\fR [inline]\fP"
+
+.SS "template<\fBtypename\fP \fBcharT\fP , \fBtypename\fP \fBtraits\fP > \fBSC_BOOST_CXX14_CONSTEXPR\fP \fBsize_type\fP \fBsc_boost::basic_string_view\fP< \fBcharT\fP, \fBtraits\fP >::find (\fBbasic_string_view\fP< \fBcharT\fP, \fBtraits\fP > s, \fBsize_type\fP pos = \fR0\fP) const\fR [inline]\fP"
+
+.SS "template<\fBtypename\fP \fBcharT\fP , \fBtypename\fP \fBtraits\fP > \fBSC_BOOST_CXX14_CONSTEXPR\fP \fBsize_type\fP \fBsc_boost::basic_string_view\fP< \fBcharT\fP, \fBtraits\fP >::find (\fBcharT\fP c, \fBsize_type\fP pos = \fR0\fP) const\fR [inline]\fP"
+
+.SS "template<\fBtypename\fP \fBcharT\fP , \fBtypename\fP \fBtraits\fP > \fBSC_BOOST_CXX14_CONSTEXPR\fP \fBsize_type\fP \fBsc_boost::basic_string_view\fP< \fBcharT\fP, \fBtraits\fP >::find (\fBconst\fP \fBcharT\fP * s, \fBsize_type\fP pos, \fBsize_type\fP n) const\fR [inline]\fP"
+
+.SS "template<\fBtypename\fP \fBcharT\fP , \fBtypename\fP \fBtraits\fP > \fBSC_BOOST_CXX14_CONSTEXPR\fP \fBsize_type\fP \fBsc_boost::basic_string_view\fP< \fBcharT\fP, \fBtraits\fP >::find (\fBconst\fP \fBcharT\fP * s, \fBsize_type\fP pos = \fR0\fP) const\fR [inline]\fP"
+
+.SS "template<\fBtypename\fP \fBcharT\fP , \fBtypename\fP \fBtraits\fP > \fBSC_BOOST_CXX14_CONSTEXPR\fP \fBsize_type\fP \fBsc_boost::basic_string_view\fP< \fBcharT\fP, \fBtraits\fP >::find_first_not_of (\fBbasic_string_view\fP< \fBcharT\fP, \fBtraits\fP > s, \fBsize_type\fP pos = \fR0\fP) const\fR [inline]\fP"
+
+.SS "template<\fBtypename\fP \fBcharT\fP , \fBtypename\fP \fBtraits\fP > \fBSC_BOOST_CXX14_CONSTEXPR\fP \fBsize_type\fP \fBsc_boost::basic_string_view\fP< \fBcharT\fP, \fBtraits\fP >::find_first_not_of (\fBcharT\fP c, \fBsize_type\fP pos = \fR0\fP) const\fR [inline]\fP"
+
+.SS "template<\fBtypename\fP \fBcharT\fP , \fBtypename\fP \fBtraits\fP > \fBSC_BOOST_CXX14_CONSTEXPR\fP \fBsize_type\fP \fBsc_boost::basic_string_view\fP< \fBcharT\fP, \fBtraits\fP >::find_first_not_of (\fBconst\fP \fBcharT\fP * s, \fBsize_type\fP pos, \fBsize_type\fP n) const\fR [inline]\fP"
+
+.SS "template<\fBtypename\fP \fBcharT\fP , \fBtypename\fP \fBtraits\fP > \fBSC_BOOST_CXX14_CONSTEXPR\fP \fBsize_type\fP \fBsc_boost::basic_string_view\fP< \fBcharT\fP, \fBtraits\fP >::find_first_not_of (\fBconst\fP \fBcharT\fP * s, \fBsize_type\fP pos = \fR0\fP) const\fR [inline]\fP"
+
+.SS "template<\fBtypename\fP \fBcharT\fP , \fBtypename\fP \fBtraits\fP > \fBSC_BOOST_CXX14_CONSTEXPR\fP \fBsize_type\fP \fBsc_boost::basic_string_view\fP< \fBcharT\fP, \fBtraits\fP >::find_first_of (\fBbasic_string_view\fP< \fBcharT\fP, \fBtraits\fP > s, \fBsize_type\fP pos = \fR0\fP) const\fR [inline]\fP"
+
+.SS "template<\fBtypename\fP \fBcharT\fP , \fBtypename\fP \fBtraits\fP > \fBSC_BOOST_CXX14_CONSTEXPR\fP \fBsize_type\fP \fBsc_boost::basic_string_view\fP< \fBcharT\fP, \fBtraits\fP >::find_first_of (\fBcharT\fP c, \fBsize_type\fP pos = \fR0\fP) const\fR [inline]\fP"
+
+.SS "template<\fBtypename\fP \fBcharT\fP , \fBtypename\fP \fBtraits\fP > \fBSC_BOOST_CXX14_CONSTEXPR\fP \fBsize_type\fP \fBsc_boost::basic_string_view\fP< \fBcharT\fP, \fBtraits\fP >::find_first_of (\fBconst\fP \fBcharT\fP * s, \fBsize_type\fP pos, \fBsize_type\fP n) const\fR [inline]\fP"
+
+.SS "template<\fBtypename\fP \fBcharT\fP , \fBtypename\fP \fBtraits\fP > \fBSC_BOOST_CXX14_CONSTEXPR\fP \fBsize_type\fP \fBsc_boost::basic_string_view\fP< \fBcharT\fP, \fBtraits\fP >::find_first_of (\fBconst\fP \fBcharT\fP * s, \fBsize_type\fP pos = \fR0\fP) const\fR [inline]\fP"
+
+.SS "template<\fBtypename\fP \fBcharT\fP , \fBtypename\fP \fBtraits\fP > \fBSC_BOOST_CXX14_CONSTEXPR\fP \fBsize_type\fP \fBsc_boost::basic_string_view\fP< \fBcharT\fP, \fBtraits\fP >::find_last_not_of (\fBbasic_string_view\fP< \fBcharT\fP, \fBtraits\fP > s, \fBsize_type\fP pos = \fR\fBnpos\fP\fP) const\fR [inline]\fP"
+
+.SS "template<\fBtypename\fP \fBcharT\fP , \fBtypename\fP \fBtraits\fP > \fBSC_BOOST_CXX14_CONSTEXPR\fP \fBsize_type\fP \fBsc_boost::basic_string_view\fP< \fBcharT\fP, \fBtraits\fP >::find_last_not_of (\fBcharT\fP c, \fBsize_type\fP pos = \fR\fBnpos\fP\fP) const\fR [inline]\fP"
+
+.SS "template<\fBtypename\fP \fBcharT\fP , \fBtypename\fP \fBtraits\fP > \fBSC_BOOST_CXX14_CONSTEXPR\fP \fBsize_type\fP \fBsc_boost::basic_string_view\fP< \fBcharT\fP, \fBtraits\fP >::find_last_not_of (\fBconst\fP \fBcharT\fP * s, \fBsize_type\fP pos, \fBsize_type\fP n) const\fR [inline]\fP"
+
+.SS "template<\fBtypename\fP \fBcharT\fP , \fBtypename\fP \fBtraits\fP > \fBSC_BOOST_CXX14_CONSTEXPR\fP \fBsize_type\fP \fBsc_boost::basic_string_view\fP< \fBcharT\fP, \fBtraits\fP >::find_last_not_of (\fBconst\fP \fBcharT\fP * s, \fBsize_type\fP pos = \fR\fBnpos\fP\fP) const\fR [inline]\fP"
+
+.SS "template<\fBtypename\fP \fBcharT\fP , \fBtypename\fP \fBtraits\fP > \fBSC_BOOST_CXX14_CONSTEXPR\fP \fBsize_type\fP \fBsc_boost::basic_string_view\fP< \fBcharT\fP, \fBtraits\fP >::find_last_of (\fBbasic_string_view\fP< \fBcharT\fP, \fBtraits\fP > s, \fBsize_type\fP pos = \fR\fBnpos\fP\fP) const\fR [inline]\fP"
+
+.SS "template<\fBtypename\fP \fBcharT\fP , \fBtypename\fP \fBtraits\fP > \fBSC_BOOST_CXX14_CONSTEXPR\fP \fBsize_type\fP \fBsc_boost::basic_string_view\fP< \fBcharT\fP, \fBtraits\fP >::find_last_of (\fBcharT\fP c, \fBsize_type\fP pos = \fR\fBnpos\fP\fP) const\fR [inline]\fP"
+
+.SS "template<\fBtypename\fP \fBcharT\fP , \fBtypename\fP \fBtraits\fP > \fBSC_BOOST_CXX14_CONSTEXPR\fP \fBsize_type\fP \fBsc_boost::basic_string_view\fP< \fBcharT\fP, \fBtraits\fP >::find_last_of (\fBconst\fP \fBcharT\fP * s, \fBsize_type\fP pos, \fBsize_type\fP n) const\fR [inline]\fP"
+
+.SS "template<\fBtypename\fP \fBcharT\fP , \fBtypename\fP \fBtraits\fP > \fBSC_BOOST_CXX14_CONSTEXPR\fP \fBsize_type\fP \fBsc_boost::basic_string_view\fP< \fBcharT\fP, \fBtraits\fP >::find_last_of (\fBconst\fP \fBcharT\fP * s, \fBsize_type\fP pos = \fR\fBnpos\fP\fP) const\fR [inline]\fP"
+
+.SS "template<\fBtypename\fP \fBcharT\fP , \fBtypename\fP \fBtraits\fP > template<\fBtypename\fP \fBIterator\fP > \fBIterator\fP \fBsc_boost::basic_string_view\fP< \fBcharT\fP, \fBtraits\fP >::find_not_of (\fBIterator\fP first, \fBIterator\fP last, \fBbasic_string_view\fP< \fBcharT\fP, \fBtraits\fP > s) const\fR [inline]\fP, \fR [private]\fP"
+
+.SS "template<\fBtypename\fP \fBcharT\fP , \fBtypename\fP \fBtraits\fP > \fBSC_BOOST_CONSTEXPR\fP \fBconst_reference\fP \fBsc_boost::basic_string_view\fP< \fBcharT\fP, \fBtraits\fP >::front () const\fR [inline]\fP"
+
+.SS "template<\fBtypename\fP \fBcharT\fP , \fBtypename\fP \fBtraits\fP > \fBSC_BOOST_CONSTEXPR\fP \fBsize_type\fP \fBsc_boost::basic_string_view\fP< \fBcharT\fP, \fBtraits\fP >::length () const\fR [inline]\fP"
+
+.SS "template<\fBtypename\fP \fBcharT\fP , \fBtypename\fP \fBtraits\fP > \fBSC_BOOST_CONSTEXPR\fP \fBsize_type\fP \fBsc_boost::basic_string_view\fP< \fBcharT\fP, \fBtraits\fP >::max_size () const\fR [inline]\fP"
+
+.SS "template<\fBtypename\fP \fBcharT\fP , \fBtypename\fP \fBtraits\fP > \fBbasic_string_view\fP & \fBsc_boost::basic_string_view\fP< \fBcharT\fP, \fBtraits\fP >\fB::operator\fP= (\fBconst\fP \fBbasic_string_view\fP< \fBcharT\fP, \fBtraits\fP > & rhs)\fR [inline]\fP"
+
+.SS "template<\fBtypename\fP \fBcharT\fP , \fBtypename\fP \fBtraits\fP > \fBSC_BOOST_CONSTEXPR\fP \fBconst_reference\fP \fBsc_boost::basic_string_view\fP< \fBcharT\fP, \fBtraits\fP >\fB::operator\fP[] (\fBsize_type\fP pos) const\fR [inline]\fP"
+
+.SS "template<\fBtypename\fP \fBcharT\fP , \fBtypename\fP \fBtraits\fP > \fBconst_reverse_iterator\fP \fBsc_boost::basic_string_view\fP< \fBcharT\fP, \fBtraits\fP >::rbegin () const\fR [inline]\fP"
+
+.SS "template<\fBtypename\fP \fBcharT\fP , \fBtypename\fP \fBtraits\fP > \fBSC_BOOST_CXX14_CONSTEXPR\fP \fBvoid\fP \fBsc_boost::basic_string_view\fP< \fBcharT\fP, \fBtraits\fP >::remove_prefix (\fBsize_type\fP n)\fR [inline]\fP"
+
+.SS "template<\fBtypename\fP \fBcharT\fP , \fBtypename\fP \fBtraits\fP > \fBSC_BOOST_CXX14_CONSTEXPR\fP \fBvoid\fP \fBsc_boost::basic_string_view\fP< \fBcharT\fP, \fBtraits\fP >::remove_suffix (\fBsize_type\fP n)\fR [inline]\fP"
+
+.SS "template<\fBtypename\fP \fBcharT\fP , \fBtypename\fP \fBtraits\fP > \fBconst_reverse_iterator\fP \fBsc_boost::basic_string_view\fP< \fBcharT\fP, \fBtraits\fP >::rend () const\fR [inline]\fP"
+
+.SS "template<\fBtypename\fP \fBcharT\fP , \fBtypename\fP \fBtraits\fP > template<\fBtypename\fP \fBr_iter\fP > \fBsize_type\fP \fBsc_boost::basic_string_view\fP< \fBcharT\fP, \fBtraits\fP >::reverse_distance (\fBr_iter\fP first, \fBr_iter\fP last) const\fR [inline]\fP, \fR [private]\fP"
+
+.SS "template<\fBtypename\fP \fBcharT\fP , \fBtypename\fP \fBtraits\fP > \fBSC_BOOST_CXX14_CONSTEXPR\fP \fBsize_type\fP \fBsc_boost::basic_string_view\fP< \fBcharT\fP, \fBtraits\fP >::rfind (\fBbasic_string_view\fP< \fBcharT\fP, \fBtraits\fP > s, \fBsize_type\fP pos = \fR\fBnpos\fP\fP) const\fR [inline]\fP"
+
+.SS "template<\fBtypename\fP \fBcharT\fP , \fBtypename\fP \fBtraits\fP > \fBSC_BOOST_CXX14_CONSTEXPR\fP \fBsize_type\fP \fBsc_boost::basic_string_view\fP< \fBcharT\fP, \fBtraits\fP >::rfind (\fBcharT\fP c, \fBsize_type\fP pos = \fR\fBnpos\fP\fP) const\fR [inline]\fP"
+
+.SS "template<\fBtypename\fP \fBcharT\fP , \fBtypename\fP \fBtraits\fP > \fBSC_BOOST_CXX14_CONSTEXPR\fP \fBsize_type\fP \fBsc_boost::basic_string_view\fP< \fBcharT\fP, \fBtraits\fP >::rfind (\fBconst\fP \fBcharT\fP * s, \fBsize_type\fP pos, \fBsize_type\fP n) const\fR [inline]\fP"
+
+.SS "template<\fBtypename\fP \fBcharT\fP , \fBtypename\fP \fBtraits\fP > \fBSC_BOOST_CXX14_CONSTEXPR\fP \fBsize_type\fP \fBsc_boost::basic_string_view\fP< \fBcharT\fP, \fBtraits\fP >::rfind (\fBconst\fP \fBcharT\fP * s, \fBsize_type\fP pos = \fR\fBnpos\fP\fP) const\fR [inline]\fP"
+
+.SS "template<\fBtypename\fP \fBcharT\fP , \fBtypename\fP \fBtraits\fP > \fBSC_BOOST_CONSTEXPR\fP \fBsize_type\fP \fBsc_boost::basic_string_view\fP< \fBcharT\fP, \fBtraits\fP >::size () const\fR [inline]\fP"
+
+.SS "template<\fBtypename\fP \fBcharT\fP , \fBtypename\fP \fBtraits\fP > \fBSC_BOOST_CONSTEXPR\fP \fBbool\fP \fBsc_boost::basic_string_view\fP< \fBcharT\fP, \fBtraits\fP >::starts_with (\fBbasic_string_view\fP< \fBcharT\fP, \fBtraits\fP > x) const\fR [inline]\fP"
+
+.SS "template<\fBtypename\fP \fBcharT\fP , \fBtypename\fP \fBtraits\fP > \fBSC_BOOST_CONSTEXPR\fP \fBbool\fP \fBsc_boost::basic_string_view\fP< \fBcharT\fP, \fBtraits\fP >::starts_with (\fBcharT\fP c) const\fR [inline]\fP"
+
+.SS "template<\fBtypename\fP \fBcharT\fP , \fBtypename\fP \fBtraits\fP > \fBSC_BOOST_CXX14_CONSTEXPR\fP \fBbasic_string_view\fP \fBsc_boost::basic_string_view\fP< \fBcharT\fP, \fBtraits\fP >::substr (\fBsize_type\fP pos, \fBsize_type\fP n = \fR\fBnpos\fP\fP) const\fR [inline]\fP"
+
+.SS "template<\fBtypename\fP \fBcharT\fP , \fBtypename\fP \fBtraits\fP > \fBSC_BOOST_CXX14_CONSTEXPR\fP \fBvoid\fP \fBsc_boost::basic_string_view\fP< \fBcharT\fP, \fBtraits\fP >::swap (\fBbasic_string_view\fP< \fBcharT\fP, \fBtraits\fP > & s)\fR [inline]\fP"
+
+.SS "template<\fBtypename\fP \fBcharT\fP , \fBtypename\fP \fBtraits\fP > std::basic_string< \fBcharT\fP, \fBtraits\fP > \fBsc_boost::basic_string_view\fP< \fBcharT\fP, \fBtraits\fP >::to_string () const\fR [inline]\fP"
+
+.SS "template<\fBtypename\fP \fBcharT\fP , \fBtypename\fP \fBtraits\fP > template<\fBtypename\fP \fBAllocator\fP > std::basic_string< \fBcharT\fP, \fBtraits\fP, \fBAllocator\fP > \fBsc_boost::basic_string_view\fP< \fBcharT\fP, \fBtraits\fP >::to_string (\fBconst\fP \fBAllocator\fP & a) const\fR [inline]\fP"
+
+.SH "Member Data Documentation"
+.PP 
+.SS "template<\fBtypename\fP \fBcharT\fP , \fBtypename\fP \fBtraits\fP > std::size_t \fBsc_boost::basic_string_view\fP< \fBcharT\fP, \fBtraits\fP >::len_\fR [private]\fP"
+
+.SS "template<\fBtypename\fP \fBcharT\fP , \fBtypename\fP \fBtraits\fP > \fBSC_BOOST_CONSTEXPR_OR_CONST\fP \fBsize_type\fP \fBsc_boost::basic_string_view\fP< \fBcharT\fP, \fBtraits\fP >::npos = \fBsize_type\fP(\-1)\fR [static]\fP"
+
+.SS "template<\fBtypename\fP \fBcharT\fP , \fBtypename\fP \fBtraits\fP > \fBconst\fP \fBcharT\fP* \fBsc_boost::basic_string_view\fP< \fBcharT\fP, \fBtraits\fP >::ptr_\fR [private]\fP"
+
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for VHDL simulator from the source code\&.

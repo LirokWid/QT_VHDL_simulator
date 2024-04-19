@@ -1,0 +1,185 @@
+.TH "tlm_utils::callback_binder_fw< TYPES >" 3 "VHDL simulator" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+tlm_utils::callback_binder_fw< TYPES >
+.SH SYNOPSIS
+.br
+.PP
+.PP
+\fR#include <multi_socket_bases\&.h>\fP
+.PP
+Inherits \fBtlm::tlm_fw_transport_if< TYPES >\fP, and \fBtlm_utils::convenience_socket_cb_holder\fP\&.
+.SS "Public Types"
+
+.in +1c
+.ti -1c
+.RI "\fBtypedef\fP TYPES::tlm_payload_type \fBtransaction_type\fP"
+.br
+.ti -1c
+.RI "\fBtypedef\fP TYPES::tlm_phase_type \fBphase_type\fP"
+.br
+.ti -1c
+.RI "\fBtypedef\fP \fBtlm::tlm_sync_enum\fP \fBsync_enum_type\fP"
+.br
+.ti -1c
+.RI "\fBtypedef\fP \fBnb_transport_functor\fP< \fBTYPES\fP > \fBnb_func_type\fP"
+.br
+.ti -1c
+.RI "\fBtypedef\fP \fBb_transport_functor\fP< \fBTYPES\fP > \fBb_func_type\fP"
+.br
+.ti -1c
+.RI "\fBtypedef\fP \fBdebug_transport_functor\fP< \fBTYPES\fP > \fBdebug_func_type\fP"
+.br
+.ti -1c
+.RI "\fBtypedef\fP \fBget_dmi_ptr_functor\fP< \fBTYPES\fP > \fBdmi_func_type\fP"
+.br
+.in -1c
+.SS "Public Member Functions"
+
+.in +1c
+.ti -1c
+.RI "\fBcallback_binder_fw\fP (\fBmulti_socket_base\fP *\fBowner\fP, int id)"
+.br
+.ti -1c
+.RI "\fBsync_enum_type\fP \fBnb_transport_fw\fP (\fBtransaction_type\fP &\fBtxn\fP, \fBphase_type\fP &p, \fBsc_core::sc_time\fP &t)"
+.br
+.ti -1c
+.RI "\fBvoid\fP \fBb_transport\fP (\fBtransaction_type\fP &\fBtrans\fP, \fBsc_core::sc_time\fP &t)"
+.br
+.ti -1c
+.RI "\fBbool\fP \fBget_direct_mem_ptr\fP (\fBtransaction_type\fP &\fBtrans\fP, \fBtlm::tlm_dmi\fP &\fBdmi_data\fP)"
+.br
+.ti -1c
+.RI "\fBunsigned\fP int \fBtransport_dbg\fP (\fBtransaction_type\fP &\fBtrans\fP)"
+.br
+.ti -1c
+.RI "\fBvoid\fP \fBregister_port\fP (\fBsc_core::sc_port_base\fP &b, \fBconst\fP \fBchar\fP *)"
+.br
+.ti -1c
+.RI "\fBvoid\fP \fBset_callbacks\fP (\fBnb_func_type\fP &\fBcb1\fP, \fBb_func_type\fP &\fBcb2\fP, \fBdmi_func_type\fP &\fBcb3\fP, \fBdebug_func_type\fP &\fBcb4\fP)"
+.br
+.ti -1c
+.RI "\fBsc_core::sc_port_base\fP * \fBget_other_side\fP ()"
+.br
+.in -1c
+
+Public Member Functions inherited from \fBsc_core::sc_interface\fP
+.in +1c
+.ti -1c
+.RI "\fBvirtual\fP \fBconst\fP \fBsc_event\fP & \fBdefault_event\fP () \fBconst\fP"
+.br
+.ti -1c
+.RI "\fBvirtual\fP \fB~sc_interface\fP ()"
+.br
+.in -1c
+.SS "Private Attributes"
+
+.in +1c
+.ti -1c
+.RI "int \fBm_id\fP"
+.br
+.ti -1c
+.RI "\fBnb_func_type\fP * \fBm_nb_f\fP"
+.br
+.ti -1c
+.RI "\fBb_func_type\fP * \fBm_b_f\fP"
+.br
+.ti -1c
+.RI "\fBdebug_func_type\fP * \fBm_dbg_f\fP"
+.br
+.ti -1c
+.RI "\fBdmi_func_type\fP * \fBm_dmi_f\fP"
+.br
+.ti -1c
+.RI "\fBsc_core::sc_port_base\fP * \fBm_caller_port\fP"
+.br
+.in -1c
+.SS "Additional Inherited Members"
+
+
+Protected Member Functions inherited from \fBsc_core::sc_interface\fP
+.in +1c
+.ti -1c
+.RI "\fBsc_interface\fP ()"
+.br
+.in -1c
+
+Protected Member Functions inherited from \fBtlm_utils::convenience_socket_cb_holder\fP
+.in +1c
+.ti -1c
+.RI "\fBconvenience_socket_cb_holder\fP (\fBconvenience_socket_base\fP *\fBowner\fP)"
+.br
+.in -1c
+.in +1c
+.ti -1c
+.RI "\fBvoid\fP \fBdisplay_warning\fP (\fBconst\fP \fBchar\fP *msg) \fBconst\fP"
+.br
+.ti -1c
+.RI "\fBvoid\fP \fBdisplay_error\fP (\fBconst\fP \fBchar\fP *msg) \fBconst\fP"
+.br
+.in -1c
+.SH "Member Typedef Documentation"
+.PP 
+.SS "template<\fBtypename\fP \fBTYPES\fP > \fBtypedef\fP \fBb_transport_functor\fP<\fBTYPES\fP> \fBtlm_utils::callback_binder_fw\fP< \fBTYPES\fP >::b_func_type"
+
+.SS "template<\fBtypename\fP \fBTYPES\fP > \fBtypedef\fP \fBdebug_transport_functor\fP<\fBTYPES\fP> \fBtlm_utils::callback_binder_fw\fP< \fBTYPES\fP >::debug_func_type"
+
+.SS "template<\fBtypename\fP \fBTYPES\fP > \fBtypedef\fP \fBget_dmi_ptr_functor\fP<\fBTYPES\fP> \fBtlm_utils::callback_binder_fw\fP< \fBTYPES\fP >::dmi_func_type"
+
+.SS "template<\fBtypename\fP \fBTYPES\fP > \fBtypedef\fP \fBnb_transport_functor\fP<\fBTYPES\fP> \fBtlm_utils::callback_binder_fw\fP< \fBTYPES\fP >::nb_func_type"
+
+.SS "template<\fBtypename\fP \fBTYPES\fP > \fBtypedef\fP TYPES::tlm_phase_type \fBtlm_utils::callback_binder_fw\fP< \fBTYPES\fP >::phase_type"
+
+.SS "template<\fBtypename\fP \fBTYPES\fP > \fBtypedef\fP \fBtlm::tlm_sync_enum\fP \fBtlm_utils::callback_binder_fw\fP< \fBTYPES\fP >::sync_enum_type"
+
+.SS "template<\fBtypename\fP \fBTYPES\fP > \fBtypedef\fP TYPES::tlm_payload_type \fBtlm_utils::callback_binder_fw\fP< \fBTYPES\fP >::transaction_type"
+
+.SH "Constructor & Destructor Documentation"
+.PP 
+.SS "template<\fBtypename\fP \fBTYPES\fP > \fBtlm_utils::callback_binder_fw\fP< \fBTYPES\fP >::callback_binder_fw (\fBmulti_socket_base\fP * owner, int id)\fR [inline]\fP"
+
+.SH "Member Function Documentation"
+.PP 
+.SS "template<\fBtypename\fP \fBTYPES\fP > \fBvoid\fP \fBtlm_utils::callback_binder_fw\fP< \fBTYPES\fP >::b_transport (\fBtransaction_type\fP & trans, \fBsc_core::sc_time\fP & t)\fR [inline]\fP, \fR [virtual]\fP"
+
+.PP
+Implements \fBtlm::tlm_blocking_transport_if< TYPES::tlm_payload_type >\fP\&.
+.SS "template<\fBtypename\fP \fBTYPES\fP > \fBbool\fP \fBtlm_utils::callback_binder_fw\fP< \fBTYPES\fP >::get_direct_mem_ptr (\fBtransaction_type\fP & trans, \fBtlm::tlm_dmi\fP & dmi_data)\fR [inline]\fP, \fR [virtual]\fP"
+
+.PP
+Implements \fBtlm::tlm_fw_direct_mem_if< TYPES::tlm_payload_type >\fP\&.
+.SS "template<\fBtypename\fP \fBTYPES\fP > \fBsc_core::sc_port_base\fP * \fBtlm_utils::callback_binder_fw\fP< \fBTYPES\fP >::get_other_side ()\fR [inline]\fP"
+
+.SS "template<\fBtypename\fP \fBTYPES\fP > \fBsync_enum_type\fP \fBtlm_utils::callback_binder_fw\fP< \fBTYPES\fP >::nb_transport_fw (\fBtransaction_type\fP & txn, \fBphase_type\fP & p, \fBsc_core::sc_time\fP & t)\fR [inline]\fP, \fR [virtual]\fP"
+
+.PP
+Implements \fBtlm::tlm_fw_nonblocking_transport_if< TYPES::tlm_payload_type, TYPES::tlm_phase_type >\fP\&.
+.SS "template<\fBtypename\fP \fBTYPES\fP > \fBvoid\fP \fBtlm_utils::callback_binder_fw\fP< \fBTYPES\fP >::register_port (\fBsc_core::sc_port_base\fP & b, \fBconst\fP \fBchar\fP *)\fR [inline]\fP, \fR [virtual]\fP"
+
+.PP
+Reimplemented from \fBsc_core::sc_interface\fP\&.
+.SS "template<\fBtypename\fP \fBTYPES\fP > \fBvoid\fP \fBtlm_utils::callback_binder_fw\fP< \fBTYPES\fP >::set_callbacks (\fBnb_func_type\fP & cb1, \fBb_func_type\fP & cb2, \fBdmi_func_type\fP & cb3, \fBdebug_func_type\fP & cb4)\fR [inline]\fP"
+
+.SS "template<\fBtypename\fP \fBTYPES\fP > \fBunsigned\fP int \fBtlm_utils::callback_binder_fw\fP< \fBTYPES\fP >::transport_dbg (\fBtransaction_type\fP & trans)\fR [inline]\fP, \fR [virtual]\fP"
+
+.PP
+Implements \fBtlm::tlm_transport_dbg_if< TYPES::tlm_payload_type >\fP\&.
+.SH "Member Data Documentation"
+.PP 
+.SS "template<\fBtypename\fP \fBTYPES\fP > \fBb_func_type\fP* \fBtlm_utils::callback_binder_fw\fP< \fBTYPES\fP >::m_b_f\fR [private]\fP"
+
+.SS "template<\fBtypename\fP \fBTYPES\fP > \fBsc_core::sc_port_base\fP* \fBtlm_utils::callback_binder_fw\fP< \fBTYPES\fP >::m_caller_port\fR [private]\fP"
+
+.SS "template<\fBtypename\fP \fBTYPES\fP > \fBdebug_func_type\fP* \fBtlm_utils::callback_binder_fw\fP< \fBTYPES\fP >::m_dbg_f\fR [private]\fP"
+
+.SS "template<\fBtypename\fP \fBTYPES\fP > \fBdmi_func_type\fP* \fBtlm_utils::callback_binder_fw\fP< \fBTYPES\fP >::m_dmi_f\fR [private]\fP"
+
+.SS "template<\fBtypename\fP \fBTYPES\fP > int \fBtlm_utils::callback_binder_fw\fP< \fBTYPES\fP >::m_id\fR [private]\fP"
+
+.SS "template<\fBtypename\fP \fBTYPES\fP > \fBnb_func_type\fP* \fBtlm_utils::callback_binder_fw\fP< \fBTYPES\fP >::m_nb_f\fR [private]\fP"
+
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for VHDL simulator from the source code\&.

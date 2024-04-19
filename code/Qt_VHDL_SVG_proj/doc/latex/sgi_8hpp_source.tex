@@ -1,0 +1,117 @@
+\doxysection{sgi.\+hpp}
+\hypertarget{sgi_8hpp_source}{}\label{sgi_8hpp_source}\index{C:/Users/BJRODIER/Documents/QT\_REPO/QT\_VHDL\_simulator/code/Ressources/SystemC/include/sysc/packages/boost/config/stdlib/sgi.hpp@{C:/Users/BJRODIER/Documents/QT\_REPO/QT\_VHDL\_simulator/code/Ressources/SystemC/include/sysc/packages/boost/config/stdlib/sgi.hpp}}
+\mbox{\hyperlink{sgi_8hpp}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{comment}{//\ \ (C)\ Copyright\ John\ Maddock\ 2001\ -\/\ 2003.\ }}
+\DoxyCodeLine{00002\ \textcolor{comment}{//\ \ (C)\ Copyright\ Darin\ Adler\ 2001.\ }}
+\DoxyCodeLine{00003\ \textcolor{comment}{//\ \ (C)\ Copyright\ Jens\ Maurer\ 2001\ -\/\ 2003.\ }}
+\DoxyCodeLine{00004\ \textcolor{comment}{//\ \ Use,\ modification\ and\ distribution\ are\ subject\ to\ the\ }}
+\DoxyCodeLine{00005\ \textcolor{comment}{//\ \ Boost\ Software\ License,\ Version\ 1.0.\ (See\ accompanying\ file\ }}
+\DoxyCodeLine{00006\ \textcolor{comment}{//\ \ LICENSE\_1\_0.txt\ or\ copy\ at\ http://www.boost.org/LICENSE\_1\_0.txt)}}
+\DoxyCodeLine{00007\ }
+\DoxyCodeLine{00008\ \textcolor{comment}{//\ \ See\ http://www.boost.org\ for\ most\ recent\ version.}}
+\DoxyCodeLine{00009\ }
+\DoxyCodeLine{00010\ \textcolor{comment}{//\ \ generic\ SGI\ STL:}}
+\DoxyCodeLine{00011\ }
+\DoxyCodeLine{00012\ \textcolor{preprocessor}{\#if\ !defined(\_\_STL\_CONFIG\_H)}}
+\DoxyCodeLine{00013\ \textcolor{preprocessor}{\#\ \ include\ <utility>}}
+\DoxyCodeLine{00014\ \textcolor{preprocessor}{\#\ \ if\ !defined(\_\_STL\_CONFIG\_H)}}
+\DoxyCodeLine{00015\ \textcolor{preprocessor}{\#\ \ \ \ \ \ error\ "{}This\ is\ not\ the\ SGI\ STL!"{}}}
+\DoxyCodeLine{00016\ \textcolor{preprocessor}{\#\ \ endif}}
+\DoxyCodeLine{00017\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00018\ }
+\DoxyCodeLine{00019\ \textcolor{comment}{//}}
+\DoxyCodeLine{00020\ \textcolor{comment}{//\ No\ std::iterator\ traits\ without\ partial\ specialisation:}}
+\DoxyCodeLine{00021\ \textcolor{comment}{//}}
+\DoxyCodeLine{00022\ \textcolor{preprocessor}{\#if\ !defined(\_\_STL\_CLASS\_PARTIAL\_SPECIALIZATION)}}
+\DoxyCodeLine{00023\ \textcolor{preprocessor}{\#\ \ define\ SC\_BOOST\_NO\_STD\_ITERATOR\_TRAITS}}
+\DoxyCodeLine{00024\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00025\ }
+\DoxyCodeLine{00026\ \textcolor{comment}{//}}
+\DoxyCodeLine{00027\ \textcolor{comment}{//\ No\ std::stringstream\ with\ gcc\ <\ 3}}
+\DoxyCodeLine{00028\ \textcolor{comment}{//}}
+\DoxyCodeLine{00029\ \textcolor{preprocessor}{\#if\ defined(\_\_GNUC\_\_)\ \&\&\ (\_\_GNUC\_\_\ <\ 3)\ \&\&\ \(\backslash\)}}
+\DoxyCodeLine{00030\ \textcolor{preprocessor}{\ \ \ \ \ ((\_\_GNUC\_MINOR\_\_\ <\ 95)\ ||\ (\_\_GNUC\_MINOR\_\_\ ==\ 96))\ \&\&\ \(\backslash\)}}
+\DoxyCodeLine{00031\ \textcolor{preprocessor}{\ \ \ \ \ !defined(\_\_STL\_USE\_NEW\_IOSTREAMS)\ ||\ \(\backslash\)}}
+\DoxyCodeLine{00032\ \textcolor{preprocessor}{\ \ \ defined(\_\_APPLE\_CC\_\_)}}
+\DoxyCodeLine{00033\ \ \ \ \textcolor{comment}{//\ Note\ that\ we\ only\ set\ this\ for\ GNU\ C++\ prior\ to\ 2.95\ since\ the}}
+\DoxyCodeLine{00034\ \ \ \ \textcolor{comment}{//\ latest\ patches\ for\ that\ release\ do\ contain\ a\ minimal\ <sstream>}}
+\DoxyCodeLine{00035\ \ \ \ \textcolor{comment}{//\ If\ you\ are\ running\ a\ 2.95\ release\ prior\ to\ 2.95.3\ then\ this\ will\ need}}
+\DoxyCodeLine{00036\ \ \ \ \textcolor{comment}{//\ setting,\ but\ there\ is\ no\ way\ to\ detect\ that\ automatically\ (other}}
+\DoxyCodeLine{00037\ \ \ \ \textcolor{comment}{//\ than\ by\ running\ the\ configure\ script).}}
+\DoxyCodeLine{00038\ \ \ \ \textcolor{comment}{//\ Also,\ the\ unofficial\ GNU\ C++\ 2.96\ included\ in\ RedHat\ 7.1\ doesn't}}
+\DoxyCodeLine{00039\ \ \ \ \textcolor{comment}{//\ have\ <sstream>.}}
+\DoxyCodeLine{00040\ \textcolor{preprocessor}{\#\ \ define\ SC\_BOOST\_NO\_STRINGSTREAM}}
+\DoxyCodeLine{00041\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00042\ }
+\DoxyCodeLine{00043\ \textcolor{comment}{//}}
+\DoxyCodeLine{00044\ \textcolor{comment}{//\ Assume\ no\ std::locale\ without\ own\ iostreams\ (this\ may\ be\ an}}
+\DoxyCodeLine{00045\ \textcolor{comment}{//\ incorrect\ assumption\ in\ some\ cases):}}
+\DoxyCodeLine{00046\ \textcolor{comment}{//}}
+\DoxyCodeLine{00047\ \textcolor{preprocessor}{\#if\ !defined(\_\_SGI\_STL\_OWN\_IOSTREAMS)\ \&\&\ !defined(\_\_STL\_USE\_NEW\_IOSTREAMS)}}
+\DoxyCodeLine{00048\ \textcolor{preprocessor}{\#\ \ define\ SC\_BOOST\_NO\_STD\_LOCALE}}
+\DoxyCodeLine{00049\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00050\ }
+\DoxyCodeLine{00051\ \textcolor{comment}{//}}
+\DoxyCodeLine{00052\ \textcolor{comment}{//\ Original\ native\ SGI\ streams\ have\ non-\/standard\ std::messages\ facet:}}
+\DoxyCodeLine{00053\ \textcolor{comment}{//}}
+\DoxyCodeLine{00054\ \textcolor{preprocessor}{\#if\ defined(\_\_sgi)\ \&\&\ (\_COMPILER\_VERSION\ <=\ 650)\ \&\&\ !defined(\_\_SGI\_STL\_OWN\_IOSTREAMS)}}
+\DoxyCodeLine{00055\ \textcolor{preprocessor}{\#\ \ define\ SC\_BOOST\_NO\_STD\_LOCALE}}
+\DoxyCodeLine{00056\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00057\ }
+\DoxyCodeLine{00058\ \textcolor{comment}{//}}
+\DoxyCodeLine{00059\ \textcolor{comment}{//\ SGI's\ new\ iostreams\ have\ missing\ "{}const"{}\ in\ messages<>::open}}
+\DoxyCodeLine{00060\ \textcolor{comment}{//}}
+\DoxyCodeLine{00061\ \textcolor{preprocessor}{\#if\ defined(\_\_sgi)\ \&\&\ (\_COMPILER\_VERSION\ <=\ 740)\ \&\&\ defined(\_\_STL\_USE\_NEW\_IOSTREAMS)}}
+\DoxyCodeLine{00062\ \textcolor{preprocessor}{\#\ \ define\ SC\_BOOST\_NO\_STD\_MESSAGES}}
+\DoxyCodeLine{00063\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00064\ }
+\DoxyCodeLine{00065\ \textcolor{comment}{//}}
+\DoxyCodeLine{00066\ \textcolor{comment}{//\ No\ template\ iterator\ constructors,\ or\ std::allocator}}
+\DoxyCodeLine{00067\ \textcolor{comment}{//\ without\ member\ templates:}}
+\DoxyCodeLine{00068\ \textcolor{comment}{//}}
+\DoxyCodeLine{00069\ \textcolor{preprocessor}{\#if\ !defined(\_\_STL\_MEMBER\_TEMPLATES)}}
+\DoxyCodeLine{00070\ \textcolor{preprocessor}{\#\ \ define\ SC\_BOOST\_NO\_TEMPLATED\_ITERATOR\_CONSTRUCTORS}}
+\DoxyCodeLine{00071\ \textcolor{preprocessor}{\#\ \ define\ SC\_BOOST\_NO\_STD\_ALLOCATOR}}
+\DoxyCodeLine{00072\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00073\ }
+\DoxyCodeLine{00074\ \textcolor{comment}{//}}
+\DoxyCodeLine{00075\ \textcolor{comment}{//\ We\ always\ have\ SGI\ style\ hash\_set,\ hash\_map,\ and\ slist:}}
+\DoxyCodeLine{00076\ \textcolor{comment}{//}}
+\DoxyCodeLine{00077\ \textcolor{preprocessor}{\#define\ SC\_BOOST\_HAS\_HASH}}
+\DoxyCodeLine{00078\ \textcolor{preprocessor}{\#define\ SC\_BOOST\_HAS\_SLIST}}
+\DoxyCodeLine{00079\ }
+\DoxyCodeLine{00080\ \textcolor{comment}{//}}
+\DoxyCodeLine{00081\ \textcolor{comment}{//\ If\ this\ is\ GNU\ libstdc++2,\ then\ no\ <limits>\ and\ no\ std::wstring:}}
+\DoxyCodeLine{00082\ \textcolor{comment}{//}}
+\DoxyCodeLine{00083\ \textcolor{preprocessor}{\#if\ (defined(\_\_GNUC\_\_)\ \&\&\ (\_\_GNUC\_\_\ <\ 3))}}
+\DoxyCodeLine{00084\ \textcolor{preprocessor}{\#\ \ include\ <string>}}
+\DoxyCodeLine{00085\ \textcolor{preprocessor}{\#\ \ if\ defined(\_\_BASTRING\_\_)}}
+\DoxyCodeLine{00086\ \textcolor{preprocessor}{\#\ \ \ \ \ define\ SC\_BOOST\_NO\_LIMITS}}
+\DoxyCodeLine{00087\ \textcolor{comment}{//\ Note:\ <sysc/packages/boost/limits.hpp>\ will\ provide\ compile-\/time\ constants}}
+\DoxyCodeLine{00088\ \textcolor{preprocessor}{\#\ \ \ \ \ undef\ SC\_BOOST\_NO\_LIMITS\_COMPILE\_TIME\_CONSTANTS}}
+\DoxyCodeLine{00089\ \textcolor{preprocessor}{\#\ \ \ \ \ define\ SC\_BOOST\_NO\_STD\_WSTRING}}
+\DoxyCodeLine{00090\ \textcolor{preprocessor}{\#\ \ endif}}
+\DoxyCodeLine{00091\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00092\ }
+\DoxyCodeLine{00093\ \textcolor{comment}{//}}
+\DoxyCodeLine{00094\ \textcolor{comment}{//\ There\ is\ no\ standard\ iterator\ unless\ we\ have\ namespace\ support:}}
+\DoxyCodeLine{00095\ \textcolor{comment}{//}}
+\DoxyCodeLine{00096\ \textcolor{preprocessor}{\#if\ !defined(\_\_STL\_USE\_NAMESPACES)}}
+\DoxyCodeLine{00097\ \textcolor{preprocessor}{\#\ \ define\ SC\_BOOST\_NO\_STD\_ITERATOR}}
+\DoxyCodeLine{00098\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00099\ }
+\DoxyCodeLine{00100\ \textcolor{comment}{//}}
+\DoxyCodeLine{00101\ \textcolor{comment}{//\ Intrinsic\ type\_traits\ support.}}
+\DoxyCodeLine{00102\ \textcolor{comment}{//\ The\ SGI\ STL\ has\ it's\ own\ \_\_type\_traits\ class,\ which}}
+\DoxyCodeLine{00103\ \textcolor{comment}{//\ has\ intrinsic\ compiler\ support\ with\ SGI's\ compilers.}}
+\DoxyCodeLine{00104\ \textcolor{comment}{//\ Whatever\ map\ SGI\ style\ type\ traits\ to\ boost\ equivalents:}}
+\DoxyCodeLine{00105\ \textcolor{comment}{//}}
+\DoxyCodeLine{00106\ \textcolor{preprocessor}{\#define\ SC\_BOOST\_HAS\_SGI\_TYPE\_TRAITS}}
+\DoxyCodeLine{00107\ }
+\DoxyCodeLine{00108\ \textcolor{preprocessor}{\#define\ SC\_BOOST\_STDLIB\ "{}SGI\ standard\ library"{}}}
+\DoxyCodeLine{00109\ }
+\DoxyCodeLine{00110\ }
+\DoxyCodeLine{00111\ }
+
+\end{DoxyCode}

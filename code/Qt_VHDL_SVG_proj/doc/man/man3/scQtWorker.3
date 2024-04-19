@@ -1,0 +1,127 @@
+.TH "scQtWorker" 3 "VHDL simulator" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+scQtWorker
+.SH SYNOPSIS
+.br
+.PP
+.PP
+\fR#include <scqt_worker\&.h>\fP
+.PP
+Inherits QObject\&.
+.SS "Public Slots"
+
+.in +1c
+.ti -1c
+.RI "\fBvoid\fP \fBgetHierarchy\fP ()"
+.br
+.ti -1c
+.RI "\fBvoid\fP \fBgetReport\fP ()"
+.br
+.ti -1c
+.RI "\fBvoid\fP \fBsetTraceList\fP (\fBQStringList\fP \fBtl\fP)"
+.br
+.ti -1c
+.RI "\fBvoid\fP \fBsetNewState\fP (int \fBnewState\fP)"
+.br
+.ti -1c
+.RI "\fBvoid\fP \fBdoStart\fP (\fBvoid\fP)"
+.br
+.ti -1c
+.RI "\fBvoid\fP \fBsetRunParameters\fP (\fBsc_thread_run_t\fP &\fBrunParams\fP)"
+.br
+.ti -1c
+.RI "\fBvoid\fP \fBsetConfigParameters\fP (\fBsc_thread_config_t\fP &\fBconfigParams\fP)"
+.br
+.in -1c
+.SS "Signals"
+
+.in +1c
+.ti -1c
+.RI "\fBvoid\fP \fBMessage\fP (\fBQString\fP \fBconst\fP &\fBmsg_origin\fP, \fBQString\fP \fBconst\fP &\fBmsg_level\fP, \fBQString\fP \fBconst\fP &msg)"
+.br
+.ti -1c
+.RI "\fBvoid\fP \fBsignalHierarchy\fP (\fBQStringList\fP \fBhier\fP)"
+.br
+.ti -1c
+.RI "\fBvoid\fP \fBsignalReport\fP (\fBQStringList\fP rep)"
+.br
+.in -1c
+.SS "Public Member Functions"
+
+.in +1c
+.ti -1c
+.RI "\fBscQtWorker\fP (QObject *parent=\fBnullptr\fP)"
+.br
+.ti -1c
+.RI "\fB~scQtWorker\fP ()"
+.br
+.in -1c
+.SS "Private Member Functions"
+
+.in +1c
+.ti -1c
+.RI "\fBvoid\fP \fB_sendMessage\fP (\fBQString\fP \fBconst\fP &\fBmsg_level\fP, \fBQString\fP \fBconst\fP &msg)"
+.br
+.in -1c
+.SS "Private Attributes"
+
+.in +1c
+.ti -1c
+.RI "\fBQMutex\fP \fBm_DataMutex\fP"
+.br
+.ti -1c
+.RI "\fBpthread_t\fP \fBm_scThreadHandle\fP"
+.br
+.ti -1c
+.RI "\fBsc_thread_config_t\fP \fBm_ConfigParams\fP"
+.br
+.ti -1c
+.RI "\fBsc_thread_run_t\fP \fBm_RunParams\fP"
+.br
+.in -1c
+.SH "Constructor & Destructor Documentation"
+.PP 
+.SS "scQtWorker::scQtWorker (QObject * parent = \fR\fBnullptr\fP\fP)\fR [explicit]\fP"
+
+.SS "scQtWorker::~scQtWorker ()"
+
+.SH "Member Function Documentation"
+.PP 
+.SS "\fBvoid\fP scQtWorker::_sendMessage (\fBQString\fP \fBconst\fP & msg_level, \fBQString\fP \fBconst\fP & msg)\fR [private]\fP"
+
+.SS "\fBvoid\fP scQtWorker::doStart (\fBvoid\fP)\fR [slot]\fP"
+
+.SS "\fBvoid\fP scQtWorker::getHierarchy ()\fR [slot]\fP"
+
+.SS "\fBvoid\fP scQtWorker::getReport ()\fR [slot]\fP"
+
+.SS "\fBvoid\fP scQtWorker::Message (\fBQString\fP \fBconst\fP & msg_origin, \fBQString\fP \fBconst\fP & msg_level, \fBQString\fP \fBconst\fP & msg)\fR [signal]\fP"
+
+.SS "\fBvoid\fP scQtWorker::setConfigParameters (\fBsc_thread_config_t\fP & configParams)\fR [slot]\fP"
+
+.SS "\fBvoid\fP scQtWorker::setNewState (int newState)\fR [slot]\fP"
+
+.SS "\fBvoid\fP scQtWorker::setRunParameters (\fBsc_thread_run_t\fP & runParams)\fR [slot]\fP"
+
+.SS "\fBvoid\fP scQtWorker::setTraceList (\fBQStringList\fP tl)\fR [slot]\fP"
+
+.SS "\fBvoid\fP scQtWorker::signalHierarchy (\fBQStringList\fP hier)\fR [signal]\fP"
+
+.SS "\fBvoid\fP scQtWorker::signalReport (\fBQStringList\fP rep)\fR [signal]\fP"
+
+.SH "Member Data Documentation"
+.PP 
+.SS "\fBsc_thread_config_t\fP scQtWorker::m_ConfigParams\fR [private]\fP"
+
+.SS "\fBQMutex\fP scQtWorker::m_DataMutex\fR [private]\fP"
+
+.SS "\fBsc_thread_run_t\fP scQtWorker::m_RunParams\fR [private]\fP"
+
+.SS "\fBpthread_t\fP scQtWorker::m_scThreadHandle\fR [private]\fP"
+
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for VHDL simulator from the source code\&.

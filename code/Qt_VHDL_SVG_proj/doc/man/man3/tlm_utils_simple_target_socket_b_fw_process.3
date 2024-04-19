@@ -1,0 +1,225 @@
+.TH "tlm_utils::simple_target_socket_b< MODULE, BUSWIDTH, TYPES, POL >::fw_process" 3 "VHDL simulator" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+tlm_utils::simple_target_socket_b< MODULE, BUSWIDTH, TYPES, POL >::fw_process
+.SH SYNOPSIS
+.br
+.PP
+.PP
+Inherits \fBtlm::tlm_fw_transport_if< TYPES >\fP, and \fBtlm::tlm_mm_interface\fP\&.
+.SS "Classes"
+
+.in +1c
+.ti -1c
+.RI "struct \fBmm_end_event_ext\fP"
+.br
+.ti -1c
+.RI "class \fBprocess_handle_class\fP"
+.br
+.ti -1c
+.RI "class \fBprocess_handle_list\fP"
+.br
+.in -1c
+.SS "Public Types"
+
+.in +1c
+.ti -1c
+.RI "\fBtypedef\fP \fBsync_enum_type\fP(MODULE::* \fBNBTransportPtr\fP) (\fBtransaction_type\fP &, \fBphase_type\fP &, \fBsc_core::sc_time\fP &)"
+.br
+.ti -1c
+.RI "\fBtypedef\fP \fBvoid\fP(MODULE::* \fBBTransportPtr\fP) (\fBtransaction_type\fP &, \fBsc_core::sc_time\fP &)"
+.br
+.ti -1c
+.RI "\fBtypedef\fP \fBunsigned\fP int(MODULE::* \fBTransportDbgPtr\fP) (\fBtransaction_type\fP &)"
+.br
+.ti -1c
+.RI "\fBtypedef\fP \fBbool\fP(MODULE::* \fBGetDirectMemPtr\fP) (\fBtransaction_type\fP &, \fBtlm::tlm_dmi\fP &)"
+.br
+.in -1c
+.SS "Public Member Functions"
+
+.in +1c
+.ti -1c
+.RI "\fBfw_process\fP (\fBsimple_target_socket_b\fP *\fBp_own\fP)"
+.br
+.ti -1c
+.RI "\fBvoid\fP \fBstart_of_simulation\fP ()"
+.br
+.ti -1c
+.RI "\fBvoid\fP \fBset_nb_transport_ptr\fP (\fBMODULE\fP *\fBmod\fP, \fBNBTransportPtr\fP p)"
+.br
+.ti -1c
+.RI "\fBvoid\fP \fBset_b_transport_ptr\fP (\fBMODULE\fP *\fBmod\fP, \fBBTransportPtr\fP p)"
+.br
+.ti -1c
+.RI "\fBvoid\fP \fBset_transport_dbg_ptr\fP (\fBMODULE\fP *\fBmod\fP, \fBTransportDbgPtr\fP p)"
+.br
+.ti -1c
+.RI "\fBvoid\fP \fBset_get_direct_mem_ptr\fP (\fBMODULE\fP *\fBmod\fP, \fBGetDirectMemPtr\fP p)"
+.br
+.ti -1c
+.RI "\fBsync_enum_type\fP \fBnb_transport_fw\fP (\fBtransaction_type\fP &\fBtrans\fP, \fBphase_type\fP &\fBphase\fP, \fBsc_core::sc_time\fP &t)"
+.br
+.ti -1c
+.RI "\fBvoid\fP \fBb_transport\fP (\fBtransaction_type\fP &\fBtrans\fP, \fBsc_core::sc_time\fP &t)"
+.br
+.ti -1c
+.RI "\fBunsigned\fP int \fBtransport_dbg\fP (\fBtransaction_type\fP &\fBtrans\fP)"
+.br
+.ti -1c
+.RI "\fBbool\fP \fBget_direct_mem_ptr\fP (\fBtransaction_type\fP &\fBtrans\fP, \fBtlm::tlm_dmi\fP &\fBdmi_data\fP)"
+.br
+.in -1c
+
+Public Member Functions inherited from \fBsc_core::sc_interface\fP
+.in +1c
+.ti -1c
+.RI "\fBvirtual\fP \fBvoid\fP \fBregister_port\fP (\fBsc_port_base\fP &\fBport_\fP, \fBconst\fP \fBchar\fP *\fBif_typename_\fP)"
+.br
+.ti -1c
+.RI "\fBvirtual\fP \fBconst\fP \fBsc_event\fP & \fBdefault_event\fP () \fBconst\fP"
+.br
+.ti -1c
+.RI "\fBvirtual\fP \fB~sc_interface\fP ()"
+.br
+.in -1c
+
+Public Member Functions inherited from \fBtlm::tlm_mm_interface\fP
+.in +1c
+.ti -1c
+.RI "\fBvirtual\fP \fB~tlm_mm_interface\fP ()"
+.br
+.in -1c
+.SS "Private Member Functions"
+
+.in +1c
+.ti -1c
+.RI "\fBvoid\fP \fBnb2b_thread\fP (\fBprocess_handle_class\fP *\fBh\fP)"
+.br
+.ti -1c
+.RI "\fBvoid\fP \fBb2nb_thread\fP ()"
+.br
+.ti -1c
+.RI "\fBvoid\fP \fBfree\fP (\fBtlm::tlm_generic_payload\fP *\fBtrans\fP)"
+.br
+.in -1c
+.SS "Private Attributes"
+
+.in +1c
+.ti -1c
+.RI "\fBprocess_handle_list\fP \fBm_process_handle\fP"
+.br
+.ti -1c
+.RI "\fBsimple_target_socket_b\fP * \fBm_owner\fP"
+.br
+.ti -1c
+.RI "\fBMODULE\fP * \fBm_mod\fP"
+.br
+.ti -1c
+.RI "\fBNBTransportPtr\fP \fBm_nb_transport_ptr\fP"
+.br
+.ti -1c
+.RI "\fBBTransportPtr\fP \fBm_b_transport_ptr\fP"
+.br
+.ti -1c
+.RI "\fBTransportDbgPtr\fP \fBm_transport_dbg_ptr\fP"
+.br
+.ti -1c
+.RI "\fBGetDirectMemPtr\fP \fBm_get_direct_mem_ptr\fP"
+.br
+.ti -1c
+.RI "\fBpeq_with_get\fP< \fBtransaction_type\fP > \fBm_peq\fP"
+.br
+.ti -1c
+.RI "\fBbool\fP \fBm_response_in_progress\fP"
+.br
+.ti -1c
+.RI "\fBsc_core::sc_event\fP \fBm_end_response\fP"
+.br
+.in -1c
+.SS "Additional Inherited Members"
+
+
+Protected Member Functions inherited from \fBsc_core::sc_interface\fP
+.in +1c
+.ti -1c
+.RI "\fBsc_interface\fP ()"
+.br
+.in -1c
+.SH "Member Typedef Documentation"
+.PP 
+.SS "template<\fBtypename\fP \fBMODULE\fP , \fBunsigned\fP int BUSWIDTH, \fBtypename\fP \fBTYPES\fP , \fBsc_core::sc_port_policy\fP POL = sc_core::SC_ONE_OR_MORE_BOUND> \fBtypedef\fP \fBvoid\fP(MODULE::* \fBtlm_utils::simple_target_socket_b\fP< \fBMODULE\fP, \fBBUSWIDTH\fP, \fBTYPES\fP, \fBPOL\fP >::fw_process::BTransportPtr) (\fBtransaction_type\fP &, \fBsc_core::sc_time\fP &)"
+
+.SS "template<\fBtypename\fP \fBMODULE\fP , \fBunsigned\fP int BUSWIDTH, \fBtypename\fP \fBTYPES\fP , \fBsc_core::sc_port_policy\fP POL = sc_core::SC_ONE_OR_MORE_BOUND> \fBtypedef\fP \fBbool\fP(MODULE::* \fBtlm_utils::simple_target_socket_b\fP< \fBMODULE\fP, \fBBUSWIDTH\fP, \fBTYPES\fP, \fBPOL\fP >::fw_process::GetDirectMemPtr) (\fBtransaction_type\fP &, \fBtlm::tlm_dmi\fP &)"
+
+.SS "template<\fBtypename\fP \fBMODULE\fP , \fBunsigned\fP int BUSWIDTH, \fBtypename\fP \fBTYPES\fP , \fBsc_core::sc_port_policy\fP POL = sc_core::SC_ONE_OR_MORE_BOUND> \fBtypedef\fP \fBsync_enum_type\fP(MODULE::* \fBtlm_utils::simple_target_socket_b\fP< \fBMODULE\fP, \fBBUSWIDTH\fP, \fBTYPES\fP, \fBPOL\fP >::fw_process::NBTransportPtr) (\fBtransaction_type\fP &, \fBphase_type\fP &, \fBsc_core::sc_time\fP &)"
+
+.SS "template<\fBtypename\fP \fBMODULE\fP , \fBunsigned\fP int BUSWIDTH, \fBtypename\fP \fBTYPES\fP , \fBsc_core::sc_port_policy\fP POL = sc_core::SC_ONE_OR_MORE_BOUND> \fBtypedef\fP \fBunsigned\fP int(MODULE::* \fBtlm_utils::simple_target_socket_b\fP< \fBMODULE\fP, \fBBUSWIDTH\fP, \fBTYPES\fP, \fBPOL\fP >::fw_process::TransportDbgPtr) (\fBtransaction_type\fP &)"
+
+.SH "Constructor & Destructor Documentation"
+.PP 
+.SS "template<\fBtypename\fP \fBMODULE\fP , \fBunsigned\fP int BUSWIDTH, \fBtypename\fP \fBTYPES\fP , \fBsc_core::sc_port_policy\fP POL = sc_core::SC_ONE_OR_MORE_BOUND> \fBtlm_utils::simple_target_socket_b\fP< \fBMODULE\fP, \fBBUSWIDTH\fP, \fBTYPES\fP, \fBPOL\fP >::fw_process::fw_process (\fBsimple_target_socket_b\fP * p_own)\fR [inline]\fP"
+
+.SH "Member Function Documentation"
+.PP 
+.SS "template<\fBtypename\fP \fBMODULE\fP , \fBunsigned\fP int BUSWIDTH, \fBtypename\fP \fBTYPES\fP , \fBsc_core::sc_port_policy\fP POL = sc_core::SC_ONE_OR_MORE_BOUND> \fBvoid\fP \fBtlm_utils::simple_target_socket_b\fP< \fBMODULE\fP, \fBBUSWIDTH\fP, \fBTYPES\fP, \fBPOL\fP >::fw_process::b2nb_thread ()\fR [inline]\fP, \fR [private]\fP"
+
+.SS "template<\fBtypename\fP \fBMODULE\fP , \fBunsigned\fP int BUSWIDTH, \fBtypename\fP \fBTYPES\fP , \fBsc_core::sc_port_policy\fP POL = sc_core::SC_ONE_OR_MORE_BOUND> \fBvoid\fP \fBtlm_utils::simple_target_socket_b\fP< \fBMODULE\fP, \fBBUSWIDTH\fP, \fBTYPES\fP, \fBPOL\fP >::fw_process::b_transport (\fBtransaction_type\fP & trans, \fBsc_core::sc_time\fP & t)\fR [inline]\fP, \fR [virtual]\fP"
+
+.PP
+Implements \fBtlm::tlm_blocking_transport_if< TYPES::tlm_payload_type >\fP\&.
+.SS "template<\fBtypename\fP \fBMODULE\fP , \fBunsigned\fP int BUSWIDTH, \fBtypename\fP \fBTYPES\fP , \fBsc_core::sc_port_policy\fP POL = sc_core::SC_ONE_OR_MORE_BOUND> \fBvoid\fP \fBtlm_utils::simple_target_socket_b\fP< \fBMODULE\fP, \fBBUSWIDTH\fP, \fBTYPES\fP, \fBPOL\fP >::fw_process::free (\fBtlm::tlm_generic_payload\fP * trans)\fR [inline]\fP, \fR [private]\fP, \fR [virtual]\fP"
+
+.PP
+Implements \fBtlm::tlm_mm_interface\fP\&.
+.SS "template<\fBtypename\fP \fBMODULE\fP , \fBunsigned\fP int BUSWIDTH, \fBtypename\fP \fBTYPES\fP , \fBsc_core::sc_port_policy\fP POL = sc_core::SC_ONE_OR_MORE_BOUND> \fBbool\fP \fBtlm_utils::simple_target_socket_b\fP< \fBMODULE\fP, \fBBUSWIDTH\fP, \fBTYPES\fP, \fBPOL\fP >::fw_process::get_direct_mem_ptr (\fBtransaction_type\fP & trans, \fBtlm::tlm_dmi\fP & dmi_data)\fR [inline]\fP, \fR [virtual]\fP"
+
+.PP
+Implements \fBtlm::tlm_fw_direct_mem_if< TYPES::tlm_payload_type >\fP\&.
+.SS "template<\fBtypename\fP \fBMODULE\fP , \fBunsigned\fP int BUSWIDTH, \fBtypename\fP \fBTYPES\fP , \fBsc_core::sc_port_policy\fP POL = sc_core::SC_ONE_OR_MORE_BOUND> \fBvoid\fP \fBtlm_utils::simple_target_socket_b\fP< \fBMODULE\fP, \fBBUSWIDTH\fP, \fBTYPES\fP, \fBPOL\fP >::fw_process::nb2b_thread (\fBprocess_handle_class\fP * h)\fR [inline]\fP, \fR [private]\fP"
+
+.SS "template<\fBtypename\fP \fBMODULE\fP , \fBunsigned\fP int BUSWIDTH, \fBtypename\fP \fBTYPES\fP , \fBsc_core::sc_port_policy\fP POL = sc_core::SC_ONE_OR_MORE_BOUND> \fBsync_enum_type\fP \fBtlm_utils::simple_target_socket_b\fP< \fBMODULE\fP, \fBBUSWIDTH\fP, \fBTYPES\fP, \fBPOL\fP >::fw_process::nb_transport_fw (\fBtransaction_type\fP & trans, \fBphase_type\fP & phase, \fBsc_core::sc_time\fP & t)\fR [inline]\fP, \fR [virtual]\fP"
+
+.PP
+Implements \fBtlm::tlm_fw_nonblocking_transport_if< TYPES::tlm_payload_type, TYPES::tlm_phase_type >\fP\&.
+.SS "template<\fBtypename\fP \fBMODULE\fP , \fBunsigned\fP int BUSWIDTH, \fBtypename\fP \fBTYPES\fP , \fBsc_core::sc_port_policy\fP POL = sc_core::SC_ONE_OR_MORE_BOUND> \fBvoid\fP \fBtlm_utils::simple_target_socket_b\fP< \fBMODULE\fP, \fBBUSWIDTH\fP, \fBTYPES\fP, \fBPOL\fP >::fw_process::set_b_transport_ptr (\fBMODULE\fP * mod, \fBBTransportPtr\fP p)\fR [inline]\fP"
+
+.SS "template<\fBtypename\fP \fBMODULE\fP , \fBunsigned\fP int BUSWIDTH, \fBtypename\fP \fBTYPES\fP , \fBsc_core::sc_port_policy\fP POL = sc_core::SC_ONE_OR_MORE_BOUND> \fBvoid\fP \fBtlm_utils::simple_target_socket_b\fP< \fBMODULE\fP, \fBBUSWIDTH\fP, \fBTYPES\fP, \fBPOL\fP >::fw_process::set_get_direct_mem_ptr (\fBMODULE\fP * mod, \fBGetDirectMemPtr\fP p)\fR [inline]\fP"
+
+.SS "template<\fBtypename\fP \fBMODULE\fP , \fBunsigned\fP int BUSWIDTH, \fBtypename\fP \fBTYPES\fP , \fBsc_core::sc_port_policy\fP POL = sc_core::SC_ONE_OR_MORE_BOUND> \fBvoid\fP \fBtlm_utils::simple_target_socket_b\fP< \fBMODULE\fP, \fBBUSWIDTH\fP, \fBTYPES\fP, \fBPOL\fP >::fw_process::set_nb_transport_ptr (\fBMODULE\fP * mod, \fBNBTransportPtr\fP p)\fR [inline]\fP"
+
+.SS "template<\fBtypename\fP \fBMODULE\fP , \fBunsigned\fP int BUSWIDTH, \fBtypename\fP \fBTYPES\fP , \fBsc_core::sc_port_policy\fP POL = sc_core::SC_ONE_OR_MORE_BOUND> \fBvoid\fP \fBtlm_utils::simple_target_socket_b\fP< \fBMODULE\fP, \fBBUSWIDTH\fP, \fBTYPES\fP, \fBPOL\fP >::fw_process::set_transport_dbg_ptr (\fBMODULE\fP * mod, \fBTransportDbgPtr\fP p)\fR [inline]\fP"
+
+.SS "template<\fBtypename\fP \fBMODULE\fP , \fBunsigned\fP int BUSWIDTH, \fBtypename\fP \fBTYPES\fP , \fBsc_core::sc_port_policy\fP POL = sc_core::SC_ONE_OR_MORE_BOUND> \fBvoid\fP \fBtlm_utils::simple_target_socket_b\fP< \fBMODULE\fP, \fBBUSWIDTH\fP, \fBTYPES\fP, \fBPOL\fP >::fw_process::start_of_simulation ()\fR [inline]\fP"
+
+.SS "template<\fBtypename\fP \fBMODULE\fP , \fBunsigned\fP int BUSWIDTH, \fBtypename\fP \fBTYPES\fP , \fBsc_core::sc_port_policy\fP POL = sc_core::SC_ONE_OR_MORE_BOUND> \fBunsigned\fP int \fBtlm_utils::simple_target_socket_b\fP< \fBMODULE\fP, \fBBUSWIDTH\fP, \fBTYPES\fP, \fBPOL\fP >::fw_process::transport_dbg (\fBtransaction_type\fP & trans)\fR [inline]\fP, \fR [virtual]\fP"
+
+.PP
+Implements \fBtlm::tlm_transport_dbg_if< TYPES::tlm_payload_type >\fP\&.
+.SH "Member Data Documentation"
+.PP 
+.SS "template<\fBtypename\fP \fBMODULE\fP , \fBunsigned\fP int BUSWIDTH, \fBtypename\fP \fBTYPES\fP , \fBsc_core::sc_port_policy\fP POL = sc_core::SC_ONE_OR_MORE_BOUND> \fBBTransportPtr\fP \fBtlm_utils::simple_target_socket_b\fP< \fBMODULE\fP, \fBBUSWIDTH\fP, \fBTYPES\fP, \fBPOL\fP >::fw_process::m_b_transport_ptr\fR [private]\fP"
+
+.SS "template<\fBtypename\fP \fBMODULE\fP , \fBunsigned\fP int BUSWIDTH, \fBtypename\fP \fBTYPES\fP , \fBsc_core::sc_port_policy\fP POL = sc_core::SC_ONE_OR_MORE_BOUND> \fBsc_core::sc_event\fP \fBtlm_utils::simple_target_socket_b\fP< \fBMODULE\fP, \fBBUSWIDTH\fP, \fBTYPES\fP, \fBPOL\fP >::fw_process::m_end_response\fR [private]\fP"
+
+.SS "template<\fBtypename\fP \fBMODULE\fP , \fBunsigned\fP int BUSWIDTH, \fBtypename\fP \fBTYPES\fP , \fBsc_core::sc_port_policy\fP POL = sc_core::SC_ONE_OR_MORE_BOUND> \fBGetDirectMemPtr\fP \fBtlm_utils::simple_target_socket_b\fP< \fBMODULE\fP, \fBBUSWIDTH\fP, \fBTYPES\fP, \fBPOL\fP >::fw_process::m_get_direct_mem_ptr\fR [private]\fP"
+
+.SS "template<\fBtypename\fP \fBMODULE\fP , \fBunsigned\fP int BUSWIDTH, \fBtypename\fP \fBTYPES\fP , \fBsc_core::sc_port_policy\fP POL = sc_core::SC_ONE_OR_MORE_BOUND> \fBMODULE\fP* \fBtlm_utils::simple_target_socket_b\fP< \fBMODULE\fP, \fBBUSWIDTH\fP, \fBTYPES\fP, \fBPOL\fP >::fw_process::m_mod\fR [private]\fP"
+
+.SS "template<\fBtypename\fP \fBMODULE\fP , \fBunsigned\fP int BUSWIDTH, \fBtypename\fP \fBTYPES\fP , \fBsc_core::sc_port_policy\fP POL = sc_core::SC_ONE_OR_MORE_BOUND> \fBNBTransportPtr\fP \fBtlm_utils::simple_target_socket_b\fP< \fBMODULE\fP, \fBBUSWIDTH\fP, \fBTYPES\fP, \fBPOL\fP >::fw_process::m_nb_transport_ptr\fR [private]\fP"
+
+.SS "template<\fBtypename\fP \fBMODULE\fP , \fBunsigned\fP int BUSWIDTH, \fBtypename\fP \fBTYPES\fP , \fBsc_core::sc_port_policy\fP POL = sc_core::SC_ONE_OR_MORE_BOUND> \fBsimple_target_socket_b\fP* \fBtlm_utils::simple_target_socket_b\fP< \fBMODULE\fP, \fBBUSWIDTH\fP, \fBTYPES\fP, \fBPOL\fP >::fw_process::m_owner\fR [private]\fP"
+
+.SS "template<\fBtypename\fP \fBMODULE\fP , \fBunsigned\fP int BUSWIDTH, \fBtypename\fP \fBTYPES\fP , \fBsc_core::sc_port_policy\fP POL = sc_core::SC_ONE_OR_MORE_BOUND> \fBpeq_with_get\fP<\fBtransaction_type\fP> \fBtlm_utils::simple_target_socket_b\fP< \fBMODULE\fP, \fBBUSWIDTH\fP, \fBTYPES\fP, \fBPOL\fP >::fw_process::m_peq\fR [private]\fP"
+
+.SS "template<\fBtypename\fP \fBMODULE\fP , \fBunsigned\fP int BUSWIDTH, \fBtypename\fP \fBTYPES\fP , \fBsc_core::sc_port_policy\fP POL = sc_core::SC_ONE_OR_MORE_BOUND> \fBprocess_handle_list\fP \fBtlm_utils::simple_target_socket_b\fP< \fBMODULE\fP, \fBBUSWIDTH\fP, \fBTYPES\fP, \fBPOL\fP >::fw_process::m_process_handle\fR [private]\fP"
+
+.SS "template<\fBtypename\fP \fBMODULE\fP , \fBunsigned\fP int BUSWIDTH, \fBtypename\fP \fBTYPES\fP , \fBsc_core::sc_port_policy\fP POL = sc_core::SC_ONE_OR_MORE_BOUND> \fBbool\fP \fBtlm_utils::simple_target_socket_b\fP< \fBMODULE\fP, \fBBUSWIDTH\fP, \fBTYPES\fP, \fBPOL\fP >::fw_process::m_response_in_progress\fR [private]\fP"
+
+.SS "template<\fBtypename\fP \fBMODULE\fP , \fBunsigned\fP int BUSWIDTH, \fBtypename\fP \fBTYPES\fP , \fBsc_core::sc_port_policy\fP POL = sc_core::SC_ONE_OR_MORE_BOUND> \fBTransportDbgPtr\fP \fBtlm_utils::simple_target_socket_b\fP< \fBMODULE\fP, \fBBUSWIDTH\fP, \fBTYPES\fP, \fBPOL\fP >::fw_process::m_transport_dbg_ptr\fR [private]\fP"
+
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for VHDL simulator from the source code\&.

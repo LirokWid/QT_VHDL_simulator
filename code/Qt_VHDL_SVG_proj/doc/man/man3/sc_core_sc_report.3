@@ -1,0 +1,223 @@
+.TH "sc_core::sc_report" 3 "VHDL simulator" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+sc_core::sc_report
+.SH SYNOPSIS
+.br
+.PP
+.PP
+\fR#include <sc_report\&.h>\fP
+.PP
+Inherits std::exception\&.
+.SS "Public Member Functions"
+
+.in +1c
+.ti -1c
+.RI "\fBsc_report\fP (\fBconst\fP \fBsc_report\fP &)"
+.br
+.ti -1c
+.RI "\fBsc_report\fP & \fBoperator=\fP (\fBconst\fP \fBsc_report\fP &)"
+.br
+.ti -1c
+.RI "\fBvirtual\fP \fB~sc_report\fP () \fBSC_NOEXCEPT_\fP"
+.br
+.ti -1c
+.RI "\fBconst\fP \fBchar\fP * \fBget_msg_type\fP () \fBconst\fP"
+.br
+.ti -1c
+.RI "\fBconst\fP \fBchar\fP * \fBget_msg\fP () \fBconst\fP"
+.br
+.ti -1c
+.RI "\fBsc_severity\fP \fBget_severity\fP () \fBconst\fP"
+.br
+.ti -1c
+.RI "\fBconst\fP \fBchar\fP * \fBget_file_name\fP () \fBconst\fP"
+.br
+.ti -1c
+.RI "int \fBget_line_number\fP () \fBconst\fP"
+.br
+.ti -1c
+.RI "\fBconst\fP \fBsc_time\fP & \fBget_time\fP () \fBconst\fP"
+.br
+.ti -1c
+.RI "\fBconst\fP \fBchar\fP * \fBget_process_name\fP () \fBconst\fP"
+.br
+.ti -1c
+.RI "int \fBget_verbosity\fP () \fBconst\fP"
+.br
+.ti -1c
+.RI "\fBbool\fP \fBvalid\fP () \fBconst\fP"
+.br
+.ti -1c
+.RI "\fBvirtual\fP \fBconst\fP \fBchar\fP * \fBwhat\fP () \fBconst\fP \fBSC_NOEXCEPT_\fP"
+.br
+.ti -1c
+.RI "\fBvoid\fP \fBswap\fP (\fBsc_report\fP &)"
+.br
+.ti -1c
+.RI "int \fBget_id\fP () \fBconst\fP"
+.br
+.in -1c
+.SS "Static Public Member Functions"
+
+.in +1c
+.ti -1c
+.RI "\fBstatic\fP \fBconst\fP \fBchar\fP * \fBget_message\fP (int id)"
+.br
+.ti -1c
+.RI "\fBstatic\fP \fBbool\fP \fBis_suppressed\fP (int id)"
+.br
+.ti -1c
+.RI "\fBstatic\fP \fBvoid\fP \fBmake_warnings_errors\fP (\fBbool\fP)"
+.br
+.ti -1c
+.RI "\fBstatic\fP \fBvoid\fP \fBregister_id\fP (int id, \fBconst\fP \fBchar\fP *\fBmsg\fP)"
+.br
+.ti -1c
+.RI "\fBstatic\fP \fBvoid\fP \fBsuppress_id\fP (int id, \fBbool\fP)"
+.br
+.ti -1c
+.RI "\fBstatic\fP \fBvoid\fP \fBsuppress_infos\fP (\fBbool\fP)"
+.br
+.ti -1c
+.RI "\fBstatic\fP \fBvoid\fP \fBsuppress_warnings\fP (\fBbool\fP)"
+.br
+.in -1c
+.SS "Protected Member Functions"
+
+.in +1c
+.ti -1c
+.RI "\fBsc_report\fP (\fBsc_severity\fP, \fBconst\fP \fBsc_msg_def\fP *, \fBconst\fP \fBchar\fP *\fBmsg\fP, \fBconst\fP \fBchar\fP *\fBfile\fP, int \fBline\fP, int verbosity_level=\fBSC_MEDIUM\fP)"
+.br
+.in -1c
+.SS "Protected Attributes"
+
+.in +1c
+.ti -1c
+.RI "\fBsc_severity\fP \fBseverity\fP"
+.br
+.ti -1c
+.RI "\fBconst\fP \fBsc_msg_def\fP * \fBmd\fP"
+.br
+.ti -1c
+.RI "\fBchar\fP * \fBmsg\fP"
+.br
+.ti -1c
+.RI "\fBchar\fP * \fBfile\fP"
+.br
+.ti -1c
+.RI "int \fBline\fP"
+.br
+.ti -1c
+.RI "\fBsc_time\fP * \fBtimestamp\fP"
+.br
+.ti -1c
+.RI "\fBchar\fP * \fBprocess_name\fP"
+.br
+.ti -1c
+.RI "int \fBm_verbosity_level\fP"
+.br
+.ti -1c
+.RI "\fBchar\fP * \fBm_what\fP"
+.br
+.in -1c
+.SS "Private Member Functions"
+
+.in +1c
+.ti -1c
+.RI "\fBsc_report\fP ()"
+.br
+.in -1c
+.SS "Friends"
+
+.in +1c
+.ti -1c
+.RI "\fBclass\fP \fBsc_report_handler\fP"
+.br
+.ti -1c
+.RI "\fBSC_API\fP \fBsc_report\fP * \fBsc_handle_exception\fP ()"
+.br
+.in -1c
+.SH "Constructor & Destructor Documentation"
+.PP 
+.SS "sc_core::sc_report::sc_report ()\fR [private]\fP"
+
+.SS "sc_core::sc_report::sc_report (\fBconst\fP \fBsc_report\fP &)"
+
+.SS "\fBvirtual\fP sc_core::sc_report::~sc_report ()\fR [virtual]\fP"
+
+.SS "sc_core::sc_report::sc_report (\fBsc_severity\fP, \fBconst\fP \fBsc_msg_def\fP *, \fBconst\fP \fBchar\fP * msg, \fBconst\fP \fBchar\fP * file, int line, int verbosity_level = \fR\fBSC_MEDIUM\fP\fP)\fR [protected]\fP"
+
+.SH "Member Function Documentation"
+.PP 
+.SS "\fBconst\fP \fBchar\fP * sc_core::sc_report::get_file_name () const\fR [inline]\fP"
+
+.SS "int sc_core::sc_report::get_id () const"
+
+.SS "int sc_core::sc_report::get_line_number () const\fR [inline]\fP"
+
+.SS "\fBstatic\fP \fBconst\fP \fBchar\fP * sc_core::sc_report::get_message (int id)\fR [static]\fP"
+
+.SS "\fBconst\fP \fBchar\fP * sc_core::sc_report::get_msg () const\fR [inline]\fP"
+
+.SS "\fBconst\fP \fBchar\fP * sc_core::sc_report::get_msg_type () const"
+
+.SS "\fBconst\fP \fBchar\fP * sc_core::sc_report::get_process_name () const"
+
+.SS "\fBsc_severity\fP sc_core::sc_report::get_severity () const\fR [inline]\fP"
+
+.SS "\fBconst\fP \fBsc_time\fP & sc_core::sc_report::get_time () const\fR [inline]\fP"
+
+.SS "int sc_core::sc_report::get_verbosity () const\fR [inline]\fP"
+
+.SS "\fBstatic\fP \fBbool\fP sc_core::sc_report::is_suppressed (int id)\fR [static]\fP"
+
+.SS "\fBstatic\fP \fBvoid\fP sc_core::sc_report::make_warnings_errors (\fBbool\fP)\fR [static]\fP"
+
+.SS "\fBsc_report\fP & sc_core::sc_report::operator= (\fBconst\fP \fBsc_report\fP &)"
+
+.SS "\fBstatic\fP \fBvoid\fP sc_core::sc_report::register_id (int id, \fBconst\fP \fBchar\fP * msg)\fR [static]\fP"
+
+.SS "\fBstatic\fP \fBvoid\fP sc_core::sc_report::suppress_id (int id, \fBbool\fP)\fR [static]\fP"
+
+.SS "\fBstatic\fP \fBvoid\fP sc_core::sc_report::suppress_infos (\fBbool\fP)\fR [static]\fP"
+
+.SS "\fBstatic\fP \fBvoid\fP sc_core::sc_report::suppress_warnings (\fBbool\fP)\fR [static]\fP"
+
+.SS "\fBvoid\fP sc_core::sc_report::swap (\fBsc_report\fP &)"
+
+.SS "\fBbool\fP sc_core::sc_report::valid () const"
+
+.SS "\fBvirtual\fP \fBconst\fP \fBchar\fP * sc_core::sc_report::what () const\fR [inline]\fP, \fR [virtual]\fP"
+
+.SH "Friends And Related Symbol Documentation"
+.PP 
+.SS "\fBSC_API\fP \fBsc_report\fP * sc_handle_exception ()\fR [friend]\fP"
+
+.SS "\fBfriend\fP \fBclass\fP \fBsc_report_handler\fP\fR [friend]\fP"
+
+.SH "Member Data Documentation"
+.PP 
+.SS "\fBchar\fP* sc_core::sc_report::file\fR [protected]\fP"
+
+.SS "int sc_core::sc_report::line\fR [protected]\fP"
+
+.SS "int sc_core::sc_report::m_verbosity_level\fR [protected]\fP"
+
+.SS "\fBchar\fP* sc_core::sc_report::m_what\fR [protected]\fP"
+
+.SS "\fBconst\fP \fBsc_msg_def\fP* sc_core::sc_report::md\fR [protected]\fP"
+
+.SS "\fBchar\fP* sc_core::sc_report::msg\fR [protected]\fP"
+
+.SS "\fBchar\fP* sc_core::sc_report::process_name\fR [protected]\fP"
+
+.SS "\fBsc_severity\fP sc_core::sc_report::severity\fR [protected]\fP"
+
+.SS "\fBsc_time\fP* sc_core::sc_report::timestamp\fR [protected]\fP"
+
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for VHDL simulator from the source code\&.

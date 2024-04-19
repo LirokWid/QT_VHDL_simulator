@@ -1,0 +1,181 @@
+\doxysection{borland.\+hpp}
+\hypertarget{borland_8hpp_source}{}\label{borland_8hpp_source}\index{C:/Users/BJRODIER/Documents/QT\_REPO/QT\_VHDL\_simulator/code/Ressources/SystemC/include/sysc/packages/boost/config/compiler/borland.hpp@{C:/Users/BJRODIER/Documents/QT\_REPO/QT\_VHDL\_simulator/code/Ressources/SystemC/include/sysc/packages/boost/config/compiler/borland.hpp}}
+\mbox{\hyperlink{borland_8hpp}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{comment}{//\ \ (C)\ Copyright\ John\ Maddock\ 2001\ -\/\ 2003.}}
+\DoxyCodeLine{00002\ \textcolor{comment}{//\ \ (C)\ Copyright\ David\ Abrahams\ 2002\ -\/\ 2003.}}
+\DoxyCodeLine{00003\ \textcolor{comment}{//\ \ (C)\ Copyright\ Aleksey\ Gurtovoy\ 2002.}}
+\DoxyCodeLine{00004\ \textcolor{comment}{//\ \ Use,\ modification\ and\ distribution\ are\ subject\ to\ the}}
+\DoxyCodeLine{00005\ \textcolor{comment}{//\ \ Boost\ Software\ License,\ Version\ 1.0.\ (See\ accompanying\ file}}
+\DoxyCodeLine{00006\ \textcolor{comment}{//\ \ LICENSE\_1\_0.txt\ or\ copy\ at\ http://www.boost.org/LICENSE\_1\_0.txt)}}
+\DoxyCodeLine{00007\ }
+\DoxyCodeLine{00008\ \textcolor{comment}{//\ \ See\ http://www.boost.org\ for\ most\ recent\ version.}}
+\DoxyCodeLine{00009\ }
+\DoxyCodeLine{00010\ \textcolor{comment}{//\ \ Borland\ C++\ compiler\ setup:}}
+\DoxyCodeLine{00011\ }
+\DoxyCodeLine{00012\ \textcolor{comment}{//\ Version\ 5.0\ and\ below:}}
+\DoxyCodeLine{00013\ \textcolor{preprocessor}{\#\ \ \ if\ \_\_BORLANDC\_\_\ <=\ 0x0550}}
+\DoxyCodeLine{00014\ \textcolor{comment}{//\ Borland\ C++Builder\ 4\ and\ 5:}}
+\DoxyCodeLine{00015\ \textcolor{preprocessor}{\#\ \ \ \ \ define\ SC\_BOOST\_NO\_MEMBER\_TEMPLATE\_FRIENDS}}
+\DoxyCodeLine{00016\ \textcolor{preprocessor}{\#\ \ \ \ \ if\ \_\_BORLANDC\_\_\ ==\ 0x0550}}
+\DoxyCodeLine{00017\ \textcolor{comment}{//\ Borland\ C++Builder\ 5,\ command-\/line\ compiler\ 5.5:}}
+\DoxyCodeLine{00018\ \textcolor{preprocessor}{\#\ \ \ \ \ \ \ define\ SC\_BOOST\_NO\_OPERATORS\_IN\_NAMESPACE}}
+\DoxyCodeLine{00019\ \textcolor{preprocessor}{\#\ \ \ \ \ endif}}
+\DoxyCodeLine{00020\ \textcolor{preprocessor}{\#\ \ \ endif}}
+\DoxyCodeLine{00021\ }
+\DoxyCodeLine{00022\ \textcolor{comment}{//\ Version\ 5.51\ and\ below:}}
+\DoxyCodeLine{00023\ \textcolor{preprocessor}{\#if\ (\_\_BORLANDC\_\_\ <=\ 0x551)}}
+\DoxyCodeLine{00024\ \textcolor{preprocessor}{\#\ \ define\ SC\_BOOST\_NO\_CV\_SPECIALIZATIONS}}
+\DoxyCodeLine{00025\ \textcolor{preprocessor}{\#\ \ define\ SC\_BOOST\_NO\_CV\_VOID\_SPECIALIZATIONS}}
+\DoxyCodeLine{00026\ \textcolor{preprocessor}{\#\ \ define\ SC\_BOOST\_NO\_LIMITS\_COMPILE\_TIME\_CONSTANTS}}
+\DoxyCodeLine{00027\ \textcolor{preprocessor}{\#\ \ define\ SC\_BOOST\_NO\_DEDUCED\_TYPENAME}}
+\DoxyCodeLine{00028\ \textcolor{comment}{//\ workaround\ for\ missing\ WCHAR\_MAX/WCHAR\_MIN:}}
+\DoxyCodeLine{00029\ \textcolor{preprocessor}{\#include\ <climits>}}
+\DoxyCodeLine{00030\ \textcolor{preprocessor}{\#include\ <cwchar>}}
+\DoxyCodeLine{00031\ \textcolor{preprocessor}{\#ifndef\ WCHAR\_MAX}}
+\DoxyCodeLine{00032\ \textcolor{preprocessor}{\#\ \ define\ WCHAR\_MAX\ 0xffff}}
+\DoxyCodeLine{00033\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00034\ \textcolor{preprocessor}{\#ifndef\ WCHAR\_MIN}}
+\DoxyCodeLine{00035\ \textcolor{preprocessor}{\#\ \ define\ WCHAR\_MIN\ 0}}
+\DoxyCodeLine{00036\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00037\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00038\ }
+\DoxyCodeLine{00039\ \textcolor{comment}{//\ Version\ 7.0\ (Kylix)\ and\ below:}}
+\DoxyCodeLine{00040\ \textcolor{preprocessor}{\#if\ (\_\_BORLANDC\_\_\ <=\ 0x570)}}
+\DoxyCodeLine{00041\ \textcolor{preprocessor}{\#\ \ define\ SC\_BOOST\_NO\_SFINAE}}
+\DoxyCodeLine{00042\ \textcolor{preprocessor}{\#\ \ define\ SC\_BOOST\_NO\_INTEGRAL\_INT64\_T}}
+\DoxyCodeLine{00043\ \textcolor{preprocessor}{\#\ \ define\ SC\_BOOST\_NO\_DEPENDENT\_NESTED\_DERIVATIONS}}
+\DoxyCodeLine{00044\ \textcolor{preprocessor}{\#\ \ define\ SC\_BOOST\_NO\_PRIVATE\_IN\_AGGREGATE}}
+\DoxyCodeLine{00045\ \textcolor{preprocessor}{\#\ \ define\ SC\_BOOST\_NO\_USING\_TEMPLATE}}
+\DoxyCodeLine{00046\ \textcolor{preprocessor}{\#\ \ define\ SC\_BOOST\_BCB\_PARTIAL\_SPECIALIZATION\_BUG}}
+\DoxyCodeLine{00047\ \textcolor{preprocessor}{\#\ \ define\ SC\_BOOST\_NO\_TEMPLATE\_TEMPLATES}}
+\DoxyCodeLine{00048\ \textcolor{preprocessor}{\#\ \ define\ SC\_BOOST\_NO\_USING\_DECLARATION\_OVERLOADS\_FROM\_TYPENAME\_BASE}}
+\DoxyCodeLine{00049\ \textcolor{preprocessor}{\#\ \ define\ SC\_BOOST\_NO\_MEMBER\_TEMPLATE\_FRIENDS}}
+\DoxyCodeLine{00050\ \ \ \ \textcolor{comment}{//\ we\ shouldn't\ really\ need\ this\ -\/\ but\ too\ many\ things\ choke}}
+\DoxyCodeLine{00051\ \ \ \ \textcolor{comment}{//\ without\ it,\ this\ needs\ more\ investigation:}}
+\DoxyCodeLine{00052\ \textcolor{preprocessor}{\#\ \ define\ SC\_BOOST\_NO\_LIMITS\_COMPILE\_TIME\_CONSTANTS}}
+\DoxyCodeLine{00053\ \textcolor{preprocessor}{\#\ \ define\ SC\_BOOST\_FUNCTION\_SCOPE\_USING\_DECLARATION\_BREAKS\_ADL}}
+\DoxyCodeLine{00054\ \textcolor{preprocessor}{\#\ \ define\ SC\_BOOST\_NO\_IS\_ABSTRACT}}
+\DoxyCodeLine{00055\ \textcolor{preprocessor}{\#\ \ ifdef\ NDEBUG}}
+\DoxyCodeLine{00056\ \ \ \ \ \ \ \textcolor{comment}{//\ fix\ broken\ <cstring>\ so\ that\ Boost.test\ works:}}
+\DoxyCodeLine{00057\ \textcolor{preprocessor}{\#\ \ \ \ \ include\ <cstring>}}
+\DoxyCodeLine{00058\ \textcolor{preprocessor}{\#\ \ \ \ \ undef\ strcmp}}
+\DoxyCodeLine{00059\ \textcolor{preprocessor}{\#\ \ endif}}
+\DoxyCodeLine{00060\ }
+\DoxyCodeLine{00061\ \textcolor{comment}{//}}
+\DoxyCodeLine{00062\ \textcolor{comment}{//\ new\ bug\ in\ 5.61:}}
+\DoxyCodeLine{00063\ \textcolor{preprocessor}{\#if\ (\_\_BORLANDC\_\_\ >=\ 0x561)\ \&\&\ (\_\_BORLANDC\_\_\ <=\ 0x570)}}
+\DoxyCodeLine{00064\ \ \ \ \textcolor{comment}{//\ this\ seems\ to\ be\ needed\ by\ the\ command\ line\ compiler,\ but\ not\ the\ IDE:}}
+\DoxyCodeLine{00065\ \textcolor{preprocessor}{\#\ \ define\ SC\_BOOST\_NO\_MEMBER\_FUNCTION\_SPECIALIZATIONS}}
+\DoxyCodeLine{00066\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00067\ }
+\DoxyCodeLine{00068\ \textcolor{preprocessor}{\#\ \ ifdef\ \_WIN32}}
+\DoxyCodeLine{00069\ \textcolor{preprocessor}{\#\ \ \ \ \ define\ SC\_BOOST\_NO\_SWPRINTF}}
+\DoxyCodeLine{00070\ \textcolor{preprocessor}{\#\ \ elif\ defined(linux)\ ||\ defined(\_\_linux\_\_)\ ||\ defined(\_\_linux)}}
+\DoxyCodeLine{00071\ \ \ \ \ \ \ \textcolor{comment}{//\ we\ should\ really\ be\ able\ to\ do\ without\ this}}
+\DoxyCodeLine{00072\ \ \ \ \ \ \ \textcolor{comment}{//\ but\ the\ wcs*\ functions\ aren't\ imported\ into\ std::}}
+\DoxyCodeLine{00073\ \textcolor{preprocessor}{\#\ \ \ \ \ define\ SC\_BOOST\_NO\_STDC\_NAMESPACE}}
+\DoxyCodeLine{00074\ \ \ \ \ \ \ \textcolor{comment}{//\ \_CPPUNWIND\ doesn't\ get\ automatically\ set\ for\ some\ reason:}}
+\DoxyCodeLine{00075\ \textcolor{preprocessor}{\#\ \ \ \ \ pragma\ defineonoption\ SC\_BOOST\_CPPUNWIND\ -\/x}}
+\DoxyCodeLine{00076\ \textcolor{preprocessor}{\#\ \ endif}}
+\DoxyCodeLine{00077\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00078\ }
+\DoxyCodeLine{00079\ \textcolor{comment}{//}}
+\DoxyCodeLine{00080\ \textcolor{comment}{//\ Post\ 0x561\ we\ have\ long\ long\ and\ stdint.h:}}
+\DoxyCodeLine{00081\ \textcolor{preprocessor}{\#if\ \_\_BORLANDC\_\_\ >=\ 0x561}}
+\DoxyCodeLine{00082\ \textcolor{preprocessor}{\#\ \ ifndef\ \_\_NO\_LONG\_LONG}}
+\DoxyCodeLine{00083\ \textcolor{preprocessor}{\#\ \ \ \ \ define\ SC\_BOOST\_HAS\_LONG\_LONG}}
+\DoxyCodeLine{00084\ \textcolor{preprocessor}{\#\ \ endif}}
+\DoxyCodeLine{00085\ \ \ \ \textcolor{comment}{//\ On\ non-\/Win32\ platforms\ let\ the\ platform\ config\ figure\ this\ out:}}
+\DoxyCodeLine{00086\ \textcolor{preprocessor}{\#\ \ ifdef\ \_WIN32}}
+\DoxyCodeLine{00087\ \textcolor{preprocessor}{\#\ \ \ \ \ \ define\ SC\_BOOST\_HAS\_STDINT\_H}}
+\DoxyCodeLine{00088\ \textcolor{preprocessor}{\#\ \ endif}}
+\DoxyCodeLine{00089\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00090\ }
+\DoxyCodeLine{00091\ \textcolor{comment}{//\ Borland\ C++Builder\ 6\ defaults\ to\ using\ STLPort.\ \ If\ \_USE\_OLD\_RW\_STL\ is}}
+\DoxyCodeLine{00092\ \textcolor{comment}{//\ defined,\ then\ we\ have\ 0x560\ or\ greater\ with\ the\ Rogue\ Wave\ implementation}}
+\DoxyCodeLine{00093\ \textcolor{comment}{//\ which\ presumably\ has\ the\ std::DBL\_MAX\ bug.}}
+\DoxyCodeLine{00094\ \textcolor{preprocessor}{\#if\ ((\_\_BORLANDC\_\_\ >=\ 0x550)\ \&\&\ (\_\_BORLANDC\_\_\ <\ 0x560))\ ||\ defined(\_USE\_OLD\_RW\_STL)}}
+\DoxyCodeLine{00095\ \textcolor{comment}{//\ <climits>\ is\ partly\ broken,\ some\ macros\ define\ symbols\ that\ are\ really\ in}}
+\DoxyCodeLine{00096\ \textcolor{comment}{//\ namespace\ std,\ so\ you\ end\ up\ having\ to\ use\ illegal\ constructs\ like}}
+\DoxyCodeLine{00097\ \textcolor{comment}{//\ std::DBL\_MAX,\ as\ a\ fix\ we'll\ just\ include\ float.h\ and\ have\ done\ with:}}
+\DoxyCodeLine{00098\ \textcolor{preprocessor}{\#include\ <float.h>}}
+\DoxyCodeLine{00099\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00100\ \textcolor{comment}{//}}
+\DoxyCodeLine{00101\ \textcolor{comment}{//\ \_\_int64:}}
+\DoxyCodeLine{00102\ \textcolor{comment}{//}}
+\DoxyCodeLine{00103\ \textcolor{preprocessor}{\#if\ (\_\_BORLANDC\_\_\ >=\ 0x530)\ \&\&\ !defined(\_\_STRICT\_ANSI\_\_)}}
+\DoxyCodeLine{00104\ \textcolor{preprocessor}{\#\ \ define\ SC\_BOOST\_HAS\_MS\_INT64}}
+\DoxyCodeLine{00105\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00106\ \textcolor{comment}{//}}
+\DoxyCodeLine{00107\ \textcolor{comment}{//\ check\ for\ exception\ handling\ support:}}
+\DoxyCodeLine{00108\ \textcolor{comment}{//}}
+\DoxyCodeLine{00109\ \textcolor{preprocessor}{\#if\ !defined(\_CPPUNWIND)\ \&\&\ !defined(SC\_BOOST\_CPPUNWIND)\ \&\&\ !defined(\_\_EXCEPTIONS)}}
+\DoxyCodeLine{00110\ \textcolor{preprocessor}{\#\ \ define\ SC\_BOOST\_NO\_EXCEPTIONS}}
+\DoxyCodeLine{00111\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00112\ \textcolor{comment}{//}}
+\DoxyCodeLine{00113\ \textcolor{comment}{//\ all\ versions\ have\ a\ <dirent.h>:}}
+\DoxyCodeLine{00114\ \textcolor{comment}{//}}
+\DoxyCodeLine{00115\ \textcolor{preprocessor}{\#ifndef\ \_\_STRICT\_ANSI\_\_}}
+\DoxyCodeLine{00116\ \textcolor{preprocessor}{\#\ \ define\ SC\_BOOST\_HAS\_DIRENT\_H}}
+\DoxyCodeLine{00117\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00118\ \textcolor{comment}{//}}
+\DoxyCodeLine{00119\ \textcolor{comment}{//\ all\ versions\ support\ \_\_declspec:}}
+\DoxyCodeLine{00120\ \textcolor{comment}{//}}
+\DoxyCodeLine{00121\ \textcolor{preprocessor}{\#ifndef\ \_\_STRICT\_ANSI\_\_}}
+\DoxyCodeLine{00122\ \textcolor{preprocessor}{\#\ \ define\ SC\_BOOST\_HAS\_DECLSPEC}}
+\DoxyCodeLine{00123\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00124\ \textcolor{comment}{//}}
+\DoxyCodeLine{00125\ \textcolor{comment}{//\ ABI\ fixing\ headers:}}
+\DoxyCodeLine{00126\ \textcolor{comment}{//}}
+\DoxyCodeLine{00127\ \textcolor{preprocessor}{\#if\ \_\_BORLANDC\_\_\ <\ 0x600\ }\textcolor{comment}{//\ not\ implemented\ for\ version\ 6\ compiler\ yet}}
+\DoxyCodeLine{00128\ \textcolor{preprocessor}{\#ifndef\ SC\_BOOST\_ABI\_PREFIX}}
+\DoxyCodeLine{00129\ \textcolor{preprocessor}{\#\ \ define\ SC\_BOOST\_ABI\_PREFIX\ "{}sysc/packages/boost/config/abi/borland\_prefix.hpp"{}}}
+\DoxyCodeLine{00130\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00131\ \textcolor{preprocessor}{\#ifndef\ SC\_BOOST\_ABI\_SUFFIX}}
+\DoxyCodeLine{00132\ \textcolor{preprocessor}{\#\ \ define\ SC\_BOOST\_ABI\_SUFFIX\ "{}sysc/packages/boost/config/abi/borland\_suffix.hpp"{}}}
+\DoxyCodeLine{00133\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00134\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00135\ \textcolor{comment}{//}}
+\DoxyCodeLine{00136\ \textcolor{comment}{//\ Disable\ Win32\ support\ in\ ANSI\ mode:}}
+\DoxyCodeLine{00137\ \textcolor{comment}{//}}
+\DoxyCodeLine{00138\ \textcolor{preprocessor}{\#if\ \_\_BORLANDC\_\_\ <\ 0x600}}
+\DoxyCodeLine{00139\ \textcolor{preprocessor}{\#\ \ pragma\ defineonoption\ SC\_BOOST\_DISABLE\_WIN32\ -\/A}}
+\DoxyCodeLine{00140\ \textcolor{preprocessor}{\#elif\ defined(\_\_STRICT\_ANSI\_\_)}}
+\DoxyCodeLine{00141\ \textcolor{preprocessor}{\#\ \ define\ SC\_BOOST\_DISABLE\_WIN32}}
+\DoxyCodeLine{00142\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00143\ \textcolor{comment}{//}}
+\DoxyCodeLine{00144\ \textcolor{comment}{//\ MSVC\ compatibility\ mode\ does\ some\ nasty\ things:}}
+\DoxyCodeLine{00145\ \textcolor{comment}{//}}
+\DoxyCodeLine{00146\ \textcolor{preprocessor}{\#if\ defined(\_MSC\_VER)\ \&\&\ (\_MSC\_VER\ <=\ 1200)}}
+\DoxyCodeLine{00147\ \textcolor{preprocessor}{\#\ \ define\ SC\_BOOST\_NO\_ARGUMENT\_DEPENDENT\_LOOKUP}}
+\DoxyCodeLine{00148\ \textcolor{preprocessor}{\#\ \ define\ SC\_BOOST\_NO\_VOID\_RETURNS}}
+\DoxyCodeLine{00149\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00150\ }
+\DoxyCodeLine{00151\ \textcolor{preprocessor}{\#define\ SC\_BOOST\_COMPILER\ "{}Borland\ C++\ version\ "{}\ SC\_BOOST\_STRINGIZE(\_\_BORLANDC\_\_)}}
+\DoxyCodeLine{00152\ }
+\DoxyCodeLine{00153\ \textcolor{comment}{//}}
+\DoxyCodeLine{00154\ \textcolor{comment}{//\ versions\ check:}}
+\DoxyCodeLine{00155\ \textcolor{comment}{//\ we\ don't\ support\ Borland\ prior\ to\ version\ 5.4:}}
+\DoxyCodeLine{00156\ \textcolor{preprocessor}{\#if\ \_\_BORLANDC\_\_\ <\ 0x540}}
+\DoxyCodeLine{00157\ \textcolor{preprocessor}{\#\ \ error\ "{}Compiler\ not\ supported\ or\ configured\ -\/\ please\ reconfigure"{}}}
+\DoxyCodeLine{00158\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00159\ \textcolor{comment}{//}}
+\DoxyCodeLine{00160\ \textcolor{comment}{//\ last\ known\ and\ checked\ version\ is\ 1536\ (Builder\ X\ preview):}}
+\DoxyCodeLine{00161\ \textcolor{preprocessor}{\#if\ (\_\_BORLANDC\_\_\ >\ 1536)}}
+\DoxyCodeLine{00162\ \textcolor{preprocessor}{\#\ \ if\ defined(SC\_BOOST\_ASSERT\_CONFIG)}}
+\DoxyCodeLine{00163\ \textcolor{preprocessor}{\#\ \ \ \ \ error\ "{}Unknown\ compiler\ version\ -\/\ please\ run\ the\ configure\ tests\ and\ report\ the\ results"{}}}
+\DoxyCodeLine{00164\ \textcolor{preprocessor}{\#\ \ else}}
+\DoxyCodeLine{00165\ \textcolor{preprocessor}{\#\ \ \ \ \ pragma\ message(\ "{}Unknown\ compiler\ version\ -\/\ please\ run\ the\ configure\ tests\ and\ report\ the\ results"{})}}
+\DoxyCodeLine{00166\ \textcolor{preprocessor}{\#\ \ endif}}
+\DoxyCodeLine{00167\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00168\ }
+\DoxyCodeLine{00169\ }
+\DoxyCodeLine{00170\ }
+\DoxyCodeLine{00171\ }
+\DoxyCodeLine{00172\ }
+\DoxyCodeLine{00173\ }
+\DoxyCodeLine{00174\ }
+\DoxyCodeLine{00175\ }
+
+\end{DoxyCode}

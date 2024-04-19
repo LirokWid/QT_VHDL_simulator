@@ -1,0 +1,400 @@
+\doxysection{mem\+\_\+fn.\+hpp}
+\hypertarget{mem__fn_8hpp_source}{}\label{mem__fn_8hpp_source}\index{C:/Users/BJRODIER/Documents/QT\_REPO/QT\_VHDL\_simulator/code/Ressources/SystemC/include/sysc/packages/boost/mem\_fn.hpp@{C:/Users/BJRODIER/Documents/QT\_REPO/QT\_VHDL\_simulator/code/Ressources/SystemC/include/sysc/packages/boost/mem\_fn.hpp}}
+\mbox{\hyperlink{mem__fn_8hpp}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#ifndef\ SC\_BOOST\_MEM\_FN\_HPP\_INCLUDED}}
+\DoxyCodeLine{00002\ \textcolor{preprocessor}{\#define\ SC\_BOOST\_MEM\_FN\_HPP\_INCLUDED}}
+\DoxyCodeLine{00003\ }
+\DoxyCodeLine{00004\ \textcolor{comment}{//\ MS\ compatible\ compilers\ support\ \#pragma\ once}}
+\DoxyCodeLine{00005\ }
+\DoxyCodeLine{00006\ \textcolor{preprocessor}{\#if\ defined(\_MSC\_VER)\ \&\&\ (\_MSC\_VER\ >=\ 1020)}}
+\DoxyCodeLine{00007\ \textcolor{preprocessor}{\#\ pragma\ once}}
+\DoxyCodeLine{00008\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00009\ }
+\DoxyCodeLine{00010\ \textcolor{comment}{//}}
+\DoxyCodeLine{00011\ \textcolor{comment}{//\ \ mem\_fn.hpp\ -\/\ a\ generalization\ of\ std::mem\_fun[\_ref]}}
+\DoxyCodeLine{00012\ \textcolor{comment}{//}}
+\DoxyCodeLine{00013\ \textcolor{comment}{//\ \ Copyright\ (c)\ 2001,\ 2002\ Peter\ Dimov\ and\ Multi\ Media\ Ltd.}}
+\DoxyCodeLine{00014\ \textcolor{comment}{//\ \ Copyright\ (c)\ 2001\ David\ Abrahams}}
+\DoxyCodeLine{00015\ \textcolor{comment}{//\ \ Copyright\ (c)\ 2003-\/2005\ Peter\ Dimov}}
+\DoxyCodeLine{00016\ \textcolor{comment}{//}}
+\DoxyCodeLine{00017\ \textcolor{comment}{//\ Distributed\ under\ the\ Boost\ Software\ License,\ Version\ 1.0.\ (See}}
+\DoxyCodeLine{00018\ \textcolor{comment}{//\ accompanying\ file\ LICENSE\_1\_0.txt\ or\ copy\ at}}
+\DoxyCodeLine{00019\ \textcolor{comment}{//\ http://www.boost.org/LICENSE\_1\_0.txt)}}
+\DoxyCodeLine{00020\ \textcolor{comment}{//}}
+\DoxyCodeLine{00021\ \textcolor{comment}{//\ \ See\ http://www.boost.org/libs/bind/mem\_fn.html\ for\ documentation.}}
+\DoxyCodeLine{00022\ \textcolor{comment}{//}}
+\DoxyCodeLine{00023\ }
+\DoxyCodeLine{00024\ \textcolor{preprocessor}{\#include\ <\mbox{\hyperlink{config_8hpp}{sysc/packages/boost/config.hpp}}>}}
+\DoxyCodeLine{00025\ \textcolor{preprocessor}{\#include\ <\mbox{\hyperlink{get__pointer_8hpp}{sysc/packages/boost/get\_pointer.hpp}}>}}
+\DoxyCodeLine{00026\ \textcolor{preprocessor}{\#include\ <\mbox{\hyperlink{detail_2workaround_8hpp}{sysc/packages/boost/detail/workaround.hpp}}>}}
+\DoxyCodeLine{00027\ }
+\DoxyCodeLine{00028\ \textcolor{keyword}{namespace\ }\mbox{\hyperlink{namespacesc__boost}{sc\_boost}}}
+\DoxyCodeLine{00029\ \{}
+\DoxyCodeLine{00030\ }
+\DoxyCodeLine{00031\ \textcolor{preprocessor}{\#if\ defined(SC\_BOOST\_NO\_VOID\_RETURNS)}}
+\DoxyCodeLine{00032\ }
+\DoxyCodeLine{00033\ \textcolor{preprocessor}{\#define\ SC\_BOOST\_MEM\_FN\_CLASS\_F\ ,\ class\ F}}
+\DoxyCodeLine{00034\ \textcolor{preprocessor}{\#define\ SC\_BOOST\_MEM\_FN\_TYPEDEF(X)}}
+\DoxyCodeLine{00035\ }
+\DoxyCodeLine{00036\ \textcolor{keyword}{namespace\ }\_mfi\ \textcolor{comment}{//\ mem\_fun\_impl}}
+\DoxyCodeLine{00037\ \{}
+\DoxyCodeLine{00038\ }
+\DoxyCodeLine{00039\ \textcolor{keyword}{template}<\textcolor{keyword}{class}\ V>\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{class_sysc_add__pv}{mf}}}
+\DoxyCodeLine{00040\ \{}
+\DoxyCodeLine{00041\ }
+\DoxyCodeLine{00042\ \textcolor{preprocessor}{\#define\ SC\_BOOST\_MEM\_FN\_RETURN\ return}}
+\DoxyCodeLine{00043\ }
+\DoxyCodeLine{00044\ \textcolor{preprocessor}{\#define\ SC\_BOOST\_MEM\_FN\_NAME(X)\ inner\_\#\#X}}
+\DoxyCodeLine{00045\ \textcolor{preprocessor}{\#define\ SC\_BOOST\_MEM\_FN\_CC}}
+\DoxyCodeLine{00046\ }
+\DoxyCodeLine{00047\ \textcolor{preprocessor}{\#include\ <\mbox{\hyperlink{mem__fn__template_8hpp}{sysc/packages/boost/bind/mem\_fn\_template.hpp}}>}}
+\DoxyCodeLine{00048\ }
+\DoxyCodeLine{00049\ \textcolor{preprocessor}{\#undef\ SC\_BOOST\_MEM\_FN\_CC}}
+\DoxyCodeLine{00050\ \textcolor{preprocessor}{\#undef\ SC\_BOOST\_MEM\_FN\_NAME}}
+\DoxyCodeLine{00051\ }
+\DoxyCodeLine{00052\ \textcolor{preprocessor}{\#ifdef\ SC\_BOOST\_MEM\_FN\_ENABLE\_CDECL}}
+\DoxyCodeLine{00053\ }
+\DoxyCodeLine{00054\ \textcolor{preprocessor}{\#define\ SC\_BOOST\_MEM\_FN\_NAME(X)\ inner\_\#\#X\#\#\_cdecl}}
+\DoxyCodeLine{00055\ \textcolor{preprocessor}{\#define\ SC\_BOOST\_MEM\_FN\_CC\ \_\_cdecl}}
+\DoxyCodeLine{00056\ }
+\DoxyCodeLine{00057\ \textcolor{preprocessor}{\#include\ <\mbox{\hyperlink{mem__fn__template_8hpp}{sysc/packages/boost/bind/mem\_fn\_template.hpp}}>}}
+\DoxyCodeLine{00058\ }
+\DoxyCodeLine{00059\ \textcolor{preprocessor}{\#undef\ SC\_BOOST\_MEM\_FN\_CC}}
+\DoxyCodeLine{00060\ \textcolor{preprocessor}{\#undef\ SC\_BOOST\_MEM\_FN\_NAME}}
+\DoxyCodeLine{00061\ }
+\DoxyCodeLine{00062\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00063\ }
+\DoxyCodeLine{00064\ \textcolor{preprocessor}{\#ifdef\ SC\_BOOST\_MEM\_FN\_ENABLE\_STDCALL}}
+\DoxyCodeLine{00065\ }
+\DoxyCodeLine{00066\ \textcolor{preprocessor}{\#define\ SC\_BOOST\_MEM\_FN\_NAME(X)\ inner\_\#\#X\#\#\_stdcall}}
+\DoxyCodeLine{00067\ \textcolor{preprocessor}{\#define\ SC\_BOOST\_MEM\_FN\_CC\ \_\_stdcall}}
+\DoxyCodeLine{00068\ }
+\DoxyCodeLine{00069\ \textcolor{preprocessor}{\#include\ <\mbox{\hyperlink{mem__fn__template_8hpp}{sysc/packages/boost/bind/mem\_fn\_template.hpp}}>}}
+\DoxyCodeLine{00070\ }
+\DoxyCodeLine{00071\ \textcolor{preprocessor}{\#undef\ SC\_BOOST\_MEM\_FN\_CC}}
+\DoxyCodeLine{00072\ \textcolor{preprocessor}{\#undef\ SC\_BOOST\_MEM\_FN\_NAME}}
+\DoxyCodeLine{00073\ }
+\DoxyCodeLine{00074\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00075\ }
+\DoxyCodeLine{00076\ \textcolor{preprocessor}{\#ifdef\ SC\_BOOST\_MEM\_FN\_ENABLE\_FASTCALL}}
+\DoxyCodeLine{00077\ }
+\DoxyCodeLine{00078\ \textcolor{preprocessor}{\#define\ SC\_BOOST\_MEM\_FN\_NAME(X)\ inner\_\#\#X\#\#\_fastcall}}
+\DoxyCodeLine{00079\ \textcolor{preprocessor}{\#define\ SC\_BOOST\_MEM\_FN\_CC\ \_\_fastcall}}
+\DoxyCodeLine{00080\ }
+\DoxyCodeLine{00081\ \textcolor{preprocessor}{\#include\ <\mbox{\hyperlink{mem__fn__template_8hpp}{sysc/packages/boost/bind/mem\_fn\_template.hpp}}>}}
+\DoxyCodeLine{00082\ }
+\DoxyCodeLine{00083\ \textcolor{preprocessor}{\#undef\ SC\_BOOST\_MEM\_FN\_CC}}
+\DoxyCodeLine{00084\ \textcolor{preprocessor}{\#undef\ SC\_BOOST\_MEM\_FN\_NAME}}
+\DoxyCodeLine{00085\ }
+\DoxyCodeLine{00086\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00087\ }
+\DoxyCodeLine{00088\ \textcolor{preprocessor}{\#undef\ SC\_BOOST\_MEM\_FN\_RETURN}}
+\DoxyCodeLine{00089\ }
+\DoxyCodeLine{00090\ \};\ \textcolor{comment}{//\ struct\ mf<V>}}
+\DoxyCodeLine{00091\ }
+\DoxyCodeLine{00092\ \textcolor{keyword}{template}<>\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{class_sysc_add__pv}{mf}}<\mbox{\hyperlink{class_sysc_add__pv}{void}}>}
+\DoxyCodeLine{00093\ \{}
+\DoxyCodeLine{00094\ }
+\DoxyCodeLine{00095\ \textcolor{preprocessor}{\#define\ SC\_BOOST\_MEM\_FN\_RETURN}}
+\DoxyCodeLine{00096\ }
+\DoxyCodeLine{00097\ \textcolor{preprocessor}{\#define\ SC\_BOOST\_MEM\_FN\_NAME(X)\ inner\_\#\#X}}
+\DoxyCodeLine{00098\ \textcolor{preprocessor}{\#define\ SC\_BOOST\_MEM\_FN\_CC}}
+\DoxyCodeLine{00099\ }
+\DoxyCodeLine{00100\ \textcolor{preprocessor}{\#include\ <\mbox{\hyperlink{mem__fn__template_8hpp}{sysc/packages/boost/bind/mem\_fn\_template.hpp}}>}}
+\DoxyCodeLine{00101\ }
+\DoxyCodeLine{00102\ \textcolor{preprocessor}{\#undef\ SC\_BOOST\_MEM\_FN\_CC}}
+\DoxyCodeLine{00103\ \textcolor{preprocessor}{\#undef\ SC\_BOOST\_MEM\_FN\_NAME}}
+\DoxyCodeLine{00104\ }
+\DoxyCodeLine{00105\ \textcolor{preprocessor}{\#ifdef\ SC\_BOOST\_MEM\_FN\_ENABLE\_CDECL}}
+\DoxyCodeLine{00106\ }
+\DoxyCodeLine{00107\ \textcolor{preprocessor}{\#define\ SC\_BOOST\_MEM\_FN\_NAME(X)\ inner\_\#\#X\#\#\_cdecl}}
+\DoxyCodeLine{00108\ \textcolor{preprocessor}{\#define\ SC\_BOOST\_MEM\_FN\_CC\ \_\_cdecl}}
+\DoxyCodeLine{00109\ }
+\DoxyCodeLine{00110\ \textcolor{preprocessor}{\#include\ <\mbox{\hyperlink{mem__fn__template_8hpp}{sysc/packages/boost/bind/mem\_fn\_template.hpp}}>}}
+\DoxyCodeLine{00111\ }
+\DoxyCodeLine{00112\ \textcolor{preprocessor}{\#undef\ SC\_BOOST\_MEM\_FN\_CC}}
+\DoxyCodeLine{00113\ \textcolor{preprocessor}{\#undef\ SC\_BOOST\_MEM\_FN\_NAME}}
+\DoxyCodeLine{00114\ }
+\DoxyCodeLine{00115\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00116\ }
+\DoxyCodeLine{00117\ \textcolor{preprocessor}{\#ifdef\ SC\_BOOST\_MEM\_FN\_ENABLE\_STDCALL}}
+\DoxyCodeLine{00118\ }
+\DoxyCodeLine{00119\ \textcolor{preprocessor}{\#define\ SC\_BOOST\_MEM\_FN\_NAME(X)\ inner\_\#\#X\#\#\_stdcall}}
+\DoxyCodeLine{00120\ \textcolor{preprocessor}{\#define\ SC\_BOOST\_MEM\_FN\_CC\ \_\_stdcall}}
+\DoxyCodeLine{00121\ }
+\DoxyCodeLine{00122\ \textcolor{preprocessor}{\#include\ <\mbox{\hyperlink{mem__fn__template_8hpp}{sysc/packages/boost/bind/mem\_fn\_template.hpp}}>}}
+\DoxyCodeLine{00123\ }
+\DoxyCodeLine{00124\ \textcolor{preprocessor}{\#undef\ SC\_BOOST\_MEM\_FN\_CC}}
+\DoxyCodeLine{00125\ \textcolor{preprocessor}{\#undef\ SC\_BOOST\_MEM\_FN\_NAME}}
+\DoxyCodeLine{00126\ }
+\DoxyCodeLine{00127\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00128\ }
+\DoxyCodeLine{00129\ \textcolor{preprocessor}{\#ifdef\ SC\_BOOST\_MEM\_FN\_ENABLE\_FASTCALL}}
+\DoxyCodeLine{00130\ }
+\DoxyCodeLine{00131\ \textcolor{preprocessor}{\#define\ SC\_BOOST\_MEM\_FN\_NAME(X)\ inner\_\#\#X\#\#\_fastcall}}
+\DoxyCodeLine{00132\ \textcolor{preprocessor}{\#define\ SC\_BOOST\_MEM\_FN\_CC\ \_\_fastcall}}
+\DoxyCodeLine{00133\ }
+\DoxyCodeLine{00134\ \textcolor{preprocessor}{\#include\ <\mbox{\hyperlink{mem__fn__template_8hpp}{sysc/packages/boost/bind/mem\_fn\_template.hpp}}>}}
+\DoxyCodeLine{00135\ }
+\DoxyCodeLine{00136\ \textcolor{preprocessor}{\#undef\ SC\_BOOST\_MEM\_FN\_CC}}
+\DoxyCodeLine{00137\ \textcolor{preprocessor}{\#undef\ SC\_BOOST\_MEM\_FN\_NAME}}
+\DoxyCodeLine{00138\ }
+\DoxyCodeLine{00139\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00140\ }
+\DoxyCodeLine{00141\ \textcolor{preprocessor}{\#undef\ SC\_BOOST\_MEM\_FN\_RETURN}}
+\DoxyCodeLine{00142\ }
+\DoxyCodeLine{00143\ \};\ \textcolor{comment}{//\ struct\ mf<void>}}
+\DoxyCodeLine{00144\ }
+\DoxyCodeLine{00145\ \textcolor{preprocessor}{\#undef\ SC\_BOOST\_MEM\_FN\_CLASS\_F}}
+\DoxyCodeLine{00146\ \textcolor{preprocessor}{\#undef\ SC\_BOOST\_MEM\_FN\_TYPEDEF\_F}}
+\DoxyCodeLine{00147\ }
+\DoxyCodeLine{00148\ \textcolor{preprocessor}{\#define\ SC\_BOOST\_MEM\_FN\_NAME(X)\ X}}
+\DoxyCodeLine{00149\ \textcolor{preprocessor}{\#define\ SC\_BOOST\_MEM\_FN\_NAME2(X)\ inner\_\#\#X}}
+\DoxyCodeLine{00150\ \textcolor{preprocessor}{\#define\ SC\_BOOST\_MEM\_FN\_CC}}
+\DoxyCodeLine{00151\ }
+\DoxyCodeLine{00152\ \textcolor{preprocessor}{\#include\ <\mbox{\hyperlink{mem__fn__vw_8hpp}{sysc/packages/boost/bind/mem\_fn\_vw.hpp}}>}}
+\DoxyCodeLine{00153\ }
+\DoxyCodeLine{00154\ \textcolor{preprocessor}{\#undef\ SC\_BOOST\_MEM\_FN\_NAME}}
+\DoxyCodeLine{00155\ \textcolor{preprocessor}{\#undef\ SC\_BOOST\_MEM\_FN\_NAME2}}
+\DoxyCodeLine{00156\ \textcolor{preprocessor}{\#undef\ SC\_BOOST\_MEM\_FN\_CC}}
+\DoxyCodeLine{00157\ }
+\DoxyCodeLine{00158\ \textcolor{preprocessor}{\#ifdef\ SC\_BOOST\_MEM\_FN\_ENABLE\_CDECL}}
+\DoxyCodeLine{00159\ }
+\DoxyCodeLine{00160\ \textcolor{preprocessor}{\#define\ SC\_BOOST\_MEM\_FN\_NAME(X)\ X\#\#\_cdecl}}
+\DoxyCodeLine{00161\ \textcolor{preprocessor}{\#define\ SC\_BOOST\_MEM\_FN\_NAME2(X)\ inner\_\#\#X\#\#\_cdecl}}
+\DoxyCodeLine{00162\ \textcolor{preprocessor}{\#define\ SC\_BOOST\_MEM\_FN\_CC\ \_\_cdecl}}
+\DoxyCodeLine{00163\ }
+\DoxyCodeLine{00164\ \textcolor{preprocessor}{\#include\ <\mbox{\hyperlink{mem__fn__vw_8hpp}{sysc/packages/boost/bind/mem\_fn\_vw.hpp}}>}}
+\DoxyCodeLine{00165\ }
+\DoxyCodeLine{00166\ \textcolor{preprocessor}{\#undef\ SC\_BOOST\_MEM\_FN\_NAME}}
+\DoxyCodeLine{00167\ \textcolor{preprocessor}{\#undef\ SC\_BOOST\_MEM\_FN\_NAME2}}
+\DoxyCodeLine{00168\ \textcolor{preprocessor}{\#undef\ SC\_BOOST\_MEM\_FN\_CC}}
+\DoxyCodeLine{00169\ }
+\DoxyCodeLine{00170\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00171\ }
+\DoxyCodeLine{00172\ \textcolor{preprocessor}{\#ifdef\ SC\_BOOST\_MEM\_FN\_ENABLE\_STDCALL}}
+\DoxyCodeLine{00173\ }
+\DoxyCodeLine{00174\ \textcolor{preprocessor}{\#define\ SC\_BOOST\_MEM\_FN\_NAME(X)\ X\#\#\_stdcall}}
+\DoxyCodeLine{00175\ \textcolor{preprocessor}{\#define\ SC\_BOOST\_MEM\_FN\_NAME2(X)\ inner\_\#\#X\#\#\_stdcall}}
+\DoxyCodeLine{00176\ \textcolor{preprocessor}{\#define\ SC\_BOOST\_MEM\_FN\_CC\ \_\_stdcall}}
+\DoxyCodeLine{00177\ }
+\DoxyCodeLine{00178\ \textcolor{preprocessor}{\#include\ <\mbox{\hyperlink{mem__fn__vw_8hpp}{sysc/packages/boost/bind/mem\_fn\_vw.hpp}}>}}
+\DoxyCodeLine{00179\ }
+\DoxyCodeLine{00180\ \textcolor{preprocessor}{\#undef\ SC\_BOOST\_MEM\_FN\_NAME}}
+\DoxyCodeLine{00181\ \textcolor{preprocessor}{\#undef\ SC\_BOOST\_MEM\_FN\_NAME2}}
+\DoxyCodeLine{00182\ \textcolor{preprocessor}{\#undef\ SC\_BOOST\_MEM\_FN\_CC}}
+\DoxyCodeLine{00183\ }
+\DoxyCodeLine{00184\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00185\ }
+\DoxyCodeLine{00186\ \textcolor{preprocessor}{\#ifdef\ SC\_BOOST\_MEM\_FN\_ENABLE\_FASTCALL}}
+\DoxyCodeLine{00187\ }
+\DoxyCodeLine{00188\ \textcolor{preprocessor}{\#define\ SC\_BOOST\_MEM\_FN\_NAME(X)\ X\#\#\_fastcall}}
+\DoxyCodeLine{00189\ \textcolor{preprocessor}{\#define\ SC\_BOOST\_MEM\_FN\_NAME2(X)\ inner\_\#\#X\#\#\_fastcall}}
+\DoxyCodeLine{00190\ \textcolor{preprocessor}{\#define\ SC\_BOOST\_MEM\_FN\_CC\ \_\_fastcall}}
+\DoxyCodeLine{00191\ }
+\DoxyCodeLine{00192\ \textcolor{preprocessor}{\#include\ <\mbox{\hyperlink{mem__fn__vw_8hpp}{sysc/packages/boost/bind/mem\_fn\_vw.hpp}}>}}
+\DoxyCodeLine{00193\ }
+\DoxyCodeLine{00194\ \textcolor{preprocessor}{\#undef\ SC\_BOOST\_MEM\_FN\_NAME}}
+\DoxyCodeLine{00195\ \textcolor{preprocessor}{\#undef\ SC\_BOOST\_MEM\_FN\_NAME2}}
+\DoxyCodeLine{00196\ \textcolor{preprocessor}{\#undef\ SC\_BOOST\_MEM\_FN\_CC}}
+\DoxyCodeLine{00197\ }
+\DoxyCodeLine{00198\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00199\ }
+\DoxyCodeLine{00200\ \}\ \textcolor{comment}{//\ namespace\ \_mfi}}
+\DoxyCodeLine{00201\ }
+\DoxyCodeLine{00202\ \textcolor{preprocessor}{\#else\ }\textcolor{comment}{//\ \#ifdef\ SC\_BOOST\_NO\_VOID\_RETURNS}}
+\DoxyCodeLine{00203\ }
+\DoxyCodeLine{00204\ \textcolor{preprocessor}{\#define\ SC\_BOOST\_MEM\_FN\_CLASS\_F}}
+\DoxyCodeLine{00205\ \textcolor{preprocessor}{\#define\ SC\_BOOST\_MEM\_FN\_TYPEDEF(X)\ typedef\ X;}}
+\DoxyCodeLine{00206\ }
+\DoxyCodeLine{00207\ \textcolor{keyword}{namespace\ }\_mfi}
+\DoxyCodeLine{00208\ \{}
+\DoxyCodeLine{00209\ }
+\DoxyCodeLine{00210\ \textcolor{preprocessor}{\#define\ SC\_BOOST\_MEM\_FN\_RETURN\ return}}
+\DoxyCodeLine{00211\ }
+\DoxyCodeLine{00212\ \textcolor{preprocessor}{\#define\ SC\_BOOST\_MEM\_FN\_NAME(X)\ X}}
+\DoxyCodeLine{00213\ \textcolor{preprocessor}{\#define\ SC\_BOOST\_MEM\_FN\_CC}}
+\DoxyCodeLine{00214\ }
+\DoxyCodeLine{00215\ \textcolor{preprocessor}{\#include\ <\mbox{\hyperlink{mem__fn__template_8hpp}{sysc/packages/boost/bind/mem\_fn\_template.hpp}}>}}
+\DoxyCodeLine{00216\ }
+\DoxyCodeLine{00217\ \textcolor{preprocessor}{\#undef\ SC\_BOOST\_MEM\_FN\_CC}}
+\DoxyCodeLine{00218\ \textcolor{preprocessor}{\#undef\ SC\_BOOST\_MEM\_FN\_NAME}}
+\DoxyCodeLine{00219\ }
+\DoxyCodeLine{00220\ \textcolor{preprocessor}{\#ifdef\ SC\_BOOST\_MEM\_FN\_ENABLE\_CDECL}}
+\DoxyCodeLine{00221\ }
+\DoxyCodeLine{00222\ \textcolor{preprocessor}{\#define\ SC\_BOOST\_MEM\_FN\_NAME(X)\ X\#\#\_cdecl}}
+\DoxyCodeLine{00223\ \textcolor{preprocessor}{\#define\ SC\_BOOST\_MEM\_FN\_CC\ \_\_cdecl}}
+\DoxyCodeLine{00224\ }
+\DoxyCodeLine{00225\ \textcolor{preprocessor}{\#include\ <\mbox{\hyperlink{mem__fn__template_8hpp}{sysc/packages/boost/bind/mem\_fn\_template.hpp}}>}}
+\DoxyCodeLine{00226\ }
+\DoxyCodeLine{00227\ \textcolor{preprocessor}{\#undef\ SC\_BOOST\_MEM\_FN\_CC}}
+\DoxyCodeLine{00228\ \textcolor{preprocessor}{\#undef\ SC\_BOOST\_MEM\_FN\_NAME}}
+\DoxyCodeLine{00229\ }
+\DoxyCodeLine{00230\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00231\ }
+\DoxyCodeLine{00232\ \textcolor{preprocessor}{\#ifdef\ SC\_BOOST\_MEM\_FN\_ENABLE\_STDCALL}}
+\DoxyCodeLine{00233\ }
+\DoxyCodeLine{00234\ \textcolor{preprocessor}{\#define\ SC\_BOOST\_MEM\_FN\_NAME(X)\ X\#\#\_stdcall}}
+\DoxyCodeLine{00235\ \textcolor{preprocessor}{\#define\ SC\_BOOST\_MEM\_FN\_CC\ \_\_stdcall}}
+\DoxyCodeLine{00236\ }
+\DoxyCodeLine{00237\ \textcolor{preprocessor}{\#include\ <\mbox{\hyperlink{mem__fn__template_8hpp}{sysc/packages/boost/bind/mem\_fn\_template.hpp}}>}}
+\DoxyCodeLine{00238\ }
+\DoxyCodeLine{00239\ \textcolor{preprocessor}{\#undef\ SC\_BOOST\_MEM\_FN\_CC}}
+\DoxyCodeLine{00240\ \textcolor{preprocessor}{\#undef\ SC\_BOOST\_MEM\_FN\_NAME}}
+\DoxyCodeLine{00241\ }
+\DoxyCodeLine{00242\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00243\ }
+\DoxyCodeLine{00244\ \textcolor{preprocessor}{\#ifdef\ SC\_BOOST\_MEM\_FN\_ENABLE\_FASTCALL}}
+\DoxyCodeLine{00245\ }
+\DoxyCodeLine{00246\ \textcolor{preprocessor}{\#define\ SC\_BOOST\_MEM\_FN\_NAME(X)\ X\#\#\_fastcall}}
+\DoxyCodeLine{00247\ \textcolor{preprocessor}{\#define\ SC\_BOOST\_MEM\_FN\_CC\ \_\_fastcall}}
+\DoxyCodeLine{00248\ }
+\DoxyCodeLine{00249\ \textcolor{preprocessor}{\#include\ <\mbox{\hyperlink{mem__fn__template_8hpp}{sysc/packages/boost/bind/mem\_fn\_template.hpp}}>}}
+\DoxyCodeLine{00250\ }
+\DoxyCodeLine{00251\ \textcolor{preprocessor}{\#undef\ SC\_BOOST\_MEM\_FN\_CC}}
+\DoxyCodeLine{00252\ \textcolor{preprocessor}{\#undef\ SC\_BOOST\_MEM\_FN\_NAME}}
+\DoxyCodeLine{00253\ }
+\DoxyCodeLine{00254\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00255\ }
+\DoxyCodeLine{00256\ \textcolor{preprocessor}{\#undef\ SC\_BOOST\_MEM\_FN\_RETURN}}
+\DoxyCodeLine{00257\ }
+\DoxyCodeLine{00258\ \}\ \textcolor{comment}{//\ namespace\ \_mfi}}
+\DoxyCodeLine{00259\ }
+\DoxyCodeLine{00260\ \textcolor{preprocessor}{\#undef\ SC\_BOOST\_MEM\_FN\_CLASS\_F}}
+\DoxyCodeLine{00261\ \textcolor{preprocessor}{\#undef\ SC\_BOOST\_MEM\_FN\_TYPEDEF}}
+\DoxyCodeLine{00262\ }
+\DoxyCodeLine{00263\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{//\ \#ifdef\ SC\_BOOST\_NO\_VOID\_RETURNS}}
+\DoxyCodeLine{00264\ }
+\DoxyCodeLine{00265\ \textcolor{preprocessor}{\#define\ SC\_BOOST\_MEM\_FN\_NAME(X)\ X}}
+\DoxyCodeLine{00266\ \textcolor{preprocessor}{\#define\ SC\_BOOST\_MEM\_FN\_CC}}
+\DoxyCodeLine{00267\ }
+\DoxyCodeLine{00268\ \textcolor{preprocessor}{\#include\ <\mbox{\hyperlink{mem__fn__cc_8hpp}{sysc/packages/boost/bind/mem\_fn\_cc.hpp}}>}}
+\DoxyCodeLine{00269\ }
+\DoxyCodeLine{00270\ \textcolor{preprocessor}{\#undef\ SC\_BOOST\_MEM\_FN\_NAME}}
+\DoxyCodeLine{00271\ \textcolor{preprocessor}{\#undef\ SC\_BOOST\_MEM\_FN\_CC}}
+\DoxyCodeLine{00272\ }
+\DoxyCodeLine{00273\ \textcolor{preprocessor}{\#ifdef\ SC\_BOOST\_MEM\_FN\_ENABLE\_CDECL}}
+\DoxyCodeLine{00274\ }
+\DoxyCodeLine{00275\ \textcolor{preprocessor}{\#define\ SC\_BOOST\_MEM\_FN\_NAME(X)\ X\#\#\_cdecl}}
+\DoxyCodeLine{00276\ \textcolor{preprocessor}{\#define\ SC\_BOOST\_MEM\_FN\_CC\ \_\_cdecl}}
+\DoxyCodeLine{00277\ }
+\DoxyCodeLine{00278\ \textcolor{preprocessor}{\#include\ <\mbox{\hyperlink{mem__fn__cc_8hpp}{sysc/packages/boost/bind/mem\_fn\_cc.hpp}}>}}
+\DoxyCodeLine{00279\ }
+\DoxyCodeLine{00280\ \textcolor{preprocessor}{\#undef\ SC\_BOOST\_MEM\_FN\_NAME}}
+\DoxyCodeLine{00281\ \textcolor{preprocessor}{\#undef\ SC\_BOOST\_MEM\_FN\_CC}}
+\DoxyCodeLine{00282\ }
+\DoxyCodeLine{00283\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00284\ }
+\DoxyCodeLine{00285\ \textcolor{preprocessor}{\#ifdef\ SC\_BOOST\_MEM\_FN\_ENABLE\_STDCALL}}
+\DoxyCodeLine{00286\ }
+\DoxyCodeLine{00287\ \textcolor{preprocessor}{\#define\ SC\_BOOST\_MEM\_FN\_NAME(X)\ X\#\#\_stdcall}}
+\DoxyCodeLine{00288\ \textcolor{preprocessor}{\#define\ SC\_BOOST\_MEM\_FN\_CC\ \_\_stdcall}}
+\DoxyCodeLine{00289\ }
+\DoxyCodeLine{00290\ \textcolor{preprocessor}{\#include\ <\mbox{\hyperlink{mem__fn__cc_8hpp}{sysc/packages/boost/bind/mem\_fn\_cc.hpp}}>}}
+\DoxyCodeLine{00291\ }
+\DoxyCodeLine{00292\ \textcolor{preprocessor}{\#undef\ SC\_BOOST\_MEM\_FN\_NAME}}
+\DoxyCodeLine{00293\ \textcolor{preprocessor}{\#undef\ SC\_BOOST\_MEM\_FN\_CC}}
+\DoxyCodeLine{00294\ }
+\DoxyCodeLine{00295\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00296\ }
+\DoxyCodeLine{00297\ \textcolor{preprocessor}{\#ifdef\ SC\_BOOST\_MEM\_FN\_ENABLE\_FASTCALL}}
+\DoxyCodeLine{00298\ }
+\DoxyCodeLine{00299\ \textcolor{preprocessor}{\#define\ SC\_BOOST\_MEM\_FN\_NAME(X)\ X\#\#\_fastcall}}
+\DoxyCodeLine{00300\ \textcolor{preprocessor}{\#define\ SC\_BOOST\_MEM\_FN\_CC\ \_\_fastcall}}
+\DoxyCodeLine{00301\ }
+\DoxyCodeLine{00302\ \textcolor{preprocessor}{\#include\ <\mbox{\hyperlink{mem__fn__cc_8hpp}{sysc/packages/boost/bind/mem\_fn\_cc.hpp}}>}}
+\DoxyCodeLine{00303\ }
+\DoxyCodeLine{00304\ \textcolor{preprocessor}{\#undef\ SC\_BOOST\_MEM\_FN\_NAME}}
+\DoxyCodeLine{00305\ \textcolor{preprocessor}{\#undef\ SC\_BOOST\_MEM\_FN\_CC}}
+\DoxyCodeLine{00306\ }
+\DoxyCodeLine{00307\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00308\ }
+\DoxyCodeLine{00309\ \textcolor{comment}{//\ data\ member\ support}}
+\DoxyCodeLine{00310\ }
+\DoxyCodeLine{00311\ \textcolor{keyword}{namespace\ }\_mfi}
+\DoxyCodeLine{00312\ \{}
+\DoxyCodeLine{00313\ }
+\DoxyCodeLine{00314\ \textcolor{keyword}{template}<\textcolor{keyword}{class}\ R,\ \textcolor{keyword}{class}\ T>\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classsc__boost_1_1__mfi_1_1dm}{dm}}}
+\DoxyCodeLine{00315\ \{}
+\DoxyCodeLine{00316\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00317\ }
+\DoxyCodeLine{00318\ \ \ \ \ \textcolor{keyword}{typedef}\ \mbox{\hyperlink{class_sysc_add__pv}{R}}\ \textcolor{keyword}{const}\ \&\ \mbox{\hyperlink{classsc__boost_1_1__mfi_1_1dm_a1ccdc33e7c45492d40207088f2cf680d}{result\_type}};}
+\DoxyCodeLine{00319\ \ \ \ \ \textcolor{keyword}{typedef}\ \mbox{\hyperlink{mem__fn__cc_8hpp_adf1f3edb9115acb0a1e04209b7a9937b}{T}}\ \textcolor{keyword}{const}\ *\ \mbox{\hyperlink{classsc__boost_1_1__mfi_1_1dm_ae7658c65ee5ca041c122af15ac885309}{argument\_type}};}
+\DoxyCodeLine{00320\ }
+\DoxyCodeLine{00321\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00322\ \ \ \ \ }
+\DoxyCodeLine{00323\ \ \ \ \ \textcolor{keyword}{typedef}\ \mbox{\hyperlink{class_sysc_add__pv}{R}}\ (\mbox{\hyperlink{mem__fn__cc_8hpp_adf1f3edb9115acb0a1e04209b7a9937b}{T}}::*\mbox{\hyperlink{classsc__boost_1_1__mfi_1_1dm_a018b4fe87c841768c528a6e9a10b1050}{F}});}
+\DoxyCodeLine{00324\ \ \ \ \ \mbox{\hyperlink{classsc__boost_1_1__mfi_1_1dm_a018b4fe87c841768c528a6e9a10b1050}{F}}\ \mbox{\hyperlink{classsc__boost_1_1__mfi_1_1dm_a12b02e73f678b87343544e665455644b}{f\_}};}
+\DoxyCodeLine{00325\ }
+\DoxyCodeLine{00326\ \ \ \ \ \textcolor{keyword}{template}<\textcolor{keyword}{class}\ U>\ \mbox{\hyperlink{class_sysc_add__pv}{R}}\ \textcolor{keyword}{const}\ \&\ \mbox{\hyperlink{classsc__boost_1_1__mfi_1_1dm_ab8f325354664c82ac3df42801fccd2f4}{call}}(\mbox{\hyperlink{class_sysc_add__pv}{U}}\ \&\ \mbox{\hyperlink{class_sysc_add__pv}{u}},\ \mbox{\hyperlink{mem__fn__cc_8hpp_adf1f3edb9115acb0a1e04209b7a9937b}{T}}\ \textcolor{keyword}{const}\ *)\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00327\ \textcolor{keyword}{\ \ \ \ }\{}
+\DoxyCodeLine{00328\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ (\mbox{\hyperlink{class_sysc_add__pv}{u}}.*\mbox{\hyperlink{classsc__boost_1_1__mfi_1_1dm_a12b02e73f678b87343544e665455644b}{f\_}});}
+\DoxyCodeLine{00329\ \ \ \ \ \}}
+\DoxyCodeLine{00330\ }
+\DoxyCodeLine{00331\ \ \ \ \ \textcolor{keyword}{template}<\textcolor{keyword}{class}\ U>\ \mbox{\hyperlink{class_sysc_add__pv}{R}}\ \&\ \mbox{\hyperlink{classsc__boost_1_1__mfi_1_1dm_a07853b5d53350f3a599bdce7900a783e}{call}}(\mbox{\hyperlink{class_sysc_add__pv}{U}}\ \&\ \mbox{\hyperlink{class_sysc_add__pv}{u}},\ \mbox{\hyperlink{mem__fn__cc_8hpp_adf1f3edb9115acb0a1e04209b7a9937b}{T}}\ *)\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00332\ \textcolor{keyword}{\ \ \ \ }\{}
+\DoxyCodeLine{00333\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ (\mbox{\hyperlink{class_sysc_add__pv}{u}}.*\mbox{\hyperlink{classsc__boost_1_1__mfi_1_1dm_a12b02e73f678b87343544e665455644b}{f\_}});}
+\DoxyCodeLine{00334\ \ \ \ \ \}}
+\DoxyCodeLine{00335\ }
+\DoxyCodeLine{00336\ \ \ \ \ \textcolor{keyword}{template}<\textcolor{keyword}{class}\ U>\ \mbox{\hyperlink{class_sysc_add__pv}{R}}\ \textcolor{keyword}{const}\ \&\ \mbox{\hyperlink{classsc__boost_1_1__mfi_1_1dm_a1de8f7ac26ecdf2137e206d1b383a51f}{call}}(\mbox{\hyperlink{class_sysc_add__pv}{U}}\ \&\ \mbox{\hyperlink{class_sysc_add__pv}{u}},\ \textcolor{keywordtype}{void}\ \textcolor{keyword}{const}\ *)\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00337\ \textcolor{keyword}{\ \ \ \ }\{}
+\DoxyCodeLine{00338\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ (\mbox{\hyperlink{namespacesc__boost_a6841ce52726804956cc3a4fe85673da7}{get\_pointer}}(\mbox{\hyperlink{class_sysc_add__pv}{u}})-\/>*\mbox{\hyperlink{classsc__boost_1_1__mfi_1_1dm_a12b02e73f678b87343544e665455644b}{f\_}});}
+\DoxyCodeLine{00339\ \ \ \ \ \}}
+\DoxyCodeLine{00340\ }
+\DoxyCodeLine{00341\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00342\ \ \ \ \ }
+\DoxyCodeLine{00343\ \ \ \ \ \textcolor{keyword}{explicit}\ \mbox{\hyperlink{classsc__boost_1_1__mfi_1_1dm_a29919164e99fae3e5b45a6a07c80bd34}{dm}}(\mbox{\hyperlink{classsc__boost_1_1__mfi_1_1dm_a018b4fe87c841768c528a6e9a10b1050}{F}}\ f):\ \mbox{\hyperlink{classsc__boost_1_1__mfi_1_1dm_a12b02e73f678b87343544e665455644b}{f\_}}(f)\ \{\}}
+\DoxyCodeLine{00344\ }
+\DoxyCodeLine{00345\ \ \ \ \ \mbox{\hyperlink{class_sysc_add__pv}{R}}\ \&\ \mbox{\hyperlink{classsc__boost_1_1__mfi_1_1dm_a3c56414bee7bee235fe9a74419cc1ed8}{operator()}}(\mbox{\hyperlink{mem__fn__cc_8hpp_adf1f3edb9115acb0a1e04209b7a9937b}{T}}\ *\ p)\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00346\ \textcolor{keyword}{\ \ \ \ }\{}
+\DoxyCodeLine{00347\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ (p-\/>*\mbox{\hyperlink{classsc__boost_1_1__mfi_1_1dm_a12b02e73f678b87343544e665455644b}{f\_}});}
+\DoxyCodeLine{00348\ \ \ \ \ \}}
+\DoxyCodeLine{00349\ }
+\DoxyCodeLine{00350\ \ \ \ \ \mbox{\hyperlink{class_sysc_add__pv}{R}}\ \textcolor{keyword}{const}\ \&\ \mbox{\hyperlink{classsc__boost_1_1__mfi_1_1dm_a00696a85e4aeefc678334ed0c086497f}{operator()}}(\mbox{\hyperlink{mem__fn__cc_8hpp_adf1f3edb9115acb0a1e04209b7a9937b}{T}}\ \textcolor{keyword}{const}\ *\ p)\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00351\ \textcolor{keyword}{\ \ \ \ }\{}
+\DoxyCodeLine{00352\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ (p-\/>*\mbox{\hyperlink{classsc__boost_1_1__mfi_1_1dm_a12b02e73f678b87343544e665455644b}{f\_}});}
+\DoxyCodeLine{00353\ \ \ \ \ \}}
+\DoxyCodeLine{00354\ }
+\DoxyCodeLine{00355\ \ \ \ \ \textcolor{keyword}{template}<\textcolor{keyword}{class}\ U>\ \mbox{\hyperlink{class_sysc_add__pv}{R}}\ \textcolor{keyword}{const}\ \&\ \mbox{\hyperlink{classsc__boost_1_1__mfi_1_1dm_ab0729e53079f666357bb71598a0270c0}{operator()}}(\mbox{\hyperlink{class_sysc_add__pv}{U}}\ \&\ \mbox{\hyperlink{class_sysc_add__pv}{u}})\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00356\ \textcolor{keyword}{\ \ \ \ }\{}
+\DoxyCodeLine{00357\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{classsc__boost_1_1__mfi_1_1dm_ab8f325354664c82ac3df42801fccd2f4}{call}}(\mbox{\hyperlink{class_sysc_add__pv}{u}},\ \&\mbox{\hyperlink{class_sysc_add__pv}{u}});}
+\DoxyCodeLine{00358\ \ \ \ \ \}}
+\DoxyCodeLine{00359\ }
+\DoxyCodeLine{00360\ \textcolor{preprocessor}{\#if\ !SC\_BOOST\_WORKAROUND(SC\_BOOST\_MSVC,\ <=\ 1300)\ \&\&\ !SC\_BOOST\_WORKAROUND(\_\_MWERKS\_\_,\ <\ 0x3200)}}
+\DoxyCodeLine{00361\ }
+\DoxyCodeLine{00362\ \ \ \ \ \mbox{\hyperlink{class_sysc_add__pv}{R}}\ \&\ \mbox{\hyperlink{classsc__boost_1_1__mfi_1_1dm_a0312cd7c9ca11b7954a5e31387c889e9}{operator()}}(\mbox{\hyperlink{mem__fn__cc_8hpp_adf1f3edb9115acb0a1e04209b7a9937b}{T}}\ \&\ t)\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00363\ \textcolor{keyword}{\ \ \ \ }\{}
+\DoxyCodeLine{00364\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ (t.*\mbox{\hyperlink{classsc__boost_1_1__mfi_1_1dm_a12b02e73f678b87343544e665455644b}{f\_}});}
+\DoxyCodeLine{00365\ \ \ \ \ \}}
+\DoxyCodeLine{00366\ }
+\DoxyCodeLine{00367\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00368\ }
+\DoxyCodeLine{00369\ \ \ \ \ \mbox{\hyperlink{class_sysc_add__pv}{R}}\ \textcolor{keyword}{const}\ \&\ \mbox{\hyperlink{classsc__boost_1_1__mfi_1_1dm_a2fe966342f83f0c4dd3b5d9f240ffc20}{operator()}}(\mbox{\hyperlink{mem__fn__cc_8hpp_adf1f3edb9115acb0a1e04209b7a9937b}{T}}\ \textcolor{keyword}{const}\ \&\ t)\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00370\ \textcolor{keyword}{\ \ \ \ }\{}
+\DoxyCodeLine{00371\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ (t.*\mbox{\hyperlink{classsc__boost_1_1__mfi_1_1dm_a12b02e73f678b87343544e665455644b}{f\_}});}
+\DoxyCodeLine{00372\ \ \ \ \ \}}
+\DoxyCodeLine{00373\ }
+\DoxyCodeLine{00374\ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{classsc__boost_1_1__mfi_1_1dm_a4e41f33bb30f44e1a4a6f58df3ca105f}{operator==}}(\mbox{\hyperlink{classsc__boost_1_1__mfi_1_1dm}{dm}}\ \textcolor{keyword}{const}\ \&\ \mbox{\hyperlink{class_sysc_add__pv}{rhs}})\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00375\ \textcolor{keyword}{\ \ \ \ }\{}
+\DoxyCodeLine{00376\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{classsc__boost_1_1__mfi_1_1dm_a12b02e73f678b87343544e665455644b}{f\_}}\ ==\ \mbox{\hyperlink{class_sysc_add__pv}{rhs}}.f\_;}
+\DoxyCodeLine{00377\ \ \ \ \ \}}
+\DoxyCodeLine{00378\ }
+\DoxyCodeLine{00379\ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{classsc__boost_1_1__mfi_1_1dm_aac88efce79bc86361da38b28053566de}{operator!=}}(\mbox{\hyperlink{classsc__boost_1_1__mfi_1_1dm}{dm}}\ \textcolor{keyword}{const}\ \&\ \mbox{\hyperlink{class_sysc_add__pv}{rhs}})\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00380\ \textcolor{keyword}{\ \ \ \ }\{}
+\DoxyCodeLine{00381\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{classsc__boost_1_1__mfi_1_1dm_a12b02e73f678b87343544e665455644b}{f\_}}\ !=\ \mbox{\hyperlink{class_sysc_add__pv}{rhs}}.f\_;}
+\DoxyCodeLine{00382\ \ \ \ \ \}}
+\DoxyCodeLine{00383\ \};}
+\DoxyCodeLine{00384\ }
+\DoxyCodeLine{00385\ \}\ \textcolor{comment}{//\ namespace\ \_mfi}}
+\DoxyCodeLine{00386\ }
+\DoxyCodeLine{00387\ \textcolor{keyword}{template}<\textcolor{keyword}{class}\ R,\ \textcolor{keyword}{class}\ T>\ \mbox{\hyperlink{classsc__boost_1_1__mfi_1_1dm}{\_mfi::dm<R,\ T>}}\ \mbox{\hyperlink{namespacesc__boost_a4161d54eb4957d8869b236f94131b1ff}{mem\_fn}}(\mbox{\hyperlink{class_sysc_add__pv}{R}}\ \mbox{\hyperlink{mem__fn__cc_8hpp_adf1f3edb9115acb0a1e04209b7a9937b}{T}}::*f)}
+\DoxyCodeLine{00388\ \{}
+\DoxyCodeLine{00389\ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{classsc__boost_1_1__mfi_1_1dm}{\_mfi::dm<R,\ T>}}(f);}
+\DoxyCodeLine{00390\ \}}
+\DoxyCodeLine{00391\ }
+\DoxyCodeLine{00392\ \}\ \textcolor{comment}{//\ namespace\ sc\_boost}}
+\DoxyCodeLine{00393\ }
+\DoxyCodeLine{00394\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{//\ \#ifndef\ SC\_BOOST\_MEM\_FN\_HPP\_INCLUDED}}
+
+\end{DoxyCode}

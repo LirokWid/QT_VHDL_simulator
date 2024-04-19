@@ -1,0 +1,178 @@
+\doxysection{tlm\+\_\+quantumkeeper.\+h}
+\hypertarget{tlm__quantumkeeper_8h_source}{}\label{tlm__quantumkeeper_8h_source}\index{C:/Users/BJRODIER/Documents/QT\_REPO/QT\_VHDL\_simulator/code/Ressources/SystemC/include/tlm\_utils/tlm\_quantumkeeper.h@{C:/Users/BJRODIER/Documents/QT\_REPO/QT\_VHDL\_simulator/code/Ressources/SystemC/include/tlm\_utils/tlm\_quantumkeeper.h}}
+\mbox{\hyperlink{tlm__quantumkeeper_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{comment}{/*****************************************************************************}}
+\DoxyCodeLine{00002\ \textcolor{comment}{}}
+\DoxyCodeLine{00003\ \textcolor{comment}{\ \ Licensed\ to\ Accellera\ Systems\ Initiative\ Inc.\ (Accellera)\ under\ one\ or}}
+\DoxyCodeLine{00004\ \textcolor{comment}{\ \ more\ contributor\ license\ agreements.\ \ See\ the\ NOTICE\ file\ distributed}}
+\DoxyCodeLine{00005\ \textcolor{comment}{\ \ with\ this\ work\ for\ additional\ information\ regarding\ copyright\ ownership.}}
+\DoxyCodeLine{00006\ \textcolor{comment}{\ \ Accellera\ licenses\ this\ file\ to\ you\ under\ the\ Apache\ License,\ Version\ 2.0}}
+\DoxyCodeLine{00007\ \textcolor{comment}{\ \ (the\ "{}License"{});\ you\ may\ not\ use\ this\ file\ except\ in\ compliance\ with\ the}}
+\DoxyCodeLine{00008\ \textcolor{comment}{\ \ License.\ \ You\ may\ obtain\ a\ copy\ of\ the\ License\ at}}
+\DoxyCodeLine{00009\ \textcolor{comment}{}}
+\DoxyCodeLine{00010\ \textcolor{comment}{\ \ \ \ http://www.apache.org/licenses/LICENSE-\/2.0}}
+\DoxyCodeLine{00011\ \textcolor{comment}{}}
+\DoxyCodeLine{00012\ \textcolor{comment}{\ \ Unless\ required\ by\ applicable\ law\ or\ agreed\ to\ in\ writing,\ software}}
+\DoxyCodeLine{00013\ \textcolor{comment}{\ \ distributed\ under\ the\ License\ is\ distributed\ on\ an\ "{}AS\ IS"{}\ BASIS,}}
+\DoxyCodeLine{00014\ \textcolor{comment}{\ \ WITHOUT\ WARRANTIES\ OR\ CONDITIONS\ OF\ ANY\ KIND,\ either\ express\ or}}
+\DoxyCodeLine{00015\ \textcolor{comment}{\ \ implied.\ \ See\ the\ License\ for\ the\ specific\ language\ governing}}
+\DoxyCodeLine{00016\ \textcolor{comment}{\ \ permissions\ and\ limitations\ under\ the\ License.}}
+\DoxyCodeLine{00017\ \textcolor{comment}{}}
+\DoxyCodeLine{00018\ \textcolor{comment}{\ *****************************************************************************/}}
+\DoxyCodeLine{00019\ }
+\DoxyCodeLine{00020\ \textcolor{comment}{//\ 20-\/Mar-\/2009\ \ John\ Aynsley\ \ Add\ set\_and\_sync()\ method}}
+\DoxyCodeLine{00021\ }
+\DoxyCodeLine{00022\ }
+\DoxyCodeLine{00023\ \textcolor{preprocessor}{\#ifndef\ \_\_TLM\_QUANTUMKEEPER\_H\_\_}}
+\DoxyCodeLine{00024\ \textcolor{preprocessor}{\#define\ \_\_TLM\_QUANTUMKEEPER\_H\_\_}}
+\DoxyCodeLine{00025\ }
+\DoxyCodeLine{00026\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{tlm__global__quantum_8h}{tlm\_core/tlm\_2/tlm\_quantum/tlm\_global\_quantum.h}}"{}}}
+\DoxyCodeLine{00027\ }
+\DoxyCodeLine{00028\ \textcolor{keyword}{namespace\ }\mbox{\hyperlink{namespacetlm__utils}{tlm\_utils}}\ \{}
+\DoxyCodeLine{00029\ }
+\DoxyCodeLine{00030\ \ \ \textcolor{comment}{//}}
+\DoxyCodeLine{00031\ \ \ \textcolor{comment}{//\ tlm\_quantumkeeper\ class}}
+\DoxyCodeLine{00032\ \ \ \textcolor{comment}{//}}
+\DoxyCodeLine{00033\ \ \ \textcolor{comment}{//\ The\ tlm\_quantumkeeper\ class\ is\ used\ to\ keep\ track\ of\ the\ local\ time\ in}}
+\DoxyCodeLine{00034\ \ \ \textcolor{comment}{//\ an\ initiator\ (how\ much\ it\ has\ run\ ahead\ of\ the\ SystemC\ time),\ to}}
+\DoxyCodeLine{00035\ \ \ \textcolor{comment}{//\ synchronize\ with\ SystemC\ time\ etc.}}
+\DoxyCodeLine{00036\ \ \ \textcolor{comment}{//}}
+\DoxyCodeLine{00037\ \ \ \textcolor{keyword}{class\ }\mbox{\hyperlink{classtlm__utils_1_1tlm__quantumkeeper}{tlm\_quantumkeeper}}}
+\DoxyCodeLine{00038\ \ \ \{}
+\DoxyCodeLine{00039\ \ \ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00040\ \ \ \ \ \textcolor{comment}{//}}
+\DoxyCodeLine{00041\ \ \ \ \ \textcolor{comment}{//\ Static\ setters/getters\ for\ the\ global\ quantum\ value.}}
+\DoxyCodeLine{00042\ \ \ \ \ \textcolor{comment}{//}}
+\DoxyCodeLine{00043\ \ \ \ \ \textcolor{comment}{//\ The\ global\ quantum\ is\ the\ maximum\ time\ an\ initiator\ can\ run\ ahead\ of}}
+\DoxyCodeLine{00044\ \ \ \ \ \textcolor{comment}{//\ systemC\ time.\ All\ initiators\ will\ synchronize\ on\ timingpoints\ that\ are}}
+\DoxyCodeLine{00045\ \ \ \ \ \textcolor{comment}{//\ multiples\ of\ the\ global\ quantum\ value.}}
+\DoxyCodeLine{00046\ \ \ \ \ \textcolor{comment}{//}}
+\DoxyCodeLine{00047\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classtlm__utils_1_1tlm__quantumkeeper_a593a827007f2f4cc8494e35a2e715ce3}{set\_global\_quantum}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{classsc__core_1_1sc__time}{sc\_core::sc\_time}}\&\ t)}
+\DoxyCodeLine{00048\ \ \ \ \ \{}
+\DoxyCodeLine{00049\ \ \ \ \ \ \ \mbox{\hyperlink{classtlm_1_1tlm__global__quantum_a47695c1a7989496917be83144ef3c12c}{tlm::tlm\_global\_quantum::instance}}().set(t);}
+\DoxyCodeLine{00050\ \ \ \ \ \}}
+\DoxyCodeLine{00051\ }
+\DoxyCodeLine{00052\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{const}\ \mbox{\hyperlink{classsc__core_1_1sc__time}{sc\_core::sc\_time}}\&\ \mbox{\hyperlink{classtlm__utils_1_1tlm__quantumkeeper_a0e8d415b6f0fb7458f847ab270226a61}{get\_global\_quantum}}()}
+\DoxyCodeLine{00053\ \ \ \ \ \{}
+\DoxyCodeLine{00054\ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{classtlm_1_1tlm__global__quantum_a47695c1a7989496917be83144ef3c12c}{tlm::tlm\_global\_quantum::instance}}().get();}
+\DoxyCodeLine{00055\ \ \ \ \ \}}
+\DoxyCodeLine{00056\ }
+\DoxyCodeLine{00057\ \ \ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00058\ \ \ \ \ \mbox{\hyperlink{classtlm__utils_1_1tlm__quantumkeeper_a35858eac6c535107bf7c7142e7dda9c0}{tlm\_quantumkeeper}}()\ :}
+\DoxyCodeLine{00059\ \ \ \ \ \ \ \mbox{\hyperlink{classtlm__utils_1_1tlm__quantumkeeper_a1e0c04f47473f073cc8e2d5aaf65c462}{m\_next\_sync\_point}}(\mbox{\hyperlink{namespacesc__core}{sc\_core}}::SC\_ZERO\_TIME),}
+\DoxyCodeLine{00060\ \ \ \ \ \ \ \mbox{\hyperlink{classtlm__utils_1_1tlm__quantumkeeper_ab0854e0289159947c444c25204b3c79e}{m\_local\_time}}(\mbox{\hyperlink{namespacesc__core}{sc\_core}}::SC\_ZERO\_TIME)}
+\DoxyCodeLine{00061\ \ \ \ \ \{}
+\DoxyCodeLine{00062\ \ \ \ \ \}}
+\DoxyCodeLine{00063\ }
+\DoxyCodeLine{00064\ \ \ \ \ \textcolor{keyword}{virtual}\ \mbox{\hyperlink{classtlm__utils_1_1tlm__quantumkeeper_ad4ce9ad2cb14fc12027cea162c67d7a5}{\string~tlm\_quantumkeeper}}()\ \{\}}
+\DoxyCodeLine{00065\ }
+\DoxyCodeLine{00066\ \ \ \ \ \textcolor{comment}{//}}
+\DoxyCodeLine{00067\ \ \ \ \ \textcolor{comment}{//\ Increment\ the\ local\ time\ (the\ time\ the\ initiator\ is\ ahead\ of\ the}}
+\DoxyCodeLine{00068\ \ \ \ \ \textcolor{comment}{//\ systemC\ time)\ After\ incrementing\ the\ local\ time\ an\ initiator\ should}}
+\DoxyCodeLine{00069\ \ \ \ \ \textcolor{comment}{//\ check\ (with\ the\ need\_sync\ method)\ if\ a\ sync\ is\ required.}}
+\DoxyCodeLine{00070\ \ \ \ \ \textcolor{comment}{//}}
+\DoxyCodeLine{00071\ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classtlm__utils_1_1tlm__quantumkeeper_a74fdd20ba60d97dfcc0b732d6a12492b}{inc}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{classsc__core_1_1sc__time}{sc\_core::sc\_time}}\&\ t)}
+\DoxyCodeLine{00072\ \ \ \ \ \{}
+\DoxyCodeLine{00073\ \ \ \ \ \ \ \mbox{\hyperlink{classtlm__utils_1_1tlm__quantumkeeper_ab0854e0289159947c444c25204b3c79e}{m\_local\_time}}\ +=\ t;}
+\DoxyCodeLine{00074\ \ \ \ \ \}}
+\DoxyCodeLine{00075\ }
+\DoxyCodeLine{00076\ \ \ \ \ \textcolor{comment}{//}}
+\DoxyCodeLine{00077\ \ \ \ \ \textcolor{comment}{//\ Sets\ the\ local\ time\ (the\ time\ the\ initiator\ is\ ahead\ of\ the}}
+\DoxyCodeLine{00078\ \ \ \ \ \textcolor{comment}{//\ systemC\ time)\ After\ changing\ the\ local\ time\ an\ initiator\ should}}
+\DoxyCodeLine{00079\ \ \ \ \ \textcolor{comment}{//\ check\ (with\ the\ need\_sync\ method)\ if\ a\ sync\ is\ required.}}
+\DoxyCodeLine{00080\ \ \ \ \ \textcolor{comment}{//}}
+\DoxyCodeLine{00081\ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classtlm__utils_1_1tlm__quantumkeeper_a4f4aab4e00b24361bff36aa5937af9ac}{set}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{classsc__core_1_1sc__time}{sc\_core::sc\_time}}\&\ t)}
+\DoxyCodeLine{00082\ \ \ \ \ \{}
+\DoxyCodeLine{00083\ \ \ \ \ \ \ \mbox{\hyperlink{classtlm__utils_1_1tlm__quantumkeeper_ab0854e0289159947c444c25204b3c79e}{m\_local\_time}}\ =\ t;}
+\DoxyCodeLine{00084\ \ \ \ \ \}}
+\DoxyCodeLine{00085\ }
+\DoxyCodeLine{00086\ \ \ \ \ \textcolor{comment}{//}}
+\DoxyCodeLine{00087\ \ \ \ \ \textcolor{comment}{//\ Checks\ if\ a\ sync\ to\ systemC\ is\ required\ for\ this\ initiator.\ This\ will}}
+\DoxyCodeLine{00088\ \ \ \ \ \textcolor{comment}{//\ be\ the\ case\ if\ the\ local\ time\ becomes\ greater\ than\ the\ local\ (current)}}
+\DoxyCodeLine{00089\ \ \ \ \ \textcolor{comment}{//\ quantum\ value\ for\ this\ initiator.}}
+\DoxyCodeLine{00090\ \ \ \ \ \textcolor{comment}{//}}
+\DoxyCodeLine{00091\ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{classtlm__utils_1_1tlm__quantumkeeper_a7ef90725837297139a96f1ce6eb31eaa}{need\_sync}}()\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00092\ \textcolor{keyword}{\ \ \ \ }\{}
+\DoxyCodeLine{00093\ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{namespacesc__core_a60634a7c4c8c70a106e518d4a03d4a86}{sc\_core::sc\_time\_stamp}}()\ +\ \mbox{\hyperlink{classtlm__utils_1_1tlm__quantumkeeper_ab0854e0289159947c444c25204b3c79e}{m\_local\_time}}\ >=\ \mbox{\hyperlink{classtlm__utils_1_1tlm__quantumkeeper_a1e0c04f47473f073cc8e2d5aaf65c462}{m\_next\_sync\_point}};}
+\DoxyCodeLine{00094\ \ \ \ \ \}}
+\DoxyCodeLine{00095\ }
+\DoxyCodeLine{00096\ \ \ \ \ \textcolor{comment}{//}}
+\DoxyCodeLine{00097\ \ \ \ \ \textcolor{comment}{//\ Synchronize\ to\ systemC.\ This\ call\ will\ do\ a\ wait\ for\ the\ time\ the}}
+\DoxyCodeLine{00098\ \ \ \ \ \textcolor{comment}{//\ initiator\ was\ running\ ahead\ of\ systemC\ time\ and\ reset\ the}}
+\DoxyCodeLine{00099\ \ \ \ \ \textcolor{comment}{//\ tlm\_quantumkeeper.}}
+\DoxyCodeLine{00100\ \ \ \ \ \textcolor{comment}{//}}
+\DoxyCodeLine{00101\ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classtlm__utils_1_1tlm__quantumkeeper_a531e23d9764c696b123e04fc54c20b10}{sync}}()}
+\DoxyCodeLine{00102\ \ \ \ \ \{}
+\DoxyCodeLine{00103\ \ \ \ \ \ \ \mbox{\hyperlink{namespacesc__core_a3c8b4f07530fb5b54f3a6896e4ef68c3}{sc\_core::wait}}(\mbox{\hyperlink{classtlm__utils_1_1tlm__quantumkeeper_ab0854e0289159947c444c25204b3c79e}{m\_local\_time}});}
+\DoxyCodeLine{00104\ \ \ \ \ \ \ \mbox{\hyperlink{classtlm__utils_1_1tlm__quantumkeeper_ae458d08fba65c7b370093f758c7b97b4}{reset}}();}
+\DoxyCodeLine{00105\ \ \ \ \ \}}
+\DoxyCodeLine{00106\ }
+\DoxyCodeLine{00107\ \ \ \ \ \textcolor{comment}{//}}
+\DoxyCodeLine{00108\ \ \ \ \ \textcolor{comment}{//\ Non-\/virtual\ convenience\ method\ to\ set\ the\ local\ time\ and\ sync\ only\ if\ needed}}
+\DoxyCodeLine{00109\ \ \ \ \ \textcolor{comment}{//}}
+\DoxyCodeLine{00110\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classtlm__utils_1_1tlm__quantumkeeper_a3f81b5a7465df0888e33f56d577415c0}{set\_and\_sync}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{classsc__core_1_1sc__time}{sc\_core::sc\_time}}\&\ t)}
+\DoxyCodeLine{00111\ \ \ \ \ \{}
+\DoxyCodeLine{00112\ \ \ \ \ \ \ \mbox{\hyperlink{classtlm__utils_1_1tlm__quantumkeeper_a4f4aab4e00b24361bff36aa5937af9ac}{set}}(t);}
+\DoxyCodeLine{00113\ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\mbox{\hyperlink{classtlm__utils_1_1tlm__quantumkeeper_a7ef90725837297139a96f1ce6eb31eaa}{need\_sync}}())}
+\DoxyCodeLine{00114\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classtlm__utils_1_1tlm__quantumkeeper_a531e23d9764c696b123e04fc54c20b10}{sync}}();}
+\DoxyCodeLine{00115\ \ \ \ \ \}}
+\DoxyCodeLine{00116\ }
+\DoxyCodeLine{00117\ \ \ \ \ \textcolor{comment}{//}}
+\DoxyCodeLine{00118\ \ \ \ \ \textcolor{comment}{//\ Resets\ the\ local\ time\ to\ SC\_ZERO\_TIME\ and\ computes\ the\ value\ of\ the}}
+\DoxyCodeLine{00119\ \ \ \ \ \textcolor{comment}{//\ next\ local\ quantum.\ This\ method\ should\ be\ called\ by\ an\ initiator\ after}}
+\DoxyCodeLine{00120\ \ \ \ \ \textcolor{comment}{//\ a\ wait\ because\ of\ a\ synchronization\ request\ by\ a\ target\ (TLM\_ACCEPTED,}}
+\DoxyCodeLine{00121\ \ \ \ \ \textcolor{comment}{//\ or\ TLM\_UPDATED).}}
+\DoxyCodeLine{00122\ \ \ \ \ \textcolor{comment}{//}}
+\DoxyCodeLine{00123\ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classtlm__utils_1_1tlm__quantumkeeper_ae458d08fba65c7b370093f758c7b97b4}{reset}}()}
+\DoxyCodeLine{00124\ \ \ \ \ \{}
+\DoxyCodeLine{00125\ \ \ \ \ \ \ \mbox{\hyperlink{classtlm__utils_1_1tlm__quantumkeeper_ab0854e0289159947c444c25204b3c79e}{m\_local\_time}}\ =\ \mbox{\hyperlink{namespacesc__core_aba4538758f734d8796fd0e92b430c50c}{sc\_core::SC\_ZERO\_TIME}};}
+\DoxyCodeLine{00126\ \ \ \ \ \ \ \mbox{\hyperlink{classtlm__utils_1_1tlm__quantumkeeper_a1e0c04f47473f073cc8e2d5aaf65c462}{m\_next\_sync\_point}}\ =\ \mbox{\hyperlink{namespacesc__core_a60634a7c4c8c70a106e518d4a03d4a86}{sc\_core::sc\_time\_stamp}}()\ +\ \mbox{\hyperlink{classtlm__utils_1_1tlm__quantumkeeper_af40c6531805e3056969defe452bc038b}{compute\_local\_quantum}}();}
+\DoxyCodeLine{00127\ \ \ \ \ \}}
+\DoxyCodeLine{00128\ }
+\DoxyCodeLine{00129\ \ \ \ \ \textcolor{comment}{//}}
+\DoxyCodeLine{00130\ \ \ \ \ \textcolor{comment}{//\ Helper\ function\ to\ get\ the\ current\ systemC\ time,\ taken\ the\ local\ time}}
+\DoxyCodeLine{00131\ \ \ \ \ \textcolor{comment}{//\ into\ account.\ The\ current\ systemC\ time\ is\ calculated\ as\ the\ time}}
+\DoxyCodeLine{00132\ \ \ \ \ \textcolor{comment}{//\ returned\ by\ sc\_time\_stamp\ incremeneted\ with\ the\ time\ the\ initiator\ is}}
+\DoxyCodeLine{00133\ \ \ \ \ \textcolor{comment}{//\ running\ ahead.}}
+\DoxyCodeLine{00134\ \ \ \ \ \textcolor{comment}{//}}
+\DoxyCodeLine{00135\ \ \ \ \ \textcolor{keyword}{virtual}\ \mbox{\hyperlink{classsc__core_1_1sc__time}{sc\_core::sc\_time}}\ \mbox{\hyperlink{classtlm__utils_1_1tlm__quantumkeeper_a0af283e89a3ccf75b72a11e5d826a71a}{get\_current\_time}}()\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00136\ \textcolor{keyword}{\ \ \ \ }\{}
+\DoxyCodeLine{00137\ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{namespacesc__core_a60634a7c4c8c70a106e518d4a03d4a86}{sc\_core::sc\_time\_stamp}}()\ +\ \mbox{\hyperlink{classtlm__utils_1_1tlm__quantumkeeper_ab0854e0289159947c444c25204b3c79e}{m\_local\_time}};}
+\DoxyCodeLine{00138\ \ \ \ \ \}}
+\DoxyCodeLine{00139\ }
+\DoxyCodeLine{00140\ \ \ \ \ \textcolor{comment}{//}}
+\DoxyCodeLine{00141\ \ \ \ \ \textcolor{comment}{//\ Helper\ functions\ to\ get\ the\ time\ the\ initiator\ is\ running\ ahead\ of}}
+\DoxyCodeLine{00142\ \ \ \ \ \textcolor{comment}{//\ systenC\ (local\ time).\ This\ time\ should\ be\ passed\ to\ a\ target\ in\ the}}
+\DoxyCodeLine{00143\ \ \ \ \ \textcolor{comment}{//\ nb\_transport\ call}}
+\DoxyCodeLine{00144\ \ \ \ \ \textcolor{comment}{//}}
+\DoxyCodeLine{00145\ \ \ \ \ \textcolor{keyword}{virtual}\ \mbox{\hyperlink{classsc__core_1_1sc__time}{sc\_core::sc\_time}}\ \mbox{\hyperlink{classtlm__utils_1_1tlm__quantumkeeper_a0c9ea34e11c58157a09060bd5dedd845}{get\_local\_time}}()\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00146\ \textcolor{keyword}{\ \ \ \ }\{}
+\DoxyCodeLine{00147\ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{classtlm__utils_1_1tlm__quantumkeeper_ab0854e0289159947c444c25204b3c79e}{m\_local\_time}};}
+\DoxyCodeLine{00148\ \ \ \ \ \}}
+\DoxyCodeLine{00149\ }
+\DoxyCodeLine{00150\ \ \ \textcolor{keyword}{protected}:}
+\DoxyCodeLine{00151\ \ \ \ \ \textcolor{comment}{//}}
+\DoxyCodeLine{00152\ \ \ \ \ \textcolor{comment}{//\ Calculate\ the\ next\ local\ quantum\ for\ this\ initiator.}}
+\DoxyCodeLine{00153\ \ \ \ \ \textcolor{comment}{//}}
+\DoxyCodeLine{00154\ \ \ \ \ \textcolor{comment}{//\ The\ method\ can\ be\ overloaded\ in\ a\ derived\ object\ if\ an\ initiator\ wants}}
+\DoxyCodeLine{00155\ \ \ \ \ \textcolor{comment}{//\ to\ use\ another\ local\ quantum.\ This\ derived\ object\ should\ also\ take\ the}}
+\DoxyCodeLine{00156\ \ \ \ \ \textcolor{comment}{//\ global\ quantum\ into\ account.\ It's\ local\ quantum\ should\ not\ be\ set\ to\ a}}
+\DoxyCodeLine{00157\ \ \ \ \ \textcolor{comment}{//\ value\ that\ is\ larger\ than\ the\ quantum\ returned\ by\ the}}
+\DoxyCodeLine{00158\ \ \ \ \ \textcolor{comment}{//\ compute\_local\_quantum\ of\ the\ tlm\_global\_quantum\ singleton.}}
+\DoxyCodeLine{00159\ \ \ \ \ \textcolor{comment}{//}}
+\DoxyCodeLine{00160\ \ \ \ \ \textcolor{keyword}{virtual}\ \mbox{\hyperlink{classsc__core_1_1sc__time}{sc\_core::sc\_time}}\ \mbox{\hyperlink{classtlm__utils_1_1tlm__quantumkeeper_af40c6531805e3056969defe452bc038b}{compute\_local\_quantum}}()}
+\DoxyCodeLine{00161\ \ \ \ \ \{}
+\DoxyCodeLine{00162\ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{classtlm_1_1tlm__global__quantum_a47695c1a7989496917be83144ef3c12c}{tlm::tlm\_global\_quantum::instance}}().compute\_local\_quantum();}
+\DoxyCodeLine{00163\ \ \ \ \ \}}
+\DoxyCodeLine{00164\ }
+\DoxyCodeLine{00165\ \ \ \textcolor{keyword}{protected}:}
+\DoxyCodeLine{00166\ \ \ \ \ \mbox{\hyperlink{classsc__core_1_1sc__time}{sc\_core::sc\_time}}\ \mbox{\hyperlink{classtlm__utils_1_1tlm__quantumkeeper_a1e0c04f47473f073cc8e2d5aaf65c462}{m\_next\_sync\_point}};}
+\DoxyCodeLine{00167\ \ \ \ \ \mbox{\hyperlink{classsc__core_1_1sc__time}{sc\_core::sc\_time}}\ \mbox{\hyperlink{classtlm__utils_1_1tlm__quantumkeeper_ab0854e0289159947c444c25204b3c79e}{m\_local\_time}};}
+\DoxyCodeLine{00168\ \ \ \};}
+\DoxyCodeLine{00169\ }
+\DoxyCodeLine{00170\ \}\ \textcolor{comment}{//\ namespace\ tlm}}
+\DoxyCodeLine{00171\ }
+\DoxyCodeLine{00172\ \textcolor{preprocessor}{\#endif}}
+
+\end{DoxyCode}

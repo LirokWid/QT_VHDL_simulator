@@ -1,0 +1,509 @@
+.TH "sc_boost" 3 "VHDL simulator" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+sc_boost
+.SH SYNOPSIS
+.br
+.PP
+.SS "Namespaces"
+
+.in +1c
+.ti -1c
+.RI "namespace \fB_bi\fP"
+.br
+.ti -1c
+.RI "namespace \fB_mfi\fP"
+.br
+.ti -1c
+.RI "namespace \fBdetail\fP"
+.br
+.ti -1c
+.RI "namespace \fBmpl\fP"
+.br
+.in -1c
+.SS "Classes"
+
+.in +1c
+.ti -1c
+.RI "struct \fBapply\fP"
+.br
+.ti -1c
+.RI "class \fBarg\fP"
+.br
+.ti -1c
+.RI "struct \fBassert_no_intrinsic_wchar_t\fP"
+.br
+.ti -1c
+.RI "struct \fBassert_no_intrinsic_wchar_t< wchar_t >\fP"
+.br
+.ti -1c
+.RI "class \fBbasic_string_view\fP"
+.br
+.ti -1c
+.RI "struct \fBdisable_if\fP"
+.br
+.ti -1c
+.RI "struct \fBdisable_if_c\fP"
+.br
+.ti -1c
+.RI "struct \fBdisable_if_c< true, T >\fP"
+.br
+.ti -1c
+.RI "struct \fBenable_if\fP"
+.br
+.ti -1c
+.RI "struct \fBenable_if_c\fP"
+.br
+.ti -1c
+.RI "struct \fBenable_if_c< false, T >\fP"
+.br
+.ti -1c
+.RI "class \fBis_reference_wrapper\fP"
+.br
+.ti -1c
+.RI "struct \fBlazy_disable_if\fP"
+.br
+.ti -1c
+.RI "struct \fBlazy_disable_if_c\fP"
+.br
+.ti -1c
+.RI "struct \fBlazy_disable_if_c< true, T >\fP"
+.br
+.ti -1c
+.RI "struct \fBlazy_enable_if\fP"
+.br
+.ti -1c
+.RI "struct \fBlazy_enable_if_c\fP"
+.br
+.ti -1c
+.RI "struct \fBlazy_enable_if_c< false, T >\fP"
+.br
+.ti -1c
+.RI "struct \fBnon_type\fP"
+.br
+.ti -1c
+.RI "class \fBreference_wrapper\fP"
+.br
+.ti -1c
+.RI "struct \fBtype\fP"
+.br
+.ti -1c
+.RI "class \fBunwrap_reference\fP"
+.br
+.in -1c
+.SS "Typedefs"
+
+.in +1c
+.ti -1c
+.RI "\fBtypedef\fP \fBassert_no_intrinsic_wchar_t\fP< \fBunsignedshort\fP >::type \fBassert_no_intrinsic_wchar_t_\fP"
+.br
+.ti -1c
+.RI "\fBtypedef\fP \fBbasic_string_view\fP< \fBchar\fP, std::char_traits< \fBchar\fP > > \fBstring_view\fP"
+.br
+.ti -1c
+.RI "\fBtypedef\fP \fBbasic_string_view\fP< \fBwchar_t\fP, std::char_traits< \fBwchar_t\fP > > \fBwstring_view\fP"
+.br
+.in -1c
+.SS "Functions"
+
+.in +1c
+.ti -1c
+.RI "template<\fBclass\fP \fBV\fP , \fBclass\fP \fBT\fP > \fBvoid\fP \fBvisit_each\fP (\fBV\fP &v, \fB_bi::value\fP< \fBT\fP > \fBconst\fP &t, int)"
+.br
+.ti -1c
+.RI "template<\fBclass\fP \fBV\fP , \fBclass\fP \fBR\fP , \fBclass\fP F , \fBclass\fP \fBL\fP > \fBvoid\fP \fBvisit_each\fP (\fBV\fP &v, \fB_bi::bind_t\fP< \fBR\fP, F, \fBL\fP > \fBconst\fP &t, int)"
+.br
+.ti -1c
+.RI "template<\fBclass\fP \fBR\fP , \fBclass\fP F > \fB_bi::bind_t\fP< \fBR\fP, F, \fB_bi::list0\fP > \fBSC_BOOST_BIND\fP (F f)"
+.br
+.ti -1c
+.RI "template<\fBclass\fP \fBR\fP , \fBclass\fP F , \fBclass\fP \fBA1\fP > \fB_bi::bind_t\fP< \fBR\fP, F, \fBtypename\fP \fB_bi::list_av_1\fP< \fBA1\fP >::type > \fBSC_BOOST_BIND\fP (F f, \fBA1\fP a1)"
+.br
+.ti -1c
+.RI "template<\fBclass\fP \fBR\fP , \fBclass\fP F , \fBclass\fP \fBA1\fP , \fBclass\fP \fBA2\fP > \fB_bi::bind_t\fP< \fBR\fP, F, \fBtypename\fP \fB_bi::list_av_2\fP< \fBA1\fP, \fBA2\fP >::type > \fBSC_BOOST_BIND\fP (F f, \fBA1\fP a1, \fBA2\fP \fBa2\fP)"
+.br
+.ti -1c
+.RI "template<\fBclass\fP \fBR\fP , \fBclass\fP F , \fBclass\fP \fBA1\fP , \fBclass\fP \fBA2\fP , \fBclass\fP \fBA3\fP > \fB_bi::bind_t\fP< \fBR\fP, F, \fBtypename\fP \fB_bi::list_av_3\fP< \fBA1\fP, \fBA2\fP, \fBA3\fP >::type > \fBSC_BOOST_BIND\fP (F f, \fBA1\fP a1, \fBA2\fP \fBa2\fP, \fBA3\fP \fBa3\fP)"
+.br
+.ti -1c
+.RI "template<\fBclass\fP \fBR\fP , \fBclass\fP F , \fBclass\fP \fBA1\fP , \fBclass\fP \fBA2\fP , \fBclass\fP \fBA3\fP , \fBclass\fP \fBA4\fP > \fB_bi::bind_t\fP< \fBR\fP, F, \fBtypename\fP \fB_bi::list_av_4\fP< \fBA1\fP, \fBA2\fP, \fBA3\fP, \fBA4\fP >::type > \fBSC_BOOST_BIND\fP (F f, \fBA1\fP a1, \fBA2\fP \fBa2\fP, \fBA3\fP \fBa3\fP, \fBA4\fP \fBa4\fP)"
+.br
+.ti -1c
+.RI "template<\fBclass\fP \fBR\fP , \fBclass\fP F , \fBclass\fP \fBA1\fP , \fBclass\fP \fBA2\fP , \fBclass\fP \fBA3\fP , \fBclass\fP \fBA4\fP , \fBclass\fP \fBA5\fP > \fB_bi::bind_t\fP< \fBR\fP, F, \fBtypename\fP \fB_bi::list_av_5\fP< \fBA1\fP, \fBA2\fP, \fBA3\fP, \fBA4\fP, \fBA5\fP >::type > \fBSC_BOOST_BIND\fP (F f, \fBA1\fP a1, \fBA2\fP \fBa2\fP, \fBA3\fP \fBa3\fP, \fBA4\fP \fBa4\fP, \fBA5\fP \fBa5\fP)"
+.br
+.ti -1c
+.RI "template<\fBclass\fP \fBR\fP , \fBclass\fP F , \fBclass\fP \fBA1\fP , \fBclass\fP \fBA2\fP , \fBclass\fP \fBA3\fP , \fBclass\fP \fBA4\fP , \fBclass\fP \fBA5\fP , \fBclass\fP \fBA6\fP > \fB_bi::bind_t\fP< \fBR\fP, F, \fBtypename\fP \fB_bi::list_av_6\fP< \fBA1\fP, \fBA2\fP, \fBA3\fP, \fBA4\fP, \fBA5\fP, \fBA6\fP >::type > \fBSC_BOOST_BIND\fP (F f, \fBA1\fP a1, \fBA2\fP \fBa2\fP, \fBA3\fP \fBa3\fP, \fBA4\fP \fBa4\fP, \fBA5\fP \fBa5\fP, \fBA6\fP \fBa6\fP)"
+.br
+.ti -1c
+.RI "template<\fBclass\fP \fBR\fP , \fBclass\fP F , \fBclass\fP \fBA1\fP , \fBclass\fP \fBA2\fP , \fBclass\fP \fBA3\fP , \fBclass\fP \fBA4\fP , \fBclass\fP \fBA5\fP , \fBclass\fP \fBA6\fP , \fBclass\fP \fBA7\fP > \fB_bi::bind_t\fP< \fBR\fP, F, \fBtypename\fP \fB_bi::list_av_7\fP< \fBA1\fP, \fBA2\fP, \fBA3\fP, \fBA4\fP, \fBA5\fP, \fBA6\fP, \fBA7\fP >::type > \fBSC_BOOST_BIND\fP (F f, \fBA1\fP a1, \fBA2\fP \fBa2\fP, \fBA3\fP \fBa3\fP, \fBA4\fP \fBa4\fP, \fBA5\fP \fBa5\fP, \fBA6\fP \fBa6\fP, \fBA7\fP \fBa7\fP)"
+.br
+.ti -1c
+.RI "template<\fBclass\fP \fBR\fP , \fBclass\fP F , \fBclass\fP \fBA1\fP , \fBclass\fP \fBA2\fP , \fBclass\fP \fBA3\fP , \fBclass\fP \fBA4\fP , \fBclass\fP \fBA5\fP , \fBclass\fP \fBA6\fP , \fBclass\fP \fBA7\fP , \fBclass\fP \fBA8\fP > \fB_bi::bind_t\fP< \fBR\fP, F, \fBtypename\fP \fB_bi::list_av_8\fP< \fBA1\fP, \fBA2\fP, \fBA3\fP, \fBA4\fP, \fBA5\fP, \fBA6\fP, \fBA7\fP, \fBA8\fP >::type > \fBSC_BOOST_BIND\fP (F f, \fBA1\fP a1, \fBA2\fP \fBa2\fP, \fBA3\fP \fBa3\fP, \fBA4\fP \fBa4\fP, \fBA5\fP \fBa5\fP, \fBA6\fP \fBa6\fP, \fBA7\fP \fBa7\fP, \fBA8\fP \fBa8\fP)"
+.br
+.ti -1c
+.RI "template<\fBclass\fP \fBR\fP , \fBclass\fP F , \fBclass\fP \fBA1\fP , \fBclass\fP \fBA2\fP , \fBclass\fP \fBA3\fP , \fBclass\fP \fBA4\fP , \fBclass\fP \fBA5\fP , \fBclass\fP \fBA6\fP , \fBclass\fP \fBA7\fP , \fBclass\fP \fBA8\fP , \fBclass\fP \fBA9\fP > \fB_bi::bind_t\fP< \fBR\fP, F, \fBtypename\fP \fB_bi::list_av_9\fP< \fBA1\fP, \fBA2\fP, \fBA3\fP, \fBA4\fP, \fBA5\fP, \fBA6\fP, \fBA7\fP, \fBA8\fP, \fBA9\fP >::type > \fBSC_BOOST_BIND\fP (F f, \fBA1\fP a1, \fBA2\fP \fBa2\fP, \fBA3\fP \fBa3\fP, \fBA4\fP \fBa4\fP, \fBA5\fP \fBa5\fP, \fBA6\fP \fBa6\fP, \fBA7\fP \fBa7\fP, \fBA8\fP \fBa8\fP, \fBA9\fP \fBa9\fP)"
+.br
+.ti -1c
+.RI "template<\fBclass\fP \fBR\fP , \fBclass\fP F > \fB_bi::bind_t\fP< \fBR\fP, F, \fB_bi::list0\fP > \fBSC_BOOST_BIND\fP (\fBsc_boost::type\fP< \fBR\fP >, F f)"
+.br
+.ti -1c
+.RI "template<\fBclass\fP \fBR\fP , \fBclass\fP F , \fBclass\fP \fBA1\fP > \fB_bi::bind_t\fP< \fBR\fP, F, \fBtypename\fP \fB_bi::list_av_1\fP< \fBA1\fP >::type > \fBSC_BOOST_BIND\fP (\fBsc_boost::type\fP< \fBR\fP >, F f, \fBA1\fP a1)"
+.br
+.ti -1c
+.RI "template<\fBclass\fP \fBR\fP , \fBclass\fP F , \fBclass\fP \fBA1\fP , \fBclass\fP \fBA2\fP > \fB_bi::bind_t\fP< \fBR\fP, F, \fBtypename\fP \fB_bi::list_av_2\fP< \fBA1\fP, \fBA2\fP >::type > \fBSC_BOOST_BIND\fP (\fBsc_boost::type\fP< \fBR\fP >, F f, \fBA1\fP a1, \fBA2\fP \fBa2\fP)"
+.br
+.ti -1c
+.RI "template<\fBclass\fP \fBR\fP , \fBclass\fP F , \fBclass\fP \fBA1\fP , \fBclass\fP \fBA2\fP , \fBclass\fP \fBA3\fP > \fB_bi::bind_t\fP< \fBR\fP, F, \fBtypename\fP \fB_bi::list_av_3\fP< \fBA1\fP, \fBA2\fP, \fBA3\fP >::type > \fBSC_BOOST_BIND\fP (\fBsc_boost::type\fP< \fBR\fP >, F f, \fBA1\fP a1, \fBA2\fP \fBa2\fP, \fBA3\fP \fBa3\fP)"
+.br
+.ti -1c
+.RI "template<\fBclass\fP \fBR\fP , \fBclass\fP F , \fBclass\fP \fBA1\fP , \fBclass\fP \fBA2\fP , \fBclass\fP \fBA3\fP , \fBclass\fP \fBA4\fP > \fB_bi::bind_t\fP< \fBR\fP, F, \fBtypename\fP \fB_bi::list_av_4\fP< \fBA1\fP, \fBA2\fP, \fBA3\fP, \fBA4\fP >::type > \fBSC_BOOST_BIND\fP (\fBsc_boost::type\fP< \fBR\fP >, F f, \fBA1\fP a1, \fBA2\fP \fBa2\fP, \fBA3\fP \fBa3\fP, \fBA4\fP \fBa4\fP)"
+.br
+.ti -1c
+.RI "template<\fBclass\fP \fBR\fP , \fBclass\fP F , \fBclass\fP \fBA1\fP , \fBclass\fP \fBA2\fP , \fBclass\fP \fBA3\fP , \fBclass\fP \fBA4\fP , \fBclass\fP \fBA5\fP > \fB_bi::bind_t\fP< \fBR\fP, F, \fBtypename\fP \fB_bi::list_av_5\fP< \fBA1\fP, \fBA2\fP, \fBA3\fP, \fBA4\fP, \fBA5\fP >::type > \fBSC_BOOST_BIND\fP (\fBsc_boost::type\fP< \fBR\fP >, F f, \fBA1\fP a1, \fBA2\fP \fBa2\fP, \fBA3\fP \fBa3\fP, \fBA4\fP \fBa4\fP, \fBA5\fP \fBa5\fP)"
+.br
+.ti -1c
+.RI "template<\fBclass\fP \fBR\fP , \fBclass\fP F , \fBclass\fP \fBA1\fP , \fBclass\fP \fBA2\fP , \fBclass\fP \fBA3\fP , \fBclass\fP \fBA4\fP , \fBclass\fP \fBA5\fP , \fBclass\fP \fBA6\fP > \fB_bi::bind_t\fP< \fBR\fP, F, \fBtypename\fP \fB_bi::list_av_6\fP< \fBA1\fP, \fBA2\fP, \fBA3\fP, \fBA4\fP, \fBA5\fP, \fBA6\fP >::type > \fBSC_BOOST_BIND\fP (\fBsc_boost::type\fP< \fBR\fP >, F f, \fBA1\fP a1, \fBA2\fP \fBa2\fP, \fBA3\fP \fBa3\fP, \fBA4\fP \fBa4\fP, \fBA5\fP \fBa5\fP, \fBA6\fP \fBa6\fP)"
+.br
+.ti -1c
+.RI "template<\fBclass\fP \fBR\fP , \fBclass\fP F , \fBclass\fP \fBA1\fP , \fBclass\fP \fBA2\fP , \fBclass\fP \fBA3\fP , \fBclass\fP \fBA4\fP , \fBclass\fP \fBA5\fP , \fBclass\fP \fBA6\fP , \fBclass\fP \fBA7\fP > \fB_bi::bind_t\fP< \fBR\fP, F, \fBtypename\fP \fB_bi::list_av_7\fP< \fBA1\fP, \fBA2\fP, \fBA3\fP, \fBA4\fP, \fBA5\fP, \fBA6\fP, \fBA7\fP >::type > \fBSC_BOOST_BIND\fP (\fBsc_boost::type\fP< \fBR\fP >, F f, \fBA1\fP a1, \fBA2\fP \fBa2\fP, \fBA3\fP \fBa3\fP, \fBA4\fP \fBa4\fP, \fBA5\fP \fBa5\fP, \fBA6\fP \fBa6\fP, \fBA7\fP \fBa7\fP)"
+.br
+.ti -1c
+.RI "template<\fBclass\fP \fBR\fP , \fBclass\fP F , \fBclass\fP \fBA1\fP , \fBclass\fP \fBA2\fP , \fBclass\fP \fBA3\fP , \fBclass\fP \fBA4\fP , \fBclass\fP \fBA5\fP , \fBclass\fP \fBA6\fP , \fBclass\fP \fBA7\fP , \fBclass\fP \fBA8\fP > \fB_bi::bind_t\fP< \fBR\fP, F, \fBtypename\fP \fB_bi::list_av_8\fP< \fBA1\fP, \fBA2\fP, \fBA3\fP, \fBA4\fP, \fBA5\fP, \fBA6\fP, \fBA7\fP, \fBA8\fP >::type > \fBSC_BOOST_BIND\fP (\fBsc_boost::type\fP< \fBR\fP >, F f, \fBA1\fP a1, \fBA2\fP \fBa2\fP, \fBA3\fP \fBa3\fP, \fBA4\fP \fBa4\fP, \fBA5\fP \fBa5\fP, \fBA6\fP \fBa6\fP, \fBA7\fP \fBa7\fP, \fBA8\fP \fBa8\fP)"
+.br
+.ti -1c
+.RI "template<\fBclass\fP \fBR\fP , \fBclass\fP F , \fBclass\fP \fBA1\fP , \fBclass\fP \fBA2\fP , \fBclass\fP \fBA3\fP , \fBclass\fP \fBA4\fP , \fBclass\fP \fBA5\fP , \fBclass\fP \fBA6\fP , \fBclass\fP \fBA7\fP , \fBclass\fP \fBA8\fP , \fBclass\fP \fBA9\fP > \fB_bi::bind_t\fP< \fBR\fP, F, \fBtypename\fP \fB_bi::list_av_9\fP< \fBA1\fP, \fBA2\fP, \fBA3\fP, \fBA4\fP, \fBA5\fP, \fBA6\fP, \fBA7\fP, \fBA8\fP, \fBA9\fP >::type > \fBSC_BOOST_BIND\fP (\fBsc_boost::type\fP< \fBR\fP >, F f, \fBA1\fP a1, \fBA2\fP \fBa2\fP, \fBA3\fP \fBa3\fP, \fBA4\fP \fBa4\fP, \fBA5\fP \fBa5\fP, \fBA6\fP \fBa6\fP, \fBA7\fP \fBa7\fP, \fBA8\fP \fBa8\fP, \fBA9\fP \fBa9\fP)"
+.br
+.ti -1c
+.RI "template<\fBclass\fP F > \fB_bi::bind_t\fP< \fB_bi::unspecified\fP, F, \fB_bi::list0\fP > \fBSC_BOOST_BIND\fP (F f)"
+.br
+.ti -1c
+.RI "template<\fBclass\fP F , \fBclass\fP \fBA1\fP > \fB_bi::bind_t\fP< \fB_bi::unspecified\fP, F, \fBtypename\fP \fB_bi::list_av_1\fP< \fBA1\fP >::type > \fBSC_BOOST_BIND\fP (F f, \fBA1\fP a1)"
+.br
+.ti -1c
+.RI "template<\fBclass\fP F , \fBclass\fP \fBA1\fP , \fBclass\fP \fBA2\fP > \fB_bi::bind_t\fP< \fB_bi::unspecified\fP, F, \fBtypename\fP \fB_bi::list_av_2\fP< \fBA1\fP, \fBA2\fP >::type > \fBSC_BOOST_BIND\fP (F f, \fBA1\fP a1, \fBA2\fP \fBa2\fP)"
+.br
+.ti -1c
+.RI "template<\fBclass\fP F , \fBclass\fP \fBA1\fP , \fBclass\fP \fBA2\fP , \fBclass\fP \fBA3\fP > \fB_bi::bind_t\fP< \fB_bi::unspecified\fP, F, \fBtypename\fP \fB_bi::list_av_3\fP< \fBA1\fP, \fBA2\fP, \fBA3\fP >::type > \fBSC_BOOST_BIND\fP (F f, \fBA1\fP a1, \fBA2\fP \fBa2\fP, \fBA3\fP \fBa3\fP)"
+.br
+.ti -1c
+.RI "template<\fBclass\fP F , \fBclass\fP \fBA1\fP , \fBclass\fP \fBA2\fP , \fBclass\fP \fBA3\fP , \fBclass\fP \fBA4\fP > \fB_bi::bind_t\fP< \fB_bi::unspecified\fP, F, \fBtypename\fP \fB_bi::list_av_4\fP< \fBA1\fP, \fBA2\fP, \fBA3\fP, \fBA4\fP >::type > \fBSC_BOOST_BIND\fP (F f, \fBA1\fP a1, \fBA2\fP \fBa2\fP, \fBA3\fP \fBa3\fP, \fBA4\fP \fBa4\fP)"
+.br
+.ti -1c
+.RI "template<\fBclass\fP F , \fBclass\fP \fBA1\fP , \fBclass\fP \fBA2\fP , \fBclass\fP \fBA3\fP , \fBclass\fP \fBA4\fP , \fBclass\fP \fBA5\fP > \fB_bi::bind_t\fP< \fB_bi::unspecified\fP, F, \fBtypename\fP \fB_bi::list_av_5\fP< \fBA1\fP, \fBA2\fP, \fBA3\fP, \fBA4\fP, \fBA5\fP >::type > \fBSC_BOOST_BIND\fP (F f, \fBA1\fP a1, \fBA2\fP \fBa2\fP, \fBA3\fP \fBa3\fP, \fBA4\fP \fBa4\fP, \fBA5\fP \fBa5\fP)"
+.br
+.ti -1c
+.RI "template<\fBclass\fP F , \fBclass\fP \fBA1\fP , \fBclass\fP \fBA2\fP , \fBclass\fP \fBA3\fP , \fBclass\fP \fBA4\fP , \fBclass\fP \fBA5\fP , \fBclass\fP \fBA6\fP > \fB_bi::bind_t\fP< \fB_bi::unspecified\fP, F, \fBtypename\fP \fB_bi::list_av_6\fP< \fBA1\fP, \fBA2\fP, \fBA3\fP, \fBA4\fP, \fBA5\fP, \fBA6\fP >::type > \fBSC_BOOST_BIND\fP (F f, \fBA1\fP a1, \fBA2\fP \fBa2\fP, \fBA3\fP \fBa3\fP, \fBA4\fP \fBa4\fP, \fBA5\fP \fBa5\fP, \fBA6\fP \fBa6\fP)"
+.br
+.ti -1c
+.RI "template<\fBclass\fP F , \fBclass\fP \fBA1\fP , \fBclass\fP \fBA2\fP , \fBclass\fP \fBA3\fP , \fBclass\fP \fBA4\fP , \fBclass\fP \fBA5\fP , \fBclass\fP \fBA6\fP , \fBclass\fP \fBA7\fP > \fB_bi::bind_t\fP< \fB_bi::unspecified\fP, F, \fBtypename\fP \fB_bi::list_av_7\fP< \fBA1\fP, \fBA2\fP, \fBA3\fP, \fBA4\fP, \fBA5\fP, \fBA6\fP, \fBA7\fP >::type > \fBSC_BOOST_BIND\fP (F f, \fBA1\fP a1, \fBA2\fP \fBa2\fP, \fBA3\fP \fBa3\fP, \fBA4\fP \fBa4\fP, \fBA5\fP \fBa5\fP, \fBA6\fP \fBa6\fP, \fBA7\fP \fBa7\fP)"
+.br
+.ti -1c
+.RI "template<\fBclass\fP F , \fBclass\fP \fBA1\fP , \fBclass\fP \fBA2\fP , \fBclass\fP \fBA3\fP , \fBclass\fP \fBA4\fP , \fBclass\fP \fBA5\fP , \fBclass\fP \fBA6\fP , \fBclass\fP \fBA7\fP , \fBclass\fP \fBA8\fP > \fB_bi::bind_t\fP< \fB_bi::unspecified\fP, F, \fBtypename\fP \fB_bi::list_av_8\fP< \fBA1\fP, \fBA2\fP, \fBA3\fP, \fBA4\fP, \fBA5\fP, \fBA6\fP, \fBA7\fP, \fBA8\fP >::type > \fBSC_BOOST_BIND\fP (F f, \fBA1\fP a1, \fBA2\fP \fBa2\fP, \fBA3\fP \fBa3\fP, \fBA4\fP \fBa4\fP, \fBA5\fP \fBa5\fP, \fBA6\fP \fBa6\fP, \fBA7\fP \fBa7\fP, \fBA8\fP \fBa8\fP)"
+.br
+.ti -1c
+.RI "template<\fBclass\fP F , \fBclass\fP \fBA1\fP , \fBclass\fP \fBA2\fP , \fBclass\fP \fBA3\fP , \fBclass\fP \fBA4\fP , \fBclass\fP \fBA5\fP , \fBclass\fP \fBA6\fP , \fBclass\fP \fBA7\fP , \fBclass\fP \fBA8\fP , \fBclass\fP \fBA9\fP > \fB_bi::bind_t\fP< \fB_bi::unspecified\fP, F, \fBtypename\fP \fB_bi::list_av_9\fP< \fBA1\fP, \fBA2\fP, \fBA3\fP, \fBA4\fP, \fBA5\fP, \fBA6\fP, \fBA7\fP, \fBA8\fP, \fBA9\fP >::type > \fBSC_BOOST_BIND\fP (F f, \fBA1\fP a1, \fBA2\fP \fBa2\fP, \fBA3\fP \fBa3\fP, \fBA4\fP \fBa4\fP, \fBA5\fP \fBa5\fP, \fBA6\fP \fBa6\fP, \fBA7\fP \fBa7\fP, \fBA8\fP \fBa8\fP, \fBA9\fP \fBa9\fP)"
+.br
+.ti -1c
+.RI "template<\fBclass\fP \fBR\fP , \fBclass\fP \fBT\fP , \fBclass\fP \fBA1\fP > \fB_bi::bind_t\fP< \fBR\fP, \fB_mfi::dm\fP< \fBR\fP, \fBT\fP >, \fBtypename\fP \fB_bi::list_av_1\fP< \fBA1\fP >::type > \fBSC_BOOST_BIND\fP (\fBR\fP T::*f, \fBA1\fP a1)"
+.br
+.ti -1c
+.RI "template<int I> \fBbool\fP \fBoperator==\fP (\fBarg\fP< \fBI\fP > \fBconst\fP &, \fBarg\fP< \fBI\fP > \fBconst\fP &)"
+.br
+.ti -1c
+.RI "template<\fBclass\fP \fBR\fP , \fBclass\fP F > \fB_bi::af0\fP< \fBR\fP, F > \fBmake_adaptable\fP (F f)"
+.br
+.ti -1c
+.RI "template<\fBclass\fP \fBR\fP , \fBclass\fP \fBA1\fP , \fBclass\fP F > \fB_bi::af1\fP< \fBR\fP, \fBA1\fP, F > \fBmake_adaptable\fP (F f)"
+.br
+.ti -1c
+.RI "template<\fBclass\fP \fBR\fP , \fBclass\fP \fBA1\fP , \fBclass\fP \fBA2\fP , \fBclass\fP F > \fB_bi::af2\fP< \fBR\fP, \fBA1\fP, \fBA2\fP, F > \fBmake_adaptable\fP (F f)"
+.br
+.ti -1c
+.RI "template<\fBclass\fP \fBR\fP , \fBclass\fP \fBA1\fP , \fBclass\fP \fBA2\fP , \fBclass\fP \fBA3\fP , \fBclass\fP F > \fB_bi::af3\fP< \fBR\fP, \fBA1\fP, \fBA2\fP, \fBA3\fP, F > \fBmake_adaptable\fP (F f)"
+.br
+.ti -1c
+.RI "template<\fBclass\fP \fBR\fP , \fBclass\fP \fBA1\fP , \fBclass\fP \fBA2\fP , \fBclass\fP \fBA3\fP , \fBclass\fP \fBA4\fP , \fBclass\fP F > \fB_bi::af4\fP< \fBR\fP, \fBA1\fP, \fBA2\fP, \fBA3\fP, \fBA4\fP, F > \fBmake_adaptable\fP (F f)"
+.br
+.ti -1c
+.RI "template<\fBclass\fP F > \fB_bi::protected_bind_t\fP< F > \fBprotect\fP (F f)"
+.br
+.ti -1c
+.RI "template<\fBclass\fP \fBT\fP > \fBT\fP * \fBget_pointer\fP (\fBT\fP *p)"
+.br
+.ti -1c
+.RI "template<\fBclass\fP \fBT\fP > \fBT\fP * \fBget_pointer\fP (std::auto_ptr< \fBT\fP > \fBconst\fP &p)"
+.br
+.ti -1c
+.RI "template<\fBclass\fP \fBR\fP , \fBclass\fP \fBT\fP > \fB_mfi::dm\fP< \fBR\fP, \fBT\fP > \fBmem_fn\fP (\fBR\fP T::*f)"
+.br
+.ti -1c
+.RI "template<\fBclass\fP \fBT\fP > \fBreference_wrapper\fP< \fBT\fP > \fBSC_BOOST_REF_CONST\fP \fBref\fP (\fBT\fP &t)"
+.br
+.ti -1c
+.RI "template<\fBclass\fP \fBT\fP > \fBreference_wrapper\fP< \fBT\fP \fBconst\fP > \fBSC_BOOST_REF_CONST\fP \fBcref\fP (\fBT\fP \fBconst\fP &t)"
+.br
+.ti -1c
+.RI "template<\fBtypename\fP \fBT\fP > \fBT\fP * \fBaddressof\fP (\fBT\fP &v)"
+.br
+.ti -1c
+.RI "template<\fBtypename\fP \fBcharT\fP , \fBtypename\fP \fBtraits\fP > \fBbool\fP \fBoperator==\fP (\fBbasic_string_view\fP< \fBcharT\fP, \fBtraits\fP > \fBx\fP, \fBbasic_string_view\fP< \fBcharT\fP, \fBtraits\fP > y) \fBSC_BOOST_NOEXCEPT\fP"
+.br
+.ti -1c
+.RI "template<\fBtypename\fP \fBcharT\fP , \fBtypename\fP \fBtraits\fP > \fBbool\fP \fBoperator!=\fP (\fBbasic_string_view\fP< \fBcharT\fP, \fBtraits\fP > \fBx\fP, \fBbasic_string_view\fP< \fBcharT\fP, \fBtraits\fP > y) \fBSC_BOOST_NOEXCEPT\fP"
+.br
+.ti -1c
+.RI "template<\fBtypename\fP \fBcharT\fP , \fBtypename\fP \fBtraits\fP > \fBbool\fP \fBoperator<\fP (\fBbasic_string_view\fP< \fBcharT\fP, \fBtraits\fP > \fBx\fP, \fBbasic_string_view\fP< \fBcharT\fP, \fBtraits\fP > y) \fBSC_BOOST_NOEXCEPT\fP"
+.br
+.ti -1c
+.RI "template<\fBtypename\fP \fBcharT\fP , \fBtypename\fP \fBtraits\fP > \fBbool\fP \fBoperator>\fP (\fBbasic_string_view\fP< \fBcharT\fP, \fBtraits\fP > \fBx\fP, \fBbasic_string_view\fP< \fBcharT\fP, \fBtraits\fP > y) \fBSC_BOOST_NOEXCEPT\fP"
+.br
+.ti -1c
+.RI "template<\fBtypename\fP \fBcharT\fP , \fBtypename\fP \fBtraits\fP > \fBbool\fP \fBoperator<=\fP (\fBbasic_string_view\fP< \fBcharT\fP, \fBtraits\fP > \fBx\fP, \fBbasic_string_view\fP< \fBcharT\fP, \fBtraits\fP > y) \fBSC_BOOST_NOEXCEPT\fP"
+.br
+.ti -1c
+.RI "template<\fBtypename\fP \fBcharT\fP , \fBtypename\fP \fBtraits\fP > \fBbool\fP \fBoperator>=\fP (\fBbasic_string_view\fP< \fBcharT\fP, \fBtraits\fP > \fBx\fP, \fBbasic_string_view\fP< \fBcharT\fP, \fBtraits\fP > y) \fBSC_BOOST_NOEXCEPT\fP"
+.br
+.ti -1c
+.RI "template<\fBtypename\fP \fBcharT\fP , \fBtypename\fP \fBtraits\fP , \fBtypename\fP \fBAllocator\fP > \fBbool\fP \fBoperator==\fP (\fBbasic_string_view\fP< \fBcharT\fP, \fBtraits\fP > \fBx\fP, \fBconst\fP std::basic_string< \fBcharT\fP, \fBtraits\fP, \fBAllocator\fP > &y) \fBSC_BOOST_NOEXCEPT\fP"
+.br
+.ti -1c
+.RI "template<\fBtypename\fP \fBcharT\fP , \fBtypename\fP \fBtraits\fP , \fBtypename\fP \fBAllocator\fP > \fBbool\fP \fBoperator==\fP (\fBconst\fP std::basic_string< \fBcharT\fP, \fBtraits\fP, \fBAllocator\fP > &\fBx\fP, \fBbasic_string_view\fP< \fBcharT\fP, \fBtraits\fP > y) \fBSC_BOOST_NOEXCEPT\fP"
+.br
+.ti -1c
+.RI "template<\fBtypename\fP \fBcharT\fP , \fBtypename\fP \fBtraits\fP > \fBbool\fP \fBoperator==\fP (\fBbasic_string_view\fP< \fBcharT\fP, \fBtraits\fP > \fBx\fP, \fBconst\fP \fBcharT\fP *y) \fBSC_BOOST_NOEXCEPT\fP"
+.br
+.ti -1c
+.RI "template<\fBtypename\fP \fBcharT\fP , \fBtypename\fP \fBtraits\fP > \fBbool\fP \fBoperator==\fP (\fBconst\fP \fBcharT\fP *\fBx\fP, \fBbasic_string_view\fP< \fBcharT\fP, \fBtraits\fP > y) \fBSC_BOOST_NOEXCEPT\fP"
+.br
+.ti -1c
+.RI "template<\fBtypename\fP \fBcharT\fP , \fBtypename\fP \fBtraits\fP , \fBtypename\fP \fBAllocator\fP > \fBbool\fP \fBoperator!=\fP (\fBbasic_string_view\fP< \fBcharT\fP, \fBtraits\fP > \fBx\fP, \fBconst\fP std::basic_string< \fBcharT\fP, \fBtraits\fP, \fBAllocator\fP > &y) \fBSC_BOOST_NOEXCEPT\fP"
+.br
+.ti -1c
+.RI "template<\fBtypename\fP \fBcharT\fP , \fBtypename\fP \fBtraits\fP , \fBtypename\fP \fBAllocator\fP > \fBbool\fP \fBoperator!=\fP (\fBconst\fP std::basic_string< \fBcharT\fP, \fBtraits\fP, \fBAllocator\fP > &\fBx\fP, \fBbasic_string_view\fP< \fBcharT\fP, \fBtraits\fP > y) \fBSC_BOOST_NOEXCEPT\fP"
+.br
+.ti -1c
+.RI "template<\fBtypename\fP \fBcharT\fP , \fBtypename\fP \fBtraits\fP > \fBbool\fP \fBoperator!=\fP (\fBbasic_string_view\fP< \fBcharT\fP, \fBtraits\fP > \fBx\fP, \fBconst\fP \fBcharT\fP *y) \fBSC_BOOST_NOEXCEPT\fP"
+.br
+.ti -1c
+.RI "template<\fBtypename\fP \fBcharT\fP , \fBtypename\fP \fBtraits\fP > \fBbool\fP \fBoperator!=\fP (\fBconst\fP \fBcharT\fP *\fBx\fP, \fBbasic_string_view\fP< \fBcharT\fP, \fBtraits\fP > y) \fBSC_BOOST_NOEXCEPT\fP"
+.br
+.ti -1c
+.RI "template<\fBtypename\fP \fBcharT\fP , \fBtypename\fP \fBtraits\fP , \fBtypename\fP \fBAllocator\fP > \fBbool\fP \fBoperator<\fP (\fBbasic_string_view\fP< \fBcharT\fP, \fBtraits\fP > \fBx\fP, \fBconst\fP std::basic_string< \fBcharT\fP, \fBtraits\fP, \fBAllocator\fP > &y) \fBSC_BOOST_NOEXCEPT\fP"
+.br
+.ti -1c
+.RI "template<\fBtypename\fP \fBcharT\fP , \fBtypename\fP \fBtraits\fP , \fBtypename\fP \fBAllocator\fP > \fBbool\fP \fBoperator<\fP (\fBconst\fP std::basic_string< \fBcharT\fP, \fBtraits\fP, \fBAllocator\fP > &\fBx\fP, \fBbasic_string_view\fP< \fBcharT\fP, \fBtraits\fP > y) \fBSC_BOOST_NOEXCEPT\fP"
+.br
+.ti -1c
+.RI "template<\fBtypename\fP \fBcharT\fP , \fBtypename\fP \fBtraits\fP > \fBbool\fP \fBoperator<\fP (\fBbasic_string_view\fP< \fBcharT\fP, \fBtraits\fP > \fBx\fP, \fBconst\fP \fBcharT\fP *y) \fBSC_BOOST_NOEXCEPT\fP"
+.br
+.ti -1c
+.RI "template<\fBtypename\fP \fBcharT\fP , \fBtypename\fP \fBtraits\fP > \fBbool\fP \fBoperator<\fP (\fBconst\fP \fBcharT\fP *\fBx\fP, \fBbasic_string_view\fP< \fBcharT\fP, \fBtraits\fP > y) \fBSC_BOOST_NOEXCEPT\fP"
+.br
+.ti -1c
+.RI "template<\fBtypename\fP \fBcharT\fP , \fBtypename\fP \fBtraits\fP , \fBtypename\fP \fBAllocator\fP > \fBbool\fP \fBoperator>\fP (\fBbasic_string_view\fP< \fBcharT\fP, \fBtraits\fP > \fBx\fP, \fBconst\fP std::basic_string< \fBcharT\fP, \fBtraits\fP, \fBAllocator\fP > &y) \fBSC_BOOST_NOEXCEPT\fP"
+.br
+.ti -1c
+.RI "template<\fBtypename\fP \fBcharT\fP , \fBtypename\fP \fBtraits\fP , \fBtypename\fP \fBAllocator\fP > \fBbool\fP \fBoperator>\fP (\fBconst\fP std::basic_string< \fBcharT\fP, \fBtraits\fP, \fBAllocator\fP > &\fBx\fP, \fBbasic_string_view\fP< \fBcharT\fP, \fBtraits\fP > y) \fBSC_BOOST_NOEXCEPT\fP"
+.br
+.ti -1c
+.RI "template<\fBtypename\fP \fBcharT\fP , \fBtypename\fP \fBtraits\fP > \fBbool\fP \fBoperator>\fP (\fBbasic_string_view\fP< \fBcharT\fP, \fBtraits\fP > \fBx\fP, \fBconst\fP \fBcharT\fP *y) \fBSC_BOOST_NOEXCEPT\fP"
+.br
+.ti -1c
+.RI "template<\fBtypename\fP \fBcharT\fP , \fBtypename\fP \fBtraits\fP > \fBbool\fP \fBoperator>\fP (\fBconst\fP \fBcharT\fP *\fBx\fP, \fBbasic_string_view\fP< \fBcharT\fP, \fBtraits\fP > y) \fBSC_BOOST_NOEXCEPT\fP"
+.br
+.ti -1c
+.RI "template<\fBtypename\fP \fBcharT\fP , \fBtypename\fP \fBtraits\fP , \fBtypename\fP \fBAllocator\fP > \fBbool\fP \fBoperator<=\fP (\fBbasic_string_view\fP< \fBcharT\fP, \fBtraits\fP > \fBx\fP, \fBconst\fP std::basic_string< \fBcharT\fP, \fBtraits\fP, \fBAllocator\fP > &y) \fBSC_BOOST_NOEXCEPT\fP"
+.br
+.ti -1c
+.RI "template<\fBtypename\fP \fBcharT\fP , \fBtypename\fP \fBtraits\fP , \fBtypename\fP \fBAllocator\fP > \fBbool\fP \fBoperator<=\fP (\fBconst\fP std::basic_string< \fBcharT\fP, \fBtraits\fP, \fBAllocator\fP > &\fBx\fP, \fBbasic_string_view\fP< \fBcharT\fP, \fBtraits\fP > y) \fBSC_BOOST_NOEXCEPT\fP"
+.br
+.ti -1c
+.RI "template<\fBtypename\fP \fBcharT\fP , \fBtypename\fP \fBtraits\fP > \fBbool\fP \fBoperator<=\fP (\fBbasic_string_view\fP< \fBcharT\fP, \fBtraits\fP > \fBx\fP, \fBconst\fP \fBcharT\fP *y) \fBSC_BOOST_NOEXCEPT\fP"
+.br
+.ti -1c
+.RI "template<\fBtypename\fP \fBcharT\fP , \fBtypename\fP \fBtraits\fP > \fBbool\fP \fBoperator<=\fP (\fBconst\fP \fBcharT\fP *\fBx\fP, \fBbasic_string_view\fP< \fBcharT\fP, \fBtraits\fP > y) \fBSC_BOOST_NOEXCEPT\fP"
+.br
+.ti -1c
+.RI "template<\fBtypename\fP \fBcharT\fP , \fBtypename\fP \fBtraits\fP , \fBtypename\fP \fBAllocator\fP > \fBbool\fP \fBoperator>=\fP (\fBbasic_string_view\fP< \fBcharT\fP, \fBtraits\fP > \fBx\fP, \fBconst\fP std::basic_string< \fBcharT\fP, \fBtraits\fP, \fBAllocator\fP > &y) \fBSC_BOOST_NOEXCEPT\fP"
+.br
+.ti -1c
+.RI "template<\fBtypename\fP \fBcharT\fP , \fBtypename\fP \fBtraits\fP , \fBtypename\fP \fBAllocator\fP > \fBbool\fP \fBoperator>=\fP (\fBconst\fP std::basic_string< \fBcharT\fP, \fBtraits\fP, \fBAllocator\fP > &\fBx\fP, \fBbasic_string_view\fP< \fBcharT\fP, \fBtraits\fP > y) \fBSC_BOOST_NOEXCEPT\fP"
+.br
+.ti -1c
+.RI "template<\fBtypename\fP \fBcharT\fP , \fBtypename\fP \fBtraits\fP > \fBbool\fP \fBoperator>=\fP (\fBbasic_string_view\fP< \fBcharT\fP, \fBtraits\fP > \fBx\fP, \fBconst\fP \fBcharT\fP *y) \fBSC_BOOST_NOEXCEPT\fP"
+.br
+.ti -1c
+.RI "template<\fBtypename\fP \fBcharT\fP , \fBtypename\fP \fBtraits\fP > \fBbool\fP \fBoperator>=\fP (\fBconst\fP \fBcharT\fP *\fBx\fP, \fBbasic_string_view\fP< \fBcharT\fP, \fBtraits\fP > y) \fBSC_BOOST_NOEXCEPT\fP"
+.br
+.ti -1c
+.RI "template<\fBclass\fP \fBcharT\fP , \fBclass\fP \fBtraits\fP > std::basic_ostream< \fBcharT\fP, \fBtraits\fP > & \fBoperator<<\fP (std::basic_ostream< \fBcharT\fP, \fBtraits\fP > &\fBos\fP, \fBconst\fP \fBbasic_string_view\fP< \fBcharT\fP, \fBtraits\fP > &\fBstr\fP)"
+.br
+.in -1c
+.SH "Typedef Documentation"
+.PP 
+.SS "\fBtypedef\fP \fBassert_no_intrinsic_wchar_t\fP<\fBunsignedshort\fP>::type \fBsc_boost::assert_no_intrinsic_wchar_t_\fP"
+
+.SS "\fBtypedef\fP \fBbasic_string_view\fP<\fBchar\fP, std::char_traits<\fBchar\fP> > \fBsc_boost::string_view\fP"
+
+.SS "\fBtypedef\fP \fBbasic_string_view\fP<\fBwchar_t\fP, std::char_traits<\fBwchar_t\fP> > \fBsc_boost::wstring_view\fP"
+
+.SH "Function Documentation"
+.PP 
+.SS "template<\fBtypename\fP \fBT\fP > \fBT\fP * sc_boost::addressof (\fBT\fP & v)"
+
+.SS "template<\fBclass\fP \fBT\fP > \fBreference_wrapper\fP< \fBT\fP \fBconst\fP  > \fBSC_BOOST_REF_CONST\fP sc_boost::cref (\fBT\fP \fBconst\fP & t)\fR [inline]\fP"
+
+.SS "template<\fBclass\fP \fBT\fP > \fBT\fP * sc_boost::get_pointer (std::auto_ptr< \fBT\fP > \fBconst\fP & p)"
+
+.SS "template<\fBclass\fP \fBT\fP > \fBT\fP * sc_boost::get_pointer (\fBT\fP * p)"
+
+.SS "template<\fBclass\fP \fBR\fP , \fBclass\fP F > \fB_bi::af0\fP< \fBR\fP, F > sc_boost::make_adaptable (F f)"
+
+.SS "template<\fBclass\fP \fBR\fP , \fBclass\fP \fBA1\fP , \fBclass\fP F > \fB_bi::af1\fP< \fBR\fP, \fBA1\fP, F > sc_boost::make_adaptable (F f)"
+
+.SS "template<\fBclass\fP \fBR\fP , \fBclass\fP \fBA1\fP , \fBclass\fP \fBA2\fP , \fBclass\fP F > \fB_bi::af2\fP< \fBR\fP, \fBA1\fP, \fBA2\fP, F > sc_boost::make_adaptable (F f)"
+
+.SS "template<\fBclass\fP \fBR\fP , \fBclass\fP \fBA1\fP , \fBclass\fP \fBA2\fP , \fBclass\fP \fBA3\fP , \fBclass\fP F > \fB_bi::af3\fP< \fBR\fP, \fBA1\fP, \fBA2\fP, \fBA3\fP, F > sc_boost::make_adaptable (F f)"
+
+.SS "template<\fBclass\fP \fBR\fP , \fBclass\fP \fBA1\fP , \fBclass\fP \fBA2\fP , \fBclass\fP \fBA3\fP , \fBclass\fP \fBA4\fP , \fBclass\fP F > \fB_bi::af4\fP< \fBR\fP, \fBA1\fP, \fBA2\fP, \fBA3\fP, \fBA4\fP, F > sc_boost::make_adaptable (F f)"
+
+.SS "template<\fBclass\fP \fBR\fP , \fBclass\fP \fBT\fP > \fB_mfi::dm\fP< \fBR\fP, \fBT\fP > sc_boost::mem_fn (\fBR\fP T::* f)"
+
+.SS "template<\fBtypename\fP \fBcharT\fP , \fBtypename\fP \fBtraits\fP > \fBbool\fP sc_boost::operator!= (\fBbasic_string_view\fP< \fBcharT\fP, \fBtraits\fP > x, \fBbasic_string_view\fP< \fBcharT\fP, \fBtraits\fP > y)\fR [inline]\fP"
+
+.SS "template<\fBtypename\fP \fBcharT\fP , \fBtypename\fP \fBtraits\fP > \fBbool\fP sc_boost::operator!= (\fBbasic_string_view\fP< \fBcharT\fP, \fBtraits\fP > x, \fBconst\fP \fBcharT\fP * y)\fR [inline]\fP"
+
+.SS "template<\fBtypename\fP \fBcharT\fP , \fBtypename\fP \fBtraits\fP , \fBtypename\fP \fBAllocator\fP > \fBbool\fP sc_boost::operator!= (\fBbasic_string_view\fP< \fBcharT\fP, \fBtraits\fP > x, \fBconst\fP std::basic_string< \fBcharT\fP, \fBtraits\fP, \fBAllocator\fP > & y)\fR [inline]\fP"
+
+.SS "template<\fBtypename\fP \fBcharT\fP , \fBtypename\fP \fBtraits\fP > \fBbool\fP sc_boost::operator!= (\fBconst\fP \fBcharT\fP * x, \fBbasic_string_view\fP< \fBcharT\fP, \fBtraits\fP > y)\fR [inline]\fP"
+
+.SS "template<\fBtypename\fP \fBcharT\fP , \fBtypename\fP \fBtraits\fP , \fBtypename\fP \fBAllocator\fP > \fBbool\fP sc_boost::operator!= (\fBconst\fP std::basic_string< \fBcharT\fP, \fBtraits\fP, \fBAllocator\fP > & x, \fBbasic_string_view\fP< \fBcharT\fP, \fBtraits\fP > y)\fR [inline]\fP"
+
+.SS "template<\fBtypename\fP \fBcharT\fP , \fBtypename\fP \fBtraits\fP > \fBbool\fP sc_boost::operator< (\fBbasic_string_view\fP< \fBcharT\fP, \fBtraits\fP > x, \fBbasic_string_view\fP< \fBcharT\fP, \fBtraits\fP > y)\fR [inline]\fP"
+
+.SS "template<\fBtypename\fP \fBcharT\fP , \fBtypename\fP \fBtraits\fP > \fBbool\fP sc_boost::operator< (\fBbasic_string_view\fP< \fBcharT\fP, \fBtraits\fP > x, \fBconst\fP \fBcharT\fP * y)\fR [inline]\fP"
+
+.SS "template<\fBtypename\fP \fBcharT\fP , \fBtypename\fP \fBtraits\fP , \fBtypename\fP \fBAllocator\fP > \fBbool\fP sc_boost::operator< (\fBbasic_string_view\fP< \fBcharT\fP, \fBtraits\fP > x, \fBconst\fP std::basic_string< \fBcharT\fP, \fBtraits\fP, \fBAllocator\fP > & y)\fR [inline]\fP"
+
+.SS "template<\fBtypename\fP \fBcharT\fP , \fBtypename\fP \fBtraits\fP > \fBbool\fP sc_boost::operator< (\fBconst\fP \fBcharT\fP * x, \fBbasic_string_view\fP< \fBcharT\fP, \fBtraits\fP > y)\fR [inline]\fP"
+
+.SS "template<\fBtypename\fP \fBcharT\fP , \fBtypename\fP \fBtraits\fP , \fBtypename\fP \fBAllocator\fP > \fBbool\fP sc_boost::operator< (\fBconst\fP std::basic_string< \fBcharT\fP, \fBtraits\fP, \fBAllocator\fP > & x, \fBbasic_string_view\fP< \fBcharT\fP, \fBtraits\fP > y)\fR [inline]\fP"
+
+.SS "template<\fBclass\fP \fBcharT\fP , \fBclass\fP \fBtraits\fP > std::basic_ostream< \fBcharT\fP, \fBtraits\fP > & sc_boost::operator<< (std::basic_ostream< \fBcharT\fP, \fBtraits\fP > & os, \fBconst\fP \fBbasic_string_view\fP< \fBcharT\fP, \fBtraits\fP > & str)\fR [inline]\fP"
+
+.SS "template<\fBtypename\fP \fBcharT\fP , \fBtypename\fP \fBtraits\fP > \fBbool\fP sc_boost::operator<= (\fBbasic_string_view\fP< \fBcharT\fP, \fBtraits\fP > x, \fBbasic_string_view\fP< \fBcharT\fP, \fBtraits\fP > y)\fR [inline]\fP"
+
+.SS "template<\fBtypename\fP \fBcharT\fP , \fBtypename\fP \fBtraits\fP > \fBbool\fP sc_boost::operator<= (\fBbasic_string_view\fP< \fBcharT\fP, \fBtraits\fP > x, \fBconst\fP \fBcharT\fP * y)\fR [inline]\fP"
+
+.SS "template<\fBtypename\fP \fBcharT\fP , \fBtypename\fP \fBtraits\fP , \fBtypename\fP \fBAllocator\fP > \fBbool\fP sc_boost::operator<= (\fBbasic_string_view\fP< \fBcharT\fP, \fBtraits\fP > x, \fBconst\fP std::basic_string< \fBcharT\fP, \fBtraits\fP, \fBAllocator\fP > & y)\fR [inline]\fP"
+
+.SS "template<\fBtypename\fP \fBcharT\fP , \fBtypename\fP \fBtraits\fP > \fBbool\fP sc_boost::operator<= (\fBconst\fP \fBcharT\fP * x, \fBbasic_string_view\fP< \fBcharT\fP, \fBtraits\fP > y)\fR [inline]\fP"
+
+.SS "template<\fBtypename\fP \fBcharT\fP , \fBtypename\fP \fBtraits\fP , \fBtypename\fP \fBAllocator\fP > \fBbool\fP sc_boost::operator<= (\fBconst\fP std::basic_string< \fBcharT\fP, \fBtraits\fP, \fBAllocator\fP > & x, \fBbasic_string_view\fP< \fBcharT\fP, \fBtraits\fP > y)\fR [inline]\fP"
+
+.SS "template<int I> \fBbool\fP sc_boost::operator== (\fBarg\fP< \fBI\fP > \fBconst\fP &, \fBarg\fP< \fBI\fP > \fBconst\fP &)"
+
+.SS "template<\fBtypename\fP \fBcharT\fP , \fBtypename\fP \fBtraits\fP > \fBbool\fP sc_boost::operator== (\fBbasic_string_view\fP< \fBcharT\fP, \fBtraits\fP > x, \fBbasic_string_view\fP< \fBcharT\fP, \fBtraits\fP > y)\fR [inline]\fP"
+
+.SS "template<\fBtypename\fP \fBcharT\fP , \fBtypename\fP \fBtraits\fP > \fBbool\fP sc_boost::operator== (\fBbasic_string_view\fP< \fBcharT\fP, \fBtraits\fP > x, \fBconst\fP \fBcharT\fP * y)\fR [inline]\fP"
+
+.SS "template<\fBtypename\fP \fBcharT\fP , \fBtypename\fP \fBtraits\fP , \fBtypename\fP \fBAllocator\fP > \fBbool\fP sc_boost::operator== (\fBbasic_string_view\fP< \fBcharT\fP, \fBtraits\fP > x, \fBconst\fP std::basic_string< \fBcharT\fP, \fBtraits\fP, \fBAllocator\fP > & y)\fR [inline]\fP"
+
+.SS "template<\fBtypename\fP \fBcharT\fP , \fBtypename\fP \fBtraits\fP > \fBbool\fP sc_boost::operator== (\fBconst\fP \fBcharT\fP * x, \fBbasic_string_view\fP< \fBcharT\fP, \fBtraits\fP > y)\fR [inline]\fP"
+
+.SS "template<\fBtypename\fP \fBcharT\fP , \fBtypename\fP \fBtraits\fP , \fBtypename\fP \fBAllocator\fP > \fBbool\fP sc_boost::operator== (\fBconst\fP std::basic_string< \fBcharT\fP, \fBtraits\fP, \fBAllocator\fP > & x, \fBbasic_string_view\fP< \fBcharT\fP, \fBtraits\fP > y)\fR [inline]\fP"
+
+.SS "template<\fBtypename\fP \fBcharT\fP , \fBtypename\fP \fBtraits\fP > \fBbool\fP sc_boost::operator> (\fBbasic_string_view\fP< \fBcharT\fP, \fBtraits\fP > x, \fBbasic_string_view\fP< \fBcharT\fP, \fBtraits\fP > y)\fR [inline]\fP"
+
+.SS "template<\fBtypename\fP \fBcharT\fP , \fBtypename\fP \fBtraits\fP > \fBbool\fP sc_boost::operator> (\fBbasic_string_view\fP< \fBcharT\fP, \fBtraits\fP > x, \fBconst\fP \fBcharT\fP * y)\fR [inline]\fP"
+
+.SS "template<\fBtypename\fP \fBcharT\fP , \fBtypename\fP \fBtraits\fP , \fBtypename\fP \fBAllocator\fP > \fBbool\fP sc_boost::operator> (\fBbasic_string_view\fP< \fBcharT\fP, \fBtraits\fP > x, \fBconst\fP std::basic_string< \fBcharT\fP, \fBtraits\fP, \fBAllocator\fP > & y)\fR [inline]\fP"
+
+.SS "template<\fBtypename\fP \fBcharT\fP , \fBtypename\fP \fBtraits\fP > \fBbool\fP sc_boost::operator> (\fBconst\fP \fBcharT\fP * x, \fBbasic_string_view\fP< \fBcharT\fP, \fBtraits\fP > y)\fR [inline]\fP"
+
+.SS "template<\fBtypename\fP \fBcharT\fP , \fBtypename\fP \fBtraits\fP , \fBtypename\fP \fBAllocator\fP > \fBbool\fP sc_boost::operator> (\fBconst\fP std::basic_string< \fBcharT\fP, \fBtraits\fP, \fBAllocator\fP > & x, \fBbasic_string_view\fP< \fBcharT\fP, \fBtraits\fP > y)\fR [inline]\fP"
+
+.SS "template<\fBtypename\fP \fBcharT\fP , \fBtypename\fP \fBtraits\fP > \fBbool\fP sc_boost::operator>= (\fBbasic_string_view\fP< \fBcharT\fP, \fBtraits\fP > x, \fBbasic_string_view\fP< \fBcharT\fP, \fBtraits\fP > y)\fR [inline]\fP"
+
+.SS "template<\fBtypename\fP \fBcharT\fP , \fBtypename\fP \fBtraits\fP > \fBbool\fP sc_boost::operator>= (\fBbasic_string_view\fP< \fBcharT\fP, \fBtraits\fP > x, \fBconst\fP \fBcharT\fP * y)\fR [inline]\fP"
+
+.SS "template<\fBtypename\fP \fBcharT\fP , \fBtypename\fP \fBtraits\fP , \fBtypename\fP \fBAllocator\fP > \fBbool\fP sc_boost::operator>= (\fBbasic_string_view\fP< \fBcharT\fP, \fBtraits\fP > x, \fBconst\fP std::basic_string< \fBcharT\fP, \fBtraits\fP, \fBAllocator\fP > & y)\fR [inline]\fP"
+
+.SS "template<\fBtypename\fP \fBcharT\fP , \fBtypename\fP \fBtraits\fP > \fBbool\fP sc_boost::operator>= (\fBconst\fP \fBcharT\fP * x, \fBbasic_string_view\fP< \fBcharT\fP, \fBtraits\fP > y)\fR [inline]\fP"
+
+.SS "template<\fBtypename\fP \fBcharT\fP , \fBtypename\fP \fBtraits\fP , \fBtypename\fP \fBAllocator\fP > \fBbool\fP sc_boost::operator>= (\fBconst\fP std::basic_string< \fBcharT\fP, \fBtraits\fP, \fBAllocator\fP > & x, \fBbasic_string_view\fP< \fBcharT\fP, \fBtraits\fP > y)\fR [inline]\fP"
+
+.SS "template<\fBclass\fP F > \fB_bi::protected_bind_t\fP< F > sc_boost::protect (F f)"
+
+.SS "template<\fBclass\fP \fBT\fP > \fBreference_wrapper\fP< \fBT\fP > \fBSC_BOOST_REF_CONST\fP sc_boost::ref (\fBT\fP & t)\fR [inline]\fP"
+
+.SS "template<\fBclass\fP \fBR\fP , \fBclass\fP F > \fB_bi::bind_t\fP< \fBR\fP, F, \fB_bi::list0\fP > sc_boost::SC_BOOST_BIND (F f)"
+
+.SS "template<\fBclass\fP F > \fB_bi::bind_t\fP< \fB_bi::unspecified\fP, F, \fB_bi::list0\fP > sc_boost::SC_BOOST_BIND (F f)"
+
+.SS "template<\fBclass\fP \fBR\fP , \fBclass\fP F , \fBclass\fP \fBA1\fP > \fB_bi::bind_t\fP< \fBR\fP, F, \fBtypename\fP \fB_bi::list_av_1\fP< \fBA1\fP >::type > sc_boost::SC_BOOST_BIND (F f, \fBA1\fP a1)"
+
+.SS "template<\fBclass\fP F , \fBclass\fP \fBA1\fP > \fB_bi::bind_t\fP< \fB_bi::unspecified\fP, F, \fBtypename\fP \fB_bi::list_av_1\fP< \fBA1\fP >::type > sc_boost::SC_BOOST_BIND (F f, \fBA1\fP a1)"
+
+.SS "template<\fBclass\fP \fBR\fP , \fBclass\fP F , \fBclass\fP \fBA1\fP , \fBclass\fP \fBA2\fP > \fB_bi::bind_t\fP< \fBR\fP, F, \fBtypename\fP \fB_bi::list_av_2\fP< \fBA1\fP, \fBA2\fP >::type > sc_boost::SC_BOOST_BIND (F f, \fBA1\fP a1, \fBA2\fP a2)"
+
+.SS "template<\fBclass\fP F , \fBclass\fP \fBA1\fP , \fBclass\fP \fBA2\fP > \fB_bi::bind_t\fP< \fB_bi::unspecified\fP, F, \fBtypename\fP \fB_bi::list_av_2\fP< \fBA1\fP, \fBA2\fP >::type > sc_boost::SC_BOOST_BIND (F f, \fBA1\fP a1, \fBA2\fP a2)"
+
+.SS "template<\fBclass\fP \fBR\fP , \fBclass\fP F , \fBclass\fP \fBA1\fP , \fBclass\fP \fBA2\fP , \fBclass\fP \fBA3\fP > \fB_bi::bind_t\fP< \fBR\fP, F, \fBtypename\fP \fB_bi::list_av_3\fP< \fBA1\fP, \fBA2\fP, \fBA3\fP >::type > sc_boost::SC_BOOST_BIND (F f, \fBA1\fP a1, \fBA2\fP a2, \fBA3\fP a3)"
+
+.SS "template<\fBclass\fP F , \fBclass\fP \fBA1\fP , \fBclass\fP \fBA2\fP , \fBclass\fP \fBA3\fP > \fB_bi::bind_t\fP< \fB_bi::unspecified\fP, F, \fBtypename\fP \fB_bi::list_av_3\fP< \fBA1\fP, \fBA2\fP, \fBA3\fP >::type > sc_boost::SC_BOOST_BIND (F f, \fBA1\fP a1, \fBA2\fP a2, \fBA3\fP a3)"
+
+.SS "template<\fBclass\fP \fBR\fP , \fBclass\fP F , \fBclass\fP \fBA1\fP , \fBclass\fP \fBA2\fP , \fBclass\fP \fBA3\fP , \fBclass\fP \fBA4\fP > \fB_bi::bind_t\fP< \fBR\fP, F, \fBtypename\fP \fB_bi::list_av_4\fP< \fBA1\fP, \fBA2\fP, \fBA3\fP, \fBA4\fP >::type > sc_boost::SC_BOOST_BIND (F f, \fBA1\fP a1, \fBA2\fP a2, \fBA3\fP a3, \fBA4\fP a4)"
+
+.SS "template<\fBclass\fP F , \fBclass\fP \fBA1\fP , \fBclass\fP \fBA2\fP , \fBclass\fP \fBA3\fP , \fBclass\fP \fBA4\fP > \fB_bi::bind_t\fP< \fB_bi::unspecified\fP, F, \fBtypename\fP \fB_bi::list_av_4\fP< \fBA1\fP, \fBA2\fP, \fBA3\fP, \fBA4\fP >::type > sc_boost::SC_BOOST_BIND (F f, \fBA1\fP a1, \fBA2\fP a2, \fBA3\fP a3, \fBA4\fP a4)"
+
+.SS "template<\fBclass\fP \fBR\fP , \fBclass\fP F , \fBclass\fP \fBA1\fP , \fBclass\fP \fBA2\fP , \fBclass\fP \fBA3\fP , \fBclass\fP \fBA4\fP , \fBclass\fP \fBA5\fP > \fB_bi::bind_t\fP< \fBR\fP, F, \fBtypename\fP \fB_bi::list_av_5\fP< \fBA1\fP, \fBA2\fP, \fBA3\fP, \fBA4\fP, \fBA5\fP >::type > sc_boost::SC_BOOST_BIND (F f, \fBA1\fP a1, \fBA2\fP a2, \fBA3\fP a3, \fBA4\fP a4, \fBA5\fP a5)"
+
+.SS "template<\fBclass\fP F , \fBclass\fP \fBA1\fP , \fBclass\fP \fBA2\fP , \fBclass\fP \fBA3\fP , \fBclass\fP \fBA4\fP , \fBclass\fP \fBA5\fP > \fB_bi::bind_t\fP< \fB_bi::unspecified\fP, F, \fBtypename\fP \fB_bi::list_av_5\fP< \fBA1\fP, \fBA2\fP, \fBA3\fP, \fBA4\fP, \fBA5\fP >::type > sc_boost::SC_BOOST_BIND (F f, \fBA1\fP a1, \fBA2\fP a2, \fBA3\fP a3, \fBA4\fP a4, \fBA5\fP a5)"
+
+.SS "template<\fBclass\fP \fBR\fP , \fBclass\fP F , \fBclass\fP \fBA1\fP , \fBclass\fP \fBA2\fP , \fBclass\fP \fBA3\fP , \fBclass\fP \fBA4\fP , \fBclass\fP \fBA5\fP , \fBclass\fP \fBA6\fP > \fB_bi::bind_t\fP< \fBR\fP, F, \fBtypename\fP \fB_bi::list_av_6\fP< \fBA1\fP, \fBA2\fP, \fBA3\fP, \fBA4\fP, \fBA5\fP, \fBA6\fP >::type > sc_boost::SC_BOOST_BIND (F f, \fBA1\fP a1, \fBA2\fP a2, \fBA3\fP a3, \fBA4\fP a4, \fBA5\fP a5, \fBA6\fP a6)"
+
+.SS "template<\fBclass\fP F , \fBclass\fP \fBA1\fP , \fBclass\fP \fBA2\fP , \fBclass\fP \fBA3\fP , \fBclass\fP \fBA4\fP , \fBclass\fP \fBA5\fP , \fBclass\fP \fBA6\fP > \fB_bi::bind_t\fP< \fB_bi::unspecified\fP, F, \fBtypename\fP \fB_bi::list_av_6\fP< \fBA1\fP, \fBA2\fP, \fBA3\fP, \fBA4\fP, \fBA5\fP, \fBA6\fP >::type > sc_boost::SC_BOOST_BIND (F f, \fBA1\fP a1, \fBA2\fP a2, \fBA3\fP a3, \fBA4\fP a4, \fBA5\fP a5, \fBA6\fP a6)"
+
+.SS "template<\fBclass\fP \fBR\fP , \fBclass\fP F , \fBclass\fP \fBA1\fP , \fBclass\fP \fBA2\fP , \fBclass\fP \fBA3\fP , \fBclass\fP \fBA4\fP , \fBclass\fP \fBA5\fP , \fBclass\fP \fBA6\fP , \fBclass\fP \fBA7\fP > \fB_bi::bind_t\fP< \fBR\fP, F, \fBtypename\fP \fB_bi::list_av_7\fP< \fBA1\fP, \fBA2\fP, \fBA3\fP, \fBA4\fP, \fBA5\fP, \fBA6\fP, \fBA7\fP >::type > sc_boost::SC_BOOST_BIND (F f, \fBA1\fP a1, \fBA2\fP a2, \fBA3\fP a3, \fBA4\fP a4, \fBA5\fP a5, \fBA6\fP a6, \fBA7\fP a7)"
+
+.SS "template<\fBclass\fP F , \fBclass\fP \fBA1\fP , \fBclass\fP \fBA2\fP , \fBclass\fP \fBA3\fP , \fBclass\fP \fBA4\fP , \fBclass\fP \fBA5\fP , \fBclass\fP \fBA6\fP , \fBclass\fP \fBA7\fP > \fB_bi::bind_t\fP< \fB_bi::unspecified\fP, F, \fBtypename\fP \fB_bi::list_av_7\fP< \fBA1\fP, \fBA2\fP, \fBA3\fP, \fBA4\fP, \fBA5\fP, \fBA6\fP, \fBA7\fP >::type > sc_boost::SC_BOOST_BIND (F f, \fBA1\fP a1, \fBA2\fP a2, \fBA3\fP a3, \fBA4\fP a4, \fBA5\fP a5, \fBA6\fP a6, \fBA7\fP a7)"
+
+.SS "template<\fBclass\fP \fBR\fP , \fBclass\fP F , \fBclass\fP \fBA1\fP , \fBclass\fP \fBA2\fP , \fBclass\fP \fBA3\fP , \fBclass\fP \fBA4\fP , \fBclass\fP \fBA5\fP , \fBclass\fP \fBA6\fP , \fBclass\fP \fBA7\fP , \fBclass\fP \fBA8\fP > \fB_bi::bind_t\fP< \fBR\fP, F, \fBtypename\fP \fB_bi::list_av_8\fP< \fBA1\fP, \fBA2\fP, \fBA3\fP, \fBA4\fP, \fBA5\fP, \fBA6\fP, \fBA7\fP, \fBA8\fP >::type > sc_boost::SC_BOOST_BIND (F f, \fBA1\fP a1, \fBA2\fP a2, \fBA3\fP a3, \fBA4\fP a4, \fBA5\fP a5, \fBA6\fP a6, \fBA7\fP a7, \fBA8\fP a8)"
+
+.SS "template<\fBclass\fP F , \fBclass\fP \fBA1\fP , \fBclass\fP \fBA2\fP , \fBclass\fP \fBA3\fP , \fBclass\fP \fBA4\fP , \fBclass\fP \fBA5\fP , \fBclass\fP \fBA6\fP , \fBclass\fP \fBA7\fP , \fBclass\fP \fBA8\fP > \fB_bi::bind_t\fP< \fB_bi::unspecified\fP, F, \fBtypename\fP \fB_bi::list_av_8\fP< \fBA1\fP, \fBA2\fP, \fBA3\fP, \fBA4\fP, \fBA5\fP, \fBA6\fP, \fBA7\fP, \fBA8\fP >::type > sc_boost::SC_BOOST_BIND (F f, \fBA1\fP a1, \fBA2\fP a2, \fBA3\fP a3, \fBA4\fP a4, \fBA5\fP a5, \fBA6\fP a6, \fBA7\fP a7, \fBA8\fP a8)"
+
+.SS "template<\fBclass\fP \fBR\fP , \fBclass\fP F , \fBclass\fP \fBA1\fP , \fBclass\fP \fBA2\fP , \fBclass\fP \fBA3\fP , \fBclass\fP \fBA4\fP , \fBclass\fP \fBA5\fP , \fBclass\fP \fBA6\fP , \fBclass\fP \fBA7\fP , \fBclass\fP \fBA8\fP , \fBclass\fP \fBA9\fP > \fB_bi::bind_t\fP< \fBR\fP, F, \fBtypename\fP \fB_bi::list_av_9\fP< \fBA1\fP, \fBA2\fP, \fBA3\fP, \fBA4\fP, \fBA5\fP, \fBA6\fP, \fBA7\fP, \fBA8\fP, \fBA9\fP >::type > sc_boost::SC_BOOST_BIND (F f, \fBA1\fP a1, \fBA2\fP a2, \fBA3\fP a3, \fBA4\fP a4, \fBA5\fP a5, \fBA6\fP a6, \fBA7\fP a7, \fBA8\fP a8, \fBA9\fP a9)"
+
+.SS "template<\fBclass\fP F , \fBclass\fP \fBA1\fP , \fBclass\fP \fBA2\fP , \fBclass\fP \fBA3\fP , \fBclass\fP \fBA4\fP , \fBclass\fP \fBA5\fP , \fBclass\fP \fBA6\fP , \fBclass\fP \fBA7\fP , \fBclass\fP \fBA8\fP , \fBclass\fP \fBA9\fP > \fB_bi::bind_t\fP< \fB_bi::unspecified\fP, F, \fBtypename\fP \fB_bi::list_av_9\fP< \fBA1\fP, \fBA2\fP, \fBA3\fP, \fBA4\fP, \fBA5\fP, \fBA6\fP, \fBA7\fP, \fBA8\fP, \fBA9\fP >::type > sc_boost::SC_BOOST_BIND (F f, \fBA1\fP a1, \fBA2\fP a2, \fBA3\fP a3, \fBA4\fP a4, \fBA5\fP a5, \fBA6\fP a6, \fBA7\fP a7, \fBA8\fP a8, \fBA9\fP a9)"
+
+.SS "template<\fBclass\fP \fBR\fP , \fBclass\fP \fBT\fP , \fBclass\fP \fBA1\fP > \fB_bi::bind_t\fP< \fBR\fP, \fB_mfi::dm\fP< \fBR\fP, \fBT\fP >, \fBtypename\fP \fB_bi::list_av_1\fP< \fBA1\fP >::type > sc_boost::SC_BOOST_BIND (\fBR\fP T::* f, \fBA1\fP a1)"
+
+.SS "template<\fBclass\fP \fBR\fP , \fBclass\fP F > \fB_bi::bind_t\fP< \fBR\fP, F, \fB_bi::list0\fP > sc_boost::SC_BOOST_BIND (\fBsc_boost::type\fP< \fBR\fP > , F f)"
+
+.SS "template<\fBclass\fP \fBR\fP , \fBclass\fP F , \fBclass\fP \fBA1\fP > \fB_bi::bind_t\fP< \fBR\fP, F, \fBtypename\fP \fB_bi::list_av_1\fP< \fBA1\fP >::type > sc_boost::SC_BOOST_BIND (\fBsc_boost::type\fP< \fBR\fP > , F f, \fBA1\fP a1)"
+
+.SS "template<\fBclass\fP \fBR\fP , \fBclass\fP F , \fBclass\fP \fBA1\fP , \fBclass\fP \fBA2\fP > \fB_bi::bind_t\fP< \fBR\fP, F, \fBtypename\fP \fB_bi::list_av_2\fP< \fBA1\fP, \fBA2\fP >::type > sc_boost::SC_BOOST_BIND (\fBsc_boost::type\fP< \fBR\fP > , F f, \fBA1\fP a1, \fBA2\fP a2)"
+
+.SS "template<\fBclass\fP \fBR\fP , \fBclass\fP F , \fBclass\fP \fBA1\fP , \fBclass\fP \fBA2\fP , \fBclass\fP \fBA3\fP > \fB_bi::bind_t\fP< \fBR\fP, F, \fBtypename\fP \fB_bi::list_av_3\fP< \fBA1\fP, \fBA2\fP, \fBA3\fP >::type > sc_boost::SC_BOOST_BIND (\fBsc_boost::type\fP< \fBR\fP > , F f, \fBA1\fP a1, \fBA2\fP a2, \fBA3\fP a3)"
+
+.SS "template<\fBclass\fP \fBR\fP , \fBclass\fP F , \fBclass\fP \fBA1\fP , \fBclass\fP \fBA2\fP , \fBclass\fP \fBA3\fP , \fBclass\fP \fBA4\fP > \fB_bi::bind_t\fP< \fBR\fP, F, \fBtypename\fP \fB_bi::list_av_4\fP< \fBA1\fP, \fBA2\fP, \fBA3\fP, \fBA4\fP >::type > sc_boost::SC_BOOST_BIND (\fBsc_boost::type\fP< \fBR\fP > , F f, \fBA1\fP a1, \fBA2\fP a2, \fBA3\fP a3, \fBA4\fP a4)"
+
+.SS "template<\fBclass\fP \fBR\fP , \fBclass\fP F , \fBclass\fP \fBA1\fP , \fBclass\fP \fBA2\fP , \fBclass\fP \fBA3\fP , \fBclass\fP \fBA4\fP , \fBclass\fP \fBA5\fP > \fB_bi::bind_t\fP< \fBR\fP, F, \fBtypename\fP \fB_bi::list_av_5\fP< \fBA1\fP, \fBA2\fP, \fBA3\fP, \fBA4\fP, \fBA5\fP >::type > sc_boost::SC_BOOST_BIND (\fBsc_boost::type\fP< \fBR\fP > , F f, \fBA1\fP a1, \fBA2\fP a2, \fBA3\fP a3, \fBA4\fP a4, \fBA5\fP a5)"
+
+.SS "template<\fBclass\fP \fBR\fP , \fBclass\fP F , \fBclass\fP \fBA1\fP , \fBclass\fP \fBA2\fP , \fBclass\fP \fBA3\fP , \fBclass\fP \fBA4\fP , \fBclass\fP \fBA5\fP , \fBclass\fP \fBA6\fP > \fB_bi::bind_t\fP< \fBR\fP, F, \fBtypename\fP \fB_bi::list_av_6\fP< \fBA1\fP, \fBA2\fP, \fBA3\fP, \fBA4\fP, \fBA5\fP, \fBA6\fP >::type > sc_boost::SC_BOOST_BIND (\fBsc_boost::type\fP< \fBR\fP > , F f, \fBA1\fP a1, \fBA2\fP a2, \fBA3\fP a3, \fBA4\fP a4, \fBA5\fP a5, \fBA6\fP a6)"
+
+.SS "template<\fBclass\fP \fBR\fP , \fBclass\fP F , \fBclass\fP \fBA1\fP , \fBclass\fP \fBA2\fP , \fBclass\fP \fBA3\fP , \fBclass\fP \fBA4\fP , \fBclass\fP \fBA5\fP , \fBclass\fP \fBA6\fP , \fBclass\fP \fBA7\fP > \fB_bi::bind_t\fP< \fBR\fP, F, \fBtypename\fP \fB_bi::list_av_7\fP< \fBA1\fP, \fBA2\fP, \fBA3\fP, \fBA4\fP, \fBA5\fP, \fBA6\fP, \fBA7\fP >::type > sc_boost::SC_BOOST_BIND (\fBsc_boost::type\fP< \fBR\fP > , F f, \fBA1\fP a1, \fBA2\fP a2, \fBA3\fP a3, \fBA4\fP a4, \fBA5\fP a5, \fBA6\fP a6, \fBA7\fP a7)"
+
+.SS "template<\fBclass\fP \fBR\fP , \fBclass\fP F , \fBclass\fP \fBA1\fP , \fBclass\fP \fBA2\fP , \fBclass\fP \fBA3\fP , \fBclass\fP \fBA4\fP , \fBclass\fP \fBA5\fP , \fBclass\fP \fBA6\fP , \fBclass\fP \fBA7\fP , \fBclass\fP \fBA8\fP > \fB_bi::bind_t\fP< \fBR\fP, F, \fBtypename\fP \fB_bi::list_av_8\fP< \fBA1\fP, \fBA2\fP, \fBA3\fP, \fBA4\fP, \fBA5\fP, \fBA6\fP, \fBA7\fP, \fBA8\fP >::type > sc_boost::SC_BOOST_BIND (\fBsc_boost::type\fP< \fBR\fP > , F f, \fBA1\fP a1, \fBA2\fP a2, \fBA3\fP a3, \fBA4\fP a4, \fBA5\fP a5, \fBA6\fP a6, \fBA7\fP a7, \fBA8\fP a8)"
+
+.SS "template<\fBclass\fP \fBR\fP , \fBclass\fP F , \fBclass\fP \fBA1\fP , \fBclass\fP \fBA2\fP , \fBclass\fP \fBA3\fP , \fBclass\fP \fBA4\fP , \fBclass\fP \fBA5\fP , \fBclass\fP \fBA6\fP , \fBclass\fP \fBA7\fP , \fBclass\fP \fBA8\fP , \fBclass\fP \fBA9\fP > \fB_bi::bind_t\fP< \fBR\fP, F, \fBtypename\fP \fB_bi::list_av_9\fP< \fBA1\fP, \fBA2\fP, \fBA3\fP, \fBA4\fP, \fBA5\fP, \fBA6\fP, \fBA7\fP, \fBA8\fP, \fBA9\fP >::type > sc_boost::SC_BOOST_BIND (\fBsc_boost::type\fP< \fBR\fP >, F f, \fBA1\fP a1, \fBA2\fP a2, \fBA3\fP a3, \fBA4\fP a4, \fBA5\fP a5, \fBA6\fP a6, \fBA7\fP a7, \fBA8\fP a8, \fBA9\fP a9)"
+
+.SS "template<\fBclass\fP \fBV\fP , \fBclass\fP \fBR\fP , \fBclass\fP F , \fBclass\fP \fBL\fP > \fBvoid\fP sc_boost::visit_each (\fBV\fP & v, \fB_bi::bind_t\fP< \fBR\fP, F, \fBL\fP > \fBconst\fP & t, int)"
+
+.SS "template<\fBclass\fP \fBV\fP , \fBclass\fP \fBT\fP > \fBvoid\fP sc_boost::visit_each (\fBV\fP & v, \fB_bi::value\fP< \fBT\fP > \fBconst\fP & t, int)"
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for VHDL simulator from the source code\&.

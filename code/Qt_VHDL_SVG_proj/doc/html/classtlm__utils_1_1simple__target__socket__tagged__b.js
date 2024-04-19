@@ -1,0 +1,28 @@
+var classtlm__utils_1_1simple__target__socket__tagged__b =
+[
+    [ "bw_process", "classtlm__utils_1_1simple__target__socket__tagged__b_1_1bw__process.html", "classtlm__utils_1_1simple__target__socket__tagged__b_1_1bw__process" ],
+    [ "fw_process", "classtlm__utils_1_1simple__target__socket__tagged__b_1_1fw__process.html", "classtlm__utils_1_1simple__target__socket__tagged__b_1_1fw__process" ],
+    [ "base_type", "classtlm__utils_1_1simple__target__socket__tagged__b.html#a49f31061e6b87f42d7c566c6381d8427", null ],
+    [ "bw_interface_type", "classtlm__utils_1_1simple__target__socket__tagged__b.html#a7f9c67f45bbf7b1fbb2a433046b71d2c", null ],
+    [ "fw_interface_type", "classtlm__utils_1_1simple__target__socket__tagged__b.html#abc4c67911bc1f34a52613e9fbeca8f24", null ],
+    [ "phase_type", "classtlm__utils_1_1simple__target__socket__tagged__b.html#a975a6f358464288d5b161189bf86deb2", null ],
+    [ "sync_enum_type", "classtlm__utils_1_1simple__target__socket__tagged__b.html#a91c3803a16e651d10d9bc5848c159680", null ],
+    [ "transaction_type", "classtlm__utils_1_1simple__target__socket__tagged__b.html#a936c976117254ea42da0a7c3fce709ee", null ],
+    [ "simple_target_socket_tagged_b", "classtlm__utils_1_1simple__target__socket__tagged__b.html#ab22c2caba82402b7bc7969d90d43ec44", null ],
+    [ "bw_invalidate_direct_mem_ptr", "classtlm__utils_1_1simple__target__socket__tagged__b.html#aca4583b342eb5fe32fb55f96dd24c689", null ],
+    [ "bw_nb_transport", "classtlm__utils_1_1simple__target__socket__tagged__b.html#a60c74d8e8f8f6b243c69b1c086a39a0f", null ],
+    [ "get_socket", "classtlm__utils_1_1simple__target__socket__tagged__b.html#ab642a89e8d0df53f1d1d6b985cfeced8", null ],
+    [ "operator->", "classtlm__utils_1_1simple__target__socket__tagged__b.html#a5834fdfa362c92ccf5969e3250c3fc6b", null ],
+    [ "register_b_transport", "classtlm__utils_1_1simple__target__socket__tagged__b.html#ad9825dd09151893edb2f20ef46022f7a", null ],
+    [ "register_get_direct_mem_ptr", "classtlm__utils_1_1simple__target__socket__tagged__b.html#a8076a060a6d4b2cd09936235cafed7cd", null ],
+    [ "register_nb_transport_fw", "classtlm__utils_1_1simple__target__socket__tagged__b.html#a0969a1260cb220b25988f9c17184dfd1", null ],
+    [ "register_transport_dbg", "classtlm__utils_1_1simple__target__socket__tagged__b.html#a3373896f5ba43004e4fa7e61187abf8f", null ],
+    [ "start_of_simulation", "classtlm__utils_1_1simple__target__socket__tagged__b.html#a33fafacae2cf4d99e8645542e6bb227c", null ],
+    [ "bw_process", "classtlm__utils_1_1simple__target__socket__tagged__b.html#a3cb722031862b7dea13b51ccbbf96b1e", null ],
+    [ "fw_process", "classtlm__utils_1_1simple__target__socket__tagged__b.html#af8e4ac1acc1a93c6fa01e40d5df17c3b", null ],
+    [ "m_bw_process", "classtlm__utils_1_1simple__target__socket__tagged__b.html#af279163cacc78ecffd5fd22db709c825", null ],
+    [ "m_current_transaction", "classtlm__utils_1_1simple__target__socket__tagged__b.html#a01ff113513b8179b66f47333f4dce177", null ],
+    [ "m_end_request", "classtlm__utils_1_1simple__target__socket__tagged__b.html#a48a2ee6d54ff503d69516bc55dbcced3", null ],
+    [ "m_fw_process", "classtlm__utils_1_1simple__target__socket__tagged__b.html#ac71a7e1c963f69d932d03d54b600bb7b", null ],
+    [ "m_pending_trans", "classtlm__utils_1_1simple__target__socket__tagged__b.html#a9476fa3c277cb365f32b8a891b8ec44d", null ]
+];

@@ -1,0 +1,318 @@
+.TH "sc_core::sc_vector_iter< ElementType, AccessPolicy >" 3 "VHDL simulator" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+sc_core::sc_vector_iter< ElementType, AccessPolicy >
+.SH SYNOPSIS
+.br
+.PP
+.PP
+\fR#include <sc_vector\&.h>\fP
+.PP
+Inherits \fBsc_core::sc_direct_access< ElementType >\fP\&.
+.SS "Classes"
+
+.in +1c
+.ti -1c
+.RI "struct \fBselect_iter\fP"
+.br
+.ti -1c
+.RI "struct \fBselect_iter< const U >\fP"
+.br
+.in -1c
+.SS "Public Types"
+
+.in +1c
+.ti -1c
+.RI "\fBtypedef\fP std::random_access_iterator_tag \fBiterator_category\fP"
+.br
+.ti -1c
+.RI "\fBtypedef\fP std::ptrdiff_t \fBdifference_type\fP"
+.br
+.ti -1c
+.RI "\fBtypedef\fP access_policy::type \fBvalue_type\fP"
+.br
+.ti -1c
+.RI "\fBtypedef\fP \fBvalue_type\fP & \fBreference\fP"
+.br
+.ti -1c
+.RI "\fBtypedef\fP \fBvalue_type\fP * \fBpointer\fP"
+.br
+.in -1c
+.SS "Public Member Functions"
+
+.in +1c
+.ti -1c
+.RI "\fBsc_vector_iter\fP ()"
+.br
+.ti -1c
+.RI "template<\fBtypename\fP \fBIt\fP > \fBsc_vector_iter\fP (\fBconst\fP \fBIt\fP &\fBit\fP, \fBSC_ENABLE_IF_\fP((\fBsc_meta::is_more_const\fP< \fBelement_type\fP, \fBtypename\fP It::policy::element_type >)))"
+.br
+.ti -1c
+.RI "\fBthis_type\fP & \fBoperator++\fP ()"
+.br
+.ti -1c
+.RI "\fBthis_type\fP & \fBoperator\-\-\fP ()"
+.br
+.ti -1c
+.RI "\fBthis_type\fP \fBoperator++\fP (int)"
+.br
+.ti -1c
+.RI "\fBthis_type\fP \fBoperator\-\-\fP (int)"
+.br
+.ti -1c
+.RI "\fBthis_type\fP \fBoperator+\fP (\fBdifference_type\fP \fBn\fP) \fBconst\fP"
+.br
+.ti -1c
+.RI "\fBthis_type\fP \fBoperator\-\fP (\fBdifference_type\fP \fBn\fP) \fBconst\fP"
+.br
+.ti -1c
+.RI "\fBthis_type\fP & \fBoperator+=\fP (\fBdifference_type\fP \fBn\fP)"
+.br
+.ti -1c
+.RI "\fBthis_type\fP & \fBoperator\-=\fP (\fBdifference_type\fP \fBn\fP)"
+.br
+.ti -1c
+.RI "\fBbool\fP \fBoperator==\fP (\fBconst\fP \fBconst_direct_iterator\fP &\fBthat\fP) \fBconst\fP"
+.br
+.ti -1c
+.RI "\fBbool\fP \fBoperator!=\fP (\fBconst\fP \fBconst_direct_iterator\fP &\fBthat\fP) \fBconst\fP"
+.br
+.ti -1c
+.RI "\fBbool\fP \fBoperator<=\fP (\fBconst\fP \fBconst_direct_iterator\fP &\fBthat\fP) \fBconst\fP"
+.br
+.ti -1c
+.RI "\fBbool\fP \fBoperator>=\fP (\fBconst\fP \fBconst_direct_iterator\fP &\fBthat\fP) \fBconst\fP"
+.br
+.ti -1c
+.RI "\fBbool\fP \fBoperator<\fP (\fBconst\fP \fBconst_direct_iterator\fP &\fBthat\fP) \fBconst\fP"
+.br
+.ti -1c
+.RI "\fBbool\fP \fBoperator>\fP (\fBconst\fP \fBconst_direct_iterator\fP &\fBthat\fP) \fBconst\fP"
+.br
+.ti -1c
+.RI "\fBreference\fP \fBoperator*\fP () \fBconst\fP"
+.br
+.ti -1c
+.RI "\fBpointer\fP \fBoperator\->\fP () \fBconst\fP"
+.br
+.ti -1c
+.RI "\fBreference\fP \fBoperator[]\fP (\fBdifference_type\fP \fBn\fP) \fBconst\fP"
+.br
+.ti -1c
+.RI "\fBdifference_type\fP \fBoperator\-\fP (\fBconst_direct_iterator\fP \fBconst\fP &\fBthat\fP) \fBconst\fP"
+.br
+.in -1c
+.SS "Private Types"
+
+.in +1c
+.ti -1c
+.RI "\fBtypedef\fP \fBElementType\fP \fBelement_type\fP"
+.br
+.ti -1c
+.RI "\fBtypedef\fP AccessPolicy::policy \fBaccess_policy\fP"
+.br
+.ti -1c
+.RI "\fBtypedef\fP AccessPolicy::non_const_policy \fBnon_const_policy\fP"
+.br
+.ti -1c
+.RI "\fBtypedef\fP AccessPolicy::const_policy \fBconst_policy\fP"
+.br
+.ti -1c
+.RI "\fBtypedef\fP \fBsc_meta::remove_const\fP< \fBElementType\fP >\fB::type\fP \fBplain_type\fP"
+.br
+.ti -1c
+.RI "\fBtypedef\fP \fBconst\fP \fBplain_type\fP \fBconst_plain_type\fP"
+.br
+.ti -1c
+.RI "\fBtypedef\fP \fBsc_direct_access\fP< \fBplain_type\fP >\fB::const_policy\fP \fBconst_direct_policy\fP"
+.br
+.ti -1c
+.RI "\fBtypedef\fP \fBsc_vector_iter\fP \fBthis_type\fP"
+.br
+.ti -1c
+.RI "\fBtypedef\fP \fBsc_vector\fP< \fBplain_type\fP > \fBvector_type\fP"
+.br
+.ti -1c
+.RI "\fBtypedef\fP \fBsc_vector_base::storage_type\fP \fBstorage_type\fP"
+.br
+.ti -1c
+.RI "\fBtypedef\fP \fBselect_iter\fP< \fBElementType\fP >\fB::type\fP \fBraw_iterator\fP"
+.br
+.ti -1c
+.RI "\fBtypedef\fP \fBsc_vector_iter\fP< \fBconst_plain_type\fP, \fBconst_policy\fP > \fBconst_iterator\fP"
+.br
+.ti -1c
+.RI "\fBtypedef\fP \fBsc_vector_iter\fP< \fBconst_plain_type\fP, \fBconst_direct_policy\fP > \fBconst_direct_iterator\fP"
+.br
+.in -1c
+
+Private Types inherited from \fBsc_core::sc_direct_access< ElementType >\fP
+.in +1c
+.ti -1c
+.RI "\fBtypedef\fP \fBElementType\fP \fBelement_type\fP"
+.br
+.ti -1c
+.RI "\fBtypedef\fP \fBelement_type\fP \fBtype\fP"
+.br
+.ti -1c
+.RI "\fBtypedef\fP \fBsc_meta::remove_const\fP< \fBtype\fP >\fB::type\fP \fBplain_type\fP"
+.br
+.ti -1c
+.RI "\fBtypedef\fP \fBsc_direct_access\fP< \fBtype\fP > \fBpolicy\fP"
+.br
+.ti -1c
+.RI "\fBtypedef\fP \fBsc_direct_access\fP< \fBplain_type\fP > \fBnon_const_policy\fP"
+.br
+.ti -1c
+.RI "\fBtypedef\fP \fBsc_direct_access\fP< \fBconst\fP \fBplain_type\fP > \fBconst_policy\fP"
+.br
+.in -1c
+.SS "Private Member Functions"
+
+.in +1c
+.ti -1c
+.RI "\fBsc_vector_iter\fP (\fBraw_iterator\fP \fBit\fP, \fBaccess_policy\fP \fBacc\fP=\fBaccess_policy\fP())"
+.br
+.ti -1c
+.RI "\fBaccess_policy\fP \fBconst\fP & \fBget_policy\fP () \fBconst\fP"
+.br
+.in -1c
+
+Private Member Functions inherited from \fBsc_core::sc_direct_access< ElementType >\fP
+.in +1c
+.ti -1c
+.RI "\fBsc_direct_access\fP ()"
+.br
+.ti -1c
+.RI "\fBsc_direct_access\fP (\fBconst\fP \fBnon_const_policy\fP &)"
+.br
+.ti -1c
+.RI "template<\fBtypename\fP \fBU\fP > \fBsc_direct_access\fP (\fBconst\fP \fBU\fP &, \fBSC_ENABLE_IF_\fP((\fBsc_meta::is_more_const\fP< \fBtype\fP, \fBtypename\fP U::policy::element_type >)))"
+.br
+.ti -1c
+.RI "\fBtype\fP * \fBget\fP (\fBtype\fP *\fBthis_\fP) \fBconst\fP"
+.br
+.in -1c
+.SS "Private Attributes"
+
+.in +1c
+.ti -1c
+.RI "\fBraw_iterator\fP \fBit_\fP"
+.br
+.in -1c
+.SS "Friends"
+
+.in +1c
+.ti -1c
+.RI "\fBclass\fP \fBsc_vector< plain_type >\fP"
+.br
+.ti -1c
+.RI "template<\fBtypename\fP , \fBtypename\fP > \fBclass\fP \fBsc_vector_assembly\fP"
+.br
+.ti -1c
+.RI "template<\fBtypename\fP , \fBtypename\fP > \fBclass\fP \fBsc_vector_iter\fP"
+.br
+.in -1c
+.SH "Member Typedef Documentation"
+.PP 
+.SS "template<\fBtypename\fP \fBElementType\fP , \fBtypename\fP \fBAccessPolicy\fP  = sc_direct_access<ElementType>> \fBtypedef\fP AccessPolicy::policy \fBsc_core::sc_vector_iter\fP< \fBElementType\fP, \fBAccessPolicy\fP >::access_policy\fR [private]\fP"
+
+.SS "template<\fBtypename\fP \fBElementType\fP , \fBtypename\fP \fBAccessPolicy\fP  = sc_direct_access<ElementType>> \fBtypedef\fP \fBsc_vector_iter\fP< \fBconst_plain_type\fP, \fBconst_direct_policy\fP > \fBsc_core::sc_vector_iter\fP< \fBElementType\fP, \fBAccessPolicy\fP >::const_direct_iterator\fR [private]\fP"
+
+.SS "template<\fBtypename\fP \fBElementType\fP , \fBtypename\fP \fBAccessPolicy\fP  = sc_direct_access<ElementType>> \fBtypedef\fP \fBsc_direct_access\fP<\fBplain_type\fP>\fB::const_policy\fP \fBsc_core::sc_vector_iter\fP< \fBElementType\fP, \fBAccessPolicy\fP >::const_direct_policy\fR [private]\fP"
+
+.SS "template<\fBtypename\fP \fBElementType\fP , \fBtypename\fP \fBAccessPolicy\fP  = sc_direct_access<ElementType>> \fBtypedef\fP \fBsc_vector_iter\fP< \fBconst_plain_type\fP, \fBconst_policy\fP > \fBsc_core::sc_vector_iter\fP< \fBElementType\fP, \fBAccessPolicy\fP >::const_iterator\fR [private]\fP"
+
+.SS "template<\fBtypename\fP \fBElementType\fP , \fBtypename\fP \fBAccessPolicy\fP  = sc_direct_access<ElementType>> \fBtypedef\fP \fBconst\fP \fBplain_type\fP \fBsc_core::sc_vector_iter\fP< \fBElementType\fP, \fBAccessPolicy\fP >::const_plain_type\fR [private]\fP"
+
+.SS "template<\fBtypename\fP \fBElementType\fP , \fBtypename\fP \fBAccessPolicy\fP  = sc_direct_access<ElementType>> \fBtypedef\fP AccessPolicy::const_policy \fBsc_core::sc_vector_iter\fP< \fBElementType\fP, \fBAccessPolicy\fP >::const_policy\fR [private]\fP"
+
+.SS "template<\fBtypename\fP \fBElementType\fP , \fBtypename\fP \fBAccessPolicy\fP  = sc_direct_access<ElementType>> \fBtypedef\fP std::ptrdiff_t \fBsc_core::sc_vector_iter\fP< \fBElementType\fP, \fBAccessPolicy\fP >::difference_type"
+
+.SS "template<\fBtypename\fP \fBElementType\fP , \fBtypename\fP \fBAccessPolicy\fP  = sc_direct_access<ElementType>> \fBtypedef\fP \fBElementType\fP \fBsc_core::sc_vector_iter\fP< \fBElementType\fP, \fBAccessPolicy\fP >::element_type\fR [private]\fP"
+
+.SS "template<\fBtypename\fP \fBElementType\fP , \fBtypename\fP \fBAccessPolicy\fP  = sc_direct_access<ElementType>> \fBtypedef\fP std::random_access_iterator_tag \fBsc_core::sc_vector_iter\fP< \fBElementType\fP, \fBAccessPolicy\fP >::iterator_category"
+
+.SS "template<\fBtypename\fP \fBElementType\fP , \fBtypename\fP \fBAccessPolicy\fP  = sc_direct_access<ElementType>> \fBtypedef\fP AccessPolicy::non_const_policy \fBsc_core::sc_vector_iter\fP< \fBElementType\fP, \fBAccessPolicy\fP >::non_const_policy\fR [private]\fP"
+
+.SS "template<\fBtypename\fP \fBElementType\fP , \fBtypename\fP \fBAccessPolicy\fP  = sc_direct_access<ElementType>> \fBtypedef\fP \fBsc_meta::remove_const\fP<\fBElementType\fP>\fB::type\fP \fBsc_core::sc_vector_iter\fP< \fBElementType\fP, \fBAccessPolicy\fP >::plain_type\fR [private]\fP"
+
+.SS "template<\fBtypename\fP \fBElementType\fP , \fBtypename\fP \fBAccessPolicy\fP  = sc_direct_access<ElementType>> \fBtypedef\fP \fBvalue_type\fP* \fBsc_core::sc_vector_iter\fP< \fBElementType\fP, \fBAccessPolicy\fP >::pointer"
+
+.SS "template<\fBtypename\fP \fBElementType\fP , \fBtypename\fP \fBAccessPolicy\fP  = sc_direct_access<ElementType>> \fBtypedef\fP \fBselect_iter\fP<\fBElementType\fP>\fB::type\fP \fBsc_core::sc_vector_iter\fP< \fBElementType\fP, \fBAccessPolicy\fP >::raw_iterator\fR [private]\fP"
+
+.SS "template<\fBtypename\fP \fBElementType\fP , \fBtypename\fP \fBAccessPolicy\fP  = sc_direct_access<ElementType>> \fBtypedef\fP \fBvalue_type\fP& \fBsc_core::sc_vector_iter\fP< \fBElementType\fP, \fBAccessPolicy\fP >::reference"
+
+.SS "template<\fBtypename\fP \fBElementType\fP , \fBtypename\fP \fBAccessPolicy\fP  = sc_direct_access<ElementType>> \fBtypedef\fP \fBsc_vector_base::storage_type\fP \fBsc_core::sc_vector_iter\fP< \fBElementType\fP, \fBAccessPolicy\fP >::storage_type\fR [private]\fP"
+
+.SS "template<\fBtypename\fP \fBElementType\fP , \fBtypename\fP \fBAccessPolicy\fP  = sc_direct_access<ElementType>> \fBtypedef\fP \fBsc_vector_iter\fP \fBsc_core::sc_vector_iter\fP< \fBElementType\fP, \fBAccessPolicy\fP >::this_type\fR [private]\fP"
+
+.SS "template<\fBtypename\fP \fBElementType\fP , \fBtypename\fP \fBAccessPolicy\fP  = sc_direct_access<ElementType>> \fBtypedef\fP access_policy::type \fBsc_core::sc_vector_iter\fP< \fBElementType\fP, \fBAccessPolicy\fP >::value_type"
+
+.SS "template<\fBtypename\fP \fBElementType\fP , \fBtypename\fP \fBAccessPolicy\fP  = sc_direct_access<ElementType>> \fBtypedef\fP \fBsc_vector\fP<\fBplain_type\fP> \fBsc_core::sc_vector_iter\fP< \fBElementType\fP, \fBAccessPolicy\fP >::vector_type\fR [private]\fP"
+
+.SH "Constructor & Destructor Documentation"
+.PP 
+.SS "template<\fBtypename\fP \fBElementType\fP , \fBtypename\fP \fBAccessPolicy\fP  = sc_direct_access<ElementType>> \fBsc_core::sc_vector_iter\fP< \fBElementType\fP, \fBAccessPolicy\fP >::sc_vector_iter (\fBraw_iterator\fP it, \fBaccess_policy\fP acc = \fR\fBaccess_policy\fP()\fP)\fR [inline]\fP, \fR [private]\fP"
+
+.SS "template<\fBtypename\fP \fBElementType\fP , \fBtypename\fP \fBAccessPolicy\fP  = sc_direct_access<ElementType>> \fBsc_core::sc_vector_iter\fP< \fBElementType\fP, \fBAccessPolicy\fP >::sc_vector_iter ()\fR [inline]\fP"
+
+.SS "template<\fBtypename\fP \fBElementType\fP , \fBtypename\fP \fBAccessPolicy\fP  = sc_direct_access<ElementType>> template<\fBtypename\fP \fBIt\fP > \fBsc_core::sc_vector_iter\fP< \fBElementType\fP, \fBAccessPolicy\fP >::sc_vector_iter (\fBconst\fP \fBIt\fP & it, \fBSC_ENABLE_IF_\fP(( \fBsc_meta::is_more_const\fP< \fBelement_type\fP, \fBtypename\fP It::policy::element_type >)))\fR [inline]\fP"
+
+.SH "Member Function Documentation"
+.PP 
+.SS "template<\fBtypename\fP \fBElementType\fP , \fBtypename\fP \fBAccessPolicy\fP  = sc_direct_access<ElementType>> \fBaccess_policy\fP \fBconst\fP  & \fBsc_core::sc_vector_iter\fP< \fBElementType\fP, \fBAccessPolicy\fP >::get_policy () const\fR [inline]\fP, \fR [private]\fP"
+
+.SS "template<\fBtypename\fP \fBElementType\fP , \fBtypename\fP \fBAccessPolicy\fP  = sc_direct_access<ElementType>> \fBbool\fP \fBsc_core::sc_vector_iter\fP< \fBElementType\fP, \fBAccessPolicy\fP >::operator!= (\fBconst\fP \fBconst_direct_iterator\fP & that) const\fR [inline]\fP"
+
+.SS "template<\fBtypename\fP \fBElementType\fP , \fBtypename\fP \fBAccessPolicy\fP  = sc_direct_access<ElementType>> \fBreference\fP \fBsc_core::sc_vector_iter\fP< \fBElementType\fP, \fBAccessPolicy\fP >\fB::operator\fP* () const\fR [inline]\fP"
+
+.SS "template<\fBtypename\fP \fBElementType\fP , \fBtypename\fP \fBAccessPolicy\fP  = sc_direct_access<ElementType>> \fBthis_type\fP \fBsc_core::sc_vector_iter\fP< \fBElementType\fP, \fBAccessPolicy\fP >\fB::operator\fP+ (\fBdifference_type\fP n) const\fR [inline]\fP"
+
+.SS "template<\fBtypename\fP \fBElementType\fP , \fBtypename\fP \fBAccessPolicy\fP  = sc_direct_access<ElementType>> \fBthis_type\fP & \fBsc_core::sc_vector_iter\fP< \fBElementType\fP, \fBAccessPolicy\fP >\fB::operator\fP++ ()\fR [inline]\fP"
+
+.SS "template<\fBtypename\fP \fBElementType\fP , \fBtypename\fP \fBAccessPolicy\fP  = sc_direct_access<ElementType>> \fBthis_type\fP \fBsc_core::sc_vector_iter\fP< \fBElementType\fP, \fBAccessPolicy\fP >\fB::operator\fP++ (int)\fR [inline]\fP"
+
+.SS "template<\fBtypename\fP \fBElementType\fP , \fBtypename\fP \fBAccessPolicy\fP  = sc_direct_access<ElementType>> \fBthis_type\fP & \fBsc_core::sc_vector_iter\fP< \fBElementType\fP, \fBAccessPolicy\fP >\fB::operator\fP+= (\fBdifference_type\fP n)\fR [inline]\fP"
+
+.SS "template<\fBtypename\fP \fBElementType\fP , \fBtypename\fP \fBAccessPolicy\fP  = sc_direct_access<ElementType>> \fBdifference_type\fP \fBsc_core::sc_vector_iter\fP< \fBElementType\fP, \fBAccessPolicy\fP >\fB::operator\fP\- (\fBconst_direct_iterator\fP \fBconst\fP & that) const\fR [inline]\fP"
+
+.SS "template<\fBtypename\fP \fBElementType\fP , \fBtypename\fP \fBAccessPolicy\fP  = sc_direct_access<ElementType>> \fBthis_type\fP \fBsc_core::sc_vector_iter\fP< \fBElementType\fP, \fBAccessPolicy\fP >\fB::operator\fP\- (\fBdifference_type\fP n) const\fR [inline]\fP"
+
+.SS "template<\fBtypename\fP \fBElementType\fP , \fBtypename\fP \fBAccessPolicy\fP  = sc_direct_access<ElementType>> \fBthis_type\fP & \fBsc_core::sc_vector_iter\fP< \fBElementType\fP, \fBAccessPolicy\fP >\fB::operator\fP\-\- ()\fR [inline]\fP"
+
+.SS "template<\fBtypename\fP \fBElementType\fP , \fBtypename\fP \fBAccessPolicy\fP  = sc_direct_access<ElementType>> \fBthis_type\fP \fBsc_core::sc_vector_iter\fP< \fBElementType\fP, \fBAccessPolicy\fP >\fB::operator\fP\-\- (int)\fR [inline]\fP"
+
+.SS "template<\fBtypename\fP \fBElementType\fP , \fBtypename\fP \fBAccessPolicy\fP  = sc_direct_access<ElementType>> \fBthis_type\fP & \fBsc_core::sc_vector_iter\fP< \fBElementType\fP, \fBAccessPolicy\fP >\fB::operator\fP\-= (\fBdifference_type\fP n)\fR [inline]\fP"
+
+.SS "template<\fBtypename\fP \fBElementType\fP , \fBtypename\fP \fBAccessPolicy\fP  = sc_direct_access<ElementType>> \fBpointer\fP \fBsc_core::sc_vector_iter\fP< \fBElementType\fP, \fBAccessPolicy\fP >\fB::operator\fP\-> () const\fR [inline]\fP"
+
+.SS "template<\fBtypename\fP \fBElementType\fP , \fBtypename\fP \fBAccessPolicy\fP  = sc_direct_access<ElementType>> \fBbool\fP \fBsc_core::sc_vector_iter\fP< \fBElementType\fP, \fBAccessPolicy\fP >\fB::operator\fP< (\fBconst\fP \fBconst_direct_iterator\fP & that) const\fR [inline]\fP"
+
+.SS "template<\fBtypename\fP \fBElementType\fP , \fBtypename\fP \fBAccessPolicy\fP  = sc_direct_access<ElementType>> \fBbool\fP \fBsc_core::sc_vector_iter\fP< \fBElementType\fP, \fBAccessPolicy\fP >\fB::operator\fP<= (\fBconst\fP \fBconst_direct_iterator\fP & that) const\fR [inline]\fP"
+
+.SS "template<\fBtypename\fP \fBElementType\fP , \fBtypename\fP \fBAccessPolicy\fP  = sc_direct_access<ElementType>> \fBbool\fP \fBsc_core::sc_vector_iter\fP< \fBElementType\fP, \fBAccessPolicy\fP >\fB::operator\fP== (\fBconst\fP \fBconst_direct_iterator\fP & that) const\fR [inline]\fP"
+
+.SS "template<\fBtypename\fP \fBElementType\fP , \fBtypename\fP \fBAccessPolicy\fP  = sc_direct_access<ElementType>> \fBbool\fP \fBsc_core::sc_vector_iter\fP< \fBElementType\fP, \fBAccessPolicy\fP >\fB::operator\fP> (\fBconst\fP \fBconst_direct_iterator\fP & that) const\fR [inline]\fP"
+
+.SS "template<\fBtypename\fP \fBElementType\fP , \fBtypename\fP \fBAccessPolicy\fP  = sc_direct_access<ElementType>> \fBbool\fP \fBsc_core::sc_vector_iter\fP< \fBElementType\fP, \fBAccessPolicy\fP >\fB::operator\fP>= (\fBconst\fP \fBconst_direct_iterator\fP & that) const\fR [inline]\fP"
+
+.SS "template<\fBtypename\fP \fBElementType\fP , \fBtypename\fP \fBAccessPolicy\fP  = sc_direct_access<ElementType>> \fBreference\fP \fBsc_core::sc_vector_iter\fP< \fBElementType\fP, \fBAccessPolicy\fP >\fB::operator\fP[] (\fBdifference_type\fP n) const\fR [inline]\fP"
+
+.SH "Friends And Related Symbol Documentation"
+.PP 
+.SS "template<\fBtypename\fP \fBElementType\fP , \fBtypename\fP \fBAccessPolicy\fP  = sc_direct_access<ElementType>> \fBfriend\fP \fBclass\fP \fBsc_vector\fP< \fBplain_type\fP >\fR [friend]\fP"
+
+.SS "template<\fBtypename\fP \fBElementType\fP , \fBtypename\fP \fBAccessPolicy\fP  = sc_direct_access<ElementType>> template<\fBtypename\fP , \fBtypename\fP > \fBfriend\fP \fBclass\fP \fBsc_vector_assembly\fP\fR [friend]\fP"
+
+.SS "template<\fBtypename\fP \fBElementType\fP , \fBtypename\fP \fBAccessPolicy\fP  = sc_direct_access<ElementType>> template<\fBtypename\fP , \fBtypename\fP > \fBfriend\fP \fBclass\fP \fBsc_vector_iter\fP\fR [friend]\fP"
+
+.SH "Member Data Documentation"
+.PP 
+.SS "template<\fBtypename\fP \fBElementType\fP , \fBtypename\fP \fBAccessPolicy\fP  = sc_direct_access<ElementType>> \fBraw_iterator\fP \fBsc_core::sc_vector_iter\fP< \fBElementType\fP, \fBAccessPolicy\fP >::it_\fR [private]\fP"
+
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for VHDL simulator from the source code\&.

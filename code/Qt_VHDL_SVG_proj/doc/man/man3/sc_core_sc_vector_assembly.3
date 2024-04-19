@@ -1,0 +1,279 @@
+.TH "sc_core::sc_vector_assembly< T, MT >" 3 "VHDL simulator" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+sc_core::sc_vector_assembly< T, MT >
+.SH SYNOPSIS
+.br
+.PP
+.PP
+\fR#include <sc_vector\&.h>\fP
+.SS "Public Types"
+
+.in +1c
+.ti -1c
+.RI "\fBtypedef\fP \fBsc_vector\fP< \fBT\fP > \fBbase_type\fP"
+.br
+.ti -1c
+.RI "\fBtypedef\fP \fBsc_vector_iter\fP< \fBT\fP, \fBsc_member_access\fP< \fBT\fP, \fBMT\fP > > \fBiterator\fP"
+.br
+.ti -1c
+.RI "\fBtypedef\fP \fBsc_vector_iter\fP< \fBconst\fP \fBT\fP, \fBsc_member_access\fP< \fBconst\fP \fBT\fP, \fBconst\fP \fBMT\fP > > \fBconst_iterator\fP"
+.br
+.ti -1c
+.RI "\fBtypedef\fP \fBT\fP \fBelement_type\fP"
+.br
+.ti -1c
+.RI "\fBtypedef\fP \fBMT\fP \fBaccess_type\fP"
+.br
+.ti -1c
+.RI "\fBtypedef\fP base_type::size_type \fBsize_type\fP"
+.br
+.ti -1c
+.RI "\fBtypedef\fP base_type::difference_type \fBdifference_type\fP"
+.br
+.ti -1c
+.RI "\fBtypedef\fP iterator::reference \fBreference\fP"
+.br
+.ti -1c
+.RI "\fBtypedef\fP iterator::pointer \fBpointer\fP"
+.br
+.ti -1c
+.RI "\fBtypedef\fP const_iterator::reference \fBconst_reference\fP"
+.br
+.ti -1c
+.RI "\fBtypedef\fP const_iterator::pointer \fBconst_pointer\fP"
+.br
+.ti -1c
+.RI "\fBtypedef\fP access_typeT::* \fBmember_type\fP"
+.br
+.in -1c
+.SS "Public Member Functions"
+
+.in +1c
+.ti -1c
+.RI "\fBconst\fP \fBchar\fP * \fBname\fP () \fBconst\fP"
+.br
+.ti -1c
+.RI "\fBconst\fP \fBchar\fP * \fBkind\fP () \fBconst\fP"
+.br
+.ti -1c
+.RI "\fBiterator\fP \fBbegin\fP ()"
+.br
+.ti -1c
+.RI "\fBiterator\fP \fBend\fP ()"
+.br
+.ti -1c
+.RI "\fBconst_iterator\fP \fBcbegin\fP () \fBconst\fP"
+.br
+.ti -1c
+.RI "\fBconst_iterator\fP \fBcend\fP () \fBconst\fP"
+.br
+.ti -1c
+.RI "\fBconst_iterator\fP \fBbegin\fP () \fBconst\fP"
+.br
+.ti -1c
+.RI "\fBconst_iterator\fP \fBend\fP () \fBconst\fP"
+.br
+.ti -1c
+.RI "\fBsize_type\fP \fBsize\fP () \fBconst\fP"
+.br
+.ti -1c
+.RI "\fBconst\fP std::vector< \fBsc_object\fP * > & \fBget_elements\fP () \fBconst\fP"
+.br
+.ti -1c
+.RI "\fBreference\fP \fBoperator[]\fP (\fBsize_type\fP \fBidx\fP)"
+.br
+.ti -1c
+.RI "\fBreference\fP \fBat\fP (\fBsize_type\fP \fBidx\fP)"
+.br
+.ti -1c
+.RI "\fBconst_reference\fP \fBoperator[]\fP (\fBsize_type\fP \fBidx\fP) \fBconst\fP"
+.br
+.ti -1c
+.RI "\fBconst_reference\fP \fBat\fP (\fBsize_type\fP \fBidx\fP) \fBconst\fP"
+.br
+.ti -1c
+.RI "template<\fBtypename\fP \fBContainerType\fP , \fBtypename\fP \fBArgumentType\fP > \fBiterator\fP \fBbind\fP (\fBsc_vector_assembly\fP< \fBContainerType\fP, \fBArgumentType\fP > \fBc\fP)"
+.br
+.ti -1c
+.RI "template<\fBtypename\fP \fBBindableContainer\fP > \fBiterator\fP \fBbind\fP (\fBBindableContainer\fP &\fBc\fP)"
+.br
+.ti -1c
+.RI "template<\fBtypename\fP \fBBindableIterator\fP > \fBiterator\fP \fBbind\fP (\fBBindableIterator\fP first, \fBBindableIterator\fP last)"
+.br
+.ti -1c
+.RI "template<\fBtypename\fP \fBBindableIterator\fP > \fBiterator\fP \fBbind\fP (\fBBindableIterator\fP first, \fBBindableIterator\fP last, \fBiterator\fP \fBfrom\fP)"
+.br
+.ti -1c
+.RI "template<\fBtypename\fP \fBBindableIterator\fP > \fBiterator\fP \fBbind\fP (\fBBindableIterator\fP first, \fBBindableIterator\fP last, \fBtypename\fP base_type::iterator \fBfrom\fP)"
+.br
+.ti -1c
+.RI "template<\fBtypename\fP \fBContainerType\fP , \fBtypename\fP \fBArgumentType\fP > \fBiterator\fP \fBoperator()\fP (\fBsc_vector_assembly\fP< \fBContainerType\fP, \fBArgumentType\fP > \fBc\fP)"
+.br
+.ti -1c
+.RI "template<\fBtypename\fP \fBArgumentContainer\fP > \fBiterator\fP \fBoperator()\fP (\fBArgumentContainer\fP &\fBc\fP)"
+.br
+.ti -1c
+.RI "template<\fBtypename\fP \fBArgumentIterator\fP > \fBiterator\fP \fBoperator()\fP (\fBArgumentIterator\fP first, \fBArgumentIterator\fP last)"
+.br
+.ti -1c
+.RI "template<\fBtypename\fP \fBArgumentIterator\fP > \fBiterator\fP \fBoperator()\fP (\fBArgumentIterator\fP first, \fBArgumentIterator\fP last, \fBiterator\fP \fBfrom\fP)"
+.br
+.ti -1c
+.RI "template<\fBtypename\fP \fBArgumentIterator\fP > \fBiterator\fP \fBoperator()\fP (\fBArgumentIterator\fP first, \fBArgumentIterator\fP last, \fBtypename\fP base_type::iterator \fBfrom\fP)"
+.br
+.ti -1c
+.RI "\fBsc_vector_assembly\fP (\fBconst\fP \fBsc_vector_assembly\fP &\fBother\fP)"
+.br
+.ti -1c
+.RI "\fBsc_vector_assembly\fP & \fBoperator=\fP (\fBsc_vector_assembly\fP \fBother_copy\fP)"
+.br
+.ti -1c
+.RI "\fBvoid\fP \fBswap\fP (\fBsc_vector_assembly\fP &\fBthat\fP)"
+.br
+.ti -1c
+.RI "\fBvoid\fP \fBreport_empty_bind\fP (\fBconst\fP \fBchar\fP *\fBkind_\fP, \fBbool\fP \fBdst_empty_\fP) \fBconst\fP"
+.br
+.ti -1c
+.RI "\fB~sc_vector_assembly\fP ()"
+.br
+.in -1c
+.SS "Private Member Functions"
+
+.in +1c
+.ti -1c
+.RI "\fBsc_vector_assembly\fP (\fBbase_type\fP &v, \fBmember_type\fP ptr)"
+.br
+.ti -1c
+.RI "\fBsc_object\fP * \fBobject_cast\fP (\fBpointer\fP p) \fBconst\fP"
+.br
+.in -1c
+.SS "Private Attributes"
+
+.in +1c
+.ti -1c
+.RI "\fBbase_type\fP * \fBvec_\fP"
+.br
+.ti -1c
+.RI "\fBmember_type\fP \fBptr_\fP"
+.br
+.ti -1c
+.RI "std::vector< \fBsc_object\fP * > * \fBchild_vec_\fP"
+.br
+.in -1c
+.SS "Friends"
+
+.in +1c
+.ti -1c
+.RI "template<\fBtypename\fP \fBU\fP > \fBclass\fP \fBsc_vector\fP"
+.br
+.in -1c
+.SH "Member Typedef Documentation"
+.PP 
+.SS "template<\fBtypename\fP \fBT\fP , \fBtypename\fP \fBMT\fP > \fBtypedef\fP \fBMT\fP \fBsc_core::sc_vector_assembly\fP< \fBT\fP, \fBMT\fP >::access_type"
+
+.SS "template<\fBtypename\fP \fBT\fP , \fBtypename\fP \fBMT\fP > \fBtypedef\fP \fBsc_vector\fP<\fBT\fP> \fBsc_core::sc_vector_assembly\fP< \fBT\fP, \fBMT\fP >::base_type"
+
+.SS "template<\fBtypename\fP \fBT\fP , \fBtypename\fP \fBMT\fP > \fBtypedef\fP \fBsc_vector_iter\fP< \fBconst\fP \fBT\fP , \fBsc_member_access\fP<\fBconst\fP \fBT\fP, \fBconst\fP \fBMT\fP> > \fBsc_core::sc_vector_assembly\fP< \fBT\fP, \fBMT\fP >::const_iterator"
+
+.SS "template<\fBtypename\fP \fBT\fP , \fBtypename\fP \fBMT\fP > \fBtypedef\fP const_iterator::pointer \fBsc_core::sc_vector_assembly\fP< \fBT\fP, \fBMT\fP >::const_pointer"
+
+.SS "template<\fBtypename\fP \fBT\fP , \fBtypename\fP \fBMT\fP > \fBtypedef\fP const_iterator::reference \fBsc_core::sc_vector_assembly\fP< \fBT\fP, \fBMT\fP >::const_reference"
+
+.SS "template<\fBtypename\fP \fBT\fP , \fBtypename\fP \fBMT\fP > \fBtypedef\fP base_type::difference_type \fBsc_core::sc_vector_assembly\fP< \fBT\fP, \fBMT\fP >::difference_type"
+
+.SS "template<\fBtypename\fP \fBT\fP , \fBtypename\fP \fBMT\fP > \fBtypedef\fP \fBT\fP \fBsc_core::sc_vector_assembly\fP< \fBT\fP, \fBMT\fP >::element_type"
+
+.SS "template<\fBtypename\fP \fBT\fP , \fBtypename\fP \fBMT\fP > \fBtypedef\fP \fBsc_vector_iter\fP< \fBT\fP, \fBsc_member_access\fP<\fBT\fP, \fBMT\fP> > \fBsc_core::sc_vector_assembly\fP< \fBT\fP, \fBMT\fP >::iterator"
+
+.SS "template<\fBtypename\fP \fBT\fP , \fBtypename\fP \fBMT\fP > \fBtypedef\fP access_typeT::* \fBsc_core::sc_vector_assembly\fP< \fBT\fP, \fBMT\fP >::member_type"
+
+.SS "template<\fBtypename\fP \fBT\fP , \fBtypename\fP \fBMT\fP > \fBtypedef\fP iterator::pointer \fBsc_core::sc_vector_assembly\fP< \fBT\fP, \fBMT\fP >::pointer"
+
+.SS "template<\fBtypename\fP \fBT\fP , \fBtypename\fP \fBMT\fP > \fBtypedef\fP iterator::reference \fBsc_core::sc_vector_assembly\fP< \fBT\fP, \fBMT\fP >::reference"
+
+.SS "template<\fBtypename\fP \fBT\fP , \fBtypename\fP \fBMT\fP > \fBtypedef\fP base_type::size_type \fBsc_core::sc_vector_assembly\fP< \fBT\fP, \fBMT\fP >::size_type"
+
+.SH "Constructor & Destructor Documentation"
+.PP 
+.SS "template<\fBtypename\fP \fBT\fP , \fBtypename\fP \fBMT\fP > \fBsc_core::sc_vector_assembly\fP< \fBT\fP, \fBMT\fP >::sc_vector_assembly (\fBconst\fP \fBsc_vector_assembly\fP< \fBT\fP, \fBMT\fP > & other)\fR [inline]\fP"
+
+.SS "template<\fBtypename\fP \fBT\fP , \fBtypename\fP \fBMT\fP > \fBsc_core::sc_vector_assembly\fP< \fBT\fP, \fBMT\fP >::~\fBsc_vector_assembly\fP ()\fR [inline]\fP"
+
+.SS "template<\fBtypename\fP \fBT\fP , \fBtypename\fP \fBMT\fP > \fBsc_core::sc_vector_assembly\fP< \fBT\fP, \fBMT\fP >::sc_vector_assembly (\fBbase_type\fP & v, \fBmember_type\fP ptr)\fR [inline]\fP, \fR [private]\fP"
+
+.SH "Member Function Documentation"
+.PP 
+.SS "template<\fBtypename\fP \fBT\fP , \fBtypename\fP \fBMT\fP > \fBreference\fP \fBsc_core::sc_vector_assembly\fP< \fBT\fP, \fBMT\fP >::at (\fBsize_type\fP idx)\fR [inline]\fP"
+
+.SS "template<\fBtypename\fP \fBT\fP , \fBtypename\fP \fBMT\fP > \fBconst_reference\fP \fBsc_core::sc_vector_assembly\fP< \fBT\fP, \fBMT\fP >::at (\fBsize_type\fP idx) const\fR [inline]\fP"
+
+.SS "template<\fBtypename\fP \fBT\fP , \fBtypename\fP \fBMT\fP > \fBiterator\fP \fBsc_core::sc_vector_assembly\fP< \fBT\fP, \fBMT\fP >::begin ()\fR [inline]\fP"
+
+.SS "template<\fBtypename\fP \fBT\fP , \fBtypename\fP \fBMT\fP > \fBconst_iterator\fP \fBsc_core::sc_vector_assembly\fP< \fBT\fP, \fBMT\fP >::begin () const\fR [inline]\fP"
+
+.SS "template<\fBtypename\fP \fBT\fP , \fBtypename\fP \fBMT\fP > template<\fBtypename\fP \fBBindableContainer\fP > \fBiterator\fP \fBsc_core::sc_vector_assembly\fP< \fBT\fP, \fBMT\fP >::bind (\fBBindableContainer\fP & c)\fR [inline]\fP"
+
+.SS "template<\fBtypename\fP \fBT\fP , \fBtypename\fP \fBMT\fP > template<\fBtypename\fP \fBBindableIterator\fP > \fBiterator\fP \fBsc_core::sc_vector_assembly\fP< \fBT\fP, \fBMT\fP >::bind (\fBBindableIterator\fP first, \fBBindableIterator\fP last)\fR [inline]\fP"
+
+.SS "template<\fBtypename\fP \fBT\fP , \fBtypename\fP \fBMT\fP > template<\fBtypename\fP \fBBindableIterator\fP > \fBiterator\fP \fBsc_core::sc_vector_assembly\fP< \fBT\fP, \fBMT\fP >::bind (\fBBindableIterator\fP first, \fBBindableIterator\fP last, \fBiterator\fP from)\fR [inline]\fP"
+
+.SS "template<\fBtypename\fP \fBT\fP , \fBtypename\fP \fBMT\fP > template<\fBtypename\fP \fBBindableIterator\fP > \fBiterator\fP \fBsc_core::sc_vector_assembly\fP< \fBT\fP, \fBMT\fP >::bind (\fBBindableIterator\fP first, \fBBindableIterator\fP last, \fBtypename\fP base_type::iterator from)\fR [inline]\fP"
+
+.SS "template<\fBtypename\fP \fBT\fP , \fBtypename\fP \fBMT\fP > template<\fBtypename\fP \fBContainerType\fP , \fBtypename\fP \fBArgumentType\fP > \fBiterator\fP \fBsc_core::sc_vector_assembly\fP< \fBT\fP, \fBMT\fP >::bind (\fBsc_vector_assembly\fP< \fBContainerType\fP, \fBArgumentType\fP > c)\fR [inline]\fP"
+
+.SS "template<\fBtypename\fP \fBT\fP , \fBtypename\fP \fBMT\fP > \fBconst_iterator\fP \fBsc_core::sc_vector_assembly\fP< \fBT\fP, \fBMT\fP >::cbegin () const\fR [inline]\fP"
+
+.SS "template<\fBtypename\fP \fBT\fP , \fBtypename\fP \fBMT\fP > \fBconst_iterator\fP \fBsc_core::sc_vector_assembly\fP< \fBT\fP, \fBMT\fP >::cend () const\fR [inline]\fP"
+
+.SS "template<\fBtypename\fP \fBT\fP , \fBtypename\fP \fBMT\fP > \fBiterator\fP \fBsc_core::sc_vector_assembly\fP< \fBT\fP, \fBMT\fP >::end ()\fR [inline]\fP"
+
+.SS "template<\fBtypename\fP \fBT\fP , \fBtypename\fP \fBMT\fP > \fBconst_iterator\fP \fBsc_core::sc_vector_assembly\fP< \fBT\fP, \fBMT\fP >::end () const\fR [inline]\fP"
+
+.SS "template<\fBtypename\fP \fBT\fP , \fBtypename\fP \fBMT\fP > std::vector< \fBsc_object\fP * > \fBconst\fP  & \fBsc_core::sc_vector_assembly\fP< \fBT\fP, \fBMT\fP >::get_elements () const"
+
+.SS "template<\fBtypename\fP \fBT\fP , \fBtypename\fP \fBMT\fP > \fBconst\fP \fBchar\fP * \fBsc_core::sc_vector_assembly\fP< \fBT\fP, \fBMT\fP >::kind () const\fR [inline]\fP"
+
+.SS "template<\fBtypename\fP \fBT\fP , \fBtypename\fP \fBMT\fP > \fBconst\fP \fBchar\fP * \fBsc_core::sc_vector_assembly\fP< \fBT\fP, \fBMT\fP >::name () const\fR [inline]\fP"
+
+.SS "template<\fBtypename\fP \fBT\fP , \fBtypename\fP \fBMT\fP > \fBsc_object\fP * \fBsc_core::sc_vector_assembly\fP< \fBT\fP, \fBMT\fP >::object_cast (\fBpointer\fP p) const\fR [inline]\fP, \fR [private]\fP"
+
+.SS "template<\fBtypename\fP \fBT\fP , \fBtypename\fP \fBMT\fP > template<\fBtypename\fP \fBArgumentContainer\fP > \fBiterator\fP \fBsc_core::sc_vector_assembly\fP< \fBT\fP, \fBMT\fP >\fB::operator\fP() (\fBArgumentContainer\fP & c)\fR [inline]\fP"
+
+.SS "template<\fBtypename\fP \fBT\fP , \fBtypename\fP \fBMT\fP > template<\fBtypename\fP \fBArgumentIterator\fP > \fBiterator\fP \fBsc_core::sc_vector_assembly\fP< \fBT\fP, \fBMT\fP >\fB::operator\fP() (\fBArgumentIterator\fP first, \fBArgumentIterator\fP last)\fR [inline]\fP"
+
+.SS "template<\fBtypename\fP \fBT\fP , \fBtypename\fP \fBMT\fP > template<\fBtypename\fP \fBArgumentIterator\fP > \fBiterator\fP \fBsc_core::sc_vector_assembly\fP< \fBT\fP, \fBMT\fP >\fB::operator\fP() (\fBArgumentIterator\fP first, \fBArgumentIterator\fP last, \fBiterator\fP from)\fR [inline]\fP"
+
+.SS "template<\fBtypename\fP \fBT\fP , \fBtypename\fP \fBMT\fP > template<\fBtypename\fP \fBArgumentIterator\fP > \fBiterator\fP \fBsc_core::sc_vector_assembly\fP< \fBT\fP, \fBMT\fP >\fB::operator\fP() (\fBArgumentIterator\fP first, \fBArgumentIterator\fP last, \fBtypename\fP base_type::iterator from)\fR [inline]\fP"
+
+.SS "template<\fBtypename\fP \fBT\fP , \fBtypename\fP \fBMT\fP > template<\fBtypename\fP \fBContainerType\fP , \fBtypename\fP \fBArgumentType\fP > \fBiterator\fP \fBsc_core::sc_vector_assembly\fP< \fBT\fP, \fBMT\fP >\fB::operator\fP() (\fBsc_vector_assembly\fP< \fBContainerType\fP, \fBArgumentType\fP > c)\fR [inline]\fP"
+
+.SS "template<\fBtypename\fP \fBT\fP , \fBtypename\fP \fBMT\fP > \fBsc_vector_assembly\fP & \fBsc_core::sc_vector_assembly\fP< \fBT\fP, \fBMT\fP >\fB::operator\fP= (\fBsc_vector_assembly\fP< \fBT\fP, \fBMT\fP > other_copy)\fR [inline]\fP"
+
+.SS "template<\fBtypename\fP \fBT\fP , \fBtypename\fP \fBMT\fP > \fBreference\fP \fBsc_core::sc_vector_assembly\fP< \fBT\fP, \fBMT\fP >\fB::operator\fP[] (\fBsize_type\fP idx)\fR [inline]\fP"
+
+.SS "template<\fBtypename\fP \fBT\fP , \fBtypename\fP \fBMT\fP > \fBconst_reference\fP \fBsc_core::sc_vector_assembly\fP< \fBT\fP, \fBMT\fP >\fB::operator\fP[] (\fBsize_type\fP idx) const\fR [inline]\fP"
+
+.SS "template<\fBtypename\fP \fBT\fP , \fBtypename\fP \fBMT\fP > \fBvoid\fP \fBsc_core::sc_vector_assembly\fP< \fBT\fP, \fBMT\fP >::report_empty_bind (\fBconst\fP \fBchar\fP * kind_, \fBbool\fP dst_empty_) const\fR [inline]\fP"
+
+.SS "template<\fBtypename\fP \fBT\fP , \fBtypename\fP \fBMT\fP > \fBsize_type\fP \fBsc_core::sc_vector_assembly\fP< \fBT\fP, \fBMT\fP >::size () const\fR [inline]\fP"
+
+.SS "template<\fBtypename\fP \fBT\fP , \fBtypename\fP \fBMT\fP > \fBvoid\fP \fBsc_core::sc_vector_assembly\fP< \fBT\fP, \fBMT\fP >::swap (\fBsc_vector_assembly\fP< \fBT\fP, \fBMT\fP > & that)\fR [inline]\fP"
+
+.SH "Friends And Related Symbol Documentation"
+.PP 
+.SS "template<\fBtypename\fP \fBT\fP , \fBtypename\fP \fBMT\fP > template<\fBtypename\fP \fBU\fP > \fBfriend\fP \fBclass\fP \fBsc_vector\fP\fR [friend]\fP"
+
+.SH "Member Data Documentation"
+.PP 
+.SS "template<\fBtypename\fP \fBT\fP , \fBtypename\fP \fBMT\fP > std::vector< \fBsc_object\fP* >* \fBsc_core::sc_vector_assembly\fP< \fBT\fP, \fBMT\fP >::child_vec_\fR [mutable]\fP, \fR [private]\fP"
+
+.SS "template<\fBtypename\fP \fBT\fP , \fBtypename\fP \fBMT\fP > \fBmember_type\fP \fBsc_core::sc_vector_assembly\fP< \fBT\fP, \fBMT\fP >::ptr_\fR [private]\fP"
+
+.SS "template<\fBtypename\fP \fBT\fP , \fBtypename\fP \fBMT\fP > \fBbase_type\fP* \fBsc_core::sc_vector_assembly\fP< \fBT\fP, \fBMT\fP >::vec_\fR [private]\fP"
+
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for VHDL simulator from the source code\&.

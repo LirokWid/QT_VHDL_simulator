@@ -1,0 +1,39 @@
+\doxysection{sc\+\_\+rst.\+h}
+\hypertarget{old__ui__project_2sc_2common_2sc__rst_8h_source}{}\label{old__ui__project_2sc_2common_2sc__rst_8h_source}\index{C:/Users/BJRODIER/Documents/QT\_REPO/QT\_VHDL\_simulator/code/old\_ui\_project/sc/common/sc\_rst.h@{C:/Users/BJRODIER/Documents/QT\_REPO/QT\_VHDL\_simulator/code/old\_ui\_project/sc/common/sc\_rst.h}}
+\mbox{\hyperlink{old__ui__project_2sc_2common_2sc__rst_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#ifndef\ SC\_RST\_H}}
+\DoxyCodeLine{00002\ \textcolor{preprocessor}{\#define\ SC\_RST\_H}}
+\DoxyCodeLine{00003\ }
+\DoxyCodeLine{00004\ \textcolor{preprocessor}{\#include\ <\mbox{\hyperlink{systemc_8h}{systemc.h}}>}}
+\DoxyCodeLine{00005\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{sc__config_8h}{sc\_config.h}}"{}}}
+\DoxyCodeLine{00006\ }
+\DoxyCodeLine{00007\ \mbox{\hyperlink{sc__module_8h_a0e65c5055705b9e5f558d3f0ec28a120}{SC\_MODULE}}\ (\mbox{\hyperlink{class_sysc_add__pv}{scRst}})\ \{}
+\DoxyCodeLine{00008\ \ \ \ \ \mbox{\hyperlink{class_sysc_add__pv}{sc\_out<bool>}}\ \mbox{\hyperlink{class_sysc_add__pv}{rst\_o}}\{\textcolor{stringliteral}{"{}rst\_o"{}}\};}
+\DoxyCodeLine{00009\ }
+\DoxyCodeLine{00010\ \ \ \ \ \mbox{\hyperlink{sc__module_8h_a6d981485fe8c8c7ea1a42fcd4487e6a1}{SC\_CTOR}}(\mbox{\hyperlink{class_sysc_add__pv}{scRst}})\ \{}
+\DoxyCodeLine{00011\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{sc__module_8h_a78f626bc71b853c1f8618e74ec6f0512}{SC\_THREAD}}(\mbox{\hyperlink{class_sysc_add__pv}{resetThread}});}
+\DoxyCodeLine{00012\ \ \ \ \ \}}
+\DoxyCodeLine{00013\ }
+\DoxyCodeLine{00014\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_sysc_add__pv}{resetThread}}\ ()\ \{}
+\DoxyCodeLine{00015\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classsc__core_1_1sc__time}{sc\_time}}\ \mbox{\hyperlink{class_sysc_add__pv}{ustep}}\ =\ \mbox{\hyperlink{sc__config_8cpp_a2764c7bbda787d396a128db3c35b6da1}{sc\_getMicrostep}}();}
+\DoxyCodeLine{00016\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{class_sysc_add__pv}{act\_level}}\ =\ \mbox{\hyperlink{sc__config_8cpp_aebb09933de1d68f92fbae8866c91df6b}{sc\_getRstActLevel}}();}
+\DoxyCodeLine{00017\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{class_sysc_add__pv}{act\_usteps}}\ \ =\mbox{\hyperlink{sc__config_8cpp_abf1b2f8449178b2ab67c09c3a2a67780}{sc\_getRstActMicrosteps}}();}
+\DoxyCodeLine{00018\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{while}\ (1)\ \{}
+\DoxyCodeLine{00019\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_sysc_add__pv}{rst\_o}}.write(\mbox{\hyperlink{class_sysc_add__pv}{act\_level}});}
+\DoxyCodeLine{00020\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{int}\ \mbox{\hyperlink{class_sysc_add__pv}{i}}\ =\ 0;\ \mbox{\hyperlink{class_sysc_add__pv}{i}}\ <\ \mbox{\hyperlink{class_sysc_add__pv}{act\_usteps}};\ \mbox{\hyperlink{class_sysc_add__pv}{i}}++)\ \{}
+\DoxyCodeLine{00021\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacesc__core_a3c8b4f07530fb5b54f3a6896e4ef68c3}{wait}}(\mbox{\hyperlink{class_sysc_add__pv}{ustep}});}
+\DoxyCodeLine{00022\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00023\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_sysc_add__pv}{rst\_o}}.write(!\mbox{\hyperlink{class_sysc_add__pv}{act\_level}});}
+\DoxyCodeLine{00024\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (;;)\ \{}
+\DoxyCodeLine{00025\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacesc__core_a3c8b4f07530fb5b54f3a6896e4ef68c3}{wait}}(\mbox{\hyperlink{class_sysc_add__pv}{ustep}});}
+\DoxyCodeLine{00026\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00027\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00028\ \ \ \ \ \}}
+\DoxyCodeLine{00029\ }
+\DoxyCodeLine{00030\ \};}
+\DoxyCodeLine{00031\ }
+\DoxyCodeLine{00032\ }
+\DoxyCodeLine{00033\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{//\ SC\_RST\_H}}
+
+\end{DoxyCode}

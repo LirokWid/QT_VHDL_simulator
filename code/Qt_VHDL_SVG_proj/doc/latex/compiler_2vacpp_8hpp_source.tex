@@ -1,0 +1,64 @@
+\doxysection{vacpp.\+hpp}
+\hypertarget{compiler_2vacpp_8hpp_source}{}\label{compiler_2vacpp_8hpp_source}\index{C:/Users/BJRODIER/Documents/QT\_REPO/QT\_VHDL\_simulator/code/Ressources/SystemC/include/sysc/packages/boost/config/compiler/vacpp.hpp@{C:/Users/BJRODIER/Documents/QT\_REPO/QT\_VHDL\_simulator/code/Ressources/SystemC/include/sysc/packages/boost/config/compiler/vacpp.hpp}}
+\mbox{\hyperlink{compiler_2vacpp_8hpp}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{comment}{//\ \ (C)\ Copyright\ John\ Maddock\ 2001\ -\/\ 2003.\ }}
+\DoxyCodeLine{00002\ \textcolor{comment}{//\ \ (C)\ Copyright\ Toon\ Knapen\ 2001\ -\/\ 2003.\ }}
+\DoxyCodeLine{00003\ \textcolor{comment}{//\ \ (C)\ Copyright\ Lie-\/Quan\ Lee\ 2001.\ }}
+\DoxyCodeLine{00004\ \textcolor{comment}{//\ \ (C)\ Copyright\ Markus\ Schöpflin\ 2002\ -\/\ 2003.\ }}
+\DoxyCodeLine{00005\ \textcolor{comment}{//\ \ (C)\ Copyright\ Beman\ Dawes\ 2002\ -\/\ 2003.\ }}
+\DoxyCodeLine{00006\ \textcolor{comment}{//\ \ Use,\ modification\ and\ distribution\ are\ subject\ to\ the\ }}
+\DoxyCodeLine{00007\ \textcolor{comment}{//\ \ Boost\ Software\ License,\ Version\ 1.0.\ (See\ accompanying\ file\ }}
+\DoxyCodeLine{00008\ \textcolor{comment}{//\ \ LICENSE\_1\_0.txt\ or\ copy\ at\ http://www.boost.org/LICENSE\_1\_0.txt)}}
+\DoxyCodeLine{00009\ }
+\DoxyCodeLine{00010\ \textcolor{comment}{//\ \ See\ http://www.boost.org\ for\ most\ recent\ version.}}
+\DoxyCodeLine{00011\ }
+\DoxyCodeLine{00012\ \textcolor{comment}{//\ \ Visual\ Age\ (IBM)\ C++\ compiler\ setup:}}
+\DoxyCodeLine{00013\ }
+\DoxyCodeLine{00014\ \textcolor{preprocessor}{\#if\ \_\_IBMCPP\_\_\ <=\ 501}}
+\DoxyCodeLine{00015\ \textcolor{preprocessor}{\#\ \ define\ SC\_BOOST\_NO\_MEMBER\_TEMPLATE\_FRIENDS}}
+\DoxyCodeLine{00016\ \textcolor{preprocessor}{\#\ \ define\ SC\_BOOST\_NO\_MEMBER\_FUNCTION\_SPECIALIZATIONS}}
+\DoxyCodeLine{00017\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00018\ }
+\DoxyCodeLine{00019\ \textcolor{preprocessor}{\#if\ (\_\_IBMCPP\_\_\ <=\ 502)\ }}
+\DoxyCodeLine{00020\ \textcolor{comment}{//\ Actually\ the\ compiler\ supports\ inclass\ member\ initialization\ but\ it}}
+\DoxyCodeLine{00021\ \textcolor{comment}{//\ requires\ a\ definition\ for\ the\ class\ member\ and\ it\ doesn't\ recognize}}
+\DoxyCodeLine{00022\ \textcolor{comment}{//\ it\ as\ an\ integral\ constant\ expression\ when\ used\ as\ a\ template\ argument.}}
+\DoxyCodeLine{00023\ \textcolor{preprocessor}{\#\ \ define\ SC\_BOOST\_NO\_INCLASS\_MEMBER\_INITIALIZATION}}
+\DoxyCodeLine{00024\ \textcolor{preprocessor}{\#\ \ define\ SC\_BOOST\_NO\_INTEGRAL\_INT64\_T}}
+\DoxyCodeLine{00025\ \textcolor{preprocessor}{\#\ \ define\ SC\_BOOST\_NO\_MEMBER\_TEMPLATE\_KEYWORD}}
+\DoxyCodeLine{00026\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00027\ }
+\DoxyCodeLine{00028\ \textcolor{preprocessor}{\#if\ (\_\_IBMCPP\_\_\ <=\ 600)\ ||\ !defined(SC\_BOOST\_STRICT\_CONFIG)}}
+\DoxyCodeLine{00029\ \textcolor{preprocessor}{\#\ \ define\ SC\_BOOST\_NO\_POINTER\_TO\_MEMBER\_TEMPLATE\_PARAMETERS}}
+\DoxyCodeLine{00030\ \textcolor{preprocessor}{\#\ \ define\ SC\_BOOST\_MPL\_CFG\_ASSERT\_USE\_RELATION\_NAMES\ 1}}
+\DoxyCodeLine{00031\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00032\ }
+\DoxyCodeLine{00033\ \textcolor{comment}{//}}
+\DoxyCodeLine{00034\ \textcolor{comment}{//\ On\ AIX\ thread\ support\ seems\ to\ be\ indicated\ by\ \_THREAD\_SAFE:}}
+\DoxyCodeLine{00035\ \textcolor{comment}{//}}
+\DoxyCodeLine{00036\ \textcolor{preprocessor}{\#ifdef\ \_THREAD\_SAFE}}
+\DoxyCodeLine{00037\ \textcolor{preprocessor}{\#\ \ define\ SC\_BOOST\_HAS\_THREADS}}
+\DoxyCodeLine{00038\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00039\ }
+\DoxyCodeLine{00040\ \textcolor{preprocessor}{\#define\ SC\_BOOST\_COMPILER\ "{}IBM\ Visual\ Age\ version\ "{}\ SC\_BOOST\_STRINGIZE(\_\_IBMCPP\_\_)}}
+\DoxyCodeLine{00041\ }
+\DoxyCodeLine{00042\ \textcolor{comment}{//}}
+\DoxyCodeLine{00043\ \textcolor{comment}{//\ versions\ check:}}
+\DoxyCodeLine{00044\ \textcolor{comment}{//\ we\ don't\ support\ Visual\ age\ prior\ to\ version\ 5:}}
+\DoxyCodeLine{00045\ \textcolor{preprocessor}{\#if\ \_\_IBMCPP\_\_\ <\ 500}}
+\DoxyCodeLine{00046\ \textcolor{preprocessor}{\#error\ "{}Compiler\ not\ supported\ or\ configured\ -\/\ please\ reconfigure"{}}}
+\DoxyCodeLine{00047\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00048\ \textcolor{comment}{//}}
+\DoxyCodeLine{00049\ \textcolor{comment}{//\ last\ known\ and\ checked\ version\ is\ 600:}}
+\DoxyCodeLine{00050\ \textcolor{preprocessor}{\#if\ (\_\_IBMCPP\_\_\ >\ 600)}}
+\DoxyCodeLine{00051\ \textcolor{preprocessor}{\#\ \ if\ defined(SC\_BOOST\_ASSERT\_CONFIG)}}
+\DoxyCodeLine{00052\ \textcolor{preprocessor}{\#\ \ \ \ \ error\ "{}Unknown\ compiler\ version\ -\/\ please\ run\ the\ configure\ tests\ and\ report\ the\ results"{}}}
+\DoxyCodeLine{00053\ \textcolor{preprocessor}{\#\ \ endif}}
+\DoxyCodeLine{00054\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00055\ }
+\DoxyCodeLine{00056\ }
+\DoxyCodeLine{00057\ }
+\DoxyCodeLine{00058\ }
+
+\end{DoxyCode}

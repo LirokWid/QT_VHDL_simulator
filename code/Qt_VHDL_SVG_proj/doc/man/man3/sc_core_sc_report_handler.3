@@ -1,0 +1,297 @@
+.TH "sc_core::sc_report_handler" 3 "VHDL simulator" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+sc_core::sc_report_handler
+.SH SYNOPSIS
+.br
+.PP
+.PP
+\fR#include <sc_report_handler\&.h>\fP
+.SS "Classes"
+
+.in +1c
+.ti -1c
+.RI "struct \fBmsg_def_items\fP"
+.br
+.in -1c
+.SS "Static Public Member Functions"
+
+.in +1c
+.ti -1c
+.RI "\fBstatic\fP \fBvoid\fP \fBreport\fP (\fBsc_severity\fP, \fBconst\fP \fBchar\fP *msg_type, \fBconst\fP \fBchar\fP *msg, \fBconst\fP \fBchar\fP *file, int line)"
+.br
+.ti -1c
+.RI "\fBstatic\fP \fBvoid\fP \fBreport\fP (\fBsc_severity\fP, \fBconst\fP \fBchar\fP *msg_type, \fBconst\fP \fBchar\fP *msg, int \fBverbosity\fP, \fBconst\fP \fBchar\fP *file, int line)"
+.br
+.ti -1c
+.RI "\fBstatic\fP \fBsc_actions\fP \fBset_actions\fP (\fBsc_severity\fP, \fBsc_actions\fP=\fBSC_UNSPECIFIED\fP)"
+.br
+.ti -1c
+.RI "\fBstatic\fP \fBsc_actions\fP \fBset_actions\fP (\fBconst\fP \fBchar\fP *msg_type, \fBsc_actions\fP=\fBSC_UNSPECIFIED\fP)"
+.br
+.ti -1c
+.RI "\fBstatic\fP \fBsc_actions\fP \fBset_actions\fP (\fBconst\fP \fBchar\fP *msg_type, \fBsc_severity\fP, \fBsc_actions\fP=\fBSC_UNSPECIFIED\fP)"
+.br
+.ti -1c
+.RI "\fBstatic\fP int \fBstop_after\fP (\fBsc_severity\fP, int limit=\-1)"
+.br
+.ti -1c
+.RI "\fBstatic\fP int \fBstop_after\fP (\fBconst\fP \fBchar\fP *msg_type, int limit=\-1)"
+.br
+.ti -1c
+.RI "\fBstatic\fP int \fBstop_after\fP (\fBconst\fP \fBchar\fP *msg_type, \fBsc_severity\fP, int limit=\-1)"
+.br
+.ti -1c
+.RI "\fBstatic\fP \fBsc_actions\fP \fBsuppress\fP (\fBsc_actions\fP)"
+.br
+.ti -1c
+.RI "\fBstatic\fP \fBsc_actions\fP \fBsuppress\fP ()"
+.br
+.ti -1c
+.RI "\fBstatic\fP \fBsc_actions\fP \fBforce\fP (\fBsc_actions\fP)"
+.br
+.ti -1c
+.RI "\fBstatic\fP \fBsc_actions\fP \fBforce\fP ()"
+.br
+.ti -1c
+.RI "\fBstatic\fP int \fBget_count\fP (\fBsc_severity\fP \fBseverity_\fP)"
+.br
+.ti -1c
+.RI "\fBstatic\fP int \fBget_count\fP (\fBconst\fP \fBchar\fP *\fBmsg_type_\fP)"
+.br
+.ti -1c
+.RI "\fBstatic\fP int \fBget_count\fP (\fBconst\fP \fBchar\fP *\fBmsg_type_\fP, \fBsc_severity\fP \fBseverity_\fP)"
+.br
+.ti -1c
+.RI "\fBstatic\fP int \fBget_verbosity_level\fP ()"
+.br
+.ti -1c
+.RI "\fBstatic\fP int \fBset_verbosity_level\fP (int level)"
+.br
+.ti -1c
+.RI "\fBstatic\fP \fBvoid\fP \fBinitialize\fP ()"
+.br
+.ti -1c
+.RI "\fBstatic\fP \fBvoid\fP \fBrelease\fP ()"
+.br
+.ti -1c
+.RI "\fBstatic\fP \fBsc_report_handler_proc\fP \fBset_handler\fP (\fBsc_report_handler_proc\fP)"
+.br
+.ti -1c
+.RI "\fBstatic\fP \fBsc_report_handler_proc\fP \fBget_handler\fP ()"
+.br
+.ti -1c
+.RI "\fBstatic\fP \fBvoid\fP \fBdefault_handler\fP (\fBconst\fP \fBsc_report\fP &, \fBconst\fP \fBsc_actions\fP &)"
+.br
+.ti -1c
+.RI "\fBstatic\fP \fBsc_actions\fP \fBget_new_action_id\fP ()"
+.br
+.ti -1c
+.RI "\fBstatic\fP \fBsc_report\fP * \fBget_cached_report\fP ()"
+.br
+.ti -1c
+.RI "\fBstatic\fP \fBvoid\fP \fBclear_cached_report\fP ()"
+.br
+.ti -1c
+.RI "\fBstatic\fP \fBbool\fP \fBset_log_file_name\fP (\fBconst\fP \fBchar\fP *filename)"
+.br
+.ti -1c
+.RI "\fBstatic\fP \fBconst\fP \fBchar\fP * \fBget_log_file_name\fP ()"
+.br
+.ti -1c
+.RI "\fBstatic\fP \fBsc_actions\fP \fBset_catch_actions\fP (\fBsc_actions\fP)"
+.br
+.ti -1c
+.RI "\fBstatic\fP \fBsc_actions\fP \fBget_catch_actions\fP ()"
+.br
+.ti -1c
+.RI "\fBstatic\fP \fBvoid\fP \fBadd_static_msg_types\fP (\fBmsg_def_items\fP *)"
+.br
+.ti -1c
+.RI "\fBstatic\fP \fBsc_msg_def\fP * \fBadd_msg_type\fP (\fBconst\fP \fBchar\fP *msg_type)"
+.br
+.ti -1c
+.RI "\fBstatic\fP \fBvoid\fP \fBreport\fP (\fBsc_severity\fP, int id, \fBconst\fP \fBchar\fP *\fBadd_msg\fP, \fBconst\fP \fBchar\fP *file, int line)"
+.br
+.in -1c
+.SS "Static Protected Member Functions"
+
+.in +1c
+.ti -1c
+.RI "\fBstatic\fP \fBvoid\fP \fBcache_report\fP (\fBconst\fP \fBsc_report\fP &)"
+.br
+.ti -1c
+.RI "\fBstatic\fP \fBsc_actions\fP \fBexecute\fP (\fBsc_msg_def\fP *, \fBsc_severity\fP)"
+.br
+.ti -1c
+.RI "\fBstatic\fP \fBsc_msg_def\fP * \fBmdlookup\fP (\fBconst\fP \fBchar\fP *msg_type)"
+.br
+.in -1c
+.SS "Static Protected Attributes"
+
+.in +1c
+.ti -1c
+.RI "\fBstatic\fP \fBsc_actions\fP \fBsuppress_mask\fP"
+.br
+.ti -1c
+.RI "\fBstatic\fP \fBsc_actions\fP \fBforce_mask\fP"
+.br
+.ti -1c
+.RI "\fBstatic\fP \fBsc_actions\fP \fBsev_actions\fP [\fBSC_MAX_SEVERITY\fP]"
+.br
+.ti -1c
+.RI "\fBstatic\fP \fBunsigned\fP \fBsev_limit\fP [\fBSC_MAX_SEVERITY\fP]"
+.br
+.ti -1c
+.RI "\fBstatic\fP \fBunsigned\fP \fBsev_call_count\fP [\fBSC_MAX_SEVERITY\fP]"
+.br
+.ti -1c
+.RI "\fBstatic\fP \fBsc_report\fP * \fBlast_global_report\fP"
+.br
+.ti -1c
+.RI "\fBstatic\fP \fBsc_actions\fP \fBavailable_actions\fP"
+.br
+.ti -1c
+.RI "\fBstatic\fP \fBsc_actions\fP \fBcatch_actions\fP"
+.br
+.ti -1c
+.RI "\fBstatic\fP \fBchar\fP * \fBlog_file_name\fP"
+.br
+.ti -1c
+.RI "\fBstatic\fP int \fBverbosity_level\fP"
+.br
+.ti -1c
+.RI "\fBstatic\fP \fBmsg_def_items\fP * \fBmessages\fP"
+.br
+.ti -1c
+.RI "\fBstatic\fP \fBmsg_def_items\fP \fBmsg_terminator\fP"
+.br
+.ti -1c
+.RI "\fBstatic\fP \fBsc_report_handler_proc\fP \fBhandler\fP"
+.br
+.in -1c
+.SS "Static Private Member Functions"
+
+.in +1c
+.ti -1c
+.RI "\fBstatic\fP \fBsc_msg_def\fP * \fBmdlookup\fP (int id)"
+.br
+.in -1c
+.SS "Friends"
+
+.in +1c
+.ti -1c
+.RI "\fBclass\fP \fBsc_report\fP"
+.br
+.in -1c
+.SH "Member Function Documentation"
+.PP 
+.SS "\fBstatic\fP \fBsc_msg_def\fP * sc_core::sc_report_handler::add_msg_type (\fBconst\fP \fBchar\fP * msg_type)\fR [static]\fP"
+
+.SS "\fBstatic\fP \fBvoid\fP sc_core::sc_report_handler::add_static_msg_types (\fBmsg_def_items\fP *)\fR [static]\fP"
+
+.SS "\fBstatic\fP \fBvoid\fP sc_core::sc_report_handler::cache_report (\fBconst\fP \fBsc_report\fP &)\fR [static]\fP, \fR [protected]\fP"
+
+.SS "\fBstatic\fP \fBvoid\fP sc_core::sc_report_handler::clear_cached_report ()\fR [static]\fP"
+
+.SS "\fBstatic\fP \fBvoid\fP sc_core::sc_report_handler::default_handler (\fBconst\fP \fBsc_report\fP &, \fBconst\fP \fBsc_actions\fP &)\fR [static]\fP"
+
+.SS "\fBstatic\fP \fBsc_actions\fP sc_core::sc_report_handler::execute (\fBsc_msg_def\fP *, \fBsc_severity\fP)\fR [static]\fP, \fR [protected]\fP"
+
+.SS "\fBstatic\fP \fBsc_actions\fP sc_core::sc_report_handler::force ()\fR [static]\fP"
+
+.SS "\fBstatic\fP \fBsc_actions\fP sc_core::sc_report_handler::force (\fBsc_actions\fP)\fR [static]\fP"
+
+.SS "\fBstatic\fP \fBsc_report\fP * sc_core::sc_report_handler::get_cached_report ()\fR [static]\fP"
+
+.SS "\fBstatic\fP \fBsc_actions\fP sc_core::sc_report_handler::get_catch_actions ()\fR [static]\fP"
+
+.SS "\fBstatic\fP int sc_core::sc_report_handler::get_count (\fBconst\fP \fBchar\fP * msg_type_)\fR [static]\fP"
+
+.SS "\fBstatic\fP int sc_core::sc_report_handler::get_count (\fBconst\fP \fBchar\fP * msg_type_, \fBsc_severity\fP severity_)\fR [static]\fP"
+
+.SS "\fBstatic\fP int sc_core::sc_report_handler::get_count (\fBsc_severity\fP severity_)\fR [static]\fP"
+
+.SS "\fBstatic\fP \fBsc_report_handler_proc\fP sc_core::sc_report_handler::get_handler ()\fR [static]\fP"
+
+.SS "\fBstatic\fP \fBconst\fP \fBchar\fP * sc_core::sc_report_handler::get_log_file_name ()\fR [static]\fP"
+
+.SS "\fBstatic\fP \fBsc_actions\fP sc_core::sc_report_handler::get_new_action_id ()\fR [static]\fP"
+
+.SS "\fBstatic\fP int sc_core::sc_report_handler::get_verbosity_level ()\fR [static]\fP"
+
+.SS "\fBstatic\fP \fBvoid\fP sc_core::sc_report_handler::initialize ()\fR [static]\fP"
+
+.SS "\fBstatic\fP \fBsc_msg_def\fP * sc_core::sc_report_handler::mdlookup (\fBconst\fP \fBchar\fP * msg_type)\fR [static]\fP, \fR [protected]\fP"
+
+.SS "\fBstatic\fP \fBsc_msg_def\fP * sc_core::sc_report_handler::mdlookup (int id)\fR [static]\fP, \fR [private]\fP"
+
+.SS "\fBstatic\fP \fBvoid\fP sc_core::sc_report_handler::release ()\fR [static]\fP"
+
+.SS "\fBstatic\fP \fBvoid\fP sc_core::sc_report_handler::report (\fBsc_severity\fP, \fBconst\fP \fBchar\fP * msg_type, \fBconst\fP \fBchar\fP * msg, \fBconst\fP \fBchar\fP * file, int line)\fR [static]\fP"
+
+.SS "\fBstatic\fP \fBvoid\fP sc_core::sc_report_handler::report (\fBsc_severity\fP, \fBconst\fP \fBchar\fP * msg_type, \fBconst\fP \fBchar\fP * msg, int verbosity, \fBconst\fP \fBchar\fP * file, int line)\fR [static]\fP"
+
+.SS "\fBstatic\fP \fBvoid\fP sc_core::sc_report_handler::report (\fBsc_severity\fP, int id, \fBconst\fP \fBchar\fP * add_msg, \fBconst\fP \fBchar\fP * file, int line)\fR [static]\fP"
+
+.SS "\fBstatic\fP \fBsc_actions\fP sc_core::sc_report_handler::set_actions (\fBconst\fP \fBchar\fP * msg_type, \fBsc_actions\fP = \fR\fBSC_UNSPECIFIED\fP\fP)\fR [static]\fP"
+
+.SS "\fBstatic\fP \fBsc_actions\fP sc_core::sc_report_handler::set_actions (\fBconst\fP \fBchar\fP * msg_type, \fBsc_severity\fP, \fBsc_actions\fP = \fR\fBSC_UNSPECIFIED\fP\fP)\fR [static]\fP"
+
+.SS "\fBstatic\fP \fBsc_actions\fP sc_core::sc_report_handler::set_actions (\fBsc_severity\fP, \fBsc_actions\fP = \fR\fBSC_UNSPECIFIED\fP\fP)\fR [static]\fP"
+
+.SS "\fBstatic\fP \fBsc_actions\fP sc_core::sc_report_handler::set_catch_actions (\fBsc_actions\fP)\fR [static]\fP"
+
+.SS "\fBstatic\fP \fBsc_report_handler_proc\fP sc_core::sc_report_handler::set_handler (\fBsc_report_handler_proc\fP)\fR [static]\fP"
+
+.SS "\fBstatic\fP \fBbool\fP sc_core::sc_report_handler::set_log_file_name (\fBconst\fP \fBchar\fP * filename)\fR [static]\fP"
+
+.SS "\fBstatic\fP int sc_core::sc_report_handler::set_verbosity_level (int level)\fR [static]\fP"
+
+.SS "\fBstatic\fP int sc_core::sc_report_handler::stop_after (\fBconst\fP \fBchar\fP * msg_type, int limit = \fR\-1\fP)\fR [static]\fP"
+
+.SS "\fBstatic\fP int sc_core::sc_report_handler::stop_after (\fBconst\fP \fBchar\fP * msg_type, \fBsc_severity\fP, int limit = \fR\-1\fP)\fR [static]\fP"
+
+.SS "\fBstatic\fP int sc_core::sc_report_handler::stop_after (\fBsc_severity\fP, int limit = \fR\-1\fP)\fR [static]\fP"
+
+.SS "\fBstatic\fP \fBsc_actions\fP sc_core::sc_report_handler::suppress ()\fR [static]\fP"
+
+.SS "\fBstatic\fP \fBsc_actions\fP sc_core::sc_report_handler::suppress (\fBsc_actions\fP)\fR [static]\fP"
+
+.SH "Friends And Related Symbol Documentation"
+.PP 
+.SS "\fBfriend\fP \fBclass\fP \fBsc_report\fP\fR [friend]\fP"
+
+.SH "Member Data Documentation"
+.PP 
+.SS "\fBsc_actions\fP sc_core::sc_report_handler::available_actions\fR [static]\fP, \fR [protected]\fP"
+
+.SS "\fBsc_actions\fP sc_core::sc_report_handler::catch_actions\fR [static]\fP, \fR [protected]\fP"
+
+.SS "\fBsc_actions\fP sc_core::sc_report_handler::force_mask\fR [static]\fP, \fR [protected]\fP"
+
+.SS "\fBsc_report_handler_proc\fP sc_core::sc_report_handler::handler\fR [static]\fP, \fR [protected]\fP"
+
+.SS "\fBsc_report\fP* sc_core::sc_report_handler::last_global_report\fR [static]\fP, \fR [protected]\fP"
+
+.SS "\fBchar\fP* sc_core::sc_report_handler::log_file_name\fR [static]\fP, \fR [protected]\fP"
+
+.SS "\fBmsg_def_items\fP* sc_core::sc_report_handler::messages\fR [static]\fP, \fR [protected]\fP"
+
+.SS "\fBmsg_def_items\fP sc_core::sc_report_handler::msg_terminator\fR [static]\fP, \fR [protected]\fP"
+
+.SS "\fBsc_actions\fP sc_core::sc_report_handler::sev_actions[\fBSC_MAX_SEVERITY\fP]\fR [static]\fP, \fR [protected]\fP"
+
+.SS "\fBunsigned\fP sc_core::sc_report_handler::sev_call_count[\fBSC_MAX_SEVERITY\fP]\fR [static]\fP, \fR [protected]\fP"
+
+.SS "\fBunsigned\fP sc_core::sc_report_handler::sev_limit[\fBSC_MAX_SEVERITY\fP]\fR [static]\fP, \fR [protected]\fP"
+
+.SS "\fBsc_actions\fP sc_core::sc_report_handler::suppress_mask\fR [static]\fP, \fR [protected]\fP"
+
+.SS "int sc_core::sc_report_handler::verbosity_level\fR [static]\fP, \fR [protected]\fP"
+
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for VHDL simulator from the source code\&.

@@ -1,0 +1,167 @@
+.TH "C:/Users/BJRODIER/Documents/QT_REPO/QT_VHDL_simulator/code/Ressources/SystemC/include/sysc/utils/sc_report.h" 3 "VHDL simulator" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+C:/Users/BJRODIER/Documents/QT_REPO/QT_VHDL_simulator/code/Ressources/SystemC/include/sysc/utils/sc_report.h
+.SH SYNOPSIS
+.br
+.PP
+\fR#include <exception>\fP
+.br
+\fR#include <string>\fP
+.br
+\fR#include 'sysc/kernel/sc_cmnhdr\&.h'\fP
+.br
+\fR#include 'sysc/utils/sc_report_handler\&.h'\fP
+.br
+
+.SS "Classes"
+
+.in +1c
+.ti -1c
+.RI "class \fBsc_core::sc_report\fP"
+.br
+.in -1c
+.SS "Namespaces"
+
+.in +1c
+.ti -1c
+.RI "namespace \fBsc_core\fP"
+.br
+.in -1c
+.SS "Macros"
+
+.in +1c
+.ti -1c
+.RI "#\fBdefine\fP \fBSC_REPORT_INFO\fP(msg_type,  msg)"
+.br
+.ti -1c
+.RI "#\fBdefine\fP \fBSC_REPORT_INFO_VERB\fP(msg_type,  msg,  \fBverbosity\fP)"
+.br
+.ti -1c
+.RI "#\fBdefine\fP \fBSC_REPORT_WARNING\fP(msg_type,  msg)"
+.br
+.ti -1c
+.RI "#\fBdefine\fP \fBSC_REPORT_ERROR\fP(msg_type,  msg)"
+.br
+.ti -1c
+.RI "#\fBdefine\fP \fBSC_REPORT_FATAL\fP(msg_type,  msg)"
+.br
+.ti -1c
+.RI "#\fBdefine\fP \fBSC_NORETURN_\fP   /* \fBnothing\fP */"
+.br
+.ti -1c
+.RI "#\fBdefine\fP \fBsc_assert\fP(\fBexpr\fP)"
+.br
+.in -1c
+.SS "Typedefs"
+
+.in +1c
+.ti -1c
+.RI "\fBtypedef\fP \fBunsigned\fP \fBsc_core::sc_actions\fP"
+.br
+.ti -1c
+.RI "\fBtypedef\fP std::exception \fBsc_core::sc_exception\fP"
+.br
+.in -1c
+.SS "Enumerations"
+
+.in +1c
+.ti -1c
+.RI "enum \fBsc_core::sc_severity\fP { \fBsc_core::SC_INFO\fP = 0, \fBsc_core::SC_WARNING\fP, \fBsc_core::SC_ERROR\fP, \fBsc_core::SC_FATAL\fP, \fBsc_core::SC_MAX_SEVERITY\fP }"
+.br
+.ti -1c
+.RI "enum \fBsc_core::sc_verbosity\fP { \fBsc_core::SC_NONE\fP = 0, \fBsc_core::SC_LOW\fP = 100, \fBsc_core::SC_MEDIUM\fP = 200, \fBsc_core::SC_HIGH\fP = 300, \fBsc_core::SC_FULL\fP = 400, \fBsc_core::SC_DEBUG\fP = 500 }"
+.br
+.ti -1c
+.RI "enum { \fBsc_core::SC_UNSPECIFIED\fP = 0x0000, \fBsc_core::SC_DO_NOTHING\fP = 0x0001, \fBsc_core::SC_THROW\fP = 0x0002, \fBsc_core::SC_LOG\fP = 0x0004, \fBsc_core::SC_DISPLAY\fP = 0x0008, \fBsc_core::SC_CACHE_REPORT\fP = 0x0010, \fBsc_core::SC_INTERRUPT\fP = 0x0020, \fBsc_core::SC_STOP\fP = 0x0040, \fBsc_core::SC_ABORT\fP = 0x0080, \fBsc_core::SC_DEFAULT_INFO_ACTIONS\fP = SC_LOG | SC_DISPLAY, \fBsc_core::SC_DEFAULT_WARNING_ACTIONS\fP = SC_LOG | SC_DISPLAY, \fBsc_core::SC_DEFAULT_ERROR_ACTIONS\fP = SC_LOG | SC_CACHE_REPORT | SC_THROW, \fBsc_core::SC_DEFAULT_FATAL_ACTIONS\fP = SC_LOG | SC_DISPLAY | SC_CACHE_REPORT | SC_ABORT, \fBsc_core::SC_DEFAULT_CATCH_ACTIONS\fP = SC_DISPLAY }"
+.br
+.in -1c
+.SS "Functions"
+
+.in +1c
+.ti -1c
+.RI "\fBSC_API\fP \fBconst\fP std::string \fBsc_core::sc_report_compose_message\fP (\fBconst\fP \fBsc_report\fP &)"
+.br
+.ti -1c
+.RI "\fBSC_NORETURN_\fP \fBSC_API\fP \fBvoid\fP \fBsc_core::sc_abort\fP ()"
+.br
+.ti -1c
+.RI "\fBSC_NORETURN_\fP \fBSC_API\fP \fBvoid\fP \fBsc_core::sc_assertion_failed\fP (\fBconst\fP \fBchar\fP *msg, \fBconst\fP \fBchar\fP *file, int line)"
+.br
+.in -1c
+.SS "Variables"
+
+.in +1c
+.ti -1c
+.RI "\fBSC_API\fP \fBconst\fP \fBchar\fP \fBsc_core::SC_ID_UNKNOWN_ERROR_\fP []"
+.br
+.ti -1c
+.RI "\fBSC_API\fP \fBconst\fP \fBchar\fP \fBsc_core::SC_ID_WITHOUT_MESSAGE_\fP []"
+.br
+.ti -1c
+.RI "\fBSC_API\fP \fBconst\fP \fBchar\fP \fBsc_core::SC_ID_NOT_IMPLEMENTED_\fP []"
+.br
+.ti -1c
+.RI "\fBSC_API\fP \fBconst\fP \fBchar\fP \fBsc_core::SC_ID_INTERNAL_ERROR_\fP []"
+.br
+.ti -1c
+.RI "\fBSC_API\fP \fBconst\fP \fBchar\fP \fBsc_core::SC_ID_ASSERTION_FAILED_\fP []"
+.br
+.ti -1c
+.RI "\fBSC_API\fP \fBconst\fP \fBchar\fP \fBsc_core::SC_ID_OUT_OF_BOUNDS_\fP []"
+.br
+.ti -1c
+.RI "\fBSC_API\fP \fBconst\fP \fBchar\fP \fBsc_core::SC_ID_ABORT_\fP []"
+.br
+.in -1c
+.SH "Macro Definition Documentation"
+.PP 
+.SS "#\fBdefine\fP sc_assert(\fBexpr\fP)"
+\fBValue:\fP.PP
+.nf
+ ((void)((expr) ? 0 : \\
+   (::sc_core::sc_assertion_failed(#expr,__FILE__,__LINE__),0)))
+.fi
+
+.SS "#\fBdefine\fP SC_NORETURN_   /* \fBnothing\fP */"
+
+.SS "#\fBdefine\fP SC_REPORT_ERROR(msg_type, msg)"
+\fBValue:\fP.PP
+.nf
+    ::sc_core::sc_report_handler::report( \\
+            ::sc_core::SC_ERROR, msg_type, msg, __FILE__, __LINE__ )
+.fi
+
+.SS "#\fBdefine\fP SC_REPORT_FATAL(msg_type, msg)"
+\fBValue:\fP.PP
+.nf
+    ::sc_core::sc_report_handler::report( \\
+            ::sc_core::SC_FATAL, msg_type, msg, __FILE__, __LINE__ )
+.fi
+
+.SS "#\fBdefine\fP SC_REPORT_INFO(msg_type, msg)"
+\fBValue:\fP.PP
+.nf
+    ::sc_core::sc_report_handler::report(  \\
+            ::sc_core::SC_INFO, msg_type, msg, __FILE__, __LINE__ )
+.fi
+
+.SS "#\fBdefine\fP SC_REPORT_INFO_VERB(msg_type, msg, \fBverbosity\fP)"
+\fBValue:\fP.PP
+.nf
+    ::sc_core::sc_report_handler::report(                 \\
+            ::sc_core::SC_INFO, msg_type, msg, verbosity, \\
+                               __FILE__ , __LINE__ )
+.fi
+
+.SS "#\fBdefine\fP SC_REPORT_WARNING(msg_type, msg)"
+\fBValue:\fP.PP
+.nf
+    ::sc_core::sc_report_handler::report(  \\
+            ::sc_core::SC_WARNING, msg_type, msg, __FILE__, __LINE__ )
+.fi
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for VHDL simulator from the source code\&.

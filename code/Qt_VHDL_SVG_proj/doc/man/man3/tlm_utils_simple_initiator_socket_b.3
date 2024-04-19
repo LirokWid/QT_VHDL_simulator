@@ -1,0 +1,540 @@
+.TH "tlm_utils::simple_initiator_socket_b< MODULE, BUSWIDTH, TYPES, POL >" 3 "VHDL simulator" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+tlm_utils::simple_initiator_socket_b< MODULE, BUSWIDTH, TYPES, POL >
+.SH SYNOPSIS
+.br
+.PP
+.PP
+\fR#include <simple_initiator_socket\&.h>\fP
+.PP
+Inherits \fBtlm::tlm_initiator_socket< BUSWIDTH, TYPES, N, POL >\fP, and \fBtlm_utils::simple_socket_base\fP\&.
+.PP
+Inherited by \fBtlm_utils::simple_initiator_socket< MODULE, BUSWIDTH, TYPES >\fP, and \fBtlm_utils::simple_initiator_socket_optional< MODULE, BUSWIDTH, TYPES >\fP\&.
+.SS "Classes"
+
+.in +1c
+.ti -1c
+.RI "class \fBprocess\fP"
+.br
+.in -1c
+.SS "Public Types"
+
+.in +1c
+.ti -1c
+.RI "\fBtypedef\fP TYPES::tlm_payload_type \fBtransaction_type\fP"
+.br
+.ti -1c
+.RI "\fBtypedef\fP TYPES::tlm_phase_type \fBphase_type\fP"
+.br
+.ti -1c
+.RI "\fBtypedef\fP \fBtlm::tlm_sync_enum\fP \fBsync_enum_type\fP"
+.br
+.ti -1c
+.RI "\fBtypedef\fP \fBtlm::tlm_fw_transport_if\fP< \fBTYPES\fP > \fBfw_interface_type\fP"
+.br
+.ti -1c
+.RI "\fBtypedef\fP \fBtlm::tlm_bw_transport_if\fP< \fBTYPES\fP > \fBbw_interface_type\fP"
+.br
+.ti -1c
+.RI "\fBtypedef\fP \fBtlm::tlm_initiator_socket\fP< \fBBUSWIDTH\fP, \fBTYPES\fP, 1, \fBPOL\fP > \fBbase_type\fP"
+.br
+.in -1c
+
+Public Types inherited from \fBtlm::tlm_base_initiator_socket< BUSWIDTH, FW_IF, BW_IF, N, POL >\fP
+.in +1c
+.ti -1c
+.RI "\fBtypedef\fP \fBFW_IF\fP \fBfw_interface_type\fP"
+.br
+.ti -1c
+.RI "\fBtypedef\fP \fBBW_IF\fP \fBbw_interface_type\fP"
+.br
+.ti -1c
+.RI "\fBtypedef\fP \fBsc_core::sc_port\fP< \fBfw_interface_type\fP, \fBN\fP, \fBPOL\fP > \fBport_type\fP"
+.br
+.ti -1c
+.RI "\fBtypedef\fP \fBsc_core::sc_export\fP< \fBbw_interface_type\fP > \fBexport_type\fP"
+.br
+.ti -1c
+.RI "\fBtypedef\fP \fBtlm_base_target_socket_b\fP< \fBBUSWIDTH\fP, \fBfw_interface_type\fP, \fBbw_interface_type\fP > \fBbase_target_socket_type\fP"
+.br
+.ti -1c
+.RI "\fBtypedef\fP \fBtlm_base_initiator_socket_b\fP< \fBBUSWIDTH\fP, \fBfw_interface_type\fP, \fBbw_interface_type\fP > \fBbase_type\fP"
+.br
+.in -1c
+
+Public Types inherited from \fBsc_core::sc_port_b< IF >\fP
+.in +1c
+.ti -1c
+.RI "\fBtypedef\fP \fBsc_port_base\fP \fBbase_type\fP"
+.br
+.ti -1c
+.RI "\fBtypedef\fP \fBsc_port_b\fP< \fBIF\fP > \fBthis_type\fP"
+.br
+.ti -1c
+.RI "\fBtypedef\fP \fBthis_type\fP \fBport_type\fP"
+.br
+.in -1c
+
+Public Types inherited from \fBsc_core::sc_port_base\fP
+.in +1c
+.ti -1c
+.RI "\fBtypedef\fP \fBsc_port_base\fP \fBthis_type\fP"
+.br
+.in -1c
+
+Public Types inherited from \fBsc_core::sc_object\fP
+.in +1c
+.ti -1c
+.RI "\fBtypedef\fP \fBunsigned\fP \fBphase_cb_mask\fP"
+.br
+.in -1c
+.SS "Public Member Functions"
+
+.in +1c
+.ti -1c
+.RI "\fBsimple_initiator_socket_b\fP (\fBconst\fP \fBchar\fP *\fBn\fP=\fBdefault_name\fP())"
+.br
+.ti -1c
+.RI "\fBvoid\fP \fBregister_nb_transport_bw\fP (\fBMODULE\fP *\fBmod\fP, \fBsync_enum_type\fP(MODULE::*cb)(\fBtransaction_type\fP &, \fBphase_type\fP &, \fBsc_core::sc_time\fP &))"
+.br
+.ti -1c
+.RI "\fBvoid\fP \fBregister_invalidate_direct_mem_ptr\fP (\fBMODULE\fP *\fBmod\fP, \fBvoid\fP(MODULE::*cb)(\fBsc_dt::uint64\fP, \fBsc_dt::uint64\fP))"
+.br
+.in -1c
+
+Public Member Functions inherited from \fBtlm::tlm_initiator_socket< BUSWIDTH, TYPES, N, POL >\fP
+.in +1c
+.ti -1c
+.RI "\fBtlm_initiator_socket\fP ()"
+.br
+.ti -1c
+.RI "\fBtlm_initiator_socket\fP (\fBconst\fP \fBchar\fP *\fBname\fP)"
+.br
+.ti -1c
+.RI "\fBvirtual\fP \fBconst\fP \fBchar\fP * \fBkind\fP () \fBconst\fP"
+.br
+.ti -1c
+.RI "\fBvirtual\fP \fBsc_core::sc_type_index\fP \fBget_protocol_types\fP () \fBconst\fP"
+.br
+.in -1c
+
+Public Member Functions inherited from \fBtlm::tlm_base_initiator_socket< BUSWIDTH, FW_IF, BW_IF, N, POL >\fP
+.in +1c
+.ti -1c
+.RI "\fBtlm_base_initiator_socket\fP ()"
+.br
+.ti -1c
+.RI "\fBtlm_base_initiator_socket\fP (\fBconst\fP \fBchar\fP *\fBname\fP)"
+.br
+.ti -1c
+.RI "\fBvirtual\fP \fBvoid\fP \fBbind\fP (\fBbase_target_socket_type\fP &s)"
+.br
+.ti -1c
+.RI "\fBvoid\fP \fBoperator()\fP (\fBbase_target_socket_type\fP &s)"
+.br
+.ti -1c
+.RI "\fBvirtual\fP \fBvoid\fP \fBbind\fP (\fBbase_type\fP &s)"
+.br
+.ti -1c
+.RI "\fBvoid\fP \fBoperator()\fP (\fBbase_type\fP &s)"
+.br
+.ti -1c
+.RI "\fBvirtual\fP \fBvoid\fP \fBbind\fP (\fBbw_interface_type\fP &\fBifs\fP)"
+.br
+.ti -1c
+.RI "\fBvoid\fP \fBoperator()\fP (\fBbw_interface_type\fP &s)"
+.br
+.ti -1c
+.RI "\fBvirtual\fP \fBsc_core::sc_port_base\fP & \fBget_port_base\fP ()"
+.br
+.ti -1c
+.RI "\fBvirtual\fP \fBsc_core::sc_port_base\fP \fBconst\fP & \fBget_port_base\fP () \fBconst\fP"
+.br
+.ti -1c
+.RI "\fBvirtual\fP \fBsc_core::sc_export_base\fP & \fBget_export_base\fP ()"
+.br
+.ti -1c
+.RI "\fBvirtual\fP \fBsc_core::sc_export_base\fP \fBconst\fP & \fBget_export_base\fP () \fBconst\fP"
+.br
+.ti -1c
+.RI "\fBvirtual\fP \fBunsigned\fP int \fBget_bus_width\fP () \fBconst\fP"
+.br
+.ti -1c
+.RI "\fBvirtual\fP \fBtlm_socket_category\fP \fBget_socket_category\fP () \fBconst\fP"
+.br
+.ti -1c
+.RI "\fBvirtual\fP \fBsc_core::sc_port_b\fP< \fBFW_IF\fP > & \fBget_base_port\fP ()"
+.br
+.ti -1c
+.RI "\fBvirtual\fP \fBsc_core::sc_port_b\fP< \fBFW_IF\fP > \fBconst\fP & \fBget_base_port\fP () \fBconst\fP"
+.br
+.ti -1c
+.RI "\fBvirtual\fP \fBBW_IF\fP & \fBget_base_interface\fP ()"
+.br
+.ti -1c
+.RI "\fBvirtual\fP \fBBW_IF\fP \fBconst\fP & \fBget_base_interface\fP () \fBconst\fP"
+.br
+.ti -1c
+.RI "\fBvirtual\fP \fBsc_core::sc_export\fP< \fBBW_IF\fP > & \fBget_base_export\fP ()"
+.br
+.ti -1c
+.RI "\fBvirtual\fP \fBsc_core::sc_export\fP< \fBBW_IF\fP > \fBconst\fP & \fBget_base_export\fP () \fBconst\fP"
+.br
+.in -1c
+
+Public Member Functions inherited from \fBtlm::tlm_base_initiator_socket_b< BUSWIDTH, FW_IF, BW_IF >\fP
+.in +1c
+.ti -1c
+.RI "\fBvirtual\fP \fB~tlm_base_initiator_socket_b\fP ()"
+.br
+.in -1c
+
+Public Member Functions inherited from \fBsc_core::sc_port< IF, N, P >\fP
+.in +1c
+.ti -1c
+.RI "\fBsc_port\fP ()"
+.br
+.ti -1c
+.RI "\fBsc_port\fP (\fBconst\fP \fBchar\fP *\fBname_\fP)"
+.br
+.ti -1c
+.RI "\fBsc_port\fP (\fBIF\fP &\fBinterface_\fP)"
+.br
+.ti -1c
+.RI "\fBsc_port\fP (\fBconst\fP \fBchar\fP *\fBname_\fP, \fBIF\fP &\fBinterface_\fP)"
+.br
+.ti -1c
+.RI "\fBsc_port\fP (\fBbase_type\fP &\fBparent_\fP)"
+.br
+.ti -1c
+.RI "\fBsc_port\fP (\fBconst\fP \fBchar\fP *\fBname_\fP, \fBbase_type\fP &\fBparent_\fP)"
+.br
+.ti -1c
+.RI "\fBsc_port\fP (\fBthis_type\fP &\fBparent_\fP)"
+.br
+.ti -1c
+.RI "\fBsc_port\fP (\fBconst\fP \fBchar\fP *\fBname_\fP, \fBthis_type\fP &\fBparent_\fP)"
+.br
+.ti -1c
+.RI "\fBvirtual\fP \fB~sc_port\fP ()"
+.br
+.in -1c
+
+Public Member Functions inherited from \fBsc_core::sc_port_b< IF >\fP
+.in +1c
+.ti -1c
+.RI "\fBSC_VIRTUAL_\fP \fBvoid\fP \fBbind\fP (\fBIF\fP &\fBinterface_\fP)"
+.br
+.ti -1c
+.RI "\fBvoid\fP \fBoperator()\fP (\fBIF\fP &\fBinterface_\fP)"
+.br
+.ti -1c
+.RI "\fBSC_VIRTUAL_\fP \fBvoid\fP \fBbind\fP (\fBport_type\fP &\fBparent_\fP)"
+.br
+.ti -1c
+.RI "\fBvoid\fP \fBoperator()\fP (\fBport_type\fP &\fBparent_\fP)"
+.br
+.ti -1c
+.RI "int \fBsize\fP () \fBconst\fP"
+.br
+.ti -1c
+.RI "\fBIF\fP * \fBoperator\->\fP ()"
+.br
+.ti -1c
+.RI "\fBconst\fP \fBIF\fP * \fBoperator\->\fP () \fBconst\fP"
+.br
+.ti -1c
+.RI "\fBconst\fP \fBIF\fP * \fBget_interface\fP (int \fBiface_i\fP) \fBconst\fP"
+.br
+.ti -1c
+.RI "\fBIF\fP * \fBget_interface\fP (int \fBiface_i\fP)"
+.br
+.ti -1c
+.RI "\fBIF\fP * \fBoperator[]\fP (int \fBindex_\fP)"
+.br
+.ti -1c
+.RI "\fBconst\fP \fBIF\fP * \fBoperator[]\fP (int \fBindex_\fP) \fBconst\fP"
+.br
+.ti -1c
+.RI "\fBvirtual\fP \fBsc_interface\fP * \fBget_interface\fP ()"
+.br
+.ti -1c
+.RI "\fBvirtual\fP \fBconst\fP \fBsc_interface\fP * \fBget_interface\fP () \fBconst\fP"
+.br
+.ti -1c
+.RI "\fBvirtual\fP \fBsc_type_index\fP \fBget_interface_type\fP () \fBconst\fP"
+.br
+.in -1c
+
+Public Member Functions inherited from \fBsc_core::sc_port_base\fP
+.in +1c
+.ti -1c
+.RI "int \fBbind_count\fP ()"
+.br
+.in -1c
+
+Public Member Functions inherited from \fBsc_core::sc_object\fP
+.in +1c
+.ti -1c
+.RI "\fBconst\fP \fBchar\fP * \fBname\fP () \fBconst\fP"
+.br
+.ti -1c
+.RI "\fBconst\fP \fBchar\fP * \fBbasename\fP () \fBconst\fP"
+.br
+.ti -1c
+.RI "\fBvirtual\fP \fBvoid\fP \fBprint\fP (::std::ostream &\fBos\fP=::std::cout) \fBconst\fP"
+.br
+.ti -1c
+.RI "\fBvirtual\fP \fBvoid\fP \fBdump\fP (::std::ostream &\fBos\fP=::std::cout) \fBconst\fP"
+.br
+.ti -1c
+.RI "\fBvirtual\fP \fBvoid\fP \fBtrace\fP (\fBsc_trace_file\fP *tf) \fBconst\fP"
+.br
+.ti -1c
+.RI "\fBsc_simcontext\fP * \fBsimcontext\fP () \fBconst\fP"
+.br
+.ti -1c
+.RI "\fBbool\fP \fBadd_attribute\fP (\fBsc_attr_base\fP &)"
+.br
+.ti -1c
+.RI "\fBsc_attr_base\fP * \fBget_attribute\fP (\fBconst\fP std::string &\fBname_\fP)"
+.br
+.ti -1c
+.RI "\fBconst\fP \fBsc_attr_base\fP * \fBget_attribute\fP (\fBconst\fP std::string &\fBname_\fP) \fBconst\fP"
+.br
+.ti -1c
+.RI "\fBsc_attr_base\fP * \fBremove_attribute\fP (\fBconst\fP std::string &\fBname_\fP)"
+.br
+.ti -1c
+.RI "\fBvoid\fP \fBremove_all_attributes\fP ()"
+.br
+.ti -1c
+.RI "int \fBnum_attributes\fP () \fBconst\fP"
+.br
+.ti -1c
+.RI "\fBsc_attr_cltn\fP & \fBattr_cltn\fP ()"
+.br
+.ti -1c
+.RI "\fBconst\fP \fBsc_attr_cltn\fP & \fBattr_cltn\fP () \fBconst\fP"
+.br
+.ti -1c
+.RI "\fBvirtual\fP \fBconst\fP std::vector< \fBsc_event\fP * > & \fBget_child_events\fP () \fBconst\fP"
+.br
+.ti -1c
+.RI "\fBvirtual\fP \fBconst\fP std::vector< \fBsc_object\fP * > & \fBget_child_objects\fP () \fBconst\fP"
+.br
+.ti -1c
+.RI "\fBsc_object\fP * \fBget_parent\fP () \fBconst\fP"
+.br
+.ti -1c
+.RI "\fBsc_object\fP * \fBget_parent_object\fP () \fBconst\fP"
+.br
+.in -1c
+.SS "Static Public Member Functions"
+
+.in +1c
+.ti -1c
+.RI "\fBstatic\fP \fBconst\fP \fBchar\fP * \fBdefault_name\fP ()"
+.br
+.in -1c
+.SS "Private Member Functions"
+
+.in +1c
+.ti -1c
+.RI "\fBconst\fP \fBsc_core::sc_object\fP * \fBget_socket\fP () \fBconst\fP"
+.br
+.in -1c
+.SS "Private Attributes"
+
+.in +1c
+.ti -1c
+.RI "\fBprocess\fP \fBm_process\fP"
+.br
+.in -1c
+.SS "Additional Inherited Members"
+
+
+Protected Member Functions inherited from \fBtlm::tlm_base_socket_if\fP
+.in +1c
+.ti -1c
+.RI "\fBvirtual\fP \fB~tlm_base_socket_if\fP ()"
+.br
+.in -1c
+
+Protected Member Functions inherited from \fBsc_core::sc_port_b< IF >\fP
+.in +1c
+.ti -1c
+.RI "\fBsc_port_b\fP (int \fBmax_size_\fP, \fBsc_port_policy\fP policy=\fBSC_ONE_OR_MORE_BOUND\fP)"
+.br
+.ti -1c
+.RI "\fBsc_port_b\fP (\fBconst\fP \fBchar\fP *\fBname_\fP, int \fBmax_size_\fP, \fBsc_port_policy\fP policy=\fBSC_ONE_OR_MORE_BOUND\fP)"
+.br
+.ti -1c
+.RI "\fBvirtual\fP \fB~sc_port_b\fP ()"
+.br
+.ti -1c
+.RI "\fBvirtual\fP int \fBvbind\fP (\fBsc_interface\fP &)"
+.br
+.ti -1c
+.RI "\fBvirtual\fP int \fBvbind\fP (\fBsc_port_base\fP &)"
+.br
+.ti -1c
+.RI "\fBvirtual\fP \fBvoid\fP \fBmake_sensitive\fP (\fBsc_thread_handle\fP, \fBsc_event_finder\fP *=0) \fBconst\fP"
+.br
+.ti -1c
+.RI "\fBvirtual\fP \fBvoid\fP \fBmake_sensitive\fP (\fBsc_method_handle\fP, \fBsc_event_finder\fP *=0) \fBconst\fP"
+.br
+.in -1c
+
+Protected Member Functions inherited from \fBsc_core::sc_port_base\fP
+.in +1c
+.ti -1c
+.RI "\fBsc_port_base\fP (int \fBmax_size_\fP, \fBsc_port_policy\fP policy=\fBSC_ONE_OR_MORE_BOUND\fP)"
+.br
+.ti -1c
+.RI "\fBsc_port_base\fP (\fBconst\fP \fBchar\fP *\fBname_\fP, int \fBmax_size_\fP, \fBsc_port_policy\fP policy=\fBSC_ONE_OR_MORE_BOUND\fP)"
+.br
+.ti -1c
+.RI "\fBvirtual\fP \fB~sc_port_base\fP ()"
+.br
+.ti -1c
+.RI "\fBvoid\fP \fBbind\fP (\fBsc_interface\fP &\fBinterface_\fP)"
+.br
+.ti -1c
+.RI "\fBvoid\fP \fBbind\fP (\fBthis_type\fP &\fBparent_\fP)"
+.br
+.ti -1c
+.RI "\fBvirtual\fP \fBvoid\fP \fBbefore_end_of_elaboration\fP ()"
+.br
+.ti -1c
+.RI "\fBvirtual\fP \fBvoid\fP \fBend_of_elaboration\fP ()"
+.br
+.ti -1c
+.RI "\fBvirtual\fP \fBvoid\fP \fBstart_of_simulation\fP ()"
+.br
+.ti -1c
+.RI "\fBvirtual\fP \fBvoid\fP \fBend_of_simulation\fP ()"
+.br
+.ti -1c
+.RI "\fBvoid\fP \fBreport_error\fP (\fBconst\fP \fBchar\fP *id, \fBconst\fP \fBchar\fP *\fBadd_msg\fP=0) \fBconst\fP"
+.br
+.ti -1c
+.RI "\fBvoid\fP \fBadd_static_event\fP (\fBsc_method_handle\fP \fBprocess_p\fP, \fBconst\fP \fBsc_event\fP &event) \fBconst\fP"
+.br
+.ti -1c
+.RI "\fBvoid\fP \fBadd_static_event\fP (\fBsc_thread_handle\fP \fBprocess_p\fP, \fBconst\fP \fBsc_event\fP &event) \fBconst\fP"
+.br
+.in -1c
+
+Protected Member Functions inherited from \fBsc_core::sc_object\fP
+.in +1c
+.ti -1c
+.RI "\fBsc_object\fP ()"
+.br
+.ti -1c
+.RI "\fBsc_object\fP (\fBconst\fP \fBchar\fP *\fBnm\fP)"
+.br
+.ti -1c
+.RI "\fBsc_object\fP (\fBconst\fP \fBsc_object\fP &)"
+.br
+.ti -1c
+.RI "\fBsc_object\fP & \fBoperator=\fP (\fBconst\fP \fBsc_object\fP &)"
+.br
+.ti -1c
+.RI "\fBvirtual\fP \fB~sc_object\fP ()"
+.br
+.ti -1c
+.RI "\fBvirtual\fP \fBvoid\fP \fBadd_child_event\fP (\fBsc_event\fP *\fBevent_p\fP)"
+.br
+.ti -1c
+.RI "\fBvirtual\fP \fBvoid\fP \fBadd_child_object\fP (\fBsc_object\fP *\fBobject_p\fP)"
+.br
+.ti -1c
+.RI "\fBvirtual\fP \fBbool\fP \fBremove_child_event\fP (\fBsc_event\fP *\fBevent_p\fP)"
+.br
+.ti -1c
+.RI "\fBvirtual\fP \fBbool\fP \fBremove_child_object\fP (\fBsc_object\fP *\fBobject_p\fP)"
+.br
+.ti -1c
+.RI "\fBphase_cb_mask\fP \fBregister_simulation_phase_callback\fP (\fBphase_cb_mask\fP)"
+.br
+.ti -1c
+.RI "\fBphase_cb_mask\fP \fBunregister_simulation_phase_callback\fP (\fBphase_cb_mask\fP)"
+.br
+.in -1c
+
+Protected Member Functions inherited from \fBtlm_utils::simple_socket_base\fP
+.in +1c
+.ti -1c
+.RI "\fBvoid\fP \fBelaboration_check\fP (\fBconst\fP \fBchar\fP *\fBaction\fP) \fBconst\fP"
+.br
+.in -1c
+
+Protected Member Functions inherited from \fBtlm_utils::convenience_socket_base\fP
+.in +1c
+.ti -1c
+.RI "\fBvirtual\fP \fB~convenience_socket_base\fP ()"
+.br
+.in -1c
+.in +1c
+.ti -1c
+.RI "\fBvoid\fP \fBdisplay_warning\fP (\fBconst\fP \fBchar\fP *msg) \fBconst\fP"
+.br
+.ti -1c
+.RI "\fBvoid\fP \fBdisplay_error\fP (\fBconst\fP \fBchar\fP *msg) \fBconst\fP"
+.br
+.in -1c
+
+Protected Attributes inherited from \fBtlm::tlm_base_initiator_socket< BUSWIDTH, FW_IF, BW_IF, N, POL >\fP
+.in +1c
+.ti -1c
+.RI "\fBexport_type\fP \fBm_export\fP"
+.br
+.in -1c
+
+Protected Attributes inherited from \fBsc_core::sc_port_base\fP
+.in +1c
+.ti -1c
+.RI "\fBsc_bind_info\fP * \fBm_bind_info\fP"
+.br
+.in -1c
+.SH "Member Typedef Documentation"
+.PP 
+.SS "template<\fBtypename\fP \fBMODULE\fP , \fBunsigned\fP int BUSWIDTH, \fBtypename\fP \fBTYPES\fP , \fBsc_core::sc_port_policy\fP POL = sc_core::SC_ONE_OR_MORE_BOUND> \fBtypedef\fP \fBtlm::tlm_initiator_socket\fP<\fBBUSWIDTH\fP,\fBTYPES\fP,1,\fBPOL\fP> \fBtlm_utils::simple_initiator_socket_b\fP< \fBMODULE\fP, \fBBUSWIDTH\fP, \fBTYPES\fP, \fBPOL\fP >::base_type"
+
+.SS "template<\fBtypename\fP \fBMODULE\fP , \fBunsigned\fP int BUSWIDTH, \fBtypename\fP \fBTYPES\fP , \fBsc_core::sc_port_policy\fP POL = sc_core::SC_ONE_OR_MORE_BOUND> \fBtypedef\fP \fBtlm::tlm_bw_transport_if\fP<\fBTYPES\fP> \fBtlm_utils::simple_initiator_socket_b\fP< \fBMODULE\fP, \fBBUSWIDTH\fP, \fBTYPES\fP, \fBPOL\fP >::bw_interface_type"
+
+.SS "template<\fBtypename\fP \fBMODULE\fP , \fBunsigned\fP int BUSWIDTH, \fBtypename\fP \fBTYPES\fP , \fBsc_core::sc_port_policy\fP POL = sc_core::SC_ONE_OR_MORE_BOUND> \fBtypedef\fP \fBtlm::tlm_fw_transport_if\fP<\fBTYPES\fP> \fBtlm_utils::simple_initiator_socket_b\fP< \fBMODULE\fP, \fBBUSWIDTH\fP, \fBTYPES\fP, \fBPOL\fP >::fw_interface_type"
+
+.SS "template<\fBtypename\fP \fBMODULE\fP , \fBunsigned\fP int BUSWIDTH, \fBtypename\fP \fBTYPES\fP , \fBsc_core::sc_port_policy\fP POL = sc_core::SC_ONE_OR_MORE_BOUND> \fBtypedef\fP TYPES::tlm_phase_type \fBtlm_utils::simple_initiator_socket_b\fP< \fBMODULE\fP, \fBBUSWIDTH\fP, \fBTYPES\fP, \fBPOL\fP >::phase_type"
+
+.SS "template<\fBtypename\fP \fBMODULE\fP , \fBunsigned\fP int BUSWIDTH, \fBtypename\fP \fBTYPES\fP , \fBsc_core::sc_port_policy\fP POL = sc_core::SC_ONE_OR_MORE_BOUND> \fBtypedef\fP \fBtlm::tlm_sync_enum\fP \fBtlm_utils::simple_initiator_socket_b\fP< \fBMODULE\fP, \fBBUSWIDTH\fP, \fBTYPES\fP, \fBPOL\fP >::sync_enum_type"
+
+.SS "template<\fBtypename\fP \fBMODULE\fP , \fBunsigned\fP int BUSWIDTH, \fBtypename\fP \fBTYPES\fP , \fBsc_core::sc_port_policy\fP POL = sc_core::SC_ONE_OR_MORE_BOUND> \fBtypedef\fP TYPES::tlm_payload_type \fBtlm_utils::simple_initiator_socket_b\fP< \fBMODULE\fP, \fBBUSWIDTH\fP, \fBTYPES\fP, \fBPOL\fP >::transaction_type"
+
+.SH "Constructor & Destructor Documentation"
+.PP 
+.SS "template<\fBtypename\fP \fBMODULE\fP , \fBunsigned\fP int BUSWIDTH, \fBtypename\fP \fBTYPES\fP , \fBsc_core::sc_port_policy\fP POL = sc_core::SC_ONE_OR_MORE_BOUND> \fBtlm_utils::simple_initiator_socket_b\fP< \fBMODULE\fP, \fBBUSWIDTH\fP, \fBTYPES\fP, \fBPOL\fP >::simple_initiator_socket_b (\fBconst\fP \fBchar\fP * n = \fR\fBdefault_name\fP()\fP)\fR [inline]\fP, \fR [explicit]\fP"
+
+.SH "Member Function Documentation"
+.PP 
+.SS "template<\fBtypename\fP \fBMODULE\fP , \fBunsigned\fP int BUSWIDTH, \fBtypename\fP \fBTYPES\fP , \fBsc_core::sc_port_policy\fP POL = sc_core::SC_ONE_OR_MORE_BOUND> \fBstatic\fP \fBconst\fP \fBchar\fP * \fBtlm_utils::simple_initiator_socket_b\fP< \fBMODULE\fP, \fBBUSWIDTH\fP, \fBTYPES\fP, \fBPOL\fP >::default_name ()\fR [inline]\fP, \fR [static]\fP"
+
+.SS "template<\fBtypename\fP \fBMODULE\fP , \fBunsigned\fP int BUSWIDTH, \fBtypename\fP \fBTYPES\fP , \fBsc_core::sc_port_policy\fP POL = sc_core::SC_ONE_OR_MORE_BOUND> \fBconst\fP \fBsc_core::sc_object\fP * \fBtlm_utils::simple_initiator_socket_b\fP< \fBMODULE\fP, \fBBUSWIDTH\fP, \fBTYPES\fP, \fBPOL\fP >::get_socket () const\fR [inline]\fP, \fR [private]\fP, \fR [virtual]\fP"
+
+.PP
+Implements \fBtlm_utils::convenience_socket_base\fP\&.
+.SS "template<\fBtypename\fP \fBMODULE\fP , \fBunsigned\fP int BUSWIDTH, \fBtypename\fP \fBTYPES\fP , \fBsc_core::sc_port_policy\fP POL = sc_core::SC_ONE_OR_MORE_BOUND> \fBvoid\fP \fBtlm_utils::simple_initiator_socket_b\fP< \fBMODULE\fP, \fBBUSWIDTH\fP, \fBTYPES\fP, \fBPOL\fP >::register_invalidate_direct_mem_ptr (\fBMODULE\fP * mod, \fBvoid\fP(MODULE::*)(\fBsc_dt::uint64\fP, \fBsc_dt::uint64\fP) cb)\fR [inline]\fP"
+
+.SS "template<\fBtypename\fP \fBMODULE\fP , \fBunsigned\fP int BUSWIDTH, \fBtypename\fP \fBTYPES\fP , \fBsc_core::sc_port_policy\fP POL = sc_core::SC_ONE_OR_MORE_BOUND> \fBvoid\fP \fBtlm_utils::simple_initiator_socket_b\fP< \fBMODULE\fP, \fBBUSWIDTH\fP, \fBTYPES\fP, \fBPOL\fP >::register_nb_transport_bw (\fBMODULE\fP * mod, \fBsync_enum_type\fP(MODULE::*)(\fBtransaction_type\fP &, \fBphase_type\fP &, \fBsc_core::sc_time\fP &) cb)\fR [inline]\fP"
+
+.SH "Member Data Documentation"
+.PP 
+.SS "template<\fBtypename\fP \fBMODULE\fP , \fBunsigned\fP int BUSWIDTH, \fBtypename\fP \fBTYPES\fP , \fBsc_core::sc_port_policy\fP POL = sc_core::SC_ONE_OR_MORE_BOUND> \fBprocess\fP \fBtlm_utils::simple_initiator_socket_b\fP< \fBMODULE\fP, \fBBUSWIDTH\fP, \fBTYPES\fP, \fBPOL\fP >::m_process\fR [private]\fP"
+
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for VHDL simulator from the source code\&.

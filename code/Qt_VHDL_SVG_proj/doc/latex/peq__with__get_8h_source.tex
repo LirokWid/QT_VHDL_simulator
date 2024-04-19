@@ -1,0 +1,100 @@
+\doxysection{peq\+\_\+with\+\_\+get.\+h}
+\hypertarget{peq__with__get_8h_source}{}\label{peq__with__get_8h_source}\index{C:/Users/BJRODIER/Documents/QT\_REPO/QT\_VHDL\_simulator/code/Ressources/SystemC/include/tlm\_utils/peq\_with\_get.h@{C:/Users/BJRODIER/Documents/QT\_REPO/QT\_VHDL\_simulator/code/Ressources/SystemC/include/tlm\_utils/peq\_with\_get.h}}
+\mbox{\hyperlink{peq__with__get_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{comment}{/*****************************************************************************}}
+\DoxyCodeLine{00002\ \textcolor{comment}{}}
+\DoxyCodeLine{00003\ \textcolor{comment}{\ \ Licensed\ to\ Accellera\ Systems\ Initiative\ Inc.\ (Accellera)\ under\ one\ or}}
+\DoxyCodeLine{00004\ \textcolor{comment}{\ \ more\ contributor\ license\ agreements.\ \ See\ the\ NOTICE\ file\ distributed}}
+\DoxyCodeLine{00005\ \textcolor{comment}{\ \ with\ this\ work\ for\ additional\ information\ regarding\ copyright\ ownership.}}
+\DoxyCodeLine{00006\ \textcolor{comment}{\ \ Accellera\ licenses\ this\ file\ to\ you\ under\ the\ Apache\ License,\ Version\ 2.0}}
+\DoxyCodeLine{00007\ \textcolor{comment}{\ \ (the\ "{}License"{});\ you\ may\ not\ use\ this\ file\ except\ in\ compliance\ with\ the}}
+\DoxyCodeLine{00008\ \textcolor{comment}{\ \ License.\ \ You\ may\ obtain\ a\ copy\ of\ the\ License\ at}}
+\DoxyCodeLine{00009\ \textcolor{comment}{}}
+\DoxyCodeLine{00010\ \textcolor{comment}{\ \ \ \ http://www.apache.org/licenses/LICENSE-\/2.0}}
+\DoxyCodeLine{00011\ \textcolor{comment}{}}
+\DoxyCodeLine{00012\ \textcolor{comment}{\ \ Unless\ required\ by\ applicable\ law\ or\ agreed\ to\ in\ writing,\ software}}
+\DoxyCodeLine{00013\ \textcolor{comment}{\ \ distributed\ under\ the\ License\ is\ distributed\ on\ an\ "{}AS\ IS"{}\ BASIS,}}
+\DoxyCodeLine{00014\ \textcolor{comment}{\ \ WITHOUT\ WARRANTIES\ OR\ CONDITIONS\ OF\ ANY\ KIND,\ either\ express\ or}}
+\DoxyCodeLine{00015\ \textcolor{comment}{\ \ implied.\ \ See\ the\ License\ for\ the\ specific\ language\ governing}}
+\DoxyCodeLine{00016\ \textcolor{comment}{\ \ permissions\ and\ limitations\ under\ the\ License.}}
+\DoxyCodeLine{00017\ \textcolor{comment}{}}
+\DoxyCodeLine{00018\ \textcolor{comment}{\ *****************************************************************************/}}
+\DoxyCodeLine{00019\ }
+\DoxyCodeLine{00020\ \textcolor{comment}{//\ 12-\/Jan-\/2009\ \ John\ Aynsley\ \ Bug\ fix.\ sc\_time\ argument\ to\ notify\ should\ be\ const}}
+\DoxyCodeLine{00021\ \textcolor{comment}{//\ 20-\/Mar-\/2009\ \ John\ Aynsley\ \ Add\ cancel\_all()\ method}}
+\DoxyCodeLine{00022\ }
+\DoxyCodeLine{00023\ }
+\DoxyCodeLine{00024\ \textcolor{preprocessor}{\#ifndef\ \_\_PEQ\_WITH\_GET\_H\_\_}}
+\DoxyCodeLine{00025\ \textcolor{preprocessor}{\#define\ \_\_PEQ\_WITH\_GET\_H\_\_}}
+\DoxyCodeLine{00026\ }
+\DoxyCodeLine{00027\ \textcolor{preprocessor}{\#include\ <systemc>}}
+\DoxyCodeLine{00028\ \textcolor{comment}{//\#include\ <tlm>}}
+\DoxyCodeLine{00029\ \textcolor{preprocessor}{\#include\ <map>}}
+\DoxyCodeLine{00030\ }
+\DoxyCodeLine{00031\ \textcolor{keyword}{namespace\ }\mbox{\hyperlink{namespacetlm__utils}{tlm\_utils}}\ \{}
+\DoxyCodeLine{00032\ }
+\DoxyCodeLine{00033\ \textcolor{keyword}{template}\ <\textcolor{keyword}{class}\ PAYLOAD>}
+\DoxyCodeLine{00034\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classtlm__utils_1_1peq__with__get}{peq\_with\_get}}\ :\ \textcolor{keyword}{public}\ \mbox{\hyperlink{classsc__core_1_1sc__object}{sc\_core::sc\_object}}}
+\DoxyCodeLine{00035\ \{}
+\DoxyCodeLine{00036\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00037\ \ \ \textcolor{keyword}{typedef}\ PAYLOAD\ \mbox{\hyperlink{classtlm__utils_1_1peq__with__get_a3564410e7e3862db40bfd563c5de5aa1}{transaction\_type}};}
+\DoxyCodeLine{00038\ \ \ \textcolor{keyword}{typedef}\ std::pair<const\ sc\_core::sc\_time,\ transaction\_type*>\ \mbox{\hyperlink{classtlm__utils_1_1peq__with__get_a4905cbccbeb1bd27ede23d6f5257bb9d}{pair\_type}};}
+\DoxyCodeLine{00039\ }
+\DoxyCodeLine{00040\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00041\ \ \ \mbox{\hyperlink{classtlm__utils_1_1peq__with__get_a5f62ba2f9636c9ac14c41f349f4ca20a}{peq\_with\_get}}(\textcolor{keyword}{const}\ \textcolor{keywordtype}{char}*\ \mbox{\hyperlink{classsc__core_1_1sc__object_a4da9c6e99326cd2619958e049625bc58}{name}})\ :\ \mbox{\hyperlink{namespacesc__core}{sc\_core}}::\mbox{\hyperlink{classsc__core_1_1sc__object_a3369d21ab73ffa0f2d27be6cf11b6759}{sc\_object}}(\mbox{\hyperlink{classsc__core_1_1sc__object_a4da9c6e99326cd2619958e049625bc58}{name}})}
+\DoxyCodeLine{00042\ \ \ \{}
+\DoxyCodeLine{00043\ \ \ \}}
+\DoxyCodeLine{00044\ }
+\DoxyCodeLine{00045\ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classtlm__utils_1_1peq__with__get_afa58f46a9d53dfba4dd192d053b6d20b}{notify}}(\mbox{\hyperlink{classtlm__utils_1_1peq__with__get_a3564410e7e3862db40bfd563c5de5aa1}{transaction\_type}}\&\ \mbox{\hyperlink{class_sysc_add__pv}{trans}},\ \textcolor{keyword}{const}\ \mbox{\hyperlink{classsc__core_1_1sc__time}{sc\_core::sc\_time}}\&\ t)}
+\DoxyCodeLine{00046\ \ \ \{}
+\DoxyCodeLine{00047\ \ \ \ \ \mbox{\hyperlink{classtlm__utils_1_1peq__with__get_aede6b638752588bd44825153c61df949}{m\_scheduled\_events}}.insert(\mbox{\hyperlink{classtlm__utils_1_1peq__with__get_a4905cbccbeb1bd27ede23d6f5257bb9d}{pair\_type}}(t\ +\ \mbox{\hyperlink{namespacesc__core_a60634a7c4c8c70a106e518d4a03d4a86}{sc\_core::sc\_time\_stamp}}(),\ \&\mbox{\hyperlink{class_sysc_add__pv}{trans}}));}
+\DoxyCodeLine{00048\ \ \ \ \ \mbox{\hyperlink{classtlm__utils_1_1peq__with__get_a8e2ea8656e58d4265a442624c1193074}{m\_event}}.\mbox{\hyperlink{classsc__core_1_1sc__event_a508e0834831a837004f11e1fdc9a1bdf}{notify}}(t);}
+\DoxyCodeLine{00049\ \ \ \}}
+\DoxyCodeLine{00050\ }
+\DoxyCodeLine{00051\ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classtlm__utils_1_1peq__with__get_a74fcf1ab258b031242fb67eb3fcb9f38}{notify}}(\mbox{\hyperlink{classtlm__utils_1_1peq__with__get_a3564410e7e3862db40bfd563c5de5aa1}{transaction\_type}}\&\ \mbox{\hyperlink{class_sysc_add__pv}{trans}})}
+\DoxyCodeLine{00052\ \ \ \{}
+\DoxyCodeLine{00053\ \ \ \ \ \mbox{\hyperlink{classtlm__utils_1_1peq__with__get_aede6b638752588bd44825153c61df949}{m\_scheduled\_events}}.insert(\mbox{\hyperlink{classtlm__utils_1_1peq__with__get_a4905cbccbeb1bd27ede23d6f5257bb9d}{pair\_type}}(\mbox{\hyperlink{namespacesc__core_a60634a7c4c8c70a106e518d4a03d4a86}{sc\_core::sc\_time\_stamp}}(),\ \&\mbox{\hyperlink{class_sysc_add__pv}{trans}}));}
+\DoxyCodeLine{00054\ \ \ \ \ \mbox{\hyperlink{classtlm__utils_1_1peq__with__get_a8e2ea8656e58d4265a442624c1193074}{m\_event}}.\mbox{\hyperlink{classsc__core_1_1sc__event_a508e0834831a837004f11e1fdc9a1bdf}{notify}}();\ \textcolor{comment}{//\ immediate\ notification}}
+\DoxyCodeLine{00055\ \ \ \}}
+\DoxyCodeLine{00056\ }
+\DoxyCodeLine{00057\ \ \ \textcolor{comment}{//\ needs\ to\ be\ called\ until\ it\ returns\ 0}}
+\DoxyCodeLine{00058\ \ \ \mbox{\hyperlink{classtlm__utils_1_1peq__with__get_a3564410e7e3862db40bfd563c5de5aa1}{transaction\_type}}*\ \mbox{\hyperlink{classtlm__utils_1_1peq__with__get_a5c917cecdc0a3dc8e793e2dc1a1485dd}{get\_next\_transaction}}()}
+\DoxyCodeLine{00059\ \ \ \{}
+\DoxyCodeLine{00060\ \ \ \ \ \textcolor{keywordflow}{if}\ (\mbox{\hyperlink{classtlm__utils_1_1peq__with__get_aede6b638752588bd44825153c61df949}{m\_scheduled\_events}}.empty())\ \{}
+\DoxyCodeLine{00061\ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ 0;}
+\DoxyCodeLine{00062\ \ \ \ \ \}}
+\DoxyCodeLine{00063\ }
+\DoxyCodeLine{00064\ \ \ \ \ \mbox{\hyperlink{classsc__core_1_1sc__time}{sc\_core::sc\_time}}\ \mbox{\hyperlink{class_sysc_add__pv}{now}}\ =\ \mbox{\hyperlink{namespacesc__core_a60634a7c4c8c70a106e518d4a03d4a86}{sc\_core::sc\_time\_stamp}}();}
+\DoxyCodeLine{00065\ \ \ \ \ \textcolor{keywordflow}{if}\ (\mbox{\hyperlink{classtlm__utils_1_1peq__with__get_aede6b638752588bd44825153c61df949}{m\_scheduled\_events}}.begin()-\/>first\ <=\ \mbox{\hyperlink{class_sysc_add__pv}{now}})\ \{}
+\DoxyCodeLine{00066\ \ \ \ \ \ \ \mbox{\hyperlink{classtlm__utils_1_1peq__with__get_a3564410e7e3862db40bfd563c5de5aa1}{transaction\_type}}*\ \mbox{\hyperlink{class_sysc_add__pv}{trans}}\ =\ \mbox{\hyperlink{classtlm__utils_1_1peq__with__get_aede6b638752588bd44825153c61df949}{m\_scheduled\_events}}.begin()-\/>second;}
+\DoxyCodeLine{00067\ \ \ \ \ \ \ \mbox{\hyperlink{classtlm__utils_1_1peq__with__get_aede6b638752588bd44825153c61df949}{m\_scheduled\_events}}.erase(\mbox{\hyperlink{classtlm__utils_1_1peq__with__get_aede6b638752588bd44825153c61df949}{m\_scheduled\_events}}.begin());}
+\DoxyCodeLine{00068\ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{class_sysc_add__pv}{trans}};}
+\DoxyCodeLine{00069\ \ \ \ \ \}}
+\DoxyCodeLine{00070\ }
+\DoxyCodeLine{00071\ \ \ \ \ \mbox{\hyperlink{classtlm__utils_1_1peq__with__get_a8e2ea8656e58d4265a442624c1193074}{m\_event}}.\mbox{\hyperlink{classsc__core_1_1sc__event_a508e0834831a837004f11e1fdc9a1bdf}{notify}}(\mbox{\hyperlink{classtlm__utils_1_1peq__with__get_aede6b638752588bd44825153c61df949}{m\_scheduled\_events}}.begin()-\/>first\ -\/\ \mbox{\hyperlink{class_sysc_add__pv}{now}});}
+\DoxyCodeLine{00072\ }
+\DoxyCodeLine{00073\ \ \ \ \ \textcolor{keywordflow}{return}\ 0;}
+\DoxyCodeLine{00074\ \ \ \}}
+\DoxyCodeLine{00075\ }
+\DoxyCodeLine{00076\ \ \ \mbox{\hyperlink{classsc__core_1_1sc__event}{sc\_core::sc\_event}}\&\ \mbox{\hyperlink{classtlm__utils_1_1peq__with__get_abae83b12e9cbeac5aa7a4d8b8015861b}{get\_event}}()}
+\DoxyCodeLine{00077\ \ \ \{}
+\DoxyCodeLine{00078\ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{classtlm__utils_1_1peq__with__get_a8e2ea8656e58d4265a442624c1193074}{m\_event}};}
+\DoxyCodeLine{00079\ \ \ \}}
+\DoxyCodeLine{00080\ }
+\DoxyCodeLine{00081\ \ \ \textcolor{comment}{//\ Cancel\ all\ events\ from\ the\ event\ queue}}
+\DoxyCodeLine{00082\ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classtlm__utils_1_1peq__with__get_ad92d27e5959a53bbd4a7fb1e99d38aa7}{cancel\_all}}()\ \{}
+\DoxyCodeLine{00083\ \ \ \ \ \mbox{\hyperlink{classtlm__utils_1_1peq__with__get_aede6b638752588bd44825153c61df949}{m\_scheduled\_events}}.clear();}
+\DoxyCodeLine{00084\ \ \ \ \ \mbox{\hyperlink{classtlm__utils_1_1peq__with__get_a8e2ea8656e58d4265a442624c1193074}{m\_event}}.\mbox{\hyperlink{classsc__core_1_1sc__event_a6e5b463c02412fadaac74a14b03e0858}{cancel}}();}
+\DoxyCodeLine{00085\ \ \ \}}
+\DoxyCodeLine{00086\ }
+\DoxyCodeLine{00087\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00088\ \ \ std::multimap<const\ sc\_core::sc\_time,\ transaction\_type*>\ \mbox{\hyperlink{classtlm__utils_1_1peq__with__get_aede6b638752588bd44825153c61df949}{m\_scheduled\_events}};}
+\DoxyCodeLine{00089\ \ \ \mbox{\hyperlink{classsc__core_1_1sc__event}{sc\_core::sc\_event}}\ \mbox{\hyperlink{classtlm__utils_1_1peq__with__get_a8e2ea8656e58d4265a442624c1193074}{m\_event}};}
+\DoxyCodeLine{00090\ \};}
+\DoxyCodeLine{00091\ }
+\DoxyCodeLine{00092\ \}}
+\DoxyCodeLine{00093\ }
+\DoxyCodeLine{00094\ \textcolor{preprocessor}{\#endif}}
+
+\end{DoxyCode}

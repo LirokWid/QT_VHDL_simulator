@@ -1,0 +1,194 @@
+.TH "tlm::tlm_analysis_port< T >" 3 "VHDL simulator" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+tlm::tlm_analysis_port< T >
+.SH SYNOPSIS
+.br
+.PP
+.PP
+\fR#include <tlm_analysis_port\&.h>\fP
+.PP
+Inherits \fBsc_core::sc_object\fP, and \fBtlm::tlm_analysis_if< T >\fP\&.
+.SS "Public Member Functions"
+
+.in +1c
+.ti -1c
+.RI "\fBtlm_analysis_port\fP ()"
+.br
+.ti -1c
+.RI "\fBtlm_analysis_port\fP (\fBconst\fP \fBchar\fP *\fBnm\fP)"
+.br
+.ti -1c
+.RI "\fBvirtual\fP \fBvoid\fP \fBbind\fP (\fBtlm_analysis_if\fP< \fBT\fP > &\fB_if\fP)"
+.br
+.ti -1c
+.RI "\fBvoid\fP \fBoperator()\fP (\fBtlm_analysis_if\fP< \fBT\fP > &\fB_if\fP)"
+.br
+.ti -1c
+.RI "\fBvirtual\fP \fBbool\fP \fBunbind\fP (\fBtlm_analysis_if\fP< \fBT\fP > &\fB_if\fP)"
+.br
+.ti -1c
+.RI "\fBvoid\fP \fBwrite\fP (\fBconst\fP \fBT\fP &t)"
+.br
+.in -1c
+
+Public Member Functions inherited from \fBsc_core::sc_object\fP
+.in +1c
+.ti -1c
+.RI "\fBconst\fP \fBchar\fP * \fBname\fP () \fBconst\fP"
+.br
+.ti -1c
+.RI "\fBconst\fP \fBchar\fP * \fBbasename\fP () \fBconst\fP"
+.br
+.ti -1c
+.RI "\fBvirtual\fP \fBvoid\fP \fBprint\fP (::std::ostream &\fBos\fP=::std::cout) \fBconst\fP"
+.br
+.ti -1c
+.RI "\fBvirtual\fP \fBvoid\fP \fBdump\fP (::std::ostream &\fBos\fP=::std::cout) \fBconst\fP"
+.br
+.ti -1c
+.RI "\fBvirtual\fP \fBvoid\fP \fBtrace\fP (\fBsc_trace_file\fP *tf) \fBconst\fP"
+.br
+.ti -1c
+.RI "\fBvirtual\fP \fBconst\fP \fBchar\fP * \fBkind\fP () \fBconst\fP"
+.br
+.ti -1c
+.RI "\fBsc_simcontext\fP * \fBsimcontext\fP () \fBconst\fP"
+.br
+.ti -1c
+.RI "\fBbool\fP \fBadd_attribute\fP (\fBsc_attr_base\fP &)"
+.br
+.ti -1c
+.RI "\fBsc_attr_base\fP * \fBget_attribute\fP (\fBconst\fP std::string &\fBname_\fP)"
+.br
+.ti -1c
+.RI "\fBconst\fP \fBsc_attr_base\fP * \fBget_attribute\fP (\fBconst\fP std::string &\fBname_\fP) \fBconst\fP"
+.br
+.ti -1c
+.RI "\fBsc_attr_base\fP * \fBremove_attribute\fP (\fBconst\fP std::string &\fBname_\fP)"
+.br
+.ti -1c
+.RI "\fBvoid\fP \fBremove_all_attributes\fP ()"
+.br
+.ti -1c
+.RI "int \fBnum_attributes\fP () \fBconst\fP"
+.br
+.ti -1c
+.RI "\fBsc_attr_cltn\fP & \fBattr_cltn\fP ()"
+.br
+.ti -1c
+.RI "\fBconst\fP \fBsc_attr_cltn\fP & \fBattr_cltn\fP () \fBconst\fP"
+.br
+.ti -1c
+.RI "\fBvirtual\fP \fBconst\fP std::vector< \fBsc_event\fP * > & \fBget_child_events\fP () \fBconst\fP"
+.br
+.ti -1c
+.RI "\fBvirtual\fP \fBconst\fP std::vector< \fBsc_object\fP * > & \fBget_child_objects\fP () \fBconst\fP"
+.br
+.ti -1c
+.RI "\fBsc_object\fP * \fBget_parent\fP () \fBconst\fP"
+.br
+.ti -1c
+.RI "\fBsc_object\fP * \fBget_parent_object\fP () \fBconst\fP"
+.br
+.in -1c
+
+Public Member Functions inherited from \fBsc_core::sc_interface\fP
+.in +1c
+.ti -1c
+.RI "\fBvirtual\fP \fBvoid\fP \fBregister_port\fP (\fBsc_port_base\fP &\fBport_\fP, \fBconst\fP \fBchar\fP *\fBif_typename_\fP)"
+.br
+.ti -1c
+.RI "\fBvirtual\fP \fBconst\fP \fBsc_event\fP & \fBdefault_event\fP () \fBconst\fP"
+.br
+.ti -1c
+.RI "\fBvirtual\fP \fB~sc_interface\fP ()"
+.br
+.in -1c
+.SS "Private Attributes"
+
+.in +1c
+.ti -1c
+.RI "std::deque< \fBtlm_analysis_if\fP< \fBT\fP > * > \fBm_interfaces\fP"
+.br
+.in -1c
+.SS "Additional Inherited Members"
+
+
+Public Types inherited from \fBsc_core::sc_object\fP
+.in +1c
+.ti -1c
+.RI "\fBtypedef\fP \fBunsigned\fP \fBphase_cb_mask\fP"
+.br
+.in -1c
+
+Protected Member Functions inherited from \fBsc_core::sc_object\fP
+.in +1c
+.ti -1c
+.RI "\fBsc_object\fP ()"
+.br
+.ti -1c
+.RI "\fBsc_object\fP (\fBconst\fP \fBchar\fP *\fBnm\fP)"
+.br
+.ti -1c
+.RI "\fBsc_object\fP (\fBconst\fP \fBsc_object\fP &)"
+.br
+.ti -1c
+.RI "\fBsc_object\fP & \fBoperator=\fP (\fBconst\fP \fBsc_object\fP &)"
+.br
+.ti -1c
+.RI "\fBvirtual\fP \fB~sc_object\fP ()"
+.br
+.ti -1c
+.RI "\fBvirtual\fP \fBvoid\fP \fBadd_child_event\fP (\fBsc_event\fP *\fBevent_p\fP)"
+.br
+.ti -1c
+.RI "\fBvirtual\fP \fBvoid\fP \fBadd_child_object\fP (\fBsc_object\fP *\fBobject_p\fP)"
+.br
+.ti -1c
+.RI "\fBvirtual\fP \fBbool\fP \fBremove_child_event\fP (\fBsc_event\fP *\fBevent_p\fP)"
+.br
+.ti -1c
+.RI "\fBvirtual\fP \fBbool\fP \fBremove_child_object\fP (\fBsc_object\fP *\fBobject_p\fP)"
+.br
+.ti -1c
+.RI "\fBphase_cb_mask\fP \fBregister_simulation_phase_callback\fP (\fBphase_cb_mask\fP)"
+.br
+.ti -1c
+.RI "\fBphase_cb_mask\fP \fBunregister_simulation_phase_callback\fP (\fBphase_cb_mask\fP)"
+.br
+.in -1c
+
+Protected Member Functions inherited from \fBsc_core::sc_interface\fP
+.in +1c
+.ti -1c
+.RI "\fBsc_interface\fP ()"
+.br
+.in -1c
+.SH "Constructor & Destructor Documentation"
+.PP 
+.SS "template<\fBtypename\fP \fBT\fP > \fBtlm::tlm_analysis_port\fP< \fBT\fP >::tlm_analysis_port ()\fR [inline]\fP"
+
+.SS "template<\fBtypename\fP \fBT\fP > \fBtlm::tlm_analysis_port\fP< \fBT\fP >::tlm_analysis_port (\fBconst\fP \fBchar\fP * nm)\fR [inline]\fP"
+
+.SH "Member Function Documentation"
+.PP 
+.SS "template<\fBtypename\fP \fBT\fP > \fBvirtual\fP \fBvoid\fP \fBtlm::tlm_analysis_port\fP< \fBT\fP >::bind (\fBtlm_analysis_if\fP< \fBT\fP > & _if)\fR [inline]\fP, \fR [virtual]\fP"
+
+.SS "template<\fBtypename\fP \fBT\fP > \fBvoid\fP \fBtlm::tlm_analysis_port\fP< \fBT\fP >\fB::operator\fP() (\fBtlm_analysis_if\fP< \fBT\fP > & _if)\fR [inline]\fP"
+
+.SS "template<\fBtypename\fP \fBT\fP > \fBvirtual\fP \fBbool\fP \fBtlm::tlm_analysis_port\fP< \fBT\fP >::unbind (\fBtlm_analysis_if\fP< \fBT\fP > & _if)\fR [inline]\fP, \fR [virtual]\fP"
+
+.SS "template<\fBtypename\fP \fBT\fP > \fBvoid\fP \fBtlm::tlm_analysis_port\fP< \fBT\fP >::write (\fBconst\fP \fBT\fP & t)\fR [inline]\fP, \fR [virtual]\fP"
+
+.PP
+Implements \fBtlm::tlm_write_if< T >\fP\&.
+.SH "Member Data Documentation"
+.PP 
+.SS "template<\fBtypename\fP \fBT\fP > std::deque< \fBtlm_analysis_if\fP<\fBT\fP> * > \fBtlm::tlm_analysis_port\fP< \fBT\fP >::m_interfaces\fR [private]\fP"
+
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for VHDL simulator from the source code\&.

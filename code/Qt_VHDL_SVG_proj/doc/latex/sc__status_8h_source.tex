@@ -1,0 +1,91 @@
+\doxysection{sc\+\_\+status.\+h}
+\hypertarget{sc__status_8h_source}{}\label{sc__status_8h_source}\index{C:/Users/BJRODIER/Documents/QT\_REPO/QT\_VHDL\_simulator/code/Ressources/SystemC/include/sysc/kernel/sc\_status.h@{C:/Users/BJRODIER/Documents/QT\_REPO/QT\_VHDL\_simulator/code/Ressources/SystemC/include/sysc/kernel/sc\_status.h}}
+\mbox{\hyperlink{sc__status_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{comment}{/*****************************************************************************}}
+\DoxyCodeLine{00002\ \textcolor{comment}{}}
+\DoxyCodeLine{00003\ \textcolor{comment}{\ \ Licensed\ to\ Accellera\ Systems\ Initiative\ Inc.\ (Accellera)\ under\ one\ or}}
+\DoxyCodeLine{00004\ \textcolor{comment}{\ \ more\ contributor\ license\ agreements.\ \ See\ the\ NOTICE\ file\ distributed}}
+\DoxyCodeLine{00005\ \textcolor{comment}{\ \ with\ this\ work\ for\ additional\ information\ regarding\ copyright\ ownership.}}
+\DoxyCodeLine{00006\ \textcolor{comment}{\ \ Accellera\ licenses\ this\ file\ to\ you\ under\ the\ Apache\ License,\ Version\ 2.0}}
+\DoxyCodeLine{00007\ \textcolor{comment}{\ \ (the\ "{}License"{});\ you\ may\ not\ use\ this\ file\ except\ in\ compliance\ with\ the}}
+\DoxyCodeLine{00008\ \textcolor{comment}{\ \ License.\ \ You\ may\ obtain\ a\ copy\ of\ the\ License\ at}}
+\DoxyCodeLine{00009\ \textcolor{comment}{}}
+\DoxyCodeLine{00010\ \textcolor{comment}{\ \ \ \ http://www.apache.org/licenses/LICENSE-\/2.0}}
+\DoxyCodeLine{00011\ \textcolor{comment}{}}
+\DoxyCodeLine{00012\ \textcolor{comment}{\ \ Unless\ required\ by\ applicable\ law\ or\ agreed\ to\ in\ writing,\ software}}
+\DoxyCodeLine{00013\ \textcolor{comment}{\ \ distributed\ under\ the\ License\ is\ distributed\ on\ an\ "{}AS\ IS"{}\ BASIS,}}
+\DoxyCodeLine{00014\ \textcolor{comment}{\ \ WITHOUT\ WARRANTIES\ OR\ CONDITIONS\ OF\ ANY\ KIND,\ either\ express\ or}}
+\DoxyCodeLine{00015\ \textcolor{comment}{\ \ implied.\ \ See\ the\ License\ for\ the\ specific\ language\ governing}}
+\DoxyCodeLine{00016\ \textcolor{comment}{\ \ permissions\ and\ limitations\ under\ the\ License.}}
+\DoxyCodeLine{00017\ \textcolor{comment}{}}
+\DoxyCodeLine{00018\ \textcolor{comment}{\ *****************************************************************************/}}
+\DoxyCodeLine{00019\ }
+\DoxyCodeLine{00020\ \textcolor{comment}{/*****************************************************************************}}
+\DoxyCodeLine{00021\ \textcolor{comment}{}}
+\DoxyCodeLine{00022\ \textcolor{comment}{\ \ sc\_status.h\ -\/-\/\ Definition\ of\ the\ simulation\ phases}}
+\DoxyCodeLine{00023\ \textcolor{comment}{}}
+\DoxyCodeLine{00024\ \textcolor{comment}{\ \ Original\ Author:\ Philipp\ A.\ Hartmann,\ OFFIS,\ 2013-\/02-\/15}}
+\DoxyCodeLine{00025\ \textcolor{comment}{}}
+\DoxyCodeLine{00026\ \textcolor{comment}{\ \ CHANGE\ LOG\ AT\ THE\ END\ OF\ THE\ FILE}}
+\DoxyCodeLine{00027\ \textcolor{comment}{\ *****************************************************************************/}}
+\DoxyCodeLine{00028\ }
+\DoxyCodeLine{00029\ \textcolor{preprocessor}{\#ifndef\ SC\_STATUS\_H\_INCLUDED\_}}
+\DoxyCodeLine{00030\ \textcolor{preprocessor}{\#define\ SC\_STATUS\_H\_INCLUDED\_}}
+\DoxyCodeLine{00031\ }
+\DoxyCodeLine{00032\ \textcolor{preprocessor}{\#include\ <iosfwd>}}
+\DoxyCodeLine{00033\ }
+\DoxyCodeLine{00034\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{sc__cmnhdr_8h}{sysc/kernel/sc\_cmnhdr.h}}"{}}}
+\DoxyCodeLine{00035\ }
+\DoxyCodeLine{00036\ \textcolor{keyword}{namespace\ }\mbox{\hyperlink{namespacesc__core}{sc\_core}}\ \{}
+\DoxyCodeLine{00037\ }
+\DoxyCodeLine{00038\ \textcolor{comment}{//\ simulation\ status\ codes}}
+\DoxyCodeLine{00039\ }
+\DoxyCodeLine{00040\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{namespacesc__core_a00a38e60f2d1fa6e159ca47a2fa89566}{SC\_SIM\_OK}}\ \ \ \ \ \ \ \ =\ 0;}
+\DoxyCodeLine{00041\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{namespacesc__core_a270935f762cca1d68a62bec14131ee43}{SC\_SIM\_ERROR}}\ \ \ \ \ =\ 1;}
+\DoxyCodeLine{00042\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{namespacesc__core_a223357780185a4cef86c12e316537713}{SC\_SIM\_USER\_STOP}}\ =\ 2;}
+\DoxyCodeLine{00043\ }
+\DoxyCodeLine{00044\ \textcolor{keyword}{enum}\ \mbox{\hyperlink{namespacesc__core_a4a011831fb5bb25a3cfd217e8c2227f3}{sc\_status}}}
+\DoxyCodeLine{00045\ \{\ \ \ \textcolor{comment}{//\ sc\_get\_status\ values:}}
+\DoxyCodeLine{00046\ \ \ \ \ \mbox{\hyperlink{namespacesc__core_a4a011831fb5bb25a3cfd217e8c2227f3a30e52f9c3f6f99e642c809def0009b6e}{SC\_UNITIALIZED}}=0x00,\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ initialize()\ not\ called\ yet}}
+\DoxyCodeLine{00047\ }
+\DoxyCodeLine{00048\ \ \ \ \ \mbox{\hyperlink{namespacesc__core_a4a011831fb5bb25a3cfd217e8c2227f3ab3bf1ea23134285c41c66dbfd2c1e11f}{SC\_ELABORATION}}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ =\ 0x01,\ \textcolor{comment}{//\ during\ module\ hierarchy\ construction}}
+\DoxyCodeLine{00049\ \ \ \ \ \mbox{\hyperlink{namespacesc__core_a4a011831fb5bb25a3cfd217e8c2227f3acf77174ce41f4178f3c7cb06f56aa930}{SC\_BEFORE\_END\_OF\_ELABORATION}}\ =\ 0x02,\ \textcolor{comment}{//\ during\ before\_end\_of\_elaboration()}}
+\DoxyCodeLine{00050\ \ \ \ \ \mbox{\hyperlink{namespacesc__core_a4a011831fb5bb25a3cfd217e8c2227f3a2f2a69ac781207a71385a11a2296fbd2}{SC\_END\_OF\_ELABORATION}}\ \ \ \ \ \ \ \ =\ 0x04,\ \textcolor{comment}{//\ during\ end\_of\_elaboration()}}
+\DoxyCodeLine{00051\ \ \ \ \ \mbox{\hyperlink{namespacesc__core_a4a011831fb5bb25a3cfd217e8c2227f3afae4c033c34efff45159278010c1cb28}{SC\_START\_OF\_SIMULATION}}\ \ \ \ \ \ \ =\ 0x08,\ \textcolor{comment}{//\ during\ start\_of\_simulation()}}
+\DoxyCodeLine{00052\ }
+\DoxyCodeLine{00053\ \ \ \ \ \mbox{\hyperlink{namespacesc__core_a4a011831fb5bb25a3cfd217e8c2227f3ac842e49e579b5219ef5e665a9b5ce0d7}{SC\_RUNNING}}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ =\ 0x10,\ \textcolor{comment}{//\ initialization,\ evaluation\ or\ update}}
+\DoxyCodeLine{00054\ \ \ \ \ \mbox{\hyperlink{namespacesc__core_a4a011831fb5bb25a3cfd217e8c2227f3ada46de21f2252ddd4c666a8d8a4b509b}{SC\_PAUSED}}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ =\ 0x20,\ \textcolor{comment}{//\ when\ scheduler\ stopped\ by\ sc\_pause()}}
+\DoxyCodeLine{00055\ \ \ \ \ \mbox{\hyperlink{namespacesc__core_a4a011831fb5bb25a3cfd217e8c2227f3ac64b65b3429b2399634aed07c855a45f}{SC\_STOPPED}}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ =\ 0x40,\ \textcolor{comment}{//\ when\ scheduler\ stopped\ by\ sc\_stop()}}
+\DoxyCodeLine{00056\ \ \ \ \ \mbox{\hyperlink{namespacesc__core_a4a011831fb5bb25a3cfd217e8c2227f3a4e8683788dcc245aada3e65011b2991f}{SC\_END\_OF\_SIMULATION}}\ \ \ \ \ \ \ \ \ =\ 0x80,\ \textcolor{comment}{//\ during\ end\_of\_simulation()}}
+\DoxyCodeLine{00057\ }
+\DoxyCodeLine{00058\ \ \ \ \ \textcolor{comment}{//\ detailed\ simulation\ phases\ (for\ dynamic\ callbacks)}}
+\DoxyCodeLine{00059\ \ \ \ \ \mbox{\hyperlink{namespacesc__core_a4a011831fb5bb25a3cfd217e8c2227f3af14cda6865356591c5b6cba4668a5dbd}{SC\_END\_OF\_INITIALIZATION}}\ \ \ \ \ =\ 0x100,\ \textcolor{comment}{//\ after\ initialization}}
+\DoxyCodeLine{00060\ \textcolor{comment}{//\ \ \ \ SC\_END\_OF\_EVALUATION\ \ \ \ \ \ \ \ \ =\ 0x200,\ //\ between\ eval\ and\ update}}
+\DoxyCodeLine{00061\ \ \ \ \ \mbox{\hyperlink{namespacesc__core_a4a011831fb5bb25a3cfd217e8c2227f3a8a1143202208f041a4088a576f419a0b}{SC\_END\_OF\_UPDATE}}\ \ \ \ \ \ \ \ \ \ \ \ \ =\ 0x400,\ \textcolor{comment}{//\ after\ update/notify\ phase}}
+\DoxyCodeLine{00062\ \ \ \ \ \mbox{\hyperlink{namespacesc__core_a4a011831fb5bb25a3cfd217e8c2227f3a237f8c759d3fbe8eac7848b84d0d8000}{SC\_BEFORE\_TIMESTEP}}\ \ \ \ \ \ \ \ \ \ \ =\ 0x800,\ \textcolor{comment}{//\ before\ next\ time\ step}}
+\DoxyCodeLine{00063\ }
+\DoxyCodeLine{00064\ \ \ \ \ \mbox{\hyperlink{namespacesc__core_a4a011831fb5bb25a3cfd217e8c2227f3a1e74ceeda601128c3bfc5fdad9a60561}{SC\_STATUS\_LAST}}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ =\ \mbox{\hyperlink{namespacesc__core_a4a011831fb5bb25a3cfd217e8c2227f3a237f8c759d3fbe8eac7848b84d0d8000}{SC\_BEFORE\_TIMESTEP}},}
+\DoxyCodeLine{00065\ \ \ \ \ \mbox{\hyperlink{namespacesc__core_a4a011831fb5bb25a3cfd217e8c2227f3a7218b1d4f9ea285269cbda69edfd42c9}{SC\_STATUS\_ANY}}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ =\ 0xdff}
+\DoxyCodeLine{00066\ \};}
+\DoxyCodeLine{00067\ }
+\DoxyCodeLine{00068\ \textcolor{comment}{//\ pretty-\/printing\ of\ sc\_status\ values}}
+\DoxyCodeLine{00069\ \mbox{\hyperlink{sc__cmnhdr_8h_aff4a86b3f5de3ac2097081e7166fe89f}{SC\_API}}\ std::ostream\&\ \mbox{\hyperlink{namespacesc__core_a34d93a50921eda641d10eda314b888da}{operator\ <<\ }}(\ std::ostream\&,\ \mbox{\hyperlink{namespacesc__core_a4a011831fb5bb25a3cfd217e8c2227f3}{sc\_status}}\ );}
+\DoxyCodeLine{00070\ }
+\DoxyCodeLine{00071\ \}\ \textcolor{comment}{//\ namespace\ sc\_core}}
+\DoxyCodeLine{00072\ }
+\DoxyCodeLine{00073\ \textcolor{comment}{/*****************************************************************************}}
+\DoxyCodeLine{00074\ \textcolor{comment}{}}
+\DoxyCodeLine{00075\ \textcolor{comment}{\ \ MODIFICATION\ LOG\ -\/\ modifiers,\ enter\ your\ name,\ affiliation,\ date\ and}}
+\DoxyCodeLine{00076\ \textcolor{comment}{\ \ changes\ you\ are\ making\ here.}}
+\DoxyCodeLine{00077\ \textcolor{comment}{}}
+\DoxyCodeLine{00078\ \textcolor{comment}{\ \ \ \ \ \ Name,\ Affiliation,\ Date:}}
+\DoxyCodeLine{00079\ \textcolor{comment}{\ \ Description\ of\ Modification:}}
+\DoxyCodeLine{00080\ \textcolor{comment}{}}
+\DoxyCodeLine{00081\ \textcolor{comment}{\ *****************************************************************************/}}
+\DoxyCodeLine{00082\ }
+\DoxyCodeLine{00083\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{/*\ SC\_STATUS\_H\_INCLUDED\_\ */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{00084\ \textcolor{comment}{//\ Taf!}}
+\DoxyCodeLine{00085\ }
+
+\end{DoxyCode}

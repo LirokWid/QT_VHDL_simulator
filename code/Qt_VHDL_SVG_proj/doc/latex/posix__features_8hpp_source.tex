@@ -1,0 +1,93 @@
+\doxysection{posix\+\_\+features.\+hpp}
+\hypertarget{posix__features_8hpp_source}{}\label{posix__features_8hpp_source}\index{C:/Users/BJRODIER/Documents/QT\_REPO/QT\_VHDL\_simulator/code/Ressources/SystemC/include/sysc/packages/boost/config/posix\_features.hpp@{C:/Users/BJRODIER/Documents/QT\_REPO/QT\_VHDL\_simulator/code/Ressources/SystemC/include/sysc/packages/boost/config/posix\_features.hpp}}
+\mbox{\hyperlink{posix__features_8hpp}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{comment}{//\ \ (C)\ Copyright\ John\ Maddock\ 2001\ -\/\ 2003.\ }}
+\DoxyCodeLine{00002\ \textcolor{comment}{//\ \ Use,\ modification\ and\ distribution\ are\ subject\ to\ the\ }}
+\DoxyCodeLine{00003\ \textcolor{comment}{//\ \ Boost\ Software\ License,\ Version\ 1.0.\ (See\ accompanying\ file\ }}
+\DoxyCodeLine{00004\ \textcolor{comment}{//\ \ LICENSE\_1\_0.txt\ or\ copy\ at\ http://www.boost.org/LICENSE\_1\_0.txt)}}
+\DoxyCodeLine{00005\ }
+\DoxyCodeLine{00006\ }
+\DoxyCodeLine{00007\ \textcolor{comment}{//\ \ See\ http://www.boost.org\ for\ most\ recent\ version.}}
+\DoxyCodeLine{00008\ }
+\DoxyCodeLine{00009\ \textcolor{comment}{//\ All\ POSIX\ feature\ tests\ go\ in\ this\ file,}}
+\DoxyCodeLine{00010\ \textcolor{comment}{//\ Note\ that\ we\ test\ \_POSIX\_C\_SOURCE\ and\ \_XOPEN\_SOURCE\ as\ well}}
+\DoxyCodeLine{00011\ \textcolor{comment}{//\ \_POSIX\_VERSION\ and\ \_XOPEN\_VERSION:\ on\ some\ systems\ POSIX\ API's}}
+\DoxyCodeLine{00012\ \textcolor{comment}{//\ may\ be\ present\ but\ none-\/functional\ unless\ \_POSIX\_C\_SOURCE\ and}}
+\DoxyCodeLine{00013\ \textcolor{comment}{//\ \_XOPEN\_SOURCE\ have\ been\ defined\ to\ the\ right\ value\ (it's\ up}}
+\DoxyCodeLine{00014\ \textcolor{comment}{//\ to\ the\ user\ to\ do\ this\ *before*\ including\ any\ header,\ although}}
+\DoxyCodeLine{00015\ \textcolor{comment}{//\ in\ most\ cases\ the\ compiler\ will\ do\ this\ for\ you).}}
+\DoxyCodeLine{00016\ }
+\DoxyCodeLine{00017\ \textcolor{preprocessor}{\#\ \ if\ defined(SC\_BOOST\_HAS\_UNISTD\_H)}}
+\DoxyCodeLine{00018\ \textcolor{preprocessor}{\#\ \ \ \ \ include\ <unistd.h>}}
+\DoxyCodeLine{00019\ }
+\DoxyCodeLine{00020\ \ \ \ \ \ \ \textcolor{comment}{//\ XOpen\ has\ <nl\_types.h>,\ but\ is\ this\ the\ correct\ version\ check?}}
+\DoxyCodeLine{00021\ \textcolor{preprocessor}{\#\ \ \ \ \ if\ defined(\_XOPEN\_VERSION)\ \&\&\ (\_XOPEN\_VERSION\ >=\ 3)}}
+\DoxyCodeLine{00022\ \textcolor{preprocessor}{\#\ \ \ \ \ \ \ \ define\ SC\_BOOST\_HAS\_NL\_TYPES\_H}}
+\DoxyCodeLine{00023\ \textcolor{preprocessor}{\#\ \ \ \ \ endif}}
+\DoxyCodeLine{00024\ }
+\DoxyCodeLine{00025\ \ \ \ \ \ \ \textcolor{comment}{//\ POSIX\ version\ 6\ requires\ <stdint.h>}}
+\DoxyCodeLine{00026\ \textcolor{preprocessor}{\#\ \ \ \ \ if\ defined(\_POSIX\_VERSION)\ \&\&\ (\_POSIX\_VERSION\ >=\ 200100)}}
+\DoxyCodeLine{00027\ \textcolor{preprocessor}{\#\ \ \ \ \ \ \ \ define\ SC\_BOOST\_HAS\_STDINT\_H}}
+\DoxyCodeLine{00028\ \textcolor{preprocessor}{\#\ \ \ \ \ endif}}
+\DoxyCodeLine{00029\ }
+\DoxyCodeLine{00030\ \ \ \ \ \ \ \textcolor{comment}{//\ POSIX\ version\ 2\ requires\ <dirent.h>}}
+\DoxyCodeLine{00031\ \textcolor{preprocessor}{\#\ \ \ \ \ if\ defined(\_POSIX\_VERSION)\ \&\&\ (\_POSIX\_VERSION\ >=\ 199009L)}}
+\DoxyCodeLine{00032\ \textcolor{preprocessor}{\#\ \ \ \ \ \ \ \ define\ SC\_BOOST\_HAS\_DIRENT\_H}}
+\DoxyCodeLine{00033\ \textcolor{preprocessor}{\#\ \ \ \ \ endif}}
+\DoxyCodeLine{00034\ }
+\DoxyCodeLine{00035\ \ \ \ \ \ \ \textcolor{comment}{//\ POSIX\ version\ 3\ requires\ <signal.h>\ to\ have\ sigaction:}}
+\DoxyCodeLine{00036\ \textcolor{preprocessor}{\#\ \ \ \ \ if\ defined(\_POSIX\_VERSION)\ \&\&\ (\_POSIX\_VERSION\ >=\ 199506L)}}
+\DoxyCodeLine{00037\ \textcolor{preprocessor}{\#\ \ \ \ \ \ \ \ define\ SC\_BOOST\_HAS\_SIGACTION}}
+\DoxyCodeLine{00038\ \textcolor{preprocessor}{\#\ \ \ \ \ endif}}
+\DoxyCodeLine{00039\ \ \ \ \ \ \ \textcolor{comment}{//\ POSIX\ defines\ \_POSIX\_THREADS\ >\ 0\ for\ pthread\ support,}}
+\DoxyCodeLine{00040\ \ \ \ \ \ \ \textcolor{comment}{//\ however\ some\ platforms\ define\ \_POSIX\_THREADS\ without}}
+\DoxyCodeLine{00041\ \ \ \ \ \ \ \textcolor{comment}{//\ a\ value,\ hence\ the\ (\_POSIX\_THREADS+0\ >=\ 0)\ check.}}
+\DoxyCodeLine{00042\ \ \ \ \ \ \ \textcolor{comment}{//\ Strictly\ speaking\ this\ may\ catch\ platforms\ with\ a}}
+\DoxyCodeLine{00043\ \ \ \ \ \ \ \textcolor{comment}{//\ non-\/functioning\ stub\ <pthreads.h>,\ but\ such\ occurrences\ should}}
+\DoxyCodeLine{00044\ \ \ \ \ \ \ \textcolor{comment}{//\ occur\ very\ rarely\ if\ at\ all.}}
+\DoxyCodeLine{00045\ \textcolor{preprocessor}{\#\ \ \ \ \ if\ defined(\_POSIX\_THREADS)\ \&\&\ (\_POSIX\_THREADS+0\ >=\ 0)\ \&\&\ !defined(SC\_BOOST\_HAS\_WINTHREADS)\ \&\&\ !defined(SC\_BOOST\_HAS\_MPTASKS)}}
+\DoxyCodeLine{00046\ \textcolor{preprocessor}{\#\ \ \ \ \ \ \ \ define\ SC\_BOOST\_HAS\_PTHREADS}}
+\DoxyCodeLine{00047\ \textcolor{preprocessor}{\#\ \ \ \ \ endif}}
+\DoxyCodeLine{00048\ }
+\DoxyCodeLine{00049\ \ \ \ \ \ \ \textcolor{comment}{//\ SC\_BOOST\_HAS\_NANOSLEEP:}}
+\DoxyCodeLine{00050\ \ \ \ \ \ \ \textcolor{comment}{//\ This\ is\ predicated\ on\ \_POSIX\_TIMERS\ or\ \_XOPEN\_REALTIME:}}
+\DoxyCodeLine{00051\ \textcolor{preprocessor}{\#\ \ \ \ \ if\ (defined(\_POSIX\_TIMERS)\ \&\&\ (\_POSIX\_TIMERS+0\ >=\ 0))\ \(\backslash\)}}
+\DoxyCodeLine{00052\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ \ \ \ \ \ ||\ (defined(\_XOPEN\_REALTIME)\ \&\&\ (\_XOPEN\_REALTIME+0\ >=\ 0))}}
+\DoxyCodeLine{00053\ \textcolor{preprocessor}{\#\ \ \ \ \ \ \ \ define\ SC\_BOOST\_HAS\_NANOSLEEP}}
+\DoxyCodeLine{00054\ \textcolor{preprocessor}{\#\ \ \ \ \ endif}}
+\DoxyCodeLine{00055\ }
+\DoxyCodeLine{00056\ \ \ \ \ \ \ \textcolor{comment}{//\ SC\_BOOST\_HAS\_CLOCK\_GETTIME:}}
+\DoxyCodeLine{00057\ \ \ \ \ \ \ \textcolor{comment}{//\ This\ is\ predicated\ on\ \_POSIX\_TIMERS\ (also\ on\ \_XOPEN\_REALTIME}}
+\DoxyCodeLine{00058\ \ \ \ \ \ \ \textcolor{comment}{//\ but\ at\ least\ one\ platform\ -\/\ linux\ -\/\ defines\ that\ flag\ without}}
+\DoxyCodeLine{00059\ \ \ \ \ \ \ \textcolor{comment}{//\ defining\ clock\_gettime):}}
+\DoxyCodeLine{00060\ \textcolor{preprocessor}{\#\ \ \ \ \ if\ (defined(\_POSIX\_TIMERS)\ \&\&\ (\_POSIX\_TIMERS+0\ >=\ 0))}}
+\DoxyCodeLine{00061\ \textcolor{preprocessor}{\#\ \ \ \ \ \ \ \ define\ SC\_BOOST\_HAS\_CLOCK\_GETTIME}}
+\DoxyCodeLine{00062\ \textcolor{preprocessor}{\#\ \ \ \ \ endif}}
+\DoxyCodeLine{00063\ }
+\DoxyCodeLine{00064\ \ \ \ \ \ \ \textcolor{comment}{//\ SC\_BOOST\_HAS\_SCHED\_YIELD:}}
+\DoxyCodeLine{00065\ \ \ \ \ \ \ \textcolor{comment}{//\ This\ is\ predicated\ on\ \_POSIX\_PRIORITY\_SCHEDULING\ or}}
+\DoxyCodeLine{00066\ \ \ \ \ \ \ \textcolor{comment}{//\ on\ \_POSIX\_THREAD\_PRIORITY\_SCHEDULING\ or\ on\ \_XOPEN\_REALTIME.}}
+\DoxyCodeLine{00067\ \textcolor{preprocessor}{\#\ \ \ \ \ if\ defined(\_POSIX\_PRIORITY\_SCHEDULING)\ \&\&\ (\_POSIX\_PRIORITY\_SCHEDULING+0\ >\ 0)\(\backslash\)}}
+\DoxyCodeLine{00068\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ \ \ \ \ ||\ (defined(\_POSIX\_THREAD\_PRIORITY\_SCHEDULING)\ \&\&\ (\_POSIX\_THREAD\_PRIORITY\_SCHEDULING+0\ >\ 0))\(\backslash\)}}
+\DoxyCodeLine{00069\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ \ \ \ \ ||\ (defined(\_XOPEN\_REALTIME)\ \&\&\ (\_XOPEN\_REALTIME+0\ >=\ 0))}}
+\DoxyCodeLine{00070\ \textcolor{preprocessor}{\#\ \ \ \ \ \ \ \ define\ SC\_BOOST\_HAS\_SCHED\_YIELD}}
+\DoxyCodeLine{00071\ \textcolor{preprocessor}{\#\ \ \ \ \ endif}}
+\DoxyCodeLine{00072\ }
+\DoxyCodeLine{00073\ \ \ \ \ \ \ \textcolor{comment}{//\ SC\_BOOST\_HAS\_GETTIMEOFDAY:}}
+\DoxyCodeLine{00074\ \ \ \ \ \ \ \textcolor{comment}{//\ SC\_BOOST\_HAS\_PTHREAD\_MUTEXATTR\_SETTYPE:}}
+\DoxyCodeLine{00075\ \ \ \ \ \ \ \textcolor{comment}{//\ These\ are\ predicated\ on\ \_XOPEN\_VERSION,\ and\ appears\ to\ be\ first\ released}}
+\DoxyCodeLine{00076\ \ \ \ \ \ \ \textcolor{comment}{//\ in\ issue\ 4,\ version\ 2\ (\_XOPEN\_VERSION\ >\ 500).}}
+\DoxyCodeLine{00077\ \textcolor{preprocessor}{\#\ \ \ \ \ if\ defined(\_XOPEN\_VERSION)\ \&\&\ (\_XOPEN\_VERSION+0\ >=\ 500)}}
+\DoxyCodeLine{00078\ \textcolor{preprocessor}{\#\ \ \ \ \ \ \ \ define\ SC\_BOOST\_HAS\_GETTIMEOFDAY}}
+\DoxyCodeLine{00079\ \textcolor{preprocessor}{\#\ \ \ \ \ \ \ \ if\ defined(\_XOPEN\_SOURCE)\ \&\&\ (\_XOPEN\_SOURCE+0\ >=\ 500)}}
+\DoxyCodeLine{00080\ \textcolor{preprocessor}{\#\ \ \ \ \ \ \ \ \ \ \ define\ SC\_BOOST\_HAS\_PTHREAD\_MUTEXATTR\_SETTYPE}}
+\DoxyCodeLine{00081\ \textcolor{preprocessor}{\#\ \ \ \ \ \ \ \ endif}}
+\DoxyCodeLine{00082\ \textcolor{preprocessor}{\#\ \ \ \ \ endif}}
+\DoxyCodeLine{00083\ }
+\DoxyCodeLine{00084\ \textcolor{preprocessor}{\#\ \ endif}}
+\DoxyCodeLine{00085\ }
+\DoxyCodeLine{00086\ }
+\DoxyCodeLine{00087\ }
+
+\end{DoxyCode}

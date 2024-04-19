@@ -1,0 +1,258 @@
+\doxysection{sc\+\_\+counter.\+h}
+\hypertarget{_qt___v_h_d_l___s_v_g__proj_2systemc__modules_2sc__counter_8h_source}{}\label{_qt___v_h_d_l___s_v_g__proj_2systemc__modules_2sc__counter_8h_source}\index{systemc\_modules/sc\_counter.h@{systemc\_modules/sc\_counter.h}}
+\mbox{\hyperlink{_qt___v_h_d_l___s_v_g__proj_2systemc__modules_2sc__counter_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#ifndef\ SC\_COUNTER\_H}}
+\DoxyCodeLine{00002\ \textcolor{preprocessor}{\#define\ SC\_COUNTER\_H}}
+\DoxyCodeLine{00003\ }
+\DoxyCodeLine{00004\ \textcolor{preprocessor}{\#include\ <\mbox{\hyperlink{systemc_8h}{systemc.h}}>}}
+\DoxyCodeLine{00005\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{sc__config_8h}{sc\_config.h}}"{}}}
+\DoxyCodeLine{00006\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_qt___v_h_d_l___s_v_g__proj_2systemc__modules_2sc__reg_8h}{sc\_reg.h}}"{}}}
+\DoxyCodeLine{00007\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_qt___v_h_d_l___s_v_g__proj_2systemc__modules_2sc__flexint_8h}{sc\_flexint.h}}"{}}}
+\DoxyCodeLine{00008\ }
+\DoxyCodeLine{00009\ \mbox{\hyperlink{sc__module_8h_a0e65c5055705b9e5f558d3f0ec28a120}{SC\_MODULE}}\ (\mbox{\hyperlink{class_sysc_add__pv}{scCounter}})\ \{}
+\DoxyCodeLine{00010\ \ \ \ \ \textcolor{comment}{//\ -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/\ \ \ \ \ \ Ports\ \ \ \ \ \ -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{00011\ \ \ \ \ \mbox{\hyperlink{classsc__core_1_1sc__in_3_01bool_01_4}{sc\_in\_clk}}\ \ \ \ \ \ \ \ \ \ \ clock\{\textcolor{stringliteral}{"{}clock"{}}\};\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Falling-\/edge\ active\ clock\ input}}
+\DoxyCodeLine{00012\ \ \ \ \ \mbox{\hyperlink{class_sysc_add__pv}{sc\_in<bool>}}\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_sysc_add__pv}{reset\_i}}\{\textcolor{stringliteral}{"{}reset\_i"{}}\};\ \ \ \ \ \textcolor{comment}{//\ Active-\/high\ synchronous\ reset\ input}}
+\DoxyCodeLine{00013\ \ \ \ \ \mbox{\hyperlink{class_sysc_add__pv}{sc\_in<bool>}}\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_sysc_add__pv}{enable\_i}}\{\textcolor{stringliteral}{"{}enable\_i"{}}\};\ \ \ \textcolor{comment}{//\ Active-\/high\ enable\ input}}
+\DoxyCodeLine{00014\ \ \ \ \ \mbox{\hyperlink{class_sysc_add__pv}{sc\_out<sc\_lv<32>}}>\ \ \ \mbox{\hyperlink{class_sysc_add__pv}{q\_o}}\{\textcolor{stringliteral}{"{}q\_o"{}}\};\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ 32\ bit\ data\ output}}
+\DoxyCodeLine{00015\ }
+\DoxyCodeLine{00016\ \ \ \ \ \textcolor{comment}{//\ -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/\ Local\ variables\ -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{00017\ \ \ \ \ \textcolor{keywordtype}{bool}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ rst\_level;\ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Module\ parameter\ (aka\ "{}VHDL\ generic"{})}}
+\DoxyCodeLine{00018\ \ \ \ \ \textcolor{keywordtype}{bool}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ ena\_level;\ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Module\ parameter\ (aka\ "{}VHDL\ generic"{})}}
+\DoxyCodeLine{00019\ }
+\DoxyCodeLine{00020\ \ \ \ \ \textcolor{comment}{//\ Constructor\ for\ the\ scRegister}}
+\DoxyCodeLine{00021\ \ \ \ \ \mbox{\hyperlink{sc__module_8h_a6d981485fe8c8c7ea1a42fcd4487e6a1}{SC\_CTOR}}(\mbox{\hyperlink{class_sysc_add__pv}{scCounter}})\ \{}
+\DoxyCodeLine{00022\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{sc__module_8h_a78f626bc71b853c1f8618e74ec6f0512}{SC\_THREAD}}(\mbox{\hyperlink{class_sysc_add__pv}{doCount}});}
+\DoxyCodeLine{00023\ \ \ \ \ \ \ \ \ rst\_level\ =\ \mbox{\hyperlink{sc__config_8cpp_aebb09933de1d68f92fbae8866c91df6b}{sc\_getRstActLevel}}();}
+\DoxyCodeLine{00024\ \ \ \ \ \ \ \ \ ena\_level\ =\ \mbox{\hyperlink{sc__config_8cpp_ad1ec236fcf636edda90e65289da76df8}{sc\_getEnaActLevel}}();}
+\DoxyCodeLine{00025\ \ \ \ \ \ \ \ \ sensitive\ <<\ \mbox{\hyperlink{class_sysc_add__pv}{reset\_i}};}
+\DoxyCodeLine{00026\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\mbox{\hyperlink{sc__config_8cpp_a9fa8e3a406e94f63d746393a379900ec}{sc\_getClkActEdge}}())\ \{}
+\DoxyCodeLine{00027\ \ \ \ \ \ \ \ \ \ \ \ \ sensitive\ <<\ clock.pos();}
+\DoxyCodeLine{00028\ \ \ \ \ \ \ \ \ \}\ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{00029\ \ \ \ \ \ \ \ \ \ \ \ \ sensitive\ <<\ clock.neg();}
+\DoxyCodeLine{00030\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00031\ \ \ \ \ \}}
+\DoxyCodeLine{00032\ }
+\DoxyCodeLine{00033\ \ \ \ \ \textcolor{comment}{//\ Actual\ scCounter\ logic}}
+\DoxyCodeLine{00034\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_sysc_add__pv}{doCount}}\ ()\ \{}
+\DoxyCodeLine{00035\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{while}(1)\ \{}
+\DoxyCodeLine{00036\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\mbox{\hyperlink{class_sysc_add__pv}{reset\_i}}.read()\ ==\ rst\_level)\ \{}
+\DoxyCodeLine{00037\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_sysc_add__pv}{q\_o}}.write(0);}
+\DoxyCodeLine{00038\ \ \ \ \ \ \ \ \ \ \ \ \ \}\ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}\ (\mbox{\hyperlink{class_sysc_add__pv}{enable\_i}}.read()\ ==\ ena\_level)\ \{}
+\DoxyCodeLine{00039\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_sysc_add__pv}{q\_o}}.write(\mbox{\hyperlink{class_sysc_add__pv}{q\_o}}.read().to\_int64()+1);}
+\DoxyCodeLine{00040\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00041\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacesc__core_a3c8b4f07530fb5b54f3a6896e4ef68c3}{wait}}();}
+\DoxyCodeLine{00042\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00043\ \ \ \ \ \}}
+\DoxyCodeLine{00044\ \};}
+\DoxyCodeLine{00045\ }
+\DoxyCodeLine{00046\ }
+\DoxyCodeLine{00047\ \mbox{\hyperlink{_qt___v_h_d_l___s_v_g__proj_2systemc__modules_2sc__counter_8h_aa7033458958f0f9d4225f4e0c524607b}{SC\_FLEXINT\_MODULE}}\ (\mbox{\hyperlink{class_sysc_add__pv}{scFlexCounter}})\ \{}
+\DoxyCodeLine{00048\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00049\ \ \ \ \ \textcolor{comment}{//\ -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/\ \ \ \ \ \ Ports\ \ \ \ \ \ -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{00050\ \ \ \ \ \textcolor{comment}{//\ Provided\ by\ base\ module\ scFlexModuleT}}
+\DoxyCodeLine{00051\ \ \ \ \ \textcolor{comment}{//\ sc\_in\_clk\ \ \ \ \ \ \ \ \ clock\{"{}clock"{}\};\ \ \ \ //\ Clock\ input\ (FLEXINT:\ custom\ active\ edge)}}
+\DoxyCodeLine{00052\ \ \ \ \ \textcolor{comment}{//\ sc\_in<bool>\ \ \ \ \ \ \ reset\{"{}reset"{}\};\ \ \ \ //\ Asynchronous\ reset\ input\ (FLEXINT:\ possibly\ unmapped,\ custom\ active\ level)}}
+\DoxyCodeLine{00053\ \ \ \ \ \textcolor{comment}{//\ sc\_in<bool>\ \ \ \ \ \ \ enable\{"{}enable"{}\};\ \ //\ Synchronous\ enable\ input\ (FLEXINT:\ possibly\ unmapped,\ custom\ active\ level)}}
+\DoxyCodeLine{00054\ \ \ \ \ \mbox{\hyperlink{class_sysc_add__pv}{sc\_out<sc\_lv<32>}}>\ \ \ \mbox{\hyperlink{class_sysc_add__pv}{q\_o}}\{\textcolor{stringliteral}{"{}q\_o"{}}\};\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ 32\ bit\ data\ output}}
+\DoxyCodeLine{00055\ }
+\DoxyCodeLine{00056\ \ \ \ \ \textcolor{comment}{//\ Constructor\ for\ the\ scRegister}}
+\DoxyCodeLine{00057\ \ \ \ \ \mbox{\hyperlink{sc__module_8h_a6d981485fe8c8c7ea1a42fcd4487e6a1}{SC\_CTOR}}(\mbox{\hyperlink{class_sysc_add__pv}{scFlexCounter}})\ \{}
+\DoxyCodeLine{00058\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{sc__module_8h_a78f626bc71b853c1f8618e74ec6f0512}{SC\_THREAD}}(\mbox{\hyperlink{class_sysc_add__pv}{doCount}});}
+\DoxyCodeLine{00059\ \ \ \ \ \ \ \ \ this-\/>doSensitive();}
+\DoxyCodeLine{00060\ \ \ \ \ \}}
+\DoxyCodeLine{00061\ }
+\DoxyCodeLine{00062\ \ \ \ \ \textcolor{comment}{//\ Actual\ scCounter\ logic}}
+\DoxyCodeLine{00063\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_sysc_add__pv}{doCount}}\ ()\ \{}
+\DoxyCodeLine{00064\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{while}(1)\ \{}
+\DoxyCodeLine{00065\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (this-\/>bResetAction())\ \{}
+\DoxyCodeLine{00066\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_sysc_add__pv}{q\_o}}.write(0);}
+\DoxyCodeLine{00067\ \ \ \ \ \ \ \ \ \ \ \ \ \}\ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}\ (this-\/>bEnableAction())\ \{}
+\DoxyCodeLine{00068\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_sysc_add__pv}{q\_o}}.write(\mbox{\hyperlink{class_sysc_add__pv}{q\_o}}.read().to\_int64()+1);}
+\DoxyCodeLine{00069\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00070\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacesc__core_a3c8b4f07530fb5b54f3a6896e4ef68c3}{wait}}();}
+\DoxyCodeLine{00071\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00072\ \ \ \ \ \}}
+\DoxyCodeLine{00073\ \};}
+\DoxyCodeLine{00074\ }
+\DoxyCodeLine{00075\ }
+\DoxyCodeLine{00076\ \mbox{\hyperlink{_qt___v_h_d_l___s_v_g__proj_2systemc__modules_2sc__counter_8h_aef6e71c7e9f609123e8fffa25af5e359}{SC\_FLEXINT\_MODULE\_T}}\ (\mbox{\hyperlink{class_sysc_add__pv}{scFlexCounterT}},\textcolor{keyword}{typename}\ \mbox{\hyperlink{mem__fn__cc_8hpp_adf1f3edb9115acb0a1e04209b7a9937b}{T}})\ \{}
+\DoxyCodeLine{00077\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00078\ \ \ \ \ \textcolor{comment}{//\ -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/\ \ \ \ \ \ Ports\ \ \ \ \ \ -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{00079\ \ \ \ \ \textcolor{comment}{//\ Provided\ by\ base\ module\ scFlexModuleT}}
+\DoxyCodeLine{00080\ \ \ \ \ \textcolor{comment}{//\ sc\_in\_clk\ \ \ \ \ \ \ \ \ clock\{"{}clock"{}\};\ \ \ \ //\ Clock\ input\ (FLEXINT:\ custom\ active\ edge)}}
+\DoxyCodeLine{00081\ \ \ \ \ \textcolor{comment}{//\ sc\_in<bool>\ \ \ \ \ \ \ reset\{"{}reset"{}\};\ \ \ \ //\ Asynchronous\ reset\ input\ (FLEXINT:\ possibly\ unmapped,\ custom\ active\ level)}}
+\DoxyCodeLine{00082\ \ \ \ \ \textcolor{comment}{//\ sc\_in<bool>\ \ \ \ \ \ \ enable\{"{}enable"{}\};\ \ //\ Synchronous\ enable\ input\ (FLEXINT:\ possibly\ unmapped,\ custom\ active\ level)}}
+\DoxyCodeLine{00083\ \ \ \ \ \mbox{\hyperlink{class_sysc_add__pv}{sc\_out<T>}}\ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_sysc_add__pv}{q\_o}}\{\textcolor{stringliteral}{"{}q\_o"{}}\};\ \ \ \ \ \ \ \ \textcolor{comment}{//\ Counter\ output}}
+\DoxyCodeLine{00084\ }
+\DoxyCodeLine{00085\ \ \ \ \ \textcolor{comment}{//\ Constructor\ for\ the\ scRegister}}
+\DoxyCodeLine{00086\ \ \ \ \ \mbox{\hyperlink{sc__module_8h_a6d981485fe8c8c7ea1a42fcd4487e6a1}{SC\_CTOR}}(\mbox{\hyperlink{class_sysc_add__pv}{scFlexCounterT}})\ \{}
+\DoxyCodeLine{00087\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{sc__module_8h_a78f626bc71b853c1f8618e74ec6f0512}{SC\_THREAD}}(\mbox{\hyperlink{class_sysc_add__pv}{doCount}});}
+\DoxyCodeLine{00088\ \ \ \ \ \ \ \ \ this-\/>doSensitive();}
+\DoxyCodeLine{00089\ \ \ \ \ \}}
+\DoxyCodeLine{00090\ }
+\DoxyCodeLine{00091\ \ \ \ \ \textcolor{comment}{//\ Actual\ scCounter\ logic}}
+\DoxyCodeLine{00092\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_sysc_add__pv}{doCount}}\ ()\ \{}
+\DoxyCodeLine{00093\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{while}(1)\ \{}
+\DoxyCodeLine{00094\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (this-\/>bResetAction())\ \{}
+\DoxyCodeLine{00095\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_sysc_add__pv}{q\_o}}.write(0);}
+\DoxyCodeLine{00096\ \ \ \ \ \ \ \ \ \ \ \ \ \}\ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}\ (this-\/>bEnableAction())\ \{}
+\DoxyCodeLine{00097\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ \textcolor{keyword}{constexpr}(\mbox{\hyperlink{structis__boolean}{is\_boolean<T>::value}})\ \{}
+\DoxyCodeLine{00098\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Boolean\ types\ don't\ have\ members\ like\ is\_01()\ /\ read(),\ can't\ add}}
+\DoxyCodeLine{00099\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_sysc_add__pv}{q\_o}}.write(!\mbox{\hyperlink{class_sysc_add__pv}{q\_o}}.read());}
+\DoxyCodeLine{00100\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ cout\ <<\ "{}@"{}\ <<\ sc\_time\_stamp()\ <<\ "{}scFlexCounterT()\ <bool>\ updated\ "{}\ <<\ !q\_o.read()\ <<\ endl;}}
+\DoxyCodeLine{00101\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}\ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}\ \textcolor{keyword}{constexpr}(std::is\_integral<T>::value)\ \{}
+\DoxyCodeLine{00102\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Integral\ types\ don't\ have\ members\ like\ is\_01()\ /\ read()}}
+\DoxyCodeLine{00103\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_sysc_add__pv}{q\_o}}.write(\mbox{\hyperlink{class_sysc_add__pv}{q\_o}}.read()\ +\ 1);}
+\DoxyCodeLine{00104\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ cout\ <<\ \textcolor{stringliteral}{"{}@"{}}\ <<\ \mbox{\hyperlink{namespacesc__core_a60634a7c4c8c70a106e518d4a03d4a86}{sc\_time\_stamp}}()\ <<\ \textcolor{stringliteral}{"{}scFlexCounterT()\ <integral>\ updated\ "{}}\ <<\ \mbox{\hyperlink{class_sysc_add__pv}{q\_o}}.read()+1\ <<\ endl;}
+\DoxyCodeLine{00105\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}\ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}\ \textcolor{keyword}{constexpr}(std::is\_floating\_point<T>::value)\ \{}
+\DoxyCodeLine{00106\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Floating-\/point\ types\ don't\ have\ members\ like\ is\_01()\ /\ read()}}
+\DoxyCodeLine{00107\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_sysc_add__pv}{q\_o}}.write(\mbox{\hyperlink{class_sysc_add__pv}{q\_o}}.read()\ +\ 1.0);}
+\DoxyCodeLine{00108\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ cout\ <<\ "{}@"{}\ <<\ sc\_time\_stamp()\ <<\ "{}scFlexCounterT()\ <FP>\ updated\ "{}\ <<\ q\_o.read()+1.0\ <<\ endl;}}
+\DoxyCodeLine{00109\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}\ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{00110\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Other\ datatypes\ do\ have\ members\ like\ is\_01()\ /\ read()}}
+\DoxyCodeLine{00111\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\mbox{\hyperlink{class_sysc_add__pv}{q\_o}}.read().is\_01())\ \{}
+\DoxyCodeLine{00112\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_sysc_add__pv}{q\_o}}.write(\mbox{\hyperlink{class_sysc_add__pv}{q\_o}}.read().to\_uint64()\ +\ 1);}
+\DoxyCodeLine{00113\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ cout\ <<\ "{}@"{}\ <<\ sc\_time\_stamp()\ <<\ "{}scFlexCounterT()\ <T>\ updated,\ is\_01()\ "{}\ <<\ q\_o.read().to\_uint64()+1.0\ <<\ endl;}}
+\DoxyCodeLine{00114\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}\ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{00115\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_sysc_add__pv}{q\_o}}.write(\mbox{\hyperlink{class_sysc_add__pv}{q\_o}}.read());}
+\DoxyCodeLine{00116\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ cout\ <<\ "{}@"{}\ <<\ sc\_time\_stamp()\ <<\ "{}scFlexCounterT()\ <T>\ updated,\ !is\_01()\ "{}\ <<\ q\_o.read()\ <<\ endl;}}
+\DoxyCodeLine{00117\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00118\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00119\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00120\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacesc__core_a3c8b4f07530fb5b54f3a6896e4ef68c3}{wait}}();}
+\DoxyCodeLine{00121\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00122\ \ \ \ \ \}}
+\DoxyCodeLine{00123\ \};}
+\DoxyCodeLine{00124\ }
+\DoxyCodeLine{00125\ }
+\DoxyCodeLine{00126\ }
+\DoxyCodeLine{00127\ }
+\DoxyCodeLine{00128\ \mbox{\hyperlink{sc__module_8h_a0e65c5055705b9e5f558d3f0ec28a120}{SC\_MODULE}}\ (\mbox{\hyperlink{class_sysc_add__pv}{scCounterStructural}})\ \{}
+\DoxyCodeLine{00129\ \ \ \ \ \textcolor{comment}{//\ -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/\ \ \ \ \ \ Ports\ \ \ \ \ \ -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{00130\ \ \ \ \ \mbox{\hyperlink{classsc__core_1_1sc__in_3_01bool_01_4}{sc\_in\_clk}}\ \ \ \ \ \ \ \ \ \ \ clock\{\textcolor{stringliteral}{"{}clock"{}}\};\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Falling-\/edge\ active\ clock\ input}}
+\DoxyCodeLine{00131\ \ \ \ \ \mbox{\hyperlink{class_sysc_add__pv}{sc\_in<bool>}}\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_sysc_add__pv}{reset\_i}}\{\textcolor{stringliteral}{"{}reset\_i"{}}\};\ \ \ \ \ \textcolor{comment}{//\ Active-\/high\ synchronous\ reset\ input}}
+\DoxyCodeLine{00132\ \ \ \ \ \mbox{\hyperlink{class_sysc_add__pv}{sc\_in<bool>}}\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_sysc_add__pv}{enable\_i}}\{\textcolor{stringliteral}{"{}enable\_i"{}}\};\ \ \ \textcolor{comment}{//\ Active-\/high\ enable\ input}}
+\DoxyCodeLine{00133\ \ \ \ \ \mbox{\hyperlink{class_sysc_add__pv}{sc\_out<sc\_lv<32>}}>\ \ \ \mbox{\hyperlink{class_sysc_add__pv}{q\_o}}\{\textcolor{stringliteral}{"{}q\_o"{}}\};\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ 32\ bit\ data\ output}}
+\DoxyCodeLine{00134\ \ \ \ \ \textcolor{comment}{//\ -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/\ Intenal\ signals\ -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{00135\ \ \ \ \ \mbox{\hyperlink{class_sysc_add__pv}{sc\_signal<sc\_lv<32>}}>\ \mbox{\hyperlink{class_sysc_add__pv}{q\_i}}\{\textcolor{stringliteral}{"{}q\_i"{}}\};}
+\DoxyCodeLine{00136\ \ \ \ \ \textcolor{comment}{//\ -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/\ Internal\ blocks\ -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{00137\ \ \ \ \ \mbox{\hyperlink{class_sysc_add__pv}{scFlexRegisterT<sc\_lv<32>}}>\ \mbox{\hyperlink{class_sysc_add__pv}{reg}}\ \{\textcolor{stringliteral}{"{}REG"{}}\};}
+\DoxyCodeLine{00138\ }
+\DoxyCodeLine{00139\ \ \ \ \ \mbox{\hyperlink{sc__module_8h_a6d981485fe8c8c7ea1a42fcd4487e6a1}{SC\_CTOR}}(\mbox{\hyperlink{class_sysc_add__pv}{scCounterStructural}})\ \{}
+\DoxyCodeLine{00140\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{sc__module_8h_a78f626bc71b853c1f8618e74ec6f0512}{SC\_THREAD}}(\mbox{\hyperlink{class_sysc_add__pv}{structure}});}
+\DoxyCodeLine{00141\ \ \ \ \ \ \ \ \ sensitive\ <<\ \mbox{\hyperlink{class_sysc_add__pv}{q\_o}};}
+\DoxyCodeLine{00142\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_sysc_add__pv}{reg}}.clock(clock);}
+\DoxyCodeLine{00143\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_sysc_add__pv}{reg}}.reset(\mbox{\hyperlink{class_sysc_add__pv}{reset\_i}});}
+\DoxyCodeLine{00144\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_sysc_add__pv}{reg}}.enable(\mbox{\hyperlink{class_sysc_add__pv}{enable\_i}});}
+\DoxyCodeLine{00145\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_sysc_add__pv}{reg}}.\mbox{\hyperlink{class_sysc_logic_gate__pv_a5a0a8fa4e09518647a7775e867b28c85}{d}}(\mbox{\hyperlink{class_sysc_add__pv}{q\_i}});}
+\DoxyCodeLine{00146\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_sysc_add__pv}{reg}}.q(\mbox{\hyperlink{class_sysc_add__pv}{q\_o}});}
+\DoxyCodeLine{00147\ \ \ \ \ \}}
+\DoxyCodeLine{00148\ }
+\DoxyCodeLine{00149\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_sysc_add__pv}{structure}}()\ \{}
+\DoxyCodeLine{00150\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{while}\ (1)\ \{}
+\DoxyCodeLine{00151\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\mbox{\hyperlink{class_sysc_add__pv}{reg}}.q.read().is\_01())\ \{}
+\DoxyCodeLine{00152\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_sysc_add__pv}{q\_i}}.write(\mbox{\hyperlink{class_sysc_add__pv}{q\_o}}.read().to\_uint64()\ +\ 1);}
+\DoxyCodeLine{00153\ \ \ \ \ \ \ \ \ \ \ \ \ \}\ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{00154\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_sysc_add__pv}{q\_i}}.write(\mbox{\hyperlink{class_sysc_add__pv}{q\_o}}.read());}
+\DoxyCodeLine{00155\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00156\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacesc__core_a3c8b4f07530fb5b54f3a6896e4ef68c3}{wait}}();}
+\DoxyCodeLine{00157\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00158\ \ \ \ \ \}}
+\DoxyCodeLine{00159\ \};}
+\DoxyCodeLine{00160\ }
+\DoxyCodeLine{00161\ }
+\DoxyCodeLine{00162\ \mbox{\hyperlink{_qt___v_h_d_l___s_v_g__proj_2systemc__modules_2sc__counter_8h_aa7033458958f0f9d4225f4e0c524607b}{SC\_FLEXINT\_MODULE}}\ (\mbox{\hyperlink{class_sysc_add__pv}{scFlexCounterStructural}})\ \{}
+\DoxyCodeLine{00163\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00164\ \ \ \ \ \textcolor{comment}{//\ -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/\ \ \ \ \ \ Ports\ \ \ \ \ \ -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{00165\ \ \ \ \ \textcolor{comment}{//\ Provided\ by\ base\ module\ scFlexModuleT}}
+\DoxyCodeLine{00166\ \ \ \ \ \textcolor{comment}{//\ sc\_in\_clk\ \ \ \ \ \ \ \ \ clock\{"{}clock"{}\};\ \ \ \ //\ Clock\ input\ (FLEXINT:\ custom\ active\ edge)}}
+\DoxyCodeLine{00167\ \ \ \ \ \textcolor{comment}{//\ sc\_in<bool>\ \ \ \ \ \ \ reset\{"{}reset"{}\};\ \ \ \ //\ Asynchronous\ reset\ input\ (FLEXINT:\ possibly\ unmapped,\ custom\ active\ level)}}
+\DoxyCodeLine{00168\ \ \ \ \ \textcolor{comment}{//\ sc\_in<bool>\ \ \ \ \ \ \ enable\{"{}enable"{}\};\ \ //\ Synchronous\ enable\ input\ (FLEXINT:\ possibly\ unmapped,\ custom\ active\ level)}}
+\DoxyCodeLine{00169\ \ \ \ \ \mbox{\hyperlink{class_sysc_add__pv}{sc\_out<sc\_lv<32>}}>\ \ \ \ \mbox{\hyperlink{class_sysc_add__pv}{q\_o}}\{\textcolor{stringliteral}{"{}q\_o"{}}\};\ \ \ \ \ \ \ \ \textcolor{comment}{//\ 32\ bit\ data\ output}}
+\DoxyCodeLine{00170\ \ \ \ \ \textcolor{comment}{//\ -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/\ Intenal\ signals\ -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{00171\ \ \ \ \ \mbox{\hyperlink{class_sysc_add__pv}{sc\_signal<sc\_lv<32>}}>\ \mbox{\hyperlink{class_sysc_add__pv}{q\_i}}\{\textcolor{stringliteral}{"{}q\_i"{}}\};}
+\DoxyCodeLine{00172\ \ \ \ \ \textcolor{comment}{//\ -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/\ Internal\ blocks\ -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{00173\ \ \ \ \ \mbox{\hyperlink{class_sysc_add__pv}{scFlexRegisterT<sc\_lv<32>}}>\ \mbox{\hyperlink{class_sysc_add__pv}{reg}}\ \{\textcolor{stringliteral}{"{}REG"{}}\};}
+\DoxyCodeLine{00174\ }
+\DoxyCodeLine{00175\ \ \ \ \ \textcolor{comment}{//\ Constructor\ for\ the\ scRegister}}
+\DoxyCodeLine{00176\ \ \ \ \ \mbox{\hyperlink{sc__module_8h_a6d981485fe8c8c7ea1a42fcd4487e6a1}{SC\_CTOR}}(\mbox{\hyperlink{class_sysc_add__pv}{scFlexCounterStructural}})\ \{}
+\DoxyCodeLine{00177\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{sc__module_8h_a78f626bc71b853c1f8618e74ec6f0512}{SC\_THREAD}}(\mbox{\hyperlink{class_sysc_add__pv}{structure}});}
+\DoxyCodeLine{00178\ \ \ \ \ \ \ \ \ this-\/>doSensitive();}
+\DoxyCodeLine{00179\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_sysc_add__pv}{reg}}.clock(this-\/>clock);}
+\DoxyCodeLine{00180\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_sysc_add__pv}{reg}}.reset(this-\/>reset);}
+\DoxyCodeLine{00181\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_sysc_add__pv}{reg}}.enable(this-\/>enable);}
+\DoxyCodeLine{00182\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_sysc_add__pv}{reg}}.\mbox{\hyperlink{class_sysc_logic_gate__pv_a5a0a8fa4e09518647a7775e867b28c85}{d}}(this-\/>\mbox{\hyperlink{class_sysc_add__pv}{q\_i}});}
+\DoxyCodeLine{00183\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_sysc_add__pv}{reg}}.q(this-\/>\mbox{\hyperlink{class_sysc_add__pv}{q\_o}});}
+\DoxyCodeLine{00184\ \ \ \ \ \}}
+\DoxyCodeLine{00185\ }
+\DoxyCodeLine{00186\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_sysc_add__pv}{structure}}()\ \{}
+\DoxyCodeLine{00187\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{while}\ (1)\ \{}
+\DoxyCodeLine{00188\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\mbox{\hyperlink{class_sysc_add__pv}{reg}}.q.read().is\_01())\ \{}
+\DoxyCodeLine{00189\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_sysc_add__pv}{q\_i}}.write(\mbox{\hyperlink{class_sysc_add__pv}{q\_o}}.read().to\_uint64()\ +\ 1);}
+\DoxyCodeLine{00190\ \ \ \ \ \ \ \ \ \ \ \ \ \}\ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{00191\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_sysc_add__pv}{q\_i}}.write(\mbox{\hyperlink{class_sysc_add__pv}{q\_o}}.read());}
+\DoxyCodeLine{00192\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00193\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacesc__core_a3c8b4f07530fb5b54f3a6896e4ef68c3}{wait}}();}
+\DoxyCodeLine{00194\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00195\ \ \ \ \ \}}
+\DoxyCodeLine{00196\ \};}
+\DoxyCodeLine{00197\ }
+\DoxyCodeLine{00198\ }
+\DoxyCodeLine{00199\ \mbox{\hyperlink{_qt___v_h_d_l___s_v_g__proj_2systemc__modules_2sc__counter_8h_aef6e71c7e9f609123e8fffa25af5e359}{SC\_FLEXINT\_MODULE\_T}}\ (\mbox{\hyperlink{class_sysc_add__pv}{scFlexCounterStructuralT}},\textcolor{keyword}{typename}\ \mbox{\hyperlink{mem__fn__cc_8hpp_adf1f3edb9115acb0a1e04209b7a9937b}{T}})\ \{}
+\DoxyCodeLine{00200\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00201\ \ \ \ \ \textcolor{comment}{//\ -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/\ \ \ \ \ \ Ports\ \ \ \ \ \ -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{00202\ \ \ \ \ \textcolor{comment}{//\ Provided\ by\ base\ module\ scFlexModuleT}}
+\DoxyCodeLine{00203\ \ \ \ \ \textcolor{comment}{//\ sc\_in\_clk\ \ \ \ \ \ \ \ \ clock\{"{}clock"{}\};\ \ \ \ //\ Clock\ input\ (FLEXINT:\ custom\ active\ edge)}}
+\DoxyCodeLine{00204\ \ \ \ \ \textcolor{comment}{//\ sc\_in<bool>\ \ \ \ \ \ \ reset\{"{}reset"{}\};\ \ \ \ //\ Asynchronous\ reset\ input\ (FLEXINT:\ possibly\ unmapped,\ custom\ active\ level)}}
+\DoxyCodeLine{00205\ \ \ \ \ \textcolor{comment}{//\ sc\_in<bool>\ \ \ \ \ \ \ enable\{"{}enable"{}\};\ \ //\ Synchronous\ enable\ input\ (FLEXINT:\ possibly\ unmapped,\ custom\ active\ level)}}
+\DoxyCodeLine{00206\ \ \ \ \ \mbox{\hyperlink{class_sysc_add__pv}{sc\_out<T>}}\ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_sysc_add__pv}{q\_o}}\{\textcolor{stringliteral}{"{}q\_o"{}}\};\ \ \ \ \ \ \ \ \textcolor{comment}{//\ 32\ bit\ data\ output}}
+\DoxyCodeLine{00207\ \ \ \ \ \textcolor{comment}{//\ -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/\ Intenal\ signals\ -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{00208\ \ \ \ \ \mbox{\hyperlink{class_sysc_add__pv}{sc\_signal<T>}}\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_sysc_add__pv}{q\_i}}\{\textcolor{stringliteral}{"{}q\_i"{}}\};}
+\DoxyCodeLine{00209\ \ \ \ \ \textcolor{comment}{//\ -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/\ Internal\ blocks\ -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{00210\ \ \ \ \ \mbox{\hyperlink{class_sysc_add__pv}{scFlexRegisterT<T>}}\ \ \ \mbox{\hyperlink{class_sysc_add__pv}{reg}}\ \{\textcolor{stringliteral}{"{}REG"{}}\};}
+\DoxyCodeLine{00211\ }
+\DoxyCodeLine{00212\ \ \ \ \ \textcolor{comment}{//\ Constructor\ for\ the\ scRegister}}
+\DoxyCodeLine{00213\ \ \ \ \ \mbox{\hyperlink{sc__module_8h_a6d981485fe8c8c7ea1a42fcd4487e6a1}{SC\_CTOR}}(\mbox{\hyperlink{class_sysc_add__pv}{scFlexCounterStructuralT}})\ \{}
+\DoxyCodeLine{00214\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{sc__module_8h_a78f626bc71b853c1f8618e74ec6f0512}{SC\_THREAD}}(\mbox{\hyperlink{class_sysc_add__pv}{structure}});}
+\DoxyCodeLine{00215\ \ \ \ \ \ \ \ \ this-\/>doSensitive();}
+\DoxyCodeLine{00216\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_sysc_add__pv}{reg}}.clock(this-\/>clock);}
+\DoxyCodeLine{00217\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_sysc_add__pv}{reg}}.reset(this-\/>reset);}
+\DoxyCodeLine{00218\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_sysc_add__pv}{reg}}.enable(this-\/>enable);}
+\DoxyCodeLine{00219\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_sysc_add__pv}{reg}}.\mbox{\hyperlink{class_sysc_logic_gate__pv_a5a0a8fa4e09518647a7775e867b28c85}{d}}(this-\/>\mbox{\hyperlink{class_sysc_add__pv}{q\_i}});}
+\DoxyCodeLine{00220\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_sysc_add__pv}{reg}}.q(this-\/>\mbox{\hyperlink{class_sysc_add__pv}{q\_o}});}
+\DoxyCodeLine{00221\ \ \ \ \ \}}
+\DoxyCodeLine{00222\ }
+\DoxyCodeLine{00223\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_sysc_add__pv}{structure}}()\ \{}
+\DoxyCodeLine{00224\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{while}\ (1)\ \{}
+\DoxyCodeLine{00225\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ \textcolor{keyword}{constexpr}(\mbox{\hyperlink{structis__boolean}{is\_boolean<T>::value}})\ \{}
+\DoxyCodeLine{00226\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Boolean\ types\ don't\ have\ members\ like\ is\_01()\ /\ read(),\ can't\ add}}
+\DoxyCodeLine{00227\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_sysc_add__pv}{q\_i}}.write(!\mbox{\hyperlink{class_sysc_add__pv}{q\_o}}.read());}
+\DoxyCodeLine{00228\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ cout\ <<\ "{}@"{}\ <<\ sc\_time\_stamp()\ <<\ "{}scFlexCounterStructuralT()\ <bool>\ updated\ "{}\ <<\ !q\_o.read()\ <<\ endl;}}
+\DoxyCodeLine{00229\ \ \ \ \ \ \ \ \ \ \ \ \ \}\ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}\ \textcolor{keyword}{constexpr}(std::is\_integral<T>::value)\ \{}
+\DoxyCodeLine{00230\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Integral\ types\ don't\ have\ members\ like\ is\_01()\ /\ read()}}
+\DoxyCodeLine{00231\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_sysc_add__pv}{q\_i}}.write(\mbox{\hyperlink{class_sysc_add__pv}{q\_o}}.read()\ +\ 1);}
+\DoxyCodeLine{00232\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ cout\ <<\ \textcolor{stringliteral}{"{}@"{}}\ <<\ \mbox{\hyperlink{namespacesc__core_a60634a7c4c8c70a106e518d4a03d4a86}{sc\_time\_stamp}}()\ <<\ \textcolor{stringliteral}{"{}scFlexCounterStructuralT()\ <integral>\ updated\ "{}}\ <<\ \mbox{\hyperlink{class_sysc_add__pv}{q\_o}}.read()+1\ <<\ endl;}
+\DoxyCodeLine{00233\ \ \ \ \ \ \ \ \ \ \ \ \ \}\ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}\ \textcolor{keyword}{constexpr}(std::is\_floating\_point<T>::value)\ \{}
+\DoxyCodeLine{00234\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Floating-\/point\ types\ don't\ have\ members\ like\ is\_01()\ /\ read()}}
+\DoxyCodeLine{00235\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_sysc_add__pv}{q\_i}}.write(\mbox{\hyperlink{class_sysc_add__pv}{q\_o}}.read()\ +\ 1.0);}
+\DoxyCodeLine{00236\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ cout\ <<\ "{}@"{}\ <<\ sc\_time\_stamp()\ <<\ "{}scFlexCounterStructuralT()\ <FP>\ updated\ "{}\ <<\ q\_o.read()+1.0\ <<\ endl;}}
+\DoxyCodeLine{00237\ \ \ \ \ \ \ \ \ \ \ \ \ \}\ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{00238\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Other\ datatypes\ do\ have\ members\ like\ is\_01()\ /\ read()}}
+\DoxyCodeLine{00239\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\mbox{\hyperlink{class_sysc_add__pv}{reg}}.q.read().is\_01())\ \{}
+\DoxyCodeLine{00240\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_sysc_add__pv}{q\_i}}.write(\mbox{\hyperlink{class_sysc_add__pv}{q\_o}}.read().to\_uint64()\ +\ 1);}
+\DoxyCodeLine{00241\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ cout\ <<\ "{}@"{}\ <<\ sc\_time\_stamp()\ <<\ "{}scFlexCounterStructuralT()\ <T>\ updated,\ is\_01()\ "{}\ <<\ q\_o.read().to\_uint64()+1.0\ <<\ endl;}}
+\DoxyCodeLine{00242\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}\ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{00243\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_sysc_add__pv}{q\_i}}.write(\mbox{\hyperlink{class_sysc_add__pv}{q\_o}}.read());}
+\DoxyCodeLine{00244\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ cout\ <<\ "{}@"{}\ <<\ sc\_time\_stamp()\ <<\ "{}scFlexCounterStructuralT()\ <T>\ updated,\ !is\_01()\ "{}\ <<\ q\_o.read()\ <<\ endl;}}
+\DoxyCodeLine{00245\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00246\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00247\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacesc__core_a3c8b4f07530fb5b54f3a6896e4ef68c3}{wait}}();}
+\DoxyCodeLine{00248\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00249\ \ \ \ \ \}}
+\DoxyCodeLine{00250\ \};}
+\DoxyCodeLine{00251\ }
+\DoxyCodeLine{00252\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{//\ SC\_COUNTER\_H}}
+
+\end{DoxyCode}

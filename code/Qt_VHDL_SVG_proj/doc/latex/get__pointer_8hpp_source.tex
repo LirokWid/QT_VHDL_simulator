@@ -1,0 +1,62 @@
+\doxysection{get\+\_\+pointer.\+hpp}
+\hypertarget{get__pointer_8hpp_source}{}\label{get__pointer_8hpp_source}\index{C:/Users/BJRODIER/Documents/QT\_REPO/QT\_VHDL\_simulator/code/Ressources/SystemC/include/sysc/packages/boost/get\_pointer.hpp@{C:/Users/BJRODIER/Documents/QT\_REPO/QT\_VHDL\_simulator/code/Ressources/SystemC/include/sysc/packages/boost/get\_pointer.hpp}}
+\mbox{\hyperlink{get__pointer_8hpp}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{comment}{//\ Copyright\ Peter\ Dimov\ and\ David\ Abrahams\ 2002.}}
+\DoxyCodeLine{00002\ \textcolor{comment}{//\ Distributed\ under\ the\ Boost\ Software\ License,\ Version\ 1.0.\ (See}}
+\DoxyCodeLine{00003\ \textcolor{comment}{//\ accompanying\ file\ LICENSE\_1\_0.txt\ or\ copy\ at}}
+\DoxyCodeLine{00004\ \textcolor{comment}{//\ http://www.boost.org/LICENSE\_1\_0.txt)}}
+\DoxyCodeLine{00005\ \textcolor{preprocessor}{\#ifndef\ SC\_GET\_POINTER\_DWA20021219\_HPP}}
+\DoxyCodeLine{00006\ \textcolor{preprocessor}{\#\ define\ SC\_GET\_POINTER\_DWA20021219\_HPP}}
+\DoxyCodeLine{00007\ }
+\DoxyCodeLine{00008\ \textcolor{preprocessor}{\#\ include\ <memory>}}
+\DoxyCodeLine{00009\ }
+\DoxyCodeLine{00010\ \textcolor{keyword}{namespace\ }\mbox{\hyperlink{namespacesc__boost}{sc\_boost}}\ \{\ }
+\DoxyCodeLine{00011\ }
+\DoxyCodeLine{00012\ \textcolor{comment}{//\ get\_pointer(p)\ extracts\ a\ -\/>*\ capable\ pointer\ from\ p}}
+\DoxyCodeLine{00013\ }
+\DoxyCodeLine{00014\ \textcolor{keyword}{template}<\textcolor{keyword}{class}\ T>\ \mbox{\hyperlink{mem__fn__cc_8hpp_adf1f3edb9115acb0a1e04209b7a9937b}{T}}\ *\ \mbox{\hyperlink{namespacesc__boost_a6841ce52726804956cc3a4fe85673da7}{get\_pointer}}(\mbox{\hyperlink{mem__fn__cc_8hpp_adf1f3edb9115acb0a1e04209b7a9937b}{T}}\ *\ p)}
+\DoxyCodeLine{00015\ \{}
+\DoxyCodeLine{00016\ \ \ \ \ \textcolor{keywordflow}{return}\ p;}
+\DoxyCodeLine{00017\ \}}
+\DoxyCodeLine{00018\ }
+\DoxyCodeLine{00019\ \textcolor{comment}{//\ get\_pointer(shared\_ptr<T>\ const\ \&\ p)\ has\ been\ moved\ to\ shared\_ptr.hpp}}
+\DoxyCodeLine{00020\ }
+\DoxyCodeLine{00021\ \textcolor{preprocessor}{\#if\ !defined(\ SC\_BOOST\_NO\_AUTO\_PTR\ )}}
+\DoxyCodeLine{00022\ }
+\DoxyCodeLine{00023\ \textcolor{preprocessor}{\#if\ defined(\ \_\_GNUC\_\_\ )\ \&\&\ (defined(\ \_\_GXX\_EXPERIMENTAL\_CXX0X\_\_\ )\ ||\ (\_\_cplusplus\ >=\ 201103L))}}
+\DoxyCodeLine{00024\ \textcolor{preprocessor}{\#if\ defined(\ SC\_BOOST\_GCC\ )}}
+\DoxyCodeLine{00025\ \textcolor{preprocessor}{\#if\ SC\_BOOST\_GCC\ >=\ 40600}}
+\DoxyCodeLine{00026\ \textcolor{preprocessor}{\#define\ SC\_BOOST\_CORE\_DETAIL\_DISABLE\_LIBSTDCXX\_DEPRECATED\_WARNINGS}}
+\DoxyCodeLine{00027\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{//\ SC\_BOOST\_GCC\ >=\ 40600}}
+\DoxyCodeLine{00028\ \textcolor{preprocessor}{\#elif\ defined(\ \_\_clang\_\_\ )\ \&\&\ defined(\ \_\_has\_warning\ )}}
+\DoxyCodeLine{00029\ \textcolor{preprocessor}{\#if\ \_\_has\_warning("{}-\/Wdeprecated-\/declarations"{})}}
+\DoxyCodeLine{00030\ \textcolor{preprocessor}{\#define\ SC\_BOOST\_CORE\_DETAIL\_DISABLE\_LIBSTDCXX\_DEPRECATED\_WARNINGS}}
+\DoxyCodeLine{00031\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{//\ \_\_has\_warning("{}-\/Wdeprecated-\/declarations"{})}}
+\DoxyCodeLine{00032\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00033\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{//\ defined(\ \_\_GNUC\_\_\ )\ \&\&\ (defined(\ \_\_GXX\_EXPERIMENTAL\_CXX0X\_\_\ )\ ||\ (\_\_cplusplus\ >=\ 201103L))}}
+\DoxyCodeLine{00034\ }
+\DoxyCodeLine{00035\ \textcolor{preprocessor}{\#if\ defined(\ SC\_BOOST\_CORE\_DETAIL\_DISABLE\_LIBSTDCXX\_DEPRECATED\_WARNINGS\ )}}
+\DoxyCodeLine{00036\ \textcolor{comment}{//\ Disable\ libstdc++\ warnings\ about\ std::auto\_ptr\ being\ deprecated\ in\ C++11\ mode}}
+\DoxyCodeLine{00037\ \textcolor{preprocessor}{\#pragma\ GCC\ diagnostic\ push}}
+\DoxyCodeLine{00038\ \textcolor{preprocessor}{\#pragma\ GCC\ diagnostic\ ignored\ "{}-\/Wdeprecated-\/declarations"{}}}
+\DoxyCodeLine{00039\ \textcolor{preprocessor}{\#define\ SC\_BOOST\_CORE\_DETAIL\_DISABLED\_DEPRECATED\_WARNINGS}}
+\DoxyCodeLine{00040\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00041\ }
+\DoxyCodeLine{00042\ \textcolor{keyword}{template}<\textcolor{keyword}{class}\ T>\ \mbox{\hyperlink{mem__fn__cc_8hpp_adf1f3edb9115acb0a1e04209b7a9937b}{T}}\ *\ \mbox{\hyperlink{namespacesc__boost_a6841ce52726804956cc3a4fe85673da7}{get\_pointer}}(std::auto\_ptr<T>\ \textcolor{keyword}{const}\&\ p)}
+\DoxyCodeLine{00043\ \{}
+\DoxyCodeLine{00044\ \ \ \ \ \textcolor{keywordflow}{return}\ p.get();}
+\DoxyCodeLine{00045\ \}}
+\DoxyCodeLine{00046\ }
+\DoxyCodeLine{00047\ \textcolor{preprocessor}{\#if\ defined(\ SC\_BOOST\_CORE\_DETAIL\_DISABLE\_LIBSTDCXX\_DEPRECATED\_WARNINGS\ )}}
+\DoxyCodeLine{00048\ \textcolor{preprocessor}{\#pragma\ GCC\ diagnostic\ pop}}
+\DoxyCodeLine{00049\ \textcolor{preprocessor}{\#undef\ SC\_BOOST\_CORE\_DETAIL\_DISABLE\_LIBSTDCXX\_DEPRECATED\_WARNINGS}}
+\DoxyCodeLine{00050\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00051\ }
+\DoxyCodeLine{00052\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{//\ !defined(\ BOOST\_NO\_AUTO\_PTR\ )}}
+\DoxyCodeLine{00053\ }
+\DoxyCodeLine{00054\ \}\ \textcolor{comment}{//\ namespace\ sc\_boost}}
+\DoxyCodeLine{00055\ }
+\DoxyCodeLine{00056\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{//\ SC\_GET\_POINTER\_DWA20021219\_HPP}}
+
+\end{DoxyCode}

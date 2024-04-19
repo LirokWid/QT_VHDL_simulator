@@ -1,0 +1,76 @@
+\doxysection{hp\+\_\+acc.\+hpp}
+\hypertarget{hp__acc_8hpp_source}{}\label{hp__acc_8hpp_source}\index{C:/Users/BJRODIER/Documents/QT\_REPO/QT\_VHDL\_simulator/code/Ressources/SystemC/include/sysc/packages/boost/config/compiler/hp\_acc.hpp@{C:/Users/BJRODIER/Documents/QT\_REPO/QT\_VHDL\_simulator/code/Ressources/SystemC/include/sysc/packages/boost/config/compiler/hp\_acc.hpp}}
+\mbox{\hyperlink{hp__acc_8hpp}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{comment}{//\ \ (C)\ Copyright\ John\ Maddock\ 2001\ -\/\ 2003.\ }}
+\DoxyCodeLine{00002\ \textcolor{comment}{//\ \ (C)\ Copyright\ Jens\ Maurer\ 2001\ -\/\ 2003.\ }}
+\DoxyCodeLine{00003\ \textcolor{comment}{//\ \ (C)\ Copyright\ Aleksey\ Gurtovoy\ 2002.\ }}
+\DoxyCodeLine{00004\ \textcolor{comment}{//\ \ (C)\ Copyright\ David\ Abrahams\ 2002\ -\/\ 2003.\ }}
+\DoxyCodeLine{00005\ \textcolor{comment}{//\ \ (C)\ Copyright\ Toon\ Knapen\ 2003.\ }}
+\DoxyCodeLine{00006\ \textcolor{comment}{//\ \ Use,\ modification\ and\ distribution\ are\ subject\ to\ the\ }}
+\DoxyCodeLine{00007\ \textcolor{comment}{//\ \ Boost\ Software\ License,\ Version\ 1.0.\ (See\ accompanying\ file\ }}
+\DoxyCodeLine{00008\ \textcolor{comment}{//\ \ LICENSE\_1\_0.txt\ or\ copy\ at\ http://www.boost.org/LICENSE\_1\_0.txt)}}
+\DoxyCodeLine{00009\ }
+\DoxyCodeLine{00010\ \textcolor{comment}{//\ \ See\ http://www.boost.org\ for\ most\ recent\ version.}}
+\DoxyCodeLine{00011\ }
+\DoxyCodeLine{00012\ \textcolor{comment}{//\ \ HP\ aCC\ C++\ compiler\ setup:}}
+\DoxyCodeLine{00013\ }
+\DoxyCodeLine{00014\ \textcolor{preprocessor}{\#if\ (\_\_HP\_aCC\ <=\ 33100)}}
+\DoxyCodeLine{00015\ \textcolor{preprocessor}{\#\ \ \ \ define\ SC\_BOOST\_NO\_INTEGRAL\_INT64\_T}}
+\DoxyCodeLine{00016\ \textcolor{preprocessor}{\#\ \ \ \ define\ SC\_BOOST\_NO\_OPERATORS\_IN\_NAMESPACE}}
+\DoxyCodeLine{00017\ \textcolor{preprocessor}{\#\ \ if\ !defined(\_NAMESPACE\_STD)}}
+\DoxyCodeLine{00018\ \textcolor{preprocessor}{\#\ \ \ \ \ define\ SC\_BOOST\_NO\_STD\_LOCALE}}
+\DoxyCodeLine{00019\ \textcolor{preprocessor}{\#\ \ \ \ \ define\ SC\_BOOST\_NO\_STRINGSTREAM}}
+\DoxyCodeLine{00020\ \textcolor{preprocessor}{\#\ \ endif}}
+\DoxyCodeLine{00021\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00022\ }
+\DoxyCodeLine{00023\ \textcolor{preprocessor}{\#if\ (\_\_HP\_aCC\ <=\ 33300)}}
+\DoxyCodeLine{00024\ \textcolor{comment}{//\ member\ templates\ are\ sufficiently\ broken\ that\ we\ disable\ them\ for\ now}}
+\DoxyCodeLine{00025\ \textcolor{preprocessor}{\#\ \ \ \ define\ SC\_BOOST\_NO\_MEMBER\_TEMPLATES}}
+\DoxyCodeLine{00026\ \textcolor{preprocessor}{\#\ \ \ \ define\ SC\_BOOST\_NO\_DEPENDENT\_NESTED\_DERIVATIONS}}
+\DoxyCodeLine{00027\ \textcolor{preprocessor}{\#\ \ \ \ define\ SC\_BOOST\_NO\_USING\_DECLARATION\_OVERLOADS\_FROM\_TYPENAME\_BASE}}
+\DoxyCodeLine{00028\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00029\ }
+\DoxyCodeLine{00030\ \textcolor{preprocessor}{\#if\ (\_\_HP\_aCC\ <=\ 33900)\ ||\ !defined(SC\_BOOST\_STRICT\_CONFIG)}}
+\DoxyCodeLine{00031\ \textcolor{preprocessor}{\#\ \ \ \ define\ SC\_BOOST\_NO\_UNREACHABLE\_RETURN\_DETECTION}}
+\DoxyCodeLine{00032\ \textcolor{preprocessor}{\#\ \ \ \ define\ SC\_BOOST\_NO\_TEMPLATE\_TEMPLATES}}
+\DoxyCodeLine{00033\ \textcolor{preprocessor}{\#\ \ \ \ define\ SC\_BOOST\_NO\_SWPRINTF}}
+\DoxyCodeLine{00034\ \textcolor{preprocessor}{\#\ \ \ \ define\ SC\_BOOST\_NO\_DEPENDENT\_TYPES\_IN\_TEMPLATE\_VALUE\_PARAMETERS}}
+\DoxyCodeLine{00035\ \textcolor{preprocessor}{\#\ \ \ \ define\ SC\_BOOST\_NO\_IS\_ABSTRACT}}
+\DoxyCodeLine{00036\ \textcolor{comment}{//\ \ \ \ \ std\ lib\ config\ should\ set\ this\ one\ already:}}
+\DoxyCodeLine{00037\ \textcolor{comment}{//\#\ \ \ \ define\ SC\_BOOST\_NO\_STD\_ALLOCATOR}}
+\DoxyCodeLine{00038\ \textcolor{preprocessor}{\#endif\ }}
+\DoxyCodeLine{00039\ }
+\DoxyCodeLine{00040\ \textcolor{comment}{//\ optional\ features\ rather\ than\ defects:}}
+\DoxyCodeLine{00041\ \textcolor{preprocessor}{\#if\ (\_\_HP\_aCC\ >=\ 33900)}}
+\DoxyCodeLine{00042\ \textcolor{preprocessor}{\#\ \ \ \ define\ SC\_BOOST\_HAS\_LONG\_LONG}}
+\DoxyCodeLine{00043\ \textcolor{preprocessor}{\#\ \ \ \ define\ SC\_BOOST\_HAS\_PARTIAL\_STD\_ALLOCATOR}}
+\DoxyCodeLine{00044\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00045\ }
+\DoxyCodeLine{00046\ \textcolor{preprocessor}{\#if\ (\_\_HP\_aCC\ >=\ 50000\ )\ \&\&\ (\_\_HP\_aCC\ <=\ 53800\ )\ ||\ (\_\_HP\_aCC\ <\ 31300\ )}}
+\DoxyCodeLine{00047\ \textcolor{preprocessor}{\#\ \ \ \ define\ SC\_BOOST\_NO\_MEMBER\_TEMPLATE\_KEYWORD}}
+\DoxyCodeLine{00048\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00049\ }
+\DoxyCodeLine{00050\ \textcolor{preprocessor}{\#define\ SC\_BOOST\_NO\_MEMBER\_TEMPLATE\_FRIENDS}}
+\DoxyCodeLine{00051\ }
+\DoxyCodeLine{00052\ \textcolor{preprocessor}{\#define\ SC\_BOOST\_COMPILER\ "{}HP\ aCC\ version\ "{}\ SC\_BOOST\_STRINGIZE(\_\_HP\_aCC)}}
+\DoxyCodeLine{00053\ }
+\DoxyCodeLine{00054\ \textcolor{comment}{//}}
+\DoxyCodeLine{00055\ \textcolor{comment}{//\ versions\ check:}}
+\DoxyCodeLine{00056\ \textcolor{comment}{//\ we\ don't\ support\ HP\ aCC\ prior\ to\ version\ 0:}}
+\DoxyCodeLine{00057\ \textcolor{preprocessor}{\#if\ \_\_HP\_aCC\ <\ 33000}}
+\DoxyCodeLine{00058\ \textcolor{preprocessor}{\#\ \ error\ "{}Compiler\ not\ supported\ or\ configured\ -\/\ please\ reconfigure"{}}}
+\DoxyCodeLine{00059\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00060\ \textcolor{comment}{//}}
+\DoxyCodeLine{00061\ \textcolor{comment}{//\ last\ known\ and\ checked\ version\ is\ 0:}}
+\DoxyCodeLine{00062\ \textcolor{preprocessor}{\#if\ (\_\_HP\_aCC\ >\ 53800)}}
+\DoxyCodeLine{00063\ \textcolor{preprocessor}{\#\ \ if\ defined(SC\_BOOST\_ASSERT\_CONFIG)}}
+\DoxyCodeLine{00064\ \textcolor{preprocessor}{\#\ \ \ \ \ error\ "{}Unknown\ compiler\ version\ -\/\ please\ run\ the\ configure\ tests\ and\ report\ the\ results"{}}}
+\DoxyCodeLine{00065\ \textcolor{preprocessor}{\#\ \ endif}}
+\DoxyCodeLine{00066\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00067\ }
+\DoxyCodeLine{00068\ }
+\DoxyCodeLine{00069\ }
+\DoxyCodeLine{00070\ }
+
+\end{DoxyCode}

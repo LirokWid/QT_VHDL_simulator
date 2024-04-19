@@ -1,0 +1,243 @@
+\doxysection{sc\+\_\+cmnhdr.\+h}
+\hypertarget{sc__cmnhdr_8h_source}{}\label{sc__cmnhdr_8h_source}\index{C:/Users/BJRODIER/Documents/QT\_REPO/QT\_VHDL\_simulator/code/Ressources/SystemC/include/sysc/kernel/sc\_cmnhdr.h@{C:/Users/BJRODIER/Documents/QT\_REPO/QT\_VHDL\_simulator/code/Ressources/SystemC/include/sysc/kernel/sc\_cmnhdr.h}}
+\mbox{\hyperlink{sc__cmnhdr_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{comment}{/*****************************************************************************}}
+\DoxyCodeLine{00002\ \textcolor{comment}{}}
+\DoxyCodeLine{00003\ \textcolor{comment}{\ \ Licensed\ to\ Accellera\ Systems\ Initiative\ Inc.\ (Accellera)\ under\ one\ or}}
+\DoxyCodeLine{00004\ \textcolor{comment}{\ \ more\ contributor\ license\ agreements.\ \ See\ the\ NOTICE\ file\ distributed}}
+\DoxyCodeLine{00005\ \textcolor{comment}{\ \ with\ this\ work\ for\ additional\ information\ regarding\ copyright\ ownership.}}
+\DoxyCodeLine{00006\ \textcolor{comment}{\ \ Accellera\ licenses\ this\ file\ to\ you\ under\ the\ Apache\ License,\ Version\ 2.0}}
+\DoxyCodeLine{00007\ \textcolor{comment}{\ \ (the\ "{}License"{});\ you\ may\ not\ use\ this\ file\ except\ in\ compliance\ with\ the}}
+\DoxyCodeLine{00008\ \textcolor{comment}{\ \ License.\ \ You\ may\ obtain\ a\ copy\ of\ the\ License\ at}}
+\DoxyCodeLine{00009\ \textcolor{comment}{}}
+\DoxyCodeLine{00010\ \textcolor{comment}{\ \ \ \ http://www.apache.org/licenses/LICENSE-\/2.0}}
+\DoxyCodeLine{00011\ \textcolor{comment}{}}
+\DoxyCodeLine{00012\ \textcolor{comment}{\ \ Unless\ required\ by\ applicable\ law\ or\ agreed\ to\ in\ writing,\ software}}
+\DoxyCodeLine{00013\ \textcolor{comment}{\ \ distributed\ under\ the\ License\ is\ distributed\ on\ an\ "{}AS\ IS"{}\ BASIS,}}
+\DoxyCodeLine{00014\ \textcolor{comment}{\ \ WITHOUT\ WARRANTIES\ OR\ CONDITIONS\ OF\ ANY\ KIND,\ either\ express\ or}}
+\DoxyCodeLine{00015\ \textcolor{comment}{\ \ implied.\ \ See\ the\ License\ for\ the\ specific\ language\ governing}}
+\DoxyCodeLine{00016\ \textcolor{comment}{\ \ permissions\ and\ limitations\ under\ the\ License.}}
+\DoxyCodeLine{00017\ \textcolor{comment}{}}
+\DoxyCodeLine{00018\ \textcolor{comment}{\ *****************************************************************************/}}
+\DoxyCodeLine{00019\ }
+\DoxyCodeLine{00020\ \textcolor{comment}{/*****************************************************************************}}
+\DoxyCodeLine{00021\ \textcolor{comment}{}}
+\DoxyCodeLine{00022\ \textcolor{comment}{\ \ sc\_cmnhdr.h\ -\/\ Common\ header\ file\ containing\ handy\ pragmas,\ macros\ and}}
+\DoxyCodeLine{00023\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ definitions\ common\ to\ all\ SystemC\ source\ files.}}
+\DoxyCodeLine{00024\ \textcolor{comment}{}}
+\DoxyCodeLine{00025\ \textcolor{comment}{\ \ Original\ Author:\ Amit\ Rao,\ Synopsys,\ Inc.}}
+\DoxyCodeLine{00026\ \textcolor{comment}{}}
+\DoxyCodeLine{00027\ \textcolor{comment}{\ \ CHANGE\ LOG\ AT\ THE\ END\ OF\ THE\ FILE}}
+\DoxyCodeLine{00028\ \textcolor{comment}{\ *****************************************************************************/}}
+\DoxyCodeLine{00029\ }
+\DoxyCodeLine{00030\ }
+\DoxyCodeLine{00031\ \textcolor{preprocessor}{\#ifndef\ SC\_CMNHDR\_H}}
+\DoxyCodeLine{00032\ \textcolor{preprocessor}{\#define\ SC\_CMNHDR\_H}}
+\DoxyCodeLine{00033\ }
+\DoxyCodeLine{00034\ \textcolor{preprocessor}{\#if\ defined(\_WIN32)\ ||\ defined(\_MSC\_VER)\ ||\ defined(\_\_BORLANDC\_\_)\ ||\ \(\backslash\)}}
+\DoxyCodeLine{00035\ \textcolor{preprocessor}{\ \ \ \ defined(\_\_MINGW32\_\_)}}
+\DoxyCodeLine{00036\ }
+\DoxyCodeLine{00037\ \textcolor{comment}{//\ all\ windows\ 32-\/bit\ compilers\ should\ define\ WIN32}}
+\DoxyCodeLine{00038\ \textcolor{preprocessor}{\#if\ !defined(WIN32)\ \&\&\ !defined(WIN64)\ \&\&\ !defined(\_WIN64)}}
+\DoxyCodeLine{00039\ \textcolor{preprocessor}{\#define\ WIN32}}
+\DoxyCodeLine{00040\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00041\ }
+\DoxyCodeLine{00042\ \textcolor{comment}{//\ Windows\ Version\ Build\ Option}}
+\DoxyCodeLine{00043\ \textcolor{preprocessor}{\#ifndef\ \_WIN32\_WINNT}}
+\DoxyCodeLine{00044\ \textcolor{preprocessor}{\#define\ \_WIN32\_WINNT\ 0x0400}}
+\DoxyCodeLine{00045\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00046\ }
+\DoxyCodeLine{00047\ \textcolor{comment}{//\ remember\ to\ later\ include\ windows.h,\ if\ needed}}
+\DoxyCodeLine{00048\ \textcolor{preprocessor}{\#define\ SC\_HAS\_WINDOWS\_H\_}}
+\DoxyCodeLine{00049\ }
+\DoxyCodeLine{00050\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{//\ WIN32}}
+\DoxyCodeLine{00051\ }
+\DoxyCodeLine{00052\ \textcolor{comment}{//\ -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{00053\ }
+\DoxyCodeLine{00054\ \textcolor{preprocessor}{\#ifdef\ \_MSC\_VER}}
+\DoxyCodeLine{00055\ }
+\DoxyCodeLine{00056\ \textcolor{comment}{//\ Disable\ VC++\ warnings\ that\ are\ harmless}}
+\DoxyCodeLine{00057\ }
+\DoxyCodeLine{00058\ \textcolor{comment}{//\ extern\ template\ instantiations}}
+\DoxyCodeLine{00059\ \textcolor{preprocessor}{\#pragma\ warning(disable:\ 4231)}}
+\DoxyCodeLine{00060\ }
+\DoxyCodeLine{00061\ \textcolor{comment}{//\ this\ :\ used\ in\ base\ member\ initializer\ list}}
+\DoxyCodeLine{00062\ \textcolor{preprocessor}{\#pragma\ warning(disable:\ 4355)}}
+\DoxyCodeLine{00063\ }
+\DoxyCodeLine{00064\ \textcolor{comment}{//\ new\ and\ delete\ warning\ when\ exception\ handling\ is\ turned\ on}}
+\DoxyCodeLine{00065\ \textcolor{preprocessor}{\#pragma\ warning(disable:\ 4291)}}
+\DoxyCodeLine{00066\ }
+\DoxyCodeLine{00067\ \textcolor{comment}{//\ in\ many\ places\ implicit\ conversion\ to\ bool}}
+\DoxyCodeLine{00068\ \textcolor{comment}{//\ from\ other\ integral\ types\ is\ performed}}
+\DoxyCodeLine{00069\ \textcolor{preprocessor}{\#pragma\ warning(disable:\ 4800)}}
+\DoxyCodeLine{00070\ }
+\DoxyCodeLine{00071\ \textcolor{comment}{//\ unary\ minus\ operator\ applied\ to\ unsigned}}
+\DoxyCodeLine{00072\ \textcolor{preprocessor}{\#pragma\ warning(disable:\ 4146)}}
+\DoxyCodeLine{00073\ }
+\DoxyCodeLine{00074\ \textcolor{comment}{//\ multiple\ copy\ constructors}}
+\DoxyCodeLine{00075\ \textcolor{preprocessor}{\#pragma\ warning(disable:\ 4521)}}
+\DoxyCodeLine{00076\ }
+\DoxyCodeLine{00077\ \textcolor{comment}{//\ identifier\ was\ truncated\ to\ '255'\ characters\ in\ the\ browser\ information}}
+\DoxyCodeLine{00078\ \textcolor{preprocessor}{\#pragma\ warning(disable:\ 4786)}}
+\DoxyCodeLine{00079\ }
+\DoxyCodeLine{00080\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00081\ }
+\DoxyCodeLine{00082\ \textcolor{comment}{//\ -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{00083\ \textcolor{comment}{//\ helper\ macros\ to\ aid\ branch\ prediction\ on\ GCC\ (compatible)\ compilers}}
+\DoxyCodeLine{00084\ }
+\DoxyCodeLine{00085\ \textcolor{preprocessor}{\#ifndef\ \_\_GNUC\_\_}}
+\DoxyCodeLine{00086\ \textcolor{preprocessor}{\#\ \ define\ SC\_LIKELY\_(\ x\ )\ \ \ \ !!(x)}}
+\DoxyCodeLine{00087\ \textcolor{preprocessor}{\#\ \ define\ SC\_UNLIKELY\_(\ x\ )\ \ !!(x)}}
+\DoxyCodeLine{00088\ \textcolor{preprocessor}{\#else}}
+\DoxyCodeLine{00089\ \textcolor{preprocessor}{\#\ \ define\ SC\_LIKELY\_(\ x\ )\ \ \ \ \_\_builtin\_expect(\ !!(x),\ 1\ )}}
+\DoxyCodeLine{00090\ \textcolor{preprocessor}{\#\ \ define\ SC\_UNLIKELY\_(\ x\ )\ \ \_\_builtin\_expect(\ !!(x),\ 0\ )}}
+\DoxyCodeLine{00091\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00092\ }
+\DoxyCodeLine{00093\ \textcolor{comment}{//\ -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{00094\ \textcolor{comment}{//\ C++\ standard}}
+\DoxyCodeLine{00095\ \textcolor{comment}{//}}
+\DoxyCodeLine{00096\ \textcolor{comment}{//\ Selected\ C++\ standard\ baseline,\ supported\ values\ are}}
+\DoxyCodeLine{00097\ \textcolor{comment}{//\ \ \ 199711L\ (C++03,\ ISO/IEC\ 14882:1998,\ 14882:2003)}}
+\DoxyCodeLine{00098\ \textcolor{comment}{//\ \ \ 201103L\ (C++11,\ ISO/IEC\ 14882:2011)}}
+\DoxyCodeLine{00099\ \textcolor{comment}{//\ \ \ 201402L\ (C++14,\ ISO/IEC\ 14882:2014)}}
+\DoxyCodeLine{00100\ \textcolor{comment}{//\ \ \ 201703L\ (C++17,\ ISO/IEC\ 14882:2017)}}
+\DoxyCodeLine{00101\ \textcolor{comment}{//}}
+\DoxyCodeLine{00102\ \textcolor{comment}{//\ This\ macro\ can\ be\ used\ inside\ the\ library\ sources\ to\ make\ certain\ assumptions}}
+\DoxyCodeLine{00103\ \textcolor{comment}{//\ on\ the\ available\ features\ in\ the\ underlying\ C++\ implementation.}}
+\DoxyCodeLine{00104\ \textcolor{comment}{//}}
+\DoxyCodeLine{00105\ \textcolor{preprocessor}{\#ifndef\ SC\_CPLUSPLUS}}
+\DoxyCodeLine{00106\ \textcolor{preprocessor}{\#\ ifdef\ \_MSC\_VER\ }\textcolor{comment}{//\ don't\ rely\ on\ \_\_cplusplus\ for\ MSVC}}
+\DoxyCodeLine{00107\ \textcolor{comment}{//\ Instead,\ we\ select\ the\ C++\ standard\ with\ reasonable\ support.}}
+\DoxyCodeLine{00108\ \textcolor{comment}{//\ If\ some\ features\ still\ need\ to\ be\ excluded\ on\ specific\ MSVC}}
+\DoxyCodeLine{00109\ \textcolor{comment}{//\ versions,\ we'll\ do\ so\ at\ the\ point\ of\ definition.}}
+\DoxyCodeLine{00110\ }
+\DoxyCodeLine{00111\ \textcolor{preprocessor}{\#\ \ \ if\ defined(\_MSVC\_LANG)\ }\textcolor{comment}{//\ MSVC'2015\ Update\ 3\ or\ later,\ use\ compiler\ setting}}
+\DoxyCodeLine{00112\ \textcolor{preprocessor}{\#\ \ \ \ \ define\ SC\_CPLUSPLUS\ \_MSVC\_LANG}}
+\DoxyCodeLine{00113\ \textcolor{preprocessor}{\#\ \ \ elif\ \_MSC\_VER\ <\ 1800\ \ \ }\textcolor{comment}{//\ MSVC'2010\ and\ earlier,\ assume\ C++03}}
+\DoxyCodeLine{00114\ \textcolor{preprocessor}{\#\ \ \ \ \ define\ SC\_CPLUSPLUS\ 199711L}}
+\DoxyCodeLine{00115\ \textcolor{preprocessor}{\#\ \ \ elif\ \_MSC\_VER\ <\ 1900\ \ \ }\textcolor{comment}{//\ MSVC'2013,\ assume\ C++11}}
+\DoxyCodeLine{00116\ \textcolor{preprocessor}{\#\ \ \ \ \ define\ SC\_CPLUSPLUS\ 201103L}}
+\DoxyCodeLine{00117\ \textcolor{preprocessor}{\#\ \ \ else\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }\textcolor{comment}{//\ MSVC'2015\ before\ Update\ 3,\ assume\ C++14}}
+\DoxyCodeLine{00118\ \textcolor{preprocessor}{\#\ \ \ \ \ define\ SC\_CPLUSPLUS\ 201402L}}
+\DoxyCodeLine{00119\ \textcolor{preprocessor}{\#\ \ \ endif}}
+\DoxyCodeLine{00120\ }
+\DoxyCodeLine{00121\ \textcolor{preprocessor}{\#\ else\ }\textcolor{comment}{//\ not\ \_MSC\_VER}}
+\DoxyCodeLine{00122\ \textcolor{comment}{//\ use\ compiler\ setting}}
+\DoxyCodeLine{00123\ \textcolor{preprocessor}{\#\ \ \ define\ SC\_CPLUSPLUS\ \_\_cplusplus}}
+\DoxyCodeLine{00124\ }
+\DoxyCodeLine{00125\ \textcolor{preprocessor}{\#\ endif\ }\textcolor{comment}{//\ not\ \_MSC\_VER}}
+\DoxyCodeLine{00126\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{//\ SC\_CPLUSPLUS}}
+\DoxyCodeLine{00127\ }
+\DoxyCodeLine{00128\ \textcolor{comment}{//\ SystemC\ adds\ some\ features\ under\ C++11\ already\ (see\ RELEASENOTES)}}
+\DoxyCodeLine{00129\ \textcolor{preprocessor}{\#define\ SC\_CPLUSPLUS\_BASE\_\ 201103L}}
+\DoxyCodeLine{00130\ }
+\DoxyCodeLine{00131\ \textcolor{comment}{//\ The\ IEEE\_1666\_CPLUSPLUS\ macro\ is\ meant\ to\ be\ queried\ in\ the\ models,}}
+\DoxyCodeLine{00132\ \textcolor{comment}{//\ checking\ for\ availability\ of\ SystemC\ features\ relying\ on\ specific}}
+\DoxyCodeLine{00133\ \textcolor{comment}{//\ C++\ standard\ versions.}}
+\DoxyCodeLine{00134\ \textcolor{comment}{//}}
+\DoxyCodeLine{00135\ \textcolor{comment}{//\ IEEE\_1666\_CPLUSPLUS\ =\ min(SC\_CPLUSPLUS,\ SC\_CPLUSPLUS\_BASE\_)}}
+\DoxyCodeLine{00136\ \textcolor{preprocessor}{\#if\ SC\_CPLUSPLUS\ >=\ SC\_CPLUSPLUS\_BASE\_}}
+\DoxyCodeLine{00137\ \textcolor{preprocessor}{\#\ define\ IEEE\_1666\_CPLUSPLUS\ SC\_CPLUSPLUS\_BASE\_}}
+\DoxyCodeLine{00138\ \textcolor{preprocessor}{\#else}}
+\DoxyCodeLine{00139\ \textcolor{preprocessor}{\#\ define\ IEEE\_1666\_CPLUSPLUS\ SC\_CPLUSPLUS}}
+\DoxyCodeLine{00140\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{//\ IEEE\_1666\_CPLUSPLUS}}
+\DoxyCodeLine{00141\ }
+\DoxyCodeLine{00142\ \textcolor{comment}{//\ -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{00143\ \textcolor{comment}{//\ (no)\ exception\ specifiers}}
+\DoxyCodeLine{00144\ }
+\DoxyCodeLine{00145\ \textcolor{preprocessor}{\#ifndef\ SC\_NOEXCEPT\_}}
+\DoxyCodeLine{00146\ \textcolor{preprocessor}{\#if\ SC\_CPLUSPLUS\ >=\ 201103L\ \&\&\ !(defined(\_MSC\_VER)\ \&\&\ \_MSC\_VER\ <\ 1900)}}
+\DoxyCodeLine{00147\ \textcolor{preprocessor}{\#\ define\ SC\_NOEXCEPT\_\ \ \ \ \ \ \ \ \ \ \ \ noexcept}}
+\DoxyCodeLine{00148\ \textcolor{preprocessor}{\#\ define\ SC\_NOEXCEPT\_EXPR\_(expr)\ noexcept(expr)}}
+\DoxyCodeLine{00149\ \textcolor{preprocessor}{\#else}}
+\DoxyCodeLine{00150\ \textcolor{preprocessor}{\#\ define\ SC\_NOEXCEPT\_\ \ \ \ \ \ \ \ \ \ \ \ throw()}}
+\DoxyCodeLine{00151\ \textcolor{preprocessor}{\#\ define\ SC\_NOEXCEPT\_EXPR\_(expr)\ }\textcolor{comment}{/*\ nothing\ */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{00152\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00153\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{//\ SC\_NOEXCEPT\_}}
+\DoxyCodeLine{00154\ }
+\DoxyCodeLine{00155\ \textcolor{comment}{//\ -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{00156\ }
+\DoxyCodeLine{00157\ \textcolor{preprocessor}{\#include\ <cassert>}}
+\DoxyCodeLine{00158\ \textcolor{preprocessor}{\#include\ <cstdio>}}
+\DoxyCodeLine{00159\ \textcolor{preprocessor}{\#include\ <cstdlib>}}
+\DoxyCodeLine{00160\ \textcolor{preprocessor}{\#include\ <vector>}}
+\DoxyCodeLine{00161\ }
+\DoxyCodeLine{00162\ \textcolor{comment}{//\ -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{00163\ }
+\DoxyCodeLine{00164\ \textcolor{comment}{//\ declare\ certain\ template\ instantiations\ as\ "{}extern"{}\ during\ library\ build}}
+\DoxyCodeLine{00165\ \textcolor{comment}{//\ and\ adding\ an\ explicit\ instantiation\ into\ the\ (shared)\ SystemC\ library}}
+\DoxyCodeLine{00166\ }
+\DoxyCodeLine{00167\ \textcolor{preprocessor}{\#if\ defined(\_\_GNUC\_\_)\ \&\&\ SC\_CPLUSPLUS\ <\ 201103L}}
+\DoxyCodeLine{00168\ \textcolor{preprocessor}{\#\ define\ SC\_TPLEXTERN\_\ \_\_extension\_\_\ extern}}
+\DoxyCodeLine{00169\ \textcolor{preprocessor}{\#else}}
+\DoxyCodeLine{00170\ \textcolor{preprocessor}{\#\ define\ SC\_TPLEXTERN\_\ extern}}
+\DoxyCodeLine{00171\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00172\ }
+\DoxyCodeLine{00173\ \textcolor{comment}{//\ build\ SystemC\ DLL\ on\ Windows}}
+\DoxyCodeLine{00174\ \textcolor{preprocessor}{\#if\ defined(SC\_WIN\_DLL)\ \&\&\ (defined(\_WIN32)\ ||\ defined(\_WIN64))}}
+\DoxyCodeLine{00175\ }
+\DoxyCodeLine{00176\ \textcolor{preprocessor}{\#\ if\ defined(SC\_BUILD)\ }\textcolor{comment}{//\ building\ SystemC\ library}}
+\DoxyCodeLine{00177\ \textcolor{preprocessor}{\#\ \ \ define\ SC\_API\ \ \_\_declspec(dllexport)}}
+\DoxyCodeLine{00178\ \textcolor{preprocessor}{\#\ else\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }\textcolor{comment}{//\ building\ SystemC\ application}}
+\DoxyCodeLine{00179\ \textcolor{preprocessor}{\#\ \ \ define\ SC\_API\ \ \_\_declspec(dllimport)}}
+\DoxyCodeLine{00180\ \textcolor{preprocessor}{\#\ endif\ }\textcolor{comment}{//\ SC\_BUILD}}
+\DoxyCodeLine{00181\ }
+\DoxyCodeLine{00182\ \textcolor{preprocessor}{\#else\ }\textcolor{comment}{//\ !SC\_WIN\_DLL}}
+\DoxyCodeLine{00183\ \textcolor{preprocessor}{\#\ define\ SC\_API\ }\textcolor{comment}{/*\ nothing\ */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{00184\ }
+\DoxyCodeLine{00185\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{//\ SC\_WIN\_DLL}}
+\DoxyCodeLine{00186\ }
+\DoxyCodeLine{00187\ \textcolor{preprocessor}{\#if\ defined(SC\_BUILD)\ \&\&\ defined(\_MSC\_VER)}}
+\DoxyCodeLine{00188\ \textcolor{comment}{//\ always\ instantiate\ during\ Windows\ library\ build}}
+\DoxyCodeLine{00189\ \textcolor{preprocessor}{\#\ define\ SC\_API\_TEMPLATE\_DECL\_\ template\ class\ SC\_API}}
+\DoxyCodeLine{00190\ \textcolor{preprocessor}{\#else}}
+\DoxyCodeLine{00191\ \textcolor{comment}{//\ keep\ extern\ when\ building\ an\ application\ (or\ on\ non-\/Windows)}}
+\DoxyCodeLine{00192\ \textcolor{preprocessor}{\#\ define\ SC\_API\_TEMPLATE\_DECL\_\ SC\_TPLEXTERN\_\ template\ class\ SC\_API}}
+\DoxyCodeLine{00193\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00194\ }
+\DoxyCodeLine{00195\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{//\ SC\_CMNHDR\_H}}
+\DoxyCodeLine{00196\ }
+\DoxyCodeLine{00197\ \textcolor{comment}{//\ -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{00198\ \textcolor{comment}{//\ only\ include\ Windows.h,\ if\ explicitly\ requested}}
+\DoxyCodeLine{00199\ \textcolor{comment}{//\ (deliberately\ outside\ of\ include\ guards\ to\ enable\ later\ effect)}}
+\DoxyCodeLine{00200\ \textcolor{preprocessor}{\#if\ defined(SC\_HAS\_WINDOWS\_H\_)\ \&\&\ defined(SC\_INCLUDE\_WINDOWS\_H)}}
+\DoxyCodeLine{00201\ \textcolor{preprocessor}{\#\ \ undef\ SC\_HAS\_WINDOWS\_H\_}}
+\DoxyCodeLine{00202\ \textcolor{preprocessor}{\#\ \ include\ <Windows.h>}}
+\DoxyCodeLine{00203\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00204\ }
+\DoxyCodeLine{00205\ \textcolor{comment}{//\ \$Log:\ sc\_cmnhdr.h,v\ \$}}
+\DoxyCodeLine{00206\ \textcolor{comment}{//\ Revision\ 1.8\ \ 2011/08/26\ 20:46:09\ \ acg}}
+\DoxyCodeLine{00207\ \textcolor{comment}{//\ \ Andy\ Goodrich:\ moved\ the\ modification\ log\ to\ the\ end\ of\ the\ file\ to}}
+\DoxyCodeLine{00208\ \textcolor{comment}{//\ \ eliminate\ source\ line\ number\ skew\ when\ check-\/ins\ are\ done.}}
+\DoxyCodeLine{00209\ \textcolor{comment}{//}}
+\DoxyCodeLine{00210\ \textcolor{comment}{//\ Revision\ 1.7\ \ 2011/05/09\ 04:07:48\ \ acg}}
+\DoxyCodeLine{00211\ \textcolor{comment}{//\ \ Philipp\ A.\ Hartmann:}}
+\DoxyCodeLine{00212\ \textcolor{comment}{//\ \ \ \ (1)\ Restore\ hierarchy\ in\ all\ phase\ callbacks.}}
+\DoxyCodeLine{00213\ \textcolor{comment}{//\ \ \ \ (2)\ Ensure\ calls\ to\ before\_end\_of\_elaboration.}}
+\DoxyCodeLine{00214\ \textcolor{comment}{//}}
+\DoxyCodeLine{00215\ \textcolor{comment}{//\ Revision\ 1.6\ \ 2011/05/05\ 17:45:27\ \ acg}}
+\DoxyCodeLine{00216\ \textcolor{comment}{//\ \ Philip\ A.\ Hartmann:\ changes\ in\ WIN64\ support.}}
+\DoxyCodeLine{00217\ \textcolor{comment}{//\ \ Andy\ Goodrich:\ additional\ DEBUG\_MSG\ instances\ to\ trace\ process\ handling.}}
+\DoxyCodeLine{00218\ \textcolor{comment}{//}}
+\DoxyCodeLine{00219\ \textcolor{comment}{//\ Revision\ 1.5\ \ 2011/02/18\ 20:27:14\ \ acg}}
+\DoxyCodeLine{00220\ \textcolor{comment}{//\ \ Andy\ Goodrich:\ Updated\ Copyrights.}}
+\DoxyCodeLine{00221\ \textcolor{comment}{//}}
+\DoxyCodeLine{00222\ \textcolor{comment}{//\ Revision\ 1.4\ \ 2011/02/13\ 21:47:37\ \ acg}}
+\DoxyCodeLine{00223\ \textcolor{comment}{//\ \ Andy\ Goodrich:\ update\ copyright\ notice.}}
+\DoxyCodeLine{00224\ \textcolor{comment}{//}}
+\DoxyCodeLine{00225\ \textcolor{comment}{//\ Revision\ 1.3\ \ 2009/05/22\ 16:06:29\ \ acg}}
+\DoxyCodeLine{00226\ \textcolor{comment}{//\ \ Andy\ Goodrich:\ process\ control\ updates.}}
+\DoxyCodeLine{00227\ \textcolor{comment}{//}}
+\DoxyCodeLine{00228\ \textcolor{comment}{//\ Revision\ 1.2\ \ 2008/05/22\ 17:06:24\ \ acg}}
+\DoxyCodeLine{00229\ \textcolor{comment}{//\ \ Andy\ Goodrich:\ updated\ copyright\ notice\ to\ include\ 2008.}}
+\DoxyCodeLine{00230\ \textcolor{comment}{//}}
+\DoxyCodeLine{00231\ \textcolor{comment}{//\ Revision\ 1.1.1.1\ \ 2006/12/15\ 20:20:05\ \ acg}}
+\DoxyCodeLine{00232\ \textcolor{comment}{//\ SystemC\ 2.3}}
+\DoxyCodeLine{00233\ \textcolor{comment}{//}}
+\DoxyCodeLine{00234\ \textcolor{comment}{//\ Revision\ 1.3\ \ 2006/01/13\ 18:44:29\ \ acg}}
+\DoxyCodeLine{00235\ \textcolor{comment}{//\ Added\ \$Log\ to\ record\ CVS\ changes\ into\ the\ source.}}
+\DoxyCodeLine{00236\ }
+\DoxyCodeLine{00237\ \textcolor{comment}{//\ Taf!}}
+
+\end{DoxyCode}

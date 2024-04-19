@@ -1,0 +1,165 @@
+\doxysection{sc\+\_\+writer\+\_\+policy.\+h}
+\hypertarget{sc__writer__policy_8h_source}{}\label{sc__writer__policy_8h_source}\index{C:/Users/BJRODIER/Documents/QT\_REPO/QT\_VHDL\_simulator/code/Ressources/SystemC/include/sysc/communication/sc\_writer\_policy.h@{C:/Users/BJRODIER/Documents/QT\_REPO/QT\_VHDL\_simulator/code/Ressources/SystemC/include/sysc/communication/sc\_writer\_policy.h}}
+\mbox{\hyperlink{sc__writer__policy_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{comment}{/*****************************************************************************}}
+\DoxyCodeLine{00002\ \textcolor{comment}{}}
+\DoxyCodeLine{00003\ \textcolor{comment}{\ \ Licensed\ to\ Accellera\ Systems\ Initiative\ Inc.\ (Accellera)\ under\ one\ or}}
+\DoxyCodeLine{00004\ \textcolor{comment}{\ \ more\ contributor\ license\ agreements.\ \ See\ the\ NOTICE\ file\ distributed}}
+\DoxyCodeLine{00005\ \textcolor{comment}{\ \ with\ this\ work\ for\ additional\ information\ regarding\ copyright\ ownership.}}
+\DoxyCodeLine{00006\ \textcolor{comment}{\ \ Accellera\ licenses\ this\ file\ to\ you\ under\ the\ Apache\ License,\ Version\ 2.0}}
+\DoxyCodeLine{00007\ \textcolor{comment}{\ \ (the\ "{}License"{});\ you\ may\ not\ use\ this\ file\ except\ in\ compliance\ with\ the}}
+\DoxyCodeLine{00008\ \textcolor{comment}{\ \ License.\ \ You\ may\ obtain\ a\ copy\ of\ the\ License\ at}}
+\DoxyCodeLine{00009\ \textcolor{comment}{}}
+\DoxyCodeLine{00010\ \textcolor{comment}{\ \ \ \ http://www.apache.org/licenses/LICENSE-\/2.0}}
+\DoxyCodeLine{00011\ \textcolor{comment}{}}
+\DoxyCodeLine{00012\ \textcolor{comment}{\ \ Unless\ required\ by\ applicable\ law\ or\ agreed\ to\ in\ writing,\ software}}
+\DoxyCodeLine{00013\ \textcolor{comment}{\ \ distributed\ under\ the\ License\ is\ distributed\ on\ an\ "{}AS\ IS"{}\ BASIS,}}
+\DoxyCodeLine{00014\ \textcolor{comment}{\ \ WITHOUT\ WARRANTIES\ OR\ CONDITIONS\ OF\ ANY\ KIND,\ either\ express\ or}}
+\DoxyCodeLine{00015\ \textcolor{comment}{\ \ implied.\ \ See\ the\ License\ for\ the\ specific\ language\ governing}}
+\DoxyCodeLine{00016\ \textcolor{comment}{\ \ permissions\ and\ limitations\ under\ the\ License.}}
+\DoxyCodeLine{00017\ \textcolor{comment}{}}
+\DoxyCodeLine{00018\ \textcolor{comment}{\ *****************************************************************************/}}
+\DoxyCodeLine{00019\ }
+\DoxyCodeLine{00020\ \textcolor{comment}{/*****************************************************************************}}
+\DoxyCodeLine{00021\ \textcolor{comment}{}}
+\DoxyCodeLine{00022\ \textcolor{comment}{\ \ sc\_writer\_policy.h\ -\/-\/\ The\ sc\_signal<T>\ writer\ policy\ definition}}
+\DoxyCodeLine{00023\ \textcolor{comment}{}}
+\DoxyCodeLine{00024\ \textcolor{comment}{\ \ Original\ Author:\ Philipp\ A:\ Hartmann,\ OFFIS}}
+\DoxyCodeLine{00025\ \textcolor{comment}{}}
+\DoxyCodeLine{00026\ \textcolor{comment}{\ \ CHANGE\ LOG\ IS\ AT\ THE\ END\ OF\ THE\ FILE}}
+\DoxyCodeLine{00027\ \textcolor{comment}{\ *****************************************************************************/}}
+\DoxyCodeLine{00028\ }
+\DoxyCodeLine{00029\ }
+\DoxyCodeLine{00030\ \textcolor{preprocessor}{\#ifndef\ SC\_WRITER\_POLICY\_H\_INCLUDED\_}}
+\DoxyCodeLine{00031\ \textcolor{preprocessor}{\#define\ SC\_WRITER\_POLICY\_H\_INCLUDED\_}}
+\DoxyCodeLine{00032\ }
+\DoxyCodeLine{00033\ \textcolor{preprocessor}{\#if\ !defined(SC\_DEFAULT\_WRITER\_POLICY)}}
+\DoxyCodeLine{00034\ \textcolor{preprocessor}{\#\ \ if\ defined(SC\_NO\_WRITE\_CHECK)}}
+\DoxyCodeLine{00035\ \textcolor{preprocessor}{\#\ \ \ \ define\ SC\_DEFAULT\_WRITER\_POLICY\ SC\_UNCHECKED\_WRITERS}}
+\DoxyCodeLine{00036\ \textcolor{preprocessor}{\#\ \ else}}
+\DoxyCodeLine{00037\ \textcolor{preprocessor}{\#\ \ \ \ define\ SC\_DEFAULT\_WRITER\_POLICY\ SC\_ONE\_WRITER}}
+\DoxyCodeLine{00038\ \textcolor{preprocessor}{\#\ \ endif}}
+\DoxyCodeLine{00039\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00040\ }
+\DoxyCodeLine{00041\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{sc__process__handle_8h}{sysc/kernel/sc\_process\_handle.h}}"{}}}
+\DoxyCodeLine{00042\ }
+\DoxyCodeLine{00043\ \textcolor{preprocessor}{\#if\ defined(\_MSC\_VER)\ \&\&\ \_MSC\_VER\ <\ 1800}}
+\DoxyCodeLine{00044\ \textcolor{preprocessor}{\#\ pragma\ warning(push)}}
+\DoxyCodeLine{00045\ \textcolor{preprocessor}{\#\ pragma\ warning(disable:4512)\ }\textcolor{comment}{//\ assignment\ operator\ could\ not\ be\ generated}}
+\DoxyCodeLine{00046\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{//\ \_MSC\_VER\ <\ 1800}}
+\DoxyCodeLine{00047\ }
+\DoxyCodeLine{00048\ \textcolor{keyword}{namespace\ }\mbox{\hyperlink{namespacesc__core}{sc\_core}}\ \{}
+\DoxyCodeLine{00049\ }
+\DoxyCodeLine{00050\ \textcolor{keyword}{class\ }\mbox{\hyperlink{namespacesc__core_a8eb02df3abf893e699a4802f7c7e029b}{sc\_object}};}
+\DoxyCodeLine{00051\ \textcolor{keyword}{class\ }\mbox{\hyperlink{namespacesc__core_a2c6b798f57175c4157f132331c5d407f}{sc\_port\_base}};}
+\DoxyCodeLine{00052\ \textcolor{keyword}{extern}}
+\DoxyCodeLine{00053\ \mbox{\hyperlink{sc__cmnhdr_8h_aff4a86b3f5de3ac2097081e7166fe89f}{SC\_API}}\ \textcolor{keywordtype}{void}}
+\DoxyCodeLine{00054\ \mbox{\hyperlink{namespacesc__core_a1cebf5bb256f54f2b51fea03caf31f48}{sc\_signal\_invalid\_writer}}(\ \mbox{\hyperlink{classsc__core_1_1sc__object}{sc\_object}}*\ target,\ \mbox{\hyperlink{classsc__core_1_1sc__object}{sc\_object}}*\ \mbox{\hyperlink{class_sysc_add__pv}{first\_writer}},}
+\DoxyCodeLine{00055\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classsc__core_1_1sc__object}{sc\_object}}*\ \mbox{\hyperlink{class_sysc_add__pv}{second\_writer}},\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{class_sysc_add__pv}{check\_delta}}\ );}
+\DoxyCodeLine{00056\ }
+\DoxyCodeLine{00057\ \textcolor{comment}{//\ SIGNAL\ WRITING\ POLICIES}}
+\DoxyCodeLine{00058\ \textcolor{comment}{//}}
+\DoxyCodeLine{00059\ \textcolor{comment}{//\ Note:\ if\ you\ add\ a\ new\ policy\ to\ the\ enum\ below\ you\ will\ need\ to\ add}}
+\DoxyCodeLine{00060\ \textcolor{comment}{//\ an\ additional\ overload\ of\ sc\_reset::reset\_signal\_is()\ for\ the\ sc\_signal<bool>}}
+\DoxyCodeLine{00061\ \textcolor{comment}{//\ instance.\ That\ will\ require\ changes\ to\ sysc/kernel/sc\_reset.cpp\ and\ }}
+\DoxyCodeLine{00062\ \textcolor{comment}{//\ sysc/kernel/sc\_reset.h}}
+\DoxyCodeLine{00063\ }
+\DoxyCodeLine{00064\ \textcolor{keyword}{enum}\ \mbox{\hyperlink{namespacesc__core_ae291a92ac88dd846d36d6a9cd9835607}{sc\_writer\_policy}}}
+\DoxyCodeLine{00065\ \{}
+\DoxyCodeLine{00066\ \ \ \mbox{\hyperlink{namespacesc__core_ae291a92ac88dd846d36d6a9cd9835607a3e4e04e6ed61133348c6f4a8d0131d25}{SC\_ONE\_WRITER}}\ \ \ \ \ \ \ \ =\ 0,\ }
+\DoxyCodeLine{00067\ \ \ \mbox{\hyperlink{namespacesc__core_ae291a92ac88dd846d36d6a9cd9835607abfdd1eba847a6183ab527d3f51c543f5}{SC\_MANY\_WRITERS}}\ \ \ \ \ \ =\ 1,\ }
+\DoxyCodeLine{00068\ \ \ \mbox{\hyperlink{namespacesc__core_ae291a92ac88dd846d36d6a9cd9835607a9bd426068dd960793db998491616aa6a}{SC\_UNCHECKED\_WRITERS}}\ =\ 3\ \ }
+\DoxyCodeLine{00069\ \};}
+\DoxyCodeLine{00070\ }
+\DoxyCodeLine{00071\ \textcolor{comment}{//\ signal\ forward\ declaration}}
+\DoxyCodeLine{00072\ \textcolor{keyword}{template}<\ \textcolor{keyword}{typename}\ T,\ sc\_writer\_policy\ POL\ =\ SC\_DEFAULT\_WRITER\_POLICY\ >}
+\DoxyCodeLine{00073\ \textcolor{keyword}{class\ }sc\_signal;}
+\DoxyCodeLine{00074\ }
+\DoxyCodeLine{00075\ \textcolor{keyword}{template}<\ sc\_writer\_policy\ >}
+\DoxyCodeLine{00076\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structsc__core_1_1sc__writer__policy__check}{sc\_writer\_policy\_check}};}
+\DoxyCodeLine{00077\ }
+\DoxyCodeLine{00078\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{sc__cmnhdr_8h_aff4a86b3f5de3ac2097081e7166fe89f}{SC\_API}}\ \mbox{\hyperlink{structsc__core_1_1sc__writer__policy__nocheck__write}{sc\_writer\_policy\_nocheck\_write}}}
+\DoxyCodeLine{00079\ \{}
+\DoxyCodeLine{00080\ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{structsc__core_1_1sc__writer__policy__nocheck__write_ad24d654acb3a926b761ad2ddd8f4e9d1}{check\_write}}(\ \mbox{\hyperlink{classsc__core_1_1sc__object}{sc\_object}}*\ \textcolor{comment}{/*\ target\ */},\ \textcolor{keywordtype}{bool}\ \textcolor{comment}{/*\ value\_changed\ */}\ )}
+\DoxyCodeLine{00081\ \ \ \ \ \{\ \textcolor{keywordflow}{return}\ \textcolor{keyword}{true};\ \}}
+\DoxyCodeLine{00082\ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{structsc__core_1_1sc__writer__policy__nocheck__write_a8e9f00b4fbd499a4671fcfd2954a0605}{needs\_update}}()\textcolor{keyword}{\ const\ }\{\ \textcolor{keywordflow}{return}\ \textcolor{keyword}{false};\ \}}
+\DoxyCodeLine{00083\ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{structsc__core_1_1sc__writer__policy__nocheck__write_a7e11d84a41e9b54d41e71d198e916f98}{update}}()\ \{\}}
+\DoxyCodeLine{00084\ \};}
+\DoxyCodeLine{00085\ }
+\DoxyCodeLine{00086\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{sc__cmnhdr_8h_aff4a86b3f5de3ac2097081e7166fe89f}{SC\_API}}\ \mbox{\hyperlink{structsc__core_1_1sc__writer__policy__check__write}{sc\_writer\_policy\_check\_write}}}
+\DoxyCodeLine{00087\ \{}
+\DoxyCodeLine{00088\ \ \ \textcolor{keywordtype}{bool}\ check\_write(\ \mbox{\hyperlink{classsc__core_1_1sc__object}{sc\_object}}*\ target,\ \textcolor{keywordtype}{bool}\ value\_changed\ );}
+\DoxyCodeLine{00089\ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{structsc__core_1_1sc__writer__policy__check__write_ab4e83d0cd3f6feb0b98b1b9aab1adff8}{needs\_update}}()\textcolor{keyword}{\ const\ }\{\ \textcolor{keywordflow}{return}\ m\_delta\_only;\ \}}
+\DoxyCodeLine{00090\ \ \ \textcolor{keywordtype}{void}\ update();}
+\DoxyCodeLine{00091\ }
+\DoxyCodeLine{00092\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00093\ \ \ \textcolor{keyword}{static}\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{structsc__core_1_1sc__writer__policy__check__write_aaaa8b7d421bd9aee487999f2f8afda69}{only\_delta}}();}
+\DoxyCodeLine{00094\ }
+\DoxyCodeLine{00095\ \textcolor{keyword}{protected}:}
+\DoxyCodeLine{00096\ \ \ \mbox{\hyperlink{structsc__core_1_1sc__writer__policy__check__write_a7062d0aa17c582c199e6da3dcded4fa0}{sc\_writer\_policy\_check\_write}}(\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{class_sysc_add__pv}{delta\_only}}\ =\ only\_delta()\ )}
+\DoxyCodeLine{00097\ \ \ \ \ :\ m\_delta\_only(\ \mbox{\hyperlink{class_sysc_add__pv}{delta\_only}}\ ),\ m\_writer\_p()\ \{\}}
+\DoxyCodeLine{00098\ }
+\DoxyCodeLine{00099\ \ \ \textcolor{keyword}{const}\ \textcolor{keywordtype}{bool}\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structsc__core_1_1sc__writer__policy__check__write_ad7c8ef9ee370eb9383ddbb72697f0606}{m\_delta\_only}};}
+\DoxyCodeLine{00100\ \ \ \mbox{\hyperlink{classsc__core_1_1sc__process__handle}{sc\_process\_handle}}\ \ \mbox{\hyperlink{structsc__core_1_1sc__writer__policy__check__write_a24ce9357bbf246b559ca1d8c2c4a117d}{m\_writer\_p}};}
+\DoxyCodeLine{00101\ \};}
+\DoxyCodeLine{00102\ }
+\DoxyCodeLine{00103\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{sc__cmnhdr_8h_aff4a86b3f5de3ac2097081e7166fe89f}{SC\_API}}\ \mbox{\hyperlink{structsc__core_1_1sc__writer__policy__check__delta}{sc\_writer\_policy\_check\_delta}}}
+\DoxyCodeLine{00104\ \ \ \ \ :\ \mbox{\hyperlink{structsc__core_1_1sc__writer__policy__check__write}{sc\_writer\_policy\_check\_write}}}
+\DoxyCodeLine{00105\ \{}
+\DoxyCodeLine{00106\ \ \ \textcolor{comment}{//\ bool\ write\_check(sc\_object*,\ bool);\ /*\ inherited\ */}}
+\DoxyCodeLine{00107\ }
+\DoxyCodeLine{00108\ \ \ \textcolor{comment}{//\ always\ force\ update\ phase\ to\ reset\ process}}
+\DoxyCodeLine{00109\ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{structsc__core_1_1sc__writer__policy__check__delta_a08689db9a9a1b854cad8e323afe0baf6}{needs\_update}}()\textcolor{keyword}{\ const\ }\{\ \textcolor{keywordflow}{return}\ \textcolor{keyword}{true};\ \}}
+\DoxyCodeLine{00110\ }
+\DoxyCodeLine{00111\ \ \ \textcolor{comment}{//\ reset\ current\ writer\ during\ update\ phase}}
+\DoxyCodeLine{00112\ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{structsc__core_1_1sc__writer__policy__check__delta_a80bf656d80983600030831a4ab98a64b}{update}}()\ \{\ \mbox{\hyperlink{classsc__core_1_1sc__process__handle}{sc\_process\_handle}}().\mbox{\hyperlink{classsc__core_1_1sc__process__handle_a7d3c0cd16c76ffb1950f7edb66f904b7}{swap}}(\ m\_writer\_p\ );\ \}}
+\DoxyCodeLine{00113\ }
+\DoxyCodeLine{00114\ \textcolor{keyword}{protected}:}
+\DoxyCodeLine{00115\ \ \ \mbox{\hyperlink{structsc__core_1_1sc__writer__policy__check__delta_a1f6804cc64c547f6c3fc2556541cab55}{sc\_writer\_policy\_check\_delta}}()}
+\DoxyCodeLine{00116\ \ \ \ \ :\ \mbox{\hyperlink{structsc__core_1_1sc__writer__policy__check__write}{sc\_writer\_policy\_check\_write}}(\mbox{\hyperlink{class_sysc_add__pv}{true}})\ \{\}}
+\DoxyCodeLine{00117\ \};}
+\DoxyCodeLine{00118\ }
+\DoxyCodeLine{00119\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{sc__cmnhdr_8h_aff4a86b3f5de3ac2097081e7166fe89f}{SC\_API}}\ \mbox{\hyperlink{structsc__core_1_1sc__writer__policy__nocheck__port}{sc\_writer\_policy\_nocheck\_port}}}
+\DoxyCodeLine{00120\ \{}
+\DoxyCodeLine{00121\ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{structsc__core_1_1sc__writer__policy__nocheck__port_a98b439f58119befec7159ab20ffd1150}{check\_port}}(\ \mbox{\hyperlink{classsc__core_1_1sc__object}{sc\_object}}*,\ \mbox{\hyperlink{classsc__core_1_1sc__port__base}{sc\_port\_base}}*,\ \textcolor{keywordtype}{bool}\ )}
+\DoxyCodeLine{00122\ \ \ \ \ \{\ \textcolor{keywordflow}{return}\ \textcolor{keyword}{true};\ \}}
+\DoxyCodeLine{00123\ \};}
+\DoxyCodeLine{00124\ }
+\DoxyCodeLine{00125\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{sc__cmnhdr_8h_aff4a86b3f5de3ac2097081e7166fe89f}{SC\_API}}\ \mbox{\hyperlink{structsc__core_1_1sc__writer__policy__check__port}{sc\_writer\_policy\_check\_port}}}
+\DoxyCodeLine{00126\ \{}
+\DoxyCodeLine{00127\ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{structsc__core_1_1sc__writer__policy__check__port_adf685dceeef16b4453bd5d7bfe2e075b}{check\_port}}(\ \mbox{\hyperlink{classsc__core_1_1sc__object}{sc\_object}}*\ target,\ \mbox{\hyperlink{classsc__core_1_1sc__port__base}{sc\_port\_base}}*\ port,\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{class_sysc_add__pv}{is\_output}}\ );}
+\DoxyCodeLine{00128\ }
+\DoxyCodeLine{00129\ \textcolor{keyword}{protected}:}
+\DoxyCodeLine{00130\ \ \ \mbox{\hyperlink{structsc__core_1_1sc__writer__policy__check__port_aadd7ce93eae842bedce17b7db700e255}{sc\_writer\_policy\_check\_port}}()\ :\ m\_output(0)\ \{\}}
+\DoxyCodeLine{00131\ \ \ \mbox{\hyperlink{classsc__core_1_1sc__port__base}{sc\_port\_base}}*\ \mbox{\hyperlink{structsc__core_1_1sc__writer__policy__check__port_a70c873db9370ce44bd0adacae43c88ce}{m\_output}};}
+\DoxyCodeLine{00132\ \};}
+\DoxyCodeLine{00133\ }
+\DoxyCodeLine{00134\ \textcolor{keyword}{template}<>}
+\DoxyCodeLine{00135\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{sc__cmnhdr_8h_aff4a86b3f5de3ac2097081e7166fe89f}{SC\_API}}\ \mbox{\hyperlink{structsc__core_1_1sc__writer__policy__check}{sc\_writer\_policy\_check}}<\mbox{\hyperlink{namespacesc__core_ae291a92ac88dd846d36d6a9cd9835607a3e4e04e6ed61133348c6f4a8d0131d25}{SC\_ONE\_WRITER}}>}
+\DoxyCodeLine{00136\ \ \ :\ \mbox{\hyperlink{structsc__core_1_1sc__writer__policy__check__port}{sc\_writer\_policy\_check\_port}}}
+\DoxyCodeLine{00137\ \ \ ,\ \mbox{\hyperlink{structsc__core_1_1sc__writer__policy__check__write}{sc\_writer\_policy\_check\_write}}}
+\DoxyCodeLine{00138\ \{\};}
+\DoxyCodeLine{00139\ }
+\DoxyCodeLine{00140\ \textcolor{keyword}{template}<>}
+\DoxyCodeLine{00141\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{sc__cmnhdr_8h_aff4a86b3f5de3ac2097081e7166fe89f}{SC\_API}}\ \mbox{\hyperlink{structsc__core_1_1sc__writer__policy__check}{sc\_writer\_policy\_check}}<\mbox{\hyperlink{namespacesc__core_ae291a92ac88dd846d36d6a9cd9835607abfdd1eba847a6183ab527d3f51c543f5}{SC\_MANY\_WRITERS}}>}
+\DoxyCodeLine{00142\ \ \ :\ \mbox{\hyperlink{structsc__core_1_1sc__writer__policy__nocheck__port}{sc\_writer\_policy\_nocheck\_port}}}
+\DoxyCodeLine{00143\ \ \ ,\ \mbox{\hyperlink{structsc__core_1_1sc__writer__policy__check__delta}{sc\_writer\_policy\_check\_delta}}}
+\DoxyCodeLine{00144\ \{\};}
+\DoxyCodeLine{00145\ }
+\DoxyCodeLine{00146\ \textcolor{keyword}{template}<>}
+\DoxyCodeLine{00147\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{sc__cmnhdr_8h_aff4a86b3f5de3ac2097081e7166fe89f}{SC\_API}}\ \mbox{\hyperlink{structsc__core_1_1sc__writer__policy__check}{sc\_writer\_policy\_check}}<\mbox{\hyperlink{namespacesc__core_ae291a92ac88dd846d36d6a9cd9835607a9bd426068dd960793db998491616aa6a}{SC\_UNCHECKED\_WRITERS}}>}
+\DoxyCodeLine{00148\ \ \ :\ \mbox{\hyperlink{structsc__core_1_1sc__writer__policy__nocheck__port}{sc\_writer\_policy\_nocheck\_port}}}
+\DoxyCodeLine{00149\ \ \ ,\ \mbox{\hyperlink{structsc__core_1_1sc__writer__policy__nocheck__write}{sc\_writer\_policy\_nocheck\_write}}}
+\DoxyCodeLine{00150\ \{\};}
+\DoxyCodeLine{00151\ }
+\DoxyCodeLine{00152\ \}\ \textcolor{comment}{//\ namespace\ sc\_core}}
+\DoxyCodeLine{00153\ }
+\DoxyCodeLine{00154\ \textcolor{preprocessor}{\#if\ defined(\_MSC\_VER)\ \&\&\ \_MSC\_VER\ <\ 1800}}
+\DoxyCodeLine{00155\ \textcolor{preprocessor}{\#\ pragma\ warning(pop)}}
+\DoxyCodeLine{00156\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{//\ \_MSC\_VER\ <\ 1800}}
+\DoxyCodeLine{00157\ }
+\DoxyCodeLine{00158\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{//\ SC\_WRITER\_POLICY\_H\_INCLUDED\_}}
+\DoxyCodeLine{00159\ \textcolor{comment}{//\ Taf!}}
+
+\end{DoxyCode}

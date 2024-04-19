@@ -1,0 +1,130 @@
+\doxysection{sc\+\_\+mutex.\+h}
+\hypertarget{sc__mutex_8h_source}{}\label{sc__mutex_8h_source}\index{C:/Users/BJRODIER/Documents/QT\_REPO/QT\_VHDL\_simulator/code/Ressources/SystemC/include/sysc/communication/sc\_mutex.h@{C:/Users/BJRODIER/Documents/QT\_REPO/QT\_VHDL\_simulator/code/Ressources/SystemC/include/sysc/communication/sc\_mutex.h}}
+\mbox{\hyperlink{sc__mutex_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{comment}{/*****************************************************************************}}
+\DoxyCodeLine{00002\ \textcolor{comment}{}}
+\DoxyCodeLine{00003\ \textcolor{comment}{\ \ Licensed\ to\ Accellera\ Systems\ Initiative\ Inc.\ (Accellera)\ under\ one\ or}}
+\DoxyCodeLine{00004\ \textcolor{comment}{\ \ more\ contributor\ license\ agreements.\ \ See\ the\ NOTICE\ file\ distributed}}
+\DoxyCodeLine{00005\ \textcolor{comment}{\ \ with\ this\ work\ for\ additional\ information\ regarding\ copyright\ ownership.}}
+\DoxyCodeLine{00006\ \textcolor{comment}{\ \ Accellera\ licenses\ this\ file\ to\ you\ under\ the\ Apache\ License,\ Version\ 2.0}}
+\DoxyCodeLine{00007\ \textcolor{comment}{\ \ (the\ "{}License"{});\ you\ may\ not\ use\ this\ file\ except\ in\ compliance\ with\ the}}
+\DoxyCodeLine{00008\ \textcolor{comment}{\ \ License.\ \ You\ may\ obtain\ a\ copy\ of\ the\ License\ at}}
+\DoxyCodeLine{00009\ \textcolor{comment}{}}
+\DoxyCodeLine{00010\ \textcolor{comment}{\ \ \ \ http://www.apache.org/licenses/LICENSE-\/2.0}}
+\DoxyCodeLine{00011\ \textcolor{comment}{}}
+\DoxyCodeLine{00012\ \textcolor{comment}{\ \ Unless\ required\ by\ applicable\ law\ or\ agreed\ to\ in\ writing,\ software}}
+\DoxyCodeLine{00013\ \textcolor{comment}{\ \ distributed\ under\ the\ License\ is\ distributed\ on\ an\ "{}AS\ IS"{}\ BASIS,}}
+\DoxyCodeLine{00014\ \textcolor{comment}{\ \ WITHOUT\ WARRANTIES\ OR\ CONDITIONS\ OF\ ANY\ KIND,\ either\ express\ or}}
+\DoxyCodeLine{00015\ \textcolor{comment}{\ \ implied.\ \ See\ the\ License\ for\ the\ specific\ language\ governing}}
+\DoxyCodeLine{00016\ \textcolor{comment}{\ \ permissions\ and\ limitations\ under\ the\ License.}}
+\DoxyCodeLine{00017\ \textcolor{comment}{}}
+\DoxyCodeLine{00018\ \textcolor{comment}{\ *****************************************************************************/}}
+\DoxyCodeLine{00019\ }
+\DoxyCodeLine{00020\ \textcolor{comment}{/*****************************************************************************}}
+\DoxyCodeLine{00021\ \textcolor{comment}{}}
+\DoxyCodeLine{00022\ \textcolor{comment}{\ \ sc\_mutex.h\ -\/-\/\ The\ sc\_mutex\ primitive\ channel\ class.}}
+\DoxyCodeLine{00023\ \textcolor{comment}{}}
+\DoxyCodeLine{00024\ \textcolor{comment}{\ \ Original\ Author:\ Martin\ Janssen,\ Synopsys,\ Inc.,\ 2001-\/05-\/21}}
+\DoxyCodeLine{00025\ \textcolor{comment}{}}
+\DoxyCodeLine{00026\ \textcolor{comment}{\ \ CHANGE\ LOG\ IS\ AT\ THE\ END\ OF\ THE\ FILE}}
+\DoxyCodeLine{00027\ \textcolor{comment}{\ *****************************************************************************/}}
+\DoxyCodeLine{00028\ }
+\DoxyCodeLine{00029\ \textcolor{preprocessor}{\#ifndef\ SC\_MUTEX\_H}}
+\DoxyCodeLine{00030\ \textcolor{preprocessor}{\#define\ SC\_MUTEX\_H}}
+\DoxyCodeLine{00031\ }
+\DoxyCodeLine{00032\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{sc__event_8h}{sysc/kernel/sc\_event.h}}"{}}}
+\DoxyCodeLine{00033\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{sc__object_8h}{sysc/kernel/sc\_object.h}}"{}}}
+\DoxyCodeLine{00034\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{sc__wait_8h}{sysc/kernel/sc\_wait.h}}"{}}}
+\DoxyCodeLine{00035\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{sc__mutex__if_8h}{sysc/communication/sc\_mutex\_if.h}}"{}}}
+\DoxyCodeLine{00036\ }
+\DoxyCodeLine{00037\ \textcolor{keyword}{namespace\ }\mbox{\hyperlink{namespacesc__core}{sc\_core}}\ \{}
+\DoxyCodeLine{00038\ }
+\DoxyCodeLine{00039\ \textcolor{comment}{//\ -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{00040\ \textcolor{comment}{//\ \ CLASS\ :\ sc\_mutex}}
+\DoxyCodeLine{00041\ \textcolor{comment}{//}}
+\DoxyCodeLine{00042\ \textcolor{comment}{//\ \ The\ sc\_mutex\ primitive\ channel\ class.}}
+\DoxyCodeLine{00043\ \textcolor{comment}{//\ -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{00044\ }
+\DoxyCodeLine{00045\ \textcolor{keyword}{class\ }\mbox{\hyperlink{sc__cmnhdr_8h_aff4a86b3f5de3ac2097081e7166fe89f}{SC\_API}}\ \mbox{\hyperlink{classsc__core_1_1sc__mutex}{sc\_mutex}}}
+\DoxyCodeLine{00046\ :\ \textcolor{keyword}{public}\ \mbox{\hyperlink{classsc__core_1_1sc__mutex__if}{sc\_mutex\_if}},}
+\DoxyCodeLine{00047\ \ \ \textcolor{keyword}{public}\ \mbox{\hyperlink{classsc__core_1_1sc__object}{sc\_object}}}
+\DoxyCodeLine{00048\ \{}
+\DoxyCodeLine{00049\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00050\ }
+\DoxyCodeLine{00051\ \ \ \ \ \textcolor{comment}{//\ constructors\ and\ destructor}}
+\DoxyCodeLine{00052\ }
+\DoxyCodeLine{00053\ \ \ \ \ \mbox{\hyperlink{classsc__core_1_1sc__mutex_a4d510d3d38bc6da39d54bb8658c3640d}{sc\_mutex}}();}
+\DoxyCodeLine{00054\ \ \ \ \ \textcolor{keyword}{explicit}\ \mbox{\hyperlink{classsc__core_1_1sc__mutex_a169d49594df3ad0ba58d2395c98b5f12}{sc\_mutex}}(\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{char}*\ \mbox{\hyperlink{class_sysc_add__pv}{name\_}}\ );}
+\DoxyCodeLine{00055\ \ \ \ \ \textcolor{keyword}{virtual}\ \mbox{\hyperlink{classsc__core_1_1sc__mutex_a76822ae4f3a788efcd5ddadab8efea93}{\string~sc\_mutex}}();}
+\DoxyCodeLine{00056\ }
+\DoxyCodeLine{00057\ }
+\DoxyCodeLine{00058\ \ \ \ \ \textcolor{comment}{//\ interface\ methods}}
+\DoxyCodeLine{00059\ }
+\DoxyCodeLine{00060\ \ \ \ \ \textcolor{comment}{//\ blocks\ until\ mutex\ could\ be\ locked}}
+\DoxyCodeLine{00061\ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{classsc__core_1_1sc__mutex_a227813e3089b0d000bba8b39ed30a07e}{lock}}();}
+\DoxyCodeLine{00062\ }
+\DoxyCodeLine{00063\ \ \ \ \ \textcolor{comment}{//\ returns\ -\/1\ if\ mutex\ could\ not\ be\ locked}}
+\DoxyCodeLine{00064\ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{classsc__core_1_1sc__mutex_abfafd461ffa8489bc28d11d774d008ec}{trylock}}();}
+\DoxyCodeLine{00065\ }
+\DoxyCodeLine{00066\ \ \ \ \ \textcolor{comment}{//\ returns\ -\/1\ if\ mutex\ was\ not\ locked\ by\ caller}}
+\DoxyCodeLine{00067\ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{classsc__core_1_1sc__mutex_a9497893c89e489b107ed2061851c6a3b}{unlock}}();}
+\DoxyCodeLine{00068\ }
+\DoxyCodeLine{00069\ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{char}*\ \mbox{\hyperlink{classsc__core_1_1sc__mutex_a1e6bc2f982817d51a427f7dd1c87584c}{kind}}()\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00070\ \textcolor{keyword}{\ \ \ \ \ \ \ \ }\{\ \textcolor{keywordflow}{return}\ \textcolor{stringliteral}{"{}sc\_mutex"{}};\ \}}
+\DoxyCodeLine{00071\ }
+\DoxyCodeLine{00072\ \textcolor{keyword}{protected}:}
+\DoxyCodeLine{00073\ }
+\DoxyCodeLine{00074\ \ \ \ \ \textcolor{comment}{//\ support\ methods}}
+\DoxyCodeLine{00075\ }
+\DoxyCodeLine{00076\ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{classsc__core_1_1sc__mutex_af0f2b8ac9328e67707daa77301bf8388}{in\_use}}()\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00077\ \textcolor{keyword}{\ \ \ \ }\{\ \textcolor{keywordflow}{return}\ (\ m\_owner\ !=\ 0\ );\ \}}
+\DoxyCodeLine{00078\ }
+\DoxyCodeLine{00079\ \textcolor{keyword}{protected}:}
+\DoxyCodeLine{00080\ }
+\DoxyCodeLine{00081\ \ \ \ \ \mbox{\hyperlink{classsc__core_1_1sc__process__b}{sc\_process\_b}}*\ \mbox{\hyperlink{classsc__core_1_1sc__mutex_af69ba22a03bab6e983eeb859658ca105}{m\_owner}};}
+\DoxyCodeLine{00082\ \ \ \ \ \mbox{\hyperlink{classsc__core_1_1sc__event}{sc\_event}}\ \ \ \ \ \ \mbox{\hyperlink{classsc__core_1_1sc__mutex_a7179ffe9bb1e33d81114292d366b1b4b}{m\_free}};}
+\DoxyCodeLine{00083\ }
+\DoxyCodeLine{00084\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00085\ }
+\DoxyCodeLine{00086\ \ \ \ \ \textcolor{comment}{//\ disabled}}
+\DoxyCodeLine{00087\ \ \ \ \ \mbox{\hyperlink{classsc__core_1_1sc__mutex_a265956cc3a8d3282d425c4b6b85d72c4}{sc\_mutex}}(\ \textcolor{keyword}{const}\ \mbox{\hyperlink{classsc__core_1_1sc__mutex}{sc\_mutex}}\&\ );}
+\DoxyCodeLine{00088\ \ \ \ \ \mbox{\hyperlink{classsc__core_1_1sc__mutex}{sc\_mutex}}\&\ \mbox{\hyperlink{class_sysc_add__pv}{operator\ =\ }}(\ \textcolor{keyword}{const}\ \mbox{\hyperlink{classsc__core_1_1sc__mutex}{sc\_mutex}}\&\ );}
+\DoxyCodeLine{00089\ \};}
+\DoxyCodeLine{00090\ }
+\DoxyCodeLine{00091\ \}\ \textcolor{comment}{//\ namespace\ sc\_core}}
+\DoxyCodeLine{00092\ }
+\DoxyCodeLine{00093\ \textcolor{comment}{//\$Log:\ sc\_mutex.h,v\ \$}}
+\DoxyCodeLine{00094\ \textcolor{comment}{//Revision\ 1.4\ \ 2011/08/26\ 20:45:41\ \ acg}}
+\DoxyCodeLine{00095\ \textcolor{comment}{//\ Andy\ Goodrich:\ moved\ the\ modification\ log\ to\ the\ end\ of\ the\ file\ to}}
+\DoxyCodeLine{00096\ \textcolor{comment}{//\ eliminate\ source\ line\ number\ skew\ when\ check-\/ins\ are\ done.}}
+\DoxyCodeLine{00097\ \textcolor{comment}{//}}
+\DoxyCodeLine{00098\ \textcolor{comment}{//Revision\ 1.3\ \ 2011/02/18\ 20:23:45\ \ acg}}
+\DoxyCodeLine{00099\ \textcolor{comment}{//\ Andy\ Goodrich:\ Copyright\ update.}}
+\DoxyCodeLine{00100\ \textcolor{comment}{//}}
+\DoxyCodeLine{00101\ \textcolor{comment}{//Revision\ 1.2\ \ 2010/11/02\ 16:31:01\ \ acg}}
+\DoxyCodeLine{00102\ \textcolor{comment}{//\ Andy\ Goodrich:\ changed\ object\ derivation\ to\ use\ sc\_object\ rather\ than}}
+\DoxyCodeLine{00103\ \textcolor{comment}{//\ sc\_prim\_channel\ as\ the\ parent\ class.}}
+\DoxyCodeLine{00104\ \textcolor{comment}{//}}
+\DoxyCodeLine{00105\ \textcolor{comment}{//Revision\ 1.1.1.1\ \ 2006/12/15\ 20:20:04\ \ acg}}
+\DoxyCodeLine{00106\ \textcolor{comment}{//SystemC\ 2.3}}
+\DoxyCodeLine{00107\ \textcolor{comment}{//}}
+\DoxyCodeLine{00108\ \textcolor{comment}{//Revision\ 1.2\ \ 2006/01/03\ 23:18:26\ \ acg}}
+\DoxyCodeLine{00109\ \textcolor{comment}{//Changed\ copyright\ to\ include\ 2006.}}
+\DoxyCodeLine{00110\ \textcolor{comment}{//}}
+\DoxyCodeLine{00111\ \textcolor{comment}{//Revision\ 1.1.1.1\ \ 2005/12/19\ 23:16:43\ \ acg}}
+\DoxyCodeLine{00112\ \textcolor{comment}{//First\ check\ in\ of\ SystemC\ 2.1\ into\ its\ own\ archive.}}
+\DoxyCodeLine{00113\ \textcolor{comment}{//}}
+\DoxyCodeLine{00114\ \textcolor{comment}{//Revision\ 1.10\ \ 2005/09/15\ 23:01:51\ \ acg}}
+\DoxyCodeLine{00115\ \textcolor{comment}{//Added\ std::\ prefix\ to\ appropriate\ methods\ and\ types\ to\ get\ around}}
+\DoxyCodeLine{00116\ \textcolor{comment}{//issues\ with\ the\ Edison\ Front\ End.}}
+\DoxyCodeLine{00117\ \textcolor{comment}{//}}
+\DoxyCodeLine{00118\ \textcolor{comment}{//Revision\ 1.9\ \ 2005/06/10\ 22:43:55\ \ acg}}
+\DoxyCodeLine{00119\ \textcolor{comment}{//Added\ CVS\ change\ log\ annotation.}}
+\DoxyCodeLine{00120\ \textcolor{comment}{//}}
+\DoxyCodeLine{00121\ }
+\DoxyCodeLine{00122\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00123\ }
+\DoxyCodeLine{00124\ \textcolor{comment}{//\ Taf!}}
+
+\end{DoxyCode}

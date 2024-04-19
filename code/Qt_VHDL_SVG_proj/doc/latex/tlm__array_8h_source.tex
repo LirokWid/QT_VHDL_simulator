@@ -1,0 +1,132 @@
+\doxysection{tlm\+\_\+array.\+h}
+\hypertarget{tlm__array_8h_source}{}\label{tlm__array_8h_source}\index{C:/Users/BJRODIER/Documents/QT\_REPO/QT\_VHDL\_simulator/code/Ressources/SystemC/include/tlm\_core/tlm\_2/tlm\_generic\_payload/tlm\_array.h@{C:/Users/BJRODIER/Documents/QT\_REPO/QT\_VHDL\_simulator/code/Ressources/SystemC/include/tlm\_core/tlm\_2/tlm\_generic\_payload/tlm\_array.h}}
+\mbox{\hyperlink{tlm__array_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{comment}{/*****************************************************************************}}
+\DoxyCodeLine{00002\ \textcolor{comment}{}}
+\DoxyCodeLine{00003\ \textcolor{comment}{\ \ Licensed\ to\ Accellera\ Systems\ Initiative\ Inc.\ (Accellera)\ under\ one\ or}}
+\DoxyCodeLine{00004\ \textcolor{comment}{\ \ more\ contributor\ license\ agreements.\ \ See\ the\ NOTICE\ file\ distributed}}
+\DoxyCodeLine{00005\ \textcolor{comment}{\ \ with\ this\ work\ for\ additional\ information\ regarding\ copyright\ ownership.}}
+\DoxyCodeLine{00006\ \textcolor{comment}{\ \ Accellera\ licenses\ this\ file\ to\ you\ under\ the\ Apache\ License,\ Version\ 2.0}}
+\DoxyCodeLine{00007\ \textcolor{comment}{\ \ (the\ "{}License"{});\ you\ may\ not\ use\ this\ file\ except\ in\ compliance\ with\ the}}
+\DoxyCodeLine{00008\ \textcolor{comment}{\ \ License.\ \ You\ may\ obtain\ a\ copy\ of\ the\ License\ at}}
+\DoxyCodeLine{00009\ \textcolor{comment}{}}
+\DoxyCodeLine{00010\ \textcolor{comment}{\ \ \ \ http://www.apache.org/licenses/LICENSE-\/2.0}}
+\DoxyCodeLine{00011\ \textcolor{comment}{}}
+\DoxyCodeLine{00012\ \textcolor{comment}{\ \ Unless\ required\ by\ applicable\ law\ or\ agreed\ to\ in\ writing,\ software}}
+\DoxyCodeLine{00013\ \textcolor{comment}{\ \ distributed\ under\ the\ License\ is\ distributed\ on\ an\ "{}AS\ IS"{}\ BASIS,}}
+\DoxyCodeLine{00014\ \textcolor{comment}{\ \ WITHOUT\ WARRANTIES\ OR\ CONDITIONS\ OF\ ANY\ KIND,\ either\ express\ or}}
+\DoxyCodeLine{00015\ \textcolor{comment}{\ \ implied.\ \ See\ the\ License\ for\ the\ specific\ language\ governing}}
+\DoxyCodeLine{00016\ \textcolor{comment}{\ \ permissions\ and\ limitations\ under\ the\ License.}}
+\DoxyCodeLine{00017\ \textcolor{comment}{}}
+\DoxyCodeLine{00018\ \textcolor{comment}{\ *****************************************************************************/}}
+\DoxyCodeLine{00019\ }
+\DoxyCodeLine{00020\ \textcolor{preprocessor}{\#ifndef\ TLM\_CORE\_TLM2\_TLM\_ARRAY\_H\_INCLUDED\_}}
+\DoxyCodeLine{00021\ \textcolor{preprocessor}{\#define\ TLM\_CORE\_TLM2\_TLM\_ARRAY\_H\_INCLUDED\_}}
+\DoxyCodeLine{00022\ }
+\DoxyCodeLine{00023\ \textcolor{preprocessor}{\#include\ <vector>}}
+\DoxyCodeLine{00024\ }
+\DoxyCodeLine{00025\ \textcolor{preprocessor}{\#if\ defined(\_MSC\_VER)\ \&\&\ !defined(SC\_WIN\_DLL\_WARN)}}
+\DoxyCodeLine{00026\ \textcolor{preprocessor}{\#pragma\ warning(push)}}
+\DoxyCodeLine{00027\ \textcolor{preprocessor}{\#pragma\ warning(disable:\ 4251)\ }\textcolor{comment}{//\ DLL\ import\ for\ std::string,vector}}
+\DoxyCodeLine{00028\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00029\ }
+\DoxyCodeLine{00030\ \textcolor{keyword}{namespace\ }\mbox{\hyperlink{namespacetlm}{tlm}}\ \{}
+\DoxyCodeLine{00031\ }
+\DoxyCodeLine{00032\ \textcolor{comment}{//}}
+\DoxyCodeLine{00033\ \textcolor{comment}{//\ To\ the\ LRM\ writer:\ the\ below\ class\ is\ an\ artifact\ of\ the\ tlm\_generic\_payload}}
+\DoxyCodeLine{00034\ \textcolor{comment}{//\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ implementation\ and\ not\ part\ of\ the\ core\ TLM\ standard}}
+\DoxyCodeLine{00035\ \textcolor{comment}{//}}
+\DoxyCodeLine{00036\ }
+\DoxyCodeLine{00037\ }
+\DoxyCodeLine{00038\ \textcolor{comment}{//\ This\ implements\ a\ lean\ and\ fast\ array\ class\ that\ supports\ array\ expansion\ on}}
+\DoxyCodeLine{00039\ \textcolor{comment}{//\ request.\ The\ class\ is\ primarily\ used\ in\ the\ tlm\_generic\_payload\ class\ for}}
+\DoxyCodeLine{00040\ \textcolor{comment}{//\ storing\ the\ pointers\ to\ the\ extensions.}}
+\DoxyCodeLine{00041\ \textcolor{comment}{//}}
+\DoxyCodeLine{00042\ \textcolor{comment}{//\ Individual\ array\ elements\ can\ be\ accessed\ through\ the\ []\ operators,\ and\ the}}
+\DoxyCodeLine{00043\ \textcolor{comment}{//\ array\ length\ is\ returned\ by\ the\ size()\ method.}}
+\DoxyCodeLine{00044\ \textcolor{comment}{//}}
+\DoxyCodeLine{00045\ \textcolor{comment}{//\ The\ size\ can\ be\ dynamically\ expanded\ using\ the\ expand(uint)\ method.\ There}}
+\DoxyCodeLine{00046\ \textcolor{comment}{//\ is\ no\ shrinking\ mechanism\ implemented,\ because\ the\ extension\ mechanism}}
+\DoxyCodeLine{00047\ \textcolor{comment}{//\ does\ not\ require\ this\ feature.\ Bear\ in\ mind\ that\ calling\ the\ expand\ method}}
+\DoxyCodeLine{00048\ \textcolor{comment}{//\ may\ invalidate\ all\ direct\ pointers\ into\ the\ array.}}
+\DoxyCodeLine{00049\ }
+\DoxyCodeLine{00050\ }
+\DoxyCodeLine{00051\ \textcolor{comment}{//the\ tlm\_array\ shall\ always\ be\ used\ with\ T=tlm\_extension\_base*}}
+\DoxyCodeLine{00052\ \textcolor{keyword}{template}\ <\textcolor{keyword}{typename}\ T>}
+\DoxyCodeLine{00053\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classtlm_1_1tlm__array}{tlm\_array}}}
+\DoxyCodeLine{00054\ \ \ :\ \textcolor{keyword}{private}\ std::vector<T>}
+\DoxyCodeLine{00055\ \{}
+\DoxyCodeLine{00056\ \ \ \ \ \textcolor{keyword}{typedef}\ std::vector<T>\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classtlm_1_1tlm__array_abef3948644a3a5229b6f4f23823a2806}{base\_type}};}
+\DoxyCodeLine{00057\ \ \ \ \ \textcolor{keyword}{typedef}\ \textcolor{keyword}{typename}\ base\_type::size\_type\ \mbox{\hyperlink{classtlm_1_1tlm__array_ab61359481597aced8f16830fe3ed9b04}{size\_type}};}
+\DoxyCodeLine{00058\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00059\ }
+\DoxyCodeLine{00060\ \ \ \ \ \textcolor{comment}{//\ constructor:}}
+\DoxyCodeLine{00061\ \ \ \ \ \mbox{\hyperlink{classtlm_1_1tlm__array_a2f65ea225856ba501d14c7dc5c0070bb}{tlm\_array}}(\mbox{\hyperlink{classtlm_1_1tlm__array_ab61359481597aced8f16830fe3ed9b04}{size\_type}}\ size\ =\ 0)}
+\DoxyCodeLine{00062\ \ \ \ \ \ \ \ \ :\ \mbox{\hyperlink{classtlm_1_1tlm__array_abef3948644a3a5229b6f4f23823a2806}{base\_type}}(size)}
+\DoxyCodeLine{00063\ \ \ \ \ \ \ \ \ ,\ \mbox{\hyperlink{classtlm_1_1tlm__array_ae5d62eb66eaf6a3500364c1bc20d2e93}{m\_entries}}()}
+\DoxyCodeLine{00064\ \ \ \ \ \{}
+\DoxyCodeLine{00065\ \ \ \ \ \ \ \ \ \textcolor{comment}{//m\_entries.reserve(size);\ //\ optional}}
+\DoxyCodeLine{00066\ \ \ \ \ \}}
+\DoxyCodeLine{00067\ }
+\DoxyCodeLine{00068\ \ \ \ \ \textcolor{comment}{//\ copy\ constructor:}}
+\DoxyCodeLine{00069\ \ \ \ \ \textcolor{comment}{//\ tlm\_array(const\ tlm\_array\&\ orig)\ =\ default;}}
+\DoxyCodeLine{00070\ }
+\DoxyCodeLine{00071\ \ \ \ \ \textcolor{comment}{//\ destructor:}}
+\DoxyCodeLine{00072\ \ \ \ \ \textcolor{comment}{//\ \string~tlm\_array()\ =\ default;}}
+\DoxyCodeLine{00073\ }
+\DoxyCodeLine{00074\ \ \ \ \ \textcolor{comment}{//\ operators\ for\ dereferencing:}}
+\DoxyCodeLine{00075\ \ \ \ \ \textcolor{keyword}{using\ }base\_type::operator[];}
+\DoxyCodeLine{00076\ }
+\DoxyCodeLine{00077\ \ \ \ \ \textcolor{comment}{//\ array\ size:}}
+\DoxyCodeLine{00078\ \ \ \ \ \textcolor{keyword}{using\ }base\_type::size;}
+\DoxyCodeLine{00079\ }
+\DoxyCodeLine{00080\ \ \ \ \ \textcolor{comment}{//\ expand\ the\ array\ if\ needed:}}
+\DoxyCodeLine{00081\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classtlm_1_1tlm__array_a10bb5b3268013ba880d1ce1db597d062}{expand}}(\mbox{\hyperlink{classtlm_1_1tlm__array_ab61359481597aced8f16830fe3ed9b04}{size\_type}}\ \mbox{\hyperlink{class_sysc_add__pv}{new\_size}})}
+\DoxyCodeLine{00082\ \ \ \ \ \{}
+\DoxyCodeLine{00083\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\mbox{\hyperlink{class_sysc_add__pv}{new\_size}}\ >\ size())}
+\DoxyCodeLine{00084\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00085\ \ \ \ \ \ \ \ \ \ \ \ \ base\_type::resize(\mbox{\hyperlink{class_sysc_add__pv}{new\_size}});}
+\DoxyCodeLine{00086\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//m\_entries.reserve(new\_size);\ //\ optional}}
+\DoxyCodeLine{00087\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00088\ \ \ \ \ \}}
+\DoxyCodeLine{00089\ }
+\DoxyCodeLine{00090\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{char}*\ \textcolor{keyword}{const}\ \mbox{\hyperlink{classtlm_1_1tlm__array_acf327bcde14c83f87e603deace64ad48}{kind\_string}};}
+\DoxyCodeLine{00091\ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keywordtype}{char}*\ \mbox{\hyperlink{classtlm_1_1tlm__array_a0e0380d5e5d28942f26f0a881a21398a}{kind}}()\textcolor{keyword}{\ const\ }\{\ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{classtlm_1_1tlm__array_acf327bcde14c83f87e603deace64ad48}{kind\_string}};\ \}}
+\DoxyCodeLine{00092\ }
+\DoxyCodeLine{00093\ \ \ \ \ \textcolor{comment}{//this\ function\ shall\ get\ a\ pointer\ to\ a\ array\ slot}}
+\DoxyCodeLine{00094\ \ \ \ \ \textcolor{comment}{//\ it\ stores\ this\ slot\ in\ a\ cache\ of\ active\ slots}}
+\DoxyCodeLine{00095\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classtlm_1_1tlm__array_af6086cbb8fc05678d33be9a81cc5549c}{insert\_in\_cache}}(\mbox{\hyperlink{mem__fn__cc_8hpp_adf1f3edb9115acb0a1e04209b7a9937b}{T}}*\ p)}
+\DoxyCodeLine{00096\ \ \ \ \ \{}
+\DoxyCodeLine{00097\ \ \ \ \ \ \ \ \ \textcolor{comment}{//sc\_assert(\ (p-\/\&(*this)[0])\ <\ size()\ );}}
+\DoxyCodeLine{00098\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classtlm_1_1tlm__array_ae5d62eb66eaf6a3500364c1bc20d2e93}{m\_entries}}.push\_back(\ p-\/\&(*\textcolor{keyword}{this})[0]\ );}
+\DoxyCodeLine{00099\ \ \ \ \ \}}
+\DoxyCodeLine{00100\ }
+\DoxyCodeLine{00101\ \ \ \ \ \textcolor{comment}{//this\ functions\ clears\ all\ active\ slots\ of\ the\ array}}
+\DoxyCodeLine{00102\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classtlm_1_1tlm__array_a725a0288e9a71edbb7e18e71447bdeb3}{free\_entire\_cache}}()}
+\DoxyCodeLine{00103\ \ \ \ \ \{}
+\DoxyCodeLine{00104\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{while}(\mbox{\hyperlink{classtlm_1_1tlm__array_ae5d62eb66eaf6a3500364c1bc20d2e93}{m\_entries}}.size())}
+\DoxyCodeLine{00105\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00106\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ ((*\textcolor{keyword}{this})[\mbox{\hyperlink{classtlm_1_1tlm__array_ae5d62eb66eaf6a3500364c1bc20d2e93}{m\_entries}}.back()])\ \ \ \ \ \ \textcolor{comment}{//we\ make\ sure\ no\ one\ cleared\ the\ slot\ manually}}
+\DoxyCodeLine{00107\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (*this)[\mbox{\hyperlink{classtlm_1_1tlm__array_ae5d62eb66eaf6a3500364c1bc20d2e93}{m\_entries}}.back()]-\/>free();\textcolor{comment}{//...and\ then\ we\ call\ free\ on\ the\ content\ of\ the\ slot}}
+\DoxyCodeLine{00108\ \ \ \ \ \ \ \ \ \ \ \ \ (*this)[\mbox{\hyperlink{classtlm_1_1tlm__array_ae5d62eb66eaf6a3500364c1bc20d2e93}{m\_entries}}.back()]=0;\ \ \ \ \ \ \ \ \textcolor{comment}{//afterwards\ we\ set\ the\ slot\ to\ NULL}}
+\DoxyCodeLine{00109\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classtlm_1_1tlm__array_ae5d62eb66eaf6a3500364c1bc20d2e93}{m\_entries}}.pop\_back();}
+\DoxyCodeLine{00110\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00111\ \ \ \ \ \}}
+\DoxyCodeLine{00112\ }
+\DoxyCodeLine{00113\ \textcolor{keyword}{protected}:}
+\DoxyCodeLine{00114\ \ \ \ \ std::vector<size\_type>\ \mbox{\hyperlink{classtlm_1_1tlm__array_ae5d62eb66eaf6a3500364c1bc20d2e93}{m\_entries}};}
+\DoxyCodeLine{00115\ \};}
+\DoxyCodeLine{00116\ }
+\DoxyCodeLine{00117\ \textcolor{keyword}{template}\ <\textcolor{keyword}{typename}\ T>}
+\DoxyCodeLine{00118\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{char}*\ \textcolor{keyword}{const}\ \mbox{\hyperlink{classtlm_1_1tlm__array}{tlm\_array<T>::kind\_string}}\ =\ \textcolor{stringliteral}{"{}tlm\_array"{}};}
+\DoxyCodeLine{00119\ }
+\DoxyCodeLine{00120\ \textcolor{preprocessor}{\#if\ defined(\_MSC\_VER)\ \&\&\ !defined(SC\_WIN\_DLL\_WARN)}}
+\DoxyCodeLine{00121\ \textcolor{preprocessor}{\#pragma\ warning(pop)}}
+\DoxyCodeLine{00122\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00123\ }
+\DoxyCodeLine{00124\ \}\ \textcolor{comment}{//\ namespace\ tlm}}
+\DoxyCodeLine{00125\ }
+\DoxyCodeLine{00126\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{/*\ TLM\_CORE\_TLM2\_TLM\_ARRAY\_H\_INCLUDED\_\ */}\textcolor{preprocessor}{}}
+
+\end{DoxyCode}

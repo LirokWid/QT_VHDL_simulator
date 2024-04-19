@@ -1,0 +1,308 @@
+.TH "sc_core::sc_process_handle" 3 "VHDL simulator" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+sc_core::sc_process_handle
+.SH SYNOPSIS
+.br
+.PP
+.PP
+\fR#include <sc_process_handle\&.h>\fP
+.SS "Public Member Functions"
+
+.in +1c
+.ti -1c
+.RI "\fBsc_process_handle\fP ()"
+.br
+.ti -1c
+.RI "\fBsc_process_handle\fP (\fBsc_object\fP *\fBobject_p\fP)"
+.br
+.ti -1c
+.RI "\fBsc_process_handle\fP (\fBsc_process_b\fP *\fBprocess_p\fP)"
+.br
+.ti -1c
+.RI "\fBsc_process_handle\fP (\fBconst\fP \fBsc_process_handle\fP &\fBorig\fP)"
+.br
+.ti -1c
+.RI "\fB~sc_process_handle\fP ()"
+.br
+.ti -1c
+.RI "\fBsc_process_handle\fP & \fBoperator=\fP (\fBsc_process_handle\fP \fBsrc\fP)"
+.br
+.ti -1c
+.RI "\fBvoid\fP \fBswap\fP (\fBsc_process_handle\fP &\fBother\fP)"
+.br
+.ti -1c
+.RI "\fBvoid\fP \fBdisable\fP (\fBsc_descendant_inclusion_info\fP \fBdescendants\fP=\fBSC_NO_DESCENDANTS\fP)"
+.br
+.ti -1c
+.RI "\fBbool\fP \fBdynamic\fP () \fBconst\fP"
+.br
+.ti -1c
+.RI "\fBvoid\fP \fBenable\fP (\fBsc_descendant_inclusion_info\fP \fBdescendants\fP=\fBSC_NO_DESCENDANTS\fP)"
+.br
+.ti -1c
+.RI "\fBconst\fP std::vector< \fBsc_event\fP * > & \fBget_child_events\fP () \fBconst\fP"
+.br
+.ti -1c
+.RI "\fBconst\fP std::vector< \fBsc_object\fP * > & \fBget_child_objects\fP () \fBconst\fP"
+.br
+.ti -1c
+.RI "\fBsc_object\fP * \fBget_parent_object\fP () \fBconst\fP"
+.br
+.ti -1c
+.RI "\fBsc_object\fP * \fBget_process_object\fP () \fBconst\fP"
+.br
+.ti -1c
+.RI "\fBbool\fP \fBis_unwinding\fP () \fBconst\fP"
+.br
+.ti -1c
+.RI "\fBvoid\fP \fBkill\fP (\fBsc_descendant_inclusion_info\fP \fBdescendants\fP=\fBSC_NO_DESCENDANTS\fP)"
+.br
+.ti -1c
+.RI "\fBconst\fP \fBchar\fP * \fBname\fP () \fBconst\fP"
+.br
+.ti -1c
+.RI "\fBconst\fP \fBchar\fP * \fBbasename\fP () \fBconst\fP"
+.br
+.ti -1c
+.RI "\fBsc_curr_proc_kind\fP \fBproc_kind\fP () \fBconst\fP"
+.br
+.ti -1c
+.RI "\fBvoid\fP \fBreset\fP (\fBsc_descendant_inclusion_info\fP \fBdescendants\fP=\fBSC_NO_DESCENDANTS\fP)"
+.br
+.ti -1c
+.RI "\fBsc_event\fP & \fBreset_event\fP () \fBconst\fP"
+.br
+.ti -1c
+.RI "\fBvoid\fP \fBresume\fP (\fBsc_descendant_inclusion_info\fP \fBdescendants\fP=\fBSC_NO_DESCENDANTS\fP)"
+.br
+.ti -1c
+.RI "\fBvoid\fP \fBsuspend\fP (\fBsc_descendant_inclusion_info\fP \fBdescendants\fP=\fBSC_NO_DESCENDANTS\fP)"
+.br
+.ti -1c
+.RI "\fBvoid\fP \fBsync_reset_off\fP (\fBsc_descendant_inclusion_info\fP \fBdescendants\fP=\fBSC_NO_DESCENDANTS\fP)"
+.br
+.ti -1c
+.RI "\fBvoid\fP \fBsync_reset_on\fP (\fBsc_descendant_inclusion_info\fP \fBdescendants\fP=\fBSC_NO_DESCENDANTS\fP)"
+.br
+.ti -1c
+.RI "\fBsc_event\fP & \fBterminated_event\fP ()"
+.br
+.ti -1c
+.RI "\fBbool\fP \fBterminated\fP () \fBconst\fP"
+.br
+.ti -1c
+.RI "template<\fBtypename\fP \fBEXCEPT\fP > \fBvoid\fP \fBthrow_it\fP (\fBconst\fP \fBEXCEPT\fP &exception, \fBsc_descendant_inclusion_info\fP \fBdescendants\fP=\fBSC_NO_DESCENDANTS\fP)"
+.br
+.ti -1c
+.RI "\fBbool\fP \fBvalid\fP () \fBconst\fP"
+.br
+.ti -1c
+.RI "std::string \fBdump_state\fP () \fBconst\fP"
+.br
+.ti -1c
+.RI "\fBoperator sc_process_b *\fP ()"
+.br
+.ti -1c
+.RI "\fBoperator sc_cthread_handle\fP ()"
+.br
+.ti -1c
+.RI "\fBoperator sc_method_handle\fP ()"
+.br
+.ti -1c
+.RI "\fBoperator sc_thread_handle\fP ()"
+.br
+.in -1c
+.SS "Protected Member Functions"
+
+.in +1c
+.ti -1c
+.RI "\fBbool\fP \fBdont_initialize\fP () \fBconst\fP"
+.br
+.ti -1c
+.RI "\fBvoid\fP \fBdont_initialize\fP (\fBbool\fP \fBdont\fP)"
+.br
+.in -1c
+.SS "Protected Attributes"
+
+.in +1c
+.ti -1c
+.RI "\fBsc_process_b\fP * \fBm_target_p\fP"
+.br
+.in -1c
+.SS "Static Protected Attributes"
+
+.in +1c
+.ti -1c
+.RI "\fBstatic\fP std::vector< \fBsc_event\fP * > \fBempty_event_vector\fP"
+.br
+.ti -1c
+.RI "\fBstatic\fP std::vector< \fBsc_object\fP * > \fBempty_object_vector\fP"
+.br
+.ti -1c
+.RI "\fBstatic\fP \fBsc_event\fP \fBnon_event\fP"
+.br
+.in -1c
+.SS "Private Types"
+
+.in +1c
+.ti -1c
+.RI "\fBtypedef\fP \fBsc_process_handle\fP \fBthis_type\fP"
+.br
+.in -1c
+.SS "Friends"
+
+.in +1c
+.ti -1c
+.RI "\fBclass\fP \fBsc_object\fP"
+.br
+.ti -1c
+.RI "\fBclass\fP \fBsc_join\fP"
+.br
+.ti -1c
+.RI "\fBclass\fP \fBsc_module\fP"
+.br
+.ti -1c
+.RI "\fBclass\fP \fBsc_reset\fP"
+.br
+.ti -1c
+.RI "\fBclass\fP \fBsc_sensitive\fP"
+.br
+.ti -1c
+.RI "\fBclass\fP \fBsc_sensitive_pos\fP"
+.br
+.ti -1c
+.RI "\fBclass\fP \fBsc_sensitive_neg\fP"
+.br
+.ti -1c
+.RI "\fBclass\fP \fBsc_thread_process\fP"
+.br
+.ti -1c
+.RI "\fBbool\fP \fBoperator==\fP (\fBconst\fP \fBthis_type\fP &left, \fBconst\fP \fBthis_type\fP &right)"
+.br
+.ti -1c
+.RI "\fBbool\fP \fBoperator!=\fP (\fBconst\fP \fBthis_type\fP &left, \fBconst\fP \fBthis_type\fP &right)"
+.br
+.ti -1c
+.RI "\fBbool\fP \fBoperator<\fP (\fBconst\fP \fBthis_type\fP &left, \fBconst\fP \fBthis_type\fP &right)"
+.br
+.in -1c
+.SH "Member Typedef Documentation"
+.PP 
+.SS "\fBtypedef\fP \fBsc_process_handle\fP \fBsc_core::sc_process_handle::this_type\fP\fR [private]\fP"
+
+.SH "Constructor & Destructor Documentation"
+.PP 
+.SS "sc_core::sc_process_handle::sc_process_handle ()\fR [inline]\fP"
+
+.SS "sc_core::sc_process_handle::sc_process_handle (\fBsc_object\fP * object_p)\fR [inline]\fP, \fR [explicit]\fP"
+
+.SS "sc_core::sc_process_handle::sc_process_handle (\fBsc_process_b\fP * process_p)\fR [inline]\fP, \fR [explicit]\fP"
+
+.SS "sc_core::sc_process_handle::sc_process_handle (\fBconst\fP \fBsc_process_handle\fP & orig)\fR [inline]\fP"
+
+.SS "sc_core::sc_process_handle::~sc_process_handle ()\fR [inline]\fP"
+
+.SH "Member Function Documentation"
+.PP 
+.SS "\fBconst\fP \fBchar\fP * sc_core::sc_process_handle::basename () const\fR [inline]\fP"
+
+.SS "\fBvoid\fP sc_core::sc_process_handle::disable (\fBsc_descendant_inclusion_info\fP descendants = \fR\fBSC_NO_DESCENDANTS\fP\fP)\fR [inline]\fP"
+
+.SS "\fBbool\fP sc_core::sc_process_handle::dont_initialize () const\fR [inline]\fP, \fR [protected]\fP"
+
+.SS "\fBvoid\fP sc_core::sc_process_handle::dont_initialize (\fBbool\fP dont)\fR [inline]\fP, \fR [protected]\fP"
+
+.SS "std::string sc_core::sc_process_handle::dump_state () const\fR [inline]\fP"
+
+.SS "\fBbool\fP sc_core::sc_process_handle::dynamic () const\fR [inline]\fP"
+
+.SS "\fBvoid\fP sc_core::sc_process_handle::enable (\fBsc_descendant_inclusion_info\fP descendants = \fR\fBSC_NO_DESCENDANTS\fP\fP)\fR [inline]\fP"
+
+.SS "\fBconst\fP std::vector< \fBsc_event\fP * > & sc_core::sc_process_handle::get_child_events () const\fR [inline]\fP"
+
+.SS "\fBconst\fP std::vector< \fBsc_object\fP * > & sc_core::sc_process_handle::get_child_objects () const\fR [inline]\fP"
+
+.SS "\fBsc_object\fP * sc_core::sc_process_handle::get_parent_object () const\fR [inline]\fP"
+
+.SS "\fBsc_object\fP * sc_core::sc_process_handle::get_process_object () const\fR [inline]\fP"
+
+.SS "\fBbool\fP sc_core::sc_process_handle::is_unwinding () const\fR [inline]\fP"
+
+.SS "\fBvoid\fP sc_core::sc_process_handle::kill (\fBsc_descendant_inclusion_info\fP descendants = \fR\fBSC_NO_DESCENDANTS\fP\fP)\fR [inline]\fP"
+
+.SS "\fBconst\fP \fBchar\fP * sc_core::sc_process_handle::name () const\fR [inline]\fP"
+
+.SS "sc_core::sc_process_handle::operator \fBsc_cthread_handle\fP ()"
+
+.SS "sc_core::sc_process_handle::operator \fBsc_method_handle\fP ()"
+
+.SS "sc_core::sc_process_handle::operator \fBsc_process_b\fP * ()\fR [inline]\fP"
+
+.SS "sc_core::sc_process_handle::operator \fBsc_thread_handle\fP ()"
+
+.SS "\fBsc_process_handle\fP & sc_core::sc_process_handle::operator= (\fBsc_process_handle\fP src)\fR [inline]\fP"
+
+.SS "\fBsc_curr_proc_kind\fP sc_core::sc_process_handle::proc_kind () const\fR [inline]\fP"
+
+.SS "\fBvoid\fP sc_core::sc_process_handle::reset (\fBsc_descendant_inclusion_info\fP descendants = \fR\fBSC_NO_DESCENDANTS\fP\fP)\fR [inline]\fP"
+
+.SS "\fBsc_event\fP & sc_core::sc_process_handle::reset_event () const\fR [inline]\fP"
+
+.SS "\fBvoid\fP sc_core::sc_process_handle::resume (\fBsc_descendant_inclusion_info\fP descendants = \fR\fBSC_NO_DESCENDANTS\fP\fP)\fR [inline]\fP"
+
+.SS "\fBvoid\fP sc_core::sc_process_handle::suspend (\fBsc_descendant_inclusion_info\fP descendants = \fR\fBSC_NO_DESCENDANTS\fP\fP)\fR [inline]\fP"
+
+.SS "\fBvoid\fP sc_core::sc_process_handle::swap (\fBsc_process_handle\fP & other)\fR [inline]\fP"
+
+.SS "\fBvoid\fP sc_core::sc_process_handle::sync_reset_off (\fBsc_descendant_inclusion_info\fP descendants = \fR\fBSC_NO_DESCENDANTS\fP\fP)\fR [inline]\fP"
+
+.SS "\fBvoid\fP sc_core::sc_process_handle::sync_reset_on (\fBsc_descendant_inclusion_info\fP descendants = \fR\fBSC_NO_DESCENDANTS\fP\fP)\fR [inline]\fP"
+
+.SS "\fBbool\fP sc_core::sc_process_handle::terminated () const\fR [inline]\fP"
+
+.SS "\fBsc_event\fP & sc_core::sc_process_handle::terminated_event ()\fR [inline]\fP"
+
+.SS "template<\fBtypename\fP \fBEXCEPT\fP > \fBvoid\fP sc_core::sc_process_handle::throw_it (\fBconst\fP \fBEXCEPT\fP & exception, \fBsc_descendant_inclusion_info\fP descendants = \fR\fBSC_NO_DESCENDANTS\fP\fP)\fR [inline]\fP"
+
+.SS "\fBbool\fP sc_core::sc_process_handle::valid () const\fR [inline]\fP"
+
+.SH "Friends And Related Symbol Documentation"
+.PP 
+.SS "\fBbool\fP operator!= (\fBconst\fP \fBthis_type\fP & left, \fBconst\fP \fBthis_type\fP & right)\fR [friend]\fP"
+
+.SS "\fBbool\fP \fBoperator\fP< (\fBconst\fP \fBthis_type\fP & left, \fBconst\fP \fBthis_type\fP & right)\fR [friend]\fP"
+
+.SS "\fBbool\fP \fBoperator\fP== (\fBconst\fP \fBthis_type\fP & left, \fBconst\fP \fBthis_type\fP & right)\fR [friend]\fP"
+
+.SS "\fBfriend\fP \fBclass\fP \fBsc_join\fP\fR [friend]\fP"
+
+.SS "\fBfriend\fP \fBclass\fP \fBsc_module\fP\fR [friend]\fP"
+
+.SS "\fBfriend\fP \fBclass\fP \fBsc_object\fP\fR [friend]\fP"
+
+.SS "\fBfriend\fP \fBclass\fP \fBsc_reset\fP\fR [friend]\fP"
+
+.SS "\fBfriend\fP \fBclass\fP \fBsc_sensitive\fP\fR [friend]\fP"
+
+.SS "\fBfriend\fP \fBclass\fP \fBsc_sensitive_neg\fP\fR [friend]\fP"
+
+.SS "\fBfriend\fP \fBclass\fP \fBsc_sensitive_pos\fP\fR [friend]\fP"
+
+.SS "\fBfriend\fP \fBclass\fP \fBsc_thread_process\fP\fR [friend]\fP"
+
+.SH "Member Data Documentation"
+.PP 
+.SS "std::vector<\fBsc_event\fP*> sc_core::sc_process_handle::empty_event_vector\fR [static]\fP, \fR [protected]\fP"
+
+.SS "std::vector<\fBsc_object\fP*> sc_core::sc_process_handle::empty_object_vector\fR [static]\fP, \fR [protected]\fP"
+
+.SS "\fBsc_process_b\fP* sc_core::sc_process_handle::m_target_p\fR [protected]\fP"
+
+.SS "\fBsc_event\fP sc_core::sc_process_handle::non_event\fR [static]\fP, \fR [protected]\fP"
+
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for VHDL simulator from the source code\&.

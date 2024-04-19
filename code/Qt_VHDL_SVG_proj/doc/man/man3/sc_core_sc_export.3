@@ -1,0 +1,276 @@
+.TH "sc_core::sc_export< IF >" 3 "VHDL simulator" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+sc_core::sc_export< IF >
+.SH SYNOPSIS
+.br
+.PP
+.PP
+\fR#include <sc_export\&.h>\fP
+.PP
+Inherits \fBsc_core::sc_export_base\fP\&.
+.PP
+Inherited by \fBtlm::tlm_base_target_socket< 32, tlm_fw_transport_if< tlm_base_protocol_types >, tlm_bw_transport_if< tlm_base_protocol_types >, 1, sc_core::SC_ONE_OR_MORE_BOUND >\fP, \fBtlm::tlm_base_target_socket< BUSWIDTH, tlm_fw_transport_if< tlm::tlm_base_protocol_types >, tlm_bw_transport_if< tlm::tlm_base_protocol_types >, N, POL >\fP, \fBtlm::tlm_base_target_socket< BUSWIDTH, tlm_fw_transport_if< TYPES >, tlm_bw_transport_if< TYPES >, N, POL >\fP, and \fBtlm::tlm_base_target_socket< BUSWIDTH, FW_IF, BW_IF, N, POL >\fP\&.
+.SS "Public Member Functions"
+
+.in +1c
+.ti -1c
+.RI "\fBsc_export\fP ()"
+.br
+.ti -1c
+.RI "\fBsc_export\fP (\fBconst\fP \fBchar\fP *\fBname_\fP)"
+.br
+.ti -1c
+.RI "\fBvirtual\fP \fB~sc_export\fP ()"
+.br
+.ti -1c
+.RI "\fBvirtual\fP \fBsc_interface\fP * \fBget_interface\fP ()"
+.br
+.ti -1c
+.RI "\fBvirtual\fP \fBconst\fP \fBsc_interface\fP * \fBget_interface\fP () \fBconst\fP"
+.br
+.ti -1c
+.RI "\fBconst\fP \fBIF\fP * \fBoperator\->\fP () \fBconst\fP"
+.br
+.ti -1c
+.RI "\fBIF\fP * \fBoperator\->\fP ()"
+.br
+.ti -1c
+.RI "\fBoperator IF &\fP ()"
+.br
+.ti -1c
+.RI "\fBoperator const IF &\fP () \fBconst\fP"
+.br
+.ti -1c
+.RI "\fBSC_VIRTUAL_\fP \fBvoid\fP \fBbind\fP (\fBIF\fP &\fBinterface_\fP)"
+.br
+.ti -1c
+.RI "\fBvoid\fP \fBoperator()\fP (\fBIF\fP &\fBinterface_\fP)"
+.br
+.ti -1c
+.RI "\fBvirtual\fP \fBconst\fP \fBchar\fP * \fBkind\fP () \fBconst\fP"
+.br
+.ti -1c
+.RI "\fBvirtual\fP \fBsc_type_index\fP \fBget_interface_type\fP () \fBconst\fP"
+.br
+.in -1c
+
+Public Member Functions inherited from \fBsc_core::sc_object\fP
+.in +1c
+.ti -1c
+.RI "\fBconst\fP \fBchar\fP * \fBname\fP () \fBconst\fP"
+.br
+.ti -1c
+.RI "\fBconst\fP \fBchar\fP * \fBbasename\fP () \fBconst\fP"
+.br
+.ti -1c
+.RI "\fBvirtual\fP \fBvoid\fP \fBprint\fP (::std::ostream &\fBos\fP=::std::cout) \fBconst\fP"
+.br
+.ti -1c
+.RI "\fBvirtual\fP \fBvoid\fP \fBdump\fP (::std::ostream &\fBos\fP=::std::cout) \fBconst\fP"
+.br
+.ti -1c
+.RI "\fBvirtual\fP \fBvoid\fP \fBtrace\fP (\fBsc_trace_file\fP *tf) \fBconst\fP"
+.br
+.ti -1c
+.RI "\fBsc_simcontext\fP * \fBsimcontext\fP () \fBconst\fP"
+.br
+.ti -1c
+.RI "\fBbool\fP \fBadd_attribute\fP (\fBsc_attr_base\fP &)"
+.br
+.ti -1c
+.RI "\fBsc_attr_base\fP * \fBget_attribute\fP (\fBconst\fP std::string &\fBname_\fP)"
+.br
+.ti -1c
+.RI "\fBconst\fP \fBsc_attr_base\fP * \fBget_attribute\fP (\fBconst\fP std::string &\fBname_\fP) \fBconst\fP"
+.br
+.ti -1c
+.RI "\fBsc_attr_base\fP * \fBremove_attribute\fP (\fBconst\fP std::string &\fBname_\fP)"
+.br
+.ti -1c
+.RI "\fBvoid\fP \fBremove_all_attributes\fP ()"
+.br
+.ti -1c
+.RI "int \fBnum_attributes\fP () \fBconst\fP"
+.br
+.ti -1c
+.RI "\fBsc_attr_cltn\fP & \fBattr_cltn\fP ()"
+.br
+.ti -1c
+.RI "\fBconst\fP \fBsc_attr_cltn\fP & \fBattr_cltn\fP () \fBconst\fP"
+.br
+.ti -1c
+.RI "\fBvirtual\fP \fBconst\fP std::vector< \fBsc_event\fP * > & \fBget_child_events\fP () \fBconst\fP"
+.br
+.ti -1c
+.RI "\fBvirtual\fP \fBconst\fP std::vector< \fBsc_object\fP * > & \fBget_child_objects\fP () \fBconst\fP"
+.br
+.ti -1c
+.RI "\fBsc_object\fP * \fBget_parent\fP () \fBconst\fP"
+.br
+.ti -1c
+.RI "\fBsc_object\fP * \fBget_parent_object\fP () \fBconst\fP"
+.br
+.in -1c
+.SS "Protected Attributes"
+
+.in +1c
+.ti -1c
+.RI "\fBIF\fP * \fBm_interface_p\fP"
+.br
+.in -1c
+.SS "Private Types"
+
+.in +1c
+.ti -1c
+.RI "\fBtypedef\fP \fBsc_export\fP< \fBIF\fP > \fBthis_type\fP"
+.br
+.in -1c
+.SS "Private Member Functions"
+
+.in +1c
+.ti -1c
+.RI "\fBsc_export\fP (\fBconst\fP \fBthis_type\fP &)"
+.br
+.ti -1c
+.RI "\fBthis_type\fP & \fBoperator=\fP (\fBconst\fP \fBthis_type\fP &)"
+.br
+.in -1c
+.SS "Additional Inherited Members"
+
+
+Public Types inherited from \fBsc_core::sc_export_base\fP
+.in +1c
+.ti -1c
+.RI "\fBtypedef\fP \fBsc_export_base\fP \fBthis_type\fP"
+.br
+.in -1c
+
+Public Types inherited from \fBsc_core::sc_object\fP
+.in +1c
+.ti -1c
+.RI "\fBtypedef\fP \fBunsigned\fP \fBphase_cb_mask\fP"
+.br
+.in -1c
+
+Protected Member Functions inherited from \fBsc_core::sc_export_base\fP
+.in +1c
+.ti -1c
+.RI "\fBsc_export_base\fP ()"
+.br
+.ti -1c
+.RI "\fBsc_export_base\fP (\fBconst\fP \fBchar\fP *\fBname\fP)"
+.br
+.ti -1c
+.RI "\fBvirtual\fP \fB~sc_export_base\fP ()"
+.br
+.ti -1c
+.RI "\fBvirtual\fP \fBvoid\fP \fBbefore_end_of_elaboration\fP ()"
+.br
+.ti -1c
+.RI "\fBvirtual\fP \fBvoid\fP \fBend_of_elaboration\fP ()"
+.br
+.ti -1c
+.RI "\fBvirtual\fP \fBvoid\fP \fBstart_of_simulation\fP ()"
+.br
+.ti -1c
+.RI "\fBvirtual\fP \fBvoid\fP \fBend_of_simulation\fP ()"
+.br
+.ti -1c
+.RI "\fBvoid\fP \fBreport_error\fP (\fBconst\fP \fBchar\fP *id, \fBconst\fP \fBchar\fP *\fBadd_msg\fP=0) \fBconst\fP"
+.br
+.in -1c
+
+Protected Member Functions inherited from \fBsc_core::sc_object\fP
+.in +1c
+.ti -1c
+.RI "\fBsc_object\fP ()"
+.br
+.ti -1c
+.RI "\fBsc_object\fP (\fBconst\fP \fBchar\fP *\fBnm\fP)"
+.br
+.ti -1c
+.RI "\fBsc_object\fP (\fBconst\fP \fBsc_object\fP &)"
+.br
+.ti -1c
+.RI "\fBsc_object\fP & \fBoperator=\fP (\fBconst\fP \fBsc_object\fP &)"
+.br
+.ti -1c
+.RI "\fBvirtual\fP \fB~sc_object\fP ()"
+.br
+.ti -1c
+.RI "\fBvirtual\fP \fBvoid\fP \fBadd_child_event\fP (\fBsc_event\fP *\fBevent_p\fP)"
+.br
+.ti -1c
+.RI "\fBvirtual\fP \fBvoid\fP \fBadd_child_object\fP (\fBsc_object\fP *\fBobject_p\fP)"
+.br
+.ti -1c
+.RI "\fBvirtual\fP \fBbool\fP \fBremove_child_event\fP (\fBsc_event\fP *\fBevent_p\fP)"
+.br
+.ti -1c
+.RI "\fBvirtual\fP \fBbool\fP \fBremove_child_object\fP (\fBsc_object\fP *\fBobject_p\fP)"
+.br
+.ti -1c
+.RI "\fBphase_cb_mask\fP \fBregister_simulation_phase_callback\fP (\fBphase_cb_mask\fP)"
+.br
+.ti -1c
+.RI "\fBphase_cb_mask\fP \fBunregister_simulation_phase_callback\fP (\fBphase_cb_mask\fP)"
+.br
+.in -1c
+.SH "Member Typedef Documentation"
+.PP 
+.SS "template<\fBclass\fP \fBIF\fP > \fBtypedef\fP \fBsc_export\fP<\fBIF\fP> \fBsc_core::sc_export\fP< \fBIF\fP >::this_type\fR [private]\fP"
+
+.SH "Constructor & Destructor Documentation"
+.PP 
+.SS "template<\fBclass\fP \fBIF\fP > \fBsc_core::sc_export\fP< \fBIF\fP >::sc_export ()\fR [inline]\fP"
+
+.SS "template<\fBclass\fP \fBIF\fP > \fBsc_core::sc_export\fP< \fBIF\fP >::sc_export (\fBconst\fP \fBchar\fP * name_)\fR [inline]\fP, \fR [explicit]\fP"
+
+.SS "template<\fBclass\fP \fBIF\fP > \fBvirtual\fP \fBsc_core::sc_export\fP< \fBIF\fP >::~\fBsc_export\fP ()\fR [inline]\fP, \fR [virtual]\fP"
+
+.SS "template<\fBclass\fP \fBIF\fP > \fBsc_core::sc_export\fP< \fBIF\fP >::sc_export (\fBconst\fP \fBthis_type\fP &)\fR [private]\fP"
+
+.SH "Member Function Documentation"
+.PP 
+.SS "template<\fBclass\fP \fBIF\fP > \fBSC_VIRTUAL_\fP \fBvoid\fP \fBsc_core::sc_export\fP< \fBIF\fP >::bind (\fBIF\fP & interface_)\fR [inline]\fP"
+
+.SS "template<\fBclass\fP \fBIF\fP > \fBvirtual\fP \fBsc_interface\fP * \fBsc_core::sc_export\fP< \fBIF\fP >::get_interface ()\fR [inline]\fP, \fR [virtual]\fP"
+
+.PP
+Implements \fBsc_core::sc_export_base\fP\&.
+.SS "template<\fBclass\fP \fBIF\fP > \fBvirtual\fP \fBconst\fP \fBsc_interface\fP * \fBsc_core::sc_export\fP< \fBIF\fP >::get_interface () const\fR [inline]\fP, \fR [virtual]\fP"
+
+.PP
+Implements \fBsc_core::sc_export_base\fP\&.
+.SS "template<\fBclass\fP \fBIF\fP > \fBvirtual\fP \fBsc_type_index\fP \fBsc_core::sc_export\fP< \fBIF\fP >::get_interface_type () const\fR [inline]\fP, \fR [virtual]\fP"
+
+.PP
+Implements \fBsc_core::sc_export_base\fP\&.
+.SS "template<\fBclass\fP \fBIF\fP > \fBvirtual\fP \fBconst\fP \fBchar\fP * \fBsc_core::sc_export\fP< \fBIF\fP >::kind () const\fR [inline]\fP, \fR [virtual]\fP"
+
+.PP
+Reimplemented from \fBsc_core::sc_object\fP\&.
+.PP
+Reimplemented in \fBtlm::tlm_base_target_socket< BUSWIDTH, FW_IF, BW_IF, N, POL >\fP, \fBtlm::tlm_base_target_socket< 32, tlm_fw_transport_if< tlm_base_protocol_types >, tlm_bw_transport_if< tlm_base_protocol_types >, 1, sc_core::SC_ONE_OR_MORE_BOUND >\fP, \fBtlm::tlm_base_target_socket< BUSWIDTH, tlm_fw_transport_if< tlm::tlm_base_protocol_types >, tlm_bw_transport_if< tlm::tlm_base_protocol_types >, N, POL >\fP, \fBtlm::tlm_base_target_socket< BUSWIDTH, tlm_fw_transport_if< TYPES >, tlm_bw_transport_if< TYPES >, N, POL >\fP, \fBtlm::tlm_target_socket< BUSWIDTH, TYPES, N, POL >\fP, \fBtlm::tlm_target_socket< 32, tlm::tlm_base_protocol_types, 0, sc_core::SC_ONE_OR_MORE_BOUND >\fP, \fBtlm::tlm_target_socket< BUSWIDTH, tlm::tlm_base_protocol_types, 1, POL >\fP, \fBtlm::tlm_target_socket< BUSWIDTH, tlm::tlm_base_protocol_types, 1, sc_core::SC_ONE_OR_MORE_BOUND >\fP, \fBtlm::tlm_target_socket< BUSWIDTH, tlm::tlm_base_protocol_types, N, POL >\fP, and \fBtlm::tlm_target_socket< BUSWIDTH, TYPES, 1, sc_core::SC_ONE_OR_MORE_BOUND >\fP\&.
+.SS "template<\fBclass\fP \fBIF\fP > \fBsc_core::sc_export\fP< \fBIF\fP >\fB::operator\fP \fBconst\fP \fBIF\fP & () const\fR [inline]\fP"
+
+.SS "template<\fBclass\fP \fBIF\fP > \fBsc_core::sc_export\fP< \fBIF\fP >\fB::operator\fP \fBIF\fP & ()\fR [inline]\fP"
+
+.SS "template<\fBclass\fP \fBIF\fP > \fBvoid\fP \fBsc_core::sc_export\fP< \fBIF\fP >\fB::operator\fP() (\fBIF\fP & interface_)\fR [inline]\fP"
+
+.SS "template<\fBclass\fP \fBIF\fP > \fBIF\fP * \fBsc_core::sc_export\fP< \fBIF\fP >\fB::operator\fP\-> ()\fR [inline]\fP"
+
+.SS "template<\fBclass\fP \fBIF\fP > \fBconst\fP \fBIF\fP * \fBsc_core::sc_export\fP< \fBIF\fP >\fB::operator\fP\-> () const\fR [inline]\fP"
+
+.SS "template<\fBclass\fP \fBIF\fP > \fBthis_type\fP & \fBsc_core::sc_export\fP< \fBIF\fP >\fB::operator\fP= (\fBconst\fP \fBthis_type\fP &)\fR [private]\fP"
+
+.SH "Member Data Documentation"
+.PP 
+.SS "template<\fBclass\fP \fBIF\fP > \fBIF\fP* \fBsc_core::sc_export\fP< \fBIF\fP >::m_interface_p\fR [protected]\fP"
+
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for VHDL simulator from the source code\&.

@@ -1,0 +1,114 @@
+\doxysection{tlm\+\_\+phase.\+h}
+\hypertarget{tlm__phase_8h_source}{}\label{tlm__phase_8h_source}\index{C:/Users/BJRODIER/Documents/QT\_REPO/QT\_VHDL\_simulator/code/Ressources/SystemC/include/tlm\_core/tlm\_2/tlm\_generic\_payload/tlm\_phase.h@{C:/Users/BJRODIER/Documents/QT\_REPO/QT\_VHDL\_simulator/code/Ressources/SystemC/include/tlm\_core/tlm\_2/tlm\_generic\_payload/tlm\_phase.h}}
+\mbox{\hyperlink{tlm__phase_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{comment}{/*****************************************************************************}}
+\DoxyCodeLine{00002\ \textcolor{comment}{}}
+\DoxyCodeLine{00003\ \textcolor{comment}{\ \ Licensed\ to\ Accellera\ Systems\ Initiative\ Inc.\ (Accellera)\ under\ one\ or}}
+\DoxyCodeLine{00004\ \textcolor{comment}{\ \ more\ contributor\ license\ agreements.\ \ See\ the\ NOTICE\ file\ distributed}}
+\DoxyCodeLine{00005\ \textcolor{comment}{\ \ with\ this\ work\ for\ additional\ information\ regarding\ copyright\ ownership.}}
+\DoxyCodeLine{00006\ \textcolor{comment}{\ \ Accellera\ licenses\ this\ file\ to\ you\ under\ the\ Apache\ License,\ Version\ 2.0}}
+\DoxyCodeLine{00007\ \textcolor{comment}{\ \ (the\ "{}License"{});\ you\ may\ not\ use\ this\ file\ except\ in\ compliance\ with\ the}}
+\DoxyCodeLine{00008\ \textcolor{comment}{\ \ License.\ \ You\ may\ obtain\ a\ copy\ of\ the\ License\ at}}
+\DoxyCodeLine{00009\ \textcolor{comment}{}}
+\DoxyCodeLine{00010\ \textcolor{comment}{\ \ \ \ http://www.apache.org/licenses/LICENSE-\/2.0}}
+\DoxyCodeLine{00011\ \textcolor{comment}{}}
+\DoxyCodeLine{00012\ \textcolor{comment}{\ \ Unless\ required\ by\ applicable\ law\ or\ agreed\ to\ in\ writing,\ software}}
+\DoxyCodeLine{00013\ \textcolor{comment}{\ \ distributed\ under\ the\ License\ is\ distributed\ on\ an\ "{}AS\ IS"{}\ BASIS,}}
+\DoxyCodeLine{00014\ \textcolor{comment}{\ \ WITHOUT\ WARRANTIES\ OR\ CONDITIONS\ OF\ ANY\ KIND,\ either\ express\ or}}
+\DoxyCodeLine{00015\ \textcolor{comment}{\ \ implied.\ \ See\ the\ License\ for\ the\ specific\ language\ governing}}
+\DoxyCodeLine{00016\ \textcolor{comment}{\ \ permissions\ and\ limitations\ under\ the\ License.}}
+\DoxyCodeLine{00017\ \textcolor{comment}{}}
+\DoxyCodeLine{00018\ \textcolor{comment}{\ *****************************************************************************/}}
+\DoxyCodeLine{00019\ }
+\DoxyCodeLine{00020\ \textcolor{preprocessor}{\#ifndef\ TLM\_CORE\_TLM2\_TLM\_PHASE\_H\_INCLUDED\_}}
+\DoxyCodeLine{00021\ \textcolor{preprocessor}{\#define\ TLM\_CORE\_TLM2\_TLM\_PHASE\_H\_INCLUDED\_}}
+\DoxyCodeLine{00022\ }
+\DoxyCodeLine{00023\ \textcolor{preprocessor}{\#include\ <string>}}
+\DoxyCodeLine{00024\ \textcolor{preprocessor}{\#include\ <iostream>}}
+\DoxyCodeLine{00025\ \textcolor{preprocessor}{\#include\ <typeinfo>}}
+\DoxyCodeLine{00026\ \textcolor{preprocessor}{\#include\ <vector>}}
+\DoxyCodeLine{00027\ }
+\DoxyCodeLine{00028\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{sc__cmnhdr_8h}{sysc/kernel/sc\_cmnhdr.h}}"{}}\ \textcolor{comment}{//\ SC\_API}}
+\DoxyCodeLine{00029\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{sc__macros_8h}{sysc/kernel/sc\_macros.h}}"{}}\ \textcolor{comment}{//\ SC\_CONCAT\_HELPER\_,\ SC\_STRINGIFY\_HELPER\_}}
+\DoxyCodeLine{00030\ }
+\DoxyCodeLine{00031\ \textcolor{keyword}{namespace\ }\mbox{\hyperlink{namespacetlm}{tlm}}\ \{}
+\DoxyCodeLine{00032\ }
+\DoxyCodeLine{00033\ \textcolor{keyword}{enum}\ \mbox{\hyperlink{sc__cmnhdr_8h_aff4a86b3f5de3ac2097081e7166fe89f}{SC\_API}}\ \mbox{\hyperlink{class_sysc_add__pv}{tlm\_phase\_enum}}}
+\DoxyCodeLine{00034\ \{}
+\DoxyCodeLine{00035\ \ \ \mbox{\hyperlink{tlm__phase_8h_aaf62ac93b29c135994fd941eaa1b8fea}{UNINITIALIZED\_PHASE}}=0,}
+\DoxyCodeLine{00036\ \ \ \mbox{\hyperlink{tlm__phase_8h_a80598f3be9e3363847ffffd9c583238e}{BEGIN\_REQ}}=1,}
+\DoxyCodeLine{00037\ \ \ \mbox{\hyperlink{tlm__phase_8h_a1135e0988d6b87c0b5b98d4b37fb50cc}{END\_REQ}},}
+\DoxyCodeLine{00038\ \ \ \mbox{\hyperlink{tlm__phase_8h_afb33be3f6df195c2948f2d784e0f5624}{BEGIN\_RESP}},}
+\DoxyCodeLine{00039\ \ \ \mbox{\hyperlink{class_sysc_add__pv}{END\_RESP}}}
+\DoxyCodeLine{00040\ \};}
+\DoxyCodeLine{00041\ }
+\DoxyCodeLine{00042\ \textcolor{keyword}{class\ }\mbox{\hyperlink{sc__cmnhdr_8h_aff4a86b3f5de3ac2097081e7166fe89f}{SC\_API}}\ \mbox{\hyperlink{classtlm_1_1tlm__phase}{tlm\_phase}}}
+\DoxyCodeLine{00043\ \{}
+\DoxyCodeLine{00044\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00045\ \ \ \mbox{\hyperlink{classtlm_1_1tlm__phase}{tlm\_phase}}();}
+\DoxyCodeLine{00046\ \ \ \mbox{\hyperlink{classtlm_1_1tlm__phase_a84aee3098ccfa0ab4e8bca0fff9c27de}{tlm\_phase}}(\textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{int}\ \textcolor{keywordtype}{id});\ \textcolor{comment}{//\ TODO:\ should\ be\ dropped}}
+\DoxyCodeLine{00047\ }
+\DoxyCodeLine{00048\ \ \ \mbox{\hyperlink{classtlm_1_1tlm__phase}{tlm\_phase}}(\mbox{\hyperlink{class_sysc_add__pv}{tlm\_phase\_enum}}\ \mbox{\hyperlink{class_sysc_add__pv}{standard}});}
+\DoxyCodeLine{00049\ \ \ \mbox{\hyperlink{classtlm_1_1tlm__phase}{tlm\_phase}}\&\ operator=(\mbox{\hyperlink{class_sysc_add__pv}{tlm\_phase\_enum}}\ \mbox{\hyperlink{class_sysc_add__pv}{standard}});}
+\DoxyCodeLine{00050\ }
+\DoxyCodeLine{00051\ \ \ \textcolor{keyword}{operator}\ \textcolor{keywordtype}{unsigned}\ int()\textcolor{keyword}{\ const\ }\{\ \textcolor{keywordflow}{return}\ m\_id;\ \}}
+\DoxyCodeLine{00052\ \ \ \textcolor{keyword}{const}\ \textcolor{keywordtype}{char}*\ \mbox{\hyperlink{classtlm_1_1tlm__phase_a3aab2094fe9d19ac74bb0fb7cef1d303}{get\_name}}()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00053\ }
+\DoxyCodeLine{00054\ \textcolor{keyword}{protected}:}
+\DoxyCodeLine{00055\ \ \ \textcolor{comment}{//\ register\ extended\ phase}}
+\DoxyCodeLine{00056\ \ \ \mbox{\hyperlink{classtlm_1_1tlm__phase_aeed4127a1e63ff047937d217edc1e6d0}{tlm\_phase}}(\ \textcolor{keyword}{const}\ std::type\_info\ \&\ type,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{char}*\ name\ );}
+\DoxyCodeLine{00057\ }
+\DoxyCodeLine{00058\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00059\ \ \ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{classtlm_1_1tlm__phase_add03d444395594dd5b02ccf1eb4223c9}{m\_id}};}
+\DoxyCodeLine{00060\ \};}
+\DoxyCodeLine{00061\ }
+\DoxyCodeLine{00062\ \textcolor{keyword}{inline}}
+\DoxyCodeLine{00063\ \mbox{\hyperlink{classtlm_1_1tlm__phase_a9ab40e490ae1d88862686c4346196bf9}{tlm\_phase::tlm\_phase}}()}
+\DoxyCodeLine{00064\ \ \ :\ m\_id(\ \mbox{\hyperlink{tlm__phase_8h_aaf62ac93b29c135994fd941eaa1b8fea}{UNINITIALIZED\_PHASE}}\ )}
+\DoxyCodeLine{00065\ \{\}}
+\DoxyCodeLine{00066\ }
+\DoxyCodeLine{00067\ \textcolor{keyword}{inline}}
+\DoxyCodeLine{00068\ \mbox{\hyperlink{classtlm_1_1tlm__phase_a9ab40e490ae1d88862686c4346196bf9}{tlm\_phase::tlm\_phase}}(\ \mbox{\hyperlink{class_sysc_add__pv}{tlm\_phase\_enum}}\ \mbox{\hyperlink{class_sysc_add__pv}{standard}}\ )}
+\DoxyCodeLine{00069\ \ \ :\ m\_id(\ \mbox{\hyperlink{class_sysc_add__pv}{standard}}\ )}
+\DoxyCodeLine{00070\ \{\}}
+\DoxyCodeLine{00071\ }
+\DoxyCodeLine{00072\ \textcolor{keyword}{inline}}
+\DoxyCodeLine{00073\ \mbox{\hyperlink{classtlm_1_1tlm__phase}{tlm\_phase}}\&\ \mbox{\hyperlink{classtlm_1_1tlm__phase_afd445b7f4be1a0d1acb4efc5a90540fb}{tlm\_phase::operator=}}(\ \mbox{\hyperlink{class_sysc_add__pv}{tlm\_phase\_enum}}\ \mbox{\hyperlink{class_sysc_add__pv}{standard}}\ )}
+\DoxyCodeLine{00074\ \{}
+\DoxyCodeLine{00075\ \ \ \mbox{\hyperlink{classtlm_1_1tlm__phase_add03d444395594dd5b02ccf1eb4223c9}{m\_id}}\ =\ \mbox{\hyperlink{class_sysc_add__pv}{standard}};}
+\DoxyCodeLine{00076\ \ \ \textcolor{keywordflow}{return}\ *\textcolor{keyword}{this};}
+\DoxyCodeLine{00077\ \}}
+\DoxyCodeLine{00078\ }
+\DoxyCodeLine{00079\ \textcolor{keyword}{inline}}
+\DoxyCodeLine{00080\ std::ostream\&\ \mbox{\hyperlink{namespacetlm_a6bb80acb99c6e5813378df08a69f6509}{operator<<}}(std::ostream\&\ s,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{classtlm_1_1tlm__phase}{tlm\_phase}}\&\ p)}
+\DoxyCodeLine{00081\ \{}
+\DoxyCodeLine{00082\ \ \ s\ <<\ p.\mbox{\hyperlink{classtlm_1_1tlm__phase_a3aab2094fe9d19ac74bb0fb7cef1d303}{get\_name}}();}
+\DoxyCodeLine{00083\ \ \ \textcolor{keywordflow}{return}\ s;}
+\DoxyCodeLine{00084\ \}}
+\DoxyCodeLine{00085\ }
+\DoxyCodeLine{00086\ \textcolor{preprocessor}{\#define\ TLM\_DECLARE\_EXTENDED\_PHASE(name\_arg)\ \(\backslash\)}}
+\DoxyCodeLine{00087\ \textcolor{preprocessor}{\ \ static\ class\ SC\_CONCAT\_HELPER\_(tlm\_phase\_,\ name\_arg)\ \(\backslash\)}}
+\DoxyCodeLine{00088\ \textcolor{preprocessor}{\ \ \ \ :\ public\ ::tlm::tlm\_phase\ \(\backslash\)}}
+\DoxyCodeLine{00089\ \textcolor{preprocessor}{\ \ \{\ \(\backslash\)}}
+\DoxyCodeLine{00090\ \textcolor{preprocessor}{\ \ \ \ typedef\ SC\_CONCAT\_HELPER\_(tlm\_phase\_,\ name\_arg)\ this\_type;\ \(\backslash\)}}
+\DoxyCodeLine{00091\ \textcolor{preprocessor}{\ \ public:\ \(\backslash\)}}
+\DoxyCodeLine{00092\ \textcolor{preprocessor}{\ \ \ \ SC\_CONCAT\_HELPER\_(tlm\_phase\_,\ name\_arg)()\ }\textcolor{comment}{/*\ register\ extended\ phase\ */}\textcolor{preprocessor}{\ \(\backslash\)}}
+\DoxyCodeLine{00093\ \textcolor{preprocessor}{\ \ \ \ \ \ :\ ::tlm::tlm\_phase(\ typeid(*this),\ SC\_STRINGIFY\_HELPER\_(name\_arg)\ )\ \(\backslash\)}}
+\DoxyCodeLine{00094\ \textcolor{preprocessor}{\ \ \ \ \{\}\ \(\backslash\)}}
+\DoxyCodeLine{00095\ \textcolor{preprocessor}{\ \ \ \ \(\backslash\)}}
+\DoxyCodeLine{00096\ \textcolor{preprocessor}{\ \ \ \ static\ const\ this\_type\&\ get\_phase()\ }\textcolor{comment}{/*\ needed\ only\ for\ IEEE\ 1666-\/2011\ */}\textcolor{preprocessor}{\ \(\backslash\)}}
+\DoxyCodeLine{00097\ \textcolor{preprocessor}{\ \ \ \ \ \ \{\ static\ this\_type\ this\_;\ return\ this\_;\ \}\ \(\backslash\)}}
+\DoxyCodeLine{00098\ \textcolor{preprocessor}{\ \ \}\ \(\backslash\)}}
+\DoxyCodeLine{00099\ \textcolor{preprocessor}{\ \ const\ name\_arg}}
+\DoxyCodeLine{00100\ }
+\DoxyCodeLine{00101\ \textcolor{comment}{//\ for\ backwards-\/compatibility}}
+\DoxyCodeLine{00102\ \textcolor{preprocessor}{\#define\ DECLARE\_EXTENDED\_PHASE(\ NameArg\ )\ \(\backslash\)}}
+\DoxyCodeLine{00103\ \textcolor{preprocessor}{\ \ \ \ TLM\_DECLARE\_EXTENDED\_PHASE(\ NameArg\ )}}
+\DoxyCodeLine{00104\ }
+\DoxyCodeLine{00105\ \}\ \textcolor{comment}{//\ namespace\ tlm}}
+\DoxyCodeLine{00106\ }
+\DoxyCodeLine{00107\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{/*\ TLM\_CORE\_TLM2\_TLM\_PHASE\_H\_INCLUDED\_\ */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{00108\ \textcolor{comment}{//\ Taf!}}
+
+\end{DoxyCode}

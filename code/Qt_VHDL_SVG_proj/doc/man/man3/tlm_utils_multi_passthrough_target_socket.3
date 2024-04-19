@@ -1,0 +1,626 @@
+.TH "tlm_utils::multi_passthrough_target_socket< MODULE, BUSWIDTH, TYPES, N, POL >" 3 "VHDL simulator" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+tlm_utils::multi_passthrough_target_socket< MODULE, BUSWIDTH, TYPES, N, POL >
+.SH SYNOPSIS
+.br
+.PP
+.PP
+\fR#include <multi_passthrough_target_socket\&.h>\fP
+.PP
+Inherits \fBtlm_utils::multi_target_base< BUSWIDTH, TYPES, N, POL >\fP, and \fBtlm_utils::multi_to_multi_bind_base< TYPES >\fP\&.
+.PP
+Inherited by \fBtlm_utils::multi_passthrough_target_socket_optional< MODULE, BUSWIDTH, TYPES, N >\fP\&.
+.SS "Public Types"
+
+.in +1c
+.ti -1c
+.RI "\fBtypedef\fP TYPES::tlm_payload_type \fBtransaction_type\fP"
+.br
+.ti -1c
+.RI "\fBtypedef\fP TYPES::tlm_phase_type \fBphase_type\fP"
+.br
+.ti -1c
+.RI "\fBtypedef\fP \fBtlm::tlm_sync_enum\fP \fBsync_enum_type\fP"
+.br
+.ti -1c
+.RI "\fBtypedef\fP \fBsync_enum_type\fP(MODULE::* \fBnb_cb\fP) (int, \fBtransaction_type\fP &, \fBphase_type\fP &, \fBsc_core::sc_time\fP &)"
+.br
+.ti -1c
+.RI "\fBtypedef\fP \fBvoid\fP(MODULE::* \fBb_cb\fP) (int, \fBtransaction_type\fP &, \fBsc_core::sc_time\fP &)"
+.br
+.ti -1c
+.RI "\fBtypedef\fP \fBunsigned\fP int(MODULE::* \fBdbg_cb\fP) (int, \fBtransaction_type\fP &\fBtxn\fP)"
+.br
+.ti -1c
+.RI "\fBtypedef\fP \fBbool\fP(MODULE::* \fBdmi_cb\fP) (int, \fBtransaction_type\fP &\fBtxn\fP, \fBtlm::tlm_dmi\fP &\fBdmi\fP)"
+.br
+.ti -1c
+.RI "\fBtypedef\fP \fBmulti_target_base\fP< \fBBUSWIDTH\fP, \fBTYPES\fP, \fBN\fP, \fBPOL\fP > \fBbase_type\fP"
+.br
+.ti -1c
+.RI "\fBtypedef\fP \fBbase_type::base_initiator_socket_type\fP \fBbase_initiator_socket_type\fP"
+.br
+.in -1c
+
+Public Types inherited from \fBtlm_utils::multi_target_base< BUSWIDTH, TYPES, N, POL >\fP
+.in +1c
+.ti -1c
+.RI "\fBtypedef\fP \fBtlm::tlm_target_socket\fP< \fBBUSWIDTH\fP, \fBTYPES\fP, \fBN\fP, \fBPOL\fP > \fBbase_type\fP"
+.br
+.in -1c
+
+Public Types inherited from \fBtlm::tlm_base_target_socket< BUSWIDTH, FW_IF, BW_IF, N, POL >\fP
+.in +1c
+.ti -1c
+.RI "\fBtypedef\fP \fBFW_IF\fP \fBfw_interface_type\fP"
+.br
+.ti -1c
+.RI "\fBtypedef\fP \fBBW_IF\fP \fBbw_interface_type\fP"
+.br
+.ti -1c
+.RI "\fBtypedef\fP \fBsc_core::sc_port\fP< \fBbw_interface_type\fP, \fBN\fP, \fBPOL\fP > \fBport_type\fP"
+.br
+.ti -1c
+.RI "\fBtypedef\fP \fBsc_core::sc_export\fP< \fBfw_interface_type\fP > \fBexport_type\fP"
+.br
+.ti -1c
+.RI "\fBtypedef\fP \fBtlm_base_initiator_socket_b\fP< \fBBUSWIDTH\fP, \fBfw_interface_type\fP, \fBbw_interface_type\fP > \fBbase_initiator_socket_type\fP"
+.br
+.ti -1c
+.RI "\fBtypedef\fP \fBtlm_base_target_socket_b\fP< \fBBUSWIDTH\fP, \fBfw_interface_type\fP, \fBbw_interface_type\fP > \fBbase_type\fP"
+.br
+.in -1c
+
+Public Types inherited from \fBsc_core::sc_export_base\fP
+.in +1c
+.ti -1c
+.RI "\fBtypedef\fP \fBsc_export_base\fP \fBthis_type\fP"
+.br
+.in -1c
+
+Public Types inherited from \fBsc_core::sc_object\fP
+.in +1c
+.ti -1c
+.RI "\fBtypedef\fP \fBunsigned\fP \fBphase_cb_mask\fP"
+.br
+.in -1c
+.SS "Public Member Functions"
+
+.in +1c
+.ti -1c
+.RI "\fBmulti_passthrough_target_socket\fP (\fBconst\fP \fBchar\fP *\fBname\fP=\fBdefault_name\fP())"
+.br
+.ti -1c
+.RI "\fB~multi_passthrough_target_socket\fP ()"
+.br
+.ti -1c
+.RI "\fBvoid\fP \fBcheck_export_binding\fP ()"
+.br
+.ti -1c
+.RI "\fBvoid\fP \fBregister_nb_transport_fw\fP (\fBMODULE\fP *\fBmod\fP, \fBnb_cb\fP cb)"
+.br
+.ti -1c
+.RI "\fBvoid\fP \fBregister_b_transport\fP (\fBMODULE\fP *\fBmod\fP, \fBb_cb\fP cb)"
+.br
+.ti -1c
+.RI "\fBvoid\fP \fBregister_transport_dbg\fP (\fBMODULE\fP *\fBmod\fP, \fBdbg_cb\fP cb)"
+.br
+.ti -1c
+.RI "\fBvoid\fP \fBregister_get_direct_mem_ptr\fP (\fBMODULE\fP *\fBmod\fP, \fBdmi_cb\fP cb)"
+.br
+.ti -1c
+.RI "\fBvirtual\fP \fBtlm::tlm_fw_transport_if\fP< \fBTYPES\fP > & \fBget_base_interface\fP ()"
+.br
+.ti -1c
+.RI "\fBvirtual\fP \fBconst\fP \fBtlm::tlm_fw_transport_if\fP< \fBTYPES\fP > & \fBget_base_interface\fP () \fBconst\fP"
+.br
+.ti -1c
+.RI "\fBvirtual\fP \fBsc_core::sc_export\fP< \fBtlm::tlm_fw_transport_if\fP< \fBTYPES\fP > > & \fBget_base_export\fP ()"
+.br
+.ti -1c
+.RI "\fBvirtual\fP \fBconst\fP \fBsc_core::sc_export\fP< \fBtlm::tlm_fw_transport_if\fP< \fBTYPES\fP > > & \fBget_base_export\fP () \fBconst\fP"
+.br
+.ti -1c
+.RI "\fBvoid\fP \fBend_of_elaboration\fP ()"
+.br
+.ti -1c
+.RI "\fBvirtual\fP \fBvoid\fP \fBbind\fP (\fBbase_type\fP &s)"
+.br
+.ti -1c
+.RI "\fBvoid\fP \fBoperator()\fP (\fBbase_type\fP &s)"
+.br
+.ti -1c
+.RI "\fBtlm::tlm_bw_transport_if\fP< \fBTYPES\fP > * \fBoperator[]\fP (int \fBi\fP)"
+.br
+.ti -1c
+.RI "\fBunsigned\fP int \fBsize\fP ()"
+.br
+.in -1c
+
+Public Member Functions inherited from \fBtlm_utils::multi_target_base< BUSWIDTH, TYPES, N, POL >\fP
+.in +1c
+.ti -1c
+.RI "\fBvirtual\fP \fBtlm::tlm_socket_category\fP \fBget_socket_category\fP () \fBconst\fP"
+.br
+.ti -1c
+.RI "\fBvirtual\fP \fB~multi_target_base\fP ()"
+.br
+.ti -1c
+.RI "\fBmulti_target_base\fP ()"
+.br
+.ti -1c
+.RI "\fBmulti_target_base\fP (\fBconst\fP \fBchar\fP *\fBname\fP)"
+.br
+.in -1c
+
+Public Member Functions inherited from \fBtlm::tlm_target_socket< BUSWIDTH, TYPES, N, POL >\fP
+.in +1c
+.ti -1c
+.RI "\fBtlm_target_socket\fP ()"
+.br
+.ti -1c
+.RI "\fBtlm_target_socket\fP (\fBconst\fP \fBchar\fP *\fBname\fP)"
+.br
+.ti -1c
+.RI "\fBvirtual\fP \fBconst\fP \fBchar\fP * \fBkind\fP () \fBconst\fP"
+.br
+.ti -1c
+.RI "\fBvirtual\fP \fBsc_core::sc_type_index\fP \fBget_protocol_types\fP () \fBconst\fP"
+.br
+.in -1c
+
+Public Member Functions inherited from \fBtlm::tlm_base_target_socket< BUSWIDTH, FW_IF, BW_IF, N, POL >\fP
+.in +1c
+.ti -1c
+.RI "\fBtlm_base_target_socket\fP ()"
+.br
+.ti -1c
+.RI "\fBtlm_base_target_socket\fP (\fBconst\fP \fBchar\fP *\fBname\fP)"
+.br
+.ti -1c
+.RI "\fBvirtual\fP \fBvoid\fP \fBbind\fP (\fBbase_initiator_socket_type\fP &s)"
+.br
+.ti -1c
+.RI "\fBvoid\fP \fBoperator()\fP (\fBbase_initiator_socket_type\fP &s)"
+.br
+.ti -1c
+.RI "\fBvirtual\fP \fBvoid\fP \fBbind\fP (\fBbase_type\fP &s)"
+.br
+.ti -1c
+.RI "\fBvoid\fP \fBoperator()\fP (\fBbase_type\fP &s)"
+.br
+.ti -1c
+.RI "\fBvirtual\fP \fBvoid\fP \fBbind\fP (\fBfw_interface_type\fP &\fBifs\fP)"
+.br
+.ti -1c
+.RI "\fBvoid\fP \fBoperator()\fP (\fBfw_interface_type\fP &s)"
+.br
+.ti -1c
+.RI "int \fBsize\fP () \fBconst\fP"
+.br
+.ti -1c
+.RI "\fBbw_interface_type\fP * \fBoperator\->\fP ()"
+.br
+.ti -1c
+.RI "\fBbw_interface_type\fP * \fBoperator[]\fP (int \fBi\fP)"
+.br
+.ti -1c
+.RI "\fBvirtual\fP \fBsc_core::sc_port_base\fP & \fBget_port_base\fP ()"
+.br
+.ti -1c
+.RI "\fBvirtual\fP \fBsc_core::sc_port_base\fP \fBconst\fP & \fBget_port_base\fP () \fBconst\fP"
+.br
+.ti -1c
+.RI "\fBvirtual\fP \fBsc_core::sc_export_base\fP & \fBget_export_base\fP ()"
+.br
+.ti -1c
+.RI "\fBvirtual\fP \fBsc_core::sc_export_base\fP \fBconst\fP & \fBget_export_base\fP () \fBconst\fP"
+.br
+.ti -1c
+.RI "\fBvirtual\fP \fBunsigned\fP int \fBget_bus_width\fP () \fBconst\fP"
+.br
+.ti -1c
+.RI "\fBvirtual\fP \fBsc_core::sc_port_b\fP< \fBBW_IF\fP > & \fBget_base_port\fP ()"
+.br
+.ti -1c
+.RI "\fBvirtual\fP \fBsc_core::sc_port_b\fP< \fBBW_IF\fP > \fBconst\fP & \fBget_base_port\fP () \fBconst\fP"
+.br
+.in -1c
+
+Public Member Functions inherited from \fBtlm::tlm_base_target_socket_b< BUSWIDTH, FW_IF, BW_IF >\fP
+.in +1c
+.ti -1c
+.RI "\fBvirtual\fP \fB~tlm_base_target_socket_b\fP ()"
+.br
+.in -1c
+
+Public Member Functions inherited from \fBsc_core::sc_export< IF >\fP
+.in +1c
+.ti -1c
+.RI "\fBsc_export\fP ()"
+.br
+.ti -1c
+.RI "\fBsc_export\fP (\fBconst\fP \fBchar\fP *\fBname_\fP)"
+.br
+.ti -1c
+.RI "\fBvirtual\fP \fB~sc_export\fP ()"
+.br
+.ti -1c
+.RI "\fBvirtual\fP \fBsc_interface\fP * \fBget_interface\fP ()"
+.br
+.ti -1c
+.RI "\fBvirtual\fP \fBconst\fP \fBsc_interface\fP * \fBget_interface\fP () \fBconst\fP"
+.br
+.ti -1c
+.RI "\fBconst\fP \fBIF\fP * \fBoperator\->\fP () \fBconst\fP"
+.br
+.ti -1c
+.RI "\fBIF\fP * \fBoperator\->\fP ()"
+.br
+.ti -1c
+.RI "\fBoperator IF &\fP ()"
+.br
+.ti -1c
+.RI "\fBoperator const IF &\fP () \fBconst\fP"
+.br
+.ti -1c
+.RI "\fBSC_VIRTUAL_\fP \fBvoid\fP \fBbind\fP (\fBIF\fP &\fBinterface_\fP)"
+.br
+.ti -1c
+.RI "\fBvoid\fP \fBoperator()\fP (\fBIF\fP &\fBinterface_\fP)"
+.br
+.ti -1c
+.RI "\fBvirtual\fP \fBsc_type_index\fP \fBget_interface_type\fP () \fBconst\fP"
+.br
+.in -1c
+
+Public Member Functions inherited from \fBsc_core::sc_object\fP
+.in +1c
+.ti -1c
+.RI "\fBconst\fP \fBchar\fP * \fBname\fP () \fBconst\fP"
+.br
+.ti -1c
+.RI "\fBconst\fP \fBchar\fP * \fBbasename\fP () \fBconst\fP"
+.br
+.ti -1c
+.RI "\fBvirtual\fP \fBvoid\fP \fBprint\fP (::std::ostream &\fBos\fP=::std::cout) \fBconst\fP"
+.br
+.ti -1c
+.RI "\fBvirtual\fP \fBvoid\fP \fBdump\fP (::std::ostream &\fBos\fP=::std::cout) \fBconst\fP"
+.br
+.ti -1c
+.RI "\fBvirtual\fP \fBvoid\fP \fBtrace\fP (\fBsc_trace_file\fP *tf) \fBconst\fP"
+.br
+.ti -1c
+.RI "\fBsc_simcontext\fP * \fBsimcontext\fP () \fBconst\fP"
+.br
+.ti -1c
+.RI "\fBbool\fP \fBadd_attribute\fP (\fBsc_attr_base\fP &)"
+.br
+.ti -1c
+.RI "\fBsc_attr_base\fP * \fBget_attribute\fP (\fBconst\fP std::string &\fBname_\fP)"
+.br
+.ti -1c
+.RI "\fBconst\fP \fBsc_attr_base\fP * \fBget_attribute\fP (\fBconst\fP std::string &\fBname_\fP) \fBconst\fP"
+.br
+.ti -1c
+.RI "\fBsc_attr_base\fP * \fBremove_attribute\fP (\fBconst\fP std::string &\fBname_\fP)"
+.br
+.ti -1c
+.RI "\fBvoid\fP \fBremove_all_attributes\fP ()"
+.br
+.ti -1c
+.RI "int \fBnum_attributes\fP () \fBconst\fP"
+.br
+.ti -1c
+.RI "\fBsc_attr_cltn\fP & \fBattr_cltn\fP ()"
+.br
+.ti -1c
+.RI "\fBconst\fP \fBsc_attr_cltn\fP & \fBattr_cltn\fP () \fBconst\fP"
+.br
+.ti -1c
+.RI "\fBvirtual\fP \fBconst\fP std::vector< \fBsc_event\fP * > & \fBget_child_events\fP () \fBconst\fP"
+.br
+.ti -1c
+.RI "\fBvirtual\fP \fBconst\fP std::vector< \fBsc_object\fP * > & \fBget_child_objects\fP () \fBconst\fP"
+.br
+.ti -1c
+.RI "\fBsc_object\fP * \fBget_parent\fP () \fBconst\fP"
+.br
+.ti -1c
+.RI "\fBsc_object\fP * \fBget_parent_object\fP () \fBconst\fP"
+.br
+.in -1c
+
+Public Member Functions inherited from \fBtlm_utils::multi_to_multi_bind_base< TYPES >\fP
+.in +1c
+.ti -1c
+.RI "\fBvirtual\fP \fB~multi_to_multi_bind_base\fP ()"
+.br
+.in -1c
+.SS "Static Public Member Functions"
+
+.in +1c
+.ti -1c
+.RI "\fBstatic\fP \fBconst\fP \fBchar\fP * \fBdefault_name\fP ()"
+.br
+.in -1c
+.SS "Protected Member Functions"
+
+.in +1c
+.ti -1c
+.RI "\fBbase_type\fP * \fBget_hierarch_bind\fP ()"
+.br
+.ti -1c
+.RI "std::map< \fBunsigned\fP int, \fBtlm::tlm_bw_transport_if\fP< \fBTYPES\fP > * > & \fBget_multi_binds\fP ()"
+.br
+.ti -1c
+.RI "\fBvoid\fP \fBset_hierarch_bind\fP (\fBbase_type\fP *\fBh\fP)"
+.br
+.ti -1c
+.RI "\fBtlm::tlm_fw_transport_if\fP< \fBTYPES\fP > * \fBget_last_binder\fP (\fBtlm::tlm_bw_transport_if\fP< \fBTYPES\fP > *\fBother\fP)"
+.br
+.ti -1c
+.RI "\fBvoid\fP \fBdisable_cb_bind\fP ()"
+.br
+.ti -1c
+.RI "std::vector< \fBcallback_binder_fw\fP< \fBTYPES\fP > * > & \fBget_binders\fP ()"
+.br
+.in -1c
+
+Protected Member Functions inherited from \fBtlm::tlm_base_socket_if\fP
+.in +1c
+.ti -1c
+.RI "\fBvirtual\fP \fB~tlm_base_socket_if\fP ()"
+.br
+.in -1c
+
+Protected Member Functions inherited from \fBsc_core::sc_export_base\fP
+.in +1c
+.ti -1c
+.RI "\fBsc_export_base\fP ()"
+.br
+.ti -1c
+.RI "\fBsc_export_base\fP (\fBconst\fP \fBchar\fP *\fBname\fP)"
+.br
+.ti -1c
+.RI "\fBvirtual\fP \fB~sc_export_base\fP ()"
+.br
+.ti -1c
+.RI "\fBvirtual\fP \fBvoid\fP \fBbefore_end_of_elaboration\fP ()"
+.br
+.ti -1c
+.RI "\fBvirtual\fP \fBvoid\fP \fBstart_of_simulation\fP ()"
+.br
+.ti -1c
+.RI "\fBvirtual\fP \fBvoid\fP \fBend_of_simulation\fP ()"
+.br
+.ti -1c
+.RI "\fBvoid\fP \fBreport_error\fP (\fBconst\fP \fBchar\fP *id, \fBconst\fP \fBchar\fP *\fBadd_msg\fP=0) \fBconst\fP"
+.br
+.in -1c
+
+Protected Member Functions inherited from \fBsc_core::sc_object\fP
+.in +1c
+.ti -1c
+.RI "\fBsc_object\fP ()"
+.br
+.ti -1c
+.RI "\fBsc_object\fP (\fBconst\fP \fBchar\fP *\fBnm\fP)"
+.br
+.ti -1c
+.RI "\fBsc_object\fP (\fBconst\fP \fBsc_object\fP &)"
+.br
+.ti -1c
+.RI "\fBsc_object\fP & \fBoperator=\fP (\fBconst\fP \fBsc_object\fP &)"
+.br
+.ti -1c
+.RI "\fBvirtual\fP \fB~sc_object\fP ()"
+.br
+.ti -1c
+.RI "\fBvirtual\fP \fBvoid\fP \fBadd_child_event\fP (\fBsc_event\fP *\fBevent_p\fP)"
+.br
+.ti -1c
+.RI "\fBvirtual\fP \fBvoid\fP \fBadd_child_object\fP (\fBsc_object\fP *\fBobject_p\fP)"
+.br
+.ti -1c
+.RI "\fBvirtual\fP \fBbool\fP \fBremove_child_event\fP (\fBsc_event\fP *\fBevent_p\fP)"
+.br
+.ti -1c
+.RI "\fBvirtual\fP \fBbool\fP \fBremove_child_object\fP (\fBsc_object\fP *\fBobject_p\fP)"
+.br
+.ti -1c
+.RI "\fBphase_cb_mask\fP \fBregister_simulation_phase_callback\fP (\fBphase_cb_mask\fP)"
+.br
+.ti -1c
+.RI "\fBphase_cb_mask\fP \fBunregister_simulation_phase_callback\fP (\fBphase_cb_mask\fP)"
+.br
+.in -1c
+
+Protected Member Functions inherited from \fBtlm_utils::multi_target_base_if< TYPES >\fP
+.in +1c
+.ti -1c
+.RI "\fBvirtual\fP \fB~multi_target_base_if\fP ()"
+.br
+.in -1c
+
+Protected Member Functions inherited from \fBtlm_utils::convenience_socket_base\fP
+.in +1c
+.ti -1c
+.RI "\fBvirtual\fP \fB~convenience_socket_base\fP ()"
+.br
+.in -1c
+.in +1c
+.ti -1c
+.RI "\fBvoid\fP \fBdisplay_warning\fP (\fBconst\fP \fBchar\fP *msg) \fBconst\fP"
+.br
+.ti -1c
+.RI "\fBvoid\fP \fBdisplay_error\fP (\fBconst\fP \fBchar\fP *msg) \fBconst\fP"
+.br
+.in -1c
+.SS "Protected Attributes"
+
+.in +1c
+.ti -1c
+.RI "std::map< \fBunsigned\fP int, \fBtlm::tlm_bw_transport_if\fP< \fBTYPES\fP > * > \fBm_multi_binds\fP"
+.br
+.ti -1c
+.RI "std::vector< \fBtlm::tlm_bw_transport_if\fP< \fBTYPES\fP > * > \fBm_sockets\fP"
+.br
+.ti -1c
+.RI "std::vector< \fBcallback_binder_fw\fP< \fBTYPES\fP > * > \fBm_binders\fP"
+.br
+.ti -1c
+.RI "\fBbase_type\fP * \fBm_hierarch_bind\fP"
+.br
+.ti -1c
+.RI "\fBbool\fP \fBm_eoe_disabled\fP"
+.br
+.ti -1c
+.RI "\fBbool\fP \fBm_export_callback_created\fP"
+.br
+.ti -1c
+.RI "\fBcallback_binder_fw\fP< \fBTYPES\fP >::nb_func_type \fBm_nb_f\fP"
+.br
+.ti -1c
+.RI "\fBcallback_binder_fw\fP< \fBTYPES\fP >::b_func_type \fBm_b_f\fP"
+.br
+.ti -1c
+.RI "\fBcallback_binder_fw\fP< \fBTYPES\fP >::debug_func_type \fBm_dbg_f\fP"
+.br
+.ti -1c
+.RI "\fBcallback_binder_fw\fP< \fBTYPES\fP >::dmi_func_type \fBm_dmi_f\fP"
+.br
+.in -1c
+
+Protected Attributes inherited from \fBtlm::tlm_base_target_socket< BUSWIDTH, FW_IF, BW_IF, N, POL >\fP
+.in +1c
+.ti -1c
+.RI "\fBport_type\fP \fBm_port\fP"
+.br
+.in -1c
+
+Protected Attributes inherited from \fBsc_core::sc_export< IF >\fP
+.in +1c
+.ti -1c
+.RI "\fBIF\fP * \fBm_interface_p\fP"
+.br
+.in -1c
+.SH "Member Typedef Documentation"
+.PP 
+.SS "template<\fBtypename\fP \fBMODULE\fP , \fBunsigned\fP int BUSWIDTH = 32, \fBtypename\fP \fBTYPES\fP  = tlm::tlm_base_protocol_types, \fBunsigned\fP int N = 0, \fBsc_core::sc_port_policy\fP POL = sc_core::SC_ONE_OR_MORE_BOUND> \fBtypedef\fP \fBvoid\fP(MODULE::* \fBtlm_utils::multi_passthrough_target_socket\fP< \fBMODULE\fP, \fBBUSWIDTH\fP, \fBTYPES\fP, \fBN\fP, \fBPOL\fP >::b_cb) (int, \fBtransaction_type\fP &, \fBsc_core::sc_time\fP &)"
+
+.SS "template<\fBtypename\fP \fBMODULE\fP , \fBunsigned\fP int BUSWIDTH = 32, \fBtypename\fP \fBTYPES\fP  = tlm::tlm_base_protocol_types, \fBunsigned\fP int N = 0, \fBsc_core::sc_port_policy\fP POL = sc_core::SC_ONE_OR_MORE_BOUND> \fBtypedef\fP \fBbase_type::base_initiator_socket_type\fP \fBtlm_utils::multi_passthrough_target_socket\fP< \fBMODULE\fP, \fBBUSWIDTH\fP, \fBTYPES\fP, \fBN\fP, \fBPOL\fP >::base_initiator_socket_type"
+
+.SS "template<\fBtypename\fP \fBMODULE\fP , \fBunsigned\fP int BUSWIDTH = 32, \fBtypename\fP \fBTYPES\fP  = tlm::tlm_base_protocol_types, \fBunsigned\fP int N = 0, \fBsc_core::sc_port_policy\fP POL = sc_core::SC_ONE_OR_MORE_BOUND> \fBtypedef\fP \fBmulti_target_base\fP<\fBBUSWIDTH\fP, \fBTYPES\fP, \fBN\fP, \fBPOL\fP> \fBtlm_utils::multi_passthrough_target_socket\fP< \fBMODULE\fP, \fBBUSWIDTH\fP, \fBTYPES\fP, \fBN\fP, \fBPOL\fP >::base_type"
+
+.SS "template<\fBtypename\fP \fBMODULE\fP , \fBunsigned\fP int BUSWIDTH = 32, \fBtypename\fP \fBTYPES\fP  = tlm::tlm_base_protocol_types, \fBunsigned\fP int N = 0, \fBsc_core::sc_port_policy\fP POL = sc_core::SC_ONE_OR_MORE_BOUND> \fBtypedef\fP \fBunsigned\fP int(MODULE::* \fBtlm_utils::multi_passthrough_target_socket\fP< \fBMODULE\fP, \fBBUSWIDTH\fP, \fBTYPES\fP, \fBN\fP, \fBPOL\fP >::dbg_cb) (int, \fBtransaction_type\fP &\fBtxn\fP)"
+
+.SS "template<\fBtypename\fP \fBMODULE\fP , \fBunsigned\fP int BUSWIDTH = 32, \fBtypename\fP \fBTYPES\fP  = tlm::tlm_base_protocol_types, \fBunsigned\fP int N = 0, \fBsc_core::sc_port_policy\fP POL = sc_core::SC_ONE_OR_MORE_BOUND> \fBtypedef\fP \fBbool\fP(MODULE::* \fBtlm_utils::multi_passthrough_target_socket\fP< \fBMODULE\fP, \fBBUSWIDTH\fP, \fBTYPES\fP, \fBN\fP, \fBPOL\fP >::dmi_cb) (int, \fBtransaction_type\fP &\fBtxn\fP, \fBtlm::tlm_dmi\fP &\fBdmi\fP)"
+
+.SS "template<\fBtypename\fP \fBMODULE\fP , \fBunsigned\fP int BUSWIDTH = 32, \fBtypename\fP \fBTYPES\fP  = tlm::tlm_base_protocol_types, \fBunsigned\fP int N = 0, \fBsc_core::sc_port_policy\fP POL = sc_core::SC_ONE_OR_MORE_BOUND> \fBtypedef\fP \fBsync_enum_type\fP(MODULE::* \fBtlm_utils::multi_passthrough_target_socket\fP< \fBMODULE\fP, \fBBUSWIDTH\fP, \fBTYPES\fP, \fBN\fP, \fBPOL\fP >::nb_cb) (int, \fBtransaction_type\fP &, \fBphase_type\fP &, \fBsc_core::sc_time\fP &)"
+
+.SS "template<\fBtypename\fP \fBMODULE\fP , \fBunsigned\fP int BUSWIDTH = 32, \fBtypename\fP \fBTYPES\fP  = tlm::tlm_base_protocol_types, \fBunsigned\fP int N = 0, \fBsc_core::sc_port_policy\fP POL = sc_core::SC_ONE_OR_MORE_BOUND> \fBtypedef\fP TYPES::tlm_phase_type \fBtlm_utils::multi_passthrough_target_socket\fP< \fBMODULE\fP, \fBBUSWIDTH\fP, \fBTYPES\fP, \fBN\fP, \fBPOL\fP >::phase_type"
+
+.SS "template<\fBtypename\fP \fBMODULE\fP , \fBunsigned\fP int BUSWIDTH = 32, \fBtypename\fP \fBTYPES\fP  = tlm::tlm_base_protocol_types, \fBunsigned\fP int N = 0, \fBsc_core::sc_port_policy\fP POL = sc_core::SC_ONE_OR_MORE_BOUND> \fBtypedef\fP \fBtlm::tlm_sync_enum\fP \fBtlm_utils::multi_passthrough_target_socket\fP< \fBMODULE\fP, \fBBUSWIDTH\fP, \fBTYPES\fP, \fBN\fP, \fBPOL\fP >::sync_enum_type"
+
+.SS "template<\fBtypename\fP \fBMODULE\fP , \fBunsigned\fP int BUSWIDTH = 32, \fBtypename\fP \fBTYPES\fP  = tlm::tlm_base_protocol_types, \fBunsigned\fP int N = 0, \fBsc_core::sc_port_policy\fP POL = sc_core::SC_ONE_OR_MORE_BOUND> \fBtypedef\fP TYPES::tlm_payload_type \fBtlm_utils::multi_passthrough_target_socket\fP< \fBMODULE\fP, \fBBUSWIDTH\fP, \fBTYPES\fP, \fBN\fP, \fBPOL\fP >::transaction_type"
+
+.SH "Constructor & Destructor Documentation"
+.PP 
+.SS "template<\fBtypename\fP \fBMODULE\fP , \fBunsigned\fP int BUSWIDTH = 32, \fBtypename\fP \fBTYPES\fP  = tlm::tlm_base_protocol_types, \fBunsigned\fP int N = 0, \fBsc_core::sc_port_policy\fP POL = sc_core::SC_ONE_OR_MORE_BOUND> \fBtlm_utils::multi_passthrough_target_socket\fP< \fBMODULE\fP, \fBBUSWIDTH\fP, \fBTYPES\fP, \fBN\fP, \fBPOL\fP >::multi_passthrough_target_socket (\fBconst\fP \fBchar\fP * name = \fR\fBdefault_name\fP()\fP)\fR [inline]\fP, \fR [explicit]\fP"
+
+.SS "template<\fBtypename\fP \fBMODULE\fP , \fBunsigned\fP int BUSWIDTH = 32, \fBtypename\fP \fBTYPES\fP  = tlm::tlm_base_protocol_types, \fBunsigned\fP int N = 0, \fBsc_core::sc_port_policy\fP POL = sc_core::SC_ONE_OR_MORE_BOUND> \fBtlm_utils::multi_passthrough_target_socket\fP< \fBMODULE\fP, \fBBUSWIDTH\fP, \fBTYPES\fP, \fBN\fP, \fBPOL\fP >::~\fBmulti_passthrough_target_socket\fP ()\fR [inline]\fP"
+
+.SH "Member Function Documentation"
+.PP 
+.SS "template<\fBtypename\fP \fBMODULE\fP , \fBunsigned\fP int BUSWIDTH = 32, \fBtypename\fP \fBTYPES\fP  = tlm::tlm_base_protocol_types, \fBunsigned\fP int N = 0, \fBsc_core::sc_port_policy\fP POL = sc_core::SC_ONE_OR_MORE_BOUND> \fBvirtual\fP \fBvoid\fP \fBtlm_utils::multi_passthrough_target_socket\fP< \fBMODULE\fP, \fBBUSWIDTH\fP, \fBTYPES\fP, \fBN\fP, \fBPOL\fP >::bind (\fBbase_type\fP & s)\fR [inline]\fP, \fR [virtual]\fP"
+
+.SS "template<\fBtypename\fP \fBMODULE\fP , \fBunsigned\fP int BUSWIDTH = 32, \fBtypename\fP \fBTYPES\fP  = tlm::tlm_base_protocol_types, \fBunsigned\fP int N = 0, \fBsc_core::sc_port_policy\fP POL = sc_core::SC_ONE_OR_MORE_BOUND> \fBvoid\fP \fBtlm_utils::multi_passthrough_target_socket\fP< \fBMODULE\fP, \fBBUSWIDTH\fP, \fBTYPES\fP, \fBN\fP, \fBPOL\fP >::check_export_binding ()\fR [inline]\fP"
+
+.SS "template<\fBtypename\fP \fBMODULE\fP , \fBunsigned\fP int BUSWIDTH = 32, \fBtypename\fP \fBTYPES\fP  = tlm::tlm_base_protocol_types, \fBunsigned\fP int N = 0, \fBsc_core::sc_port_policy\fP POL = sc_core::SC_ONE_OR_MORE_BOUND> \fBstatic\fP \fBconst\fP \fBchar\fP * \fBtlm_utils::multi_passthrough_target_socket\fP< \fBMODULE\fP, \fBBUSWIDTH\fP, \fBTYPES\fP, \fBN\fP, \fBPOL\fP >::default_name ()\fR [inline]\fP, \fR [static]\fP"
+
+.SS "template<\fBtypename\fP \fBMODULE\fP , \fBunsigned\fP int BUSWIDTH = 32, \fBtypename\fP \fBTYPES\fP  = tlm::tlm_base_protocol_types, \fBunsigned\fP int N = 0, \fBsc_core::sc_port_policy\fP POL = sc_core::SC_ONE_OR_MORE_BOUND> \fBvoid\fP \fBtlm_utils::multi_passthrough_target_socket\fP< \fBMODULE\fP, \fBBUSWIDTH\fP, \fBTYPES\fP, \fBN\fP, \fBPOL\fP >::disable_cb_bind ()\fR [inline]\fP, \fR [protected]\fP"
+
+.SS "template<\fBtypename\fP \fBMODULE\fP , \fBunsigned\fP int BUSWIDTH = 32, \fBtypename\fP \fBTYPES\fP  = tlm::tlm_base_protocol_types, \fBunsigned\fP int N = 0, \fBsc_core::sc_port_policy\fP POL = sc_core::SC_ONE_OR_MORE_BOUND> \fBvoid\fP \fBtlm_utils::multi_passthrough_target_socket\fP< \fBMODULE\fP, \fBBUSWIDTH\fP, \fBTYPES\fP, \fBN\fP, \fBPOL\fP >::end_of_elaboration ()\fR [inline]\fP, \fR [virtual]\fP"
+
+.PP
+Reimplemented from \fBsc_core::sc_export_base\fP\&.
+.SS "template<\fBtypename\fP \fBMODULE\fP , \fBunsigned\fP int BUSWIDTH = 32, \fBtypename\fP \fBTYPES\fP  = tlm::tlm_base_protocol_types, \fBunsigned\fP int N = 0, \fBsc_core::sc_port_policy\fP POL = sc_core::SC_ONE_OR_MORE_BOUND> \fBvirtual\fP \fBsc_core::sc_export\fP< \fBtlm::tlm_fw_transport_if\fP< \fBTYPES\fP > > & \fBtlm_utils::multi_passthrough_target_socket\fP< \fBMODULE\fP, \fBBUSWIDTH\fP, \fBTYPES\fP, \fBN\fP, \fBPOL\fP >::get_base_export ()\fR [inline]\fP, \fR [virtual]\fP"
+
+.PP
+Reimplemented from \fBtlm::tlm_base_target_socket< BUSWIDTH, FW_IF, BW_IF, N, POL >\fP\&.
+.SS "template<\fBtypename\fP \fBMODULE\fP , \fBunsigned\fP int BUSWIDTH = 32, \fBtypename\fP \fBTYPES\fP  = tlm::tlm_base_protocol_types, \fBunsigned\fP int N = 0, \fBsc_core::sc_port_policy\fP POL = sc_core::SC_ONE_OR_MORE_BOUND> \fBvirtual\fP \fBconst\fP \fBsc_core::sc_export\fP< \fBtlm::tlm_fw_transport_if\fP< \fBTYPES\fP > > & \fBtlm_utils::multi_passthrough_target_socket\fP< \fBMODULE\fP, \fBBUSWIDTH\fP, \fBTYPES\fP, \fBN\fP, \fBPOL\fP >::get_base_export () const\fR [inline]\fP, \fR [virtual]\fP"
+
+.PP
+Reimplemented from \fBtlm::tlm_base_target_socket< BUSWIDTH, FW_IF, BW_IF, N, POL >\fP\&.
+.SS "template<\fBtypename\fP \fBMODULE\fP , \fBunsigned\fP int BUSWIDTH = 32, \fBtypename\fP \fBTYPES\fP  = tlm::tlm_base_protocol_types, \fBunsigned\fP int N = 0, \fBsc_core::sc_port_policy\fP POL = sc_core::SC_ONE_OR_MORE_BOUND> \fBvirtual\fP \fBtlm::tlm_fw_transport_if\fP< \fBTYPES\fP > & \fBtlm_utils::multi_passthrough_target_socket\fP< \fBMODULE\fP, \fBBUSWIDTH\fP, \fBTYPES\fP, \fBN\fP, \fBPOL\fP >::get_base_interface ()\fR [inline]\fP, \fR [virtual]\fP"
+
+.PP
+Reimplemented from \fBtlm::tlm_base_target_socket< BUSWIDTH, FW_IF, BW_IF, N, POL >\fP\&.
+.SS "template<\fBtypename\fP \fBMODULE\fP , \fBunsigned\fP int BUSWIDTH = 32, \fBtypename\fP \fBTYPES\fP  = tlm::tlm_base_protocol_types, \fBunsigned\fP int N = 0, \fBsc_core::sc_port_policy\fP POL = sc_core::SC_ONE_OR_MORE_BOUND> \fBvirtual\fP \fBconst\fP \fBtlm::tlm_fw_transport_if\fP< \fBTYPES\fP > & \fBtlm_utils::multi_passthrough_target_socket\fP< \fBMODULE\fP, \fBBUSWIDTH\fP, \fBTYPES\fP, \fBN\fP, \fBPOL\fP >::get_base_interface () const\fR [inline]\fP, \fR [virtual]\fP"
+
+.PP
+Reimplemented from \fBtlm::tlm_base_target_socket< BUSWIDTH, FW_IF, BW_IF, N, POL >\fP\&.
+.SS "template<\fBtypename\fP \fBMODULE\fP , \fBunsigned\fP int BUSWIDTH = 32, \fBtypename\fP \fBTYPES\fP  = tlm::tlm_base_protocol_types, \fBunsigned\fP int N = 0, \fBsc_core::sc_port_policy\fP POL = sc_core::SC_ONE_OR_MORE_BOUND> std::vector< \fBcallback_binder_fw\fP< \fBTYPES\fP > * > & \fBtlm_utils::multi_passthrough_target_socket\fP< \fBMODULE\fP, \fBBUSWIDTH\fP, \fBTYPES\fP, \fBN\fP, \fBPOL\fP >::get_binders ()\fR [inline]\fP, \fR [protected]\fP, \fR [virtual]\fP"
+
+.PP
+Implements \fBtlm_utils::multi_target_base_if< TYPES >\fP\&.
+.SS "template<\fBtypename\fP \fBMODULE\fP , \fBunsigned\fP int BUSWIDTH = 32, \fBtypename\fP \fBTYPES\fP  = tlm::tlm_base_protocol_types, \fBunsigned\fP int N = 0, \fBsc_core::sc_port_policy\fP POL = sc_core::SC_ONE_OR_MORE_BOUND> \fBbase_type\fP * \fBtlm_utils::multi_passthrough_target_socket\fP< \fBMODULE\fP, \fBBUSWIDTH\fP, \fBTYPES\fP, \fBN\fP, \fBPOL\fP >::get_hierarch_bind ()\fR [inline]\fP, \fR [protected]\fP, \fR [virtual]\fP"
+
+.PP
+Implements \fBtlm_utils::multi_target_base< BUSWIDTH, TYPES, N, POL >\fP\&.
+.SS "template<\fBtypename\fP \fBMODULE\fP , \fBunsigned\fP int BUSWIDTH = 32, \fBtypename\fP \fBTYPES\fP  = tlm::tlm_base_protocol_types, \fBunsigned\fP int N = 0, \fBsc_core::sc_port_policy\fP POL = sc_core::SC_ONE_OR_MORE_BOUND> \fBtlm::tlm_fw_transport_if\fP< \fBTYPES\fP > * \fBtlm_utils::multi_passthrough_target_socket\fP< \fBMODULE\fP, \fBBUSWIDTH\fP, \fBTYPES\fP, \fBN\fP, \fBPOL\fP >::get_last_binder (\fBtlm::tlm_bw_transport_if\fP< \fBTYPES\fP > * other)\fR [inline]\fP, \fR [protected]\fP, \fR [virtual]\fP"
+
+.PP
+Implements \fBtlm_utils::multi_to_multi_bind_base< TYPES >\fP\&.
+.SS "template<\fBtypename\fP \fBMODULE\fP , \fBunsigned\fP int BUSWIDTH = 32, \fBtypename\fP \fBTYPES\fP  = tlm::tlm_base_protocol_types, \fBunsigned\fP int N = 0, \fBsc_core::sc_port_policy\fP POL = sc_core::SC_ONE_OR_MORE_BOUND> std::map< \fBunsigned\fP int, \fBtlm::tlm_bw_transport_if\fP< \fBTYPES\fP > * > & \fBtlm_utils::multi_passthrough_target_socket\fP< \fBMODULE\fP, \fBBUSWIDTH\fP, \fBTYPES\fP, \fBN\fP, \fBPOL\fP >::get_multi_binds ()\fR [inline]\fP, \fR [protected]\fP, \fR [virtual]\fP"
+
+.PP
+Implements \fBtlm_utils::multi_target_base_if< TYPES >\fP\&.
+.SS "template<\fBtypename\fP \fBMODULE\fP , \fBunsigned\fP int BUSWIDTH = 32, \fBtypename\fP \fBTYPES\fP  = tlm::tlm_base_protocol_types, \fBunsigned\fP int N = 0, \fBsc_core::sc_port_policy\fP POL = sc_core::SC_ONE_OR_MORE_BOUND> \fBvoid\fP \fBtlm_utils::multi_passthrough_target_socket\fP< \fBMODULE\fP, \fBBUSWIDTH\fP, \fBTYPES\fP, \fBN\fP, \fBPOL\fP >\fB::operator\fP() (\fBbase_type\fP & s)\fR [inline]\fP"
+
+.SS "template<\fBtypename\fP \fBMODULE\fP , \fBunsigned\fP int BUSWIDTH = 32, \fBtypename\fP \fBTYPES\fP  = tlm::tlm_base_protocol_types, \fBunsigned\fP int N = 0, \fBsc_core::sc_port_policy\fP POL = sc_core::SC_ONE_OR_MORE_BOUND> \fBtlm::tlm_bw_transport_if\fP< \fBTYPES\fP > * \fBtlm_utils::multi_passthrough_target_socket\fP< \fBMODULE\fP, \fBBUSWIDTH\fP, \fBTYPES\fP, \fBN\fP, \fBPOL\fP >\fB::operator\fP[] (int i)\fR [inline]\fP"
+
+.SS "template<\fBtypename\fP \fBMODULE\fP , \fBunsigned\fP int BUSWIDTH = 32, \fBtypename\fP \fBTYPES\fP  = tlm::tlm_base_protocol_types, \fBunsigned\fP int N = 0, \fBsc_core::sc_port_policy\fP POL = sc_core::SC_ONE_OR_MORE_BOUND> \fBvoid\fP \fBtlm_utils::multi_passthrough_target_socket\fP< \fBMODULE\fP, \fBBUSWIDTH\fP, \fBTYPES\fP, \fBN\fP, \fBPOL\fP >::register_b_transport (\fBMODULE\fP * mod, \fBb_cb\fP cb)\fR [inline]\fP"
+
+.SS "template<\fBtypename\fP \fBMODULE\fP , \fBunsigned\fP int BUSWIDTH = 32, \fBtypename\fP \fBTYPES\fP  = tlm::tlm_base_protocol_types, \fBunsigned\fP int N = 0, \fBsc_core::sc_port_policy\fP POL = sc_core::SC_ONE_OR_MORE_BOUND> \fBvoid\fP \fBtlm_utils::multi_passthrough_target_socket\fP< \fBMODULE\fP, \fBBUSWIDTH\fP, \fBTYPES\fP, \fBN\fP, \fBPOL\fP >::register_get_direct_mem_ptr (\fBMODULE\fP * mod, \fBdmi_cb\fP cb)\fR [inline]\fP"
+
+.SS "template<\fBtypename\fP \fBMODULE\fP , \fBunsigned\fP int BUSWIDTH = 32, \fBtypename\fP \fBTYPES\fP  = tlm::tlm_base_protocol_types, \fBunsigned\fP int N = 0, \fBsc_core::sc_port_policy\fP POL = sc_core::SC_ONE_OR_MORE_BOUND> \fBvoid\fP \fBtlm_utils::multi_passthrough_target_socket\fP< \fBMODULE\fP, \fBBUSWIDTH\fP, \fBTYPES\fP, \fBN\fP, \fBPOL\fP >::register_nb_transport_fw (\fBMODULE\fP * mod, \fBnb_cb\fP cb)\fR [inline]\fP"
+
+.SS "template<\fBtypename\fP \fBMODULE\fP , \fBunsigned\fP int BUSWIDTH = 32, \fBtypename\fP \fBTYPES\fP  = tlm::tlm_base_protocol_types, \fBunsigned\fP int N = 0, \fBsc_core::sc_port_policy\fP POL = sc_core::SC_ONE_OR_MORE_BOUND> \fBvoid\fP \fBtlm_utils::multi_passthrough_target_socket\fP< \fBMODULE\fP, \fBBUSWIDTH\fP, \fBTYPES\fP, \fBN\fP, \fBPOL\fP >::register_transport_dbg (\fBMODULE\fP * mod, \fBdbg_cb\fP cb)\fR [inline]\fP"
+
+.SS "template<\fBtypename\fP \fBMODULE\fP , \fBunsigned\fP int BUSWIDTH = 32, \fBtypename\fP \fBTYPES\fP  = tlm::tlm_base_protocol_types, \fBunsigned\fP int N = 0, \fBsc_core::sc_port_policy\fP POL = sc_core::SC_ONE_OR_MORE_BOUND> \fBvoid\fP \fBtlm_utils::multi_passthrough_target_socket\fP< \fBMODULE\fP, \fBBUSWIDTH\fP, \fBTYPES\fP, \fBN\fP, \fBPOL\fP >::set_hierarch_bind (\fBbase_type\fP * h)\fR [inline]\fP, \fR [protected]\fP, \fR [virtual]\fP"
+
+.PP
+Implements \fBtlm_utils::multi_target_base< BUSWIDTH, TYPES, N, POL >\fP\&.
+.SS "template<\fBtypename\fP \fBMODULE\fP , \fBunsigned\fP int BUSWIDTH = 32, \fBtypename\fP \fBTYPES\fP  = tlm::tlm_base_protocol_types, \fBunsigned\fP int N = 0, \fBsc_core::sc_port_policy\fP POL = sc_core::SC_ONE_OR_MORE_BOUND> \fBunsigned\fP int \fBtlm_utils::multi_passthrough_target_socket\fP< \fBMODULE\fP, \fBBUSWIDTH\fP, \fBTYPES\fP, \fBN\fP, \fBPOL\fP >::size ()\fR [inline]\fP"
+
+.SH "Member Data Documentation"
+.PP 
+.SS "template<\fBtypename\fP \fBMODULE\fP , \fBunsigned\fP int BUSWIDTH = 32, \fBtypename\fP \fBTYPES\fP  = tlm::tlm_base_protocol_types, \fBunsigned\fP int N = 0, \fBsc_core::sc_port_policy\fP POL = sc_core::SC_ONE_OR_MORE_BOUND> \fBcallback_binder_fw\fP<\fBTYPES\fP>::b_func_type \fBtlm_utils::multi_passthrough_target_socket\fP< \fBMODULE\fP, \fBBUSWIDTH\fP, \fBTYPES\fP, \fBN\fP, \fBPOL\fP >::m_b_f\fR [protected]\fP"
+
+.SS "template<\fBtypename\fP \fBMODULE\fP , \fBunsigned\fP int BUSWIDTH = 32, \fBtypename\fP \fBTYPES\fP  = tlm::tlm_base_protocol_types, \fBunsigned\fP int N = 0, \fBsc_core::sc_port_policy\fP POL = sc_core::SC_ONE_OR_MORE_BOUND> std::vector<\fBcallback_binder_fw\fP<\fBTYPES\fP>*> \fBtlm_utils::multi_passthrough_target_socket\fP< \fBMODULE\fP, \fBBUSWIDTH\fP, \fBTYPES\fP, \fBN\fP, \fBPOL\fP >::m_binders\fR [protected]\fP"
+
+.SS "template<\fBtypename\fP \fBMODULE\fP , \fBunsigned\fP int BUSWIDTH = 32, \fBtypename\fP \fBTYPES\fP  = tlm::tlm_base_protocol_types, \fBunsigned\fP int N = 0, \fBsc_core::sc_port_policy\fP POL = sc_core::SC_ONE_OR_MORE_BOUND> \fBcallback_binder_fw\fP<\fBTYPES\fP>::debug_func_type \fBtlm_utils::multi_passthrough_target_socket\fP< \fBMODULE\fP, \fBBUSWIDTH\fP, \fBTYPES\fP, \fBN\fP, \fBPOL\fP >::m_dbg_f\fR [protected]\fP"
+
+.SS "template<\fBtypename\fP \fBMODULE\fP , \fBunsigned\fP int BUSWIDTH = 32, \fBtypename\fP \fBTYPES\fP  = tlm::tlm_base_protocol_types, \fBunsigned\fP int N = 0, \fBsc_core::sc_port_policy\fP POL = sc_core::SC_ONE_OR_MORE_BOUND> \fBcallback_binder_fw\fP<\fBTYPES\fP>::dmi_func_type \fBtlm_utils::multi_passthrough_target_socket\fP< \fBMODULE\fP, \fBBUSWIDTH\fP, \fBTYPES\fP, \fBN\fP, \fBPOL\fP >::m_dmi_f\fR [protected]\fP"
+
+.SS "template<\fBtypename\fP \fBMODULE\fP , \fBunsigned\fP int BUSWIDTH = 32, \fBtypename\fP \fBTYPES\fP  = tlm::tlm_base_protocol_types, \fBunsigned\fP int N = 0, \fBsc_core::sc_port_policy\fP POL = sc_core::SC_ONE_OR_MORE_BOUND> \fBbool\fP \fBtlm_utils::multi_passthrough_target_socket\fP< \fBMODULE\fP, \fBBUSWIDTH\fP, \fBTYPES\fP, \fBN\fP, \fBPOL\fP >::m_eoe_disabled\fR [protected]\fP"
+
+.SS "template<\fBtypename\fP \fBMODULE\fP , \fBunsigned\fP int BUSWIDTH = 32, \fBtypename\fP \fBTYPES\fP  = tlm::tlm_base_protocol_types, \fBunsigned\fP int N = 0, \fBsc_core::sc_port_policy\fP POL = sc_core::SC_ONE_OR_MORE_BOUND> \fBbool\fP \fBtlm_utils::multi_passthrough_target_socket\fP< \fBMODULE\fP, \fBBUSWIDTH\fP, \fBTYPES\fP, \fBN\fP, \fBPOL\fP >::m_export_callback_created\fR [protected]\fP"
+
+.SS "template<\fBtypename\fP \fBMODULE\fP , \fBunsigned\fP int BUSWIDTH = 32, \fBtypename\fP \fBTYPES\fP  = tlm::tlm_base_protocol_types, \fBunsigned\fP int N = 0, \fBsc_core::sc_port_policy\fP POL = sc_core::SC_ONE_OR_MORE_BOUND> \fBbase_type\fP* \fBtlm_utils::multi_passthrough_target_socket\fP< \fBMODULE\fP, \fBBUSWIDTH\fP, \fBTYPES\fP, \fBN\fP, \fBPOL\fP >::m_hierarch_bind\fR [protected]\fP"
+
+.SS "template<\fBtypename\fP \fBMODULE\fP , \fBunsigned\fP int BUSWIDTH = 32, \fBtypename\fP \fBTYPES\fP  = tlm::tlm_base_protocol_types, \fBunsigned\fP int N = 0, \fBsc_core::sc_port_policy\fP POL = sc_core::SC_ONE_OR_MORE_BOUND> std::map<\fBunsigned\fP int, \fBtlm::tlm_bw_transport_if\fP<\fBTYPES\fP>*> \fBtlm_utils::multi_passthrough_target_socket\fP< \fBMODULE\fP, \fBBUSWIDTH\fP, \fBTYPES\fP, \fBN\fP, \fBPOL\fP >::m_multi_binds\fR [protected]\fP"
+
+.SS "template<\fBtypename\fP \fBMODULE\fP , \fBunsigned\fP int BUSWIDTH = 32, \fBtypename\fP \fBTYPES\fP  = tlm::tlm_base_protocol_types, \fBunsigned\fP int N = 0, \fBsc_core::sc_port_policy\fP POL = sc_core::SC_ONE_OR_MORE_BOUND> \fBcallback_binder_fw\fP<\fBTYPES\fP>::nb_func_type \fBtlm_utils::multi_passthrough_target_socket\fP< \fBMODULE\fP, \fBBUSWIDTH\fP, \fBTYPES\fP, \fBN\fP, \fBPOL\fP >::m_nb_f\fR [protected]\fP"
+
+.SS "template<\fBtypename\fP \fBMODULE\fP , \fBunsigned\fP int BUSWIDTH = 32, \fBtypename\fP \fBTYPES\fP  = tlm::tlm_base_protocol_types, \fBunsigned\fP int N = 0, \fBsc_core::sc_port_policy\fP POL = sc_core::SC_ONE_OR_MORE_BOUND> std::vector<\fBtlm::tlm_bw_transport_if\fP<\fBTYPES\fP>*> \fBtlm_utils::multi_passthrough_target_socket\fP< \fBMODULE\fP, \fBBUSWIDTH\fP, \fBTYPES\fP, \fBN\fP, \fBPOL\fP >::m_sockets\fR [protected]\fP"
+
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for VHDL simulator from the source code\&.

@@ -1,0 +1,589 @@
+\doxysection{sc\+\_\+module.\+h}
+\hypertarget{sc__module_8h_source}{}\label{sc__module_8h_source}\index{C:/Users/BJRODIER/Documents/QT\_REPO/QT\_VHDL\_simulator/code/Ressources/SystemC/include/sysc/kernel/sc\_module.h@{C:/Users/BJRODIER/Documents/QT\_REPO/QT\_VHDL\_simulator/code/Ressources/SystemC/include/sysc/kernel/sc\_module.h}}
+\mbox{\hyperlink{sc__module_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{comment}{/*****************************************************************************}}
+\DoxyCodeLine{00002\ \textcolor{comment}{}}
+\DoxyCodeLine{00003\ \textcolor{comment}{\ \ Licensed\ to\ Accellera\ Systems\ Initiative\ Inc.\ (Accellera)\ under\ one\ or}}
+\DoxyCodeLine{00004\ \textcolor{comment}{\ \ more\ contributor\ license\ agreements.\ \ See\ the\ NOTICE\ file\ distributed}}
+\DoxyCodeLine{00005\ \textcolor{comment}{\ \ with\ this\ work\ for\ additional\ information\ regarding\ copyright\ ownership.}}
+\DoxyCodeLine{00006\ \textcolor{comment}{\ \ Accellera\ licenses\ this\ file\ to\ you\ under\ the\ Apache\ License,\ Version\ 2.0}}
+\DoxyCodeLine{00007\ \textcolor{comment}{\ \ (the\ "{}License"{});\ you\ may\ not\ use\ this\ file\ except\ in\ compliance\ with\ the}}
+\DoxyCodeLine{00008\ \textcolor{comment}{\ \ License.\ \ You\ may\ obtain\ a\ copy\ of\ the\ License\ at}}
+\DoxyCodeLine{00009\ \textcolor{comment}{}}
+\DoxyCodeLine{00010\ \textcolor{comment}{\ \ \ \ http://www.apache.org/licenses/LICENSE-\/2.0}}
+\DoxyCodeLine{00011\ \textcolor{comment}{}}
+\DoxyCodeLine{00012\ \textcolor{comment}{\ \ Unless\ required\ by\ applicable\ law\ or\ agreed\ to\ in\ writing,\ software}}
+\DoxyCodeLine{00013\ \textcolor{comment}{\ \ distributed\ under\ the\ License\ is\ distributed\ on\ an\ "{}AS\ IS"{}\ BASIS,}}
+\DoxyCodeLine{00014\ \textcolor{comment}{\ \ WITHOUT\ WARRANTIES\ OR\ CONDITIONS\ OF\ ANY\ KIND,\ either\ express\ or}}
+\DoxyCodeLine{00015\ \textcolor{comment}{\ \ implied.\ \ See\ the\ License\ for\ the\ specific\ language\ governing}}
+\DoxyCodeLine{00016\ \textcolor{comment}{\ \ permissions\ and\ limitations\ under\ the\ License.}}
+\DoxyCodeLine{00017\ \textcolor{comment}{}}
+\DoxyCodeLine{00018\ \textcolor{comment}{\ *****************************************************************************/}}
+\DoxyCodeLine{00019\ }
+\DoxyCodeLine{00020\ \textcolor{comment}{/*****************************************************************************}}
+\DoxyCodeLine{00021\ \textcolor{comment}{}}
+\DoxyCodeLine{00022\ \textcolor{comment}{\ \ sc\_module.h\ -\/-\/\ Base\ class\ of\ all\ hierarchical\ modules\ and\ channels.}}
+\DoxyCodeLine{00023\ \textcolor{comment}{}}
+\DoxyCodeLine{00024\ \textcolor{comment}{\ \ Original\ Author:\ Stan\ Y.\ Liao,\ Synopsys,\ Inc.}}
+\DoxyCodeLine{00025\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Martin\ Janssen,\ Synopsys,\ Inc.}}
+\DoxyCodeLine{00026\ \textcolor{comment}{}}
+\DoxyCodeLine{00027\ \textcolor{comment}{\ \ CHANGE\ LOG\ AT\ THE\ END\ OF\ THE\ FILE}}
+\DoxyCodeLine{00028\ \textcolor{comment}{\ *****************************************************************************/}}
+\DoxyCodeLine{00029\ }
+\DoxyCodeLine{00030\ }
+\DoxyCodeLine{00031\ \textcolor{preprocessor}{\#ifndef\ SC\_MODULE\_H}}
+\DoxyCodeLine{00032\ \textcolor{preprocessor}{\#define\ SC\_MODULE\_H}}
+\DoxyCodeLine{00033\ }
+\DoxyCodeLine{00034\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{sc__kernel__ids_8h}{sysc/kernel/sc\_kernel\_ids.h}}"{}}}
+\DoxyCodeLine{00035\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{sc__process_8h}{sysc/kernel/sc\_process.h}}"{}}}
+\DoxyCodeLine{00036\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{sc__module__name_8h}{sysc/kernel/sc\_module\_name.h}}"{}}}
+\DoxyCodeLine{00037\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{sc__sensitive_8h}{sysc/kernel/sc\_sensitive.h}}"{}}}
+\DoxyCodeLine{00038\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{sc__time_8h}{sysc/kernel/sc\_time.h}}"{}}}
+\DoxyCodeLine{00039\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{sc__wait_8h}{sysc/kernel/sc\_wait.h}}"{}}}
+\DoxyCodeLine{00040\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{sc__wait__cthread_8h}{sysc/kernel/sc\_wait\_cthread.h}}"{}}}
+\DoxyCodeLine{00041\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{sc__process_8h}{sysc/kernel/sc\_process.h}}"{}}}
+\DoxyCodeLine{00042\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{sc__process__handle_8h}{sysc/kernel/sc\_process\_handle.h}}"{}}}
+\DoxyCodeLine{00043\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{sc__list_8h}{sysc/utils/sc\_list.h}}"{}}}
+\DoxyCodeLine{00044\ }
+\DoxyCodeLine{00045\ \textcolor{keyword}{namespace\ }\mbox{\hyperlink{namespacesc__core}{sc\_core}}\ \{}
+\DoxyCodeLine{00046\ }
+\DoxyCodeLine{00047\ \textcolor{keyword}{class\ }sc\_name\_gen;}
+\DoxyCodeLine{00048\ \textcolor{keyword}{template}<\textcolor{keyword}{class}\ T>\ \textcolor{keyword}{class\ }sc\_in;}
+\DoxyCodeLine{00049\ \textcolor{keyword}{template}<\textcolor{keyword}{class}\ T>\ \textcolor{keyword}{class\ }sc\_inout;}
+\DoxyCodeLine{00050\ \textcolor{keyword}{template}<\textcolor{keyword}{class}\ T>\ \textcolor{keyword}{class\ }sc\_out;}
+\DoxyCodeLine{00051\ }
+\DoxyCodeLine{00052\ \textcolor{comment}{//\ -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{00053\ \textcolor{comment}{//\ \ STRUCT\ :\ sc\_bind\_proxy}}
+\DoxyCodeLine{00054\ \textcolor{comment}{//}}
+\DoxyCodeLine{00055\ \textcolor{comment}{//\ \ Struct\ for\ temporarily\ storing\ a\ pointer\ to\ an\ interface\ or\ port.}}
+\DoxyCodeLine{00056\ \textcolor{comment}{//\ \ Used\ for\ positional\ binding.}}
+\DoxyCodeLine{00057\ \textcolor{comment}{//\ -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{00058\ }
+\DoxyCodeLine{00059\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{sc__cmnhdr_8h_aff4a86b3f5de3ac2097081e7166fe89f}{SC\_API}}\ \mbox{\hyperlink{structsc__core_1_1sc__bind__proxy}{sc\_bind\_proxy}}}
+\DoxyCodeLine{00060\ \{}
+\DoxyCodeLine{00061\ \ \ \ \ \mbox{\hyperlink{classsc__core_1_1sc__interface}{sc\_interface}}*\ \mbox{\hyperlink{structsc__core_1_1sc__bind__proxy_acf5e1d9812e35aeb1c47a480fcdb4a30}{iface}};}
+\DoxyCodeLine{00062\ \ \ \ \ \mbox{\hyperlink{classsc__core_1_1sc__port__base}{sc\_port\_base}}*\ \mbox{\hyperlink{structsc__core_1_1sc__bind__proxy_a421f0418c5ee2789169dbc84d8518cc3}{port}};}
+\DoxyCodeLine{00063\ \ \ \ \ }
+\DoxyCodeLine{00064\ \ \ \ \ \mbox{\hyperlink{structsc__core_1_1sc__bind__proxy_ad982918a6ce3dc5313ce2ae59bda2240}{sc\_bind\_proxy}}();}
+\DoxyCodeLine{00065\ \ \ \ \ \mbox{\hyperlink{structsc__core_1_1sc__bind__proxy_aac239e4b99295e629c810906212d3f13}{sc\_bind\_proxy}}(\ \mbox{\hyperlink{classsc__core_1_1sc__interface}{sc\_interface}}\&\ );}
+\DoxyCodeLine{00066\ \ \ \ \ \mbox{\hyperlink{structsc__core_1_1sc__bind__proxy_a51aa646139da624060f5c5eaaca1fb87}{sc\_bind\_proxy}}(\ \mbox{\hyperlink{classsc__core_1_1sc__port__base}{sc\_port\_base}}\&\ );}
+\DoxyCodeLine{00067\ \};}
+\DoxyCodeLine{00068\ }
+\DoxyCodeLine{00069\ }
+\DoxyCodeLine{00070\ \textcolor{keyword}{extern}\ \mbox{\hyperlink{sc__cmnhdr_8h_aff4a86b3f5de3ac2097081e7166fe89f}{SC\_API}}\ \textcolor{keyword}{const}\ \mbox{\hyperlink{structsc__core_1_1sc__bind__proxy}{sc\_bind\_proxy}}\ \mbox{\hyperlink{namespacesc__core_a05c83ed28ddaf2be71f43e2447f2f05f}{SC\_BIND\_PROXY\_NIL}};}
+\DoxyCodeLine{00071\ }
+\DoxyCodeLine{00072\ }
+\DoxyCodeLine{00073\ \textcolor{comment}{//\ -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{00074\ \textcolor{comment}{//\ \ CLASS\ :\ sc\_module}}
+\DoxyCodeLine{00075\ \textcolor{comment}{//}}
+\DoxyCodeLine{00076\ \textcolor{comment}{//\ \ Base\ class\ for\ all\ structural\ entities.}}
+\DoxyCodeLine{00077\ \textcolor{comment}{//\ -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{00078\ }
+\DoxyCodeLine{00079\ \textcolor{keyword}{class\ }\mbox{\hyperlink{sc__cmnhdr_8h_aff4a86b3f5de3ac2097081e7166fe89f}{SC\_API}}\ \mbox{\hyperlink{classsc__core_1_1sc__module}{sc\_module}}}
+\DoxyCodeLine{00080\ :\ \textcolor{keyword}{public}\ \mbox{\hyperlink{classsc__core_1_1sc__object}{sc\_object}},\ \textcolor{keyword}{public}\ \mbox{\hyperlink{classsc__core_1_1sc__process__host}{sc\_process\_host}}}
+\DoxyCodeLine{00081\ \{}
+\DoxyCodeLine{00082\ \ \ \ \ \textcolor{keyword}{friend}\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classsc__core_1_1sc__module__name}{sc\_module\_name}};}
+\DoxyCodeLine{00083\ \ \ \ \ \textcolor{keyword}{friend}\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classsc__core_1_1sc__module__registry}{sc\_module\_registry}};}
+\DoxyCodeLine{00084\ \ \ \ \ \textcolor{keyword}{friend}\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classsc__core_1_1sc__object}{sc\_object}};}
+\DoxyCodeLine{00085\ \ \ \ \ \textcolor{keyword}{friend}\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classsc__core_1_1sc__port__registry}{sc\_port\_registry}};}
+\DoxyCodeLine{00086\ \ \ \ \ \textcolor{keyword}{friend}\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classsc__core_1_1sc__process__b}{sc\_process\_b}};}
+\DoxyCodeLine{00087\ \ \ \ \ \textcolor{keyword}{friend}\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classsc__core_1_1sc__simcontext}{sc\_simcontext}};}
+\DoxyCodeLine{00088\ }
+\DoxyCodeLine{00089\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00090\ }
+\DoxyCodeLine{00091\ \ \ \ \ \mbox{\hyperlink{classsc__core_1_1sc__simcontext}{sc\_simcontext}}*\ \mbox{\hyperlink{classsc__core_1_1sc__module_a3a367549a1a1c584edc33b703eefa53b}{sc\_get\_curr\_simcontext}}()}
+\DoxyCodeLine{00092\ \ \ \ \ \{\ \textcolor{keywordflow}{return}\ simcontext();\ \}}
+\DoxyCodeLine{00093\ }
+\DoxyCodeLine{00094\ \ \ \ \ \textcolor{comment}{//\ to\ generate\ unique\ names\ for\ objects\ in\ an\ MT-\/Safe\ way}}
+\DoxyCodeLine{00095\ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keywordtype}{char}*\ \mbox{\hyperlink{classsc__core_1_1sc__module_a226501709db077957819767cd044ec97}{gen\_unique\_name}}(\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{char}*\ \mbox{\hyperlink{class_sysc_add__pv}{basename\_}},\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{class_sysc_add__pv}{preserve\_first}}\ );}
+\DoxyCodeLine{00096\ }
+\DoxyCodeLine{00097\ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{char}*\ \mbox{\hyperlink{classsc__core_1_1sc__module_ac08580d9cd6844150982762b3ac7ad2c}{kind}}()\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00098\ \textcolor{keyword}{\ \ \ \ \ \ \ \ }\{\ \textcolor{keywordflow}{return}\ \textcolor{stringliteral}{"{}sc\_module"{}};\ \}}
+\DoxyCodeLine{00099\ }
+\DoxyCodeLine{00100\ \textcolor{keyword}{protected}:}
+\DoxyCodeLine{00101\ \ \ }
+\DoxyCodeLine{00102\ \ \ \ \ \textcolor{comment}{//\ called\ by\ construction\_done\ }}
+\DoxyCodeLine{00103\ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classsc__core_1_1sc__module_a8ee8f0171173bb4bbec2b38b9011e0ad}{before\_end\_of\_elaboration}}();}
+\DoxyCodeLine{00104\ }
+\DoxyCodeLine{00105\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classsc__core_1_1sc__module_a3e77bd590c5e801ae904eb17bf1fed61}{construction\_done}}();}
+\DoxyCodeLine{00106\ }
+\DoxyCodeLine{00107\ \ \ \ \ \textcolor{comment}{//\ called\ by\ elaboration\_done\ (does\ nothing\ by\ default)}}
+\DoxyCodeLine{00108\ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classsc__core_1_1sc__module_ada6b8ecb742117ad65d36e5da110c613}{end\_of\_elaboration}}();}
+\DoxyCodeLine{00109\ }
+\DoxyCodeLine{00110\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classsc__core_1_1sc__module_a027ac2d66f268289655dd3f9fe406497}{elaboration\_done}}(\ \textcolor{keywordtype}{bool}\&\ );}
+\DoxyCodeLine{00111\ }
+\DoxyCodeLine{00112\ \ \ \ \ \textcolor{comment}{//\ called\ by\ start\_simulation\ (does\ nothing\ by\ default)}}
+\DoxyCodeLine{00113\ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classsc__core_1_1sc__module_a8f90273a6c0330bd891224973c185bcd}{start\_of\_simulation}}();}
+\DoxyCodeLine{00114\ }
+\DoxyCodeLine{00115\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classsc__core_1_1sc__module_abc724f9efb87e54f67d5607ff87a0360}{start\_simulation}}();}
+\DoxyCodeLine{00116\ }
+\DoxyCodeLine{00117\ \ \ \ \ \textcolor{comment}{//\ called\ by\ simulation\_done\ (does\ nothing\ by\ default)}}
+\DoxyCodeLine{00118\ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classsc__core_1_1sc__module_a7e19e292351567c8efab15e7daf9a398}{end\_of\_simulation}}();}
+\DoxyCodeLine{00119\ }
+\DoxyCodeLine{00120\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classsc__core_1_1sc__module_a263f40eb8f609215659f462cd7e53fe6}{simulation\_done}}();}
+\DoxyCodeLine{00121\ }
+\DoxyCodeLine{00122\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classsc__core_1_1sc__module_a8ade4e85bcf02e8bd73fa0355464f047}{sc\_module\_init}}();}
+\DoxyCodeLine{00123\ }
+\DoxyCodeLine{00124\ \ \ \ \ \textcolor{comment}{//\ constructor}}
+\DoxyCodeLine{00125\ \ \ \ \ \mbox{\hyperlink{classsc__core_1_1sc__module_a1d63603202313bc8dccaa9f381731b41}{sc\_module}}();}
+\DoxyCodeLine{00126\ \ \ \ \ \mbox{\hyperlink{classsc__core_1_1sc__module_abf2b2376796c66293d45909f8d557f17}{sc\_module}}(\ \textcolor{keyword}{const}\ \mbox{\hyperlink{classsc__core_1_1sc__module__name}{sc\_module\_name}}\&\ \mbox{\hyperlink{class_sysc_add__pv}{nm}}\ );\ \textcolor{comment}{/*\ for\ those\ used\ to\ old\ style\ */}}
+\DoxyCodeLine{00127\ }
+\DoxyCodeLine{00128\ \ \ \ \ \textcolor{comment}{/*\ DEPRECATED\ */}\ \mbox{\hyperlink{classsc__core_1_1sc__module_a08b1c1c9a8d238763e6078c22a56f39a}{sc\_module}}(\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{char}*\ \mbox{\hyperlink{class_sysc_add__pv}{nm}}\ );\ }
+\DoxyCodeLine{00129\ \ \ \ \ \textcolor{comment}{/*\ DEPRECATED\ */}\ \mbox{\hyperlink{classsc__core_1_1sc__module_aafee55c32edfcf52c922d5ffab208476}{sc\_module}}(\ \textcolor{keyword}{const}\ std::string\&\ \mbox{\hyperlink{class_sysc_add__pv}{nm}}\ );}
+\DoxyCodeLine{00130\ }
+\DoxyCodeLine{00131\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00132\ }
+\DoxyCodeLine{00133\ \ \ \ \ \textcolor{comment}{//\ destructor}}
+\DoxyCodeLine{00134\ \ \ \ \ \textcolor{keyword}{virtual}\ \mbox{\hyperlink{classsc__core_1_1sc__module_afb7f97cf59ddfcfb355b0c00c958c0f2}{\string~sc\_module}}();}
+\DoxyCodeLine{00135\ }
+\DoxyCodeLine{00136\ \ \ \ \ \textcolor{comment}{//\ positional\ binding\ methods}}
+\DoxyCodeLine{00137\ }
+\DoxyCodeLine{00138\ \ \ \ \ \mbox{\hyperlink{classsc__core_1_1sc__module}{sc\_module}}\&\ \mbox{\hyperlink{class_sysc_add__pv}{operator\ <<\ }}(\ \mbox{\hyperlink{classsc__core_1_1sc__interface}{sc\_interface}}\&\ );}
+\DoxyCodeLine{00139\ \ \ \ \ \mbox{\hyperlink{classsc__core_1_1sc__module}{sc\_module}}\&\ \mbox{\hyperlink{class_sysc_add__pv}{operator\ <<\ }}(\ \mbox{\hyperlink{classsc__core_1_1sc__port__base}{sc\_port\_base}}\&\ );}
+\DoxyCodeLine{00140\ }
+\DoxyCodeLine{00141\ \ \ \ \ \mbox{\hyperlink{classsc__core_1_1sc__module}{sc\_module}}\&\ \mbox{\hyperlink{class_sysc_add__pv}{operator\ ,\ }}(\ \mbox{\hyperlink{classsc__core_1_1sc__interface}{sc\_interface}}\&\ \mbox{\hyperlink{class_sysc_add__pv}{interface\_}}\ )}
+\DoxyCodeLine{00142\ \ \ \ \ \ \ \ \ \{\ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{class_sysc_add__pv}{operator\ <<\ }}(\ \mbox{\hyperlink{class_sysc_add__pv}{interface\_}}\ );\ \}}
+\DoxyCodeLine{00143\ }
+\DoxyCodeLine{00144\ \ \ \ \ \mbox{\hyperlink{classsc__core_1_1sc__module}{sc\_module}}\&\ \mbox{\hyperlink{class_sysc_add__pv}{operator\ ,\ }}(\ \mbox{\hyperlink{classsc__core_1_1sc__port__base}{sc\_port\_base}}\&\ \mbox{\hyperlink{class_sysc_add__pv}{port\_}}\ )}
+\DoxyCodeLine{00145\ \ \ \ \ \ \ \ \ \{\ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{class_sysc_add__pv}{operator\ <<\ }}(\ \mbox{\hyperlink{class_sysc_add__pv}{port\_}}\ );\ \}}
+\DoxyCodeLine{00146\ }
+\DoxyCodeLine{00147\ \ \ \ \ \textcolor{comment}{//\ operator()\ is\ declared\ at\ the\ end\ of\ the\ class.}}
+\DoxyCodeLine{00148\ }
+\DoxyCodeLine{00149\ \ \ \ \ const\ ::std::vector<sc\_object*>\&\ \mbox{\hyperlink{classsc__core_1_1sc__module_a4f2466b45b85e1e7b4d5771e2a347e4c}{get\_child\_objects}}()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00150\ }
+\DoxyCodeLine{00151\ \textcolor{keyword}{protected}:}
+\DoxyCodeLine{00152\ }
+\DoxyCodeLine{00153\ \ \ \ \ \textcolor{comment}{//\ this\ must\ be\ called\ by\ user-\/defined\ modules}}
+\DoxyCodeLine{00154\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classsc__core_1_1sc__module_a335469380ccd71b230def8ba3f8c62dc}{end\_module}}();}
+\DoxyCodeLine{00155\ }
+\DoxyCodeLine{00156\ }
+\DoxyCodeLine{00157\ \ \ \ \ \textcolor{comment}{//\ to\ prevent\ initialization\ for\ SC\_METHODs\ and\ SC\_THREADs}}
+\DoxyCodeLine{00158\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classsc__core_1_1sc__module_ac8c22b97fd5b6841347eac007216616b}{dont\_initialize}}();}
+\DoxyCodeLine{00159\ }
+\DoxyCodeLine{00160\ \ \ \ \ \textcolor{comment}{//\ positional\ binding\ code\ -\/\ used\ by\ operator\ ()}}
+\DoxyCodeLine{00161\ }
+\DoxyCodeLine{00162\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classsc__core_1_1sc__module_a5a089da7063b255a691e2f45c8a840e0}{positional\_bind}}(\ \mbox{\hyperlink{classsc__core_1_1sc__interface}{sc\_interface}}\&\ );}
+\DoxyCodeLine{00163\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classsc__core_1_1sc__module_a87caef8ebab3a9e89e8cb8fbd02d6aca}{positional\_bind}}(\ \mbox{\hyperlink{classsc__core_1_1sc__port__base}{sc\_port\_base}}\&\ );}
+\DoxyCodeLine{00164\ }
+\DoxyCodeLine{00165\ \ \ \ \ \textcolor{comment}{//\ set\ reset\ sensitivity\ for\ SC\_xTHREADs}}
+\DoxyCodeLine{00166\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classsc__core_1_1sc__module_a598ffaf3937a10a4bcd7878281e5bb9e}{async\_reset\_signal\_is}}(\ \textcolor{keyword}{const}\ \mbox{\hyperlink{class_sysc_add__pv}{sc\_in<bool>}}\&\ port,\ \textcolor{keywordtype}{bool}\ level\ );}
+\DoxyCodeLine{00167\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classsc__core_1_1sc__module_a174fedb308fd635e8716142a355cb3fd}{async\_reset\_signal\_is}}(\ \textcolor{keyword}{const}\ \mbox{\hyperlink{class_sysc_add__pv}{sc\_inout<bool>}}\&\ port,\ \textcolor{keywordtype}{bool}\ level\ );}
+\DoxyCodeLine{00168\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classsc__core_1_1sc__module_af79af642ea6595a189a216f36e9fd271}{async\_reset\_signal\_is}}(\ \textcolor{keyword}{const}\ \mbox{\hyperlink{class_sysc_add__pv}{sc\_out<bool>}}\&\ port,\ \textcolor{keywordtype}{bool}\ level\ );}
+\DoxyCodeLine{00169\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classsc__core_1_1sc__module_a6ea041b87d50f1c68298937f02282d14}{async\_reset\_signal\_is}}(\ \textcolor{keyword}{const}\ \mbox{\hyperlink{class_sysc_add__pv}{sc\_signal\_in\_if<bool>}}\&\ iface,\ \textcolor{keywordtype}{bool}\ level);}
+\DoxyCodeLine{00170\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classsc__core_1_1sc__module_a8e2aed37c947bca74306ac7fdf0fa669}{reset\_signal\_is}}(\ \textcolor{keyword}{const}\ \mbox{\hyperlink{class_sysc_add__pv}{sc\_in<bool>}}\&\ port,\ \textcolor{keywordtype}{bool}\ level\ );}
+\DoxyCodeLine{00171\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classsc__core_1_1sc__module_a60c8f89d8e348e6f967fe6666a05422e}{reset\_signal\_is}}(\ \textcolor{keyword}{const}\ \mbox{\hyperlink{class_sysc_add__pv}{sc\_inout<bool>}}\&\ port,\ \textcolor{keywordtype}{bool}\ level\ );}
+\DoxyCodeLine{00172\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classsc__core_1_1sc__module_a1bdada39753a050482f58d9a1609ceb6}{reset\_signal\_is}}(\ \textcolor{keyword}{const}\ \mbox{\hyperlink{class_sysc_add__pv}{sc\_out<bool>}}\&\ port,\ \textcolor{keywordtype}{bool}\ level\ );}
+\DoxyCodeLine{00173\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classsc__core_1_1sc__module_a16b89bbab7cfc47143798918f39dfdb4}{reset\_signal\_is}}(\ \textcolor{keyword}{const}\ \mbox{\hyperlink{class_sysc_add__pv}{sc\_signal\_in\_if<bool>}}\&\ iface,\ \textcolor{keywordtype}{bool}\ level\ );}
+\DoxyCodeLine{00174\ }
+\DoxyCodeLine{00175\ \ \ \ \ \textcolor{comment}{//\ static\ sensitivity\ for\ SC\_THREADs\ and\ SC\_CTHREADs}}
+\DoxyCodeLine{00176\ }
+\DoxyCodeLine{00177\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classsc__core_1_1sc__module_af06fa45225b1acd0751622b5112b670f}{wait}}()}
+\DoxyCodeLine{00178\ \ \ \ \ \ \ \ \ \{\ \mbox{\hyperlink{namespacesc__core_a3c8b4f07530fb5b54f3a6896e4ef68c3}{::sc\_core::wait}}(\ simcontext()\ );\ \}}
+\DoxyCodeLine{00179\ }
+\DoxyCodeLine{00180\ \ \ \ \ \textcolor{comment}{//\ dynamic\ sensitivity\ for\ SC\_THREADs\ and\ SC\_CTHREADs}}
+\DoxyCodeLine{00181\ }
+\DoxyCodeLine{00182\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classsc__core_1_1sc__module_a90356e56e7cd4fbbcf512f0b3da0f432}{wait}}(\ \textcolor{keyword}{const}\ \mbox{\hyperlink{classsc__core_1_1sc__event}{sc\_event}}\&\ \mbox{\hyperlink{class_sysc_add__pv}{e}}\ )}
+\DoxyCodeLine{00183\ \ \ \ \ \ \ \ \ \{\ \mbox{\hyperlink{namespacesc__core_a3c8b4f07530fb5b54f3a6896e4ef68c3}{::sc\_core::wait}}(\ \mbox{\hyperlink{class_sysc_add__pv}{e}},\ simcontext()\ );\ \}}
+\DoxyCodeLine{00184\ }
+\DoxyCodeLine{00185\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classsc__core_1_1sc__module_afd00f5b0c0ff9ca4e0225ddbca8f3773}{wait}}(\ \textcolor{keyword}{const}\ \mbox{\hyperlink{classsc__core_1_1sc__event__or__list}{sc\_event\_or\_list}}\&\ \mbox{\hyperlink{class_sysc_add__pv}{el}}\ )}
+\DoxyCodeLine{00186\ \ \ \ \ \{\ \mbox{\hyperlink{namespacesc__core_a3c8b4f07530fb5b54f3a6896e4ef68c3}{::sc\_core::wait}}(\ \mbox{\hyperlink{class_sysc_add__pv}{el}},\ simcontext()\ );\ \}}
+\DoxyCodeLine{00187\ }
+\DoxyCodeLine{00188\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classsc__core_1_1sc__module_a7861b4532e3eae6884824b91819cd95e}{wait}}(\ \textcolor{keyword}{const}\ \mbox{\hyperlink{classsc__core_1_1sc__event__and__list}{sc\_event\_and\_list}}\&\ \mbox{\hyperlink{class_sysc_add__pv}{el}}\ )}
+\DoxyCodeLine{00189\ \ \ \ \ \{\ \mbox{\hyperlink{namespacesc__core_a3c8b4f07530fb5b54f3a6896e4ef68c3}{::sc\_core::wait}}(\ \mbox{\hyperlink{class_sysc_add__pv}{el}},\ simcontext()\ );\ \}}
+\DoxyCodeLine{00190\ }
+\DoxyCodeLine{00191\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classsc__core_1_1sc__module_a722eedae4f05230f0a438f0148182188}{wait}}(\ \textcolor{keyword}{const}\ \mbox{\hyperlink{classsc__core_1_1sc__time}{sc\_time}}\&\ t\ )}
+\DoxyCodeLine{00192\ \ \ \ \ \ \ \ \ \{\ \mbox{\hyperlink{namespacesc__core_a3c8b4f07530fb5b54f3a6896e4ef68c3}{::sc\_core::wait}}(\ t,\ simcontext()\ );\ \}}
+\DoxyCodeLine{00193\ }
+\DoxyCodeLine{00194\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classsc__core_1_1sc__module_a9b330614520f47f2087a1182274eeeed}{wait}}(\ \textcolor{keywordtype}{double}\ v,\ \mbox{\hyperlink{namespacesc__core_abecb00ba031fb67c85124f66eb70aed4}{sc\_time\_unit}}\ \mbox{\hyperlink{class_sysc_add__pv}{tu}}\ )}
+\DoxyCodeLine{00195\ \ \ \ \ \ \ \ \ \{\ \mbox{\hyperlink{namespacesc__core_a3c8b4f07530fb5b54f3a6896e4ef68c3}{::sc\_core::wait}}(\ \mbox{\hyperlink{classsc__core_1_1sc__time}{sc\_time}}(\ v,\ \mbox{\hyperlink{class_sysc_add__pv}{tu}},\ simcontext()\ ),\ simcontext()\ );\ \}}
+\DoxyCodeLine{00196\ }
+\DoxyCodeLine{00197\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classsc__core_1_1sc__module_ad156829f89671fa337fe5ca76915f8c8}{wait}}(\ \textcolor{keyword}{const}\ \mbox{\hyperlink{classsc__core_1_1sc__time}{sc\_time}}\&\ t,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{classsc__core_1_1sc__event}{sc\_event}}\&\ \mbox{\hyperlink{class_sysc_add__pv}{e}}\ )}
+\DoxyCodeLine{00198\ \ \ \ \ \ \ \ \ \{\ \mbox{\hyperlink{namespacesc__core_a3c8b4f07530fb5b54f3a6896e4ef68c3}{::sc\_core::wait}}(\ t,\ \mbox{\hyperlink{class_sysc_add__pv}{e}},\ simcontext()\ );\ \}}
+\DoxyCodeLine{00199\ }
+\DoxyCodeLine{00200\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classsc__core_1_1sc__module_a99b60ea172d7a4b5200f081dd27322bc}{wait}}(\ \textcolor{keywordtype}{double}\ v,\ \mbox{\hyperlink{namespacesc__core_abecb00ba031fb67c85124f66eb70aed4}{sc\_time\_unit}}\ \mbox{\hyperlink{class_sysc_add__pv}{tu}},\ \textcolor{keyword}{const}\ \mbox{\hyperlink{classsc__core_1_1sc__event}{sc\_event}}\&\ \mbox{\hyperlink{class_sysc_add__pv}{e}}\ )}
+\DoxyCodeLine{00201\ \ \ \ \ \ \ \ \ \{\ \mbox{\hyperlink{namespacesc__core_a3c8b4f07530fb5b54f3a6896e4ef68c3}{::sc\_core::wait}}(\ }
+\DoxyCodeLine{00202\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classsc__core_1_1sc__time}{sc\_time}}(\ v,\ \mbox{\hyperlink{class_sysc_add__pv}{tu}},\ simcontext()\ ),\ \mbox{\hyperlink{class_sysc_add__pv}{e}},\ simcontext()\ );\ \}}
+\DoxyCodeLine{00203\ }
+\DoxyCodeLine{00204\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classsc__core_1_1sc__module_afec1310979b9edede154b5b4e7ef0a23}{wait}}(\ \textcolor{keyword}{const}\ \mbox{\hyperlink{classsc__core_1_1sc__time}{sc\_time}}\&\ t,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{classsc__core_1_1sc__event__or__list}{sc\_event\_or\_list}}\&\ \mbox{\hyperlink{class_sysc_add__pv}{el}}\ )}
+\DoxyCodeLine{00205\ \ \ \ \ \ \ \ \ \{\ \mbox{\hyperlink{namespacesc__core_a3c8b4f07530fb5b54f3a6896e4ef68c3}{::sc\_core::wait}}(\ t,\ \mbox{\hyperlink{class_sysc_add__pv}{el}},\ simcontext()\ );\ \}}
+\DoxyCodeLine{00206\ }
+\DoxyCodeLine{00207\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classsc__core_1_1sc__module_a307c14a10471568ac61f4e239e3e39e1}{wait}}(\ \textcolor{keywordtype}{double}\ v,\ \mbox{\hyperlink{namespacesc__core_abecb00ba031fb67c85124f66eb70aed4}{sc\_time\_unit}}\ \mbox{\hyperlink{class_sysc_add__pv}{tu}},\ \textcolor{keyword}{const}\ \mbox{\hyperlink{classsc__core_1_1sc__event__or__list}{sc\_event\_or\_list}}\&\ \mbox{\hyperlink{class_sysc_add__pv}{el}}\ )}
+\DoxyCodeLine{00208\ \ \ \ \ \ \ \ \ \{\ \mbox{\hyperlink{namespacesc__core_a3c8b4f07530fb5b54f3a6896e4ef68c3}{::sc\_core::wait}}(\ \mbox{\hyperlink{classsc__core_1_1sc__time}{sc\_time}}(\ v,\ \mbox{\hyperlink{class_sysc_add__pv}{tu}},\ simcontext()\ ),\ \mbox{\hyperlink{class_sysc_add__pv}{el}},\ simcontext()\ );\ \}}
+\DoxyCodeLine{00209\ }
+\DoxyCodeLine{00210\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classsc__core_1_1sc__module_a2a23bbe92415b28a311ce1b0c4127d17}{wait}}(\ \textcolor{keyword}{const}\ \mbox{\hyperlink{classsc__core_1_1sc__time}{sc\_time}}\&\ t,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{classsc__core_1_1sc__event__and__list}{sc\_event\_and\_list}}\&\ \mbox{\hyperlink{class_sysc_add__pv}{el}}\ )}
+\DoxyCodeLine{00211\ \ \ \ \ \ \ \ \ \{\ \mbox{\hyperlink{namespacesc__core_a3c8b4f07530fb5b54f3a6896e4ef68c3}{::sc\_core::wait}}(\ t,\ \mbox{\hyperlink{class_sysc_add__pv}{el}},\ simcontext()\ );\ \}}
+\DoxyCodeLine{00212\ }
+\DoxyCodeLine{00213\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classsc__core_1_1sc__module_af175353b2268c04c3d22bdffffaf73d2}{wait}}(\ \textcolor{keywordtype}{double}\ v,\ \mbox{\hyperlink{namespacesc__core_abecb00ba031fb67c85124f66eb70aed4}{sc\_time\_unit}}\ \mbox{\hyperlink{class_sysc_add__pv}{tu}},\ \textcolor{keyword}{const}\ \mbox{\hyperlink{classsc__core_1_1sc__event__and__list}{sc\_event\_and\_list}}\&\ \mbox{\hyperlink{class_sysc_add__pv}{el}}\ )}
+\DoxyCodeLine{00214\ \ \ \ \ \ \ \ \ \{\ \mbox{\hyperlink{namespacesc__core_a3c8b4f07530fb5b54f3a6896e4ef68c3}{::sc\_core::wait}}(\ \mbox{\hyperlink{classsc__core_1_1sc__time}{sc\_time}}(\ v,\ \mbox{\hyperlink{class_sysc_add__pv}{tu}},\ simcontext()\ ),\ \mbox{\hyperlink{class_sysc_add__pv}{el}},\ simcontext()\ );\ \}}
+\DoxyCodeLine{00215\ }
+\DoxyCodeLine{00216\ }
+\DoxyCodeLine{00217\ \ \ \ \ \textcolor{comment}{//\ static\ sensitivity\ for\ SC\_METHODs}}
+\DoxyCodeLine{00218\ }
+\DoxyCodeLine{00219\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classsc__core_1_1sc__module_a6a458d71781cb3f24f59676f3885d55a}{next\_trigger}}()}
+\DoxyCodeLine{00220\ \ \ \ \ \{\ \mbox{\hyperlink{namespacesc__core_a642bdb6cc3ac5789ca592e372dbb668d}{::sc\_core::next\_trigger}}(\ simcontext()\ );\ \}}
+\DoxyCodeLine{00221\ }
+\DoxyCodeLine{00222\ }
+\DoxyCodeLine{00223\ \ \ \ \ \textcolor{comment}{//\ dynamic\ sensitivty\ for\ SC\_METHODs}}
+\DoxyCodeLine{00224\ }
+\DoxyCodeLine{00225\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classsc__core_1_1sc__module_a193a531d61718e9bf4c3e5ab4d3b66a9}{next\_trigger}}(\ \textcolor{keyword}{const}\ \mbox{\hyperlink{classsc__core_1_1sc__event}{sc\_event}}\&\ \mbox{\hyperlink{class_sysc_add__pv}{e}}\ )}
+\DoxyCodeLine{00226\ \ \ \ \ \ \ \ \ \{\ \mbox{\hyperlink{namespacesc__core_a642bdb6cc3ac5789ca592e372dbb668d}{::sc\_core::next\_trigger}}(\ \mbox{\hyperlink{class_sysc_add__pv}{e}},\ simcontext()\ );\ \}}
+\DoxyCodeLine{00227\ }
+\DoxyCodeLine{00228\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classsc__core_1_1sc__module_a576d33d7ba0bcfa45a23981d4d8cc4ef}{next\_trigger}}(\ \textcolor{keyword}{const}\ \mbox{\hyperlink{classsc__core_1_1sc__event__or__list}{sc\_event\_or\_list}}\&\ \mbox{\hyperlink{class_sysc_add__pv}{el}}\ )}
+\DoxyCodeLine{00229\ \ \ \ \ \ \ \ \ \{\ \mbox{\hyperlink{namespacesc__core_a642bdb6cc3ac5789ca592e372dbb668d}{::sc\_core::next\_trigger}}(\ \mbox{\hyperlink{class_sysc_add__pv}{el}},\ simcontext()\ );\ \}}
+\DoxyCodeLine{00230\ }
+\DoxyCodeLine{00231\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classsc__core_1_1sc__module_a1b7867730a0785ec67daf9600b4e7722}{next\_trigger}}(\ \textcolor{keyword}{const}\ \mbox{\hyperlink{classsc__core_1_1sc__event__and__list}{sc\_event\_and\_list}}\&\ \mbox{\hyperlink{class_sysc_add__pv}{el}}\ )}
+\DoxyCodeLine{00232\ \ \ \ \ \ \ \ \ \{\ \mbox{\hyperlink{namespacesc__core_a642bdb6cc3ac5789ca592e372dbb668d}{::sc\_core::next\_trigger}}(\ \mbox{\hyperlink{class_sysc_add__pv}{el}},\ simcontext()\ );\ \}}
+\DoxyCodeLine{00233\ }
+\DoxyCodeLine{00234\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classsc__core_1_1sc__module_a0380a707ca9335af76e3dadd15d1ce7b}{next\_trigger}}(\ \textcolor{keyword}{const}\ \mbox{\hyperlink{classsc__core_1_1sc__time}{sc\_time}}\&\ t\ )}
+\DoxyCodeLine{00235\ \ \ \ \ \ \ \ \ \{\ \mbox{\hyperlink{namespacesc__core_a642bdb6cc3ac5789ca592e372dbb668d}{::sc\_core::next\_trigger}}(\ t,\ simcontext()\ );\ \}}
+\DoxyCodeLine{00236\ }
+\DoxyCodeLine{00237\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classsc__core_1_1sc__module_a3be85b2af0ef29110252bb62eccf98d1}{next\_trigger}}(\ \textcolor{keywordtype}{double}\ v,\ \mbox{\hyperlink{namespacesc__core_abecb00ba031fb67c85124f66eb70aed4}{sc\_time\_unit}}\ \mbox{\hyperlink{class_sysc_add__pv}{tu}}\ )}
+\DoxyCodeLine{00238\ \ \ \ \ \ \ \ \ \{\ \mbox{\hyperlink{namespacesc__core_a642bdb6cc3ac5789ca592e372dbb668d}{::sc\_core::next\_trigger}}(\ }
+\DoxyCodeLine{00239\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classsc__core_1_1sc__time}{sc\_time}}(\ v,\ \mbox{\hyperlink{class_sysc_add__pv}{tu}},\ simcontext()\ ),\ simcontext()\ );\ \}}
+\DoxyCodeLine{00240\ }
+\DoxyCodeLine{00241\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classsc__core_1_1sc__module_acf5f31d328890dc448ee89c53138fefc}{next\_trigger}}(\ \textcolor{keyword}{const}\ \mbox{\hyperlink{classsc__core_1_1sc__time}{sc\_time}}\&\ t,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{classsc__core_1_1sc__event}{sc\_event}}\&\ \mbox{\hyperlink{class_sysc_add__pv}{e}}\ )}
+\DoxyCodeLine{00242\ \ \ \ \ \ \ \ \ \{\ \mbox{\hyperlink{namespacesc__core_a642bdb6cc3ac5789ca592e372dbb668d}{::sc\_core::next\_trigger}}(\ t,\ \mbox{\hyperlink{class_sysc_add__pv}{e}},\ simcontext()\ );\ \}}
+\DoxyCodeLine{00243\ }
+\DoxyCodeLine{00244\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classsc__core_1_1sc__module_a6150b7c767e135091303d447398d6f70}{next\_trigger}}(\ \textcolor{keywordtype}{double}\ v,\ \mbox{\hyperlink{namespacesc__core_abecb00ba031fb67c85124f66eb70aed4}{sc\_time\_unit}}\ \mbox{\hyperlink{class_sysc_add__pv}{tu}},\ \textcolor{keyword}{const}\ \mbox{\hyperlink{classsc__core_1_1sc__event}{sc\_event}}\&\ \mbox{\hyperlink{class_sysc_add__pv}{e}}\ )}
+\DoxyCodeLine{00245\ \ \ \ \ \ \ \ \ \{\ \mbox{\hyperlink{namespacesc__core_a642bdb6cc3ac5789ca592e372dbb668d}{::sc\_core::next\_trigger}}(\ }
+\DoxyCodeLine{00246\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classsc__core_1_1sc__time}{sc\_time}}(\ v,\ \mbox{\hyperlink{class_sysc_add__pv}{tu}},\ simcontext()\ ),\ \mbox{\hyperlink{class_sysc_add__pv}{e}},\ simcontext()\ );\ \}}
+\DoxyCodeLine{00247\ }
+\DoxyCodeLine{00248\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classsc__core_1_1sc__module_a482ebc847963c137e407f1a39ee9955f}{next\_trigger}}(\ \textcolor{keyword}{const}\ \mbox{\hyperlink{classsc__core_1_1sc__time}{sc\_time}}\&\ t,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{classsc__core_1_1sc__event__or__list}{sc\_event\_or\_list}}\&\ \mbox{\hyperlink{class_sysc_add__pv}{el}}\ )}
+\DoxyCodeLine{00249\ \ \ \ \ \ \ \ \ \{\ \mbox{\hyperlink{namespacesc__core_a642bdb6cc3ac5789ca592e372dbb668d}{::sc\_core::next\_trigger}}(\ t,\ \mbox{\hyperlink{class_sysc_add__pv}{el}},\ simcontext()\ );\ \}}
+\DoxyCodeLine{00250\ }
+\DoxyCodeLine{00251\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classsc__core_1_1sc__module_a1a0635513c7a8f2de68a6a9a65d12acb}{next\_trigger}}(\ \textcolor{keywordtype}{double}\ v,\ \mbox{\hyperlink{namespacesc__core_abecb00ba031fb67c85124f66eb70aed4}{sc\_time\_unit}}\ \mbox{\hyperlink{class_sysc_add__pv}{tu}},\ \textcolor{keyword}{const}\ \mbox{\hyperlink{classsc__core_1_1sc__event__or__list}{sc\_event\_or\_list}}\&\ \mbox{\hyperlink{class_sysc_add__pv}{el}}\ )}
+\DoxyCodeLine{00252\ \ \ \ \ \ \ \ \ \{\ \mbox{\hyperlink{namespacesc__core_a642bdb6cc3ac5789ca592e372dbb668d}{::sc\_core::next\_trigger}}(\ }
+\DoxyCodeLine{00253\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classsc__core_1_1sc__time}{sc\_time}}(\ v,\ \mbox{\hyperlink{class_sysc_add__pv}{tu}},\ simcontext()\ ),\ \mbox{\hyperlink{class_sysc_add__pv}{el}},\ simcontext()\ );\ \}}
+\DoxyCodeLine{00254\ }
+\DoxyCodeLine{00255\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classsc__core_1_1sc__module_a7b0c204b0024cd77a606575b97c58772}{next\_trigger}}(\ \textcolor{keyword}{const}\ \mbox{\hyperlink{classsc__core_1_1sc__time}{sc\_time}}\&\ t,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{classsc__core_1_1sc__event__and__list}{sc\_event\_and\_list}}\&\ \mbox{\hyperlink{class_sysc_add__pv}{el}}\ )}
+\DoxyCodeLine{00256\ \ \ \ \ \ \ \ \ \{\ \mbox{\hyperlink{namespacesc__core_a642bdb6cc3ac5789ca592e372dbb668d}{::sc\_core::next\_trigger}}(\ t,\ \mbox{\hyperlink{class_sysc_add__pv}{el}},\ simcontext()\ );\ \}}
+\DoxyCodeLine{00257\ }
+\DoxyCodeLine{00258\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classsc__core_1_1sc__module_a99008263e28860cc093abe6d0132eb5d}{next\_trigger}}(\ \textcolor{keywordtype}{double}\ v,\ \mbox{\hyperlink{namespacesc__core_abecb00ba031fb67c85124f66eb70aed4}{sc\_time\_unit}}\ \mbox{\hyperlink{class_sysc_add__pv}{tu}},\ \textcolor{keyword}{const}\ \mbox{\hyperlink{classsc__core_1_1sc__event__and__list}{sc\_event\_and\_list}}\&\ \mbox{\hyperlink{class_sysc_add__pv}{el}}\ )}
+\DoxyCodeLine{00259\ \ \ \ \ \ \ \ \ \{\ \mbox{\hyperlink{namespacesc__core_a642bdb6cc3ac5789ca592e372dbb668d}{::sc\_core::next\_trigger}}(\ }
+\DoxyCodeLine{00260\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classsc__core_1_1sc__time}{sc\_time}}(\ v,\ \mbox{\hyperlink{class_sysc_add__pv}{tu}},\ simcontext()\ ),\ \mbox{\hyperlink{class_sysc_add__pv}{el}},\ simcontext()\ );\ \}}
+\DoxyCodeLine{00261\ }
+\DoxyCodeLine{00262\ }
+\DoxyCodeLine{00263\ \ \ \ \ \textcolor{comment}{//\ for\ SC\_METHODs\ and\ SC\_THREADs\ and\ SC\_CTHREADs}}
+\DoxyCodeLine{00264\ }
+\DoxyCodeLine{00265\ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{classsc__core_1_1sc__module_a67b1aa3b55510ee6bcdaa32ba3625080}{timed\_out}}()}
+\DoxyCodeLine{00266\ \ \ \ \ \ \ \ \ \{\ return\ ::sc\_core::timed\_out();\ \}}
+\DoxyCodeLine{00267\ }
+\DoxyCodeLine{00268\ }
+\DoxyCodeLine{00269\ \ \ \ \ \textcolor{comment}{//\ for\ SC\_CTHREADs}}
+\DoxyCodeLine{00270\ }
+\DoxyCodeLine{00271\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classsc__core_1_1sc__module_a729823c788d36379140593e4baf5e3fa}{halt}}()}
+\DoxyCodeLine{00272\ \ \ \ \ \ \ \ \ \{\ \mbox{\hyperlink{namespacesc__core_a070d0a6bbdad69a7955c71616adbb4f9}{::sc\_core::halt}}(\ simcontext()\ );\ \}}
+\DoxyCodeLine{00273\ }
+\DoxyCodeLine{00274\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classsc__core_1_1sc__module_ac2a40207ce1ce984947f4d14fa9f1086}{wait}}(\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{class_sysc_add__pv}{n}}\ )}
+\DoxyCodeLine{00275\ \ \ \ \ \ \ \ \ \{\ \mbox{\hyperlink{namespacesc__core_a3c8b4f07530fb5b54f3a6896e4ef68c3}{::sc\_core::wait}}(\ \mbox{\hyperlink{class_sysc_add__pv}{n}},\ simcontext()\ );\ \}}
+\DoxyCodeLine{00276\ }
+\DoxyCodeLine{00277\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classsc__core_1_1sc__module_a3e40a08ed38141622ee366b12bf0e126}{at\_posedge}}(\ \textcolor{keyword}{const}\ \mbox{\hyperlink{class_sysc_add__pv}{sc\_signal\_in\_if<bool>}}\&\ s\ )}
+\DoxyCodeLine{00278\ \ \ \ \ \{\ \mbox{\hyperlink{namespacesc__core_a8eb2eab2fbd53ff7629dda17ad21d6a3}{::sc\_core::at\_posedge}}(\ s,\ simcontext()\ );\ \}}
+\DoxyCodeLine{00279\ }
+\DoxyCodeLine{00280\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classsc__core_1_1sc__module_aa9c8b57a6728fb05cd5ff4c2250d3154}{at\_posedge}}(\ \textcolor{keyword}{const}\ \mbox{\hyperlink{class_sysc_add__pv}{sc\_signal\_in\_if<sc\_dt::sc\_logic>}}\&\ s\ )}
+\DoxyCodeLine{00281\ \ \ \ \ \{\ \mbox{\hyperlink{namespacesc__core_a8eb2eab2fbd53ff7629dda17ad21d6a3}{::sc\_core::at\_posedge}}(\ s,\ simcontext()\ );\ \}}
+\DoxyCodeLine{00282\ }
+\DoxyCodeLine{00283\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classsc__core_1_1sc__module_a1a02efb49e0f94bdfcdd5d8f17bf149e}{at\_negedge}}(\ \textcolor{keyword}{const}\ \mbox{\hyperlink{class_sysc_add__pv}{sc\_signal\_in\_if<bool>}}\&\ s\ )}
+\DoxyCodeLine{00284\ \ \ \ \ \{\ \mbox{\hyperlink{namespacesc__core_aea926b0a2179ad40a69f40554adfd9c3}{::sc\_core::at\_negedge}}(\ s,\ simcontext()\ );\ \}}
+\DoxyCodeLine{00285\ }
+\DoxyCodeLine{00286\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classsc__core_1_1sc__module_a3d00dfb17ea0d02192258beb743523e9}{at\_negedge}}(\ \textcolor{keyword}{const}\ \mbox{\hyperlink{class_sysc_add__pv}{sc\_signal\_in\_if<sc\_dt::sc\_logic>}}\&\ s\ )}
+\DoxyCodeLine{00287\ \ \ \ \ \{\ \mbox{\hyperlink{namespacesc__core_aea926b0a2179ad40a69f40554adfd9c3}{::sc\_core::at\_negedge}}(\ s,\ simcontext()\ );\ \}}
+\DoxyCodeLine{00288\ }
+\DoxyCodeLine{00289\ \ \ \ \ \textcolor{comment}{//\ Catch\ uses\ of\ watching:}}
+\DoxyCodeLine{00290\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classsc__core_1_1sc__module_a7e5fa9cb5662b7c56d35dd16a63a8e39}{watching}}(\ \textcolor{keywordtype}{bool}\ \textcolor{comment}{/*\ expr\ */}\ )}
+\DoxyCodeLine{00291\ \ \ \ \ \ \ \ \ \{\ \mbox{\hyperlink{sc__report_8h_ad5720f0a4adf8866eb628b62a4fde9bf}{SC\_REPORT\_ERROR}}(\mbox{\hyperlink{class_sysc_add__pv}{SC\_ID\_WATCHING\_NOT\_ALLOWED\_}},\textcolor{stringliteral}{"{}"{}});\ \}}
+\DoxyCodeLine{00292\ }
+\DoxyCodeLine{00293\ \ \ \ \ \textcolor{comment}{//\ These\ are\ protected\ so\ that\ user\ derived\ classes\ can\ refer\ to\ them.}}
+\DoxyCodeLine{00294\ \ \ \ \ \mbox{\hyperlink{classsc__core_1_1sc__sensitive}{sc\_sensitive}}\ \ \ \ \ \mbox{\hyperlink{classsc__core_1_1sc__module_a366572064bc944a5e4524d042f3a243f}{sensitive}};}
+\DoxyCodeLine{00295\ \ \ \ \ \mbox{\hyperlink{classsc__core_1_1sc__sensitive__pos}{sc\_sensitive\_pos}}\ \mbox{\hyperlink{classsc__core_1_1sc__module_a2828a30bece6827e02b85e0400d19002}{sensitive\_pos}};}
+\DoxyCodeLine{00296\ \ \ \ \ \mbox{\hyperlink{classsc__core_1_1sc__sensitive__neg}{sc\_sensitive\_neg}}\ \mbox{\hyperlink{classsc__core_1_1sc__module_acf142733deeb576e8bff493e8a5555b1}{sensitive\_neg}};}
+\DoxyCodeLine{00297\ }
+\DoxyCodeLine{00298\ \ \ \ \ \textcolor{comment}{//\ Function\ to\ set\ the\ stack\ size\ of\ the\ current\ (c)thread\ process.}}
+\DoxyCodeLine{00299\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classsc__core_1_1sc__module_a49238d772547d7e1b38b6668e733efe3}{set\_stack\_size}}(\ std::size\_t\ );}
+\DoxyCodeLine{00300\ }
+\DoxyCodeLine{00301\ \ \ \ \ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{classsc__core_1_1sc__module_ad347d89983ad0183a13302b4183cb42f}{append\_port}}(\ \mbox{\hyperlink{classsc__core_1_1sc__port__base}{sc\_port\_base}}*\ );}
+\DoxyCodeLine{00302\ }
+\DoxyCodeLine{00303\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00304\ \ \ \ \ \mbox{\hyperlink{classsc__core_1_1sc__module_a00980fb97bd78dcfbd0782b3c50c0922}{sc\_module}}(\ \textcolor{keyword}{const}\ \mbox{\hyperlink{classsc__core_1_1sc__module}{sc\_module}}\&\ );}
+\DoxyCodeLine{00305\ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{classsc__core_1_1sc__module}{sc\_module}}\&\ \mbox{\hyperlink{class_sysc_add__pv}{operator\ =\ }}(\ \textcolor{keyword}{const}\ \mbox{\hyperlink{classsc__core_1_1sc__module}{sc\_module}}\&\ );}
+\DoxyCodeLine{00306\ }
+\DoxyCodeLine{00307\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00308\ }
+\DoxyCodeLine{00309\ \ \ \ \ \textcolor{keywordtype}{bool}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classsc__core_1_1sc__module_a236296a92b2c073b19bd2543ed1c607d}{m\_end\_module\_called}};}
+\DoxyCodeLine{00310\ \ \ \ \ std::vector<sc\_port\_base*>*\ \mbox{\hyperlink{classsc__core_1_1sc__module_a95de7178e29e7ab3ef0fc79b55142988}{m\_port\_vec}};}
+\DoxyCodeLine{00311\ \ \ \ \ \textcolor{keywordtype}{int}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classsc__core_1_1sc__module_ac713c62c5afcb1915ef59125b70ce473}{m\_port\_index}};}
+\DoxyCodeLine{00312\ \ \ \ \ \mbox{\hyperlink{classsc__core_1_1sc__name__gen}{sc\_name\_gen}}*\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classsc__core_1_1sc__module_a6f81ac23120d3033df33a6fdef5df2b2}{m\_name\_gen}};}
+\DoxyCodeLine{00313\ \ \ \ \ \mbox{\hyperlink{classsc__core_1_1sc__module__name}{sc\_module\_name}}*\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classsc__core_1_1sc__module_aba3f5df37a53bb580339eba201351023}{m\_module\_name\_p}};}
+\DoxyCodeLine{00314\ }
+\DoxyCodeLine{00315\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00316\ }
+\DoxyCodeLine{00317\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classsc__core_1_1sc__module_a459def9bb2b824ad85b9f3d1b4586af0}{defunct}}()\ \{\ \}}
+\DoxyCodeLine{00318\ }
+\DoxyCodeLine{00319\ \ \ \ \ \textcolor{comment}{//\ positional\ binding\ methods\ (cont'd)}}
+\DoxyCodeLine{00320\ }
+\DoxyCodeLine{00321\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{bind__template_8hpp_aaaead712fe7dc29c1799e7d8f77d1cfb}{operator\ ()\ }}(\ \textcolor{keyword}{const}\ \mbox{\hyperlink{structsc__core_1_1sc__bind__proxy}{sc\_bind\_proxy}}\&\ \mbox{\hyperlink{class_sysc_add__pv}{p001}},}
+\DoxyCodeLine{00322\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{structsc__core_1_1sc__bind__proxy}{sc\_bind\_proxy}}\&\ \mbox{\hyperlink{class_sysc_add__pv}{p002}}\ =\ SC\_BIND\_PROXY\_NIL,}
+\DoxyCodeLine{00323\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{structsc__core_1_1sc__bind__proxy}{sc\_bind\_proxy}}\&\ \mbox{\hyperlink{class_sysc_add__pv}{p003}}\ =\ SC\_BIND\_PROXY\_NIL,}
+\DoxyCodeLine{00324\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{structsc__core_1_1sc__bind__proxy}{sc\_bind\_proxy}}\&\ \mbox{\hyperlink{class_sysc_add__pv}{p004}}\ =\ SC\_BIND\_PROXY\_NIL,}
+\DoxyCodeLine{00325\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{structsc__core_1_1sc__bind__proxy}{sc\_bind\_proxy}}\&\ \mbox{\hyperlink{class_sysc_add__pv}{p005}}\ =\ SC\_BIND\_PROXY\_NIL,}
+\DoxyCodeLine{00326\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{structsc__core_1_1sc__bind__proxy}{sc\_bind\_proxy}}\&\ \mbox{\hyperlink{class_sysc_add__pv}{p006}}\ =\ SC\_BIND\_PROXY\_NIL,}
+\DoxyCodeLine{00327\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{structsc__core_1_1sc__bind__proxy}{sc\_bind\_proxy}}\&\ \mbox{\hyperlink{class_sysc_add__pv}{p007}}\ =\ SC\_BIND\_PROXY\_NIL,}
+\DoxyCodeLine{00328\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{structsc__core_1_1sc__bind__proxy}{sc\_bind\_proxy}}\&\ \mbox{\hyperlink{class_sysc_add__pv}{p008}}\ =\ SC\_BIND\_PROXY\_NIL,}
+\DoxyCodeLine{00329\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{structsc__core_1_1sc__bind__proxy}{sc\_bind\_proxy}}\&\ \mbox{\hyperlink{class_sysc_add__pv}{p009}}\ =\ SC\_BIND\_PROXY\_NIL,}
+\DoxyCodeLine{00330\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{structsc__core_1_1sc__bind__proxy}{sc\_bind\_proxy}}\&\ \mbox{\hyperlink{class_sysc_add__pv}{p010}}\ =\ SC\_BIND\_PROXY\_NIL,}
+\DoxyCodeLine{00331\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{structsc__core_1_1sc__bind__proxy}{sc\_bind\_proxy}}\&\ \mbox{\hyperlink{class_sysc_add__pv}{p011}}\ =\ SC\_BIND\_PROXY\_NIL,}
+\DoxyCodeLine{00332\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{structsc__core_1_1sc__bind__proxy}{sc\_bind\_proxy}}\&\ \mbox{\hyperlink{class_sysc_add__pv}{p012}}\ =\ SC\_BIND\_PROXY\_NIL,}
+\DoxyCodeLine{00333\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{structsc__core_1_1sc__bind__proxy}{sc\_bind\_proxy}}\&\ \mbox{\hyperlink{class_sysc_add__pv}{p013}}\ =\ SC\_BIND\_PROXY\_NIL,}
+\DoxyCodeLine{00334\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{structsc__core_1_1sc__bind__proxy}{sc\_bind\_proxy}}\&\ \mbox{\hyperlink{class_sysc_add__pv}{p014}}\ =\ SC\_BIND\_PROXY\_NIL,}
+\DoxyCodeLine{00335\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{structsc__core_1_1sc__bind__proxy}{sc\_bind\_proxy}}\&\ \mbox{\hyperlink{class_sysc_add__pv}{p015}}\ =\ SC\_BIND\_PROXY\_NIL,}
+\DoxyCodeLine{00336\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{structsc__core_1_1sc__bind__proxy}{sc\_bind\_proxy}}\&\ \mbox{\hyperlink{class_sysc_add__pv}{p016}}\ =\ SC\_BIND\_PROXY\_NIL,}
+\DoxyCodeLine{00337\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{structsc__core_1_1sc__bind__proxy}{sc\_bind\_proxy}}\&\ \mbox{\hyperlink{class_sysc_add__pv}{p017}}\ =\ SC\_BIND\_PROXY\_NIL,}
+\DoxyCodeLine{00338\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{structsc__core_1_1sc__bind__proxy}{sc\_bind\_proxy}}\&\ \mbox{\hyperlink{class_sysc_add__pv}{p018}}\ =\ SC\_BIND\_PROXY\_NIL,}
+\DoxyCodeLine{00339\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{structsc__core_1_1sc__bind__proxy}{sc\_bind\_proxy}}\&\ \mbox{\hyperlink{class_sysc_add__pv}{p019}}\ =\ SC\_BIND\_PROXY\_NIL,}
+\DoxyCodeLine{00340\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{structsc__core_1_1sc__bind__proxy}{sc\_bind\_proxy}}\&\ \mbox{\hyperlink{class_sysc_add__pv}{p020}}\ =\ SC\_BIND\_PROXY\_NIL,}
+\DoxyCodeLine{00341\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{structsc__core_1_1sc__bind__proxy}{sc\_bind\_proxy}}\&\ \mbox{\hyperlink{class_sysc_add__pv}{p021}}\ =\ SC\_BIND\_PROXY\_NIL,}
+\DoxyCodeLine{00342\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{structsc__core_1_1sc__bind__proxy}{sc\_bind\_proxy}}\&\ \mbox{\hyperlink{class_sysc_add__pv}{p022}}\ =\ SC\_BIND\_PROXY\_NIL,}
+\DoxyCodeLine{00343\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{structsc__core_1_1sc__bind__proxy}{sc\_bind\_proxy}}\&\ \mbox{\hyperlink{class_sysc_add__pv}{p023}}\ =\ SC\_BIND\_PROXY\_NIL,}
+\DoxyCodeLine{00344\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{structsc__core_1_1sc__bind__proxy}{sc\_bind\_proxy}}\&\ \mbox{\hyperlink{class_sysc_add__pv}{p024}}\ =\ SC\_BIND\_PROXY\_NIL,}
+\DoxyCodeLine{00345\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{structsc__core_1_1sc__bind__proxy}{sc\_bind\_proxy}}\&\ \mbox{\hyperlink{class_sysc_add__pv}{p025}}\ =\ SC\_BIND\_PROXY\_NIL,}
+\DoxyCodeLine{00346\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{structsc__core_1_1sc__bind__proxy}{sc\_bind\_proxy}}\&\ \mbox{\hyperlink{class_sysc_add__pv}{p026}}\ =\ SC\_BIND\_PROXY\_NIL,}
+\DoxyCodeLine{00347\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{structsc__core_1_1sc__bind__proxy}{sc\_bind\_proxy}}\&\ \mbox{\hyperlink{class_sysc_add__pv}{p027}}\ =\ SC\_BIND\_PROXY\_NIL,}
+\DoxyCodeLine{00348\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{structsc__core_1_1sc__bind__proxy}{sc\_bind\_proxy}}\&\ \mbox{\hyperlink{class_sysc_add__pv}{p028}}\ =\ SC\_BIND\_PROXY\_NIL,}
+\DoxyCodeLine{00349\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{structsc__core_1_1sc__bind__proxy}{sc\_bind\_proxy}}\&\ \mbox{\hyperlink{class_sysc_add__pv}{p029}}\ =\ SC\_BIND\_PROXY\_NIL,}
+\DoxyCodeLine{00350\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{structsc__core_1_1sc__bind__proxy}{sc\_bind\_proxy}}\&\ \mbox{\hyperlink{class_sysc_add__pv}{p030}}\ =\ SC\_BIND\_PROXY\_NIL,}
+\DoxyCodeLine{00351\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{structsc__core_1_1sc__bind__proxy}{sc\_bind\_proxy}}\&\ \mbox{\hyperlink{class_sysc_add__pv}{p031}}\ =\ SC\_BIND\_PROXY\_NIL,}
+\DoxyCodeLine{00352\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{structsc__core_1_1sc__bind__proxy}{sc\_bind\_proxy}}\&\ \mbox{\hyperlink{class_sysc_add__pv}{p032}}\ =\ SC\_BIND\_PROXY\_NIL,}
+\DoxyCodeLine{00353\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{structsc__core_1_1sc__bind__proxy}{sc\_bind\_proxy}}\&\ \mbox{\hyperlink{class_sysc_add__pv}{p033}}\ =\ SC\_BIND\_PROXY\_NIL,}
+\DoxyCodeLine{00354\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{structsc__core_1_1sc__bind__proxy}{sc\_bind\_proxy}}\&\ \mbox{\hyperlink{class_sysc_add__pv}{p034}}\ =\ SC\_BIND\_PROXY\_NIL,}
+\DoxyCodeLine{00355\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{structsc__core_1_1sc__bind__proxy}{sc\_bind\_proxy}}\&\ \mbox{\hyperlink{class_sysc_add__pv}{p035}}\ =\ SC\_BIND\_PROXY\_NIL,}
+\DoxyCodeLine{00356\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{structsc__core_1_1sc__bind__proxy}{sc\_bind\_proxy}}\&\ \mbox{\hyperlink{class_sysc_add__pv}{p036}}\ =\ SC\_BIND\_PROXY\_NIL,}
+\DoxyCodeLine{00357\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{structsc__core_1_1sc__bind__proxy}{sc\_bind\_proxy}}\&\ \mbox{\hyperlink{class_sysc_add__pv}{p037}}\ =\ SC\_BIND\_PROXY\_NIL,}
+\DoxyCodeLine{00358\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{structsc__core_1_1sc__bind__proxy}{sc\_bind\_proxy}}\&\ \mbox{\hyperlink{class_sysc_add__pv}{p038}}\ =\ SC\_BIND\_PROXY\_NIL,}
+\DoxyCodeLine{00359\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{structsc__core_1_1sc__bind__proxy}{sc\_bind\_proxy}}\&\ \mbox{\hyperlink{class_sysc_add__pv}{p039}}\ =\ SC\_BIND\_PROXY\_NIL,}
+\DoxyCodeLine{00360\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{structsc__core_1_1sc__bind__proxy}{sc\_bind\_proxy}}\&\ \mbox{\hyperlink{class_sysc_add__pv}{p040}}\ =\ SC\_BIND\_PROXY\_NIL,}
+\DoxyCodeLine{00361\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{structsc__core_1_1sc__bind__proxy}{sc\_bind\_proxy}}\&\ \mbox{\hyperlink{class_sysc_add__pv}{p041}}\ =\ SC\_BIND\_PROXY\_NIL,}
+\DoxyCodeLine{00362\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{structsc__core_1_1sc__bind__proxy}{sc\_bind\_proxy}}\&\ \mbox{\hyperlink{class_sysc_add__pv}{p042}}\ =\ SC\_BIND\_PROXY\_NIL,}
+\DoxyCodeLine{00363\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{structsc__core_1_1sc__bind__proxy}{sc\_bind\_proxy}}\&\ \mbox{\hyperlink{class_sysc_add__pv}{p043}}\ =\ SC\_BIND\_PROXY\_NIL,}
+\DoxyCodeLine{00364\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{structsc__core_1_1sc__bind__proxy}{sc\_bind\_proxy}}\&\ \mbox{\hyperlink{class_sysc_add__pv}{p044}}\ =\ SC\_BIND\_PROXY\_NIL,}
+\DoxyCodeLine{00365\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{structsc__core_1_1sc__bind__proxy}{sc\_bind\_proxy}}\&\ \mbox{\hyperlink{class_sysc_add__pv}{p045}}\ =\ SC\_BIND\_PROXY\_NIL,}
+\DoxyCodeLine{00366\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{structsc__core_1_1sc__bind__proxy}{sc\_bind\_proxy}}\&\ \mbox{\hyperlink{class_sysc_add__pv}{p046}}\ =\ SC\_BIND\_PROXY\_NIL,}
+\DoxyCodeLine{00367\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{structsc__core_1_1sc__bind__proxy}{sc\_bind\_proxy}}\&\ \mbox{\hyperlink{class_sysc_add__pv}{p047}}\ =\ SC\_BIND\_PROXY\_NIL,}
+\DoxyCodeLine{00368\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{structsc__core_1_1sc__bind__proxy}{sc\_bind\_proxy}}\&\ \mbox{\hyperlink{class_sysc_add__pv}{p048}}\ =\ SC\_BIND\_PROXY\_NIL,}
+\DoxyCodeLine{00369\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{structsc__core_1_1sc__bind__proxy}{sc\_bind\_proxy}}\&\ \mbox{\hyperlink{class_sysc_add__pv}{p049}}\ =\ SC\_BIND\_PROXY\_NIL,}
+\DoxyCodeLine{00370\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{structsc__core_1_1sc__bind__proxy}{sc\_bind\_proxy}}\&\ \mbox{\hyperlink{class_sysc_add__pv}{p050}}\ =\ SC\_BIND\_PROXY\_NIL,}
+\DoxyCodeLine{00371\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{structsc__core_1_1sc__bind__proxy}{sc\_bind\_proxy}}\&\ \mbox{\hyperlink{class_sysc_add__pv}{p051}}\ =\ SC\_BIND\_PROXY\_NIL,}
+\DoxyCodeLine{00372\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{structsc__core_1_1sc__bind__proxy}{sc\_bind\_proxy}}\&\ \mbox{\hyperlink{class_sysc_add__pv}{p052}}\ =\ SC\_BIND\_PROXY\_NIL,}
+\DoxyCodeLine{00373\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{structsc__core_1_1sc__bind__proxy}{sc\_bind\_proxy}}\&\ \mbox{\hyperlink{class_sysc_add__pv}{p053}}\ =\ SC\_BIND\_PROXY\_NIL,}
+\DoxyCodeLine{00374\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{structsc__core_1_1sc__bind__proxy}{sc\_bind\_proxy}}\&\ \mbox{\hyperlink{class_sysc_add__pv}{p054}}\ =\ SC\_BIND\_PROXY\_NIL,}
+\DoxyCodeLine{00375\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{structsc__core_1_1sc__bind__proxy}{sc\_bind\_proxy}}\&\ \mbox{\hyperlink{class_sysc_add__pv}{p055}}\ =\ SC\_BIND\_PROXY\_NIL,}
+\DoxyCodeLine{00376\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{structsc__core_1_1sc__bind__proxy}{sc\_bind\_proxy}}\&\ \mbox{\hyperlink{class_sysc_add__pv}{p056}}\ =\ SC\_BIND\_PROXY\_NIL,}
+\DoxyCodeLine{00377\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{structsc__core_1_1sc__bind__proxy}{sc\_bind\_proxy}}\&\ \mbox{\hyperlink{class_sysc_add__pv}{p057}}\ =\ SC\_BIND\_PROXY\_NIL,}
+\DoxyCodeLine{00378\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{structsc__core_1_1sc__bind__proxy}{sc\_bind\_proxy}}\&\ \mbox{\hyperlink{class_sysc_add__pv}{p058}}\ =\ SC\_BIND\_PROXY\_NIL,}
+\DoxyCodeLine{00379\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{structsc__core_1_1sc__bind__proxy}{sc\_bind\_proxy}}\&\ \mbox{\hyperlink{class_sysc_add__pv}{p059}}\ =\ SC\_BIND\_PROXY\_NIL,}
+\DoxyCodeLine{00380\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{structsc__core_1_1sc__bind__proxy}{sc\_bind\_proxy}}\&\ \mbox{\hyperlink{class_sysc_add__pv}{p060}}\ =\ SC\_BIND\_PROXY\_NIL,}
+\DoxyCodeLine{00381\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{structsc__core_1_1sc__bind__proxy}{sc\_bind\_proxy}}\&\ \mbox{\hyperlink{class_sysc_add__pv}{p061}}\ =\ SC\_BIND\_PROXY\_NIL,}
+\DoxyCodeLine{00382\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{structsc__core_1_1sc__bind__proxy}{sc\_bind\_proxy}}\&\ \mbox{\hyperlink{class_sysc_add__pv}{p062}}\ =\ SC\_BIND\_PROXY\_NIL,}
+\DoxyCodeLine{00383\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{structsc__core_1_1sc__bind__proxy}{sc\_bind\_proxy}}\&\ \mbox{\hyperlink{class_sysc_add__pv}{p063}}\ =\ SC\_BIND\_PROXY\_NIL,}
+\DoxyCodeLine{00384\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{structsc__core_1_1sc__bind__proxy}{sc\_bind\_proxy}}\&\ \mbox{\hyperlink{class_sysc_add__pv}{p064}}\ =\ SC\_BIND\_PROXY\_NIL\ );}
+\DoxyCodeLine{00385\ }
+\DoxyCodeLine{00386\ \};}
+\DoxyCodeLine{00387\ }
+\DoxyCodeLine{00388\ \textcolor{keyword}{extern}\ \mbox{\hyperlink{sc__cmnhdr_8h_aff4a86b3f5de3ac2097081e7166fe89f}{SC\_API}}\ \mbox{\hyperlink{classsc__core_1_1sc__module}{sc\_module}}*\ \mbox{\hyperlink{namespacesc__core_a5c8b7ddef07e889262a21e4aaee50da9}{sc\_module\_dynalloc}}(\mbox{\hyperlink{classsc__core_1_1sc__module}{sc\_module}}*);}
+\DoxyCodeLine{00389\ \textcolor{preprocessor}{\#define\ SC\_NEW(x)\ \ ::sc\_core::sc\_module\_dynalloc(new\ x);}}
+\DoxyCodeLine{00390\ }
+\DoxyCodeLine{00391\ }
+\DoxyCodeLine{00392\ \textcolor{comment}{//\ -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{00393\ \textcolor{comment}{//\ SOME\ MACROS\ TO\ SIMPLIFY\ SYNTAX:}}
+\DoxyCodeLine{00394\ \textcolor{comment}{//\ -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{00395\ }
+\DoxyCodeLine{00396\ \textcolor{preprocessor}{\#define\ SC\_MODULE(user\_module\_name)\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}}
+\DoxyCodeLine{00397\ \textcolor{preprocessor}{\ \ \ \ struct\ user\_module\_name\ :\ ::sc\_core::sc\_module}}
+\DoxyCodeLine{00398\ }
+\DoxyCodeLine{00399\ \textcolor{preprocessor}{\#define\ SC\_CTOR(user\_module\_name)\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}}
+\DoxyCodeLine{00400\ \textcolor{preprocessor}{\ \ \ \ typedef\ user\_module\_name\ SC\_CURRENT\_USER\_MODULE;\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}}
+\DoxyCodeLine{00401\ \textcolor{preprocessor}{\ \ \ \ user\_module\_name(\ ::sc\_core::sc\_module\_name\ )}}
+\DoxyCodeLine{00402\ }
+\DoxyCodeLine{00403\ \textcolor{comment}{//\ the\ SC\_HAS\_PROCESS\ macro\ call\ must\ be\ followed\ by\ a\ ;}}
+\DoxyCodeLine{00404\ \textcolor{preprocessor}{\#define\ SC\_HAS\_PROCESS(user\_module\_name)\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}}
+\DoxyCodeLine{00405\ \textcolor{preprocessor}{\ \ \ \ typedef\ user\_module\_name\ SC\_CURRENT\_USER\_MODULE}}
+\DoxyCodeLine{00406\ }
+\DoxyCodeLine{00407\ \textcolor{comment}{//\ The\ this-\/>\ construct\ on\ sensitive\ operators\ in\ the\ macros\ below\ is}}
+\DoxyCodeLine{00408\ \textcolor{comment}{//\ required\ for\ gcc\ 4.x\ when\ a\ templated\ class\ has\ a\ templated\ parent\ that\ is}}
+\DoxyCodeLine{00409\ \textcolor{comment}{//\ derived\ from\ sc\_module:}}
+\DoxyCodeLine{00410\ \textcolor{comment}{//}}
+\DoxyCodeLine{00411\ \textcolor{comment}{//\ template<typename\ X>}}
+\DoxyCodeLine{00412\ \textcolor{comment}{//\ class\ B\ :\ public\ sc\_module;}}
+\DoxyCodeLine{00413\ \textcolor{comment}{//\ template<typename\ X>}}
+\DoxyCodeLine{00414\ \textcolor{comment}{//\ class\ A\ :\ public\ B<X>}}
+\DoxyCodeLine{00415\ }
+\DoxyCodeLine{00416\ \textcolor{preprocessor}{\#define\ declare\_method\_process(handle,\ name,\ host\_tag,\ func)\ \ \ \ \ \ \ \ \(\backslash\)}}
+\DoxyCodeLine{00417\ \textcolor{preprocessor}{\ \ \ \ \{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}}
+\DoxyCodeLine{00418\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ ::sc\_core::sc\_process\_handle\ handle\ =\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}}
+\DoxyCodeLine{00419\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ sc\_core::sc\_get\_curr\_simcontext()-\/>create\_method\_process(\ \(\backslash\)}}
+\DoxyCodeLine{00420\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ name,\ \ false,\ SC\_MAKE\_FUNC\_PTR(\ host\_tag,\ func\ ),\ \(\backslash\)}}
+\DoxyCodeLine{00421\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ this,\ 0\ );\ \(\backslash\)}}
+\DoxyCodeLine{00422\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ this-\/>sensitive\ <<\ handle;\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}}
+\DoxyCodeLine{00423\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ this-\/>sensitive\_pos\ <<\ handle;\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}}
+\DoxyCodeLine{00424\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ this-\/>sensitive\_neg\ <<\ handle;\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}}
+\DoxyCodeLine{00425\ \textcolor{preprocessor}{\ \ \ \ \}}}
+\DoxyCodeLine{00426\ }
+\DoxyCodeLine{00427\ \textcolor{preprocessor}{\#define\ declare\_thread\_process(handle,\ name,\ host\_tag,\ func)\ \ \ \ \ \ \ \ \(\backslash\)}}
+\DoxyCodeLine{00428\ \textcolor{preprocessor}{\ \ \ \ \{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}}
+\DoxyCodeLine{00429\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ ::sc\_core::sc\_process\_handle\ handle\ =\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}}
+\DoxyCodeLine{00430\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ \ sc\_core::sc\_get\_curr\_simcontext()-\/>create\_thread\_process(\ \(\backslash\)}}
+\DoxyCodeLine{00431\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ name,\ \ false,\ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}}
+\DoxyCodeLine{00432\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ SC\_MAKE\_FUNC\_PTR(\ host\_tag,\ func\ ),\ this,\ 0\ );\ \(\backslash\)}}
+\DoxyCodeLine{00433\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ this-\/>sensitive\ <<\ handle;\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}}
+\DoxyCodeLine{00434\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ this-\/>sensitive\_pos\ <<\ handle;\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}}
+\DoxyCodeLine{00435\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ this-\/>sensitive\_neg\ <<\ handle;\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}}
+\DoxyCodeLine{00436\ \textcolor{preprocessor}{\ \ \ \ \}}}
+\DoxyCodeLine{00437\ }
+\DoxyCodeLine{00438\ \textcolor{preprocessor}{\#define\ declare\_cthread\_process(handle,\ name,\ host\_tag,\ func,\ edge)\ \(\backslash\)}}
+\DoxyCodeLine{00439\ \textcolor{preprocessor}{\ \ \ \ \{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}}
+\DoxyCodeLine{00440\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ ::sc\_core::sc\_process\_handle\ handle\ =\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}}
+\DoxyCodeLine{00441\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ \ sc\_core::sc\_get\_curr\_simcontext()-\/>create\_cthread\_process(\ \(\backslash\)}}
+\DoxyCodeLine{00442\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ \ \ \ \ name,\ \ false,\ \ \ \ \ \ \ \ \ \ \(\backslash\)}}
+\DoxyCodeLine{00443\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ SC\_MAKE\_FUNC\_PTR(\ host\_tag,\ func\ ),\ this,\ 0\ );\ \(\backslash\)}}
+\DoxyCodeLine{00444\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ this-\/>sensitive.operator()\ (\ handle,\ edge\ );\(\backslash\)}}
+\DoxyCodeLine{00445\ \textcolor{preprocessor}{\ \ \ \ \}}}
+\DoxyCodeLine{00446\ }
+\DoxyCodeLine{00447\ \textcolor{preprocessor}{\#define\ SC\_CTHREAD(func,\ edge)\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}}
+\DoxyCodeLine{00448\ \textcolor{preprocessor}{\ \ \ \ declare\_cthread\_process(\ func\ \#\#\ \_handle,\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}}
+\DoxyCodeLine{00449\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \#func,\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}}
+\DoxyCodeLine{00450\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ SC\_CURRENT\_USER\_MODULE,\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}}
+\DoxyCodeLine{00451\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ func,\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}}
+\DoxyCodeLine{00452\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ edge\ )}}
+\DoxyCodeLine{00453\ }
+\DoxyCodeLine{00454\ \textcolor{preprocessor}{\#define\ SC\_METHOD(func)\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}}
+\DoxyCodeLine{00455\ \textcolor{preprocessor}{\ \ \ \ declare\_method\_process(\ func\ \#\#\ \_handle,\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}}
+\DoxyCodeLine{00456\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \#func,\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}}
+\DoxyCodeLine{00457\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ SC\_CURRENT\_USER\_MODULE,\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}}
+\DoxyCodeLine{00458\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ func\ )}}
+\DoxyCodeLine{00459\ }
+\DoxyCodeLine{00460\ \textcolor{preprocessor}{\#define\ SC\_THREAD(func)\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}}
+\DoxyCodeLine{00461\ \textcolor{preprocessor}{\ \ \ \ declare\_thread\_process(\ func\ \#\#\ \_handle,\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}}
+\DoxyCodeLine{00462\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \#func,\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}}
+\DoxyCodeLine{00463\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ SC\_CURRENT\_USER\_MODULE,\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}}
+\DoxyCodeLine{00464\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ func\ )}}
+\DoxyCodeLine{00465\ }
+\DoxyCodeLine{00466\ }
+\DoxyCodeLine{00467\ }
+\DoxyCodeLine{00468\ \textcolor{comment}{//\ -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{00469\ \textcolor{comment}{//\ \ TYPEDEFS}}
+\DoxyCodeLine{00470\ \textcolor{comment}{//\ -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{00471\ }
+\DoxyCodeLine{00472\ \textcolor{keyword}{typedef}\ \mbox{\hyperlink{classsc__core_1_1sc__module}{sc\_module}}\ \mbox{\hyperlink{namespacesc__core_af303b578693eec7ce3af9499416f6857}{sc\_channel}};}
+\DoxyCodeLine{00473\ \textcolor{keyword}{typedef}\ \mbox{\hyperlink{classsc__core_1_1sc__module}{sc\_module}}\ \mbox{\hyperlink{namespacesc__core_a21a2932d7b876e0312e0616bc16455cb}{sc\_behavior}};}
+\DoxyCodeLine{00474\ }
+\DoxyCodeLine{00475\ \}\ \textcolor{comment}{//\ namespace\ sc\_core}}
+\DoxyCodeLine{00476\ }
+\DoxyCodeLine{00477\ \textcolor{comment}{/*****************************************************************************}}
+\DoxyCodeLine{00478\ \textcolor{comment}{}}
+\DoxyCodeLine{00479\ \textcolor{comment}{\ \ MODIFICATION\ LOG\ -\/\ modifiers,\ enter\ your\ name,\ affiliation,\ date\ and}}
+\DoxyCodeLine{00480\ \textcolor{comment}{\ \ changes\ you\ are\ making\ here.}}
+\DoxyCodeLine{00481\ \textcolor{comment}{}}
+\DoxyCodeLine{00482\ \textcolor{comment}{\ \ \ \ \ \ Name,\ Affiliation,\ Date:\ Ali\ Dasdan,\ Synopsys,\ Inc.}}
+\DoxyCodeLine{00483\ \textcolor{comment}{\ \ Description\ of\ Modification:\ -\/\ Implementation\ of\ operator()\ and\ operator,}}
+\DoxyCodeLine{00484\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ positional\ connection\ method.}}
+\DoxyCodeLine{00485\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ -\/\ Implementation\ of\ error\ checking\ in}}
+\DoxyCodeLine{00486\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ operator<<'s.}}
+\DoxyCodeLine{00487\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ -\/\ Implementation\ of\ the\ function\ test\_module\_prm.}}
+\DoxyCodeLine{00488\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ -\/\ Implementation\ of\ set\_stack\_size().}}
+\DoxyCodeLine{00489\ \textcolor{comment}{}}
+\DoxyCodeLine{00490\ \textcolor{comment}{\ \ \ \ \ \ Name,\ Affiliation,\ Date:\ Gene\ Bushuyev,\ Synopsys,\ Inc.}}
+\DoxyCodeLine{00491\ \textcolor{comment}{\ \ Description\ of\ Modification:\ -\/\ Change\ implementation\ for\ VC6.}}
+\DoxyCodeLine{00492\ \textcolor{comment}{}}
+\DoxyCodeLine{00493\ \textcolor{comment}{\ \ \ \ \ \ Name,\ Affiliation,\ Date:\ Andy\ Godorich,\ Forte}}
+\DoxyCodeLine{00494\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Bishnupriya\ Bhattacharya,\ Cadence\ Design\ Systems,}}
+\DoxyCodeLine{00495\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ 25\ August,\ 2003}}
+\DoxyCodeLine{00496\ \textcolor{comment}{\ \ Description\ of\ Modification:\ inherit\ from\ sc\_process\_host\ as\ a\ part\ of}}
+\DoxyCodeLine{00497\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ implementing\ dynamic\ processes}}
+\DoxyCodeLine{00498\ \textcolor{comment}{}}
+\DoxyCodeLine{00499\ \textcolor{comment}{\ *****************************************************************************/}}
+\DoxyCodeLine{00500\ }
+\DoxyCodeLine{00501\ \textcolor{comment}{//\ \$Log:\ sc\_module.h,v\ \$}}
+\DoxyCodeLine{00502\ \textcolor{comment}{//\ Revision\ 1.11\ \ 2011/08/26\ 20:46:10\ \ acg}}
+\DoxyCodeLine{00503\ \textcolor{comment}{//\ \ Andy\ Goodrich:\ moved\ the\ modification\ log\ to\ the\ end\ of\ the\ file\ to}}
+\DoxyCodeLine{00504\ \textcolor{comment}{//\ \ eliminate\ source\ line\ number\ skew\ when\ check-\/ins\ are\ done.}}
+\DoxyCodeLine{00505\ \textcolor{comment}{//}}
+\DoxyCodeLine{00506\ \textcolor{comment}{//\ Revision\ 1.10\ \ 2011/08/15\ 16:43:24\ \ acg}}
+\DoxyCodeLine{00507\ \textcolor{comment}{//\ \ Torsten\ Maehne:\ changes\ to\ remove\ unused\ argument\ warnings.}}
+\DoxyCodeLine{00508\ \textcolor{comment}{//}}
+\DoxyCodeLine{00509\ \textcolor{comment}{//\ Revision\ 1.9\ \ 2011/03/05\ 19:44:20\ \ acg}}
+\DoxyCodeLine{00510\ \textcolor{comment}{//\ \ Andy\ Goodrich:\ changes\ for\ object\ and\ event\ naming\ and\ structures.}}
+\DoxyCodeLine{00511\ \textcolor{comment}{//}}
+\DoxyCodeLine{00512\ \textcolor{comment}{//\ Revision\ 1.8\ \ 2011/02/18\ 20:27:14\ \ acg}}
+\DoxyCodeLine{00513\ \textcolor{comment}{//\ \ Andy\ Goodrich:\ Updated\ Copyrights.}}
+\DoxyCodeLine{00514\ \textcolor{comment}{//}}
+\DoxyCodeLine{00515\ \textcolor{comment}{//\ Revision\ 1.7\ \ 2011/02/13\ 21:47:37\ \ acg}}
+\DoxyCodeLine{00516\ \textcolor{comment}{//\ \ Andy\ Goodrich:\ update\ copyright\ notice.}}
+\DoxyCodeLine{00517\ \textcolor{comment}{//}}
+\DoxyCodeLine{00518\ \textcolor{comment}{//\ Revision\ 1.6\ \ 2011/01/18\ 20:10:44\ \ acg}}
+\DoxyCodeLine{00519\ \textcolor{comment}{//\ \ Andy\ Goodrich:\ changes\ for\ IEEE1666\_2011\ semantics.}}
+\DoxyCodeLine{00520\ \textcolor{comment}{//}}
+\DoxyCodeLine{00521\ \textcolor{comment}{//\ Revision\ 1.5\ \ 2010/12/07\ 20:09:12\ \ acg}}
+\DoxyCodeLine{00522\ \textcolor{comment}{//\ Andy\ Goodrich:\ remove\ unused\ signal\ declaration}}
+\DoxyCodeLine{00523\ \textcolor{comment}{//}}
+\DoxyCodeLine{00524\ \textcolor{comment}{//\ Revision\ 1.4\ \ 2009/05/22\ 16:06:29\ \ acg}}
+\DoxyCodeLine{00525\ \textcolor{comment}{//\ \ Andy\ Goodrich:\ process\ control\ updates.}}
+\DoxyCodeLine{00526\ \textcolor{comment}{//}}
+\DoxyCodeLine{00527\ \textcolor{comment}{//\ Revision\ 1.3\ \ 2008/05/22\ 17:06:25\ \ acg}}
+\DoxyCodeLine{00528\ \textcolor{comment}{//\ \ Andy\ Goodrich:\ updated\ copyright\ notice\ to\ include\ 2008.}}
+\DoxyCodeLine{00529\ \textcolor{comment}{//}}
+\DoxyCodeLine{00530\ \textcolor{comment}{//\ Revision\ 1.2\ \ 2007/01/24\ 20:14:40\ \ acg}}
+\DoxyCodeLine{00531\ \textcolor{comment}{//\ \ Andy\ Goodrich:\ improved\ comments\ about\ the\ use\ of\ this-\/>\ in\ the\ macros}}
+\DoxyCodeLine{00532\ \textcolor{comment}{//\ \ that\ access\ sensitive.}}
+\DoxyCodeLine{00533\ \textcolor{comment}{//}}
+\DoxyCodeLine{00534\ \textcolor{comment}{//\ Revision\ 1.1.1.1\ \ 2006/12/15\ 20:20:05\ \ acg}}
+\DoxyCodeLine{00535\ \textcolor{comment}{//\ SystemC\ 2.3}}
+\DoxyCodeLine{00536\ \textcolor{comment}{//}}
+\DoxyCodeLine{00537\ \textcolor{comment}{//\ Revision\ 1.10\ \ 2006/12/02\ 20:58:18\ \ acg}}
+\DoxyCodeLine{00538\ \textcolor{comment}{//\ \ Andy\ Goodrich:\ updates\ from\ 2.2\ for\ IEEE\ 1666\ support.}}
+\DoxyCodeLine{00539\ \textcolor{comment}{//}}
+\DoxyCodeLine{00540\ \textcolor{comment}{//\ Revision\ 1.7\ \ 2006/04/11\ 23:13:21\ \ acg}}
+\DoxyCodeLine{00541\ \textcolor{comment}{//\ \ \ Andy\ Goodrich:\ Changes\ for\ reduced\ reset\ support\ that\ only\ includes}}
+\DoxyCodeLine{00542\ \textcolor{comment}{//\ \ \ sc\_cthread,\ but\ has\ preliminary\ hooks\ for\ expanding\ to\ method\ and\ thread}}
+\DoxyCodeLine{00543\ \textcolor{comment}{//\ \ \ processes\ also.}}
+\DoxyCodeLine{00544\ \textcolor{comment}{//}}
+\DoxyCodeLine{00545\ \textcolor{comment}{//\ Revision\ 1.6\ \ 2006/03/15\ 17:53:34\ \ acg}}
+\DoxyCodeLine{00546\ \textcolor{comment}{//\ \ Andy\ Goodrich,\ Forte\ Design}}
+\DoxyCodeLine{00547\ \textcolor{comment}{//\ \ Reordered\ includes\ to\ pick\ up\ <cassert>\ for\ use\ by\ sc\_process\_name.h}}
+\DoxyCodeLine{00548\ \textcolor{comment}{//}}
+\DoxyCodeLine{00549\ \textcolor{comment}{//\ Revision\ 1.5\ \ 2006/03/14\ 23:56:58\ \ acg}}
+\DoxyCodeLine{00550\ \textcolor{comment}{//\ \ \ Andy\ Goodrich:\ This\ fixes\ a\ bug\ when\ an\ exception\ is\ thrown\ in}}
+\DoxyCodeLine{00551\ \textcolor{comment}{//\ \ \ sc\_module::sc\_module()\ for\ a\ dynamically\ allocated\ sc\_module}}
+\DoxyCodeLine{00552\ \textcolor{comment}{//\ \ \ object.\ We\ are\ calling\ sc\_module::end\_module()\ on\ a\ module\ that\ has}}
+\DoxyCodeLine{00553\ \textcolor{comment}{//\ \ \ already\ been\ deleted.\ The\ scenario\ runs\ like\ this:}}
+\DoxyCodeLine{00554\ \textcolor{comment}{//}}
+\DoxyCodeLine{00555\ \textcolor{comment}{//\ \ \ a)\ the\ sc\_module\ constructor\ is\ entered}}
+\DoxyCodeLine{00556\ \textcolor{comment}{//\ \ \ b)\ the\ exception\ is\ thrown}}
+\DoxyCodeLine{00557\ \textcolor{comment}{//\ \ \ c)\ the\ exception\ processor\ deletes\ the\ storage\ for\ the\ sc\_module}}
+\DoxyCodeLine{00558\ \textcolor{comment}{//\ \ \ d)\ the\ stack\ is\ unrolled\ causing\ the\ sc\_module\_name\ instance\ to\ be\ deleted}}
+\DoxyCodeLine{00559\ \textcolor{comment}{//\ \ \ e)\ \string~sc\_module\_name()\ calls\ end\_module()\ with\ its\ pointer\ to\ the\ sc\_module}}
+\DoxyCodeLine{00560\ \textcolor{comment}{//\ \ \ f)\ because\ the\ sc\_module\ has\ been\ deleted\ its\ storage\ is\ corrupted,}}
+\DoxyCodeLine{00561\ \textcolor{comment}{//\ \ \ \ \ \ either\ by\ linking\ it\ to\ a\ free\ space\ chain,\ or\ by\ reuse\ of\ some\ sort}}
+\DoxyCodeLine{00562\ \textcolor{comment}{//\ \ \ g)\ the\ m\_simc\ field\ is\ garbage}}
+\DoxyCodeLine{00563\ \textcolor{comment}{//\ \ \ h)\ the\ m\_object\_manager\ field\ is\ also\ garbage}}
+\DoxyCodeLine{00564\ \textcolor{comment}{//\ \ \ i)\ an\ exception\ occurs}}
+\DoxyCodeLine{00565\ \textcolor{comment}{//}}
+\DoxyCodeLine{00566\ \textcolor{comment}{//\ \ \ This\ does\ not\ happen\ for\ automatic\ sc\_module\ instances\ since\ the}}
+\DoxyCodeLine{00567\ \textcolor{comment}{//\ \ \ storage\ for\ the\ module\ is\ not\ reclaimed\ its\ just\ part\ of\ the\ stack.}}
+\DoxyCodeLine{00568\ \textcolor{comment}{//}}
+\DoxyCodeLine{00569\ \textcolor{comment}{//\ \ \ I\ am\ fixing\ this\ by\ having\ the\ destructor\ for\ sc\_module\ clear\ the}}
+\DoxyCodeLine{00570\ \textcolor{comment}{//\ \ \ module\ pointer\ in\ its\ sc\_module\_name\ instance.\ That\ cuts\ things\ at}}
+\DoxyCodeLine{00571\ \textcolor{comment}{//\ \ \ step\ (e)\ above,\ since\ the\ pointer\ will\ be\ null\ if\ the\ module\ has}}
+\DoxyCodeLine{00572\ \textcolor{comment}{//\ \ \ already\ been\ deleted.\ To\ make\ sure\ the\ module\ stack\ is\ okay,\ I\ call}}
+\DoxyCodeLine{00573\ \textcolor{comment}{//\ \ \ end-\/module()\ in\ \string~sc\_module\ in\ the\ case\ where\ there\ is\ an}}
+\DoxyCodeLine{00574\ \textcolor{comment}{//\ \ \ sc\_module\_name\ pointer\ lying\ around.}}
+\DoxyCodeLine{00575\ \textcolor{comment}{//}}
+\DoxyCodeLine{00576\ \textcolor{comment}{//\ Revision\ 1.4\ \ 2006/01/24\ 20:49:05\ \ acg}}
+\DoxyCodeLine{00577\ \textcolor{comment}{//\ Andy\ Goodrich:\ changes\ to\ remove\ the\ use\ of\ deprecated\ features\ within\ the}}
+\DoxyCodeLine{00578\ \textcolor{comment}{//\ simulator,\ and\ to\ issue\ warning\ messages\ when\ deprecated\ features\ are\ used.}}
+\DoxyCodeLine{00579\ \textcolor{comment}{//}}
+\DoxyCodeLine{00580\ \textcolor{comment}{//\ Revision\ 1.3\ \ 2006/01/13\ 18:44:30\ \ acg}}
+\DoxyCodeLine{00581\ \textcolor{comment}{//\ Added\ \$Log\ to\ record\ CVS\ changes\ into\ the\ source.}}
+\DoxyCodeLine{00582\ }
+\DoxyCodeLine{00583\ \textcolor{preprocessor}{\#endif}}
+
+\end{DoxyCode}

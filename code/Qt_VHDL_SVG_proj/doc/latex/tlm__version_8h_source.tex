@@ -1,0 +1,186 @@
+\doxysection{tlm\+\_\+version.\+h}
+\hypertarget{tlm__version_8h_source}{}\label{tlm__version_8h_source}\index{C:/Users/BJRODIER/Documents/QT\_REPO/QT\_VHDL\_simulator/code/Ressources/SystemC/include/tlm\_core/tlm\_2/tlm\_version.h@{C:/Users/BJRODIER/Documents/QT\_REPO/QT\_VHDL\_simulator/code/Ressources/SystemC/include/tlm\_core/tlm\_2/tlm\_version.h}}
+\mbox{\hyperlink{tlm__version_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{comment}{/*****************************************************************************}}
+\DoxyCodeLine{00002\ \textcolor{comment}{}}
+\DoxyCodeLine{00003\ \textcolor{comment}{\ \ Licensed\ to\ Accellera\ Systems\ Initiative\ Inc.\ (Accellera)\ under\ one\ or}}
+\DoxyCodeLine{00004\ \textcolor{comment}{\ \ more\ contributor\ license\ agreements.\ \ See\ the\ NOTICE\ file\ distributed}}
+\DoxyCodeLine{00005\ \textcolor{comment}{\ \ with\ this\ work\ for\ additional\ information\ regarding\ copyright\ ownership.}}
+\DoxyCodeLine{00006\ \textcolor{comment}{\ \ Accellera\ licenses\ this\ file\ to\ you\ under\ the\ Apache\ License,\ Version\ 2.0}}
+\DoxyCodeLine{00007\ \textcolor{comment}{\ \ (the\ "{}License"{});\ you\ may\ not\ use\ this\ file\ except\ in\ compliance\ with\ the}}
+\DoxyCodeLine{00008\ \textcolor{comment}{\ \ License.\ \ You\ may\ obtain\ a\ copy\ of\ the\ License\ at}}
+\DoxyCodeLine{00009\ \textcolor{comment}{}}
+\DoxyCodeLine{00010\ \textcolor{comment}{\ \ \ \ http://www.apache.org/licenses/LICENSE-\/2.0}}
+\DoxyCodeLine{00011\ \textcolor{comment}{}}
+\DoxyCodeLine{00012\ \textcolor{comment}{\ \ Unless\ required\ by\ applicable\ law\ or\ agreed\ to\ in\ writing,\ software}}
+\DoxyCodeLine{00013\ \textcolor{comment}{\ \ distributed\ under\ the\ License\ is\ distributed\ on\ an\ "{}AS\ IS"{}\ BASIS,}}
+\DoxyCodeLine{00014\ \textcolor{comment}{\ \ WITHOUT\ WARRANTIES\ OR\ CONDITIONS\ OF\ ANY\ KIND,\ either\ express\ or}}
+\DoxyCodeLine{00015\ \textcolor{comment}{\ \ implied.\ \ See\ the\ License\ for\ the\ specific\ language\ governing}}
+\DoxyCodeLine{00016\ \textcolor{comment}{\ \ permissions\ and\ limitations\ under\ the\ License.}}
+\DoxyCodeLine{00017\ \textcolor{comment}{}}
+\DoxyCodeLine{00018\ \textcolor{comment}{\ *****************************************************************************/}}
+\DoxyCodeLine{00019\ }
+\DoxyCodeLine{00020\ \textcolor{comment}{/*\ -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{00021\ \textcolor{comment}{\ @file\ tlm\_version.h}}
+\DoxyCodeLine{00022\ \textcolor{comment}{}}
+\DoxyCodeLine{00023\ \textcolor{comment}{\ @brief\ TLM\ version\ header}}
+\DoxyCodeLine{00024\ \textcolor{comment}{}}
+\DoxyCodeLine{00025\ \textcolor{comment}{\ \ Original\ Author:}}
+\DoxyCodeLine{00026\ \textcolor{comment}{\ \ \ \ Charles\ Wilson,\ XtremeEDA\ Corporation}}
+\DoxyCodeLine{00027\ \textcolor{comment}{}}
+\DoxyCodeLine{00028\ \textcolor{comment}{\ @description}}
+\DoxyCodeLine{00029\ \textcolor{comment}{\ \ This\ header\ contains\ preprocessor\ and\ compiler\ symbols\ to\ allow\ for\ the\ determination}}
+\DoxyCodeLine{00030\ \textcolor{comment}{\ \ \ of\ the\ TLM\ version\ information.\ This\ conforms\ to\ IEEE\ 1666-\/2005\ section\ 8.5.5\ -\/\ 8.5.7}}
+\DoxyCodeLine{00031\ \textcolor{comment}{\ \ \ .}}
+\DoxyCodeLine{00032\ \textcolor{comment}{\ \ \ The\ following\ are\ provided:}}
+\DoxyCodeLine{00033\ \textcolor{comment}{\ \ \ .}}
+\DoxyCodeLine{00034\ \textcolor{comment}{\ \ \ preprocessor:\ TLM\_VERSION\_MAJOR\ \ \ \ \ \ \ \ numeric}}
+\DoxyCodeLine{00035\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ TLM\_VERSION\_MINOR\ \ \ \ \ \ \ \ numeric}}
+\DoxyCodeLine{00036\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ TLM\_VERSION\_PATCH\ \ \ \ \ \ \ \ numeric}}
+\DoxyCodeLine{00037\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ TLM\_VERSION\_ORIGINATOR\ \ \ string\ \ \ \ \ \ \ ([A-\/Z][a-\/z][0-\/9]\_)}}
+\DoxyCodeLine{00038\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ TLM\_VERSION\_RELEASE\_DATE\ ISO8601\ date\ (YYYYMMDD)}}
+\DoxyCodeLine{00039\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ TLM\_VERSION\_PRERELEASE\ \ \ string\ \ \ \ \ \ \ ([A-\/Z][a-\/z][0-\/9]\_)}}
+\DoxyCodeLine{00040\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ TLM\_IS\_PRERELEASE\ \ \ \ \ \ \ \ bool\ \ \ \ \ \ \ \ \ (1,0)}}
+\DoxyCodeLine{00041\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ TLM\_VERSION\ \ \ \ \ \ \ \ \ \ \ \ \ \ string\ \ \ \ \ \ \ \{2.0.0\_DR3-\/TLMWG\}}}
+\DoxyCodeLine{00042\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ TLM\_COPYRIGHT\ \ \ \ \ \ \ \ \ \ \ \ string}}
+\DoxyCodeLine{00043\ \textcolor{comment}{\ \ \ .}}
+\DoxyCodeLine{00044\ \textcolor{comment}{\ \ \ compiler:\ \ \ \ \ tlm\_version\_major\ \ \ \ \ \ \ \ const\ unsigned\ int}}
+\DoxyCodeLine{00045\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ tlm\_version\_minor\ \ \ \ \ \ \ \ const\ unsigned\ int}}
+\DoxyCodeLine{00046\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ tlm\_version\_patch\ \ \ \ \ \ \ \ const\ unsigned\ int}}
+\DoxyCodeLine{00047\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ tlm\_version\_originator\ \ \ const\ std::string}}
+\DoxyCodeLine{00048\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ tlm\_version\_release\_date\ const\ std::string}}
+\DoxyCodeLine{00049\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ tlm\_version\_prerelease\ \ \ const\ std::string}}
+\DoxyCodeLine{00050\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ tlm\_is\_prerelease\ \ \ \ \ \ \ \ const\ bool}}
+\DoxyCodeLine{00051\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ tlm\_version\ \ \ \ \ \ \ \ \ \ \ \ \ \ const\ string}}
+\DoxyCodeLine{00052\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ tlm\_copyright\ \ \ \ \ \ \ \ \ \ \ \ const\ string}}
+\DoxyCodeLine{00053\ \textcolor{comment}{\ \ \ .}}
+\DoxyCodeLine{00054\ \textcolor{comment}{\ \ \ accessors:\ \ \ \ inline\ const\ char*\ tlm\_release\ \ \ (void)}}
+\DoxyCodeLine{00055\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ inline\ const\ char*\ tlm\_version\ \ \ (void)}}
+\DoxyCodeLine{00056\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ inline\ const\ char*\ tlm\_copyright\ (void)}}
+\DoxyCodeLine{00057\ \textcolor{comment}{}}
+\DoxyCodeLine{00058\ \textcolor{comment}{-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/\ */}}
+\DoxyCodeLine{00059\ }
+\DoxyCodeLine{00060\ \textcolor{preprocessor}{\#ifndef\ \_\_TLM\_VERSION\_H\_\_}}
+\DoxyCodeLine{00061\ \textcolor{preprocessor}{\#define\ \_\_TLM\_VERSION\_H\_\_}}
+\DoxyCodeLine{00062\ }
+\DoxyCodeLine{00063\ \textcolor{keyword}{namespace\ }\mbox{\hyperlink{namespacetlm}{tlm}}}
+\DoxyCodeLine{00064\ \{}
+\DoxyCodeLine{00065\ }
+\DoxyCodeLine{00066\ \textcolor{preprocessor}{\#define\ TLM\_VERSION\_MAJOR\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ 2\ \ \ \ \ \ \ \ \ \ \ }}
+\DoxyCodeLine{00067\ \textcolor{preprocessor}{\#define\ TLM\_VERSION\_MINOR\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ 0\ \ \ \ \ \ \ \ \ \ \ }}
+\DoxyCodeLine{00068\ \textcolor{preprocessor}{\#define\ TLM\_VERSION\_PATCH\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ 5\ \ \ \ \ \ \ \ \ \ \ }}
+\DoxyCodeLine{00069\ \textcolor{preprocessor}{\#define\ TLM\_VERSION\_ORIGINATOR\ \ \ \ \ \ \ \ \ \ \ \ \ \ "{}Accellera"{}\ }}
+\DoxyCodeLine{00070\ \textcolor{preprocessor}{\#define\ TLM\_VERSION\_SEPARATOR\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ "{}."{}\ \ \ \ \ \ \ \ \ }}
+\DoxyCodeLine{00071\ }
+\DoxyCodeLine{00072\ \textcolor{preprocessor}{\#define\ TLM\_IS\_PRERELEASE\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ 1\ \ \ \ \ \ \ \ \ \ \ }}
+\DoxyCodeLine{00073\ }
+\DoxyCodeLine{00074\ \textcolor{preprocessor}{\#if\ TLM\_IS\_PRERELEASE}}
+\DoxyCodeLine{00075\ \textcolor{preprocessor}{\#\ \ \ \ define\ TLM\_VERSION\_PRERELEASE\ \ \ \ \ \ \ \ \ \ "{}pub\_rev"{}\ \ \ }}
+\DoxyCodeLine{00076\ \textcolor{preprocessor}{\#else}}
+\DoxyCodeLine{00077\ \textcolor{preprocessor}{\#\ \ \ \ define\ TLM\_VERSION\_PRERELEASE\ \ \ \ \ \ \ \ \ \ "{}"{}\ \ \ \ \ \ \ \ \ \ }}
+\DoxyCodeLine{00078\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00079\ }
+\DoxyCodeLine{00080\ \textcolor{preprocessor}{\#define\ TLM\_VERSION\_RELEASE\_YEAR\ \ \ \ \ \ \ \ \ \ \ \ "{}2018"{}\ \ \ \ \ \ }}
+\DoxyCodeLine{00081\ \textcolor{preprocessor}{\#define\ TLM\_VERSION\_RELEASE\_MONTH\ \ \ \ \ \ \ \ \ \ \ "{}09"{}\ \ \ \ \ \ \ \ }}
+\DoxyCodeLine{00082\ \textcolor{preprocessor}{\#define\ TLM\_VERSION\_RELEASE\_DAY\ \ \ \ \ \ \ \ \ \ \ \ \ "{}04"{}\ \ \ \ \ \ \ \ }}
+\DoxyCodeLine{00083\ }
+\DoxyCodeLine{00084\ \textcolor{preprocessor}{\#define\ TLM\_COPYRIGHT\ \(\backslash\)}}
+\DoxyCodeLine{00085\ \textcolor{preprocessor}{\ \ "{}Copyright\ (c)\ 1996-\/"{}\ TLM\_VERSION\_RELEASE\_YEAR\ "{}\ by\ all\ Contributors\(\backslash\)n"{}\ \(\backslash\)}}
+\DoxyCodeLine{00086\ \textcolor{preprocessor}{\ \ "{}ALL\ RIGHTS\ RESERVED"{}}}
+\DoxyCodeLine{00087\ }
+\DoxyCodeLine{00088\ \textcolor{comment}{/**************************\ do\ not\ modify\ below\ this\ line\ *******************************/}}
+\DoxyCodeLine{00089\ }
+\DoxyCodeLine{00090\ \textcolor{comment}{/*******************************\ preprocessor\ symbols\ ***********************************/}}
+\DoxyCodeLine{00091\ }
+\DoxyCodeLine{00092\ \textcolor{preprocessor}{\#define\ TLM\_VERSION\_RELEASE\_DATE\ \ \ \ \ \ \ \ \ \ \ \ TLM\_VERSION\_RELEASE\_YEAR\ \(\backslash\)}}
+\DoxyCodeLine{00093\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ TLM\_VERSION\_RELEASE\_MONTH\ \(\backslash\)}}
+\DoxyCodeLine{00094\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ TLM\_VERSION\_RELEASE\_DAY}}
+\DoxyCodeLine{00095\ }
+\DoxyCodeLine{00096\ \textcolor{preprocessor}{\#define\ TLM\_VERSION\_STR(x)\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ TLM\_VERSION\_STR\_HELPER(x)}}
+\DoxyCodeLine{00097\ \textcolor{preprocessor}{\#define\ TLM\_VERSION\_STR\_HELPER(x)\ \ \ \ \ \ \ \ \ \ \ \#x}}
+\DoxyCodeLine{00098\ }
+\DoxyCodeLine{00099\ \textcolor{preprocessor}{\#define\ TLM\_VERSION\_STRING\_MAJOR\ \ \ \ \ \ \ \ \ \ \ \ TLM\_VERSION\_STR(TLM\_VERSION\_MAJOR)}}
+\DoxyCodeLine{00100\ \textcolor{preprocessor}{\#define\ TLM\_VERSION\_STRING\_MINOR\ \ \ \ \ \ \ \ \ \ \ \ TLM\_VERSION\_STR(TLM\_VERSION\_MINOR)}}
+\DoxyCodeLine{00101\ \textcolor{preprocessor}{\#define\ TLM\_VERSION\_STRING\_PATCH\ \ \ \ \ \ \ \ \ \ \ \ TLM\_VERSION\_STR(TLM\_VERSION\_PATCH)}}
+\DoxyCodeLine{00102\ }
+\DoxyCodeLine{00103\ \textcolor{preprocessor}{\#define\ TLM\_VERSION\_STRING\_MMP\ \ \ \ \ \ \ \ \ \ \ \ \ \ TLM\_VERSION\_STRING\_MAJOR\ TLM\_VERSION\_SEPARATOR\ \(\backslash\)}}
+\DoxyCodeLine{00104\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ TLM\_VERSION\_STRING\_MINOR\ TLM\_VERSION\_SEPARATOR\ \(\backslash\)}}
+\DoxyCodeLine{00105\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ TLM\_VERSION\_STRING\_PATCH}}
+\DoxyCodeLine{00106\ }
+\DoxyCodeLine{00107\ \textcolor{preprocessor}{\#define\ TLM\_VERSION\_STRING\_PRE\_START\ \ \ \ \ \ \ \ "{}\_"{}}}
+\DoxyCodeLine{00108\ \textcolor{preprocessor}{\#define\ TLM\_VERSION\_STRING\_PRE\_END\ \ \ \ \ \ \ \ \ \ "{}-\/"{}}}
+\DoxyCodeLine{00109\ }
+\DoxyCodeLine{00110\ \textcolor{preprocessor}{\#if\ (\ TLM\_IS\_PRERELEASE\ ==\ 1\ )}}
+\DoxyCodeLine{00111\ }
+\DoxyCodeLine{00112\ \textcolor{preprocessor}{\#define\ TLM\_VERSION\_STRING\_PRERELEASE\ \ \ \ \ \ \ TLM\_VERSION\_PRERELEASE}}
+\DoxyCodeLine{00113\ \textcolor{preprocessor}{\#define\ TLM\_VERSION\_STRING\_RELEASE\_DATE\ \ \ \ \ "{}"{}}}
+\DoxyCodeLine{00114\ }
+\DoxyCodeLine{00115\ \textcolor{preprocessor}{\#else\ \ \ }\textcolor{comment}{/*\ TLM\_IS\_PRERELEASE\ ==\ 1\ */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{00116\ }
+\DoxyCodeLine{00117\ \textcolor{preprocessor}{\#define\ TLM\_VERSION\_STRING\_PRERELEASE\ \ \ \ \ \ \ "{}"{}}}
+\DoxyCodeLine{00118\ \textcolor{preprocessor}{\#define\ TLM\_VERSION\_STRING\_RELEASE\_DATE\ \ \ \ \ TLM\_VERSION\_RELEASE\_DATE}}
+\DoxyCodeLine{00119\ }
+\DoxyCodeLine{00120\ \textcolor{preprocessor}{\#endif\ \ }\textcolor{comment}{/*\ TLM\_IS\_PRERELEASE\ ==\ 1\ */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{00121\ }
+\DoxyCodeLine{00122\ \textcolor{preprocessor}{\#define\ TLM\_VERSION\_STRING\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ TLM\_VERSION\_STRING\_MMP\ \(\backslash\)}}
+\DoxyCodeLine{00123\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ TLM\_VERSION\_STRING\_PRE\_START\ \(\backslash\)}}
+\DoxyCodeLine{00124\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ TLM\_VERSION\_STRING\_PRERELEASE\ \(\backslash\)}}
+\DoxyCodeLine{00125\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ TLM\_VERSION\_STRING\_PRE\_END\ \(\backslash\)}}
+\DoxyCodeLine{00126\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ TLM\_VERSION\_ORIGINATOR}}
+\DoxyCodeLine{00127\ }
+\DoxyCodeLine{00128\ \textcolor{preprocessor}{\#define\ TLM\_VERSION\_STRING\_2\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ "{}TLM\ "{}\ \(\backslash\)}}
+\DoxyCodeLine{00129\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ TLM\_VERSION\_STRING\_MMP\ \(\backslash\)}}
+\DoxyCodeLine{00130\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ "{}\ -\/-\/-\/\ "{}\ \(\backslash\)}}
+\DoxyCodeLine{00131\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ TLM\_VERSION\_RELEASE\_YEAR\ \(\backslash\)}}
+\DoxyCodeLine{00132\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ "{}-\/"{}\ \(\backslash\)}}
+\DoxyCodeLine{00133\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ TLM\_VERSION\_RELEASE\_MONTH\ \(\backslash\)}}
+\DoxyCodeLine{00134\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ "{}-\/"{}\ \(\backslash\)}}
+\DoxyCodeLine{00135\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ TLM\_VERSION\_RELEASE\_DAY}}
+\DoxyCodeLine{00136\ }
+\DoxyCodeLine{00137\ \textcolor{preprocessor}{\#define\ TLM\_VERSION\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ TLM\_VERSION\_STRING}}
+\DoxyCodeLine{00138\ }
+\DoxyCodeLine{00139\ \textcolor{comment}{/*********************************\ compiler\ symbols\ **************************************/}}
+\DoxyCodeLine{00140\ }
+\DoxyCodeLine{00141\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{namespacetlm_a09597334db87928718c4d21c22e2a416}{tlm\_version\_major}}\ \ \ \ \ \ \ \ (\ \mbox{\hyperlink{tlm__version_8h_adf624a3e67d8577b0f9ea80185c47afa}{TLM\_VERSION\_MAJOR}}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ );}
+\DoxyCodeLine{00142\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{namespacetlm_adf4ea8c51b2c3d9e90d2af2272124d86}{tlm\_version\_minor}}\ \ \ \ \ \ \ \ (\ \mbox{\hyperlink{tlm__version_8h_aa40e2beb2eb5cb8e70d6092f0a303112}{TLM\_VERSION\_MINOR}}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ );}
+\DoxyCodeLine{00143\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{namespacetlm_aae2599cf538be4e4c4c2239b6615d5cc}{tlm\_version\_patch}}\ \ \ \ \ \ \ \ (\ \mbox{\hyperlink{tlm__version_8h_ab513103141dbdfecca0c54a924455201}{TLM\_VERSION\_PATCH}}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ );}
+\DoxyCodeLine{00144\ }
+\DoxyCodeLine{00145\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{bool}\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacetlm_ae23b7b83f69c1c91dcc42902f0a88965}{tlm\_is\_prerelease}}\ \ \ \ \ \ \ \ (\ \mbox{\hyperlink{tlm__version_8h_a4bda3954a2b14fb0618d8887e5c0f9fb}{TLM\_IS\_PRERELEASE}}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ );}
+\DoxyCodeLine{00146\ }
+\DoxyCodeLine{00147\ \textcolor{keyword}{const}\ std::string\ \ \mbox{\hyperlink{namespacetlm_a9925b7ff309c82d1666f2799e5603e01}{tlm\_version\_string}}\ \ \ \ \ \ \ (\ \mbox{\hyperlink{tlm__version_8h_ac8c5ab5b078e0a6ccce557d65f829d0b}{TLM\_VERSION\_STRING}}\ \ \ \ \ \ \ \ \ \ \ \ \ \ );}
+\DoxyCodeLine{00148\ \textcolor{keyword}{const}\ std::string\ \ \mbox{\hyperlink{namespacetlm_a5926a372a18955e64e3adf879f220f14}{tlm\_version\_originator}}\ \ \ (\ \mbox{\hyperlink{tlm__version_8h_a21093b43486ddc2dd06121ee152d2ebf}{TLM\_VERSION\_ORIGINATOR}}\ \ \ \ \ \ \ \ \ \ );}
+\DoxyCodeLine{00149\ \textcolor{keyword}{const}\ std::string\ \ \mbox{\hyperlink{namespacetlm_a07a3a67082dfe0c4676f05329942a2f0}{tlm\_version\_prerelease}}\ \ \ (\ \mbox{\hyperlink{tlm__version_8h_ad921697b8da6857b36fd8b0a22781c57}{TLM\_VERSION\_PRERELEASE}}\ \ \ \ \ \ \ \ \ \ );}
+\DoxyCodeLine{00150\ \textcolor{keyword}{const}\ std::string\ \ \mbox{\hyperlink{namespacetlm_a4d75bd93c0d34cfcb8879c0b07910ea7}{tlm\_version\_release\_date}}\ (\ \mbox{\hyperlink{tlm__version_8h_aafdfed605b12afb242282e61b6c8833e}{TLM\_VERSION\_STRING\_RELEASE\_DATE}}\ );}
+\DoxyCodeLine{00151\ \textcolor{keyword}{const}\ std::string\ \ \mbox{\hyperlink{namespacetlm_a5c3855c05d2d1050c9c25e853c28ce78}{tlm\_copyright\_string}}\ \ \ \ \ (\ \mbox{\hyperlink{tlm__version_8h_a650da75b7d247ed4c1e18cb8544aa2c5}{TLM\_COPYRIGHT}}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ );}
+\DoxyCodeLine{00152\ \textcolor{keyword}{const}\ std::string\ \ \mbox{\hyperlink{namespacetlm_a315db0266704eb11d18066b72418a4ac}{tlm\_version\_string\_2}}\ \ \ \ \ (\ \mbox{\hyperlink{tlm__version_8h_a73e1178263850d8b65bc155ea0abf3e7}{TLM\_VERSION\_STRING\_2}}\ \ \ \ \ \ \ \ \ \ \ \ );}
+\DoxyCodeLine{00153\ }
+\DoxyCodeLine{00154\ \textcolor{keyword}{inline}\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{char}*}
+\DoxyCodeLine{00155\ \mbox{\hyperlink{namespacetlm_ae809271a0eedfc2c0f1b92b1c8a1b027}{tlm\_release}}}
+\DoxyCodeLine{00156\ (\ \textcolor{keywordtype}{void}}
+\DoxyCodeLine{00157\ )}
+\DoxyCodeLine{00158\ \{}
+\DoxyCodeLine{00159\ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{namespacetlm_a9925b7ff309c82d1666f2799e5603e01}{tlm\_version\_string}}.c\_str\ ();}
+\DoxyCodeLine{00160\ \}}
+\DoxyCodeLine{00161\ }
+\DoxyCodeLine{00162\ \textcolor{keyword}{inline}\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{char}*}
+\DoxyCodeLine{00163\ \mbox{\hyperlink{namespacetlm_ad8997166161105721dca5f5b37e1ec4d}{tlm\_version}}}
+\DoxyCodeLine{00164\ (\ \textcolor{keywordtype}{void}}
+\DoxyCodeLine{00165\ )}
+\DoxyCodeLine{00166\ \{}
+\DoxyCodeLine{00167\ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{namespacetlm_a315db0266704eb11d18066b72418a4ac}{tlm\_version\_string\_2}}.c\_str\ ();}
+\DoxyCodeLine{00168\ \}}
+\DoxyCodeLine{00169\ }
+\DoxyCodeLine{00170\ \textcolor{keyword}{inline}\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{char}*}
+\DoxyCodeLine{00171\ \mbox{\hyperlink{namespacetlm_a742118b0302f71c60e2489a5df1d13ba}{tlm\_copyright}}}
+\DoxyCodeLine{00172\ (\ \textcolor{keywordtype}{void}}
+\DoxyCodeLine{00173\ )}
+\DoxyCodeLine{00174\ \{}
+\DoxyCodeLine{00175\ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{namespacetlm_a5c3855c05d2d1050c9c25e853c28ce78}{tlm\_copyright\_string}}.c\_str\ ();}
+\DoxyCodeLine{00176\ \}}
+\DoxyCodeLine{00177\ }
+\DoxyCodeLine{00178\ \}\ \textcolor{comment}{//\ namespace\ tlm}}
+\DoxyCodeLine{00179\ }
+\DoxyCodeLine{00180\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{/*\ \_\_TLM\_VERSION\_H\_\_\ */}\textcolor{preprocessor}{}}
+
+\end{DoxyCode}

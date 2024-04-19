@@ -1,0 +1,139 @@
+.TH "tlm_utils::instance_specific_extension_container" 3 "VHDL simulator" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+tlm_utils::instance_specific_extension_container
+.SH SYNOPSIS
+.br
+.PP
+.PP
+\fR#include <instance_specific_extensions_int\&.h>\fP
+.SS "Private Types"
+
+.in +1c
+.ti -1c
+.RI "\fBtypedef\fP \fBvoid\fP \fBrelease_fn\fP(\fBinstance_specific_extension_carrier\fP *, \fBvoid\fP *)"
+.br
+.in -1c
+.SS "Private Member Functions"
+
+.in +1c
+.ti -1c
+.RI "\fBinstance_specific_extension_container\fP ()"
+.br
+.ti -1c
+.RI "\fB~instance_specific_extension_container\fP ()"
+.br
+.ti -1c
+.RI "\fBvoid\fP \fBresize\fP ()"
+.br
+.ti -1c
+.RI "\fBvoid\fP \fBinc_use_count\fP ()"
+.br
+.ti -1c
+.RI "\fBvoid\fP \fBdec_use_count\fP ()"
+.br
+.ti -1c
+.RI "\fBvoid\fP \fBattach_carrier\fP (\fBinstance_specific_extension_carrier\fP *, \fBvoid\fP *\fBtxn\fP, \fBrelease_fn\fP *)"
+.br
+.ti -1c
+.RI "\fBinstance_specific_extensions_per_accessor\fP * \fBget_accessor\fP (\fBunsigned\fP int index)"
+.br
+.in -1c
+.SS "Static Private Member Functions"
+
+.in +1c
+.ti -1c
+.RI "\fBstatic\fP \fBinstance_specific_extension_container\fP * \fBcreate\fP ()"
+.br
+.in -1c
+.SS "Private Attributes"
+
+.in +1c
+.ti -1c
+.RI "std::vector< \fBinstance_specific_extensions_per_accessor\fP * > \fBm_ispex_per_accessor\fP"
+.br
+.ti -1c
+.RI "\fBunsigned\fP int \fBuse_count\fP"
+.br
+.ti -1c
+.RI "\fBvoid\fP * \fBm_txn\fP"
+.br
+.ti -1c
+.RI "\fBrelease_fn\fP * \fBm_release_fn\fP"
+.br
+.ti -1c
+.RI "\fBinstance_specific_extension_carrier\fP * \fBm_carrier\fP"
+.br
+.ti -1c
+.RI "\fBinstance_specific_extension_container\fP * \fBnext\fP"
+.br
+.in -1c
+.SS "Friends"
+
+.in +1c
+.ti -1c
+.RI "\fBclass\fP \fBinstance_specific_extension_accessor\fP"
+.br
+.ti -1c
+.RI "\fBclass\fP \fBinstance_specific_extension_carrier\fP"
+.br
+.ti -1c
+.RI "\fBclass\fP \fBinstance_specific_extension_container_pool\fP"
+.br
+.ti -1c
+.RI "\fBclass\fP \fBinstance_specific_extensions_per_accessor\fP"
+.br
+.in -1c
+.SH "Member Typedef Documentation"
+.PP 
+.SS "\fBtypedef\fP \fBvoid\fP tlm_utils::instance_specific_extension_container::release_fn(\fBinstance_specific_extension_carrier\fP *, \fBvoid\fP *)\fR [private]\fP"
+
+.SH "Constructor & Destructor Documentation"
+.PP 
+.SS "tlm_utils::instance_specific_extension_container::instance_specific_extension_container ()\fR [private]\fP"
+
+.SS "tlm_utils::instance_specific_extension_container::~instance_specific_extension_container ()\fR [private]\fP"
+
+.SH "Member Function Documentation"
+.PP 
+.SS "\fBvoid\fP tlm_utils::instance_specific_extension_container::attach_carrier (\fBinstance_specific_extension_carrier\fP *, \fBvoid\fP * txn, \fBrelease_fn\fP *)\fR [private]\fP"
+
+.SS "\fBstatic\fP \fBinstance_specific_extension_container\fP * tlm_utils::instance_specific_extension_container::create ()\fR [static]\fP, \fR [private]\fP"
+
+.SS "\fBvoid\fP tlm_utils::instance_specific_extension_container::dec_use_count ()\fR [private]\fP"
+
+.SS "\fBinstance_specific_extensions_per_accessor\fP * tlm_utils::instance_specific_extension_container::get_accessor (\fBunsigned\fP int index)\fR [private]\fP"
+
+.SS "\fBvoid\fP tlm_utils::instance_specific_extension_container::inc_use_count ()\fR [private]\fP"
+
+.SS "\fBvoid\fP tlm_utils::instance_specific_extension_container::resize ()\fR [private]\fP"
+
+.SH "Friends And Related Symbol Documentation"
+.PP 
+.SS "\fBfriend\fP \fBclass\fP \fBinstance_specific_extension_accessor\fP\fR [friend]\fP"
+
+.SS "\fBfriend\fP \fBclass\fP \fBinstance_specific_extension_carrier\fP\fR [friend]\fP"
+
+.SS "\fBfriend\fP \fBclass\fP instance_specific_extension_container_pool\fR [friend]\fP"
+
+.SS "\fBfriend\fP \fBclass\fP \fBinstance_specific_extensions_per_accessor\fP\fR [friend]\fP"
+
+.SH "Member Data Documentation"
+.PP 
+.SS "\fBinstance_specific_extension_carrier\fP* tlm_utils::instance_specific_extension_container::m_carrier\fR [private]\fP"
+
+.SS "std::vector<\fBinstance_specific_extensions_per_accessor\fP*> tlm_utils::instance_specific_extension_container::m_ispex_per_accessor\fR [private]\fP"
+
+.SS "\fBrelease_fn\fP* tlm_utils::instance_specific_extension_container::m_release_fn\fR [private]\fP"
+
+.SS "\fBvoid\fP* tlm_utils::instance_specific_extension_container::m_txn\fR [private]\fP"
+
+.SS "\fBinstance_specific_extension_container\fP* tlm_utils::instance_specific_extension_container::next\fR [private]\fP"
+
+.SS "\fBunsigned\fP int tlm_utils::instance_specific_extension_container::use_count\fR [private]\fP"
+
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for VHDL simulator from the source code\&.

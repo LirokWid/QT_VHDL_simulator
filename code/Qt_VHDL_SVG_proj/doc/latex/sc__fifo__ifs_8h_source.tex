@@ -1,0 +1,215 @@
+\doxysection{sc\+\_\+fifo\+\_\+ifs.\+h}
+\hypertarget{sc__fifo__ifs_8h_source}{}\label{sc__fifo__ifs_8h_source}\index{C:/Users/BJRODIER/Documents/QT\_REPO/QT\_VHDL\_simulator/code/Ressources/SystemC/include/sysc/communication/sc\_fifo\_ifs.h@{C:/Users/BJRODIER/Documents/QT\_REPO/QT\_VHDL\_simulator/code/Ressources/SystemC/include/sysc/communication/sc\_fifo\_ifs.h}}
+\mbox{\hyperlink{sc__fifo__ifs_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{comment}{/*****************************************************************************}}
+\DoxyCodeLine{00002\ \textcolor{comment}{}}
+\DoxyCodeLine{00003\ \textcolor{comment}{\ \ Licensed\ to\ Accellera\ Systems\ Initiative\ Inc.\ (Accellera)\ under\ one\ or}}
+\DoxyCodeLine{00004\ \textcolor{comment}{\ \ more\ contributor\ license\ agreements.\ \ See\ the\ NOTICE\ file\ distributed}}
+\DoxyCodeLine{00005\ \textcolor{comment}{\ \ with\ this\ work\ for\ additional\ information\ regarding\ copyright\ ownership.}}
+\DoxyCodeLine{00006\ \textcolor{comment}{\ \ Accellera\ licenses\ this\ file\ to\ you\ under\ the\ Apache\ License,\ Version\ 2.0}}
+\DoxyCodeLine{00007\ \textcolor{comment}{\ \ (the\ "{}License"{});\ you\ may\ not\ use\ this\ file\ except\ in\ compliance\ with\ the}}
+\DoxyCodeLine{00008\ \textcolor{comment}{\ \ License.\ \ You\ may\ obtain\ a\ copy\ of\ the\ License\ at}}
+\DoxyCodeLine{00009\ \textcolor{comment}{}}
+\DoxyCodeLine{00010\ \textcolor{comment}{\ \ \ \ http://www.apache.org/licenses/LICENSE-\/2.0}}
+\DoxyCodeLine{00011\ \textcolor{comment}{}}
+\DoxyCodeLine{00012\ \textcolor{comment}{\ \ Unless\ required\ by\ applicable\ law\ or\ agreed\ to\ in\ writing,\ software}}
+\DoxyCodeLine{00013\ \textcolor{comment}{\ \ distributed\ under\ the\ License\ is\ distributed\ on\ an\ "{}AS\ IS"{}\ BASIS,}}
+\DoxyCodeLine{00014\ \textcolor{comment}{\ \ WITHOUT\ WARRANTIES\ OR\ CONDITIONS\ OF\ ANY\ KIND,\ either\ express\ or}}
+\DoxyCodeLine{00015\ \textcolor{comment}{\ \ implied.\ \ See\ the\ License\ for\ the\ specific\ language\ governing}}
+\DoxyCodeLine{00016\ \textcolor{comment}{\ \ permissions\ and\ limitations\ under\ the\ License.}}
+\DoxyCodeLine{00017\ \textcolor{comment}{}}
+\DoxyCodeLine{00018\ \textcolor{comment}{\ *****************************************************************************/}}
+\DoxyCodeLine{00019\ }
+\DoxyCodeLine{00020\ \textcolor{comment}{/*****************************************************************************}}
+\DoxyCodeLine{00021\ \textcolor{comment}{}}
+\DoxyCodeLine{00022\ \textcolor{comment}{\ \ sc\_fifo\_ifs.h\ -\/-\/\ The\ sc\_fifo<T>\ interface\ classes.}}
+\DoxyCodeLine{00023\ \textcolor{comment}{}}
+\DoxyCodeLine{00024\ \textcolor{comment}{\ \ Original\ Author:\ Martin\ Janssen,\ Synopsys,\ Inc.,\ 2001-\/05-\/21}}
+\DoxyCodeLine{00025\ \textcolor{comment}{}}
+\DoxyCodeLine{00026\ \textcolor{comment}{\ \ CHANGE\ LOG\ IS\ AT\ THE\ END\ OF\ THE\ FILE}}
+\DoxyCodeLine{00027\ \textcolor{comment}{\ *****************************************************************************/}}
+\DoxyCodeLine{00028\ }
+\DoxyCodeLine{00029\ \textcolor{preprocessor}{\#ifndef\ SC\_FIFO\_IFS\_H}}
+\DoxyCodeLine{00030\ \textcolor{preprocessor}{\#define\ SC\_FIFO\_IFS\_H}}
+\DoxyCodeLine{00031\ }
+\DoxyCodeLine{00032\ }
+\DoxyCodeLine{00033\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{sc__interface_8h}{sysc/communication/sc\_interface.h}}"{}}}
+\DoxyCodeLine{00034\ }
+\DoxyCodeLine{00035\ \textcolor{keyword}{namespace\ }\mbox{\hyperlink{namespacesc__core}{sc\_core}}\ \{}
+\DoxyCodeLine{00036\ }
+\DoxyCodeLine{00037\ \textcolor{comment}{//\ -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{00038\ \textcolor{comment}{//\ \ CLASS\ :\ sc\_fifo\_nonblocking\_in\_if<T>}}
+\DoxyCodeLine{00039\ \textcolor{comment}{//}}
+\DoxyCodeLine{00040\ \textcolor{comment}{//\ \ The\ sc\_fifo<T>\ input\ nonblocking\ interface\ class.}}
+\DoxyCodeLine{00041\ \textcolor{comment}{//\ -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{00042\ }
+\DoxyCodeLine{00043\ \textcolor{keyword}{template}\ <\textcolor{keyword}{class}\ T>\ }
+\DoxyCodeLine{00044\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classsc__core_1_1sc__fifo__nonblocking__in__if}{sc\_fifo\_nonblocking\_in\_if}}\ }
+\DoxyCodeLine{00045\ :\ \textcolor{keyword}{virtual}\ \textcolor{keyword}{public}\ \mbox{\hyperlink{classsc__core_1_1sc__interface}{sc\_interface}}\ }
+\DoxyCodeLine{00046\ \{\ }
+\DoxyCodeLine{00047\ \textcolor{keyword}{public}:\ }
+\DoxyCodeLine{00048\ }
+\DoxyCodeLine{00049\ \ \ \ \ \textcolor{comment}{//\ non-\/blocking\ read\ }}
+\DoxyCodeLine{00050\ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{classsc__core_1_1sc__fifo__nonblocking__in__if_aeb218dfb77bf164535fbe0dad1426e4f}{nb\_read}}(\ \mbox{\hyperlink{mem__fn__cc_8hpp_adf1f3edb9115acb0a1e04209b7a9937b}{T}}\&\ )\ =\ 0;\ }
+\DoxyCodeLine{00051\ }
+\DoxyCodeLine{00052\ \ \ \ \ \textcolor{comment}{//\ get\ the\ data\ written\ event\ }}
+\DoxyCodeLine{00053\ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keyword}{const}\ \mbox{\hyperlink{classsc__core_1_1sc__event}{sc\_event}}\&\ \mbox{\hyperlink{classsc__core_1_1sc__fifo__nonblocking__in__if_a2ebee6d9075f35ad19d29b9a1901ee89}{data\_written\_event}}()\ \textcolor{keyword}{const}\ =\ 0;\ }
+\DoxyCodeLine{00054\ \};\ }
+\DoxyCodeLine{00055\ }
+\DoxyCodeLine{00056\ \textcolor{comment}{//\ -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{00057\ \textcolor{comment}{//\ \ CLASS\ :\ sc\_fifo\_blocking\_in\_if<T>}}
+\DoxyCodeLine{00058\ \textcolor{comment}{//}}
+\DoxyCodeLine{00059\ \textcolor{comment}{//\ \ The\ sc\_fifo<T>\ input\ blocking\ interface\ class.}}
+\DoxyCodeLine{00060\ \textcolor{comment}{//\ -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{00061\ }
+\DoxyCodeLine{00062\ \textcolor{keyword}{template}\ <\textcolor{keyword}{class}\ T>\ }
+\DoxyCodeLine{00063\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classsc__core_1_1sc__fifo__blocking__in__if}{sc\_fifo\_blocking\_in\_if}}\ }
+\DoxyCodeLine{00064\ :\ \textcolor{keyword}{virtual}\ \textcolor{keyword}{public}\ \mbox{\hyperlink{classsc__core_1_1sc__interface}{sc\_interface}}\ }
+\DoxyCodeLine{00065\ \{\ }
+\DoxyCodeLine{00066\ \textcolor{keyword}{public}:\ }
+\DoxyCodeLine{00067\ }
+\DoxyCodeLine{00068\ \ \ \ \ \textcolor{comment}{//\ blocking\ read\ }}
+\DoxyCodeLine{00069\ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classsc__core_1_1sc__fifo__blocking__in__if_a6489ea95fb7ff8758f43ff81255cb523}{read}}(\ \mbox{\hyperlink{mem__fn__cc_8hpp_adf1f3edb9115acb0a1e04209b7a9937b}{T}}\&\ )\ =\ 0;\ }
+\DoxyCodeLine{00070\ \ \ \ \ \textcolor{keyword}{virtual}\ \mbox{\hyperlink{mem__fn__cc_8hpp_adf1f3edb9115acb0a1e04209b7a9937b}{T}}\ \mbox{\hyperlink{classsc__core_1_1sc__fifo__blocking__in__if_a965f6c5fdb21eed811197ac03c114f07}{read}}()\ =\ 0;\ }
+\DoxyCodeLine{00071\ \};\ }
+\DoxyCodeLine{00072\ }
+\DoxyCodeLine{00073\ \textcolor{comment}{//\ -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{00074\ \textcolor{comment}{//\ \ CLASS\ :\ sc\_fifo\_in\_if<T>}}
+\DoxyCodeLine{00075\ \textcolor{comment}{//}}
+\DoxyCodeLine{00076\ \textcolor{comment}{//\ \ The\ sc\_fifo<T>\ input\ interface\ class.}}
+\DoxyCodeLine{00077\ \textcolor{comment}{//\ -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{00078\ }
+\DoxyCodeLine{00079\ \textcolor{keyword}{template}\ <\textcolor{keyword}{class}\ T>\ }
+\DoxyCodeLine{00080\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classsc__core_1_1sc__fifo__in__if}{sc\_fifo\_in\_if}}\ }
+\DoxyCodeLine{00081\ :\ \textcolor{keyword}{public}\ \mbox{\hyperlink{classsc__core_1_1sc__fifo__nonblocking__in__if}{sc\_fifo\_nonblocking\_in\_if}}<T>,\ }
+\DoxyCodeLine{00082\ \ \ \textcolor{keyword}{public}\ \mbox{\hyperlink{classsc__core_1_1sc__fifo__blocking__in__if}{sc\_fifo\_blocking\_in\_if}}<T>\ }
+\DoxyCodeLine{00083\ \{\ }
+\DoxyCodeLine{00084\ \textcolor{keyword}{public}:\ }
+\DoxyCodeLine{00085\ }
+\DoxyCodeLine{00086\ \ \ \ \ \textcolor{comment}{//\ get\ the\ number\ of\ available\ samples\ }}
+\DoxyCodeLine{00087\ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{classsc__core_1_1sc__fifo__in__if_a05317ddeb041fdc9a661419e79115b89}{num\_available}}()\ \textcolor{keyword}{const}\ =\ 0;\ }
+\DoxyCodeLine{00088\ }
+\DoxyCodeLine{00089\ \textcolor{keyword}{protected}:\ }
+\DoxyCodeLine{00090\ }
+\DoxyCodeLine{00091\ \ \ \ \ \textcolor{comment}{//\ constructor\ }}
+\DoxyCodeLine{00092\ }
+\DoxyCodeLine{00093\ \ \ \ \ \mbox{\hyperlink{classsc__core_1_1sc__fifo__in__if_ad21c1247d2567eaddf19ff2fad4667a2}{sc\_fifo\_in\_if}}()\ }
+\DoxyCodeLine{00094\ \ \ \ \ \ \ \ \ \{\}\ }
+\DoxyCodeLine{00095\ }
+\DoxyCodeLine{00096\ \textcolor{keyword}{private}:\ }
+\DoxyCodeLine{00097\ }
+\DoxyCodeLine{00098\ \ \ \ \ \textcolor{comment}{//\ disabled\ }}
+\DoxyCodeLine{00099\ \ \ \ \ \mbox{\hyperlink{classsc__core_1_1sc__fifo__in__if_ac374e466fb08188f03a362d90f58ac5a}{sc\_fifo\_in\_if}}(\ \textcolor{keyword}{const}\ \mbox{\hyperlink{class_sysc_add__pv}{sc\_fifo\_in\_if<T>}}\&\ );\ }
+\DoxyCodeLine{00100\ \ \ \ \ \mbox{\hyperlink{class_sysc_add__pv}{sc\_fifo\_in\_if<T>}}\&\ \mbox{\hyperlink{classsc__core_1_1sc__fifo__in__if_a470f9b66f54b5675901ef93614cd3415}{operator\ =\ }}(\ \textcolor{keyword}{const}\ \mbox{\hyperlink{class_sysc_add__pv}{sc\_fifo\_in\_if<T>}}\&\ );\ }
+\DoxyCodeLine{00101\ \};\ }
+\DoxyCodeLine{00102\ }
+\DoxyCodeLine{00103\ }
+\DoxyCodeLine{00104\ \textcolor{comment}{//\ -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{00105\ \textcolor{comment}{//\ \ CLASS\ :\ sc\_fifo\_nonblocking\_out\_if<T>}}
+\DoxyCodeLine{00106\ \textcolor{comment}{//}}
+\DoxyCodeLine{00107\ \textcolor{comment}{//\ \ The\ sc\_fifo<T>\ nonblocking\ output\ interface\ class.}}
+\DoxyCodeLine{00108\ \textcolor{comment}{//\ -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{00109\ }
+\DoxyCodeLine{00110\ \textcolor{keyword}{template}\ <\textcolor{keyword}{class}\ T>\ }
+\DoxyCodeLine{00111\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classsc__core_1_1sc__fifo__nonblocking__out__if}{sc\_fifo\_nonblocking\_out\_if}}\ }
+\DoxyCodeLine{00112\ :\ \textcolor{keyword}{virtual}\ \textcolor{keyword}{public}\ \mbox{\hyperlink{classsc__core_1_1sc__interface}{sc\_interface}}\ }
+\DoxyCodeLine{00113\ \{\ }
+\DoxyCodeLine{00114\ \textcolor{keyword}{public}:\ }
+\DoxyCodeLine{00115\ }
+\DoxyCodeLine{00116\ \ \ \ \ \textcolor{comment}{//\ non-\/blocking\ write\ }}
+\DoxyCodeLine{00117\ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{classsc__core_1_1sc__fifo__nonblocking__out__if_a8ea063f2e700e60fb04913c004e465eb}{nb\_write}}(\ \textcolor{keyword}{const}\ \mbox{\hyperlink{mem__fn__cc_8hpp_adf1f3edb9115acb0a1e04209b7a9937b}{T}}\&\ )\ =\ 0;\ }
+\DoxyCodeLine{00118\ }
+\DoxyCodeLine{00119\ \ \ \ \ \textcolor{comment}{//\ get\ the\ data\ read\ event\ }}
+\DoxyCodeLine{00120\ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keyword}{const}\ \mbox{\hyperlink{classsc__core_1_1sc__event}{sc\_event}}\&\ \mbox{\hyperlink{classsc__core_1_1sc__fifo__nonblocking__out__if_a42e4e2b49d8ff45ab365fce7d250779b}{data\_read\_event}}()\ \textcolor{keyword}{const}\ =\ 0;\ }
+\DoxyCodeLine{00121\ \};\ }
+\DoxyCodeLine{00122\ }
+\DoxyCodeLine{00123\ \textcolor{comment}{//\ -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{00124\ \textcolor{comment}{//\ \ CLASS\ :\ sc\_fifo\_blocking\_out\_if<T>}}
+\DoxyCodeLine{00125\ \textcolor{comment}{//}}
+\DoxyCodeLine{00126\ \textcolor{comment}{//\ \ The\ sc\_fifo<T>\ blocking\ output\ interface\ class.}}
+\DoxyCodeLine{00127\ \textcolor{comment}{//\ -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{00128\ }
+\DoxyCodeLine{00129\ \textcolor{keyword}{template}\ <\textcolor{keyword}{class}\ T>\ }
+\DoxyCodeLine{00130\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classsc__core_1_1sc__fifo__blocking__out__if}{sc\_fifo\_blocking\_out\_if}}\ }
+\DoxyCodeLine{00131\ :\ \textcolor{keyword}{virtual}\ \textcolor{keyword}{public}\ \mbox{\hyperlink{classsc__core_1_1sc__interface}{sc\_interface}}\ }
+\DoxyCodeLine{00132\ \{\ }
+\DoxyCodeLine{00133\ \textcolor{keyword}{public}:\ }
+\DoxyCodeLine{00134\ }
+\DoxyCodeLine{00135\ \ \ \ \ \textcolor{comment}{//\ blocking\ write\ }}
+\DoxyCodeLine{00136\ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classsc__core_1_1sc__fifo__blocking__out__if_ab48c5085fd4e8c7ff9e79d868d5822a4}{write}}(\ \textcolor{keyword}{const}\ \mbox{\hyperlink{mem__fn__cc_8hpp_adf1f3edb9115acb0a1e04209b7a9937b}{T}}\&\ )\ =\ 0;\ }
+\DoxyCodeLine{00137\ }
+\DoxyCodeLine{00138\ \};\ }
+\DoxyCodeLine{00139\ }
+\DoxyCodeLine{00140\ \textcolor{comment}{//\ -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{00141\ \textcolor{comment}{//\ \ CLASS\ :\ sc\_fifo\_out\_if<T>}}
+\DoxyCodeLine{00142\ \textcolor{comment}{//}}
+\DoxyCodeLine{00143\ \textcolor{comment}{//\ \ The\ sc\_fifo<T>\ output\ interface\ class.}}
+\DoxyCodeLine{00144\ \textcolor{comment}{//\ -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{00145\ }
+\DoxyCodeLine{00146\ \textcolor{keyword}{template}\ <\textcolor{keyword}{class}\ T>\ }
+\DoxyCodeLine{00147\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classsc__core_1_1sc__fifo__out__if}{sc\_fifo\_out\_if}}\ }
+\DoxyCodeLine{00148\ :\ \textcolor{keyword}{public}\ \mbox{\hyperlink{classsc__core_1_1sc__fifo__nonblocking__out__if}{sc\_fifo\_nonblocking\_out\_if}}<T>,\ }
+\DoxyCodeLine{00149\ \ \ \textcolor{keyword}{public}\ \mbox{\hyperlink{classsc__core_1_1sc__fifo__blocking__out__if}{sc\_fifo\_blocking\_out\_if}}<T>\ }
+\DoxyCodeLine{00150\ \{\ }
+\DoxyCodeLine{00151\ \textcolor{keyword}{public}:\ }
+\DoxyCodeLine{00152\ }
+\DoxyCodeLine{00153\ \ \ \ \ \textcolor{comment}{//\ get\ the\ number\ of\ free\ spaces\ }}
+\DoxyCodeLine{00154\ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{classsc__core_1_1sc__fifo__out__if_accee55814312a2e29f9a8b61b5242eec}{num\_free}}()\ \textcolor{keyword}{const}\ =\ 0;\ }
+\DoxyCodeLine{00155\ }
+\DoxyCodeLine{00156\ \textcolor{keyword}{protected}:\ }
+\DoxyCodeLine{00157\ }
+\DoxyCodeLine{00158\ \ \ \ \ \textcolor{comment}{//\ constructor\ }}
+\DoxyCodeLine{00159\ }
+\DoxyCodeLine{00160\ \ \ \ \ \mbox{\hyperlink{classsc__core_1_1sc__fifo__out__if_a7463727e52bd66ae075795bc82755bc0}{sc\_fifo\_out\_if}}()\ }
+\DoxyCodeLine{00161\ \ \ \ \ \ \ \ \ \{\}\ }
+\DoxyCodeLine{00162\ }
+\DoxyCodeLine{00163\ \textcolor{keyword}{private}:\ }
+\DoxyCodeLine{00164\ }
+\DoxyCodeLine{00165\ \ \ \ \ \textcolor{comment}{//\ disabled\ }}
+\DoxyCodeLine{00166\ \ \ \ \ \mbox{\hyperlink{classsc__core_1_1sc__fifo__out__if_a6851a776c849e2e19a05fbaa649938c6}{sc\_fifo\_out\_if}}(\ \textcolor{keyword}{const}\ \mbox{\hyperlink{class_sysc_add__pv}{sc\_fifo\_out\_if<T>}}\&\ );\ }
+\DoxyCodeLine{00167\ \ \ \ \ \mbox{\hyperlink{class_sysc_add__pv}{sc\_fifo\_out\_if<T>}}\&\ \mbox{\hyperlink{classsc__core_1_1sc__fifo__out__if_a73d82cc51ad22a7b3844a47e4c3d26c0}{operator\ =\ }}(\ \textcolor{keyword}{const}\ \mbox{\hyperlink{class_sysc_add__pv}{sc\_fifo\_out\_if<T>}}\&\ );\ }
+\DoxyCodeLine{00168\ \};\ }
+\DoxyCodeLine{00169\ }
+\DoxyCodeLine{00170\ \textcolor{comment}{/*****************************************************************************}}
+\DoxyCodeLine{00171\ \textcolor{comment}{}}
+\DoxyCodeLine{00172\ \textcolor{comment}{\ \ MODIFICATION\ LOG\ -\/\ modifiers,\ enter\ your\ name,\ affiliation,\ date\ and}}
+\DoxyCodeLine{00173\ \textcolor{comment}{\ \ changes\ you\ are\ making\ here.}}
+\DoxyCodeLine{00174\ \textcolor{comment}{}}
+\DoxyCodeLine{00175\ \textcolor{comment}{\ \ \ \ \ \ Name,\ Affiliation,\ Date:\ Bishnupriya\ Bhattacharye,\ Cadence\ Design\ Systems,}}
+\DoxyCodeLine{00176\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ 30\ Jan,\ 2004}}
+\DoxyCodeLine{00177\ \textcolor{comment}{\ \ Description\ of\ Modification:\ Split\ up\ the\ interfaces\ into\ blocking\ and\ }}
+\DoxyCodeLine{00178\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ non\ blocking\ parts}}
+\DoxyCodeLine{00179\ \textcolor{comment}{\ \ \ \ }}
+\DoxyCodeLine{00180\ \textcolor{comment}{\ \ \ \ \ \ Name,\ Affiliation,\ Date:\ }}
+\DoxyCodeLine{00181\ \textcolor{comment}{\ \ Description\ of\ Modification:\ }}
+\DoxyCodeLine{00182\ \textcolor{comment}{}}
+\DoxyCodeLine{00183\ \textcolor{comment}{\ *****************************************************************************/}}
+\DoxyCodeLine{00184\ \textcolor{comment}{//\$Log:\ sc\_fifo\_ifs.h,v\ \$}}
+\DoxyCodeLine{00185\ \textcolor{comment}{//Revision\ 1.3\ \ 2011/08/26\ 20:45:40\ \ acg}}
+\DoxyCodeLine{00186\ \textcolor{comment}{//\ Andy\ Goodrich:\ moved\ the\ modification\ log\ to\ the\ end\ of\ the\ file\ to}}
+\DoxyCodeLine{00187\ \textcolor{comment}{//\ eliminate\ source\ line\ number\ skew\ when\ check-\/ins\ are\ done.}}
+\DoxyCodeLine{00188\ \textcolor{comment}{//}}
+\DoxyCodeLine{00189\ \textcolor{comment}{//Revision\ 1.2\ \ 2011/02/18\ 20:23:45\ \ acg}}
+\DoxyCodeLine{00190\ \textcolor{comment}{//\ Andy\ Goodrich:\ Copyright\ update.}}
+\DoxyCodeLine{00191\ \textcolor{comment}{//}}
+\DoxyCodeLine{00192\ \textcolor{comment}{//Revision\ 1.1.1.1\ \ 2006/12/15\ 20:20:04\ \ acg}}
+\DoxyCodeLine{00193\ \textcolor{comment}{//SystemC\ 2.3}}
+\DoxyCodeLine{00194\ \textcolor{comment}{//}}
+\DoxyCodeLine{00195\ \textcolor{comment}{//Revision\ 1.2\ \ 2006/01/03\ 23:18:26\ \ acg}}
+\DoxyCodeLine{00196\ \textcolor{comment}{//Changed\ copyright\ to\ include\ 2006.}}
+\DoxyCodeLine{00197\ \textcolor{comment}{//}}
+\DoxyCodeLine{00198\ \textcolor{comment}{//Revision\ 1.1.1.1\ \ 2005/12/19\ 23:16:43\ \ acg}}
+\DoxyCodeLine{00199\ \textcolor{comment}{//First\ check\ in\ of\ SystemC\ 2.1\ into\ its\ own\ archive.}}
+\DoxyCodeLine{00200\ \textcolor{comment}{//}}
+\DoxyCodeLine{00201\ \textcolor{comment}{//Revision\ 1.10\ \ 2005/06/10\ 22:43:55\ \ acg}}
+\DoxyCodeLine{00202\ \textcolor{comment}{//Added\ CVS\ change\ log\ annotation.}}
+\DoxyCodeLine{00203\ \textcolor{comment}{//}}
+\DoxyCodeLine{00204\ }
+\DoxyCodeLine{00205\ \}\ \textcolor{comment}{//\ namespace\ sc\_core}}
+\DoxyCodeLine{00206\ }
+\DoxyCodeLine{00207\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00208\ }
+\DoxyCodeLine{00209\ \textcolor{comment}{//\ Taf!}}
+
+\end{DoxyCode}

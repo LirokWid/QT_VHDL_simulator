@@ -1,0 +1,64 @@
+\doxysection{addressof.\+hpp}
+\hypertarget{addressof_8hpp_source}{}\label{addressof_8hpp_source}\index{C:/Users/BJRODIER/Documents/QT\_REPO/QT\_VHDL\_simulator/code/Ressources/SystemC/include/sysc/packages/boost/utility/addressof.hpp@{C:/Users/BJRODIER/Documents/QT\_REPO/QT\_VHDL\_simulator/code/Ressources/SystemC/include/sysc/packages/boost/utility/addressof.hpp}}
+\mbox{\hyperlink{addressof_8hpp}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{comment}{//\ Copyright\ (C)\ 2002\ Brad\ King\ (brad.king@kitware.com)\ }}
+\DoxyCodeLine{00002\ \textcolor{comment}{//\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Douglas\ Gregor\ (gregod@cs.rpi.edu)}}
+\DoxyCodeLine{00003\ \textcolor{comment}{//\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Peter\ Dimov}}
+\DoxyCodeLine{00004\ \textcolor{comment}{//}}
+\DoxyCodeLine{00005\ \textcolor{comment}{//\ Distributed\ under\ the\ Boost\ Software\ License,\ Version\ 1.0.\ (See}}
+\DoxyCodeLine{00006\ \textcolor{comment}{//\ accompanying\ file\ LICENSE\_1\_0.txt\ or\ copy\ at}}
+\DoxyCodeLine{00007\ \textcolor{comment}{//\ http://www.boost.org/LICENSE\_1\_0.txt)}}
+\DoxyCodeLine{00008\ }
+\DoxyCodeLine{00009\ \textcolor{comment}{//\ For\ more\ information,\ see\ http://www.boost.org}}
+\DoxyCodeLine{00010\ }
+\DoxyCodeLine{00011\ \textcolor{preprocessor}{\#ifndef\ SC\_BOOST\_UTILITY\_ADDRESSOF\_HPP}}
+\DoxyCodeLine{00012\ \textcolor{preprocessor}{\#\ define\ SC\_BOOST\_UTILITY\_ADDRESSOF\_HPP}}
+\DoxyCodeLine{00013\ }
+\DoxyCodeLine{00014\ \textcolor{preprocessor}{\#\ include\ <\mbox{\hyperlink{config_8hpp}{sysc/packages/boost/config.hpp}}>}}
+\DoxyCodeLine{00015\ \textcolor{preprocessor}{\#\ include\ <\mbox{\hyperlink{detail_2workaround_8hpp}{sysc/packages/boost/detail/workaround.hpp}}>}}
+\DoxyCodeLine{00016\ }
+\DoxyCodeLine{00017\ \textcolor{keyword}{namespace\ }\mbox{\hyperlink{namespacesc__boost}{sc\_boost}}\ \{}
+\DoxyCodeLine{00018\ }
+\DoxyCodeLine{00019\ \textcolor{comment}{//\ Do\ not\ make\ addressof()\ inline.\ Breaks\ MSVC\ 7.\ (Peter\ Dimov)}}
+\DoxyCodeLine{00020\ }
+\DoxyCodeLine{00021\ \textcolor{comment}{//\ VC7\ strips\ const\ from\ nested\ classes\ unless\ we\ add\ indirection\ here}}
+\DoxyCodeLine{00022\ \textcolor{preprocessor}{\#\ if\ SC\_BOOST\_WORKAROUND(SC\_BOOST\_MSVC,\ ==\ 1300)}}
+\DoxyCodeLine{00023\ }
+\DoxyCodeLine{00024\ \textcolor{keyword}{template}<\textcolor{keyword}{class}\ T>\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{class_sysc_add__pv}{\_addp}}}
+\DoxyCodeLine{00025\ \{}
+\DoxyCodeLine{00026\ \ \ \ \ \textcolor{keyword}{typedef}\ \mbox{\hyperlink{mem__fn__cc_8hpp_adf1f3edb9115acb0a1e04209b7a9937b}{T}}\ *\ type;}
+\DoxyCodeLine{00027\ \};}
+\DoxyCodeLine{00028\ \ \ \ \ }
+\DoxyCodeLine{00029\ \textcolor{keyword}{template}\ <\textcolor{keyword}{typename}\ T>\ \textcolor{keyword}{typename}\ \mbox{\hyperlink{class_sysc_add__pv}{\_addp<T>::type}}}
+\DoxyCodeLine{00030\ }
+\DoxyCodeLine{00031\ \textcolor{preprocessor}{\#\ else}}
+\DoxyCodeLine{00032\ \textcolor{keyword}{template}\ <\textcolor{keyword}{typename}\ T>\ \mbox{\hyperlink{mem__fn__cc_8hpp_adf1f3edb9115acb0a1e04209b7a9937b}{T}}*}
+\DoxyCodeLine{00033\ \textcolor{preprocessor}{\#\ endif}}
+\DoxyCodeLine{00034\ \mbox{\hyperlink{namespacesc__boost_a695a258e4c6ab0a18e07a668ab5d3e66}{addressof}}(\mbox{\hyperlink{mem__fn__cc_8hpp_adf1f3edb9115acb0a1e04209b7a9937b}{T}}\&\ v)}
+\DoxyCodeLine{00035\ \{}
+\DoxyCodeLine{00036\ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{reinterpret\_cast<}\mbox{\hyperlink{mem__fn__cc_8hpp_adf1f3edb9115acb0a1e04209b7a9937b}{T}}*\textcolor{keyword}{>}(}
+\DoxyCodeLine{00037\ \ \ \ \ \ \ \ \&\textcolor{keyword}{const\_cast<}\textcolor{keywordtype}{char}\&\textcolor{keyword}{>}(\textcolor{keyword}{reinterpret\_cast<}\textcolor{keyword}{const\ }\textcolor{keyword}{volatile\ }\textcolor{keywordtype}{char}\ \&\textcolor{keyword}{>}(v)));}
+\DoxyCodeLine{00038\ \}}
+\DoxyCodeLine{00039\ }
+\DoxyCodeLine{00040\ \textcolor{comment}{//\ Borland\ doesn't\ like\ casting\ an\ array\ reference\ to\ a\ char\ reference}}
+\DoxyCodeLine{00041\ \textcolor{comment}{//\ but\ these\ overloads\ work\ around\ the\ problem.}}
+\DoxyCodeLine{00042\ \textcolor{preprocessor}{\#\ if\ SC\_BOOST\_WORKAROUND(\_\_BORLANDC\_\_,\ SC\_BOOST\_TESTED\_AT(0x564))}}
+\DoxyCodeLine{00043\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ T,std::\textcolor{keywordtype}{size\_t}\ N>}
+\DoxyCodeLine{00044\ \mbox{\hyperlink{mem__fn__cc_8hpp_adf1f3edb9115acb0a1e04209b7a9937b}{T}}\ (*\mbox{\hyperlink{namespacesc__boost_a695a258e4c6ab0a18e07a668ab5d3e66}{addressof}}(\mbox{\hyperlink{mem__fn__cc_8hpp_adf1f3edb9115acb0a1e04209b7a9937b}{T}}\ (\&t)[\mbox{\hyperlink{class_sysc_add__pv}{N}}]))[\mbox{\hyperlink{class_sysc_add__pv}{N}}]}
+\DoxyCodeLine{00045\ \{}
+\DoxyCodeLine{00046\ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{reinterpret\_cast<}\mbox{\hyperlink{mem__fn__cc_8hpp_adf1f3edb9115acb0a1e04209b7a9937b}{T}}(*)[\mbox{\hyperlink{class_sysc_add__pv}{N}}]\textcolor{keyword}{>}(\&t);}
+\DoxyCodeLine{00047\ \}}
+\DoxyCodeLine{00048\ }
+\DoxyCodeLine{00049\ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ T,std::\textcolor{keywordtype}{size\_t}\ N>}
+\DoxyCodeLine{00050\ \textcolor{keyword}{const}\ \mbox{\hyperlink{mem__fn__cc_8hpp_adf1f3edb9115acb0a1e04209b7a9937b}{T}}\ (*\mbox{\hyperlink{namespacesc__boost_a695a258e4c6ab0a18e07a668ab5d3e66}{addressof}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{mem__fn__cc_8hpp_adf1f3edb9115acb0a1e04209b7a9937b}{T}}\ (\&t)[\mbox{\hyperlink{class_sysc_add__pv}{N}}]))[\mbox{\hyperlink{class_sysc_add__pv}{N}}]}
+\DoxyCodeLine{00051\ \{}
+\DoxyCodeLine{00052\ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{reinterpret\_cast<}\textcolor{keyword}{const\ }\mbox{\hyperlink{mem__fn__cc_8hpp_adf1f3edb9115acb0a1e04209b7a9937b}{T}}(*)[\mbox{\hyperlink{class_sysc_add__pv}{N}}]\textcolor{keyword}{>}(\&t);}
+\DoxyCodeLine{00053\ \}}
+\DoxyCodeLine{00054\ \textcolor{preprocessor}{\#\ endif}}
+\DoxyCodeLine{00055\ }
+\DoxyCodeLine{00056\ \}}
+\DoxyCodeLine{00057\ }
+\DoxyCodeLine{00058\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{//\ SC\_BOOST\_UTILITY\_ADDRESSOF\_HPP}}
+
+\end{DoxyCode}

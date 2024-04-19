@@ -1,0 +1,193 @@
+.TH "tlm::tlm_put_get_imp< PUT_DATA, GET_DATA >" 3 "VHDL simulator" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+tlm::tlm_put_get_imp< PUT_DATA, GET_DATA >
+.SH SYNOPSIS
+.br
+.PP
+.PP
+\fR#include <tlm_put_get_imp\&.h>\fP
+.PP
+Inherits \fBtlm::tlm_put_if< PUT_DATA >\fP, and \fBtlm::tlm_get_peek_if< GET_DATA >\fP\&.
+.SS "Public Member Functions"
+
+.in +1c
+.ti -1c
+.RI "\fBtlm_put_get_imp\fP (\fBtlm_put_if\fP< \fBPUT_DATA\fP > &p, \fBtlm_get_peek_if\fP< \fBGET_DATA\fP > &\fBg\fP)"
+.br
+.ti -1c
+.RI "\fBvoid\fP \fBput\fP (\fBconst\fP \fBPUT_DATA\fP &t)"
+.br
+.ti -1c
+.RI "\fBbool\fP \fBnb_put\fP (\fBconst\fP \fBPUT_DATA\fP &t)"
+.br
+.ti -1c
+.RI "\fBbool\fP \fBnb_can_put\fP (\fBtlm_tag\fP< \fBPUT_DATA\fP > *t=0) \fBconst\fP"
+.br
+.ti -1c
+.RI "\fBconst\fP \fBsc_core::sc_event\fP & \fBok_to_put\fP (\fBtlm_tag\fP< \fBPUT_DATA\fP > *t=0) \fBconst\fP"
+.br
+.ti -1c
+.RI "\fBGET_DATA\fP \fBget\fP (\fBtlm_tag\fP< \fBGET_DATA\fP > *=0)"
+.br
+.ti -1c
+.RI "\fBbool\fP \fBnb_get\fP (\fBGET_DATA\fP &t)"
+.br
+.ti -1c
+.RI "\fBbool\fP \fBnb_can_get\fP (\fBtlm_tag\fP< \fBGET_DATA\fP > *t=0) \fBconst\fP"
+.br
+.ti -1c
+.RI "\fBvirtual\fP \fBconst\fP \fBsc_core::sc_event\fP & \fBok_to_get\fP (\fBtlm_tag\fP< \fBGET_DATA\fP > *t=0) \fBconst\fP"
+.br
+.ti -1c
+.RI "\fBGET_DATA\fP \fBpeek\fP (\fBtlm_tag\fP< \fBGET_DATA\fP > *=0) \fBconst\fP"
+.br
+.ti -1c
+.RI "\fBbool\fP \fBnb_peek\fP (\fBGET_DATA\fP &t) \fBconst\fP"
+.br
+.ti -1c
+.RI "\fBbool\fP \fBnb_can_peek\fP (\fBtlm_tag\fP< \fBGET_DATA\fP > *t=0) \fBconst\fP"
+.br
+.ti -1c
+.RI "\fBvirtual\fP \fBconst\fP \fBsc_core::sc_event\fP & \fBok_to_peek\fP (\fBtlm_tag\fP< \fBGET_DATA\fP > *t=0) \fBconst\fP"
+.br
+.in -1c
+
+Public Member Functions inherited from \fBtlm::tlm_blocking_put_if< T >\fP
+.in +1c
+.ti -1c
+.RI "\fBvirtual\fP \fBvoid\fP \fBput\fP (\fBconst\fP \fBT\fP &t)=0"
+.br
+.in -1c
+
+Public Member Functions inherited from \fBsc_core::sc_interface\fP
+.in +1c
+.ti -1c
+.RI "\fBvirtual\fP \fBvoid\fP \fBregister_port\fP (\fBsc_port_base\fP &\fBport_\fP, \fBconst\fP \fBchar\fP *\fBif_typename_\fP)"
+.br
+.ti -1c
+.RI "\fBvirtual\fP \fBconst\fP \fBsc_event\fP & \fBdefault_event\fP () \fBconst\fP"
+.br
+.ti -1c
+.RI "\fBvirtual\fP \fB~sc_interface\fP ()"
+.br
+.in -1c
+
+Public Member Functions inherited from \fBtlm::tlm_nonblocking_put_if< T >\fP
+.in +1c
+.ti -1c
+.RI "\fBvirtual\fP \fBbool\fP \fBnb_put\fP (\fBconst\fP \fBT\fP &t)=0"
+.br
+.ti -1c
+.RI "\fBvirtual\fP \fBbool\fP \fBnb_can_put\fP (\fBtlm_tag\fP< \fBT\fP > *t=0) \fBconst\fP =0"
+.br
+.ti -1c
+.RI "\fBvirtual\fP \fBconst\fP \fBsc_core::sc_event\fP & \fBok_to_put\fP (\fBtlm_tag\fP< \fBT\fP > *t=0) \fBconst\fP =0"
+.br
+.in -1c
+
+Public Member Functions inherited from \fBtlm::tlm_blocking_get_if< T >\fP
+.in +1c
+.ti -1c
+.RI "\fBvirtual\fP \fBT\fP \fBget\fP (\fBtlm_tag\fP< \fBT\fP > *t=0)=0"
+.br
+.ti -1c
+.RI "\fBvirtual\fP \fBvoid\fP \fBget\fP (\fBT\fP &t)"
+.br
+.in -1c
+
+Public Member Functions inherited from \fBtlm::tlm_nonblocking_get_if< T >\fP
+.in +1c
+.ti -1c
+.RI "\fBvirtual\fP \fBbool\fP \fBnb_get\fP (\fBT\fP &t)=0"
+.br
+.ti -1c
+.RI "\fBvirtual\fP \fBbool\fP \fBnb_can_get\fP (\fBtlm_tag\fP< \fBT\fP > *t=0) \fBconst\fP =0"
+.br
+.ti -1c
+.RI "\fBvirtual\fP \fBconst\fP \fBsc_core::sc_event\fP & \fBok_to_get\fP (\fBtlm_tag\fP< \fBT\fP > *t=0) \fBconst\fP =0"
+.br
+.in -1c
+
+Public Member Functions inherited from \fBtlm::tlm_blocking_peek_if< T >\fP
+.in +1c
+.ti -1c
+.RI "\fBvirtual\fP \fBT\fP \fBpeek\fP (\fBtlm_tag\fP< \fBT\fP > *t=0) \fBconst\fP =0"
+.br
+.ti -1c
+.RI "\fBvirtual\fP \fBvoid\fP \fBpeek\fP (\fBT\fP &t) \fBconst\fP"
+.br
+.in -1c
+
+Public Member Functions inherited from \fBtlm::tlm_nonblocking_peek_if< T >\fP
+.in +1c
+.ti -1c
+.RI "\fBvirtual\fP \fBbool\fP \fBnb_peek\fP (\fBT\fP &t) \fBconst\fP =0"
+.br
+.ti -1c
+.RI "\fBvirtual\fP \fBbool\fP \fBnb_can_peek\fP (\fBtlm_tag\fP< \fBT\fP > *t=0) \fBconst\fP =0"
+.br
+.ti -1c
+.RI "\fBvirtual\fP \fBconst\fP \fBsc_core::sc_event\fP & \fBok_to_peek\fP (\fBtlm_tag\fP< \fBT\fP > *t=0) \fBconst\fP =0"
+.br
+.in -1c
+.SS "Private Attributes"
+
+.in +1c
+.ti -1c
+.RI "\fBtlm_put_if\fP< \fBPUT_DATA\fP > & \fBput_fifo\fP"
+.br
+.ti -1c
+.RI "\fBtlm_get_peek_if\fP< \fBGET_DATA\fP > & \fBget_fifo\fP"
+.br
+.in -1c
+.SS "Additional Inherited Members"
+
+
+Protected Member Functions inherited from \fBsc_core::sc_interface\fP
+.in +1c
+.ti -1c
+.RI "\fBsc_interface\fP ()"
+.br
+.in -1c
+.SH "Constructor & Destructor Documentation"
+.PP 
+.SS "template<\fBtypename\fP \fBPUT_DATA\fP , \fBtypename\fP \fBGET_DATA\fP > \fBtlm::tlm_put_get_imp\fP< \fBPUT_DATA\fP, \fBGET_DATA\fP >::tlm_put_get_imp (\fBtlm_put_if\fP< \fBPUT_DATA\fP > & p, \fBtlm_get_peek_if\fP< \fBGET_DATA\fP > & g)\fR [inline]\fP"
+
+.SH "Member Function Documentation"
+.PP 
+.SS "template<\fBtypename\fP \fBPUT_DATA\fP , \fBtypename\fP \fBGET_DATA\fP > \fBGET_DATA\fP \fBtlm::tlm_put_get_imp\fP< \fBPUT_DATA\fP, \fBGET_DATA\fP >::get (\fBtlm_tag\fP< \fBGET_DATA\fP > * = \fR0\fP)\fR [inline]\fP"
+
+.SS "template<\fBtypename\fP \fBPUT_DATA\fP , \fBtypename\fP \fBGET_DATA\fP > \fBbool\fP \fBtlm::tlm_put_get_imp\fP< \fBPUT_DATA\fP, \fBGET_DATA\fP >::nb_can_get (\fBtlm_tag\fP< \fBGET_DATA\fP > * t = \fR0\fP) const\fR [inline]\fP"
+
+.SS "template<\fBtypename\fP \fBPUT_DATA\fP , \fBtypename\fP \fBGET_DATA\fP > \fBbool\fP \fBtlm::tlm_put_get_imp\fP< \fBPUT_DATA\fP, \fBGET_DATA\fP >::nb_can_peek (\fBtlm_tag\fP< \fBGET_DATA\fP > * t = \fR0\fP) const\fR [inline]\fP"
+
+.SS "template<\fBtypename\fP \fBPUT_DATA\fP , \fBtypename\fP \fBGET_DATA\fP > \fBbool\fP \fBtlm::tlm_put_get_imp\fP< \fBPUT_DATA\fP, \fBGET_DATA\fP >::nb_can_put (\fBtlm_tag\fP< \fBPUT_DATA\fP > * t = \fR0\fP) const\fR [inline]\fP"
+
+.SS "template<\fBtypename\fP \fBPUT_DATA\fP , \fBtypename\fP \fBGET_DATA\fP > \fBbool\fP \fBtlm::tlm_put_get_imp\fP< \fBPUT_DATA\fP, \fBGET_DATA\fP >::nb_get (\fBGET_DATA\fP & t)\fR [inline]\fP"
+
+.SS "template<\fBtypename\fP \fBPUT_DATA\fP , \fBtypename\fP \fBGET_DATA\fP > \fBbool\fP \fBtlm::tlm_put_get_imp\fP< \fBPUT_DATA\fP, \fBGET_DATA\fP >::nb_peek (\fBGET_DATA\fP & t) const\fR [inline]\fP"
+
+.SS "template<\fBtypename\fP \fBPUT_DATA\fP , \fBtypename\fP \fBGET_DATA\fP > \fBbool\fP \fBtlm::tlm_put_get_imp\fP< \fBPUT_DATA\fP, \fBGET_DATA\fP >::nb_put (\fBconst\fP \fBPUT_DATA\fP & t)\fR [inline]\fP"
+
+.SS "template<\fBtypename\fP \fBPUT_DATA\fP , \fBtypename\fP \fBGET_DATA\fP > \fBvirtual\fP \fBconst\fP \fBsc_core::sc_event\fP & \fBtlm::tlm_put_get_imp\fP< \fBPUT_DATA\fP, \fBGET_DATA\fP >::ok_to_get (\fBtlm_tag\fP< \fBGET_DATA\fP > * t = \fR0\fP) const\fR [inline]\fP, \fR [virtual]\fP"
+
+.SS "template<\fBtypename\fP \fBPUT_DATA\fP , \fBtypename\fP \fBGET_DATA\fP > \fBvirtual\fP \fBconst\fP \fBsc_core::sc_event\fP & \fBtlm::tlm_put_get_imp\fP< \fBPUT_DATA\fP, \fBGET_DATA\fP >::ok_to_peek (\fBtlm_tag\fP< \fBGET_DATA\fP > * t = \fR0\fP) const\fR [inline]\fP, \fR [virtual]\fP"
+
+.SS "template<\fBtypename\fP \fBPUT_DATA\fP , \fBtypename\fP \fBGET_DATA\fP > \fBconst\fP \fBsc_core::sc_event\fP & \fBtlm::tlm_put_get_imp\fP< \fBPUT_DATA\fP, \fBGET_DATA\fP >::ok_to_put (\fBtlm_tag\fP< \fBPUT_DATA\fP > * t = \fR0\fP) const\fR [inline]\fP"
+
+.SS "template<\fBtypename\fP \fBPUT_DATA\fP , \fBtypename\fP \fBGET_DATA\fP > \fBGET_DATA\fP \fBtlm::tlm_put_get_imp\fP< \fBPUT_DATA\fP, \fBGET_DATA\fP >::peek (\fBtlm_tag\fP< \fBGET_DATA\fP > * = \fR0\fP) const\fR [inline]\fP"
+
+.SS "template<\fBtypename\fP \fBPUT_DATA\fP , \fBtypename\fP \fBGET_DATA\fP > \fBvoid\fP \fBtlm::tlm_put_get_imp\fP< \fBPUT_DATA\fP, \fBGET_DATA\fP >::put (\fBconst\fP \fBPUT_DATA\fP & t)\fR [inline]\fP"
+
+.SH "Member Data Documentation"
+.PP 
+.SS "template<\fBtypename\fP \fBPUT_DATA\fP , \fBtypename\fP \fBGET_DATA\fP > \fBtlm_get_peek_if\fP<\fBGET_DATA\fP>& \fBtlm::tlm_put_get_imp\fP< \fBPUT_DATA\fP, \fBGET_DATA\fP >::get_fifo\fR [private]\fP"
+
+.SS "template<\fBtypename\fP \fBPUT_DATA\fP , \fBtypename\fP \fBGET_DATA\fP > \fBtlm_put_if\fP<\fBPUT_DATA\fP>& \fBtlm::tlm_put_get_imp\fP< \fBPUT_DATA\fP, \fBGET_DATA\fP >::put_fifo\fR [private]\fP"
+
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for VHDL simulator from the source code\&.

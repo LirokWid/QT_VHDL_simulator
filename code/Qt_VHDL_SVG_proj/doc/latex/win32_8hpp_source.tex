@@ -1,0 +1,66 @@
+\doxysection{win32.\+hpp}
+\hypertarget{win32_8hpp_source}{}\label{win32_8hpp_source}\index{C:/Users/BJRODIER/Documents/QT\_REPO/QT\_VHDL\_simulator/code/Ressources/SystemC/include/sysc/packages/boost/config/platform/win32.hpp@{C:/Users/BJRODIER/Documents/QT\_REPO/QT\_VHDL\_simulator/code/Ressources/SystemC/include/sysc/packages/boost/config/platform/win32.hpp}}
+\mbox{\hyperlink{win32_8hpp}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{comment}{//\ \ (C)\ Copyright\ John\ Maddock\ 2001\ -\/\ 2003.\ }}
+\DoxyCodeLine{00002\ \textcolor{comment}{//\ \ (C)\ Copyright\ Bill\ Kempf\ 2001.\ }}
+\DoxyCodeLine{00003\ \textcolor{comment}{//\ \ (C)\ Copyright\ Aleksey\ Gurtovoy\ 2003.\ }}
+\DoxyCodeLine{00004\ \textcolor{comment}{//\ \ (C)\ Copyright\ Rene\ Rivera\ 2005.}}
+\DoxyCodeLine{00005\ \textcolor{comment}{//\ \ Use,\ modification\ and\ distribution\ are\ subject\ to\ the\ }}
+\DoxyCodeLine{00006\ \textcolor{comment}{//\ \ Boost\ Software\ License,\ Version\ 1.0.\ (See\ accompanying\ file\ }}
+\DoxyCodeLine{00007\ \textcolor{comment}{//\ \ LICENSE\_1\_0.txt\ or\ copy\ at\ http://www.boost.org/LICENSE\_1\_0.txt)}}
+\DoxyCodeLine{00008\ }
+\DoxyCodeLine{00009\ \textcolor{comment}{//\ \ See\ http://www.boost.org\ for\ most\ recent\ version.}}
+\DoxyCodeLine{00010\ }
+\DoxyCodeLine{00011\ \textcolor{comment}{//\ \ Win32\ specific\ config\ options:}}
+\DoxyCodeLine{00012\ }
+\DoxyCodeLine{00013\ \textcolor{preprocessor}{\#define\ SC\_BOOST\_PLATFORM\ "{}Win32"{}}}
+\DoxyCodeLine{00014\ }
+\DoxyCodeLine{00015\ \textcolor{comment}{//\ \ Get\ the\ information\ about\ the\ MinGW\ runtime,\ i.e.\ \_\_MINGW32\_*VERSION.}}
+\DoxyCodeLine{00016\ \textcolor{preprocessor}{\#if\ defined(\_\_MINGW32\_\_)}}
+\DoxyCodeLine{00017\ \textcolor{preprocessor}{\#\ \ include\ <\_mingw.h>}}
+\DoxyCodeLine{00018\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00019\ }
+\DoxyCodeLine{00020\ \textcolor{preprocessor}{\#if\ defined(\_\_GNUC\_\_)\ \&\&\ !defined(SC\_BOOST\_NO\_SWPRINTF)}}
+\DoxyCodeLine{00021\ \textcolor{preprocessor}{\#\ \ define\ SC\_BOOST\_NO\_SWPRINTF}}
+\DoxyCodeLine{00022\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00023\ }
+\DoxyCodeLine{00024\ \textcolor{preprocessor}{\#if\ !defined(\_\_GNUC\_\_)\ \&\&\ !defined(SC\_BOOST\_HAS\_DECLSPEC)}}
+\DoxyCodeLine{00025\ \textcolor{preprocessor}{\#\ \ define\ SC\_BOOST\_HAS\_DECLSPEC}}
+\DoxyCodeLine{00026\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00027\ }
+\DoxyCodeLine{00028\ \textcolor{preprocessor}{\#if\ defined(\_\_MINGW32\_\_)\ \&\&\ ((\_\_MINGW32\_MAJOR\_VERSION\ >\ 2)\ ||\ ((\_\_MINGW32\_MAJOR\_VERSION\ ==\ 2)\ \&\&\ (\_\_MINGW32\_MINOR\_VERSION\ >=\ 0)))}}
+\DoxyCodeLine{00029\ \textcolor{preprocessor}{\#\ \ define\ SC\_BOOST\_HAS\_STDINT\_H}}
+\DoxyCodeLine{00030\ \textcolor{preprocessor}{\#\ \ if\ !defined(\_\_STDC\_LIMIT\_MACROS)}}
+\DoxyCodeLine{00031\ \textcolor{preprocessor}{\#\ \ \ \ define\ \_\_STDC\_LIMIT\_MACROS}}
+\DoxyCodeLine{00032\ \textcolor{preprocessor}{\#\ \ endif}}
+\DoxyCodeLine{00033\ \textcolor{preprocessor}{\#\ \ define\ SC\_BOOST\_HAS\_DIRENT\_H}}
+\DoxyCodeLine{00034\ \textcolor{preprocessor}{\#\ \ define\ SC\_BOOST\_HAS\_UNISTD\_H}}
+\DoxyCodeLine{00035\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00036\ }
+\DoxyCodeLine{00037\ \textcolor{comment}{//}}
+\DoxyCodeLine{00038\ \textcolor{comment}{//\ Win32\ will\ normally\ be\ using\ native\ Win32\ threads,}}
+\DoxyCodeLine{00039\ \textcolor{comment}{//\ but\ there\ is\ a\ pthread\ library\ avaliable\ as\ an\ option,}}
+\DoxyCodeLine{00040\ \textcolor{comment}{//\ we\ used\ to\ disable\ this\ when\ SC\_BOOST\_DISABLE\_WIN32\ was\ }}
+\DoxyCodeLine{00041\ \textcolor{comment}{//\ defined\ but\ no\ longer\ -\/\ this\ should\ allow\ some}}
+\DoxyCodeLine{00042\ \textcolor{comment}{//\ files\ to\ be\ compiled\ in\ strict\ mode\ -\/\ while\ maintaining}}
+\DoxyCodeLine{00043\ \textcolor{comment}{//\ a\ consistent\ setting\ of\ SC\_BOOST\_HAS\_THREADS\ across}}
+\DoxyCodeLine{00044\ \textcolor{comment}{//\ all\ translation\ units\ (needed\ for\ shared\_ptr\ etc).}}
+\DoxyCodeLine{00045\ \textcolor{comment}{//}}
+\DoxyCodeLine{00046\ }
+\DoxyCodeLine{00047\ \textcolor{preprocessor}{\#ifdef\ \_WIN32\_WCE}}
+\DoxyCodeLine{00048\ \textcolor{preprocessor}{\#\ \ define\ SC\_BOOST\_NO\_ANSI\_APIS}}
+\DoxyCodeLine{00049\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00050\ }
+\DoxyCodeLine{00051\ \textcolor{preprocessor}{\#ifndef\ SC\_BOOST\_HAS\_PTHREADS}}
+\DoxyCodeLine{00052\ \textcolor{preprocessor}{\#\ \ define\ SC\_BOOST\_HAS\_WINTHREADS}}
+\DoxyCodeLine{00053\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00054\ }
+\DoxyCodeLine{00055\ \textcolor{preprocessor}{\#ifndef\ SC\_BOOST\_DISABLE\_WIN32}}
+\DoxyCodeLine{00056\ \textcolor{comment}{//\ WEK:\ Added}}
+\DoxyCodeLine{00057\ \textcolor{preprocessor}{\#define\ SC\_BOOST\_HAS\_FTIME}}
+\DoxyCodeLine{00058\ \textcolor{preprocessor}{\#define\ SC\_BOOST\_WINDOWS\ 1}}
+\DoxyCodeLine{00059\ }
+\DoxyCodeLine{00060\ \textcolor{preprocessor}{\#endif}}
+
+\end{DoxyCode}

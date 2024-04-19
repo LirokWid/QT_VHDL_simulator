@@ -1,0 +1,124 @@
+.TH "C:/Users/BJRODIER/Documents/QT_REPO/QT_VHDL_simulator/code/Ressources/SystemC/include/sysc/packages/qt/md/aarch64.h" 3 "VHDL simulator" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+C:/Users/BJRODIER/Documents/QT_REPO/QT_VHDL_simulator/code/Ressources/SystemC/include/sysc/packages/qt/md/aarch64.h
+.SH SYNOPSIS
+.br
+.PP
+.SS "Macros"
+
+.in +1c
+.ti -1c
+.RI "#\fBdefine\fP \fBQUICKTHREADS_STKALIGN\fP   (16)"
+.br
+.ti -1c
+.RI "#\fBdefine\fP \fBQUICKTHREADS_STKBASE\fP   (20 * \fBsizeof\fP(\fBqt_word_t\fP))"
+.br
+.ti -1c
+.RI "#\fBdefine\fP \fBQUICKTHREADS_VSTKBASE\fP   (5 * \fBsizeof\fP(\fBqt_word_t\fP))"
+.br
+.ti -1c
+.RI "#\fBdefine\fP \fBQUICKTHREADS_GROW_DOWN\fP"
+.br
+.ti -1c
+.RI "#\fBdefine\fP \fBQUICKTHREADS_ADJ\fP(\fBsp\fP)   (((\fBchar\fP *)\fBsp\fP) \- \fBQUICKTHREADS_STKBASE\fP)"
+.br
+.ti -1c
+.RI "#\fBdefine\fP \fBQUICKTHREADS_ARGS\fP(\fBsp\fP,  \fBpu\fP,  \fBpt\fP,  \fBuserf\fP,  \fBonly\fP)"
+.br
+.ti -1c
+.RI "#\fBdefine\fP \fBQUICKTHREADS_LINK_INDEX\fP   \-1"
+.br
+.ti -1c
+.RI "#\fBdefine\fP \fBQUICKTHREADS_FRAME_INDEX\fP   \-2"
+.br
+.ti -1c
+.RI "#\fBdefine\fP \fBQUICKTHREADS_ONLY_INDEX\fP   \-3"
+.br
+.ti -1c
+.RI "#\fBdefine\fP \fBQUICKTHREADS_USER_INDEX\fP   \-4"
+.br
+.ti -1c
+.RI "#\fBdefine\fP \fBQUICKTHREADS_ARGT_INDEX\fP   \-5"
+.br
+.ti -1c
+.RI "#\fBdefine\fP \fBQUICKTHREADS_ARGU_INDEX\fP   \-6"
+.br
+.in -1c
+.SS "Typedefs"
+
+.in +1c
+.ti -1c
+.RI "\fBtypedef\fP \fBunsigned\fP \fBlong\fP \fBqt_word_t\fP"
+.br
+.in -1c
+.SS "Functions"
+
+.in +1c
+.ti -1c
+.RI "\fBvoid\fP \fBqt_start\fP (\fBvoid\fP)"
+.br
+.ti -1c
+.RI "\fBvoid\fP \fBqt_vstart\fP (\fBvoid\fP)"
+.br
+.ti -1c
+.RI "\fBvoid\fP \fBqt_error\fP (\fBvoid\fP)"
+.br
+.ti -1c
+.RI "\fBvoid\fP \fBqt_align\fP (\fBvoid\fP)"
+.br
+.in -1c
+.SH "Macro Definition Documentation"
+.PP 
+.SS "#\fBdefine\fP QUICKTHREADS_ADJ(\fBsp\fP)   (((\fBchar\fP *)\fBsp\fP) \- \fBQUICKTHREADS_STKBASE\fP)"
+
+.SS "#\fBdefine\fP QUICKTHREADS_ARGS(\fBsp\fP, \fBpu\fP, \fBpt\fP, \fBuserf\fP, \fBonly\fP)"
+\fBValue:\fP.PP
+.nf
+   (QUICKTHREADS_SPUT(sp, QUICKTHREADS_LINK_INDEX,  qt_start), \\
+    QUICKTHREADS_SPUT(sp, QUICKTHREADS_FRAME_INDEX, sp),       \\
+    QUICKTHREADS_SPUT(sp, QUICKTHREADS_ONLY_INDEX,  only),     \\
+    QUICKTHREADS_SPUT(sp, QUICKTHREADS_USER_INDEX,  userf),    \\
+    QUICKTHREADS_SPUT(sp, QUICKTHREADS_ARGT_INDEX,  pt),       \\
+    QUICKTHREADS_SPUT(sp, QUICKTHREADS_ARGU_INDEX,  pu),       \\
+    sp)
+.fi
+
+.SS "#\fBdefine\fP QUICKTHREADS_ARGT_INDEX   \-5"
+
+.SS "#\fBdefine\fP QUICKTHREADS_ARGU_INDEX   \-6"
+
+.SS "#\fBdefine\fP QUICKTHREADS_FRAME_INDEX   \-2"
+
+.SS "#\fBdefine\fP QUICKTHREADS_GROW_DOWN"
+
+.SS "#\fBdefine\fP QUICKTHREADS_LINK_INDEX   \-1"
+
+.SS "#\fBdefine\fP QUICKTHREADS_ONLY_INDEX   \-3"
+
+.SS "#\fBdefine\fP QUICKTHREADS_STKALIGN   (16)"
+
+.SS "#\fBdefine\fP QUICKTHREADS_STKBASE   (20 * \fBsizeof\fP(\fBqt_word_t\fP))"
+
+.SS "#\fBdefine\fP QUICKTHREADS_USER_INDEX   \-4"
+
+.SS "#\fBdefine\fP QUICKTHREADS_VSTKBASE   (5 * \fBsizeof\fP(\fBqt_word_t\fP))"
+
+.SH "Typedef Documentation"
+.PP 
+.SS "\fBtypedef\fP \fBunsigned\fP \fBlong\fP \fBqt_word_t\fP"
+
+.SH "Function Documentation"
+.PP 
+.SS "\fBvoid\fP qt_align (\fBvoid\fP)\fR [extern]\fP"
+
+.SS "\fBvoid\fP qt_error (\fBvoid\fP)\fR [extern]\fP"
+
+.SS "\fBvoid\fP qt_start (\fBvoid\fP)\fR [extern]\fP"
+
+.SS "\fBvoid\fP qt_vstart (\fBvoid\fP)\fR [extern]\fP"
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for VHDL simulator from the source code\&.

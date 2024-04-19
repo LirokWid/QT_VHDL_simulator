@@ -1,0 +1,96 @@
+\doxysection{sunpro\+\_\+cc.\+hpp}
+\hypertarget{sunpro__cc_8hpp_source}{}\label{sunpro__cc_8hpp_source}\index{C:/Users/BJRODIER/Documents/QT\_REPO/QT\_VHDL\_simulator/code/Ressources/SystemC/include/sysc/packages/boost/config/compiler/sunpro\_cc.hpp@{C:/Users/BJRODIER/Documents/QT\_REPO/QT\_VHDL\_simulator/code/Ressources/SystemC/include/sysc/packages/boost/config/compiler/sunpro\_cc.hpp}}
+\mbox{\hyperlink{sunpro__cc_8hpp}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{comment}{//\ \ (C)\ Copyright\ John\ Maddock\ 2001.\ }}
+\DoxyCodeLine{00002\ \textcolor{comment}{//\ \ (C)\ Copyright\ Jens\ Maurer\ 2001\ -\/\ 2003.\ }}
+\DoxyCodeLine{00003\ \textcolor{comment}{//\ \ (C)\ Copyright\ Peter\ Dimov\ 2002.\ }}
+\DoxyCodeLine{00004\ \textcolor{comment}{//\ \ (C)\ Copyright\ Aleksey\ Gurtovoy\ 2002\ -\/\ 2003.\ }}
+\DoxyCodeLine{00005\ \textcolor{comment}{//\ \ (C)\ Copyright\ David\ Abrahams\ 2002.\ }}
+\DoxyCodeLine{00006\ \textcolor{comment}{//\ \ Use,\ modification\ and\ distribution\ are\ subject\ to\ the\ }}
+\DoxyCodeLine{00007\ \textcolor{comment}{//\ \ Boost\ Software\ License,\ Version\ 1.0.\ (See\ accompanying\ file\ }}
+\DoxyCodeLine{00008\ \textcolor{comment}{//\ \ LICENSE\_1\_0.txt\ or\ copy\ at\ http://www.boost.org/LICENSE\_1\_0.txt)}}
+\DoxyCodeLine{00009\ }
+\DoxyCodeLine{00010\ \textcolor{comment}{//\ \ See\ http://www.boost.org\ for\ most\ recent\ version.}}
+\DoxyCodeLine{00011\ }
+\DoxyCodeLine{00012\ \textcolor{comment}{//\ \ Sun\ C++\ compiler\ setup:}}
+\DoxyCodeLine{00013\ }
+\DoxyCodeLine{00014\ \textcolor{preprocessor}{\#\ \ \ \ if\ \_\_SUNPRO\_CC\ <=\ 0x500}}
+\DoxyCodeLine{00015\ \textcolor{preprocessor}{\#\ \ \ \ \ \ define\ SC\_BOOST\_NO\_MEMBER\_TEMPLATES}}
+\DoxyCodeLine{00016\ \textcolor{preprocessor}{\#\ \ \ \ \ \ define\ SC\_BOOST\_NO\_FUNCTION\_TEMPLATE\_ORDERING}}
+\DoxyCodeLine{00017\ \textcolor{preprocessor}{\#\ \ \ \ endif}}
+\DoxyCodeLine{00018\ }
+\DoxyCodeLine{00019\ \textcolor{preprocessor}{\#\ \ \ \ if\ (\_\_SUNPRO\_CC\ <=\ 0x520)}}
+\DoxyCodeLine{00020\ \ \ \ \ \ \ \ \textcolor{comment}{//}}
+\DoxyCodeLine{00021\ \ \ \ \ \ \ \ \textcolor{comment}{//\ Sunpro\ 5.2\ and\ earler:}}
+\DoxyCodeLine{00022\ \ \ \ \ \ \ \ \textcolor{comment}{//}}
+\DoxyCodeLine{00023\ \ \ \ \ \ \ \ \textcolor{comment}{//\ although\ sunpro\ 5.2\ supports\ the\ syntax\ for}}
+\DoxyCodeLine{00024\ \ \ \ \ \ \ \ \textcolor{comment}{//\ inline\ initialization\ it\ often\ gets\ the\ value}}
+\DoxyCodeLine{00025\ \ \ \ \ \ \ \ \textcolor{comment}{//\ wrong,\ especially\ where\ the\ value\ is\ computed}}
+\DoxyCodeLine{00026\ \ \ \ \ \ \ \ \textcolor{comment}{//\ from\ other\ constants\ (J\ Maddock\ 6th\ May\ 2001)}}
+\DoxyCodeLine{00027\ \textcolor{preprocessor}{\#\ \ \ \ \ \ define\ SC\_BOOST\_NO\_INCLASS\_MEMBER\_INITIALIZATION}}
+\DoxyCodeLine{00028\ }
+\DoxyCodeLine{00029\ \ \ \ \ \ \ \ \textcolor{comment}{//\ Although\ sunpro\ 5.2\ supports\ the\ syntax\ for}}
+\DoxyCodeLine{00030\ \ \ \ \ \ \ \ \textcolor{comment}{//\ partial\ specialization,\ it\ often\ seems\ to}}
+\DoxyCodeLine{00031\ \ \ \ \ \ \ \ \textcolor{comment}{//\ bind\ to\ the\ wrong\ specialization.\ \ Better}}
+\DoxyCodeLine{00032\ \ \ \ \ \ \ \ \textcolor{comment}{//\ to\ disable\ it\ until\ suppport\ becomes\ more\ stable}}
+\DoxyCodeLine{00033\ \ \ \ \ \ \ \ \textcolor{comment}{//\ (J\ Maddock\ 6th\ May\ 2001).}}
+\DoxyCodeLine{00034\ \textcolor{preprocessor}{\#\ \ \ \ \ \ define\ SC\_BOOST\_NO\_TEMPLATE\_PARTIAL\_SPECIALIZATION}}
+\DoxyCodeLine{00035\ \textcolor{preprocessor}{\#\ \ \ \ endif}}
+\DoxyCodeLine{00036\ }
+\DoxyCodeLine{00037\ \textcolor{preprocessor}{\#\ \ \ \ if\ (\_\_SUNPRO\_CC\ <=\ 0x530)\ }}
+\DoxyCodeLine{00038\ \ \ \ \ \ \ \ \textcolor{comment}{//\ Requesting\ debug\ info\ (-\/g)\ with\ Boost.Python\ results}}
+\DoxyCodeLine{00039\ \ \ \ \ \ \ \ \textcolor{comment}{//\ in\ an\ internal\ compiler\ error\ for\ "{}static\ const"{}}}
+\DoxyCodeLine{00040\ \ \ \ \ \ \ \ \textcolor{comment}{//\ initialized\ in-\/class.}}
+\DoxyCodeLine{00041\ \ \ \ \ \ \ \ \textcolor{comment}{//\ \ \ \ >>\ Assertion:\ \ \ (../links/dbg\_cstabs.cc,\ line\ 611)}}
+\DoxyCodeLine{00042\ \ \ \ \ \ \ \ \textcolor{comment}{//\ \ \ \ \ \ \ \ \ while\ processing\ ../test.cpp\ at\ line\ 0.}}
+\DoxyCodeLine{00043\ \ \ \ \ \ \ \ \textcolor{comment}{//\ (Jens\ Maurer\ according\ to\ Gottfried\ Ganﬂauge\ 04\ Mar\ 2002)}}
+\DoxyCodeLine{00044\ \textcolor{preprocessor}{\#\ \ \ \ \ \ define\ SC\_BOOST\_NO\_INCLASS\_MEMBER\_INITIALIZATION}}
+\DoxyCodeLine{00045\ }
+\DoxyCodeLine{00046\ \ \ \ \ \ \ \ \textcolor{comment}{//\ SunPro\ 5.3\ has\ better\ support\ for\ partial\ specialization,}}
+\DoxyCodeLine{00047\ \ \ \ \ \ \ \ \textcolor{comment}{//\ but\ breaks\ when\ compiling\ std::less<shared\_ptr<T>\ >}}
+\DoxyCodeLine{00048\ \ \ \ \ \ \ \ \textcolor{comment}{//\ (Jens\ Maurer\ 4\ Nov\ 2001).}}
+\DoxyCodeLine{00049\ }
+\DoxyCodeLine{00050\ \ \ \ \ \ \ \ \textcolor{comment}{//\ std::less\ specialization\ fixed\ as\ reported\ by\ George}}
+\DoxyCodeLine{00051\ \ \ \ \ \ \ \ \textcolor{comment}{//\ Heintzelman;\ partial\ specialization\ re-\/enabled}}
+\DoxyCodeLine{00052\ \ \ \ \ \ \ \ \textcolor{comment}{//\ (Peter\ Dimov\ 17\ Jan\ 2002)}}
+\DoxyCodeLine{00053\ }
+\DoxyCodeLine{00054\ \textcolor{comment}{//\#\ \ \ \ \ \ define\ SC\_BOOST\_NO\_TEMPLATE\_PARTIAL\_SPECIALIZATION}}
+\DoxyCodeLine{00055\ }
+\DoxyCodeLine{00056\ \ \ \ \ \ \ \ \textcolor{comment}{//\ integral\ constant\ expressions\ with\ 64\ bit\ numbers\ fail}}
+\DoxyCodeLine{00057\ \textcolor{preprocessor}{\#\ \ \ \ \ \ define\ SC\_BOOST\_NO\_INTEGRAL\_INT64\_T}}
+\DoxyCodeLine{00058\ \textcolor{preprocessor}{\#\ \ \ \ endif}}
+\DoxyCodeLine{00059\ }
+\DoxyCodeLine{00060\ \textcolor{preprocessor}{\#\ \ \ \ if\ (\_\_SUNPRO\_CC\ <\ 0x570)\ }}
+\DoxyCodeLine{00061\ \textcolor{preprocessor}{\#\ \ \ \ \ \ define\ SC\_BOOST\_NO\_TEMPLATE\_TEMPLATES}}
+\DoxyCodeLine{00062\ \ \ \ \ \ \ \ \textcolor{comment}{//\ see\ http://lists.boost.org/MailArchives/boost/msg47184.php}}
+\DoxyCodeLine{00063\ \ \ \ \ \ \ \ \textcolor{comment}{//\ and\ http://lists.boost.org/MailArchives/boost/msg47220.php}}
+\DoxyCodeLine{00064\ \textcolor{preprocessor}{\#\ \ \ \ \ \ define\ SC\_BOOST\_NO\_INCLASS\_MEMBER\_INITIALIZATION}}
+\DoxyCodeLine{00065\ \textcolor{preprocessor}{\#\ \ \ \ \ \ define\ SC\_BOOST\_NO\_SFINAE}}
+\DoxyCodeLine{00066\ \textcolor{preprocessor}{\#\ \ \ \ \ \ define\ SC\_BOOST\_NO\_ARRAY\_TYPE\_SPECIALIZATIONS}}
+\DoxyCodeLine{00067\ \textcolor{preprocessor}{\#\ \ \ \ \ \ define\ SC\_BOOST\_NO\_IS\_ABSTRACT}}
+\DoxyCodeLine{00068\ \textcolor{preprocessor}{\#\ \ \ \ endif}}
+\DoxyCodeLine{00069\ }
+\DoxyCodeLine{00070\ \textcolor{preprocessor}{\#define\ SC\_BOOST\_COMPILER\ "{}Sun\ compiler\ version\ "{}\ SC\_BOOST\_STRINGIZE(\_\_SUNPRO\_CC)}}
+\DoxyCodeLine{00071\ }
+\DoxyCodeLine{00072\ \textcolor{comment}{//}}
+\DoxyCodeLine{00073\ \textcolor{comment}{//\ versions\ check:}}
+\DoxyCodeLine{00074\ \textcolor{comment}{//\ we\ don't\ support\ sunpro\ prior\ to\ version\ 4:}}
+\DoxyCodeLine{00075\ \textcolor{preprocessor}{\#if\ \_\_SUNPRO\_CC\ <\ 0x400}}
+\DoxyCodeLine{00076\ \textcolor{preprocessor}{\#error\ "{}Compiler\ not\ supported\ or\ configured\ -\/\ please\ reconfigure"{}}}
+\DoxyCodeLine{00077\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00078\ \textcolor{comment}{//}}
+\DoxyCodeLine{00079\ \textcolor{comment}{//\ last\ known\ and\ checked\ version\ is\ 0x570:}}
+\DoxyCodeLine{00080\ \textcolor{preprocessor}{\#if\ (\_\_SUNPRO\_CC\ >\ 0x570)}}
+\DoxyCodeLine{00081\ \textcolor{preprocessor}{\#\ \ if\ defined(SC\_BOOST\_ASSERT\_CONFIG)}}
+\DoxyCodeLine{00082\ \textcolor{preprocessor}{\#\ \ \ \ \ error\ "{}Unknown\ compiler\ version\ -\/\ please\ run\ the\ configure\ tests\ and\ report\ the\ results"{}}}
+\DoxyCodeLine{00083\ \textcolor{preprocessor}{\#\ \ endif}}
+\DoxyCodeLine{00084\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00085\ }
+\DoxyCodeLine{00086\ }
+\DoxyCodeLine{00087\ }
+\DoxyCodeLine{00088\ }
+\DoxyCodeLine{00089\ }
+\DoxyCodeLine{00090\ }
+
+\end{DoxyCode}

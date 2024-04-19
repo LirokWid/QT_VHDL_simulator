@@ -1,0 +1,165 @@
+.TH "sc_core::sc_phase_callback_registry" 3 "VHDL simulator" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+sc_core::sc_phase_callback_registry
+.SH SYNOPSIS
+.br
+.PP
+.PP
+\fR#include <sc_phase_callback_registry\&.h>\fP
+.SS "Classes"
+
+.in +1c
+.ti -1c
+.RI "struct \fBentry\fP"
+.br
+.in -1c
+.SS "Public Types"
+
+.in +1c
+.ti -1c
+.RI "\fBtypedef\fP \fBsc_phase_callback_registry\fP \fBthis_type\fP"
+.br
+.ti -1c
+.RI "\fBtypedef\fP \fBsc_object\fP \fBcb_type\fP"
+.br
+.ti -1c
+.RI "\fBtypedef\fP \fBcb_type::phase_cb_mask\fP \fBmask_type\fP"
+.br
+.in -1c
+.SS "Private Types"
+
+.in +1c
+.ti -1c
+.RI "\fBtypedef\fP std::vector< \fBentry\fP > \fBstorage_type\fP"
+.br
+.ti -1c
+.RI "\fBtypedef\fP std::vector< \fBcb_type\fP * > \fBsingle_storage_type\fP"
+.br
+.in -1c
+.SS "Private Member Functions"
+
+.in +1c
+.ti -1c
+.RI "\fBsc_phase_callback_registry\fP (\fBsc_simcontext\fP &\fBsimc\fP)"
+.br
+.ti -1c
+.RI "\fB~sc_phase_callback_registry\fP ()"
+.br
+.ti -1c
+.RI "\fBbool\fP \fBconstruction_done\fP () \fBconst\fP"
+.br
+.ti -1c
+.RI "\fBvoid\fP \fBelaboration_done\fP () \fBconst\fP"
+.br
+.ti -1c
+.RI "\fBvoid\fP \fBinitialization_done\fP () \fBconst\fP"
+.br
+.ti -1c
+.RI "\fBvoid\fP \fBstart_simulation\fP () \fBconst\fP"
+.br
+.ti -1c
+.RI "\fBvoid\fP \fBevaluation_done\fP () \fBconst\fP"
+.br
+.ti -1c
+.RI "\fBvoid\fP \fBupdate_done\fP () \fBconst\fP"
+.br
+.ti -1c
+.RI "\fBvoid\fP \fBbefore_timestep\fP () \fBconst\fP"
+.br
+.ti -1c
+.RI "\fBvoid\fP \fBsimulation_paused\fP () \fBconst\fP"
+.br
+.ti -1c
+.RI "\fBvoid\fP \fBsimulation_stopped\fP () \fBconst\fP"
+.br
+.ti -1c
+.RI "\fBvoid\fP \fBsimulation_done\fP () \fBconst\fP"
+.br
+.ti -1c
+.RI "\fBmask_type\fP \fBregister_callback\fP (\fBcb_type\fP &, \fBmask_type\fP mask)"
+.br
+.ti -1c
+.RI "\fBmask_type\fP \fBunregister_callback\fP (\fBcb_type\fP &, \fBmask_type\fP mask)"
+.br
+.ti -1c
+.RI "\fBvoid\fP \fBdo_callback\fP (\fBsc_status\fP) \fBconst\fP"
+.br
+.ti -1c
+.RI "\fBsc_phase_callback_registry\fP (\fBconst\fP \fBthis_type\fP &)"
+.br
+.ti -1c
+.RI "\fBthis_type\fP & \fBoperator=\fP (\fBconst\fP \fBthis_type\fP &)"
+.br
+.in -1c
+.SS "Friends"
+
+.in +1c
+.ti -1c
+.RI "\fBclass\fP \fBsc_simcontext\fP"
+.br
+.ti -1c
+.RI "\fBclass\fP \fBsc_object\fP"
+.br
+.in -1c
+.SH "Member Typedef Documentation"
+.PP 
+.SS "\fBtypedef\fP \fBsc_object\fP \fBsc_core::sc_phase_callback_registry::cb_type\fP"
+
+.SS "\fBtypedef\fP \fBcb_type::phase_cb_mask\fP \fBsc_core::sc_phase_callback_registry::mask_type\fP"
+
+.SS "\fBtypedef\fP std::vector<\fBcb_type\fP*> \fBsc_core::sc_phase_callback_registry::single_storage_type\fP\fR [private]\fP"
+
+.SS "\fBtypedef\fP std::vector<\fBentry\fP> \fBsc_core::sc_phase_callback_registry::storage_type\fP\fR [private]\fP"
+
+.SS "\fBtypedef\fP \fBsc_phase_callback_registry\fP \fBsc_core::sc_phase_callback_registry::this_type\fP"
+
+.SH "Constructor & Destructor Documentation"
+.PP 
+.SS "sc_core::sc_phase_callback_registry::sc_phase_callback_registry (\fBsc_simcontext\fP & simc)\fR [explicit]\fP, \fR [private]\fP"
+
+.SS "sc_core::sc_phase_callback_registry::~sc_phase_callback_registry ()\fR [private]\fP"
+
+.SS "sc_core::sc_phase_callback_registry::sc_phase_callback_registry (\fBconst\fP \fBthis_type\fP &)\fR [private]\fP"
+
+.SH "Member Function Documentation"
+.PP 
+.SS "\fBvoid\fP sc_core::sc_phase_callback_registry::before_timestep () const\fR [inline]\fP, \fR [private]\fP"
+
+.SS "\fBbool\fP sc_core::sc_phase_callback_registry::construction_done () const\fR [inline]\fP, \fR [private]\fP"
+
+.SS "\fBvoid\fP sc_core::sc_phase_callback_registry::do_callback (\fBsc_status\fP) const\fR [private]\fP"
+
+.SS "\fBvoid\fP sc_core::sc_phase_callback_registry::elaboration_done () const\fR [inline]\fP, \fR [private]\fP"
+
+.SS "\fBvoid\fP sc_core::sc_phase_callback_registry::evaluation_done () const\fR [private]\fP"
+
+.SS "\fBvoid\fP sc_core::sc_phase_callback_registry::initialization_done () const\fR [inline]\fP, \fR [private]\fP"
+
+.SS "\fBthis_type\fP & sc_core::sc_phase_callback_registry::operator= (\fBconst\fP \fBthis_type\fP &)\fR [private]\fP"
+
+.SS "\fBmask_type\fP sc_core::sc_phase_callback_registry::register_callback (\fBcb_type\fP &, \fBmask_type\fP mask)\fR [private]\fP"
+
+.SS "\fBvoid\fP sc_core::sc_phase_callback_registry::simulation_done () const\fR [inline]\fP, \fR [private]\fP"
+
+.SS "\fBvoid\fP sc_core::sc_phase_callback_registry::simulation_paused () const\fR [inline]\fP, \fR [private]\fP"
+
+.SS "\fBvoid\fP sc_core::sc_phase_callback_registry::simulation_stopped () const\fR [inline]\fP, \fR [private]\fP"
+
+.SS "\fBvoid\fP sc_core::sc_phase_callback_registry::start_simulation () const\fR [inline]\fP, \fR [private]\fP"
+
+.SS "\fBmask_type\fP sc_core::sc_phase_callback_registry::unregister_callback (\fBcb_type\fP &, \fBmask_type\fP mask)\fR [private]\fP"
+
+.SS "\fBvoid\fP sc_core::sc_phase_callback_registry::update_done () const\fR [inline]\fP, \fR [private]\fP"
+
+.SH "Friends And Related Symbol Documentation"
+.PP 
+.SS "\fBfriend\fP \fBclass\fP \fBsc_object\fP\fR [friend]\fP"
+
+.SS "\fBfriend\fP \fBclass\fP \fBsc_simcontext\fP\fR [friend]\fP"
+
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for VHDL simulator from the source code\&.

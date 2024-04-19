@@ -1,0 +1,119 @@
+\doxysection{gcc.\+hpp}
+\hypertarget{config_2compiler_2gcc_8hpp_source}{}\label{config_2compiler_2gcc_8hpp_source}\index{C:/Users/BJRODIER/Documents/QT\_REPO/QT\_VHDL\_simulator/code/Ressources/SystemC/include/sysc/packages/boost/config/compiler/gcc.hpp@{C:/Users/BJRODIER/Documents/QT\_REPO/QT\_VHDL\_simulator/code/Ressources/SystemC/include/sysc/packages/boost/config/compiler/gcc.hpp}}
+\mbox{\hyperlink{config_2compiler_2gcc_8hpp}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{comment}{//\ \ (C)\ Copyright\ John\ Maddock\ 2001\ -\/\ 2003.\ }}
+\DoxyCodeLine{00002\ \textcolor{comment}{//\ \ (C)\ Copyright\ Darin\ Adler\ 2001\ -\/\ 2002.\ }}
+\DoxyCodeLine{00003\ \textcolor{comment}{//\ \ (C)\ Copyright\ Jens\ Maurer\ 2001\ -\/\ 2002.\ }}
+\DoxyCodeLine{00004\ \textcolor{comment}{//\ \ (C)\ Copyright\ Beman\ Dawes\ 2001\ -\/\ 2003.\ }}
+\DoxyCodeLine{00005\ \textcolor{comment}{//\ \ (C)\ Copyright\ Douglas\ Gregor\ 2002.\ }}
+\DoxyCodeLine{00006\ \textcolor{comment}{//\ \ (C)\ Copyright\ David\ Abrahams\ 2002\ -\/\ 2003.\ }}
+\DoxyCodeLine{00007\ \textcolor{comment}{//\ \ (C)\ Copyright\ Synge\ Todo\ 2003.\ }}
+\DoxyCodeLine{00008\ \textcolor{comment}{//\ \ Use,\ modification\ and\ distribution\ are\ subject\ to\ the\ }}
+\DoxyCodeLine{00009\ \textcolor{comment}{//\ \ Boost\ Software\ License,\ Version\ 1.0.\ (See\ accompanying\ file\ }}
+\DoxyCodeLine{00010\ \textcolor{comment}{//\ \ LICENSE\_1\_0.txt\ or\ copy\ at\ http://www.boost.org/LICENSE\_1\_0.txt)}}
+\DoxyCodeLine{00011\ }
+\DoxyCodeLine{00012\ \textcolor{comment}{//\ \ See\ http://www.boost.org\ for\ most\ recent\ version.}}
+\DoxyCodeLine{00013\ }
+\DoxyCodeLine{00014\ \textcolor{comment}{//\ \ GNU\ C++\ compiler\ setup:}}
+\DoxyCodeLine{00015\ }
+\DoxyCodeLine{00016\ \textcolor{comment}{//}}
+\DoxyCodeLine{00017\ \textcolor{comment}{//\ Define\ SC\_BOOST\_GCC\ so\ we\ know\ this\ is\ "{}real"{}\ GCC\ and\ not\ some\ pretender:}}
+\DoxyCodeLine{00018\ \textcolor{comment}{//}}
+\DoxyCodeLine{00019\ \textcolor{preprocessor}{\#define\ SC\_BOOST\_GCC\_VERSION\ (\_\_GNUC\_\_\ *\ 10000\ +\ \_\_GNUC\_MINOR\_\_\ *\ 100\ +\ \_\_GNUC\_PATCHLEVEL\_\_)}}
+\DoxyCodeLine{00020\ \textcolor{preprocessor}{\#if\ !defined(\_\_CUDACC\_\_)}}
+\DoxyCodeLine{00021\ \textcolor{preprocessor}{\#define\ SC\_BOOST\_GCC\ SC\_BOOST\_GCC\_VERSION}}
+\DoxyCodeLine{00022\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00023\ }
+\DoxyCodeLine{00024\ \textcolor{preprocessor}{\#if\ \_\_GNUC\_\_\ <\ 3}}
+\DoxyCodeLine{00025\ \textcolor{preprocessor}{\#\ \ \ if\ \_\_GNUC\_MINOR\_\_\ ==\ 91}}
+\DoxyCodeLine{00026\ \ \ \ \ \ \ \ \textcolor{comment}{//\ egcs\ 1.1\ won't\ parse\ shared\_ptr.hpp\ without\ this:}}
+\DoxyCodeLine{00027\ \textcolor{preprocessor}{\#\ \ \ \ \ \ define\ SC\_BOOST\_NO\_AUTO\_PTR}}
+\DoxyCodeLine{00028\ \textcolor{preprocessor}{\#\ \ \ endif}}
+\DoxyCodeLine{00029\ \textcolor{preprocessor}{\#\ \ \ if\ \_\_GNUC\_MINOR\_\_\ <\ 95}}
+\DoxyCodeLine{00030\ \ \ \ \ \ \ \textcolor{comment}{//}}
+\DoxyCodeLine{00031\ \ \ \ \ \ \ \textcolor{comment}{//\ Prior\ to\ gcc\ 2.95\ member\ templates\ only\ partly}}
+\DoxyCodeLine{00032\ \ \ \ \ \ \ \textcolor{comment}{//\ work\ -\/\ define\ SC\_BOOST\_MSVC6\_MEMBER\_TEMPLATES}}
+\DoxyCodeLine{00033\ \ \ \ \ \ \ \textcolor{comment}{//\ instead\ since\ inline\ member\ templates\ mostly\ work.}}
+\DoxyCodeLine{00034\ \ \ \ \ \ \ \textcolor{comment}{//}}
+\DoxyCodeLine{00035\ \textcolor{preprocessor}{\#\ \ \ \ \ define\ SC\_BOOST\_NO\_MEMBER\_TEMPLATES}}
+\DoxyCodeLine{00036\ \textcolor{preprocessor}{\#\ \ \ \ \ if\ \_\_GNUC\_MINOR\_\_\ >=\ 9}}
+\DoxyCodeLine{00037\ \textcolor{preprocessor}{\#\ \ \ \ \ \ \ define\ SC\_BOOST\_MSVC6\_MEMBER\_TEMPLATES}}
+\DoxyCodeLine{00038\ \textcolor{preprocessor}{\#\ \ \ \ \ endif}}
+\DoxyCodeLine{00039\ \textcolor{preprocessor}{\#\ \ \ endif}}
+\DoxyCodeLine{00040\ }
+\DoxyCodeLine{00041\ \textcolor{preprocessor}{\#\ \ \ if\ \_\_GNUC\_MINOR\_\_\ <\ 96}}
+\DoxyCodeLine{00042\ \textcolor{preprocessor}{\#\ \ \ \ \ define\ SC\_BOOST\_NO\_SFINAE}}
+\DoxyCodeLine{00043\ \textcolor{preprocessor}{\#\ \ \ endif}}
+\DoxyCodeLine{00044\ }
+\DoxyCodeLine{00045\ \textcolor{preprocessor}{\#\ \ \ if\ \_\_GNUC\_MINOR\_\_\ <=\ 97}}
+\DoxyCodeLine{00046\ \textcolor{preprocessor}{\#\ \ \ \ \ define\ SC\_BOOST\_NO\_MEMBER\_TEMPLATE\_FRIENDS}}
+\DoxyCodeLine{00047\ \textcolor{preprocessor}{\#\ \ \ \ \ define\ SC\_BOOST\_NO\_OPERATORS\_IN\_NAMESPACE}}
+\DoxyCodeLine{00048\ \textcolor{preprocessor}{\#\ \ \ endif}}
+\DoxyCodeLine{00049\ }
+\DoxyCodeLine{00050\ \textcolor{preprocessor}{\#\ \ \ define\ SC\_BOOST\_NO\_USING\_DECLARATION\_OVERLOADS\_FROM\_TYPENAME\_BASE}}
+\DoxyCodeLine{00051\ \textcolor{preprocessor}{\#\ \ \ define\ SC\_BOOST\_FUNCTION\_SCOPE\_USING\_DECLARATION\_BREAKS\_ADL}}
+\DoxyCodeLine{00052\ \textcolor{preprocessor}{\#\ \ \ define\ SC\_BOOST\_NO\_IS\_ABSTRACT}}
+\DoxyCodeLine{00053\ \textcolor{preprocessor}{\#elif\ \_\_GNUC\_\_\ ==\ 3}}
+\DoxyCodeLine{00054\ \ \ \ \textcolor{comment}{//}}
+\DoxyCodeLine{00055\ \ \ \ \textcolor{comment}{//\ gcc-\/3.x\ problems:}}
+\DoxyCodeLine{00056\ \ \ \ \textcolor{comment}{//}}
+\DoxyCodeLine{00057\ \ \ \ \textcolor{comment}{//\ Bug\ specific\ to\ gcc\ 3.1\ and\ 3.2:}}
+\DoxyCodeLine{00058\ \ \ \ \textcolor{comment}{//}}
+\DoxyCodeLine{00059\ \textcolor{preprocessor}{\#\ \ if\ ((\_\_GNUC\_MINOR\_\_\ ==\ 1)\ ||\ (\_\_GNUC\_MINOR\_\_\ ==\ 2))}}
+\DoxyCodeLine{00060\ \textcolor{preprocessor}{\#\ \ \ \ \ define\ SC\_BOOST\_NO\_EXPLICIT\_FUNCTION\_TEMPLATE\_ARGUMENTS}}
+\DoxyCodeLine{00061\ \textcolor{preprocessor}{\#\ \ endif}}
+\DoxyCodeLine{00062\ \textcolor{preprocessor}{\#\ \ if\ \_\_GNUC\_MINOR\_\_\ <\ 4}}
+\DoxyCodeLine{00063\ \textcolor{preprocessor}{\#\ \ \ \ \ define\ SC\_BOOST\_NO\_IS\_ABSTRACT}}
+\DoxyCodeLine{00064\ \textcolor{preprocessor}{\#\ \ endif}}
+\DoxyCodeLine{00065\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00066\ }
+\DoxyCodeLine{00067\ \textcolor{preprocessor}{\#ifndef\ \_\_EXCEPTIONS}}
+\DoxyCodeLine{00068\ \textcolor{preprocessor}{\#\ define\ SC\_BOOST\_NO\_EXCEPTIONS}}
+\DoxyCodeLine{00069\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00070\ }
+\DoxyCodeLine{00071\ }
+\DoxyCodeLine{00072\ \textcolor{comment}{//}}
+\DoxyCodeLine{00073\ \textcolor{comment}{//\ Threading\ support:\ Turn\ this\ on\ unconditionally\ here\ (except\ for}}
+\DoxyCodeLine{00074\ \textcolor{comment}{//\ those\ platforms\ where\ we\ can\ know\ for\ sure).\ It\ will\ get\ turned\ off\ again}}
+\DoxyCodeLine{00075\ \textcolor{comment}{//\ later\ if\ no\ threading\ API\ is\ detected.}}
+\DoxyCodeLine{00076\ \textcolor{comment}{//}}
+\DoxyCodeLine{00077\ \textcolor{preprocessor}{\#if\ !defined(\_\_MINGW32\_\_)\ \&\&\ !defined(linux)\ \&\&\ !defined(\_\_linux)\ \&\&\ !defined(\_\_linux\_\_)}}
+\DoxyCodeLine{00078\ \textcolor{preprocessor}{\#\ define\ SC\_BOOST\_HAS\_THREADS}}
+\DoxyCodeLine{00079\ \textcolor{preprocessor}{\#endif\ }}
+\DoxyCodeLine{00080\ }
+\DoxyCodeLine{00081\ \textcolor{comment}{//}}
+\DoxyCodeLine{00082\ \textcolor{comment}{//\ gcc\ has\ "{}long\ long"{}}}
+\DoxyCodeLine{00083\ \textcolor{comment}{//}}
+\DoxyCodeLine{00084\ \textcolor{preprocessor}{\#define\ SC\_BOOST\_HAS\_LONG\_LONG}}
+\DoxyCodeLine{00085\ }
+\DoxyCodeLine{00086\ \textcolor{comment}{//}}
+\DoxyCodeLine{00087\ \textcolor{comment}{//\ gcc\ implements\ the\ named\ return\ value\ optimization\ since\ version\ 3.1}}
+\DoxyCodeLine{00088\ \textcolor{comment}{//}}
+\DoxyCodeLine{00089\ \textcolor{preprocessor}{\#if\ \_\_GNUC\_\_\ >\ 3\ ||\ (\ \_\_GNUC\_\_\ ==\ 3\ \&\&\ \_\_GNUC\_MINOR\_\_\ >=\ 1\ )}}
+\DoxyCodeLine{00090\ \textcolor{preprocessor}{\#define\ SC\_BOOST\_HAS\_NRVO}}
+\DoxyCodeLine{00091\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00092\ }
+\DoxyCodeLine{00093\ \textcolor{preprocessor}{\#define\ SC\_BOOST\_COMPILER\ "{}GNU\ C++\ version\ "{}\ \_\_VERSION\_\_}}
+\DoxyCodeLine{00094\ }
+\DoxyCodeLine{00095\ \textcolor{comment}{//}}
+\DoxyCodeLine{00096\ \textcolor{comment}{//\ versions\ check:}}
+\DoxyCodeLine{00097\ \textcolor{comment}{//\ we\ don't\ know\ gcc\ prior\ to\ version\ 2.90:}}
+\DoxyCodeLine{00098\ \textcolor{preprocessor}{\#if\ (\_\_GNUC\_\_\ ==\ 2)\ \&\&\ (\_\_GNUC\_MINOR\_\_\ <\ 90)}}
+\DoxyCodeLine{00099\ \textcolor{preprocessor}{\#\ \ error\ "{}Compiler\ not\ configured\ -\/\ please\ reconfigure"{}}}
+\DoxyCodeLine{00100\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00101\ \textcolor{comment}{//}}
+\DoxyCodeLine{00102\ \textcolor{comment}{//\ last\ known\ and\ checked\ version\ is\ 4.0\ (Pre-\/release):}}
+\DoxyCodeLine{00103\ \textcolor{preprocessor}{\#if\ (\_\_GNUC\_\_\ >\ 4)\ ||\ ((\_\_GNUC\_\_\ ==\ 4)\ \&\&\ (\_\_GNUC\_MINOR\_\_\ >\ 0))}}
+\DoxyCodeLine{00104\ \textcolor{preprocessor}{\#\ \ if\ defined(SC\_BOOST\_ASSERT\_CONFIG)}}
+\DoxyCodeLine{00105\ \textcolor{preprocessor}{\#\ \ \ \ \ error\ "{}Unknown\ compiler\ version\ -\/\ please\ run\ the\ configure\ tests\ and\ report\ the\ results"{}}}
+\DoxyCodeLine{00106\ \textcolor{preprocessor}{\#\ \ else}}
+\DoxyCodeLine{00107\ \textcolor{comment}{//\ we\ don't\ emit\ warnings\ here\ anymore\ since\ there\ are\ no\ defect\ macros\ defined\ for}}
+\DoxyCodeLine{00108\ \textcolor{comment}{//\ gcc\ post\ 3.4,\ so\ any\ failures\ are\ gcc\ regressions...}}
+\DoxyCodeLine{00109\ \textcolor{comment}{//\#\ \ \ \ \ warning\ "{}Unknown\ compiler\ version\ -\/\ please\ run\ the\ configure\ tests\ and\ report\ the\ results"{}}}
+\DoxyCodeLine{00110\ \textcolor{preprocessor}{\#\ \ endif}}
+\DoxyCodeLine{00111\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00112\ }
+\DoxyCodeLine{00113\ }
+
+\end{DoxyCode}

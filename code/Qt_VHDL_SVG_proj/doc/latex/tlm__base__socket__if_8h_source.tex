@@ -1,0 +1,62 @@
+\doxysection{tlm\+\_\+base\+\_\+socket\+\_\+if.\+h}
+\hypertarget{tlm__base__socket__if_8h_source}{}\label{tlm__base__socket__if_8h_source}\index{C:/Users/BJRODIER/Documents/QT\_REPO/QT\_VHDL\_simulator/code/Ressources/SystemC/include/tlm\_core/tlm\_2/tlm\_sockets/tlm\_base\_socket\_if.h@{C:/Users/BJRODIER/Documents/QT\_REPO/QT\_VHDL\_simulator/code/Ressources/SystemC/include/tlm\_core/tlm\_2/tlm\_sockets/tlm\_base\_socket\_if.h}}
+\mbox{\hyperlink{tlm__base__socket__if_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{comment}{/*****************************************************************************}}
+\DoxyCodeLine{00002\ \textcolor{comment}{}}
+\DoxyCodeLine{00003\ \textcolor{comment}{\ \ Licensed\ to\ Accellera\ Systems\ Initiative\ Inc.\ (Accellera)\ under\ one\ or}}
+\DoxyCodeLine{00004\ \textcolor{comment}{\ \ more\ contributor\ license\ agreements.\ \ See\ the\ NOTICE\ file\ distributed}}
+\DoxyCodeLine{00005\ \textcolor{comment}{\ \ with\ this\ work\ for\ additional\ information\ regarding\ copyright\ ownership.}}
+\DoxyCodeLine{00006\ \textcolor{comment}{\ \ Accellera\ licenses\ this\ file\ to\ you\ under\ the\ Apache\ License,\ Version\ 2.0}}
+\DoxyCodeLine{00007\ \textcolor{comment}{\ \ (the\ "{}License"{});\ you\ may\ not\ use\ this\ file\ except\ in\ compliance\ with\ the}}
+\DoxyCodeLine{00008\ \textcolor{comment}{\ \ License.\ \ You\ may\ obtain\ a\ copy\ of\ the\ License\ at}}
+\DoxyCodeLine{00009\ \textcolor{comment}{}}
+\DoxyCodeLine{00010\ \textcolor{comment}{\ \ \ \ http://www.apache.org/licenses/LICENSE-\/2.0}}
+\DoxyCodeLine{00011\ \textcolor{comment}{}}
+\DoxyCodeLine{00012\ \textcolor{comment}{\ \ Unless\ required\ by\ applicable\ law\ or\ agreed\ to\ in\ writing,\ software}}
+\DoxyCodeLine{00013\ \textcolor{comment}{\ \ distributed\ under\ the\ License\ is\ distributed\ on\ an\ "{}AS\ IS"{}\ BASIS,}}
+\DoxyCodeLine{00014\ \textcolor{comment}{\ \ WITHOUT\ WARRANTIES\ OR\ CONDITIONS\ OF\ ANY\ KIND,\ either\ express\ or}}
+\DoxyCodeLine{00015\ \textcolor{comment}{\ \ implied.\ \ See\ the\ License\ for\ the\ specific\ language\ governing}}
+\DoxyCodeLine{00016\ \textcolor{comment}{\ \ permissions\ and\ limitations\ under\ the\ License.}}
+\DoxyCodeLine{00017\ \textcolor{comment}{}}
+\DoxyCodeLine{00018\ \textcolor{comment}{\ *****************************************************************************/}}
+\DoxyCodeLine{00019\ }
+\DoxyCodeLine{00020\ \textcolor{preprocessor}{\#ifndef\ TLM\_CORE\_TLM\_BASE\_SOCKET\_IF\_H\_INCLUDED\_}}
+\DoxyCodeLine{00021\ \textcolor{preprocessor}{\#define\ TLM\_CORE\_TLM\_BASE\_SOCKET\_IF\_H\_INCLUDED\_}}
+\DoxyCodeLine{00022\ }
+\DoxyCodeLine{00023\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{sc__typeindex_8h}{sysc/utils/sc\_typeindex.h}}"{}}}
+\DoxyCodeLine{00024\ }
+\DoxyCodeLine{00025\ \textcolor{keyword}{namespace\ }\mbox{\hyperlink{namespacetlm}{tlm}}\ \{}
+\DoxyCodeLine{00026\ }
+\DoxyCodeLine{00027\ \textcolor{keyword}{enum}\ \mbox{\hyperlink{namespacetlm_a4c4ab9add0ec354433809466943bece8}{tlm\_socket\_category}}}
+\DoxyCodeLine{00028\ \{}
+\DoxyCodeLine{00029\ \ \ \ \ \mbox{\hyperlink{namespacetlm_a4c4ab9add0ec354433809466943bece8a4cd503b53961644181c571e5c275bcdb}{TLM\_UNKNOWN\_SOCKET}}\ =\ 0,}
+\DoxyCodeLine{00030\ \ \ \ \ \mbox{\hyperlink{namespacetlm_a4c4ab9add0ec354433809466943bece8a350f155f6138fa9947935852f90455fa}{TLM\_INITIATOR\_SOCKET}}\ =\ 0x1,}
+\DoxyCodeLine{00031\ \ \ \ \ \mbox{\hyperlink{namespacetlm_a4c4ab9add0ec354433809466943bece8a0562a244fe6d3c16242621682ef7d6de}{TLM\_TARGET\_SOCKET}}\ =\ 0x2,}
+\DoxyCodeLine{00032\ }
+\DoxyCodeLine{00033\ \ \ \ \ \mbox{\hyperlink{namespacetlm_a4c4ab9add0ec354433809466943bece8ae9a071e9be55c5888a0be7239a764945}{TLM\_MULTI\_SOCKET}}\ =\ 0x10,}
+\DoxyCodeLine{00034\ }
+\DoxyCodeLine{00035\ \ \ \ \ \mbox{\hyperlink{namespacetlm_a4c4ab9add0ec354433809466943bece8a4599b588ed8eefe565a508c35274b874}{TLM\_MULTI\_INITIATOR\_SOCKET}}\ =\ \mbox{\hyperlink{namespacetlm_a4c4ab9add0ec354433809466943bece8a350f155f6138fa9947935852f90455fa}{TLM\_INITIATOR\_SOCKET}}\ |\ \mbox{\hyperlink{namespacetlm_a4c4ab9add0ec354433809466943bece8ae9a071e9be55c5888a0be7239a764945}{TLM\_MULTI\_SOCKET}},}
+\DoxyCodeLine{00036\ \ \ \ \ \mbox{\hyperlink{namespacetlm_a4c4ab9add0ec354433809466943bece8a27978a1c11f50d8567b83f5389c42c99}{TLM\_MULTI\_TARGET\_SOCKET}}\ =\ \mbox{\hyperlink{namespacetlm_a4c4ab9add0ec354433809466943bece8a0562a244fe6d3c16242621682ef7d6de}{TLM\_TARGET\_SOCKET}}\ |\ \mbox{\hyperlink{namespacetlm_a4c4ab9add0ec354433809466943bece8ae9a071e9be55c5888a0be7239a764945}{TLM\_MULTI\_SOCKET}}}
+\DoxyCodeLine{00037\ \};}
+\DoxyCodeLine{00038\ }
+\DoxyCodeLine{00039\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classtlm_1_1tlm__base__socket__if}{tlm\_base\_socket\_if}}}
+\DoxyCodeLine{00040\ \{}
+\DoxyCodeLine{00041\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00042\ \ \ \textcolor{keyword}{virtual}\ \mbox{\hyperlink{classsc__core_1_1sc__port__base}{sc\_core::sc\_port\_base}}\ \&\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classtlm_1_1tlm__base__socket__if_ace8220372db0702024681f1a92860d22}{get\_port\_base}}()\ =\ 0;}
+\DoxyCodeLine{00043\ \ \ \textcolor{keyword}{virtual}\ \mbox{\hyperlink{classsc__core_1_1sc__port__base}{sc\_core::sc\_port\_base}}\ \textcolor{keyword}{const}\ \&\ \ \ \mbox{\hyperlink{classtlm_1_1tlm__base__socket__if_a8adad025f6431428d04112bbf8f65f97}{get\_port\_base}}()\ \textcolor{keyword}{const}\ =\ 0;}
+\DoxyCodeLine{00044\ \ \ \textcolor{keyword}{virtual}\ \mbox{\hyperlink{classsc__core_1_1sc__export__base}{sc\_core::sc\_export\_base}}\ \&\ \ \ \ \ \ \ \mbox{\hyperlink{classtlm_1_1tlm__base__socket__if_a29e75a61bbd3000fb25aaa68a0eaf390}{get\_export\_base}}()\ =\ 0;}
+\DoxyCodeLine{00045\ \ \ \textcolor{keyword}{virtual}\ \mbox{\hyperlink{classsc__core_1_1sc__export__base}{sc\_core::sc\_export\_base}}\ \textcolor{keyword}{const}\ \&\ \mbox{\hyperlink{classtlm_1_1tlm__base__socket__if_a380cf8026d4829f4edc8584bbb9b13c1}{get\_export\_base}}()\ \textcolor{keyword}{const}\ =\ 0;}
+\DoxyCodeLine{00046\ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{int}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classtlm_1_1tlm__base__socket__if_ab9948b826b7933f08fce0edfdc23ca32}{get\_bus\_width}}()\ \textcolor{keyword}{const}\ =\ 0;}
+\DoxyCodeLine{00047\ \ \ \textcolor{keyword}{virtual}\ \mbox{\hyperlink{classsc__core_1_1sc__type__index}{sc\_core::sc\_type\_index}}\ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classtlm_1_1tlm__base__socket__if_ab51465d195bd6350a6172088ebf7dd81}{get\_protocol\_types}}()\ \textcolor{keyword}{const}\ =\ 0;}
+\DoxyCodeLine{00048\ \ \ \textcolor{keyword}{virtual}\ \mbox{\hyperlink{namespacetlm_a4c4ab9add0ec354433809466943bece8}{tlm\_socket\_category}}\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classtlm_1_1tlm__base__socket__if_a78dd755c5d2abe0e59217675daf01f33}{get\_socket\_category}}()\ \textcolor{keyword}{const}\ =\ 0;}
+\DoxyCodeLine{00049\ \ \ }
+\DoxyCodeLine{00050\ \textcolor{keyword}{protected}:}
+\DoxyCodeLine{00051\ \ \ \textcolor{keyword}{virtual}\ \mbox{\hyperlink{classtlm_1_1tlm__base__socket__if_a019499978858e8bc60354bd79e98c241}{\string~tlm\_base\_socket\_if}}()\ \{\}}
+\DoxyCodeLine{00052\ \};}
+\DoxyCodeLine{00053\ }
+\DoxyCodeLine{00054\ \}\ \textcolor{comment}{//\ namespace\ tlm}}
+\DoxyCodeLine{00055\ }
+\DoxyCodeLine{00056\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{//\ TLM\_CORE\_TLM\_BASE\_SOCKET\_IF\_H\_INCLUDED\_}}
+
+\end{DoxyCode}

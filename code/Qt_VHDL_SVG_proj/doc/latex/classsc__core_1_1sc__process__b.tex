@@ -1,0 +1,1421 @@
+\doxysection{sc\+\_\+core\+::sc\+\_\+process\+\_\+b Class Reference}
+\hypertarget{classsc__core_1_1sc__process__b}{}\label{classsc__core_1_1sc__process__b}\index{sc\_core::sc\_process\_b@{sc\_core::sc\_process\_b}}
+
+
+{\ttfamily \#include $<$sc\+\_\+process.\+h$>$}
+
+
+
+Inheritance diagram for sc\+\_\+core\+::sc\+\_\+process\+\_\+b\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=305pt]{classsc__core_1_1sc__process__b__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for sc\+\_\+core\+::sc\+\_\+process\+\_\+b\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classsc__core_1_1sc__process__b__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Types}
+\begin{DoxyCompactItemize}
+\item 
+enum \mbox{\hyperlink{classsc__core_1_1sc__process__b_ac09c2c06a786f9911d58ad3515137784}{process\+\_\+throw\+\_\+type}} \{ \newline
+\mbox{\hyperlink{classsc__core_1_1sc__process__b_ac09c2c06a786f9911d58ad3515137784a24a72304587d661b4324884a702e56c8}{THROW\+\_\+\+NONE}} = 0
+, \mbox{\hyperlink{classsc__core_1_1sc__process__b_ac09c2c06a786f9911d58ad3515137784a288ddd2ebc117b8e3efa8f499e018bce}{THROW\+\_\+\+KILL}}
+, \mbox{\hyperlink{classsc__core_1_1sc__process__b_ac09c2c06a786f9911d58ad3515137784a209bb27e361a60f551c3f557b111efa8}{THROW\+\_\+\+USER}}
+, \mbox{\hyperlink{classsc__core_1_1sc__process__b_ac09c2c06a786f9911d58ad3515137784a97b12fe9ed7373e18fa66ffd1ec9f988}{THROW\+\_\+\+ASYNC\+\_\+\+RESET}}
+, \newline
+\mbox{\hyperlink{classsc__core_1_1sc__process__b_ac09c2c06a786f9911d58ad3515137784a9b3ad2c20e1c611bfe214298f7b0dfbd}{THROW\+\_\+\+SYNC\+\_\+\+RESET}}
+ \}
+\item 
+enum \mbox{\hyperlink{classsc__core_1_1sc__process__b_a2933596250177f33a0a637caec05c443}{process\+\_\+state}} \{ \newline
+\mbox{\hyperlink{classsc__core_1_1sc__process__b_a2933596250177f33a0a637caec05c443a88e7de4bbbf33d9ae67354e37cee18b6}{ps\+\_\+bit\+\_\+disabled}} = 1
+, \mbox{\hyperlink{classsc__core_1_1sc__process__b_a2933596250177f33a0a637caec05c443a75f72f390a3b933df53f86db821ef0c5}{ps\+\_\+bit\+\_\+ready\+\_\+to\+\_\+run}} = 2
+, \mbox{\hyperlink{classsc__core_1_1sc__process__b_a2933596250177f33a0a637caec05c443a2f163c7d80598bf4bbf2a9977dfbfae3}{ps\+\_\+bit\+\_\+suspended}} = 4
+, \mbox{\hyperlink{classsc__core_1_1sc__process__b_a2933596250177f33a0a637caec05c443a60229a842a99b0f2f7d9fab83b3970d1}{ps\+\_\+bit\+\_\+zombie}} = 8
+, \newline
+\mbox{\hyperlink{classsc__core_1_1sc__process__b_a2933596250177f33a0a637caec05c443ad84a00d0fe477e398bab774b271020e3}{ps\+\_\+normal}} = 0
+ \}
+\item 
+enum \mbox{\hyperlink{classsc__core_1_1sc__process__b_aa3a79eb27dadbc8055524c8b73b1b051}{reset\+\_\+type}} \{ \mbox{\hyperlink{classsc__core_1_1sc__process__b_aa3a79eb27dadbc8055524c8b73b1b051acf19c7930f6a21b901212fd682cd7ab7}{reset\+\_\+asynchronous}} = 0
+, \mbox{\hyperlink{classsc__core_1_1sc__process__b_aa3a79eb27dadbc8055524c8b73b1b051a55516b1601564ba08fe50a9d951e12e2}{reset\+\_\+synchronous\+\_\+off}}
+, \mbox{\hyperlink{classsc__core_1_1sc__process__b_aa3a79eb27dadbc8055524c8b73b1b051a26d9c9e8590b76f26a91b642a1aff629}{reset\+\_\+synchronous\+\_\+on}}
+ \}
+\item 
+enum \mbox{\hyperlink{classsc__core_1_1sc__process__b_aed728eb97299bc2cc355d521245e5a94}{trigger\+\_\+t}} \{ \newline
+\mbox{\hyperlink{classsc__core_1_1sc__process__b_aed728eb97299bc2cc355d521245e5a94a6bbcc4d4c50193b508e8e81659d3afd6}{STATIC}}
+, \mbox{\hyperlink{classsc__core_1_1sc__process__b_aed728eb97299bc2cc355d521245e5a94a39f7f9f3dc00e458831624140be5d8b1}{EVENT}}
+, \mbox{\hyperlink{classsc__core_1_1sc__process__b_aed728eb97299bc2cc355d521245e5a94ae404ac4285d683c40788def820a0821d}{OR\+\_\+\+LIST}}
+, \mbox{\hyperlink{classsc__core_1_1sc__process__b_aed728eb97299bc2cc355d521245e5a94a2f3564efd6df3306ff53c71913f20b04}{AND\+\_\+\+LIST}}
+, \newline
+\mbox{\hyperlink{classsc__core_1_1sc__process__b_aed728eb97299bc2cc355d521245e5a94adc22a2642d2d0f5812012a8cc92d8880}{TIMEOUT}}
+, \mbox{\hyperlink{classsc__core_1_1sc__process__b_aed728eb97299bc2cc355d521245e5a94a72d68be29f9bbc26877861cde8d2717b}{EVENT\+\_\+\+TIMEOUT}}
+, \mbox{\hyperlink{classsc__core_1_1sc__process__b_aed728eb97299bc2cc355d521245e5a94a76edaf79319541b19bae3d6132cd31c4}{OR\+\_\+\+LIST\+\_\+\+TIMEOUT}}
+, \mbox{\hyperlink{classsc__core_1_1sc__process__b_aed728eb97299bc2cc355d521245e5a94a2f6c6abccadfc5bda6b9ba0f3b00dc4f}{AND\+\_\+\+LIST\+\_\+\+TIMEOUT}}
+ \}
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Types inherited from \mbox{\hyperlink{classsc__core_1_1sc__object}{sc\+\_\+core\+::sc\+\_\+object}}}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_sysc_add__pv}{typedef}} \mbox{\hyperlink{class_sysc_add__pv}{unsigned}} \mbox{\hyperlink{classsc__core_1_1sc__object_a38a53f30a8719f77e35df8965845819e}{phase\+\_\+cb\+\_\+mask}}
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classsc__core_1_1sc__process__b_ab127ef93aad74928190d5bff106b6f5d}{sc\+\_\+process\+\_\+b}} (\mbox{\hyperlink{class_sysc_add__pv}{const}} \mbox{\hyperlink{class_sysc_add__pv}{char}} \texorpdfstring{$\ast$}{*}\mbox{\hyperlink{class_sysc_add__pv}{name\+\_\+p}}, \mbox{\hyperlink{class_sysc_add__pv}{bool}} \mbox{\hyperlink{class_sysc_add__pv}{is\+\_\+thread}}, \mbox{\hyperlink{class_sysc_add__pv}{bool}} \mbox{\hyperlink{class_sysc_add__pv}{free\+\_\+host}}, \mbox{\hyperlink{namespacesc__core_a3c3c6a60b0462a2cb00c7c294417c02e}{SC\+\_\+\+ENTRY\+\_\+\+FUNC}} \mbox{\hyperlink{class_sysc_add__pv}{method\+\_\+p}}, \mbox{\hyperlink{classsc__core_1_1sc__process__host}{sc\+\_\+process\+\_\+host}} \texorpdfstring{$\ast$}{*}\mbox{\hyperlink{class_sysc_add__pv}{host\+\_\+p}}, \mbox{\hyperlink{class_sysc_add__pv}{const}} \mbox{\hyperlink{classsc__core_1_1sc__spawn__options}{sc\+\_\+spawn\+\_\+options}} \texorpdfstring{$\ast$}{*}\mbox{\hyperlink{class_sysc_add__pv}{opt\+\_\+p}})
+\item 
+int \mbox{\hyperlink{classsc__core_1_1sc__process__b_a48098896b8b1c430ff9024d00bfd436b}{current\+\_\+state}} ()
+\item 
+\mbox{\hyperlink{class_sysc_add__pv}{bool}} \mbox{\hyperlink{classsc__core_1_1sc__process__b_a0dce3ee99b471e48d1962c8c10fed46d}{dont\+\_\+initialize}} () \mbox{\hyperlink{class_sysc_add__pv}{const}}
+\item 
+\mbox{\hyperlink{class_sysc_add__pv}{virtual}} \mbox{\hyperlink{class_sysc_add__pv}{void}} \mbox{\hyperlink{classsc__core_1_1sc__process__b_a448f38c460ba68fc76b80f18cf4d15de}{dont\+\_\+initialize}} (\mbox{\hyperlink{class_sysc_add__pv}{bool}} \mbox{\hyperlink{class_sysc_add__pv}{dont}})
+\item 
+std\+::string \mbox{\hyperlink{classsc__core_1_1sc__process__b_a0e61baf80f9b2a1d02321b4e135ab506}{dump\+\_\+state}} () \mbox{\hyperlink{class_sysc_add__pv}{const}}
+\item 
+\mbox{\hyperlink{class_sysc_add__pv}{const}} \+::std\+::vector$<$ \mbox{\hyperlink{classsc__core_1_1sc__object}{sc\+\_\+object}} \texorpdfstring{$\ast$}{*} $>$ \& \mbox{\hyperlink{classsc__core_1_1sc__process__b_afcfd97af9d4a215422f892f4cba9e709}{get\+\_\+child\+\_\+objects}} () \mbox{\hyperlink{class_sysc_add__pv}{const}}
+\item 
+\mbox{\hyperlink{namespacesc__core_a55cfb0f6c35416b69482b689d24ed045}{sc\+\_\+curr\+\_\+proc\+\_\+kind}} \mbox{\hyperlink{classsc__core_1_1sc__process__b_a95564aa2085d052b96b6df248977dca9}{proc\+\_\+kind}} () \mbox{\hyperlink{class_sysc_add__pv}{const}}
+\item 
+\mbox{\hyperlink{classsc__core_1_1sc__event}{sc\+\_\+event}} \& \mbox{\hyperlink{classsc__core_1_1sc__process__b_ac334a6ad8ff09f628a7fb51c1be20477}{reset\+\_\+event}} ()
+\item 
+\mbox{\hyperlink{classsc__core_1_1sc__event}{sc\+\_\+event}} \& \mbox{\hyperlink{classsc__core_1_1sc__process__b_a114dad1904c124e221a1010548ebb6e4}{terminated\+\_\+event}} ()
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions inherited from \mbox{\hyperlink{classsc__core_1_1sc__object}{sc\+\_\+core\+::sc\+\_\+object}}}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_sysc_add__pv}{const}} \mbox{\hyperlink{class_sysc_add__pv}{char}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{classsc__core_1_1sc__object_a4da9c6e99326cd2619958e049625bc58}{name}} () \mbox{\hyperlink{class_sysc_add__pv}{const}}
+\item 
+\mbox{\hyperlink{class_sysc_add__pv}{const}} \mbox{\hyperlink{class_sysc_add__pv}{char}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{classsc__core_1_1sc__object_a52a5e8ada0dccc09f2454f3e7c5034d8}{basename}} () \mbox{\hyperlink{class_sysc_add__pv}{const}}
+\item 
+\mbox{\hyperlink{class_sysc_add__pv}{virtual}} \mbox{\hyperlink{class_sysc_add__pv}{void}} \mbox{\hyperlink{classsc__core_1_1sc__object_a75778dff40cf1bf16fc4eb74346d923c}{print}} (\+::std\+::ostream \&\mbox{\hyperlink{class_sysc_add__pv}{os}}=\+::std\+::cout) \mbox{\hyperlink{class_sysc_add__pv}{const}}
+\item 
+\mbox{\hyperlink{class_sysc_add__pv}{virtual}} \mbox{\hyperlink{class_sysc_add__pv}{void}} \mbox{\hyperlink{classsc__core_1_1sc__object_aea8d11dcba6236902df7f099ac558b80}{dump}} (\+::std\+::ostream \&\mbox{\hyperlink{class_sysc_add__pv}{os}}=\+::std\+::cout) \mbox{\hyperlink{class_sysc_add__pv}{const}}
+\item 
+\mbox{\hyperlink{class_sysc_add__pv}{virtual}} \mbox{\hyperlink{class_sysc_add__pv}{void}} \mbox{\hyperlink{classsc__core_1_1sc__object_a8420debe6ce97f5b07e7dde92efe7cf1}{trace}} (\mbox{\hyperlink{classsc__core_1_1sc__trace__file}{sc\+\_\+trace\+\_\+file}} \texorpdfstring{$\ast$}{*}tf) \mbox{\hyperlink{class_sysc_add__pv}{const}}
+\item 
+\mbox{\hyperlink{class_sysc_add__pv}{virtual}} \mbox{\hyperlink{class_sysc_add__pv}{const}} \mbox{\hyperlink{class_sysc_add__pv}{char}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{classsc__core_1_1sc__object_af00b88c11734b5fd97914739fea83e82}{kind}} () \mbox{\hyperlink{class_sysc_add__pv}{const}}
+\item 
+\mbox{\hyperlink{classsc__core_1_1sc__simcontext}{sc\+\_\+simcontext}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{classsc__core_1_1sc__object_a734fbb61f5d2b905a276ad0e463105a7}{simcontext}} () \mbox{\hyperlink{class_sysc_add__pv}{const}}
+\item 
+\mbox{\hyperlink{class_sysc_add__pv}{bool}} \mbox{\hyperlink{classsc__core_1_1sc__object_a65d95751bce0508ac71364fb6e6fe973}{add\+\_\+attribute}} (\mbox{\hyperlink{classsc__core_1_1sc__attr__base}{sc\+\_\+attr\+\_\+base}} \&)
+\item 
+\mbox{\hyperlink{classsc__core_1_1sc__attr__base}{sc\+\_\+attr\+\_\+base}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{classsc__core_1_1sc__object_a86eeb5631e218151315dda30aa0065b2}{get\+\_\+attribute}} (\mbox{\hyperlink{class_sysc_add__pv}{const}} std\+::string \&\mbox{\hyperlink{class_sysc_add__pv}{name\+\_\+}})
+\item 
+\mbox{\hyperlink{class_sysc_add__pv}{const}} \mbox{\hyperlink{classsc__core_1_1sc__attr__base}{sc\+\_\+attr\+\_\+base}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{classsc__core_1_1sc__object_a67ab456d61770c4bad5f775c6935f248}{get\+\_\+attribute}} (\mbox{\hyperlink{class_sysc_add__pv}{const}} std\+::string \&\mbox{\hyperlink{class_sysc_add__pv}{name\+\_\+}}) \mbox{\hyperlink{class_sysc_add__pv}{const}}
+\item 
+\mbox{\hyperlink{classsc__core_1_1sc__attr__base}{sc\+\_\+attr\+\_\+base}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{classsc__core_1_1sc__object_aa98279f99eb9e3a80879fe158f7b5b02}{remove\+\_\+attribute}} (\mbox{\hyperlink{class_sysc_add__pv}{const}} std\+::string \&\mbox{\hyperlink{class_sysc_add__pv}{name\+\_\+}})
+\item 
+\mbox{\hyperlink{class_sysc_add__pv}{void}} \mbox{\hyperlink{classsc__core_1_1sc__object_a812edfdd89e6536ff7e479bbe7296cc6}{remove\+\_\+all\+\_\+attributes}} ()
+\item 
+int \mbox{\hyperlink{classsc__core_1_1sc__object_a5a1213ba04041e8caa6140cac50f12e9}{num\+\_\+attributes}} () \mbox{\hyperlink{class_sysc_add__pv}{const}}
+\item 
+\mbox{\hyperlink{classsc__core_1_1sc__attr__cltn}{sc\+\_\+attr\+\_\+cltn}} \& \mbox{\hyperlink{classsc__core_1_1sc__object_abcf1bd476f7ca351105533686b17afc4}{attr\+\_\+cltn}} ()
+\item 
+\mbox{\hyperlink{class_sysc_add__pv}{const}} \mbox{\hyperlink{classsc__core_1_1sc__attr__cltn}{sc\+\_\+attr\+\_\+cltn}} \& \mbox{\hyperlink{classsc__core_1_1sc__object_ad55e2b84c2e3216df4ac08929a2a6f46}{attr\+\_\+cltn}} () \mbox{\hyperlink{class_sysc_add__pv}{const}}
+\item 
+\mbox{\hyperlink{class_sysc_add__pv}{virtual}} \mbox{\hyperlink{class_sysc_add__pv}{const}} std\+::vector$<$ \mbox{\hyperlink{classsc__core_1_1sc__event}{sc\+\_\+event}} \texorpdfstring{$\ast$}{*} $>$ \& \mbox{\hyperlink{classsc__core_1_1sc__object_a01b26c4f85b8cdb37f9add5e8b6a983a}{get\+\_\+child\+\_\+events}} () \mbox{\hyperlink{class_sysc_add__pv}{const}}
+\item 
+\mbox{\hyperlink{classsc__core_1_1sc__object}{sc\+\_\+object}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{classsc__core_1_1sc__object_a000b9b011b231abe61d52bc895a9863d}{get\+\_\+parent}} () \mbox{\hyperlink{class_sysc_add__pv}{const}}
+\item 
+\mbox{\hyperlink{classsc__core_1_1sc__object}{sc\+\_\+object}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{classsc__core_1_1sc__object_a07f34b1c9c8720e6b4b32ea98bacab09}{get\+\_\+parent\+\_\+object}} () \mbox{\hyperlink{class_sysc_add__pv}{const}}
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Static Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_sysc_add__pv}{static}} \mbox{\hyperlink{classsc__core_1_1sc__process__handle}{sc\+\_\+process\+\_\+handle}} \mbox{\hyperlink{classsc__core_1_1sc__process__b_ab8442fb6c17ad5f72f7177d4beb286c0}{last\+\_\+created\+\_\+process\+\_\+handle}} ()
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_sysc_add__pv}{const}} \mbox{\hyperlink{class_sysc_add__pv}{char}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{classsc__core_1_1sc__process__b_a99cc428f873fa6470a210f92a19098c1}{file}}
+\item 
+int \mbox{\hyperlink{classsc__core_1_1sc__process__b_a3484e4adfe2f43e2115929f2798f90fe}{lineno}}
+\item 
+int \mbox{\hyperlink{classsc__core_1_1sc__process__b_a5d0b56fd49755c938b8ffcd4c7e1097e}{proc\+\_\+id}}
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Protected Types}
+\begin{DoxyCompactItemize}
+\item 
+enum \mbox{\hyperlink{classsc__core_1_1sc__process__b_abb492afddf95c95018a2c048de36eb3c}{spawn\+\_\+t}} \{ \mbox{\hyperlink{classsc__core_1_1sc__process__b_abb492afddf95c95018a2c048de36eb3ca73aa4e07d44b5646d12abc42f85816cc}{SPAWN\+\_\+\+ELAB}} = 0x0
+, \mbox{\hyperlink{classsc__core_1_1sc__process__b_abb492afddf95c95018a2c048de36eb3caa00663aea0d393d9b2d8dff1f5473f84}{SPAWN\+\_\+\+START}} = 0x1
+, \mbox{\hyperlink{classsc__core_1_1sc__process__b_abb492afddf95c95018a2c048de36eb3ca6df4da73d5e041b540b756b92bfcafd3}{SPAWN\+\_\+\+SIM}} = 0x2
+ \}
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Protected Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_sysc_add__pv}{virtual}} \mbox{\hyperlink{classsc__core_1_1sc__process__b_ac68384ab1922dcde59aaf5f8ac9ff658}{\texorpdfstring{$\sim$}{\string~}sc\+\_\+process\+\_\+b}} ()
+\item 
+\mbox{\hyperlink{class_sysc_add__pv}{virtual}} \mbox{\hyperlink{class_sysc_add__pv}{void}} \mbox{\hyperlink{classsc__core_1_1sc__process__b_aada14415b9be5b1b9beb4ed97a32742d}{add\+\_\+child\+\_\+object}} (\mbox{\hyperlink{classsc__core_1_1sc__object}{sc\+\_\+object}} \texorpdfstring{$\ast$}{*})
+\item 
+\mbox{\hyperlink{class_sysc_add__pv}{void}} \mbox{\hyperlink{classsc__core_1_1sc__process__b_a80d59feeb38b0a14f9fbd346421ae623}{add\+\_\+static\+\_\+event}} (\mbox{\hyperlink{class_sysc_add__pv}{const}} \mbox{\hyperlink{classsc__core_1_1sc__event}{sc\+\_\+event}} \&)
+\item 
+\mbox{\hyperlink{class_sysc_add__pv}{bool}} \mbox{\hyperlink{classsc__core_1_1sc__process__b_a0d27ce850ad0424b4f4deb48ce703ada}{dynamic}} () \mbox{\hyperlink{class_sysc_add__pv}{const}}
+\item 
+\mbox{\hyperlink{class_sysc_add__pv}{const}} \mbox{\hyperlink{class_sysc_add__pv}{char}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{classsc__core_1_1sc__process__b_a26ef7422d871714b3669fde84df06c32}{gen\+\_\+unique\+\_\+name}} (\mbox{\hyperlink{class_sysc_add__pv}{const}} \mbox{\hyperlink{class_sysc_add__pv}{char}} \texorpdfstring{$\ast$}{*}\mbox{\hyperlink{class_sysc_add__pv}{basename\+\_\+}}, \mbox{\hyperlink{class_sysc_add__pv}{bool}} \mbox{\hyperlink{class_sysc_add__pv}{preserve\+\_\+first}})
+\item 
+\mbox{\hyperlink{classsc__core_1_1sc__report}{sc\+\_\+report}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{classsc__core_1_1sc__process__b_a242cd808867a7891789ae624efbb25cb}{get\+\_\+last\+\_\+report}} ()
+\item 
+\mbox{\hyperlink{class_sysc_add__pv}{bool}} \mbox{\hyperlink{classsc__core_1_1sc__process__b_a7daed93e35a4d436b18ac65d2f51d617}{is\+\_\+disabled}} () \mbox{\hyperlink{class_sysc_add__pv}{const}}
+\item 
+\mbox{\hyperlink{class_sysc_add__pv}{bool}} \mbox{\hyperlink{classsc__core_1_1sc__process__b_af19238d335e3cd528f5a7538822bff6e}{is\+\_\+runnable}} () \mbox{\hyperlink{class_sysc_add__pv}{const}}
+\item 
+\mbox{\hyperlink{class_sysc_add__pv}{virtual}} \mbox{\hyperlink{class_sysc_add__pv}{bool}} \mbox{\hyperlink{classsc__core_1_1sc__process__b_ab9490244d3a43726e0240cfe12884830}{remove\+\_\+child\+\_\+object}} (\mbox{\hyperlink{classsc__core_1_1sc__object}{sc\+\_\+object}} \texorpdfstring{$\ast$}{*})
+\item 
+\mbox{\hyperlink{class_sysc_add__pv}{void}} \mbox{\hyperlink{classsc__core_1_1sc__process__b_a93cedc4e538aac20e8f2584324b229aa}{remove\+\_\+dynamic\+\_\+events}} (\mbox{\hyperlink{class_sysc_add__pv}{bool}} \mbox{\hyperlink{class_sysc_add__pv}{skip\+\_\+timeout}}=\mbox{\hyperlink{class_sysc_add__pv}{false}})
+\item 
+\mbox{\hyperlink{class_sysc_add__pv}{void}} \mbox{\hyperlink{classsc__core_1_1sc__process__b_a8471138d3ba14870baa08058e2a08ef5}{remove\+\_\+static\+\_\+events}} ()
+\item 
+\mbox{\hyperlink{class_sysc_add__pv}{void}} \mbox{\hyperlink{classsc__core_1_1sc__process__b_ad7004d9c622d35af3dc6107abe42c681}{set\+\_\+last\+\_\+report}} (\mbox{\hyperlink{classsc__core_1_1sc__report}{sc\+\_\+report}} \texorpdfstring{$\ast$}{*}\mbox{\hyperlink{class_sysc_add__pv}{last\+\_\+p}})
+\item 
+\mbox{\hyperlink{class_sysc_add__pv}{bool}} \mbox{\hyperlink{classsc__core_1_1sc__process__b_ab07cfef3b264ac72941da8ced3106179}{timed\+\_\+out}} () \mbox{\hyperlink{class_sysc_add__pv}{const}}
+\item 
+\mbox{\hyperlink{class_sysc_add__pv}{void}} \mbox{\hyperlink{classsc__core_1_1sc__process__b_a03a0d91a60d6ea6d5c8962cf1d13d1d6}{report\+\_\+error}} (\mbox{\hyperlink{class_sysc_add__pv}{const}} \mbox{\hyperlink{class_sysc_add__pv}{char}} \texorpdfstring{$\ast$}{*}\mbox{\hyperlink{class_sysc_add__pv}{msgid}}, \mbox{\hyperlink{class_sysc_add__pv}{const}} \mbox{\hyperlink{class_sysc_add__pv}{char}} \texorpdfstring{$\ast$}{*}msg="{}"{}) \mbox{\hyperlink{class_sysc_add__pv}{const}}
+\item 
+\mbox{\hyperlink{class_sysc_add__pv}{void}} \mbox{\hyperlink{classsc__core_1_1sc__process__b_a1d1f0368e0a934d5e71eb75043ecbc86}{report\+\_\+immediate\+\_\+self\+\_\+notification}} () \mbox{\hyperlink{class_sysc_add__pv}{const}}
+\item 
+\mbox{\hyperlink{class_sysc_add__pv}{virtual}} \mbox{\hyperlink{class_sysc_add__pv}{void}} \mbox{\hyperlink{classsc__core_1_1sc__process__b_a914dda3b1ff60d903cfd6dcd9be3cb5c}{disable\+\_\+process}} (\mbox{\hyperlink{namespacesc__core_af299d964d600dfca2e37224a6cb83298}{sc\+\_\+descendant\+\_\+inclusion\+\_\+info}} \mbox{\hyperlink{class_sysc_add__pv}{descendants}}=\mbox{\hyperlink{namespacesc__core_af299d964d600dfca2e37224a6cb83298aaf9243a80d08aa59c1ee5689a99747af}{SC\+\_\+\+NO\+\_\+\+DESCENDANTS}})=0
+\item 
+\mbox{\hyperlink{class_sysc_add__pv}{void}} \mbox{\hyperlink{classsc__core_1_1sc__process__b_a0c9280a028ff6e61ec2f83b94b75d535}{disconnect\+\_\+process}} ()
+\item 
+\mbox{\hyperlink{class_sysc_add__pv}{virtual}} \mbox{\hyperlink{class_sysc_add__pv}{void}} \mbox{\hyperlink{classsc__core_1_1sc__process__b_a254aa9cade9b3e2845d7e3e409889bd2}{enable\+\_\+process}} (\mbox{\hyperlink{namespacesc__core_af299d964d600dfca2e37224a6cb83298}{sc\+\_\+descendant\+\_\+inclusion\+\_\+info}} \mbox{\hyperlink{class_sysc_add__pv}{descendants}}=\mbox{\hyperlink{namespacesc__core_af299d964d600dfca2e37224a6cb83298aaf9243a80d08aa59c1ee5689a99747af}{SC\+\_\+\+NO\+\_\+\+DESCENDANTS}})=0
+\item 
+\mbox{\hyperlink{class_sysc_add__pv}{void}} \mbox{\hyperlink{classsc__core_1_1sc__process__b_a3fd75df28f38539e7266f2988e6a54af}{initially\+\_\+in\+\_\+reset}} (\mbox{\hyperlink{class_sysc_add__pv}{bool}} \mbox{\hyperlink{class_sysc_add__pv}{async}})
+\item 
+\mbox{\hyperlink{class_sysc_add__pv}{bool}} \mbox{\hyperlink{classsc__core_1_1sc__process__b_aba04382da34bacfdb87754205a33bdb3}{is\+\_\+unwinding}} () \mbox{\hyperlink{class_sysc_add__pv}{const}}
+\item 
+\mbox{\hyperlink{class_sysc_add__pv}{bool}} \mbox{\hyperlink{classsc__core_1_1sc__process__b_aec1fd9e4a80f0f70869a099750e9f682}{start\+\_\+unwinding}} ()
+\item 
+\mbox{\hyperlink{class_sysc_add__pv}{bool}} \mbox{\hyperlink{classsc__core_1_1sc__process__b_a35cb7dad0a07d594dfcb6c5532e15b16}{clear\+\_\+unwinding}} ()
+\item 
+\mbox{\hyperlink{class_sysc_add__pv}{virtual}} \mbox{\hyperlink{class_sysc_add__pv}{void}} \mbox{\hyperlink{classsc__core_1_1sc__process__b_a2a9a00ef1f025ef141757d380179ac71}{kill\+\_\+process}} (\mbox{\hyperlink{namespacesc__core_af299d964d600dfca2e37224a6cb83298}{sc\+\_\+descendant\+\_\+inclusion\+\_\+info}} \mbox{\hyperlink{class_sysc_add__pv}{descendants}}=\mbox{\hyperlink{namespacesc__core_af299d964d600dfca2e37224a6cb83298aaf9243a80d08aa59c1ee5689a99747af}{SC\+\_\+\+NO\+\_\+\+DESCENDANTS}})=0
+\item 
+\mbox{\hyperlink{class_sysc_add__pv}{void}} \mbox{\hyperlink{classsc__core_1_1sc__process__b_ae2fcac32f0933252105660eabe2e01ec}{reset\+\_\+changed}} (\mbox{\hyperlink{class_sysc_add__pv}{bool}} \mbox{\hyperlink{class_sysc_add__pv}{async}}, \mbox{\hyperlink{class_sysc_add__pv}{bool}} \mbox{\hyperlink{class_sysc_add__pv}{asserted}})
+\item 
+\mbox{\hyperlink{class_sysc_add__pv}{void}} \mbox{\hyperlink{classsc__core_1_1sc__process__b_a7e4b14f8600d9137187b5a9f4e9eb0ee}{reset\+\_\+process}} (\mbox{\hyperlink{classsc__core_1_1sc__process__b_aa3a79eb27dadbc8055524c8b73b1b051}{reset\+\_\+type}} \mbox{\hyperlink{class_sysc_add__pv}{rt}}, \mbox{\hyperlink{namespacesc__core_af299d964d600dfca2e37224a6cb83298}{sc\+\_\+descendant\+\_\+inclusion\+\_\+info}} \mbox{\hyperlink{class_sysc_add__pv}{descendants}}=\mbox{\hyperlink{namespacesc__core_af299d964d600dfca2e37224a6cb83298aaf9243a80d08aa59c1ee5689a99747af}{SC\+\_\+\+NO\+\_\+\+DESCENDANTS}})
+\item 
+\mbox{\hyperlink{class_sysc_add__pv}{virtual}} \mbox{\hyperlink{class_sysc_add__pv}{void}} \mbox{\hyperlink{classsc__core_1_1sc__process__b_a217f211da141b960f239cb77c0e42e2e}{resume\+\_\+process}} (\mbox{\hyperlink{namespacesc__core_af299d964d600dfca2e37224a6cb83298}{sc\+\_\+descendant\+\_\+inclusion\+\_\+info}} \mbox{\hyperlink{class_sysc_add__pv}{descendants}}=\mbox{\hyperlink{namespacesc__core_af299d964d600dfca2e37224a6cb83298aaf9243a80d08aa59c1ee5689a99747af}{SC\+\_\+\+NO\+\_\+\+DESCENDANTS}})=0
+\item 
+\mbox{\hyperlink{class_sysc_add__pv}{virtual}} \mbox{\hyperlink{class_sysc_add__pv}{void}} \mbox{\hyperlink{classsc__core_1_1sc__process__b_a9839b7477d47f1d32fcf0601fe9abb11}{suspend\+\_\+process}} (\mbox{\hyperlink{namespacesc__core_af299d964d600dfca2e37224a6cb83298}{sc\+\_\+descendant\+\_\+inclusion\+\_\+info}} \mbox{\hyperlink{class_sysc_add__pv}{descendants}}=\mbox{\hyperlink{namespacesc__core_af299d964d600dfca2e37224a6cb83298aaf9243a80d08aa59c1ee5689a99747af}{SC\+\_\+\+NO\+\_\+\+DESCENDANTS}})=0
+\item 
+\mbox{\hyperlink{class_sysc_add__pv}{virtual}} \mbox{\hyperlink{class_sysc_add__pv}{void}} \mbox{\hyperlink{classsc__core_1_1sc__process__b_aa431865a79cdf51b1c19a8da4a4423a0}{throw\+\_\+user}} (\mbox{\hyperlink{class_sysc_add__pv}{const}} \mbox{\hyperlink{classsc__core_1_1sc__throw__it__helper}{sc\+\_\+throw\+\_\+it\+\_\+helper}} \&\mbox{\hyperlink{class_sysc_add__pv}{helper}}, \mbox{\hyperlink{namespacesc__core_af299d964d600dfca2e37224a6cb83298}{sc\+\_\+descendant\+\_\+inclusion\+\_\+info}} \mbox{\hyperlink{class_sysc_add__pv}{descendants}}=\mbox{\hyperlink{namespacesc__core_af299d964d600dfca2e37224a6cb83298aaf9243a80d08aa59c1ee5689a99747af}{SC\+\_\+\+NO\+\_\+\+DESCENDANTS}})=0
+\item 
+\mbox{\hyperlink{class_sysc_add__pv}{virtual}} \mbox{\hyperlink{class_sysc_add__pv}{void}} \mbox{\hyperlink{classsc__core_1_1sc__process__b_a4ec15bb1d268eb5310c6081f817abeb9}{throw\+\_\+reset}} (\mbox{\hyperlink{class_sysc_add__pv}{bool}} \mbox{\hyperlink{class_sysc_add__pv}{async}})=0
+\item 
+\mbox{\hyperlink{class_sysc_add__pv}{virtual}} \mbox{\hyperlink{class_sysc_add__pv}{bool}} \mbox{\hyperlink{classsc__core_1_1sc__process__b_a76e434c6e5ac898ac1f6e8584f25508f}{terminated}} () \mbox{\hyperlink{class_sysc_add__pv}{const}}
+\item 
+\mbox{\hyperlink{class_sysc_add__pv}{void}} \mbox{\hyperlink{classsc__core_1_1sc__process__b_aa5b7d4f76c359440b370b4962427ee5a}{trigger\+\_\+reset\+\_\+event}} ()
+\item 
+\mbox{\hyperlink{class_sysc_add__pv}{void}} \mbox{\hyperlink{classsc__core_1_1sc__process__b_aacccc829d67e9b6b9892a5446530e343}{semantics}} ()
+\end{DoxyCompactItemize}
+\doxysubsection*{Protected Member Functions inherited from \mbox{\hyperlink{classsc__core_1_1sc__object}{sc\+\_\+core\+::sc\+\_\+object}}}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classsc__core_1_1sc__object_a3369d21ab73ffa0f2d27be6cf11b6759}{sc\+\_\+object}} ()
+\item 
+\mbox{\hyperlink{classsc__core_1_1sc__object_ac094446cdc95b8606ace0c8e301af6b7}{sc\+\_\+object}} (\mbox{\hyperlink{class_sysc_add__pv}{const}} \mbox{\hyperlink{class_sysc_add__pv}{char}} \texorpdfstring{$\ast$}{*}\mbox{\hyperlink{class_sysc_add__pv}{nm}})
+\item 
+\mbox{\hyperlink{classsc__core_1_1sc__object_a367fc3501af7bef3a11017a28a9fdcca}{sc\+\_\+object}} (\mbox{\hyperlink{class_sysc_add__pv}{const}} \mbox{\hyperlink{classsc__core_1_1sc__object}{sc\+\_\+object}} \&)
+\item 
+\mbox{\hyperlink{classsc__core_1_1sc__object}{sc\+\_\+object}} \& \mbox{\hyperlink{classsc__core_1_1sc__object_a0e79bf80bc35065e23bef0d9ffb7e2ae}{operator=}} (\mbox{\hyperlink{class_sysc_add__pv}{const}} \mbox{\hyperlink{classsc__core_1_1sc__object}{sc\+\_\+object}} \&)
+\item 
+\mbox{\hyperlink{class_sysc_add__pv}{virtual}} \mbox{\hyperlink{classsc__core_1_1sc__object_a5b861716606ce329ee9a16b6d8f13e28}{\texorpdfstring{$\sim$}{\string~}sc\+\_\+object}} ()
+\item 
+\mbox{\hyperlink{class_sysc_add__pv}{virtual}} \mbox{\hyperlink{class_sysc_add__pv}{void}} \mbox{\hyperlink{classsc__core_1_1sc__object_a39ba1a14f5ce703758c2f982051981db}{add\+\_\+child\+\_\+event}} (\mbox{\hyperlink{classsc__core_1_1sc__event}{sc\+\_\+event}} \texorpdfstring{$\ast$}{*}\mbox{\hyperlink{class_sysc_add__pv}{event\+\_\+p}})
+\item 
+\mbox{\hyperlink{class_sysc_add__pv}{virtual}} \mbox{\hyperlink{class_sysc_add__pv}{bool}} \mbox{\hyperlink{classsc__core_1_1sc__object_a3e1c8fe2344ba4a074caf02038cc1745}{remove\+\_\+child\+\_\+event}} (\mbox{\hyperlink{classsc__core_1_1sc__event}{sc\+\_\+event}} \texorpdfstring{$\ast$}{*}\mbox{\hyperlink{class_sysc_add__pv}{event\+\_\+p}})
+\item 
+\mbox{\hyperlink{classsc__core_1_1sc__object_a38a53f30a8719f77e35df8965845819e}{phase\+\_\+cb\+\_\+mask}} \mbox{\hyperlink{classsc__core_1_1sc__object_a98573c57438867b3373d5c09c5aefbc2}{register\+\_\+simulation\+\_\+phase\+\_\+callback}} (\mbox{\hyperlink{classsc__core_1_1sc__object_a38a53f30a8719f77e35df8965845819e}{phase\+\_\+cb\+\_\+mask}})
+\item 
+\mbox{\hyperlink{classsc__core_1_1sc__object_a38a53f30a8719f77e35df8965845819e}{phase\+\_\+cb\+\_\+mask}} \mbox{\hyperlink{classsc__core_1_1sc__object_ab7e23f225ea242450a151b390d28c872}{unregister\+\_\+simulation\+\_\+phase\+\_\+callback}} (\mbox{\hyperlink{classsc__core_1_1sc__object_a38a53f30a8719f77e35df8965845819e}{phase\+\_\+cb\+\_\+mask}})
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Static Protected Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_sysc_add__pv}{static}} \mbox{\hyperlink{classsc__core_1_1sc__process__b}{sc\+\_\+process\+\_\+b}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{classsc__core_1_1sc__process__b_a598fbf04facff586e0c743d007bd9cc3}{last\+\_\+created\+\_\+process\+\_\+base}} ()
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+int \mbox{\hyperlink{classsc__core_1_1sc__process__b_a11b3d6abee08c4193a82800496c3f770}{m\+\_\+active\+\_\+areset\+\_\+n}}
+\item 
+int \mbox{\hyperlink{classsc__core_1_1sc__process__b_a6b933e4ff7ebfa245069cb79e3bc2788}{m\+\_\+active\+\_\+reset\+\_\+n}}
+\item 
+\mbox{\hyperlink{class_sysc_add__pv}{bool}} \mbox{\hyperlink{classsc__core_1_1sc__process__b_a4bba193dd9f42734a0bf18e694464c9d}{m\+\_\+dont\+\_\+init}}
+\item 
+\mbox{\hyperlink{classsc__core_1_1sc__process__b_abb492afddf95c95018a2c048de36eb3c}{spawn\+\_\+t}} \mbox{\hyperlink{classsc__core_1_1sc__process__b_a713952890dc059af03e3b0943496316f}{m\+\_\+dynamic\+\_\+proc}}
+\item 
+\mbox{\hyperlink{class_sysc_add__pv}{const}} \mbox{\hyperlink{classsc__core_1_1sc__event}{sc\+\_\+event}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{classsc__core_1_1sc__process__b_acd2ccfa88438085032b72d154ea6c733}{m\+\_\+event\+\_\+p}}
+\item 
+int \mbox{\hyperlink{classsc__core_1_1sc__process__b_aa06f8822ecee9661a4558f165915060b}{m\+\_\+event\+\_\+count}}
+\item 
+\mbox{\hyperlink{class_sysc_add__pv}{const}} \mbox{\hyperlink{classsc__core_1_1sc__event__list}{sc\+\_\+event\+\_\+list}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{classsc__core_1_1sc__process__b_a6d6e55ba572b77c74dc9999946a5b9e5}{m\+\_\+event\+\_\+list\+\_\+p}}
+\item 
+\mbox{\hyperlink{classsc__core_1_1sc__process__b}{sc\+\_\+process\+\_\+b}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{classsc__core_1_1sc__process__b_ab816e15feece55ddbda9dbc46cbd6659}{m\+\_\+exist\+\_\+p}}
+\item 
+\mbox{\hyperlink{class_sysc_add__pv}{bool}} \mbox{\hyperlink{classsc__core_1_1sc__process__b_ad2c393784246e910cda401a479b0ee13}{m\+\_\+free\+\_\+host}}
+\item 
+\mbox{\hyperlink{class_sysc_add__pv}{bool}} \mbox{\hyperlink{classsc__core_1_1sc__process__b_a70c3c7de06e5a03b39052f17c4dd9207}{m\+\_\+has\+\_\+reset\+\_\+signal}}
+\item 
+\mbox{\hyperlink{class_sysc_add__pv}{bool}} \mbox{\hyperlink{classsc__core_1_1sc__process__b_a9290049f92d92b2cd8669cabd0f2359c}{m\+\_\+has\+\_\+stack}}
+\item 
+\mbox{\hyperlink{class_sysc_add__pv}{bool}} \mbox{\hyperlink{classsc__core_1_1sc__process__b_a52f7ec996a79e50038b84c085c9d6975}{m\+\_\+is\+\_\+thread}}
+\item 
+\mbox{\hyperlink{classsc__core_1_1sc__report}{sc\+\_\+report}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{classsc__core_1_1sc__process__b_a00d61b089792b1bb93e5866c8067014a}{m\+\_\+last\+\_\+report\+\_\+p}}
+\item 
+\mbox{\hyperlink{classsc__core_1_1sc__name__gen}{sc\+\_\+name\+\_\+gen}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{classsc__core_1_1sc__process__b_ab9b257a883c0a4d73d5b02c72ae2896b}{m\+\_\+name\+\_\+gen\+\_\+p}}
+\item 
+\mbox{\hyperlink{namespacesc__core_a55cfb0f6c35416b69482b689d24ed045}{sc\+\_\+curr\+\_\+proc\+\_\+kind}} \mbox{\hyperlink{classsc__core_1_1sc__process__b_af40bf45d91c9766c3582f8a5aa8aa0c6}{m\+\_\+process\+\_\+kind}}
+\item 
+int \mbox{\hyperlink{classsc__core_1_1sc__process__b_aaef110083edfc73e241617a1b5e5fb4f}{m\+\_\+references\+\_\+n}}
+\item 
+std\+::vector$<$ \mbox{\hyperlink{classsc__core_1_1sc__reset}{sc\+\_\+reset}} \texorpdfstring{$\ast$}{*} $>$ \mbox{\hyperlink{classsc__core_1_1sc__process__b_ad2f2018f471252b6cb453dd95ffd5ff2}{m\+\_\+resets}}
+\item 
+\mbox{\hyperlink{classsc__core_1_1sc__event}{sc\+\_\+event}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{classsc__core_1_1sc__process__b_a1c8ef5a4fb1d603649d1dbe6e3188848}{m\+\_\+reset\+\_\+event\+\_\+p}}
+\item 
+\mbox{\hyperlink{classsc__core_1_1sc__event}{sc\+\_\+event}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{classsc__core_1_1sc__process__b_a14c3baa00f8759d75c35fee61f612210}{m\+\_\+resume\+\_\+event\+\_\+p}}
+\item 
+\mbox{\hyperlink{classsc__core_1_1sc__process__b}{sc\+\_\+process\+\_\+b}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{classsc__core_1_1sc__process__b_a4090b13b42cd1259d2b40867a1ca5855}{m\+\_\+runnable\+\_\+p}}
+\item 
+\mbox{\hyperlink{classsc__core_1_1sc__process__host}{sc\+\_\+process\+\_\+host}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{classsc__core_1_1sc__process__b_aded7ad046c6039c7aa86240cd50eb418}{m\+\_\+semantics\+\_\+host\+\_\+p}}
+\item 
+\mbox{\hyperlink{namespacesc__core_a3c3c6a60b0462a2cb00c7c294417c02e}{SC\+\_\+\+ENTRY\+\_\+\+FUNC}} \mbox{\hyperlink{classsc__core_1_1sc__process__b_a8926a28a0c67059c2e4b66af1e52476e}{m\+\_\+semantics\+\_\+method\+\_\+p}}
+\item 
+int \mbox{\hyperlink{classsc__core_1_1sc__process__b_a3a7c616f6590f84df9caff51ef47ab29}{m\+\_\+state}}
+\item 
+std\+::vector$<$ \mbox{\hyperlink{class_sysc_add__pv}{const}} \mbox{\hyperlink{classsc__core_1_1sc__event}{sc\+\_\+event}} \texorpdfstring{$\ast$}{*} $>$ \mbox{\hyperlink{classsc__core_1_1sc__process__b_afa69a0ea561f83794f7a22e0278fae1d}{m\+\_\+static\+\_\+events}}
+\item 
+\mbox{\hyperlink{class_sysc_add__pv}{bool}} \mbox{\hyperlink{classsc__core_1_1sc__process__b_a04b6f76ef03e8092d0d1510934a757dc}{m\+\_\+sticky\+\_\+reset}}
+\item 
+\mbox{\hyperlink{classsc__core_1_1sc__event}{sc\+\_\+event}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{classsc__core_1_1sc__process__b_a3ec8bdaa79ba3c4e9e04fb4d8aeaba09}{m\+\_\+term\+\_\+event\+\_\+p}}
+\item 
+\mbox{\hyperlink{classsc__core_1_1sc__throw__it__helper}{sc\+\_\+throw\+\_\+it\+\_\+helper}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{classsc__core_1_1sc__process__b_a738d6e9f16a1650d015651c307c2d99e}{m\+\_\+throw\+\_\+helper\+\_\+p}}
+\item 
+\mbox{\hyperlink{classsc__core_1_1sc__process__b_ac09c2c06a786f9911d58ad3515137784}{process\+\_\+throw\+\_\+type}} \mbox{\hyperlink{classsc__core_1_1sc__process__b_a5eb7fe7c88ba1de299071e9dec2ea02f}{m\+\_\+throw\+\_\+status}}
+\item 
+\mbox{\hyperlink{class_sysc_add__pv}{bool}} \mbox{\hyperlink{classsc__core_1_1sc__process__b_a8e21c84fe49e911a4f2fbe76e98d5e7d}{m\+\_\+timed\+\_\+out}}
+\item 
+\mbox{\hyperlink{classsc__core_1_1sc__event}{sc\+\_\+event}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{classsc__core_1_1sc__process__b_a7a4fb73508cd06832780de9b4ce1ea9a}{m\+\_\+timeout\+\_\+event\+\_\+p}}
+\item 
+\mbox{\hyperlink{classsc__core_1_1sc__process__b_aed728eb97299bc2cc355d521245e5a94}{trigger\+\_\+t}} \mbox{\hyperlink{classsc__core_1_1sc__process__b_a35a19ed7e35d33ea77db5042c98f9ce9}{m\+\_\+trigger\+\_\+type}}
+\item 
+\mbox{\hyperlink{class_sysc_add__pv}{bool}} \mbox{\hyperlink{classsc__core_1_1sc__process__b_a17bd4b253de298fb1694a6100b5d3230}{m\+\_\+unwinding}}
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Static Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_sysc_add__pv}{static}} \mbox{\hyperlink{classsc__core_1_1sc__process__b}{sc\+\_\+process\+\_\+b}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{classsc__core_1_1sc__process__b_a48edb38a4b7e32433804933444cabd5e}{m\+\_\+last\+\_\+created\+\_\+process\+\_\+p}}
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Private Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_sysc_add__pv}{void}} \mbox{\hyperlink{classsc__core_1_1sc__process__b_a654ea611f7920da491723571f8311ec9}{delete\+\_\+process}} ()
+\item 
+\mbox{\hyperlink{class_sysc_add__pv}{void}} \mbox{\hyperlink{classsc__core_1_1sc__process__b_aefc37b9e890fa6f5de500067325f5e07}{reference\+\_\+decrement}} ()
+\item 
+\mbox{\hyperlink{class_sysc_add__pv}{void}} \mbox{\hyperlink{classsc__core_1_1sc__process__b_afead11e72fdf0980cb28727c542d44ae}{reference\+\_\+increment}} ()
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Friends}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_sysc_add__pv}{class}} \mbox{\hyperlink{classsc__core_1_1sc__process__b_a8a833de7b9d6933c5c9b296583c4c835}{sc\+\_\+simcontext}}
+\item 
+\mbox{\hyperlink{class_sysc_add__pv}{class}} \mbox{\hyperlink{classsc__core_1_1sc__process__b_af2c9e96bc0fe4f99c3fdbf18a3965fda}{sc\+\_\+cthread\+\_\+process}}
+\item 
+\mbox{\hyperlink{class_sysc_add__pv}{class}} \mbox{\hyperlink{classsc__core_1_1sc__process__b_acc919bce635598675ac34601d8fefbf7}{sc\+\_\+method\+\_\+process}}
+\item 
+\mbox{\hyperlink{class_sysc_add__pv}{class}} \mbox{\hyperlink{classsc__core_1_1sc__process__b_a4a61fb98d9d86beda7cf6016f55d01ba}{sc\+\_\+process\+\_\+handle}}
+\item 
+\mbox{\hyperlink{class_sysc_add__pv}{class}} \mbox{\hyperlink{classsc__core_1_1sc__process__b_a12ba92f261d993145709693ea4466b47}{sc\+\_\+process\+\_\+table}}
+\item 
+\mbox{\hyperlink{class_sysc_add__pv}{class}} \mbox{\hyperlink{classsc__core_1_1sc__process__b_ac96f23e2e92c5f037cba0971b62ebcff}{sc\+\_\+thread\+\_\+process}}
+\item 
+\mbox{\hyperlink{class_sysc_add__pv}{class}} \mbox{\hyperlink{classsc__core_1_1sc__process__b_a13f565eb1938ead239f8b6a0927057b0}{sc\+\_\+event}}
+\item 
+\mbox{\hyperlink{class_sysc_add__pv}{class}} \mbox{\hyperlink{classsc__core_1_1sc__process__b_abe316699185dd3108ba952d356e513e5}{sc\+\_\+object}}
+\item 
+\mbox{\hyperlink{class_sysc_add__pv}{class}} \mbox{\hyperlink{classsc__core_1_1sc__process__b_ac16572a975a3185797ffbd9f318470fd}{sc\+\_\+port\+\_\+base}}
+\item 
+\mbox{\hyperlink{class_sysc_add__pv}{class}} \mbox{\hyperlink{classsc__core_1_1sc__process__b_a7daf768cb0d25e9950151ec7079decbe}{sc\+\_\+runnable}}
+\item 
+\mbox{\hyperlink{class_sysc_add__pv}{class}} \mbox{\hyperlink{classsc__core_1_1sc__process__b_ad3d4027e6ef16484903fcd92f865519d}{sc\+\_\+sensitive}}
+\item 
+\mbox{\hyperlink{class_sysc_add__pv}{class}} \mbox{\hyperlink{classsc__core_1_1sc__process__b_a83751c37d469e63b83c9a1e209b7319b}{sc\+\_\+sensitive\+\_\+pos}}
+\item 
+\mbox{\hyperlink{class_sysc_add__pv}{class}} \mbox{\hyperlink{classsc__core_1_1sc__process__b_a98963a9ab02b155f3cb5061dcdbbb1b5}{sc\+\_\+sensitive\+\_\+neg}}
+\item 
+\mbox{\hyperlink{class_sysc_add__pv}{class}} \mbox{\hyperlink{classsc__core_1_1sc__process__b_a460de50921ea4456ecaf395eb8594974}{sc\+\_\+module}}
+\item 
+\mbox{\hyperlink{class_sysc_add__pv}{class}} \mbox{\hyperlink{classsc__core_1_1sc__process__b_aaba7034cfa93e6c1a3e2f1e9e57f9b47}{sc\+\_\+report\+\_\+handler}}
+\item 
+\mbox{\hyperlink{class_sysc_add__pv}{class}} \mbox{\hyperlink{classsc__core_1_1sc__process__b_a459c3ab69abfc8912c9261f7dc0719dd}{sc\+\_\+reset}}
+\item 
+\mbox{\hyperlink{class_sysc_add__pv}{class}} \mbox{\hyperlink{classsc__core_1_1sc__process__b_af692216008e752352d2831cd7c62e7f6}{sc\+\_\+reset\+\_\+finder}}
+\item 
+\mbox{\hyperlink{class_sysc_add__pv}{class}} \mbox{\hyperlink{classsc__core_1_1sc__process__b_aa82b5a44736cfa6eae577e422fe1da51}{sc\+\_\+unwind\+\_\+exception}}
+\item 
+\mbox{\hyperlink{sc__cmnhdr_8h_aff4a86b3f5de3ac2097081e7166fe89f}{SC\+\_\+\+API}} \mbox{\hyperlink{class_sysc_add__pv}{const}} \mbox{\hyperlink{class_sysc_add__pv}{char}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{classsc__core_1_1sc__process__b_a09d8be7572d9fe768e9126546a3b6fb5}{sc\+\_\+gen\+\_\+unique\+\_\+name}} (\mbox{\hyperlink{class_sysc_add__pv}{const}} \mbox{\hyperlink{class_sysc_add__pv}{char}} \texorpdfstring{$\ast$}{*}, \mbox{\hyperlink{class_sysc_add__pv}{bool}} \mbox{\hyperlink{class_sysc_add__pv}{preserve\+\_\+first}})
+\item 
+\mbox{\hyperlink{sc__cmnhdr_8h_aff4a86b3f5de3ac2097081e7166fe89f}{SC\+\_\+\+API}} \mbox{\hyperlink{classsc__core_1_1sc__process__handle}{sc\+\_\+process\+\_\+handle}} \mbox{\hyperlink{classsc__core_1_1sc__process__b_aaa33df6397450db8f31f649e60e2eab2}{sc\+\_\+get\+\_\+current\+\_\+process\+\_\+handle}} ()
+\item 
+\mbox{\hyperlink{class_sysc_add__pv}{void}} \mbox{\hyperlink{classsc__core_1_1sc__process__b_a285a9415d730026b6e9477982147ba11}{sc\+\_\+thread\+\_\+cor\+\_\+fn}} (\mbox{\hyperlink{class_sysc_add__pv}{void}} \texorpdfstring{$\ast$}{*}arg)
+\item 
+\mbox{\hyperlink{sc__cmnhdr_8h_aff4a86b3f5de3ac2097081e7166fe89f}{SC\+\_\+\+API}} \mbox{\hyperlink{class_sysc_add__pv}{bool}} \mbox{\hyperlink{classsc__core_1_1sc__process__b_a0fd6c8439488e78e651c8cbe8336e555}{timed\+\_\+out}} (\mbox{\hyperlink{classsc__core_1_1sc__simcontext}{sc\+\_\+simcontext}} \texorpdfstring{$\ast$}{*})
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Member Enumeration Documentation}
+\Hypertarget{classsc__core_1_1sc__process__b_a2933596250177f33a0a637caec05c443}\label{classsc__core_1_1sc__process__b_a2933596250177f33a0a637caec05c443} 
+\index{sc\_core::sc\_process\_b@{sc\_core::sc\_process\_b}!process\_state@{process\_state}}
+\index{process\_state@{process\_state}!sc\_core::sc\_process\_b@{sc\_core::sc\_process\_b}}
+\doxysubsubsection{\texorpdfstring{process\_state}{process\_state}}
+{\footnotesize\ttfamily \mbox{\hyperlink{class_sysc_add__pv}{enum}} \mbox{\hyperlink{classsc__core_1_1sc__process__b_a2933596250177f33a0a637caec05c443}{sc\+\_\+core\+::sc\+\_\+process\+\_\+b\+::process\+\_\+state}}}
+
+\begin{DoxyEnumFields}{Enumerator}
+\raisebox{\heightof{T}}[0pt][0pt]{\index{ps\_bit\_disabled@{ps\_bit\_disabled}!sc\_core::sc\_process\_b@{sc\_core::sc\_process\_b}}\index{sc\_core::sc\_process\_b@{sc\_core::sc\_process\_b}!ps\_bit\_disabled@{ps\_bit\_disabled}}}\Hypertarget{classsc__core_1_1sc__process__b_a2933596250177f33a0a637caec05c443a88e7de4bbbf33d9ae67354e37cee18b6}\label{classsc__core_1_1sc__process__b_a2933596250177f33a0a637caec05c443a88e7de4bbbf33d9ae67354e37cee18b6} 
+ps\+\_\+bit\+\_\+disabled&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{ps\_bit\_ready\_to\_run@{ps\_bit\_ready\_to\_run}!sc\_core::sc\_process\_b@{sc\_core::sc\_process\_b}}\index{sc\_core::sc\_process\_b@{sc\_core::sc\_process\_b}!ps\_bit\_ready\_to\_run@{ps\_bit\_ready\_to\_run}}}\Hypertarget{classsc__core_1_1sc__process__b_a2933596250177f33a0a637caec05c443a75f72f390a3b933df53f86db821ef0c5}\label{classsc__core_1_1sc__process__b_a2933596250177f33a0a637caec05c443a75f72f390a3b933df53f86db821ef0c5} 
+ps\+\_\+bit\+\_\+ready\+\_\+to\+\_\+run&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{ps\_bit\_suspended@{ps\_bit\_suspended}!sc\_core::sc\_process\_b@{sc\_core::sc\_process\_b}}\index{sc\_core::sc\_process\_b@{sc\_core::sc\_process\_b}!ps\_bit\_suspended@{ps\_bit\_suspended}}}\Hypertarget{classsc__core_1_1sc__process__b_a2933596250177f33a0a637caec05c443a2f163c7d80598bf4bbf2a9977dfbfae3}\label{classsc__core_1_1sc__process__b_a2933596250177f33a0a637caec05c443a2f163c7d80598bf4bbf2a9977dfbfae3} 
+ps\+\_\+bit\+\_\+suspended&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{ps\_bit\_zombie@{ps\_bit\_zombie}!sc\_core::sc\_process\_b@{sc\_core::sc\_process\_b}}\index{sc\_core::sc\_process\_b@{sc\_core::sc\_process\_b}!ps\_bit\_zombie@{ps\_bit\_zombie}}}\Hypertarget{classsc__core_1_1sc__process__b_a2933596250177f33a0a637caec05c443a60229a842a99b0f2f7d9fab83b3970d1}\label{classsc__core_1_1sc__process__b_a2933596250177f33a0a637caec05c443a60229a842a99b0f2f7d9fab83b3970d1} 
+ps\+\_\+bit\+\_\+zombie&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{ps\_normal@{ps\_normal}!sc\_core::sc\_process\_b@{sc\_core::sc\_process\_b}}\index{sc\_core::sc\_process\_b@{sc\_core::sc\_process\_b}!ps\_normal@{ps\_normal}}}\Hypertarget{classsc__core_1_1sc__process__b_a2933596250177f33a0a637caec05c443ad84a00d0fe477e398bab774b271020e3}\label{classsc__core_1_1sc__process__b_a2933596250177f33a0a637caec05c443ad84a00d0fe477e398bab774b271020e3} 
+ps\+\_\+normal&\\
+\hline
+
+\end{DoxyEnumFields}
+\Hypertarget{classsc__core_1_1sc__process__b_ac09c2c06a786f9911d58ad3515137784}\label{classsc__core_1_1sc__process__b_ac09c2c06a786f9911d58ad3515137784} 
+\index{sc\_core::sc\_process\_b@{sc\_core::sc\_process\_b}!process\_throw\_type@{process\_throw\_type}}
+\index{process\_throw\_type@{process\_throw\_type}!sc\_core::sc\_process\_b@{sc\_core::sc\_process\_b}}
+\doxysubsubsection{\texorpdfstring{process\_throw\_type}{process\_throw\_type}}
+{\footnotesize\ttfamily \mbox{\hyperlink{class_sysc_add__pv}{enum}} \mbox{\hyperlink{classsc__core_1_1sc__process__b_ac09c2c06a786f9911d58ad3515137784}{sc\+\_\+core\+::sc\+\_\+process\+\_\+b\+::process\+\_\+throw\+\_\+type}}}
+
+\begin{DoxyEnumFields}{Enumerator}
+\raisebox{\heightof{T}}[0pt][0pt]{\index{THROW\_NONE@{THROW\_NONE}!sc\_core::sc\_process\_b@{sc\_core::sc\_process\_b}}\index{sc\_core::sc\_process\_b@{sc\_core::sc\_process\_b}!THROW\_NONE@{THROW\_NONE}}}\Hypertarget{classsc__core_1_1sc__process__b_ac09c2c06a786f9911d58ad3515137784a24a72304587d661b4324884a702e56c8}\label{classsc__core_1_1sc__process__b_ac09c2c06a786f9911d58ad3515137784a24a72304587d661b4324884a702e56c8} 
+THROW\+\_\+\+NONE&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{THROW\_KILL@{THROW\_KILL}!sc\_core::sc\_process\_b@{sc\_core::sc\_process\_b}}\index{sc\_core::sc\_process\_b@{sc\_core::sc\_process\_b}!THROW\_KILL@{THROW\_KILL}}}\Hypertarget{classsc__core_1_1sc__process__b_ac09c2c06a786f9911d58ad3515137784a288ddd2ebc117b8e3efa8f499e018bce}\label{classsc__core_1_1sc__process__b_ac09c2c06a786f9911d58ad3515137784a288ddd2ebc117b8e3efa8f499e018bce} 
+THROW\+\_\+\+KILL&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{THROW\_USER@{THROW\_USER}!sc\_core::sc\_process\_b@{sc\_core::sc\_process\_b}}\index{sc\_core::sc\_process\_b@{sc\_core::sc\_process\_b}!THROW\_USER@{THROW\_USER}}}\Hypertarget{classsc__core_1_1sc__process__b_ac09c2c06a786f9911d58ad3515137784a209bb27e361a60f551c3f557b111efa8}\label{classsc__core_1_1sc__process__b_ac09c2c06a786f9911d58ad3515137784a209bb27e361a60f551c3f557b111efa8} 
+THROW\+\_\+\+USER&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{THROW\_ASYNC\_RESET@{THROW\_ASYNC\_RESET}!sc\_core::sc\_process\_b@{sc\_core::sc\_process\_b}}\index{sc\_core::sc\_process\_b@{sc\_core::sc\_process\_b}!THROW\_ASYNC\_RESET@{THROW\_ASYNC\_RESET}}}\Hypertarget{classsc__core_1_1sc__process__b_ac09c2c06a786f9911d58ad3515137784a97b12fe9ed7373e18fa66ffd1ec9f988}\label{classsc__core_1_1sc__process__b_ac09c2c06a786f9911d58ad3515137784a97b12fe9ed7373e18fa66ffd1ec9f988} 
+THROW\+\_\+\+ASYNC\+\_\+\+RESET&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{THROW\_SYNC\_RESET@{THROW\_SYNC\_RESET}!sc\_core::sc\_process\_b@{sc\_core::sc\_process\_b}}\index{sc\_core::sc\_process\_b@{sc\_core::sc\_process\_b}!THROW\_SYNC\_RESET@{THROW\_SYNC\_RESET}}}\Hypertarget{classsc__core_1_1sc__process__b_ac09c2c06a786f9911d58ad3515137784a9b3ad2c20e1c611bfe214298f7b0dfbd}\label{classsc__core_1_1sc__process__b_ac09c2c06a786f9911d58ad3515137784a9b3ad2c20e1c611bfe214298f7b0dfbd} 
+THROW\+\_\+\+SYNC\+\_\+\+RESET&\\
+\hline
+
+\end{DoxyEnumFields}
+\Hypertarget{classsc__core_1_1sc__process__b_aa3a79eb27dadbc8055524c8b73b1b051}\label{classsc__core_1_1sc__process__b_aa3a79eb27dadbc8055524c8b73b1b051} 
+\index{sc\_core::sc\_process\_b@{sc\_core::sc\_process\_b}!reset\_type@{reset\_type}}
+\index{reset\_type@{reset\_type}!sc\_core::sc\_process\_b@{sc\_core::sc\_process\_b}}
+\doxysubsubsection{\texorpdfstring{reset\_type}{reset\_type}}
+{\footnotesize\ttfamily \mbox{\hyperlink{class_sysc_add__pv}{enum}} \mbox{\hyperlink{classsc__core_1_1sc__process__b_aa3a79eb27dadbc8055524c8b73b1b051}{sc\+\_\+core\+::sc\+\_\+process\+\_\+b\+::reset\+\_\+type}}}
+
+\begin{DoxyEnumFields}{Enumerator}
+\raisebox{\heightof{T}}[0pt][0pt]{\index{reset\_asynchronous@{reset\_asynchronous}!sc\_core::sc\_process\_b@{sc\_core::sc\_process\_b}}\index{sc\_core::sc\_process\_b@{sc\_core::sc\_process\_b}!reset\_asynchronous@{reset\_asynchronous}}}\Hypertarget{classsc__core_1_1sc__process__b_aa3a79eb27dadbc8055524c8b73b1b051acf19c7930f6a21b901212fd682cd7ab7}\label{classsc__core_1_1sc__process__b_aa3a79eb27dadbc8055524c8b73b1b051acf19c7930f6a21b901212fd682cd7ab7} 
+reset\+\_\+asynchronous&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{reset\_synchronous\_off@{reset\_synchronous\_off}!sc\_core::sc\_process\_b@{sc\_core::sc\_process\_b}}\index{sc\_core::sc\_process\_b@{sc\_core::sc\_process\_b}!reset\_synchronous\_off@{reset\_synchronous\_off}}}\Hypertarget{classsc__core_1_1sc__process__b_aa3a79eb27dadbc8055524c8b73b1b051a55516b1601564ba08fe50a9d951e12e2}\label{classsc__core_1_1sc__process__b_aa3a79eb27dadbc8055524c8b73b1b051a55516b1601564ba08fe50a9d951e12e2} 
+reset\+\_\+synchronous\+\_\+off&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{reset\_synchronous\_on@{reset\_synchronous\_on}!sc\_core::sc\_process\_b@{sc\_core::sc\_process\_b}}\index{sc\_core::sc\_process\_b@{sc\_core::sc\_process\_b}!reset\_synchronous\_on@{reset\_synchronous\_on}}}\Hypertarget{classsc__core_1_1sc__process__b_aa3a79eb27dadbc8055524c8b73b1b051a26d9c9e8590b76f26a91b642a1aff629}\label{classsc__core_1_1sc__process__b_aa3a79eb27dadbc8055524c8b73b1b051a26d9c9e8590b76f26a91b642a1aff629} 
+reset\+\_\+synchronous\+\_\+on&\\
+\hline
+
+\end{DoxyEnumFields}
+\Hypertarget{classsc__core_1_1sc__process__b_abb492afddf95c95018a2c048de36eb3c}\label{classsc__core_1_1sc__process__b_abb492afddf95c95018a2c048de36eb3c} 
+\index{sc\_core::sc\_process\_b@{sc\_core::sc\_process\_b}!spawn\_t@{spawn\_t}}
+\index{spawn\_t@{spawn\_t}!sc\_core::sc\_process\_b@{sc\_core::sc\_process\_b}}
+\doxysubsubsection{\texorpdfstring{spawn\_t}{spawn\_t}}
+{\footnotesize\ttfamily \mbox{\hyperlink{class_sysc_add__pv}{enum}} \mbox{\hyperlink{classsc__core_1_1sc__process__b_abb492afddf95c95018a2c048de36eb3c}{sc\+\_\+core\+::sc\+\_\+process\+\_\+b\+::spawn\+\_\+t}}\hspace{0.3cm}{\ttfamily [protected]}}
+
+\begin{DoxyEnumFields}{Enumerator}
+\raisebox{\heightof{T}}[0pt][0pt]{\index{SPAWN\_ELAB@{SPAWN\_ELAB}!sc\_core::sc\_process\_b@{sc\_core::sc\_process\_b}}\index{sc\_core::sc\_process\_b@{sc\_core::sc\_process\_b}!SPAWN\_ELAB@{SPAWN\_ELAB}}}\Hypertarget{classsc__core_1_1sc__process__b_abb492afddf95c95018a2c048de36eb3ca73aa4e07d44b5646d12abc42f85816cc}\label{classsc__core_1_1sc__process__b_abb492afddf95c95018a2c048de36eb3ca73aa4e07d44b5646d12abc42f85816cc} 
+SPAWN\+\_\+\+ELAB&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{SPAWN\_START@{SPAWN\_START}!sc\_core::sc\_process\_b@{sc\_core::sc\_process\_b}}\index{sc\_core::sc\_process\_b@{sc\_core::sc\_process\_b}!SPAWN\_START@{SPAWN\_START}}}\Hypertarget{classsc__core_1_1sc__process__b_abb492afddf95c95018a2c048de36eb3caa00663aea0d393d9b2d8dff1f5473f84}\label{classsc__core_1_1sc__process__b_abb492afddf95c95018a2c048de36eb3caa00663aea0d393d9b2d8dff1f5473f84} 
+SPAWN\+\_\+\+START&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{SPAWN\_SIM@{SPAWN\_SIM}!sc\_core::sc\_process\_b@{sc\_core::sc\_process\_b}}\index{sc\_core::sc\_process\_b@{sc\_core::sc\_process\_b}!SPAWN\_SIM@{SPAWN\_SIM}}}\Hypertarget{classsc__core_1_1sc__process__b_abb492afddf95c95018a2c048de36eb3ca6df4da73d5e041b540b756b92bfcafd3}\label{classsc__core_1_1sc__process__b_abb492afddf95c95018a2c048de36eb3ca6df4da73d5e041b540b756b92bfcafd3} 
+SPAWN\+\_\+\+SIM&\\
+\hline
+
+\end{DoxyEnumFields}
+\Hypertarget{classsc__core_1_1sc__process__b_aed728eb97299bc2cc355d521245e5a94}\label{classsc__core_1_1sc__process__b_aed728eb97299bc2cc355d521245e5a94} 
+\index{sc\_core::sc\_process\_b@{sc\_core::sc\_process\_b}!trigger\_t@{trigger\_t}}
+\index{trigger\_t@{trigger\_t}!sc\_core::sc\_process\_b@{sc\_core::sc\_process\_b}}
+\doxysubsubsection{\texorpdfstring{trigger\_t}{trigger\_t}}
+{\footnotesize\ttfamily \mbox{\hyperlink{class_sysc_add__pv}{enum}} \mbox{\hyperlink{classsc__core_1_1sc__process__b_aed728eb97299bc2cc355d521245e5a94}{sc\+\_\+core\+::sc\+\_\+process\+\_\+b\+::trigger\+\_\+t}}}
+
+\begin{DoxyEnumFields}{Enumerator}
+\raisebox{\heightof{T}}[0pt][0pt]{\index{STATIC@{STATIC}!sc\_core::sc\_process\_b@{sc\_core::sc\_process\_b}}\index{sc\_core::sc\_process\_b@{sc\_core::sc\_process\_b}!STATIC@{STATIC}}}\Hypertarget{classsc__core_1_1sc__process__b_aed728eb97299bc2cc355d521245e5a94a6bbcc4d4c50193b508e8e81659d3afd6}\label{classsc__core_1_1sc__process__b_aed728eb97299bc2cc355d521245e5a94a6bbcc4d4c50193b508e8e81659d3afd6} 
+STATIC&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{EVENT@{EVENT}!sc\_core::sc\_process\_b@{sc\_core::sc\_process\_b}}\index{sc\_core::sc\_process\_b@{sc\_core::sc\_process\_b}!EVENT@{EVENT}}}\Hypertarget{classsc__core_1_1sc__process__b_aed728eb97299bc2cc355d521245e5a94a39f7f9f3dc00e458831624140be5d8b1}\label{classsc__core_1_1sc__process__b_aed728eb97299bc2cc355d521245e5a94a39f7f9f3dc00e458831624140be5d8b1} 
+EVENT&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{OR\_LIST@{OR\_LIST}!sc\_core::sc\_process\_b@{sc\_core::sc\_process\_b}}\index{sc\_core::sc\_process\_b@{sc\_core::sc\_process\_b}!OR\_LIST@{OR\_LIST}}}\Hypertarget{classsc__core_1_1sc__process__b_aed728eb97299bc2cc355d521245e5a94ae404ac4285d683c40788def820a0821d}\label{classsc__core_1_1sc__process__b_aed728eb97299bc2cc355d521245e5a94ae404ac4285d683c40788def820a0821d} 
+OR\+\_\+\+LIST&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{AND\_LIST@{AND\_LIST}!sc\_core::sc\_process\_b@{sc\_core::sc\_process\_b}}\index{sc\_core::sc\_process\_b@{sc\_core::sc\_process\_b}!AND\_LIST@{AND\_LIST}}}\Hypertarget{classsc__core_1_1sc__process__b_aed728eb97299bc2cc355d521245e5a94a2f3564efd6df3306ff53c71913f20b04}\label{classsc__core_1_1sc__process__b_aed728eb97299bc2cc355d521245e5a94a2f3564efd6df3306ff53c71913f20b04} 
+AND\+\_\+\+LIST&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{TIMEOUT@{TIMEOUT}!sc\_core::sc\_process\_b@{sc\_core::sc\_process\_b}}\index{sc\_core::sc\_process\_b@{sc\_core::sc\_process\_b}!TIMEOUT@{TIMEOUT}}}\Hypertarget{classsc__core_1_1sc__process__b_aed728eb97299bc2cc355d521245e5a94adc22a2642d2d0f5812012a8cc92d8880}\label{classsc__core_1_1sc__process__b_aed728eb97299bc2cc355d521245e5a94adc22a2642d2d0f5812012a8cc92d8880} 
+TIMEOUT&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{EVENT\_TIMEOUT@{EVENT\_TIMEOUT}!sc\_core::sc\_process\_b@{sc\_core::sc\_process\_b}}\index{sc\_core::sc\_process\_b@{sc\_core::sc\_process\_b}!EVENT\_TIMEOUT@{EVENT\_TIMEOUT}}}\Hypertarget{classsc__core_1_1sc__process__b_aed728eb97299bc2cc355d521245e5a94a72d68be29f9bbc26877861cde8d2717b}\label{classsc__core_1_1sc__process__b_aed728eb97299bc2cc355d521245e5a94a72d68be29f9bbc26877861cde8d2717b} 
+EVENT\+\_\+\+TIMEOUT&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{OR\_LIST\_TIMEOUT@{OR\_LIST\_TIMEOUT}!sc\_core::sc\_process\_b@{sc\_core::sc\_process\_b}}\index{sc\_core::sc\_process\_b@{sc\_core::sc\_process\_b}!OR\_LIST\_TIMEOUT@{OR\_LIST\_TIMEOUT}}}\Hypertarget{classsc__core_1_1sc__process__b_aed728eb97299bc2cc355d521245e5a94a76edaf79319541b19bae3d6132cd31c4}\label{classsc__core_1_1sc__process__b_aed728eb97299bc2cc355d521245e5a94a76edaf79319541b19bae3d6132cd31c4} 
+OR\+\_\+\+LIST\+\_\+\+TIMEOUT&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{AND\_LIST\_TIMEOUT@{AND\_LIST\_TIMEOUT}!sc\_core::sc\_process\_b@{sc\_core::sc\_process\_b}}\index{sc\_core::sc\_process\_b@{sc\_core::sc\_process\_b}!AND\_LIST\_TIMEOUT@{AND\_LIST\_TIMEOUT}}}\Hypertarget{classsc__core_1_1sc__process__b_aed728eb97299bc2cc355d521245e5a94a2f6c6abccadfc5bda6b9ba0f3b00dc4f}\label{classsc__core_1_1sc__process__b_aed728eb97299bc2cc355d521245e5a94a2f6c6abccadfc5bda6b9ba0f3b00dc4f} 
+AND\+\_\+\+LIST\+\_\+\+TIMEOUT&\\
+\hline
+
+\end{DoxyEnumFields}
+
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{classsc__core_1_1sc__process__b_ab127ef93aad74928190d5bff106b6f5d}\label{classsc__core_1_1sc__process__b_ab127ef93aad74928190d5bff106b6f5d} 
+\index{sc\_core::sc\_process\_b@{sc\_core::sc\_process\_b}!sc\_process\_b@{sc\_process\_b}}
+\index{sc\_process\_b@{sc\_process\_b}!sc\_core::sc\_process\_b@{sc\_core::sc\_process\_b}}
+\doxysubsubsection{\texorpdfstring{sc\_process\_b()}{sc\_process\_b()}}
+{\footnotesize\ttfamily sc\+\_\+core\+::sc\+\_\+process\+\_\+b\+::sc\+\_\+process\+\_\+b (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_sysc_add__pv}{const}} \mbox{\hyperlink{class_sysc_add__pv}{char}} \texorpdfstring{$\ast$}{*}}]{name\+\_\+p,  }\item[{\mbox{\hyperlink{class_sysc_add__pv}{bool}}}]{is\+\_\+thread,  }\item[{\mbox{\hyperlink{class_sysc_add__pv}{bool}}}]{free\+\_\+host,  }\item[{\mbox{\hyperlink{namespacesc__core_a3c3c6a60b0462a2cb00c7c294417c02e}{SC\+\_\+\+ENTRY\+\_\+\+FUNC}}}]{method\+\_\+p,  }\item[{\mbox{\hyperlink{classsc__core_1_1sc__process__host}{sc\+\_\+process\+\_\+host}} \texorpdfstring{$\ast$}{*}}]{host\+\_\+p,  }\item[{\mbox{\hyperlink{class_sysc_add__pv}{const}} \mbox{\hyperlink{classsc__core_1_1sc__spawn__options}{sc\+\_\+spawn\+\_\+options}} \texorpdfstring{$\ast$}{*}}]{opt\+\_\+p }\end{DoxyParamCaption})}
+
+\Hypertarget{classsc__core_1_1sc__process__b_ac68384ab1922dcde59aaf5f8ac9ff658}\label{classsc__core_1_1sc__process__b_ac68384ab1922dcde59aaf5f8ac9ff658} 
+\index{sc\_core::sc\_process\_b@{sc\_core::sc\_process\_b}!````~sc\_process\_b@{\texorpdfstring{$\sim$}{\string~}sc\_process\_b}}
+\index{````~sc\_process\_b@{\texorpdfstring{$\sim$}{\string~}sc\_process\_b}!sc\_core::sc\_process\_b@{sc\_core::sc\_process\_b}}
+\doxysubsubsection{\texorpdfstring{\texorpdfstring{$\sim$}{\string~}sc\_process\_b()}{\string~sc\_process\_b()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{class_sysc_add__pv}{virtual}} sc\+\_\+core\+::sc\+\_\+process\+\_\+b\+::\texorpdfstring{$\sim$}{\string~}sc\+\_\+process\+\_\+b (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}, {\ttfamily [virtual]}}
+
+
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{classsc__core_1_1sc__process__b_aada14415b9be5b1b9beb4ed97a32742d}\label{classsc__core_1_1sc__process__b_aada14415b9be5b1b9beb4ed97a32742d} 
+\index{sc\_core::sc\_process\_b@{sc\_core::sc\_process\_b}!add\_child\_object@{add\_child\_object}}
+\index{add\_child\_object@{add\_child\_object}!sc\_core::sc\_process\_b@{sc\_core::sc\_process\_b}}
+\doxysubsubsection{\texorpdfstring{add\_child\_object()}{add\_child\_object()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{class_sysc_add__pv}{void}} sc\+\_\+core\+::sc\+\_\+process\+\_\+b\+::add\+\_\+child\+\_\+object (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classsc__core_1_1sc__object}{sc\+\_\+object}} \texorpdfstring{$\ast$}{*}}]{object\+\_\+p }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [protected]}, {\ttfamily [virtual]}}
+
+
+
+Reimplemented from \mbox{\hyperlink{classsc__core_1_1sc__object_ac3e4e798ea9220a9cb9401542c43ab4c}{sc\+\_\+core\+::sc\+\_\+object}}.
+
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=343pt]{classsc__core_1_1sc__process__b_aada14415b9be5b1b9beb4ed97a32742d_cgraph}
+\end{center}
+\end{figure}
+\Hypertarget{classsc__core_1_1sc__process__b_a80d59feeb38b0a14f9fbd346421ae623}\label{classsc__core_1_1sc__process__b_a80d59feeb38b0a14f9fbd346421ae623} 
+\index{sc\_core::sc\_process\_b@{sc\_core::sc\_process\_b}!add\_static\_event@{add\_static\_event}}
+\index{add\_static\_event@{add\_static\_event}!sc\_core::sc\_process\_b@{sc\_core::sc\_process\_b}}
+\doxysubsubsection{\texorpdfstring{add\_static\_event()}{add\_static\_event()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{class_sysc_add__pv}{void}} sc\+\_\+core\+::sc\+\_\+process\+\_\+b\+::add\+\_\+static\+\_\+event (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_sysc_add__pv}{const}} \mbox{\hyperlink{classsc__core_1_1sc__event}{sc\+\_\+event}} \&}]{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}}
+
+\Hypertarget{classsc__core_1_1sc__process__b_a35cb7dad0a07d594dfcb6c5532e15b16}\label{classsc__core_1_1sc__process__b_a35cb7dad0a07d594dfcb6c5532e15b16} 
+\index{sc\_core::sc\_process\_b@{sc\_core::sc\_process\_b}!clear\_unwinding@{clear\_unwinding}}
+\index{clear\_unwinding@{clear\_unwinding}!sc\_core::sc\_process\_b@{sc\_core::sc\_process\_b}}
+\doxysubsubsection{\texorpdfstring{clear\_unwinding()}{clear\_unwinding()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{class_sysc_add__pv}{bool}} sc\+\_\+core\+::sc\+\_\+process\+\_\+b\+::clear\+\_\+unwinding (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [protected]}}
+
+\Hypertarget{classsc__core_1_1sc__process__b_a48098896b8b1c430ff9024d00bfd436b}\label{classsc__core_1_1sc__process__b_a48098896b8b1c430ff9024d00bfd436b} 
+\index{sc\_core::sc\_process\_b@{sc\_core::sc\_process\_b}!current\_state@{current\_state}}
+\index{current\_state@{current\_state}!sc\_core::sc\_process\_b@{sc\_core::sc\_process\_b}}
+\doxysubsubsection{\texorpdfstring{current\_state()}{current\_state()}}
+{\footnotesize\ttfamily int sc\+\_\+core\+::sc\+\_\+process\+\_\+b\+::current\+\_\+state (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+\Hypertarget{classsc__core_1_1sc__process__b_a654ea611f7920da491723571f8311ec9}\label{classsc__core_1_1sc__process__b_a654ea611f7920da491723571f8311ec9} 
+\index{sc\_core::sc\_process\_b@{sc\_core::sc\_process\_b}!delete\_process@{delete\_process}}
+\index{delete\_process@{delete\_process}!sc\_core::sc\_process\_b@{sc\_core::sc\_process\_b}}
+\doxysubsubsection{\texorpdfstring{delete\_process()}{delete\_process()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{class_sysc_add__pv}{void}} sc\+\_\+core\+::sc\+\_\+process\+\_\+b\+::delete\+\_\+process (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classsc__core_1_1sc__process__b_a654ea611f7920da491723571f8311ec9_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{classsc__core_1_1sc__process__b_a914dda3b1ff60d903cfd6dcd9be3cb5c}\label{classsc__core_1_1sc__process__b_a914dda3b1ff60d903cfd6dcd9be3cb5c} 
+\index{sc\_core::sc\_process\_b@{sc\_core::sc\_process\_b}!disable\_process@{disable\_process}}
+\index{disable\_process@{disable\_process}!sc\_core::sc\_process\_b@{sc\_core::sc\_process\_b}}
+\doxysubsubsection{\texorpdfstring{disable\_process()}{disable\_process()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{class_sysc_add__pv}{virtual}} \mbox{\hyperlink{class_sysc_add__pv}{void}} sc\+\_\+core\+::sc\+\_\+process\+\_\+b\+::disable\+\_\+process (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{namespacesc__core_af299d964d600dfca2e37224a6cb83298}{sc\+\_\+descendant\+\_\+inclusion\+\_\+info}}}]{descendants = {\ttfamily \mbox{\hyperlink{namespacesc__core_af299d964d600dfca2e37224a6cb83298aaf9243a80d08aa59c1ee5689a99747af}{SC\+\_\+\+NO\+\_\+\+DESCENDANTS}}} }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}, {\ttfamily [pure virtual]}}
+
+
+
+Implemented in \mbox{\hyperlink{classsc__core_1_1sc__method__process_a3ba4bcd1a5161de72b1d88165359d743}{sc\+\_\+core\+::sc\+\_\+method\+\_\+process}}, and \mbox{\hyperlink{classsc__core_1_1sc__thread__process_aedbdc1ab25de3aff67c23f9c165a729f}{sc\+\_\+core\+::sc\+\_\+thread\+\_\+process}}.
+
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=330pt]{classsc__core_1_1sc__process__b_a914dda3b1ff60d903cfd6dcd9be3cb5c_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{classsc__core_1_1sc__process__b_a0c9280a028ff6e61ec2f83b94b75d535}\label{classsc__core_1_1sc__process__b_a0c9280a028ff6e61ec2f83b94b75d535} 
+\index{sc\_core::sc\_process\_b@{sc\_core::sc\_process\_b}!disconnect\_process@{disconnect\_process}}
+\index{disconnect\_process@{disconnect\_process}!sc\_core::sc\_process\_b@{sc\_core::sc\_process\_b}}
+\doxysubsubsection{\texorpdfstring{disconnect\_process()}{disconnect\_process()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{class_sysc_add__pv}{void}} sc\+\_\+core\+::sc\+\_\+process\+\_\+b\+::disconnect\+\_\+process (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}}
+
+\Hypertarget{classsc__core_1_1sc__process__b_a0dce3ee99b471e48d1962c8c10fed46d}\label{classsc__core_1_1sc__process__b_a0dce3ee99b471e48d1962c8c10fed46d} 
+\index{sc\_core::sc\_process\_b@{sc\_core::sc\_process\_b}!dont\_initialize@{dont\_initialize}}
+\index{dont\_initialize@{dont\_initialize}!sc\_core::sc\_process\_b@{sc\_core::sc\_process\_b}}
+\doxysubsubsection{\texorpdfstring{dont\_initialize()}{dont\_initialize()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily \mbox{\hyperlink{class_sysc_add__pv}{bool}} sc\+\_\+core\+::sc\+\_\+process\+\_\+b\+::dont\+\_\+initialize (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=338pt]{classsc__core_1_1sc__process__b_a0dce3ee99b471e48d1962c8c10fed46d_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{classsc__core_1_1sc__process__b_a448f38c460ba68fc76b80f18cf4d15de}\label{classsc__core_1_1sc__process__b_a448f38c460ba68fc76b80f18cf4d15de} 
+\index{sc\_core::sc\_process\_b@{sc\_core::sc\_process\_b}!dont\_initialize@{dont\_initialize}}
+\index{dont\_initialize@{dont\_initialize}!sc\_core::sc\_process\_b@{sc\_core::sc\_process\_b}}
+\doxysubsubsection{\texorpdfstring{dont\_initialize()}{dont\_initialize()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily \mbox{\hyperlink{class_sysc_add__pv}{virtual}} \mbox{\hyperlink{class_sysc_add__pv}{void}} sc\+\_\+core\+::sc\+\_\+process\+\_\+b\+::dont\+\_\+initialize (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_sysc_add__pv}{bool}}}]{dont }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+Reimplemented in \mbox{\hyperlink{classsc__core_1_1sc__cthread__process_ad41b2ec5bfa52fb89f849c9c37cde4aa}{sc\+\_\+core\+::sc\+\_\+cthread\+\_\+process}}.
+
+\Hypertarget{classsc__core_1_1sc__process__b_a0e61baf80f9b2a1d02321b4e135ab506}\label{classsc__core_1_1sc__process__b_a0e61baf80f9b2a1d02321b4e135ab506} 
+\index{sc\_core::sc\_process\_b@{sc\_core::sc\_process\_b}!dump\_state@{dump\_state}}
+\index{dump\_state@{dump\_state}!sc\_core::sc\_process\_b@{sc\_core::sc\_process\_b}}
+\doxysubsubsection{\texorpdfstring{dump\_state()}{dump\_state()}}
+{\footnotesize\ttfamily std\+::string sc\+\_\+core\+::sc\+\_\+process\+\_\+b\+::dump\+\_\+state (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=330pt]{classsc__core_1_1sc__process__b_a0e61baf80f9b2a1d02321b4e135ab506_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{classsc__core_1_1sc__process__b_a0d27ce850ad0424b4f4deb48ce703ada}\label{classsc__core_1_1sc__process__b_a0d27ce850ad0424b4f4deb48ce703ada} 
+\index{sc\_core::sc\_process\_b@{sc\_core::sc\_process\_b}!dynamic@{dynamic}}
+\index{dynamic@{dynamic}!sc\_core::sc\_process\_b@{sc\_core::sc\_process\_b}}
+\doxysubsubsection{\texorpdfstring{dynamic()}{dynamic()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{class_sysc_add__pv}{bool}} sc\+\_\+core\+::sc\+\_\+process\+\_\+b\+::dynamic (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [protected]}}
+
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=330pt]{classsc__core_1_1sc__process__b_a0d27ce850ad0424b4f4deb48ce703ada_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{classsc__core_1_1sc__process__b_a254aa9cade9b3e2845d7e3e409889bd2}\label{classsc__core_1_1sc__process__b_a254aa9cade9b3e2845d7e3e409889bd2} 
+\index{sc\_core::sc\_process\_b@{sc\_core::sc\_process\_b}!enable\_process@{enable\_process}}
+\index{enable\_process@{enable\_process}!sc\_core::sc\_process\_b@{sc\_core::sc\_process\_b}}
+\doxysubsubsection{\texorpdfstring{enable\_process()}{enable\_process()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{class_sysc_add__pv}{virtual}} \mbox{\hyperlink{class_sysc_add__pv}{void}} sc\+\_\+core\+::sc\+\_\+process\+\_\+b\+::enable\+\_\+process (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{namespacesc__core_af299d964d600dfca2e37224a6cb83298}{sc\+\_\+descendant\+\_\+inclusion\+\_\+info}}}]{descendants = {\ttfamily \mbox{\hyperlink{namespacesc__core_af299d964d600dfca2e37224a6cb83298aaf9243a80d08aa59c1ee5689a99747af}{SC\+\_\+\+NO\+\_\+\+DESCENDANTS}}} }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}, {\ttfamily [pure virtual]}}
+
+
+
+Implemented in \mbox{\hyperlink{classsc__core_1_1sc__method__process_a19c4ef30fb89bc52b8171df54afc2b0c}{sc\+\_\+core\+::sc\+\_\+method\+\_\+process}}, and \mbox{\hyperlink{classsc__core_1_1sc__thread__process_aa1f318b1ba7871530006b040fe7e7c76}{sc\+\_\+core\+::sc\+\_\+thread\+\_\+process}}.
+
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=330pt]{classsc__core_1_1sc__process__b_a254aa9cade9b3e2845d7e3e409889bd2_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{classsc__core_1_1sc__process__b_a26ef7422d871714b3669fde84df06c32}\label{classsc__core_1_1sc__process__b_a26ef7422d871714b3669fde84df06c32} 
+\index{sc\_core::sc\_process\_b@{sc\_core::sc\_process\_b}!gen\_unique\_name@{gen\_unique\_name}}
+\index{gen\_unique\_name@{gen\_unique\_name}!sc\_core::sc\_process\_b@{sc\_core::sc\_process\_b}}
+\doxysubsubsection{\texorpdfstring{gen\_unique\_name()}{gen\_unique\_name()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{class_sysc_add__pv}{const}} \mbox{\hyperlink{class_sysc_add__pv}{char}} \texorpdfstring{$\ast$}{*} sc\+\_\+core\+::sc\+\_\+process\+\_\+b\+::gen\+\_\+unique\+\_\+name (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_sysc_add__pv}{const}} \mbox{\hyperlink{class_sysc_add__pv}{char}} \texorpdfstring{$\ast$}{*}}]{basename\+\_\+,  }\item[{\mbox{\hyperlink{class_sysc_add__pv}{bool}}}]{preserve\+\_\+first }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}}
+
+\Hypertarget{classsc__core_1_1sc__process__b_afcfd97af9d4a215422f892f4cba9e709}\label{classsc__core_1_1sc__process__b_afcfd97af9d4a215422f892f4cba9e709} 
+\index{sc\_core::sc\_process\_b@{sc\_core::sc\_process\_b}!get\_child\_objects@{get\_child\_objects}}
+\index{get\_child\_objects@{get\_child\_objects}!sc\_core::sc\_process\_b@{sc\_core::sc\_process\_b}}
+\doxysubsubsection{\texorpdfstring{get\_child\_objects()}{get\_child\_objects()}}
+{\footnotesize\ttfamily const\+::std\+::vector$<$ \mbox{\hyperlink{classsc__core_1_1sc__object}{sc\+\_\+object}} \texorpdfstring{$\ast$}{*} $>$ \& sc\+\_\+core\+::sc\+\_\+process\+\_\+b\+::get\+\_\+child\+\_\+objects (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+
+
+Reimplemented from \mbox{\hyperlink{classsc__core_1_1sc__object_aee37abd169adf3d7fd5ef3aea5e232f3}{sc\+\_\+core\+::sc\+\_\+object}}.
+
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classsc__core_1_1sc__process__b_afcfd97af9d4a215422f892f4cba9e709_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{classsc__core_1_1sc__process__b_a242cd808867a7891789ae624efbb25cb}\label{classsc__core_1_1sc__process__b_a242cd808867a7891789ae624efbb25cb} 
+\index{sc\_core::sc\_process\_b@{sc\_core::sc\_process\_b}!get\_last\_report@{get\_last\_report}}
+\index{get\_last\_report@{get\_last\_report}!sc\_core::sc\_process\_b@{sc\_core::sc\_process\_b}}
+\doxysubsubsection{\texorpdfstring{get\_last\_report()}{get\_last\_report()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classsc__core_1_1sc__report}{sc\+\_\+report}} \texorpdfstring{$\ast$}{*} sc\+\_\+core\+::sc\+\_\+process\+\_\+b\+::get\+\_\+last\+\_\+report (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [protected]}}
+
+\Hypertarget{classsc__core_1_1sc__process__b_a3fd75df28f38539e7266f2988e6a54af}\label{classsc__core_1_1sc__process__b_a3fd75df28f38539e7266f2988e6a54af} 
+\index{sc\_core::sc\_process\_b@{sc\_core::sc\_process\_b}!initially\_in\_reset@{initially\_in\_reset}}
+\index{initially\_in\_reset@{initially\_in\_reset}!sc\_core::sc\_process\_b@{sc\_core::sc\_process\_b}}
+\doxysubsubsection{\texorpdfstring{initially\_in\_reset()}{initially\_in\_reset()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{class_sysc_add__pv}{void}} sc\+\_\+core\+::sc\+\_\+process\+\_\+b\+::initially\+\_\+in\+\_\+reset (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_sysc_add__pv}{bool}}}]{async }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [protected]}}
+
+\Hypertarget{classsc__core_1_1sc__process__b_a7daed93e35a4d436b18ac65d2f51d617}\label{classsc__core_1_1sc__process__b_a7daed93e35a4d436b18ac65d2f51d617} 
+\index{sc\_core::sc\_process\_b@{sc\_core::sc\_process\_b}!is\_disabled@{is\_disabled}}
+\index{is\_disabled@{is\_disabled}!sc\_core::sc\_process\_b@{sc\_core::sc\_process\_b}}
+\doxysubsubsection{\texorpdfstring{is\_disabled()}{is\_disabled()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{class_sysc_add__pv}{bool}} sc\+\_\+core\+::sc\+\_\+process\+\_\+b\+::is\+\_\+disabled (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [protected]}}
+
+\Hypertarget{classsc__core_1_1sc__process__b_af19238d335e3cd528f5a7538822bff6e}\label{classsc__core_1_1sc__process__b_af19238d335e3cd528f5a7538822bff6e} 
+\index{sc\_core::sc\_process\_b@{sc\_core::sc\_process\_b}!is\_runnable@{is\_runnable}}
+\index{is\_runnable@{is\_runnable}!sc\_core::sc\_process\_b@{sc\_core::sc\_process\_b}}
+\doxysubsubsection{\texorpdfstring{is\_runnable()}{is\_runnable()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{class_sysc_add__pv}{bool}} sc\+\_\+core\+::sc\+\_\+process\+\_\+b\+::is\+\_\+runnable (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [protected]}}
+
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=341pt]{classsc__core_1_1sc__process__b_af19238d335e3cd528f5a7538822bff6e_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{classsc__core_1_1sc__process__b_aba04382da34bacfdb87754205a33bdb3}\label{classsc__core_1_1sc__process__b_aba04382da34bacfdb87754205a33bdb3} 
+\index{sc\_core::sc\_process\_b@{sc\_core::sc\_process\_b}!is\_unwinding@{is\_unwinding}}
+\index{is\_unwinding@{is\_unwinding}!sc\_core::sc\_process\_b@{sc\_core::sc\_process\_b}}
+\doxysubsubsection{\texorpdfstring{is\_unwinding()}{is\_unwinding()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{class_sysc_add__pv}{bool}} sc\+\_\+core\+::sc\+\_\+process\+\_\+b\+::is\+\_\+unwinding (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [protected]}}
+
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=334pt]{classsc__core_1_1sc__process__b_aba04382da34bacfdb87754205a33bdb3_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{classsc__core_1_1sc__process__b_a2a9a00ef1f025ef141757d380179ac71}\label{classsc__core_1_1sc__process__b_a2a9a00ef1f025ef141757d380179ac71} 
+\index{sc\_core::sc\_process\_b@{sc\_core::sc\_process\_b}!kill\_process@{kill\_process}}
+\index{kill\_process@{kill\_process}!sc\_core::sc\_process\_b@{sc\_core::sc\_process\_b}}
+\doxysubsubsection{\texorpdfstring{kill\_process()}{kill\_process()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{class_sysc_add__pv}{virtual}} \mbox{\hyperlink{class_sysc_add__pv}{void}} sc\+\_\+core\+::sc\+\_\+process\+\_\+b\+::kill\+\_\+process (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{namespacesc__core_af299d964d600dfca2e37224a6cb83298}{sc\+\_\+descendant\+\_\+inclusion\+\_\+info}}}]{descendants = {\ttfamily \mbox{\hyperlink{namespacesc__core_af299d964d600dfca2e37224a6cb83298aaf9243a80d08aa59c1ee5689a99747af}{SC\+\_\+\+NO\+\_\+\+DESCENDANTS}}} }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}, {\ttfamily [pure virtual]}}
+
+
+
+Implemented in \mbox{\hyperlink{classsc__core_1_1sc__method__process_acc3fd200c8a01b28aa9873f15a6c63b2}{sc\+\_\+core\+::sc\+\_\+method\+\_\+process}}, and \mbox{\hyperlink{classsc__core_1_1sc__thread__process_a18d42f4d0363880049a3496c0ed8aecb}{sc\+\_\+core\+::sc\+\_\+thread\+\_\+process}}.
+
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=330pt]{classsc__core_1_1sc__process__b_a2a9a00ef1f025ef141757d380179ac71_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{classsc__core_1_1sc__process__b_a598fbf04facff586e0c743d007bd9cc3}\label{classsc__core_1_1sc__process__b_a598fbf04facff586e0c743d007bd9cc3} 
+\index{sc\_core::sc\_process\_b@{sc\_core::sc\_process\_b}!last\_created\_process\_base@{last\_created\_process\_base}}
+\index{last\_created\_process\_base@{last\_created\_process\_base}!sc\_core::sc\_process\_b@{sc\_core::sc\_process\_b}}
+\doxysubsubsection{\texorpdfstring{last\_created\_process\_base()}{last\_created\_process\_base()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classsc__core_1_1sc__process__b}{sc\+\_\+process\+\_\+b}} \texorpdfstring{$\ast$}{*} sc\+\_\+core\+::sc\+\_\+process\+\_\+b\+::last\+\_\+created\+\_\+process\+\_\+base (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}, {\ttfamily [protected]}}
+
+\Hypertarget{classsc__core_1_1sc__process__b_ab8442fb6c17ad5f72f7177d4beb286c0}\label{classsc__core_1_1sc__process__b_ab8442fb6c17ad5f72f7177d4beb286c0} 
+\index{sc\_core::sc\_process\_b@{sc\_core::sc\_process\_b}!last\_created\_process\_handle@{last\_created\_process\_handle}}
+\index{last\_created\_process\_handle@{last\_created\_process\_handle}!sc\_core::sc\_process\_b@{sc\_core::sc\_process\_b}}
+\doxysubsubsection{\texorpdfstring{last\_created\_process\_handle()}{last\_created\_process\_handle()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classsc__core_1_1sc__process__handle}{sc\+\_\+process\+\_\+handle}} sc\+\_\+core\+::sc\+\_\+process\+\_\+b\+::last\+\_\+created\+\_\+process\+\_\+handle (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}}
+
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classsc__core_1_1sc__process__b_ab8442fb6c17ad5f72f7177d4beb286c0_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{classsc__core_1_1sc__process__b_a95564aa2085d052b96b6df248977dca9}\label{classsc__core_1_1sc__process__b_a95564aa2085d052b96b6df248977dca9} 
+\index{sc\_core::sc\_process\_b@{sc\_core::sc\_process\_b}!proc\_kind@{proc\_kind}}
+\index{proc\_kind@{proc\_kind}!sc\_core::sc\_process\_b@{sc\_core::sc\_process\_b}}
+\doxysubsubsection{\texorpdfstring{proc\_kind()}{proc\_kind()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{namespacesc__core_a55cfb0f6c35416b69482b689d24ed045}{sc\+\_\+curr\+\_\+proc\+\_\+kind}} sc\+\_\+core\+::sc\+\_\+process\+\_\+b\+::proc\+\_\+kind (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=330pt]{classsc__core_1_1sc__process__b_a95564aa2085d052b96b6df248977dca9_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{classsc__core_1_1sc__process__b_aefc37b9e890fa6f5de500067325f5e07}\label{classsc__core_1_1sc__process__b_aefc37b9e890fa6f5de500067325f5e07} 
+\index{sc\_core::sc\_process\_b@{sc\_core::sc\_process\_b}!reference\_decrement@{reference\_decrement}}
+\index{reference\_decrement@{reference\_decrement}!sc\_core::sc\_process\_b@{sc\_core::sc\_process\_b}}
+\doxysubsubsection{\texorpdfstring{reference\_decrement()}{reference\_decrement()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{class_sysc_add__pv}{void}} sc\+\_\+core\+::sc\+\_\+process\+\_\+b\+::reference\+\_\+decrement (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [private]}}
+
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=346pt]{classsc__core_1_1sc__process__b_aefc37b9e890fa6f5de500067325f5e07_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classsc__core_1_1sc__process__b_aefc37b9e890fa6f5de500067325f5e07_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{classsc__core_1_1sc__process__b_afead11e72fdf0980cb28727c542d44ae}\label{classsc__core_1_1sc__process__b_afead11e72fdf0980cb28727c542d44ae} 
+\index{sc\_core::sc\_process\_b@{sc\_core::sc\_process\_b}!reference\_increment@{reference\_increment}}
+\index{reference\_increment@{reference\_increment}!sc\_core::sc\_process\_b@{sc\_core::sc\_process\_b}}
+\doxysubsubsection{\texorpdfstring{reference\_increment()}{reference\_increment()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{class_sysc_add__pv}{void}} sc\+\_\+core\+::sc\+\_\+process\+\_\+b\+::reference\+\_\+increment (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [private]}}
+
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=343pt]{classsc__core_1_1sc__process__b_afead11e72fdf0980cb28727c542d44ae_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{classsc__core_1_1sc__process__b_ab9490244d3a43726e0240cfe12884830}\label{classsc__core_1_1sc__process__b_ab9490244d3a43726e0240cfe12884830} 
+\index{sc\_core::sc\_process\_b@{sc\_core::sc\_process\_b}!remove\_child\_object@{remove\_child\_object}}
+\index{remove\_child\_object@{remove\_child\_object}!sc\_core::sc\_process\_b@{sc\_core::sc\_process\_b}}
+\doxysubsubsection{\texorpdfstring{remove\_child\_object()}{remove\_child\_object()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{class_sysc_add__pv}{bool}} sc\+\_\+core\+::sc\+\_\+process\+\_\+b\+::remove\+\_\+child\+\_\+object (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classsc__core_1_1sc__object}{sc\+\_\+object}} \texorpdfstring{$\ast$}{*}}]{object\+\_\+p }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [protected]}, {\ttfamily [virtual]}}
+
+
+
+Reimplemented from \mbox{\hyperlink{classsc__core_1_1sc__object_a79b493824069d6fccab14fc8d12f7648}{sc\+\_\+core\+::sc\+\_\+object}}.
+
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classsc__core_1_1sc__process__b_ab9490244d3a43726e0240cfe12884830_cgraph}
+\end{center}
+\end{figure}
+\Hypertarget{classsc__core_1_1sc__process__b_a93cedc4e538aac20e8f2584324b229aa}\label{classsc__core_1_1sc__process__b_a93cedc4e538aac20e8f2584324b229aa} 
+\index{sc\_core::sc\_process\_b@{sc\_core::sc\_process\_b}!remove\_dynamic\_events@{remove\_dynamic\_events}}
+\index{remove\_dynamic\_events@{remove\_dynamic\_events}!sc\_core::sc\_process\_b@{sc\_core::sc\_process\_b}}
+\doxysubsubsection{\texorpdfstring{remove\_dynamic\_events()}{remove\_dynamic\_events()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{class_sysc_add__pv}{void}} sc\+\_\+core\+::sc\+\_\+process\+\_\+b\+::remove\+\_\+dynamic\+\_\+events (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_sysc_add__pv}{bool}}}]{skip\+\_\+timeout = {\ttfamily \mbox{\hyperlink{class_sysc_add__pv}{false}}} }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}}
+
+\Hypertarget{classsc__core_1_1sc__process__b_a8471138d3ba14870baa08058e2a08ef5}\label{classsc__core_1_1sc__process__b_a8471138d3ba14870baa08058e2a08ef5} 
+\index{sc\_core::sc\_process\_b@{sc\_core::sc\_process\_b}!remove\_static\_events@{remove\_static\_events}}
+\index{remove\_static\_events@{remove\_static\_events}!sc\_core::sc\_process\_b@{sc\_core::sc\_process\_b}}
+\doxysubsubsection{\texorpdfstring{remove\_static\_events()}{remove\_static\_events()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{class_sysc_add__pv}{void}} sc\+\_\+core\+::sc\+\_\+process\+\_\+b\+::remove\+\_\+static\+\_\+events (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}}
+
+\Hypertarget{classsc__core_1_1sc__process__b_a03a0d91a60d6ea6d5c8962cf1d13d1d6}\label{classsc__core_1_1sc__process__b_a03a0d91a60d6ea6d5c8962cf1d13d1d6} 
+\index{sc\_core::sc\_process\_b@{sc\_core::sc\_process\_b}!report\_error@{report\_error}}
+\index{report\_error@{report\_error}!sc\_core::sc\_process\_b@{sc\_core::sc\_process\_b}}
+\doxysubsubsection{\texorpdfstring{report\_error()}{report\_error()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{class_sysc_add__pv}{void}} sc\+\_\+core\+::sc\+\_\+process\+\_\+b\+::report\+\_\+error (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_sysc_add__pv}{const}} \mbox{\hyperlink{class_sysc_add__pv}{char}} \texorpdfstring{$\ast$}{*}}]{msgid,  }\item[{\mbox{\hyperlink{class_sysc_add__pv}{const}} \mbox{\hyperlink{class_sysc_add__pv}{char}} \texorpdfstring{$\ast$}{*}}]{msg = {\ttfamily "{}"{}} }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [protected]}}
+
+\Hypertarget{classsc__core_1_1sc__process__b_a1d1f0368e0a934d5e71eb75043ecbc86}\label{classsc__core_1_1sc__process__b_a1d1f0368e0a934d5e71eb75043ecbc86} 
+\index{sc\_core::sc\_process\_b@{sc\_core::sc\_process\_b}!report\_immediate\_self\_notification@{report\_immediate\_self\_notification}}
+\index{report\_immediate\_self\_notification@{report\_immediate\_self\_notification}!sc\_core::sc\_process\_b@{sc\_core::sc\_process\_b}}
+\doxysubsubsection{\texorpdfstring{report\_immediate\_self\_notification()}{report\_immediate\_self\_notification()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{class_sysc_add__pv}{void}} sc\+\_\+core\+::sc\+\_\+process\+\_\+b\+::report\+\_\+immediate\+\_\+self\+\_\+notification (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [protected]}}
+
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=342pt]{classsc__core_1_1sc__process__b_a1d1f0368e0a934d5e71eb75043ecbc86_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{classsc__core_1_1sc__process__b_ae2fcac32f0933252105660eabe2e01ec}\label{classsc__core_1_1sc__process__b_ae2fcac32f0933252105660eabe2e01ec} 
+\index{sc\_core::sc\_process\_b@{sc\_core::sc\_process\_b}!reset\_changed@{reset\_changed}}
+\index{reset\_changed@{reset\_changed}!sc\_core::sc\_process\_b@{sc\_core::sc\_process\_b}}
+\doxysubsubsection{\texorpdfstring{reset\_changed()}{reset\_changed()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{class_sysc_add__pv}{void}} sc\+\_\+core\+::sc\+\_\+process\+\_\+b\+::reset\+\_\+changed (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_sysc_add__pv}{bool}}}]{async,  }\item[{\mbox{\hyperlink{class_sysc_add__pv}{bool}}}]{asserted }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}}
+
+\Hypertarget{classsc__core_1_1sc__process__b_ac334a6ad8ff09f628a7fb51c1be20477}\label{classsc__core_1_1sc__process__b_ac334a6ad8ff09f628a7fb51c1be20477} 
+\index{sc\_core::sc\_process\_b@{sc\_core::sc\_process\_b}!reset\_event@{reset\_event}}
+\index{reset\_event@{reset\_event}!sc\_core::sc\_process\_b@{sc\_core::sc\_process\_b}}
+\doxysubsubsection{\texorpdfstring{reset\_event()}{reset\_event()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classsc__core_1_1sc__event}{sc\+\_\+event}} \& sc\+\_\+core\+::sc\+\_\+process\+\_\+b\+::reset\+\_\+event (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=330pt]{classsc__core_1_1sc__process__b_ac334a6ad8ff09f628a7fb51c1be20477_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{classsc__core_1_1sc__process__b_a7e4b14f8600d9137187b5a9f4e9eb0ee}\label{classsc__core_1_1sc__process__b_a7e4b14f8600d9137187b5a9f4e9eb0ee} 
+\index{sc\_core::sc\_process\_b@{sc\_core::sc\_process\_b}!reset\_process@{reset\_process}}
+\index{reset\_process@{reset\_process}!sc\_core::sc\_process\_b@{sc\_core::sc\_process\_b}}
+\doxysubsubsection{\texorpdfstring{reset\_process()}{reset\_process()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{class_sysc_add__pv}{void}} sc\+\_\+core\+::sc\+\_\+process\+\_\+b\+::reset\+\_\+process (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classsc__core_1_1sc__process__b_aa3a79eb27dadbc8055524c8b73b1b051}{reset\+\_\+type}}}]{rt,  }\item[{\mbox{\hyperlink{namespacesc__core_af299d964d600dfca2e37224a6cb83298}{sc\+\_\+descendant\+\_\+inclusion\+\_\+info}}}]{descendants = {\ttfamily \mbox{\hyperlink{namespacesc__core_af299d964d600dfca2e37224a6cb83298aaf9243a80d08aa59c1ee5689a99747af}{SC\+\_\+\+NO\+\_\+\+DESCENDANTS}}} }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}}
+
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=342pt]{classsc__core_1_1sc__process__b_a7e4b14f8600d9137187b5a9f4e9eb0ee_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{classsc__core_1_1sc__process__b_a217f211da141b960f239cb77c0e42e2e}\label{classsc__core_1_1sc__process__b_a217f211da141b960f239cb77c0e42e2e} 
+\index{sc\_core::sc\_process\_b@{sc\_core::sc\_process\_b}!resume\_process@{resume\_process}}
+\index{resume\_process@{resume\_process}!sc\_core::sc\_process\_b@{sc\_core::sc\_process\_b}}
+\doxysubsubsection{\texorpdfstring{resume\_process()}{resume\_process()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{class_sysc_add__pv}{virtual}} \mbox{\hyperlink{class_sysc_add__pv}{void}} sc\+\_\+core\+::sc\+\_\+process\+\_\+b\+::resume\+\_\+process (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{namespacesc__core_af299d964d600dfca2e37224a6cb83298}{sc\+\_\+descendant\+\_\+inclusion\+\_\+info}}}]{descendants = {\ttfamily \mbox{\hyperlink{namespacesc__core_af299d964d600dfca2e37224a6cb83298aaf9243a80d08aa59c1ee5689a99747af}{SC\+\_\+\+NO\+\_\+\+DESCENDANTS}}} }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}, {\ttfamily [pure virtual]}}
+
+
+
+Implemented in \mbox{\hyperlink{classsc__core_1_1sc__method__process_a787cc559f1309eb7b31c771fb00c98e7}{sc\+\_\+core\+::sc\+\_\+method\+\_\+process}}, and \mbox{\hyperlink{classsc__core_1_1sc__thread__process_a4ed9c7afca4fbb052174582f2037943e}{sc\+\_\+core\+::sc\+\_\+thread\+\_\+process}}.
+
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=330pt]{classsc__core_1_1sc__process__b_a217f211da141b960f239cb77c0e42e2e_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{classsc__core_1_1sc__process__b_aacccc829d67e9b6b9892a5446530e343}\label{classsc__core_1_1sc__process__b_aacccc829d67e9b6b9892a5446530e343} 
+\index{sc\_core::sc\_process\_b@{sc\_core::sc\_process\_b}!semantics@{semantics}}
+\index{semantics@{semantics}!sc\_core::sc\_process\_b@{sc\_core::sc\_process\_b}}
+\doxysubsubsection{\texorpdfstring{semantics()}{semantics()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{class_sysc_add__pv}{void}} sc\+\_\+core\+::sc\+\_\+process\+\_\+b\+::semantics (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [protected]}}
+
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=337pt]{classsc__core_1_1sc__process__b_aacccc829d67e9b6b9892a5446530e343_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=338pt]{classsc__core_1_1sc__process__b_aacccc829d67e9b6b9892a5446530e343_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{classsc__core_1_1sc__process__b_ad7004d9c622d35af3dc6107abe42c681}\label{classsc__core_1_1sc__process__b_ad7004d9c622d35af3dc6107abe42c681} 
+\index{sc\_core::sc\_process\_b@{sc\_core::sc\_process\_b}!set\_last\_report@{set\_last\_report}}
+\index{set\_last\_report@{set\_last\_report}!sc\_core::sc\_process\_b@{sc\_core::sc\_process\_b}}
+\doxysubsubsection{\texorpdfstring{set\_last\_report()}{set\_last\_report()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{class_sysc_add__pv}{void}} sc\+\_\+core\+::sc\+\_\+process\+\_\+b\+::set\+\_\+last\+\_\+report (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classsc__core_1_1sc__report}{sc\+\_\+report}} \texorpdfstring{$\ast$}{*}}]{last\+\_\+p }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [protected]}}
+
+\Hypertarget{classsc__core_1_1sc__process__b_aec1fd9e4a80f0f70869a099750e9f682}\label{classsc__core_1_1sc__process__b_aec1fd9e4a80f0f70869a099750e9f682} 
+\index{sc\_core::sc\_process\_b@{sc\_core::sc\_process\_b}!start\_unwinding@{start\_unwinding}}
+\index{start\_unwinding@{start\_unwinding}!sc\_core::sc\_process\_b@{sc\_core::sc\_process\_b}}
+\doxysubsubsection{\texorpdfstring{start\_unwinding()}{start\_unwinding()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{class_sysc_add__pv}{bool}} sc\+\_\+core\+::sc\+\_\+process\+\_\+b\+::start\+\_\+unwinding (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [protected]}}
+
+\Hypertarget{classsc__core_1_1sc__process__b_a9839b7477d47f1d32fcf0601fe9abb11}\label{classsc__core_1_1sc__process__b_a9839b7477d47f1d32fcf0601fe9abb11} 
+\index{sc\_core::sc\_process\_b@{sc\_core::sc\_process\_b}!suspend\_process@{suspend\_process}}
+\index{suspend\_process@{suspend\_process}!sc\_core::sc\_process\_b@{sc\_core::sc\_process\_b}}
+\doxysubsubsection{\texorpdfstring{suspend\_process()}{suspend\_process()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{class_sysc_add__pv}{virtual}} \mbox{\hyperlink{class_sysc_add__pv}{void}} sc\+\_\+core\+::sc\+\_\+process\+\_\+b\+::suspend\+\_\+process (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{namespacesc__core_af299d964d600dfca2e37224a6cb83298}{sc\+\_\+descendant\+\_\+inclusion\+\_\+info}}}]{descendants = {\ttfamily \mbox{\hyperlink{namespacesc__core_af299d964d600dfca2e37224a6cb83298aaf9243a80d08aa59c1ee5689a99747af}{SC\+\_\+\+NO\+\_\+\+DESCENDANTS}}} }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}, {\ttfamily [pure virtual]}}
+
+
+
+Implemented in \mbox{\hyperlink{classsc__core_1_1sc__method__process_ac9f9597bb610daf904816ec883faec67}{sc\+\_\+core\+::sc\+\_\+method\+\_\+process}}, and \mbox{\hyperlink{classsc__core_1_1sc__thread__process_ab95e22adb3b522ef054801e933443c55}{sc\+\_\+core\+::sc\+\_\+thread\+\_\+process}}.
+
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=332pt]{classsc__core_1_1sc__process__b_a9839b7477d47f1d32fcf0601fe9abb11_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{classsc__core_1_1sc__process__b_a76e434c6e5ac898ac1f6e8584f25508f}\label{classsc__core_1_1sc__process__b_a76e434c6e5ac898ac1f6e8584f25508f} 
+\index{sc\_core::sc\_process\_b@{sc\_core::sc\_process\_b}!terminated@{terminated}}
+\index{terminated@{terminated}!sc\_core::sc\_process\_b@{sc\_core::sc\_process\_b}}
+\doxysubsubsection{\texorpdfstring{terminated()}{terminated()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{class_sysc_add__pv}{bool}} sc\+\_\+core\+::sc\+\_\+process\+\_\+b\+::terminated (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [protected]}, {\ttfamily [virtual]}}
+
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=330pt]{classsc__core_1_1sc__process__b_a76e434c6e5ac898ac1f6e8584f25508f_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{classsc__core_1_1sc__process__b_a114dad1904c124e221a1010548ebb6e4}\label{classsc__core_1_1sc__process__b_a114dad1904c124e221a1010548ebb6e4} 
+\index{sc\_core::sc\_process\_b@{sc\_core::sc\_process\_b}!terminated\_event@{terminated\_event}}
+\index{terminated\_event@{terminated\_event}!sc\_core::sc\_process\_b@{sc\_core::sc\_process\_b}}
+\doxysubsubsection{\texorpdfstring{terminated\_event()}{terminated\_event()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classsc__core_1_1sc__event}{sc\+\_\+event}} \& sc\+\_\+core\+::sc\+\_\+process\+\_\+b\+::terminated\+\_\+event (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classsc__core_1_1sc__process__b_a114dad1904c124e221a1010548ebb6e4_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{classsc__core_1_1sc__process__b_a4ec15bb1d268eb5310c6081f817abeb9}\label{classsc__core_1_1sc__process__b_a4ec15bb1d268eb5310c6081f817abeb9} 
+\index{sc\_core::sc\_process\_b@{sc\_core::sc\_process\_b}!throw\_reset@{throw\_reset}}
+\index{throw\_reset@{throw\_reset}!sc\_core::sc\_process\_b@{sc\_core::sc\_process\_b}}
+\doxysubsubsection{\texorpdfstring{throw\_reset()}{throw\_reset()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{class_sysc_add__pv}{virtual}} \mbox{\hyperlink{class_sysc_add__pv}{void}} sc\+\_\+core\+::sc\+\_\+process\+\_\+b\+::throw\+\_\+reset (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_sysc_add__pv}{bool}}}]{async }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}, {\ttfamily [pure virtual]}}
+
+
+
+Implemented in \mbox{\hyperlink{classsc__core_1_1sc__method__process_a9dc781dd3a5887593818f92ca0cb5983}{sc\+\_\+core\+::sc\+\_\+method\+\_\+process}}, and \mbox{\hyperlink{classsc__core_1_1sc__thread__process_ac5d920abe75cf9539332b34bf10bb0a2}{sc\+\_\+core\+::sc\+\_\+thread\+\_\+process}}.
+
+\Hypertarget{classsc__core_1_1sc__process__b_aa431865a79cdf51b1c19a8da4a4423a0}\label{classsc__core_1_1sc__process__b_aa431865a79cdf51b1c19a8da4a4423a0} 
+\index{sc\_core::sc\_process\_b@{sc\_core::sc\_process\_b}!throw\_user@{throw\_user}}
+\index{throw\_user@{throw\_user}!sc\_core::sc\_process\_b@{sc\_core::sc\_process\_b}}
+\doxysubsubsection{\texorpdfstring{throw\_user()}{throw\_user()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{class_sysc_add__pv}{virtual}} \mbox{\hyperlink{class_sysc_add__pv}{void}} sc\+\_\+core\+::sc\+\_\+process\+\_\+b\+::throw\+\_\+user (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_sysc_add__pv}{const}} \mbox{\hyperlink{classsc__core_1_1sc__throw__it__helper}{sc\+\_\+throw\+\_\+it\+\_\+helper}} \&}]{helper,  }\item[{\mbox{\hyperlink{namespacesc__core_af299d964d600dfca2e37224a6cb83298}{sc\+\_\+descendant\+\_\+inclusion\+\_\+info}}}]{descendants = {\ttfamily \mbox{\hyperlink{namespacesc__core_af299d964d600dfca2e37224a6cb83298aaf9243a80d08aa59c1ee5689a99747af}{SC\+\_\+\+NO\+\_\+\+DESCENDANTS}}} }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}, {\ttfamily [pure virtual]}}
+
+
+
+Implemented in \mbox{\hyperlink{classsc__core_1_1sc__method__process_aafdc10603457af55300744211f7fc3d9}{sc\+\_\+core\+::sc\+\_\+method\+\_\+process}}, and \mbox{\hyperlink{classsc__core_1_1sc__thread__process_a8e99cc1b1b7370afc4c24aa10cef6d48}{sc\+\_\+core\+::sc\+\_\+thread\+\_\+process}}.
+
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=330pt]{classsc__core_1_1sc__process__b_aa431865a79cdf51b1c19a8da4a4423a0_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{classsc__core_1_1sc__process__b_ab07cfef3b264ac72941da8ced3106179}\label{classsc__core_1_1sc__process__b_ab07cfef3b264ac72941da8ced3106179} 
+\index{sc\_core::sc\_process\_b@{sc\_core::sc\_process\_b}!timed\_out@{timed\_out}}
+\index{timed\_out@{timed\_out}!sc\_core::sc\_process\_b@{sc\_core::sc\_process\_b}}
+\doxysubsubsection{\texorpdfstring{timed\_out()}{timed\_out()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{class_sysc_add__pv}{bool}} sc\+\_\+core\+::sc\+\_\+process\+\_\+b\+::timed\+\_\+out (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [protected]}}
+
+\Hypertarget{classsc__core_1_1sc__process__b_aa5b7d4f76c359440b370b4962427ee5a}\label{classsc__core_1_1sc__process__b_aa5b7d4f76c359440b370b4962427ee5a} 
+\index{sc\_core::sc\_process\_b@{sc\_core::sc\_process\_b}!trigger\_reset\_event@{trigger\_reset\_event}}
+\index{trigger\_reset\_event@{trigger\_reset\_event}!sc\_core::sc\_process\_b@{sc\_core::sc\_process\_b}}
+\doxysubsubsection{\texorpdfstring{trigger\_reset\_event()}{trigger\_reset\_event()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{class_sysc_add__pv}{void}} sc\+\_\+core\+::sc\+\_\+process\+\_\+b\+::trigger\+\_\+reset\+\_\+event (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}}
+
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classsc__core_1_1sc__process__b_aa5b7d4f76c359440b370b4962427ee5a_icgraph}
+\end{center}
+\end{figure}
+
+
+\doxysubsection{Friends And Related Symbol Documentation}
+\Hypertarget{classsc__core_1_1sc__process__b_af2c9e96bc0fe4f99c3fdbf18a3965fda}\label{classsc__core_1_1sc__process__b_af2c9e96bc0fe4f99c3fdbf18a3965fda} 
+\index{sc\_core::sc\_process\_b@{sc\_core::sc\_process\_b}!sc\_cthread\_process@{sc\_cthread\_process}}
+\index{sc\_cthread\_process@{sc\_cthread\_process}!sc\_core::sc\_process\_b@{sc\_core::sc\_process\_b}}
+\doxysubsubsection{\texorpdfstring{sc\_cthread\_process}{sc\_cthread\_process}}
+{\footnotesize\ttfamily \mbox{\hyperlink{class_sysc_add__pv}{friend}} \mbox{\hyperlink{class_sysc_add__pv}{class}} \mbox{\hyperlink{classsc__core_1_1sc__cthread__process}{sc\+\_\+cthread\+\_\+process}}\hspace{0.3cm}{\ttfamily [friend]}}
+
+\Hypertarget{classsc__core_1_1sc__process__b_a13f565eb1938ead239f8b6a0927057b0}\label{classsc__core_1_1sc__process__b_a13f565eb1938ead239f8b6a0927057b0} 
+\index{sc\_core::sc\_process\_b@{sc\_core::sc\_process\_b}!sc\_event@{sc\_event}}
+\index{sc\_event@{sc\_event}!sc\_core::sc\_process\_b@{sc\_core::sc\_process\_b}}
+\doxysubsubsection{\texorpdfstring{sc\_event}{sc\_event}}
+{\footnotesize\ttfamily \mbox{\hyperlink{class_sysc_add__pv}{friend}} \mbox{\hyperlink{class_sysc_add__pv}{class}} \mbox{\hyperlink{classsc__core_1_1sc__event}{sc\+\_\+event}}\hspace{0.3cm}{\ttfamily [friend]}}
+
+\Hypertarget{classsc__core_1_1sc__process__b_a09d8be7572d9fe768e9126546a3b6fb5}\label{classsc__core_1_1sc__process__b_a09d8be7572d9fe768e9126546a3b6fb5} 
+\index{sc\_core::sc\_process\_b@{sc\_core::sc\_process\_b}!sc\_gen\_unique\_name@{sc\_gen\_unique\_name}}
+\index{sc\_gen\_unique\_name@{sc\_gen\_unique\_name}!sc\_core::sc\_process\_b@{sc\_core::sc\_process\_b}}
+\doxysubsubsection{\texorpdfstring{sc\_gen\_unique\_name}{sc\_gen\_unique\_name}}
+{\footnotesize\ttfamily \mbox{\hyperlink{sc__cmnhdr_8h_aff4a86b3f5de3ac2097081e7166fe89f}{SC\+\_\+\+API}} \mbox{\hyperlink{class_sysc_add__pv}{const}} \mbox{\hyperlink{class_sysc_add__pv}{char}} \texorpdfstring{$\ast$}{*} sc\+\_\+gen\+\_\+unique\+\_\+name (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_sysc_add__pv}{const}} \mbox{\hyperlink{class_sysc_add__pv}{char}} \texorpdfstring{$\ast$}{*}}]{,  }\item[{\mbox{\hyperlink{class_sysc_add__pv}{bool}}}]{preserve\+\_\+first }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [friend]}}
+
+\Hypertarget{classsc__core_1_1sc__process__b_aaa33df6397450db8f31f649e60e2eab2}\label{classsc__core_1_1sc__process__b_aaa33df6397450db8f31f649e60e2eab2} 
+\index{sc\_core::sc\_process\_b@{sc\_core::sc\_process\_b}!sc\_get\_current\_process\_handle@{sc\_get\_current\_process\_handle}}
+\index{sc\_get\_current\_process\_handle@{sc\_get\_current\_process\_handle}!sc\_core::sc\_process\_b@{sc\_core::sc\_process\_b}}
+\doxysubsubsection{\texorpdfstring{sc\_get\_current\_process\_handle}{sc\_get\_current\_process\_handle}}
+{\footnotesize\ttfamily \mbox{\hyperlink{sc__cmnhdr_8h_aff4a86b3f5de3ac2097081e7166fe89f}{SC\+\_\+\+API}} \mbox{\hyperlink{classsc__core_1_1sc__process__handle}{sc\+\_\+process\+\_\+handle}} sc\+\_\+get\+\_\+current\+\_\+process\+\_\+handle (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [friend]}}
+
+\Hypertarget{classsc__core_1_1sc__process__b_acc919bce635598675ac34601d8fefbf7}\label{classsc__core_1_1sc__process__b_acc919bce635598675ac34601d8fefbf7} 
+\index{sc\_core::sc\_process\_b@{sc\_core::sc\_process\_b}!sc\_method\_process@{sc\_method\_process}}
+\index{sc\_method\_process@{sc\_method\_process}!sc\_core::sc\_process\_b@{sc\_core::sc\_process\_b}}
+\doxysubsubsection{\texorpdfstring{sc\_method\_process}{sc\_method\_process}}
+{\footnotesize\ttfamily \mbox{\hyperlink{class_sysc_add__pv}{friend}} \mbox{\hyperlink{class_sysc_add__pv}{class}} \mbox{\hyperlink{classsc__core_1_1sc__method__process}{sc\+\_\+method\+\_\+process}}\hspace{0.3cm}{\ttfamily [friend]}}
+
+\Hypertarget{classsc__core_1_1sc__process__b_a460de50921ea4456ecaf395eb8594974}\label{classsc__core_1_1sc__process__b_a460de50921ea4456ecaf395eb8594974} 
+\index{sc\_core::sc\_process\_b@{sc\_core::sc\_process\_b}!sc\_module@{sc\_module}}
+\index{sc\_module@{sc\_module}!sc\_core::sc\_process\_b@{sc\_core::sc\_process\_b}}
+\doxysubsubsection{\texorpdfstring{sc\_module}{sc\_module}}
+{\footnotesize\ttfamily \mbox{\hyperlink{class_sysc_add__pv}{friend}} \mbox{\hyperlink{class_sysc_add__pv}{class}} \mbox{\hyperlink{classsc__core_1_1sc__module}{sc\+\_\+module}}\hspace{0.3cm}{\ttfamily [friend]}}
+
+\Hypertarget{classsc__core_1_1sc__process__b_abe316699185dd3108ba952d356e513e5}\label{classsc__core_1_1sc__process__b_abe316699185dd3108ba952d356e513e5} 
+\index{sc\_core::sc\_process\_b@{sc\_core::sc\_process\_b}!sc\_object@{sc\_object}}
+\index{sc\_object@{sc\_object}!sc\_core::sc\_process\_b@{sc\_core::sc\_process\_b}}
+\doxysubsubsection{\texorpdfstring{sc\_object}{sc\_object}}
+{\footnotesize\ttfamily \mbox{\hyperlink{class_sysc_add__pv}{friend}} \mbox{\hyperlink{class_sysc_add__pv}{class}} \mbox{\hyperlink{classsc__core_1_1sc__object}{sc\+\_\+object}}\hspace{0.3cm}{\ttfamily [friend]}}
+
+\Hypertarget{classsc__core_1_1sc__process__b_ac16572a975a3185797ffbd9f318470fd}\label{classsc__core_1_1sc__process__b_ac16572a975a3185797ffbd9f318470fd} 
+\index{sc\_core::sc\_process\_b@{sc\_core::sc\_process\_b}!sc\_port\_base@{sc\_port\_base}}
+\index{sc\_port\_base@{sc\_port\_base}!sc\_core::sc\_process\_b@{sc\_core::sc\_process\_b}}
+\doxysubsubsection{\texorpdfstring{sc\_port\_base}{sc\_port\_base}}
+{\footnotesize\ttfamily \mbox{\hyperlink{class_sysc_add__pv}{friend}} \mbox{\hyperlink{class_sysc_add__pv}{class}} \mbox{\hyperlink{classsc__core_1_1sc__port__base}{sc\+\_\+port\+\_\+base}}\hspace{0.3cm}{\ttfamily [friend]}}
+
+\Hypertarget{classsc__core_1_1sc__process__b_a4a61fb98d9d86beda7cf6016f55d01ba}\label{classsc__core_1_1sc__process__b_a4a61fb98d9d86beda7cf6016f55d01ba} 
+\index{sc\_core::sc\_process\_b@{sc\_core::sc\_process\_b}!sc\_process\_handle@{sc\_process\_handle}}
+\index{sc\_process\_handle@{sc\_process\_handle}!sc\_core::sc\_process\_b@{sc\_core::sc\_process\_b}}
+\doxysubsubsection{\texorpdfstring{sc\_process\_handle}{sc\_process\_handle}}
+{\footnotesize\ttfamily \mbox{\hyperlink{class_sysc_add__pv}{friend}} \mbox{\hyperlink{class_sysc_add__pv}{class}} \mbox{\hyperlink{classsc__core_1_1sc__process__handle}{sc\+\_\+process\+\_\+handle}}\hspace{0.3cm}{\ttfamily [friend]}}
+
+\Hypertarget{classsc__core_1_1sc__process__b_a12ba92f261d993145709693ea4466b47}\label{classsc__core_1_1sc__process__b_a12ba92f261d993145709693ea4466b47} 
+\index{sc\_core::sc\_process\_b@{sc\_core::sc\_process\_b}!sc\_process\_table@{sc\_process\_table}}
+\index{sc\_process\_table@{sc\_process\_table}!sc\_core::sc\_process\_b@{sc\_core::sc\_process\_b}}
+\doxysubsubsection{\texorpdfstring{sc\_process\_table}{sc\_process\_table}}
+{\footnotesize\ttfamily \mbox{\hyperlink{class_sysc_add__pv}{friend}} \mbox{\hyperlink{class_sysc_add__pv}{class}} sc\+\_\+process\+\_\+table\hspace{0.3cm}{\ttfamily [friend]}}
+
+\Hypertarget{classsc__core_1_1sc__process__b_aaba7034cfa93e6c1a3e2f1e9e57f9b47}\label{classsc__core_1_1sc__process__b_aaba7034cfa93e6c1a3e2f1e9e57f9b47} 
+\index{sc\_core::sc\_process\_b@{sc\_core::sc\_process\_b}!sc\_report\_handler@{sc\_report\_handler}}
+\index{sc\_report\_handler@{sc\_report\_handler}!sc\_core::sc\_process\_b@{sc\_core::sc\_process\_b}}
+\doxysubsubsection{\texorpdfstring{sc\_report\_handler}{sc\_report\_handler}}
+{\footnotesize\ttfamily \mbox{\hyperlink{class_sysc_add__pv}{friend}} \mbox{\hyperlink{class_sysc_add__pv}{class}} \mbox{\hyperlink{classsc__core_1_1sc__report__handler}{sc\+\_\+report\+\_\+handler}}\hspace{0.3cm}{\ttfamily [friend]}}
+
+\Hypertarget{classsc__core_1_1sc__process__b_a459c3ab69abfc8912c9261f7dc0719dd}\label{classsc__core_1_1sc__process__b_a459c3ab69abfc8912c9261f7dc0719dd} 
+\index{sc\_core::sc\_process\_b@{sc\_core::sc\_process\_b}!sc\_reset@{sc\_reset}}
+\index{sc\_reset@{sc\_reset}!sc\_core::sc\_process\_b@{sc\_core::sc\_process\_b}}
+\doxysubsubsection{\texorpdfstring{sc\_reset}{sc\_reset}}
+{\footnotesize\ttfamily \mbox{\hyperlink{class_sysc_add__pv}{friend}} \mbox{\hyperlink{class_sysc_add__pv}{class}} \mbox{\hyperlink{classsc__core_1_1sc__reset}{sc\+\_\+reset}}\hspace{0.3cm}{\ttfamily [friend]}}
+
+\Hypertarget{classsc__core_1_1sc__process__b_af692216008e752352d2831cd7c62e7f6}\label{classsc__core_1_1sc__process__b_af692216008e752352d2831cd7c62e7f6} 
+\index{sc\_core::sc\_process\_b@{sc\_core::sc\_process\_b}!sc\_reset\_finder@{sc\_reset\_finder}}
+\index{sc\_reset\_finder@{sc\_reset\_finder}!sc\_core::sc\_process\_b@{sc\_core::sc\_process\_b}}
+\doxysubsubsection{\texorpdfstring{sc\_reset\_finder}{sc\_reset\_finder}}
+{\footnotesize\ttfamily \mbox{\hyperlink{class_sysc_add__pv}{friend}} \mbox{\hyperlink{class_sysc_add__pv}{class}} \mbox{\hyperlink{classsc__core_1_1sc__reset__finder}{sc\+\_\+reset\+\_\+finder}}\hspace{0.3cm}{\ttfamily [friend]}}
+
+\Hypertarget{classsc__core_1_1sc__process__b_a7daf768cb0d25e9950151ec7079decbe}\label{classsc__core_1_1sc__process__b_a7daf768cb0d25e9950151ec7079decbe} 
+\index{sc\_core::sc\_process\_b@{sc\_core::sc\_process\_b}!sc\_runnable@{sc\_runnable}}
+\index{sc\_runnable@{sc\_runnable}!sc\_core::sc\_process\_b@{sc\_core::sc\_process\_b}}
+\doxysubsubsection{\texorpdfstring{sc\_runnable}{sc\_runnable}}
+{\footnotesize\ttfamily \mbox{\hyperlink{class_sysc_add__pv}{friend}} \mbox{\hyperlink{class_sysc_add__pv}{class}} \mbox{\hyperlink{classsc__core_1_1sc__runnable}{sc\+\_\+runnable}}\hspace{0.3cm}{\ttfamily [friend]}}
+
+\Hypertarget{classsc__core_1_1sc__process__b_ad3d4027e6ef16484903fcd92f865519d}\label{classsc__core_1_1sc__process__b_ad3d4027e6ef16484903fcd92f865519d} 
+\index{sc\_core::sc\_process\_b@{sc\_core::sc\_process\_b}!sc\_sensitive@{sc\_sensitive}}
+\index{sc\_sensitive@{sc\_sensitive}!sc\_core::sc\_process\_b@{sc\_core::sc\_process\_b}}
+\doxysubsubsection{\texorpdfstring{sc\_sensitive}{sc\_sensitive}}
+{\footnotesize\ttfamily \mbox{\hyperlink{class_sysc_add__pv}{friend}} \mbox{\hyperlink{class_sysc_add__pv}{class}} \mbox{\hyperlink{classsc__core_1_1sc__sensitive}{sc\+\_\+sensitive}}\hspace{0.3cm}{\ttfamily [friend]}}
+
+\Hypertarget{classsc__core_1_1sc__process__b_a98963a9ab02b155f3cb5061dcdbbb1b5}\label{classsc__core_1_1sc__process__b_a98963a9ab02b155f3cb5061dcdbbb1b5} 
+\index{sc\_core::sc\_process\_b@{sc\_core::sc\_process\_b}!sc\_sensitive\_neg@{sc\_sensitive\_neg}}
+\index{sc\_sensitive\_neg@{sc\_sensitive\_neg}!sc\_core::sc\_process\_b@{sc\_core::sc\_process\_b}}
+\doxysubsubsection{\texorpdfstring{sc\_sensitive\_neg}{sc\_sensitive\_neg}}
+{\footnotesize\ttfamily \mbox{\hyperlink{class_sysc_add__pv}{friend}} \mbox{\hyperlink{class_sysc_add__pv}{class}} \mbox{\hyperlink{classsc__core_1_1sc__sensitive__neg}{sc\+\_\+sensitive\+\_\+neg}}\hspace{0.3cm}{\ttfamily [friend]}}
+
+\Hypertarget{classsc__core_1_1sc__process__b_a83751c37d469e63b83c9a1e209b7319b}\label{classsc__core_1_1sc__process__b_a83751c37d469e63b83c9a1e209b7319b} 
+\index{sc\_core::sc\_process\_b@{sc\_core::sc\_process\_b}!sc\_sensitive\_pos@{sc\_sensitive\_pos}}
+\index{sc\_sensitive\_pos@{sc\_sensitive\_pos}!sc\_core::sc\_process\_b@{sc\_core::sc\_process\_b}}
+\doxysubsubsection{\texorpdfstring{sc\_sensitive\_pos}{sc\_sensitive\_pos}}
+{\footnotesize\ttfamily \mbox{\hyperlink{class_sysc_add__pv}{friend}} \mbox{\hyperlink{class_sysc_add__pv}{class}} \mbox{\hyperlink{classsc__core_1_1sc__sensitive__pos}{sc\+\_\+sensitive\+\_\+pos}}\hspace{0.3cm}{\ttfamily [friend]}}
+
+\Hypertarget{classsc__core_1_1sc__process__b_a8a833de7b9d6933c5c9b296583c4c835}\label{classsc__core_1_1sc__process__b_a8a833de7b9d6933c5c9b296583c4c835} 
+\index{sc\_core::sc\_process\_b@{sc\_core::sc\_process\_b}!sc\_simcontext@{sc\_simcontext}}
+\index{sc\_simcontext@{sc\_simcontext}!sc\_core::sc\_process\_b@{sc\_core::sc\_process\_b}}
+\doxysubsubsection{\texorpdfstring{sc\_simcontext}{sc\_simcontext}}
+{\footnotesize\ttfamily \mbox{\hyperlink{class_sysc_add__pv}{friend}} \mbox{\hyperlink{class_sysc_add__pv}{class}} \mbox{\hyperlink{classsc__core_1_1sc__simcontext}{sc\+\_\+simcontext}}\hspace{0.3cm}{\ttfamily [friend]}}
+
+\Hypertarget{classsc__core_1_1sc__process__b_a285a9415d730026b6e9477982147ba11}\label{classsc__core_1_1sc__process__b_a285a9415d730026b6e9477982147ba11} 
+\index{sc\_core::sc\_process\_b@{sc\_core::sc\_process\_b}!sc\_thread\_cor\_fn@{sc\_thread\_cor\_fn}}
+\index{sc\_thread\_cor\_fn@{sc\_thread\_cor\_fn}!sc\_core::sc\_process\_b@{sc\_core::sc\_process\_b}}
+\doxysubsubsection{\texorpdfstring{sc\_thread\_cor\_fn}{sc\_thread\_cor\_fn}}
+{\footnotesize\ttfamily \mbox{\hyperlink{class_sysc_add__pv}{void}} sc\+\_\+thread\+\_\+cor\+\_\+fn (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_sysc_add__pv}{void}} \texorpdfstring{$\ast$}{*}}]{arg }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [friend]}}
+
+\Hypertarget{classsc__core_1_1sc__process__b_ac96f23e2e92c5f037cba0971b62ebcff}\label{classsc__core_1_1sc__process__b_ac96f23e2e92c5f037cba0971b62ebcff} 
+\index{sc\_core::sc\_process\_b@{sc\_core::sc\_process\_b}!sc\_thread\_process@{sc\_thread\_process}}
+\index{sc\_thread\_process@{sc\_thread\_process}!sc\_core::sc\_process\_b@{sc\_core::sc\_process\_b}}
+\doxysubsubsection{\texorpdfstring{sc\_thread\_process}{sc\_thread\_process}}
+{\footnotesize\ttfamily \mbox{\hyperlink{class_sysc_add__pv}{friend}} \mbox{\hyperlink{class_sysc_add__pv}{class}} \mbox{\hyperlink{classsc__core_1_1sc__thread__process}{sc\+\_\+thread\+\_\+process}}\hspace{0.3cm}{\ttfamily [friend]}}
+
+\Hypertarget{classsc__core_1_1sc__process__b_aa82b5a44736cfa6eae577e422fe1da51}\label{classsc__core_1_1sc__process__b_aa82b5a44736cfa6eae577e422fe1da51} 
+\index{sc\_core::sc\_process\_b@{sc\_core::sc\_process\_b}!sc\_unwind\_exception@{sc\_unwind\_exception}}
+\index{sc\_unwind\_exception@{sc\_unwind\_exception}!sc\_core::sc\_process\_b@{sc\_core::sc\_process\_b}}
+\doxysubsubsection{\texorpdfstring{sc\_unwind\_exception}{sc\_unwind\_exception}}
+{\footnotesize\ttfamily \mbox{\hyperlink{class_sysc_add__pv}{friend}} \mbox{\hyperlink{class_sysc_add__pv}{class}} \mbox{\hyperlink{classsc__core_1_1sc__unwind__exception}{sc\+\_\+unwind\+\_\+exception}}\hspace{0.3cm}{\ttfamily [friend]}}
+
+\Hypertarget{classsc__core_1_1sc__process__b_a0fd6c8439488e78e651c8cbe8336e555}\label{classsc__core_1_1sc__process__b_a0fd6c8439488e78e651c8cbe8336e555} 
+\index{sc\_core::sc\_process\_b@{sc\_core::sc\_process\_b}!timed\_out@{timed\_out}}
+\index{timed\_out@{timed\_out}!sc\_core::sc\_process\_b@{sc\_core::sc\_process\_b}}
+\doxysubsubsection{\texorpdfstring{timed\_out}{timed\_out}}
+{\footnotesize\ttfamily \mbox{\hyperlink{sc__cmnhdr_8h_aff4a86b3f5de3ac2097081e7166fe89f}{SC\+\_\+\+API}} \mbox{\hyperlink{class_sysc_add__pv}{bool}} timed\+\_\+out (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{classsc__core_1_1sc__simcontext}{sc\+\_\+simcontext}} \texorpdfstring{$\ast$}{*}}]{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [friend]}}
+
+
+
+\doxysubsection{Member Data Documentation}
+\Hypertarget{classsc__core_1_1sc__process__b_a99cc428f873fa6470a210f92a19098c1}\label{classsc__core_1_1sc__process__b_a99cc428f873fa6470a210f92a19098c1} 
+\index{sc\_core::sc\_process\_b@{sc\_core::sc\_process\_b}!file@{file}}
+\index{file@{file}!sc\_core::sc\_process\_b@{sc\_core::sc\_process\_b}}
+\doxysubsubsection{\texorpdfstring{file}{file}}
+{\footnotesize\ttfamily \mbox{\hyperlink{class_sysc_add__pv}{const}} \mbox{\hyperlink{class_sysc_add__pv}{char}}\texorpdfstring{$\ast$}{*} sc\+\_\+core\+::sc\+\_\+process\+\_\+b\+::file}
+
+\Hypertarget{classsc__core_1_1sc__process__b_a3484e4adfe2f43e2115929f2798f90fe}\label{classsc__core_1_1sc__process__b_a3484e4adfe2f43e2115929f2798f90fe} 
+\index{sc\_core::sc\_process\_b@{sc\_core::sc\_process\_b}!lineno@{lineno}}
+\index{lineno@{lineno}!sc\_core::sc\_process\_b@{sc\_core::sc\_process\_b}}
+\doxysubsubsection{\texorpdfstring{lineno}{lineno}}
+{\footnotesize\ttfamily int sc\+\_\+core\+::sc\+\_\+process\+\_\+b\+::lineno}
+
+\Hypertarget{classsc__core_1_1sc__process__b_a11b3d6abee08c4193a82800496c3f770}\label{classsc__core_1_1sc__process__b_a11b3d6abee08c4193a82800496c3f770} 
+\index{sc\_core::sc\_process\_b@{sc\_core::sc\_process\_b}!m\_active\_areset\_n@{m\_active\_areset\_n}}
+\index{m\_active\_areset\_n@{m\_active\_areset\_n}!sc\_core::sc\_process\_b@{sc\_core::sc\_process\_b}}
+\doxysubsubsection{\texorpdfstring{m\_active\_areset\_n}{m\_active\_areset\_n}}
+{\footnotesize\ttfamily int sc\+\_\+core\+::sc\+\_\+process\+\_\+b\+::m\+\_\+active\+\_\+areset\+\_\+n\hspace{0.3cm}{\ttfamily [protected]}}
+
+\Hypertarget{classsc__core_1_1sc__process__b_a6b933e4ff7ebfa245069cb79e3bc2788}\label{classsc__core_1_1sc__process__b_a6b933e4ff7ebfa245069cb79e3bc2788} 
+\index{sc\_core::sc\_process\_b@{sc\_core::sc\_process\_b}!m\_active\_reset\_n@{m\_active\_reset\_n}}
+\index{m\_active\_reset\_n@{m\_active\_reset\_n}!sc\_core::sc\_process\_b@{sc\_core::sc\_process\_b}}
+\doxysubsubsection{\texorpdfstring{m\_active\_reset\_n}{m\_active\_reset\_n}}
+{\footnotesize\ttfamily int sc\+\_\+core\+::sc\+\_\+process\+\_\+b\+::m\+\_\+active\+\_\+reset\+\_\+n\hspace{0.3cm}{\ttfamily [protected]}}
+
+\Hypertarget{classsc__core_1_1sc__process__b_a4bba193dd9f42734a0bf18e694464c9d}\label{classsc__core_1_1sc__process__b_a4bba193dd9f42734a0bf18e694464c9d} 
+\index{sc\_core::sc\_process\_b@{sc\_core::sc\_process\_b}!m\_dont\_init@{m\_dont\_init}}
+\index{m\_dont\_init@{m\_dont\_init}!sc\_core::sc\_process\_b@{sc\_core::sc\_process\_b}}
+\doxysubsubsection{\texorpdfstring{m\_dont\_init}{m\_dont\_init}}
+{\footnotesize\ttfamily \mbox{\hyperlink{class_sysc_add__pv}{bool}} sc\+\_\+core\+::sc\+\_\+process\+\_\+b\+::m\+\_\+dont\+\_\+init\hspace{0.3cm}{\ttfamily [protected]}}
+
+\Hypertarget{classsc__core_1_1sc__process__b_a713952890dc059af03e3b0943496316f}\label{classsc__core_1_1sc__process__b_a713952890dc059af03e3b0943496316f} 
+\index{sc\_core::sc\_process\_b@{sc\_core::sc\_process\_b}!m\_dynamic\_proc@{m\_dynamic\_proc}}
+\index{m\_dynamic\_proc@{m\_dynamic\_proc}!sc\_core::sc\_process\_b@{sc\_core::sc\_process\_b}}
+\doxysubsubsection{\texorpdfstring{m\_dynamic\_proc}{m\_dynamic\_proc}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classsc__core_1_1sc__process__b_abb492afddf95c95018a2c048de36eb3c}{spawn\+\_\+t}} sc\+\_\+core\+::sc\+\_\+process\+\_\+b\+::m\+\_\+dynamic\+\_\+proc\hspace{0.3cm}{\ttfamily [protected]}}
+
+\Hypertarget{classsc__core_1_1sc__process__b_aa06f8822ecee9661a4558f165915060b}\label{classsc__core_1_1sc__process__b_aa06f8822ecee9661a4558f165915060b} 
+\index{sc\_core::sc\_process\_b@{sc\_core::sc\_process\_b}!m\_event\_count@{m\_event\_count}}
+\index{m\_event\_count@{m\_event\_count}!sc\_core::sc\_process\_b@{sc\_core::sc\_process\_b}}
+\doxysubsubsection{\texorpdfstring{m\_event\_count}{m\_event\_count}}
+{\footnotesize\ttfamily int sc\+\_\+core\+::sc\+\_\+process\+\_\+b\+::m\+\_\+event\+\_\+count\hspace{0.3cm}{\ttfamily [protected]}}
+
+\Hypertarget{classsc__core_1_1sc__process__b_a6d6e55ba572b77c74dc9999946a5b9e5}\label{classsc__core_1_1sc__process__b_a6d6e55ba572b77c74dc9999946a5b9e5} 
+\index{sc\_core::sc\_process\_b@{sc\_core::sc\_process\_b}!m\_event\_list\_p@{m\_event\_list\_p}}
+\index{m\_event\_list\_p@{m\_event\_list\_p}!sc\_core::sc\_process\_b@{sc\_core::sc\_process\_b}}
+\doxysubsubsection{\texorpdfstring{m\_event\_list\_p}{m\_event\_list\_p}}
+{\footnotesize\ttfamily \mbox{\hyperlink{class_sysc_add__pv}{const}} \mbox{\hyperlink{classsc__core_1_1sc__event__list}{sc\+\_\+event\+\_\+list}}\texorpdfstring{$\ast$}{*} sc\+\_\+core\+::sc\+\_\+process\+\_\+b\+::m\+\_\+event\+\_\+list\+\_\+p\hspace{0.3cm}{\ttfamily [protected]}}
+
+\Hypertarget{classsc__core_1_1sc__process__b_acd2ccfa88438085032b72d154ea6c733}\label{classsc__core_1_1sc__process__b_acd2ccfa88438085032b72d154ea6c733} 
+\index{sc\_core::sc\_process\_b@{sc\_core::sc\_process\_b}!m\_event\_p@{m\_event\_p}}
+\index{m\_event\_p@{m\_event\_p}!sc\_core::sc\_process\_b@{sc\_core::sc\_process\_b}}
+\doxysubsubsection{\texorpdfstring{m\_event\_p}{m\_event\_p}}
+{\footnotesize\ttfamily \mbox{\hyperlink{class_sysc_add__pv}{const}} \mbox{\hyperlink{classsc__core_1_1sc__event}{sc\+\_\+event}}\texorpdfstring{$\ast$}{*} sc\+\_\+core\+::sc\+\_\+process\+\_\+b\+::m\+\_\+event\+\_\+p\hspace{0.3cm}{\ttfamily [protected]}}
+
+\Hypertarget{classsc__core_1_1sc__process__b_ab816e15feece55ddbda9dbc46cbd6659}\label{classsc__core_1_1sc__process__b_ab816e15feece55ddbda9dbc46cbd6659} 
+\index{sc\_core::sc\_process\_b@{sc\_core::sc\_process\_b}!m\_exist\_p@{m\_exist\_p}}
+\index{m\_exist\_p@{m\_exist\_p}!sc\_core::sc\_process\_b@{sc\_core::sc\_process\_b}}
+\doxysubsubsection{\texorpdfstring{m\_exist\_p}{m\_exist\_p}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classsc__core_1_1sc__process__b}{sc\+\_\+process\+\_\+b}}\texorpdfstring{$\ast$}{*} sc\+\_\+core\+::sc\+\_\+process\+\_\+b\+::m\+\_\+exist\+\_\+p\hspace{0.3cm}{\ttfamily [protected]}}
+
+\Hypertarget{classsc__core_1_1sc__process__b_ad2c393784246e910cda401a479b0ee13}\label{classsc__core_1_1sc__process__b_ad2c393784246e910cda401a479b0ee13} 
+\index{sc\_core::sc\_process\_b@{sc\_core::sc\_process\_b}!m\_free\_host@{m\_free\_host}}
+\index{m\_free\_host@{m\_free\_host}!sc\_core::sc\_process\_b@{sc\_core::sc\_process\_b}}
+\doxysubsubsection{\texorpdfstring{m\_free\_host}{m\_free\_host}}
+{\footnotesize\ttfamily \mbox{\hyperlink{class_sysc_add__pv}{bool}} sc\+\_\+core\+::sc\+\_\+process\+\_\+b\+::m\+\_\+free\+\_\+host\hspace{0.3cm}{\ttfamily [protected]}}
+
+\Hypertarget{classsc__core_1_1sc__process__b_a70c3c7de06e5a03b39052f17c4dd9207}\label{classsc__core_1_1sc__process__b_a70c3c7de06e5a03b39052f17c4dd9207} 
+\index{sc\_core::sc\_process\_b@{sc\_core::sc\_process\_b}!m\_has\_reset\_signal@{m\_has\_reset\_signal}}
+\index{m\_has\_reset\_signal@{m\_has\_reset\_signal}!sc\_core::sc\_process\_b@{sc\_core::sc\_process\_b}}
+\doxysubsubsection{\texorpdfstring{m\_has\_reset\_signal}{m\_has\_reset\_signal}}
+{\footnotesize\ttfamily \mbox{\hyperlink{class_sysc_add__pv}{bool}} sc\+\_\+core\+::sc\+\_\+process\+\_\+b\+::m\+\_\+has\+\_\+reset\+\_\+signal\hspace{0.3cm}{\ttfamily [protected]}}
+
+\Hypertarget{classsc__core_1_1sc__process__b_a9290049f92d92b2cd8669cabd0f2359c}\label{classsc__core_1_1sc__process__b_a9290049f92d92b2cd8669cabd0f2359c} 
+\index{sc\_core::sc\_process\_b@{sc\_core::sc\_process\_b}!m\_has\_stack@{m\_has\_stack}}
+\index{m\_has\_stack@{m\_has\_stack}!sc\_core::sc\_process\_b@{sc\_core::sc\_process\_b}}
+\doxysubsubsection{\texorpdfstring{m\_has\_stack}{m\_has\_stack}}
+{\footnotesize\ttfamily \mbox{\hyperlink{class_sysc_add__pv}{bool}} sc\+\_\+core\+::sc\+\_\+process\+\_\+b\+::m\+\_\+has\+\_\+stack\hspace{0.3cm}{\ttfamily [protected]}}
+
+\Hypertarget{classsc__core_1_1sc__process__b_a52f7ec996a79e50038b84c085c9d6975}\label{classsc__core_1_1sc__process__b_a52f7ec996a79e50038b84c085c9d6975} 
+\index{sc\_core::sc\_process\_b@{sc\_core::sc\_process\_b}!m\_is\_thread@{m\_is\_thread}}
+\index{m\_is\_thread@{m\_is\_thread}!sc\_core::sc\_process\_b@{sc\_core::sc\_process\_b}}
+\doxysubsubsection{\texorpdfstring{m\_is\_thread}{m\_is\_thread}}
+{\footnotesize\ttfamily \mbox{\hyperlink{class_sysc_add__pv}{bool}} sc\+\_\+core\+::sc\+\_\+process\+\_\+b\+::m\+\_\+is\+\_\+thread\hspace{0.3cm}{\ttfamily [protected]}}
+
+\Hypertarget{classsc__core_1_1sc__process__b_a48edb38a4b7e32433804933444cabd5e}\label{classsc__core_1_1sc__process__b_a48edb38a4b7e32433804933444cabd5e} 
+\index{sc\_core::sc\_process\_b@{sc\_core::sc\_process\_b}!m\_last\_created\_process\_p@{m\_last\_created\_process\_p}}
+\index{m\_last\_created\_process\_p@{m\_last\_created\_process\_p}!sc\_core::sc\_process\_b@{sc\_core::sc\_process\_b}}
+\doxysubsubsection{\texorpdfstring{m\_last\_created\_process\_p}{m\_last\_created\_process\_p}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classsc__core_1_1sc__process__b}{sc\+\_\+process\+\_\+b}}\texorpdfstring{$\ast$}{*} sc\+\_\+core\+::sc\+\_\+process\+\_\+b\+::m\+\_\+last\+\_\+created\+\_\+process\+\_\+p\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [protected]}}
+
+\Hypertarget{classsc__core_1_1sc__process__b_a00d61b089792b1bb93e5866c8067014a}\label{classsc__core_1_1sc__process__b_a00d61b089792b1bb93e5866c8067014a} 
+\index{sc\_core::sc\_process\_b@{sc\_core::sc\_process\_b}!m\_last\_report\_p@{m\_last\_report\_p}}
+\index{m\_last\_report\_p@{m\_last\_report\_p}!sc\_core::sc\_process\_b@{sc\_core::sc\_process\_b}}
+\doxysubsubsection{\texorpdfstring{m\_last\_report\_p}{m\_last\_report\_p}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classsc__core_1_1sc__report}{sc\+\_\+report}}\texorpdfstring{$\ast$}{*} sc\+\_\+core\+::sc\+\_\+process\+\_\+b\+::m\+\_\+last\+\_\+report\+\_\+p\hspace{0.3cm}{\ttfamily [protected]}}
+
+\Hypertarget{classsc__core_1_1sc__process__b_ab9b257a883c0a4d73d5b02c72ae2896b}\label{classsc__core_1_1sc__process__b_ab9b257a883c0a4d73d5b02c72ae2896b} 
+\index{sc\_core::sc\_process\_b@{sc\_core::sc\_process\_b}!m\_name\_gen\_p@{m\_name\_gen\_p}}
+\index{m\_name\_gen\_p@{m\_name\_gen\_p}!sc\_core::sc\_process\_b@{sc\_core::sc\_process\_b}}
+\doxysubsubsection{\texorpdfstring{m\_name\_gen\_p}{m\_name\_gen\_p}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classsc__core_1_1sc__name__gen}{sc\+\_\+name\+\_\+gen}}\texorpdfstring{$\ast$}{*} sc\+\_\+core\+::sc\+\_\+process\+\_\+b\+::m\+\_\+name\+\_\+gen\+\_\+p\hspace{0.3cm}{\ttfamily [protected]}}
+
+\Hypertarget{classsc__core_1_1sc__process__b_af40bf45d91c9766c3582f8a5aa8aa0c6}\label{classsc__core_1_1sc__process__b_af40bf45d91c9766c3582f8a5aa8aa0c6} 
+\index{sc\_core::sc\_process\_b@{sc\_core::sc\_process\_b}!m\_process\_kind@{m\_process\_kind}}
+\index{m\_process\_kind@{m\_process\_kind}!sc\_core::sc\_process\_b@{sc\_core::sc\_process\_b}}
+\doxysubsubsection{\texorpdfstring{m\_process\_kind}{m\_process\_kind}}
+{\footnotesize\ttfamily \mbox{\hyperlink{namespacesc__core_a55cfb0f6c35416b69482b689d24ed045}{sc\+\_\+curr\+\_\+proc\+\_\+kind}} sc\+\_\+core\+::sc\+\_\+process\+\_\+b\+::m\+\_\+process\+\_\+kind\hspace{0.3cm}{\ttfamily [protected]}}
+
+\Hypertarget{classsc__core_1_1sc__process__b_aaef110083edfc73e241617a1b5e5fb4f}\label{classsc__core_1_1sc__process__b_aaef110083edfc73e241617a1b5e5fb4f} 
+\index{sc\_core::sc\_process\_b@{sc\_core::sc\_process\_b}!m\_references\_n@{m\_references\_n}}
+\index{m\_references\_n@{m\_references\_n}!sc\_core::sc\_process\_b@{sc\_core::sc\_process\_b}}
+\doxysubsubsection{\texorpdfstring{m\_references\_n}{m\_references\_n}}
+{\footnotesize\ttfamily int sc\+\_\+core\+::sc\+\_\+process\+\_\+b\+::m\+\_\+references\+\_\+n\hspace{0.3cm}{\ttfamily [protected]}}
+
+\Hypertarget{classsc__core_1_1sc__process__b_a1c8ef5a4fb1d603649d1dbe6e3188848}\label{classsc__core_1_1sc__process__b_a1c8ef5a4fb1d603649d1dbe6e3188848} 
+\index{sc\_core::sc\_process\_b@{sc\_core::sc\_process\_b}!m\_reset\_event\_p@{m\_reset\_event\_p}}
+\index{m\_reset\_event\_p@{m\_reset\_event\_p}!sc\_core::sc\_process\_b@{sc\_core::sc\_process\_b}}
+\doxysubsubsection{\texorpdfstring{m\_reset\_event\_p}{m\_reset\_event\_p}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classsc__core_1_1sc__event}{sc\+\_\+event}}\texorpdfstring{$\ast$}{*} sc\+\_\+core\+::sc\+\_\+process\+\_\+b\+::m\+\_\+reset\+\_\+event\+\_\+p\hspace{0.3cm}{\ttfamily [protected]}}
+
+\Hypertarget{classsc__core_1_1sc__process__b_ad2f2018f471252b6cb453dd95ffd5ff2}\label{classsc__core_1_1sc__process__b_ad2f2018f471252b6cb453dd95ffd5ff2} 
+\index{sc\_core::sc\_process\_b@{sc\_core::sc\_process\_b}!m\_resets@{m\_resets}}
+\index{m\_resets@{m\_resets}!sc\_core::sc\_process\_b@{sc\_core::sc\_process\_b}}
+\doxysubsubsection{\texorpdfstring{m\_resets}{m\_resets}}
+{\footnotesize\ttfamily std\+::vector$<$\mbox{\hyperlink{classsc__core_1_1sc__reset}{sc\+\_\+reset}}\texorpdfstring{$\ast$}{*}$>$ sc\+\_\+core\+::sc\+\_\+process\+\_\+b\+::m\+\_\+resets\hspace{0.3cm}{\ttfamily [protected]}}
+
+\Hypertarget{classsc__core_1_1sc__process__b_a14c3baa00f8759d75c35fee61f612210}\label{classsc__core_1_1sc__process__b_a14c3baa00f8759d75c35fee61f612210} 
+\index{sc\_core::sc\_process\_b@{sc\_core::sc\_process\_b}!m\_resume\_event\_p@{m\_resume\_event\_p}}
+\index{m\_resume\_event\_p@{m\_resume\_event\_p}!sc\_core::sc\_process\_b@{sc\_core::sc\_process\_b}}
+\doxysubsubsection{\texorpdfstring{m\_resume\_event\_p}{m\_resume\_event\_p}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classsc__core_1_1sc__event}{sc\+\_\+event}}\texorpdfstring{$\ast$}{*} sc\+\_\+core\+::sc\+\_\+process\+\_\+b\+::m\+\_\+resume\+\_\+event\+\_\+p\hspace{0.3cm}{\ttfamily [protected]}}
+
+\Hypertarget{classsc__core_1_1sc__process__b_a4090b13b42cd1259d2b40867a1ca5855}\label{classsc__core_1_1sc__process__b_a4090b13b42cd1259d2b40867a1ca5855} 
+\index{sc\_core::sc\_process\_b@{sc\_core::sc\_process\_b}!m\_runnable\_p@{m\_runnable\_p}}
+\index{m\_runnable\_p@{m\_runnable\_p}!sc\_core::sc\_process\_b@{sc\_core::sc\_process\_b}}
+\doxysubsubsection{\texorpdfstring{m\_runnable\_p}{m\_runnable\_p}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classsc__core_1_1sc__process__b}{sc\+\_\+process\+\_\+b}}\texorpdfstring{$\ast$}{*} sc\+\_\+core\+::sc\+\_\+process\+\_\+b\+::m\+\_\+runnable\+\_\+p\hspace{0.3cm}{\ttfamily [protected]}}
+
+\Hypertarget{classsc__core_1_1sc__process__b_aded7ad046c6039c7aa86240cd50eb418}\label{classsc__core_1_1sc__process__b_aded7ad046c6039c7aa86240cd50eb418} 
+\index{sc\_core::sc\_process\_b@{sc\_core::sc\_process\_b}!m\_semantics\_host\_p@{m\_semantics\_host\_p}}
+\index{m\_semantics\_host\_p@{m\_semantics\_host\_p}!sc\_core::sc\_process\_b@{sc\_core::sc\_process\_b}}
+\doxysubsubsection{\texorpdfstring{m\_semantics\_host\_p}{m\_semantics\_host\_p}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classsc__core_1_1sc__process__host}{sc\+\_\+process\+\_\+host}}\texorpdfstring{$\ast$}{*} sc\+\_\+core\+::sc\+\_\+process\+\_\+b\+::m\+\_\+semantics\+\_\+host\+\_\+p\hspace{0.3cm}{\ttfamily [protected]}}
+
+\Hypertarget{classsc__core_1_1sc__process__b_a8926a28a0c67059c2e4b66af1e52476e}\label{classsc__core_1_1sc__process__b_a8926a28a0c67059c2e4b66af1e52476e} 
+\index{sc\_core::sc\_process\_b@{sc\_core::sc\_process\_b}!m\_semantics\_method\_p@{m\_semantics\_method\_p}}
+\index{m\_semantics\_method\_p@{m\_semantics\_method\_p}!sc\_core::sc\_process\_b@{sc\_core::sc\_process\_b}}
+\doxysubsubsection{\texorpdfstring{m\_semantics\_method\_p}{m\_semantics\_method\_p}}
+{\footnotesize\ttfamily \mbox{\hyperlink{namespacesc__core_a3c3c6a60b0462a2cb00c7c294417c02e}{SC\+\_\+\+ENTRY\+\_\+\+FUNC}} sc\+\_\+core\+::sc\+\_\+process\+\_\+b\+::m\+\_\+semantics\+\_\+method\+\_\+p\hspace{0.3cm}{\ttfamily [protected]}}
+
+\Hypertarget{classsc__core_1_1sc__process__b_a3a7c616f6590f84df9caff51ef47ab29}\label{classsc__core_1_1sc__process__b_a3a7c616f6590f84df9caff51ef47ab29} 
+\index{sc\_core::sc\_process\_b@{sc\_core::sc\_process\_b}!m\_state@{m\_state}}
+\index{m\_state@{m\_state}!sc\_core::sc\_process\_b@{sc\_core::sc\_process\_b}}
+\doxysubsubsection{\texorpdfstring{m\_state}{m\_state}}
+{\footnotesize\ttfamily int sc\+\_\+core\+::sc\+\_\+process\+\_\+b\+::m\+\_\+state\hspace{0.3cm}{\ttfamily [protected]}}
+
+\Hypertarget{classsc__core_1_1sc__process__b_afa69a0ea561f83794f7a22e0278fae1d}\label{classsc__core_1_1sc__process__b_afa69a0ea561f83794f7a22e0278fae1d} 
+\index{sc\_core::sc\_process\_b@{sc\_core::sc\_process\_b}!m\_static\_events@{m\_static\_events}}
+\index{m\_static\_events@{m\_static\_events}!sc\_core::sc\_process\_b@{sc\_core::sc\_process\_b}}
+\doxysubsubsection{\texorpdfstring{m\_static\_events}{m\_static\_events}}
+{\footnotesize\ttfamily std\+::vector$<$\mbox{\hyperlink{class_sysc_add__pv}{const}} \mbox{\hyperlink{classsc__core_1_1sc__event}{sc\+\_\+event}}\texorpdfstring{$\ast$}{*}$>$ sc\+\_\+core\+::sc\+\_\+process\+\_\+b\+::m\+\_\+static\+\_\+events\hspace{0.3cm}{\ttfamily [protected]}}
+
+\Hypertarget{classsc__core_1_1sc__process__b_a04b6f76ef03e8092d0d1510934a757dc}\label{classsc__core_1_1sc__process__b_a04b6f76ef03e8092d0d1510934a757dc} 
+\index{sc\_core::sc\_process\_b@{sc\_core::sc\_process\_b}!m\_sticky\_reset@{m\_sticky\_reset}}
+\index{m\_sticky\_reset@{m\_sticky\_reset}!sc\_core::sc\_process\_b@{sc\_core::sc\_process\_b}}
+\doxysubsubsection{\texorpdfstring{m\_sticky\_reset}{m\_sticky\_reset}}
+{\footnotesize\ttfamily \mbox{\hyperlink{class_sysc_add__pv}{bool}} sc\+\_\+core\+::sc\+\_\+process\+\_\+b\+::m\+\_\+sticky\+\_\+reset\hspace{0.3cm}{\ttfamily [protected]}}
+
+\Hypertarget{classsc__core_1_1sc__process__b_a3ec8bdaa79ba3c4e9e04fb4d8aeaba09}\label{classsc__core_1_1sc__process__b_a3ec8bdaa79ba3c4e9e04fb4d8aeaba09} 
+\index{sc\_core::sc\_process\_b@{sc\_core::sc\_process\_b}!m\_term\_event\_p@{m\_term\_event\_p}}
+\index{m\_term\_event\_p@{m\_term\_event\_p}!sc\_core::sc\_process\_b@{sc\_core::sc\_process\_b}}
+\doxysubsubsection{\texorpdfstring{m\_term\_event\_p}{m\_term\_event\_p}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classsc__core_1_1sc__event}{sc\+\_\+event}}\texorpdfstring{$\ast$}{*} sc\+\_\+core\+::sc\+\_\+process\+\_\+b\+::m\+\_\+term\+\_\+event\+\_\+p\hspace{0.3cm}{\ttfamily [protected]}}
+
+\Hypertarget{classsc__core_1_1sc__process__b_a738d6e9f16a1650d015651c307c2d99e}\label{classsc__core_1_1sc__process__b_a738d6e9f16a1650d015651c307c2d99e} 
+\index{sc\_core::sc\_process\_b@{sc\_core::sc\_process\_b}!m\_throw\_helper\_p@{m\_throw\_helper\_p}}
+\index{m\_throw\_helper\_p@{m\_throw\_helper\_p}!sc\_core::sc\_process\_b@{sc\_core::sc\_process\_b}}
+\doxysubsubsection{\texorpdfstring{m\_throw\_helper\_p}{m\_throw\_helper\_p}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classsc__core_1_1sc__throw__it__helper}{sc\+\_\+throw\+\_\+it\+\_\+helper}}\texorpdfstring{$\ast$}{*} sc\+\_\+core\+::sc\+\_\+process\+\_\+b\+::m\+\_\+throw\+\_\+helper\+\_\+p\hspace{0.3cm}{\ttfamily [protected]}}
+
+\Hypertarget{classsc__core_1_1sc__process__b_a5eb7fe7c88ba1de299071e9dec2ea02f}\label{classsc__core_1_1sc__process__b_a5eb7fe7c88ba1de299071e9dec2ea02f} 
+\index{sc\_core::sc\_process\_b@{sc\_core::sc\_process\_b}!m\_throw\_status@{m\_throw\_status}}
+\index{m\_throw\_status@{m\_throw\_status}!sc\_core::sc\_process\_b@{sc\_core::sc\_process\_b}}
+\doxysubsubsection{\texorpdfstring{m\_throw\_status}{m\_throw\_status}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classsc__core_1_1sc__process__b_ac09c2c06a786f9911d58ad3515137784}{process\+\_\+throw\+\_\+type}} sc\+\_\+core\+::sc\+\_\+process\+\_\+b\+::m\+\_\+throw\+\_\+status\hspace{0.3cm}{\ttfamily [protected]}}
+
+\Hypertarget{classsc__core_1_1sc__process__b_a8e21c84fe49e911a4f2fbe76e98d5e7d}\label{classsc__core_1_1sc__process__b_a8e21c84fe49e911a4f2fbe76e98d5e7d} 
+\index{sc\_core::sc\_process\_b@{sc\_core::sc\_process\_b}!m\_timed\_out@{m\_timed\_out}}
+\index{m\_timed\_out@{m\_timed\_out}!sc\_core::sc\_process\_b@{sc\_core::sc\_process\_b}}
+\doxysubsubsection{\texorpdfstring{m\_timed\_out}{m\_timed\_out}}
+{\footnotesize\ttfamily \mbox{\hyperlink{class_sysc_add__pv}{bool}} sc\+\_\+core\+::sc\+\_\+process\+\_\+b\+::m\+\_\+timed\+\_\+out\hspace{0.3cm}{\ttfamily [protected]}}
+
+\Hypertarget{classsc__core_1_1sc__process__b_a7a4fb73508cd06832780de9b4ce1ea9a}\label{classsc__core_1_1sc__process__b_a7a4fb73508cd06832780de9b4ce1ea9a} 
+\index{sc\_core::sc\_process\_b@{sc\_core::sc\_process\_b}!m\_timeout\_event\_p@{m\_timeout\_event\_p}}
+\index{m\_timeout\_event\_p@{m\_timeout\_event\_p}!sc\_core::sc\_process\_b@{sc\_core::sc\_process\_b}}
+\doxysubsubsection{\texorpdfstring{m\_timeout\_event\_p}{m\_timeout\_event\_p}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classsc__core_1_1sc__event}{sc\+\_\+event}}\texorpdfstring{$\ast$}{*} sc\+\_\+core\+::sc\+\_\+process\+\_\+b\+::m\+\_\+timeout\+\_\+event\+\_\+p\hspace{0.3cm}{\ttfamily [protected]}}
+
+\Hypertarget{classsc__core_1_1sc__process__b_a35a19ed7e35d33ea77db5042c98f9ce9}\label{classsc__core_1_1sc__process__b_a35a19ed7e35d33ea77db5042c98f9ce9} 
+\index{sc\_core::sc\_process\_b@{sc\_core::sc\_process\_b}!m\_trigger\_type@{m\_trigger\_type}}
+\index{m\_trigger\_type@{m\_trigger\_type}!sc\_core::sc\_process\_b@{sc\_core::sc\_process\_b}}
+\doxysubsubsection{\texorpdfstring{m\_trigger\_type}{m\_trigger\_type}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classsc__core_1_1sc__process__b_aed728eb97299bc2cc355d521245e5a94}{trigger\+\_\+t}} sc\+\_\+core\+::sc\+\_\+process\+\_\+b\+::m\+\_\+trigger\+\_\+type\hspace{0.3cm}{\ttfamily [protected]}}
+
+\Hypertarget{classsc__core_1_1sc__process__b_a17bd4b253de298fb1694a6100b5d3230}\label{classsc__core_1_1sc__process__b_a17bd4b253de298fb1694a6100b5d3230} 
+\index{sc\_core::sc\_process\_b@{sc\_core::sc\_process\_b}!m\_unwinding@{m\_unwinding}}
+\index{m\_unwinding@{m\_unwinding}!sc\_core::sc\_process\_b@{sc\_core::sc\_process\_b}}
+\doxysubsubsection{\texorpdfstring{m\_unwinding}{m\_unwinding}}
+{\footnotesize\ttfamily \mbox{\hyperlink{class_sysc_add__pv}{bool}} sc\+\_\+core\+::sc\+\_\+process\+\_\+b\+::m\+\_\+unwinding\hspace{0.3cm}{\ttfamily [protected]}}
+
+\Hypertarget{classsc__core_1_1sc__process__b_a5d0b56fd49755c938b8ffcd4c7e1097e}\label{classsc__core_1_1sc__process__b_a5d0b56fd49755c938b8ffcd4c7e1097e} 
+\index{sc\_core::sc\_process\_b@{sc\_core::sc\_process\_b}!proc\_id@{proc\_id}}
+\index{proc\_id@{proc\_id}!sc\_core::sc\_process\_b@{sc\_core::sc\_process\_b}}
+\doxysubsubsection{\texorpdfstring{proc\_id}{proc\_id}}
+{\footnotesize\ttfamily int sc\+\_\+core\+::sc\+\_\+process\+\_\+b\+::proc\+\_\+id}
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+C\+:/\+Users/\+BJRODIER/\+Documents/\+QT\+\_\+\+REPO/\+QT\+\_\+\+VHDL\+\_\+simulator/code/\+Ressources/\+System\+C/include/sysc/kernel/\mbox{\hyperlink{sc__process_8h}{sc\+\_\+process.\+h}}\item 
+C\+:/\+Users/\+BJRODIER/\+Documents/\+QT\+\_\+\+REPO/\+QT\+\_\+\+VHDL\+\_\+simulator/code/\+Ressources/\+System\+C/include/sysc/kernel/\mbox{\hyperlink{sc__process__handle_8h}{sc\+\_\+process\+\_\+handle.\+h}}\end{DoxyCompactItemize}

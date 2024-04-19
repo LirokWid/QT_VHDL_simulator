@@ -1,0 +1,1031 @@
+\doxysection{sc\+\_\+nbutils.\+h}
+\hypertarget{sc__nbutils_8h_source}{}\label{sc__nbutils_8h_source}\index{C:/Users/BJRODIER/Documents/QT\_REPO/QT\_VHDL\_simulator/code/Ressources/SystemC/include/sysc/datatypes/int/sc\_nbutils.h@{C:/Users/BJRODIER/Documents/QT\_REPO/QT\_VHDL\_simulator/code/Ressources/SystemC/include/sysc/datatypes/int/sc\_nbutils.h}}
+\mbox{\hyperlink{sc__nbutils_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{comment}{/*****************************************************************************}}
+\DoxyCodeLine{00002\ \textcolor{comment}{}}
+\DoxyCodeLine{00003\ \textcolor{comment}{\ \ Licensed\ to\ Accellera\ Systems\ Initiative\ Inc.\ (Accellera)\ under\ one\ or}}
+\DoxyCodeLine{00004\ \textcolor{comment}{\ \ more\ contributor\ license\ agreements.\ \ See\ the\ NOTICE\ file\ distributed}}
+\DoxyCodeLine{00005\ \textcolor{comment}{\ \ with\ this\ work\ for\ additional\ information\ regarding\ copyright\ ownership.}}
+\DoxyCodeLine{00006\ \textcolor{comment}{\ \ Accellera\ licenses\ this\ file\ to\ you\ under\ the\ Apache\ License,\ Version\ 2.0}}
+\DoxyCodeLine{00007\ \textcolor{comment}{\ \ (the\ "{}License"{});\ you\ may\ not\ use\ this\ file\ except\ in\ compliance\ with\ the}}
+\DoxyCodeLine{00008\ \textcolor{comment}{\ \ License.\ \ You\ may\ obtain\ a\ copy\ of\ the\ License\ at}}
+\DoxyCodeLine{00009\ \textcolor{comment}{}}
+\DoxyCodeLine{00010\ \textcolor{comment}{\ \ \ \ http://www.apache.org/licenses/LICENSE-\/2.0}}
+\DoxyCodeLine{00011\ \textcolor{comment}{}}
+\DoxyCodeLine{00012\ \textcolor{comment}{\ \ Unless\ required\ by\ applicable\ law\ or\ agreed\ to\ in\ writing,\ software}}
+\DoxyCodeLine{00013\ \textcolor{comment}{\ \ distributed\ under\ the\ License\ is\ distributed\ on\ an\ "{}AS\ IS"{}\ BASIS,}}
+\DoxyCodeLine{00014\ \textcolor{comment}{\ \ WITHOUT\ WARRANTIES\ OR\ CONDITIONS\ OF\ ANY\ KIND,\ either\ express\ or}}
+\DoxyCodeLine{00015\ \textcolor{comment}{\ \ implied.\ \ See\ the\ License\ for\ the\ specific\ language\ governing}}
+\DoxyCodeLine{00016\ \textcolor{comment}{\ \ permissions\ and\ limitations\ under\ the\ License.}}
+\DoxyCodeLine{00017\ \textcolor{comment}{}}
+\DoxyCodeLine{00018\ \textcolor{comment}{\ *****************************************************************************/}}
+\DoxyCodeLine{00019\ }
+\DoxyCodeLine{00020\ \textcolor{comment}{/*****************************************************************************}}
+\DoxyCodeLine{00021\ \textcolor{comment}{}}
+\DoxyCodeLine{00022\ \textcolor{comment}{\ \ sc\_nbutils.h\ -\/-\/\ External\ and\ friend\ functions\ for\ both\ sc\_signed\ and}}
+\DoxyCodeLine{00023\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ sc\_unsigned\ classes.}}
+\DoxyCodeLine{00024\ \textcolor{comment}{}}
+\DoxyCodeLine{00025\ \textcolor{comment}{\ \ Original\ Author:\ Ali\ Dasdan,\ Synopsys,\ Inc.}}
+\DoxyCodeLine{00026\ \textcolor{comment}{}}
+\DoxyCodeLine{00027\ \textcolor{comment}{\ *****************************************************************************/}}
+\DoxyCodeLine{00028\ }
+\DoxyCodeLine{00029\ \textcolor{comment}{/*****************************************************************************}}
+\DoxyCodeLine{00030\ \textcolor{comment}{}}
+\DoxyCodeLine{00031\ \textcolor{comment}{\ \ MODIFICATION\ LOG\ -\/\ modifiers,\ enter\ your\ name,\ affiliation,\ date\ and}}
+\DoxyCodeLine{00032\ \textcolor{comment}{\ \ changes\ you\ are\ making\ here.}}
+\DoxyCodeLine{00033\ \textcolor{comment}{}}
+\DoxyCodeLine{00034\ \textcolor{comment}{\ \ \ \ \ \ Name,\ Affiliation,\ Date:}}
+\DoxyCodeLine{00035\ \textcolor{comment}{\ \ Description\ of\ Modification:}}
+\DoxyCodeLine{00036\ \textcolor{comment}{}}
+\DoxyCodeLine{00037\ \textcolor{comment}{\ *****************************************************************************/}}
+\DoxyCodeLine{00038\ }
+\DoxyCodeLine{00039\ \textcolor{comment}{//\ \$Log:\ sc\_nbutils.h,v\ \$}}
+\DoxyCodeLine{00040\ \textcolor{comment}{//\ Revision\ 1.6\ \ 2011/09/08\ 16:12:15\ \ acg}}
+\DoxyCodeLine{00041\ \textcolor{comment}{//\ \ Philipp\ A.\ Hartmann:\ fix\ issue\ with\ Sun\ machines\ wrt\ real\ math\ libraries.}}
+\DoxyCodeLine{00042\ \textcolor{comment}{//}}
+\DoxyCodeLine{00043\ \textcolor{comment}{//\ Revision\ 1.5\ \ 2011/08/26\ 23:00:01\ \ acg}}
+\DoxyCodeLine{00044\ \textcolor{comment}{//\ \ Torsten\ Maehne:\ remove\ use\ of\ ieeefp.h.}}
+\DoxyCodeLine{00045\ \textcolor{comment}{//}}
+\DoxyCodeLine{00046\ \textcolor{comment}{//\ Revision\ 1.4\ \ 2011/08/15\ 16:43:24\ \ acg}}
+\DoxyCodeLine{00047\ \textcolor{comment}{//\ \ Torsten\ Maehne:\ changes\ to\ remove\ unused\ argument\ warnings.}}
+\DoxyCodeLine{00048\ \textcolor{comment}{//}}
+\DoxyCodeLine{00049\ \textcolor{comment}{//\ Revision\ 1.3\ \ 2011/02/18\ 20:19:15\ \ acg}}
+\DoxyCodeLine{00050\ \textcolor{comment}{//\ \ Andy\ Goodrich:\ updating\ Copyright\ notice.}}
+\DoxyCodeLine{00051\ \textcolor{comment}{//}}
+\DoxyCodeLine{00052\ \textcolor{comment}{//\ Revision\ 1.2\ \ 2010/09/06\ 16:35:48\ \ acg}}
+\DoxyCodeLine{00053\ \textcolor{comment}{//\ \ Andy\ Goodrich:\ changed\ i386\ to\ \_\_i386\_\_\ in\ ifdef's.}}
+\DoxyCodeLine{00054\ \textcolor{comment}{//}}
+\DoxyCodeLine{00055\ \textcolor{comment}{//\ Revision\ 1.1.1.1\ \ 2006/12/15\ 20:20:05\ \ acg}}
+\DoxyCodeLine{00056\ \textcolor{comment}{//\ SystemC\ 2.3}}
+\DoxyCodeLine{00057\ \textcolor{comment}{//}}
+\DoxyCodeLine{00058\ \textcolor{comment}{//\ Revision\ 1.3\ \ 2006/01/13\ 18:49:32\ \ acg}}
+\DoxyCodeLine{00059\ \textcolor{comment}{//\ Added\ \$Log\ command\ so\ that\ CVS\ check\ in\ comments\ are\ reproduced\ in\ the}}
+\DoxyCodeLine{00060\ \textcolor{comment}{//\ source.}}
+\DoxyCodeLine{00061\ \textcolor{comment}{//}}
+\DoxyCodeLine{00062\ }
+\DoxyCodeLine{00063\ \textcolor{preprocessor}{\#ifndef\ SC\_NBUTILS\_H}}
+\DoxyCodeLine{00064\ \textcolor{preprocessor}{\#define\ SC\_NBUTILS\_H}}
+\DoxyCodeLine{00065\ }
+\DoxyCodeLine{00066\ \textcolor{preprocessor}{\#include\ <cmath>}}
+\DoxyCodeLine{00067\ \textcolor{preprocessor}{\#include\ <limits>}}
+\DoxyCodeLine{00068\ }
+\DoxyCodeLine{00069\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{sc__bit__ids_8h}{sysc/datatypes/bit/sc\_bit\_ids.h}}"{}}}
+\DoxyCodeLine{00070\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{sc__int__ids_8h}{sysc/datatypes/int/sc\_int\_ids.h}}"{}}}
+\DoxyCodeLine{00071\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{sc__nbdefs_8h}{sysc/datatypes/int/sc\_nbdefs.h}}"{}}}
+\DoxyCodeLine{00072\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{sc__report_8h}{sysc/utils/sc\_report.h}}"{}}}
+\DoxyCodeLine{00073\ \textcolor{preprocessor}{\#include\ <ios>}}
+\DoxyCodeLine{00074\ \textcolor{preprocessor}{\#include\ <ostream>}}
+\DoxyCodeLine{00075\ }
+\DoxyCodeLine{00076\ \textcolor{keyword}{namespace\ }\mbox{\hyperlink{namespacesc__dt}{sc\_dt}}}
+\DoxyCodeLine{00077\ \{}
+\DoxyCodeLine{00078\ }
+\DoxyCodeLine{00079\ \textcolor{comment}{//-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{00080\ \textcolor{comment}{//"{}sc\_io\_base"{}}}
+\DoxyCodeLine{00081\ \textcolor{comment}{//}}
+\DoxyCodeLine{00082\ \textcolor{comment}{//\ This\ inline\ function\ returns\ the\ type\ of\ an\ i/o\ stream's\ base\ as\ a\ SystemC}}
+\DoxyCodeLine{00083\ \textcolor{comment}{//\ base\ designator.}}
+\DoxyCodeLine{00084\ \textcolor{comment}{//\ \ \ stream\_object\ =\ reference\ to\ the\ i/o\ stream\ whose\ base\ is\ to\ be\ returned.}}
+\DoxyCodeLine{00085\ \textcolor{comment}{//}}
+\DoxyCodeLine{00086\ \textcolor{comment}{//"{}sc\_io\_show\_base"{}}}
+\DoxyCodeLine{00087\ \textcolor{comment}{//}}
+\DoxyCodeLine{00088\ \textcolor{comment}{//\ This\ inline\ function\ returns\ true\ if\ the\ base\ should\ be\ shown\ when\ a\ SystemC}}
+\DoxyCodeLine{00089\ \textcolor{comment}{//\ value\ is\ displayed\ via\ the\ supplied\ stream\ operator.}}
+\DoxyCodeLine{00090\ \textcolor{comment}{//\ \ \ stream\_object\ =\ reference\ to\ the\ i/o\ stream\ to\ return\ showbase\ value\ for.}}
+\DoxyCodeLine{00091\ \textcolor{comment}{//-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{00092\ \textcolor{preprocessor}{\#if\ defined(\_\_GNUC\_\_)\ ||\ defined(\_MSC\_VER)\ ||\ defined(\_\_SUNPRO\_CC)}}
+\DoxyCodeLine{00093\ \ \ \ \ \textcolor{keyword}{inline}\ sc\_numrep}
+\DoxyCodeLine{00094\ \ \ \ \ \mbox{\hyperlink{namespacesc__dt_a89ebe117b0754b3adca60836adebbbe4}{sc\_io\_base}}(\ ::std::ostream\&\ \mbox{\hyperlink{class_sysc_add__pv}{os}},\ sc\_numrep\ \mbox{\hyperlink{class_sysc_add__pv}{def\_base}}\ )}
+\DoxyCodeLine{00095\ \ \ \ \ \{}
+\DoxyCodeLine{00096\ \ \ \ \ \ \ \ \ std::ios::fmtflags\ \mbox{\hyperlink{class_sysc_add__pv}{flags}}\ =\ \mbox{\hyperlink{class_sysc_add__pv}{os}}.flags()\ \&\ std::ios::basefield;}
+\DoxyCodeLine{00097\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\ \mbox{\hyperlink{class_sysc_add__pv}{flags}}\ \&\ ::std::ios::dec\ )\ \textcolor{keywordflow}{return}\ \ \mbox{\hyperlink{namespacesc__dt_a4d7f17e93afae1c969127c6b80baa0f9ae9985e111b26103887bc8cb856062d70}{SC\_DEC}};}
+\DoxyCodeLine{00098\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\ \mbox{\hyperlink{class_sysc_add__pv}{flags}}\ \&\ ::std::ios::hex\ )\ \textcolor{keywordflow}{return}\ \ \mbox{\hyperlink{namespacesc__dt_a4d7f17e93afae1c969127c6b80baa0f9a3bba378d8c598eaebcbfd61a3341413b}{SC\_HEX}};}
+\DoxyCodeLine{00099\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\ \mbox{\hyperlink{class_sysc_add__pv}{flags}}\ \&\ ::std::ios::oct\ )\ \textcolor{keywordflow}{return}\ \ \mbox{\hyperlink{namespacesc__dt_a4d7f17e93afae1c969127c6b80baa0f9ab5bd29df600aa251432d9cf565e3969c}{SC\_OCT}};}
+\DoxyCodeLine{00100\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{class_sysc_add__pv}{def\_base}};}
+\DoxyCodeLine{00101\ \ \ \ \ \}}
+\DoxyCodeLine{00102\ }
+\DoxyCodeLine{00103\ \ \ \ \ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{bool}}
+\DoxyCodeLine{00104\ \ \ \ \ \mbox{\hyperlink{namespacesc__dt_a2807181c85d066592b433897abdac33d}{sc\_io\_show\_base}}(\ ::std::ostream\&\ \mbox{\hyperlink{class_sysc_add__pv}{os}}\ )}
+\DoxyCodeLine{00105\ \ \ \ \ \{}
+\DoxyCodeLine{00106\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ (\mbox{\hyperlink{class_sysc_add__pv}{os}}.flags()\ \&\ ::std::ios::showbase)\ !=\ 0\ ;}
+\DoxyCodeLine{00107\ \ \ \ \ \}}
+\DoxyCodeLine{00108\ \textcolor{preprocessor}{\#else\ \ \ }\textcolor{comment}{//\ Other}}
+\DoxyCodeLine{00109\ \ \ \ \ \textcolor{keyword}{inline}\ sc\_numrep}
+\DoxyCodeLine{00110\ \ \ \ \ \mbox{\hyperlink{namespacesc__dt_a89ebe117b0754b3adca60836adebbbe4}{sc\_io\_base}}(\ ::std::ostream\&\ \textcolor{comment}{/*unused*/},\ \mbox{\hyperlink{namespacesc__dt_a4d7f17e93afae1c969127c6b80baa0f9}{sc\_numrep}}\ \textcolor{comment}{/*unused*/}\ )}
+\DoxyCodeLine{00111\ \ \ \ \ \{}
+\DoxyCodeLine{00112\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{namespacesc__dt_a4d7f17e93afae1c969127c6b80baa0f9ae9985e111b26103887bc8cb856062d70}{SC\_DEC}};}
+\DoxyCodeLine{00113\ \ \ \ \ \}}
+\DoxyCodeLine{00114\ \ \ \ \ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{bool}}
+\DoxyCodeLine{00115\ \ \ \ \ \mbox{\hyperlink{namespacesc__dt_a2807181c85d066592b433897abdac33d}{sc\_io\_show\_base}}(\ ::std::ostream\&\ \textcolor{comment}{/*unused*/}\ )}
+\DoxyCodeLine{00116\ \ \ \ \ \{}
+\DoxyCodeLine{00117\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00118\ \ \ \ \ \}}
+\DoxyCodeLine{00119\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00120\ }
+\DoxyCodeLine{00121\ \textcolor{keyword}{const}\ std::string\ \mbox{\hyperlink{namespacesc__dt_a922b0fd7a4ef4f54118391e03def4971}{to\_string}}(\ \mbox{\hyperlink{namespacesc__dt_a4d7f17e93afae1c969127c6b80baa0f9}{sc\_numrep}}\ );}
+\DoxyCodeLine{00122\ }
+\DoxyCodeLine{00123\ inline}
+\DoxyCodeLine{00124\ ::std::ostream\&}
+\DoxyCodeLine{00125\ \mbox{\hyperlink{namespacesc__dt_adbdd47fbc03fb76a8622346aafcc6b7c}{operator\ <<\ }}(\ ::std::ostream\&\ \mbox{\hyperlink{class_sysc_add__pv}{os}},\ \mbox{\hyperlink{namespacesc__dt_a4d7f17e93afae1c969127c6b80baa0f9}{sc\_numrep}}\ \mbox{\hyperlink{class_sysc_add__pv}{numrep}}\ )}
+\DoxyCodeLine{00126\ \{}
+\DoxyCodeLine{00127\ \ \ \ \ \mbox{\hyperlink{class_sysc_add__pv}{os}}\ <<\ \mbox{\hyperlink{namespacesc__dt_a922b0fd7a4ef4f54118391e03def4971}{to\_string}}(\ \mbox{\hyperlink{class_sysc_add__pv}{numrep}}\ );}
+\DoxyCodeLine{00128\ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{class_sysc_add__pv}{os}};}
+\DoxyCodeLine{00129\ \}}
+\DoxyCodeLine{00130\ }
+\DoxyCodeLine{00131\ \textcolor{comment}{//\ -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{00132\ }
+\DoxyCodeLine{00133\ \textcolor{comment}{//\ One\ transition\ of\ the\ FSM\ to\ find\ base\ and\ sign\ of\ a\ number.}}
+\DoxyCodeLine{00134\ \textcolor{keyword}{extern}}
+\DoxyCodeLine{00135\ \mbox{\hyperlink{sc__cmnhdr_8h_aff4a86b3f5de3ac2097081e7166fe89f}{SC\_API}}\ \mbox{\hyperlink{namespacesc__dt_a24b5ab9d89d2201797c64885ed4a1495}{small\_type}}}
+\DoxyCodeLine{00136\ \mbox{\hyperlink{namespacesc__dt_a740cd7e212815a6504844c6e6693511e}{fsm\_move}}(\textcolor{keywordtype}{char}\ \mbox{\hyperlink{class_sysc_add__pv}{c}},\ \mbox{\hyperlink{namespacesc__dt_a24b5ab9d89d2201797c64885ed4a1495}{small\_type}}\ \&\mbox{\hyperlink{namespacesc__dt_adf3ee606b574990426012b8c6cc286f4}{b}},\ \mbox{\hyperlink{namespacesc__dt_a24b5ab9d89d2201797c64885ed4a1495}{small\_type}}\ \&s,\ \mbox{\hyperlink{namespacesc__dt_a24b5ab9d89d2201797c64885ed4a1495}{small\_type}}\ \&state);}
+\DoxyCodeLine{00137\ }
+\DoxyCodeLine{00138\ \textcolor{comment}{//\ Parse\ a\ character\ string\ into\ its\ equivalent\ binary\ bits.}}
+\DoxyCodeLine{00139\ \textcolor{keyword}{extern}}
+\DoxyCodeLine{00140\ \mbox{\hyperlink{sc__cmnhdr_8h_aff4a86b3f5de3ac2097081e7166fe89f}{SC\_API}}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{namespacesc__dt_a44d371ab207bac8a518ea1b2d47d136c}{parse\_binary\_bits}}(}
+\DoxyCodeLine{00141\ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keywordtype}{char}*\ \mbox{\hyperlink{class_sysc_add__pv}{src\_p}},\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{class_sysc_add__pv}{dst\_n}},\ \mbox{\hyperlink{namespacesc__dt_ac387c29028ace5ebdafd46a173a8146a}{sc\_digit}}*\ \mbox{\hyperlink{class_sysc_add__pv}{data\_p}},\ \mbox{\hyperlink{namespacesc__dt_ac387c29028ace5ebdafd46a173a8146a}{sc\_digit}}*\ \mbox{\hyperlink{class_sysc_add__pv}{ctrl\_p}}=0}
+\DoxyCodeLine{00142\ );}
+\DoxyCodeLine{00143\ }
+\DoxyCodeLine{00144\ }
+\DoxyCodeLine{00145\ \textcolor{comment}{//\ Parse\ a\ character\ string\ into\ its\ equivalent\ hexadecimal\ bits.}}
+\DoxyCodeLine{00146\ \textcolor{keyword}{extern}}
+\DoxyCodeLine{00147\ \mbox{\hyperlink{sc__cmnhdr_8h_aff4a86b3f5de3ac2097081e7166fe89f}{SC\_API}}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{namespacesc__dt_a32e44cabdece23642983435964f58040}{parse\_hex\_bits}}(}
+\DoxyCodeLine{00148\ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keywordtype}{char}*\ \mbox{\hyperlink{class_sysc_add__pv}{src\_p}},\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{class_sysc_add__pv}{dst\_n}},\ \mbox{\hyperlink{namespacesc__dt_ac387c29028ace5ebdafd46a173a8146a}{sc\_digit}}*\ \mbox{\hyperlink{class_sysc_add__pv}{data\_p}},\ \mbox{\hyperlink{namespacesc__dt_ac387c29028ace5ebdafd46a173a8146a}{sc\_digit}}*\ \mbox{\hyperlink{class_sysc_add__pv}{ctrl\_p}}=0}
+\DoxyCodeLine{00149\ );}
+\DoxyCodeLine{00150\ }
+\DoxyCodeLine{00151\ }
+\DoxyCodeLine{00152\ \textcolor{comment}{//\ Find\ the\ base\ and\ sign\ of\ a\ number\ in\ v.}}
+\DoxyCodeLine{00153\ \textcolor{keyword}{extern}}
+\DoxyCodeLine{00154\ \mbox{\hyperlink{sc__cmnhdr_8h_aff4a86b3f5de3ac2097081e7166fe89f}{SC\_API}}\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{char}\ *}
+\DoxyCodeLine{00155\ \mbox{\hyperlink{namespacesc__dt_a6a65ed6b8b8c7c1c96ed07c10b933872}{get\_base\_and\_sign}}(\textcolor{keyword}{const}\ \textcolor{keywordtype}{char}\ *v,\ \mbox{\hyperlink{namespacesc__dt_a24b5ab9d89d2201797c64885ed4a1495}{small\_type}}\ \&\mbox{\hyperlink{class_sysc_add__pv}{base}},\ \mbox{\hyperlink{namespacesc__dt_a24b5ab9d89d2201797c64885ed4a1495}{small\_type}}\ \&sign);}
+\DoxyCodeLine{00156\ }
+\DoxyCodeLine{00157\ \textcolor{comment}{//\ Create\ a\ number\ out\ of\ v\ in\ base.}}
+\DoxyCodeLine{00158\ \textcolor{keyword}{extern}}
+\DoxyCodeLine{00159\ \mbox{\hyperlink{sc__cmnhdr_8h_aff4a86b3f5de3ac2097081e7166fe89f}{SC\_API}}\ \mbox{\hyperlink{namespacesc__dt_a24b5ab9d89d2201797c64885ed4a1495}{small\_type}}}
+\DoxyCodeLine{00160\ \mbox{\hyperlink{namespacesc__dt_a8e082801269ac71ad1f6f92bfac2e821}{vec\_from\_str}}(\textcolor{keywordtype}{int}\ \mbox{\hyperlink{class_sysc_add__pv}{unb}},\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{class_sysc_add__pv}{und}},\ \mbox{\hyperlink{namespacesc__dt_ac387c29028ace5ebdafd46a173a8146a}{sc\_digit}}\ *\mbox{\hyperlink{class_sysc_add__pv}{u}},}
+\DoxyCodeLine{00161\ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keywordtype}{char}\ *v,\ \mbox{\hyperlink{namespacesc__dt_a4d7f17e93afae1c969127c6b80baa0f9}{sc\_numrep}}\ \mbox{\hyperlink{class_sysc_add__pv}{base}}\ =\ SC\_NOBASE)\ ;}
+\DoxyCodeLine{00162\ }
+\DoxyCodeLine{00163\ }
+\DoxyCodeLine{00164\ \textcolor{comment}{//\ -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{00165\ \textcolor{comment}{//\ \ Naming\ convention\ for\ the\ vec\_\ functions\ below:}}
+\DoxyCodeLine{00166\ \textcolor{comment}{//\ \ \ \ vec\_OP(u,\ v,\ w)\ \ :\ computes\ w\ =\ u\ OP\ v.}}
+\DoxyCodeLine{00167\ \textcolor{comment}{//\ \ \ \ vec\_OP\_on(u,\ v)\ \ :\ computes\ u\ =\ u\ OP\ v\ if\ u\ has\ more\ digits\ than\ v.}}
+\DoxyCodeLine{00168\ \textcolor{comment}{//\ \ \ \ vec\_OP\_on2(u,\ v)\ :\ computes\ u\ =\ u\ OP\ v\ if\ u\ has\ fewer\ digits\ than\ v.}}
+\DoxyCodeLine{00169\ \textcolor{comment}{//\ \ \ \ \_large\ \ \ \ \ \ \ \ \ \ \ :\ parameters\ are\ vectors.}}
+\DoxyCodeLine{00170\ \textcolor{comment}{//\ \ \ \ \_small\ \ \ \ \ \ \ \ \ \ \ :\ one\ of\ the\ parameters\ is\ a\ single\ digit.}}
+\DoxyCodeLine{00171\ \textcolor{comment}{//\ \ \ \ Xlen\ \ \ \ \ \ \ \ \ \ \ \ \ :\ the\ number\ of\ digits\ in\ X.}}
+\DoxyCodeLine{00172\ \textcolor{comment}{//\ -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{00173\ }
+\DoxyCodeLine{00174\ \textcolor{comment}{//\ -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{00175\ \textcolor{comment}{//\ \ Functions\ for\ vector\ addition:\ w\ =\ u\ +\ v\ or\ u\ +=\ v.}}
+\DoxyCodeLine{00176\ \textcolor{comment}{//\ -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{00177\ }
+\DoxyCodeLine{00178\ \textcolor{keyword}{extern}}
+\DoxyCodeLine{00179\ \mbox{\hyperlink{sc__cmnhdr_8h_aff4a86b3f5de3ac2097081e7166fe89f}{SC\_API}}\ \textcolor{keywordtype}{void}}
+\DoxyCodeLine{00180\ \mbox{\hyperlink{namespacesc__dt_ac5898f291843b721db924d35176db18b}{vec\_add}}(\textcolor{keywordtype}{int}\ \mbox{\hyperlink{class_sysc_add__pv}{ulen}},\ \textcolor{keyword}{const}\ \mbox{\hyperlink{namespacesc__dt_ac387c29028ace5ebdafd46a173a8146a}{sc\_digit}}\ *\mbox{\hyperlink{class_sysc_add__pv}{u}},}
+\DoxyCodeLine{00181\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{class_sysc_add__pv}{vlen}},\ \textcolor{keyword}{const}\ \mbox{\hyperlink{namespacesc__dt_ac387c29028ace5ebdafd46a173a8146a}{sc\_digit}}\ *v,\ \mbox{\hyperlink{namespacesc__dt_ac387c29028ace5ebdafd46a173a8146a}{sc\_digit}}\ *\mbox{\hyperlink{class_sysc_add__pv}{w}});}
+\DoxyCodeLine{00182\ }
+\DoxyCodeLine{00183\ \textcolor{keyword}{extern}}
+\DoxyCodeLine{00184\ \mbox{\hyperlink{sc__cmnhdr_8h_aff4a86b3f5de3ac2097081e7166fe89f}{SC\_API}}\ \textcolor{keywordtype}{void}}
+\DoxyCodeLine{00185\ \mbox{\hyperlink{namespacesc__dt_a305dbf9c8edca2dd25346a7a1046f1b7}{vec\_add\_on}}(\textcolor{keywordtype}{int}\ \mbox{\hyperlink{class_sysc_add__pv}{ulen}},\ \mbox{\hyperlink{namespacesc__dt_ac387c29028ace5ebdafd46a173a8146a}{sc\_digit}}\ *\mbox{\hyperlink{class_sysc_add__pv}{u}},}
+\DoxyCodeLine{00186\ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{class_sysc_add__pv}{vlen}},\ \textcolor{keyword}{const}\ \mbox{\hyperlink{namespacesc__dt_ac387c29028ace5ebdafd46a173a8146a}{sc\_digit}}\ *v);}
+\DoxyCodeLine{00187\ }
+\DoxyCodeLine{00188\ \textcolor{keyword}{extern}}
+\DoxyCodeLine{00189\ \mbox{\hyperlink{sc__cmnhdr_8h_aff4a86b3f5de3ac2097081e7166fe89f}{SC\_API}}\ \textcolor{keywordtype}{void}}
+\DoxyCodeLine{00190\ \mbox{\hyperlink{namespacesc__dt_a5be78732d64fbc4c0f30f8d23bdb0967}{vec\_add\_on2}}(\textcolor{keywordtype}{int}\ \mbox{\hyperlink{class_sysc_add__pv}{ulen}},\ \mbox{\hyperlink{namespacesc__dt_ac387c29028ace5ebdafd46a173a8146a}{sc\_digit}}\ *\mbox{\hyperlink{class_sysc_add__pv}{u}},}
+\DoxyCodeLine{00191\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{class_sysc_add__pv}{vlen}},\ \textcolor{keyword}{const}\ \mbox{\hyperlink{namespacesc__dt_ac387c29028ace5ebdafd46a173a8146a}{sc\_digit}}\ *v);}
+\DoxyCodeLine{00192\ }
+\DoxyCodeLine{00193\ \textcolor{keyword}{extern}}
+\DoxyCodeLine{00194\ \mbox{\hyperlink{sc__cmnhdr_8h_aff4a86b3f5de3ac2097081e7166fe89f}{SC\_API}}\ \textcolor{keywordtype}{void}}
+\DoxyCodeLine{00195\ \mbox{\hyperlink{namespacesc__dt_ae4e171d7793bfe411fcb180b310325f0}{vec\_add\_small}}(\textcolor{keywordtype}{int}\ \mbox{\hyperlink{class_sysc_add__pv}{ulen}},\ \textcolor{keyword}{const}\ \mbox{\hyperlink{namespacesc__dt_ac387c29028ace5ebdafd46a173a8146a}{sc\_digit}}\ *\mbox{\hyperlink{class_sysc_add__pv}{u}},}
+\DoxyCodeLine{00196\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacesc__dt_ac387c29028ace5ebdafd46a173a8146a}{sc\_digit}}\ v,\ \mbox{\hyperlink{namespacesc__dt_ac387c29028ace5ebdafd46a173a8146a}{sc\_digit}}\ *\mbox{\hyperlink{class_sysc_add__pv}{w}});}
+\DoxyCodeLine{00197\ }
+\DoxyCodeLine{00198\ \textcolor{keyword}{extern}}
+\DoxyCodeLine{00199\ \mbox{\hyperlink{sc__cmnhdr_8h_aff4a86b3f5de3ac2097081e7166fe89f}{SC\_API}}\ \textcolor{keywordtype}{void}}
+\DoxyCodeLine{00200\ \mbox{\hyperlink{namespacesc__dt_af113f02819de3660b60540fca1ac4be6}{vec\_add\_small\_on}}(\textcolor{keywordtype}{int}\ \mbox{\hyperlink{class_sysc_add__pv}{ulen}},\ \mbox{\hyperlink{namespacesc__dt_ac387c29028ace5ebdafd46a173a8146a}{sc\_digit}}\ *\mbox{\hyperlink{class_sysc_add__pv}{u}},\ \mbox{\hyperlink{namespacesc__dt_ac387c29028ace5ebdafd46a173a8146a}{sc\_digit}}\ v);}
+\DoxyCodeLine{00201\ }
+\DoxyCodeLine{00202\ }
+\DoxyCodeLine{00203\ \textcolor{comment}{//\ -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{00204\ \textcolor{comment}{//\ \ Functions\ for\ vector\ subtraction:\ w\ =\ u\ -\/\ v,\ u\ -\/=\ v,\ or\ u\ =\ v\ -\/\ u.}}
+\DoxyCodeLine{00205\ \textcolor{comment}{//\ -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{00206\ }
+\DoxyCodeLine{00207\ \textcolor{keyword}{extern}}
+\DoxyCodeLine{00208\ \mbox{\hyperlink{sc__cmnhdr_8h_aff4a86b3f5de3ac2097081e7166fe89f}{SC\_API}}\ \textcolor{keywordtype}{void}}
+\DoxyCodeLine{00209\ \mbox{\hyperlink{namespacesc__dt_a4cacc09c3c2ca310ccca475247c37dfc}{vec\_sub}}(\textcolor{keywordtype}{int}\ \mbox{\hyperlink{class_sysc_add__pv}{ulen}},\ \textcolor{keyword}{const}\ \mbox{\hyperlink{namespacesc__dt_ac387c29028ace5ebdafd46a173a8146a}{sc\_digit}}\ *\mbox{\hyperlink{class_sysc_add__pv}{u}},}
+\DoxyCodeLine{00210\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{class_sysc_add__pv}{vlen}},\ \textcolor{keyword}{const}\ \mbox{\hyperlink{namespacesc__dt_ac387c29028ace5ebdafd46a173a8146a}{sc\_digit}}\ *v,\ \mbox{\hyperlink{namespacesc__dt_ac387c29028ace5ebdafd46a173a8146a}{sc\_digit}}\ *\mbox{\hyperlink{class_sysc_add__pv}{w}});}
+\DoxyCodeLine{00211\ }
+\DoxyCodeLine{00212\ \textcolor{keyword}{extern}}
+\DoxyCodeLine{00213\ \mbox{\hyperlink{sc__cmnhdr_8h_aff4a86b3f5de3ac2097081e7166fe89f}{SC\_API}}\ \textcolor{keywordtype}{void}}
+\DoxyCodeLine{00214\ \mbox{\hyperlink{namespacesc__dt_a6c6e0696c2206ac1320c8afdc5f66e4b}{vec\_sub\_on}}(\textcolor{keywordtype}{int}\ \mbox{\hyperlink{class_sysc_add__pv}{ulen}},\ \mbox{\hyperlink{namespacesc__dt_ac387c29028ace5ebdafd46a173a8146a}{sc\_digit}}\ *\mbox{\hyperlink{class_sysc_add__pv}{u}},}
+\DoxyCodeLine{00215\ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{class_sysc_add__pv}{vlen}},\ \textcolor{keyword}{const}\ \mbox{\hyperlink{namespacesc__dt_ac387c29028ace5ebdafd46a173a8146a}{sc\_digit}}\ *v);}
+\DoxyCodeLine{00216\ }
+\DoxyCodeLine{00217\ \textcolor{keyword}{extern}}
+\DoxyCodeLine{00218\ \mbox{\hyperlink{sc__cmnhdr_8h_aff4a86b3f5de3ac2097081e7166fe89f}{SC\_API}}\ \textcolor{keywordtype}{void}}
+\DoxyCodeLine{00219\ \mbox{\hyperlink{namespacesc__dt_a244e51be2ebf9de66709c7bd784dc36d}{vec\_sub\_on2}}(\textcolor{keywordtype}{int}\ \mbox{\hyperlink{class_sysc_add__pv}{ulen}},\ \mbox{\hyperlink{namespacesc__dt_ac387c29028ace5ebdafd46a173a8146a}{sc\_digit}}\ *\mbox{\hyperlink{class_sysc_add__pv}{u}},}
+\DoxyCodeLine{00220\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{class_sysc_add__pv}{vlen}},\ \textcolor{keyword}{const}\ \mbox{\hyperlink{namespacesc__dt_ac387c29028ace5ebdafd46a173a8146a}{sc\_digit}}\ *v);}
+\DoxyCodeLine{00221\ }
+\DoxyCodeLine{00222\ \textcolor{keyword}{extern}}
+\DoxyCodeLine{00223\ \mbox{\hyperlink{sc__cmnhdr_8h_aff4a86b3f5de3ac2097081e7166fe89f}{SC\_API}}\ \textcolor{keywordtype}{void}}
+\DoxyCodeLine{00224\ \mbox{\hyperlink{namespacesc__dt_a837e99acdec19d33012054685f8d1bbf}{vec\_sub\_small}}(\textcolor{keywordtype}{int}\ \mbox{\hyperlink{class_sysc_add__pv}{ulen}},\ \textcolor{keyword}{const}\ \mbox{\hyperlink{namespacesc__dt_ac387c29028ace5ebdafd46a173a8146a}{sc\_digit}}\ *\mbox{\hyperlink{class_sysc_add__pv}{u}},}
+\DoxyCodeLine{00225\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacesc__dt_ac387c29028ace5ebdafd46a173a8146a}{sc\_digit}}\ v,\ \mbox{\hyperlink{namespacesc__dt_ac387c29028ace5ebdafd46a173a8146a}{sc\_digit}}\ *\mbox{\hyperlink{class_sysc_add__pv}{w}});}
+\DoxyCodeLine{00226\ }
+\DoxyCodeLine{00227\ \textcolor{keyword}{extern}}
+\DoxyCodeLine{00228\ \mbox{\hyperlink{sc__cmnhdr_8h_aff4a86b3f5de3ac2097081e7166fe89f}{SC\_API}}\ \textcolor{keywordtype}{void}}
+\DoxyCodeLine{00229\ \mbox{\hyperlink{namespacesc__dt_a7992c9c1da6f4e7924166c9f40d5fb6d}{vec\_sub\_small\_on}}(\textcolor{keywordtype}{int}\ \mbox{\hyperlink{class_sysc_add__pv}{ulen}},\ \mbox{\hyperlink{namespacesc__dt_ac387c29028ace5ebdafd46a173a8146a}{sc\_digit}}\ *\mbox{\hyperlink{class_sysc_add__pv}{u}},\ \mbox{\hyperlink{namespacesc__dt_ac387c29028ace5ebdafd46a173a8146a}{sc\_digit}}\ v);}
+\DoxyCodeLine{00230\ }
+\DoxyCodeLine{00231\ }
+\DoxyCodeLine{00232\ \textcolor{comment}{//\ -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{00233\ \textcolor{comment}{//\ \ Functions\ for\ vector\ multiplication:\ w\ =\ u\ *\ v\ or\ u\ *=\ v.}}
+\DoxyCodeLine{00234\ \textcolor{comment}{//\ -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{00235\ }
+\DoxyCodeLine{00236\ \textcolor{keyword}{extern}}
+\DoxyCodeLine{00237\ \mbox{\hyperlink{sc__cmnhdr_8h_aff4a86b3f5de3ac2097081e7166fe89f}{SC\_API}}\ \textcolor{keywordtype}{void}}
+\DoxyCodeLine{00238\ \mbox{\hyperlink{namespacesc__dt_a11a5df6a8da6020cb37b3869bddeccdd}{vec\_mul}}(\textcolor{keywordtype}{int}\ \mbox{\hyperlink{class_sysc_add__pv}{ulen}},\ \textcolor{keyword}{const}\ \mbox{\hyperlink{namespacesc__dt_ac387c29028ace5ebdafd46a173a8146a}{sc\_digit}}\ *\mbox{\hyperlink{class_sysc_add__pv}{u}},}
+\DoxyCodeLine{00239\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{class_sysc_add__pv}{vlen}},\ \textcolor{keyword}{const}\ \mbox{\hyperlink{namespacesc__dt_ac387c29028ace5ebdafd46a173a8146a}{sc\_digit}}\ *v,\ \mbox{\hyperlink{namespacesc__dt_ac387c29028ace5ebdafd46a173a8146a}{sc\_digit}}\ *\mbox{\hyperlink{class_sysc_add__pv}{w}});}
+\DoxyCodeLine{00240\ }
+\DoxyCodeLine{00241\ \textcolor{keyword}{extern}}
+\DoxyCodeLine{00242\ \mbox{\hyperlink{sc__cmnhdr_8h_aff4a86b3f5de3ac2097081e7166fe89f}{SC\_API}}\ \textcolor{keywordtype}{void}}
+\DoxyCodeLine{00243\ \mbox{\hyperlink{namespacesc__dt_a50b5d23c9076f2bff178b1933507a4e3}{vec\_mul\_small}}(\textcolor{keywordtype}{int}\ \mbox{\hyperlink{class_sysc_add__pv}{ulen}},\ \textcolor{keyword}{const}\ \mbox{\hyperlink{namespacesc__dt_ac387c29028ace5ebdafd46a173a8146a}{sc\_digit}}\ *\mbox{\hyperlink{class_sysc_add__pv}{u}},}
+\DoxyCodeLine{00244\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacesc__dt_ac387c29028ace5ebdafd46a173a8146a}{sc\_digit}}\ v,\ \mbox{\hyperlink{namespacesc__dt_ac387c29028ace5ebdafd46a173a8146a}{sc\_digit}}\ *\mbox{\hyperlink{class_sysc_add__pv}{w}});}
+\DoxyCodeLine{00245\ }
+\DoxyCodeLine{00246\ \textcolor{keyword}{extern}}
+\DoxyCodeLine{00247\ \mbox{\hyperlink{sc__cmnhdr_8h_aff4a86b3f5de3ac2097081e7166fe89f}{SC\_API}}\ \textcolor{keywordtype}{void}}
+\DoxyCodeLine{00248\ \mbox{\hyperlink{namespacesc__dt_a8971b8d8cb3f5e590d78687fb89cad66}{vec\_mul\_small\_on}}(\textcolor{keywordtype}{int}\ \mbox{\hyperlink{class_sysc_add__pv}{ulen}},\ \mbox{\hyperlink{namespacesc__dt_ac387c29028ace5ebdafd46a173a8146a}{sc\_digit}}\ *\mbox{\hyperlink{class_sysc_add__pv}{u}},\ \mbox{\hyperlink{namespacesc__dt_ac387c29028ace5ebdafd46a173a8146a}{sc\_digit}}\ v);}
+\DoxyCodeLine{00249\ }
+\DoxyCodeLine{00250\ }
+\DoxyCodeLine{00251\ \textcolor{comment}{//\ -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{00252\ \textcolor{comment}{//\ \ Functions\ for\ vector\ division:\ w\ =\ u\ /\ v.}}
+\DoxyCodeLine{00253\ \textcolor{comment}{//\ -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{00254\ }
+\DoxyCodeLine{00255\ \textcolor{keyword}{extern}}
+\DoxyCodeLine{00256\ \mbox{\hyperlink{sc__cmnhdr_8h_aff4a86b3f5de3ac2097081e7166fe89f}{SC\_API}}\ \textcolor{keywordtype}{void}}
+\DoxyCodeLine{00257\ \mbox{\hyperlink{namespacesc__dt_a670fb605905b8f9c2acc31a327b69480}{vec\_div\_large}}(\textcolor{keywordtype}{int}\ \mbox{\hyperlink{class_sysc_add__pv}{ulen}},\ \textcolor{keyword}{const}\ \mbox{\hyperlink{namespacesc__dt_ac387c29028ace5ebdafd46a173a8146a}{sc\_digit}}\ *\mbox{\hyperlink{class_sysc_add__pv}{u}},}
+\DoxyCodeLine{00258\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{class_sysc_add__pv}{vlen}},\ \textcolor{keyword}{const}\ \mbox{\hyperlink{namespacesc__dt_ac387c29028ace5ebdafd46a173a8146a}{sc\_digit}}\ *v,\ \mbox{\hyperlink{namespacesc__dt_ac387c29028ace5ebdafd46a173a8146a}{sc\_digit}}\ *\mbox{\hyperlink{class_sysc_add__pv}{w}});}
+\DoxyCodeLine{00259\ }
+\DoxyCodeLine{00260\ \textcolor{keyword}{extern}}
+\DoxyCodeLine{00261\ \mbox{\hyperlink{sc__cmnhdr_8h_aff4a86b3f5de3ac2097081e7166fe89f}{SC\_API}}\ \textcolor{keywordtype}{void}}
+\DoxyCodeLine{00262\ \mbox{\hyperlink{namespacesc__dt_a0dab54c4488e03a2539e7c8a4cefc114}{vec\_div\_small}}(\textcolor{keywordtype}{int}\ \mbox{\hyperlink{class_sysc_add__pv}{ulen}},\ \textcolor{keyword}{const}\ \mbox{\hyperlink{namespacesc__dt_ac387c29028ace5ebdafd46a173a8146a}{sc\_digit}}\ *\mbox{\hyperlink{class_sysc_add__pv}{u}},}
+\DoxyCodeLine{00263\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacesc__dt_ac387c29028ace5ebdafd46a173a8146a}{sc\_digit}}\ v,\ \mbox{\hyperlink{namespacesc__dt_ac387c29028ace5ebdafd46a173a8146a}{sc\_digit}}\ *\mbox{\hyperlink{class_sysc_add__pv}{w}});}
+\DoxyCodeLine{00264\ }
+\DoxyCodeLine{00265\ }
+\DoxyCodeLine{00266\ \textcolor{comment}{//\ -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{00267\ \textcolor{comment}{//\ \ Functions\ for\ vector\ remainder:\ w\ =\ u\ \%\ v\ or\ u\ \%=\ v.}}
+\DoxyCodeLine{00268\ \textcolor{comment}{//\ -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{00269\ }
+\DoxyCodeLine{00270\ \textcolor{keyword}{extern}}
+\DoxyCodeLine{00271\ \mbox{\hyperlink{sc__cmnhdr_8h_aff4a86b3f5de3ac2097081e7166fe89f}{SC\_API}}\ \textcolor{keywordtype}{void}}
+\DoxyCodeLine{00272\ \mbox{\hyperlink{namespacesc__dt_a4b03b567501723d63d335b76c12626fc}{vec\_rem\_large}}(\textcolor{keywordtype}{int}\ \mbox{\hyperlink{class_sysc_add__pv}{ulen}},\ \textcolor{keyword}{const}\ \mbox{\hyperlink{namespacesc__dt_ac387c29028ace5ebdafd46a173a8146a}{sc\_digit}}\ *\mbox{\hyperlink{class_sysc_add__pv}{u}},}
+\DoxyCodeLine{00273\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{class_sysc_add__pv}{vlen}},\ \textcolor{keyword}{const}\ \mbox{\hyperlink{namespacesc__dt_ac387c29028ace5ebdafd46a173a8146a}{sc\_digit}}\ *v,\ \mbox{\hyperlink{namespacesc__dt_ac387c29028ace5ebdafd46a173a8146a}{sc\_digit}}\ *\mbox{\hyperlink{class_sysc_add__pv}{w}});}
+\DoxyCodeLine{00274\ }
+\DoxyCodeLine{00275\ \textcolor{keyword}{extern}}
+\DoxyCodeLine{00276\ \mbox{\hyperlink{sc__cmnhdr_8h_aff4a86b3f5de3ac2097081e7166fe89f}{SC\_API}}\ \mbox{\hyperlink{namespacesc__dt_ac387c29028ace5ebdafd46a173a8146a}{sc\_digit}}}
+\DoxyCodeLine{00277\ \mbox{\hyperlink{namespacesc__dt_acbfc6dfcdd115896fcdc1b54199998ae}{vec\_rem\_small}}(\textcolor{keywordtype}{int}\ \mbox{\hyperlink{class_sysc_add__pv}{ulen}},\ \textcolor{keyword}{const}\ \mbox{\hyperlink{namespacesc__dt_ac387c29028ace5ebdafd46a173a8146a}{sc\_digit}}\ *\mbox{\hyperlink{class_sysc_add__pv}{u}},\ \mbox{\hyperlink{namespacesc__dt_ac387c29028ace5ebdafd46a173a8146a}{sc\_digit}}\ v);}
+\DoxyCodeLine{00278\ }
+\DoxyCodeLine{00279\ \textcolor{keyword}{extern}}
+\DoxyCodeLine{00280\ \mbox{\hyperlink{sc__cmnhdr_8h_aff4a86b3f5de3ac2097081e7166fe89f}{SC\_API}}\ \mbox{\hyperlink{namespacesc__dt_ac387c29028ace5ebdafd46a173a8146a}{sc\_digit}}}
+\DoxyCodeLine{00281\ \mbox{\hyperlink{namespacesc__dt_ad423282726130e1156536f1a00cf03be}{vec\_rem\_on\_small}}(\textcolor{keywordtype}{int}\ \mbox{\hyperlink{class_sysc_add__pv}{ulen}},\ \mbox{\hyperlink{namespacesc__dt_ac387c29028ace5ebdafd46a173a8146a}{sc\_digit}}\ *\mbox{\hyperlink{class_sysc_add__pv}{u}},\ \mbox{\hyperlink{namespacesc__dt_ac387c29028ace5ebdafd46a173a8146a}{sc\_digit}}\ v);}
+\DoxyCodeLine{00282\ }
+\DoxyCodeLine{00283\ }
+\DoxyCodeLine{00284\ \textcolor{comment}{//\ -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{00285\ \textcolor{comment}{//\ \ Functions\ to\ convert\ between\ vectors\ of\ char\ and\ sc\_digit.}}
+\DoxyCodeLine{00286\ \textcolor{comment}{//\ -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{00287\ }
+\DoxyCodeLine{00288\ \textcolor{keyword}{extern}}
+\DoxyCodeLine{00289\ \mbox{\hyperlink{sc__cmnhdr_8h_aff4a86b3f5de3ac2097081e7166fe89f}{SC\_API}}\ \textcolor{keywordtype}{int}}
+\DoxyCodeLine{00290\ \mbox{\hyperlink{namespacesc__dt_af96183b557b72fd91ce66cabf4ea9504}{vec\_to\_char}}(\textcolor{keywordtype}{int}\ \mbox{\hyperlink{class_sysc_add__pv}{ulen}},\ \textcolor{keyword}{const}\ \mbox{\hyperlink{namespacesc__dt_ac387c29028ace5ebdafd46a173a8146a}{sc\_digit}}\ *\mbox{\hyperlink{class_sysc_add__pv}{u}},}
+\DoxyCodeLine{00291\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{class_sysc_add__pv}{vlen}},\ \mbox{\hyperlink{class_sysc_add__pv}{uchar}}\ *v);}
+\DoxyCodeLine{00292\ }
+\DoxyCodeLine{00293\ \textcolor{keyword}{extern}}
+\DoxyCodeLine{00294\ \mbox{\hyperlink{sc__cmnhdr_8h_aff4a86b3f5de3ac2097081e7166fe89f}{SC\_API}}\ \textcolor{keywordtype}{void}}
+\DoxyCodeLine{00295\ \mbox{\hyperlink{namespacesc__dt_a9ae35a66a5ef753ff388fb2e7ac31c12}{vec\_from\_char}}(\textcolor{keywordtype}{int}\ \mbox{\hyperlink{class_sysc_add__pv}{ulen}},\ \textcolor{keyword}{const}\ \mbox{\hyperlink{class_sysc_add__pv}{uchar}}\ *\mbox{\hyperlink{class_sysc_add__pv}{u}},}
+\DoxyCodeLine{00296\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{class_sysc_add__pv}{vlen}},\ \mbox{\hyperlink{namespacesc__dt_ac387c29028ace5ebdafd46a173a8146a}{sc\_digit}}\ *v);}
+\DoxyCodeLine{00297\ }
+\DoxyCodeLine{00298\ }
+\DoxyCodeLine{00299\ \textcolor{comment}{//\ -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{00300\ \textcolor{comment}{//\ \ Functions\ to\ shift\ left\ or\ right,\ or\ to\ create\ a\ mirror\ image\ of\ vectors.}}
+\DoxyCodeLine{00301\ \textcolor{comment}{//\ -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{00302\ }
+\DoxyCodeLine{00303\ \textcolor{keyword}{extern}}
+\DoxyCodeLine{00304\ \mbox{\hyperlink{sc__cmnhdr_8h_aff4a86b3f5de3ac2097081e7166fe89f}{SC\_API}}\ \textcolor{keywordtype}{void}}
+\DoxyCodeLine{00305\ \mbox{\hyperlink{namespacesc__dt_a5a58b67439ccc0657b5b31e90bea4a0d}{vec\_shift\_left}}(\textcolor{keywordtype}{int}\ \mbox{\hyperlink{class_sysc_add__pv}{ulen}},\ \mbox{\hyperlink{namespacesc__dt_ac387c29028ace5ebdafd46a173a8146a}{sc\_digit}}\ *\mbox{\hyperlink{class_sysc_add__pv}{u}},\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{class_sysc_add__pv}{nsl}});}
+\DoxyCodeLine{00306\ }
+\DoxyCodeLine{00307\ \textcolor{keyword}{extern}}
+\DoxyCodeLine{00308\ \mbox{\hyperlink{sc__cmnhdr_8h_aff4a86b3f5de3ac2097081e7166fe89f}{SC\_API}}\ \textcolor{keywordtype}{void}}
+\DoxyCodeLine{00309\ \mbox{\hyperlink{namespacesc__dt_a293cf106164e5ac6c62cc2d4dc81ad6d}{vec\_shift\_right}}(\textcolor{keywordtype}{int}\ \mbox{\hyperlink{class_sysc_add__pv}{vlen}},\ \mbox{\hyperlink{namespacesc__dt_ac387c29028ace5ebdafd46a173a8146a}{sc\_digit}}\ *\mbox{\hyperlink{class_sysc_add__pv}{u}},\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{class_sysc_add__pv}{nsr}},\ \mbox{\hyperlink{namespacesc__dt_ac387c29028ace5ebdafd46a173a8146a}{sc\_digit}}\ \mbox{\hyperlink{class_sysc_add__pv}{fill}}\ =\ 0);}
+\DoxyCodeLine{00310\ }
+\DoxyCodeLine{00311\ \textcolor{keyword}{extern}}
+\DoxyCodeLine{00312\ \mbox{\hyperlink{sc__cmnhdr_8h_aff4a86b3f5de3ac2097081e7166fe89f}{SC\_API}}\ \textcolor{keywordtype}{void}}
+\DoxyCodeLine{00313\ \mbox{\hyperlink{namespacesc__dt_a7efa19bed51695e0ed20bc105dd8198c}{vec\_reverse}}(\textcolor{keywordtype}{int}\ \mbox{\hyperlink{class_sysc_add__pv}{unb}},\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{class_sysc_add__pv}{und}},\ \mbox{\hyperlink{namespacesc__dt_ac387c29028ace5ebdafd46a173a8146a}{sc\_digit}}\ *\mbox{\hyperlink{class_sysc_add__pv}{ud}},}
+\DoxyCodeLine{00314\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{class_sysc_add__pv}{l}},\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{class_sysc_add__pv}{r}}\ =\ 0);}
+\DoxyCodeLine{00315\ }
+\DoxyCodeLine{00316\ }
+\DoxyCodeLine{00317\ \textcolor{comment}{//\ -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{00318\ \textcolor{comment}{//\ \ Various\ utility\ functions.}}
+\DoxyCodeLine{00319\ \textcolor{comment}{//\ -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{00320\ }
+\DoxyCodeLine{00321\ \textcolor{comment}{//\ Return\ the\ low\ half\ part\ of\ d.}}
+\DoxyCodeLine{00322\ \textcolor{keyword}{inline}}
+\DoxyCodeLine{00323\ \mbox{\hyperlink{namespacesc__dt_ac387c29028ace5ebdafd46a173a8146a}{sc\_digit}}}
+\DoxyCodeLine{00324\ \mbox{\hyperlink{namespacesc__dt_a7f53824e85cf89b787dcbb6162764c63}{low\_half}}(\mbox{\hyperlink{namespacesc__dt_ac387c29028ace5ebdafd46a173a8146a}{sc\_digit}}\ d)}
+\DoxyCodeLine{00325\ \{}
+\DoxyCodeLine{00326\ \ \ \textcolor{keywordflow}{return}\ (d\ \&\ \mbox{\hyperlink{sc__nbdefs_8h_a3053d55bf90330c5d0d0c46d16c2cba7}{HALF\_DIGIT\_MASK}});}
+\DoxyCodeLine{00327\ \}}
+\DoxyCodeLine{00328\ }
+\DoxyCodeLine{00329\ \textcolor{comment}{//\ Return\ the\ high\ half\ part\ of\ d.\ The\ high\ part\ of\ the\ digit\ may\ have}}
+\DoxyCodeLine{00330\ \textcolor{comment}{//\ more\ bits\ than\ BITS\_PER\_HALF\_DIGIT\ due\ to,\ e.g.,\ overflow\ in\ the}}
+\DoxyCodeLine{00331\ \textcolor{comment}{//\ multiplication.\ Hence,\ in\ other\ functions\ that\ use\ high\_half(),}}
+\DoxyCodeLine{00332\ \textcolor{comment}{//\ make\ sure\ that\ the\ result\ contains\ BITS\_PER\_HALF\_DIGIT\ if}}
+\DoxyCodeLine{00333\ \textcolor{comment}{//\ necessary.\ This\ is\ done\ by\ high\_half\_masked().}}
+\DoxyCodeLine{00334\ \textcolor{keyword}{inline}}
+\DoxyCodeLine{00335\ sc\_digit}
+\DoxyCodeLine{00336\ \mbox{\hyperlink{namespacesc__dt_a16ebc4ac03e86244730c6c809b9ceadb}{high\_half}}(\mbox{\hyperlink{namespacesc__dt_ac387c29028ace5ebdafd46a173a8146a}{sc\_digit}}\ d)}
+\DoxyCodeLine{00337\ \{}
+\DoxyCodeLine{00338\ \ \ \textcolor{keywordflow}{return}\ (d\ >>\ \mbox{\hyperlink{sc__nbdefs_8h_ad5ccd4e50df2f3e89e4bc018dce43153}{BITS\_PER\_HALF\_DIGIT}});}
+\DoxyCodeLine{00339\ \}}
+\DoxyCodeLine{00340\ }
+\DoxyCodeLine{00341\ \textcolor{keyword}{inline}}
+\DoxyCodeLine{00342\ sc\_digit}
+\DoxyCodeLine{00343\ \mbox{\hyperlink{namespacesc__dt_a3e8aac3a7f8e9c8bac24b3eed97c27c1}{high\_half\_masked}}(\mbox{\hyperlink{namespacesc__dt_ac387c29028ace5ebdafd46a173a8146a}{sc\_digit}}\ d)}
+\DoxyCodeLine{00344\ \{}
+\DoxyCodeLine{00345\ \ \ \textcolor{keywordflow}{return}\ (\mbox{\hyperlink{namespacesc__dt_a16ebc4ac03e86244730c6c809b9ceadb}{high\_half}}(d)\ \&\ \mbox{\hyperlink{sc__nbdefs_8h_a3053d55bf90330c5d0d0c46d16c2cba7}{HALF\_DIGIT\_MASK}});}
+\DoxyCodeLine{00346\ \}}
+\DoxyCodeLine{00347\ }
+\DoxyCodeLine{00348\ \textcolor{comment}{//\ Concatenate\ the\ high\ part\ h\ and\ low\ part\ l.\ Assumes\ that\ h\ and\ l}}
+\DoxyCodeLine{00349\ \textcolor{comment}{//\ are\ less\ than\ or\ equal\ to\ HALF\_DIGIT\_MASK;}}
+\DoxyCodeLine{00350\ \textcolor{keyword}{inline}}
+\DoxyCodeLine{00351\ sc\_digit}
+\DoxyCodeLine{00352\ \mbox{\hyperlink{namespacesc__dt_a7dfa6b058e6b1a337569e75474de10b3}{concat}}(\mbox{\hyperlink{namespacesc__dt_ac387c29028ace5ebdafd46a173a8146a}{sc\_digit}}\ \mbox{\hyperlink{class_sysc_add__pv}{h}},\ \mbox{\hyperlink{namespacesc__dt_ac387c29028ace5ebdafd46a173a8146a}{sc\_digit}}\ \mbox{\hyperlink{class_sysc_add__pv}{l}})}
+\DoxyCodeLine{00353\ \{}
+\DoxyCodeLine{00354\ \ \ \textcolor{keywordflow}{return}\ ((\mbox{\hyperlink{class_sysc_add__pv}{h}}\ <<\ \mbox{\hyperlink{sc__nbdefs_8h_ad5ccd4e50df2f3e89e4bc018dce43153}{BITS\_PER\_HALF\_DIGIT}})\ |\ \mbox{\hyperlink{class_sysc_add__pv}{l}});}
+\DoxyCodeLine{00355\ \}}
+\DoxyCodeLine{00356\ }
+\DoxyCodeLine{00357\ \textcolor{comment}{//\ Create\ a\ number\ with\ n\ 1's.}}
+\DoxyCodeLine{00358\ \textcolor{keyword}{inline}}
+\DoxyCodeLine{00359\ sc\_digit}
+\DoxyCodeLine{00360\ \mbox{\hyperlink{namespacesc__dt_a2bee32fd52dc43857ccb08f9dd402d17}{one\_and\_ones}}(\textcolor{keywordtype}{int}\ \mbox{\hyperlink{class_sysc_add__pv}{n}})}
+\DoxyCodeLine{00361\ \{}
+\DoxyCodeLine{00362\ \ \ \textcolor{keywordflow}{return}\ (((\mbox{\hyperlink{namespacesc__dt_ac387c29028ace5ebdafd46a173a8146a}{sc\_digit}})\ 1\ <<\ \mbox{\hyperlink{class_sysc_add__pv}{n}})\ -\/\ 1);}
+\DoxyCodeLine{00363\ \}}
+\DoxyCodeLine{00364\ }
+\DoxyCodeLine{00365\ \textcolor{comment}{//\ Create\ a\ number\ with\ one\ 1\ and\ n\ 0's.}}
+\DoxyCodeLine{00366\ \textcolor{keyword}{inline}}
+\DoxyCodeLine{00367\ sc\_digit}
+\DoxyCodeLine{00368\ \mbox{\hyperlink{namespacesc__dt_af15484a06bfcff2e7f5d87eacc3fc6d3}{one\_and\_zeros}}(\textcolor{keywordtype}{int}\ \mbox{\hyperlink{class_sysc_add__pv}{n}})}
+\DoxyCodeLine{00369\ \{}
+\DoxyCodeLine{00370\ \ \ \textcolor{keywordflow}{return}\ ((\mbox{\hyperlink{namespacesc__dt_ac387c29028ace5ebdafd46a173a8146a}{sc\_digit}})\ 1\ <<\ \mbox{\hyperlink{class_sysc_add__pv}{n}});}
+\DoxyCodeLine{00371\ \}}
+\DoxyCodeLine{00372\ }
+\DoxyCodeLine{00373\ }
+\DoxyCodeLine{00374\ \textcolor{comment}{//\ -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{00375\ }
+\DoxyCodeLine{00376\ \textcolor{comment}{//\ Find\ the\ digit\ that\ bit\ i\ is\ in.}}
+\DoxyCodeLine{00377\ \textcolor{keyword}{inline}}
+\DoxyCodeLine{00378\ \textcolor{keywordtype}{int}}
+\DoxyCodeLine{00379\ \mbox{\hyperlink{namespacesc__dt_a79bd522679e87defb63332b5288d1965}{digit\_ord}}(\textcolor{keywordtype}{int}\ \mbox{\hyperlink{class_sysc_add__pv}{i}})}
+\DoxyCodeLine{00380\ \{}
+\DoxyCodeLine{00381\ \ \ \textcolor{keywordflow}{return}\ (\mbox{\hyperlink{class_sysc_add__pv}{i}}\ /\ \mbox{\hyperlink{sc__nbdefs_8h_ac151ab516815f02c5566c6db21dd3850}{BITS\_PER\_DIGIT}});}
+\DoxyCodeLine{00382\ \}}
+\DoxyCodeLine{00383\ }
+\DoxyCodeLine{00384\ \textcolor{comment}{//\ Find\ the\ bit\ in\ digit\_ord(i)\ that\ bit\ i\ corressponds\ to.}}
+\DoxyCodeLine{00385\ \textcolor{keyword}{inline}}
+\DoxyCodeLine{00386\ \textcolor{keywordtype}{int}}
+\DoxyCodeLine{00387\ \mbox{\hyperlink{namespacesc__dt_aa06c483e577006db0c8c577213cd244f}{bit\_ord}}(\textcolor{keywordtype}{int}\ \mbox{\hyperlink{class_sysc_add__pv}{i}})}
+\DoxyCodeLine{00388\ \{}
+\DoxyCodeLine{00389\ \ \ \textcolor{keywordflow}{return}\ (\mbox{\hyperlink{class_sysc_add__pv}{i}}\ \%\ \mbox{\hyperlink{sc__nbdefs_8h_ac151ab516815f02c5566c6db21dd3850}{BITS\_PER\_DIGIT}});}
+\DoxyCodeLine{00390\ \}}
+\DoxyCodeLine{00391\ }
+\DoxyCodeLine{00392\ }
+\DoxyCodeLine{00393\ \textcolor{comment}{//\ -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{00394\ \textcolor{comment}{//\ \ Functions\ to\ compare,\ zero,\ complement\ vector(s).}}
+\DoxyCodeLine{00395\ \textcolor{comment}{//\ -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{00396\ }
+\DoxyCodeLine{00397\ \textcolor{comment}{//\ Compare\ u\ and\ v\ and\ return\ r}}
+\DoxyCodeLine{00398\ \textcolor{comment}{//\ \ r\ =\ 0\ if\ u\ ==\ v}}
+\DoxyCodeLine{00399\ \textcolor{comment}{//\ \ r\ <\ 0\ if\ u\ <\ v}}
+\DoxyCodeLine{00400\ \textcolor{comment}{//\ \ r\ >\ 0\ if\ u\ >\ v}}
+\DoxyCodeLine{00401\ \textcolor{comment}{//\ -\/\ Assume\ that\ all\ the\ leading\ zero\ digits\ are\ already\ skipped.}}
+\DoxyCodeLine{00402\ \textcolor{comment}{//\ -\/\ ulen\ and/or\ vlen\ can\ be\ zero.}}
+\DoxyCodeLine{00403\ \textcolor{comment}{//\ -\/\ Every\ digit\ is\ less\ than\ or\ equal\ to\ DIGIT\_MASK;}}
+\DoxyCodeLine{00404\ \textcolor{keyword}{inline}}
+\DoxyCodeLine{00405\ \textcolor{keywordtype}{int}}
+\DoxyCodeLine{00406\ \mbox{\hyperlink{namespacesc__dt_a459d42cc477ec50df7b2ac2e6f106070}{vec\_cmp}}(\textcolor{keywordtype}{int}\ \mbox{\hyperlink{class_sysc_add__pv}{ulen}},\ \textcolor{keyword}{const}\ \mbox{\hyperlink{namespacesc__dt_ac387c29028ace5ebdafd46a173a8146a}{sc\_digit}}\ *\mbox{\hyperlink{class_sysc_add__pv}{u}},}
+\DoxyCodeLine{00407\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{class_sysc_add__pv}{vlen}},\ \textcolor{keyword}{const}\ \mbox{\hyperlink{namespacesc__dt_ac387c29028ace5ebdafd46a173a8146a}{sc\_digit}}\ *v)}
+\DoxyCodeLine{00408\ \{}
+\DoxyCodeLine{00409\ }
+\DoxyCodeLine{00410\ \textcolor{preprocessor}{\#ifdef\ DEBUG\_SYSTEMC}}
+\DoxyCodeLine{00411\ \ \ \textcolor{comment}{//\ sc\_assert((ulen\ <=\ 0)\ ||\ (u\ !=\ NULL));}}
+\DoxyCodeLine{00412\ \ \ \textcolor{comment}{//\ sc\_assert((vlen\ <=\ 0)\ ||\ (v\ !=\ NULL));}}
+\DoxyCodeLine{00413\ }
+\DoxyCodeLine{00414\ \ \ \textcolor{comment}{//\ ulen\ and\ vlen\ can\ be\ equal\ to\ 0\ because\ vec\_cmp\ can\ be\ called}}
+\DoxyCodeLine{00415\ \ \ \textcolor{comment}{//\ after\ vec\_skip\_leading\_zeros.}}
+\DoxyCodeLine{00416\ \ \ \mbox{\hyperlink{sc__report_8h_a74afc5942d7b28d11f360a6f03181daa}{sc\_assert}}((\mbox{\hyperlink{class_sysc_add__pv}{ulen}}\ >=\ 0)\ \&\&\ (\mbox{\hyperlink{class_sysc_add__pv}{u}}\ !=\ \mbox{\hyperlink{class_sysc_add__pv}{NULL}}));}
+\DoxyCodeLine{00417\ \ \ \mbox{\hyperlink{sc__report_8h_a74afc5942d7b28d11f360a6f03181daa}{sc\_assert}}((\mbox{\hyperlink{class_sysc_add__pv}{vlen}}\ >=\ 0)\ \&\&\ (v\ !=\ \mbox{\hyperlink{class_sysc_add__pv}{NULL}}));}
+\DoxyCodeLine{00418\ \ \ \textcolor{comment}{//\ If\ ulen\ >\ 0,\ then\ the\ leading\ digit\ of\ u\ must\ be\ non-\/zero.}}
+\DoxyCodeLine{00419\ \ \ \mbox{\hyperlink{sc__report_8h_a74afc5942d7b28d11f360a6f03181daa}{sc\_assert}}((\mbox{\hyperlink{class_sysc_add__pv}{ulen}}\ <=\ 0)\ ||\ (\mbox{\hyperlink{class_sysc_add__pv}{u}}[\mbox{\hyperlink{class_sysc_add__pv}{ulen}}\ -\/\ 1]\ !=\ 0));}
+\DoxyCodeLine{00420\ \ \ \mbox{\hyperlink{sc__report_8h_a74afc5942d7b28d11f360a6f03181daa}{sc\_assert}}((\mbox{\hyperlink{class_sysc_add__pv}{vlen}}\ <=\ 0)\ ||\ (v[\mbox{\hyperlink{class_sysc_add__pv}{vlen}}\ -\/\ 1]\ !=\ 0));}
+\DoxyCodeLine{00421\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00422\ }
+\DoxyCodeLine{00423\ \ \ \textcolor{keywordflow}{if}\ (\mbox{\hyperlink{class_sysc_add__pv}{ulen}}\ !=\ \mbox{\hyperlink{class_sysc_add__pv}{vlen}})}
+\DoxyCodeLine{00424\ \ \ \ \ \textcolor{keywordflow}{return}\ (\mbox{\hyperlink{class_sysc_add__pv}{ulen}}\ -\/\ \mbox{\hyperlink{class_sysc_add__pv}{vlen}});}
+\DoxyCodeLine{00425\ }
+\DoxyCodeLine{00426\ \ \ \textcolor{comment}{//\ ulen\ ==\ vlen\ >=\ 1}}
+\DoxyCodeLine{00427\ \ \ \textcolor{keywordflow}{while}\ ((-\/-\/\mbox{\hyperlink{class_sysc_add__pv}{ulen}}\ >=\ 0)\ \&\&\ (\mbox{\hyperlink{class_sysc_add__pv}{u}}[\mbox{\hyperlink{class_sysc_add__pv}{ulen}}]\ ==\ v[\mbox{\hyperlink{class_sysc_add__pv}{ulen}}]))}
+\DoxyCodeLine{00428\ \ \ \ \ ;}
+\DoxyCodeLine{00429\ }
+\DoxyCodeLine{00430\ \ \ \textcolor{keywordflow}{if}\ (\mbox{\hyperlink{class_sysc_add__pv}{ulen}}\ <\ 0)}
+\DoxyCodeLine{00431\ \ \ \ \ \textcolor{keywordflow}{return}\ 0;}
+\DoxyCodeLine{00432\ }
+\DoxyCodeLine{00433\ \textcolor{preprocessor}{\#ifdef\ DEBUG\_SYSTEMC}}
+\DoxyCodeLine{00434\ \ \ \textcolor{comment}{//\ Test\ to\ see\ if\ the\ result\ is\ wrong\ due\ to\ the\ presence\ of}}
+\DoxyCodeLine{00435\ \ \ \textcolor{comment}{//\ overflow\ bits.}}
+\DoxyCodeLine{00436\ \ \ \mbox{\hyperlink{sc__report_8h_a74afc5942d7b28d11f360a6f03181daa}{sc\_assert}}((\mbox{\hyperlink{class_sysc_add__pv}{u}}[\mbox{\hyperlink{class_sysc_add__pv}{ulen}}]\ \&\ \mbox{\hyperlink{sc__nbdefs_8h_a24522358dc4e1957d6b2afcf64adc4f5}{DIGIT\_MASK}})\ !=\ (v[\mbox{\hyperlink{class_sysc_add__pv}{ulen}}]\ \&\ \mbox{\hyperlink{sc__nbdefs_8h_a24522358dc4e1957d6b2afcf64adc4f5}{DIGIT\_MASK}}));}
+\DoxyCodeLine{00437\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00438\ }
+\DoxyCodeLine{00439\ \ \ \textcolor{keywordflow}{return}\ (\textcolor{keywordtype}{int})\ (\mbox{\hyperlink{class_sysc_add__pv}{u}}[\mbox{\hyperlink{class_sysc_add__pv}{ulen}}]\ -\/\ v[\mbox{\hyperlink{class_sysc_add__pv}{ulen}}]);}
+\DoxyCodeLine{00440\ }
+\DoxyCodeLine{00441\ \}}
+\DoxyCodeLine{00442\ }
+\DoxyCodeLine{00443\ \textcolor{comment}{//\ Find\ the\ index\ of\ the\ first\ non-\/zero\ digit.}}
+\DoxyCodeLine{00444\ \textcolor{comment}{//\ -\/\ ulen\ (before)\ =\ the\ number\ of\ digits\ in\ u.}}
+\DoxyCodeLine{00445\ \textcolor{comment}{//\ -\/\ the\ returned\ value\ =\ the\ index\ of\ the\ first\ non-\/zero\ digit.}}
+\DoxyCodeLine{00446\ \textcolor{comment}{//\ A\ negative\ value\ of\ -\/1\ indicates\ that\ every\ digit\ in\ u\ is\ zero.}}
+\DoxyCodeLine{00447\ \textcolor{keyword}{inline}}
+\DoxyCodeLine{00448\ \textcolor{keywordtype}{int}}
+\DoxyCodeLine{00449\ \mbox{\hyperlink{namespacesc__dt_a1344c81493c1d3d0ae5703f4a977ad84}{vec\_find\_first\_nonzero}}(\textcolor{keywordtype}{int}\ \mbox{\hyperlink{class_sysc_add__pv}{ulen}},\ \textcolor{keyword}{const}\ \mbox{\hyperlink{namespacesc__dt_ac387c29028ace5ebdafd46a173a8146a}{sc\_digit}}\ *\mbox{\hyperlink{class_sysc_add__pv}{u}})}
+\DoxyCodeLine{00450\ \{}
+\DoxyCodeLine{00451\ }
+\DoxyCodeLine{00452\ \textcolor{preprocessor}{\#ifdef\ DEBUG\_SYSTEMC}}
+\DoxyCodeLine{00453\ \ \ \textcolor{comment}{//\ sc\_assert((ulen\ <=\ 0)\ ||\ (u\ !=\ NULL));}}
+\DoxyCodeLine{00454\ \ \ \mbox{\hyperlink{sc__report_8h_a74afc5942d7b28d11f360a6f03181daa}{sc\_assert}}((\mbox{\hyperlink{class_sysc_add__pv}{ulen}}\ >\ 0)\ \&\&\ (\mbox{\hyperlink{class_sysc_add__pv}{u}}\ !=\ \mbox{\hyperlink{class_sysc_add__pv}{NULL}}));}
+\DoxyCodeLine{00455\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00456\ }
+\DoxyCodeLine{00457\ \ \ \textcolor{keywordflow}{while}\ ((-\/-\/\mbox{\hyperlink{class_sysc_add__pv}{ulen}}\ >=\ 0)\ \&\&\ (!\ \mbox{\hyperlink{class_sysc_add__pv}{u}}[\mbox{\hyperlink{class_sysc_add__pv}{ulen}}]))}
+\DoxyCodeLine{00458\ \ \ \ \ ;}
+\DoxyCodeLine{00459\ }
+\DoxyCodeLine{00460\ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{class_sysc_add__pv}{ulen}};}
+\DoxyCodeLine{00461\ }
+\DoxyCodeLine{00462\ \}}
+\DoxyCodeLine{00463\ }
+\DoxyCodeLine{00464\ \textcolor{comment}{//\ Skip\ all\ the\ leading\ zero\ digits.}}
+\DoxyCodeLine{00465\ \textcolor{comment}{//\ -\/\ ulen\ (before)\ =\ the\ number\ of\ digits\ in\ u.}}
+\DoxyCodeLine{00466\ \textcolor{comment}{//\ -\/\ the\ returned\ value\ =\ the\ number\ of\ non-\/zero\ digits\ in\ u.}}
+\DoxyCodeLine{00467\ \textcolor{comment}{//\ -\/\ the\ returned\ value\ is\ non-\/negative.}}
+\DoxyCodeLine{00468\ \textcolor{keyword}{inline}}
+\DoxyCodeLine{00469\ \textcolor{keywordtype}{int}}
+\DoxyCodeLine{00470\ \mbox{\hyperlink{namespacesc__dt_af70952510ac7e296d13961a5138133ec}{vec\_skip\_leading\_zeros}}(\textcolor{keywordtype}{int}\ \mbox{\hyperlink{class_sysc_add__pv}{ulen}},\ \textcolor{keyword}{const}\ \mbox{\hyperlink{namespacesc__dt_ac387c29028ace5ebdafd46a173a8146a}{sc\_digit}}\ *\mbox{\hyperlink{class_sysc_add__pv}{u}})}
+\DoxyCodeLine{00471\ \{}
+\DoxyCodeLine{00472\ }
+\DoxyCodeLine{00473\ \textcolor{preprocessor}{\#ifdef\ DEBUG\_SYSTEMC}}
+\DoxyCodeLine{00474\ \ \ \textcolor{comment}{//\ sc\_assert((ulen\ <=\ 0)\ ||\ (u\ !=\ NULL));}}
+\DoxyCodeLine{00475\ \ \ \mbox{\hyperlink{sc__report_8h_a74afc5942d7b28d11f360a6f03181daa}{sc\_assert}}((\mbox{\hyperlink{class_sysc_add__pv}{ulen}}\ >\ 0)\ \&\&\ (\mbox{\hyperlink{class_sysc_add__pv}{u}}\ !=\ \mbox{\hyperlink{class_sysc_add__pv}{NULL}}));}
+\DoxyCodeLine{00476\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00477\ }
+\DoxyCodeLine{00478\ \ \ \textcolor{keywordflow}{return}\ (1\ +\ \mbox{\hyperlink{namespacesc__dt_a1344c81493c1d3d0ae5703f4a977ad84}{vec\_find\_first\_nonzero}}(\mbox{\hyperlink{class_sysc_add__pv}{ulen}},\ \mbox{\hyperlink{class_sysc_add__pv}{u}}));}
+\DoxyCodeLine{00479\ }
+\DoxyCodeLine{00480\ \}}
+\DoxyCodeLine{00481\ }
+\DoxyCodeLine{00482\ \textcolor{comment}{//\ Compare\ u\ and\ v\ and\ return\ r}}
+\DoxyCodeLine{00483\ \textcolor{comment}{//\ \ r\ =\ 0\ if\ u\ ==\ v}}
+\DoxyCodeLine{00484\ \textcolor{comment}{//\ \ r\ <\ 0\ if\ u\ <\ v}}
+\DoxyCodeLine{00485\ \textcolor{comment}{//\ \ r\ >\ 0\ if\ u\ >\ v}}
+\DoxyCodeLine{00486\ \textcolor{keyword}{inline}}
+\DoxyCodeLine{00487\ \textcolor{keywordtype}{int}}
+\DoxyCodeLine{00488\ \mbox{\hyperlink{namespacesc__dt_a477094057f284fea79eddd5da03a286c}{vec\_skip\_and\_cmp}}(\textcolor{keywordtype}{int}\ \mbox{\hyperlink{class_sysc_add__pv}{ulen}},\ \textcolor{keyword}{const}\ \mbox{\hyperlink{namespacesc__dt_ac387c29028ace5ebdafd46a173a8146a}{sc\_digit}}\ *\mbox{\hyperlink{class_sysc_add__pv}{u}},}
+\DoxyCodeLine{00489\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{class_sysc_add__pv}{vlen}},\ \textcolor{keyword}{const}\ \mbox{\hyperlink{namespacesc__dt_ac387c29028ace5ebdafd46a173a8146a}{sc\_digit}}\ *v)}
+\DoxyCodeLine{00490\ \{}
+\DoxyCodeLine{00491\ }
+\DoxyCodeLine{00492\ \textcolor{preprocessor}{\#ifdef\ DEBUG\_SYSTEMC}}
+\DoxyCodeLine{00493\ \ \ \mbox{\hyperlink{sc__report_8h_a74afc5942d7b28d11f360a6f03181daa}{sc\_assert}}((\mbox{\hyperlink{class_sysc_add__pv}{ulen}}\ >\ 0)\ \&\&\ (\mbox{\hyperlink{class_sysc_add__pv}{u}}\ !=\ \mbox{\hyperlink{class_sysc_add__pv}{NULL}}));}
+\DoxyCodeLine{00494\ \ \ \mbox{\hyperlink{sc__report_8h_a74afc5942d7b28d11f360a6f03181daa}{sc\_assert}}((\mbox{\hyperlink{class_sysc_add__pv}{vlen}}\ >\ 0)\ \&\&\ (v\ !=\ \mbox{\hyperlink{class_sysc_add__pv}{NULL}}));}
+\DoxyCodeLine{00495\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00496\ }
+\DoxyCodeLine{00497\ \ \ \mbox{\hyperlink{class_sysc_add__pv}{ulen}}\ =\ \mbox{\hyperlink{namespacesc__dt_af70952510ac7e296d13961a5138133ec}{vec\_skip\_leading\_zeros}}(\mbox{\hyperlink{class_sysc_add__pv}{ulen}},\ \mbox{\hyperlink{class_sysc_add__pv}{u}});}
+\DoxyCodeLine{00498\ \ \ \mbox{\hyperlink{class_sysc_add__pv}{vlen}}\ =\ \mbox{\hyperlink{namespacesc__dt_af70952510ac7e296d13961a5138133ec}{vec\_skip\_leading\_zeros}}(\mbox{\hyperlink{class_sysc_add__pv}{vlen}},\ v);}
+\DoxyCodeLine{00499\ \ \ \textcolor{comment}{//\ ulen\ and/or\ vlen\ can\ be\ equal\ to\ zero\ here.}}
+\DoxyCodeLine{00500\ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{namespacesc__dt_a459d42cc477ec50df7b2ac2e6f106070}{vec\_cmp}}(\mbox{\hyperlink{class_sysc_add__pv}{ulen}},\ \mbox{\hyperlink{class_sysc_add__pv}{u}},\ \mbox{\hyperlink{class_sysc_add__pv}{vlen}},\ v);}
+\DoxyCodeLine{00501\ }
+\DoxyCodeLine{00502\ \}}
+\DoxyCodeLine{00503\ }
+\DoxyCodeLine{00504\ \textcolor{comment}{//\ Set\ u[i]\ =\ 0\ where\ i\ =\ from\ ...\ (ulen\ -\/\ 1).}}
+\DoxyCodeLine{00505\ \textcolor{keyword}{inline}}
+\DoxyCodeLine{00506\ \textcolor{keywordtype}{void}}
+\DoxyCodeLine{00507\ \mbox{\hyperlink{namespacesc__dt_acd7b260c362883667ec539e187c71b55}{vec\_zero}}(\textcolor{keywordtype}{int}\ \mbox{\hyperlink{class_sysc_add__pv}{from}},\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{class_sysc_add__pv}{ulen}},\ \mbox{\hyperlink{namespacesc__dt_ac387c29028ace5ebdafd46a173a8146a}{sc\_digit}}\ *\mbox{\hyperlink{class_sysc_add__pv}{u}})}
+\DoxyCodeLine{00508\ \{}
+\DoxyCodeLine{00509\ }
+\DoxyCodeLine{00510\ \textcolor{preprocessor}{\#ifdef\ DEBUG\_SYSTEMC}}
+\DoxyCodeLine{00511\ \ \ \mbox{\hyperlink{sc__report_8h_a74afc5942d7b28d11f360a6f03181daa}{sc\_assert}}((\mbox{\hyperlink{class_sysc_add__pv}{ulen}}\ >\ 0)\ \&\&\ (\mbox{\hyperlink{class_sysc_add__pv}{u}}\ !=\ \mbox{\hyperlink{class_sysc_add__pv}{NULL}}));}
+\DoxyCodeLine{00512\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00513\ }
+\DoxyCodeLine{00514\ \ \ \textcolor{keywordflow}{for}(\textcolor{keywordtype}{int}\ \mbox{\hyperlink{class_sysc_add__pv}{i}}\ =\ \mbox{\hyperlink{class_sysc_add__pv}{from}};\ \mbox{\hyperlink{class_sysc_add__pv}{i}}\ <\ \mbox{\hyperlink{class_sysc_add__pv}{ulen}};\ \mbox{\hyperlink{class_sysc_add__pv}{i}}++)}
+\DoxyCodeLine{00515\ \ \ \ \ \mbox{\hyperlink{class_sysc_add__pv}{u}}[\mbox{\hyperlink{class_sysc_add__pv}{i}}]\ =\ 0;}
+\DoxyCodeLine{00516\ }
+\DoxyCodeLine{00517\ \}}
+\DoxyCodeLine{00518\ }
+\DoxyCodeLine{00519\ \textcolor{comment}{//\ Set\ u[i]\ =\ 0\ where\ i\ =\ 0\ ..\ (ulen\ -\/\ 1).}}
+\DoxyCodeLine{00520\ \textcolor{keyword}{inline}}
+\DoxyCodeLine{00521\ \textcolor{keywordtype}{void}}
+\DoxyCodeLine{00522\ \mbox{\hyperlink{namespacesc__dt_acd7b260c362883667ec539e187c71b55}{vec\_zero}}(\textcolor{keywordtype}{int}\ \mbox{\hyperlink{class_sysc_add__pv}{ulen}},\ \mbox{\hyperlink{namespacesc__dt_ac387c29028ace5ebdafd46a173a8146a}{sc\_digit}}\ *\mbox{\hyperlink{class_sysc_add__pv}{u}})}
+\DoxyCodeLine{00523\ \{}
+\DoxyCodeLine{00524\ \ \ \mbox{\hyperlink{namespacesc__dt_acd7b260c362883667ec539e187c71b55}{vec\_zero}}(0,\ \mbox{\hyperlink{class_sysc_add__pv}{ulen}},\ \mbox{\hyperlink{class_sysc_add__pv}{u}});}
+\DoxyCodeLine{00525\ \}}
+\DoxyCodeLine{00526\ }
+\DoxyCodeLine{00527\ \textcolor{comment}{//\ Copy\ n\ digits\ from\ v\ to\ u.}}
+\DoxyCodeLine{00528\ \textcolor{keyword}{inline}}
+\DoxyCodeLine{00529\ \textcolor{keywordtype}{void}}
+\DoxyCodeLine{00530\ \mbox{\hyperlink{namespacesc__dt_a68e2f462a319f55f4148fb7b62f43938}{vec\_copy}}(\textcolor{keywordtype}{int}\ \mbox{\hyperlink{class_sysc_add__pv}{n}},\ \mbox{\hyperlink{namespacesc__dt_ac387c29028ace5ebdafd46a173a8146a}{sc\_digit}}\ *\mbox{\hyperlink{class_sysc_add__pv}{u}},\ \textcolor{keyword}{const}\ \mbox{\hyperlink{namespacesc__dt_ac387c29028ace5ebdafd46a173a8146a}{sc\_digit}}\ *v)}
+\DoxyCodeLine{00531\ \{}
+\DoxyCodeLine{00532\ }
+\DoxyCodeLine{00533\ \textcolor{preprocessor}{\#ifdef\ DEBUG\_SYSTEMC}}
+\DoxyCodeLine{00534\ \ \ \mbox{\hyperlink{sc__report_8h_a74afc5942d7b28d11f360a6f03181daa}{sc\_assert}}((\mbox{\hyperlink{class_sysc_add__pv}{n}}\ >\ 0)\ \&\&\ (\mbox{\hyperlink{class_sysc_add__pv}{u}}\ !=\ \mbox{\hyperlink{class_sysc_add__pv}{NULL}})\ \&\&\ (v\ !=\ \mbox{\hyperlink{class_sysc_add__pv}{NULL}}));}
+\DoxyCodeLine{00535\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00536\ }
+\DoxyCodeLine{00537\ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{int}\ \mbox{\hyperlink{class_sysc_add__pv}{i}}\ =\ 0;\ \mbox{\hyperlink{class_sysc_add__pv}{i}}\ <\ \mbox{\hyperlink{class_sysc_add__pv}{n}};\ ++\mbox{\hyperlink{class_sysc_add__pv}{i}})}
+\DoxyCodeLine{00538\ \ \ \ \ \mbox{\hyperlink{class_sysc_add__pv}{u}}[\mbox{\hyperlink{class_sysc_add__pv}{i}}]\ =\ v[\mbox{\hyperlink{class_sysc_add__pv}{i}}];}
+\DoxyCodeLine{00539\ \}}
+\DoxyCodeLine{00540\ }
+\DoxyCodeLine{00541\ \textcolor{comment}{//\ Copy\ v\ to\ u,\ where\ ulen\ >=\ vlen,\ and\ zero\ the\ rest\ of\ the\ digits\ in\ u.}}
+\DoxyCodeLine{00542\ \textcolor{keyword}{inline}}
+\DoxyCodeLine{00543\ \textcolor{keywordtype}{void}}
+\DoxyCodeLine{00544\ \mbox{\hyperlink{namespacesc__dt_a1be3153c54ddf31ff14d95b875046556}{vec\_copy\_and\_zero}}(\textcolor{keywordtype}{int}\ \mbox{\hyperlink{class_sysc_add__pv}{ulen}},\ \mbox{\hyperlink{namespacesc__dt_ac387c29028ace5ebdafd46a173a8146a}{sc\_digit}}\ *\mbox{\hyperlink{class_sysc_add__pv}{u}},}
+\DoxyCodeLine{00545\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{class_sysc_add__pv}{vlen}},\ \textcolor{keyword}{const}\ \mbox{\hyperlink{namespacesc__dt_ac387c29028ace5ebdafd46a173a8146a}{sc\_digit}}\ *v)}
+\DoxyCodeLine{00546\ \{}
+\DoxyCodeLine{00547\ }
+\DoxyCodeLine{00548\ \textcolor{preprocessor}{\#ifdef\ DEBUG\_SYSTEMC}}
+\DoxyCodeLine{00549\ \ \ \mbox{\hyperlink{sc__report_8h_a74afc5942d7b28d11f360a6f03181daa}{sc\_assert}}((\mbox{\hyperlink{class_sysc_add__pv}{ulen}}\ >\ 0)\ \&\&\ (\mbox{\hyperlink{class_sysc_add__pv}{u}}\ !=\ \mbox{\hyperlink{class_sysc_add__pv}{NULL}}));}
+\DoxyCodeLine{00550\ \ \ \mbox{\hyperlink{sc__report_8h_a74afc5942d7b28d11f360a6f03181daa}{sc\_assert}}((\mbox{\hyperlink{class_sysc_add__pv}{vlen}}\ >\ 0)\ \&\&\ (v\ !=\ \mbox{\hyperlink{class_sysc_add__pv}{NULL}}));}
+\DoxyCodeLine{00551\ \ \ \mbox{\hyperlink{sc__report_8h_a74afc5942d7b28d11f360a6f03181daa}{sc\_assert}}(\mbox{\hyperlink{class_sysc_add__pv}{ulen}}\ >=\ \mbox{\hyperlink{class_sysc_add__pv}{vlen}});}
+\DoxyCodeLine{00552\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00553\ }
+\DoxyCodeLine{00554\ \ \ \mbox{\hyperlink{namespacesc__dt_a68e2f462a319f55f4148fb7b62f43938}{vec\_copy}}(\mbox{\hyperlink{class_sysc_add__pv}{vlen}},\ \mbox{\hyperlink{class_sysc_add__pv}{u}},\ v);}
+\DoxyCodeLine{00555\ \ \ \mbox{\hyperlink{namespacesc__dt_acd7b260c362883667ec539e187c71b55}{vec\_zero}}(\mbox{\hyperlink{class_sysc_add__pv}{vlen}},\ \mbox{\hyperlink{class_sysc_add__pv}{ulen}},\ \mbox{\hyperlink{class_sysc_add__pv}{u}});}
+\DoxyCodeLine{00556\ }
+\DoxyCodeLine{00557\ \}}
+\DoxyCodeLine{00558\ }
+\DoxyCodeLine{00559\ \textcolor{comment}{//\ 2's-\/complement\ the\ digits\ in\ u.}}
+\DoxyCodeLine{00560\ \textcolor{keyword}{inline}}
+\DoxyCodeLine{00561\ \textcolor{keywordtype}{void}}
+\DoxyCodeLine{00562\ \mbox{\hyperlink{namespacesc__dt_aacd270a84cd66dcc069475359ee09548}{vec\_complement}}(\textcolor{keywordtype}{int}\ \mbox{\hyperlink{class_sysc_add__pv}{ulen}},\ \mbox{\hyperlink{namespacesc__dt_ac387c29028ace5ebdafd46a173a8146a}{sc\_digit}}\ *\mbox{\hyperlink{class_sysc_add__pv}{u}})}
+\DoxyCodeLine{00563\ \{}
+\DoxyCodeLine{00564\ }
+\DoxyCodeLine{00565\ \textcolor{preprocessor}{\#ifdef\ DEBUG\_SYSTEMC}}
+\DoxyCodeLine{00566\ \ \ \mbox{\hyperlink{sc__report_8h_a74afc5942d7b28d11f360a6f03181daa}{sc\_assert}}((\mbox{\hyperlink{class_sysc_add__pv}{ulen}}\ >\ 0)\ \&\&\ (\mbox{\hyperlink{class_sysc_add__pv}{u}}\ !=\ \mbox{\hyperlink{class_sysc_add__pv}{NULL}}));}
+\DoxyCodeLine{00567\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00568\ }
+\DoxyCodeLine{00569\ \ \ \mbox{\hyperlink{namespacesc__dt_ac387c29028ace5ebdafd46a173a8146a}{sc\_digit}}\ \mbox{\hyperlink{class_sysc_add__pv}{carry}}\ =\ 1;}
+\DoxyCodeLine{00570\ }
+\DoxyCodeLine{00571\ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{int}\ \mbox{\hyperlink{class_sysc_add__pv}{i}}\ =\ 0;\ \mbox{\hyperlink{class_sysc_add__pv}{i}}\ <\ \mbox{\hyperlink{class_sysc_add__pv}{ulen}};\ ++\mbox{\hyperlink{class_sysc_add__pv}{i}})\ \{}
+\DoxyCodeLine{00572\ \ \ \ \ \mbox{\hyperlink{class_sysc_add__pv}{carry}}\ +=\ (\mbox{\hyperlink{class_sysc_add__pv}{\string~u}}[\mbox{\hyperlink{class_sysc_add__pv}{i}}]\ \&\ \mbox{\hyperlink{sc__nbdefs_8h_a24522358dc4e1957d6b2afcf64adc4f5}{DIGIT\_MASK}});}
+\DoxyCodeLine{00573\ \ \ \ \ \mbox{\hyperlink{class_sysc_add__pv}{u}}[\mbox{\hyperlink{class_sysc_add__pv}{i}}]\ =\ \mbox{\hyperlink{class_sysc_add__pv}{carry}}\ \&\ \mbox{\hyperlink{sc__nbdefs_8h_a24522358dc4e1957d6b2afcf64adc4f5}{DIGIT\_MASK}};}
+\DoxyCodeLine{00574\ \ \ \ \ \mbox{\hyperlink{class_sysc_add__pv}{carry}}\ >>=\ \mbox{\hyperlink{sc__nbdefs_8h_ac151ab516815f02c5566c6db21dd3850}{BITS\_PER\_DIGIT}};}
+\DoxyCodeLine{00575\ \ \ \}}
+\DoxyCodeLine{00576\ }
+\DoxyCodeLine{00577\ \}}
+\DoxyCodeLine{00578\ }
+\DoxyCodeLine{00579\ }
+\DoxyCodeLine{00580\ \textcolor{comment}{//\ -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{00581\ \textcolor{comment}{//\ \ Functions\ to\ handle\ built-\/in\ types\ or\ signs.}}
+\DoxyCodeLine{00582\ \textcolor{comment}{//\ -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{00583\ }
+\DoxyCodeLine{00584\ \textcolor{comment}{//\ u\ =\ v}}
+\DoxyCodeLine{00585\ \textcolor{comment}{//\ -\/\ v\ is\ an\ unsigned\ long\ or\ uint64,\ and\ positive\ integer.}}
+\DoxyCodeLine{00586\ \textcolor{keyword}{template}<\ \textcolor{keyword}{class}\ Type\ >}
+\DoxyCodeLine{00587\ \textcolor{keyword}{inline}}
+\DoxyCodeLine{00588\ \textcolor{keywordtype}{void}}
+\DoxyCodeLine{00589\ \mbox{\hyperlink{namespacesc__dt_a574898cc8e46dfbe5f10fc9ccb0e9fbd}{from\_uint}}(\textcolor{keywordtype}{int}\ \mbox{\hyperlink{class_sysc_add__pv}{ulen}},\ \mbox{\hyperlink{namespacesc__dt_ac387c29028ace5ebdafd46a173a8146a}{sc\_digit}}\ *\mbox{\hyperlink{class_sysc_add__pv}{u}},\ \mbox{\hyperlink{class_sysc_add__pv}{Type}}\ v)}
+\DoxyCodeLine{00590\ \{}
+\DoxyCodeLine{00591\ }
+\DoxyCodeLine{00592\ \textcolor{preprocessor}{\#ifdef\ DEBUG\_SYSTEMC}}
+\DoxyCodeLine{00593\ \ \ \textcolor{comment}{//\ sc\_assert((ulen\ <=\ 0)\ ||\ (u\ !=\ NULL));}}
+\DoxyCodeLine{00594\ \ \ \mbox{\hyperlink{sc__report_8h_a74afc5942d7b28d11f360a6f03181daa}{sc\_assert}}((\mbox{\hyperlink{class_sysc_add__pv}{ulen}}\ >\ 0)\ \&\&\ (\mbox{\hyperlink{class_sysc_add__pv}{u}}\ !=\ \mbox{\hyperlink{class_sysc_add__pv}{NULL}}));}
+\DoxyCodeLine{00595\ \ \ \mbox{\hyperlink{sc__report_8h_a74afc5942d7b28d11f360a6f03181daa}{sc\_assert}}(v\ >=\ 0);}
+\DoxyCodeLine{00596\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00597\ }
+\DoxyCodeLine{00598\ \ \ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{class_sysc_add__pv}{i}}\ =\ 0;}
+\DoxyCodeLine{00599\ }
+\DoxyCodeLine{00600\ \ \ \textcolor{keywordflow}{while}\ (v\ \&\&\ (\mbox{\hyperlink{class_sysc_add__pv}{i}}\ <\ \mbox{\hyperlink{class_sysc_add__pv}{ulen}}))\ \{}
+\DoxyCodeLine{00601\ \textcolor{preprocessor}{\#ifndef\ \_WIN32}}
+\DoxyCodeLine{00602\ \ \ \ \ \mbox{\hyperlink{class_sysc_add__pv}{u}}[\mbox{\hyperlink{class_sysc_add__pv}{i}}++]\ =\ \textcolor{keyword}{static\_cast<}\mbox{\hyperlink{namespacesc__dt_ac387c29028ace5ebdafd46a173a8146a}{sc\_digit}}\textcolor{keyword}{>}(\ v\ \&\ \mbox{\hyperlink{sc__nbdefs_8h_a24522358dc4e1957d6b2afcf64adc4f5}{DIGIT\_MASK}}\ );}
+\DoxyCodeLine{00603\ \textcolor{preprocessor}{\#else}}
+\DoxyCodeLine{00604\ \ \ \ \ \mbox{\hyperlink{class_sysc_add__pv}{u}}[\mbox{\hyperlink{class_sysc_add__pv}{i}}++]\ =\ ((\mbox{\hyperlink{namespacesc__dt_ac387c29028ace5ebdafd46a173a8146a}{sc\_digit}})\ v)\ \&\ \mbox{\hyperlink{sc__nbdefs_8h_a24522358dc4e1957d6b2afcf64adc4f5}{DIGIT\_MASK}};}
+\DoxyCodeLine{00605\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00606\ \ \ \ \ v\ >>=\ \mbox{\hyperlink{sc__nbdefs_8h_ac151ab516815f02c5566c6db21dd3850}{BITS\_PER\_DIGIT}};}
+\DoxyCodeLine{00607\ \ \ \}}
+\DoxyCodeLine{00608\ }
+\DoxyCodeLine{00609\ \ \ \mbox{\hyperlink{namespacesc__dt_acd7b260c362883667ec539e187c71b55}{vec\_zero}}(\mbox{\hyperlink{class_sysc_add__pv}{i}},\ \mbox{\hyperlink{class_sysc_add__pv}{ulen}},\ \mbox{\hyperlink{class_sysc_add__pv}{u}});}
+\DoxyCodeLine{00610\ }
+\DoxyCodeLine{00611\ \}}
+\DoxyCodeLine{00612\ }
+\DoxyCodeLine{00613\ }
+\DoxyCodeLine{00614\ \textcolor{comment}{//\ Get\ u's\ sign\ and\ return\ its\ absolute\ value.}}
+\DoxyCodeLine{00615\ \textcolor{comment}{//\ u\ can\ be\ long,\ unsigned\ long,\ int64,\ or\ uint64.}}
+\DoxyCodeLine{00616\ \textcolor{keyword}{template}<\ \textcolor{keyword}{class}\ Type\ >}
+\DoxyCodeLine{00617\ \textcolor{keyword}{inline}}
+\DoxyCodeLine{00618\ \mbox{\hyperlink{namespacesc__dt_a24b5ab9d89d2201797c64885ed4a1495}{small\_type}}}
+\DoxyCodeLine{00619\ \mbox{\hyperlink{namespacesc__dt_a56829e7129d40de35b8e71c7a2e5bb27}{get\_sign}}(\mbox{\hyperlink{class_sysc_add__pv}{Type}}\ \&\mbox{\hyperlink{class_sysc_add__pv}{u}})}
+\DoxyCodeLine{00620\ \{}
+\DoxyCodeLine{00621\ \ \ \textcolor{keywordflow}{if}\ (\mbox{\hyperlink{class_sysc_add__pv}{u}}\ >\ 0)}
+\DoxyCodeLine{00622\ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{sc__nbdefs_8h_ada46c64cf37b4af7d72599dc0951e871}{SC\_POS}};}
+\DoxyCodeLine{00623\ }
+\DoxyCodeLine{00624\ \ \ \textcolor{keywordflow}{if}\ (\mbox{\hyperlink{class_sysc_add__pv}{u}}\ ==\ 0)}
+\DoxyCodeLine{00625\ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{sc__nbdefs_8h_a98342000914a46f15358d895383e5bee}{SC\_ZERO}};}
+\DoxyCodeLine{00626\ }
+\DoxyCodeLine{00627\ \ \ \textcolor{comment}{//\ no\ positive\ number\ representable\ for\ minimum\ value,}}
+\DoxyCodeLine{00628\ \ \ \textcolor{comment}{//\ leave\ as\ is\ to\ avoid\ Undefined\ Behaviour}}
+\DoxyCodeLine{00629\ \ \ \textcolor{keywordflow}{if}(\ \mbox{\hyperlink{sc__cmnhdr_8h_acf2e425249d8e3ebb7e2f79a5c56a2bc}{SC\_LIKELY\_}}(\ \mbox{\hyperlink{class_sysc_add__pv}{u}}\ >\ (std::numeric\_limits<Type>::min)()\ )\ )}
+\DoxyCodeLine{00630\ \ \ \ \ \mbox{\hyperlink{class_sysc_add__pv}{u}}\ =\ -\/\mbox{\hyperlink{class_sysc_add__pv}{u}};}
+\DoxyCodeLine{00631\ }
+\DoxyCodeLine{00632\ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{sc__nbdefs_8h_a389fe26f7a8b342d8fd4408190c80900}{SC\_NEG}};}
+\DoxyCodeLine{00633\ \}}
+\DoxyCodeLine{00634\ }
+\DoxyCodeLine{00635\ }
+\DoxyCodeLine{00636\ \textcolor{comment}{//\ Return\ us\ *\ vs:}}
+\DoxyCodeLine{00637\ \textcolor{comment}{//\ -\/\ Return\ SC\_ZERO\ if\ either\ sign\ is\ SC\_ZERO.}}
+\DoxyCodeLine{00638\ \textcolor{comment}{//\ -\/\ Return\ SC\_POS\ if\ us\ ==\ vs}}
+\DoxyCodeLine{00639\ \textcolor{comment}{//\ -\/\ Return\ SC\_NEG\ if\ us\ !=\ vs.}}
+\DoxyCodeLine{00640\ \textcolor{keyword}{inline}}
+\DoxyCodeLine{00641\ \mbox{\hyperlink{namespacesc__dt_a24b5ab9d89d2201797c64885ed4a1495}{small\_type}}}
+\DoxyCodeLine{00642\ \mbox{\hyperlink{namespacesc__dt_ac78a6cc3645f736bbb5140d7f47cb46f}{mul\_signs}}(\mbox{\hyperlink{namespacesc__dt_a24b5ab9d89d2201797c64885ed4a1495}{small\_type}}\ \mbox{\hyperlink{class_sysc_add__pv}{us}},\ \mbox{\hyperlink{namespacesc__dt_a24b5ab9d89d2201797c64885ed4a1495}{small\_type}}\ \mbox{\hyperlink{class_sysc_add__pv}{vs}})}
+\DoxyCodeLine{00643\ \{}
+\DoxyCodeLine{00644\ \ \ \textcolor{keywordflow}{if}\ ((\mbox{\hyperlink{class_sysc_add__pv}{us}}\ ==\ \mbox{\hyperlink{sc__nbdefs_8h_a98342000914a46f15358d895383e5bee}{SC\_ZERO}})\ ||\ (\mbox{\hyperlink{class_sysc_add__pv}{vs}}\ ==\ \mbox{\hyperlink{sc__nbdefs_8h_a98342000914a46f15358d895383e5bee}{SC\_ZERO}}))}
+\DoxyCodeLine{00645\ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{sc__nbdefs_8h_a98342000914a46f15358d895383e5bee}{SC\_ZERO}};}
+\DoxyCodeLine{00646\ }
+\DoxyCodeLine{00647\ \ \ \textcolor{keywordflow}{if}\ (\mbox{\hyperlink{class_sysc_add__pv}{us}}\ ==\ \mbox{\hyperlink{class_sysc_add__pv}{vs}})}
+\DoxyCodeLine{00648\ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{sc__nbdefs_8h_ada46c64cf37b4af7d72599dc0951e871}{SC\_POS}};}
+\DoxyCodeLine{00649\ }
+\DoxyCodeLine{00650\ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{sc__nbdefs_8h_a389fe26f7a8b342d8fd4408190c80900}{SC\_NEG}};}
+\DoxyCodeLine{00651\ \}}
+\DoxyCodeLine{00652\ }
+\DoxyCodeLine{00653\ }
+\DoxyCodeLine{00654\ \textcolor{comment}{//\ -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{00655\ \textcolor{comment}{//\ \ Functions\ to\ test\ for\ errors\ and\ print\ out\ error\ messages.}}
+\DoxyCodeLine{00656\ \textcolor{comment}{//\ -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{00657\ }
+\DoxyCodeLine{00658\ \textcolor{preprocessor}{\#ifdef\ SC\_MAX\_NBITS}}
+\DoxyCodeLine{00659\ }
+\DoxyCodeLine{00660\ \mbox{\hyperlink{sc__cmnhdr_8h_aff4a86b3f5de3ac2097081e7166fe89f}{SC\_API}}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_sysc_add__pv}{test\_bound\_failed}}(\textcolor{keywordtype}{int}\ \mbox{\hyperlink{class_sysc_add__pv}{nb}});}
+\DoxyCodeLine{00661\ }
+\DoxyCodeLine{00662\ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{void}}
+\DoxyCodeLine{00663\ \mbox{\hyperlink{class_sysc_add__pv}{test\_bound}}(\textcolor{keywordtype}{int}\ \mbox{\hyperlink{class_sysc_add__pv}{nb}})}
+\DoxyCodeLine{00664\ \{}
+\DoxyCodeLine{00665\ \ \ \textcolor{keywordflow}{if}\ (\mbox{\hyperlink{class_sysc_add__pv}{nb}}\ >\ \mbox{\hyperlink{class_sysc_add__pv}{SC\_MAX\_NBITS}})\ \{}
+\DoxyCodeLine{00666\ \ \ \ \ \mbox{\hyperlink{class_sysc_add__pv}{test\_bound\_failed}}(\ \mbox{\hyperlink{class_sysc_add__pv}{nb}}\ );}
+\DoxyCodeLine{00667\ \ \ \ \ \mbox{\hyperlink{namespacesc__core_aca486349a820d58c10ec90329357852f}{sc\_core::sc\_abort}}();\ \textcolor{comment}{//\ can't\ recover\ from\ here}}
+\DoxyCodeLine{00668\ \ \ \}}
+\DoxyCodeLine{00669\ \}}
+\DoxyCodeLine{00670\ }
+\DoxyCodeLine{00671\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00672\ }
+\DoxyCodeLine{00673\ \textcolor{keyword}{template}<\ \textcolor{keyword}{class}\ Type\ >}
+\DoxyCodeLine{00674\ \textcolor{keyword}{inline}}
+\DoxyCodeLine{00675\ \textcolor{keywordtype}{void}}
+\DoxyCodeLine{00676\ \mbox{\hyperlink{namespacesc__dt_ac3160b2aadd5ced8617ab79fbc075701}{div\_by\_zero}}(\mbox{\hyperlink{class_sysc_add__pv}{Type}}\ s)}
+\DoxyCodeLine{00677\ \{}
+\DoxyCodeLine{00678\ \ \ \textcolor{keywordflow}{if}\ (s\ ==\ 0)\ \{}
+\DoxyCodeLine{00679\ \ \ \ \ \ \ \mbox{\hyperlink{sc__report_8h_ad5720f0a4adf8866eb628b62a4fde9bf}{SC\_REPORT\_ERROR}}(\ sc\_core::SC\_ID\_OPERATION\_FAILED\_,}
+\DoxyCodeLine{00680\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}div\_by\_zero<Type>(\ Type\ )\ :\ division\ by\ zero"{}}\ );}
+\DoxyCodeLine{00681\ \ \ \ \ \ \ \mbox{\hyperlink{namespacesc__core_aca486349a820d58c10ec90329357852f}{sc\_core::sc\_abort}}();\ \textcolor{comment}{//\ can't\ recover\ from\ here}}
+\DoxyCodeLine{00682\ \ \ \}}
+\DoxyCodeLine{00683\ \}}
+\DoxyCodeLine{00684\ }
+\DoxyCodeLine{00685\ }
+\DoxyCodeLine{00686\ \textcolor{comment}{//\ -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{00687\ \textcolor{comment}{//\ \ Functions\ to\ check\ if\ a\ given\ vector\ is\ zero\ or\ make\ one.}}
+\DoxyCodeLine{00688\ \textcolor{comment}{//\ -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{00689\ }
+\DoxyCodeLine{00690\ \textcolor{comment}{//\ If\ u[i]\ is\ zero\ for\ every\ i\ =\ 0,...,\ ulen\ -\/\ 1,\ return\ SC\_ZERO,}}
+\DoxyCodeLine{00691\ \textcolor{comment}{//\ else\ return\ s.}}
+\DoxyCodeLine{00692\ \textcolor{keyword}{inline}}
+\DoxyCodeLine{00693\ \mbox{\hyperlink{namespacesc__dt_a24b5ab9d89d2201797c64885ed4a1495}{small\_type}}}
+\DoxyCodeLine{00694\ \mbox{\hyperlink{namespacesc__dt_a98da822be56b23c5b31d2c21acf25aec}{check\_for\_zero}}(\mbox{\hyperlink{namespacesc__dt_a24b5ab9d89d2201797c64885ed4a1495}{small\_type}}\ s,\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{class_sysc_add__pv}{ulen}},\ \textcolor{keyword}{const}\ \mbox{\hyperlink{namespacesc__dt_ac387c29028ace5ebdafd46a173a8146a}{sc\_digit}}\ *\mbox{\hyperlink{class_sysc_add__pv}{u}})}
+\DoxyCodeLine{00695\ \{}
+\DoxyCodeLine{00696\ }
+\DoxyCodeLine{00697\ \textcolor{preprocessor}{\#ifdef\ DEBUG\_SYSTEMC}}
+\DoxyCodeLine{00698\ \ \ \textcolor{comment}{//\ sc\_assert(ulen\ >=\ 0);}}
+\DoxyCodeLine{00699\ \ \ \mbox{\hyperlink{sc__report_8h_a74afc5942d7b28d11f360a6f03181daa}{sc\_assert}}((\mbox{\hyperlink{class_sysc_add__pv}{ulen}}\ >\ 0)\ \&\&\ (\mbox{\hyperlink{class_sysc_add__pv}{u}}\ !=\ \mbox{\hyperlink{class_sysc_add__pv}{NULL}}));}
+\DoxyCodeLine{00700\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00701\ }
+\DoxyCodeLine{00702\ \ \ \textcolor{keywordflow}{if}\ (\mbox{\hyperlink{namespacesc__dt_a1344c81493c1d3d0ae5703f4a977ad84}{vec\_find\_first\_nonzero}}(\mbox{\hyperlink{class_sysc_add__pv}{ulen}},\ \mbox{\hyperlink{class_sysc_add__pv}{u}})\ <\ 0)}
+\DoxyCodeLine{00703\ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{sc__nbdefs_8h_a98342000914a46f15358d895383e5bee}{SC\_ZERO}};}
+\DoxyCodeLine{00704\ }
+\DoxyCodeLine{00705\ \ \ \textcolor{keywordflow}{return}\ s;}
+\DoxyCodeLine{00706\ }
+\DoxyCodeLine{00707\ \}}
+\DoxyCodeLine{00708\ }
+\DoxyCodeLine{00709\ \textcolor{comment}{//\ If\ u[i]\ is\ zero\ for\ every\ i\ =\ 0,...,\ ulen\ -\/\ 1,\ return\ true,}}
+\DoxyCodeLine{00710\ \textcolor{comment}{//\ else\ return\ false.}}
+\DoxyCodeLine{00711\ \textcolor{keyword}{inline}}
+\DoxyCodeLine{00712\ \textcolor{keywordtype}{bool}}
+\DoxyCodeLine{00713\ \mbox{\hyperlink{namespacesc__dt_a98da822be56b23c5b31d2c21acf25aec}{check\_for\_zero}}(\textcolor{keywordtype}{int}\ \mbox{\hyperlink{class_sysc_add__pv}{ulen}},\ \textcolor{keyword}{const}\ \mbox{\hyperlink{namespacesc__dt_ac387c29028ace5ebdafd46a173a8146a}{sc\_digit}}\ *\mbox{\hyperlink{class_sysc_add__pv}{u}})}
+\DoxyCodeLine{00714\ \{}
+\DoxyCodeLine{00715\ }
+\DoxyCodeLine{00716\ \textcolor{preprocessor}{\#ifdef\ DEBUG\_SYSTEMC}}
+\DoxyCodeLine{00717\ \ \ \textcolor{comment}{//\ sc\_assert(ulen\ >=\ 0);}}
+\DoxyCodeLine{00718\ \ \ \mbox{\hyperlink{sc__report_8h_a74afc5942d7b28d11f360a6f03181daa}{sc\_assert}}((\mbox{\hyperlink{class_sysc_add__pv}{ulen}}\ >\ 0)\ \&\&\ (\mbox{\hyperlink{class_sysc_add__pv}{u}}\ !=\ \mbox{\hyperlink{class_sysc_add__pv}{NULL}}));}
+\DoxyCodeLine{00719\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00720\ }
+\DoxyCodeLine{00721\ \ \ \textcolor{keywordflow}{if}\ (\mbox{\hyperlink{namespacesc__dt_a1344c81493c1d3d0ae5703f4a977ad84}{vec\_find\_first\_nonzero}}(\mbox{\hyperlink{class_sysc_add__pv}{ulen}},\ \mbox{\hyperlink{class_sysc_add__pv}{u}})\ <\ 0)}
+\DoxyCodeLine{00722\ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{true};}
+\DoxyCodeLine{00723\ }
+\DoxyCodeLine{00724\ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00725\ }
+\DoxyCodeLine{00726\ \}}
+\DoxyCodeLine{00727\ }
+\DoxyCodeLine{00728\ \textcolor{keyword}{inline}}
+\DoxyCodeLine{00729\ \mbox{\hyperlink{namespacesc__dt_a24b5ab9d89d2201797c64885ed4a1495}{small\_type}}}
+\DoxyCodeLine{00730\ \mbox{\hyperlink{namespacesc__dt_a6278b3af606ef9c2e9a9c61d88a9dfcb}{make\_zero}}(\textcolor{keywordtype}{int}\ \mbox{\hyperlink{class_sysc_add__pv}{nd}},\ \mbox{\hyperlink{namespacesc__dt_ac387c29028ace5ebdafd46a173a8146a}{sc\_digit}}\ *d)}
+\DoxyCodeLine{00731\ \{}
+\DoxyCodeLine{00732\ \ \ \mbox{\hyperlink{namespacesc__dt_acd7b260c362883667ec539e187c71b55}{vec\_zero}}(\mbox{\hyperlink{class_sysc_add__pv}{nd}},\ d);}
+\DoxyCodeLine{00733\ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{sc__nbdefs_8h_a98342000914a46f15358d895383e5bee}{SC\_ZERO}};}
+\DoxyCodeLine{00734\ \}}
+\DoxyCodeLine{00735\ }
+\DoxyCodeLine{00736\ }
+\DoxyCodeLine{00737\ \textcolor{comment}{//\ -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{00738\ \textcolor{comment}{//\ \ Functions\ for\ both\ signed\ and\ unsigned\ numbers\ to\ convert\ sign-\/magnitude}}
+\DoxyCodeLine{00739\ \textcolor{comment}{//\ \ (SM)\ and\ 2's\ complement\ (2C)\ representations.}}
+\DoxyCodeLine{00740\ \textcolor{comment}{//\ \ added\ =\ 1\ =>\ for\ signed.}}
+\DoxyCodeLine{00741\ \textcolor{comment}{//\ \ added\ =\ 0\ =>\ for\ unsigned.}}
+\DoxyCodeLine{00742\ \textcolor{comment}{//\ \ IF\_SC\_SIGNED\ can\ be\ used\ as\ 'added'.}}
+\DoxyCodeLine{00743\ \textcolor{comment}{//\ -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{00744\ }
+\DoxyCodeLine{00745\ \textcolor{comment}{//\ Trim\ the\ extra\ leading\ bits\ of\ a\ signed\ or\ unsigned\ number.}}
+\DoxyCodeLine{00746\ \textcolor{keyword}{inline}}
+\DoxyCodeLine{00747\ \textcolor{keywordtype}{void}}
+\DoxyCodeLine{00748\ \mbox{\hyperlink{namespacesc__dt_ae39d90eee9a739f9a056e62c5ec4ee65}{trim}}(\mbox{\hyperlink{namespacesc__dt_a24b5ab9d89d2201797c64885ed4a1495}{small\_type}}\ \mbox{\hyperlink{class_sysc_add__pv}{added}},\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{class_sysc_add__pv}{nb}},\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{class_sysc_add__pv}{nd}},\ \mbox{\hyperlink{namespacesc__dt_ac387c29028ace5ebdafd46a173a8146a}{sc\_digit}}\ *d)}
+\DoxyCodeLine{00749\ \{}
+\DoxyCodeLine{00750\ \textcolor{preprocessor}{\#ifdef\ DEBUG\_SYSTEMC}}
+\DoxyCodeLine{00751\ \ \ \mbox{\hyperlink{sc__report_8h_a74afc5942d7b28d11f360a6f03181daa}{sc\_assert}}((\mbox{\hyperlink{class_sysc_add__pv}{nb}}\ >\ 0)\ \&\&\ (\mbox{\hyperlink{class_sysc_add__pv}{nd}}\ >\ 0)\ \&\&\ (d\ !=\ \mbox{\hyperlink{class_sysc_add__pv}{NULL}}));}
+\DoxyCodeLine{00752\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00753\ }
+\DoxyCodeLine{00754\ \ \ d[\mbox{\hyperlink{class_sysc_add__pv}{nd}}\ -\/\ 1]\ \&=\ \mbox{\hyperlink{namespacesc__dt_a2bee32fd52dc43857ccb08f9dd402d17}{one\_and\_ones}}(\mbox{\hyperlink{namespacesc__dt_aa06c483e577006db0c8c577213cd244f}{bit\_ord}}(\mbox{\hyperlink{class_sysc_add__pv}{nb}}\ -\/\ 1)\ +\ \mbox{\hyperlink{class_sysc_add__pv}{added}});}
+\DoxyCodeLine{00755\ \}}
+\DoxyCodeLine{00756\ }
+\DoxyCodeLine{00757\ \textcolor{comment}{//\ Convert\ an\ (un)signed\ number\ from\ sign-\/magnitude\ representation\ to}}
+\DoxyCodeLine{00758\ \textcolor{comment}{//\ 2's\ complement\ representation\ and\ trim\ the\ extra\ bits.}}
+\DoxyCodeLine{00759\ \textcolor{keyword}{inline}}
+\DoxyCodeLine{00760\ \textcolor{keywordtype}{void}}
+\DoxyCodeLine{00761\ \mbox{\hyperlink{namespacesc__dt_a234484b4ac72e72bb038e396757fe358}{convert\_SM\_to\_2C\_trimmed}}(\mbox{\hyperlink{namespacesc__dt_a24b5ab9d89d2201797c64885ed4a1495}{small\_type}}\ \mbox{\hyperlink{class_sysc_add__pv}{added}},}
+\DoxyCodeLine{00762\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacesc__dt_a24b5ab9d89d2201797c64885ed4a1495}{small\_type}}\ s,\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{class_sysc_add__pv}{nb}},\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{class_sysc_add__pv}{nd}},\ \mbox{\hyperlink{namespacesc__dt_ac387c29028ace5ebdafd46a173a8146a}{sc\_digit}}\ *d)}
+\DoxyCodeLine{00763\ \{}
+\DoxyCodeLine{00764\ \ \ \textcolor{keywordflow}{if}\ (s\ ==\ \mbox{\hyperlink{sc__nbdefs_8h_a389fe26f7a8b342d8fd4408190c80900}{SC\_NEG}})\ \{}
+\DoxyCodeLine{00765\ \ \ \ \ \mbox{\hyperlink{namespacesc__dt_aacd270a84cd66dcc069475359ee09548}{vec\_complement}}(\mbox{\hyperlink{class_sysc_add__pv}{nd}},\ d);}
+\DoxyCodeLine{00766\ \ \ \ \ \mbox{\hyperlink{namespacesc__dt_ae39d90eee9a739f9a056e62c5ec4ee65}{trim}}(\mbox{\hyperlink{class_sysc_add__pv}{added}},\ \mbox{\hyperlink{class_sysc_add__pv}{nb}},\ \mbox{\hyperlink{class_sysc_add__pv}{nd}},\ d);}
+\DoxyCodeLine{00767\ \ \ \}}
+\DoxyCodeLine{00768\ \}}
+\DoxyCodeLine{00769\ }
+\DoxyCodeLine{00770\ \textcolor{comment}{//\ Convert\ an\ (un)signed\ number\ from\ sign-\/magnitude\ representation\ to}}
+\DoxyCodeLine{00771\ \textcolor{comment}{//\ 2's\ complement\ representation\ but\ do\ not\ trim\ the\ extra\ bits.}}
+\DoxyCodeLine{00772\ \textcolor{keyword}{inline}}
+\DoxyCodeLine{00773\ \textcolor{keywordtype}{void}}
+\DoxyCodeLine{00774\ \mbox{\hyperlink{namespacesc__dt_aacd92d3c15d3947a17d1d793f2fb210f}{convert\_SM\_to\_2C}}(\mbox{\hyperlink{namespacesc__dt_a24b5ab9d89d2201797c64885ed4a1495}{small\_type}}\ s,\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{class_sysc_add__pv}{nd}},\ \mbox{\hyperlink{namespacesc__dt_ac387c29028ace5ebdafd46a173a8146a}{sc\_digit}}\ *d)}
+\DoxyCodeLine{00775\ \{}
+\DoxyCodeLine{00776\ \ \ \textcolor{keywordflow}{if}\ (s\ ==\ \mbox{\hyperlink{sc__nbdefs_8h_a389fe26f7a8b342d8fd4408190c80900}{SC\_NEG}})}
+\DoxyCodeLine{00777\ \ \ \ \ \mbox{\hyperlink{namespacesc__dt_aacd270a84cd66dcc069475359ee09548}{vec\_complement}}(\mbox{\hyperlink{class_sysc_add__pv}{nd}},\ d);}
+\DoxyCodeLine{00778\ \}}
+\DoxyCodeLine{00779\ }
+\DoxyCodeLine{00780\ }
+\DoxyCodeLine{00781\ \textcolor{comment}{//\ -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{00782\ \textcolor{comment}{//\ \ Functions\ to\ convert\ between\ sign-\/magnitude\ (SM)\ and\ 2's\ complement}}
+\DoxyCodeLine{00783\ \textcolor{comment}{//\ \ (2C)\ representations\ of\ signed\ numbers.}}
+\DoxyCodeLine{00784\ \textcolor{comment}{//\ -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{00785\ }
+\DoxyCodeLine{00786\ \textcolor{comment}{//\ Trim\ the\ extra\ leading\ bits\ off\ a\ signed\ number.}}
+\DoxyCodeLine{00787\ \textcolor{keyword}{inline}}
+\DoxyCodeLine{00788\ \textcolor{keywordtype}{void}}
+\DoxyCodeLine{00789\ \mbox{\hyperlink{namespacesc__dt_ae07052aa69b02513903259ba37d423ce}{trim\_signed}}(\textcolor{keywordtype}{int}\ \mbox{\hyperlink{class_sysc_add__pv}{nb}},\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{class_sysc_add__pv}{nd}},\ \mbox{\hyperlink{namespacesc__dt_ac387c29028ace5ebdafd46a173a8146a}{sc\_digit}}\ *d)}
+\DoxyCodeLine{00790\ \{}
+\DoxyCodeLine{00791\ \textcolor{preprocessor}{\#ifdef\ DEBUG\_SYSTEMC}}
+\DoxyCodeLine{00792\ \ \ \mbox{\hyperlink{sc__report_8h_a74afc5942d7b28d11f360a6f03181daa}{sc\_assert}}((\mbox{\hyperlink{class_sysc_add__pv}{nb}}\ >\ 0)\ \&\&\ (\mbox{\hyperlink{class_sysc_add__pv}{nd}}\ >\ 0)\ \&\&\ (d\ !=\ \mbox{\hyperlink{class_sysc_add__pv}{NULL}}));}
+\DoxyCodeLine{00793\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00794\ }
+\DoxyCodeLine{00795\ \ \ d[\mbox{\hyperlink{class_sysc_add__pv}{nd}}\ -\/\ 1]\ \&=\ \mbox{\hyperlink{namespacesc__dt_a2bee32fd52dc43857ccb08f9dd402d17}{one\_and\_ones}}(\mbox{\hyperlink{namespacesc__dt_aa06c483e577006db0c8c577213cd244f}{bit\_ord}}(\mbox{\hyperlink{class_sysc_add__pv}{nb}}\ -\/\ 1)\ +\ 1);}
+\DoxyCodeLine{00796\ \}}
+\DoxyCodeLine{00797\ }
+\DoxyCodeLine{00798\ \textcolor{comment}{//\ Convert\ a\ signed\ number\ from\ 2's\ complement\ representation\ to}}
+\DoxyCodeLine{00799\ \textcolor{comment}{//\ sign-\/magnitude\ representation,\ and\ return\ its\ sign.\ nd\ is\ d's}}
+\DoxyCodeLine{00800\ \textcolor{comment}{//\ actual\ size,\ without\ zeros\ eliminated.}}
+\DoxyCodeLine{00801\ \textcolor{keyword}{inline}}
+\DoxyCodeLine{00802\ \mbox{\hyperlink{namespacesc__dt_a24b5ab9d89d2201797c64885ed4a1495}{small\_type}}}
+\DoxyCodeLine{00803\ \mbox{\hyperlink{namespacesc__dt_a10f44ae94f6e8d6ed999ce52f2fea577}{convert\_signed\_2C\_to\_SM}}(\textcolor{keywordtype}{int}\ \mbox{\hyperlink{class_sysc_add__pv}{nb}},\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{class_sysc_add__pv}{nd}},\ \mbox{\hyperlink{namespacesc__dt_ac387c29028ace5ebdafd46a173a8146a}{sc\_digit}}\ *d)}
+\DoxyCodeLine{00804\ \{}
+\DoxyCodeLine{00805\ }
+\DoxyCodeLine{00806\ \textcolor{preprocessor}{\#ifdef\ DEBUG\_SYSTEMC}}
+\DoxyCodeLine{00807\ \ \ \mbox{\hyperlink{sc__report_8h_a74afc5942d7b28d11f360a6f03181daa}{sc\_assert}}((\mbox{\hyperlink{class_sysc_add__pv}{nb}}\ >\ 0)\ \&\&\ (\mbox{\hyperlink{class_sysc_add__pv}{nd}}\ >\ 0)\ \&\&\ (d\ !=\ \mbox{\hyperlink{class_sysc_add__pv}{NULL}}));}
+\DoxyCodeLine{00808\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00809\ }
+\DoxyCodeLine{00810\ \ \ \mbox{\hyperlink{namespacesc__dt_a24b5ab9d89d2201797c64885ed4a1495}{small\_type}}\ s;}
+\DoxyCodeLine{00811\ }
+\DoxyCodeLine{00812\ \ \ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{class_sysc_add__pv}{xnb}}\ =\ \mbox{\hyperlink{namespacesc__dt_aa06c483e577006db0c8c577213cd244f}{bit\_ord}}(\mbox{\hyperlink{class_sysc_add__pv}{nb}}\ -\/\ 1)\ +\ 1;}
+\DoxyCodeLine{00813\ }
+\DoxyCodeLine{00814\ \ \ \textcolor{comment}{//\ Test\ the\ sign\ bit.}}
+\DoxyCodeLine{00815\ \ \ \textcolor{keywordflow}{if}\ (d[\mbox{\hyperlink{class_sysc_add__pv}{nd}}\ -\/\ 1]\ \&\ \mbox{\hyperlink{namespacesc__dt_af15484a06bfcff2e7f5d87eacc3fc6d3}{one\_and\_zeros}}(\mbox{\hyperlink{class_sysc_add__pv}{xnb}}\ -\/\ 1))\ \{}
+\DoxyCodeLine{00816\ \ \ \ \ s\ =\ \mbox{\hyperlink{sc__nbdefs_8h_a389fe26f7a8b342d8fd4408190c80900}{SC\_NEG}};}
+\DoxyCodeLine{00817\ \ \ \ \ \mbox{\hyperlink{namespacesc__dt_aacd270a84cd66dcc069475359ee09548}{vec\_complement}}(\mbox{\hyperlink{class_sysc_add__pv}{nd}},\ d);}
+\DoxyCodeLine{00818\ \ \ \}}
+\DoxyCodeLine{00819\ \ \ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{00820\ \ \ \ \ s\ =\ \mbox{\hyperlink{sc__nbdefs_8h_ada46c64cf37b4af7d72599dc0951e871}{SC\_POS}};}
+\DoxyCodeLine{00821\ }
+\DoxyCodeLine{00822\ \ \ \textcolor{comment}{//\ Trim\ the\ last\ digit.}}
+\DoxyCodeLine{00823\ \ \ d[\mbox{\hyperlink{class_sysc_add__pv}{nd}}\ -\/\ 1]\ \&=\ \mbox{\hyperlink{namespacesc__dt_a2bee32fd52dc43857ccb08f9dd402d17}{one\_and\_ones}}(\mbox{\hyperlink{class_sysc_add__pv}{xnb}});}
+\DoxyCodeLine{00824\ }
+\DoxyCodeLine{00825\ \ \ \textcolor{comment}{//\ Check\ if\ the\ new\ number\ is\ zero.}}
+\DoxyCodeLine{00826\ \ \ \textcolor{keywordflow}{if}\ (s\ ==\ \mbox{\hyperlink{sc__nbdefs_8h_ada46c64cf37b4af7d72599dc0951e871}{SC\_POS}})}
+\DoxyCodeLine{00827\ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{namespacesc__dt_a98da822be56b23c5b31d2c21acf25aec}{check\_for\_zero}}(s,\ \mbox{\hyperlink{class_sysc_add__pv}{nd}},\ d);}
+\DoxyCodeLine{00828\ }
+\DoxyCodeLine{00829\ \ \ \textcolor{keywordflow}{return}\ s;}
+\DoxyCodeLine{00830\ }
+\DoxyCodeLine{00831\ \}}
+\DoxyCodeLine{00832\ }
+\DoxyCodeLine{00833\ \textcolor{comment}{//\ Convert\ a\ signed\ number\ from\ sign-\/magnitude\ representation\ to\ 2's}}
+\DoxyCodeLine{00834\ \textcolor{comment}{//\ complement\ representation,\ get\ its\ sign,\ convert\ back\ to}}
+\DoxyCodeLine{00835\ \textcolor{comment}{//\ sign-\/magnitude\ representation,\ and\ return\ its\ sign.\ nd\ is\ d's}}
+\DoxyCodeLine{00836\ \textcolor{comment}{//\ actual\ size,\ without\ zeros\ eliminated.}}
+\DoxyCodeLine{00837\ \textcolor{keyword}{inline}}
+\DoxyCodeLine{00838\ \mbox{\hyperlink{namespacesc__dt_a24b5ab9d89d2201797c64885ed4a1495}{small\_type}}}
+\DoxyCodeLine{00839\ \mbox{\hyperlink{namespacesc__dt_a5a92f5a08a221d6cc9e0a18b6c209b13}{convert\_signed\_SM\_to\_2C\_to\_SM}}(\mbox{\hyperlink{namespacesc__dt_a24b5ab9d89d2201797c64885ed4a1495}{small\_type}}\ s,\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{class_sysc_add__pv}{nb}},\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{class_sysc_add__pv}{nd}},\ \mbox{\hyperlink{namespacesc__dt_ac387c29028ace5ebdafd46a173a8146a}{sc\_digit}}\ *d)}
+\DoxyCodeLine{00840\ \{}
+\DoxyCodeLine{00841\ \ \ \mbox{\hyperlink{namespacesc__dt_aacd92d3c15d3947a17d1d793f2fb210f}{convert\_SM\_to\_2C}}(s,\ \mbox{\hyperlink{class_sysc_add__pv}{nd}},\ d);}
+\DoxyCodeLine{00842\ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{namespacesc__dt_a10f44ae94f6e8d6ed999ce52f2fea577}{convert\_signed\_2C\_to\_SM}}(\mbox{\hyperlink{class_sysc_add__pv}{nb}},\ \mbox{\hyperlink{class_sysc_add__pv}{nd}},\ d);}
+\DoxyCodeLine{00843\ \}}
+\DoxyCodeLine{00844\ }
+\DoxyCodeLine{00845\ \textcolor{comment}{//\ Convert\ a\ signed\ number\ from\ sign-\/magnitude\ representation\ to\ 2's}}
+\DoxyCodeLine{00846\ \textcolor{comment}{//\ complement\ representation\ and\ trim\ the\ extra\ bits.}}
+\DoxyCodeLine{00847\ \textcolor{keyword}{inline}}
+\DoxyCodeLine{00848\ \textcolor{keywordtype}{void}}
+\DoxyCodeLine{00849\ \mbox{\hyperlink{namespacesc__dt_aad0d4bde35cc3b47fc104d41abecfa8a}{convert\_signed\_SM\_to\_2C\_trimmed}}(\mbox{\hyperlink{namespacesc__dt_a24b5ab9d89d2201797c64885ed4a1495}{small\_type}}\ s,\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{class_sysc_add__pv}{nb}},\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{class_sysc_add__pv}{nd}},\ \mbox{\hyperlink{namespacesc__dt_ac387c29028ace5ebdafd46a173a8146a}{sc\_digit}}\ *d)}
+\DoxyCodeLine{00850\ \{}
+\DoxyCodeLine{00851\ \ \ \mbox{\hyperlink{namespacesc__dt_a234484b4ac72e72bb038e396757fe358}{convert\_SM\_to\_2C\_trimmed}}(1,\ s,\ \mbox{\hyperlink{class_sysc_add__pv}{nb}},\ \mbox{\hyperlink{class_sysc_add__pv}{nd}},\ d);}
+\DoxyCodeLine{00852\ \}}
+\DoxyCodeLine{00853\ }
+\DoxyCodeLine{00854\ \textcolor{comment}{//\ Convert\ a\ signed\ number\ from\ sign-\/magnitude\ representation\ to\ 2's}}
+\DoxyCodeLine{00855\ \textcolor{comment}{//\ complement\ representation\ but\ do\ not\ trim\ the\ extra\ bits.}}
+\DoxyCodeLine{00856\ \textcolor{keyword}{inline}}
+\DoxyCodeLine{00857\ \textcolor{keywordtype}{void}}
+\DoxyCodeLine{00858\ \mbox{\hyperlink{namespacesc__dt_a5179aa530d251972bea2da6b6905684e}{convert\_signed\_SM\_to\_2C}}(\mbox{\hyperlink{namespacesc__dt_a24b5ab9d89d2201797c64885ed4a1495}{small\_type}}\ s,\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{class_sysc_add__pv}{nd}},\ \mbox{\hyperlink{namespacesc__dt_ac387c29028ace5ebdafd46a173a8146a}{sc\_digit}}\ *d)}
+\DoxyCodeLine{00859\ \{}
+\DoxyCodeLine{00860\ \ \ \mbox{\hyperlink{namespacesc__dt_aacd92d3c15d3947a17d1d793f2fb210f}{convert\_SM\_to\_2C}}(s,\ \mbox{\hyperlink{class_sysc_add__pv}{nd}},\ d);}
+\DoxyCodeLine{00861\ \}}
+\DoxyCodeLine{00862\ }
+\DoxyCodeLine{00863\ }
+\DoxyCodeLine{00864\ \textcolor{comment}{//\ -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{00865\ \textcolor{comment}{//\ \ Functions\ to\ convert\ between\ sign-\/magnitude\ (SM)\ and\ 2's\ complement}}
+\DoxyCodeLine{00866\ \textcolor{comment}{//\ \ (2C)\ representations\ of\ unsigned\ numbers.}}
+\DoxyCodeLine{00867\ \textcolor{comment}{//\ -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{00868\ }
+\DoxyCodeLine{00869\ \textcolor{comment}{//\ Trim\ the\ extra\ leading\ bits\ off\ an\ unsigned\ number.}}
+\DoxyCodeLine{00870\ \textcolor{keyword}{inline}}
+\DoxyCodeLine{00871\ \textcolor{keywordtype}{void}}
+\DoxyCodeLine{00872\ \mbox{\hyperlink{namespacesc__dt_af2dbe0285c1f7e3cf8e8762cea6af5b5}{trim\_unsigned}}(\textcolor{keywordtype}{int}\ \mbox{\hyperlink{class_sysc_add__pv}{nb}},\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{class_sysc_add__pv}{nd}},\ \mbox{\hyperlink{namespacesc__dt_ac387c29028ace5ebdafd46a173a8146a}{sc\_digit}}\ *d)}
+\DoxyCodeLine{00873\ \{}
+\DoxyCodeLine{00874\ \textcolor{preprocessor}{\#ifdef\ DEBUG\_SYSTEMC}}
+\DoxyCodeLine{00875\ \ \ \mbox{\hyperlink{sc__report_8h_a74afc5942d7b28d11f360a6f03181daa}{sc\_assert}}((\mbox{\hyperlink{class_sysc_add__pv}{nb}}\ >\ 0)\ \&\&\ (\mbox{\hyperlink{class_sysc_add__pv}{nd}}\ >\ 0)\ \&\&\ (d\ !=\ \mbox{\hyperlink{class_sysc_add__pv}{NULL}}));}
+\DoxyCodeLine{00876\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00877\ }
+\DoxyCodeLine{00878\ \ \ d[\mbox{\hyperlink{class_sysc_add__pv}{nd}}\ -\/\ 1]\ \&=\ \mbox{\hyperlink{namespacesc__dt_a2bee32fd52dc43857ccb08f9dd402d17}{one\_and\_ones}}(\mbox{\hyperlink{namespacesc__dt_aa06c483e577006db0c8c577213cd244f}{bit\_ord}}(\mbox{\hyperlink{class_sysc_add__pv}{nb}}\ -\/\ 1));}
+\DoxyCodeLine{00879\ \}}
+\DoxyCodeLine{00880\ }
+\DoxyCodeLine{00881\ \textcolor{comment}{//\ Convert\ an\ unsigned\ number\ from\ 2's\ complement\ representation\ to}}
+\DoxyCodeLine{00882\ \textcolor{comment}{//\ sign-\/magnitude\ representation,\ and\ return\ its\ sign.\ nd\ is\ d's}}
+\DoxyCodeLine{00883\ \textcolor{comment}{//\ actual\ size,\ without\ zeros\ eliminated.}}
+\DoxyCodeLine{00884\ \textcolor{keyword}{inline}}
+\DoxyCodeLine{00885\ \mbox{\hyperlink{namespacesc__dt_a24b5ab9d89d2201797c64885ed4a1495}{small\_type}}}
+\DoxyCodeLine{00886\ \mbox{\hyperlink{namespacesc__dt_a54d63a8a5410cab0f2d8883b76b13eda}{convert\_unsigned\_2C\_to\_SM}}(\textcolor{keywordtype}{int}\ \mbox{\hyperlink{class_sysc_add__pv}{nb}},\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{class_sysc_add__pv}{nd}},\ \mbox{\hyperlink{namespacesc__dt_ac387c29028ace5ebdafd46a173a8146a}{sc\_digit}}\ *d)}
+\DoxyCodeLine{00887\ \{}
+\DoxyCodeLine{00888\ \ \ \mbox{\hyperlink{namespacesc__dt_af2dbe0285c1f7e3cf8e8762cea6af5b5}{trim\_unsigned}}(\mbox{\hyperlink{class_sysc_add__pv}{nb}},\ \mbox{\hyperlink{class_sysc_add__pv}{nd}},\ d);}
+\DoxyCodeLine{00889\ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{namespacesc__dt_a98da822be56b23c5b31d2c21acf25aec}{check\_for\_zero}}(\mbox{\hyperlink{sc__nbdefs_8h_ada46c64cf37b4af7d72599dc0951e871}{SC\_POS}},\ \mbox{\hyperlink{class_sysc_add__pv}{nd}},\ d);}
+\DoxyCodeLine{00890\ \}}
+\DoxyCodeLine{00891\ }
+\DoxyCodeLine{00892\ \textcolor{comment}{//\ Convert\ an\ unsigned\ number\ from\ sign-\/magnitude\ representation\ to}}
+\DoxyCodeLine{00893\ \textcolor{comment}{//\ 2's\ complement\ representation,\ get\ its\ sign,\ convert\ back\ to}}
+\DoxyCodeLine{00894\ \textcolor{comment}{//\ sign-\/magnitude\ representation,\ and\ return\ its\ sign.\ nd\ is\ d's}}
+\DoxyCodeLine{00895\ \textcolor{comment}{//\ actual\ size,\ without\ zeros\ eliminated.}}
+\DoxyCodeLine{00896\ \textcolor{keyword}{inline}}
+\DoxyCodeLine{00897\ \mbox{\hyperlink{namespacesc__dt_a24b5ab9d89d2201797c64885ed4a1495}{small\_type}}}
+\DoxyCodeLine{00898\ \mbox{\hyperlink{namespacesc__dt_a58cfad63a865f45af9fc2eaa8266c372}{convert\_unsigned\_SM\_to\_2C\_to\_SM}}(\mbox{\hyperlink{namespacesc__dt_a24b5ab9d89d2201797c64885ed4a1495}{small\_type}}\ s,\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{class_sysc_add__pv}{nb}},\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{class_sysc_add__pv}{nd}},\ \mbox{\hyperlink{namespacesc__dt_ac387c29028ace5ebdafd46a173a8146a}{sc\_digit}}\ *d)}
+\DoxyCodeLine{00899\ \{}
+\DoxyCodeLine{00900\ \ \ \mbox{\hyperlink{namespacesc__dt_aacd92d3c15d3947a17d1d793f2fb210f}{convert\_SM\_to\_2C}}(s,\ \mbox{\hyperlink{class_sysc_add__pv}{nd}},\ d);}
+\DoxyCodeLine{00901\ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{namespacesc__dt_a54d63a8a5410cab0f2d8883b76b13eda}{convert\_unsigned\_2C\_to\_SM}}(\mbox{\hyperlink{class_sysc_add__pv}{nb}},\ \mbox{\hyperlink{class_sysc_add__pv}{nd}},\ d);}
+\DoxyCodeLine{00902\ \}}
+\DoxyCodeLine{00903\ }
+\DoxyCodeLine{00904\ \textcolor{comment}{//\ Convert\ an\ unsigned\ number\ from\ sign-\/magnitude\ representation\ to}}
+\DoxyCodeLine{00905\ \textcolor{comment}{//\ 2's\ complement\ representation\ and\ trim\ the\ extra\ bits.}}
+\DoxyCodeLine{00906\ \textcolor{keyword}{inline}}
+\DoxyCodeLine{00907\ \textcolor{keywordtype}{void}}
+\DoxyCodeLine{00908\ \mbox{\hyperlink{namespacesc__dt_a38294aae54e612e873231ac86a1aaafb}{convert\_unsigned\_SM\_to\_2C\_trimmed}}(\mbox{\hyperlink{namespacesc__dt_a24b5ab9d89d2201797c64885ed4a1495}{small\_type}}\ s,\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{class_sysc_add__pv}{nb}},\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{class_sysc_add__pv}{nd}},\ \mbox{\hyperlink{namespacesc__dt_ac387c29028ace5ebdafd46a173a8146a}{sc\_digit}}\ *d)}
+\DoxyCodeLine{00909\ \{}
+\DoxyCodeLine{00910\ \ \ \mbox{\hyperlink{namespacesc__dt_a234484b4ac72e72bb038e396757fe358}{convert\_SM\_to\_2C\_trimmed}}(0,\ s,\ \mbox{\hyperlink{class_sysc_add__pv}{nb}},\ \mbox{\hyperlink{class_sysc_add__pv}{nd}},\ d);}
+\DoxyCodeLine{00911\ \}}
+\DoxyCodeLine{00912\ }
+\DoxyCodeLine{00913\ \textcolor{comment}{//\ Convert\ an\ unsigned\ number\ from\ sign-\/magnitude\ representation\ to}}
+\DoxyCodeLine{00914\ \textcolor{comment}{//\ 2's\ complement\ representation\ but\ do\ not\ trim\ the\ extra\ bits.}}
+\DoxyCodeLine{00915\ \textcolor{keyword}{inline}}
+\DoxyCodeLine{00916\ \textcolor{keywordtype}{void}}
+\DoxyCodeLine{00917\ \mbox{\hyperlink{namespacesc__dt_ae3e4096cd97601cccb08734096b397ca}{convert\_unsigned\_SM\_to\_2C}}(\mbox{\hyperlink{namespacesc__dt_a24b5ab9d89d2201797c64885ed4a1495}{small\_type}}\ s,\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{class_sysc_add__pv}{nd}},\ \mbox{\hyperlink{namespacesc__dt_ac387c29028ace5ebdafd46a173a8146a}{sc\_digit}}\ *d)}
+\DoxyCodeLine{00918\ \{}
+\DoxyCodeLine{00919\ \ \ \mbox{\hyperlink{namespacesc__dt_aacd92d3c15d3947a17d1d793f2fb210f}{convert\_SM\_to\_2C}}(s,\ \mbox{\hyperlink{class_sysc_add__pv}{nd}},\ d);}
+\DoxyCodeLine{00920\ \}}
+\DoxyCodeLine{00921\ }
+\DoxyCodeLine{00922\ }
+\DoxyCodeLine{00923\ \textcolor{comment}{//\ -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{00924\ \textcolor{comment}{//\ \ Functions\ to\ copy\ one\ (un)signed\ number\ to\ another.}}
+\DoxyCodeLine{00925\ \textcolor{comment}{//\ -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{00926\ }
+\DoxyCodeLine{00927\ \textcolor{comment}{//\ Copy\ v\ to\ u.}}
+\DoxyCodeLine{00928\ \textcolor{keyword}{inline}}
+\DoxyCodeLine{00929\ \textcolor{keywordtype}{void}}
+\DoxyCodeLine{00930\ \mbox{\hyperlink{namespacesc__dt_afca561d1374f9121b107740c552c85c1}{copy\_digits\_signed}}(\mbox{\hyperlink{namespacesc__dt_a24b5ab9d89d2201797c64885ed4a1495}{small\_type}}\ \&\mbox{\hyperlink{class_sysc_add__pv}{us}},}
+\DoxyCodeLine{00931\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{class_sysc_add__pv}{unb}},\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{class_sysc_add__pv}{und}},\ \mbox{\hyperlink{namespacesc__dt_ac387c29028ace5ebdafd46a173a8146a}{sc\_digit}}\ *\mbox{\hyperlink{class_sysc_add__pv}{ud}},}
+\DoxyCodeLine{00932\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{class_sysc_add__pv}{vnb}},\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{class_sysc_add__pv}{vnd}},\ \textcolor{keyword}{const}\ \mbox{\hyperlink{namespacesc__dt_ac387c29028ace5ebdafd46a173a8146a}{sc\_digit}}\ *\mbox{\hyperlink{class_sysc_add__pv}{vd}})}
+\DoxyCodeLine{00933\ \{}
+\DoxyCodeLine{00934\ }
+\DoxyCodeLine{00935\ \ \ \textcolor{keywordflow}{if}\ (\mbox{\hyperlink{class_sysc_add__pv}{und}}\ <=\ \mbox{\hyperlink{class_sysc_add__pv}{vnd}})\ \{}
+\DoxyCodeLine{00936\ }
+\DoxyCodeLine{00937\ \ \ \ \ \mbox{\hyperlink{namespacesc__dt_a68e2f462a319f55f4148fb7b62f43938}{vec\_copy}}(\mbox{\hyperlink{class_sysc_add__pv}{und}},\ \mbox{\hyperlink{class_sysc_add__pv}{ud}},\ \mbox{\hyperlink{class_sysc_add__pv}{vd}});}
+\DoxyCodeLine{00938\ }
+\DoxyCodeLine{00939\ \ \ \ \ \textcolor{keywordflow}{if}\ (\mbox{\hyperlink{class_sysc_add__pv}{unb}}\ <=\ \mbox{\hyperlink{class_sysc_add__pv}{vnb}})}
+\DoxyCodeLine{00940\ \ \ \ \ \ \ \mbox{\hyperlink{class_sysc_add__pv}{us}}\ =\ \mbox{\hyperlink{namespacesc__dt_a5a92f5a08a221d6cc9e0a18b6c209b13}{convert\_signed\_SM\_to\_2C\_to\_SM}}(\mbox{\hyperlink{class_sysc_add__pv}{us}},\ \mbox{\hyperlink{class_sysc_add__pv}{unb}},\ \mbox{\hyperlink{class_sysc_add__pv}{und}},\ \mbox{\hyperlink{class_sysc_add__pv}{ud}});}
+\DoxyCodeLine{00941\ }
+\DoxyCodeLine{00942\ \ \ \}}
+\DoxyCodeLine{00943\ \ \ \textcolor{keywordflow}{else}\ \textcolor{comment}{//\ und\ >\ vnd}}
+\DoxyCodeLine{00944\ \ \ \ \ \mbox{\hyperlink{namespacesc__dt_a1be3153c54ddf31ff14d95b875046556}{vec\_copy\_and\_zero}}(\mbox{\hyperlink{class_sysc_add__pv}{und}},\ \mbox{\hyperlink{class_sysc_add__pv}{ud}},\ \mbox{\hyperlink{class_sysc_add__pv}{vnd}},\ \mbox{\hyperlink{class_sysc_add__pv}{vd}});}
+\DoxyCodeLine{00945\ }
+\DoxyCodeLine{00946\ \}}
+\DoxyCodeLine{00947\ }
+\DoxyCodeLine{00948\ \textcolor{comment}{//\ Copy\ v\ to\ u.}}
+\DoxyCodeLine{00949\ \textcolor{keyword}{inline}}
+\DoxyCodeLine{00950\ \textcolor{keywordtype}{void}}
+\DoxyCodeLine{00951\ \mbox{\hyperlink{namespacesc__dt_a1ad9c02cb273d279cdaf1550caa36b99}{copy\_digits\_unsigned}}(\mbox{\hyperlink{namespacesc__dt_a24b5ab9d89d2201797c64885ed4a1495}{small\_type}}\ \&\mbox{\hyperlink{class_sysc_add__pv}{us}},}
+\DoxyCodeLine{00952\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{class_sysc_add__pv}{unb}},\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{class_sysc_add__pv}{und}},\ \mbox{\hyperlink{namespacesc__dt_ac387c29028ace5ebdafd46a173a8146a}{sc\_digit}}\ *\mbox{\hyperlink{class_sysc_add__pv}{ud}},}
+\DoxyCodeLine{00953\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ \textcolor{comment}{/*\ vnb\ */},\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{class_sysc_add__pv}{vnd}},\ \textcolor{keyword}{const}\ \mbox{\hyperlink{namespacesc__dt_ac387c29028ace5ebdafd46a173a8146a}{sc\_digit}}\ *\mbox{\hyperlink{class_sysc_add__pv}{vd}})}
+\DoxyCodeLine{00954\ \{}
+\DoxyCodeLine{00955\ }
+\DoxyCodeLine{00956\ \ \ \textcolor{keywordflow}{if}\ (\mbox{\hyperlink{class_sysc_add__pv}{und}}\ <=\ \mbox{\hyperlink{class_sysc_add__pv}{vnd}})}
+\DoxyCodeLine{00957\ \ \ \ \ \mbox{\hyperlink{namespacesc__dt_a68e2f462a319f55f4148fb7b62f43938}{vec\_copy}}(\mbox{\hyperlink{class_sysc_add__pv}{und}},\ \mbox{\hyperlink{class_sysc_add__pv}{ud}},\ \mbox{\hyperlink{class_sysc_add__pv}{vd}});}
+\DoxyCodeLine{00958\ }
+\DoxyCodeLine{00959\ \ \ \textcolor{keywordflow}{else}\ \textcolor{comment}{//\ und\ >\ vnd}}
+\DoxyCodeLine{00960\ \ \ \ \ \mbox{\hyperlink{namespacesc__dt_a1be3153c54ddf31ff14d95b875046556}{vec\_copy\_and\_zero}}(\mbox{\hyperlink{class_sysc_add__pv}{und}},\ \mbox{\hyperlink{class_sysc_add__pv}{ud}},\ \mbox{\hyperlink{class_sysc_add__pv}{vnd}},\ \mbox{\hyperlink{class_sysc_add__pv}{vd}});}
+\DoxyCodeLine{00961\ }
+\DoxyCodeLine{00962\ \ \ \mbox{\hyperlink{class_sysc_add__pv}{us}}\ =\ \mbox{\hyperlink{namespacesc__dt_a58cfad63a865f45af9fc2eaa8266c372}{convert\_unsigned\_SM\_to\_2C\_to\_SM}}(\mbox{\hyperlink{class_sysc_add__pv}{us}},\ \mbox{\hyperlink{class_sysc_add__pv}{unb}},\ \mbox{\hyperlink{class_sysc_add__pv}{und}},\ \mbox{\hyperlink{class_sysc_add__pv}{ud}});}
+\DoxyCodeLine{00963\ }
+\DoxyCodeLine{00964\ \}}
+\DoxyCodeLine{00965\ }
+\DoxyCodeLine{00966\ }
+\DoxyCodeLine{00967\ \textcolor{comment}{//\ -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{00968\ \textcolor{comment}{//\ \ Faster\ set(i,\ v),\ without\ bound\ checking.}}
+\DoxyCodeLine{00969\ \textcolor{comment}{//\ -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{00970\ }
+\DoxyCodeLine{00971\ \textcolor{comment}{//\ A\ version\ of\ set(i,\ v)\ without\ bound\ checking.}}
+\DoxyCodeLine{00972\ \textcolor{keyword}{inline}}
+\DoxyCodeLine{00973\ \textcolor{keywordtype}{void}}
+\DoxyCodeLine{00974\ \mbox{\hyperlink{namespacesc__dt_a7e918b0b135007df6bafde052f01146a}{safe\_set}}(\textcolor{keywordtype}{int}\ \mbox{\hyperlink{class_sysc_add__pv}{i}},\ \textcolor{keywordtype}{bool}\ v,\ \mbox{\hyperlink{namespacesc__dt_ac387c29028ace5ebdafd46a173a8146a}{sc\_digit}}\ *d)}
+\DoxyCodeLine{00975\ \{}
+\DoxyCodeLine{00976\ }
+\DoxyCodeLine{00977\ \textcolor{preprocessor}{\#ifdef\ DEBUG\_SYSTEMC}}
+\DoxyCodeLine{00978\ \ \ \mbox{\hyperlink{sc__report_8h_a74afc5942d7b28d11f360a6f03181daa}{sc\_assert}}((\mbox{\hyperlink{class_sysc_add__pv}{i}}\ >=\ 0)\ \&\&\ (d\ !=\ \mbox{\hyperlink{class_sysc_add__pv}{NULL}}));}
+\DoxyCodeLine{00979\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00980\ }
+\DoxyCodeLine{00981\ \ \ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{class_sysc_add__pv}{bit\_num}}\ =\ \mbox{\hyperlink{namespacesc__dt_aa06c483e577006db0c8c577213cd244f}{bit\_ord}}(\mbox{\hyperlink{class_sysc_add__pv}{i}});}
+\DoxyCodeLine{00982\ \ \ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{class_sysc_add__pv}{digit\_num}}\ =\ \mbox{\hyperlink{namespacesc__dt_a79bd522679e87defb63332b5288d1965}{digit\_ord}}(\mbox{\hyperlink{class_sysc_add__pv}{i}});}
+\DoxyCodeLine{00983\ }
+\DoxyCodeLine{00984\ \ \ \textcolor{keywordflow}{if}\ (v)}
+\DoxyCodeLine{00985\ \ \ \ \ d[\mbox{\hyperlink{class_sysc_add__pv}{digit\_num}}]\ |=\ \mbox{\hyperlink{namespacesc__dt_af15484a06bfcff2e7f5d87eacc3fc6d3}{one\_and\_zeros}}(\mbox{\hyperlink{class_sysc_add__pv}{bit\_num}});}
+\DoxyCodeLine{00986\ \ \ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{00987\ \ \ \ \ d[\mbox{\hyperlink{class_sysc_add__pv}{digit\_num}}]\ \&=\ \string~(\mbox{\hyperlink{namespacesc__dt_af15484a06bfcff2e7f5d87eacc3fc6d3}{one\_and\_zeros}}(\mbox{\hyperlink{class_sysc_add__pv}{bit\_num}}));}
+\DoxyCodeLine{00988\ }
+\DoxyCodeLine{00989\ \}}
+\DoxyCodeLine{00990\ }
+\DoxyCodeLine{00991\ }
+\DoxyCodeLine{00992\ \textcolor{comment}{//\ -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{00993\ \textcolor{comment}{//\ \ Function\ to\ check\ if\ a\ double\ number\ is\ bad\ (NaN\ or\ infinite).}}
+\DoxyCodeLine{00994\ \textcolor{comment}{//\ -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{00995\ }
+\DoxyCodeLine{00996\ \textcolor{keyword}{inline}}
+\DoxyCodeLine{00997\ \textcolor{keywordtype}{bool}}
+\DoxyCodeLine{00998\ \mbox{\hyperlink{namespacesc__dt_a0dec71a35d5224dc94e0843bd5ee0a9c}{is\_nan}}(\ \textcolor{keywordtype}{double}\ v\ )}
+\DoxyCodeLine{00999\ \{}
+\DoxyCodeLine{01000\ \ \ \ \ \textcolor{keywordflow}{return}\ std::numeric\_limits<double>::has\_quiet\_NaN\ \&\&\ (v\ !=\ v);}
+\DoxyCodeLine{01001\ \}}
+\DoxyCodeLine{01002\ }
+\DoxyCodeLine{01003\ \textcolor{keyword}{inline}}
+\DoxyCodeLine{01004\ \textcolor{keywordtype}{bool}}
+\DoxyCodeLine{01005\ \mbox{\hyperlink{namespacesc__dt_a0a04862b3d71c219a969e30e50b53bff}{is\_inf}}(\ \textcolor{keywordtype}{double}\ v\ )}
+\DoxyCodeLine{01006\ \{}
+\DoxyCodeLine{01007\ \ \ \ \ \textcolor{keywordflow}{return}\ v\ ==\ \ std::numeric\_limits<double>::infinity()}
+\DoxyCodeLine{01008\ \ \ \ \ \ \ \ \ ||\ v\ ==\ -\/std::numeric\_limits<double>::infinity();}
+\DoxyCodeLine{01009\ \}}
+\DoxyCodeLine{01010\ }
+\DoxyCodeLine{01011\ \textcolor{keyword}{inline}}
+\DoxyCodeLine{01012\ \textcolor{keywordtype}{void}}
+\DoxyCodeLine{01013\ \mbox{\hyperlink{namespacesc__dt_a8009343f22a641b2941c1ff23bb4fff5}{is\_bad\_double}}(\textcolor{keywordtype}{double}\ v)}
+\DoxyCodeLine{01014\ \{}
+\DoxyCodeLine{01015\ \textcolor{comment}{//\ Windows\ throws\ exception.}}
+\DoxyCodeLine{01016\ \ \ \ \ \textcolor{keywordflow}{if}(\ \mbox{\hyperlink{namespacesc__dt_a0dec71a35d5224dc94e0843bd5ee0a9c}{is\_nan}}(v)\ ||\ \mbox{\hyperlink{namespacesc__dt_a0a04862b3d71c219a969e30e50b53bff}{is\_inf}}(v)\ )}
+\DoxyCodeLine{01017\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{sc__report_8h_ad5720f0a4adf8866eb628b62a4fde9bf}{SC\_REPORT\_ERROR}}(\ sc\_core::SC\_ID\_VALUE\_NOT\_VALID\_,}
+\DoxyCodeLine{01018\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}is\_bad\_double(\ double\ v\ )\ :\ "{}}}
+\DoxyCodeLine{01019\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}v\ is\ not\ finite\ -\/\ NaN\ or\ Inf"{}}\ );}
+\DoxyCodeLine{01020\ \}}
+\DoxyCodeLine{01021\ }
+\DoxyCodeLine{01022\ \}\ \textcolor{comment}{//\ namespace\ sc\_dt}}
+\DoxyCodeLine{01023\ }
+\DoxyCodeLine{01024\ }
+\DoxyCodeLine{01025\ \textcolor{preprocessor}{\#endif}}
+
+\end{DoxyCode}

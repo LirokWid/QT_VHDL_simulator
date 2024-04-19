@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['find_5felements_5fwith_5fattribute_0',['find_elements_with_attribute',['../class_svg_link_parser.html#a126510b78a5f1013a1992057a270b247',1,'SvgLinkParser']]]
+  ['_5fsendmessage_0',['_sendMessage',['../classsc_qt_worker.html#a52fbd2e624902bda6e29acd94f884506',1,'scQtWorker::_sendMessage()'],['../class_main_window.html#a4e0374814f4ed35e67872280c77d5cc2',1,'MainWindow::_sendMessage()']]]
 ];

@@ -1,0 +1,311 @@
+\doxysection{sc\+\_\+signal\+\_\+ifs.\+h}
+\hypertarget{sc__signal__ifs_8h_source}{}\label{sc__signal__ifs_8h_source}\index{C:/Users/BJRODIER/Documents/QT\_REPO/QT\_VHDL\_simulator/code/Ressources/SystemC/include/sysc/communication/sc\_signal\_ifs.h@{C:/Users/BJRODIER/Documents/QT\_REPO/QT\_VHDL\_simulator/code/Ressources/SystemC/include/sysc/communication/sc\_signal\_ifs.h}}
+\mbox{\hyperlink{sc__signal__ifs_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{comment}{/*****************************************************************************}}
+\DoxyCodeLine{00002\ \textcolor{comment}{}}
+\DoxyCodeLine{00003\ \textcolor{comment}{\ \ Licensed\ to\ Accellera\ Systems\ Initiative\ Inc.\ (Accellera)\ under\ one\ or}}
+\DoxyCodeLine{00004\ \textcolor{comment}{\ \ more\ contributor\ license\ agreements.\ \ See\ the\ NOTICE\ file\ distributed}}
+\DoxyCodeLine{00005\ \textcolor{comment}{\ \ with\ this\ work\ for\ additional\ information\ regarding\ copyright\ ownership.}}
+\DoxyCodeLine{00006\ \textcolor{comment}{\ \ Accellera\ licenses\ this\ file\ to\ you\ under\ the\ Apache\ License,\ Version\ 2.0}}
+\DoxyCodeLine{00007\ \textcolor{comment}{\ \ (the\ "{}License"{});\ you\ may\ not\ use\ this\ file\ except\ in\ compliance\ with\ the}}
+\DoxyCodeLine{00008\ \textcolor{comment}{\ \ License.\ \ You\ may\ obtain\ a\ copy\ of\ the\ License\ at}}
+\DoxyCodeLine{00009\ \textcolor{comment}{}}
+\DoxyCodeLine{00010\ \textcolor{comment}{\ \ \ \ http://www.apache.org/licenses/LICENSE-\/2.0}}
+\DoxyCodeLine{00011\ \textcolor{comment}{}}
+\DoxyCodeLine{00012\ \textcolor{comment}{\ \ Unless\ required\ by\ applicable\ law\ or\ agreed\ to\ in\ writing,\ software}}
+\DoxyCodeLine{00013\ \textcolor{comment}{\ \ distributed\ under\ the\ License\ is\ distributed\ on\ an\ "{}AS\ IS"{}\ BASIS,}}
+\DoxyCodeLine{00014\ \textcolor{comment}{\ \ WITHOUT\ WARRANTIES\ OR\ CONDITIONS\ OF\ ANY\ KIND,\ either\ express\ or}}
+\DoxyCodeLine{00015\ \textcolor{comment}{\ \ implied.\ \ See\ the\ License\ for\ the\ specific\ language\ governing}}
+\DoxyCodeLine{00016\ \textcolor{comment}{\ \ permissions\ and\ limitations\ under\ the\ License.}}
+\DoxyCodeLine{00017\ \textcolor{comment}{}}
+\DoxyCodeLine{00018\ \textcolor{comment}{\ *****************************************************************************/}}
+\DoxyCodeLine{00019\ }
+\DoxyCodeLine{00020\ \textcolor{comment}{/*****************************************************************************}}
+\DoxyCodeLine{00021\ \textcolor{comment}{}}
+\DoxyCodeLine{00022\ \textcolor{comment}{\ \ sc\_signal\_ifs.h\ -\/-\/\ The\ sc\_signal<T>\ interface\ classes.}}
+\DoxyCodeLine{00023\ \textcolor{comment}{}}
+\DoxyCodeLine{00024\ \textcolor{comment}{\ \ Original\ Author:\ Martin\ Janssen,\ Synopsys,\ Inc.,\ 2001-\/05-\/21}}
+\DoxyCodeLine{00025\ \textcolor{comment}{}}
+\DoxyCodeLine{00026\ \textcolor{comment}{\ \ CHANGE\ LOG\ IS\ AT\ THE\ END\ OF\ THE\ FILE}}
+\DoxyCodeLine{00027\ \textcolor{comment}{\ *****************************************************************************/}}
+\DoxyCodeLine{00028\ }
+\DoxyCodeLine{00029\ \textcolor{preprocessor}{\#ifndef\ SC\_SIGNAL\_IFS\_H}}
+\DoxyCodeLine{00030\ \textcolor{preprocessor}{\#define\ SC\_SIGNAL\_IFS\_H}}
+\DoxyCodeLine{00031\ }
+\DoxyCodeLine{00032\ }
+\DoxyCodeLine{00033\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{sc__interface_8h}{sysc/communication/sc\_interface.h}}"{}}}
+\DoxyCodeLine{00034\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{sc__writer__policy_8h}{sysc/communication/sc\_writer\_policy.h}}"{}}}
+\DoxyCodeLine{00035\ }
+\DoxyCodeLine{00036\ }
+\DoxyCodeLine{00037\ \textcolor{keyword}{namespace\ }\mbox{\hyperlink{namespacesc__dt}{sc\_dt}}}
+\DoxyCodeLine{00038\ \{}
+\DoxyCodeLine{00039\ \ \ \ \ \textcolor{keyword}{class\ }\mbox{\hyperlink{sc__cmnhdr_8h_aff4a86b3f5de3ac2097081e7166fe89f}{SC\_API}}\ \mbox{\hyperlink{classsc__dt_1_1sc__logic}{sc\_logic}};}
+\DoxyCodeLine{00040\ \}}
+\DoxyCodeLine{00041\ }
+\DoxyCodeLine{00042\ \textcolor{keyword}{namespace\ }\mbox{\hyperlink{namespacesc__core}{sc\_core}}\ \{}
+\DoxyCodeLine{00043\ }
+\DoxyCodeLine{00044\ \textcolor{keyword}{class\ }\mbox{\hyperlink{class_sysc_add__pv}{sc\_signal\_bool\_deval}};}
+\DoxyCodeLine{00045\ \textcolor{keyword}{class\ }\mbox{\hyperlink{class_sysc_add__pv}{sc\_signal\_logic\_deval}};}
+\DoxyCodeLine{00046\ }
+\DoxyCodeLine{00047\ }
+\DoxyCodeLine{00048\ \textcolor{comment}{//\ -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{00049\ \textcolor{comment}{//\ \ CLASS\ :\ sc\_signal\_in\_if<T>}}
+\DoxyCodeLine{00050\ \textcolor{comment}{//}}
+\DoxyCodeLine{00051\ \textcolor{comment}{//\ \ The\ sc\_signal<T>\ input\ interface\ class.}}
+\DoxyCodeLine{00052\ \textcolor{comment}{//\ -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{00053\ }
+\DoxyCodeLine{00054\ \textcolor{keyword}{template}\ <\textcolor{keyword}{class}\ T>}
+\DoxyCodeLine{00055\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classsc__core_1_1sc__signal__in__if}{sc\_signal\_in\_if}}}
+\DoxyCodeLine{00056\ :\ \textcolor{keyword}{virtual}\ \textcolor{keyword}{public}\ \mbox{\hyperlink{classsc__core_1_1sc__interface}{sc\_interface}}}
+\DoxyCodeLine{00057\ \{}
+\DoxyCodeLine{00058\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00059\ }
+\DoxyCodeLine{00060\ \ \ \ \ \textcolor{comment}{//\ get\ the\ value\ changed\ event}}
+\DoxyCodeLine{00061\ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keyword}{const}\ \mbox{\hyperlink{classsc__core_1_1sc__event}{sc\_event}}\&\ \mbox{\hyperlink{classsc__core_1_1sc__signal__in__if_a3b51a3bac738df9f7375f5651263cba5}{value\_changed\_event}}()\ \textcolor{keyword}{const}\ =\ 0;}
+\DoxyCodeLine{00062\ }
+\DoxyCodeLine{00063\ }
+\DoxyCodeLine{00064\ \ \ \ \ \textcolor{comment}{//\ read\ the\ current\ value}}
+\DoxyCodeLine{00065\ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keyword}{const}\ \mbox{\hyperlink{mem__fn__cc_8hpp_adf1f3edb9115acb0a1e04209b7a9937b}{T}}\&\ \mbox{\hyperlink{classsc__core_1_1sc__signal__in__if_add7eff25e352159761d34cfb2d3f445a}{read}}()\ \textcolor{keyword}{const}\ =\ 0;}
+\DoxyCodeLine{00066\ }
+\DoxyCodeLine{00067\ \ \ \ \ \textcolor{comment}{//\ get\ a\ reference\ to\ the\ current\ value\ (for\ tracing)}}
+\DoxyCodeLine{00068\ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keyword}{const}\ \mbox{\hyperlink{mem__fn__cc_8hpp_adf1f3edb9115acb0a1e04209b7a9937b}{T}}\&\ \mbox{\hyperlink{classsc__core_1_1sc__signal__in__if_ab6e020dc933e0cc206f8c422aa81be15}{get\_data\_ref}}()\ \textcolor{keyword}{const}\ =\ 0;}
+\DoxyCodeLine{00069\ }
+\DoxyCodeLine{00070\ }
+\DoxyCodeLine{00071\ \ \ \ \ \textcolor{comment}{//\ was\ there\ a\ value\ changed\ event?}}
+\DoxyCodeLine{00072\ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{classsc__core_1_1sc__signal__in__if_aa1a12f3c5f702e1dba271774e8aaf197}{event}}()\ \textcolor{keyword}{const}\ =\ 0;}
+\DoxyCodeLine{00073\ }
+\DoxyCodeLine{00074\ \textcolor{keyword}{protected}:}
+\DoxyCodeLine{00075\ }
+\DoxyCodeLine{00076\ \ \ \ \ \textcolor{comment}{//\ constructor}}
+\DoxyCodeLine{00077\ }
+\DoxyCodeLine{00078\ \ \ \ \ \mbox{\hyperlink{classsc__core_1_1sc__signal__in__if_a63f14a632546ca826dd9e96ef06cbab5}{sc\_signal\_in\_if}}()}
+\DoxyCodeLine{00079\ \ \ \ \ \{\}}
+\DoxyCodeLine{00080\ }
+\DoxyCodeLine{00081\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00082\ }
+\DoxyCodeLine{00083\ \ \ \ \ \textcolor{comment}{//\ disabled}}
+\DoxyCodeLine{00084\ \ \ \ \ \mbox{\hyperlink{classsc__core_1_1sc__signal__in__if_a6f15e44a4d220078937b8fbea1c03497}{sc\_signal\_in\_if}}(\ \textcolor{keyword}{const}\ \mbox{\hyperlink{class_sysc_add__pv}{sc\_signal\_in\_if<T>}}\&\ );}
+\DoxyCodeLine{00085\ \ \ \ \ \mbox{\hyperlink{class_sysc_add__pv}{sc\_signal\_in\_if<T>}}\&\ \mbox{\hyperlink{classsc__core_1_1sc__signal__in__if_a4529e3d1544c5a1f0e0b5c7123191be7}{operator\ =\ }}(\ \textcolor{keyword}{const}\ \mbox{\hyperlink{class_sysc_add__pv}{sc\_signal\_in\_if<T>}}\&\ );}
+\DoxyCodeLine{00086\ \};}
+\DoxyCodeLine{00087\ }
+\DoxyCodeLine{00088\ }
+\DoxyCodeLine{00089\ \textcolor{comment}{//\ -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{00090\ \textcolor{comment}{//\ \ CLASS\ :\ sc\_signal\_in\_if<bool>}}
+\DoxyCodeLine{00091\ \textcolor{comment}{//}}
+\DoxyCodeLine{00092\ \textcolor{comment}{//\ \ Specialization\ of\ sc\_signal\_in\_if<T>\ for\ type\ bool.}}
+\DoxyCodeLine{00093\ \textcolor{comment}{//\ -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{00094\ }
+\DoxyCodeLine{00095\ \textcolor{keyword}{class\ }\mbox{\hyperlink{sc__cmnhdr_8h_aff4a86b3f5de3ac2097081e7166fe89f}{SC\_API}}\ \mbox{\hyperlink{classsc__core_1_1sc__reset}{sc\_reset}};}
+\DoxyCodeLine{00096\ }
+\DoxyCodeLine{00097\ \textcolor{keyword}{template}\ <>}
+\DoxyCodeLine{00098\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classsc__core_1_1sc__signal__in__if}{sc\_signal\_in\_if}}<\mbox{\hyperlink{class_sysc_add__pv}{bool}}>}
+\DoxyCodeLine{00099\ :\ \textcolor{keyword}{virtual}\ \textcolor{keyword}{public}\ \mbox{\hyperlink{classsc__core_1_1sc__interface}{sc\_interface}}}
+\DoxyCodeLine{00100\ \{}
+\DoxyCodeLine{00101\ \ \ \ \ \textcolor{keyword}{friend}\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classsc__core_1_1sc__reset}{sc\_reset}};}
+\DoxyCodeLine{00102\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00103\ }
+\DoxyCodeLine{00104\ \ \ \ \ \textcolor{comment}{//\ get\ the\ value\ changed\ event}}
+\DoxyCodeLine{00105\ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keyword}{const}\ \mbox{\hyperlink{classsc__core_1_1sc__event}{sc\_event}}\&\ \mbox{\hyperlink{classsc__core_1_1sc__signal__in__if_3_01bool_01_4_a33ee290cb30c17fb00779f9371e04736}{value\_changed\_event}}()\ \textcolor{keyword}{const}\ =\ 0;}
+\DoxyCodeLine{00106\ }
+\DoxyCodeLine{00107\ \ \ \ \ \textcolor{comment}{//\ get\ the\ positive\ edge\ event}}
+\DoxyCodeLine{00108\ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keyword}{const}\ \mbox{\hyperlink{classsc__core_1_1sc__event}{sc\_event}}\&\ \mbox{\hyperlink{classsc__core_1_1sc__signal__in__if_3_01bool_01_4_a43ea743a3c47f7d10d8a92c0c1753451}{posedge\_event}}()\ \textcolor{keyword}{const}\ =\ 0;}
+\DoxyCodeLine{00109\ }
+\DoxyCodeLine{00110\ \ \ \ \ \textcolor{comment}{//\ get\ the\ negative\ edge\ event}}
+\DoxyCodeLine{00111\ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keyword}{const}\ \mbox{\hyperlink{classsc__core_1_1sc__event}{sc\_event}}\&\ \mbox{\hyperlink{classsc__core_1_1sc__signal__in__if_3_01bool_01_4_ae1dae9f5db062de54b771d3ac2a4e6a9}{negedge\_event}}()\ \textcolor{keyword}{const}\ =\ 0;}
+\DoxyCodeLine{00112\ }
+\DoxyCodeLine{00113\ }
+\DoxyCodeLine{00114\ \ \ \ \ \textcolor{comment}{//\ read\ the\ current\ value}}
+\DoxyCodeLine{00115\ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{bool}\&\ \mbox{\hyperlink{classsc__core_1_1sc__signal__in__if_3_01bool_01_4_a0903f579402e5803e826d7dea7a92640}{read}}()\ \textcolor{keyword}{const}\ =\ 0;}
+\DoxyCodeLine{00116\ }
+\DoxyCodeLine{00117\ \ \ \ \ \textcolor{comment}{//\ get\ a\ reference\ to\ the\ current\ value\ (for\ tracing)}}
+\DoxyCodeLine{00118\ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{bool}\&\ \mbox{\hyperlink{classsc__core_1_1sc__signal__in__if_3_01bool_01_4_a8cc0fb37eeae78fb15ff37d4876a6548}{get\_data\_ref}}()\ \textcolor{keyword}{const}\ =\ 0;}
+\DoxyCodeLine{00119\ }
+\DoxyCodeLine{00120\ }
+\DoxyCodeLine{00121\ \ \ \ \ \textcolor{comment}{//\ was\ there\ a\ value\ changed\ event?}}
+\DoxyCodeLine{00122\ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{classsc__core_1_1sc__signal__in__if_3_01bool_01_4_a163b6cddab318db80e5e5dc5fc699e0e}{event}}()\ \textcolor{keyword}{const}\ =\ 0;}
+\DoxyCodeLine{00123\ }
+\DoxyCodeLine{00124\ \ \ \ \ \textcolor{comment}{//\ was\ there\ a\ positive\ edge\ event?}}
+\DoxyCodeLine{00125\ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{classsc__core_1_1sc__signal__in__if_3_01bool_01_4_a6b6c3d2d95aad99e57e39d17a5171480}{posedge}}()\ \textcolor{keyword}{const}\ =\ 0;}
+\DoxyCodeLine{00126\ }
+\DoxyCodeLine{00127\ \ \ \ \ \textcolor{comment}{//\ was\ there\ a\ negative\ edge\ event?}}
+\DoxyCodeLine{00128\ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{classsc__core_1_1sc__signal__in__if_3_01bool_01_4_a7b7bd76eda5060d79b15b76252147376}{negedge}}()\ \textcolor{keyword}{const}\ =\ 0;}
+\DoxyCodeLine{00129\ }
+\DoxyCodeLine{00130\ \textcolor{keyword}{protected}:}
+\DoxyCodeLine{00131\ }
+\DoxyCodeLine{00132\ \ \ \ \ \textcolor{comment}{//\ constructor}}
+\DoxyCodeLine{00133\ }
+\DoxyCodeLine{00134\ \ \ \ \ \mbox{\hyperlink{classsc__core_1_1sc__signal__in__if_3_01bool_01_4_ad033c6fc989c943ca3dff214b2c7f2f5}{sc\_signal\_in\_if}}()}
+\DoxyCodeLine{00135\ \ \ \ \ \{\}}
+\DoxyCodeLine{00136\ }
+\DoxyCodeLine{00137\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00138\ }
+\DoxyCodeLine{00139\ \ \ \ \ \textcolor{comment}{//\ disabled}}
+\DoxyCodeLine{00140\ \ \ \ \ \mbox{\hyperlink{classsc__core_1_1sc__signal__in__if_3_01bool_01_4_adb7fe801613cc5474920f2e74113325f}{sc\_signal\_in\_if}}(\ \textcolor{keyword}{const}\ \mbox{\hyperlink{class_sysc_add__pv}{sc\_signal\_in\_if<bool>}}\&\ );}
+\DoxyCodeLine{00141\ \ \ \ \ \mbox{\hyperlink{class_sysc_add__pv}{sc\_signal\_in\_if<bool>}}\&\ \mbox{\hyperlink{classsc__core_1_1sc__signal__in__if_a4529e3d1544c5a1f0e0b5c7123191be7}{operator\ =\ }}(\ \textcolor{keyword}{const}\ \mbox{\hyperlink{class_sysc_add__pv}{sc\_signal\_in\_if<bool>}}\&\ );}
+\DoxyCodeLine{00142\ }
+\DoxyCodeLine{00143\ \ \ \ \ \textcolor{comment}{//\ designate\ this\ object\ as\ a\ reset\ signal}}
+\DoxyCodeLine{00144\ \ \ \ \ \textcolor{keyword}{virtual}\ \mbox{\hyperlink{classsc__core_1_1sc__reset}{sc\_reset}}*\ \mbox{\hyperlink{classsc__core_1_1sc__signal__in__if_3_01bool_01_4_a4c49955ee302b05b793fdc312d2b6826}{is\_reset}}()\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00145\ \textcolor{keyword}{\ \ \ \ \ \ }\{\ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{class_sysc_add__pv}{NULL}};\ \}}
+\DoxyCodeLine{00146\ \};}
+\DoxyCodeLine{00147\ }
+\DoxyCodeLine{00148\ }
+\DoxyCodeLine{00149\ \textcolor{comment}{//\ -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{00150\ \textcolor{comment}{//\ \ CLASS\ :\ sc\_signal\_in\_if<sc\_dt::sc\_logic>}}
+\DoxyCodeLine{00151\ \textcolor{comment}{//}}
+\DoxyCodeLine{00152\ \textcolor{comment}{//\ \ Specialization\ of\ sc\_signal\_in\_if<T>\ for\ type\ sc\_dt::sc\_logic.}}
+\DoxyCodeLine{00153\ \textcolor{comment}{//\ -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{00154\ }
+\DoxyCodeLine{00155\ \textcolor{keyword}{template}\ <>}
+\DoxyCodeLine{00156\ \textcolor{keyword}{class\ }\mbox{\hyperlink{sc__cmnhdr_8h_aff4a86b3f5de3ac2097081e7166fe89f}{SC\_API}}\ \mbox{\hyperlink{classsc__core_1_1sc__signal__in__if}{sc\_signal\_in\_if}}<\mbox{\hyperlink{namespacesc__dt}{sc\_dt}}::sc\_logic>}
+\DoxyCodeLine{00157\ :\ \textcolor{keyword}{virtual}\ \textcolor{keyword}{public}\ \mbox{\hyperlink{classsc__core_1_1sc__interface}{sc\_interface}}}
+\DoxyCodeLine{00158\ \{}
+\DoxyCodeLine{00159\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00160\ }
+\DoxyCodeLine{00161\ \ \ \ \ \textcolor{comment}{//\ get\ the\ value\ changed\ event}}
+\DoxyCodeLine{00162\ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keyword}{const}\ \mbox{\hyperlink{classsc__core_1_1sc__event}{sc\_event}}\&\ \mbox{\hyperlink{classsc__core_1_1sc__signal__in__if_3_01sc__dt_1_1sc__logic_01_4_a9269799419be1b62ce8c6a83746c278e}{value\_changed\_event}}()\ \textcolor{keyword}{const}\ =\ 0;}
+\DoxyCodeLine{00163\ }
+\DoxyCodeLine{00164\ \ \ \ \ \textcolor{comment}{//\ get\ the\ positive\ edge\ event}}
+\DoxyCodeLine{00165\ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keyword}{const}\ \mbox{\hyperlink{classsc__core_1_1sc__event}{sc\_event}}\&\ \mbox{\hyperlink{classsc__core_1_1sc__signal__in__if_3_01sc__dt_1_1sc__logic_01_4_afab620d3eca96ac6900fb13e987cff6a}{posedge\_event}}()\ \textcolor{keyword}{const}\ =\ 0;}
+\DoxyCodeLine{00166\ }
+\DoxyCodeLine{00167\ \ \ \ \ \textcolor{comment}{//\ get\ the\ negative\ edge\ event}}
+\DoxyCodeLine{00168\ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keyword}{const}\ \mbox{\hyperlink{classsc__core_1_1sc__event}{sc\_event}}\&\ \mbox{\hyperlink{classsc__core_1_1sc__signal__in__if_3_01sc__dt_1_1sc__logic_01_4_aacc3cf1d33e865984add81bc8570334a}{negedge\_event}}()\ \textcolor{keyword}{const}\ =\ 0;}
+\DoxyCodeLine{00169\ }
+\DoxyCodeLine{00170\ }
+\DoxyCodeLine{00171\ \ \ \ \ \textcolor{comment}{//\ read\ the\ current\ value}}
+\DoxyCodeLine{00172\ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keyword}{const}\ \mbox{\hyperlink{classsc__dt_1_1sc__logic}{sc\_dt::sc\_logic}}\&\ \mbox{\hyperlink{classsc__core_1_1sc__signal__in__if_3_01sc__dt_1_1sc__logic_01_4_ae156e958883b25c1531acdffbf34ee32}{read}}()\ \textcolor{keyword}{const}\ =\ 0;}
+\DoxyCodeLine{00173\ }
+\DoxyCodeLine{00174\ \ \ \ \ \textcolor{comment}{//\ get\ a\ reference\ to\ the\ current\ value\ (for\ tracing)}}
+\DoxyCodeLine{00175\ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keyword}{const}\ \mbox{\hyperlink{classsc__dt_1_1sc__logic}{sc\_dt::sc\_logic}}\&\ \mbox{\hyperlink{classsc__core_1_1sc__signal__in__if_3_01sc__dt_1_1sc__logic_01_4_a5b92f40e8db9ad2bbe67a226bb9f673a}{get\_data\_ref}}()\ \textcolor{keyword}{const}\ =\ 0;}
+\DoxyCodeLine{00176\ }
+\DoxyCodeLine{00177\ }
+\DoxyCodeLine{00178\ \ \ \ \ \textcolor{comment}{//\ was\ there\ a\ value\ changed\ event?}}
+\DoxyCodeLine{00179\ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{classsc__core_1_1sc__signal__in__if_3_01sc__dt_1_1sc__logic_01_4_a8088cf00767db75ee84ed68d2048b980}{event}}()\ \textcolor{keyword}{const}\ =\ 0;}
+\DoxyCodeLine{00180\ }
+\DoxyCodeLine{00181\ \ \ \ \ \textcolor{comment}{//\ was\ there\ a\ positive\ edge\ event?}}
+\DoxyCodeLine{00182\ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{classsc__core_1_1sc__signal__in__if_3_01sc__dt_1_1sc__logic_01_4_a96fcd1858fce429c75a507574d435f83}{posedge}}()\ \textcolor{keyword}{const}\ =\ 0;}
+\DoxyCodeLine{00183\ }
+\DoxyCodeLine{00184\ \ \ \ \ \textcolor{comment}{//\ was\ there\ a\ negative\ edge\ event?}}
+\DoxyCodeLine{00185\ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{classsc__core_1_1sc__signal__in__if_3_01sc__dt_1_1sc__logic_01_4_a58e94044738deea44313006f04b15e5e}{negedge}}()\ \textcolor{keyword}{const}\ =\ 0;}
+\DoxyCodeLine{00186\ }
+\DoxyCodeLine{00187\ }
+\DoxyCodeLine{00188\ \textcolor{keyword}{protected}:}
+\DoxyCodeLine{00189\ }
+\DoxyCodeLine{00190\ \ \ \ \ \textcolor{comment}{//\ constructor}}
+\DoxyCodeLine{00191\ }
+\DoxyCodeLine{00192\ \ \ \ \ \mbox{\hyperlink{classsc__core_1_1sc__signal__in__if_3_01sc__dt_1_1sc__logic_01_4_a0b0e5b4b8fafc8198f6f08bcda0d77ba}{sc\_signal\_in\_if}}()}
+\DoxyCodeLine{00193\ \ \ \ \ \{\}}
+\DoxyCodeLine{00194\ }
+\DoxyCodeLine{00195\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00196\ }
+\DoxyCodeLine{00197\ \ \ \ \ \textcolor{comment}{//\ disabled}}
+\DoxyCodeLine{00198\ \ \ \ \ \mbox{\hyperlink{classsc__core_1_1sc__signal__in__if_3_01sc__dt_1_1sc__logic_01_4_aafa3aa5f71601b279959ed6f03a58c55}{sc\_signal\_in\_if}}(\ \textcolor{keyword}{const}\ \mbox{\hyperlink{class_sysc_add__pv}{sc\_signal\_in\_if<sc\_dt::sc\_logic>}}\&\ );}
+\DoxyCodeLine{00199\ \ \ \ \ \mbox{\hyperlink{class_sysc_add__pv}{sc\_signal\_in\_if<sc\_dt::sc\_logic>}}\&\ \mbox{\hyperlink{class_sysc_add__pv}{operator\ =\ }}(}
+\DoxyCodeLine{00200\ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{class_sysc_add__pv}{sc\_signal\_in\_if<sc\_dt::sc\_logic>}}\&\ );}
+\DoxyCodeLine{00201\ \};}
+\DoxyCodeLine{00202\ }
+\DoxyCodeLine{00203\ }
+\DoxyCodeLine{00204\ \textcolor{comment}{//\ -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{00205\ \textcolor{comment}{//\ \ CLASS\ :\ sc\_signal\_write\_if<T>}}
+\DoxyCodeLine{00206\ \textcolor{comment}{//}}
+\DoxyCodeLine{00207\ \textcolor{comment}{//\ \ The\ standard\ output\ interface\ class.}}
+\DoxyCodeLine{00208\ \textcolor{comment}{//\ -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{00209\ \textcolor{keyword}{template}<\ \textcolor{keyword}{typename}\ T\ >}
+\DoxyCodeLine{00210\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classsc__core_1_1sc__signal__write__if}{sc\_signal\_write\_if}}\ :\ \textcolor{keyword}{public}\ \textcolor{keyword}{virtual}\ \mbox{\hyperlink{classsc__core_1_1sc__interface}{sc\_interface}}}
+\DoxyCodeLine{00211\ \{}
+\DoxyCodeLine{00212\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00213\ \ \ \ \ \mbox{\hyperlink{classsc__core_1_1sc__signal__write__if_a7dc59e19ca2ae5f2975cc147adf70589}{sc\_signal\_write\_if}}()\ \{\}}
+\DoxyCodeLine{00214\ \ \ \ \ \textcolor{comment}{//\ write\ the\ new\ value}}
+\DoxyCodeLine{00215\ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classsc__core_1_1sc__signal__write__if_aa6f236905f206bc98458c7c38d51f12f}{write}}(\ \textcolor{keyword}{const}\ \mbox{\hyperlink{mem__fn__cc_8hpp_adf1f3edb9115acb0a1e04209b7a9937b}{T}}\&\ )\ =\ 0;}
+\DoxyCodeLine{00216\ \ \ \ \ \textcolor{keyword}{virtual}\ \mbox{\hyperlink{namespacesc__core_ae291a92ac88dd846d36d6a9cd9835607}{sc\_writer\_policy}}\ \mbox{\hyperlink{classsc__core_1_1sc__signal__write__if_a77f46edcd83f910ca3134973b9d99bca}{get\_writer\_policy}}()\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00217\ \textcolor{keyword}{\ \ \ \ \ \ \ \ }\{\ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{sc__writer__policy_8h_a2e3da293d6ddebdfaaf2c66c9d7a0ccc}{SC\_DEFAULT\_WRITER\_POLICY}};\ \}}
+\DoxyCodeLine{00218\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00219\ \ \ \ \ \textcolor{comment}{//\ disabled}}
+\DoxyCodeLine{00220\ \ \ \ \ \mbox{\hyperlink{classsc__core_1_1sc__signal__write__if_ac4470b27183f36f29137317809e57733}{sc\_signal\_write\_if}}(\ \textcolor{keyword}{const}\ \mbox{\hyperlink{class_sysc_add__pv}{sc\_signal\_write\_if<T>}}\&\ );}
+\DoxyCodeLine{00221\ \ \ \ \ \mbox{\hyperlink{class_sysc_add__pv}{sc\_signal\_write\_if<T>}}\&\ \mbox{\hyperlink{classsc__core_1_1sc__signal__write__if_ab472b5a453557ac7b9b5a39a8c5b4951}{operator\ =\ }}(\ \textcolor{keyword}{const}\ \mbox{\hyperlink{class_sysc_add__pv}{sc\_signal\_write\_if<T>}}\&\ );}
+\DoxyCodeLine{00222\ \};}
+\DoxyCodeLine{00223\ }
+\DoxyCodeLine{00224\ }
+\DoxyCodeLine{00225\ \textcolor{comment}{//\ -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{00226\ \textcolor{comment}{//\ \ CLASS\ :\ sc\_signal\_inout\_if<T>}}
+\DoxyCodeLine{00227\ \textcolor{comment}{//}}
+\DoxyCodeLine{00228\ \textcolor{comment}{//\ \ The\ sc\_signal<T>\ input/output\ interface\ class.}}
+\DoxyCodeLine{00229\ \textcolor{comment}{//\ -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{00230\ }
+\DoxyCodeLine{00231\ \textcolor{keyword}{template}\ <\textcolor{keyword}{class}\ T>}
+\DoxyCodeLine{00232\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classsc__core_1_1sc__signal__inout__if}{sc\_signal\_inout\_if}}}
+\DoxyCodeLine{00233\ :\ \textcolor{keyword}{public}\ \mbox{\hyperlink{classsc__core_1_1sc__signal__in__if}{sc\_signal\_in\_if}}<T>,\ \textcolor{keyword}{public}\ \mbox{\hyperlink{classsc__core_1_1sc__signal__write__if}{sc\_signal\_write\_if}}<T>}
+\DoxyCodeLine{00234\ \{}
+\DoxyCodeLine{00235\ }
+\DoxyCodeLine{00236\ \textcolor{keyword}{protected}:}
+\DoxyCodeLine{00237\ }
+\DoxyCodeLine{00238\ \ \ \ \ \textcolor{comment}{//\ constructor}}
+\DoxyCodeLine{00239\ }
+\DoxyCodeLine{00240\ \ \ \ \ \mbox{\hyperlink{classsc__core_1_1sc__signal__inout__if_a008ca3482ed6cadd6b4a65e5624af61d}{sc\_signal\_inout\_if}}()}
+\DoxyCodeLine{00241\ \ \ \ \ \{\}}
+\DoxyCodeLine{00242\ }
+\DoxyCodeLine{00243\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00244\ }
+\DoxyCodeLine{00245\ \ \ \ \ \textcolor{comment}{//\ disabled}}
+\DoxyCodeLine{00246\ \ \ \ \ \mbox{\hyperlink{classsc__core_1_1sc__signal__inout__if_af4029b376013603984359487ebd1d5f8}{sc\_signal\_inout\_if}}(\ \textcolor{keyword}{const}\ \mbox{\hyperlink{class_sysc_add__pv}{sc\_signal\_inout\_if<T>}}\&\ );}
+\DoxyCodeLine{00247\ \ \ \ \ \mbox{\hyperlink{class_sysc_add__pv}{sc\_signal\_inout\_if<T>}}\&\ \mbox{\hyperlink{classsc__core_1_1sc__signal__inout__if_a7d5507e9554dc99e495e54efc012ee76}{operator\ =\ }}(\ \textcolor{keyword}{const}\ \mbox{\hyperlink{class_sysc_add__pv}{sc\_signal\_inout\_if<T>}}\&\ );}
+\DoxyCodeLine{00248\ \};}
+\DoxyCodeLine{00249\ }
+\DoxyCodeLine{00250\ }
+\DoxyCodeLine{00251\ \textcolor{comment}{//\ -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{00252\ \textcolor{comment}{//\ \ CLASS\ :\ sc\_signal\_out\_if<T>}}
+\DoxyCodeLine{00253\ \textcolor{comment}{//}}
+\DoxyCodeLine{00254\ \textcolor{comment}{//\ \ The\ sc\_signal<T>\ output\ interface\ class.}}
+\DoxyCodeLine{00255\ \textcolor{comment}{//\ -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{00256\ }
+\DoxyCodeLine{00257\ \textcolor{comment}{//\ sc\_signal\_out\_if\ can\ also\ be\ read\ from,\ hence\ no\ difference\ with}}
+\DoxyCodeLine{00258\ \textcolor{comment}{//\ sc\_signal\_inout\_if.}}
+\DoxyCodeLine{00259\ }
+\DoxyCodeLine{00260\ \textcolor{preprocessor}{\#define\ sc\_signal\_out\_if\ sc\_signal\_inout\_if}}
+\DoxyCodeLine{00261\ }
+\DoxyCodeLine{00262\ \}\ \textcolor{comment}{//\ namespace\ sc\_core}}
+\DoxyCodeLine{00263\ }
+\DoxyCodeLine{00264\ \textcolor{comment}{//\$Log:\ sc\_signal\_ifs.h,v\ \$}}
+\DoxyCodeLine{00265\ \textcolor{comment}{//Revision\ 1.4\ \ 2011/08/26\ 20:45:43\ \ acg}}
+\DoxyCodeLine{00266\ \textcolor{comment}{//\ Andy\ Goodrich:\ moved\ the\ modification\ log\ to\ the\ end\ of\ the\ file\ to}}
+\DoxyCodeLine{00267\ \textcolor{comment}{//\ eliminate\ source\ line\ number\ skew\ when\ check-\/ins\ are\ done.}}
+\DoxyCodeLine{00268\ \textcolor{comment}{//}}
+\DoxyCodeLine{00269\ \textcolor{comment}{//Revision\ 1.3\ \ 2011/02/18\ 20:23:45\ \ acg}}
+\DoxyCodeLine{00270\ \textcolor{comment}{//\ Andy\ Goodrich:\ Copyright\ update.}}
+\DoxyCodeLine{00271\ \textcolor{comment}{//}}
+\DoxyCodeLine{00272\ \textcolor{comment}{//Revision\ 1.2\ \ 2010/12/07\ 19:50:37\ \ acg}}
+\DoxyCodeLine{00273\ \textcolor{comment}{//\ Andy\ Goodrich:\ addition\ of\ writer\ policies,\ courtesy\ of\ Philipp\ Hartmann.}}
+\DoxyCodeLine{00274\ \textcolor{comment}{//}}
+\DoxyCodeLine{00275\ \textcolor{comment}{//Revision\ 1.1.1.1\ \ 2006/12/15\ 20:20:04\ \ acg}}
+\DoxyCodeLine{00276\ \textcolor{comment}{//SystemC\ 2.3}}
+\DoxyCodeLine{00277\ \textcolor{comment}{//}}
+\DoxyCodeLine{00278\ \textcolor{comment}{//Revision\ 1.4\ \ 2006/08/29\ 23:35:00\ \ acg}}
+\DoxyCodeLine{00279\ \textcolor{comment}{//\ Andy\ Goodrich:\ added\ bind\_count()\ method\ to\ allow\ users\ to\ determine\ which}}
+\DoxyCodeLine{00280\ \textcolor{comment}{//\ ports\ are\ connected\ in\ before\_end\_of\_elaboration().}}
+\DoxyCodeLine{00281\ \textcolor{comment}{//}}
+\DoxyCodeLine{00282\ \textcolor{comment}{//Revision\ 1.3\ \ 2006/04/11\ 23:11:57\ \ acg}}
+\DoxyCodeLine{00283\ \textcolor{comment}{//\ \ Andy\ Goodrich:\ Changes\ for\ reset\ support\ that\ only\ includes}}
+\DoxyCodeLine{00284\ \textcolor{comment}{//\ \ sc\_cthread\_process\ instances.}}
+\DoxyCodeLine{00285\ \textcolor{comment}{//}}
+\DoxyCodeLine{00286\ \textcolor{comment}{//Revision\ 1.2\ \ 2006/01/03\ 23:18:26\ \ acg}}
+\DoxyCodeLine{00287\ \textcolor{comment}{//Changed\ copyright\ to\ include\ 2006.}}
+\DoxyCodeLine{00288\ \textcolor{comment}{//}}
+\DoxyCodeLine{00289\ \textcolor{comment}{//Revision\ 1.1.1.1\ \ 2005/12/19\ 23:16:43\ \ acg}}
+\DoxyCodeLine{00290\ \textcolor{comment}{//First\ check\ in\ of\ SystemC\ 2.1\ into\ its\ own\ archive.}}
+\DoxyCodeLine{00291\ \textcolor{comment}{//}}
+\DoxyCodeLine{00292\ \textcolor{comment}{//Revision\ 1.10\ \ 2005/09/15\ 23:01:51\ \ acg}}
+\DoxyCodeLine{00293\ \textcolor{comment}{//Added\ std::\ prefix\ to\ appropriate\ methods\ and\ types\ to\ get\ around}}
+\DoxyCodeLine{00294\ \textcolor{comment}{//issues\ with\ the\ Edison\ Front\ End.}}
+\DoxyCodeLine{00295\ \textcolor{comment}{//}}
+\DoxyCodeLine{00296\ \textcolor{comment}{//Revision\ 1.9\ \ 2005/06/29\ 18:12:12\ \ acg}}
+\DoxyCodeLine{00297\ \textcolor{comment}{//Added\ \$log.}}
+\DoxyCodeLine{00298\ \textcolor{comment}{//}}
+\DoxyCodeLine{00299\ \textcolor{comment}{//Revision\ 1.8\ \ 2005/06/10\ 22:43:55\ \ acg}}
+\DoxyCodeLine{00300\ \textcolor{comment}{//Added\ CVS\ change\ log\ annotation.}}
+\DoxyCodeLine{00301\ \textcolor{comment}{//}}
+\DoxyCodeLine{00302\ }
+\DoxyCodeLine{00303\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00304\ }
+\DoxyCodeLine{00305\ \textcolor{comment}{//\ Taf!}}
+
+\end{DoxyCode}

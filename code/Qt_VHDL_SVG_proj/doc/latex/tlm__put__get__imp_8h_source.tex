@@ -1,0 +1,120 @@
+\doxysection{tlm\+\_\+put\+\_\+get\+\_\+imp.\+h}
+\hypertarget{tlm__put__get__imp_8h_source}{}\label{tlm__put__get__imp_8h_source}\index{C:/Users/BJRODIER/Documents/QT\_REPO/QT\_VHDL\_simulator/code/Ressources/SystemC/include/tlm\_core/tlm\_1/tlm\_req\_rsp/tlm\_channels/tlm\_req\_rsp\_channels/tlm\_put\_get\_imp.h@{C:/Users/BJRODIER/Documents/QT\_REPO/QT\_VHDL\_simulator/code/Ressources/SystemC/include/tlm\_core/tlm\_1/tlm\_req\_rsp/tlm\_channels/tlm\_req\_rsp\_channels/tlm\_put\_get\_imp.h}}
+\mbox{\hyperlink{tlm__put__get__imp_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{comment}{/*****************************************************************************}}
+\DoxyCodeLine{00002\ \textcolor{comment}{}}
+\DoxyCodeLine{00003\ \textcolor{comment}{\ \ Licensed\ to\ Accellera\ Systems\ Initiative\ Inc.\ (Accellera)\ under\ one\ or}}
+\DoxyCodeLine{00004\ \textcolor{comment}{\ \ more\ contributor\ license\ agreements.\ \ See\ the\ NOTICE\ file\ distributed}}
+\DoxyCodeLine{00005\ \textcolor{comment}{\ \ with\ this\ work\ for\ additional\ information\ regarding\ copyright\ ownership.}}
+\DoxyCodeLine{00006\ \textcolor{comment}{\ \ Accellera\ licenses\ this\ file\ to\ you\ under\ the\ Apache\ License,\ Version\ 2.0}}
+\DoxyCodeLine{00007\ \textcolor{comment}{\ \ (the\ "{}License"{});\ you\ may\ not\ use\ this\ file\ except\ in\ compliance\ with\ the}}
+\DoxyCodeLine{00008\ \textcolor{comment}{\ \ License.\ \ You\ may\ obtain\ a\ copy\ of\ the\ License\ at}}
+\DoxyCodeLine{00009\ \textcolor{comment}{}}
+\DoxyCodeLine{00010\ \textcolor{comment}{\ \ \ \ http://www.apache.org/licenses/LICENSE-\/2.0}}
+\DoxyCodeLine{00011\ \textcolor{comment}{}}
+\DoxyCodeLine{00012\ \textcolor{comment}{\ \ Unless\ required\ by\ applicable\ law\ or\ agreed\ to\ in\ writing,\ software}}
+\DoxyCodeLine{00013\ \textcolor{comment}{\ \ distributed\ under\ the\ License\ is\ distributed\ on\ an\ "{}AS\ IS"{}\ BASIS,}}
+\DoxyCodeLine{00014\ \textcolor{comment}{\ \ WITHOUT\ WARRANTIES\ OR\ CONDITIONS\ OF\ ANY\ KIND,\ either\ express\ or}}
+\DoxyCodeLine{00015\ \textcolor{comment}{\ \ implied.\ \ See\ the\ License\ for\ the\ specific\ language\ governing}}
+\DoxyCodeLine{00016\ \textcolor{comment}{\ \ permissions\ and\ limitations\ under\ the\ License.}}
+\DoxyCodeLine{00017\ \textcolor{comment}{}}
+\DoxyCodeLine{00018\ \textcolor{comment}{\ *****************************************************************************/}}
+\DoxyCodeLine{00019\ }
+\DoxyCodeLine{00020\ \textcolor{comment}{//}}
+\DoxyCodeLine{00021\ \textcolor{comment}{//\ To\ the\ LRM\ writer\ :\ these\ classes\ are\ purely\ artifacts\ of\ the\ implementation.}}
+\DoxyCodeLine{00022\ \textcolor{comment}{//}}
+\DoxyCodeLine{00023\ }
+\DoxyCodeLine{00024\ \textcolor{preprocessor}{\#ifndef\ \_\_TLM\_PUT\_GET\_IMP\_H\_\_}}
+\DoxyCodeLine{00025\ \textcolor{preprocessor}{\#define\ \_\_TLM\_PUT\_GET\_IMP\_H\_\_}}
+\DoxyCodeLine{00026\ }
+\DoxyCodeLine{00027\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{tlm__master__slave__ifs_8h}{tlm\_core/tlm\_1/tlm\_req\_rsp/tlm\_1\_interfaces/tlm\_master\_slave\_ifs.h}}"{}}}
+\DoxyCodeLine{00028\ }
+\DoxyCodeLine{00029\ \textcolor{keyword}{namespace\ }\mbox{\hyperlink{namespacetlm}{tlm}}\ \{}
+\DoxyCodeLine{00030\ }
+\DoxyCodeLine{00031\ \textcolor{keyword}{template}\ <\ \textcolor{keyword}{typename}\ PUT\_DATA\ ,\ \textcolor{keyword}{typename}\ GET\_DATA>}
+\DoxyCodeLine{00032\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classtlm_1_1tlm__put__get__imp}{tlm\_put\_get\_imp}}\ :}
+\DoxyCodeLine{00033\ \ \ \textcolor{keyword}{public}\ \textcolor{keyword}{virtual}\ \mbox{\hyperlink{classtlm_1_1tlm__put__if}{tlm\_put\_if}}<\ PUT\_DATA\ >\ ,}
+\DoxyCodeLine{00034\ \ \ \textcolor{keyword}{public}\ \textcolor{keyword}{virtual}\ \mbox{\hyperlink{classtlm_1_1tlm__get__peek__if}{tlm\_get\_peek\_if}}<\ GET\_DATA\ >}
+\DoxyCodeLine{00035\ \{}
+\DoxyCodeLine{00036\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00037\ \ \ \mbox{\hyperlink{classtlm_1_1tlm__put__get__imp_aae145d1e327375feba7c0ff5f59152b8}{tlm\_put\_get\_imp}}(\ \mbox{\hyperlink{class_sysc_add__pv}{tlm\_put\_if<PUT\_DATA>}}\ \&p\ ,}
+\DoxyCodeLine{00038\ \ \ \ \ \ \ \ \mbox{\hyperlink{class_sysc_add__pv}{tlm\_get\_peek\_if<GET\_DATA>}}\ \&\mbox{\hyperlink{class_sysc_add__pv}{g}}\ )\ :}
+\DoxyCodeLine{00039\ \ \ \ \ \mbox{\hyperlink{classtlm_1_1tlm__put__get__imp_aa29cf39c7f1e3a24cefe49b8792ec62b}{put\_fifo}}(\ p\ )\ ,\ \mbox{\hyperlink{classtlm_1_1tlm__put__get__imp_a50974b18d36219f207d67d0fff85267b}{get\_fifo}}(\ \mbox{\hyperlink{class_sysc_add__pv}{g}}\ )\ \{\}}
+\DoxyCodeLine{00040\ }
+\DoxyCodeLine{00041\ \ \ \textcolor{comment}{//\ put\ interface}}
+\DoxyCodeLine{00042\ }
+\DoxyCodeLine{00043\ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classtlm_1_1tlm__put__get__imp_a5fe89c7841501adff3d0677c0f0cb581}{put}}(\ \textcolor{keyword}{const}\ \mbox{\hyperlink{class_sysc_add__pv}{PUT\_DATA}}\ \&t\ )\ \{\ \mbox{\hyperlink{classtlm_1_1tlm__put__get__imp_aa29cf39c7f1e3a24cefe49b8792ec62b}{put\_fifo}}.\mbox{\hyperlink{classtlm_1_1tlm__blocking__put__if_a290f17531327c121cdd6beb7c132fb28}{put}}(\ t\ );\ \}}
+\DoxyCodeLine{00044\ }
+\DoxyCodeLine{00045\ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{classtlm_1_1tlm__put__get__imp_a89e548a662fe794fbd5b8ddbb5b635c4}{nb\_put}}(\ \textcolor{keyword}{const}\ \mbox{\hyperlink{class_sysc_add__pv}{PUT\_DATA}}\ \&t\ )\ \{\ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{classtlm_1_1tlm__put__get__imp_aa29cf39c7f1e3a24cefe49b8792ec62b}{put\_fifo}}.\mbox{\hyperlink{classtlm_1_1tlm__nonblocking__put__if_a4342018a981d238b254d642d2114bac5}{nb\_put}}(\ t\ );\ \}}
+\DoxyCodeLine{00046\ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{classtlm_1_1tlm__put__get__imp_ae4025954915988b8e1b655a9b3e1ccc1}{nb\_can\_put}}(\ \mbox{\hyperlink{class_sysc_add__pv}{tlm\_tag<PUT\_DATA>}}\ *t\ =\ 0\ )\textcolor{keyword}{\ const\ }\{}
+\DoxyCodeLine{00047\ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{classtlm_1_1tlm__put__get__imp_aa29cf39c7f1e3a24cefe49b8792ec62b}{put\_fifo}}.\mbox{\hyperlink{classtlm_1_1tlm__nonblocking__put__if_a8f4b6891fbea8fa45dbf9dc8582a6f0d}{nb\_can\_put}}(\ t\ );}
+\DoxyCodeLine{00048\ \ \ \}}
+\DoxyCodeLine{00049\ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{classsc__core_1_1sc__event}{sc\_core::sc\_event}}\ \&\mbox{\hyperlink{classtlm_1_1tlm__put__get__imp_a4f24aca4496d514e88c7b0134040c5ed}{ok\_to\_put}}(\ \mbox{\hyperlink{class_sysc_add__pv}{tlm\_tag<PUT\_DATA>}}\ *t\ =\ 0\ )\textcolor{keyword}{\ const\ }\{}
+\DoxyCodeLine{00050\ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{classtlm_1_1tlm__put__get__imp_aa29cf39c7f1e3a24cefe49b8792ec62b}{put\_fifo}}.\mbox{\hyperlink{classtlm_1_1tlm__nonblocking__put__if_a386cf2c6c13009dbee83d9046160660d}{ok\_to\_put}}(\ t\ );}
+\DoxyCodeLine{00051\ \ \ \}}
+\DoxyCodeLine{00052\ }
+\DoxyCodeLine{00053\ \ \ \textcolor{comment}{//\ get\ interface}}
+\DoxyCodeLine{00054\ }
+\DoxyCodeLine{00055\ \ \ \mbox{\hyperlink{class_sysc_add__pv}{GET\_DATA}}\ \mbox{\hyperlink{classtlm_1_1tlm__put__get__imp_a2ac73dfa35371fee66993954426b559c}{get}}(\ \mbox{\hyperlink{class_sysc_add__pv}{tlm\_tag<GET\_DATA>}}\ *\ =\ 0\ )\ \{\ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{classtlm_1_1tlm__put__get__imp_a50974b18d36219f207d67d0fff85267b}{get\_fifo}}.\mbox{\hyperlink{classtlm_1_1tlm__blocking__get__if_a1896a467a2abb84c83727fd4b430bb03}{get}}();\ \}}
+\DoxyCodeLine{00056\ }
+\DoxyCodeLine{00057\ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{classtlm_1_1tlm__put__get__imp_a647ee735407f4193e2a07cd57e136748}{nb\_get}}(\ \mbox{\hyperlink{class_sysc_add__pv}{GET\_DATA}}\ \&t\ )\ \{\ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{classtlm_1_1tlm__put__get__imp_a50974b18d36219f207d67d0fff85267b}{get\_fifo}}.\mbox{\hyperlink{classtlm_1_1tlm__nonblocking__get__if_a9d83e8465db11c3bfb628369b5106148}{nb\_get}}(\ t\ );\ \}}
+\DoxyCodeLine{00058\ }
+\DoxyCodeLine{00059\ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{classtlm_1_1tlm__put__get__imp_afced1449bdd68f407681165162350284}{nb\_can\_get}}(\ \mbox{\hyperlink{class_sysc_add__pv}{tlm\_tag<GET\_DATA>}}\ *t\ =\ 0\ )\textcolor{keyword}{\ const\ }\{}
+\DoxyCodeLine{00060\ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{classtlm_1_1tlm__put__get__imp_a50974b18d36219f207d67d0fff85267b}{get\_fifo}}.\mbox{\hyperlink{classtlm_1_1tlm__nonblocking__get__if_af8bb0bcb1732f33c981c8dbf72c1fbb9}{nb\_can\_get}}(\ t\ );}
+\DoxyCodeLine{00061\ \ \ \}}
+\DoxyCodeLine{00062\ }
+\DoxyCodeLine{00063\ \ \ \textcolor{keyword}{virtual}\ \textcolor{keyword}{const}\ \mbox{\hyperlink{classsc__core_1_1sc__event}{sc\_core::sc\_event}}\ \&\mbox{\hyperlink{classtlm_1_1tlm__put__get__imp_a360bea5a40c2f7cbca0e99a678681f96}{ok\_to\_get}}(\ \mbox{\hyperlink{class_sysc_add__pv}{tlm\_tag<GET\_DATA>}}\ *t\ =\ 0\ )\textcolor{keyword}{\ const\ }\{}
+\DoxyCodeLine{00064\ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{classtlm_1_1tlm__put__get__imp_a50974b18d36219f207d67d0fff85267b}{get\_fifo}}.\mbox{\hyperlink{classtlm_1_1tlm__nonblocking__get__if_ab2c33d4c6c608079937c41b14a275e25}{ok\_to\_get}}(\ t\ );}
+\DoxyCodeLine{00065\ \ \ \}}
+\DoxyCodeLine{00066\ }
+\DoxyCodeLine{00067\ \ \ \textcolor{comment}{//\ peek\ interface}}
+\DoxyCodeLine{00068\ }
+\DoxyCodeLine{00069\ \ \ \mbox{\hyperlink{class_sysc_add__pv}{GET\_DATA}}\ \mbox{\hyperlink{classtlm_1_1tlm__put__get__imp_a261c1f2ef1863470dd3dc40916215bc6}{peek}}(\ \mbox{\hyperlink{class_sysc_add__pv}{tlm\_tag<GET\_DATA>}}\ *\ =\ 0\ )\textcolor{keyword}{\ const\ }\{\ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{classtlm_1_1tlm__put__get__imp_a50974b18d36219f207d67d0fff85267b}{get\_fifo}}.\mbox{\hyperlink{classtlm_1_1tlm__blocking__peek__if_ac35a8e1bc51bfdcd9425183fa4ad0a8e}{peek}}();\ \}}
+\DoxyCodeLine{00070\ }
+\DoxyCodeLine{00071\ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{classtlm_1_1tlm__put__get__imp_af67fa17253d0d7f888c39b8e64f80464}{nb\_peek}}(\ \mbox{\hyperlink{class_sysc_add__pv}{GET\_DATA}}\ \&t\ )\textcolor{keyword}{\ const\ }\{\ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{classtlm_1_1tlm__put__get__imp_a50974b18d36219f207d67d0fff85267b}{get\_fifo}}.\mbox{\hyperlink{classtlm_1_1tlm__nonblocking__peek__if_acda9f1feda9ee5f03ad90e3ac9838b64}{nb\_peek}}(\ t\ );\ \}}
+\DoxyCodeLine{00072\ }
+\DoxyCodeLine{00073\ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{classtlm_1_1tlm__put__get__imp_a66bebe2721ef162164fcf10dd0a338f6}{nb\_can\_peek}}(\ \mbox{\hyperlink{class_sysc_add__pv}{tlm\_tag<GET\_DATA>}}\ *t\ =\ 0\ )\textcolor{keyword}{\ const\ }\{}
+\DoxyCodeLine{00074\ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{classtlm_1_1tlm__put__get__imp_a50974b18d36219f207d67d0fff85267b}{get\_fifo}}.\mbox{\hyperlink{classtlm_1_1tlm__nonblocking__peek__if_ac018695f84dcbe60afb5ea963ef96618}{nb\_can\_peek}}(\ t\ );}
+\DoxyCodeLine{00075\ \ \ \}}
+\DoxyCodeLine{00076\ }
+\DoxyCodeLine{00077\ \ \ \textcolor{keyword}{virtual}\ \textcolor{keyword}{const}\ \mbox{\hyperlink{classsc__core_1_1sc__event}{sc\_core::sc\_event}}\ \&\mbox{\hyperlink{classtlm_1_1tlm__put__get__imp_a296e2a71ff1f0c048d664fbece10dbbe}{ok\_to\_peek}}(\ \mbox{\hyperlink{class_sysc_add__pv}{tlm\_tag<GET\_DATA>}}\ *t\ =\ 0\ )\textcolor{keyword}{\ const\ }\{}
+\DoxyCodeLine{00078\ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{classtlm_1_1tlm__put__get__imp_a50974b18d36219f207d67d0fff85267b}{get\_fifo}}.\mbox{\hyperlink{classtlm_1_1tlm__nonblocking__peek__if_a05bcdcd1185544db06beb2d8e1816532}{ok\_to\_peek}}(\ t\ );}
+\DoxyCodeLine{00079\ \ \ \}}
+\DoxyCodeLine{00080\ }
+\DoxyCodeLine{00081\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00082\ \ \ \mbox{\hyperlink{class_sysc_add__pv}{tlm\_put\_if<PUT\_DATA>}}\ \&\mbox{\hyperlink{classtlm_1_1tlm__put__get__imp_aa29cf39c7f1e3a24cefe49b8792ec62b}{put\_fifo}};}
+\DoxyCodeLine{00083\ \ \ \mbox{\hyperlink{class_sysc_add__pv}{tlm\_get\_peek\_if<GET\_DATA>}}\ \&\mbox{\hyperlink{classtlm_1_1tlm__put__get__imp_a50974b18d36219f207d67d0fff85267b}{get\_fifo}};}
+\DoxyCodeLine{00084\ \};}
+\DoxyCodeLine{00085\ }
+\DoxyCodeLine{00086\ \textcolor{keyword}{template}\ <\ \textcolor{keyword}{typename}\ REQ\ ,\ \textcolor{keyword}{typename}\ RSP\ >}
+\DoxyCodeLine{00087\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classtlm_1_1tlm__master__imp}{tlm\_master\_imp}}\ :}
+\DoxyCodeLine{00088\ \ \ \textcolor{keyword}{private}\ \mbox{\hyperlink{classtlm_1_1tlm__put__get__imp}{tlm\_put\_get\_imp}}<\ REQ\ ,\ RSP\ >\ ,}
+\DoxyCodeLine{00089\ \ \ \textcolor{keyword}{public}\ \textcolor{keyword}{virtual}\ \mbox{\hyperlink{classtlm_1_1tlm__master__if}{tlm\_master\_if}}<\ REQ\ ,\ RSP\ >}
+\DoxyCodeLine{00090\ \{}
+\DoxyCodeLine{00091\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00092\ }
+\DoxyCodeLine{00093\ \ \ \mbox{\hyperlink{classtlm_1_1tlm__master__imp_a5f75dcc19d3362f4555b003f1e060336}{tlm\_master\_imp}}(\ \mbox{\hyperlink{class_sysc_add__pv}{tlm\_put\_if<REQ>}}\ \&\mbox{\hyperlink{class_sysc_add__pv}{req}}\ ,}
+\DoxyCodeLine{00094\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_sysc_add__pv}{tlm\_get\_peek\_if<RSP>}}\ \&rsp\ )\ :}
+\DoxyCodeLine{00095\ \ \ \ \ \mbox{\hyperlink{classtlm_1_1tlm__put__get__imp}{tlm\_put\_get\_imp}}<\mbox{\hyperlink{class_sysc_add__pv}{REQ}},\mbox{\hyperlink{class_sysc_add__pv}{RSP}}>(\ \mbox{\hyperlink{class_sysc_add__pv}{req}}\ ,\ rsp\ )\ \{\}}
+\DoxyCodeLine{00096\ }
+\DoxyCodeLine{00097\ \};}
+\DoxyCodeLine{00098\ }
+\DoxyCodeLine{00099\ \textcolor{keyword}{template}\ <\ \textcolor{keyword}{typename}\ REQ\ ,\ \textcolor{keyword}{typename}\ RSP\ >}
+\DoxyCodeLine{00100\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classtlm_1_1tlm__slave__imp}{tlm\_slave\_imp}}\ :}
+\DoxyCodeLine{00101\ \ \ \textcolor{keyword}{private}\ \mbox{\hyperlink{classtlm_1_1tlm__put__get__imp}{tlm\_put\_get\_imp}}<\ RSP\ ,\ REQ\ >\ ,}
+\DoxyCodeLine{00102\ \ \ \textcolor{keyword}{public}\ \textcolor{keyword}{virtual}\ \mbox{\hyperlink{classtlm_1_1tlm__slave__if}{tlm\_slave\_if}}<\ REQ\ ,\ RSP\ >}
+\DoxyCodeLine{00103\ \{}
+\DoxyCodeLine{00104\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00105\ }
+\DoxyCodeLine{00106\ \ \ \mbox{\hyperlink{classtlm_1_1tlm__slave__imp_a7e0602bf0398af9002ba53acda3a2fdb}{tlm\_slave\_imp}}(\ \mbox{\hyperlink{class_sysc_add__pv}{tlm\_get\_peek\_if<REQ>}}\ \&\mbox{\hyperlink{class_sysc_add__pv}{req}}\ ,}
+\DoxyCodeLine{00107\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_sysc_add__pv}{tlm\_put\_if<RSP>}}\ \&rsp\ )\ :}
+\DoxyCodeLine{00108\ \ \ \ \ \mbox{\hyperlink{classtlm_1_1tlm__put__get__imp}{tlm\_put\_get\_imp}}<\mbox{\hyperlink{class_sysc_add__pv}{RSP}},\mbox{\hyperlink{class_sysc_add__pv}{REQ}}>(\ rsp\ \ ,\ \mbox{\hyperlink{class_sysc_add__pv}{req}}\ )\ \{\}}
+\DoxyCodeLine{00109\ }
+\DoxyCodeLine{00110\ \};}
+\DoxyCodeLine{00111\ }
+\DoxyCodeLine{00112\ \}\ \textcolor{comment}{//\ namespace\ tlm}}
+\DoxyCodeLine{00113\ }
+\DoxyCodeLine{00114\ \textcolor{preprocessor}{\#endif}}
+
+\end{DoxyCode}

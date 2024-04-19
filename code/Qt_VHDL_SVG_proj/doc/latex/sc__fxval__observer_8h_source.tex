@@ -1,0 +1,229 @@
+\doxysection{sc\+\_\+fxval\+\_\+observer.\+h}
+\hypertarget{sc__fxval__observer_8h_source}{}\label{sc__fxval__observer_8h_source}\index{C:/Users/BJRODIER/Documents/QT\_REPO/QT\_VHDL\_simulator/code/Ressources/SystemC/include/sysc/datatypes/fx/sc\_fxval\_observer.h@{C:/Users/BJRODIER/Documents/QT\_REPO/QT\_VHDL\_simulator/code/Ressources/SystemC/include/sysc/datatypes/fx/sc\_fxval\_observer.h}}
+\mbox{\hyperlink{sc__fxval__observer_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{comment}{/*****************************************************************************}}
+\DoxyCodeLine{00002\ \textcolor{comment}{}}
+\DoxyCodeLine{00003\ \textcolor{comment}{\ \ Licensed\ to\ Accellera\ Systems\ Initiative\ Inc.\ (Accellera)\ under\ one\ or}}
+\DoxyCodeLine{00004\ \textcolor{comment}{\ \ more\ contributor\ license\ agreements.\ \ See\ the\ NOTICE\ file\ distributed}}
+\DoxyCodeLine{00005\ \textcolor{comment}{\ \ with\ this\ work\ for\ additional\ information\ regarding\ copyright\ ownership.}}
+\DoxyCodeLine{00006\ \textcolor{comment}{\ \ Accellera\ licenses\ this\ file\ to\ you\ under\ the\ Apache\ License,\ Version\ 2.0}}
+\DoxyCodeLine{00007\ \textcolor{comment}{\ \ (the\ "{}License"{});\ you\ may\ not\ use\ this\ file\ except\ in\ compliance\ with\ the}}
+\DoxyCodeLine{00008\ \textcolor{comment}{\ \ License.\ \ You\ may\ obtain\ a\ copy\ of\ the\ License\ at}}
+\DoxyCodeLine{00009\ \textcolor{comment}{}}
+\DoxyCodeLine{00010\ \textcolor{comment}{\ \ \ \ http://www.apache.org/licenses/LICENSE-\/2.0}}
+\DoxyCodeLine{00011\ \textcolor{comment}{}}
+\DoxyCodeLine{00012\ \textcolor{comment}{\ \ Unless\ required\ by\ applicable\ law\ or\ agreed\ to\ in\ writing,\ software}}
+\DoxyCodeLine{00013\ \textcolor{comment}{\ \ distributed\ under\ the\ License\ is\ distributed\ on\ an\ "{}AS\ IS"{}\ BASIS,}}
+\DoxyCodeLine{00014\ \textcolor{comment}{\ \ WITHOUT\ WARRANTIES\ OR\ CONDITIONS\ OF\ ANY\ KIND,\ either\ express\ or}}
+\DoxyCodeLine{00015\ \textcolor{comment}{\ \ implied.\ \ See\ the\ License\ for\ the\ specific\ language\ governing}}
+\DoxyCodeLine{00016\ \textcolor{comment}{\ \ permissions\ and\ limitations\ under\ the\ License.}}
+\DoxyCodeLine{00017\ \textcolor{comment}{}}
+\DoxyCodeLine{00018\ \textcolor{comment}{\ *****************************************************************************/}}
+\DoxyCodeLine{00019\ }
+\DoxyCodeLine{00020\ \textcolor{comment}{/*****************************************************************************}}
+\DoxyCodeLine{00021\ \textcolor{comment}{}}
+\DoxyCodeLine{00022\ \textcolor{comment}{\ \ sc\_fxval\_observer.h\ -\/\ }}
+\DoxyCodeLine{00023\ \textcolor{comment}{}}
+\DoxyCodeLine{00024\ \textcolor{comment}{\ \ Original\ Author:\ Martin\ Janssen,\ Synopsys,\ Inc.}}
+\DoxyCodeLine{00025\ \textcolor{comment}{}}
+\DoxyCodeLine{00026\ \textcolor{comment}{\ *****************************************************************************/}}
+\DoxyCodeLine{00027\ }
+\DoxyCodeLine{00028\ \textcolor{comment}{/*****************************************************************************}}
+\DoxyCodeLine{00029\ \textcolor{comment}{}}
+\DoxyCodeLine{00030\ \textcolor{comment}{\ \ MODIFICATION\ LOG\ -\/\ modifiers,\ enter\ your\ name,\ affiliation,\ date\ and}}
+\DoxyCodeLine{00031\ \textcolor{comment}{\ \ changes\ you\ are\ making\ here.}}
+\DoxyCodeLine{00032\ \textcolor{comment}{}}
+\DoxyCodeLine{00033\ \textcolor{comment}{\ \ \ \ \ \ Name,\ Affiliation,\ Date:}}
+\DoxyCodeLine{00034\ \textcolor{comment}{\ \ Description\ of\ Modification:}}
+\DoxyCodeLine{00035\ \textcolor{comment}{}}
+\DoxyCodeLine{00036\ \textcolor{comment}{\ *****************************************************************************/}}
+\DoxyCodeLine{00037\ }
+\DoxyCodeLine{00038\ \textcolor{comment}{//\ \$Log:\ sc\_fxval\_observer.h,v\ \$}}
+\DoxyCodeLine{00039\ \textcolor{comment}{//\ Revision\ 1.1.1.1\ \ 2006/12/15\ 20:20:04\ \ acg}}
+\DoxyCodeLine{00040\ \textcolor{comment}{//\ SystemC\ 2.3}}
+\DoxyCodeLine{00041\ \textcolor{comment}{//}}
+\DoxyCodeLine{00042\ \textcolor{comment}{//\ Revision\ 1.3\ \ 2006/01/13\ 18:53:58\ \ acg}}
+\DoxyCodeLine{00043\ \textcolor{comment}{//\ Andy\ Goodrich:\ added\ \$Log\ command\ so\ that\ CVS\ comments\ are\ reproduced\ in}}
+\DoxyCodeLine{00044\ \textcolor{comment}{//\ the\ source.}}
+\DoxyCodeLine{00045\ \textcolor{comment}{//}}
+\DoxyCodeLine{00046\ }
+\DoxyCodeLine{00047\ \textcolor{preprocessor}{\#ifndef\ SC\_FXVAL\_OBSERVER\_H}}
+\DoxyCodeLine{00048\ \textcolor{preprocessor}{\#define\ SC\_FXVAL\_OBSERVER\_H}}
+\DoxyCodeLine{00049\ }
+\DoxyCodeLine{00050\ }
+\DoxyCodeLine{00051\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{sc__fxdefs_8h}{sysc/datatypes/fx/sc\_fxdefs.h}}"{}}}
+\DoxyCodeLine{00052\ }
+\DoxyCodeLine{00053\ }
+\DoxyCodeLine{00054\ \textcolor{keyword}{namespace\ }\mbox{\hyperlink{namespacesc__dt}{sc\_dt}}}
+\DoxyCodeLine{00055\ \{}
+\DoxyCodeLine{00056\ }
+\DoxyCodeLine{00057\ \textcolor{comment}{//\ classes\ defined\ in\ this\ module}}
+\DoxyCodeLine{00058\ \textcolor{keyword}{class\ }sc\_fxval\_observer;}
+\DoxyCodeLine{00059\ \textcolor{keyword}{class\ }sc\_fxval\_fast\_observer;}
+\DoxyCodeLine{00060\ }
+\DoxyCodeLine{00061\ \textcolor{comment}{//\ forward\ class\ declarations}}
+\DoxyCodeLine{00062\ \textcolor{keyword}{class\ }sc\_fxval;}
+\DoxyCodeLine{00063\ \textcolor{keyword}{class\ }sc\_fxval\_fast;}
+\DoxyCodeLine{00064\ }
+\DoxyCodeLine{00065\ }
+\DoxyCodeLine{00066\ \textcolor{preprocessor}{\#ifdef\ SC\_ENABLE\_OBSERVERS}}
+\DoxyCodeLine{00067\ }
+\DoxyCodeLine{00068\ \textcolor{preprocessor}{\#define\ SC\_FXVAL\_OBSERVER\_CONSTRUCT\_(object)\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}}
+\DoxyCodeLine{00069\ \textcolor{preprocessor}{\ \ \ \ SC\_OBSERVER\_(object,sc\_fxval\_observer*,construct)}}
+\DoxyCodeLine{00070\ \textcolor{preprocessor}{\#define\ SC\_FXVAL\_OBSERVER\_DESTRUCT\_(object)\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}}
+\DoxyCodeLine{00071\ \textcolor{preprocessor}{\ \ \ \ SC\_OBSERVER\_(object,sc\_fxval\_observer*,destruct)}}
+\DoxyCodeLine{00072\ \textcolor{preprocessor}{\#define\ SC\_FXVAL\_OBSERVER\_READ\_(object)\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}}
+\DoxyCodeLine{00073\ \textcolor{preprocessor}{\ \ \ \ SC\_OBSERVER\_(object,sc\_fxval\_observer*,read)}}
+\DoxyCodeLine{00074\ \textcolor{preprocessor}{\#define\ SC\_FXVAL\_OBSERVER\_WRITE\_(object)\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}}
+\DoxyCodeLine{00075\ \textcolor{preprocessor}{\ \ \ \ SC\_OBSERVER\_(object,sc\_fxval\_observer*,write)}}
+\DoxyCodeLine{00076\ \textcolor{preprocessor}{\#define\ SC\_FXVAL\_OBSERVER\_DEFAULT\_\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}}
+\DoxyCodeLine{00077\ \textcolor{preprocessor}{\ \ \ \ SC\_OBSERVER\_DEFAULT\_(sc\_fxval\_observer)}}
+\DoxyCodeLine{00078\ }
+\DoxyCodeLine{00079\ \textcolor{preprocessor}{\#define\ SC\_FXVAL\_FAST\_OBSERVER\_CONSTRUCT\_(object)\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}}
+\DoxyCodeLine{00080\ \textcolor{preprocessor}{\ \ \ \ SC\_OBSERVER\_(object,sc\_fxval\_fast\_observer*,construct)}}
+\DoxyCodeLine{00081\ \textcolor{preprocessor}{\#define\ SC\_FXVAL\_FAST\_OBSERVER\_DESTRUCT\_(object)\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}}
+\DoxyCodeLine{00082\ \textcolor{preprocessor}{\ \ \ \ SC\_OBSERVER\_(object,sc\_fxval\_fast\_observer*,destruct)}}
+\DoxyCodeLine{00083\ \textcolor{preprocessor}{\#define\ SC\_FXVAL\_FAST\_OBSERVER\_READ\_(object)\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}}
+\DoxyCodeLine{00084\ \textcolor{preprocessor}{\ \ \ \ SC\_OBSERVER\_(object,sc\_fxval\_fast\_observer*,read)}}
+\DoxyCodeLine{00085\ \textcolor{preprocessor}{\#define\ SC\_FXVAL\_FAST\_OBSERVER\_WRITE\_(object)\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}}
+\DoxyCodeLine{00086\ \textcolor{preprocessor}{\ \ \ \ SC\_OBSERVER\_(object,sc\_fxval\_fast\_observer*,write)}}
+\DoxyCodeLine{00087\ \textcolor{preprocessor}{\#define\ SC\_FXVAL\_FAST\_OBSERVER\_DEFAULT\_\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}}
+\DoxyCodeLine{00088\ \textcolor{preprocessor}{\ \ \ \ SC\_OBSERVER\_DEFAULT\_(sc\_fxval\_fast\_observer)}}
+\DoxyCodeLine{00089\ }
+\DoxyCodeLine{00090\ \textcolor{preprocessor}{\#else}}
+\DoxyCodeLine{00091\ }
+\DoxyCodeLine{00092\ \textcolor{preprocessor}{\#define\ SC\_FXVAL\_OBSERVER\_CONSTRUCT\_(object)}}
+\DoxyCodeLine{00093\ \textcolor{preprocessor}{\#define\ SC\_FXVAL\_OBSERVER\_DESTRUCT\_(object)}}
+\DoxyCodeLine{00094\ \textcolor{preprocessor}{\#define\ SC\_FXVAL\_OBSERVER\_READ\_(object)}}
+\DoxyCodeLine{00095\ \textcolor{preprocessor}{\#define\ SC\_FXVAL\_OBSERVER\_WRITE\_(object)}}
+\DoxyCodeLine{00096\ \textcolor{preprocessor}{\#define\ SC\_FXVAL\_OBSERVER\_DEFAULT\_}}
+\DoxyCodeLine{00097\ }
+\DoxyCodeLine{00098\ \textcolor{preprocessor}{\#define\ SC\_FXVAL\_FAST\_OBSERVER\_CONSTRUCT\_(object)}}
+\DoxyCodeLine{00099\ \textcolor{preprocessor}{\#define\ SC\_FXVAL\_FAST\_OBSERVER\_DESTRUCT\_(object)}}
+\DoxyCodeLine{00100\ \textcolor{preprocessor}{\#define\ SC\_FXVAL\_FAST\_OBSERVER\_READ\_(object)}}
+\DoxyCodeLine{00101\ \textcolor{preprocessor}{\#define\ SC\_FXVAL\_FAST\_OBSERVER\_WRITE\_(object)}}
+\DoxyCodeLine{00102\ \textcolor{preprocessor}{\#define\ SC\_FXVAL\_FAST\_OBSERVER\_DEFAULT\_}}
+\DoxyCodeLine{00103\ }
+\DoxyCodeLine{00104\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00105\ }
+\DoxyCodeLine{00106\ }
+\DoxyCodeLine{00107\ \textcolor{comment}{//\ -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{00108\ \textcolor{comment}{//\ \ CLASS\ :\ sc\_fxval\_observer}}
+\DoxyCodeLine{00109\ \textcolor{comment}{//}}
+\DoxyCodeLine{00110\ \textcolor{comment}{//\ \ Abstract\ base\ class\ for\ fixed-\/point\ value\ type\ observers;}}
+\DoxyCodeLine{00111\ \textcolor{comment}{//\ \ arbitrary\ precision.}}
+\DoxyCodeLine{00112\ \textcolor{comment}{//\ -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{00113\ }
+\DoxyCodeLine{00114\ \textcolor{keyword}{class\ }\mbox{\hyperlink{sc__cmnhdr_8h_aff4a86b3f5de3ac2097081e7166fe89f}{SC\_API}}\ \mbox{\hyperlink{classsc__dt_1_1sc__fxval__observer}{sc\_fxval\_observer}}}
+\DoxyCodeLine{00115\ \{}
+\DoxyCodeLine{00116\ }
+\DoxyCodeLine{00117\ \textcolor{keyword}{protected}:}
+\DoxyCodeLine{00118\ \ \ \ \ }
+\DoxyCodeLine{00119\ \ \ \ \ \mbox{\hyperlink{classsc__dt_1_1sc__fxval__observer_aced84ca9e78854a9bff693219fcac94b}{sc\_fxval\_observer}}()\ \{\}}
+\DoxyCodeLine{00120\ \ \ \ \ \textcolor{keyword}{virtual}\ \mbox{\hyperlink{classsc__dt_1_1sc__fxval__observer_a249f323a8b7e10ac46f490dcd0e52e2c}{\string~sc\_fxval\_observer}}()\ \{\}}
+\DoxyCodeLine{00121\ }
+\DoxyCodeLine{00122\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00123\ }
+\DoxyCodeLine{00124\ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{void}\ construct(\ \textcolor{keyword}{const}\ \mbox{\hyperlink{classsc__dt_1_1sc__fxval}{sc\_fxval}}\&\ );}
+\DoxyCodeLine{00125\ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{void}\ \ destruct(\ \textcolor{keyword}{const}\ \mbox{\hyperlink{classsc__dt_1_1sc__fxval}{sc\_fxval}}\&\ );}
+\DoxyCodeLine{00126\ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{void}\ \ \ \ \ \ read(\ \textcolor{keyword}{const}\ \mbox{\hyperlink{classsc__dt_1_1sc__fxval}{sc\_fxval}}\&\ );}
+\DoxyCodeLine{00127\ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{void}\ \ \ \ \ write(\ \textcolor{keyword}{const}\ \mbox{\hyperlink{classsc__dt_1_1sc__fxval}{sc\_fxval}}\&\ );}
+\DoxyCodeLine{00128\ }
+\DoxyCodeLine{00129\ \ \ \ \ \textcolor{keyword}{static}\ \mbox{\hyperlink{classsc__dt_1_1sc__fxval__observer}{sc\_fxval\_observer}}*\ (*default\_observer)\ ();}
+\DoxyCodeLine{00130\ }
+\DoxyCodeLine{00131\ \};}
+\DoxyCodeLine{00132\ }
+\DoxyCodeLine{00133\ }
+\DoxyCodeLine{00134\ \textcolor{comment}{//\ -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{00135\ \textcolor{comment}{//\ \ CLASS\ :\ sc\_fxval\_fast\_observer}}
+\DoxyCodeLine{00136\ \textcolor{comment}{//}}
+\DoxyCodeLine{00137\ \textcolor{comment}{//\ \ Abstract\ base\ class\ for\ fixed-\/point\ value\ type\ observers;}}
+\DoxyCodeLine{00138\ \textcolor{comment}{//\ \ limited\ precision.}}
+\DoxyCodeLine{00139\ \textcolor{comment}{//\ -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{00140\ }
+\DoxyCodeLine{00141\ \textcolor{keyword}{class\ }\mbox{\hyperlink{sc__cmnhdr_8h_aff4a86b3f5de3ac2097081e7166fe89f}{SC\_API}}\ \mbox{\hyperlink{classsc__dt_1_1sc__fxval__fast__observer}{sc\_fxval\_fast\_observer}}}
+\DoxyCodeLine{00142\ \{}
+\DoxyCodeLine{00143\ }
+\DoxyCodeLine{00144\ \textcolor{keyword}{protected}:}
+\DoxyCodeLine{00145\ \ \ \ \ }
+\DoxyCodeLine{00146\ \ \ \ \ \mbox{\hyperlink{classsc__dt_1_1sc__fxval__fast__observer_a38114cfb5d28a42c35ff36759f2e0558}{sc\_fxval\_fast\_observer}}()\ \{\}}
+\DoxyCodeLine{00147\ \ \ \ \ \textcolor{keyword}{virtual}\ \mbox{\hyperlink{classsc__dt_1_1sc__fxval__fast__observer_a61bea9bd1a6eb4e24782e66d7164037d}{\string~sc\_fxval\_fast\_observer}}()\ \{\}}
+\DoxyCodeLine{00148\ }
+\DoxyCodeLine{00149\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00150\ }
+\DoxyCodeLine{00151\ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{void}\ construct(\ \textcolor{keyword}{const}\ \mbox{\hyperlink{classsc__dt_1_1sc__fxval__fast}{sc\_fxval\_fast}}\&\ );}
+\DoxyCodeLine{00152\ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{void}\ \ destruct(\ \textcolor{keyword}{const}\ \mbox{\hyperlink{classsc__dt_1_1sc__fxval__fast}{sc\_fxval\_fast}}\&\ );}
+\DoxyCodeLine{00153\ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{void}\ \ \ \ \ \ read(\ \textcolor{keyword}{const}\ \mbox{\hyperlink{classsc__dt_1_1sc__fxval__fast}{sc\_fxval\_fast}}\&\ );}
+\DoxyCodeLine{00154\ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{void}\ \ \ \ \ write(\ \textcolor{keyword}{const}\ \mbox{\hyperlink{classsc__dt_1_1sc__fxval__fast}{sc\_fxval\_fast}}\&\ );}
+\DoxyCodeLine{00155\ }
+\DoxyCodeLine{00156\ \ \ \ \ \textcolor{keyword}{static}\ \mbox{\hyperlink{classsc__dt_1_1sc__fxval__fast__observer}{sc\_fxval\_fast\_observer}}*\ (*default\_observer)\ ();}
+\DoxyCodeLine{00157\ }
+\DoxyCodeLine{00158\ \};}
+\DoxyCodeLine{00159\ }
+\DoxyCodeLine{00160\ }
+\DoxyCodeLine{00161\ \textcolor{comment}{//\ IIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIII}}
+\DoxyCodeLine{00162\ }
+\DoxyCodeLine{00163\ \textcolor{comment}{//\ -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{00164\ \textcolor{comment}{//\ \ CLASS\ :\ sc\_fxval\_observer}}
+\DoxyCodeLine{00165\ \textcolor{comment}{//}}
+\DoxyCodeLine{00166\ \textcolor{comment}{//\ \ Abstract\ base\ class\ for\ fixed-\/point\ value\ type\ observers;}}
+\DoxyCodeLine{00167\ \textcolor{comment}{//\ \ arbitrary\ precision.}}
+\DoxyCodeLine{00168\ \textcolor{comment}{//\ -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{00169\ }
+\DoxyCodeLine{00170\ \textcolor{keyword}{inline}}
+\DoxyCodeLine{00171\ \textcolor{keywordtype}{void}}
+\DoxyCodeLine{00172\ \mbox{\hyperlink{classsc__dt_1_1sc__fxval__observer_a265382958dc353b49a67a0391ab0bf1d}{sc\_fxval\_observer::construct}}(\ \textcolor{keyword}{const}\ \mbox{\hyperlink{classsc__dt_1_1sc__fxval}{sc\_fxval}}\&\ )}
+\DoxyCodeLine{00173\ \{\}}
+\DoxyCodeLine{00174\ }
+\DoxyCodeLine{00175\ \textcolor{keyword}{inline}}
+\DoxyCodeLine{00176\ \textcolor{keywordtype}{void}}
+\DoxyCodeLine{00177\ \mbox{\hyperlink{classsc__dt_1_1sc__fxval__observer_ab78a899c7d051d2fa7ff0875de470c8c}{sc\_fxval\_observer::destruct}}(\ \textcolor{keyword}{const}\ \mbox{\hyperlink{classsc__dt_1_1sc__fxval}{sc\_fxval}}\&\ )}
+\DoxyCodeLine{00178\ \{\}}
+\DoxyCodeLine{00179\ }
+\DoxyCodeLine{00180\ \textcolor{keyword}{inline}}
+\DoxyCodeLine{00181\ \textcolor{keywordtype}{void}}
+\DoxyCodeLine{00182\ \mbox{\hyperlink{classsc__dt_1_1sc__fxval__observer_a80ca9e899307dd41b49df03d751dfe9d}{sc\_fxval\_observer::read}}(\ \textcolor{keyword}{const}\ \mbox{\hyperlink{classsc__dt_1_1sc__fxval}{sc\_fxval}}\&\ )}
+\DoxyCodeLine{00183\ \{\}}
+\DoxyCodeLine{00184\ }
+\DoxyCodeLine{00185\ \textcolor{keyword}{inline}}
+\DoxyCodeLine{00186\ \textcolor{keywordtype}{void}}
+\DoxyCodeLine{00187\ \mbox{\hyperlink{classsc__dt_1_1sc__fxval__observer_a5bd699d031b8d62d89bab40ce6f6dea7}{sc\_fxval\_observer::write}}(\ \textcolor{keyword}{const}\ \mbox{\hyperlink{classsc__dt_1_1sc__fxval}{sc\_fxval}}\&\ )}
+\DoxyCodeLine{00188\ \{\}}
+\DoxyCodeLine{00189\ }
+\DoxyCodeLine{00190\ }
+\DoxyCodeLine{00191\ \textcolor{comment}{//\ -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{00192\ \textcolor{comment}{//\ \ CLASS\ :\ sc\_fxval\_fast\_observer}}
+\DoxyCodeLine{00193\ \textcolor{comment}{//}}
+\DoxyCodeLine{00194\ \textcolor{comment}{//\ \ Abstract\ base\ class\ for\ fixed-\/point\ value\ type\ observers;}}
+\DoxyCodeLine{00195\ \textcolor{comment}{//\ \ limited\ precision.}}
+\DoxyCodeLine{00196\ \textcolor{comment}{//\ -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{00197\ }
+\DoxyCodeLine{00198\ \textcolor{keyword}{inline}}
+\DoxyCodeLine{00199\ \textcolor{keywordtype}{void}}
+\DoxyCodeLine{00200\ \mbox{\hyperlink{classsc__dt_1_1sc__fxval__fast__observer_a44cb09c822b89ffc09dd677cc2e7ef5b}{sc\_fxval\_fast\_observer::construct}}(\ \textcolor{keyword}{const}\ \mbox{\hyperlink{classsc__dt_1_1sc__fxval__fast}{sc\_fxval\_fast}}\&\ )}
+\DoxyCodeLine{00201\ \{\}}
+\DoxyCodeLine{00202\ }
+\DoxyCodeLine{00203\ \textcolor{keyword}{inline}}
+\DoxyCodeLine{00204\ \textcolor{keywordtype}{void}}
+\DoxyCodeLine{00205\ \mbox{\hyperlink{classsc__dt_1_1sc__fxval__fast__observer_a9091e4a20bbb437b556cc9ae1440da96}{sc\_fxval\_fast\_observer::destruct}}(\ \textcolor{keyword}{const}\ \mbox{\hyperlink{classsc__dt_1_1sc__fxval__fast}{sc\_fxval\_fast}}\&\ )}
+\DoxyCodeLine{00206\ \{\}}
+\DoxyCodeLine{00207\ }
+\DoxyCodeLine{00208\ \textcolor{keyword}{inline}}
+\DoxyCodeLine{00209\ \textcolor{keywordtype}{void}}
+\DoxyCodeLine{00210\ \mbox{\hyperlink{classsc__dt_1_1sc__fxval__fast__observer_ad8a06d5db39d2aa50cc1a4a6ac2270f5}{sc\_fxval\_fast\_observer::read}}(\ \textcolor{keyword}{const}\ \mbox{\hyperlink{classsc__dt_1_1sc__fxval__fast}{sc\_fxval\_fast}}\&\ )}
+\DoxyCodeLine{00211\ \{\}}
+\DoxyCodeLine{00212\ }
+\DoxyCodeLine{00213\ \textcolor{keyword}{inline}}
+\DoxyCodeLine{00214\ \textcolor{keywordtype}{void}}
+\DoxyCodeLine{00215\ \mbox{\hyperlink{classsc__dt_1_1sc__fxval__fast__observer_a3cb2a11b9eccc525c11939ee1713b4f8}{sc\_fxval\_fast\_observer::write}}(\ \textcolor{keyword}{const}\ \mbox{\hyperlink{classsc__dt_1_1sc__fxval__fast}{sc\_fxval\_fast}}\&\ )}
+\DoxyCodeLine{00216\ \{\}}
+\DoxyCodeLine{00217\ }
+\DoxyCodeLine{00218\ \}\ \textcolor{comment}{//\ namespace\ sc\_dt}}
+\DoxyCodeLine{00219\ }
+\DoxyCodeLine{00220\ }
+\DoxyCodeLine{00221\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00222\ }
+\DoxyCodeLine{00223\ \textcolor{comment}{//\ Taf!}}
+
+\end{DoxyCode}

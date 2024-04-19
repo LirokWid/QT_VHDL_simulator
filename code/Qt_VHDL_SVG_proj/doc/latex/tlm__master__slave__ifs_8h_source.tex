@@ -1,0 +1,79 @@
+\doxysection{tlm\+\_\+master\+\_\+slave\+\_\+ifs.\+h}
+\hypertarget{tlm__master__slave__ifs_8h_source}{}\label{tlm__master__slave__ifs_8h_source}\index{C:/Users/BJRODIER/Documents/QT\_REPO/QT\_VHDL\_simulator/code/Ressources/SystemC/include/tlm\_core/tlm\_1/tlm\_req\_rsp/tlm\_1\_interfaces/tlm\_master\_slave\_ifs.h@{C:/Users/BJRODIER/Documents/QT\_REPO/QT\_VHDL\_simulator/code/Ressources/SystemC/include/tlm\_core/tlm\_1/tlm\_req\_rsp/tlm\_1\_interfaces/tlm\_master\_slave\_ifs.h}}
+\mbox{\hyperlink{tlm__master__slave__ifs_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{comment}{/*****************************************************************************}}
+\DoxyCodeLine{00002\ \textcolor{comment}{}}
+\DoxyCodeLine{00003\ \textcolor{comment}{\ \ Licensed\ to\ Accellera\ Systems\ Initiative\ Inc.\ (Accellera)\ under\ one\ or}}
+\DoxyCodeLine{00004\ \textcolor{comment}{\ \ more\ contributor\ license\ agreements.\ \ See\ the\ NOTICE\ file\ distributed}}
+\DoxyCodeLine{00005\ \textcolor{comment}{\ \ with\ this\ work\ for\ additional\ information\ regarding\ copyright\ ownership.}}
+\DoxyCodeLine{00006\ \textcolor{comment}{\ \ Accellera\ licenses\ this\ file\ to\ you\ under\ the\ Apache\ License,\ Version\ 2.0}}
+\DoxyCodeLine{00007\ \textcolor{comment}{\ \ (the\ "{}License"{});\ you\ may\ not\ use\ this\ file\ except\ in\ compliance\ with\ the}}
+\DoxyCodeLine{00008\ \textcolor{comment}{\ \ License.\ \ You\ may\ obtain\ a\ copy\ of\ the\ License\ at}}
+\DoxyCodeLine{00009\ \textcolor{comment}{}}
+\DoxyCodeLine{00010\ \textcolor{comment}{\ \ \ \ http://www.apache.org/licenses/LICENSE-\/2.0}}
+\DoxyCodeLine{00011\ \textcolor{comment}{}}
+\DoxyCodeLine{00012\ \textcolor{comment}{\ \ Unless\ required\ by\ applicable\ law\ or\ agreed\ to\ in\ writing,\ software}}
+\DoxyCodeLine{00013\ \textcolor{comment}{\ \ distributed\ under\ the\ License\ is\ distributed\ on\ an\ "{}AS\ IS"{}\ BASIS,}}
+\DoxyCodeLine{00014\ \textcolor{comment}{\ \ WITHOUT\ WARRANTIES\ OR\ CONDITIONS\ OF\ ANY\ KIND,\ either\ express\ or}}
+\DoxyCodeLine{00015\ \textcolor{comment}{\ \ implied.\ \ See\ the\ License\ for\ the\ specific\ language\ governing}}
+\DoxyCodeLine{00016\ \textcolor{comment}{\ \ permissions\ and\ limitations\ under\ the\ License.}}
+\DoxyCodeLine{00017\ \textcolor{comment}{}}
+\DoxyCodeLine{00018\ \textcolor{comment}{\ *****************************************************************************/}}
+\DoxyCodeLine{00019\ }
+\DoxyCodeLine{00020\ \textcolor{preprocessor}{\#ifndef\ \_\_TLM\_MASTER\_SLAVE\_IFS\_H\_\_}}
+\DoxyCodeLine{00021\ \textcolor{preprocessor}{\#define\ \_\_TLM\_MASTER\_SLAVE\_IFS\_H\_\_}}
+\DoxyCodeLine{00022\ }
+\DoxyCodeLine{00023\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{tlm__core__ifs_8h}{tlm\_core/tlm\_1/tlm\_req\_rsp/tlm\_1\_interfaces/tlm\_core\_ifs.h}}"{}}}
+\DoxyCodeLine{00024\ }
+\DoxyCodeLine{00025\ \textcolor{keyword}{namespace\ }\mbox{\hyperlink{namespacetlm}{tlm}}\ \{}
+\DoxyCodeLine{00026\ }
+\DoxyCodeLine{00027\ \textcolor{comment}{//}}
+\DoxyCodeLine{00028\ \textcolor{comment}{//\ req/rsp\ combined\ interfaces}}
+\DoxyCodeLine{00029\ \textcolor{comment}{//}}
+\DoxyCodeLine{00030\ }
+\DoxyCodeLine{00031\ \textcolor{comment}{//\ blocking}}
+\DoxyCodeLine{00032\ }
+\DoxyCodeLine{00033\ \textcolor{keyword}{template}\ <\ \textcolor{keyword}{typename}\ REQ\ ,\ \textcolor{keyword}{typename}\ RSP>}
+\DoxyCodeLine{00034\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classtlm_1_1tlm__blocking__master__if}{tlm\_blocking\_master\_if}}\ :}
+\DoxyCodeLine{00035\ \ \ \textcolor{keyword}{public}\ \textcolor{keyword}{virtual}\ \mbox{\hyperlink{classtlm_1_1tlm__blocking__put__if}{tlm\_blocking\_put\_if}}<\ REQ\ >\ ,}
+\DoxyCodeLine{00036\ \ \ \textcolor{keyword}{public}\ \textcolor{keyword}{virtual}\ \mbox{\hyperlink{classtlm_1_1tlm__blocking__get__peek__if}{tlm\_blocking\_get\_peek\_if}}<\ RSP\ >\ \{\};}
+\DoxyCodeLine{00037\ }
+\DoxyCodeLine{00038\ \textcolor{keyword}{template}\ <\ \textcolor{keyword}{typename}\ REQ\ ,\ \textcolor{keyword}{typename}\ RSP>}
+\DoxyCodeLine{00039\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classtlm_1_1tlm__blocking__slave__if}{tlm\_blocking\_slave\_if}}\ :}
+\DoxyCodeLine{00040\ \ \ \textcolor{keyword}{public}\ \textcolor{keyword}{virtual}\ \mbox{\hyperlink{classtlm_1_1tlm__blocking__put__if}{tlm\_blocking\_put\_if}}<\ RSP\ >\ ,}
+\DoxyCodeLine{00041\ \ \ \textcolor{keyword}{public}\ \textcolor{keyword}{virtual}\ \mbox{\hyperlink{classtlm_1_1tlm__blocking__get__peek__if}{tlm\_blocking\_get\_peek\_if}}<\ REQ\ >\ \{\};}
+\DoxyCodeLine{00042\ }
+\DoxyCodeLine{00043\ \textcolor{comment}{//\ nonblocking}}
+\DoxyCodeLine{00044\ }
+\DoxyCodeLine{00045\ \textcolor{keyword}{template}\ <\ \textcolor{keyword}{typename}\ REQ\ ,\ \textcolor{keyword}{typename}\ RSP\ >}
+\DoxyCodeLine{00046\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classtlm_1_1tlm__nonblocking__master__if}{tlm\_nonblocking\_master\_if}}\ :}
+\DoxyCodeLine{00047\ \ \ \textcolor{keyword}{public}\ \textcolor{keyword}{virtual}\ \mbox{\hyperlink{classtlm_1_1tlm__nonblocking__put__if}{tlm\_nonblocking\_put\_if}}<\ REQ\ >\ ,}
+\DoxyCodeLine{00048\ \ \ \textcolor{keyword}{public}\ \textcolor{keyword}{virtual}\ \mbox{\hyperlink{classtlm_1_1tlm__nonblocking__get__peek__if}{tlm\_nonblocking\_get\_peek\_if}}<\ RSP\ >\ \{\};}
+\DoxyCodeLine{00049\ }
+\DoxyCodeLine{00050\ \textcolor{keyword}{template}\ <\ \textcolor{keyword}{typename}\ REQ\ ,\ \textcolor{keyword}{typename}\ RSP\ >}
+\DoxyCodeLine{00051\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classtlm_1_1tlm__nonblocking__slave__if}{tlm\_nonblocking\_slave\_if}}\ :}
+\DoxyCodeLine{00052\ \ \ \textcolor{keyword}{public}\ \textcolor{keyword}{virtual}\ \mbox{\hyperlink{classtlm_1_1tlm__nonblocking__put__if}{tlm\_nonblocking\_put\_if}}<\ RSP\ >\ ,}
+\DoxyCodeLine{00053\ \ \ \textcolor{keyword}{public}\ \textcolor{keyword}{virtual}\ \mbox{\hyperlink{classtlm_1_1tlm__nonblocking__get__peek__if}{tlm\_nonblocking\_get\_peek\_if}}<\ REQ\ >\ \{\};}
+\DoxyCodeLine{00054\ }
+\DoxyCodeLine{00055\ \textcolor{comment}{//\ combined}}
+\DoxyCodeLine{00056\ }
+\DoxyCodeLine{00057\ \textcolor{keyword}{template}\ <\ \textcolor{keyword}{typename}\ REQ\ ,\ \textcolor{keyword}{typename}\ RSP\ >}
+\DoxyCodeLine{00058\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classtlm_1_1tlm__master__if}{tlm\_master\_if}}\ :}
+\DoxyCodeLine{00059\ \ \ \textcolor{keyword}{public}\ \textcolor{keyword}{virtual}\ \mbox{\hyperlink{classtlm_1_1tlm__put__if}{tlm\_put\_if}}<\ REQ\ >\ ,}
+\DoxyCodeLine{00060\ \ \ \textcolor{keyword}{public}\ \textcolor{keyword}{virtual}\ \mbox{\hyperlink{classtlm_1_1tlm__get__peek__if}{tlm\_get\_peek\_if}}<\ RSP\ >\ ,}
+\DoxyCodeLine{00061\ \ \ \textcolor{keyword}{public}\ \textcolor{keyword}{virtual}\ \mbox{\hyperlink{classtlm_1_1tlm__blocking__master__if}{tlm\_blocking\_master\_if}}<\ REQ\ ,\ RSP\ >\ ,}
+\DoxyCodeLine{00062\ \ \ \textcolor{keyword}{public}\ \textcolor{keyword}{virtual}\ \mbox{\hyperlink{classtlm_1_1tlm__nonblocking__master__if}{tlm\_nonblocking\_master\_if}}<\ REQ\ ,\ RSP\ >\ \{\};}
+\DoxyCodeLine{00063\ }
+\DoxyCodeLine{00064\ \textcolor{keyword}{template}\ <\ \textcolor{keyword}{typename}\ REQ\ ,\ \textcolor{keyword}{typename}\ RSP\ >}
+\DoxyCodeLine{00065\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classtlm_1_1tlm__slave__if}{tlm\_slave\_if}}\ :}
+\DoxyCodeLine{00066\ \ \ \textcolor{keyword}{public}\ \textcolor{keyword}{virtual}\ \mbox{\hyperlink{classtlm_1_1tlm__put__if}{tlm\_put\_if}}<\ RSP\ >\ ,}
+\DoxyCodeLine{00067\ \ \ \textcolor{keyword}{public}\ \textcolor{keyword}{virtual}\ \mbox{\hyperlink{classtlm_1_1tlm__get__peek__if}{tlm\_get\_peek\_if}}<\ REQ\ >\ ,}
+\DoxyCodeLine{00068\ \ \ \textcolor{keyword}{public}\ \textcolor{keyword}{virtual}\ \mbox{\hyperlink{classtlm_1_1tlm__blocking__slave__if}{tlm\_blocking\_slave\_if}}<\ REQ\ ,\ RSP\ >\ ,}
+\DoxyCodeLine{00069\ \ \ \textcolor{keyword}{public}\ \textcolor{keyword}{virtual}\ \mbox{\hyperlink{classtlm_1_1tlm__nonblocking__slave__if}{tlm\_nonblocking\_slave\_if}}<\ REQ\ ,\ RSP\ >\ \{\};}
+\DoxyCodeLine{00070\ }
+\DoxyCodeLine{00071\ \}\ \textcolor{comment}{//\ namespace\ tlm}}
+\DoxyCodeLine{00072\ }
+\DoxyCodeLine{00073\ \textcolor{preprocessor}{\#endif}}
+
+\end{DoxyCode}

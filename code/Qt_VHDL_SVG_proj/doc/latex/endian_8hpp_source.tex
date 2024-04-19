@@ -1,0 +1,84 @@
+\doxysection{endian.\+hpp}
+\hypertarget{endian_8hpp_source}{}\label{endian_8hpp_source}\index{C:/Users/BJRODIER/Documents/QT\_REPO/QT\_VHDL\_simulator/code/Ressources/SystemC/include/sysc/packages/boost/detail/endian.hpp@{C:/Users/BJRODIER/Documents/QT\_REPO/QT\_VHDL\_simulator/code/Ressources/SystemC/include/sysc/packages/boost/detail/endian.hpp}}
+\mbox{\hyperlink{endian_8hpp}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{comment}{//\ Copyright\ 2005\ Caleb\ Epstein}}
+\DoxyCodeLine{00002\ \textcolor{comment}{//\ Copyright\ 2006\ John\ Maddock}}
+\DoxyCodeLine{00003\ \textcolor{comment}{//\ Copyright\ 2010\ Rene\ Rivera}}
+\DoxyCodeLine{00004\ \textcolor{comment}{//\ Distributed\ under\ the\ Boost\ Software\ License,\ Version\ 1.0.\ (See\ accompany-\/}}
+\DoxyCodeLine{00005\ \textcolor{comment}{//\ ing\ file\ LICENSE\_1\_0.txt\ or\ copy\ at\ http://www.boost.org/LICENSE\_1\_0.txt)}}
+\DoxyCodeLine{00006\ }
+\DoxyCodeLine{00007\ \textcolor{comment}{/*}}
+\DoxyCodeLine{00008\ \textcolor{comment}{\ *\ Copyright\ (c)\ 1997}}
+\DoxyCodeLine{00009\ \textcolor{comment}{\ *\ Silicon\ Graphics\ Computer\ Systems,\ Inc.}}
+\DoxyCodeLine{00010\ \textcolor{comment}{\ *}}
+\DoxyCodeLine{00011\ \textcolor{comment}{\ *\ Permission\ to\ use,\ copy,\ modify,\ distribute\ and\ sell\ this\ software}}
+\DoxyCodeLine{00012\ \textcolor{comment}{\ *\ and\ its\ documentation\ for\ any\ purpose\ is\ hereby\ granted\ without\ fee,}}
+\DoxyCodeLine{00013\ \textcolor{comment}{\ *\ provided\ that\ the\ above\ copyright\ notice\ appear\ in\ all\ copies\ and}}
+\DoxyCodeLine{00014\ \textcolor{comment}{\ *\ that\ both\ that\ copyright\ notice\ and\ this\ permission\ notice\ appear}}
+\DoxyCodeLine{00015\ \textcolor{comment}{\ *\ in\ supporting\ documentation.\ \ Silicon\ Graphics\ makes\ no}}
+\DoxyCodeLine{00016\ \textcolor{comment}{\ *\ representations\ about\ the\ suitability\ of\ this\ software\ for\ any}}
+\DoxyCodeLine{00017\ \textcolor{comment}{\ *\ purpose.\ \ It\ is\ provided\ "{}as\ is"{}\ without\ express\ or\ implied\ warranty.}}
+\DoxyCodeLine{00018\ \textcolor{comment}{\ */}}
+\DoxyCodeLine{00019\ }
+\DoxyCodeLine{00020\ \textcolor{comment}{/*}}
+\DoxyCodeLine{00021\ \textcolor{comment}{\ *\ Copyright\ notice\ reproduced\ from\ <sysc/packages/boost/detail/limits.hpp>,\ from}}
+\DoxyCodeLine{00022\ \textcolor{comment}{\ *\ which\ this\ code\ was\ originally\ taken.}}
+\DoxyCodeLine{00023\ \textcolor{comment}{\ *}}
+\DoxyCodeLine{00024\ \textcolor{comment}{\ *\ Modified\ by\ Caleb\ Epstein\ to\ use\ <endian.h>\ with\ GNU\ libc\ and\ to}}
+\DoxyCodeLine{00025\ \textcolor{comment}{\ *\ defined\ the\ SC\_BOOST\_ENDIAN\ macro.}}
+\DoxyCodeLine{00026\ \textcolor{comment}{\ */}}
+\DoxyCodeLine{00027\ }
+\DoxyCodeLine{00028\ \textcolor{preprocessor}{\#ifndef\ SC\_BOOST\_DETAIL\_ENDIAN\_HPP}}
+\DoxyCodeLine{00029\ \textcolor{preprocessor}{\#define\ SC\_BOOST\_DETAIL\_ENDIAN\_HPP}}
+\DoxyCodeLine{00030\ }
+\DoxyCodeLine{00031\ \textcolor{comment}{//\ GNU\ libc\ offers\ the\ helpful\ header\ <endian.h>\ which\ defines}}
+\DoxyCodeLine{00032\ \textcolor{comment}{//\ \_\_BYTE\_ORDER}}
+\DoxyCodeLine{00033\ }
+\DoxyCodeLine{00034\ \textcolor{preprocessor}{\#if\ defined\ (\_\_GLIBC\_\_)}}
+\DoxyCodeLine{00035\ \textcolor{preprocessor}{\#\ include\ <endian.h>}}
+\DoxyCodeLine{00036\ \textcolor{preprocessor}{\#\ if\ (\_\_BYTE\_ORDER\ ==\ \_\_LITTLE\_ENDIAN)}}
+\DoxyCodeLine{00037\ \textcolor{preprocessor}{\#\ \ define\ SC\_BOOST\_LITTLE\_ENDIAN}}
+\DoxyCodeLine{00038\ \textcolor{preprocessor}{\#\ elif\ (\_\_BYTE\_ORDER\ ==\ \_\_BIG\_ENDIAN)}}
+\DoxyCodeLine{00039\ \textcolor{preprocessor}{\#\ \ define\ SC\_BOOST\_BIG\_ENDIAN}}
+\DoxyCodeLine{00040\ \textcolor{preprocessor}{\#\ elif\ (\_\_BYTE\_ORDER\ ==\ \_\_PDP\_ENDIAN)}}
+\DoxyCodeLine{00041\ \textcolor{preprocessor}{\#\ \ define\ SC\_BOOST\_PDP\_ENDIAN}}
+\DoxyCodeLine{00042\ \textcolor{preprocessor}{\#\ else}}
+\DoxyCodeLine{00043\ \textcolor{preprocessor}{\#\ \ error\ Unknown\ machine\ endianness\ detected.}}
+\DoxyCodeLine{00044\ \textcolor{preprocessor}{\#\ endif}}
+\DoxyCodeLine{00045\ \textcolor{preprocessor}{\#\ define\ SC\_BOOST\_BYTE\_ORDER\ \_\_BYTE\_ORDER}}
+\DoxyCodeLine{00046\ \textcolor{preprocessor}{\#elif\ defined(\_BIG\_ENDIAN)\ \&\&\ !defined(\_LITTLE\_ENDIAN)\ ||\ \(\backslash\)}}
+\DoxyCodeLine{00047\ \textcolor{preprocessor}{\ \ \ \ defined(\_\_BIG\_ENDIAN\_\_)\ \&\&\ !defined(\_\_LITTLE\_ENDIAN\_\_)\ ||\ \(\backslash\)}}
+\DoxyCodeLine{00048\ \textcolor{preprocessor}{\ \ \ \ defined(\_STLP\_BIG\_ENDIAN)\ \&\&\ !defined(\_STLP\_LITTLE\_ENDIAN)}}
+\DoxyCodeLine{00049\ \textcolor{preprocessor}{\#\ define\ SC\_BOOST\_BIG\_ENDIAN}}
+\DoxyCodeLine{00050\ \textcolor{preprocessor}{\#\ define\ SC\_BOOST\_BYTE\_ORDER\ 4321}}
+\DoxyCodeLine{00051\ \textcolor{preprocessor}{\#elif\ defined(\_LITTLE\_ENDIAN)\ \&\&\ !defined(\_BIG\_ENDIAN)\ ||\ \(\backslash\)}}
+\DoxyCodeLine{00052\ \textcolor{preprocessor}{\ \ \ \ defined(\_\_LITTLE\_ENDIAN\_\_)\ \&\&\ !defined(\_\_BIG\_ENDIAN\_\_)\ ||\ \(\backslash\)}}
+\DoxyCodeLine{00053\ \textcolor{preprocessor}{\ \ \ \ defined(\_STLP\_LITTLE\_ENDIAN)\ \&\&\ !defined(\_STLP\_BIG\_ENDIAN)}}
+\DoxyCodeLine{00054\ \textcolor{preprocessor}{\#\ define\ SC\_BOOST\_LITTLE\_ENDIAN}}
+\DoxyCodeLine{00055\ \textcolor{preprocessor}{\#\ define\ SC\_BOOST\_BYTE\_ORDER\ 1234}}
+\DoxyCodeLine{00056\ \textcolor{preprocessor}{\#elif\ defined(\_\_sparc)\ ||\ defined(\_\_sparc\_\_)\ \(\backslash\)}}
+\DoxyCodeLine{00057\ \textcolor{preprocessor}{\ \ \ ||\ defined(\_POWER)\ ||\ defined(\_\_powerpc\_\_)\ \(\backslash\)}}
+\DoxyCodeLine{00058\ \textcolor{preprocessor}{\ \ \ ||\ defined(\_\_ppc\_\_)\ ||\ defined(\_\_ppc64\_\_)\ ||\ defined(\_\_hpux)\ ||\ defined(\_\_hppa)\ \(\backslash\)}}
+\DoxyCodeLine{00059\ \textcolor{preprocessor}{\ \ \ ||\ defined(\_MIPSEB)\ ||\ defined(\_POWER)\ \(\backslash\)}}
+\DoxyCodeLine{00060\ \textcolor{preprocessor}{\ \ \ ||\ defined(\_\_s390\_\_)}}
+\DoxyCodeLine{00061\ \textcolor{preprocessor}{\#\ define\ SC\_BOOST\_BIG\_ENDIAN}}
+\DoxyCodeLine{00062\ \textcolor{preprocessor}{\#\ define\ SC\_BOOST\_BYTE\_ORDER\ 4321}}
+\DoxyCodeLine{00063\ \textcolor{preprocessor}{\#elif\ defined(\_\_i386\_\_)\ ||\ defined(\_\_alpha\_\_)\ \(\backslash\)}}
+\DoxyCodeLine{00064\ \textcolor{preprocessor}{\ \ \ ||\ defined(\_\_ia64)\ ||\ defined(\_\_ia64\_\_)\ \(\backslash\)}}
+\DoxyCodeLine{00065\ \textcolor{preprocessor}{\ \ \ ||\ defined(\_M\_IX86)\ ||\ defined(\_M\_IA64)\ \(\backslash\)}}
+\DoxyCodeLine{00066\ \textcolor{preprocessor}{\ \ \ ||\ defined(\_M\_ALPHA)\ ||\ defined(\_\_amd64)\ \(\backslash\)}}
+\DoxyCodeLine{00067\ \textcolor{preprocessor}{\ \ \ ||\ defined(\_\_amd64\_\_)\ ||\ defined(\_M\_AMD64)\ \(\backslash\)}}
+\DoxyCodeLine{00068\ \textcolor{preprocessor}{\ \ \ ||\ defined(\_\_x86\_64)\ ||\ defined(\_\_x86\_64\_\_)\ \(\backslash\)}}
+\DoxyCodeLine{00069\ \textcolor{preprocessor}{\ \ \ ||\ defined(\_M\_X64)\ ||\ defined(\_\_bfin\_\_)}}
+\DoxyCodeLine{00070\ }
+\DoxyCodeLine{00071\ \textcolor{preprocessor}{\#\ define\ SC\_BOOST\_LITTLE\_ENDIAN}}
+\DoxyCodeLine{00072\ \textcolor{preprocessor}{\#\ define\ SC\_BOOST\_BYTE\_ORDER\ 1234}}
+\DoxyCodeLine{00073\ \textcolor{preprocessor}{\#else}}
+\DoxyCodeLine{00074\ \textcolor{preprocessor}{\#\ error\ The\ file\ boost/detail/endian.hpp\ needs\ to\ be\ set\ up\ for\ your\ CPU\ type.}}
+\DoxyCodeLine{00075\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00076\ }
+\DoxyCodeLine{00077\ }
+\DoxyCodeLine{00078\ \textcolor{preprocessor}{\#endif}}
+
+\end{DoxyCode}

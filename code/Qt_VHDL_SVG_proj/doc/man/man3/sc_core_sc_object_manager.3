@@ -1,0 +1,243 @@
+.TH "sc_core::sc_object_manager" 3 "VHDL simulator" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+sc_core::sc_object_manager
+.SH SYNOPSIS
+.br
+.PP
+.PP
+\fR#include <sc_object_manager\&.h>\fP
+.SS "Classes"
+
+.in +1c
+.ti -1c
+.RI "struct \fBtable_entry\fP"
+.br
+.in -1c
+.SS "Public Types"
+
+.in +1c
+.ti -1c
+.RI "\fBtypedef\fP std::map< std::string, \fBtable_entry\fP > \fBinstance_table_t\fP"
+.br
+.ti -1c
+.RI "\fBtypedef\fP std::vector< \fBsc_object\fP * > \fBobject_vector_t\fP"
+.br
+.in -1c
+.SS "Public Member Functions"
+
+.in +1c
+.ti -1c
+.RI "\fBsc_object_manager\fP ()"
+.br
+.ti -1c
+.RI "\fB~sc_object_manager\fP ()"
+.br
+.ti -1c
+.RI "\fBbool\fP \fBname_exists\fP (\fBconst\fP std::string &name)"
+.br
+.ti -1c
+.RI "\fBconst\fP \fBchar\fP * \fBget_name\fP (\fBconst\fP std::string &name)"
+.br
+.ti -1c
+.RI "\fBsc_event\fP * \fBfind_event\fP (\fBconst\fP \fBchar\fP *name)"
+.br
+.ti -1c
+.RI "\fBsc_object\fP * \fBfind_object\fP (\fBconst\fP \fBchar\fP *name)"
+.br
+.ti -1c
+.RI "\fBsc_object\fP * \fBfirst_object\fP ()"
+.br
+.ti -1c
+.RI "\fBsc_object\fP * \fBnext_object\fP ()"
+.br
+.ti -1c
+.RI "\fBvoid\fP \fBhierarchy_push\fP (\fBsc_object\fP *\fBmdl\fP)"
+.br
+.ti -1c
+.RI "\fBsc_object\fP * \fBhierarchy_pop\fP ()"
+.br
+.ti -1c
+.RI "\fBsc_object\fP * \fBhierarchy_curr\fP ()"
+.br
+.ti -1c
+.RI "int \fBhierarchy_size\fP ()"
+.br
+.ti -1c
+.RI "\fBvoid\fP \fBpush_module_name\fP (\fBsc_module_name\fP *\fBmod_name\fP)"
+.br
+.ti -1c
+.RI "\fBsc_module_name\fP * \fBpop_module_name\fP ()"
+.br
+.ti -1c
+.RI "\fBsc_module_name\fP * \fBtop_of_module_name_stack\fP ()"
+.br
+.in -1c
+.SS "Protected Types"
+
+.in +1c
+.ti -1c
+.RI "enum \fBsc_name_origin\fP { \fBSC_NAME_NONE\fP, \fBSC_NAME_OBJECT\fP, \fBSC_NAME_EVENT\fP, \fBSC_NAME_EXTERNAL\fP }"
+.br
+.in -1c
+.SS "Private Member Functions"
+
+.in +1c
+.ti -1c
+.RI "std::string \fBcreate_name\fP (\fBconst\fP \fBchar\fP *\fBleaf_name\fP)"
+.br
+.ti -1c
+.RI "\fBvoid\fP \fBinsert_event\fP (\fBconst\fP std::string &name, \fBsc_event\fP *obj)"
+.br
+.ti -1c
+.RI "\fBvoid\fP \fBinsert_object\fP (\fBconst\fP std::string &name, \fBsc_object\fP *obj)"
+.br
+.ti -1c
+.RI "\fBbool\fP \fBinsert_external_name\fP (\fBconst\fP std::string &name)"
+.br
+.ti -1c
+.RI "\fBvoid\fP \fBremove_event\fP (\fBconst\fP std::string &name)"
+.br
+.ti -1c
+.RI "\fBvoid\fP \fBremove_object\fP (\fBconst\fP std::string &name)"
+.br
+.ti -1c
+.RI "\fBbool\fP \fBremove_external_name\fP (\fBconst\fP std::string &name)"
+.br
+.in -1c
+.SS "Private Attributes"
+
+.in +1c
+.ti -1c
+.RI "instance_table_t::iterator \fBm_event_it\fP"
+.br
+.ti -1c
+.RI "\fBbool\fP \fBm_event_walk_ok\fP"
+.br
+.ti -1c
+.RI "\fBinstance_table_t\fP \fBm_instance_table\fP"
+.br
+.ti -1c
+.RI "\fBsc_module_name\fP * \fBm_module_name_stack\fP"
+.br
+.ti -1c
+.RI "instance_table_t::iterator \fBm_object_it\fP"
+.br
+.ti -1c
+.RI "\fBobject_vector_t\fP \fBm_object_stack\fP"
+.br
+.ti -1c
+.RI "\fBbool\fP \fBm_object_walk_ok\fP"
+.br
+.in -1c
+.SS "Friends"
+
+.in +1c
+.ti -1c
+.RI "\fBclass\fP \fBsc_event\fP"
+.br
+.ti -1c
+.RI "\fBclass\fP \fBsc_object\fP"
+.br
+.ti -1c
+.RI "\fBclass\fP \fBsc_simcontext\fP"
+.br
+.in -1c
+.SH "Member Typedef Documentation"
+.PP 
+.SS "\fBtypedef\fP std::map<std::string,\fBtable_entry\fP> \fBsc_core::sc_object_manager::instance_table_t\fP"
+
+.SS "\fBtypedef\fP std::vector<\fBsc_object\fP*> \fBsc_core::sc_object_manager::object_vector_t\fP"
+
+.SH "Member Enumeration Documentation"
+.PP 
+.SS "\fBenum\fP \fBsc_core::sc_object_manager::sc_name_origin\fP\fR [protected]\fP"
+
+.PP
+\fBEnumerator\fP
+.in +1c
+.TP
+\fB\fISC_NAME_NONE \fP\fP
+.TP
+\fB\fISC_NAME_OBJECT \fP\fP
+.TP
+\fB\fISC_NAME_EVENT \fP\fP
+.TP
+\fB\fISC_NAME_EXTERNAL \fP\fP
+.SH "Constructor & Destructor Documentation"
+.PP 
+.SS "sc_core::sc_object_manager::sc_object_manager ()"
+
+.SS "sc_core::sc_object_manager::~sc_object_manager ()"
+
+.SH "Member Function Documentation"
+.PP 
+.SS "std::string sc_core::sc_object_manager::create_name (\fBconst\fP \fBchar\fP * leaf_name)\fR [private]\fP"
+
+.SS "\fBsc_event\fP * sc_core::sc_object_manager::find_event (\fBconst\fP \fBchar\fP * name)"
+
+.SS "\fBsc_object\fP * sc_core::sc_object_manager::find_object (\fBconst\fP \fBchar\fP * name)"
+
+.SS "\fBsc_object\fP * sc_core::sc_object_manager::first_object ()"
+
+.SS "\fBconst\fP \fBchar\fP * sc_core::sc_object_manager::get_name (\fBconst\fP std::string & name)"
+
+.SS "\fBsc_object\fP * sc_core::sc_object_manager::hierarchy_curr ()"
+
+.SS "\fBsc_object\fP * sc_core::sc_object_manager::hierarchy_pop ()"
+
+.SS "\fBvoid\fP sc_core::sc_object_manager::hierarchy_push (\fBsc_object\fP * mdl)"
+
+.SS "int sc_core::sc_object_manager::hierarchy_size ()"
+
+.SS "\fBvoid\fP sc_core::sc_object_manager::insert_event (\fBconst\fP std::string & name, \fBsc_event\fP * obj)\fR [private]\fP"
+
+.SS "\fBbool\fP sc_core::sc_object_manager::insert_external_name (\fBconst\fP std::string & name)\fR [private]\fP"
+
+.SS "\fBvoid\fP sc_core::sc_object_manager::insert_object (\fBconst\fP std::string & name, \fBsc_object\fP * obj)\fR [private]\fP"
+
+.SS "\fBbool\fP sc_core::sc_object_manager::name_exists (\fBconst\fP std::string & name)"
+
+.SS "\fBsc_object\fP * sc_core::sc_object_manager::next_object ()"
+
+.SS "\fBsc_module_name\fP * sc_core::sc_object_manager::pop_module_name ()"
+
+.SS "\fBvoid\fP sc_core::sc_object_manager::push_module_name (\fBsc_module_name\fP * mod_name)"
+
+.SS "\fBvoid\fP sc_core::sc_object_manager::remove_event (\fBconst\fP std::string & name)\fR [private]\fP"
+
+.SS "\fBbool\fP sc_core::sc_object_manager::remove_external_name (\fBconst\fP std::string & name)\fR [private]\fP"
+
+.SS "\fBvoid\fP sc_core::sc_object_manager::remove_object (\fBconst\fP std::string & name)\fR [private]\fP"
+
+.SS "\fBsc_module_name\fP * sc_core::sc_object_manager::top_of_module_name_stack ()"
+
+.SH "Friends And Related Symbol Documentation"
+.PP 
+.SS "\fBfriend\fP \fBclass\fP \fBsc_event\fP\fR [friend]\fP"
+
+.SS "\fBfriend\fP \fBclass\fP \fBsc_object\fP\fR [friend]\fP"
+
+.SS "\fBfriend\fP \fBclass\fP \fBsc_simcontext\fP\fR [friend]\fP"
+
+.SH "Member Data Documentation"
+.PP 
+.SS "instance_table_t::iterator sc_core::sc_object_manager::m_event_it\fR [private]\fP"
+
+.SS "\fBbool\fP sc_core::sc_object_manager::m_event_walk_ok\fR [private]\fP"
+
+.SS "\fBinstance_table_t\fP sc_core::sc_object_manager::m_instance_table\fR [private]\fP"
+
+.SS "\fBsc_module_name\fP* sc_core::sc_object_manager::m_module_name_stack\fR [private]\fP"
+
+.SS "instance_table_t::iterator sc_core::sc_object_manager::m_object_it\fR [private]\fP"
+
+.SS "\fBobject_vector_t\fP sc_core::sc_object_manager::m_object_stack\fR [private]\fP"
+
+.SS "\fBbool\fP sc_core::sc_object_manager::m_object_walk_ok\fR [private]\fP"
+
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for VHDL simulator from the source code\&.

@@ -1,0 +1,398 @@
+.TH "sc_core::sc_event" 3 "VHDL simulator" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+sc_core::sc_event
+.SH SYNOPSIS
+.br
+.PP
+.PP
+\fR#include <sc_event\&.h>\fP
+.SS "Classes"
+
+.in +1c
+.ti -1c
+.RI "struct \fBkernel_tag\fP"
+.br
+.in -1c
+.SS "Public Member Functions"
+
+.in +1c
+.ti -1c
+.RI "\fBsc_event\fP ()"
+.br
+.ti -1c
+.RI "\fBsc_event\fP (\fBconst\fP \fBchar\fP *\fBname\fP)"
+.br
+.ti -1c
+.RI "\fB~sc_event\fP ()"
+.br
+.ti -1c
+.RI "\fBvoid\fP \fBcancel\fP ()"
+.br
+.ti -1c
+.RI "\fBconst\fP \fBchar\fP * \fBname\fP () \fBconst\fP"
+.br
+.ti -1c
+.RI "\fBconst\fP \fBchar\fP * \fBbasename\fP () \fBconst\fP"
+.br
+.ti -1c
+.RI "\fBsc_object\fP * \fBget_parent_object\fP () \fBconst\fP"
+.br
+.ti -1c
+.RI "\fBbool\fP \fBin_hierarchy\fP () \fBconst\fP"
+.br
+.ti -1c
+.RI "\fBvoid\fP \fBnotify\fP ()"
+.br
+.ti -1c
+.RI "\fBvoid\fP \fBnotify\fP (\fBconst\fP \fBsc_time\fP &)"
+.br
+.ti -1c
+.RI "\fBvoid\fP \fBnotify\fP (\fBdouble\fP, \fBsc_time_unit\fP)"
+.br
+.ti -1c
+.RI "\fBvoid\fP \fBnotify_delayed\fP ()"
+.br
+.ti -1c
+.RI "\fBvoid\fP \fBnotify_delayed\fP (\fBconst\fP \fBsc_time\fP &)"
+.br
+.ti -1c
+.RI "\fBvoid\fP \fBnotify_delayed\fP (\fBdouble\fP, \fBsc_time_unit\fP)"
+.br
+.ti -1c
+.RI "\fBsc_event_or_expr\fP \fBoperator|\fP (\fBconst\fP \fBsc_event\fP &) \fBconst\fP"
+.br
+.ti -1c
+.RI "\fBsc_event_or_expr\fP \fBoperator|\fP (\fBconst\fP \fBsc_event_or_list\fP &) \fBconst\fP"
+.br
+.ti -1c
+.RI "\fBsc_event_and_expr\fP \fBoperator&\fP (\fBconst\fP \fBsc_event\fP &) \fBconst\fP"
+.br
+.ti -1c
+.RI "\fBsc_event_and_expr\fP \fBoperator&\fP (\fBconst\fP \fBsc_event_and_list\fP &) \fBconst\fP"
+.br
+.ti -1c
+.RI "\fBbool\fP \fBtriggered\fP () \fBconst\fP"
+.br
+.in -1c
+.SS "Static Public Attributes"
+
+.in +1c
+.ti -1c
+.RI "\fBstatic\fP \fBconst\fP \fBsc_event\fP \fBnone\fP"
+.br
+.in -1c
+.SS "Private Types"
+
+.in +1c
+.ti -1c
+.RI "enum \fBnotify_t\fP { \fBNONE\fP, \fBDELTA\fP, \fBTIMED\fP }"
+.br
+.in -1c
+.SS "Private Member Functions"
+
+.in +1c
+.ti -1c
+.RI "\fBvoid\fP \fBadd_static\fP (\fBsc_method_handle\fP) \fBconst\fP"
+.br
+.ti -1c
+.RI "\fBvoid\fP \fBadd_static\fP (\fBsc_thread_handle\fP) \fBconst\fP"
+.br
+.ti -1c
+.RI "\fBvoid\fP \fBadd_dynamic\fP (\fBsc_method_handle\fP) \fBconst\fP"
+.br
+.ti -1c
+.RI "\fBvoid\fP \fBadd_dynamic\fP (\fBsc_thread_handle\fP) \fBconst\fP"
+.br
+.ti -1c
+.RI "\fBvoid\fP \fBnotify_internal\fP (\fBconst\fP \fBsc_time\fP &)"
+.br
+.ti -1c
+.RI "\fBvoid\fP \fBnotify_next_delta\fP ()"
+.br
+.ti -1c
+.RI "\fBbool\fP \fBremove_static\fP (\fBsc_method_handle\fP) \fBconst\fP"
+.br
+.ti -1c
+.RI "\fBbool\fP \fBremove_static\fP (\fBsc_thread_handle\fP) \fBconst\fP"
+.br
+.ti -1c
+.RI "\fBbool\fP \fBremove_dynamic\fP (\fBsc_method_handle\fP) \fBconst\fP"
+.br
+.ti -1c
+.RI "\fBbool\fP \fBremove_dynamic\fP (\fBsc_thread_handle\fP) \fBconst\fP"
+.br
+.ti -1c
+.RI "\fBvoid\fP \fBregister_event\fP (\fBconst\fP \fBchar\fP *\fBname\fP, \fBbool\fP \fBis_kernel_event\fP=\fBfalse\fP)"
+.br
+.ti -1c
+.RI "\fBvoid\fP \fBreset\fP ()"
+.br
+.ti -1c
+.RI "\fBvoid\fP \fBtrigger\fP ()"
+.br
+.ti -1c
+.RI "\fBsc_event\fP (kernel_tag, \fBconst\fP \fBchar\fP *\fBname\fP=\fBNULL\fP)"
+.br
+.ti -1c
+.RI "\fBsc_event\fP (\fBconst\fP \fBsc_event\fP &)"
+.br
+.ti -1c
+.RI "\fBsc_event\fP & \fBoperator=\fP (\fBconst\fP \fBsc_event\fP &)"
+.br
+.in -1c
+.SS "Private Attributes"
+
+.in +1c
+.ti -1c
+.RI "std::string \fBm_name\fP"
+.br
+.ti -1c
+.RI "\fBsc_object\fP * \fBm_parent_p\fP"
+.br
+.ti -1c
+.RI "\fBsc_simcontext\fP * \fBm_simc\fP"
+.br
+.ti -1c
+.RI "\fBsc_dt::uint64\fP \fBm_trigger_stamp\fP"
+.br
+.ti -1c
+.RI "\fBnotify_t\fP \fBm_notify_type\fP"
+.br
+.ti -1c
+.RI "int \fBm_delta_event_index\fP"
+.br
+.ti -1c
+.RI "\fBsc_event_timed\fP * \fBm_timed\fP"
+.br
+.ti -1c
+.RI "std::vector< \fBsc_method_handle\fP > \fBm_methods_static\fP"
+.br
+.ti -1c
+.RI "std::vector< \fBsc_method_handle\fP > \fBm_methods_dynamic\fP"
+.br
+.ti -1c
+.RI "std::vector< \fBsc_thread_handle\fP > \fBm_threads_static\fP"
+.br
+.ti -1c
+.RI "std::vector< \fBsc_thread_handle\fP > \fBm_threads_dynamic\fP"
+.br
+.in -1c
+.SS "Static Private Attributes"
+
+.in +1c
+.ti -1c
+.RI "\fBstatic\fP \fBstruct\fP sc_core::sc_event::kernel_tag \fBkernel_event\fP"
+.br
+.in -1c
+.SS "Friends"
+
+.in +1c
+.ti -1c
+.RI "\fBclass\fP \fBsc_event_list\fP"
+.br
+.ti -1c
+.RI "\fBclass\fP \fBsc_event_timed\fP"
+.br
+.ti -1c
+.RI "\fBclass\fP \fBsc_simcontext\fP"
+.br
+.ti -1c
+.RI "\fBclass\fP \fBsc_object\fP"
+.br
+.ti -1c
+.RI "\fBclass\fP \fBsc_process_b\fP"
+.br
+.ti -1c
+.RI "\fBclass\fP \fBsc_process_handle\fP"
+.br
+.ti -1c
+.RI "\fBclass\fP \fBsc_method_process\fP"
+.br
+.ti -1c
+.RI "\fBclass\fP \fBsc_thread_process\fP"
+.br
+.ti -1c
+.RI "\fBclass\fP \fBsc_clock\fP"
+.br
+.ti -1c
+.RI "\fBclass\fP \fBsc_event_queue\fP"
+.br
+.ti -1c
+.RI "\fBclass\fP \fBsc_signal_channel\fP"
+.br
+.ti -1c
+.RI "template<\fBtypename\fP \fBIF\fP > \fBclass\fP \fBsc_fifo\fP"
+.br
+.ti -1c
+.RI "\fBclass\fP \fBsc_semaphore\fP"
+.br
+.ti -1c
+.RI "\fBclass\fP \fBsc_mutex\fP"
+.br
+.ti -1c
+.RI "\fBclass\fP \fBsc_join\fP"
+.br
+.ti -1c
+.RI "\fBclass\fP \fBsc_trace_file\fP"
+.br
+.ti -1c
+.RI "\fBvoid\fP \fBsc_thread_cor_fn\fP (\fBvoid\fP *arg)"
+.br
+.in -1c
+.SH "Member Enumeration Documentation"
+.PP 
+.SS "\fBenum\fP \fBsc_core::sc_event::notify_t\fP\fR [private]\fP"
+
+.PP
+\fBEnumerator\fP
+.in +1c
+.TP
+\fB\fINONE \fP\fP
+.TP
+\fB\fIDELTA \fP\fP
+.TP
+\fB\fITIMED \fP\fP
+.SH "Constructor & Destructor Documentation"
+.PP 
+.SS "sc_core::sc_event::sc_event ()"
+
+.SS "sc_core::sc_event::sc_event (\fBconst\fP \fBchar\fP * name)\fR [explicit]\fP"
+
+.SS "sc_core::sc_event::~sc_event ()"
+
+.SS "sc_core::sc_event::sc_event (kernel_tag, \fBconst\fP \fBchar\fP * name = \fR\fBNULL\fP\fP)\fR [explicit]\fP, \fR [private]\fP"
+
+.SS "sc_core::sc_event::sc_event (\fBconst\fP \fBsc_event\fP &)\fR [private]\fP"
+
+.SH "Member Function Documentation"
+.PP 
+.SS "\fBvoid\fP sc_core::sc_event::add_dynamic (\fBsc_method_handle\fP method_h) const\fR [inline]\fP, \fR [private]\fP"
+
+.SS "\fBvoid\fP sc_core::sc_event::add_dynamic (\fBsc_thread_handle\fP thread_h) const\fR [inline]\fP, \fR [private]\fP"
+
+.SS "\fBvoid\fP sc_core::sc_event::add_static (\fBsc_method_handle\fP method_h) const\fR [inline]\fP, \fR [private]\fP"
+
+.SS "\fBvoid\fP sc_core::sc_event::add_static (\fBsc_thread_handle\fP thread_h) const\fR [inline]\fP, \fR [private]\fP"
+
+.SS "\fBconst\fP \fBchar\fP * sc_core::sc_event::basename () const"
+
+.SS "\fBvoid\fP sc_core::sc_event::cancel ()"
+
+.SS "\fBsc_object\fP * sc_core::sc_event::get_parent_object () const\fR [inline]\fP"
+
+.SS "\fBbool\fP sc_core::sc_event::in_hierarchy () const\fR [inline]\fP"
+
+.SS "\fBconst\fP \fBchar\fP * sc_core::sc_event::name () const\fR [inline]\fP"
+
+.SS "\fBvoid\fP sc_core::sc_event::notify ()"
+
+.SS "\fBvoid\fP sc_core::sc_event::notify (\fBconst\fP \fBsc_time\fP &)"
+
+.SS "\fBvoid\fP sc_core::sc_event::notify (\fBdouble\fP v, \fBsc_time_unit\fP tu)\fR [inline]\fP"
+
+.SS "\fBvoid\fP sc_core::sc_event::notify_delayed ()"
+
+.SS "\fBvoid\fP sc_core::sc_event::notify_delayed (\fBconst\fP \fBsc_time\fP &)"
+
+.SS "\fBvoid\fP sc_core::sc_event::notify_delayed (\fBdouble\fP v, \fBsc_time_unit\fP tu)\fR [inline]\fP"
+
+.SS "\fBvoid\fP sc_core::sc_event::notify_internal (\fBconst\fP \fBsc_time\fP & t)\fR [inline]\fP, \fR [private]\fP"
+
+.SS "\fBvoid\fP sc_core::sc_event::notify_next_delta ()\fR [inline]\fP, \fR [private]\fP"
+
+.SS "\fBsc_event_and_expr\fP sc_core::sc_event::operator& (\fBconst\fP \fBsc_event\fP & e2) const\fR [inline]\fP"
+
+.SS "\fBsc_event_and_expr\fP sc_core::sc_event::operator& (\fBconst\fP \fBsc_event_and_list\fP & e2) const\fR [inline]\fP"
+
+.SS "\fBsc_event\fP & sc_core::sc_event::operator= (\fBconst\fP \fBsc_event\fP &)\fR [private]\fP"
+
+.SS "\fBsc_event_or_expr\fP sc_core::sc_event::operator| (\fBconst\fP \fBsc_event\fP & e2) const\fR [inline]\fP"
+
+.SS "\fBsc_event_or_expr\fP sc_core::sc_event::operator| (\fBconst\fP \fBsc_event_or_list\fP & e2) const\fR [inline]\fP"
+
+.SS "\fBvoid\fP sc_core::sc_event::register_event (\fBconst\fP \fBchar\fP * name, \fBbool\fP is_kernel_event = \fR\fBfalse\fP\fP)\fR [private]\fP"
+
+.SS "\fBbool\fP sc_core::sc_event::remove_dynamic (\fBsc_method_handle\fP) const\fR [private]\fP"
+
+.SS "\fBbool\fP sc_core::sc_event::remove_dynamic (\fBsc_thread_handle\fP) const\fR [private]\fP"
+
+.SS "\fBbool\fP sc_core::sc_event::remove_static (\fBsc_method_handle\fP) const\fR [private]\fP"
+
+.SS "\fBbool\fP sc_core::sc_event::remove_static (\fBsc_thread_handle\fP) const\fR [private]\fP"
+
+.SS "\fBvoid\fP sc_core::sc_event::reset ()\fR [private]\fP"
+
+.SS "\fBvoid\fP sc_core::sc_event::trigger ()\fR [private]\fP"
+
+.SS "\fBbool\fP sc_core::sc_event::triggered () const"
+
+.SH "Friends And Related Symbol Documentation"
+.PP 
+.SS "\fBfriend\fP \fBclass\fP \fBsc_clock\fP\fR [friend]\fP"
+
+.SS "\fBfriend\fP \fBclass\fP \fBsc_event_list\fP\fR [friend]\fP"
+
+.SS "\fBfriend\fP \fBclass\fP \fBsc_event_queue\fP\fR [friend]\fP"
+
+.SS "\fBfriend\fP \fBclass\fP \fBsc_event_timed\fP\fR [friend]\fP"
+
+.SS "template<\fBtypename\fP \fBIF\fP > \fBfriend\fP \fBclass\fP \fBsc_fifo\fP\fR [friend]\fP"
+
+.SS "\fBfriend\fP \fBclass\fP \fBsc_join\fP\fR [friend]\fP"
+
+.SS "\fBfriend\fP \fBclass\fP \fBsc_method_process\fP\fR [friend]\fP"
+
+.SS "\fBfriend\fP \fBclass\fP \fBsc_mutex\fP\fR [friend]\fP"
+
+.SS "\fBfriend\fP \fBclass\fP \fBsc_object\fP\fR [friend]\fP"
+
+.SS "\fBfriend\fP \fBclass\fP \fBsc_process_b\fP\fR [friend]\fP"
+
+.SS "\fBfriend\fP \fBclass\fP \fBsc_process_handle\fP\fR [friend]\fP"
+
+.SS "\fBfriend\fP \fBclass\fP \fBsc_semaphore\fP\fR [friend]\fP"
+
+.SS "\fBfriend\fP \fBclass\fP \fBsc_signal_channel\fP\fR [friend]\fP"
+
+.SS "\fBfriend\fP \fBclass\fP \fBsc_simcontext\fP\fR [friend]\fP"
+
+.SS "\fBvoid\fP sc_thread_cor_fn (\fBvoid\fP * arg)\fR [friend]\fP"
+
+.SS "\fBfriend\fP \fBclass\fP \fBsc_thread_process\fP\fR [friend]\fP"
+
+.SS "\fBfriend\fP \fBclass\fP \fBsc_trace_file\fP\fR [friend]\fP"
+
+.SH "Member Data Documentation"
+.PP 
+.SS "\fBstruct\fP sc_core::sc_event::kernel_tag sc_core::sc_event::kernel_event\fR [static]\fP, \fR [private]\fP"
+
+.SS "int sc_core::sc_event::m_delta_event_index\fR [private]\fP"
+
+.SS "std::vector<\fBsc_method_handle\fP> sc_core::sc_event::m_methods_dynamic\fR [mutable]\fP, \fR [private]\fP"
+
+.SS "std::vector<\fBsc_method_handle\fP> sc_core::sc_event::m_methods_static\fR [mutable]\fP, \fR [private]\fP"
+
+.SS "std::string sc_core::sc_event::m_name\fR [private]\fP"
+
+.SS "\fBnotify_t\fP sc_core::sc_event::m_notify_type\fR [private]\fP"
+
+.SS "\fBsc_object\fP* sc_core::sc_event::m_parent_p\fR [private]\fP"
+
+.SS "\fBsc_simcontext\fP* sc_core::sc_event::m_simc\fR [private]\fP"
+
+.SS "std::vector<\fBsc_thread_handle\fP> sc_core::sc_event::m_threads_dynamic\fR [mutable]\fP, \fR [private]\fP"
+
+.SS "std::vector<\fBsc_thread_handle\fP> sc_core::sc_event::m_threads_static\fR [mutable]\fP, \fR [private]\fP"
+
+.SS "\fBsc_event_timed\fP* sc_core::sc_event::m_timed\fR [private]\fP"
+
+.SS "\fBsc_dt::uint64\fP sc_core::sc_event::m_trigger_stamp\fR [private]\fP"
+
+.SS "\fBconst\fP \fBsc_event\fP sc_core::sc_event::none\fR [static]\fP"
+
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for VHDL simulator from the source code\&.

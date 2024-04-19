@@ -1,0 +1,79 @@
+\doxysection{workaround.\+hpp}
+\hypertarget{detail_2workaround_8hpp_source}{}\label{detail_2workaround_8hpp_source}\index{C:/Users/BJRODIER/Documents/QT\_REPO/QT\_VHDL\_simulator/code/Ressources/SystemC/include/sysc/packages/boost/detail/workaround.hpp@{C:/Users/BJRODIER/Documents/QT\_REPO/QT\_VHDL\_simulator/code/Ressources/SystemC/include/sysc/packages/boost/detail/workaround.hpp}}
+\mbox{\hyperlink{detail_2workaround_8hpp}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{comment}{//\ Copyright\ David\ Abrahams\ 2002.}}
+\DoxyCodeLine{00002\ \textcolor{comment}{//\ Distributed\ under\ the\ Boost\ Software\ License,\ Version\ 1.0.\ (See}}
+\DoxyCodeLine{00003\ \textcolor{comment}{//\ accompanying\ file\ LICENSE\_1\_0.txt\ or\ copy\ at}}
+\DoxyCodeLine{00004\ \textcolor{comment}{//\ http://www.boost.org/LICENSE\_1\_0.txt)}}
+\DoxyCodeLine{00005\ \textcolor{preprocessor}{\#ifndef\ SC\_WORKAROUND\_DWA2002126\_HPP}}
+\DoxyCodeLine{00006\ \textcolor{preprocessor}{\#\ define\ SC\_WORKAROUND\_DWA2002126\_HPP}}
+\DoxyCodeLine{00007\ }
+\DoxyCodeLine{00008\ \textcolor{comment}{//\ Compiler/library\ version\ workaround\ macro}}
+\DoxyCodeLine{00009\ \textcolor{comment}{//}}
+\DoxyCodeLine{00010\ \textcolor{comment}{//\ Usage:}}
+\DoxyCodeLine{00011\ \textcolor{comment}{//}}
+\DoxyCodeLine{00012\ \textcolor{comment}{//\ \ \ \ \ \#if\ SC\_BOOST\_WORKAROUND(SC\_BOOST\_MSVC,\ <=\ 1200)}}
+\DoxyCodeLine{00013\ \textcolor{comment}{//\ \ \ \ \ \ \ \ ...\ //\ workaround\ code\ here}}
+\DoxyCodeLine{00014\ \textcolor{comment}{//\ \ \ \ \ \#endif}}
+\DoxyCodeLine{00015\ \textcolor{comment}{//}}
+\DoxyCodeLine{00016\ \textcolor{comment}{//\ When\ SC\_BOOST\_STRICT\_CONFIG\ is\ defined,\ expands\ to\ 0.\ Otherwise,\ the}}
+\DoxyCodeLine{00017\ \textcolor{comment}{//\ first\ argument\ must\ be\ undefined\ or\ expand\ to\ a\ numeric}}
+\DoxyCodeLine{00018\ \textcolor{comment}{//\ value.\ The\ above\ expands\ to:}}
+\DoxyCodeLine{00019\ \textcolor{comment}{//}}
+\DoxyCodeLine{00020\ \textcolor{comment}{//\ \ \ \ \ (SC\_BOOST\_MSVC)\ !=\ 0\ \&\&\ (SC\_BOOST\_MSVC)\ <=\ 1200}}
+\DoxyCodeLine{00021\ \textcolor{comment}{//}}
+\DoxyCodeLine{00022\ \textcolor{comment}{//\ When\ used\ for\ workarounds\ that\ apply\ to\ the\ latest\ known\ version\ }}
+\DoxyCodeLine{00023\ \textcolor{comment}{//\ and\ all\ earlier\ versions\ of\ a\ compiler,\ the\ following\ convention\ }}
+\DoxyCodeLine{00024\ \textcolor{comment}{//\ should\ be\ observed:}}
+\DoxyCodeLine{00025\ \textcolor{comment}{//}}
+\DoxyCodeLine{00026\ \textcolor{comment}{//\ \ \ \ \ \#if\ SC\_BOOST\_WORKAROUND(SC\_BOOST\_MSVC,\ SC\_BOOST\_TESTED\_AT(1301))}}
+\DoxyCodeLine{00027\ \textcolor{comment}{//}}
+\DoxyCodeLine{00028\ \textcolor{comment}{//\ The\ version\ number\ in\ this\ case\ corresponds\ to\ the\ last\ version\ in}}
+\DoxyCodeLine{00029\ \textcolor{comment}{//\ which\ the\ workaround\ was\ known\ to\ have\ been\ required.\ When}}
+\DoxyCodeLine{00030\ \textcolor{comment}{//\ SC\_BOOST\_DETECT\_OUTDATED\_WORKAROUNDS\ is\ not\ the\ defined,\ the\ macro}}
+\DoxyCodeLine{00031\ \textcolor{comment}{//\ SC\_BOOST\_TESTED\_AT(x)\ expands\ to\ "{}!=\ 0"{},\ which\ effectively\ activates}}
+\DoxyCodeLine{00032\ \textcolor{comment}{//\ the\ workaround\ for\ any\ version\ of\ the\ compiler.\ When}}
+\DoxyCodeLine{00033\ \textcolor{comment}{//\ SC\_BOOST\_DETECT\_OUTDATED\_WORKAROUNDS\ is\ defined,\ a\ compiler\ warning\ or}}
+\DoxyCodeLine{00034\ \textcolor{comment}{//\ error\ will\ be\ issued\ if\ the\ compiler\ version\ exceeds\ the\ argument}}
+\DoxyCodeLine{00035\ \textcolor{comment}{//\ to\ SC\_BOOST\_TESTED\_AT().\ \ This\ can\ be\ used\ to\ locate\ workarounds\ which}}
+\DoxyCodeLine{00036\ \textcolor{comment}{//\ may\ be\ obsoleted\ by\ newer\ versions.}}
+\DoxyCodeLine{00037\ }
+\DoxyCodeLine{00038\ \textcolor{preprocessor}{\#\ ifndef\ SC\_BOOST\_STRICT\_CONFIG}}
+\DoxyCodeLine{00039\ }
+\DoxyCodeLine{00040\ \textcolor{preprocessor}{\#\ \ define\ SC\_BOOST\_WORKAROUND(symbol,\ test)\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}}
+\DoxyCodeLine{00041\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ ((symbol\ !=\ 0)\ \&\&\ (1\ \%\ ((\ (symbol\ test)\ )\ +\ 1)))}}
+\DoxyCodeLine{00042\ \textcolor{comment}{//\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \string^\ \string^\ \ \ \ \ \ \ \ \ \ \ \string^\ \string^}}
+\DoxyCodeLine{00043\ \textcolor{comment}{//\ The\ extra\ level\ of\ parenthesis\ nesting\ above,\ along\ with\ the}}
+\DoxyCodeLine{00044\ \textcolor{comment}{//\ SC\_BOOST\_OPEN\_PAREN\ indirection\ below,\ is\ required\ to\ satisfy\ the}}
+\DoxyCodeLine{00045\ \textcolor{comment}{//\ broken\ preprocessor\ in\ MWCW\ 8.3\ and\ earlier.}}
+\DoxyCodeLine{00046\ \textcolor{comment}{//}}
+\DoxyCodeLine{00047\ \textcolor{comment}{//\ The\ basic\ mechanism\ works\ as\ follows:}}
+\DoxyCodeLine{00048\ \textcolor{comment}{//\ \ \ \ \ \ (symbol\ test)\ +\ 1\ \ \ \ \ \ \ \ =>\ \ \ if\ (symbol\ test)\ then\ 2\ else\ 1}}
+\DoxyCodeLine{00049\ \textcolor{comment}{//\ \ \ \ \ \ 1\ \%\ ((symbol\ test)\ +\ 1)\ \ =>\ \ \ if\ (symbol\ test)\ then\ 1\ else\ 0}}
+\DoxyCodeLine{00050\ \textcolor{comment}{//}}
+\DoxyCodeLine{00051\ \textcolor{comment}{//\ The\ complication\ with\ \%\ is\ for\ cooperation\ with\ SC\_BOOST\_TESTED\_AT().}}
+\DoxyCodeLine{00052\ \textcolor{comment}{//\ When\ "{}test"{}\ is\ SC\_BOOST\_TESTED\_AT(x)\ and}}
+\DoxyCodeLine{00053\ \textcolor{comment}{//\ SC\_BOOST\_DETECT\_OUTDATED\_WORKAROUNDS\ is\ \#defined,}}
+\DoxyCodeLine{00054\ \textcolor{comment}{//}}
+\DoxyCodeLine{00055\ \textcolor{comment}{//\ \ \ \ \ \ symbol\ test\ \ \ \ \ \ \ \ \ \ \ \ \ \ =>\ \ \ if\ (symbol\ <=\ x)\ then\ 1\ else\ -\/1}}
+\DoxyCodeLine{00056\ \textcolor{comment}{//\ \ \ \ \ \ (symbol\ test)\ +\ 1\ \ \ \ \ \ \ \ =>\ \ \ if\ (symbol\ <=\ x)\ then\ 2\ else\ 0}}
+\DoxyCodeLine{00057\ \textcolor{comment}{//\ \ \ \ \ \ 1\ \%\ ((symbol\ test)\ +\ 1)\ \ =>\ \ \ if\ (symbol\ <=\ x)\ then\ 1\ else\ divide-\/by-\/zero}}
+\DoxyCodeLine{00058\ \textcolor{comment}{//}}
+\DoxyCodeLine{00059\ }
+\DoxyCodeLine{00060\ \textcolor{preprocessor}{\#\ \ ifdef\ SC\_BOOST\_DETECT\_OUTDATED\_WORKAROUNDS}}
+\DoxyCodeLine{00061\ \textcolor{preprocessor}{\#\ \ \ define\ SC\_BOOST\_OPEN\_PAREN\ (}}
+\DoxyCodeLine{00062\ \textcolor{preprocessor}{\#\ \ \ define\ SC\_BOOST\_TESTED\_AT(value)\ \ >\ value)\ ?(-\/1):\ SC\_BOOST\_OPEN\_PAREN\ 1}}
+\DoxyCodeLine{00063\ \textcolor{preprocessor}{\#\ \ else}}
+\DoxyCodeLine{00064\ \textcolor{preprocessor}{\#\ \ \ define\ SC\_BOOST\_TESTED\_AT(value)\ !=\ ((value)-\/(value))}}
+\DoxyCodeLine{00065\ \textcolor{preprocessor}{\#\ \ endif}}
+\DoxyCodeLine{00066\ }
+\DoxyCodeLine{00067\ \textcolor{preprocessor}{\#\ else}}
+\DoxyCodeLine{00068\ }
+\DoxyCodeLine{00069\ \textcolor{preprocessor}{\#\ \ define\ SC\_BOOST\_WORKAROUND(symbol,\ test)\ 0}}
+\DoxyCodeLine{00070\ }
+\DoxyCodeLine{00071\ \textcolor{preprocessor}{\#\ endif\ }}
+\DoxyCodeLine{00072\ }
+\DoxyCodeLine{00073\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{//\ SC\_WORKAROUND\_DWA2002126\_HPP}}
+
+\end{DoxyCode}

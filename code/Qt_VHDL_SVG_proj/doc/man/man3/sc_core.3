@@ -1,0 +1,1927 @@
+.TH "sc_core" 3 "VHDL simulator" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+sc_core
+.SH SYNOPSIS
+.br
+.PP
+.SS "Namespaces"
+
+.in +1c
+.ti -1c
+.RI "namespace \fBsc_meta\fP"
+.br
+.in -1c
+.SS "Classes"
+
+.in +1c
+.ti -1c
+.RI "struct \fBSC_API_VERSION_STRING\fP"
+.br
+.ti -1c
+.RI "class \fBsc_attr_base\fP"
+.br
+.ti -1c
+.RI "class \fBsc_attr_cltn\fP"
+.br
+.ti -1c
+.RI "class \fBsc_attribute\fP"
+.br
+.ti -1c
+.RI "struct \fBsc_bind_proxy\fP"
+.br
+.ti -1c
+.RI "class \fBsc_buffer\fP"
+.br
+.ti -1c
+.RI "class \fBsc_byte_heap\fP"
+.br
+.ti -1c
+.RI "class \fBsc_clock\fP"
+.br
+.ti -1c
+.RI "class \fBsc_clock_negedge_callback\fP"
+.br
+.ti -1c
+.RI "class \fBsc_clock_posedge_callback\fP"
+.br
+.ti -1c
+.RI "class \fBsc_cor\fP"
+.br
+.ti -1c
+.RI "class \fBsc_cor_pkg\fP"
+.br
+.ti -1c
+.RI "class \fBsc_cor_pkg_qt\fP"
+.br
+.ti -1c
+.RI "class \fBsc_cor_qt\fP"
+.br
+.ti -1c
+.RI "class \fBsc_cthread_process\fP"
+.br
+.ti -1c
+.RI "struct \fBsc_curr_proc_info\fP"
+.br
+.ti -1c
+.RI "struct \fBsc_direct_access\fP"
+.br
+.ti -1c
+.RI "class \fBsc_event\fP"
+.br
+.ti -1c
+.RI "class \fBsc_event_and_list\fP"
+.br
+.ti -1c
+.RI "class \fBsc_event_expr\fP"
+.br
+.ti -1c
+.RI "class \fBsc_event_finder\fP"
+.br
+.ti -1c
+.RI "class \fBsc_event_finder_t\fP"
+.br
+.ti -1c
+.RI "class \fBsc_event_list\fP"
+.br
+.ti -1c
+.RI "class \fBsc_event_or_list\fP"
+.br
+.ti -1c
+.RI "class \fBsc_event_queue\fP"
+.br
+.ti -1c
+.RI "class \fBsc_event_queue_if\fP"
+.br
+.ti -1c
+.RI "class \fBsc_event_timed\fP"
+.br
+.ti -1c
+.RI "class \fBsc_export\fP"
+.br
+.ti -1c
+.RI "class \fBsc_export_base\fP"
+.br
+.ti -1c
+.RI "class \fBsc_export_registry\fP"
+.br
+.ti -1c
+.RI "class \fBsc_fifo\fP"
+.br
+.ti -1c
+.RI "class \fBsc_fifo_blocking_in_if\fP"
+.br
+.ti -1c
+.RI "class \fBsc_fifo_blocking_out_if\fP"
+.br
+.ti -1c
+.RI "class \fBsc_fifo_in\fP"
+.br
+.ti -1c
+.RI "class \fBsc_fifo_in_if\fP"
+.br
+.ti -1c
+.RI "class \fBsc_fifo_nonblocking_in_if\fP"
+.br
+.ti -1c
+.RI "class \fBsc_fifo_nonblocking_out_if\fP"
+.br
+.ti -1c
+.RI "class \fBsc_fifo_out\fP"
+.br
+.ti -1c
+.RI "class \fBsc_fifo_out_if\fP"
+.br
+.ti -1c
+.RI "class \fBsc_halt\fP"
+.br
+.ti -1c
+.RI "class \fBsc_host_mutex\fP"
+.br
+.ti -1c
+.RI "class \fBsc_host_semaphore\fP"
+.br
+.ti -1c
+.RI "class \fBsc_in\fP"
+.br
+.ti -1c
+.RI "class \fBsc_in< bool >\fP"
+.br
+.ti -1c
+.RI "class \fBsc_in< sc_dt::sc_logic >\fP"
+.br
+.ti -1c
+.RI "class \fBsc_in_resolved\fP"
+.br
+.ti -1c
+.RI "class \fBsc_in_rv\fP"
+.br
+.ti -1c
+.RI "class \fBsc_inout\fP"
+.br
+.ti -1c
+.RI "class \fBsc_inout< bool >\fP"
+.br
+.ti -1c
+.RI "class \fBsc_inout< sc_dt::sc_logic >\fP"
+.br
+.ti -1c
+.RI "class \fBsc_inout_resolved\fP"
+.br
+.ti -1c
+.RI "class \fBsc_inout_rv\fP"
+.br
+.ti -1c
+.RI "class \fBsc_interface\fP"
+.br
+.ti -1c
+.RI "class \fBsc_join\fP"
+.br
+.ti -1c
+.RI "class \fBsc_kill\fP"
+.br
+.ti -1c
+.RI "class \fBsc_lv_resolve\fP"
+.br
+.ti -1c
+.RI "class \fBsc_member_access\fP"
+.br
+.ti -1c
+.RI "class \fBsc_mempool\fP"
+.br
+.ti -1c
+.RI "class \fBsc_method_process\fP"
+.br
+.ti -1c
+.RI "class \fBsc_module\fP"
+.br
+.ti -1c
+.RI "class \fBsc_module_name\fP"
+.br
+.ti -1c
+.RI "class \fBsc_module_registry\fP"
+.br
+.ti -1c
+.RI "class \fBsc_mpobject\fP"
+.br
+.ti -1c
+.RI "struct \fBsc_msg_def\fP"
+.br
+.ti -1c
+.RI "class \fBsc_mutex\fP"
+.br
+.ti -1c
+.RI "class \fBsc_mutex_if\fP"
+.br
+.ti -1c
+.RI "class \fBsc_name_gen\fP"
+.br
+.ti -1c
+.RI "class \fBsc_object\fP"
+.br
+.ti -1c
+.RI "class \fBsc_object_manager\fP"
+.br
+.ti -1c
+.RI "class \fBsc_out\fP"
+.br
+.ti -1c
+.RI "class \fBsc_out_resolved\fP"
+.br
+.ti -1c
+.RI "class \fBsc_out_rv\fP"
+.br
+.ti -1c
+.RI "class \fBsc_pdhash\fP"
+.br
+.ti -1c
+.RI "class \fBsc_pdhash_iter\fP"
+.br
+.ti -1c
+.RI "class \fBsc_phase_callback_registry\fP"
+.br
+.ti -1c
+.RI "class \fBsc_phash\fP"
+.br
+.ti -1c
+.RI "class \fBsc_phash_base\fP"
+.br
+.ti -1c
+.RI "class \fBsc_phash_base_iter\fP"
+.br
+.ti -1c
+.RI "class \fBsc_phash_iter\fP"
+.br
+.ti -1c
+.RI "class \fBsc_plist\fP"
+.br
+.ti -1c
+.RI "class \fBsc_plist_base\fP"
+.br
+.ti -1c
+.RI "class \fBsc_plist_base_iter\fP"
+.br
+.ti -1c
+.RI "class \fBsc_plist_iter\fP"
+.br
+.ti -1c
+.RI "class \fBsc_port\fP"
+.br
+.ti -1c
+.RI "class \fBsc_port_b\fP"
+.br
+.ti -1c
+.RI "class \fBsc_port_base\fP"
+.br
+.ti -1c
+.RI "class \fBsc_port_registry\fP"
+.br
+.ti -1c
+.RI "class \fBsc_ppq\fP"
+.br
+.ti -1c
+.RI "class \fBsc_ppq_base\fP"
+.br
+.ti -1c
+.RI "class \fBsc_prim_channel\fP"
+.br
+.ti -1c
+.RI "class \fBsc_prim_channel_registry\fP"
+.br
+.ti -1c
+.RI "class \fBsc_process_b\fP"
+.br
+.ti -1c
+.RI "class \fBsc_process_handle\fP"
+.br
+.ti -1c
+.RI "class \fBsc_process_host\fP"
+.br
+.ti -1c
+.RI "class \fBsc_process_monitor\fP"
+.br
+.ti -1c
+.RI "class \fBsc_pvector\fP"
+.br
+.ti -1c
+.RI "class \fBsc_report\fP"
+.br
+.ti -1c
+.RI "class \fBsc_report_handler\fP"
+.br
+.ti -1c
+.RI "class \fBsc_reset\fP"
+.br
+.ti -1c
+.RI "class \fBsc_reset_finder\fP"
+.br
+.ti -1c
+.RI "class \fBsc_reset_target\fP"
+.br
+.ti -1c
+.RI "class \fBsc_runnable\fP"
+.br
+.ti -1c
+.RI "class \fBsc_scoped_lock\fP"
+.br
+.ti -1c
+.RI "class \fBsc_semaphore\fP"
+.br
+.ti -1c
+.RI "class \fBsc_semaphore_if\fP"
+.br
+.ti -1c
+.RI "class \fBsc_sensitive\fP"
+.br
+.ti -1c
+.RI "class \fBsc_sensitive_neg\fP"
+.br
+.ti -1c
+.RI "class \fBsc_sensitive_pos\fP"
+.br
+.ti -1c
+.RI "class \fBsc_signal\fP"
+.br
+.ti -1c
+.RI "class \fBsc_signal< bool, POL >\fP"
+.br
+.ti -1c
+.RI "class \fBsc_signal< sc_dt::sc_logic, POL >\fP"
+.br
+.ti -1c
+.RI "class \fBsc_signal_channel\fP"
+.br
+.ti -1c
+.RI "class \fBsc_signal_in_if\fP"
+.br
+.ti -1c
+.RI "class \fBsc_signal_in_if< bool >\fP"
+.br
+.ti -1c
+.RI "class \fBsc_signal_in_if< sc_dt::sc_logic >\fP"
+.br
+.ti -1c
+.RI "class \fBsc_signal_inout_if\fP"
+.br
+.ti -1c
+.RI "class \fBsc_signal_resolved\fP"
+.br
+.ti -1c
+.RI "class \fBsc_signal_rv\fP"
+.br
+.ti -1c
+.RI "class \fBsc_signal_t\fP"
+.br
+.ti -1c
+.RI "class \fBsc_signal_write_if\fP"
+.br
+.ti -1c
+.RI "class \fBsc_simcontext\fP"
+.br
+.ti -1c
+.RI "class \fBsc_spawn_object\fP"
+.br
+.ti -1c
+.RI "class \fBsc_spawn_object_v\fP"
+.br
+.ti -1c
+.RI "class \fBsc_spawn_options\fP"
+.br
+.ti -1c
+.RI "class \fBsc_spawn_reset\fP"
+.br
+.ti -1c
+.RI "class \fBsc_strhash\fP"
+.br
+.ti -1c
+.RI "class \fBsc_strhash_iter\fP"
+.br
+.ti -1c
+.RI "class \fBsc_thread_process\fP"
+.br
+.ti -1c
+.RI "class \fBsc_throw_it\fP"
+.br
+.ti -1c
+.RI "class \fBsc_throw_it_helper\fP"
+.br
+.ti -1c
+.RI "class \fBsc_time\fP"
+.br
+.ti -1c
+.RI "struct \fBsc_time_params\fP"
+.br
+.ti -1c
+.RI "class \fBsc_time_tuple\fP"
+.br
+.ti -1c
+.RI "class \fBsc_trace_file\fP"
+.br
+.ti -1c
+.RI "class \fBsc_trace_file_base\fP"
+.br
+.ti -1c
+.RI "struct \fBsc_trace_params\fP"
+.br
+.ti -1c
+.RI "class \fBsc_type_index\fP"
+.br
+.ti -1c
+.RI "class \fBsc_unwind_exception\fP"
+.br
+.ti -1c
+.RI "class \fBsc_user\fP"
+.br
+.ti -1c
+.RI "class \fBsc_vector\fP"
+.br
+.ti -1c
+.RI "class \fBsc_vector_assembly\fP"
+.br
+.ti -1c
+.RI "class \fBsc_vector_base\fP"
+.br
+.ti -1c
+.RI "class \fBsc_vector_iter\fP"
+.br
+.ti -1c
+.RI "class \fBsc_vpool\fP"
+.br
+.ti -1c
+.RI "struct \fBsc_writer_policy_check\fP"
+.br
+.ti -1c
+.RI "struct \fBsc_writer_policy_check< SC_MANY_WRITERS >\fP"
+.br
+.ti -1c
+.RI "struct \fBsc_writer_policy_check< SC_ONE_WRITER >\fP"
+.br
+.ti -1c
+.RI "struct \fBsc_writer_policy_check< SC_UNCHECKED_WRITERS >\fP"
+.br
+.ti -1c
+.RI "struct \fBsc_writer_policy_check_delta\fP"
+.br
+.ti -1c
+.RI "struct \fBsc_writer_policy_check_port\fP"
+.br
+.ti -1c
+.RI "struct \fBsc_writer_policy_check_write\fP"
+.br
+.ti -1c
+.RI "struct \fBsc_writer_policy_nocheck_port\fP"
+.br
+.ti -1c
+.RI "struct \fBsc_writer_policy_nocheck_write\fP"
+.br
+.ti -1c
+.RI "class \fBsc_zstring_view\fP"
+.br
+.RI "non-owning, const-ref to null-terminated string (implementation-defined) "
+.ti -1c
+.RI "struct \fBscoped_flag\fP"
+.br
+.ti -1c
+.RI "class \fBvcd_T_trace\fP"
+.br
+.ti -1c
+.RI "class \fBvcd_trace_file\fP"
+.br
+.ti -1c
+.RI "class \fBwif_T_trace\fP"
+.br
+.ti -1c
+.RI "class \fBwif_trace_file\fP"
+.br
+.in -1c
+.SS "Typedefs"
+
+.in +1c
+.ti -1c
+.RI "\fBtypedef\fP \fBsc_in\fP< \fBbool\fP > \fBsc_in_clk\fP"
+.br
+.ti -1c
+.RI "\fBtypedef\fP \fBsc_inout\fP< \fBbool\fP > \fBsc_inout_clk\fP"
+.br
+.ti -1c
+.RI "\fBtypedef\fP \fBsc_out\fP< \fBbool\fP > \fBsc_out_clk\fP"
+.br
+.ti -1c
+.RI "\fBtypedef\fP \fBsc_port\fP< \fBsc_event_queue_if\fP, 1, \fBSC_ONE_OR_MORE_BOUND\fP > \fBsc_event_queue_port\fP"
+.br
+.ti -1c
+.RI "\fBtypedef\fP std::vector< \fBsc_trace_params\fP * > \fBsc_trace_params_vec\fP"
+.br
+.ti -1c
+.RI "\fBtypedef\fP \fBvoid\fP \fBsc_cor_fn\fP(\fBvoid\fP *)"
+.br
+.ti -1c
+.RI "\fBtypedef\fP \fBsc_cor_pkg_qt\fP \fBsc_cor_pkg_t\fP"
+.br
+.ti -1c
+.RI "\fBtypedef\fP \fBsc_event_expr\fP< \fBsc_event_and_list\fP > \fBsc_event_and_expr\fP"
+.br
+.ti -1c
+.RI "\fBtypedef\fP \fBsc_event_expr\fP< \fBsc_event_or_list\fP > \fBsc_event_or_expr\fP"
+.br
+.ti -1c
+.RI "\fBtypedef\fP \fBsc_module\fP \fBsc_channel\fP"
+.br
+.ti -1c
+.RI "\fBtypedef\fP \fBsc_module\fP \fBsc_behavior\fP"
+.br
+.ti -1c
+.RI "\fBtypedef\fP \fBclass\fP \fBsc_cthread_process\fP * \fBsc_cthread_handle\fP"
+.br
+.ti -1c
+.RI "\fBtypedef\fP \fBclass\fP \fBsc_method_process\fP * \fBsc_method_handle\fP"
+.br
+.ti -1c
+.RI "\fBtypedef\fP \fBclass\fP \fBsc_thread_process\fP * \fBsc_thread_handle\fP"
+.br
+.ti -1c
+.RI "\fBtypedef\fP \fBvoid\fP(sc_process_host::* \fBSC_ENTRY_FUNC\fP) ()"
+.br
+.ti -1c
+.RI "\fBtypedef\fP sc_process_b \fBsc_process_b\fP"
+.br
+.ti -1c
+.RI "\fBtypedef\fP \fBsc_plist\fP< \fBsc_process_b\fP * > \fBsc_process_list\fP"
+.br
+.ti -1c
+.RI "\fBtypedef\fP \fBconst\fP \fBsc_curr_proc_info\fP * \fBsc_curr_proc_handle\fP"
+.br
+.ti -1c
+.RI "\fBtypedef\fP \fBvoid\fP(* \fBsc_plist_map_fn\fP) (\fBvoid\fP *data, \fBvoid\fP *arg)"
+.br
+.ti -1c
+.RI "\fBtypedef\fP int(* \fBCFT\fP) (\fBconst\fP \fBvoid\fP *, \fBconst\fP \fBvoid\fP *)"
+.br
+.ti -1c
+.RI "\fBtypedef\fP \fBunsigned\fP \fBsc_actions\fP"
+.br
+.ti -1c
+.RI "\fBtypedef\fP std::exception \fBsc_exception\fP"
+.br
+.ti -1c
+.RI "\fBtypedef\fP \fBvoid\fP(* \fBsc_report_handler_proc\fP) (\fBconst\fP \fBsc_report\fP &, \fBconst\fP \fBsc_actions\fP &)"
+.br
+.ti -1c
+.RI "\fBtypedef\fP SC_STRING_VIEW_NS_::string_view \fBsc_string_view\fP"
+.br
+.RI "non-owning, constant reference to a string (implementation-defined) "
+.in -1c
+.SS "Enumerations"
+
+.in +1c
+.ti -1c
+.RI "enum \fBsc_port_policy\fP { \fBSC_ONE_OR_MORE_BOUND\fP, \fBSC_ZERO_OR_MORE_BOUND\fP, \fBSC_ALL_BOUND\fP }"
+.br
+.ti -1c
+.RI "enum \fBsc_writer_policy\fP { \fBSC_ONE_WRITER\fP = 0, \fBSC_MANY_WRITERS\fP = 1, \fBSC_UNCHECKED_WRITERS\fP = 3 }"
+.br
+.ti -1c
+.RI "enum \fBsc_curr_proc_kind\fP { \fBSC_NO_PROC_\fP, \fBSC_METHOD_PROC_\fP, \fBSC_THREAD_PROC_\fP, \fBSC_CTHREAD_PROC_\fP }"
+.br
+.ti -1c
+.RI "enum \fBsc_descendant_inclusion_info\fP { \fBSC_NO_DESCENDANTS\fP =0, \fBSC_INCLUDE_DESCENDANTS\fP, \fBSC_INVALID_DESCENDANTS\fP }"
+.br
+.ti -1c
+.RI "enum \fBsc_stop_mode\fP { \fBSC_STOP_FINISH_DELTA\fP, \fBSC_STOP_IMMEDIATE\fP }"
+.br
+.ti -1c
+.RI "enum \fBsc_starvation_policy\fP { \fBSC_EXIT_ON_STARVATION\fP, \fBSC_RUN_TO_TIME\fP }"
+.br
+.ti -1c
+.RI "enum \fBsc_status\fP { \fBSC_UNITIALIZED\fP =0x00, \fBSC_ELABORATION\fP = 0x01, \fBSC_BEFORE_END_OF_ELABORATION\fP = 0x02, \fBSC_END_OF_ELABORATION\fP = 0x04, \fBSC_START_OF_SIMULATION\fP = 0x08, \fBSC_RUNNING\fP = 0x10, \fBSC_PAUSED\fP = 0x20, \fBSC_STOPPED\fP = 0x40, \fBSC_END_OF_SIMULATION\fP = 0x80, \fBSC_END_OF_INITIALIZATION\fP = 0x100, \fBSC_END_OF_UPDATE\fP = 0x400, \fBSC_BEFORE_TIMESTEP\fP = 0x800, \fBSC_STATUS_LAST\fP = SC_BEFORE_TIMESTEP, \fBSC_STATUS_ANY\fP = 0xdff }"
+.br
+.ti -1c
+.RI "enum \fBsc_time_unit\fP { \fBSC_FS\fP = 0, \fBSC_PS\fP, \fBSC_NS\fP, \fBSC_US\fP, \fBSC_MS\fP, \fBSC_SEC\fP }"
+.br
+.ti -1c
+.RI "enum \fBsc_severity\fP { \fBSC_INFO\fP = 0, \fBSC_WARNING\fP, \fBSC_ERROR\fP, \fBSC_FATAL\fP, \fBSC_MAX_SEVERITY\fP }"
+.br
+.ti -1c
+.RI "enum \fBsc_verbosity\fP { \fBSC_NONE\fP = 0, \fBSC_LOW\fP = 100, \fBSC_MEDIUM\fP = 200, \fBSC_HIGH\fP = 300, \fBSC_FULL\fP = 400, \fBSC_DEBUG\fP = 500 }"
+.br
+.ti -1c
+.RI "enum { \fBSC_UNSPECIFIED\fP = 0x0000, \fBSC_DO_NOTHING\fP = 0x0001, \fBSC_THROW\fP = 0x0002, \fBSC_LOG\fP = 0x0004, \fBSC_DISPLAY\fP = 0x0008, \fBSC_CACHE_REPORT\fP = 0x0010, \fBSC_INTERRUPT\fP = 0x0020, \fBSC_STOP\fP = 0x0040, \fBSC_ABORT\fP = 0x0080, \fBSC_DEFAULT_INFO_ACTIONS\fP = SC_LOG | SC_DISPLAY, \fBSC_DEFAULT_WARNING_ACTIONS\fP = SC_LOG | SC_DISPLAY, \fBSC_DEFAULT_ERROR_ACTIONS\fP = SC_LOG | SC_CACHE_REPORT | SC_THROW, \fBSC_DEFAULT_FATAL_ACTIONS\fP = SC_LOG | SC_DISPLAY | SC_CACHE_REPORT | SC_ABORT, \fBSC_DEFAULT_CATCH_ACTIONS\fP = SC_DISPLAY }"
+.br
+.in -1c
+.SS "Functions"
+
+.in +1c
+.ti -1c
+.RI "template<\fBclass\fP \fBT\fP > inline::std::ostream & \fBoperator<<\fP (::std::ostream &\fBos\fP, \fBconst\fP \fBsc_fifo\fP< \fBT\fP > &\fBa\fP)"
+.br
+.ti -1c
+.RI "\fBSC_API\fP \fBvoid\fP \fBsc_warn_port_constructor\fP ()"
+.br
+.ti -1c
+.RI "inline::std::ostream & \fBoperator<<\fP (::std::ostream &\fBos\fP, \fBconst\fP \fBsc_signal_channel\fP &\fBa\fP)"
+.br
+.ti -1c
+.RI "\fBSC_API\fP \fBvoid\fP \fBsc_deprecated_add_trace\fP ()"
+.br
+.ti -1c
+.RI "template<\fBtypename\fP \fBT\fP > ::std::ostream & \fBoperator<<\fP (::std::ostream &\fBos\fP, \fBconst\fP \fBsc_in\fP< \fBT\fP > &\fBa\fP)"
+.br
+.ti -1c
+.RI "template<\fBtypename\fP \fBT\fP > ::std::ostream & \fBoperator<<\fP (::std::ostream &\fBos\fP, \fBconst\fP \fBsc_inout\fP< \fBT\fP > &\fBa\fP)"
+.br
+.ti -1c
+.RI "template<\fBclass\fP \fBT\fP > \fBvoid\fP \fBsc_trace\fP (\fBsc_trace_file\fP *tf, \fBconst\fP \fBsc_in\fP< \fBT\fP > &port, \fBconst\fP std::string &name)"
+.br
+.ti -1c
+.RI "template<\fBclass\fP \fBT\fP > \fBvoid\fP \fBsc_trace\fP (\fBsc_trace_file\fP *tf, \fBconst\fP \fBsc_inout\fP< \fBT\fP > &port, \fBconst\fP std::string &name)"
+.br
+.ti -1c
+.RI "\fBSC_API\fP \fBvoid\fP \fBsc_signal_invalid_writer\fP (\fBsc_object\fP *target, \fBsc_object\fP *\fBfirst_writer\fP, \fBsc_object\fP *\fBsecond_writer\fP, \fBbool\fP \fBcheck_delta\fP)"
+.br
+.ti -1c
+.RI "\fBvoid\fP \fBSC_API\fP \fBhalt\fP (\fBsc_simcontext\fP *)"
+.br
+.ti -1c
+.RI "\fBSC_API\fP int \fBsc_notify_time_compare\fP (\fBconst\fP \fBvoid\fP *, \fBconst\fP \fBvoid\fP *)"
+.br
+.ti -1c
+.RI "\fBvoid\fP \fBnotify\fP (\fBsc_event\fP &\fBe\fP)"
+.br
+.ti -1c
+.RI "\fBvoid\fP \fBnotify\fP (\fBconst\fP \fBsc_time\fP &t, \fBsc_event\fP &\fBe\fP)"
+.br
+.ti -1c
+.RI "\fBvoid\fP \fBnotify\fP (\fBdouble\fP v, \fBsc_time_unit\fP \fBtu\fP, \fBsc_event\fP &\fBe\fP)"
+.br
+.ti -1c
+.RI "\fBsc_event_or_expr\fP \fBoperator|\fP (\fBsc_event_or_expr\fP \fBexpr\fP, \fBsc_event\fP \fBconst\fP &\fBe\fP)"
+.br
+.ti -1c
+.RI "\fBsc_event_or_expr\fP \fBoperator|\fP (\fBsc_event_or_expr\fP \fBexpr\fP, \fBsc_event_or_list\fP \fBconst\fP &\fBel\fP)"
+.br
+.ti -1c
+.RI "\fBsc_event_and_expr\fP \fBoperator&\fP (\fBsc_event_and_expr\fP \fBexpr\fP, \fBsc_event\fP \fBconst\fP &\fBe\fP)"
+.br
+.ti -1c
+.RI "\fBsc_event_and_expr\fP \fBoperator&\fP (\fBsc_event_and_expr\fP \fBexpr\fP, \fBsc_event_and_list\fP \fBconst\fP &\fBel\fP)"
+.br
+.ti -1c
+.RI "\fBvoid\fP \fBsc_thread_cor_fn\fP (\fBvoid\fP *arg)"
+.br
+.ti -1c
+.RI "\fBSC_API\fP \fBsc_report\fP * \fBsc_handle_exception\fP ()"
+.br
+.ti -1c
+.RI "int \fBsc_elab_and_sim\fP (int \fBargc\fP, \fBchar\fP *\fBargv\fP[])"
+.br
+.ti -1c
+.RI "int \fBsc_argc\fP ()"
+.br
+.ti -1c
+.RI "\fBconst\fP \fBchar\fP *\fBconst\fP * \fBsc_argv\fP ()"
+.br
+.ti -1c
+.RI "\fBvoid\fP \fBsc_method_cor_fn\fP (\fBvoid\fP *)"
+.br
+.ti -1c
+.RI "\fBvoid\fP \fBsc_cmethod_cor_fn\fP (\fBvoid\fP *)"
+.br
+.ti -1c
+.RI "\fBSC_API\fP \fBvoid\fP \fBsc_set_stack_size\fP (\fBsc_method_handle\fP, std::size_t)"
+.br
+.ti -1c
+.RI "\fBSC_API\fP \fBvoid\fP \fBnext_trigger\fP (\fBsc_simcontext\fP *)"
+.br
+.ti -1c
+.RI "\fBSC_API\fP \fBvoid\fP \fBnext_trigger\fP (\fBconst\fP \fBsc_event\fP &, \fBsc_simcontext\fP *)"
+.br
+.ti -1c
+.RI "\fBSC_API\fP \fBvoid\fP \fBnext_trigger\fP (\fBconst\fP \fBsc_event_or_list\fP &, \fBsc_simcontext\fP *)"
+.br
+.ti -1c
+.RI "\fBSC_API\fP \fBvoid\fP \fBnext_trigger\fP (\fBconst\fP \fBsc_event_and_list\fP &, \fBsc_simcontext\fP *)"
+.br
+.ti -1c
+.RI "\fBSC_API\fP \fBvoid\fP \fBnext_trigger\fP (\fBconst\fP \fBsc_time\fP &, \fBsc_simcontext\fP *)"
+.br
+.ti -1c
+.RI "\fBSC_API\fP \fBvoid\fP \fBnext_trigger\fP (\fBconst\fP \fBsc_time\fP &, \fBconst\fP \fBsc_event\fP &, \fBsc_simcontext\fP *)"
+.br
+.ti -1c
+.RI "\fBSC_API\fP \fBvoid\fP \fBnext_trigger\fP (\fBconst\fP \fBsc_time\fP &, \fBconst\fP \fBsc_event_or_list\fP &, \fBsc_simcontext\fP *)"
+.br
+.ti -1c
+.RI "\fBSC_API\fP \fBvoid\fP \fBnext_trigger\fP (\fBconst\fP \fBsc_time\fP &, \fBconst\fP \fBsc_event_and_list\fP &, \fBsc_simcontext\fP *)"
+.br
+.ti -1c
+.RI "\fBSC_API\fP \fBsc_module\fP * \fBsc_module_dynalloc\fP (\fBsc_module\fP *)"
+.br
+.ti -1c
+.RI "\fBsc_object\fP * \fBsc_get_parent\fP (\fBconst\fP \fBsc_object\fP *\fBobj_p\fP)"
+.br
+.ti -1c
+.RI "\fBSC_API\fP \fBconst\fP \fBchar\fP * \fBsc_gen_unique_name\fP (\fBconst\fP \fBchar\fP *, \fBbool\fP \fBpreserve_first\fP)"
+.br
+.ti -1c
+.RI "\fBSC_API\fP \fBsc_process_handle\fP \fBsc_get_current_process_handle\fP ()"
+.br
+.ti -1c
+.RI "\fBSC_API\fP \fBbool\fP \fBtimed_out\fP (\fBsc_simcontext\fP *)"
+.br
+.ti -1c
+.RI "\fBSC_API\fP \fBvoid\fP \fBsc_set_stack_size\fP (\fBsc_thread_handle\fP, std::size_t)"
+.br
+.ti -1c
+.RI "\fBbool\fP \fBoperator==\fP (\fBconst\fP \fBsc_process_handle\fP &left, \fBconst\fP \fBsc_process_handle\fP &right)"
+.br
+.ti -1c
+.RI "\fBbool\fP \fBoperator!=\fP (\fBconst\fP \fBsc_process_handle\fP &left, \fBconst\fP \fBsc_process_handle\fP &right)"
+.br
+.ti -1c
+.RI "\fBbool\fP \fBoperator<\fP (\fBconst\fP \fBsc_process_handle\fP &left, \fBconst\fP \fBsc_process_handle\fP &right)"
+.br
+.ti -1c
+.RI "\fBsc_process_handle\fP \fBsc_get_last_created_process_handle\fP ()"
+.br
+.ti -1c
+.RI "std::ostream & \fBoperator<<\fP (std::ostream &\fBos\fP, \fBconst\fP \fBsc_reset_target\fP &target)"
+.br
+.ti -1c
+.RI "\fBSC_API\fP \fBvoid\fP \fBsc_set_stop_mode\fP (\fBsc_stop_mode\fP \fBmode\fP)"
+.br
+.ti -1c
+.RI "\fBSC_API\fP \fBsc_stop_mode\fP \fBsc_get_stop_mode\fP ()"
+.br
+.ti -1c
+.RI "\fBSC_API\fP \fBvoid\fP \fBsc_start\fP ()"
+.br
+.ti -1c
+.RI "\fBSC_API\fP \fBvoid\fP \fBsc_start\fP (\fBconst\fP \fBsc_time\fP &\fBduration\fP, \fBsc_starvation_policy\fP p=\fBSC_RUN_TO_TIME\fP)"
+.br
+.ti -1c
+.RI "\fBvoid\fP \fBsc_start\fP (int \fBduration\fP, \fBsc_time_unit\fP unit, \fBsc_starvation_policy\fP p=\fBSC_RUN_TO_TIME\fP)"
+.br
+.ti -1c
+.RI "\fBvoid\fP \fBsc_start\fP (\fBdouble\fP \fBduration\fP, \fBsc_time_unit\fP unit, \fBsc_starvation_policy\fP p=\fBSC_RUN_TO_TIME\fP)"
+.br
+.ti -1c
+.RI "\fBSC_API\fP \fBvoid\fP \fBsc_stop\fP ()"
+.br
+.ti -1c
+.RI "\fBSC_API\fP \fBsc_dt::uint64\fP \fBsc_delta_count\fP ()"
+.br
+.ti -1c
+.RI "\fBSC_API\fP \fBsc_dt::uint64\fP \fBsc_delta_count_at_current_time\fP ()"
+.br
+.ti -1c
+.RI "\fBSC_API\fP \fBconst\fP std::vector< \fBsc_event\fP * > & \fBsc_get_top_level_events\fP (\fBconst\fP \fBsc_simcontext\fP *\fBsimc_p\fP)"
+.br
+.ti -1c
+.RI "\fBSC_API\fP \fBconst\fP std::vector< \fBsc_object\fP * > & \fBsc_get_top_level_objects\fP (\fBconst\fP \fBsc_simcontext\fP *\fBsimc_p\fP)"
+.br
+.ti -1c
+.RI "\fBSC_API\fP \fBbool\fP \fBsc_is_running\fP (\fBconst\fP \fBsc_simcontext\fP *\fBsimc_p\fP)"
+.br
+.ti -1c
+.RI "\fBSC_API\fP \fBvoid\fP \fBsc_pause\fP ()"
+.br
+.ti -1c
+.RI "\fBSC_API\fP \fBbool\fP \fBsc_end_of_simulation_invoked\fP ()"
+.br
+.ti -1c
+.RI "\fBSC_API\fP \fBbool\fP \fBsc_start_of_simulation_invoked\fP ()"
+.br
+.ti -1c
+.RI "\fBSC_API\fP \fBvoid\fP \fBsc_set_time_resolution\fP (\fBdouble\fP, \fBsc_time_unit\fP)"
+.br
+.ti -1c
+.RI "\fBSC_API\fP \fBsc_time\fP \fBsc_get_time_resolution\fP ()"
+.br
+.ti -1c
+.RI "\fBSC_API\fP \fBvoid\fP \fBsc_set_default_time_unit\fP (\fBdouble\fP, \fBsc_time_unit\fP)"
+.br
+.ti -1c
+.RI "\fBSC_API\fP \fBsc_time\fP \fBsc_get_default_time_unit\fP ()"
+.br
+.ti -1c
+.RI "\fBSC_API\fP \fBbool\fP \fBsc_pending_activity_at_current_time\fP (\fBconst\fP \fBsc_simcontext\fP *)"
+.br
+.ti -1c
+.RI "\fBSC_API\fP \fBbool\fP \fBsc_pending_activity_at_future_time\fP (\fBconst\fP \fBsc_simcontext\fP *)"
+.br
+.ti -1c
+.RI "\fBSC_API\fP \fBsc_time\fP \fBsc_time_to_pending_activity\fP (\fBconst\fP \fBsc_simcontext\fP *)"
+.br
+.ti -1c
+.RI "\fBsc_simcontext\fP * \fBsc_get_curr_simcontext\fP ()"
+.br
+.ti -1c
+.RI "\fBsc_status\fP \fBsc_get_status\fP ()"
+.br
+.ti -1c
+.RI "\fBsc_object\fP * \fBsc_get_current_object\fP ()"
+.br
+.ti -1c
+.RI "\fBsc_process_b\fP * \fBsc_get_current_process_b\fP ()"
+.br
+.ti -1c
+.RI "\fBSC_API\fP \fBsc_process_b\fP * \fBsc_get_curr_process_handle\fP ()"
+.br
+.ti -1c
+.RI "\fBsc_curr_proc_kind\fP \fBsc_get_curr_process_kind\fP ()"
+.br
+.ti -1c
+.RI "int \fBsc_get_simulator_status\fP ()"
+.br
+.ti -1c
+.RI "\fBSC_API\fP \fBvoid\fP \fBsc_set_random_seed\fP (\fBunsigned\fP int \fBseed_\fP)"
+.br
+.ti -1c
+.RI "\fBSC_API\fP \fBvoid\fP \fBsc_initialize\fP ()"
+.br
+.ti -1c
+.RI "\fBSC_API\fP \fBconst\fP \fBsc_time\fP & \fBsc_max_time\fP ()"
+.br
+.ti -1c
+.RI "\fBSC_API\fP \fBconst\fP \fBsc_time\fP & \fBsc_time_stamp\fP ()"
+.br
+.ti -1c
+.RI "\fBSC_API\fP \fBdouble\fP \fBsc_simulation_time\fP ()"
+.br
+.ti -1c
+.RI "\fBSC_API\fP \fBsc_event\fP * \fBsc_find_event\fP (\fBconst\fP \fBchar\fP *name)"
+.br
+.ti -1c
+.RI "\fBSC_API\fP \fBsc_object\fP * \fBsc_find_object\fP (\fBconst\fP \fBchar\fP *name)"
+.br
+.ti -1c
+.RI "\fBSC_API\fP \fBbool\fP \fBsc_is_unwinding\fP ()"
+.br
+.ti -1c
+.RI "\fBbool\fP \fBsc_pending_activity\fP (\fBconst\fP \fBsc_simcontext\fP *\fBsimc_p\fP=\fBsc_get_curr_simcontext\fP())"
+.br
+.ti -1c
+.RI "\fBbool\fP \fBsc_hierarchical_name_exists\fP (\fBconst\fP \fBchar\fP *name)"
+.br
+.ti -1c
+.RI "\fBbool\fP \fBsc_hierarchical_name_exists\fP (\fBconst\fP \fBsc_object\fP *parent, \fBconst\fP \fBchar\fP *name)"
+.br
+.ti -1c
+.RI "\fBconst\fP \fBchar\fP * \fBsc_get_hierarchical_name\fP (\fBconst\fP \fBchar\fP *name)"
+.br
+.ti -1c
+.RI "\fBconst\fP \fBchar\fP * \fBsc_get_hierarchical_name\fP (\fBconst\fP \fBsc_object\fP *parent, \fBconst\fP \fBchar\fP *name)"
+.br
+.ti -1c
+.RI "\fBbool\fP \fBsc_register_hierarchical_name\fP (\fBconst\fP \fBchar\fP *name)"
+.br
+.ti -1c
+.RI "\fBbool\fP \fBsc_register_hierarchical_name\fP (\fBconst\fP \fBsc_object\fP *parent, \fBconst\fP \fBchar\fP *name)"
+.br
+.ti -1c
+.RI "\fBbool\fP \fBsc_unregister_hierarchical_name\fP (\fBconst\fP \fBchar\fP *name)"
+.br
+.ti -1c
+.RI "\fBbool\fP \fBsc_unregister_hierarchical_name\fP (\fBconst\fP \fBsc_object\fP *parent, \fBconst\fP \fBchar\fP *name)"
+.br
+.ti -1c
+.RI "\fBconst\fP \fBchar\fP * \fBsc_get_current_process_name\fP (\fBconst\fP \fBchar\fP *\fBif_empty\fP=\fBNULL\fP)"
+.br
+.ti -1c
+.RI "\fBSC_API\fP \fBvoid\fP \fBsc_defunct_process_function\fP (\fBsc_module\fP *)"
+.br
+.ti -1c
+.RI "template<\fBtypename\fP \fBT\fP > \fBsc_process_handle\fP \fBsc_spawn\fP (\fBT\fP \fBobject\fP, \fBconst\fP \fBchar\fP *\fBname_p\fP=0, \fBconst\fP \fBsc_spawn_options\fP *\fBopt_p\fP=0)"
+.br
+.ti -1c
+.RI "template<\fBtypename\fP \fBT\fP > \fBsc_process_handle\fP \fBsc_spawn\fP (\fBtypename\fP T::result_type *\fBr_p\fP, \fBT\fP \fBobject\fP, \fBconst\fP \fBchar\fP *\fBname_p\fP=0, \fBconst\fP \fBsc_spawn_options\fP *\fBopt_p\fP=0)"
+.br
+.ti -1c
+.RI "\fBSC_API\fP std::ostream & \fBoperator<<\fP (std::ostream &, \fBsc_status\fP)"
+.br
+.ti -1c
+.RI "\fBsc_cor\fP * \fBget_cor_pointer\fP (\fBsc_process_b\fP *\fBprocess_p\fP)"
+.br
+.ti -1c
+.RI "\fBSC_API\fP \fBvoid\fP \fBwait\fP (int, \fBsc_simcontext\fP *)"
+.br
+.ti -1c
+.RI "\fBSC_API\fP \fBvoid\fP \fBwait\fP (\fBsc_simcontext\fP *)"
+.br
+.ti -1c
+.RI "\fBSC_API\fP \fBvoid\fP \fBwait\fP (\fBconst\fP \fBsc_event\fP &, \fBsc_simcontext\fP *)"
+.br
+.ti -1c
+.RI "\fBSC_API\fP \fBvoid\fP \fBwait\fP (\fBconst\fP \fBsc_event_or_list\fP &, \fBsc_simcontext\fP *)"
+.br
+.ti -1c
+.RI "\fBSC_API\fP \fBvoid\fP \fBwait\fP (\fBconst\fP \fBsc_event_and_list\fP &, \fBsc_simcontext\fP *)"
+.br
+.ti -1c
+.RI "\fBSC_API\fP \fBvoid\fP \fBwait\fP (\fBconst\fP \fBsc_time\fP &, \fBsc_simcontext\fP *)"
+.br
+.ti -1c
+.RI "\fBSC_API\fP \fBvoid\fP \fBwait\fP (\fBconst\fP \fBsc_time\fP &, \fBconst\fP \fBsc_event\fP &, \fBsc_simcontext\fP *)"
+.br
+.ti -1c
+.RI "\fBSC_API\fP \fBvoid\fP \fBwait\fP (\fBconst\fP \fBsc_time\fP &, \fBconst\fP \fBsc_event_or_list\fP &, \fBsc_simcontext\fP *)"
+.br
+.ti -1c
+.RI "\fBSC_API\fP \fBvoid\fP \fBwait\fP (\fBconst\fP \fBsc_time\fP &, \fBconst\fP \fBsc_event_and_list\fP &, \fBsc_simcontext\fP *)"
+.br
+.ti -1c
+.RI "\fBconst\fP \fBsc_time\fP \fBoperator+\fP (\fBconst\fP \fBsc_time\fP &, \fBconst\fP \fBsc_time\fP &)"
+.br
+.ti -1c
+.RI "\fBconst\fP \fBsc_time\fP \fBoperator\-\fP (\fBconst\fP \fBsc_time\fP &, \fBconst\fP \fBsc_time\fP &)"
+.br
+.ti -1c
+.RI "\fBconst\fP \fBsc_time\fP \fBoperator*\fP (\fBconst\fP \fBsc_time\fP &, \fBdouble\fP)"
+.br
+.ti -1c
+.RI "\fBconst\fP \fBsc_time\fP \fBoperator*\fP (\fBdouble\fP, \fBconst\fP \fBsc_time\fP &)"
+.br
+.ti -1c
+.RI "\fBconst\fP \fBsc_time\fP \fBoperator/\fP (\fBconst\fP \fBsc_time\fP &, \fBdouble\fP)"
+.br
+.ti -1c
+.RI "\fBdouble\fP \fBoperator/\fP (\fBconst\fP \fBsc_time\fP &, \fBconst\fP \fBsc_time\fP &)"
+.br
+.ti -1c
+.RI "\fBinline\fP ::std::ostream & \fBoperator<<\fP (::std::ostream &, \fBconst\fP \fBsc_time\fP &)"
+.br
+.ti -1c
+.RI "\fBconst\fP \fBsc_time\fP \fBoperator%\fP (\fBconst\fP \fBsc_time\fP &\fBt1\fP, \fBconst\fP \fBsc_time\fP &\fBt2\fP)"
+.br
+.ti -1c
+.RI "\fBSC_API\fP \fBconst\fP \fBchar\fP * \fBsc_copyright\fP ()"
+.br
+.ti -1c
+.RI "\fBSC_API\fP \fBconst\fP \fBchar\fP * \fBsc_release\fP ()"
+.br
+.ti -1c
+.RI "\fBSC_API\fP \fBconst\fP \fBchar\fP * \fBsc_version\fP ()"
+.br
+.ti -1c
+.RI "\fBSC_API\fP \fBvoid\fP \fBwait\fP (\fBdouble\fP v, \fBsc_time_unit\fP \fBtu\fP, \fBsc_simcontext\fP *\fBsimc\fP=\fBsc_get_curr_simcontext\fP())"
+.br
+.ti -1c
+.RI "\fBSC_API\fP \fBvoid\fP \fBwait\fP (\fBdouble\fP v, \fBsc_time_unit\fP \fBtu\fP, \fBconst\fP \fBsc_event\fP &\fBe\fP, \fBsc_simcontext\fP *\fBsimc\fP=\fBsc_get_curr_simcontext\fP())"
+.br
+.ti -1c
+.RI "\fBSC_API\fP \fBvoid\fP \fBwait\fP (\fBdouble\fP v, \fBsc_time_unit\fP \fBtu\fP, \fBconst\fP \fBsc_event_or_list\fP &\fBel\fP, \fBsc_simcontext\fP *\fBsimc\fP=\fBsc_get_curr_simcontext\fP())"
+.br
+.ti -1c
+.RI "\fBSC_API\fP \fBvoid\fP \fBwait\fP (\fBdouble\fP v, \fBsc_time_unit\fP \fBtu\fP, \fBconst\fP \fBsc_event_and_list\fP &\fBel\fP, \fBsc_simcontext\fP *\fBsimc\fP=\fBsc_get_curr_simcontext\fP())"
+.br
+.ti -1c
+.RI "\fBSC_API\fP \fBvoid\fP \fBnext_trigger\fP (\fBdouble\fP v, \fBsc_time_unit\fP \fBtu\fP, \fBsc_simcontext\fP *\fBsimc\fP=\fBsc_get_curr_simcontext\fP())"
+.br
+.ti -1c
+.RI "\fBSC_API\fP \fBvoid\fP \fBnext_trigger\fP (\fBdouble\fP v, \fBsc_time_unit\fP \fBtu\fP, \fBconst\fP \fBsc_event\fP &\fBe\fP, \fBsc_simcontext\fP *\fBsimc\fP=\fBsc_get_curr_simcontext\fP())"
+.br
+.ti -1c
+.RI "\fBSC_API\fP \fBvoid\fP \fBnext_trigger\fP (\fBdouble\fP v, \fBsc_time_unit\fP \fBtu\fP, \fBconst\fP \fBsc_event_or_list\fP &\fBel\fP, \fBsc_simcontext\fP *\fBsimc\fP=\fBsc_get_curr_simcontext\fP())"
+.br
+.ti -1c
+.RI "\fBvoid\fP \fBnext_trigger\fP (\fBdouble\fP v, \fBsc_time_unit\fP \fBtu\fP, \fBconst\fP \fBsc_event_and_list\fP &\fBel\fP, \fBsc_simcontext\fP *\fBsimc\fP=\fBsc_get_curr_simcontext\fP())"
+.br
+.ti -1c
+.RI "\fBSC_API\fP \fBvoid\fP \fBsc_set_location\fP (\fBconst\fP \fBchar\fP *, int, \fBsc_simcontext\fP *=\fBsc_get_curr_simcontext\fP())"
+.br
+.ti -1c
+.RI "\fBvoid\fP \fBat_posedge\fP (\fBconst\fP \fBsc_signal_in_if\fP< \fBbool\fP > &, \fBsc_simcontext\fP *=\fBsc_get_curr_simcontext\fP())"
+.br
+.ti -1c
+.RI "\fBvoid\fP \fBat_posedge\fP (\fBconst\fP \fBsc_signal_in_if\fP< \fBsc_dt::sc_logic\fP > &, \fBsc_simcontext\fP *=\fBsc_get_curr_simcontext\fP())"
+.br
+.ti -1c
+.RI "\fBvoid\fP \fBat_negedge\fP (\fBconst\fP \fBsc_signal_in_if\fP< \fBbool\fP > &, \fBsc_simcontext\fP *=\fBsc_get_curr_simcontext\fP())"
+.br
+.ti -1c
+.RI "\fBvoid\fP \fBat_negedge\fP (\fBconst\fP \fBsc_signal_in_if\fP< \fBsc_dt::sc_logic\fP > &, \fBsc_simcontext\fP *=\fBsc_get_curr_simcontext\fP())"
+.br
+.ti -1c
+.RI "template<\fBclass\fP \fBT\fP > \fBvoid\fP \fBsc_trace\fP (\fBsc_trace_file\fP *tf, \fBconst\fP \fBsc_signal_in_if\fP< \fBT\fP > &\fBobject\fP, \fBconst\fP std::string &name)"
+.br
+.ti -1c
+.RI "template<\fBclass\fP \fBT\fP > \fBvoid\fP \fBsc_trace\fP (\fBsc_trace_file\fP *tf, \fBconst\fP \fBsc_signal_in_if\fP< \fBT\fP > &\fBobject\fP, \fBconst\fP \fBchar\fP *name)"
+.br
+.ti -1c
+.RI "\fBSC_API\fP \fBvoid\fP \fBsc_trace\fP (\fBsc_trace_file\fP *tf, \fBconst\fP \fBsc_signal_in_if\fP< \fBchar\fP > &\fBobject\fP, \fBconst\fP std::string &name, int width)"
+.br
+.ti -1c
+.RI "\fBSC_API\fP \fBvoid\fP \fBsc_trace\fP (\fBsc_trace_file\fP *tf, \fBconst\fP \fBsc_signal_in_if\fP< \fBshort\fP > &\fBobject\fP, \fBconst\fP std::string &name, int width)"
+.br
+.ti -1c
+.RI "\fBSC_API\fP \fBvoid\fP \fBsc_trace\fP (\fBsc_trace_file\fP *tf, \fBconst\fP \fBsc_signal_in_if\fP< int > &\fBobject\fP, \fBconst\fP std::string &name, int width)"
+.br
+.ti -1c
+.RI "\fBSC_API\fP \fBvoid\fP \fBsc_trace\fP (\fBsc_trace_file\fP *tf, \fBconst\fP \fBsc_signal_in_if\fP< \fBlong\fP > &\fBobject\fP, \fBconst\fP std::string &name, int width)"
+.br
+.ti -1c
+.RI "\fBSC_API\fP \fBvoid\fP \fBsc_trace\fP (\fBsc_trace_file\fP *tf, \fBconst\fP \fBunsigned\fP int &\fBobject\fP, \fBconst\fP std::string &name, \fBconst\fP \fBchar\fP **\fBenum_literals\fP)"
+.br
+.ti -1c
+.RI "\fBSC_API\fP \fBvoid\fP \fBsc_trace\fP (\fBsc_trace_file\fP *tf, \fBconst\fP \fBvoid\fP *\fBobject\fP, \fBconst\fP std::string &name)"
+.br
+.ti -1c
+.RI "\fBSC_API\fP \fBvoid\fP \fBsc_trace_delta_cycles\fP (\fBsc_trace_file\fP *tf, \fBbool\fP \fBon\fP=\fBtrue\fP)"
+.br
+.ti -1c
+.RI "\fBSC_API\fP \fBvoid\fP \fBsc_write_comment\fP (\fBsc_trace_file\fP *tf, \fBconst\fP std::string &\fBcomment\fP)"
+.br
+.ti -1c
+.RI "\fBSC_API\fP \fBvoid\fP \fBtprintf\fP (\fBsc_trace_file\fP *tf, \fBconst\fP \fBchar\fP *\fBformat\fP,\&.\&.\&.)"
+.br
+.ti -1c
+.RI "\fBSC_API\fP \fBsc_trace_file\fP * \fBsc_create_vcd_trace_file\fP (\fBconst\fP \fBchar\fP *name)"
+.br
+.ti -1c
+.RI "\fBSC_API\fP \fBvoid\fP \fBsc_close_vcd_trace_file\fP (\fBsc_trace_file\fP *tf)"
+.br
+.ti -1c
+.RI "\fBSC_API\fP \fBsc_trace_file\fP * \fBsc_create_wif_trace_file\fP (\fBconst\fP \fBchar\fP *name)"
+.br
+.ti -1c
+.RI "\fBSC_API\fP \fBvoid\fP \fBsc_close_wif_trace_file\fP (\fBsc_trace_file\fP *tf)"
+.br
+.ti -1c
+.RI "\fBSC_API\fP std::string \fBlocaltime_string\fP ()"
+.br
+.ti -1c
+.RI "\fBSC_API\fP \fBunsigned\fP \fBdefault_int_hash_fn\fP (\fBconst\fP \fBvoid\fP *)"
+.br
+.ti -1c
+.RI "\fBSC_API\fP \fBunsigned\fP \fBdefault_ptr_hash_fn\fP (\fBconst\fP \fBvoid\fP *)"
+.br
+.ti -1c
+.RI "\fBSC_API\fP \fBunsigned\fP \fBdefault_str_hash_fn\fP (\fBconst\fP \fBvoid\fP *)"
+.br
+.ti -1c
+.RI "\fBSC_API\fP int \fBsc_strhash_cmp\fP (\fBconst\fP \fBvoid\fP *, \fBconst\fP \fBvoid\fP *)"
+.br
+.ti -1c
+.RI "\fBSC_API\fP \fBvoid\fP \fBsc_strhash_kfree\fP (\fBvoid\fP *)"
+.br
+.ti -1c
+.RI "\fBSC_API\fP \fBvoid\fP * \fBsc_strhash_kdup\fP (\fBconst\fP \fBvoid\fP *)"
+.br
+.ti -1c
+.RI "\fBSC_API\fP \fBconst\fP std::string \fBsc_report_compose_message\fP (\fBconst\fP \fBsc_report\fP &)"
+.br
+.ti -1c
+.RI "\fBSC_NORETURN_\fP \fBSC_API\fP \fBvoid\fP \fBsc_abort\fP ()"
+.br
+.ti -1c
+.RI "\fBSC_NORETURN_\fP \fBSC_API\fP \fBvoid\fP \fBsc_assertion_failed\fP (\fBconst\fP \fBchar\fP *msg, \fBconst\fP \fBchar\fP *file, int line)"
+.br
+.ti -1c
+.RI "\fBSC_API\fP \fBbool\fP \fBsc_report_close_default_log\fP ()"
+.br
+.ti -1c
+.RI "\fBSC_API\fP \fBvoid\fP \fBsc_interrupt_here\fP (\fBconst\fP \fBchar\fP *id, \fBsc_severity\fP severity)"
+.br
+.ti -1c
+.RI "\fBSC_API\fP \fBvoid\fP \fBsc_stop_here\fP (\fBconst\fP \fBchar\fP *id, \fBsc_severity\fP severity)"
+.br
+.ti -1c
+.RI "template<\fBtypename\fP \fBContainer\fP , \fBtypename\fP \fBArgumentIterator\fP > Container::iterator \fBsc_vector_do_bind\fP (\fBContainer\fP &\fBcont\fP, \fBArgumentIterator\fP first, \fBArgumentIterator\fP last, \fBtypename\fP Container::iterator \fBfrom\fP)"
+.br
+.ti -1c
+.RI "template<\fBtypename\fP \fBContainer\fP , \fBtypename\fP \fBArgumentIterator\fP > Container::iterator \fBsc_vector_do_operator_paren\fP (\fBContainer\fP &\fBcont\fP, \fBArgumentIterator\fP first, \fBArgumentIterator\fP last, \fBtypename\fP Container::iterator \fBfrom\fP)"
+.br
+.ti -1c
+.RI "template<\fBtypename\fP \fBT\fP , \fBtypename\fP \fBMT\fP > \fBsc_vector_assembly\fP< \fBT\fP, \fBMT\fP > \fBsc_assemble_vector\fP (\fBsc_vector\fP< \fBT\fP > &\fBvec\fP, \fBMT\fP(T::*ptr))"
+.br
+.in -1c
+.SS "Variables"
+
+.in +1c
+.ti -1c
+.RI "\fBSC_API\fP \fBconst\fP \fBchar\fP \fBSC_ID_REGISTER_ID_FAILED_\fP []"
+.br
+.ti -1c
+.RI "\fBSC_API_TEMPLATE_DECL_\fP \fBsc_ppq< sc_time * >\fP"
+.br
+.ti -1c
+.RI "\fBSC_API_TEMPLATE_DECL_\fP \fBsc_port< sc_event_queue_if, 1, SC_ONE_OR_MORE_BOUND >\fP"
+.br
+.ti -1c
+.RI "\fBclass\fP \fBSC_API\fP \fBsc_event\fP"
+.br
+.ti -1c
+.RI "\fBclass\fP \fBSC_API\fP \fBsc_port_base\fP"
+.br
+.ti -1c
+.RI "\fBclass\fP \fBSC_API\fP \fBsc_reset\fP"
+.br
+.ti -1c
+.RI "\fBSC_API_TEMPLATE_DECL_\fP \fBsc_signal_t< bool, SC_ONE_WRITER >\fP"
+.br
+.ti -1c
+.RI "\fBSC_API_TEMPLATE_DECL_\fP \fBsc_signal_t< bool, SC_MANY_WRITERS >\fP"
+.br
+.ti -1c
+.RI "\fBSC_API_TEMPLATE_DECL_\fP \fBsc_signal_t< bool, SC_UNCHECKED_WRITERS >\fP"
+.br
+.ti -1c
+.RI "\fBSC_API_TEMPLATE_DECL_\fP \fBsc_port< sc_signal_in_if< bool >, 1, SC_ONE_OR_MORE_BOUND >\fP"
+.br
+.ti -1c
+.RI "\fBSC_API_TEMPLATE_DECL_\fP \fBsc_port< sc_signal_inout_if< bool >, 1, SC_ONE_OR_MORE_BOUND >\fP"
+.br
+.ti -1c
+.RI "\fBSC_API\fP \fBconst\fP \fBsc_dt::sc_logic_value_t\fP \fBsc_logic_resolution_tbl\fP [4][4]"
+.br
+.ti -1c
+.RI "\fBsc_byte_heap\fP \fBSC_API\fP \fBsc_temp_heap\fP"
+.br
+.ti -1c
+.RI "\fBconst\fP int \fBSC_DEFAULT_STACK_SIZE\fP"
+.br
+.ti -1c
+.RI "\fBSC_API\fP \fBconst\fP \fBsc_bind_proxy\fP \fBSC_BIND_PROXY_NIL\fP"
+.br
+.ti -1c
+.RI "\fBclass\fP \fBSC_API\fP \fBsc_module\fP"
+.br
+.ti -1c
+.RI "\fBclass\fP \fBSC_API\fP \fBsc_simcontext\fP"
+.br
+.ti -1c
+.RI "\fBclass\fP \fBSC_API\fP \fBsc_trace_file\fP"
+.br
+.ti -1c
+.RI "\fBclass\fP \fBSC_API\fP \fBsc_trace_file_base\fP"
+.br
+.ti -1c
+.RI "\fBconst\fP \fBchar\fP \fBSC_HIERARCHY_CHAR\fP"
+.br
+.ti -1c
+.RI "\fBbool\fP \fBsc_enable_name_checking\fP"
+.br
+.ti -1c
+.RI "\fBSC_API\fP \fBbool\fP \fBsc_allow_process_control_corners\fP"
+.br
+.ti -1c
+.RI "\fBSC_API\fP \fBsc_simcontext\fP * \fBsc_curr_simcontext\fP"
+.br
+.ti -1c
+.RI "\fBSC_API\fP \fBsc_simcontext\fP * \fBsc_default_global_context\fP"
+.br
+.ti -1c
+.RI "\fBconst\fP int \fBSC_SIM_OK\fP = 0"
+.br
+.ti -1c
+.RI "\fBconst\fP int \fBSC_SIM_ERROR\fP = 1"
+.br
+.ti -1c
+.RI "\fBconst\fP int \fBSC_SIM_USER_STOP\fP = 2"
+.br
+.ti -1c
+.RI "\fBclass\fP \fBSC_API\fP \fBsc_time_tuple\fP"
+.br
+.ti -1c
+.RI "\fBSC_API\fP \fBconst\fP \fBsc_time\fP \fBSC_ZERO_TIME\fP"
+.br
+.ti -1c
+.RI "\fBSC_API\fP \fBconst\fP \fBunsigned\fP int \fBsc_version_major\fP"
+.br
+.ti -1c
+.RI "\fBSC_API\fP \fBconst\fP \fBunsigned\fP int \fBsc_version_minor\fP"
+.br
+.ti -1c
+.RI "\fBSC_API\fP \fBconst\fP \fBunsigned\fP int \fBsc_version_patch\fP"
+.br
+.ti -1c
+.RI "\fBSC_API\fP \fBconst\fP std::string \fBsc_version_originator\fP"
+.br
+.ti -1c
+.RI "\fBSC_API\fP \fBconst\fP std::string \fBsc_version_release_date\fP"
+.br
+.ti -1c
+.RI "\fBSC_API\fP \fBconst\fP std::string \fBsc_version_prerelease\fP"
+.br
+.ti -1c
+.RI "\fBSC_API\fP \fBconst\fP \fBbool\fP \fBsc_is_prerelease\fP"
+.br
+.ti -1c
+.RI "\fBSC_API\fP \fBconst\fP std::string \fBsc_version_string\fP"
+.br
+.ti -1c
+.RI "\fBSC_API\fP \fBconst\fP std::string \fBsc_copyright_string\fP"
+.br
+.ti -1c
+.RI "\fBconst\fP int \fBSC_DISABLE_VIRTUAL_BIND_CHECK_\fP"
+.br
+.ti -1c
+.RI "\fBSC_TPLEXTERN_\fP \fBtemplate\fP \fBstruct\fP \fBSC_API\fP \fBSC_API_VERSION_STRING< &SC_DISABLE_VIRTUAL_BIND_CHECK_ >\fP"
+.br
+.ti -1c
+.RI "\fBconst\fP int \fBPHASH_DEFAULT_MAX_DENSITY\fP = 5"
+.br
+.ti -1c
+.RI "\fBconst\fP int \fBPHASH_DEFAULT_INIT_TABLE_SIZE\fP = 11"
+.br
+.ti -1c
+.RI "\fBSC_API\fP \fBconst\fP \fBdouble\fP \fBPHASH_DEFAULT_GROW_FACTOR\fP"
+.br
+.ti -1c
+.RI "\fBconst\fP \fBbool\fP \fBPHASH_DEFAULT_REORDER_FLAG\fP = \fBtrue\fP"
+.br
+.ti -1c
+.RI "\fBSC_API\fP \fBconst\fP \fBchar\fP \fBSC_ID_UNKNOWN_ERROR_\fP []"
+.br
+.ti -1c
+.RI "\fBSC_API\fP \fBconst\fP \fBchar\fP \fBSC_ID_WITHOUT_MESSAGE_\fP []"
+.br
+.ti -1c
+.RI "\fBSC_API\fP \fBconst\fP \fBchar\fP \fBSC_ID_NOT_IMPLEMENTED_\fP []"
+.br
+.ti -1c
+.RI "\fBSC_API\fP \fBconst\fP \fBchar\fP \fBSC_ID_INTERNAL_ERROR_\fP []"
+.br
+.ti -1c
+.RI "\fBSC_API\fP \fBconst\fP \fBchar\fP \fBSC_ID_ASSERTION_FAILED_\fP []"
+.br
+.ti -1c
+.RI "\fBSC_API\fP \fBconst\fP \fBchar\fP \fBSC_ID_OUT_OF_BOUNDS_\fP []"
+.br
+.ti -1c
+.RI "\fBSC_API\fP \fBconst\fP \fBchar\fP \fBSC_ID_ABORT_\fP []"
+.br
+.ti -1c
+.RI "\fBclass\fP \fBSC_API\fP \fBsc_object\fP"
+.br
+.in -1c
+.SH "Typedef Documentation"
+.PP 
+.SS "\fBtypedef\fP int(* sc_core::CFT) (\fBconst\fP \fBvoid\fP *, \fBconst\fP \fBvoid\fP *)"
+
+.SS "\fBtypedef\fP \fBunsigned\fP \fBsc_core::sc_actions\fP"
+
+.SS "\fBtypedef\fP \fBsc_module\fP \fBsc_core::sc_behavior\fP"
+
+.SS "\fBtypedef\fP \fBsc_module\fP \fBsc_core::sc_channel\fP"
+
+.SS "\fBtypedef\fP \fBvoid\fP sc_core::sc_cor_fn(\fBvoid\fP *)"
+
+.SS "\fBtypedef\fP \fBsc_cor_pkg_qt\fP \fBsc_core::sc_cor_pkg_t\fP"
+
+.SS "\fBtypedef\fP \fBclass\fP \fBsc_cthread_process\fP* \fBsc_core::sc_cthread_handle\fP"
+
+.SS "\fBtypedef\fP \fBconst\fP \fBsc_curr_proc_info\fP* \fBsc_core::sc_curr_proc_handle\fP"
+
+.SS "\fBtypedef\fP \fBvoid\fP(sc_process_host::* sc_core::SC_ENTRY_FUNC) ()"
+
+.SS "\fBtypedef\fP \fBsc_event_expr\fP<\fBsc_event_and_list\fP> \fBsc_core::sc_event_and_expr\fP"
+
+.SS "\fBtypedef\fP \fBsc_event_expr\fP<\fBsc_event_or_list\fP> \fBsc_core::sc_event_or_expr\fP"
+
+.SS "\fBtypedef\fP \fBsc_port\fP<\fBsc_event_queue_if\fP,1,\fBSC_ONE_OR_MORE_BOUND\fP> \fBsc_core::sc_event_queue_port\fP"
+
+.SS "\fBtypedef\fP std::exception \fBsc_core::sc_exception\fP"
+
+.SS "\fBtypedef\fP \fBsc_in\fP<\fBbool\fP> \fBsc_core::sc_in_clk\fP"
+
+.SS "\fBtypedef\fP \fBsc_inout\fP<\fBbool\fP> \fBsc_core::sc_inout_clk\fP"
+
+.SS "\fBtypedef\fP \fBclass\fP \fBsc_method_process\fP* \fBsc_core::sc_method_handle\fP"
+
+.SS "\fBtypedef\fP \fBsc_out\fP<\fBbool\fP> \fBsc_core::sc_out_clk\fP"
+
+.SS "\fBtypedef\fP \fBvoid\fP(* sc_core::sc_plist_map_fn) (\fBvoid\fP *data, \fBvoid\fP *arg)"
+
+.SS "\fBtypedef\fP sc_process_b sc_core::sc_process_b"
+
+.SS "\fBtypedef\fP \fBsc_plist\fP< \fBsc_process_b\fP* > \fBsc_core::sc_process_list\fP"
+
+.SS "\fBtypedef\fP \fBvoid\fP(* sc_core::sc_report_handler_proc) (\fBconst\fP \fBsc_report\fP &, \fBconst\fP \fBsc_actions\fP &)"
+
+.SS "\fBtypedef\fP SC_STRING_VIEW_NS_::string_view \fBsc_core::sc_string_view\fP"
+
+.PP
+non-owning, constant reference to a string (implementation-defined) 
+.SS "\fBtypedef\fP \fBclass\fP \fBsc_thread_process\fP* \fBsc_core::sc_thread_handle\fP"
+
+.SS "\fBtypedef\fP std::vector<\fBsc_trace_params\fP*> \fBsc_core::sc_trace_params_vec\fP"
+
+.SH "Enumeration Type Documentation"
+.PP 
+.SS "\fBanonymous\fP \fBenum\fP"
+
+.PP
+\fBEnumerator\fP
+.in +1c
+.TP
+\fB\fISC_UNSPECIFIED \fP\fP
+.TP
+\fB\fISC_DO_NOTHING \fP\fP
+.TP
+\fB\fISC_THROW \fP\fP
+.TP
+\fB\fISC_LOG \fP\fP
+.TP
+\fB\fISC_DISPLAY \fP\fP
+.TP
+\fB\fISC_CACHE_REPORT \fP\fP
+.TP
+\fB\fISC_INTERRUPT \fP\fP
+.TP
+\fB\fISC_STOP \fP\fP
+.TP
+\fB\fISC_ABORT \fP\fP
+.TP
+\fB\fISC_DEFAULT_INFO_ACTIONS \fP\fP
+.TP
+\fB\fISC_DEFAULT_WARNING_ACTIONS \fP\fP
+.TP
+\fB\fISC_DEFAULT_ERROR_ACTIONS \fP\fP
+.TP
+\fB\fISC_DEFAULT_FATAL_ACTIONS \fP\fP
+.TP
+\fB\fISC_DEFAULT_CATCH_ACTIONS \fP\fP
+.SS "\fBenum\fP \fBsc_core::sc_curr_proc_kind\fP"
+
+.PP
+\fBEnumerator\fP
+.in +1c
+.TP
+\fB\fISC_NO_PROC_ \fP\fP
+.TP
+\fB\fISC_METHOD_PROC_ \fP\fP
+.TP
+\fB\fISC_THREAD_PROC_ \fP\fP
+.TP
+\fB\fISC_CTHREAD_PROC_ \fP\fP
+.SS "\fBenum\fP \fBsc_core::sc_descendant_inclusion_info\fP"
+
+.PP
+\fBEnumerator\fP
+.in +1c
+.TP
+\fB\fISC_NO_DESCENDANTS \fP\fP
+.TP
+\fB\fISC_INCLUDE_DESCENDANTS \fP\fP
+.TP
+\fB\fISC_INVALID_DESCENDANTS \fP\fP
+.SS "\fBenum\fP \fBsc_core::sc_port_policy\fP"
+
+.PP
+\fBEnumerator\fP
+.in +1c
+.TP
+\fB\fISC_ONE_OR_MORE_BOUND \fP\fP
+.TP
+\fB\fISC_ZERO_OR_MORE_BOUND \fP\fP
+.TP
+\fB\fISC_ALL_BOUND \fP\fP
+.SS "\fBenum\fP \fBsc_core::sc_severity\fP"
+
+.PP
+\fBEnumerator\fP
+.in +1c
+.TP
+\fB\fISC_INFO \fP\fP
+.TP
+\fB\fISC_WARNING \fP\fP
+.TP
+\fB\fISC_ERROR \fP\fP
+.TP
+\fB\fISC_FATAL \fP\fP
+.TP
+\fB\fISC_MAX_SEVERITY \fP\fP
+.SS "\fBenum\fP \fBsc_core::sc_starvation_policy\fP"
+
+.PP
+\fBEnumerator\fP
+.in +1c
+.TP
+\fB\fISC_EXIT_ON_STARVATION \fP\fP
+.TP
+\fB\fISC_RUN_TO_TIME \fP\fP
+.SS "\fBenum\fP \fBsc_core::sc_status\fP"
+
+.PP
+\fBEnumerator\fP
+.in +1c
+.TP
+\fB\fISC_UNITIALIZED \fP\fP
+.TP
+\fB\fISC_ELABORATION \fP\fP
+.TP
+\fB\fISC_BEFORE_END_OF_ELABORATION \fP\fP
+.TP
+\fB\fISC_END_OF_ELABORATION \fP\fP
+.TP
+\fB\fISC_START_OF_SIMULATION \fP\fP
+.TP
+\fB\fISC_RUNNING \fP\fP
+.TP
+\fB\fISC_PAUSED \fP\fP
+.TP
+\fB\fISC_STOPPED \fP\fP
+.TP
+\fB\fISC_END_OF_SIMULATION \fP\fP
+.TP
+\fB\fISC_END_OF_INITIALIZATION \fP\fP
+.TP
+\fB\fISC_END_OF_UPDATE \fP\fP
+.TP
+\fB\fISC_BEFORE_TIMESTEP \fP\fP
+.TP
+\fB\fISC_STATUS_LAST \fP\fP
+.TP
+\fB\fISC_STATUS_ANY \fP\fP
+.SS "\fBenum\fP \fBsc_core::sc_stop_mode\fP"
+
+.PP
+\fBEnumerator\fP
+.in +1c
+.TP
+\fB\fISC_STOP_FINISH_DELTA \fP\fP
+.TP
+\fB\fISC_STOP_IMMEDIATE \fP\fP
+.SS "\fBenum\fP \fBsc_core::sc_time_unit\fP"
+
+.PP
+\fBEnumerator\fP
+.in +1c
+.TP
+\fB\fISC_FS \fP\fP
+.TP
+\fB\fISC_PS \fP\fP
+.TP
+\fB\fISC_NS \fP\fP
+.TP
+\fB\fISC_US \fP\fP
+.TP
+\fB\fISC_MS \fP\fP
+.TP
+\fB\fISC_SEC \fP\fP
+.SS "\fBenum\fP \fBsc_core::sc_verbosity\fP"
+
+.PP
+\fBEnumerator\fP
+.in +1c
+.TP
+\fB\fISC_NONE \fP\fP
+.TP
+\fB\fISC_LOW \fP\fP
+.TP
+\fB\fISC_MEDIUM \fP\fP
+.TP
+\fB\fISC_HIGH \fP\fP
+.TP
+\fB\fISC_FULL \fP\fP
+.TP
+\fB\fISC_DEBUG \fP\fP
+.SS "\fBenum\fP \fBsc_core::sc_writer_policy\fP"
+
+.PP
+\fBEnumerator\fP
+.in +1c
+.TP
+\fB\fISC_ONE_WRITER \fP\fP
+unique writer (from a unique port) 
+.TP
+\fB\fISC_MANY_WRITERS \fP\fP
+allow multiple writers (with different ports) 
+.TP
+\fB\fISC_UNCHECKED_WRITERS \fP\fP
+even allow delta cycle conflicts (non-standard) 
+.SH "Function Documentation"
+.PP 
+.SS "\fBvoid\fP sc_core::at_negedge (\fBconst\fP \fBsc_signal_in_if\fP< \fBbool\fP > &, \fBsc_simcontext\fP * = \fR\fBsc_get_curr_simcontext\fP()\fP)\fR [extern]\fP"
+
+.SS "\fBvoid\fP sc_core::at_negedge (\fBconst\fP \fBsc_signal_in_if\fP< \fBsc_dt::sc_logic\fP > &, \fBsc_simcontext\fP * = \fR\fBsc_get_curr_simcontext\fP()\fP)\fR [extern]\fP"
+
+.SS "\fBvoid\fP sc_core::at_posedge (\fBconst\fP \fBsc_signal_in_if\fP< \fBbool\fP > &, \fBsc_simcontext\fP * = \fR\fBsc_get_curr_simcontext\fP()\fP)\fR [extern]\fP"
+
+.SS "\fBvoid\fP sc_core::at_posedge (\fBconst\fP \fBsc_signal_in_if\fP< \fBsc_dt::sc_logic\fP > &, \fBsc_simcontext\fP * = \fR\fBsc_get_curr_simcontext\fP()\fP)\fR [extern]\fP"
+
+.SS "\fBSC_API\fP \fBunsigned\fP sc_core::default_int_hash_fn (\fBconst\fP \fBvoid\fP *)\fR [extern]\fP"
+
+.SS "\fBSC_API\fP \fBunsigned\fP sc_core::default_ptr_hash_fn (\fBconst\fP \fBvoid\fP *)\fR [extern]\fP"
+
+.SS "\fBSC_API\fP \fBunsigned\fP sc_core::default_str_hash_fn (\fBconst\fP \fBvoid\fP *)\fR [extern]\fP"
+
+.SS "\fBsc_cor\fP * sc_core::get_cor_pointer (\fBsc_process_b\fP * process_p)\fR [inline]\fP"
+
+.SS "\fBSC_API\fP \fBvoid\fP sc_core::halt (\fBsc_simcontext\fP *)"
+
+.SS "\fBSC_API\fP std::string sc_core::localtime_string ()"
+
+.SS "\fBSC_API\fP \fBvoid\fP sc_core::next_trigger (\fBconst\fP \fBsc_event\fP &, \fBsc_simcontext\fP *)"
+
+.SS "\fBSC_API\fP \fBvoid\fP sc_core::next_trigger (\fBconst\fP \fBsc_event_and_list\fP &, \fBsc_simcontext\fP *)"
+
+.SS "\fBSC_API\fP \fBvoid\fP sc_core::next_trigger (\fBconst\fP \fBsc_event_or_list\fP &, \fBsc_simcontext\fP *)"
+
+.SS "\fBSC_API\fP \fBvoid\fP sc_core::next_trigger (\fBconst\fP \fBsc_time\fP &, \fBconst\fP \fBsc_event\fP &, \fBsc_simcontext\fP *)"
+
+.SS "\fBSC_API\fP \fBvoid\fP sc_core::next_trigger (\fBconst\fP \fBsc_time\fP &, \fBconst\fP \fBsc_event_and_list\fP &, \fBsc_simcontext\fP *)"
+
+.SS "\fBSC_API\fP \fBvoid\fP sc_core::next_trigger (\fBconst\fP \fBsc_time\fP &, \fBconst\fP \fBsc_event_or_list\fP &, \fBsc_simcontext\fP *)"
+
+.SS "\fBSC_API\fP \fBvoid\fP sc_core::next_trigger (\fBconst\fP \fBsc_time\fP &, \fBsc_simcontext\fP *)"
+
+.SS "\fBSC_API\fP \fBvoid\fP sc_core::next_trigger (\fBdouble\fP v, \fBsc_time_unit\fP tu, \fBconst\fP \fBsc_event\fP & e, \fBsc_simcontext\fP * simc = \fR\fBsc_get_curr_simcontext\fP()\fP)\fR [inline]\fP"
+
+.SS "\fBvoid\fP sc_core::next_trigger (\fBdouble\fP v, \fBsc_time_unit\fP tu, \fBconst\fP \fBsc_event_and_list\fP & el, \fBsc_simcontext\fP * simc = \fR\fBsc_get_curr_simcontext\fP()\fP)\fR [inline]\fP"
+
+.SS "\fBSC_API\fP \fBvoid\fP sc_core::next_trigger (\fBdouble\fP v, \fBsc_time_unit\fP tu, \fBconst\fP \fBsc_event_or_list\fP & el, \fBsc_simcontext\fP * simc = \fR\fBsc_get_curr_simcontext\fP()\fP)\fR [inline]\fP"
+
+.SS "\fBSC_API\fP \fBvoid\fP sc_core::next_trigger (\fBdouble\fP v, \fBsc_time_unit\fP tu, \fBsc_simcontext\fP * simc = \fR\fBsc_get_curr_simcontext\fP()\fP)\fR [inline]\fP"
+
+.SS "\fBSC_API\fP \fBvoid\fP sc_core::next_trigger (\fBsc_simcontext\fP *)"
+
+.SS "\fBvoid\fP sc_core::notify (\fBconst\fP \fBsc_time\fP & t, \fBsc_event\fP & e)\fR [extern]\fP"
+
+.SS "\fBvoid\fP sc_core::notify (\fBdouble\fP v, \fBsc_time_unit\fP tu, \fBsc_event\fP & e)\fR [extern]\fP"
+
+.SS "\fBvoid\fP sc_core::notify (\fBsc_event\fP & e)\fR [extern]\fP"
+
+.SS "\fBbool\fP sc_core::operator!= (\fBconst\fP \fBsc_process_handle\fP & left, \fBconst\fP \fBsc_process_handle\fP & right)\fR [inline]\fP"
+
+.SS "\fBconst\fP \fBsc_time\fP sc_core::operator% (\fBconst\fP \fBsc_time\fP & t1, \fBconst\fP \fBsc_time\fP & t2)\fR [inline]\fP"
+
+.SS "\fBsc_event_and_expr\fP sc_core::operator& (\fBsc_event_and_expr\fP expr, \fBsc_event\fP \fBconst\fP & e)\fR [inline]\fP"
+
+.SS "\fBsc_event_and_expr\fP sc_core::operator& (\fBsc_event_and_expr\fP expr, \fBsc_event_and_list\fP \fBconst\fP & el)\fR [inline]\fP"
+
+.SS "\fBconst\fP \fBsc_time\fP sc_core::operator* (\fBconst\fP \fBsc_time\fP & t, \fBdouble\fP d)\fR [inline]\fP"
+
+.SS "\fBconst\fP \fBsc_time\fP sc_core::operator* (\fBdouble\fP d, \fBconst\fP \fBsc_time\fP & t)\fR [inline]\fP"
+
+.SS "\fBconst\fP \fBsc_time\fP sc_core::operator+ (\fBconst\fP \fBsc_time\fP & t1, \fBconst\fP \fBsc_time\fP & t2)\fR [inline]\fP"
+
+.SS "\fBconst\fP \fBsc_time\fP sc_core::operator\- (\fBconst\fP \fBsc_time\fP & t1, \fBconst\fP \fBsc_time\fP & t2)\fR [inline]\fP"
+
+.SS "\fBdouble\fP sc_core::operator/ (\fBconst\fP \fBsc_time\fP & t1, \fBconst\fP \fBsc_time\fP & t2)\fR [inline]\fP"
+
+.SS "\fBconst\fP \fBsc_time\fP sc_core::operator/ (\fBconst\fP \fBsc_time\fP & t, \fBdouble\fP d)\fR [inline]\fP"
+
+.SS "\fBbool\fP sc_core::operator< (\fBconst\fP \fBsc_process_handle\fP & left, \fBconst\fP \fBsc_process_handle\fP & right)\fR [inline]\fP"
+
+.SS "inline::std::ostream & sc_core::operator<< (::std::ostream & os, \fBconst\fP \fBsc_time\fP & t)"
+
+.SS "template<\fBclass\fP \fBT\fP > inline::std::ostream & sc_core::operator<< (::std::ostream & os, \fBconst\fP \fBsc_fifo\fP< \fBT\fP > & a)"
+
+.SS "template<\fBtypename\fP \fBT\fP > ::std::ostream & sc_core::operator<< (::std::ostream & os, \fBconst\fP \fBsc_in\fP< \fBT\fP > & a)"
+
+.SS "template<\fBtypename\fP \fBT\fP > ::std::ostream & sc_core::operator<< (::std::ostream & os, \fBconst\fP \fBsc_inout\fP< \fBT\fP > & a)"
+
+.SS "inline::std::ostream & sc_core::operator<< (::std::ostream & os, \fBconst\fP \fBsc_signal_channel\fP & a)"
+
+.SS "\fBSC_API\fP std::ostream & sc_core::operator<< (std::ostream &, \fBsc_status\fP)"
+
+.SS "std::ostream & sc_core::operator<< (std::ostream & os, \fBconst\fP \fBsc_reset_target\fP & target)\fR [inline]\fP"
+
+.SS "\fBbool\fP sc_core::operator== (\fBconst\fP \fBsc_process_handle\fP & left, \fBconst\fP \fBsc_process_handle\fP & right)\fR [inline]\fP"
+
+.SS "\fBsc_event_or_expr\fP sc_core::operator| (\fBsc_event_or_expr\fP expr, \fBsc_event\fP \fBconst\fP & e)\fR [inline]\fP"
+
+.SS "\fBsc_event_or_expr\fP sc_core::operator| (\fBsc_event_or_expr\fP expr, \fBsc_event_or_list\fP \fBconst\fP & el)\fR [inline]\fP"
+
+.SS "\fBSC_NORETURN_\fP \fBSC_API\fP \fBvoid\fP sc_core::sc_abort ()"
+
+.SS "int sc_core::sc_argc ()"
+
+.SS "\fBconst\fP \fBchar\fP *\fBconst\fP  * sc_core::sc_argv ()"
+
+.SS "template<\fBtypename\fP \fBT\fP , \fBtypename\fP \fBMT\fP > \fBsc_vector_assembly\fP< \fBT\fP, \fBMT\fP > sc_core::sc_assemble_vector (\fBsc_vector\fP< \fBT\fP > & vec, \fBMT\fP T::* ptr)"
+
+.SS "\fBSC_NORETURN_\fP \fBSC_API\fP \fBvoid\fP sc_core::sc_assertion_failed (\fBconst\fP \fBchar\fP * msg, \fBconst\fP \fBchar\fP * file, int line)"
+
+.SS "\fBSC_API\fP \fBvoid\fP sc_core::sc_close_vcd_trace_file (\fBsc_trace_file\fP * tf)\fR [extern]\fP"
+
+.SS "\fBSC_API\fP \fBvoid\fP sc_core::sc_close_wif_trace_file (\fBsc_trace_file\fP * tf)\fR [extern]\fP"
+
+.SS "\fBvoid\fP sc_core::sc_cmethod_cor_fn (\fBvoid\fP *)"
+
+.SS "\fBSC_API\fP \fBconst\fP \fBchar\fP * sc_core::sc_copyright ()\fR [extern]\fP"
+
+.SS "\fBSC_API\fP \fBsc_trace_file\fP * sc_core::sc_create_vcd_trace_file (\fBconst\fP \fBchar\fP * name)\fR [extern]\fP"
+
+.SS "\fBSC_API\fP \fBsc_trace_file\fP * sc_core::sc_create_wif_trace_file (\fBconst\fP \fBchar\fP * name)\fR [extern]\fP"
+
+.SS "\fBSC_API\fP \fBvoid\fP sc_core::sc_defunct_process_function (\fBsc_module\fP *)\fR [extern]\fP"
+
+.SS "\fBsc_dt::uint64\fP sc_core::sc_delta_count ()\fR [inline]\fP"
+
+.SS "\fBsc_dt::uint64\fP sc_core::sc_delta_count_at_current_time ()\fR [inline]\fP"
+
+.SS "\fBSC_API\fP \fBvoid\fP sc_core::sc_deprecated_add_trace ()\fR [extern]\fP"
+
+.SS "int sc_core::sc_elab_and_sim (int argc, \fBchar\fP * argv[])"
+
+.SS "\fBbool\fP sc_core::sc_end_of_simulation_invoked ()\fR [inline]\fP"
+
+.SS "\fBSC_API\fP \fBsc_event\fP * sc_core::sc_find_event (\fBconst\fP \fBchar\fP * name)\fR [extern]\fP"
+
+.SS "\fBSC_API\fP \fBsc_object\fP * sc_core::sc_find_object (\fBconst\fP \fBchar\fP * name)\fR [extern]\fP"
+
+.SS "\fBSC_API\fP \fBconst\fP \fBchar\fP * sc_core::sc_gen_unique_name (\fBconst\fP \fBchar\fP *, \fBbool\fP preserve_first)"
+
+.SS "\fBSC_API\fP \fBsc_process_b\fP * sc_core::sc_get_curr_process_handle ()\fR [extern]\fP"
+
+.SS "\fBsc_curr_proc_kind\fP sc_core::sc_get_curr_process_kind ()\fR [inline]\fP"
+
+.SS "\fBsc_simcontext\fP * sc_core::sc_get_curr_simcontext ()\fR [inline]\fP"
+
+.SS "\fBsc_object\fP * sc_core::sc_get_current_object ()\fR [inline]\fP"
+
+.SS "\fBsc_process_b\fP * sc_core::sc_get_current_process_b ()\fR [inline]\fP"
+
+.SS "\fBSC_API\fP \fBsc_process_handle\fP sc_core::sc_get_current_process_handle ()"
+
+.SS "\fBconst\fP \fBchar\fP * sc_core::sc_get_current_process_name (\fBconst\fP \fBchar\fP * if_empty = \fR\fBNULL\fP\fP)\fR [inline]\fP"
+
+.SS "\fBSC_API\fP \fBsc_time\fP sc_core::sc_get_default_time_unit ()"
+
+.SS "\fBconst\fP \fBchar\fP * sc_core::sc_get_hierarchical_name (\fBconst\fP \fBchar\fP * name)\fR [inline]\fP"
+
+.SS "\fBconst\fP \fBchar\fP * sc_core::sc_get_hierarchical_name (\fBconst\fP \fBsc_object\fP * parent, \fBconst\fP \fBchar\fP * name)\fR [inline]\fP"
+
+.SS "\fBsc_process_handle\fP sc_core::sc_get_last_created_process_handle ()\fR [inline]\fP"
+
+.SS "\fBsc_object\fP * sc_core::sc_get_parent (\fBconst\fP \fBsc_object\fP * obj_p)\fR [inline]\fP"
+
+.SS "int sc_core::sc_get_simulator_status ()\fR [inline]\fP"
+
+.SS "\fBsc_status\fP sc_core::sc_get_status ()\fR [inline]\fP"
+
+.SS "\fBSC_API\fP \fBsc_stop_mode\fP sc_core::sc_get_stop_mode ()\fR [extern]\fP"
+
+.SS "\fBSC_API\fP \fBsc_time\fP sc_core::sc_get_time_resolution ()"
+
+.SS "\fBconst\fP std::vector< \fBsc_event\fP * > & sc_core::sc_get_top_level_events (\fBconst\fP \fBsc_simcontext\fP * simc_p = \fR\fBsc_get_curr_simcontext\fP()\fP)\fR [inline]\fP"
+
+.SS "\fBconst\fP std::vector< \fBsc_object\fP * > & sc_core::sc_get_top_level_objects (\fBconst\fP \fBsc_simcontext\fP * simc_p = \fR\fBsc_get_curr_simcontext\fP()\fP)\fR [inline]\fP"
+
+.SS "\fBSC_API\fP \fBsc_report\fP * sc_core::sc_handle_exception ()"
+
+.SS "\fBbool\fP sc_core::sc_hierarchical_name_exists (\fBconst\fP \fBchar\fP * name)\fR [inline]\fP"
+
+.SS "\fBbool\fP sc_core::sc_hierarchical_name_exists (\fBconst\fP \fBsc_object\fP * parent, \fBconst\fP \fBchar\fP * name)\fR [inline]\fP"
+
+.SS "\fBSC_API\fP \fBvoid\fP sc_core::sc_initialize ()\fR [extern]\fP"
+
+.SS "\fBSC_API\fP \fBvoid\fP sc_core::sc_interrupt_here (\fBconst\fP \fBchar\fP * id, \fBsc_severity\fP severity)\fR [extern]\fP"
+
+.SS "\fBbool\fP sc_core::sc_is_running (\fBconst\fP \fBsc_simcontext\fP * simc_p = \fR\fBsc_get_curr_simcontext\fP()\fP)\fR [inline]\fP"
+
+.SS "\fBSC_API\fP \fBbool\fP sc_core::sc_is_unwinding ()"
+
+.SS "\fBSC_API\fP \fBconst\fP \fBsc_time\fP & sc_core::sc_max_time ()\fR [extern]\fP"
+
+.SS "\fBvoid\fP sc_core::sc_method_cor_fn (\fBvoid\fP *)"
+
+.SS "\fBSC_API\fP \fBsc_module\fP * sc_core::sc_module_dynalloc (\fBsc_module\fP *)\fR [extern]\fP"
+
+.SS "\fBSC_API\fP int sc_core::sc_notify_time_compare (\fBconst\fP \fBvoid\fP *, \fBconst\fP \fBvoid\fP *)"
+
+.SS "\fBvoid\fP sc_core::sc_pause ()\fR [inline]\fP"
+
+.SS "\fBbool\fP sc_core::sc_pending_activity (\fBconst\fP \fBsc_simcontext\fP * simc_p = \fR\fBsc_get_curr_simcontext\fP()\fP)\fR [inline]\fP"
+
+.SS "\fBbool\fP sc_core::sc_pending_activity_at_current_time (\fBconst\fP \fBsc_simcontext\fP * simc_p = \fR\fBsc_get_curr_simcontext\fP()\fP)\fR [inline]\fP"
+
+.SS "\fBbool\fP sc_core::sc_pending_activity_at_future_time (\fBconst\fP \fBsc_simcontext\fP * simc_p = \fR\fBsc_get_curr_simcontext\fP()\fP)\fR [inline]\fP"
+
+.SS "\fBbool\fP sc_core::sc_register_hierarchical_name (\fBconst\fP \fBchar\fP * name)\fR [inline]\fP"
+
+.SS "\fBbool\fP sc_core::sc_register_hierarchical_name (\fBconst\fP \fBsc_object\fP * parent, \fBconst\fP \fBchar\fP * name)\fR [inline]\fP"
+
+.SS "\fBSC_API\fP \fBconst\fP \fBchar\fP * sc_core::sc_release ()\fR [extern]\fP"
+
+.SS "\fBSC_API\fP \fBbool\fP sc_core::sc_report_close_default_log ()\fR [extern]\fP"
+
+.SS "\fBSC_API\fP \fBconst\fP std::string sc_core::sc_report_compose_message (\fBconst\fP \fBsc_report\fP &)"
+
+.SS "\fBSC_API\fP \fBvoid\fP sc_core::sc_set_default_time_unit (\fBdouble\fP, \fBsc_time_unit\fP)"
+
+.SS "\fBSC_API\fP \fBvoid\fP sc_core::sc_set_location (\fBconst\fP \fBchar\fP *, int, \fBsc_simcontext\fP * = \fR\fBsc_get_curr_simcontext\fP()\fP)\fR [extern]\fP"
+
+.SS "\fBSC_API\fP \fBvoid\fP sc_core::sc_set_random_seed (\fBunsigned\fP int seed_)\fR [extern]\fP"
+
+.SS "\fBSC_API\fP \fBvoid\fP sc_core::sc_set_stack_size (\fBsc_method_handle\fP, std::size_t)"
+
+.SS "\fBSC_API\fP \fBvoid\fP sc_core::sc_set_stack_size (\fBsc_thread_handle\fP, std::size_t)\fR [extern]\fP"
+
+.SS "\fBSC_API\fP \fBvoid\fP sc_core::sc_set_stop_mode (\fBsc_stop_mode\fP mode)\fR [extern]\fP"
+
+.SS "\fBSC_API\fP \fBvoid\fP sc_core::sc_set_time_resolution (\fBdouble\fP, \fBsc_time_unit\fP)"
+
+.SS "\fBSC_API\fP \fBvoid\fP sc_core::sc_signal_invalid_writer (\fBsc_object\fP * target, \fBsc_object\fP * first_writer, \fBsc_object\fP * second_writer, \fBbool\fP check_delta)\fR [extern]\fP"
+
+.SS "\fBSC_API\fP \fBdouble\fP sc_core::sc_simulation_time ()\fR [extern]\fP"
+
+.SS "template<\fBtypename\fP \fBT\fP > \fBsc_process_handle\fP sc_core::sc_spawn (\fBT\fP object, \fBconst\fP \fBchar\fP * name_p = \fR0\fP, \fBconst\fP \fBsc_spawn_options\fP * opt_p = \fR0\fP)\fR [inline]\fP"
+
+.SS "template<\fBtypename\fP \fBT\fP > \fBsc_process_handle\fP sc_core::sc_spawn (\fBtypename\fP T::result_type * r_p, \fBT\fP object, \fBconst\fP \fBchar\fP * name_p = \fR0\fP, \fBconst\fP \fBsc_spawn_options\fP * opt_p = \fR0\fP)\fR [inline]\fP"
+
+.SS "\fBSC_API\fP \fBvoid\fP sc_core::sc_start ()\fR [extern]\fP"
+
+.SS "\fBSC_API\fP \fBvoid\fP sc_core::sc_start (\fBconst\fP \fBsc_time\fP & duration, \fBsc_starvation_policy\fP p = \fR\fBSC_RUN_TO_TIME\fP\fP)\fR [extern]\fP"
+
+.SS "\fBvoid\fP sc_core::sc_start (\fBdouble\fP duration, \fBsc_time_unit\fP unit, \fBsc_starvation_policy\fP p = \fR\fBSC_RUN_TO_TIME\fP\fP)\fR [inline]\fP"
+
+.SS "\fBvoid\fP sc_core::sc_start (int duration, \fBsc_time_unit\fP unit, \fBsc_starvation_policy\fP p = \fR\fBSC_RUN_TO_TIME\fP\fP)\fR [inline]\fP"
+
+.SS "\fBbool\fP sc_core::sc_start_of_simulation_invoked ()\fR [inline]\fP"
+
+.SS "\fBSC_API\fP \fBvoid\fP sc_core::sc_stop ()\fR [extern]\fP"
+
+.SS "\fBSC_API\fP \fBvoid\fP sc_core::sc_stop_here (\fBconst\fP \fBchar\fP * id, \fBsc_severity\fP severity)\fR [extern]\fP"
+
+.SS "\fBSC_API\fP int sc_core::sc_strhash_cmp (\fBconst\fP \fBvoid\fP *, \fBconst\fP \fBvoid\fP *)\fR [extern]\fP"
+
+.SS "\fBSC_API\fP \fBvoid\fP * sc_core::sc_strhash_kdup (\fBconst\fP \fBvoid\fP *)\fR [extern]\fP"
+
+.SS "\fBSC_API\fP \fBvoid\fP sc_core::sc_strhash_kfree (\fBvoid\fP *)\fR [extern]\fP"
+
+.SS "\fBvoid\fP sc_core::sc_thread_cor_fn (\fBvoid\fP * arg)"
+
+.SS "\fBSC_API\fP \fBconst\fP \fBsc_time\fP & sc_core::sc_time_stamp ()\fR [extern]\fP"
+
+.SS "\fBSC_API\fP \fBsc_time\fP sc_core::sc_time_to_pending_activity (\fBconst\fP \fBsc_simcontext\fP *)"
+
+.SS "template<\fBclass\fP \fBT\fP > \fBvoid\fP sc_core::sc_trace (\fBsc_trace_file\fP * tf, \fBconst\fP \fBsc_in\fP< \fBT\fP > & port, \fBconst\fP std::string & name)\fR [inline]\fP"
+
+.SS "template<\fBclass\fP \fBT\fP > \fBvoid\fP sc_core::sc_trace (\fBsc_trace_file\fP * tf, \fBconst\fP \fBsc_inout\fP< \fBT\fP > & port, \fBconst\fP std::string & name)\fR [inline]\fP"
+
+.SS "\fBSC_API\fP \fBvoid\fP sc_core::sc_trace (\fBsc_trace_file\fP * tf, \fBconst\fP \fBsc_signal_in_if\fP< \fBchar\fP > & object, \fBconst\fP std::string & name, int width)"
+
+.SS "\fBSC_API\fP \fBvoid\fP sc_core::sc_trace (\fBsc_trace_file\fP * tf, \fBconst\fP \fBsc_signal_in_if\fP< int > & object, \fBconst\fP std::string & name, int width)"
+
+.SS "\fBSC_API\fP \fBvoid\fP sc_core::sc_trace (\fBsc_trace_file\fP * tf, \fBconst\fP \fBsc_signal_in_if\fP< \fBlong\fP > & object, \fBconst\fP std::string & name, int width)"
+
+.SS "\fBSC_API\fP \fBvoid\fP sc_core::sc_trace (\fBsc_trace_file\fP * tf, \fBconst\fP \fBsc_signal_in_if\fP< \fBshort\fP > & object, \fBconst\fP std::string & name, int width)"
+
+.SS "template<\fBclass\fP \fBT\fP > \fBvoid\fP sc_core::sc_trace (\fBsc_trace_file\fP * tf, \fBconst\fP \fBsc_signal_in_if\fP< \fBT\fP > & object, \fBconst\fP \fBchar\fP * name)\fR [inline]\fP"
+
+.SS "template<\fBclass\fP \fBT\fP > \fBvoid\fP sc_core::sc_trace (\fBsc_trace_file\fP * tf, \fBconst\fP \fBsc_signal_in_if\fP< \fBT\fP > & object, \fBconst\fP std::string & name)\fR [inline]\fP"
+
+.SS "\fBSC_API\fP \fBvoid\fP sc_core::sc_trace (\fBsc_trace_file\fP * tf, \fBconst\fP \fBunsigned\fP int & object, \fBconst\fP std::string & name, \fBconst\fP \fBchar\fP ** enum_literals)"
+
+.SS "\fBSC_API\fP \fBvoid\fP sc_core::sc_trace (\fBsc_trace_file\fP * tf, \fBconst\fP \fBvoid\fP * object, \fBconst\fP std::string & name)\fR [extern]\fP"
+
+.SS "\fBSC_API\fP \fBvoid\fP sc_core::sc_trace_delta_cycles (\fBsc_trace_file\fP * tf, \fBbool\fP on = \fR\fBtrue\fP\fP)\fR [inline]\fP"
+
+.SS "\fBbool\fP sc_core::sc_unregister_hierarchical_name (\fBconst\fP \fBchar\fP * name)\fR [inline]\fP"
+
+.SS "\fBbool\fP sc_core::sc_unregister_hierarchical_name (\fBconst\fP \fBsc_object\fP * parent, \fBconst\fP \fBchar\fP * name)\fR [inline]\fP"
+
+.SS "template<\fBtypename\fP \fBContainer\fP , \fBtypename\fP \fBArgumentIterator\fP > Container::iterator sc_core::sc_vector_do_bind (\fBContainer\fP & cont, \fBArgumentIterator\fP first, \fBArgumentIterator\fP last, \fBtypename\fP Container::iterator from)"
+
+.SS "template<\fBtypename\fP \fBContainer\fP , \fBtypename\fP \fBArgumentIterator\fP > Container::iterator sc_core::sc_vector_do_operator_paren (\fBContainer\fP & cont, \fBArgumentIterator\fP first, \fBArgumentIterator\fP last, \fBtypename\fP Container::iterator from)"
+
+.SS "\fBSC_API\fP \fBconst\fP \fBchar\fP * sc_core::sc_version ()\fR [extern]\fP"
+
+.SS "\fBSC_API\fP \fBvoid\fP sc_core::sc_warn_port_constructor ()\fR [extern]\fP"
+
+.SS "\fBSC_API\fP \fBvoid\fP sc_core::sc_write_comment (\fBsc_trace_file\fP * tf, \fBconst\fP std::string & comment)\fR [inline]\fP"
+
+.SS "\fBSC_API\fP \fBbool\fP sc_core::timed_out (\fBsc_simcontext\fP *)"
+
+.SS "\fBSC_API\fP \fBvoid\fP sc_core::tprintf (\fBsc_trace_file\fP * tf, \fBconst\fP \fBchar\fP * format,  \&.\&.\&.)"
+
+.SS "\fBSC_API\fP \fBvoid\fP sc_core::wait (\fBconst\fP \fBsc_event\fP &, \fBsc_simcontext\fP *)"
+
+.SS "\fBSC_API\fP \fBvoid\fP sc_core::wait (\fBconst\fP \fBsc_event_and_list\fP &, \fBsc_simcontext\fP *)"
+
+.SS "\fBSC_API\fP \fBvoid\fP sc_core::wait (\fBconst\fP \fBsc_event_or_list\fP &, \fBsc_simcontext\fP *)"
+
+.SS "\fBSC_API\fP \fBvoid\fP sc_core::wait (\fBconst\fP \fBsc_time\fP &, \fBconst\fP \fBsc_event\fP &, \fBsc_simcontext\fP *)"
+
+.SS "\fBSC_API\fP \fBvoid\fP sc_core::wait (\fBconst\fP \fBsc_time\fP &, \fBconst\fP \fBsc_event_and_list\fP &, \fBsc_simcontext\fP *)"
+
+.SS "\fBSC_API\fP \fBvoid\fP sc_core::wait (\fBconst\fP \fBsc_time\fP &, \fBconst\fP \fBsc_event_or_list\fP &, \fBsc_simcontext\fP *)"
+
+.SS "\fBSC_API\fP \fBvoid\fP sc_core::wait (\fBconst\fP \fBsc_time\fP &, \fBsc_simcontext\fP *)"
+
+.SS "\fBSC_API\fP \fBvoid\fP sc_core::wait (\fBdouble\fP v, \fBsc_time_unit\fP tu, \fBconst\fP \fBsc_event\fP & e, \fBsc_simcontext\fP * simc = \fR\fBsc_get_curr_simcontext\fP()\fP)\fR [inline]\fP"
+
+.SS "\fBSC_API\fP \fBvoid\fP sc_core::wait (\fBdouble\fP v, \fBsc_time_unit\fP tu, \fBconst\fP \fBsc_event_and_list\fP & el, \fBsc_simcontext\fP * simc = \fR\fBsc_get_curr_simcontext\fP()\fP)\fR [inline]\fP"
+
+.SS "\fBSC_API\fP \fBvoid\fP sc_core::wait (\fBdouble\fP v, \fBsc_time_unit\fP tu, \fBconst\fP \fBsc_event_or_list\fP & el, \fBsc_simcontext\fP * simc = \fR\fBsc_get_curr_simcontext\fP()\fP)\fR [inline]\fP"
+
+.SS "\fBSC_API\fP \fBvoid\fP sc_core::wait (\fBdouble\fP v, \fBsc_time_unit\fP tu, \fBsc_simcontext\fP * simc = \fR\fBsc_get_curr_simcontext\fP()\fP)\fR [inline]\fP"
+
+.SS "\fBSC_API\fP \fBvoid\fP sc_core::wait (int, \fBsc_simcontext\fP *)"
+
+.SS "\fBSC_API\fP \fBvoid\fP sc_core::wait (\fBsc_simcontext\fP *)"
+
+.SH "Variable Documentation"
+.PP 
+.SS "\fBSC_API\fP \fBconst\fP \fBdouble\fP sc_core::PHASH_DEFAULT_GROW_FACTOR\fR [extern]\fP"
+
+.SS "\fBconst\fP int sc_core::PHASH_DEFAULT_INIT_TABLE_SIZE = 11"
+
+.SS "\fBconst\fP int sc_core::PHASH_DEFAULT_MAX_DENSITY = 5"
+
+.SS "\fBconst\fP \fBbool\fP sc_core::PHASH_DEFAULT_REORDER_FLAG = \fBtrue\fP"
+
+.SS "\fBSC_API\fP \fBbool\fP sc_core::sc_allow_process_control_corners\fR [extern]\fP"
+
+.SS "\fBSC_TPLEXTERN_\fP \fBtemplate\fP \fBstruct\fP \fBSC_API\fP \fBsc_core::SC_API_VERSION_STRING\fP< &\fBSC_DISABLE_VIRTUAL_BIND_CHECK_\fP >"
+
+.SS "\fBSC_API\fP \fBconst\fP \fBsc_bind_proxy\fP sc_core::SC_BIND_PROXY_NIL\fR [extern]\fP"
+
+.SS "\fBSC_API\fP \fBconst\fP std::string sc_core::sc_copyright_string\fR [extern]\fP"
+
+.SS "\fBSC_API\fP \fBsc_simcontext\fP* sc_core::sc_curr_simcontext\fR [extern]\fP"
+
+.SS "\fBSC_API\fP \fBsc_simcontext\fP* sc_core::sc_default_global_context\fR [extern]\fP"
+
+.SS "\fBconst\fP int sc_core::SC_DEFAULT_STACK_SIZE\fR [extern]\fP"
+
+.SS "\fBconst\fP int sc_core::SC_DISABLE_VIRTUAL_BIND_CHECK_\fR [extern]\fP"
+
+.SS "\fBbool\fP sc_core::sc_enable_name_checking\fR [extern]\fP"
+
+.SS "\fBclass\fP \fBSC_API\fP sc_core::sc_event"
+
+.SS "\fBconst\fP \fBchar\fP sc_core::SC_HIERARCHY_CHAR\fR [extern]\fP"
+
+.SS "\fBSC_API\fP \fBconst\fP \fBchar\fP sc_core::SC_ID_ABORT_[]\fR [extern]\fP"
+
+.SS "\fBSC_API\fP \fBconst\fP \fBchar\fP sc_core::SC_ID_ASSERTION_FAILED_[]\fR [extern]\fP"
+
+.SS "\fBSC_API\fP \fBconst\fP \fBchar\fP sc_core::SC_ID_INTERNAL_ERROR_[]\fR [extern]\fP"
+
+.SS "\fBSC_API\fP \fBconst\fP \fBchar\fP sc_core::SC_ID_NOT_IMPLEMENTED_[]\fR [extern]\fP"
+
+.SS "\fBSC_API\fP \fBconst\fP \fBchar\fP sc_core::SC_ID_OUT_OF_BOUNDS_[]\fR [extern]\fP"
+
+.SS "\fBSC_API\fP \fBconst\fP \fBchar\fP sc_core::SC_ID_REGISTER_ID_FAILED_\fR [extern]\fP"
+
+.SS "\fBSC_API\fP \fBconst\fP \fBchar\fP sc_core::SC_ID_UNKNOWN_ERROR_[]\fR [extern]\fP"
+
+.SS "\fBSC_API\fP \fBconst\fP \fBchar\fP sc_core::SC_ID_WITHOUT_MESSAGE_[]\fR [extern]\fP"
+
+.SS "\fBSC_API\fP \fBconst\fP \fBbool\fP sc_core::sc_is_prerelease\fR [extern]\fP"
+
+.SS "\fBSC_API\fP \fBconst\fP \fBsc_dt::sc_logic_value_t\fP sc_core::sc_logic_resolution_tbl\fR [extern]\fP"
+
+.SS "\fBclass\fP \fBSC_API\fP sc_core::sc_module"
+
+.SS "\fBclass\fP \fBSC_API\fP sc_core::sc_object"
+
+.SS "\fBSC_API_TEMPLATE_DECL_\fP \fBsc_core::sc_port\fP< \fBsc_event_queue_if\fP, 1, \fBSC_ONE_OR_MORE_BOUND\fP >"
+
+.SS "\fBSC_API_TEMPLATE_DECL_\fP \fBsc_core::sc_port\fP< \fBsc_signal_in_if\fP< \fBbool\fP >, 1, \fBSC_ONE_OR_MORE_BOUND\fP >"
+
+.SS "\fBSC_API_TEMPLATE_DECL_\fP \fBsc_core::sc_port\fP< \fBsc_signal_inout_if\fP< \fBbool\fP >, 1, \fBSC_ONE_OR_MORE_BOUND\fP >"
+
+.SS "\fBclass\fP \fBSC_API\fP sc_core::sc_port_base"
+
+.SS "\fBSC_API_TEMPLATE_DECL_\fP \fBsc_core::sc_ppq\fP< \fBsc_time\fP * >"
+
+.SS "\fBclass\fP \fBSC_API\fP sc_core::sc_reset"
+
+.SS "\fBSC_API_TEMPLATE_DECL_\fP \fBsc_core::sc_signal_t\fP< \fBbool\fP, \fBSC_MANY_WRITERS\fP >"
+
+.SS "\fBSC_API_TEMPLATE_DECL_\fP \fBsc_core::sc_signal_t\fP< \fBbool\fP, \fBSC_ONE_WRITER\fP >"
+
+.SS "\fBSC_API_TEMPLATE_DECL_\fP \fBsc_core::sc_signal_t\fP< \fBbool\fP, \fBSC_UNCHECKED_WRITERS\fP >"
+
+.SS "\fBconst\fP int sc_core::SC_SIM_ERROR = 1"
+
+.SS "\fBconst\fP int sc_core::SC_SIM_OK = 0"
+
+.SS "\fBconst\fP int sc_core::SC_SIM_USER_STOP = 2"
+
+.SS "\fBclass\fP \fBSC_API\fP sc_core::sc_simcontext"
+
+.SS "\fBsc_byte_heap\fP \fBSC_API\fP sc_core::sc_temp_heap\fR [extern]\fP"
+
+.SS "\fBclass\fP \fBSC_API\fP sc_core::sc_time_tuple"
+
+.SS "\fBclass\fP \fBSC_API\fP sc_core::sc_trace_file"
+
+.SS "\fBclass\fP \fBSC_API\fP sc_core::sc_trace_file_base"
+
+.SS "\fBSC_API\fP \fBconst\fP \fBunsigned\fP int sc_core::sc_version_major\fR [extern]\fP"
+
+.SS "\fBSC_API\fP \fBconst\fP \fBunsigned\fP int sc_core::sc_version_minor\fR [extern]\fP"
+
+.SS "\fBSC_API\fP \fBconst\fP std::string sc_core::sc_version_originator\fR [extern]\fP"
+
+.SS "\fBSC_API\fP \fBconst\fP \fBunsigned\fP int sc_core::sc_version_patch\fR [extern]\fP"
+
+.SS "\fBSC_API\fP \fBconst\fP std::string sc_core::sc_version_prerelease\fR [extern]\fP"
+
+.SS "\fBSC_API\fP \fBconst\fP std::string sc_core::sc_version_release_date\fR [extern]\fP"
+
+.SS "\fBSC_API\fP \fBconst\fP std::string sc_core::sc_version_string\fR [extern]\fP"
+
+.SS "\fBSC_API\fP \fBconst\fP \fBsc_time\fP sc_core::SC_ZERO_TIME\fR [extern]\fP"
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for VHDL simulator from the source code\&.

@@ -1,0 +1,143 @@
+.TH "C:/Users/BJRODIER/Documents/QT_REPO/QT_VHDL_simulator/code/Ressources/SystemC/include/sysc/packages/qt/qt.h" 3 "VHDL simulator" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+C:/Users/BJRODIER/Documents/QT_REPO/QT_VHDL_simulator/code/Ressources/SystemC/include/sysc/packages/qt/qt.h
+.SH SYNOPSIS
+.br
+.PP
+\fR#include 'sysc/packages/qt/qtmd\&.h'\fP
+.br
+
+.SS "Classes"
+
+.in +1c
+.ti -1c
+.RI "struct \fBqt_t\fP"
+.br
+.in -1c
+.SS "Macros"
+
+.in +1c
+.ti -1c
+.RI "#\fBdefine\fP \fBQUICKTHREADS_STKROUNDUP\fP(bytes)     (((bytes)+\fBQUICKTHREADS_STKALIGN\fP) & ~(\fBQUICKTHREADS_STKALIGN\fP\-1))"
+.br
+.ti -1c
+.RI "#\fBdefine\fP \fBQUICKTHREADS_SPUT\fP(top,  at,  \fBval\fP)       (((\fBqt_word_t\fP *)(top))[(at)] = (\fBqt_word_t\fP)(\fBval\fP))"
+.br
+.ti -1c
+.RI "#\fBdefine\fP \fBQUICKTHREADS_ARGS_MD\fP   (0)"
+.br
+.ti -1c
+.RI "#\fBdefine\fP \fBQUICKTHREADS_ADJ\fP(\fBsp\fP)   (((\fBchar\fP *)\fBsp\fP) + \fBQUICKTHREADS_STKBASE\fP)"
+.br
+.ti -1c
+.RI "#\fBdefine\fP \fBQUICKTHREADS_ARGS\fP(\fBsp\fP,  \fBpu\fP,  \fBpt\fP,  \fBuserf\fP,  \fBonly\fP)"
+.br
+.ti -1c
+.RI "#\fBdefine\fP \fBQUICKTHREADS_ABORT\fP(\fBh\fP,  \fBa0\fP,  a1,  \fBnewthread\fP)       \fBdo\fP { \fBqt_abort\fP (\fBh\fP, \fBa0\fP, a1, \fBnewthread\fP); } \fBwhile\fP (0)"
+.br
+.ti -1c
+.RI "#\fBdefine\fP \fBQUICKTHREADS_BLOCK\fP(\fBh\fP,  \fBa0\fP,  a1,  \fBnewthread\fP)       (\fBqt_block\fP (\fBh\fP, \fBa0\fP, a1, \fBnewthread\fP))"
+.br
+.ti -1c
+.RI "#\fBdefine\fP \fBQUICKTHREADS_BLOCKI\fP(\fBh\fP,  \fBa0\fP,  a1,  \fBnewthread\fP)       (\fBqt_blocki\fP (\fBh\fP, \fBa0\fP, a1, \fBnewthread\fP))"
+.br
+.in -1c
+.SS "Typedefs"
+
+.in +1c
+.ti -1c
+.RI "\fBtypedef\fP \fBstruct\fP qt_t \fBqt_t\fP"
+.br
+.ti -1c
+.RI "\fBtypedef\fP \fBvoid\fP * \fBqt_userf_t\fP(\fBvoid\fP *\fBpu\fP)"
+.br
+.ti -1c
+.RI "\fBtypedef\fP \fBvoid\fP * \fBqt_vuserf_t\fP(int \fBarg0\fP,\&.\&.\&.)"
+.br
+.ti -1c
+.RI "\fBtypedef\fP \fBvoid\fP \fBqt_only_t\fP(\fBvoid\fP *\fBpu\fP, \fBvoid\fP *\fBpt\fP, \fBqt_userf_t\fP *\fBuserf\fP)"
+.br
+.ti -1c
+.RI "\fBtypedef\fP \fBvoid\fP \fBqt_startup_t\fP(\fBvoid\fP *\fBpt\fP)"
+.br
+.ti -1c
+.RI "\fBtypedef\fP \fBvoid\fP \fBqt_cleanup_t\fP(\fBvoid\fP *\fBpt\fP, \fBvoid\fP *\fBvuserf_return\fP)"
+.br
+.ti -1c
+.RI "\fBtypedef\fP \fBvoid\fP * \fBqt_helper_t\fP(\fBqt_t\fP *\fBold\fP, \fBvoid\fP *\fBa0\fP, \fBvoid\fP *a1)"
+.br
+.ti -1c
+.RI "\fBtypedef\fP \fBvoid\fP * \fBqt_block_t\fP(\fBqt_helper_t\fP *\fBhelper\fP, \fBvoid\fP *\fBa0\fP, \fBvoid\fP *a1, \fBqt_t\fP *\fBnewthread\fP)"
+.br
+.in -1c
+.SS "Functions"
+
+.in +1c
+.ti -1c
+.RI "\fBvoid\fP * \fBqt_abort\fP (\fBqt_helper_t\fP *\fBh\fP, \fBvoid\fP *\fBa0\fP, \fBvoid\fP *a1, \fBqt_t\fP *\fBnewthread\fP)"
+.br
+.ti -1c
+.RI "\fBvoid\fP * \fBqt_block\fP (\fBqt_helper_t\fP *\fBh\fP, \fBvoid\fP *\fBa0\fP, \fBvoid\fP *a1, \fBqt_t\fP *\fBnewthread\fP)"
+.br
+.ti -1c
+.RI "\fBvoid\fP * \fBqt_blocki\fP (\fBqt_helper_t\fP *\fBh\fP, \fBvoid\fP *\fBa0\fP, \fBvoid\fP *a1, \fBqt_t\fP *\fBnewthread\fP)"
+.br
+.in -1c
+.SH "Macro Definition Documentation"
+.PP 
+.SS "#\fBdefine\fP QUICKTHREADS_ABORT(\fBh\fP, \fBa0\fP, a1, \fBnewthread\fP)       \fBdo\fP { \fBqt_abort\fP (\fBh\fP, \fBa0\fP, a1, \fBnewthread\fP); } \fBwhile\fP (0)"
+
+.SS "#\fBdefine\fP QUICKTHREADS_ADJ(\fBsp\fP)   (((\fBchar\fP *)\fBsp\fP) + \fBQUICKTHREADS_STKBASE\fP)"
+
+.SS "#\fBdefine\fP QUICKTHREADS_ARGS(\fBsp\fP, \fBpu\fP, \fBpt\fP, \fBuserf\fP, \fBonly\fP)"
+\fBValue:\fP.PP
+.nf
+    (QUICKTHREADS_ARGS_MD (QUICKTHREADS_ADJ(sp)), \\
+     QUICKTHREADS_SPUT (QUICKTHREADS_ADJ(sp), QUICKTHREADS_ONLY_INDEX, only), \\
+     QUICKTHREADS_SPUT (QUICKTHREADS_ADJ(sp), QUICKTHREADS_USER_INDEX, userf), \\
+     QUICKTHREADS_SPUT (QUICKTHREADS_ADJ(sp), QUICKTHREADS_ARGT_INDEX, pt), \\
+     QUICKTHREADS_SPUT (QUICKTHREADS_ADJ(sp), QUICKTHREADS_ARGU_INDEX, pu), \\
+     ((qt_t *)QUICKTHREADS_ADJ(sp)))
+.fi
+
+.SS "#\fBdefine\fP QUICKTHREADS_ARGS_MD   (0)"
+
+.SS "#\fBdefine\fP QUICKTHREADS_BLOCK(\fBh\fP, \fBa0\fP, a1, \fBnewthread\fP)       (\fBqt_block\fP (\fBh\fP, \fBa0\fP, a1, \fBnewthread\fP))"
+
+.SS "#\fBdefine\fP QUICKTHREADS_BLOCKI(\fBh\fP, \fBa0\fP, a1, \fBnewthread\fP)       (\fBqt_blocki\fP (\fBh\fP, \fBa0\fP, a1, \fBnewthread\fP))"
+
+.SS "#\fBdefine\fP QUICKTHREADS_SPUT(top, at, \fBval\fP)       (((\fBqt_word_t\fP *)(top))[(at)] = (\fBqt_word_t\fP)(\fBval\fP))"
+
+.SS "#\fBdefine\fP QUICKTHREADS_STKROUNDUP(bytes)     (((bytes)+\fBQUICKTHREADS_STKALIGN\fP) & ~(\fBQUICKTHREADS_STKALIGN\fP\-1))"
+
+.SH "Typedef Documentation"
+.PP 
+.SS "\fBtypedef\fP \fBvoid\fP * qt_block_t(\fBqt_helper_t\fP *\fBhelper\fP, \fBvoid\fP *\fBa0\fP, \fBvoid\fP *a1, \fBqt_t\fP *\fBnewthread\fP)"
+
+.SS "\fBtypedef\fP \fBvoid\fP qt_cleanup_t(\fBvoid\fP *\fBpt\fP, \fBvoid\fP *\fBvuserf_return\fP)"
+
+.SS "\fBtypedef\fP \fBvoid\fP * qt_helper_t(\fBqt_t\fP *\fBold\fP, \fBvoid\fP *\fBa0\fP, \fBvoid\fP *a1)"
+
+.SS "\fBtypedef\fP \fBvoid\fP qt_only_t(\fBvoid\fP *\fBpu\fP, \fBvoid\fP *\fBpt\fP, \fBqt_userf_t\fP *\fBuserf\fP)"
+
+.SS "\fBtypedef\fP \fBvoid\fP qt_startup_t(\fBvoid\fP *\fBpt\fP)"
+
+.SS "\fBtypedef\fP \fBstruct\fP qt_t qt_t"
+
+.SS "\fBtypedef\fP \fBvoid\fP * qt_userf_t(\fBvoid\fP *\fBpu\fP)"
+
+.SS "\fBtypedef\fP \fBvoid\fP * qt_vuserf_t(int \fBarg0\fP,\&.\&.\&.)"
+
+.SH "Function Documentation"
+.PP 
+.SS "\fBvoid\fP * qt_abort (\fBqt_helper_t\fP * h, \fBvoid\fP * a0, \fBvoid\fP * a1, \fBqt_t\fP * newthread)\fR [extern]\fP"
+
+.SS "\fBvoid\fP * qt_block (\fBqt_helper_t\fP * h, \fBvoid\fP * a0, \fBvoid\fP * a1, \fBqt_t\fP * newthread)\fR [extern]\fP"
+
+.SS "\fBvoid\fP * qt_blocki (\fBqt_helper_t\fP * h, \fBvoid\fP * a0, \fBvoid\fP * a1, \fBqt_t\fP * newthread)\fR [extern]\fP"
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for VHDL simulator from the source code\&.

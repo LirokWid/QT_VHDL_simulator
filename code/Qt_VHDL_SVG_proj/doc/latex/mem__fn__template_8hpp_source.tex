@@ -1,0 +1,940 @@
+\doxysection{mem\+\_\+fn\+\_\+template.\+hpp}
+\hypertarget{mem__fn__template_8hpp_source}{}\label{mem__fn__template_8hpp_source}\index{C:/Users/BJRODIER/Documents/QT\_REPO/QT\_VHDL\_simulator/code/Ressources/SystemC/include/sysc/packages/boost/bind/mem\_fn\_template.hpp@{C:/Users/BJRODIER/Documents/QT\_REPO/QT\_VHDL\_simulator/code/Ressources/SystemC/include/sysc/packages/boost/bind/mem\_fn\_template.hpp}}
+\mbox{\hyperlink{mem__fn__template_8hpp}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{comment}{//}}
+\DoxyCodeLine{00002\ \textcolor{comment}{//\ \ bind/mem\_fn\_template.hpp}}
+\DoxyCodeLine{00003\ \textcolor{comment}{//}}
+\DoxyCodeLine{00004\ \textcolor{comment}{//\ \ Do\ not\ include\ this\ header\ directly}}
+\DoxyCodeLine{00005\ \textcolor{comment}{//}}
+\DoxyCodeLine{00006\ \textcolor{comment}{//\ \ Copyright\ (c)\ 2001\ Peter\ Dimov\ and\ Multi\ Media\ Ltd.}}
+\DoxyCodeLine{00007\ \textcolor{comment}{//}}
+\DoxyCodeLine{00008\ \textcolor{comment}{//\ Distributed\ under\ the\ Boost\ Software\ License,\ Version\ 1.0.\ (See}}
+\DoxyCodeLine{00009\ \textcolor{comment}{//\ accompanying\ file\ LICENSE\_1\_0.txt\ or\ copy\ at}}
+\DoxyCodeLine{00010\ \textcolor{comment}{//\ http://www.boost.org/LICENSE\_1\_0.txt)}}
+\DoxyCodeLine{00011\ \textcolor{comment}{//}}
+\DoxyCodeLine{00012\ \textcolor{comment}{//\ \ See\ http://www.boost.org/libs/bind/mem\_fn.html\ for\ documentation.}}
+\DoxyCodeLine{00013\ \textcolor{comment}{//}}
+\DoxyCodeLine{00014\ }
+\DoxyCodeLine{00015\ \textcolor{comment}{//\ mf0}}
+\DoxyCodeLine{00016\ }
+\DoxyCodeLine{00017\ \textcolor{keyword}{template}<\textcolor{keyword}{class}\ R,\ \textcolor{keyword}{class}\ T\ SC\_BOOST\_MEM\_FN\_CLASS\_F>\ \textcolor{keyword}{class\ }\mbox{\hyperlink{class_sysc_add__pv}{SC\_BOOST\_MEM\_FN\_NAME(mf0)}}}
+\DoxyCodeLine{00018\ \{}
+\DoxyCodeLine{00019\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00020\ }
+\DoxyCodeLine{00021\ \ \ \ \ \textcolor{keyword}{typedef}\ \mbox{\hyperlink{class_sysc_add__pv}{R}}\ \mbox{\hyperlink{bind__template_8hpp_a3003db32ff947cc71d89c477248e5172}{result\_type}};}
+\DoxyCodeLine{00022\ \ \ \ \ \textcolor{keyword}{typedef}\ \mbox{\hyperlink{mem__fn__cc_8hpp_adf1f3edb9115acb0a1e04209b7a9937b}{T}}\ *\ argument\_type;}
+\DoxyCodeLine{00023\ }
+\DoxyCodeLine{00024\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00025\ \ \ \ \ }
+\DoxyCodeLine{00026\ \ \ \ \ \mbox{\hyperlink{mem__fn_8hpp_a3ec63fb20dbbd33452c3f4c93a2c2588}{SC\_BOOST\_MEM\_FN\_TYPEDEF}}(\mbox{\hyperlink{class_sysc_add__pv}{R}}\ (\mbox{\hyperlink{mem__fn_8hpp_ac5a32bea9e3e8ba66edbf8681085fb49}{SC\_BOOST\_MEM\_FN\_CC}}\ \mbox{\hyperlink{mem__fn__cc_8hpp_adf1f3edb9115acb0a1e04209b7a9937b}{T}}::*F)\ ())}
+\DoxyCodeLine{00027\ \ \ \ \ F\ \mbox{\hyperlink{bind__template_8hpp_a5bffa5ba7163be1080445f808a43a327}{f\_}};}
+\DoxyCodeLine{00028\ }
+\DoxyCodeLine{00029\ \ \ \ \ \textcolor{keyword}{template}<\textcolor{keyword}{class}\ U>\ \mbox{\hyperlink{class_sysc_add__pv}{R}}\ call(\mbox{\hyperlink{class_sysc_add__pv}{U}}\ \&\ \mbox{\hyperlink{class_sysc_add__pv}{u}},\ \mbox{\hyperlink{mem__fn__cc_8hpp_adf1f3edb9115acb0a1e04209b7a9937b}{T}}\ \textcolor{keyword}{const}\ *)\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00030\ \textcolor{keyword}{\ \ \ \ }\{}
+\DoxyCodeLine{00031\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{mem__fn_8hpp_a76811f5057db2ee0ab2f31467800ccfa}{SC\_BOOST\_MEM\_FN\_RETURN}}\ (\mbox{\hyperlink{class_sysc_add__pv}{u}}.*\mbox{\hyperlink{bind__template_8hpp_a5bffa5ba7163be1080445f808a43a327}{f\_}})();}
+\DoxyCodeLine{00032\ \ \ \ \ \}}
+\DoxyCodeLine{00033\ }
+\DoxyCodeLine{00034\ \ \ \ \ \textcolor{keyword}{template}<\textcolor{keyword}{class}\ U>\ \mbox{\hyperlink{class_sysc_add__pv}{R}}\ call(\mbox{\hyperlink{class_sysc_add__pv}{U}}\ \&\ \mbox{\hyperlink{class_sysc_add__pv}{u}},\ \textcolor{keywordtype}{void}\ \textcolor{keyword}{const}\ *)\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00035\ \textcolor{keyword}{\ \ \ \ }\{}
+\DoxyCodeLine{00036\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{mem__fn_8hpp_a76811f5057db2ee0ab2f31467800ccfa}{SC\_BOOST\_MEM\_FN\_RETURN}}\ (get\_pointer(\mbox{\hyperlink{class_sysc_add__pv}{u}})-\/>*\mbox{\hyperlink{bind__template_8hpp_a5bffa5ba7163be1080445f808a43a327}{f\_}})();}
+\DoxyCodeLine{00037\ \ \ \ \ \}}
+\DoxyCodeLine{00038\ }
+\DoxyCodeLine{00039\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00040\ \ \ \ \ }
+\DoxyCodeLine{00041\ \ \ \ \ \textcolor{keyword}{explicit}\ \mbox{\hyperlink{mem__fn_8hpp_a148b51c6578c9ebbf545abf944152166}{SC\_BOOST\_MEM\_FN\_NAME}}(\mbox{\hyperlink{class_sysc_add__pv}{mf0}})(F\ f):\ \mbox{\hyperlink{bind__template_8hpp_a5bffa5ba7163be1080445f808a43a327}{f\_}}(f)\ \{\}}
+\DoxyCodeLine{00042\ }
+\DoxyCodeLine{00043\ \ \ \ \ \mbox{\hyperlink{class_sysc_add__pv}{R}}\ \mbox{\hyperlink{bind__template_8hpp_aaaead712fe7dc29c1799e7d8f77d1cfb}{operator()}}(\mbox{\hyperlink{mem__fn__cc_8hpp_adf1f3edb9115acb0a1e04209b7a9937b}{T}}\ *\ p)\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00044\ \textcolor{keyword}{\ \ \ \ }\{}
+\DoxyCodeLine{00045\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{mem__fn_8hpp_a76811f5057db2ee0ab2f31467800ccfa}{SC\_BOOST\_MEM\_FN\_RETURN}}\ (p-\/>*\mbox{\hyperlink{bind__template_8hpp_a5bffa5ba7163be1080445f808a43a327}{f\_}})();}
+\DoxyCodeLine{00046\ \ \ \ \ \}}
+\DoxyCodeLine{00047\ }
+\DoxyCodeLine{00048\ \ \ \ \ \textcolor{keyword}{template}<\textcolor{keyword}{class}\ U>\ \mbox{\hyperlink{class_sysc_add__pv}{R}}\ \mbox{\hyperlink{bind__template_8hpp_aaaead712fe7dc29c1799e7d8f77d1cfb}{operator()}}(\mbox{\hyperlink{class_sysc_add__pv}{U}}\ \&\ \mbox{\hyperlink{class_sysc_add__pv}{u}})\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00049\ \textcolor{keyword}{\ \ \ \ }\{}
+\DoxyCodeLine{00050\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{mem__fn_8hpp_a76811f5057db2ee0ab2f31467800ccfa}{SC\_BOOST\_MEM\_FN\_RETURN}}\ call(\mbox{\hyperlink{class_sysc_add__pv}{u}},\ \&\mbox{\hyperlink{class_sysc_add__pv}{u}});}
+\DoxyCodeLine{00051\ \ \ \ \ \}}
+\DoxyCodeLine{00052\ }
+\DoxyCodeLine{00053\ \ \ \ \ \mbox{\hyperlink{class_sysc_add__pv}{R}}\ \mbox{\hyperlink{bind__template_8hpp_aaaead712fe7dc29c1799e7d8f77d1cfb}{operator()}}(\mbox{\hyperlink{mem__fn__cc_8hpp_adf1f3edb9115acb0a1e04209b7a9937b}{T}}\ \&\ t)\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00054\ \textcolor{keyword}{\ \ \ \ }\{}
+\DoxyCodeLine{00055\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{mem__fn_8hpp_a76811f5057db2ee0ab2f31467800ccfa}{SC\_BOOST\_MEM\_FN\_RETURN}}\ (t.*\mbox{\hyperlink{bind__template_8hpp_a5bffa5ba7163be1080445f808a43a327}{f\_}})();}
+\DoxyCodeLine{00056\ \ \ \ \ \}}
+\DoxyCodeLine{00057\ }
+\DoxyCodeLine{00058\ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{namespacesc__core_a427c55e6f664fa62ad98d4bf31c190ec}{operator==}}(\mbox{\hyperlink{mem__fn_8hpp_a148b51c6578c9ebbf545abf944152166}{SC\_BOOST\_MEM\_FN\_NAME}}(\mbox{\hyperlink{class_sysc_add__pv}{mf0}})\ \textcolor{keyword}{const}\ \&\ \mbox{\hyperlink{class_sysc_add__pv}{rhs}})\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00059\ \textcolor{keyword}{\ \ \ \ }\{}
+\DoxyCodeLine{00060\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{bind__template_8hpp_a5bffa5ba7163be1080445f808a43a327}{f\_}}\ ==\ \mbox{\hyperlink{class_sysc_add__pv}{rhs}}.f\_;}
+\DoxyCodeLine{00061\ \ \ \ \ \}}
+\DoxyCodeLine{00062\ }
+\DoxyCodeLine{00063\ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{namespacesc__core_a2fae36ee9e3dedac84dcedba1b46fb6a}{operator!=}}(\mbox{\hyperlink{mem__fn_8hpp_a148b51c6578c9ebbf545abf944152166}{SC\_BOOST\_MEM\_FN\_NAME}}(\mbox{\hyperlink{class_sysc_add__pv}{mf0}})\ \textcolor{keyword}{const}\ \&\ \mbox{\hyperlink{class_sysc_add__pv}{rhs}})\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00064\ \textcolor{keyword}{\ \ \ \ }\{}
+\DoxyCodeLine{00065\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{bind__template_8hpp_a5bffa5ba7163be1080445f808a43a327}{f\_}}\ !=\ \mbox{\hyperlink{class_sysc_add__pv}{rhs}}.f\_;}
+\DoxyCodeLine{00066\ \ \ \ \ \}}
+\DoxyCodeLine{00067\ \};}
+\DoxyCodeLine{00068\ }
+\DoxyCodeLine{00069\ \textcolor{comment}{//\ cmf0}}
+\DoxyCodeLine{00070\ }
+\DoxyCodeLine{00071\ \textcolor{keyword}{template}<\textcolor{keyword}{class}\ R,\ \textcolor{keyword}{class}\ T\ SC\_BOOST\_MEM\_FN\_CLASS\_F>\ \textcolor{keyword}{class\ }\mbox{\hyperlink{class_sysc_add__pv}{SC\_BOOST\_MEM\_FN\_NAME(cmf0)}}}
+\DoxyCodeLine{00072\ \{}
+\DoxyCodeLine{00073\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00074\ }
+\DoxyCodeLine{00075\ \ \ \ \ \textcolor{keyword}{typedef}\ \mbox{\hyperlink{class_sysc_add__pv}{R}}\ \mbox{\hyperlink{bind__template_8hpp_a3003db32ff947cc71d89c477248e5172}{result\_type}};}
+\DoxyCodeLine{00076\ \ \ \ \ \textcolor{keyword}{typedef}\ \mbox{\hyperlink{mem__fn__cc_8hpp_adf1f3edb9115acb0a1e04209b7a9937b}{T}}\ \textcolor{keyword}{const}\ *\ argument\_type;}
+\DoxyCodeLine{00077\ }
+\DoxyCodeLine{00078\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00079\ \ \ \ \ }
+\DoxyCodeLine{00080\ \ \ \ \ \mbox{\hyperlink{mem__fn_8hpp_a3ec63fb20dbbd33452c3f4c93a2c2588}{SC\_BOOST\_MEM\_FN\_TYPEDEF}}(\mbox{\hyperlink{class_sysc_add__pv}{R}}\ (\mbox{\hyperlink{mem__fn_8hpp_ac5a32bea9e3e8ba66edbf8681085fb49}{SC\_BOOST\_MEM\_FN\_CC}}\ \mbox{\hyperlink{mem__fn__cc_8hpp_adf1f3edb9115acb0a1e04209b7a9937b}{T}}::*F)\ ()\ \mbox{\hyperlink{class_sysc_add__pv}{const}})}
+\DoxyCodeLine{00081\ \ \ \ \ F\ \mbox{\hyperlink{bind__template_8hpp_a5bffa5ba7163be1080445f808a43a327}{f\_}};}
+\DoxyCodeLine{00082\ }
+\DoxyCodeLine{00083\ \ \ \ \ \textcolor{keyword}{template}<\textcolor{keyword}{class}\ U>\ \mbox{\hyperlink{class_sysc_add__pv}{R}}\ call(\mbox{\hyperlink{class_sysc_add__pv}{U}}\ \&\ \mbox{\hyperlink{class_sysc_add__pv}{u}},\ \mbox{\hyperlink{mem__fn__cc_8hpp_adf1f3edb9115acb0a1e04209b7a9937b}{T}}\ \textcolor{keyword}{const}\ *)\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00084\ \textcolor{keyword}{\ \ \ \ }\{}
+\DoxyCodeLine{00085\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{mem__fn_8hpp_a76811f5057db2ee0ab2f31467800ccfa}{SC\_BOOST\_MEM\_FN\_RETURN}}\ (\mbox{\hyperlink{class_sysc_add__pv}{u}}.*\mbox{\hyperlink{bind__template_8hpp_a5bffa5ba7163be1080445f808a43a327}{f\_}})();}
+\DoxyCodeLine{00086\ \ \ \ \ \}}
+\DoxyCodeLine{00087\ }
+\DoxyCodeLine{00088\ \ \ \ \ \textcolor{keyword}{template}<\textcolor{keyword}{class}\ U>\ \mbox{\hyperlink{class_sysc_add__pv}{R}}\ call(\mbox{\hyperlink{class_sysc_add__pv}{U}}\ \&\ \mbox{\hyperlink{class_sysc_add__pv}{u}},\ \textcolor{keywordtype}{void}\ \textcolor{keyword}{const}\ *)\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00089\ \textcolor{keyword}{\ \ \ \ }\{}
+\DoxyCodeLine{00090\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{mem__fn_8hpp_a76811f5057db2ee0ab2f31467800ccfa}{SC\_BOOST\_MEM\_FN\_RETURN}}\ (\mbox{\hyperlink{namespacesc__boost_a6841ce52726804956cc3a4fe85673da7}{get\_pointer}}(\mbox{\hyperlink{class_sysc_add__pv}{u}})-\/>*\mbox{\hyperlink{bind__template_8hpp_a5bffa5ba7163be1080445f808a43a327}{f\_}})();}
+\DoxyCodeLine{00091\ \ \ \ \ \}}
+\DoxyCodeLine{00092\ }
+\DoxyCodeLine{00093\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00094\ \ \ \ \ }
+\DoxyCodeLine{00095\ \ \ \ \ \textcolor{keyword}{explicit}\ \mbox{\hyperlink{mem__fn_8hpp_a148b51c6578c9ebbf545abf944152166}{SC\_BOOST\_MEM\_FN\_NAME}}(\mbox{\hyperlink{class_sysc_add__pv}{cmf0}})(F\ f):\ \mbox{\hyperlink{bind__template_8hpp_a5bffa5ba7163be1080445f808a43a327}{f\_}}(f)\ \{\}}
+\DoxyCodeLine{00096\ }
+\DoxyCodeLine{00097\ \ \ \ \ \textcolor{keyword}{template}<\textcolor{keyword}{class}\ U>\ \mbox{\hyperlink{class_sysc_add__pv}{R}}\ \mbox{\hyperlink{bind__template_8hpp_aaaead712fe7dc29c1799e7d8f77d1cfb}{operator()}}(\mbox{\hyperlink{class_sysc_add__pv}{U}}\ \textcolor{keyword}{const}\ \&\ \mbox{\hyperlink{class_sysc_add__pv}{u}})\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00098\ \textcolor{keyword}{\ \ \ \ }\{}
+\DoxyCodeLine{00099\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{mem__fn_8hpp_a76811f5057db2ee0ab2f31467800ccfa}{SC\_BOOST\_MEM\_FN\_RETURN}}\ call(\mbox{\hyperlink{class_sysc_add__pv}{u}},\ \&\mbox{\hyperlink{class_sysc_add__pv}{u}});}
+\DoxyCodeLine{00100\ \ \ \ \ \}}
+\DoxyCodeLine{00101\ }
+\DoxyCodeLine{00102\ \ \ \ \ \mbox{\hyperlink{class_sysc_add__pv}{R}}\ \mbox{\hyperlink{bind__template_8hpp_aaaead712fe7dc29c1799e7d8f77d1cfb}{operator()}}(\mbox{\hyperlink{mem__fn__cc_8hpp_adf1f3edb9115acb0a1e04209b7a9937b}{T}}\ \textcolor{keyword}{const}\ \&\ t)\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00103\ \textcolor{keyword}{\ \ \ \ }\{}
+\DoxyCodeLine{00104\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{mem__fn_8hpp_a76811f5057db2ee0ab2f31467800ccfa}{SC\_BOOST\_MEM\_FN\_RETURN}}\ (t.*\mbox{\hyperlink{bind__template_8hpp_a5bffa5ba7163be1080445f808a43a327}{f\_}})();}
+\DoxyCodeLine{00105\ \ \ \ \ \}}
+\DoxyCodeLine{00106\ }
+\DoxyCodeLine{00107\ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{namespacesc__dt_a670409225d70df53b3b5e5156a061ba6}{operator==}}(\mbox{\hyperlink{mem__fn_8hpp_a148b51c6578c9ebbf545abf944152166}{SC\_BOOST\_MEM\_FN\_NAME}}(\mbox{\hyperlink{class_sysc_add__pv}{cmf0}})\ \textcolor{keyword}{const}\ \&\ \mbox{\hyperlink{class_sysc_add__pv}{rhs}})\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00108\ \textcolor{keyword}{\ \ \ \ }\{}
+\DoxyCodeLine{00109\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{bind__template_8hpp_a5bffa5ba7163be1080445f808a43a327}{f\_}}\ ==\ \mbox{\hyperlink{class_sysc_add__pv}{rhs}}.f\_;}
+\DoxyCodeLine{00110\ \ \ \ \ \}}
+\DoxyCodeLine{00111\ }
+\DoxyCodeLine{00112\ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{namespacesc__dt_ac521149d132e9c77a5d9029aa86344db}{operator!=}}(\mbox{\hyperlink{mem__fn_8hpp_a148b51c6578c9ebbf545abf944152166}{SC\_BOOST\_MEM\_FN\_NAME}}(\mbox{\hyperlink{class_sysc_add__pv}{cmf0}})\ \textcolor{keyword}{const}\ \&\ \mbox{\hyperlink{class_sysc_add__pv}{rhs}})\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00113\ \textcolor{keyword}{\ \ \ \ }\{}
+\DoxyCodeLine{00114\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{bind__template_8hpp_a5bffa5ba7163be1080445f808a43a327}{f\_}}\ !=\ \mbox{\hyperlink{class_sysc_add__pv}{rhs}}.f\_;}
+\DoxyCodeLine{00115\ \ \ \ \ \}}
+\DoxyCodeLine{00116\ \};}
+\DoxyCodeLine{00117\ }
+\DoxyCodeLine{00118\ \textcolor{comment}{//\ mf1}}
+\DoxyCodeLine{00119\ }
+\DoxyCodeLine{00120\ \textcolor{keyword}{template}<\textcolor{keyword}{class}\ R,\ \textcolor{keyword}{class}\ T,\ \textcolor{keyword}{class}\ A1\ SC\_BOOST\_MEM\_FN\_CLASS\_F>\ \textcolor{keyword}{class\ }\mbox{\hyperlink{class_sysc_add__pv}{SC\_BOOST\_MEM\_FN\_NAME(mf1)}}}
+\DoxyCodeLine{00121\ \{}
+\DoxyCodeLine{00122\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00123\ }
+\DoxyCodeLine{00124\ \ \ \ \ \textcolor{keyword}{typedef}\ \mbox{\hyperlink{class_sysc_add__pv}{R}}\ \mbox{\hyperlink{bind__template_8hpp_a3003db32ff947cc71d89c477248e5172}{result\_type}};}
+\DoxyCodeLine{00125\ \ \ \ \ \textcolor{keyword}{typedef}\ \mbox{\hyperlink{mem__fn__cc_8hpp_adf1f3edb9115acb0a1e04209b7a9937b}{T}}\ *\ first\_argument\_type;}
+\DoxyCodeLine{00126\ \ \ \ \ \textcolor{keyword}{typedef}\ \mbox{\hyperlink{mem__fn__cc_8hpp_a04e585ae6243f4fc9527956ec817ebcc}{A1}}\ second\_argument\_type;}
+\DoxyCodeLine{00127\ }
+\DoxyCodeLine{00128\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00129\ \ \ \ \ }
+\DoxyCodeLine{00130\ \ \ \ \ \mbox{\hyperlink{mem__fn_8hpp_a3ec63fb20dbbd33452c3f4c93a2c2588}{SC\_BOOST\_MEM\_FN\_TYPEDEF}}(\mbox{\hyperlink{class_sysc_add__pv}{R}}\ (\mbox{\hyperlink{mem__fn_8hpp_ac5a32bea9e3e8ba66edbf8681085fb49}{SC\_BOOST\_MEM\_FN\_CC}}\ \mbox{\hyperlink{mem__fn__cc_8hpp_adf1f3edb9115acb0a1e04209b7a9937b}{T}}::*F)\ (\mbox{\hyperlink{mem__fn__cc_8hpp_a04e585ae6243f4fc9527956ec817ebcc}{A1}}))}
+\DoxyCodeLine{00131\ \ \ \ \ F\ \mbox{\hyperlink{bind__template_8hpp_a5bffa5ba7163be1080445f808a43a327}{f\_}};}
+\DoxyCodeLine{00132\ }
+\DoxyCodeLine{00133\ \ \ \ \ \textcolor{keyword}{template}<\textcolor{keyword}{class}\ U,\ \textcolor{keyword}{class}\ B1>\ \mbox{\hyperlink{class_sysc_add__pv}{R}}\ call(\mbox{\hyperlink{class_sysc_add__pv}{U}}\ \&\ \mbox{\hyperlink{class_sysc_add__pv}{u}},\ \mbox{\hyperlink{mem__fn__cc_8hpp_adf1f3edb9115acb0a1e04209b7a9937b}{T}}\ \textcolor{keyword}{const}\ *,\ B1\ \&\ \mbox{\hyperlink{class_sysc_add__pv}{b1}})\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00134\ \textcolor{keyword}{\ \ \ \ }\{}
+\DoxyCodeLine{00135\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{mem__fn_8hpp_a76811f5057db2ee0ab2f31467800ccfa}{SC\_BOOST\_MEM\_FN\_RETURN}}\ (\mbox{\hyperlink{class_sysc_add__pv}{u}}.*\mbox{\hyperlink{bind__template_8hpp_a5bffa5ba7163be1080445f808a43a327}{f\_}})(\mbox{\hyperlink{class_sysc_add__pv}{b1}});}
+\DoxyCodeLine{00136\ \ \ \ \ \}}
+\DoxyCodeLine{00137\ }
+\DoxyCodeLine{00138\ \ \ \ \ \textcolor{keyword}{template}<\textcolor{keyword}{class}\ U,\ \textcolor{keyword}{class}\ B1>\ \mbox{\hyperlink{class_sysc_add__pv}{R}}\ call(\mbox{\hyperlink{class_sysc_add__pv}{U}}\ \&\ \mbox{\hyperlink{class_sysc_add__pv}{u}},\ \textcolor{keywordtype}{void}\ \textcolor{keyword}{const}\ *,\ B1\ \&\ \mbox{\hyperlink{class_sysc_add__pv}{b1}})\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00139\ \textcolor{keyword}{\ \ \ \ }\{}
+\DoxyCodeLine{00140\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{mem__fn_8hpp_a76811f5057db2ee0ab2f31467800ccfa}{SC\_BOOST\_MEM\_FN\_RETURN}}\ (\mbox{\hyperlink{namespacesc__boost_a6841ce52726804956cc3a4fe85673da7}{get\_pointer}}(\mbox{\hyperlink{class_sysc_add__pv}{u}})-\/>*\mbox{\hyperlink{bind__template_8hpp_a5bffa5ba7163be1080445f808a43a327}{f\_}})(\mbox{\hyperlink{class_sysc_add__pv}{b1}});}
+\DoxyCodeLine{00141\ \ \ \ \ \}}
+\DoxyCodeLine{00142\ }
+\DoxyCodeLine{00143\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00144\ \ \ \ \ }
+\DoxyCodeLine{00145\ \ \ \ \ \textcolor{keyword}{explicit}\ \mbox{\hyperlink{mem__fn_8hpp_a148b51c6578c9ebbf545abf944152166}{SC\_BOOST\_MEM\_FN\_NAME}}(\mbox{\hyperlink{class_sysc_add__pv}{mf1}})(F\ f):\ \mbox{\hyperlink{bind__template_8hpp_a5bffa5ba7163be1080445f808a43a327}{f\_}}(f)\ \{\}}
+\DoxyCodeLine{00146\ }
+\DoxyCodeLine{00147\ \ \ \ \ \mbox{\hyperlink{class_sysc_add__pv}{R}}\ \mbox{\hyperlink{bind__template_8hpp_aaaead712fe7dc29c1799e7d8f77d1cfb}{operator()}}(\mbox{\hyperlink{mem__fn__cc_8hpp_adf1f3edb9115acb0a1e04209b7a9937b}{T}}\ *\ p,\ \mbox{\hyperlink{mem__fn__cc_8hpp_a04e585ae6243f4fc9527956ec817ebcc}{A1}}\ a1)\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00148\ \textcolor{keyword}{\ \ \ \ }\{}
+\DoxyCodeLine{00149\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{mem__fn_8hpp_a76811f5057db2ee0ab2f31467800ccfa}{SC\_BOOST\_MEM\_FN\_RETURN}}\ (p-\/>*\mbox{\hyperlink{bind__template_8hpp_a5bffa5ba7163be1080445f808a43a327}{f\_}})(a1);}
+\DoxyCodeLine{00150\ \ \ \ \ \}}
+\DoxyCodeLine{00151\ }
+\DoxyCodeLine{00152\ \ \ \ \ \textcolor{keyword}{template}<\textcolor{keyword}{class}\ U>\ \mbox{\hyperlink{class_sysc_add__pv}{R}}\ \mbox{\hyperlink{bind__template_8hpp_aaaead712fe7dc29c1799e7d8f77d1cfb}{operator()}}(\mbox{\hyperlink{class_sysc_add__pv}{U}}\ \&\ \mbox{\hyperlink{class_sysc_add__pv}{u}},\ \mbox{\hyperlink{mem__fn__cc_8hpp_a04e585ae6243f4fc9527956ec817ebcc}{A1}}\ a1)\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00153\ \textcolor{keyword}{\ \ \ \ }\{}
+\DoxyCodeLine{00154\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{mem__fn_8hpp_a76811f5057db2ee0ab2f31467800ccfa}{SC\_BOOST\_MEM\_FN\_RETURN}}\ call(\mbox{\hyperlink{class_sysc_add__pv}{u}},\ \&\mbox{\hyperlink{class_sysc_add__pv}{u}},\ a1);}
+\DoxyCodeLine{00155\ \ \ \ \ \}}
+\DoxyCodeLine{00156\ }
+\DoxyCodeLine{00157\ \ \ \ \ \mbox{\hyperlink{class_sysc_add__pv}{R}}\ \mbox{\hyperlink{bind__template_8hpp_aaaead712fe7dc29c1799e7d8f77d1cfb}{operator()}}(\mbox{\hyperlink{mem__fn__cc_8hpp_adf1f3edb9115acb0a1e04209b7a9937b}{T}}\ \&\ t,\ \mbox{\hyperlink{mem__fn__cc_8hpp_a04e585ae6243f4fc9527956ec817ebcc}{A1}}\ a1)\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00158\ \textcolor{keyword}{\ \ \ \ }\{}
+\DoxyCodeLine{00159\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{mem__fn_8hpp_a76811f5057db2ee0ab2f31467800ccfa}{SC\_BOOST\_MEM\_FN\_RETURN}}\ (t.*\mbox{\hyperlink{bind__template_8hpp_a5bffa5ba7163be1080445f808a43a327}{f\_}})(a1);}
+\DoxyCodeLine{00160\ \ \ \ \ \}}
+\DoxyCodeLine{00161\ }
+\DoxyCodeLine{00162\ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{namespacesc__dt_a670409225d70df53b3b5e5156a061ba6}{operator==}}(\mbox{\hyperlink{mem__fn_8hpp_a148b51c6578c9ebbf545abf944152166}{SC\_BOOST\_MEM\_FN\_NAME}}(\mbox{\hyperlink{class_sysc_add__pv}{mf1}})\ \textcolor{keyword}{const}\ \&\ \mbox{\hyperlink{class_sysc_add__pv}{rhs}})\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00163\ \textcolor{keyword}{\ \ \ \ }\{}
+\DoxyCodeLine{00164\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{bind__template_8hpp_a5bffa5ba7163be1080445f808a43a327}{f\_}}\ ==\ \mbox{\hyperlink{class_sysc_add__pv}{rhs}}.f\_;}
+\DoxyCodeLine{00165\ \ \ \ \ \}}
+\DoxyCodeLine{00166\ }
+\DoxyCodeLine{00167\ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{namespacesc__dt_ac521149d132e9c77a5d9029aa86344db}{operator!=}}(\mbox{\hyperlink{mem__fn_8hpp_a148b51c6578c9ebbf545abf944152166}{SC\_BOOST\_MEM\_FN\_NAME}}(\mbox{\hyperlink{class_sysc_add__pv}{mf1}})\ \textcolor{keyword}{const}\ \&\ \mbox{\hyperlink{class_sysc_add__pv}{rhs}})\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00168\ \textcolor{keyword}{\ \ \ \ }\{}
+\DoxyCodeLine{00169\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{bind__template_8hpp_a5bffa5ba7163be1080445f808a43a327}{f\_}}\ !=\ \mbox{\hyperlink{class_sysc_add__pv}{rhs}}.f\_;}
+\DoxyCodeLine{00170\ \ \ \ \ \}}
+\DoxyCodeLine{00171\ \};}
+\DoxyCodeLine{00172\ }
+\DoxyCodeLine{00173\ \textcolor{comment}{//\ cmf1}}
+\DoxyCodeLine{00174\ }
+\DoxyCodeLine{00175\ \textcolor{keyword}{template}<\textcolor{keyword}{class}\ R,\ \textcolor{keyword}{class}\ T,\ \textcolor{keyword}{class}\ A1\ SC\_BOOST\_MEM\_FN\_CLASS\_F>\ \textcolor{keyword}{class\ }\mbox{\hyperlink{class_sysc_add__pv}{SC\_BOOST\_MEM\_FN\_NAME(cmf1)}}}
+\DoxyCodeLine{00176\ \{}
+\DoxyCodeLine{00177\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00178\ }
+\DoxyCodeLine{00179\ \ \ \ \ \textcolor{keyword}{typedef}\ \mbox{\hyperlink{class_sysc_add__pv}{R}}\ \mbox{\hyperlink{bind__template_8hpp_a3003db32ff947cc71d89c477248e5172}{result\_type}};}
+\DoxyCodeLine{00180\ \ \ \ \ \textcolor{keyword}{typedef}\ \mbox{\hyperlink{mem__fn__cc_8hpp_adf1f3edb9115acb0a1e04209b7a9937b}{T}}\ \textcolor{keyword}{const}\ *\ first\_argument\_type;}
+\DoxyCodeLine{00181\ \ \ \ \ \textcolor{keyword}{typedef}\ \mbox{\hyperlink{mem__fn__cc_8hpp_a04e585ae6243f4fc9527956ec817ebcc}{A1}}\ second\_argument\_type;}
+\DoxyCodeLine{00182\ }
+\DoxyCodeLine{00183\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00184\ \ \ \ \ }
+\DoxyCodeLine{00185\ \ \ \ \ \mbox{\hyperlink{mem__fn_8hpp_a3ec63fb20dbbd33452c3f4c93a2c2588}{SC\_BOOST\_MEM\_FN\_TYPEDEF}}(\mbox{\hyperlink{class_sysc_add__pv}{R}}\ (\mbox{\hyperlink{mem__fn_8hpp_ac5a32bea9e3e8ba66edbf8681085fb49}{SC\_BOOST\_MEM\_FN\_CC}}\ \mbox{\hyperlink{mem__fn__cc_8hpp_adf1f3edb9115acb0a1e04209b7a9937b}{T}}::*F)\ (\mbox{\hyperlink{mem__fn__cc_8hpp_a04e585ae6243f4fc9527956ec817ebcc}{A1}})\ \mbox{\hyperlink{class_sysc_add__pv}{const}})}
+\DoxyCodeLine{00186\ \ \ \ \ F\ \mbox{\hyperlink{bind__template_8hpp_a5bffa5ba7163be1080445f808a43a327}{f\_}};}
+\DoxyCodeLine{00187\ }
+\DoxyCodeLine{00188\ \ \ \ \ \textcolor{keyword}{template}<\textcolor{keyword}{class}\ U,\ \textcolor{keyword}{class}\ B1>\ \mbox{\hyperlink{class_sysc_add__pv}{R}}\ call(\mbox{\hyperlink{class_sysc_add__pv}{U}}\ \&\ \mbox{\hyperlink{class_sysc_add__pv}{u}},\ \mbox{\hyperlink{mem__fn__cc_8hpp_adf1f3edb9115acb0a1e04209b7a9937b}{T}}\ \textcolor{keyword}{const}\ *,\ B1\ \&\ \mbox{\hyperlink{class_sysc_add__pv}{b1}})\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00189\ \textcolor{keyword}{\ \ \ \ }\{}
+\DoxyCodeLine{00190\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{mem__fn_8hpp_a76811f5057db2ee0ab2f31467800ccfa}{SC\_BOOST\_MEM\_FN\_RETURN}}\ (\mbox{\hyperlink{class_sysc_add__pv}{u}}.*\mbox{\hyperlink{bind__template_8hpp_a5bffa5ba7163be1080445f808a43a327}{f\_}})(\mbox{\hyperlink{class_sysc_add__pv}{b1}});}
+\DoxyCodeLine{00191\ \ \ \ \ \}}
+\DoxyCodeLine{00192\ }
+\DoxyCodeLine{00193\ \ \ \ \ \textcolor{keyword}{template}<\textcolor{keyword}{class}\ U,\ \textcolor{keyword}{class}\ B1>\ \mbox{\hyperlink{class_sysc_add__pv}{R}}\ call(\mbox{\hyperlink{class_sysc_add__pv}{U}}\ \&\ \mbox{\hyperlink{class_sysc_add__pv}{u}},\ \textcolor{keywordtype}{void}\ \textcolor{keyword}{const}\ *,\ B1\ \&\ \mbox{\hyperlink{class_sysc_add__pv}{b1}})\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00194\ \textcolor{keyword}{\ \ \ \ }\{}
+\DoxyCodeLine{00195\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{mem__fn_8hpp_a76811f5057db2ee0ab2f31467800ccfa}{SC\_BOOST\_MEM\_FN\_RETURN}}\ (\mbox{\hyperlink{namespacesc__boost_a6841ce52726804956cc3a4fe85673da7}{get\_pointer}}(\mbox{\hyperlink{class_sysc_add__pv}{u}})-\/>*\mbox{\hyperlink{bind__template_8hpp_a5bffa5ba7163be1080445f808a43a327}{f\_}})(\mbox{\hyperlink{class_sysc_add__pv}{b1}});}
+\DoxyCodeLine{00196\ \ \ \ \ \}}
+\DoxyCodeLine{00197\ }
+\DoxyCodeLine{00198\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00199\ \ \ \ \ }
+\DoxyCodeLine{00200\ \ \ \ \ \textcolor{keyword}{explicit}\ \mbox{\hyperlink{mem__fn_8hpp_a148b51c6578c9ebbf545abf944152166}{SC\_BOOST\_MEM\_FN\_NAME}}(\mbox{\hyperlink{class_sysc_add__pv}{cmf1}})(F\ f):\ \mbox{\hyperlink{bind__template_8hpp_a5bffa5ba7163be1080445f808a43a327}{f\_}}(f)\ \{\}}
+\DoxyCodeLine{00201\ }
+\DoxyCodeLine{00202\ \ \ \ \ \textcolor{keyword}{template}<\textcolor{keyword}{class}\ U>\ \mbox{\hyperlink{class_sysc_add__pv}{R}}\ \mbox{\hyperlink{bind__template_8hpp_aaaead712fe7dc29c1799e7d8f77d1cfb}{operator()}}(\mbox{\hyperlink{class_sysc_add__pv}{U}}\ \textcolor{keyword}{const}\ \&\ \mbox{\hyperlink{class_sysc_add__pv}{u}},\ \mbox{\hyperlink{mem__fn__cc_8hpp_a04e585ae6243f4fc9527956ec817ebcc}{A1}}\ a1)\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00203\ \textcolor{keyword}{\ \ \ \ }\{}
+\DoxyCodeLine{00204\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{mem__fn_8hpp_a76811f5057db2ee0ab2f31467800ccfa}{SC\_BOOST\_MEM\_FN\_RETURN}}\ call(\mbox{\hyperlink{class_sysc_add__pv}{u}},\ \&\mbox{\hyperlink{class_sysc_add__pv}{u}},\ a1);}
+\DoxyCodeLine{00205\ \ \ \ \ \}}
+\DoxyCodeLine{00206\ }
+\DoxyCodeLine{00207\ \ \ \ \ \mbox{\hyperlink{class_sysc_add__pv}{R}}\ \mbox{\hyperlink{bind__template_8hpp_aaaead712fe7dc29c1799e7d8f77d1cfb}{operator()}}(\mbox{\hyperlink{mem__fn__cc_8hpp_adf1f3edb9115acb0a1e04209b7a9937b}{T}}\ \textcolor{keyword}{const}\ \&\ t,\ \mbox{\hyperlink{mem__fn__cc_8hpp_a04e585ae6243f4fc9527956ec817ebcc}{A1}}\ a1)\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00208\ \textcolor{keyword}{\ \ \ \ }\{}
+\DoxyCodeLine{00209\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{mem__fn_8hpp_a76811f5057db2ee0ab2f31467800ccfa}{SC\_BOOST\_MEM\_FN\_RETURN}}\ (t.*\mbox{\hyperlink{bind__template_8hpp_a5bffa5ba7163be1080445f808a43a327}{f\_}})(a1);}
+\DoxyCodeLine{00210\ \ \ \ \ \}}
+\DoxyCodeLine{00211\ }
+\DoxyCodeLine{00212\ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{namespacesc__dt_a670409225d70df53b3b5e5156a061ba6}{operator==}}(\mbox{\hyperlink{mem__fn_8hpp_a148b51c6578c9ebbf545abf944152166}{SC\_BOOST\_MEM\_FN\_NAME}}(\mbox{\hyperlink{class_sysc_add__pv}{cmf1}})\ \textcolor{keyword}{const}\ \&\ \mbox{\hyperlink{class_sysc_add__pv}{rhs}})\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00213\ \textcolor{keyword}{\ \ \ \ }\{}
+\DoxyCodeLine{00214\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{bind__template_8hpp_a5bffa5ba7163be1080445f808a43a327}{f\_}}\ ==\ \mbox{\hyperlink{class_sysc_add__pv}{rhs}}.f\_;}
+\DoxyCodeLine{00215\ \ \ \ \ \}}
+\DoxyCodeLine{00216\ }
+\DoxyCodeLine{00217\ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{namespacesc__dt_ac521149d132e9c77a5d9029aa86344db}{operator!=}}(\mbox{\hyperlink{mem__fn_8hpp_a148b51c6578c9ebbf545abf944152166}{SC\_BOOST\_MEM\_FN\_NAME}}(\mbox{\hyperlink{class_sysc_add__pv}{cmf1}})\ \textcolor{keyword}{const}\ \&\ \mbox{\hyperlink{class_sysc_add__pv}{rhs}})\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00218\ \textcolor{keyword}{\ \ \ \ }\{}
+\DoxyCodeLine{00219\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{bind__template_8hpp_a5bffa5ba7163be1080445f808a43a327}{f\_}}\ !=\ \mbox{\hyperlink{class_sysc_add__pv}{rhs}}.f\_;}
+\DoxyCodeLine{00220\ \ \ \ \ \}}
+\DoxyCodeLine{00221\ \};}
+\DoxyCodeLine{00222\ }
+\DoxyCodeLine{00223\ \textcolor{comment}{//\ mf2}}
+\DoxyCodeLine{00224\ }
+\DoxyCodeLine{00225\ \textcolor{keyword}{template}<\textcolor{keyword}{class}\ R,\ \textcolor{keyword}{class}\ T,\ \textcolor{keyword}{class}\ A1,\ \textcolor{keyword}{class}\ A2\ SC\_BOOST\_MEM\_FN\_CLASS\_F>\ \textcolor{keyword}{class\ }\mbox{\hyperlink{class_sysc_add__pv}{SC\_BOOST\_MEM\_FN\_NAME(mf2)}}}
+\DoxyCodeLine{00226\ \{}
+\DoxyCodeLine{00227\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00228\ }
+\DoxyCodeLine{00229\ \ \ \ \ \textcolor{keyword}{typedef}\ \mbox{\hyperlink{class_sysc_add__pv}{R}}\ \mbox{\hyperlink{bind__template_8hpp_a3003db32ff947cc71d89c477248e5172}{result\_type}};}
+\DoxyCodeLine{00230\ }
+\DoxyCodeLine{00231\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00232\ \ \ \ \ }
+\DoxyCodeLine{00233\ \ \ \ \ \mbox{\hyperlink{mem__fn_8hpp_a3ec63fb20dbbd33452c3f4c93a2c2588}{SC\_BOOST\_MEM\_FN\_TYPEDEF}}(\mbox{\hyperlink{class_sysc_add__pv}{R}}\ (\mbox{\hyperlink{mem__fn_8hpp_ac5a32bea9e3e8ba66edbf8681085fb49}{SC\_BOOST\_MEM\_FN\_CC}}\ \mbox{\hyperlink{mem__fn__cc_8hpp_adf1f3edb9115acb0a1e04209b7a9937b}{T}}::*F)\ (\mbox{\hyperlink{mem__fn__cc_8hpp_a04e585ae6243f4fc9527956ec817ebcc}{A1}},\ \mbox{\hyperlink{mem__fn__cc_8hpp_a9fbc78aa6f21ccf5de2008548a55fa41}{A2}}))}
+\DoxyCodeLine{00234\ \ \ \ \ F\ \mbox{\hyperlink{bind__template_8hpp_a5bffa5ba7163be1080445f808a43a327}{f\_}};}
+\DoxyCodeLine{00235\ }
+\DoxyCodeLine{00236\ \ \ \ \ \textcolor{keyword}{template}<\textcolor{keyword}{class}\ U,\ \textcolor{keyword}{class}\ B1,\ \textcolor{keyword}{class}\ B2>\ \mbox{\hyperlink{class_sysc_add__pv}{R}}\ call(\mbox{\hyperlink{class_sysc_add__pv}{U}}\ \&\ \mbox{\hyperlink{class_sysc_add__pv}{u}},\ \mbox{\hyperlink{mem__fn__cc_8hpp_adf1f3edb9115acb0a1e04209b7a9937b}{T}}\ \textcolor{keyword}{const}\ *,\ B1\ \&\ \mbox{\hyperlink{class_sysc_add__pv}{b1}},\ B2\ \&\ \mbox{\hyperlink{class_sysc_add__pv}{b2}})\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00237\ \textcolor{keyword}{\ \ \ \ }\{}
+\DoxyCodeLine{00238\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{mem__fn_8hpp_a76811f5057db2ee0ab2f31467800ccfa}{SC\_BOOST\_MEM\_FN\_RETURN}}\ (\mbox{\hyperlink{class_sysc_add__pv}{u}}.*\mbox{\hyperlink{bind__template_8hpp_a5bffa5ba7163be1080445f808a43a327}{f\_}})(\mbox{\hyperlink{class_sysc_add__pv}{b1}},\ \mbox{\hyperlink{class_sysc_add__pv}{b2}});}
+\DoxyCodeLine{00239\ \ \ \ \ \}}
+\DoxyCodeLine{00240\ }
+\DoxyCodeLine{00241\ \ \ \ \ \textcolor{keyword}{template}<\textcolor{keyword}{class}\ U,\ \textcolor{keyword}{class}\ B1,\ \textcolor{keyword}{class}\ B2>\ \mbox{\hyperlink{class_sysc_add__pv}{R}}\ call(\mbox{\hyperlink{class_sysc_add__pv}{U}}\ \&\ \mbox{\hyperlink{class_sysc_add__pv}{u}},\ \textcolor{keywordtype}{void}\ \textcolor{keyword}{const}\ *,\ B1\ \&\ \mbox{\hyperlink{class_sysc_add__pv}{b1}},\ B2\ \&\ \mbox{\hyperlink{class_sysc_add__pv}{b2}})\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00242\ \textcolor{keyword}{\ \ \ \ }\{}
+\DoxyCodeLine{00243\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{mem__fn_8hpp_a76811f5057db2ee0ab2f31467800ccfa}{SC\_BOOST\_MEM\_FN\_RETURN}}\ (\mbox{\hyperlink{namespacesc__boost_a6841ce52726804956cc3a4fe85673da7}{get\_pointer}}(\mbox{\hyperlink{class_sysc_add__pv}{u}})-\/>*\mbox{\hyperlink{bind__template_8hpp_a5bffa5ba7163be1080445f808a43a327}{f\_}})(\mbox{\hyperlink{class_sysc_add__pv}{b1}},\ \mbox{\hyperlink{class_sysc_add__pv}{b2}});}
+\DoxyCodeLine{00244\ \ \ \ \ \}}
+\DoxyCodeLine{00245\ }
+\DoxyCodeLine{00246\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00247\ \ \ \ \ }
+\DoxyCodeLine{00248\ \ \ \ \ \textcolor{keyword}{explicit}\ \mbox{\hyperlink{mem__fn_8hpp_a148b51c6578c9ebbf545abf944152166}{SC\_BOOST\_MEM\_FN\_NAME}}(\mbox{\hyperlink{class_sysc_add__pv}{mf2}})(F\ f):\ \mbox{\hyperlink{bind__template_8hpp_a5bffa5ba7163be1080445f808a43a327}{f\_}}(f)\ \{\}}
+\DoxyCodeLine{00249\ }
+\DoxyCodeLine{00250\ \ \ \ \ \mbox{\hyperlink{class_sysc_add__pv}{R}}\ \mbox{\hyperlink{bind__template_8hpp_aaaead712fe7dc29c1799e7d8f77d1cfb}{operator()}}(\mbox{\hyperlink{mem__fn__cc_8hpp_adf1f3edb9115acb0a1e04209b7a9937b}{T}}\ *\ p,\ \mbox{\hyperlink{mem__fn__cc_8hpp_a04e585ae6243f4fc9527956ec817ebcc}{A1}}\ a1,\ \mbox{\hyperlink{mem__fn__cc_8hpp_a9fbc78aa6f21ccf5de2008548a55fa41}{A2}}\ \mbox{\hyperlink{class_sysc_add__pv}{a2}})\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00251\ \textcolor{keyword}{\ \ \ \ }\{}
+\DoxyCodeLine{00252\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{mem__fn_8hpp_a76811f5057db2ee0ab2f31467800ccfa}{SC\_BOOST\_MEM\_FN\_RETURN}}\ (p-\/>*\mbox{\hyperlink{bind__template_8hpp_a5bffa5ba7163be1080445f808a43a327}{f\_}})(a1,\ \mbox{\hyperlink{class_sysc_add__pv}{a2}});}
+\DoxyCodeLine{00253\ \ \ \ \ \}}
+\DoxyCodeLine{00254\ }
+\DoxyCodeLine{00255\ \ \ \ \ \textcolor{keyword}{template}<\textcolor{keyword}{class}\ U>\ \mbox{\hyperlink{class_sysc_add__pv}{R}}\ \mbox{\hyperlink{bind__template_8hpp_aaaead712fe7dc29c1799e7d8f77d1cfb}{operator()}}(\mbox{\hyperlink{class_sysc_add__pv}{U}}\ \&\ \mbox{\hyperlink{class_sysc_add__pv}{u}},\ \mbox{\hyperlink{mem__fn__cc_8hpp_a04e585ae6243f4fc9527956ec817ebcc}{A1}}\ a1,\ \mbox{\hyperlink{mem__fn__cc_8hpp_a9fbc78aa6f21ccf5de2008548a55fa41}{A2}}\ \mbox{\hyperlink{class_sysc_add__pv}{a2}})\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00256\ \textcolor{keyword}{\ \ \ \ }\{}
+\DoxyCodeLine{00257\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{mem__fn_8hpp_a76811f5057db2ee0ab2f31467800ccfa}{SC\_BOOST\_MEM\_FN\_RETURN}}\ call(\mbox{\hyperlink{class_sysc_add__pv}{u}},\ \&\mbox{\hyperlink{class_sysc_add__pv}{u}},\ a1,\ \mbox{\hyperlink{class_sysc_add__pv}{a2}});}
+\DoxyCodeLine{00258\ \ \ \ \ \}}
+\DoxyCodeLine{00259\ }
+\DoxyCodeLine{00260\ \ \ \ \ \mbox{\hyperlink{class_sysc_add__pv}{R}}\ \mbox{\hyperlink{bind__template_8hpp_aaaead712fe7dc29c1799e7d8f77d1cfb}{operator()}}(\mbox{\hyperlink{mem__fn__cc_8hpp_adf1f3edb9115acb0a1e04209b7a9937b}{T}}\ \&\ t,\ \mbox{\hyperlink{mem__fn__cc_8hpp_a04e585ae6243f4fc9527956ec817ebcc}{A1}}\ a1,\ \mbox{\hyperlink{mem__fn__cc_8hpp_a9fbc78aa6f21ccf5de2008548a55fa41}{A2}}\ \mbox{\hyperlink{class_sysc_add__pv}{a2}})\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00261\ \textcolor{keyword}{\ \ \ \ }\{}
+\DoxyCodeLine{00262\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{mem__fn_8hpp_a76811f5057db2ee0ab2f31467800ccfa}{SC\_BOOST\_MEM\_FN\_RETURN}}\ (t.*\mbox{\hyperlink{bind__template_8hpp_a5bffa5ba7163be1080445f808a43a327}{f\_}})(a1,\ \mbox{\hyperlink{class_sysc_add__pv}{a2}});}
+\DoxyCodeLine{00263\ \ \ \ \ \}}
+\DoxyCodeLine{00264\ }
+\DoxyCodeLine{00265\ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{namespacesc__dt_a670409225d70df53b3b5e5156a061ba6}{operator==}}(\mbox{\hyperlink{mem__fn_8hpp_a148b51c6578c9ebbf545abf944152166}{SC\_BOOST\_MEM\_FN\_NAME}}(\mbox{\hyperlink{class_sysc_add__pv}{mf2}})\ \textcolor{keyword}{const}\ \&\ \mbox{\hyperlink{class_sysc_add__pv}{rhs}})\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00266\ \textcolor{keyword}{\ \ \ \ }\{}
+\DoxyCodeLine{00267\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{bind__template_8hpp_a5bffa5ba7163be1080445f808a43a327}{f\_}}\ ==\ \mbox{\hyperlink{class_sysc_add__pv}{rhs}}.f\_;}
+\DoxyCodeLine{00268\ \ \ \ \ \}}
+\DoxyCodeLine{00269\ }
+\DoxyCodeLine{00270\ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{namespacesc__dt_ac521149d132e9c77a5d9029aa86344db}{operator!=}}(\mbox{\hyperlink{mem__fn_8hpp_a148b51c6578c9ebbf545abf944152166}{SC\_BOOST\_MEM\_FN\_NAME}}(\mbox{\hyperlink{class_sysc_add__pv}{mf2}})\ \textcolor{keyword}{const}\ \&\ \mbox{\hyperlink{class_sysc_add__pv}{rhs}})\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00271\ \textcolor{keyword}{\ \ \ \ }\{}
+\DoxyCodeLine{00272\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{bind__template_8hpp_a5bffa5ba7163be1080445f808a43a327}{f\_}}\ !=\ \mbox{\hyperlink{class_sysc_add__pv}{rhs}}.f\_;}
+\DoxyCodeLine{00273\ \ \ \ \ \}}
+\DoxyCodeLine{00274\ \};}
+\DoxyCodeLine{00275\ }
+\DoxyCodeLine{00276\ \textcolor{comment}{//\ cmf2}}
+\DoxyCodeLine{00277\ }
+\DoxyCodeLine{00278\ \textcolor{keyword}{template}<\textcolor{keyword}{class}\ R,\ \textcolor{keyword}{class}\ T,\ \textcolor{keyword}{class}\ A1,\ \textcolor{keyword}{class}\ A2\ SC\_BOOST\_MEM\_FN\_CLASS\_F>\ \textcolor{keyword}{class\ }\mbox{\hyperlink{class_sysc_add__pv}{SC\_BOOST\_MEM\_FN\_NAME(cmf2)}}}
+\DoxyCodeLine{00279\ \{}
+\DoxyCodeLine{00280\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00281\ }
+\DoxyCodeLine{00282\ \ \ \ \ \textcolor{keyword}{typedef}\ \mbox{\hyperlink{class_sysc_add__pv}{R}}\ \mbox{\hyperlink{bind__template_8hpp_a3003db32ff947cc71d89c477248e5172}{result\_type}};}
+\DoxyCodeLine{00283\ }
+\DoxyCodeLine{00284\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00285\ \ \ \ \ }
+\DoxyCodeLine{00286\ \ \ \ \ \mbox{\hyperlink{mem__fn_8hpp_a3ec63fb20dbbd33452c3f4c93a2c2588}{SC\_BOOST\_MEM\_FN\_TYPEDEF}}(\mbox{\hyperlink{class_sysc_add__pv}{R}}\ (\mbox{\hyperlink{mem__fn_8hpp_ac5a32bea9e3e8ba66edbf8681085fb49}{SC\_BOOST\_MEM\_FN\_CC}}\ \mbox{\hyperlink{mem__fn__cc_8hpp_adf1f3edb9115acb0a1e04209b7a9937b}{T}}::*F)\ (\mbox{\hyperlink{mem__fn__cc_8hpp_a04e585ae6243f4fc9527956ec817ebcc}{A1}},\ \mbox{\hyperlink{mem__fn__cc_8hpp_a9fbc78aa6f21ccf5de2008548a55fa41}{A2}})\ \mbox{\hyperlink{class_sysc_add__pv}{const}})}
+\DoxyCodeLine{00287\ \ \ \ \ F\ \mbox{\hyperlink{bind__template_8hpp_a5bffa5ba7163be1080445f808a43a327}{f\_}};}
+\DoxyCodeLine{00288\ }
+\DoxyCodeLine{00289\ \ \ \ \ \textcolor{keyword}{template}<\textcolor{keyword}{class}\ U,\ \textcolor{keyword}{class}\ B1,\ \textcolor{keyword}{class}\ B2>\ \mbox{\hyperlink{class_sysc_add__pv}{R}}\ call(\mbox{\hyperlink{class_sysc_add__pv}{U}}\ \&\ \mbox{\hyperlink{class_sysc_add__pv}{u}},\ \mbox{\hyperlink{mem__fn__cc_8hpp_adf1f3edb9115acb0a1e04209b7a9937b}{T}}\ \textcolor{keyword}{const}\ *,\ B1\ \&\ \mbox{\hyperlink{class_sysc_add__pv}{b1}},\ B2\ \&\ \mbox{\hyperlink{class_sysc_add__pv}{b2}})\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00290\ \textcolor{keyword}{\ \ \ \ }\{}
+\DoxyCodeLine{00291\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{mem__fn_8hpp_a76811f5057db2ee0ab2f31467800ccfa}{SC\_BOOST\_MEM\_FN\_RETURN}}\ (\mbox{\hyperlink{class_sysc_add__pv}{u}}.*\mbox{\hyperlink{bind__template_8hpp_a5bffa5ba7163be1080445f808a43a327}{f\_}})(\mbox{\hyperlink{class_sysc_add__pv}{b1}},\ \mbox{\hyperlink{class_sysc_add__pv}{b2}});}
+\DoxyCodeLine{00292\ \ \ \ \ \}}
+\DoxyCodeLine{00293\ }
+\DoxyCodeLine{00294\ \ \ \ \ \textcolor{keyword}{template}<\textcolor{keyword}{class}\ U,\ \textcolor{keyword}{class}\ B1,\ \textcolor{keyword}{class}\ B2>\ \mbox{\hyperlink{class_sysc_add__pv}{R}}\ call(\mbox{\hyperlink{class_sysc_add__pv}{U}}\ \&\ \mbox{\hyperlink{class_sysc_add__pv}{u}},\ \textcolor{keywordtype}{void}\ \textcolor{keyword}{const}\ *,\ B1\ \&\ \mbox{\hyperlink{class_sysc_add__pv}{b1}},\ B2\ \&\ \mbox{\hyperlink{class_sysc_add__pv}{b2}})\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00295\ \textcolor{keyword}{\ \ \ \ }\{}
+\DoxyCodeLine{00296\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{mem__fn_8hpp_a76811f5057db2ee0ab2f31467800ccfa}{SC\_BOOST\_MEM\_FN\_RETURN}}\ (\mbox{\hyperlink{namespacesc__boost_a6841ce52726804956cc3a4fe85673da7}{get\_pointer}}(\mbox{\hyperlink{class_sysc_add__pv}{u}})-\/>*\mbox{\hyperlink{bind__template_8hpp_a5bffa5ba7163be1080445f808a43a327}{f\_}})(\mbox{\hyperlink{class_sysc_add__pv}{b1}},\ \mbox{\hyperlink{class_sysc_add__pv}{b2}});}
+\DoxyCodeLine{00297\ \ \ \ \ \}}
+\DoxyCodeLine{00298\ }
+\DoxyCodeLine{00299\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00300\ \ \ \ \ }
+\DoxyCodeLine{00301\ \ \ \ \ \textcolor{keyword}{explicit}\ \mbox{\hyperlink{mem__fn_8hpp_a148b51c6578c9ebbf545abf944152166}{SC\_BOOST\_MEM\_FN\_NAME}}(\mbox{\hyperlink{class_sysc_add__pv}{cmf2}})(F\ f):\ \mbox{\hyperlink{bind__template_8hpp_a5bffa5ba7163be1080445f808a43a327}{f\_}}(f)\ \{\}}
+\DoxyCodeLine{00302\ }
+\DoxyCodeLine{00303\ \ \ \ \ \textcolor{keyword}{template}<\textcolor{keyword}{class}\ U>\ \mbox{\hyperlink{class_sysc_add__pv}{R}}\ \mbox{\hyperlink{bind__template_8hpp_aaaead712fe7dc29c1799e7d8f77d1cfb}{operator()}}(\mbox{\hyperlink{class_sysc_add__pv}{U}}\ \textcolor{keyword}{const}\ \&\ \mbox{\hyperlink{class_sysc_add__pv}{u}},\ \mbox{\hyperlink{mem__fn__cc_8hpp_a04e585ae6243f4fc9527956ec817ebcc}{A1}}\ a1,\ \mbox{\hyperlink{mem__fn__cc_8hpp_a9fbc78aa6f21ccf5de2008548a55fa41}{A2}}\ \mbox{\hyperlink{class_sysc_add__pv}{a2}})\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00304\ \textcolor{keyword}{\ \ \ \ }\{}
+\DoxyCodeLine{00305\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{mem__fn_8hpp_a76811f5057db2ee0ab2f31467800ccfa}{SC\_BOOST\_MEM\_FN\_RETURN}}\ call(\mbox{\hyperlink{class_sysc_add__pv}{u}},\ \&\mbox{\hyperlink{class_sysc_add__pv}{u}},\ a1,\ \mbox{\hyperlink{class_sysc_add__pv}{a2}});}
+\DoxyCodeLine{00306\ \ \ \ \ \}}
+\DoxyCodeLine{00307\ }
+\DoxyCodeLine{00308\ \ \ \ \ \mbox{\hyperlink{class_sysc_add__pv}{R}}\ \mbox{\hyperlink{bind__template_8hpp_aaaead712fe7dc29c1799e7d8f77d1cfb}{operator()}}(\mbox{\hyperlink{mem__fn__cc_8hpp_adf1f3edb9115acb0a1e04209b7a9937b}{T}}\ \textcolor{keyword}{const}\ \&\ t,\ \mbox{\hyperlink{mem__fn__cc_8hpp_a04e585ae6243f4fc9527956ec817ebcc}{A1}}\ a1,\ \mbox{\hyperlink{mem__fn__cc_8hpp_a9fbc78aa6f21ccf5de2008548a55fa41}{A2}}\ \mbox{\hyperlink{class_sysc_add__pv}{a2}})\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00309\ \textcolor{keyword}{\ \ \ \ }\{}
+\DoxyCodeLine{00310\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{mem__fn_8hpp_a76811f5057db2ee0ab2f31467800ccfa}{SC\_BOOST\_MEM\_FN\_RETURN}}\ (t.*\mbox{\hyperlink{bind__template_8hpp_a5bffa5ba7163be1080445f808a43a327}{f\_}})(a1,\ \mbox{\hyperlink{class_sysc_add__pv}{a2}});}
+\DoxyCodeLine{00311\ \ \ \ \ \}}
+\DoxyCodeLine{00312\ }
+\DoxyCodeLine{00313\ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{namespacesc__dt_a670409225d70df53b3b5e5156a061ba6}{operator==}}(\mbox{\hyperlink{mem__fn_8hpp_a148b51c6578c9ebbf545abf944152166}{SC\_BOOST\_MEM\_FN\_NAME}}(\mbox{\hyperlink{class_sysc_add__pv}{cmf2}})\ \textcolor{keyword}{const}\ \&\ \mbox{\hyperlink{class_sysc_add__pv}{rhs}})\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00314\ \textcolor{keyword}{\ \ \ \ }\{}
+\DoxyCodeLine{00315\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{bind__template_8hpp_a5bffa5ba7163be1080445f808a43a327}{f\_}}\ ==\ \mbox{\hyperlink{class_sysc_add__pv}{rhs}}.f\_;}
+\DoxyCodeLine{00316\ \ \ \ \ \}}
+\DoxyCodeLine{00317\ }
+\DoxyCodeLine{00318\ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{namespacesc__dt_ac521149d132e9c77a5d9029aa86344db}{operator!=}}(\mbox{\hyperlink{mem__fn_8hpp_a148b51c6578c9ebbf545abf944152166}{SC\_BOOST\_MEM\_FN\_NAME}}(\mbox{\hyperlink{class_sysc_add__pv}{cmf2}})\ \textcolor{keyword}{const}\ \&\ \mbox{\hyperlink{class_sysc_add__pv}{rhs}})\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00319\ \textcolor{keyword}{\ \ \ \ }\{}
+\DoxyCodeLine{00320\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{bind__template_8hpp_a5bffa5ba7163be1080445f808a43a327}{f\_}}\ !=\ \mbox{\hyperlink{class_sysc_add__pv}{rhs}}.f\_;}
+\DoxyCodeLine{00321\ \ \ \ \ \}}
+\DoxyCodeLine{00322\ \};}
+\DoxyCodeLine{00323\ }
+\DoxyCodeLine{00324\ \textcolor{comment}{//\ mf3}}
+\DoxyCodeLine{00325\ }
+\DoxyCodeLine{00326\ \textcolor{keyword}{template}<\textcolor{keyword}{class}\ R,\ \textcolor{keyword}{class}\ T,\ \textcolor{keyword}{class}\ A1,\ \textcolor{keyword}{class}\ A2,\ \textcolor{keyword}{class}\ A3\ SC\_BOOST\_MEM\_FN\_CLASS\_F>\ \textcolor{keyword}{class\ }\mbox{\hyperlink{class_sysc_add__pv}{SC\_BOOST\_MEM\_FN\_NAME(mf3)}}}
+\DoxyCodeLine{00327\ \{}
+\DoxyCodeLine{00328\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00329\ }
+\DoxyCodeLine{00330\ \ \ \ \ \textcolor{keyword}{typedef}\ \mbox{\hyperlink{class_sysc_add__pv}{R}}\ \mbox{\hyperlink{bind__template_8hpp_a3003db32ff947cc71d89c477248e5172}{result\_type}};}
+\DoxyCodeLine{00331\ }
+\DoxyCodeLine{00332\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00333\ \ \ \ \ }
+\DoxyCodeLine{00334\ \ \ \ \ \mbox{\hyperlink{mem__fn_8hpp_a3ec63fb20dbbd33452c3f4c93a2c2588}{SC\_BOOST\_MEM\_FN\_TYPEDEF}}(\mbox{\hyperlink{class_sysc_add__pv}{R}}\ (\mbox{\hyperlink{mem__fn_8hpp_ac5a32bea9e3e8ba66edbf8681085fb49}{SC\_BOOST\_MEM\_FN\_CC}}\ \mbox{\hyperlink{mem__fn__cc_8hpp_adf1f3edb9115acb0a1e04209b7a9937b}{T}}::*F)\ (\mbox{\hyperlink{mem__fn__cc_8hpp_a04e585ae6243f4fc9527956ec817ebcc}{A1}},\ \mbox{\hyperlink{mem__fn__cc_8hpp_a9fbc78aa6f21ccf5de2008548a55fa41}{A2}},\ \mbox{\hyperlink{mem__fn__cc_8hpp_a89a06d984ae53ed8b1aa8347b32acc34}{A3}}))}
+\DoxyCodeLine{00335\ \ \ \ \ F\ \mbox{\hyperlink{bind__template_8hpp_a5bffa5ba7163be1080445f808a43a327}{f\_}};}
+\DoxyCodeLine{00336\ }
+\DoxyCodeLine{00337\ \ \ \ \ \textcolor{keyword}{template}<\textcolor{keyword}{class}\ U,\ \textcolor{keyword}{class}\ B1,\ \textcolor{keyword}{class}\ B2,\ \textcolor{keyword}{class}\ B3>\ \mbox{\hyperlink{class_sysc_add__pv}{R}}\ call(\mbox{\hyperlink{class_sysc_add__pv}{U}}\ \&\ \mbox{\hyperlink{class_sysc_add__pv}{u}},\ \mbox{\hyperlink{mem__fn__cc_8hpp_adf1f3edb9115acb0a1e04209b7a9937b}{T}}\ \textcolor{keyword}{const}\ *,\ B1\ \&\ \mbox{\hyperlink{class_sysc_add__pv}{b1}},\ B2\ \&\ \mbox{\hyperlink{class_sysc_add__pv}{b2}},\ B3\ \&\ \mbox{\hyperlink{class_sysc_add__pv}{b3}})\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00338\ \textcolor{keyword}{\ \ \ \ }\{}
+\DoxyCodeLine{00339\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{mem__fn_8hpp_a76811f5057db2ee0ab2f31467800ccfa}{SC\_BOOST\_MEM\_FN\_RETURN}}\ (\mbox{\hyperlink{class_sysc_add__pv}{u}}.*\mbox{\hyperlink{bind__template_8hpp_a5bffa5ba7163be1080445f808a43a327}{f\_}})(\mbox{\hyperlink{class_sysc_add__pv}{b1}},\ \mbox{\hyperlink{class_sysc_add__pv}{b2}},\ \mbox{\hyperlink{class_sysc_add__pv}{b3}});}
+\DoxyCodeLine{00340\ \ \ \ \ \}}
+\DoxyCodeLine{00341\ }
+\DoxyCodeLine{00342\ \ \ \ \ \textcolor{keyword}{template}<\textcolor{keyword}{class}\ U,\ \textcolor{keyword}{class}\ B1,\ \textcolor{keyword}{class}\ B2,\ \textcolor{keyword}{class}\ B3>\ \mbox{\hyperlink{class_sysc_add__pv}{R}}\ call(\mbox{\hyperlink{class_sysc_add__pv}{U}}\ \&\ \mbox{\hyperlink{class_sysc_add__pv}{u}},\ \textcolor{keywordtype}{void}\ \textcolor{keyword}{const}\ *,\ B1\ \&\ \mbox{\hyperlink{class_sysc_add__pv}{b1}},\ B2\ \&\ \mbox{\hyperlink{class_sysc_add__pv}{b2}},\ B3\ \&\ \mbox{\hyperlink{class_sysc_add__pv}{b3}})\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00343\ \textcolor{keyword}{\ \ \ \ }\{}
+\DoxyCodeLine{00344\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{mem__fn_8hpp_a76811f5057db2ee0ab2f31467800ccfa}{SC\_BOOST\_MEM\_FN\_RETURN}}\ (\mbox{\hyperlink{namespacesc__boost_a6841ce52726804956cc3a4fe85673da7}{get\_pointer}}(\mbox{\hyperlink{class_sysc_add__pv}{u}})-\/>*\mbox{\hyperlink{bind__template_8hpp_a5bffa5ba7163be1080445f808a43a327}{f\_}})(\mbox{\hyperlink{class_sysc_add__pv}{b1}},\ \mbox{\hyperlink{class_sysc_add__pv}{b2}},\ \mbox{\hyperlink{class_sysc_add__pv}{b3}});}
+\DoxyCodeLine{00345\ \ \ \ \ \}}
+\DoxyCodeLine{00346\ }
+\DoxyCodeLine{00347\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00348\ \ \ \ \ }
+\DoxyCodeLine{00349\ \ \ \ \ \textcolor{keyword}{explicit}\ \mbox{\hyperlink{mem__fn_8hpp_a148b51c6578c9ebbf545abf944152166}{SC\_BOOST\_MEM\_FN\_NAME}}(\mbox{\hyperlink{class_sysc_add__pv}{mf3}})(F\ f):\ \mbox{\hyperlink{bind__template_8hpp_a5bffa5ba7163be1080445f808a43a327}{f\_}}(f)\ \{\}}
+\DoxyCodeLine{00350\ }
+\DoxyCodeLine{00351\ \ \ \ \ \mbox{\hyperlink{class_sysc_add__pv}{R}}\ \mbox{\hyperlink{bind__template_8hpp_aaaead712fe7dc29c1799e7d8f77d1cfb}{operator()}}(\mbox{\hyperlink{mem__fn__cc_8hpp_adf1f3edb9115acb0a1e04209b7a9937b}{T}}\ *\ p,\ \mbox{\hyperlink{mem__fn__cc_8hpp_a04e585ae6243f4fc9527956ec817ebcc}{A1}}\ a1,\ \mbox{\hyperlink{mem__fn__cc_8hpp_a9fbc78aa6f21ccf5de2008548a55fa41}{A2}}\ \mbox{\hyperlink{class_sysc_add__pv}{a2}},\ \mbox{\hyperlink{mem__fn__cc_8hpp_a89a06d984ae53ed8b1aa8347b32acc34}{A3}}\ \mbox{\hyperlink{class_sysc_add__pv}{a3}})\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00352\ \textcolor{keyword}{\ \ \ \ }\{}
+\DoxyCodeLine{00353\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{mem__fn_8hpp_a76811f5057db2ee0ab2f31467800ccfa}{SC\_BOOST\_MEM\_FN\_RETURN}}\ (p-\/>*\mbox{\hyperlink{bind__template_8hpp_a5bffa5ba7163be1080445f808a43a327}{f\_}})(a1,\ \mbox{\hyperlink{class_sysc_add__pv}{a2}},\ \mbox{\hyperlink{class_sysc_add__pv}{a3}});}
+\DoxyCodeLine{00354\ \ \ \ \ \}}
+\DoxyCodeLine{00355\ }
+\DoxyCodeLine{00356\ \ \ \ \ \textcolor{keyword}{template}<\textcolor{keyword}{class}\ U>\ \mbox{\hyperlink{class_sysc_add__pv}{R}}\ \mbox{\hyperlink{bind__template_8hpp_aaaead712fe7dc29c1799e7d8f77d1cfb}{operator()}}(\mbox{\hyperlink{class_sysc_add__pv}{U}}\ \&\ \mbox{\hyperlink{class_sysc_add__pv}{u}},\ \mbox{\hyperlink{mem__fn__cc_8hpp_a04e585ae6243f4fc9527956ec817ebcc}{A1}}\ a1,\ \mbox{\hyperlink{mem__fn__cc_8hpp_a9fbc78aa6f21ccf5de2008548a55fa41}{A2}}\ \mbox{\hyperlink{class_sysc_add__pv}{a2}},\ \mbox{\hyperlink{mem__fn__cc_8hpp_a89a06d984ae53ed8b1aa8347b32acc34}{A3}}\ \mbox{\hyperlink{class_sysc_add__pv}{a3}})\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00357\ \textcolor{keyword}{\ \ \ \ }\{}
+\DoxyCodeLine{00358\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{mem__fn_8hpp_a76811f5057db2ee0ab2f31467800ccfa}{SC\_BOOST\_MEM\_FN\_RETURN}}\ call(\mbox{\hyperlink{class_sysc_add__pv}{u}},\ \&\mbox{\hyperlink{class_sysc_add__pv}{u}},\ a1,\ \mbox{\hyperlink{class_sysc_add__pv}{a2}},\ \mbox{\hyperlink{class_sysc_add__pv}{a3}});}
+\DoxyCodeLine{00359\ \ \ \ \ \}}
+\DoxyCodeLine{00360\ }
+\DoxyCodeLine{00361\ \ \ \ \ \mbox{\hyperlink{class_sysc_add__pv}{R}}\ \mbox{\hyperlink{bind__template_8hpp_aaaead712fe7dc29c1799e7d8f77d1cfb}{operator()}}(\mbox{\hyperlink{mem__fn__cc_8hpp_adf1f3edb9115acb0a1e04209b7a9937b}{T}}\ \&\ t,\ \mbox{\hyperlink{mem__fn__cc_8hpp_a04e585ae6243f4fc9527956ec817ebcc}{A1}}\ a1,\ \mbox{\hyperlink{mem__fn__cc_8hpp_a9fbc78aa6f21ccf5de2008548a55fa41}{A2}}\ \mbox{\hyperlink{class_sysc_add__pv}{a2}},\ \mbox{\hyperlink{mem__fn__cc_8hpp_a89a06d984ae53ed8b1aa8347b32acc34}{A3}}\ \mbox{\hyperlink{class_sysc_add__pv}{a3}})\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00362\ \textcolor{keyword}{\ \ \ \ }\{}
+\DoxyCodeLine{00363\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{mem__fn_8hpp_a76811f5057db2ee0ab2f31467800ccfa}{SC\_BOOST\_MEM\_FN\_RETURN}}\ (t.*\mbox{\hyperlink{bind__template_8hpp_a5bffa5ba7163be1080445f808a43a327}{f\_}})(a1,\ \mbox{\hyperlink{class_sysc_add__pv}{a2}},\ \mbox{\hyperlink{class_sysc_add__pv}{a3}});}
+\DoxyCodeLine{00364\ \ \ \ \ \}}
+\DoxyCodeLine{00365\ }
+\DoxyCodeLine{00366\ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{namespacesc__dt_a670409225d70df53b3b5e5156a061ba6}{operator==}}(\mbox{\hyperlink{mem__fn_8hpp_a148b51c6578c9ebbf545abf944152166}{SC\_BOOST\_MEM\_FN\_NAME}}(\mbox{\hyperlink{class_sysc_add__pv}{mf3}})\ \textcolor{keyword}{const}\ \&\ \mbox{\hyperlink{class_sysc_add__pv}{rhs}})\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00367\ \textcolor{keyword}{\ \ \ \ }\{}
+\DoxyCodeLine{00368\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{bind__template_8hpp_a5bffa5ba7163be1080445f808a43a327}{f\_}}\ ==\ \mbox{\hyperlink{class_sysc_add__pv}{rhs}}.f\_;}
+\DoxyCodeLine{00369\ \ \ \ \ \}}
+\DoxyCodeLine{00370\ }
+\DoxyCodeLine{00371\ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{namespacesc__dt_ac521149d132e9c77a5d9029aa86344db}{operator!=}}(\mbox{\hyperlink{mem__fn_8hpp_a148b51c6578c9ebbf545abf944152166}{SC\_BOOST\_MEM\_FN\_NAME}}(\mbox{\hyperlink{class_sysc_add__pv}{mf3}})\ \textcolor{keyword}{const}\ \&\ \mbox{\hyperlink{class_sysc_add__pv}{rhs}})\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00372\ \textcolor{keyword}{\ \ \ \ }\{}
+\DoxyCodeLine{00373\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{bind__template_8hpp_a5bffa5ba7163be1080445f808a43a327}{f\_}}\ !=\ \mbox{\hyperlink{class_sysc_add__pv}{rhs}}.f\_;}
+\DoxyCodeLine{00374\ \ \ \ \ \}}
+\DoxyCodeLine{00375\ \};}
+\DoxyCodeLine{00376\ }
+\DoxyCodeLine{00377\ \textcolor{comment}{//\ cmf3}}
+\DoxyCodeLine{00378\ }
+\DoxyCodeLine{00379\ \textcolor{keyword}{template}<\textcolor{keyword}{class}\ R,\ \textcolor{keyword}{class}\ T,\ \textcolor{keyword}{class}\ A1,\ \textcolor{keyword}{class}\ A2,\ \textcolor{keyword}{class}\ A3\ SC\_BOOST\_MEM\_FN\_CLASS\_F>\ \textcolor{keyword}{class\ }\mbox{\hyperlink{class_sysc_add__pv}{SC\_BOOST\_MEM\_FN\_NAME(cmf3)}}}
+\DoxyCodeLine{00380\ \{}
+\DoxyCodeLine{00381\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00382\ }
+\DoxyCodeLine{00383\ \ \ \ \ \textcolor{keyword}{typedef}\ \mbox{\hyperlink{class_sysc_add__pv}{R}}\ \mbox{\hyperlink{bind__template_8hpp_a3003db32ff947cc71d89c477248e5172}{result\_type}};}
+\DoxyCodeLine{00384\ }
+\DoxyCodeLine{00385\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00386\ }
+\DoxyCodeLine{00387\ \ \ \ \ \mbox{\hyperlink{mem__fn_8hpp_a3ec63fb20dbbd33452c3f4c93a2c2588}{SC\_BOOST\_MEM\_FN\_TYPEDEF}}(\mbox{\hyperlink{class_sysc_add__pv}{R}}\ (\mbox{\hyperlink{mem__fn_8hpp_ac5a32bea9e3e8ba66edbf8681085fb49}{SC\_BOOST\_MEM\_FN\_CC}}\ \mbox{\hyperlink{mem__fn__cc_8hpp_adf1f3edb9115acb0a1e04209b7a9937b}{T}}::*F)\ (\mbox{\hyperlink{mem__fn__cc_8hpp_a04e585ae6243f4fc9527956ec817ebcc}{A1}},\ \mbox{\hyperlink{mem__fn__cc_8hpp_a9fbc78aa6f21ccf5de2008548a55fa41}{A2}},\ \mbox{\hyperlink{mem__fn__cc_8hpp_a89a06d984ae53ed8b1aa8347b32acc34}{A3}})\ \mbox{\hyperlink{class_sysc_add__pv}{const}})}
+\DoxyCodeLine{00388\ \ \ \ \ F\ \mbox{\hyperlink{bind__template_8hpp_a5bffa5ba7163be1080445f808a43a327}{f\_}};}
+\DoxyCodeLine{00389\ }
+\DoxyCodeLine{00390\ \ \ \ \ \textcolor{keyword}{template}<\textcolor{keyword}{class}\ U,\ \textcolor{keyword}{class}\ B1,\ \textcolor{keyword}{class}\ B2,\ \textcolor{keyword}{class}\ B3>\ \mbox{\hyperlink{class_sysc_add__pv}{R}}\ call(\mbox{\hyperlink{class_sysc_add__pv}{U}}\ \&\ \mbox{\hyperlink{class_sysc_add__pv}{u}},\ \mbox{\hyperlink{mem__fn__cc_8hpp_adf1f3edb9115acb0a1e04209b7a9937b}{T}}\ \textcolor{keyword}{const}\ *,\ B1\ \&\ \mbox{\hyperlink{class_sysc_add__pv}{b1}},\ B2\ \&\ \mbox{\hyperlink{class_sysc_add__pv}{b2}},\ B3\ \&\ \mbox{\hyperlink{class_sysc_add__pv}{b3}})\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00391\ \textcolor{keyword}{\ \ \ \ }\{}
+\DoxyCodeLine{00392\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{mem__fn_8hpp_a76811f5057db2ee0ab2f31467800ccfa}{SC\_BOOST\_MEM\_FN\_RETURN}}\ (\mbox{\hyperlink{class_sysc_add__pv}{u}}.*\mbox{\hyperlink{bind__template_8hpp_a5bffa5ba7163be1080445f808a43a327}{f\_}})(\mbox{\hyperlink{class_sysc_add__pv}{b1}},\ \mbox{\hyperlink{class_sysc_add__pv}{b2}},\ \mbox{\hyperlink{class_sysc_add__pv}{b3}});}
+\DoxyCodeLine{00393\ \ \ \ \ \}}
+\DoxyCodeLine{00394\ }
+\DoxyCodeLine{00395\ \ \ \ \ \textcolor{keyword}{template}<\textcolor{keyword}{class}\ U,\ \textcolor{keyword}{class}\ B1,\ \textcolor{keyword}{class}\ B2,\ \textcolor{keyword}{class}\ B3>\ \mbox{\hyperlink{class_sysc_add__pv}{R}}\ call(\mbox{\hyperlink{class_sysc_add__pv}{U}}\ \&\ \mbox{\hyperlink{class_sysc_add__pv}{u}},\ \textcolor{keywordtype}{void}\ \textcolor{keyword}{const}\ *,\ B1\ \&\ \mbox{\hyperlink{class_sysc_add__pv}{b1}},\ B2\ \&\ \mbox{\hyperlink{class_sysc_add__pv}{b2}},\ B3\ \&\ \mbox{\hyperlink{class_sysc_add__pv}{b3}})\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00396\ \textcolor{keyword}{\ \ \ \ }\{}
+\DoxyCodeLine{00397\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{mem__fn_8hpp_a76811f5057db2ee0ab2f31467800ccfa}{SC\_BOOST\_MEM\_FN\_RETURN}}\ (\mbox{\hyperlink{namespacesc__boost_a6841ce52726804956cc3a4fe85673da7}{get\_pointer}}(\mbox{\hyperlink{class_sysc_add__pv}{u}})-\/>*\mbox{\hyperlink{bind__template_8hpp_a5bffa5ba7163be1080445f808a43a327}{f\_}})(\mbox{\hyperlink{class_sysc_add__pv}{b1}},\ \mbox{\hyperlink{class_sysc_add__pv}{b2}},\ \mbox{\hyperlink{class_sysc_add__pv}{b3}});}
+\DoxyCodeLine{00398\ \ \ \ \ \}}
+\DoxyCodeLine{00399\ }
+\DoxyCodeLine{00400\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00401\ }
+\DoxyCodeLine{00402\ \ \ \ \ \textcolor{keyword}{explicit}\ \mbox{\hyperlink{mem__fn_8hpp_a148b51c6578c9ebbf545abf944152166}{SC\_BOOST\_MEM\_FN\_NAME}}(\mbox{\hyperlink{class_sysc_add__pv}{cmf3}})(F\ f):\ \mbox{\hyperlink{bind__template_8hpp_a5bffa5ba7163be1080445f808a43a327}{f\_}}(f)\ \{\}}
+\DoxyCodeLine{00403\ }
+\DoxyCodeLine{00404\ \ \ \ \ \textcolor{keyword}{template}<\textcolor{keyword}{class}\ U>\ \mbox{\hyperlink{class_sysc_add__pv}{R}}\ \mbox{\hyperlink{bind__template_8hpp_aaaead712fe7dc29c1799e7d8f77d1cfb}{operator()}}(\mbox{\hyperlink{class_sysc_add__pv}{U}}\ \textcolor{keyword}{const}\ \&\ \mbox{\hyperlink{class_sysc_add__pv}{u}},\ \mbox{\hyperlink{mem__fn__cc_8hpp_a04e585ae6243f4fc9527956ec817ebcc}{A1}}\ a1,\ \mbox{\hyperlink{mem__fn__cc_8hpp_a9fbc78aa6f21ccf5de2008548a55fa41}{A2}}\ \mbox{\hyperlink{class_sysc_add__pv}{a2}},\ \mbox{\hyperlink{mem__fn__cc_8hpp_a89a06d984ae53ed8b1aa8347b32acc34}{A3}}\ \mbox{\hyperlink{class_sysc_add__pv}{a3}})\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00405\ \textcolor{keyword}{\ \ \ \ }\{}
+\DoxyCodeLine{00406\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{mem__fn_8hpp_a76811f5057db2ee0ab2f31467800ccfa}{SC\_BOOST\_MEM\_FN\_RETURN}}\ call(\mbox{\hyperlink{class_sysc_add__pv}{u}},\ \&\mbox{\hyperlink{class_sysc_add__pv}{u}},\ a1,\ \mbox{\hyperlink{class_sysc_add__pv}{a2}},\ \mbox{\hyperlink{class_sysc_add__pv}{a3}});}
+\DoxyCodeLine{00407\ \ \ \ \ \}}
+\DoxyCodeLine{00408\ }
+\DoxyCodeLine{00409\ \ \ \ \ \mbox{\hyperlink{class_sysc_add__pv}{R}}\ \mbox{\hyperlink{bind__template_8hpp_aaaead712fe7dc29c1799e7d8f77d1cfb}{operator()}}(\mbox{\hyperlink{mem__fn__cc_8hpp_adf1f3edb9115acb0a1e04209b7a9937b}{T}}\ \textcolor{keyword}{const}\ \&\ t,\ \mbox{\hyperlink{mem__fn__cc_8hpp_a04e585ae6243f4fc9527956ec817ebcc}{A1}}\ a1,\ \mbox{\hyperlink{mem__fn__cc_8hpp_a9fbc78aa6f21ccf5de2008548a55fa41}{A2}}\ \mbox{\hyperlink{class_sysc_add__pv}{a2}},\ \mbox{\hyperlink{mem__fn__cc_8hpp_a89a06d984ae53ed8b1aa8347b32acc34}{A3}}\ \mbox{\hyperlink{class_sysc_add__pv}{a3}})\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00410\ \textcolor{keyword}{\ \ \ \ }\{}
+\DoxyCodeLine{00411\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{mem__fn_8hpp_a76811f5057db2ee0ab2f31467800ccfa}{SC\_BOOST\_MEM\_FN\_RETURN}}\ (t.*\mbox{\hyperlink{bind__template_8hpp_a5bffa5ba7163be1080445f808a43a327}{f\_}})(a1,\ \mbox{\hyperlink{class_sysc_add__pv}{a2}},\ \mbox{\hyperlink{class_sysc_add__pv}{a3}});}
+\DoxyCodeLine{00412\ \ \ \ \ \}}
+\DoxyCodeLine{00413\ }
+\DoxyCodeLine{00414\ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{namespacesc__dt_a670409225d70df53b3b5e5156a061ba6}{operator==}}(\mbox{\hyperlink{mem__fn_8hpp_a148b51c6578c9ebbf545abf944152166}{SC\_BOOST\_MEM\_FN\_NAME}}(\mbox{\hyperlink{class_sysc_add__pv}{cmf3}})\ \textcolor{keyword}{const}\ \&\ \mbox{\hyperlink{class_sysc_add__pv}{rhs}})\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00415\ \textcolor{keyword}{\ \ \ \ }\{}
+\DoxyCodeLine{00416\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{bind__template_8hpp_a5bffa5ba7163be1080445f808a43a327}{f\_}}\ ==\ \mbox{\hyperlink{class_sysc_add__pv}{rhs}}.f\_;}
+\DoxyCodeLine{00417\ \ \ \ \ \}}
+\DoxyCodeLine{00418\ }
+\DoxyCodeLine{00419\ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{namespacesc__dt_ac521149d132e9c77a5d9029aa86344db}{operator!=}}(\mbox{\hyperlink{mem__fn_8hpp_a148b51c6578c9ebbf545abf944152166}{SC\_BOOST\_MEM\_FN\_NAME}}(\mbox{\hyperlink{class_sysc_add__pv}{cmf3}})\ \textcolor{keyword}{const}\ \&\ \mbox{\hyperlink{class_sysc_add__pv}{rhs}})\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00420\ \textcolor{keyword}{\ \ \ \ }\{}
+\DoxyCodeLine{00421\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{bind__template_8hpp_a5bffa5ba7163be1080445f808a43a327}{f\_}}\ !=\ \mbox{\hyperlink{class_sysc_add__pv}{rhs}}.f\_;}
+\DoxyCodeLine{00422\ \ \ \ \ \}}
+\DoxyCodeLine{00423\ \};}
+\DoxyCodeLine{00424\ }
+\DoxyCodeLine{00425\ \textcolor{comment}{//\ mf4}}
+\DoxyCodeLine{00426\ }
+\DoxyCodeLine{00427\ \textcolor{keyword}{template}<\textcolor{keyword}{class}\ R,\ \textcolor{keyword}{class}\ T,\ \textcolor{keyword}{class}\ A1,\ \textcolor{keyword}{class}\ A2,\ \textcolor{keyword}{class}\ A3,\ \textcolor{keyword}{class}\ A4\ SC\_BOOST\_MEM\_FN\_CLASS\_F>\ \textcolor{keyword}{class\ }\mbox{\hyperlink{class_sysc_add__pv}{SC\_BOOST\_MEM\_FN\_NAME(mf4)}}}
+\DoxyCodeLine{00428\ \{}
+\DoxyCodeLine{00429\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00430\ }
+\DoxyCodeLine{00431\ \ \ \ \ \textcolor{keyword}{typedef}\ \mbox{\hyperlink{class_sysc_add__pv}{R}}\ \mbox{\hyperlink{bind__template_8hpp_a3003db32ff947cc71d89c477248e5172}{result\_type}};}
+\DoxyCodeLine{00432\ }
+\DoxyCodeLine{00433\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00434\ \ \ \ \ }
+\DoxyCodeLine{00435\ \ \ \ \ \mbox{\hyperlink{mem__fn_8hpp_a3ec63fb20dbbd33452c3f4c93a2c2588}{SC\_BOOST\_MEM\_FN\_TYPEDEF}}(\mbox{\hyperlink{class_sysc_add__pv}{R}}\ (\mbox{\hyperlink{mem__fn_8hpp_ac5a32bea9e3e8ba66edbf8681085fb49}{SC\_BOOST\_MEM\_FN\_CC}}\ \mbox{\hyperlink{mem__fn__cc_8hpp_adf1f3edb9115acb0a1e04209b7a9937b}{T}}::*F)\ (\mbox{\hyperlink{mem__fn__cc_8hpp_a04e585ae6243f4fc9527956ec817ebcc}{A1}},\ \mbox{\hyperlink{mem__fn__cc_8hpp_a9fbc78aa6f21ccf5de2008548a55fa41}{A2}},\ \mbox{\hyperlink{mem__fn__cc_8hpp_a89a06d984ae53ed8b1aa8347b32acc34}{A3}},\ \mbox{\hyperlink{mem__fn__cc_8hpp_adfe39a13c9fec4b6aa664ac26daf637f}{A4}}))}
+\DoxyCodeLine{00436\ \ \ \ \ F\ \mbox{\hyperlink{bind__template_8hpp_a5bffa5ba7163be1080445f808a43a327}{f\_}};}
+\DoxyCodeLine{00437\ }
+\DoxyCodeLine{00438\ \ \ \ \ \textcolor{keyword}{template}<\textcolor{keyword}{class}\ U,\ \textcolor{keyword}{class}\ B1,\ \textcolor{keyword}{class}\ B2,\ \textcolor{keyword}{class}\ B3,\ \textcolor{keyword}{class}\ B4>\ \mbox{\hyperlink{class_sysc_add__pv}{R}}\ call(\mbox{\hyperlink{class_sysc_add__pv}{U}}\ \&\ \mbox{\hyperlink{class_sysc_add__pv}{u}},\ \mbox{\hyperlink{mem__fn__cc_8hpp_adf1f3edb9115acb0a1e04209b7a9937b}{T}}\ \textcolor{keyword}{const}\ *,\ B1\ \&\ \mbox{\hyperlink{class_sysc_add__pv}{b1}},\ B2\ \&\ \mbox{\hyperlink{class_sysc_add__pv}{b2}},\ B3\ \&\ \mbox{\hyperlink{class_sysc_add__pv}{b3}},\ B4\ \&\ \mbox{\hyperlink{class_sysc_add__pv}{b4}})\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00439\ \textcolor{keyword}{\ \ \ \ }\{}
+\DoxyCodeLine{00440\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{mem__fn_8hpp_a76811f5057db2ee0ab2f31467800ccfa}{SC\_BOOST\_MEM\_FN\_RETURN}}\ (\mbox{\hyperlink{class_sysc_add__pv}{u}}.*\mbox{\hyperlink{bind__template_8hpp_a5bffa5ba7163be1080445f808a43a327}{f\_}})(\mbox{\hyperlink{class_sysc_add__pv}{b1}},\ \mbox{\hyperlink{class_sysc_add__pv}{b2}},\ \mbox{\hyperlink{class_sysc_add__pv}{b3}},\ \mbox{\hyperlink{class_sysc_add__pv}{b4}});}
+\DoxyCodeLine{00441\ \ \ \ \ \}}
+\DoxyCodeLine{00442\ }
+\DoxyCodeLine{00443\ \ \ \ \ \textcolor{keyword}{template}<\textcolor{keyword}{class}\ U,\ \textcolor{keyword}{class}\ B1,\ \textcolor{keyword}{class}\ B2,\ \textcolor{keyword}{class}\ B3,\ \textcolor{keyword}{class}\ B4>\ \mbox{\hyperlink{class_sysc_add__pv}{R}}\ call(\mbox{\hyperlink{class_sysc_add__pv}{U}}\ \&\ \mbox{\hyperlink{class_sysc_add__pv}{u}},\ \textcolor{keywordtype}{void}\ \textcolor{keyword}{const}\ *,\ B1\ \&\ \mbox{\hyperlink{class_sysc_add__pv}{b1}},\ B2\ \&\ \mbox{\hyperlink{class_sysc_add__pv}{b2}},\ B3\ \&\ \mbox{\hyperlink{class_sysc_add__pv}{b3}},\ B4\ \&\ \mbox{\hyperlink{class_sysc_add__pv}{b4}})\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00444\ \textcolor{keyword}{\ \ \ \ }\{}
+\DoxyCodeLine{00445\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{mem__fn_8hpp_a76811f5057db2ee0ab2f31467800ccfa}{SC\_BOOST\_MEM\_FN\_RETURN}}\ (\mbox{\hyperlink{namespacesc__boost_a6841ce52726804956cc3a4fe85673da7}{get\_pointer}}(\mbox{\hyperlink{class_sysc_add__pv}{u}})-\/>*\mbox{\hyperlink{bind__template_8hpp_a5bffa5ba7163be1080445f808a43a327}{f\_}})(\mbox{\hyperlink{class_sysc_add__pv}{b1}},\ \mbox{\hyperlink{class_sysc_add__pv}{b2}},\ \mbox{\hyperlink{class_sysc_add__pv}{b3}},\ \mbox{\hyperlink{class_sysc_add__pv}{b4}});}
+\DoxyCodeLine{00446\ \ \ \ \ \}}
+\DoxyCodeLine{00447\ }
+\DoxyCodeLine{00448\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00449\ \ \ \ \ }
+\DoxyCodeLine{00450\ \ \ \ \ \textcolor{keyword}{explicit}\ \mbox{\hyperlink{mem__fn_8hpp_a148b51c6578c9ebbf545abf944152166}{SC\_BOOST\_MEM\_FN\_NAME}}(\mbox{\hyperlink{class_sysc_add__pv}{mf4}})(F\ f):\ \mbox{\hyperlink{bind__template_8hpp_a5bffa5ba7163be1080445f808a43a327}{f\_}}(f)\ \{\}}
+\DoxyCodeLine{00451\ }
+\DoxyCodeLine{00452\ \ \ \ \ \mbox{\hyperlink{class_sysc_add__pv}{R}}\ \mbox{\hyperlink{bind__template_8hpp_aaaead712fe7dc29c1799e7d8f77d1cfb}{operator()}}(\mbox{\hyperlink{mem__fn__cc_8hpp_adf1f3edb9115acb0a1e04209b7a9937b}{T}}\ *\ p,\ \mbox{\hyperlink{mem__fn__cc_8hpp_a04e585ae6243f4fc9527956ec817ebcc}{A1}}\ a1,\ \mbox{\hyperlink{mem__fn__cc_8hpp_a9fbc78aa6f21ccf5de2008548a55fa41}{A2}}\ \mbox{\hyperlink{class_sysc_add__pv}{a2}},\ \mbox{\hyperlink{mem__fn__cc_8hpp_a89a06d984ae53ed8b1aa8347b32acc34}{A3}}\ \mbox{\hyperlink{class_sysc_add__pv}{a3}},\ \mbox{\hyperlink{mem__fn__cc_8hpp_adfe39a13c9fec4b6aa664ac26daf637f}{A4}}\ \mbox{\hyperlink{class_sysc_add__pv}{a4}})\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00453\ \textcolor{keyword}{\ \ \ \ }\{}
+\DoxyCodeLine{00454\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{mem__fn_8hpp_a76811f5057db2ee0ab2f31467800ccfa}{SC\_BOOST\_MEM\_FN\_RETURN}}\ (p-\/>*\mbox{\hyperlink{bind__template_8hpp_a5bffa5ba7163be1080445f808a43a327}{f\_}})(a1,\ \mbox{\hyperlink{class_sysc_add__pv}{a2}},\ \mbox{\hyperlink{class_sysc_add__pv}{a3}},\ \mbox{\hyperlink{class_sysc_add__pv}{a4}});}
+\DoxyCodeLine{00455\ \ \ \ \ \}}
+\DoxyCodeLine{00456\ }
+\DoxyCodeLine{00457\ \ \ \ \ \textcolor{keyword}{template}<\textcolor{keyword}{class}\ U>\ \mbox{\hyperlink{class_sysc_add__pv}{R}}\ \mbox{\hyperlink{bind__template_8hpp_aaaead712fe7dc29c1799e7d8f77d1cfb}{operator()}}(\mbox{\hyperlink{class_sysc_add__pv}{U}}\ \&\ \mbox{\hyperlink{class_sysc_add__pv}{u}},\ \mbox{\hyperlink{mem__fn__cc_8hpp_a04e585ae6243f4fc9527956ec817ebcc}{A1}}\ a1,\ \mbox{\hyperlink{mem__fn__cc_8hpp_a9fbc78aa6f21ccf5de2008548a55fa41}{A2}}\ \mbox{\hyperlink{class_sysc_add__pv}{a2}},\ \mbox{\hyperlink{mem__fn__cc_8hpp_a89a06d984ae53ed8b1aa8347b32acc34}{A3}}\ \mbox{\hyperlink{class_sysc_add__pv}{a3}},\ \mbox{\hyperlink{mem__fn__cc_8hpp_adfe39a13c9fec4b6aa664ac26daf637f}{A4}}\ \mbox{\hyperlink{class_sysc_add__pv}{a4}})\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00458\ \textcolor{keyword}{\ \ \ \ }\{}
+\DoxyCodeLine{00459\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{mem__fn_8hpp_a76811f5057db2ee0ab2f31467800ccfa}{SC\_BOOST\_MEM\_FN\_RETURN}}\ call(\mbox{\hyperlink{class_sysc_add__pv}{u}},\ \&\mbox{\hyperlink{class_sysc_add__pv}{u}},\ a1,\ \mbox{\hyperlink{class_sysc_add__pv}{a2}},\ \mbox{\hyperlink{class_sysc_add__pv}{a3}},\ \mbox{\hyperlink{class_sysc_add__pv}{a4}});}
+\DoxyCodeLine{00460\ \ \ \ \ \}}
+\DoxyCodeLine{00461\ }
+\DoxyCodeLine{00462\ \ \ \ \ \mbox{\hyperlink{class_sysc_add__pv}{R}}\ \mbox{\hyperlink{bind__template_8hpp_aaaead712fe7dc29c1799e7d8f77d1cfb}{operator()}}(\mbox{\hyperlink{mem__fn__cc_8hpp_adf1f3edb9115acb0a1e04209b7a9937b}{T}}\ \&\ t,\ \mbox{\hyperlink{mem__fn__cc_8hpp_a04e585ae6243f4fc9527956ec817ebcc}{A1}}\ a1,\ \mbox{\hyperlink{mem__fn__cc_8hpp_a9fbc78aa6f21ccf5de2008548a55fa41}{A2}}\ \mbox{\hyperlink{class_sysc_add__pv}{a2}},\ \mbox{\hyperlink{mem__fn__cc_8hpp_a89a06d984ae53ed8b1aa8347b32acc34}{A3}}\ \mbox{\hyperlink{class_sysc_add__pv}{a3}},\ \mbox{\hyperlink{mem__fn__cc_8hpp_adfe39a13c9fec4b6aa664ac26daf637f}{A4}}\ \mbox{\hyperlink{class_sysc_add__pv}{a4}})\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00463\ \textcolor{keyword}{\ \ \ \ }\{}
+\DoxyCodeLine{00464\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{mem__fn_8hpp_a76811f5057db2ee0ab2f31467800ccfa}{SC\_BOOST\_MEM\_FN\_RETURN}}\ (t.*\mbox{\hyperlink{bind__template_8hpp_a5bffa5ba7163be1080445f808a43a327}{f\_}})(a1,\ \mbox{\hyperlink{class_sysc_add__pv}{a2}},\ \mbox{\hyperlink{class_sysc_add__pv}{a3}},\ \mbox{\hyperlink{class_sysc_add__pv}{a4}});}
+\DoxyCodeLine{00465\ \ \ \ \ \}}
+\DoxyCodeLine{00466\ }
+\DoxyCodeLine{00467\ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{namespacesc__dt_a670409225d70df53b3b5e5156a061ba6}{operator==}}(\mbox{\hyperlink{mem__fn_8hpp_a148b51c6578c9ebbf545abf944152166}{SC\_BOOST\_MEM\_FN\_NAME}}(\mbox{\hyperlink{class_sysc_add__pv}{mf4}})\ \textcolor{keyword}{const}\ \&\ \mbox{\hyperlink{class_sysc_add__pv}{rhs}})\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00468\ \textcolor{keyword}{\ \ \ \ }\{}
+\DoxyCodeLine{00469\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{bind__template_8hpp_a5bffa5ba7163be1080445f808a43a327}{f\_}}\ ==\ \mbox{\hyperlink{class_sysc_add__pv}{rhs}}.f\_;}
+\DoxyCodeLine{00470\ \ \ \ \ \}}
+\DoxyCodeLine{00471\ }
+\DoxyCodeLine{00472\ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{namespacesc__dt_ac521149d132e9c77a5d9029aa86344db}{operator!=}}(\mbox{\hyperlink{mem__fn_8hpp_a148b51c6578c9ebbf545abf944152166}{SC\_BOOST\_MEM\_FN\_NAME}}(\mbox{\hyperlink{class_sysc_add__pv}{mf4}})\ \textcolor{keyword}{const}\ \&\ \mbox{\hyperlink{class_sysc_add__pv}{rhs}})\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00473\ \textcolor{keyword}{\ \ \ \ }\{}
+\DoxyCodeLine{00474\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{bind__template_8hpp_a5bffa5ba7163be1080445f808a43a327}{f\_}}\ !=\ \mbox{\hyperlink{class_sysc_add__pv}{rhs}}.f\_;}
+\DoxyCodeLine{00475\ \ \ \ \ \}}
+\DoxyCodeLine{00476\ \};}
+\DoxyCodeLine{00477\ }
+\DoxyCodeLine{00478\ \textcolor{comment}{//\ cmf4}}
+\DoxyCodeLine{00479\ }
+\DoxyCodeLine{00480\ \textcolor{keyword}{template}<\textcolor{keyword}{class}\ R,\ \textcolor{keyword}{class}\ T,\ \textcolor{keyword}{class}\ A1,\ \textcolor{keyword}{class}\ A2,\ \textcolor{keyword}{class}\ A3,\ \textcolor{keyword}{class}\ A4\ SC\_BOOST\_MEM\_FN\_CLASS\_F>\ \textcolor{keyword}{class\ }\mbox{\hyperlink{class_sysc_add__pv}{SC\_BOOST\_MEM\_FN\_NAME(cmf4)}}}
+\DoxyCodeLine{00481\ \{}
+\DoxyCodeLine{00482\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00483\ }
+\DoxyCodeLine{00484\ \ \ \ \ \textcolor{keyword}{typedef}\ \mbox{\hyperlink{class_sysc_add__pv}{R}}\ \mbox{\hyperlink{bind__template_8hpp_a3003db32ff947cc71d89c477248e5172}{result\_type}};}
+\DoxyCodeLine{00485\ }
+\DoxyCodeLine{00486\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00487\ \ \ \ \ }
+\DoxyCodeLine{00488\ \ \ \ \ \mbox{\hyperlink{mem__fn_8hpp_a3ec63fb20dbbd33452c3f4c93a2c2588}{SC\_BOOST\_MEM\_FN\_TYPEDEF}}(\mbox{\hyperlink{class_sysc_add__pv}{R}}\ (\mbox{\hyperlink{mem__fn_8hpp_ac5a32bea9e3e8ba66edbf8681085fb49}{SC\_BOOST\_MEM\_FN\_CC}}\ \mbox{\hyperlink{mem__fn__cc_8hpp_adf1f3edb9115acb0a1e04209b7a9937b}{T}}::*F)\ (\mbox{\hyperlink{mem__fn__cc_8hpp_a04e585ae6243f4fc9527956ec817ebcc}{A1}},\ \mbox{\hyperlink{mem__fn__cc_8hpp_a9fbc78aa6f21ccf5de2008548a55fa41}{A2}},\ \mbox{\hyperlink{mem__fn__cc_8hpp_a89a06d984ae53ed8b1aa8347b32acc34}{A3}},\ \mbox{\hyperlink{mem__fn__cc_8hpp_adfe39a13c9fec4b6aa664ac26daf637f}{A4}})\ \mbox{\hyperlink{class_sysc_add__pv}{const}})}
+\DoxyCodeLine{00489\ \ \ \ \ F\ \mbox{\hyperlink{bind__template_8hpp_a5bffa5ba7163be1080445f808a43a327}{f\_}};}
+\DoxyCodeLine{00490\ }
+\DoxyCodeLine{00491\ \ \ \ \ \textcolor{keyword}{template}<\textcolor{keyword}{class}\ U,\ \textcolor{keyword}{class}\ B1,\ \textcolor{keyword}{class}\ B2,\ \textcolor{keyword}{class}\ B3,\ \textcolor{keyword}{class}\ B4>\ \mbox{\hyperlink{class_sysc_add__pv}{R}}\ call(\mbox{\hyperlink{class_sysc_add__pv}{U}}\ \&\ \mbox{\hyperlink{class_sysc_add__pv}{u}},\ \mbox{\hyperlink{mem__fn__cc_8hpp_adf1f3edb9115acb0a1e04209b7a9937b}{T}}\ \textcolor{keyword}{const}\ *,\ B1\ \&\ \mbox{\hyperlink{class_sysc_add__pv}{b1}},\ B2\ \&\ \mbox{\hyperlink{class_sysc_add__pv}{b2}},\ B3\ \&\ \mbox{\hyperlink{class_sysc_add__pv}{b3}},\ B4\ \&\ \mbox{\hyperlink{class_sysc_add__pv}{b4}})\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00492\ \textcolor{keyword}{\ \ \ \ }\{}
+\DoxyCodeLine{00493\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{mem__fn_8hpp_a76811f5057db2ee0ab2f31467800ccfa}{SC\_BOOST\_MEM\_FN\_RETURN}}\ (\mbox{\hyperlink{class_sysc_add__pv}{u}}.*\mbox{\hyperlink{bind__template_8hpp_a5bffa5ba7163be1080445f808a43a327}{f\_}})(\mbox{\hyperlink{class_sysc_add__pv}{b1}},\ \mbox{\hyperlink{class_sysc_add__pv}{b2}},\ \mbox{\hyperlink{class_sysc_add__pv}{b3}},\ \mbox{\hyperlink{class_sysc_add__pv}{b4}});}
+\DoxyCodeLine{00494\ \ \ \ \ \}}
+\DoxyCodeLine{00495\ }
+\DoxyCodeLine{00496\ \ \ \ \ \textcolor{keyword}{template}<\textcolor{keyword}{class}\ U,\ \textcolor{keyword}{class}\ B1,\ \textcolor{keyword}{class}\ B2,\ \textcolor{keyword}{class}\ B3,\ \textcolor{keyword}{class}\ B4>\ \mbox{\hyperlink{class_sysc_add__pv}{R}}\ call(\mbox{\hyperlink{class_sysc_add__pv}{U}}\ \&\ \mbox{\hyperlink{class_sysc_add__pv}{u}},\ \textcolor{keywordtype}{void}\ \textcolor{keyword}{const}\ *,\ B1\ \&\ \mbox{\hyperlink{class_sysc_add__pv}{b1}},\ B2\ \&\ \mbox{\hyperlink{class_sysc_add__pv}{b2}},\ B3\ \&\ \mbox{\hyperlink{class_sysc_add__pv}{b3}},\ B4\ \&\ \mbox{\hyperlink{class_sysc_add__pv}{b4}})\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00497\ \textcolor{keyword}{\ \ \ \ }\{}
+\DoxyCodeLine{00498\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{mem__fn_8hpp_a76811f5057db2ee0ab2f31467800ccfa}{SC\_BOOST\_MEM\_FN\_RETURN}}\ (\mbox{\hyperlink{namespacesc__boost_a6841ce52726804956cc3a4fe85673da7}{get\_pointer}}(\mbox{\hyperlink{class_sysc_add__pv}{u}})-\/>*\mbox{\hyperlink{bind__template_8hpp_a5bffa5ba7163be1080445f808a43a327}{f\_}})(\mbox{\hyperlink{class_sysc_add__pv}{b1}},\ \mbox{\hyperlink{class_sysc_add__pv}{b2}},\ \mbox{\hyperlink{class_sysc_add__pv}{b3}},\ \mbox{\hyperlink{class_sysc_add__pv}{b4}});}
+\DoxyCodeLine{00499\ \ \ \ \ \}}
+\DoxyCodeLine{00500\ }
+\DoxyCodeLine{00501\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00502\ \ \ \ \ }
+\DoxyCodeLine{00503\ \ \ \ \ \textcolor{keyword}{explicit}\ \mbox{\hyperlink{mem__fn_8hpp_a148b51c6578c9ebbf545abf944152166}{SC\_BOOST\_MEM\_FN\_NAME}}(\mbox{\hyperlink{class_sysc_add__pv}{cmf4}})(F\ f):\ \mbox{\hyperlink{bind__template_8hpp_a5bffa5ba7163be1080445f808a43a327}{f\_}}(f)\ \{\}}
+\DoxyCodeLine{00504\ }
+\DoxyCodeLine{00505\ \ \ \ \ \textcolor{keyword}{template}<\textcolor{keyword}{class}\ U>\ \mbox{\hyperlink{class_sysc_add__pv}{R}}\ \mbox{\hyperlink{bind__template_8hpp_aaaead712fe7dc29c1799e7d8f77d1cfb}{operator()}}(\mbox{\hyperlink{class_sysc_add__pv}{U}}\ \textcolor{keyword}{const}\ \&\ \mbox{\hyperlink{class_sysc_add__pv}{u}},\ \mbox{\hyperlink{mem__fn__cc_8hpp_a04e585ae6243f4fc9527956ec817ebcc}{A1}}\ a1,\ \mbox{\hyperlink{mem__fn__cc_8hpp_a9fbc78aa6f21ccf5de2008548a55fa41}{A2}}\ \mbox{\hyperlink{class_sysc_add__pv}{a2}},\ \mbox{\hyperlink{mem__fn__cc_8hpp_a89a06d984ae53ed8b1aa8347b32acc34}{A3}}\ \mbox{\hyperlink{class_sysc_add__pv}{a3}},\ \mbox{\hyperlink{mem__fn__cc_8hpp_adfe39a13c9fec4b6aa664ac26daf637f}{A4}}\ \mbox{\hyperlink{class_sysc_add__pv}{a4}})\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00506\ \textcolor{keyword}{\ \ \ \ }\{}
+\DoxyCodeLine{00507\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{mem__fn_8hpp_a76811f5057db2ee0ab2f31467800ccfa}{SC\_BOOST\_MEM\_FN\_RETURN}}\ call(\mbox{\hyperlink{class_sysc_add__pv}{u}},\ \&\mbox{\hyperlink{class_sysc_add__pv}{u}},\ a1,\ \mbox{\hyperlink{class_sysc_add__pv}{a2}},\ \mbox{\hyperlink{class_sysc_add__pv}{a3}},\ \mbox{\hyperlink{class_sysc_add__pv}{a4}});}
+\DoxyCodeLine{00508\ \ \ \ \ \}}
+\DoxyCodeLine{00509\ }
+\DoxyCodeLine{00510\ \ \ \ \ \mbox{\hyperlink{class_sysc_add__pv}{R}}\ \mbox{\hyperlink{bind__template_8hpp_aaaead712fe7dc29c1799e7d8f77d1cfb}{operator()}}(\mbox{\hyperlink{mem__fn__cc_8hpp_adf1f3edb9115acb0a1e04209b7a9937b}{T}}\ \textcolor{keyword}{const}\ \&\ t,\ \mbox{\hyperlink{mem__fn__cc_8hpp_a04e585ae6243f4fc9527956ec817ebcc}{A1}}\ a1,\ \mbox{\hyperlink{mem__fn__cc_8hpp_a9fbc78aa6f21ccf5de2008548a55fa41}{A2}}\ \mbox{\hyperlink{class_sysc_add__pv}{a2}},\ \mbox{\hyperlink{mem__fn__cc_8hpp_a89a06d984ae53ed8b1aa8347b32acc34}{A3}}\ \mbox{\hyperlink{class_sysc_add__pv}{a3}},\ \mbox{\hyperlink{mem__fn__cc_8hpp_adfe39a13c9fec4b6aa664ac26daf637f}{A4}}\ \mbox{\hyperlink{class_sysc_add__pv}{a4}})\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00511\ \textcolor{keyword}{\ \ \ \ }\{}
+\DoxyCodeLine{00512\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{mem__fn_8hpp_a76811f5057db2ee0ab2f31467800ccfa}{SC\_BOOST\_MEM\_FN\_RETURN}}\ (t.*\mbox{\hyperlink{bind__template_8hpp_a5bffa5ba7163be1080445f808a43a327}{f\_}})(a1,\ \mbox{\hyperlink{class_sysc_add__pv}{a2}},\ \mbox{\hyperlink{class_sysc_add__pv}{a3}},\ \mbox{\hyperlink{class_sysc_add__pv}{a4}});}
+\DoxyCodeLine{00513\ \ \ \ \ \}}
+\DoxyCodeLine{00514\ }
+\DoxyCodeLine{00515\ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{namespacesc__dt_a670409225d70df53b3b5e5156a061ba6}{operator==}}(\mbox{\hyperlink{mem__fn_8hpp_a148b51c6578c9ebbf545abf944152166}{SC\_BOOST\_MEM\_FN\_NAME}}(\mbox{\hyperlink{class_sysc_add__pv}{cmf4}})\ \textcolor{keyword}{const}\ \&\ \mbox{\hyperlink{class_sysc_add__pv}{rhs}})\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00516\ \textcolor{keyword}{\ \ \ \ }\{}
+\DoxyCodeLine{00517\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{bind__template_8hpp_a5bffa5ba7163be1080445f808a43a327}{f\_}}\ ==\ \mbox{\hyperlink{class_sysc_add__pv}{rhs}}.f\_;}
+\DoxyCodeLine{00518\ \ \ \ \ \}}
+\DoxyCodeLine{00519\ }
+\DoxyCodeLine{00520\ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{namespacesc__dt_ac521149d132e9c77a5d9029aa86344db}{operator!=}}(\mbox{\hyperlink{mem__fn_8hpp_a148b51c6578c9ebbf545abf944152166}{SC\_BOOST\_MEM\_FN\_NAME}}(\mbox{\hyperlink{class_sysc_add__pv}{cmf4}})\ \textcolor{keyword}{const}\ \&\ \mbox{\hyperlink{class_sysc_add__pv}{rhs}})\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00521\ \textcolor{keyword}{\ \ \ \ }\{}
+\DoxyCodeLine{00522\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{bind__template_8hpp_a5bffa5ba7163be1080445f808a43a327}{f\_}}\ !=\ \mbox{\hyperlink{class_sysc_add__pv}{rhs}}.f\_;}
+\DoxyCodeLine{00523\ \ \ \ \ \}}
+\DoxyCodeLine{00524\ \};}
+\DoxyCodeLine{00525\ }
+\DoxyCodeLine{00526\ \textcolor{comment}{//\ mf5}}
+\DoxyCodeLine{00527\ }
+\DoxyCodeLine{00528\ \textcolor{keyword}{template}<\textcolor{keyword}{class}\ R,\ \textcolor{keyword}{class}\ T,\ \textcolor{keyword}{class}\ A1,\ \textcolor{keyword}{class}\ A2,\ \textcolor{keyword}{class}\ A3,\ \textcolor{keyword}{class}\ A4,\ \textcolor{keyword}{class}\ A5\ SC\_BOOST\_MEM\_FN\_CLASS\_F>\ \textcolor{keyword}{class\ }\mbox{\hyperlink{class_sysc_add__pv}{SC\_BOOST\_MEM\_FN\_NAME(mf5)}}}
+\DoxyCodeLine{00529\ \{}
+\DoxyCodeLine{00530\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00531\ }
+\DoxyCodeLine{00532\ \ \ \ \ \textcolor{keyword}{typedef}\ \mbox{\hyperlink{class_sysc_add__pv}{R}}\ \mbox{\hyperlink{bind__template_8hpp_a3003db32ff947cc71d89c477248e5172}{result\_type}};}
+\DoxyCodeLine{00533\ }
+\DoxyCodeLine{00534\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00535\ \ \ \ \ }
+\DoxyCodeLine{00536\ \ \ \ \ \mbox{\hyperlink{mem__fn_8hpp_a3ec63fb20dbbd33452c3f4c93a2c2588}{SC\_BOOST\_MEM\_FN\_TYPEDEF}}(\mbox{\hyperlink{class_sysc_add__pv}{R}}\ (\mbox{\hyperlink{mem__fn_8hpp_ac5a32bea9e3e8ba66edbf8681085fb49}{SC\_BOOST\_MEM\_FN\_CC}}\ \mbox{\hyperlink{mem__fn__cc_8hpp_adf1f3edb9115acb0a1e04209b7a9937b}{T}}::*F)\ (\mbox{\hyperlink{mem__fn__cc_8hpp_a04e585ae6243f4fc9527956ec817ebcc}{A1}},\ \mbox{\hyperlink{mem__fn__cc_8hpp_a9fbc78aa6f21ccf5de2008548a55fa41}{A2}},\ \mbox{\hyperlink{mem__fn__cc_8hpp_a89a06d984ae53ed8b1aa8347b32acc34}{A3}},\ \mbox{\hyperlink{mem__fn__cc_8hpp_adfe39a13c9fec4b6aa664ac26daf637f}{A4}},\ \mbox{\hyperlink{mem__fn__cc_8hpp_a8578843f34b19c9d7eda7ce2c31ca88b}{A5}}))}
+\DoxyCodeLine{00537\ \ \ \ \ F\ \mbox{\hyperlink{bind__template_8hpp_a5bffa5ba7163be1080445f808a43a327}{f\_}};}
+\DoxyCodeLine{00538\ }
+\DoxyCodeLine{00539\ \ \ \ \ \textcolor{keyword}{template}<\textcolor{keyword}{class}\ U,\ \textcolor{keyword}{class}\ B1,\ \textcolor{keyword}{class}\ B2,\ \textcolor{keyword}{class}\ B3,\ \textcolor{keyword}{class}\ B4,\ \textcolor{keyword}{class}\ B5>\ \mbox{\hyperlink{class_sysc_add__pv}{R}}\ call(\mbox{\hyperlink{class_sysc_add__pv}{U}}\ \&\ \mbox{\hyperlink{class_sysc_add__pv}{u}},\ \mbox{\hyperlink{mem__fn__cc_8hpp_adf1f3edb9115acb0a1e04209b7a9937b}{T}}\ \textcolor{keyword}{const}\ *,\ B1\ \&\ \mbox{\hyperlink{class_sysc_add__pv}{b1}},\ B2\ \&\ \mbox{\hyperlink{class_sysc_add__pv}{b2}},\ B3\ \&\ \mbox{\hyperlink{class_sysc_add__pv}{b3}},\ B4\ \&\ \mbox{\hyperlink{class_sysc_add__pv}{b4}},\ B5\ \&\ \mbox{\hyperlink{class_sysc_add__pv}{b5}})\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00540\ \textcolor{keyword}{\ \ \ \ }\{}
+\DoxyCodeLine{00541\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{mem__fn_8hpp_a76811f5057db2ee0ab2f31467800ccfa}{SC\_BOOST\_MEM\_FN\_RETURN}}\ (\mbox{\hyperlink{class_sysc_add__pv}{u}}.*\mbox{\hyperlink{bind__template_8hpp_a5bffa5ba7163be1080445f808a43a327}{f\_}})(\mbox{\hyperlink{class_sysc_add__pv}{b1}},\ \mbox{\hyperlink{class_sysc_add__pv}{b2}},\ \mbox{\hyperlink{class_sysc_add__pv}{b3}},\ \mbox{\hyperlink{class_sysc_add__pv}{b4}},\ \mbox{\hyperlink{class_sysc_add__pv}{b5}});}
+\DoxyCodeLine{00542\ \ \ \ \ \}}
+\DoxyCodeLine{00543\ }
+\DoxyCodeLine{00544\ \ \ \ \ \textcolor{keyword}{template}<\textcolor{keyword}{class}\ U,\ \textcolor{keyword}{class}\ B1,\ \textcolor{keyword}{class}\ B2,\ \textcolor{keyword}{class}\ B3,\ \textcolor{keyword}{class}\ B4,\ \textcolor{keyword}{class}\ B5>\ \mbox{\hyperlink{class_sysc_add__pv}{R}}\ call(\mbox{\hyperlink{class_sysc_add__pv}{U}}\ \&\ \mbox{\hyperlink{class_sysc_add__pv}{u}},\ \textcolor{keywordtype}{void}\ \textcolor{keyword}{const}\ *,\ B1\ \&\ \mbox{\hyperlink{class_sysc_add__pv}{b1}},\ B2\ \&\ \mbox{\hyperlink{class_sysc_add__pv}{b2}},\ B3\ \&\ \mbox{\hyperlink{class_sysc_add__pv}{b3}},\ B4\ \&\ \mbox{\hyperlink{class_sysc_add__pv}{b4}},\ B5\ \&\ \mbox{\hyperlink{class_sysc_add__pv}{b5}})\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00545\ \textcolor{keyword}{\ \ \ \ }\{}
+\DoxyCodeLine{00546\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{mem__fn_8hpp_a76811f5057db2ee0ab2f31467800ccfa}{SC\_BOOST\_MEM\_FN\_RETURN}}\ (\mbox{\hyperlink{namespacesc__boost_a6841ce52726804956cc3a4fe85673da7}{get\_pointer}}(\mbox{\hyperlink{class_sysc_add__pv}{u}})-\/>*\mbox{\hyperlink{bind__template_8hpp_a5bffa5ba7163be1080445f808a43a327}{f\_}})(\mbox{\hyperlink{class_sysc_add__pv}{b1}},\ \mbox{\hyperlink{class_sysc_add__pv}{b2}},\ \mbox{\hyperlink{class_sysc_add__pv}{b3}},\ \mbox{\hyperlink{class_sysc_add__pv}{b4}},\ \mbox{\hyperlink{class_sysc_add__pv}{b5}});}
+\DoxyCodeLine{00547\ \ \ \ \ \}}
+\DoxyCodeLine{00548\ }
+\DoxyCodeLine{00549\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00550\ \ \ \ \ }
+\DoxyCodeLine{00551\ \ \ \ \ \textcolor{keyword}{explicit}\ \mbox{\hyperlink{mem__fn_8hpp_a148b51c6578c9ebbf545abf944152166}{SC\_BOOST\_MEM\_FN\_NAME}}(\mbox{\hyperlink{class_sysc_add__pv}{mf5}})(F\ f):\ \mbox{\hyperlink{bind__template_8hpp_a5bffa5ba7163be1080445f808a43a327}{f\_}}(f)\ \{\}}
+\DoxyCodeLine{00552\ }
+\DoxyCodeLine{00553\ \ \ \ \ \mbox{\hyperlink{class_sysc_add__pv}{R}}\ \mbox{\hyperlink{bind__template_8hpp_aaaead712fe7dc29c1799e7d8f77d1cfb}{operator()}}(\mbox{\hyperlink{mem__fn__cc_8hpp_adf1f3edb9115acb0a1e04209b7a9937b}{T}}\ *\ p,\ \mbox{\hyperlink{mem__fn__cc_8hpp_a04e585ae6243f4fc9527956ec817ebcc}{A1}}\ a1,\ \mbox{\hyperlink{mem__fn__cc_8hpp_a9fbc78aa6f21ccf5de2008548a55fa41}{A2}}\ \mbox{\hyperlink{class_sysc_add__pv}{a2}},\ \mbox{\hyperlink{mem__fn__cc_8hpp_a89a06d984ae53ed8b1aa8347b32acc34}{A3}}\ \mbox{\hyperlink{class_sysc_add__pv}{a3}},\ \mbox{\hyperlink{mem__fn__cc_8hpp_adfe39a13c9fec4b6aa664ac26daf637f}{A4}}\ \mbox{\hyperlink{class_sysc_add__pv}{a4}},\ \mbox{\hyperlink{mem__fn__cc_8hpp_a8578843f34b19c9d7eda7ce2c31ca88b}{A5}}\ \mbox{\hyperlink{class_sysc_add__pv}{a5}})\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00554\ \textcolor{keyword}{\ \ \ \ }\{}
+\DoxyCodeLine{00555\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{mem__fn_8hpp_a76811f5057db2ee0ab2f31467800ccfa}{SC\_BOOST\_MEM\_FN\_RETURN}}\ (p-\/>*\mbox{\hyperlink{bind__template_8hpp_a5bffa5ba7163be1080445f808a43a327}{f\_}})(a1,\ \mbox{\hyperlink{class_sysc_add__pv}{a2}},\ \mbox{\hyperlink{class_sysc_add__pv}{a3}},\ \mbox{\hyperlink{class_sysc_add__pv}{a4}},\ \mbox{\hyperlink{class_sysc_add__pv}{a5}});}
+\DoxyCodeLine{00556\ \ \ \ \ \}}
+\DoxyCodeLine{00557\ }
+\DoxyCodeLine{00558\ \ \ \ \ \textcolor{keyword}{template}<\textcolor{keyword}{class}\ U>\ \mbox{\hyperlink{class_sysc_add__pv}{R}}\ \mbox{\hyperlink{bind__template_8hpp_aaaead712fe7dc29c1799e7d8f77d1cfb}{operator()}}(\mbox{\hyperlink{class_sysc_add__pv}{U}}\ \&\ \mbox{\hyperlink{class_sysc_add__pv}{u}},\ \mbox{\hyperlink{mem__fn__cc_8hpp_a04e585ae6243f4fc9527956ec817ebcc}{A1}}\ a1,\ \mbox{\hyperlink{mem__fn__cc_8hpp_a9fbc78aa6f21ccf5de2008548a55fa41}{A2}}\ \mbox{\hyperlink{class_sysc_add__pv}{a2}},\ \mbox{\hyperlink{mem__fn__cc_8hpp_a89a06d984ae53ed8b1aa8347b32acc34}{A3}}\ \mbox{\hyperlink{class_sysc_add__pv}{a3}},\ \mbox{\hyperlink{mem__fn__cc_8hpp_adfe39a13c9fec4b6aa664ac26daf637f}{A4}}\ \mbox{\hyperlink{class_sysc_add__pv}{a4}},\ \mbox{\hyperlink{mem__fn__cc_8hpp_a8578843f34b19c9d7eda7ce2c31ca88b}{A5}}\ \mbox{\hyperlink{class_sysc_add__pv}{a5}})\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00559\ \textcolor{keyword}{\ \ \ \ }\{}
+\DoxyCodeLine{00560\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{mem__fn_8hpp_a76811f5057db2ee0ab2f31467800ccfa}{SC\_BOOST\_MEM\_FN\_RETURN}}\ call(\mbox{\hyperlink{class_sysc_add__pv}{u}},\ \&\mbox{\hyperlink{class_sysc_add__pv}{u}},\ a1,\ \mbox{\hyperlink{class_sysc_add__pv}{a2}},\ \mbox{\hyperlink{class_sysc_add__pv}{a3}},\ \mbox{\hyperlink{class_sysc_add__pv}{a4}},\ \mbox{\hyperlink{class_sysc_add__pv}{a5}});}
+\DoxyCodeLine{00561\ \ \ \ \ \}}
+\DoxyCodeLine{00562\ }
+\DoxyCodeLine{00563\ \ \ \ \ \mbox{\hyperlink{class_sysc_add__pv}{R}}\ \mbox{\hyperlink{bind__template_8hpp_aaaead712fe7dc29c1799e7d8f77d1cfb}{operator()}}(\mbox{\hyperlink{mem__fn__cc_8hpp_adf1f3edb9115acb0a1e04209b7a9937b}{T}}\ \&\ t,\ \mbox{\hyperlink{mem__fn__cc_8hpp_a04e585ae6243f4fc9527956ec817ebcc}{A1}}\ a1,\ \mbox{\hyperlink{mem__fn__cc_8hpp_a9fbc78aa6f21ccf5de2008548a55fa41}{A2}}\ \mbox{\hyperlink{class_sysc_add__pv}{a2}},\ \mbox{\hyperlink{mem__fn__cc_8hpp_a89a06d984ae53ed8b1aa8347b32acc34}{A3}}\ \mbox{\hyperlink{class_sysc_add__pv}{a3}},\ \mbox{\hyperlink{mem__fn__cc_8hpp_adfe39a13c9fec4b6aa664ac26daf637f}{A4}}\ \mbox{\hyperlink{class_sysc_add__pv}{a4}},\ \mbox{\hyperlink{mem__fn__cc_8hpp_a8578843f34b19c9d7eda7ce2c31ca88b}{A5}}\ \mbox{\hyperlink{class_sysc_add__pv}{a5}})\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00564\ \textcolor{keyword}{\ \ \ \ }\{}
+\DoxyCodeLine{00565\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{mem__fn_8hpp_a76811f5057db2ee0ab2f31467800ccfa}{SC\_BOOST\_MEM\_FN\_RETURN}}\ (t.*\mbox{\hyperlink{bind__template_8hpp_a5bffa5ba7163be1080445f808a43a327}{f\_}})(a1,\ \mbox{\hyperlink{class_sysc_add__pv}{a2}},\ \mbox{\hyperlink{class_sysc_add__pv}{a3}},\ \mbox{\hyperlink{class_sysc_add__pv}{a4}},\ \mbox{\hyperlink{class_sysc_add__pv}{a5}});}
+\DoxyCodeLine{00566\ \ \ \ \ \}}
+\DoxyCodeLine{00567\ }
+\DoxyCodeLine{00568\ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{namespacesc__dt_a670409225d70df53b3b5e5156a061ba6}{operator==}}(\mbox{\hyperlink{mem__fn_8hpp_a148b51c6578c9ebbf545abf944152166}{SC\_BOOST\_MEM\_FN\_NAME}}(\mbox{\hyperlink{class_sysc_add__pv}{mf5}})\ \textcolor{keyword}{const}\ \&\ \mbox{\hyperlink{class_sysc_add__pv}{rhs}})\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00569\ \textcolor{keyword}{\ \ \ \ }\{}
+\DoxyCodeLine{00570\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{bind__template_8hpp_a5bffa5ba7163be1080445f808a43a327}{f\_}}\ ==\ \mbox{\hyperlink{class_sysc_add__pv}{rhs}}.f\_;}
+\DoxyCodeLine{00571\ \ \ \ \ \}}
+\DoxyCodeLine{00572\ }
+\DoxyCodeLine{00573\ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{namespacesc__dt_ac521149d132e9c77a5d9029aa86344db}{operator!=}}(\mbox{\hyperlink{mem__fn_8hpp_a148b51c6578c9ebbf545abf944152166}{SC\_BOOST\_MEM\_FN\_NAME}}(\mbox{\hyperlink{class_sysc_add__pv}{mf5}})\ \textcolor{keyword}{const}\ \&\ \mbox{\hyperlink{class_sysc_add__pv}{rhs}})\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00574\ \textcolor{keyword}{\ \ \ \ }\{}
+\DoxyCodeLine{00575\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{bind__template_8hpp_a5bffa5ba7163be1080445f808a43a327}{f\_}}\ !=\ \mbox{\hyperlink{class_sysc_add__pv}{rhs}}.f\_;}
+\DoxyCodeLine{00576\ \ \ \ \ \}}
+\DoxyCodeLine{00577\ \};}
+\DoxyCodeLine{00578\ }
+\DoxyCodeLine{00579\ \textcolor{comment}{//\ cmf5}}
+\DoxyCodeLine{00580\ }
+\DoxyCodeLine{00581\ \textcolor{keyword}{template}<\textcolor{keyword}{class}\ R,\ \textcolor{keyword}{class}\ T,\ \textcolor{keyword}{class}\ A1,\ \textcolor{keyword}{class}\ A2,\ \textcolor{keyword}{class}\ A3,\ \textcolor{keyword}{class}\ A4,\ \textcolor{keyword}{class}\ A5\ SC\_BOOST\_MEM\_FN\_CLASS\_F>\ \textcolor{keyword}{class\ }\mbox{\hyperlink{class_sysc_add__pv}{SC\_BOOST\_MEM\_FN\_NAME(cmf5)}}}
+\DoxyCodeLine{00582\ \{}
+\DoxyCodeLine{00583\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00584\ }
+\DoxyCodeLine{00585\ \ \ \ \ \textcolor{keyword}{typedef}\ \mbox{\hyperlink{class_sysc_add__pv}{R}}\ \mbox{\hyperlink{bind__template_8hpp_a3003db32ff947cc71d89c477248e5172}{result\_type}};}
+\DoxyCodeLine{00586\ }
+\DoxyCodeLine{00587\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00588\ \ \ \ \ }
+\DoxyCodeLine{00589\ \ \ \ \ \mbox{\hyperlink{mem__fn_8hpp_a3ec63fb20dbbd33452c3f4c93a2c2588}{SC\_BOOST\_MEM\_FN\_TYPEDEF}}(\mbox{\hyperlink{class_sysc_add__pv}{R}}\ (\mbox{\hyperlink{mem__fn_8hpp_ac5a32bea9e3e8ba66edbf8681085fb49}{SC\_BOOST\_MEM\_FN\_CC}}\ \mbox{\hyperlink{mem__fn__cc_8hpp_adf1f3edb9115acb0a1e04209b7a9937b}{T}}::*F)\ (\mbox{\hyperlink{mem__fn__cc_8hpp_a04e585ae6243f4fc9527956ec817ebcc}{A1}},\ \mbox{\hyperlink{mem__fn__cc_8hpp_a9fbc78aa6f21ccf5de2008548a55fa41}{A2}},\ \mbox{\hyperlink{mem__fn__cc_8hpp_a89a06d984ae53ed8b1aa8347b32acc34}{A3}},\ \mbox{\hyperlink{mem__fn__cc_8hpp_adfe39a13c9fec4b6aa664ac26daf637f}{A4}},\ \mbox{\hyperlink{mem__fn__cc_8hpp_a8578843f34b19c9d7eda7ce2c31ca88b}{A5}})\ \mbox{\hyperlink{class_sysc_add__pv}{const}})}
+\DoxyCodeLine{00590\ \ \ \ \ F\ \mbox{\hyperlink{bind__template_8hpp_a5bffa5ba7163be1080445f808a43a327}{f\_}};}
+\DoxyCodeLine{00591\ }
+\DoxyCodeLine{00592\ \ \ \ \ \textcolor{keyword}{template}<\textcolor{keyword}{class}\ U,\ \textcolor{keyword}{class}\ B1,\ \textcolor{keyword}{class}\ B2,\ \textcolor{keyword}{class}\ B3,\ \textcolor{keyword}{class}\ B4,\ \textcolor{keyword}{class}\ B5>\ \mbox{\hyperlink{class_sysc_add__pv}{R}}\ call(\mbox{\hyperlink{class_sysc_add__pv}{U}}\ \&\ \mbox{\hyperlink{class_sysc_add__pv}{u}},\ \mbox{\hyperlink{mem__fn__cc_8hpp_adf1f3edb9115acb0a1e04209b7a9937b}{T}}\ \textcolor{keyword}{const}\ *,\ B1\ \&\ \mbox{\hyperlink{class_sysc_add__pv}{b1}},\ B2\ \&\ \mbox{\hyperlink{class_sysc_add__pv}{b2}},\ B3\ \&\ \mbox{\hyperlink{class_sysc_add__pv}{b3}},\ B4\ \&\ \mbox{\hyperlink{class_sysc_add__pv}{b4}},\ B5\ \&\ \mbox{\hyperlink{class_sysc_add__pv}{b5}})\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00593\ \textcolor{keyword}{\ \ \ \ }\{}
+\DoxyCodeLine{00594\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{mem__fn_8hpp_a76811f5057db2ee0ab2f31467800ccfa}{SC\_BOOST\_MEM\_FN\_RETURN}}\ (\mbox{\hyperlink{class_sysc_add__pv}{u}}.*\mbox{\hyperlink{bind__template_8hpp_a5bffa5ba7163be1080445f808a43a327}{f\_}})(\mbox{\hyperlink{class_sysc_add__pv}{b1}},\ \mbox{\hyperlink{class_sysc_add__pv}{b2}},\ \mbox{\hyperlink{class_sysc_add__pv}{b3}},\ \mbox{\hyperlink{class_sysc_add__pv}{b4}},\ \mbox{\hyperlink{class_sysc_add__pv}{b5}});}
+\DoxyCodeLine{00595\ \ \ \ \ \}}
+\DoxyCodeLine{00596\ }
+\DoxyCodeLine{00597\ \ \ \ \ \textcolor{keyword}{template}<\textcolor{keyword}{class}\ U,\ \textcolor{keyword}{class}\ B1,\ \textcolor{keyword}{class}\ B2,\ \textcolor{keyword}{class}\ B3,\ \textcolor{keyword}{class}\ B4,\ \textcolor{keyword}{class}\ B5>\ \mbox{\hyperlink{class_sysc_add__pv}{R}}\ call(\mbox{\hyperlink{class_sysc_add__pv}{U}}\ \&\ \mbox{\hyperlink{class_sysc_add__pv}{u}},\ \textcolor{keywordtype}{void}\ \textcolor{keyword}{const}\ *,\ B1\ \&\ \mbox{\hyperlink{class_sysc_add__pv}{b1}},\ B2\ \&\ \mbox{\hyperlink{class_sysc_add__pv}{b2}},\ B3\ \&\ \mbox{\hyperlink{class_sysc_add__pv}{b3}},\ B4\ \&\ \mbox{\hyperlink{class_sysc_add__pv}{b4}},\ B5\ \&\ \mbox{\hyperlink{class_sysc_add__pv}{b5}})\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00598\ \textcolor{keyword}{\ \ \ \ }\{}
+\DoxyCodeLine{00599\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{mem__fn_8hpp_a76811f5057db2ee0ab2f31467800ccfa}{SC\_BOOST\_MEM\_FN\_RETURN}}\ (\mbox{\hyperlink{namespacesc__boost_a6841ce52726804956cc3a4fe85673da7}{get\_pointer}}(\mbox{\hyperlink{class_sysc_add__pv}{u}})-\/>*\mbox{\hyperlink{bind__template_8hpp_a5bffa5ba7163be1080445f808a43a327}{f\_}})(\mbox{\hyperlink{class_sysc_add__pv}{b1}},\ \mbox{\hyperlink{class_sysc_add__pv}{b2}},\ \mbox{\hyperlink{class_sysc_add__pv}{b3}},\ \mbox{\hyperlink{class_sysc_add__pv}{b4}},\ \mbox{\hyperlink{class_sysc_add__pv}{b5}});}
+\DoxyCodeLine{00600\ \ \ \ \ \}}
+\DoxyCodeLine{00601\ }
+\DoxyCodeLine{00602\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00603\ \ \ \ \ }
+\DoxyCodeLine{00604\ \ \ \ \ \textcolor{keyword}{explicit}\ \mbox{\hyperlink{mem__fn_8hpp_a148b51c6578c9ebbf545abf944152166}{SC\_BOOST\_MEM\_FN\_NAME}}(\mbox{\hyperlink{class_sysc_add__pv}{cmf5}})(F\ f):\ \mbox{\hyperlink{bind__template_8hpp_a5bffa5ba7163be1080445f808a43a327}{f\_}}(f)\ \{\}}
+\DoxyCodeLine{00605\ }
+\DoxyCodeLine{00606\ \ \ \ \ \textcolor{keyword}{template}<\textcolor{keyword}{class}\ U>\ \mbox{\hyperlink{class_sysc_add__pv}{R}}\ \mbox{\hyperlink{bind__template_8hpp_aaaead712fe7dc29c1799e7d8f77d1cfb}{operator()}}(\mbox{\hyperlink{class_sysc_add__pv}{U}}\ \textcolor{keyword}{const}\ \&\ \mbox{\hyperlink{class_sysc_add__pv}{u}},\ \mbox{\hyperlink{mem__fn__cc_8hpp_a04e585ae6243f4fc9527956ec817ebcc}{A1}}\ a1,\ \mbox{\hyperlink{mem__fn__cc_8hpp_a9fbc78aa6f21ccf5de2008548a55fa41}{A2}}\ \mbox{\hyperlink{class_sysc_add__pv}{a2}},\ \mbox{\hyperlink{mem__fn__cc_8hpp_a89a06d984ae53ed8b1aa8347b32acc34}{A3}}\ \mbox{\hyperlink{class_sysc_add__pv}{a3}},\ \mbox{\hyperlink{mem__fn__cc_8hpp_adfe39a13c9fec4b6aa664ac26daf637f}{A4}}\ \mbox{\hyperlink{class_sysc_add__pv}{a4}},\ \mbox{\hyperlink{mem__fn__cc_8hpp_a8578843f34b19c9d7eda7ce2c31ca88b}{A5}}\ \mbox{\hyperlink{class_sysc_add__pv}{a5}})\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00607\ \textcolor{keyword}{\ \ \ \ }\{}
+\DoxyCodeLine{00608\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{mem__fn_8hpp_a76811f5057db2ee0ab2f31467800ccfa}{SC\_BOOST\_MEM\_FN\_RETURN}}\ call(\mbox{\hyperlink{class_sysc_add__pv}{u}},\ \&\mbox{\hyperlink{class_sysc_add__pv}{u}},\ a1,\ \mbox{\hyperlink{class_sysc_add__pv}{a2}},\ \mbox{\hyperlink{class_sysc_add__pv}{a3}},\ \mbox{\hyperlink{class_sysc_add__pv}{a4}},\ \mbox{\hyperlink{class_sysc_add__pv}{a5}});}
+\DoxyCodeLine{00609\ \ \ \ \ \}}
+\DoxyCodeLine{00610\ }
+\DoxyCodeLine{00611\ \ \ \ \ \mbox{\hyperlink{class_sysc_add__pv}{R}}\ \mbox{\hyperlink{bind__template_8hpp_aaaead712fe7dc29c1799e7d8f77d1cfb}{operator()}}(\mbox{\hyperlink{mem__fn__cc_8hpp_adf1f3edb9115acb0a1e04209b7a9937b}{T}}\ \textcolor{keyword}{const}\ \&\ t,\ \mbox{\hyperlink{mem__fn__cc_8hpp_a04e585ae6243f4fc9527956ec817ebcc}{A1}}\ a1,\ \mbox{\hyperlink{mem__fn__cc_8hpp_a9fbc78aa6f21ccf5de2008548a55fa41}{A2}}\ \mbox{\hyperlink{class_sysc_add__pv}{a2}},\ \mbox{\hyperlink{mem__fn__cc_8hpp_a89a06d984ae53ed8b1aa8347b32acc34}{A3}}\ \mbox{\hyperlink{class_sysc_add__pv}{a3}},\ \mbox{\hyperlink{mem__fn__cc_8hpp_adfe39a13c9fec4b6aa664ac26daf637f}{A4}}\ \mbox{\hyperlink{class_sysc_add__pv}{a4}},\ \mbox{\hyperlink{mem__fn__cc_8hpp_a8578843f34b19c9d7eda7ce2c31ca88b}{A5}}\ \mbox{\hyperlink{class_sysc_add__pv}{a5}})\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00612\ \textcolor{keyword}{\ \ \ \ }\{}
+\DoxyCodeLine{00613\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{mem__fn_8hpp_a76811f5057db2ee0ab2f31467800ccfa}{SC\_BOOST\_MEM\_FN\_RETURN}}\ (t.*\mbox{\hyperlink{bind__template_8hpp_a5bffa5ba7163be1080445f808a43a327}{f\_}})(a1,\ \mbox{\hyperlink{class_sysc_add__pv}{a2}},\ \mbox{\hyperlink{class_sysc_add__pv}{a3}},\ \mbox{\hyperlink{class_sysc_add__pv}{a4}},\ \mbox{\hyperlink{class_sysc_add__pv}{a5}});}
+\DoxyCodeLine{00614\ \ \ \ \ \}}
+\DoxyCodeLine{00615\ }
+\DoxyCodeLine{00616\ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{namespacesc__dt_a670409225d70df53b3b5e5156a061ba6}{operator==}}(\mbox{\hyperlink{mem__fn_8hpp_a148b51c6578c9ebbf545abf944152166}{SC\_BOOST\_MEM\_FN\_NAME}}(\mbox{\hyperlink{class_sysc_add__pv}{cmf5}})\ \textcolor{keyword}{const}\ \&\ \mbox{\hyperlink{class_sysc_add__pv}{rhs}})\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00617\ \textcolor{keyword}{\ \ \ \ }\{}
+\DoxyCodeLine{00618\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{bind__template_8hpp_a5bffa5ba7163be1080445f808a43a327}{f\_}}\ ==\ \mbox{\hyperlink{class_sysc_add__pv}{rhs}}.f\_;}
+\DoxyCodeLine{00619\ \ \ \ \ \}}
+\DoxyCodeLine{00620\ }
+\DoxyCodeLine{00621\ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{namespacesc__dt_ac521149d132e9c77a5d9029aa86344db}{operator!=}}(\mbox{\hyperlink{mem__fn_8hpp_a148b51c6578c9ebbf545abf944152166}{SC\_BOOST\_MEM\_FN\_NAME}}(\mbox{\hyperlink{class_sysc_add__pv}{cmf5}})\ \textcolor{keyword}{const}\ \&\ \mbox{\hyperlink{class_sysc_add__pv}{rhs}})\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00622\ \textcolor{keyword}{\ \ \ \ }\{}
+\DoxyCodeLine{00623\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{bind__template_8hpp_a5bffa5ba7163be1080445f808a43a327}{f\_}}\ !=\ \mbox{\hyperlink{class_sysc_add__pv}{rhs}}.f\_;}
+\DoxyCodeLine{00624\ \ \ \ \ \}}
+\DoxyCodeLine{00625\ \};}
+\DoxyCodeLine{00626\ }
+\DoxyCodeLine{00627\ \textcolor{comment}{//\ mf6}}
+\DoxyCodeLine{00628\ }
+\DoxyCodeLine{00629\ \textcolor{keyword}{template}<\textcolor{keyword}{class}\ R,\ \textcolor{keyword}{class}\ T,\ \textcolor{keyword}{class}\ A1,\ \textcolor{keyword}{class}\ A2,\ \textcolor{keyword}{class}\ A3,\ \textcolor{keyword}{class}\ A4,\ \textcolor{keyword}{class}\ A5,\ \textcolor{keyword}{class}\ A6\ SC\_BOOST\_MEM\_FN\_CLASS\_F>\ \textcolor{keyword}{class\ }\mbox{\hyperlink{class_sysc_add__pv}{SC\_BOOST\_MEM\_FN\_NAME(mf6)}}}
+\DoxyCodeLine{00630\ \{}
+\DoxyCodeLine{00631\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00632\ }
+\DoxyCodeLine{00633\ \ \ \ \ \textcolor{keyword}{typedef}\ \mbox{\hyperlink{class_sysc_add__pv}{R}}\ \mbox{\hyperlink{bind__template_8hpp_a3003db32ff947cc71d89c477248e5172}{result\_type}};}
+\DoxyCodeLine{00634\ }
+\DoxyCodeLine{00635\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00636\ }
+\DoxyCodeLine{00637\ \ \ \ \ \mbox{\hyperlink{mem__fn_8hpp_a3ec63fb20dbbd33452c3f4c93a2c2588}{SC\_BOOST\_MEM\_FN\_TYPEDEF}}(\mbox{\hyperlink{class_sysc_add__pv}{R}}\ (\mbox{\hyperlink{mem__fn_8hpp_ac5a32bea9e3e8ba66edbf8681085fb49}{SC\_BOOST\_MEM\_FN\_CC}}\ \mbox{\hyperlink{mem__fn__cc_8hpp_adf1f3edb9115acb0a1e04209b7a9937b}{T}}::*F)\ (\mbox{\hyperlink{mem__fn__cc_8hpp_a04e585ae6243f4fc9527956ec817ebcc}{A1}},\ \mbox{\hyperlink{mem__fn__cc_8hpp_a9fbc78aa6f21ccf5de2008548a55fa41}{A2}},\ \mbox{\hyperlink{mem__fn__cc_8hpp_a89a06d984ae53ed8b1aa8347b32acc34}{A3}},\ \mbox{\hyperlink{mem__fn__cc_8hpp_adfe39a13c9fec4b6aa664ac26daf637f}{A4}},\ \mbox{\hyperlink{mem__fn__cc_8hpp_a8578843f34b19c9d7eda7ce2c31ca88b}{A5}},\ \mbox{\hyperlink{mem__fn__cc_8hpp_a517625cd635b9236a02785e388086ae8}{A6}}))}
+\DoxyCodeLine{00638\ \ \ \ \ F\ \mbox{\hyperlink{bind__template_8hpp_a5bffa5ba7163be1080445f808a43a327}{f\_}};}
+\DoxyCodeLine{00639\ }
+\DoxyCodeLine{00640\ \ \ \ \ \textcolor{keyword}{template}<\textcolor{keyword}{class}\ U,\ \textcolor{keyword}{class}\ B1,\ \textcolor{keyword}{class}\ B2,\ \textcolor{keyword}{class}\ B3,\ \textcolor{keyword}{class}\ B4,\ \textcolor{keyword}{class}\ B5,\ \textcolor{keyword}{class}\ B6>\ \mbox{\hyperlink{class_sysc_add__pv}{R}}\ call(\mbox{\hyperlink{class_sysc_add__pv}{U}}\ \&\ \mbox{\hyperlink{class_sysc_add__pv}{u}},\ \mbox{\hyperlink{mem__fn__cc_8hpp_adf1f3edb9115acb0a1e04209b7a9937b}{T}}\ \textcolor{keyword}{const}\ *,\ B1\ \&\ \mbox{\hyperlink{class_sysc_add__pv}{b1}},\ B2\ \&\ \mbox{\hyperlink{class_sysc_add__pv}{b2}},\ B3\ \&\ \mbox{\hyperlink{class_sysc_add__pv}{b3}},\ B4\ \&\ \mbox{\hyperlink{class_sysc_add__pv}{b4}},\ B5\ \&\ \mbox{\hyperlink{class_sysc_add__pv}{b5}},\ B6\ \&\ \mbox{\hyperlink{class_sysc_add__pv}{b6}})\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00641\ \textcolor{keyword}{\ \ \ \ }\{}
+\DoxyCodeLine{00642\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{mem__fn_8hpp_a76811f5057db2ee0ab2f31467800ccfa}{SC\_BOOST\_MEM\_FN\_RETURN}}\ (\mbox{\hyperlink{class_sysc_add__pv}{u}}.*\mbox{\hyperlink{bind__template_8hpp_a5bffa5ba7163be1080445f808a43a327}{f\_}})(\mbox{\hyperlink{class_sysc_add__pv}{b1}},\ \mbox{\hyperlink{class_sysc_add__pv}{b2}},\ \mbox{\hyperlink{class_sysc_add__pv}{b3}},\ \mbox{\hyperlink{class_sysc_add__pv}{b4}},\ \mbox{\hyperlink{class_sysc_add__pv}{b5}},\ \mbox{\hyperlink{class_sysc_add__pv}{b6}});}
+\DoxyCodeLine{00643\ \ \ \ \ \}}
+\DoxyCodeLine{00644\ }
+\DoxyCodeLine{00645\ \ \ \ \ \textcolor{keyword}{template}<\textcolor{keyword}{class}\ U,\ \textcolor{keyword}{class}\ B1,\ \textcolor{keyword}{class}\ B2,\ \textcolor{keyword}{class}\ B3,\ \textcolor{keyword}{class}\ B4,\ \textcolor{keyword}{class}\ B5,\ \textcolor{keyword}{class}\ B6>\ \mbox{\hyperlink{class_sysc_add__pv}{R}}\ call(\mbox{\hyperlink{class_sysc_add__pv}{U}}\ \&\ \mbox{\hyperlink{class_sysc_add__pv}{u}},\ \textcolor{keywordtype}{void}\ \textcolor{keyword}{const}\ *,\ B1\ \&\ \mbox{\hyperlink{class_sysc_add__pv}{b1}},\ B2\ \&\ \mbox{\hyperlink{class_sysc_add__pv}{b2}},\ B3\ \&\ \mbox{\hyperlink{class_sysc_add__pv}{b3}},\ B4\ \&\ \mbox{\hyperlink{class_sysc_add__pv}{b4}},\ B5\ \&\ \mbox{\hyperlink{class_sysc_add__pv}{b5}},\ B6\ \&\ \mbox{\hyperlink{class_sysc_add__pv}{b6}})\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00646\ \textcolor{keyword}{\ \ \ \ }\{}
+\DoxyCodeLine{00647\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{mem__fn_8hpp_a76811f5057db2ee0ab2f31467800ccfa}{SC\_BOOST\_MEM\_FN\_RETURN}}\ (\mbox{\hyperlink{namespacesc__boost_a6841ce52726804956cc3a4fe85673da7}{get\_pointer}}(\mbox{\hyperlink{class_sysc_add__pv}{u}})-\/>*\mbox{\hyperlink{bind__template_8hpp_a5bffa5ba7163be1080445f808a43a327}{f\_}})(\mbox{\hyperlink{class_sysc_add__pv}{b1}},\ \mbox{\hyperlink{class_sysc_add__pv}{b2}},\ \mbox{\hyperlink{class_sysc_add__pv}{b3}},\ \mbox{\hyperlink{class_sysc_add__pv}{b4}},\ \mbox{\hyperlink{class_sysc_add__pv}{b5}},\ \mbox{\hyperlink{class_sysc_add__pv}{b6}});}
+\DoxyCodeLine{00648\ \ \ \ \ \}}
+\DoxyCodeLine{00649\ }
+\DoxyCodeLine{00650\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00651\ }
+\DoxyCodeLine{00652\ \ \ \ \ \textcolor{keyword}{explicit}\ \mbox{\hyperlink{mem__fn_8hpp_a148b51c6578c9ebbf545abf944152166}{SC\_BOOST\_MEM\_FN\_NAME}}(\mbox{\hyperlink{class_sysc_add__pv}{mf6}})(F\ f):\ \mbox{\hyperlink{bind__template_8hpp_a5bffa5ba7163be1080445f808a43a327}{f\_}}(f)\ \{\}}
+\DoxyCodeLine{00653\ }
+\DoxyCodeLine{00654\ \ \ \ \ \mbox{\hyperlink{class_sysc_add__pv}{R}}\ \mbox{\hyperlink{bind__template_8hpp_aaaead712fe7dc29c1799e7d8f77d1cfb}{operator()}}(\mbox{\hyperlink{mem__fn__cc_8hpp_adf1f3edb9115acb0a1e04209b7a9937b}{T}}\ *\ p,\ \mbox{\hyperlink{mem__fn__cc_8hpp_a04e585ae6243f4fc9527956ec817ebcc}{A1}}\ a1,\ \mbox{\hyperlink{mem__fn__cc_8hpp_a9fbc78aa6f21ccf5de2008548a55fa41}{A2}}\ \mbox{\hyperlink{class_sysc_add__pv}{a2}},\ \mbox{\hyperlink{mem__fn__cc_8hpp_a89a06d984ae53ed8b1aa8347b32acc34}{A3}}\ \mbox{\hyperlink{class_sysc_add__pv}{a3}},\ \mbox{\hyperlink{mem__fn__cc_8hpp_adfe39a13c9fec4b6aa664ac26daf637f}{A4}}\ \mbox{\hyperlink{class_sysc_add__pv}{a4}},\ \mbox{\hyperlink{mem__fn__cc_8hpp_a8578843f34b19c9d7eda7ce2c31ca88b}{A5}}\ \mbox{\hyperlink{class_sysc_add__pv}{a5}},\ \mbox{\hyperlink{mem__fn__cc_8hpp_a517625cd635b9236a02785e388086ae8}{A6}}\ \mbox{\hyperlink{class_sysc_add__pv}{a6}})\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00655\ \textcolor{keyword}{\ \ \ \ }\{}
+\DoxyCodeLine{00656\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{mem__fn_8hpp_a76811f5057db2ee0ab2f31467800ccfa}{SC\_BOOST\_MEM\_FN\_RETURN}}\ (p-\/>*\mbox{\hyperlink{bind__template_8hpp_a5bffa5ba7163be1080445f808a43a327}{f\_}})(a1,\ \mbox{\hyperlink{class_sysc_add__pv}{a2}},\ \mbox{\hyperlink{class_sysc_add__pv}{a3}},\ \mbox{\hyperlink{class_sysc_add__pv}{a4}},\ \mbox{\hyperlink{class_sysc_add__pv}{a5}},\ \mbox{\hyperlink{class_sysc_add__pv}{a6}});}
+\DoxyCodeLine{00657\ \ \ \ \ \}}
+\DoxyCodeLine{00658\ }
+\DoxyCodeLine{00659\ \ \ \ \ \textcolor{keyword}{template}<\textcolor{keyword}{class}\ U>\ \mbox{\hyperlink{class_sysc_add__pv}{R}}\ \mbox{\hyperlink{bind__template_8hpp_aaaead712fe7dc29c1799e7d8f77d1cfb}{operator()}}(\mbox{\hyperlink{class_sysc_add__pv}{U}}\ \&\ \mbox{\hyperlink{class_sysc_add__pv}{u}},\ \mbox{\hyperlink{mem__fn__cc_8hpp_a04e585ae6243f4fc9527956ec817ebcc}{A1}}\ a1,\ \mbox{\hyperlink{mem__fn__cc_8hpp_a9fbc78aa6f21ccf5de2008548a55fa41}{A2}}\ \mbox{\hyperlink{class_sysc_add__pv}{a2}},\ \mbox{\hyperlink{mem__fn__cc_8hpp_a89a06d984ae53ed8b1aa8347b32acc34}{A3}}\ \mbox{\hyperlink{class_sysc_add__pv}{a3}},\ \mbox{\hyperlink{mem__fn__cc_8hpp_adfe39a13c9fec4b6aa664ac26daf637f}{A4}}\ \mbox{\hyperlink{class_sysc_add__pv}{a4}},\ \mbox{\hyperlink{mem__fn__cc_8hpp_a8578843f34b19c9d7eda7ce2c31ca88b}{A5}}\ \mbox{\hyperlink{class_sysc_add__pv}{a5}},\ \mbox{\hyperlink{mem__fn__cc_8hpp_a517625cd635b9236a02785e388086ae8}{A6}}\ \mbox{\hyperlink{class_sysc_add__pv}{a6}})\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00660\ \textcolor{keyword}{\ \ \ \ }\{}
+\DoxyCodeLine{00661\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{mem__fn_8hpp_a76811f5057db2ee0ab2f31467800ccfa}{SC\_BOOST\_MEM\_FN\_RETURN}}\ call(\mbox{\hyperlink{class_sysc_add__pv}{u}},\ \&\mbox{\hyperlink{class_sysc_add__pv}{u}},\ a1,\ \mbox{\hyperlink{class_sysc_add__pv}{a2}},\ \mbox{\hyperlink{class_sysc_add__pv}{a3}},\ \mbox{\hyperlink{class_sysc_add__pv}{a4}},\ \mbox{\hyperlink{class_sysc_add__pv}{a5}},\ \mbox{\hyperlink{class_sysc_add__pv}{a6}});}
+\DoxyCodeLine{00662\ \ \ \ \ \}}
+\DoxyCodeLine{00663\ }
+\DoxyCodeLine{00664\ \ \ \ \ \mbox{\hyperlink{class_sysc_add__pv}{R}}\ \mbox{\hyperlink{bind__template_8hpp_aaaead712fe7dc29c1799e7d8f77d1cfb}{operator()}}(\mbox{\hyperlink{mem__fn__cc_8hpp_adf1f3edb9115acb0a1e04209b7a9937b}{T}}\ \&\ t,\ \mbox{\hyperlink{mem__fn__cc_8hpp_a04e585ae6243f4fc9527956ec817ebcc}{A1}}\ a1,\ \mbox{\hyperlink{mem__fn__cc_8hpp_a9fbc78aa6f21ccf5de2008548a55fa41}{A2}}\ \mbox{\hyperlink{class_sysc_add__pv}{a2}},\ \mbox{\hyperlink{mem__fn__cc_8hpp_a89a06d984ae53ed8b1aa8347b32acc34}{A3}}\ \mbox{\hyperlink{class_sysc_add__pv}{a3}},\ \mbox{\hyperlink{mem__fn__cc_8hpp_adfe39a13c9fec4b6aa664ac26daf637f}{A4}}\ \mbox{\hyperlink{class_sysc_add__pv}{a4}},\ \mbox{\hyperlink{mem__fn__cc_8hpp_a8578843f34b19c9d7eda7ce2c31ca88b}{A5}}\ \mbox{\hyperlink{class_sysc_add__pv}{a5}},\ \mbox{\hyperlink{mem__fn__cc_8hpp_a517625cd635b9236a02785e388086ae8}{A6}}\ \mbox{\hyperlink{class_sysc_add__pv}{a6}})\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00665\ \textcolor{keyword}{\ \ \ \ }\{}
+\DoxyCodeLine{00666\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{mem__fn_8hpp_a76811f5057db2ee0ab2f31467800ccfa}{SC\_BOOST\_MEM\_FN\_RETURN}}\ (t.*\mbox{\hyperlink{bind__template_8hpp_a5bffa5ba7163be1080445f808a43a327}{f\_}})(a1,\ \mbox{\hyperlink{class_sysc_add__pv}{a2}},\ \mbox{\hyperlink{class_sysc_add__pv}{a3}},\ \mbox{\hyperlink{class_sysc_add__pv}{a4}},\ \mbox{\hyperlink{class_sysc_add__pv}{a5}},\ \mbox{\hyperlink{class_sysc_add__pv}{a6}});}
+\DoxyCodeLine{00667\ \ \ \ \ \}}
+\DoxyCodeLine{00668\ }
+\DoxyCodeLine{00669\ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{namespacesc__dt_a670409225d70df53b3b5e5156a061ba6}{operator==}}(\mbox{\hyperlink{mem__fn_8hpp_a148b51c6578c9ebbf545abf944152166}{SC\_BOOST\_MEM\_FN\_NAME}}(\mbox{\hyperlink{class_sysc_add__pv}{mf6}})\ \textcolor{keyword}{const}\ \&\ \mbox{\hyperlink{class_sysc_add__pv}{rhs}})\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00670\ \textcolor{keyword}{\ \ \ \ }\{}
+\DoxyCodeLine{00671\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{bind__template_8hpp_a5bffa5ba7163be1080445f808a43a327}{f\_}}\ ==\ \mbox{\hyperlink{class_sysc_add__pv}{rhs}}.f\_;}
+\DoxyCodeLine{00672\ \ \ \ \ \}}
+\DoxyCodeLine{00673\ }
+\DoxyCodeLine{00674\ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{namespacesc__dt_ac521149d132e9c77a5d9029aa86344db}{operator!=}}(\mbox{\hyperlink{mem__fn_8hpp_a148b51c6578c9ebbf545abf944152166}{SC\_BOOST\_MEM\_FN\_NAME}}(\mbox{\hyperlink{class_sysc_add__pv}{mf6}})\ \textcolor{keyword}{const}\ \&\ \mbox{\hyperlink{class_sysc_add__pv}{rhs}})\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00675\ \textcolor{keyword}{\ \ \ \ }\{}
+\DoxyCodeLine{00676\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{bind__template_8hpp_a5bffa5ba7163be1080445f808a43a327}{f\_}}\ !=\ \mbox{\hyperlink{class_sysc_add__pv}{rhs}}.f\_;}
+\DoxyCodeLine{00677\ \ \ \ \ \}}
+\DoxyCodeLine{00678\ \};}
+\DoxyCodeLine{00679\ }
+\DoxyCodeLine{00680\ \textcolor{comment}{//\ cmf6}}
+\DoxyCodeLine{00681\ }
+\DoxyCodeLine{00682\ \textcolor{keyword}{template}<\textcolor{keyword}{class}\ R,\ \textcolor{keyword}{class}\ T,\ \textcolor{keyword}{class}\ A1,\ \textcolor{keyword}{class}\ A2,\ \textcolor{keyword}{class}\ A3,\ \textcolor{keyword}{class}\ A4,\ \textcolor{keyword}{class}\ A5,\ \textcolor{keyword}{class}\ A6\ SC\_BOOST\_MEM\_FN\_CLASS\_F>\ \textcolor{keyword}{class\ }\mbox{\hyperlink{class_sysc_add__pv}{SC\_BOOST\_MEM\_FN\_NAME(cmf6)}}}
+\DoxyCodeLine{00683\ \{}
+\DoxyCodeLine{00684\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00685\ }
+\DoxyCodeLine{00686\ \ \ \ \ \textcolor{keyword}{typedef}\ \mbox{\hyperlink{class_sysc_add__pv}{R}}\ \mbox{\hyperlink{bind__template_8hpp_a3003db32ff947cc71d89c477248e5172}{result\_type}};}
+\DoxyCodeLine{00687\ }
+\DoxyCodeLine{00688\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00689\ \ \ \ \ }
+\DoxyCodeLine{00690\ \ \ \ \ \mbox{\hyperlink{mem__fn_8hpp_a3ec63fb20dbbd33452c3f4c93a2c2588}{SC\_BOOST\_MEM\_FN\_TYPEDEF}}(\mbox{\hyperlink{class_sysc_add__pv}{R}}\ (\mbox{\hyperlink{mem__fn_8hpp_ac5a32bea9e3e8ba66edbf8681085fb49}{SC\_BOOST\_MEM\_FN\_CC}}\ \mbox{\hyperlink{mem__fn__cc_8hpp_adf1f3edb9115acb0a1e04209b7a9937b}{T}}::*F)\ (\mbox{\hyperlink{mem__fn__cc_8hpp_a04e585ae6243f4fc9527956ec817ebcc}{A1}},\ \mbox{\hyperlink{mem__fn__cc_8hpp_a9fbc78aa6f21ccf5de2008548a55fa41}{A2}},\ \mbox{\hyperlink{mem__fn__cc_8hpp_a89a06d984ae53ed8b1aa8347b32acc34}{A3}},\ \mbox{\hyperlink{mem__fn__cc_8hpp_adfe39a13c9fec4b6aa664ac26daf637f}{A4}},\ \mbox{\hyperlink{mem__fn__cc_8hpp_a8578843f34b19c9d7eda7ce2c31ca88b}{A5}},\ \mbox{\hyperlink{mem__fn__cc_8hpp_a517625cd635b9236a02785e388086ae8}{A6}})\ \mbox{\hyperlink{class_sysc_add__pv}{const}})}
+\DoxyCodeLine{00691\ \ \ \ \ F\ \mbox{\hyperlink{bind__template_8hpp_a5bffa5ba7163be1080445f808a43a327}{f\_}};}
+\DoxyCodeLine{00692\ }
+\DoxyCodeLine{00693\ \ \ \ \ \textcolor{keyword}{template}<\textcolor{keyword}{class}\ U,\ \textcolor{keyword}{class}\ B1,\ \textcolor{keyword}{class}\ B2,\ \textcolor{keyword}{class}\ B3,\ \textcolor{keyword}{class}\ B4,\ \textcolor{keyword}{class}\ B5,\ \textcolor{keyword}{class}\ B6>\ \mbox{\hyperlink{class_sysc_add__pv}{R}}\ call(\mbox{\hyperlink{class_sysc_add__pv}{U}}\ \&\ \mbox{\hyperlink{class_sysc_add__pv}{u}},\ \mbox{\hyperlink{mem__fn__cc_8hpp_adf1f3edb9115acb0a1e04209b7a9937b}{T}}\ \textcolor{keyword}{const}\ *,\ B1\ \&\ \mbox{\hyperlink{class_sysc_add__pv}{b1}},\ B2\ \&\ \mbox{\hyperlink{class_sysc_add__pv}{b2}},\ B3\ \&\ \mbox{\hyperlink{class_sysc_add__pv}{b3}},\ B4\ \&\ \mbox{\hyperlink{class_sysc_add__pv}{b4}},\ B5\ \&\ \mbox{\hyperlink{class_sysc_add__pv}{b5}},\ B6\ \&\ \mbox{\hyperlink{class_sysc_add__pv}{b6}})\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00694\ \textcolor{keyword}{\ \ \ \ }\{}
+\DoxyCodeLine{00695\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{mem__fn_8hpp_a76811f5057db2ee0ab2f31467800ccfa}{SC\_BOOST\_MEM\_FN\_RETURN}}\ (\mbox{\hyperlink{class_sysc_add__pv}{u}}.*\mbox{\hyperlink{bind__template_8hpp_a5bffa5ba7163be1080445f808a43a327}{f\_}})(\mbox{\hyperlink{class_sysc_add__pv}{b1}},\ \mbox{\hyperlink{class_sysc_add__pv}{b2}},\ \mbox{\hyperlink{class_sysc_add__pv}{b3}},\ \mbox{\hyperlink{class_sysc_add__pv}{b4}},\ \mbox{\hyperlink{class_sysc_add__pv}{b5}},\ \mbox{\hyperlink{class_sysc_add__pv}{b6}});}
+\DoxyCodeLine{00696\ \ \ \ \ \}}
+\DoxyCodeLine{00697\ }
+\DoxyCodeLine{00698\ \ \ \ \ \textcolor{keyword}{template}<\textcolor{keyword}{class}\ U,\ \textcolor{keyword}{class}\ B1,\ \textcolor{keyword}{class}\ B2,\ \textcolor{keyword}{class}\ B3,\ \textcolor{keyword}{class}\ B4,\ \textcolor{keyword}{class}\ B5,\ \textcolor{keyword}{class}\ B6>\ \mbox{\hyperlink{class_sysc_add__pv}{R}}\ call(\mbox{\hyperlink{class_sysc_add__pv}{U}}\ \&\ \mbox{\hyperlink{class_sysc_add__pv}{u}},\ \textcolor{keywordtype}{void}\ \textcolor{keyword}{const}\ *,\ B1\ \&\ \mbox{\hyperlink{class_sysc_add__pv}{b1}},\ B2\ \&\ \mbox{\hyperlink{class_sysc_add__pv}{b2}},\ B3\ \&\ \mbox{\hyperlink{class_sysc_add__pv}{b3}},\ B4\ \&\ \mbox{\hyperlink{class_sysc_add__pv}{b4}},\ B5\ \&\ \mbox{\hyperlink{class_sysc_add__pv}{b5}},\ B6\ \&\ \mbox{\hyperlink{class_sysc_add__pv}{b6}})\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00699\ \textcolor{keyword}{\ \ \ \ }\{}
+\DoxyCodeLine{00700\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{mem__fn_8hpp_a76811f5057db2ee0ab2f31467800ccfa}{SC\_BOOST\_MEM\_FN\_RETURN}}\ (\mbox{\hyperlink{namespacesc__boost_a6841ce52726804956cc3a4fe85673da7}{get\_pointer}}(\mbox{\hyperlink{class_sysc_add__pv}{u}})-\/>*\mbox{\hyperlink{bind__template_8hpp_a5bffa5ba7163be1080445f808a43a327}{f\_}})(\mbox{\hyperlink{class_sysc_add__pv}{b1}},\ \mbox{\hyperlink{class_sysc_add__pv}{b2}},\ \mbox{\hyperlink{class_sysc_add__pv}{b3}},\ \mbox{\hyperlink{class_sysc_add__pv}{b4}},\ \mbox{\hyperlink{class_sysc_add__pv}{b5}},\ \mbox{\hyperlink{class_sysc_add__pv}{b6}});}
+\DoxyCodeLine{00701\ \ \ \ \ \}}
+\DoxyCodeLine{00702\ }
+\DoxyCodeLine{00703\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00704\ \ \ \ \ }
+\DoxyCodeLine{00705\ \ \ \ \ \textcolor{keyword}{explicit}\ \mbox{\hyperlink{mem__fn_8hpp_a148b51c6578c9ebbf545abf944152166}{SC\_BOOST\_MEM\_FN\_NAME}}(\mbox{\hyperlink{class_sysc_add__pv}{cmf6}})(F\ f):\ \mbox{\hyperlink{bind__template_8hpp_a5bffa5ba7163be1080445f808a43a327}{f\_}}(f)\ \{\}}
+\DoxyCodeLine{00706\ }
+\DoxyCodeLine{00707\ \ \ \ \ \textcolor{keyword}{template}<\textcolor{keyword}{class}\ U>\ \mbox{\hyperlink{class_sysc_add__pv}{R}}\ \mbox{\hyperlink{bind__template_8hpp_aaaead712fe7dc29c1799e7d8f77d1cfb}{operator()}}(\mbox{\hyperlink{class_sysc_add__pv}{U}}\ \textcolor{keyword}{const}\ \&\ \mbox{\hyperlink{class_sysc_add__pv}{u}},\ \mbox{\hyperlink{mem__fn__cc_8hpp_a04e585ae6243f4fc9527956ec817ebcc}{A1}}\ a1,\ \mbox{\hyperlink{mem__fn__cc_8hpp_a9fbc78aa6f21ccf5de2008548a55fa41}{A2}}\ \mbox{\hyperlink{class_sysc_add__pv}{a2}},\ \mbox{\hyperlink{mem__fn__cc_8hpp_a89a06d984ae53ed8b1aa8347b32acc34}{A3}}\ \mbox{\hyperlink{class_sysc_add__pv}{a3}},\ \mbox{\hyperlink{mem__fn__cc_8hpp_adfe39a13c9fec4b6aa664ac26daf637f}{A4}}\ \mbox{\hyperlink{class_sysc_add__pv}{a4}},\ \mbox{\hyperlink{mem__fn__cc_8hpp_a8578843f34b19c9d7eda7ce2c31ca88b}{A5}}\ \mbox{\hyperlink{class_sysc_add__pv}{a5}},\ \mbox{\hyperlink{mem__fn__cc_8hpp_a517625cd635b9236a02785e388086ae8}{A6}}\ \mbox{\hyperlink{class_sysc_add__pv}{a6}})\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00708\ \textcolor{keyword}{\ \ \ \ }\{}
+\DoxyCodeLine{00709\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{mem__fn_8hpp_a76811f5057db2ee0ab2f31467800ccfa}{SC\_BOOST\_MEM\_FN\_RETURN}}\ call(\mbox{\hyperlink{class_sysc_add__pv}{u}},\ \&\mbox{\hyperlink{class_sysc_add__pv}{u}},\ a1,\ \mbox{\hyperlink{class_sysc_add__pv}{a2}},\ \mbox{\hyperlink{class_sysc_add__pv}{a3}},\ \mbox{\hyperlink{class_sysc_add__pv}{a4}},\ \mbox{\hyperlink{class_sysc_add__pv}{a5}},\ \mbox{\hyperlink{class_sysc_add__pv}{a6}});}
+\DoxyCodeLine{00710\ \ \ \ \ \}}
+\DoxyCodeLine{00711\ }
+\DoxyCodeLine{00712\ \ \ \ \ \mbox{\hyperlink{class_sysc_add__pv}{R}}\ \mbox{\hyperlink{bind__template_8hpp_aaaead712fe7dc29c1799e7d8f77d1cfb}{operator()}}(\mbox{\hyperlink{mem__fn__cc_8hpp_adf1f3edb9115acb0a1e04209b7a9937b}{T}}\ \textcolor{keyword}{const}\ \&\ t,\ \mbox{\hyperlink{mem__fn__cc_8hpp_a04e585ae6243f4fc9527956ec817ebcc}{A1}}\ a1,\ \mbox{\hyperlink{mem__fn__cc_8hpp_a9fbc78aa6f21ccf5de2008548a55fa41}{A2}}\ \mbox{\hyperlink{class_sysc_add__pv}{a2}},\ \mbox{\hyperlink{mem__fn__cc_8hpp_a89a06d984ae53ed8b1aa8347b32acc34}{A3}}\ \mbox{\hyperlink{class_sysc_add__pv}{a3}},\ \mbox{\hyperlink{mem__fn__cc_8hpp_adfe39a13c9fec4b6aa664ac26daf637f}{A4}}\ \mbox{\hyperlink{class_sysc_add__pv}{a4}},\ \mbox{\hyperlink{mem__fn__cc_8hpp_a8578843f34b19c9d7eda7ce2c31ca88b}{A5}}\ \mbox{\hyperlink{class_sysc_add__pv}{a5}},\ \mbox{\hyperlink{mem__fn__cc_8hpp_a517625cd635b9236a02785e388086ae8}{A6}}\ \mbox{\hyperlink{class_sysc_add__pv}{a6}})\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00713\ \textcolor{keyword}{\ \ \ \ }\{}
+\DoxyCodeLine{00714\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{mem__fn_8hpp_a76811f5057db2ee0ab2f31467800ccfa}{SC\_BOOST\_MEM\_FN\_RETURN}}\ (t.*\mbox{\hyperlink{bind__template_8hpp_a5bffa5ba7163be1080445f808a43a327}{f\_}})(a1,\ \mbox{\hyperlink{class_sysc_add__pv}{a2}},\ \mbox{\hyperlink{class_sysc_add__pv}{a3}},\ \mbox{\hyperlink{class_sysc_add__pv}{a4}},\ \mbox{\hyperlink{class_sysc_add__pv}{a5}},\ \mbox{\hyperlink{class_sysc_add__pv}{a6}});}
+\DoxyCodeLine{00715\ \ \ \ \ \}}
+\DoxyCodeLine{00716\ }
+\DoxyCodeLine{00717\ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{namespacesc__dt_a670409225d70df53b3b5e5156a061ba6}{operator==}}(\mbox{\hyperlink{mem__fn_8hpp_a148b51c6578c9ebbf545abf944152166}{SC\_BOOST\_MEM\_FN\_NAME}}(\mbox{\hyperlink{class_sysc_add__pv}{cmf6}})\ \textcolor{keyword}{const}\ \&\ \mbox{\hyperlink{class_sysc_add__pv}{rhs}})\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00718\ \textcolor{keyword}{\ \ \ \ }\{}
+\DoxyCodeLine{00719\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{bind__template_8hpp_a5bffa5ba7163be1080445f808a43a327}{f\_}}\ ==\ \mbox{\hyperlink{class_sysc_add__pv}{rhs}}.f\_;}
+\DoxyCodeLine{00720\ \ \ \ \ \}}
+\DoxyCodeLine{00721\ }
+\DoxyCodeLine{00722\ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{namespacesc__dt_ac521149d132e9c77a5d9029aa86344db}{operator!=}}(\mbox{\hyperlink{mem__fn_8hpp_a148b51c6578c9ebbf545abf944152166}{SC\_BOOST\_MEM\_FN\_NAME}}(\mbox{\hyperlink{class_sysc_add__pv}{cmf6}})\ \textcolor{keyword}{const}\ \&\ \mbox{\hyperlink{class_sysc_add__pv}{rhs}})\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00723\ \textcolor{keyword}{\ \ \ \ }\{}
+\DoxyCodeLine{00724\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{bind__template_8hpp_a5bffa5ba7163be1080445f808a43a327}{f\_}}\ !=\ \mbox{\hyperlink{class_sysc_add__pv}{rhs}}.f\_;}
+\DoxyCodeLine{00725\ \ \ \ \ \}}
+\DoxyCodeLine{00726\ \};}
+\DoxyCodeLine{00727\ }
+\DoxyCodeLine{00728\ \textcolor{comment}{//\ mf7}}
+\DoxyCodeLine{00729\ }
+\DoxyCodeLine{00730\ \textcolor{keyword}{template}<\textcolor{keyword}{class}\ R,\ \textcolor{keyword}{class}\ T,\ \textcolor{keyword}{class}\ A1,\ \textcolor{keyword}{class}\ A2,\ \textcolor{keyword}{class}\ A3,\ \textcolor{keyword}{class}\ A4,\ \textcolor{keyword}{class}\ A5,\ \textcolor{keyword}{class}\ A6,\ \textcolor{keyword}{class}\ A7\ SC\_BOOST\_MEM\_FN\_CLASS\_F>\ \textcolor{keyword}{class\ }\mbox{\hyperlink{class_sysc_add__pv}{SC\_BOOST\_MEM\_FN\_NAME(mf7)}}}
+\DoxyCodeLine{00731\ \{}
+\DoxyCodeLine{00732\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00733\ }
+\DoxyCodeLine{00734\ \ \ \ \ \textcolor{keyword}{typedef}\ \mbox{\hyperlink{class_sysc_add__pv}{R}}\ \mbox{\hyperlink{bind__template_8hpp_a3003db32ff947cc71d89c477248e5172}{result\_type}};}
+\DoxyCodeLine{00735\ }
+\DoxyCodeLine{00736\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00737\ \ \ \ \ }
+\DoxyCodeLine{00738\ \ \ \ \ \mbox{\hyperlink{mem__fn_8hpp_a3ec63fb20dbbd33452c3f4c93a2c2588}{SC\_BOOST\_MEM\_FN\_TYPEDEF}}(\mbox{\hyperlink{class_sysc_add__pv}{R}}\ (\mbox{\hyperlink{mem__fn_8hpp_ac5a32bea9e3e8ba66edbf8681085fb49}{SC\_BOOST\_MEM\_FN\_CC}}\ \mbox{\hyperlink{mem__fn__cc_8hpp_adf1f3edb9115acb0a1e04209b7a9937b}{T}}::*F)\ (\mbox{\hyperlink{mem__fn__cc_8hpp_a04e585ae6243f4fc9527956ec817ebcc}{A1}},\ \mbox{\hyperlink{mem__fn__cc_8hpp_a9fbc78aa6f21ccf5de2008548a55fa41}{A2}},\ \mbox{\hyperlink{mem__fn__cc_8hpp_a89a06d984ae53ed8b1aa8347b32acc34}{A3}},\ \mbox{\hyperlink{mem__fn__cc_8hpp_adfe39a13c9fec4b6aa664ac26daf637f}{A4}},\ \mbox{\hyperlink{mem__fn__cc_8hpp_a8578843f34b19c9d7eda7ce2c31ca88b}{A5}},\ \mbox{\hyperlink{mem__fn__cc_8hpp_a517625cd635b9236a02785e388086ae8}{A6}},\ \mbox{\hyperlink{mem__fn__cc_8hpp_a68b56b0b372123336cdc5135d092fe4f}{A7}}))}
+\DoxyCodeLine{00739\ \ \ \ \ F\ \mbox{\hyperlink{bind__template_8hpp_a5bffa5ba7163be1080445f808a43a327}{f\_}};}
+\DoxyCodeLine{00740\ }
+\DoxyCodeLine{00741\ \ \ \ \ \textcolor{keyword}{template}<\textcolor{keyword}{class}\ U,\ \textcolor{keyword}{class}\ B1,\ \textcolor{keyword}{class}\ B2,\ \textcolor{keyword}{class}\ B3,\ \textcolor{keyword}{class}\ B4,\ \textcolor{keyword}{class}\ B5,\ \textcolor{keyword}{class}\ B6,\ \textcolor{keyword}{class}\ B7>\ \mbox{\hyperlink{class_sysc_add__pv}{R}}\ call(\mbox{\hyperlink{class_sysc_add__pv}{U}}\ \&\ \mbox{\hyperlink{class_sysc_add__pv}{u}},\ \mbox{\hyperlink{mem__fn__cc_8hpp_adf1f3edb9115acb0a1e04209b7a9937b}{T}}\ \textcolor{keyword}{const}\ *,\ B1\ \&\ \mbox{\hyperlink{class_sysc_add__pv}{b1}},\ B2\ \&\ \mbox{\hyperlink{class_sysc_add__pv}{b2}},\ B3\ \&\ \mbox{\hyperlink{class_sysc_add__pv}{b3}},\ B4\ \&\ \mbox{\hyperlink{class_sysc_add__pv}{b4}},\ B5\ \&\ \mbox{\hyperlink{class_sysc_add__pv}{b5}},\ B6\ \&\ \mbox{\hyperlink{class_sysc_add__pv}{b6}},\ B7\ \&\ \mbox{\hyperlink{class_sysc_add__pv}{b7}})\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00742\ \textcolor{keyword}{\ \ \ \ }\{}
+\DoxyCodeLine{00743\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{mem__fn_8hpp_a76811f5057db2ee0ab2f31467800ccfa}{SC\_BOOST\_MEM\_FN\_RETURN}}\ (\mbox{\hyperlink{class_sysc_add__pv}{u}}.*\mbox{\hyperlink{bind__template_8hpp_a5bffa5ba7163be1080445f808a43a327}{f\_}})(\mbox{\hyperlink{class_sysc_add__pv}{b1}},\ \mbox{\hyperlink{class_sysc_add__pv}{b2}},\ \mbox{\hyperlink{class_sysc_add__pv}{b3}},\ \mbox{\hyperlink{class_sysc_add__pv}{b4}},\ \mbox{\hyperlink{class_sysc_add__pv}{b5}},\ \mbox{\hyperlink{class_sysc_add__pv}{b6}},\ \mbox{\hyperlink{class_sysc_add__pv}{b7}});}
+\DoxyCodeLine{00744\ \ \ \ \ \}}
+\DoxyCodeLine{00745\ }
+\DoxyCodeLine{00746\ \ \ \ \ \textcolor{keyword}{template}<\textcolor{keyword}{class}\ U,\ \textcolor{keyword}{class}\ B1,\ \textcolor{keyword}{class}\ B2,\ \textcolor{keyword}{class}\ B3,\ \textcolor{keyword}{class}\ B4,\ \textcolor{keyword}{class}\ B5,\ \textcolor{keyword}{class}\ B6,\ \textcolor{keyword}{class}\ B7>\ \mbox{\hyperlink{class_sysc_add__pv}{R}}\ call(\mbox{\hyperlink{class_sysc_add__pv}{U}}\ \&\ \mbox{\hyperlink{class_sysc_add__pv}{u}},\ \textcolor{keywordtype}{void}\ \textcolor{keyword}{const}\ *,\ B1\ \&\ \mbox{\hyperlink{class_sysc_add__pv}{b1}},\ B2\ \&\ \mbox{\hyperlink{class_sysc_add__pv}{b2}},\ B3\ \&\ \mbox{\hyperlink{class_sysc_add__pv}{b3}},\ B4\ \&\ \mbox{\hyperlink{class_sysc_add__pv}{b4}},\ B5\ \&\ \mbox{\hyperlink{class_sysc_add__pv}{b5}},\ B6\ \&\ \mbox{\hyperlink{class_sysc_add__pv}{b6}},\ B7\ \&\ \mbox{\hyperlink{class_sysc_add__pv}{b7}})\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00747\ \textcolor{keyword}{\ \ \ \ }\{}
+\DoxyCodeLine{00748\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{mem__fn_8hpp_a76811f5057db2ee0ab2f31467800ccfa}{SC\_BOOST\_MEM\_FN\_RETURN}}\ (\mbox{\hyperlink{namespacesc__boost_a6841ce52726804956cc3a4fe85673da7}{get\_pointer}}(\mbox{\hyperlink{class_sysc_add__pv}{u}})-\/>*\mbox{\hyperlink{bind__template_8hpp_a5bffa5ba7163be1080445f808a43a327}{f\_}})(\mbox{\hyperlink{class_sysc_add__pv}{b1}},\ \mbox{\hyperlink{class_sysc_add__pv}{b2}},\ \mbox{\hyperlink{class_sysc_add__pv}{b3}},\ \mbox{\hyperlink{class_sysc_add__pv}{b4}},\ \mbox{\hyperlink{class_sysc_add__pv}{b5}},\ \mbox{\hyperlink{class_sysc_add__pv}{b6}},\ \mbox{\hyperlink{class_sysc_add__pv}{b7}});}
+\DoxyCodeLine{00749\ \ \ \ \ \}}
+\DoxyCodeLine{00750\ }
+\DoxyCodeLine{00751\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00752\ \ \ \ \ }
+\DoxyCodeLine{00753\ \ \ \ \ \textcolor{keyword}{explicit}\ \mbox{\hyperlink{mem__fn_8hpp_a148b51c6578c9ebbf545abf944152166}{SC\_BOOST\_MEM\_FN\_NAME}}(\mbox{\hyperlink{class_sysc_add__pv}{mf7}})(F\ f):\ \mbox{\hyperlink{bind__template_8hpp_a5bffa5ba7163be1080445f808a43a327}{f\_}}(f)\ \{\}}
+\DoxyCodeLine{00754\ }
+\DoxyCodeLine{00755\ \ \ \ \ \mbox{\hyperlink{class_sysc_add__pv}{R}}\ \mbox{\hyperlink{bind__template_8hpp_aaaead712fe7dc29c1799e7d8f77d1cfb}{operator()}}(\mbox{\hyperlink{mem__fn__cc_8hpp_adf1f3edb9115acb0a1e04209b7a9937b}{T}}\ *\ p,\ \mbox{\hyperlink{mem__fn__cc_8hpp_a04e585ae6243f4fc9527956ec817ebcc}{A1}}\ a1,\ \mbox{\hyperlink{mem__fn__cc_8hpp_a9fbc78aa6f21ccf5de2008548a55fa41}{A2}}\ \mbox{\hyperlink{class_sysc_add__pv}{a2}},\ \mbox{\hyperlink{mem__fn__cc_8hpp_a89a06d984ae53ed8b1aa8347b32acc34}{A3}}\ \mbox{\hyperlink{class_sysc_add__pv}{a3}},\ \mbox{\hyperlink{mem__fn__cc_8hpp_adfe39a13c9fec4b6aa664ac26daf637f}{A4}}\ \mbox{\hyperlink{class_sysc_add__pv}{a4}},\ \mbox{\hyperlink{mem__fn__cc_8hpp_a8578843f34b19c9d7eda7ce2c31ca88b}{A5}}\ \mbox{\hyperlink{class_sysc_add__pv}{a5}},\ \mbox{\hyperlink{mem__fn__cc_8hpp_a517625cd635b9236a02785e388086ae8}{A6}}\ \mbox{\hyperlink{class_sysc_add__pv}{a6}},\ \mbox{\hyperlink{mem__fn__cc_8hpp_a68b56b0b372123336cdc5135d092fe4f}{A7}}\ \mbox{\hyperlink{class_sysc_add__pv}{a7}})\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00756\ \textcolor{keyword}{\ \ \ \ }\{}
+\DoxyCodeLine{00757\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{mem__fn_8hpp_a76811f5057db2ee0ab2f31467800ccfa}{SC\_BOOST\_MEM\_FN\_RETURN}}\ (p-\/>*\mbox{\hyperlink{bind__template_8hpp_a5bffa5ba7163be1080445f808a43a327}{f\_}})(a1,\ \mbox{\hyperlink{class_sysc_add__pv}{a2}},\ \mbox{\hyperlink{class_sysc_add__pv}{a3}},\ \mbox{\hyperlink{class_sysc_add__pv}{a4}},\ \mbox{\hyperlink{class_sysc_add__pv}{a5}},\ \mbox{\hyperlink{class_sysc_add__pv}{a6}},\ \mbox{\hyperlink{class_sysc_add__pv}{a7}});}
+\DoxyCodeLine{00758\ \ \ \ \ \}}
+\DoxyCodeLine{00759\ }
+\DoxyCodeLine{00760\ \ \ \ \ \textcolor{keyword}{template}<\textcolor{keyword}{class}\ U>\ \mbox{\hyperlink{class_sysc_add__pv}{R}}\ \mbox{\hyperlink{bind__template_8hpp_aaaead712fe7dc29c1799e7d8f77d1cfb}{operator()}}(\mbox{\hyperlink{class_sysc_add__pv}{U}}\ \&\ \mbox{\hyperlink{class_sysc_add__pv}{u}},\ \mbox{\hyperlink{mem__fn__cc_8hpp_a04e585ae6243f4fc9527956ec817ebcc}{A1}}\ a1,\ \mbox{\hyperlink{mem__fn__cc_8hpp_a9fbc78aa6f21ccf5de2008548a55fa41}{A2}}\ \mbox{\hyperlink{class_sysc_add__pv}{a2}},\ \mbox{\hyperlink{mem__fn__cc_8hpp_a89a06d984ae53ed8b1aa8347b32acc34}{A3}}\ \mbox{\hyperlink{class_sysc_add__pv}{a3}},\ \mbox{\hyperlink{mem__fn__cc_8hpp_adfe39a13c9fec4b6aa664ac26daf637f}{A4}}\ \mbox{\hyperlink{class_sysc_add__pv}{a4}},\ \mbox{\hyperlink{mem__fn__cc_8hpp_a8578843f34b19c9d7eda7ce2c31ca88b}{A5}}\ \mbox{\hyperlink{class_sysc_add__pv}{a5}},\ \mbox{\hyperlink{mem__fn__cc_8hpp_a517625cd635b9236a02785e388086ae8}{A6}}\ \mbox{\hyperlink{class_sysc_add__pv}{a6}},\ \mbox{\hyperlink{mem__fn__cc_8hpp_a68b56b0b372123336cdc5135d092fe4f}{A7}}\ \mbox{\hyperlink{class_sysc_add__pv}{a7}})\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00761\ \textcolor{keyword}{\ \ \ \ }\{}
+\DoxyCodeLine{00762\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{mem__fn_8hpp_a76811f5057db2ee0ab2f31467800ccfa}{SC\_BOOST\_MEM\_FN\_RETURN}}\ call(\mbox{\hyperlink{class_sysc_add__pv}{u}},\ \&\mbox{\hyperlink{class_sysc_add__pv}{u}},\ a1,\ \mbox{\hyperlink{class_sysc_add__pv}{a2}},\ \mbox{\hyperlink{class_sysc_add__pv}{a3}},\ \mbox{\hyperlink{class_sysc_add__pv}{a4}},\ \mbox{\hyperlink{class_sysc_add__pv}{a5}},\ \mbox{\hyperlink{class_sysc_add__pv}{a6}},\ \mbox{\hyperlink{class_sysc_add__pv}{a7}});}
+\DoxyCodeLine{00763\ \ \ \ \ \}}
+\DoxyCodeLine{00764\ }
+\DoxyCodeLine{00765\ \ \ \ \ \mbox{\hyperlink{class_sysc_add__pv}{R}}\ \mbox{\hyperlink{bind__template_8hpp_aaaead712fe7dc29c1799e7d8f77d1cfb}{operator()}}(\mbox{\hyperlink{mem__fn__cc_8hpp_adf1f3edb9115acb0a1e04209b7a9937b}{T}}\ \&\ t,\ \mbox{\hyperlink{mem__fn__cc_8hpp_a04e585ae6243f4fc9527956ec817ebcc}{A1}}\ a1,\ \mbox{\hyperlink{mem__fn__cc_8hpp_a9fbc78aa6f21ccf5de2008548a55fa41}{A2}}\ \mbox{\hyperlink{class_sysc_add__pv}{a2}},\ \mbox{\hyperlink{mem__fn__cc_8hpp_a89a06d984ae53ed8b1aa8347b32acc34}{A3}}\ \mbox{\hyperlink{class_sysc_add__pv}{a3}},\ \mbox{\hyperlink{mem__fn__cc_8hpp_adfe39a13c9fec4b6aa664ac26daf637f}{A4}}\ \mbox{\hyperlink{class_sysc_add__pv}{a4}},\ \mbox{\hyperlink{mem__fn__cc_8hpp_a8578843f34b19c9d7eda7ce2c31ca88b}{A5}}\ \mbox{\hyperlink{class_sysc_add__pv}{a5}},\ \mbox{\hyperlink{mem__fn__cc_8hpp_a517625cd635b9236a02785e388086ae8}{A6}}\ \mbox{\hyperlink{class_sysc_add__pv}{a6}},\ \mbox{\hyperlink{mem__fn__cc_8hpp_a68b56b0b372123336cdc5135d092fe4f}{A7}}\ \mbox{\hyperlink{class_sysc_add__pv}{a7}})\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00766\ \textcolor{keyword}{\ \ \ \ }\{}
+\DoxyCodeLine{00767\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{mem__fn_8hpp_a76811f5057db2ee0ab2f31467800ccfa}{SC\_BOOST\_MEM\_FN\_RETURN}}\ (t.*\mbox{\hyperlink{bind__template_8hpp_a5bffa5ba7163be1080445f808a43a327}{f\_}})(a1,\ \mbox{\hyperlink{class_sysc_add__pv}{a2}},\ \mbox{\hyperlink{class_sysc_add__pv}{a3}},\ \mbox{\hyperlink{class_sysc_add__pv}{a4}},\ \mbox{\hyperlink{class_sysc_add__pv}{a5}},\ \mbox{\hyperlink{class_sysc_add__pv}{a6}},\ \mbox{\hyperlink{class_sysc_add__pv}{a7}});}
+\DoxyCodeLine{00768\ \ \ \ \ \}}
+\DoxyCodeLine{00769\ }
+\DoxyCodeLine{00770\ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{namespacesc__dt_a670409225d70df53b3b5e5156a061ba6}{operator==}}(\mbox{\hyperlink{mem__fn_8hpp_a148b51c6578c9ebbf545abf944152166}{SC\_BOOST\_MEM\_FN\_NAME}}(\mbox{\hyperlink{class_sysc_add__pv}{mf7}})\ \textcolor{keyword}{const}\ \&\ \mbox{\hyperlink{class_sysc_add__pv}{rhs}})\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00771\ \textcolor{keyword}{\ \ \ \ }\{}
+\DoxyCodeLine{00772\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{bind__template_8hpp_a5bffa5ba7163be1080445f808a43a327}{f\_}}\ ==\ \mbox{\hyperlink{class_sysc_add__pv}{rhs}}.f\_;}
+\DoxyCodeLine{00773\ \ \ \ \ \}}
+\DoxyCodeLine{00774\ }
+\DoxyCodeLine{00775\ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{namespacesc__dt_ac521149d132e9c77a5d9029aa86344db}{operator!=}}(\mbox{\hyperlink{mem__fn_8hpp_a148b51c6578c9ebbf545abf944152166}{SC\_BOOST\_MEM\_FN\_NAME}}(\mbox{\hyperlink{class_sysc_add__pv}{mf7}})\ \textcolor{keyword}{const}\ \&\ \mbox{\hyperlink{class_sysc_add__pv}{rhs}})\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00776\ \textcolor{keyword}{\ \ \ \ }\{}
+\DoxyCodeLine{00777\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{bind__template_8hpp_a5bffa5ba7163be1080445f808a43a327}{f\_}}\ !=\ \mbox{\hyperlink{class_sysc_add__pv}{rhs}}.f\_;}
+\DoxyCodeLine{00778\ \ \ \ \ \}}
+\DoxyCodeLine{00779\ \};}
+\DoxyCodeLine{00780\ }
+\DoxyCodeLine{00781\ \textcolor{comment}{//\ cmf7}}
+\DoxyCodeLine{00782\ }
+\DoxyCodeLine{00783\ \textcolor{keyword}{template}<\textcolor{keyword}{class}\ R,\ \textcolor{keyword}{class}\ T,\ \textcolor{keyword}{class}\ A1,\ \textcolor{keyword}{class}\ A2,\ \textcolor{keyword}{class}\ A3,\ \textcolor{keyword}{class}\ A4,\ \textcolor{keyword}{class}\ A5,\ \textcolor{keyword}{class}\ A6,\ \textcolor{keyword}{class}\ A7\ SC\_BOOST\_MEM\_FN\_CLASS\_F>\ \textcolor{keyword}{class\ }\mbox{\hyperlink{class_sysc_add__pv}{SC\_BOOST\_MEM\_FN\_NAME(cmf7)}}}
+\DoxyCodeLine{00784\ \{}
+\DoxyCodeLine{00785\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00786\ }
+\DoxyCodeLine{00787\ \ \ \ \ \textcolor{keyword}{typedef}\ \mbox{\hyperlink{class_sysc_add__pv}{R}}\ \mbox{\hyperlink{bind__template_8hpp_a3003db32ff947cc71d89c477248e5172}{result\_type}};}
+\DoxyCodeLine{00788\ }
+\DoxyCodeLine{00789\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00790\ \ \ \ \ }
+\DoxyCodeLine{00791\ \ \ \ \ \mbox{\hyperlink{mem__fn_8hpp_a3ec63fb20dbbd33452c3f4c93a2c2588}{SC\_BOOST\_MEM\_FN\_TYPEDEF}}(\mbox{\hyperlink{class_sysc_add__pv}{R}}\ (\mbox{\hyperlink{mem__fn_8hpp_ac5a32bea9e3e8ba66edbf8681085fb49}{SC\_BOOST\_MEM\_FN\_CC}}\ \mbox{\hyperlink{mem__fn__cc_8hpp_adf1f3edb9115acb0a1e04209b7a9937b}{T}}::*F)\ (\mbox{\hyperlink{mem__fn__cc_8hpp_a04e585ae6243f4fc9527956ec817ebcc}{A1}},\ \mbox{\hyperlink{mem__fn__cc_8hpp_a9fbc78aa6f21ccf5de2008548a55fa41}{A2}},\ \mbox{\hyperlink{mem__fn__cc_8hpp_a89a06d984ae53ed8b1aa8347b32acc34}{A3}},\ \mbox{\hyperlink{mem__fn__cc_8hpp_adfe39a13c9fec4b6aa664ac26daf637f}{A4}},\ \mbox{\hyperlink{mem__fn__cc_8hpp_a8578843f34b19c9d7eda7ce2c31ca88b}{A5}},\ \mbox{\hyperlink{mem__fn__cc_8hpp_a517625cd635b9236a02785e388086ae8}{A6}},\ \mbox{\hyperlink{mem__fn__cc_8hpp_a68b56b0b372123336cdc5135d092fe4f}{A7}})\ \mbox{\hyperlink{class_sysc_add__pv}{const}})}
+\DoxyCodeLine{00792\ \ \ \ \ F\ \mbox{\hyperlink{bind__template_8hpp_a5bffa5ba7163be1080445f808a43a327}{f\_}};}
+\DoxyCodeLine{00793\ }
+\DoxyCodeLine{00794\ \ \ \ \ \textcolor{keyword}{template}<\textcolor{keyword}{class}\ U,\ \textcolor{keyword}{class}\ B1,\ \textcolor{keyword}{class}\ B2,\ \textcolor{keyword}{class}\ B3,\ \textcolor{keyword}{class}\ B4,\ \textcolor{keyword}{class}\ B5,\ \textcolor{keyword}{class}\ B6,\ \textcolor{keyword}{class}\ B7>\ \mbox{\hyperlink{class_sysc_add__pv}{R}}\ call(\mbox{\hyperlink{class_sysc_add__pv}{U}}\ \&\ \mbox{\hyperlink{class_sysc_add__pv}{u}},\ \mbox{\hyperlink{mem__fn__cc_8hpp_adf1f3edb9115acb0a1e04209b7a9937b}{T}}\ \textcolor{keyword}{const}\ *,\ B1\ \&\ \mbox{\hyperlink{class_sysc_add__pv}{b1}},\ B2\ \&\ \mbox{\hyperlink{class_sysc_add__pv}{b2}},\ B3\ \&\ \mbox{\hyperlink{class_sysc_add__pv}{b3}},\ B4\ \&\ \mbox{\hyperlink{class_sysc_add__pv}{b4}},\ B5\ \&\ \mbox{\hyperlink{class_sysc_add__pv}{b5}},\ B6\ \&\ \mbox{\hyperlink{class_sysc_add__pv}{b6}},\ B7\ \&\ \mbox{\hyperlink{class_sysc_add__pv}{b7}})\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00795\ \textcolor{keyword}{\ \ \ \ }\{}
+\DoxyCodeLine{00796\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{mem__fn_8hpp_a76811f5057db2ee0ab2f31467800ccfa}{SC\_BOOST\_MEM\_FN\_RETURN}}\ (\mbox{\hyperlink{class_sysc_add__pv}{u}}.*\mbox{\hyperlink{bind__template_8hpp_a5bffa5ba7163be1080445f808a43a327}{f\_}})(\mbox{\hyperlink{class_sysc_add__pv}{b1}},\ \mbox{\hyperlink{class_sysc_add__pv}{b2}},\ \mbox{\hyperlink{class_sysc_add__pv}{b3}},\ \mbox{\hyperlink{class_sysc_add__pv}{b4}},\ \mbox{\hyperlink{class_sysc_add__pv}{b5}},\ \mbox{\hyperlink{class_sysc_add__pv}{b6}},\ \mbox{\hyperlink{class_sysc_add__pv}{b7}});}
+\DoxyCodeLine{00797\ \ \ \ \ \}}
+\DoxyCodeLine{00798\ }
+\DoxyCodeLine{00799\ \ \ \ \ \textcolor{keyword}{template}<\textcolor{keyword}{class}\ U,\ \textcolor{keyword}{class}\ B1,\ \textcolor{keyword}{class}\ B2,\ \textcolor{keyword}{class}\ B3,\ \textcolor{keyword}{class}\ B4,\ \textcolor{keyword}{class}\ B5,\ \textcolor{keyword}{class}\ B6,\ \textcolor{keyword}{class}\ B7>\ \mbox{\hyperlink{class_sysc_add__pv}{R}}\ call(\mbox{\hyperlink{class_sysc_add__pv}{U}}\ \&\ \mbox{\hyperlink{class_sysc_add__pv}{u}},\ \textcolor{keywordtype}{void}\ \textcolor{keyword}{const}\ *,\ B1\ \&\ \mbox{\hyperlink{class_sysc_add__pv}{b1}},\ B2\ \&\ \mbox{\hyperlink{class_sysc_add__pv}{b2}},\ B3\ \&\ \mbox{\hyperlink{class_sysc_add__pv}{b3}},\ B4\ \&\ \mbox{\hyperlink{class_sysc_add__pv}{b4}},\ B5\ \&\ \mbox{\hyperlink{class_sysc_add__pv}{b5}},\ B6\ \&\ \mbox{\hyperlink{class_sysc_add__pv}{b6}},\ B7\ \&\ \mbox{\hyperlink{class_sysc_add__pv}{b7}})\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00800\ \textcolor{keyword}{\ \ \ \ }\{}
+\DoxyCodeLine{00801\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{mem__fn_8hpp_a76811f5057db2ee0ab2f31467800ccfa}{SC\_BOOST\_MEM\_FN\_RETURN}}\ (\mbox{\hyperlink{namespacesc__boost_a6841ce52726804956cc3a4fe85673da7}{get\_pointer}}(\mbox{\hyperlink{class_sysc_add__pv}{u}})-\/>*\mbox{\hyperlink{bind__template_8hpp_a5bffa5ba7163be1080445f808a43a327}{f\_}})(\mbox{\hyperlink{class_sysc_add__pv}{b1}},\ \mbox{\hyperlink{class_sysc_add__pv}{b2}},\ \mbox{\hyperlink{class_sysc_add__pv}{b3}},\ \mbox{\hyperlink{class_sysc_add__pv}{b4}},\ \mbox{\hyperlink{class_sysc_add__pv}{b5}},\ \mbox{\hyperlink{class_sysc_add__pv}{b6}},\ \mbox{\hyperlink{class_sysc_add__pv}{b7}});}
+\DoxyCodeLine{00802\ \ \ \ \ \}}
+\DoxyCodeLine{00803\ }
+\DoxyCodeLine{00804\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00805\ \ \ \ \ }
+\DoxyCodeLine{00806\ \ \ \ \ \textcolor{keyword}{explicit}\ \mbox{\hyperlink{mem__fn_8hpp_a148b51c6578c9ebbf545abf944152166}{SC\_BOOST\_MEM\_FN\_NAME}}(\mbox{\hyperlink{class_sysc_add__pv}{cmf7}})(F\ f):\ \mbox{\hyperlink{bind__template_8hpp_a5bffa5ba7163be1080445f808a43a327}{f\_}}(f)\ \{\}}
+\DoxyCodeLine{00807\ }
+\DoxyCodeLine{00808\ \ \ \ \ \textcolor{keyword}{template}<\textcolor{keyword}{class}\ U>\ \mbox{\hyperlink{class_sysc_add__pv}{R}}\ \mbox{\hyperlink{bind__template_8hpp_aaaead712fe7dc29c1799e7d8f77d1cfb}{operator()}}(\mbox{\hyperlink{class_sysc_add__pv}{U}}\ \textcolor{keyword}{const}\ \&\ \mbox{\hyperlink{class_sysc_add__pv}{u}},\ \mbox{\hyperlink{mem__fn__cc_8hpp_a04e585ae6243f4fc9527956ec817ebcc}{A1}}\ a1,\ \mbox{\hyperlink{mem__fn__cc_8hpp_a9fbc78aa6f21ccf5de2008548a55fa41}{A2}}\ \mbox{\hyperlink{class_sysc_add__pv}{a2}},\ \mbox{\hyperlink{mem__fn__cc_8hpp_a89a06d984ae53ed8b1aa8347b32acc34}{A3}}\ \mbox{\hyperlink{class_sysc_add__pv}{a3}},\ \mbox{\hyperlink{mem__fn__cc_8hpp_adfe39a13c9fec4b6aa664ac26daf637f}{A4}}\ \mbox{\hyperlink{class_sysc_add__pv}{a4}},\ \mbox{\hyperlink{mem__fn__cc_8hpp_a8578843f34b19c9d7eda7ce2c31ca88b}{A5}}\ \mbox{\hyperlink{class_sysc_add__pv}{a5}},\ \mbox{\hyperlink{mem__fn__cc_8hpp_a517625cd635b9236a02785e388086ae8}{A6}}\ \mbox{\hyperlink{class_sysc_add__pv}{a6}},\ \mbox{\hyperlink{mem__fn__cc_8hpp_a68b56b0b372123336cdc5135d092fe4f}{A7}}\ \mbox{\hyperlink{class_sysc_add__pv}{a7}})\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00809\ \textcolor{keyword}{\ \ \ \ }\{}
+\DoxyCodeLine{00810\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{mem__fn_8hpp_a76811f5057db2ee0ab2f31467800ccfa}{SC\_BOOST\_MEM\_FN\_RETURN}}\ call(\mbox{\hyperlink{class_sysc_add__pv}{u}},\ \&\mbox{\hyperlink{class_sysc_add__pv}{u}},\ a1,\ \mbox{\hyperlink{class_sysc_add__pv}{a2}},\ \mbox{\hyperlink{class_sysc_add__pv}{a3}},\ \mbox{\hyperlink{class_sysc_add__pv}{a4}},\ \mbox{\hyperlink{class_sysc_add__pv}{a5}},\ \mbox{\hyperlink{class_sysc_add__pv}{a6}},\ \mbox{\hyperlink{class_sysc_add__pv}{a7}});}
+\DoxyCodeLine{00811\ \ \ \ \ \}}
+\DoxyCodeLine{00812\ }
+\DoxyCodeLine{00813\ \ \ \ \ \mbox{\hyperlink{class_sysc_add__pv}{R}}\ \mbox{\hyperlink{bind__template_8hpp_aaaead712fe7dc29c1799e7d8f77d1cfb}{operator()}}(\mbox{\hyperlink{mem__fn__cc_8hpp_adf1f3edb9115acb0a1e04209b7a9937b}{T}}\ \textcolor{keyword}{const}\ \&\ t,\ \mbox{\hyperlink{mem__fn__cc_8hpp_a04e585ae6243f4fc9527956ec817ebcc}{A1}}\ a1,\ \mbox{\hyperlink{mem__fn__cc_8hpp_a9fbc78aa6f21ccf5de2008548a55fa41}{A2}}\ \mbox{\hyperlink{class_sysc_add__pv}{a2}},\ \mbox{\hyperlink{mem__fn__cc_8hpp_a89a06d984ae53ed8b1aa8347b32acc34}{A3}}\ \mbox{\hyperlink{class_sysc_add__pv}{a3}},\ \mbox{\hyperlink{mem__fn__cc_8hpp_adfe39a13c9fec4b6aa664ac26daf637f}{A4}}\ \mbox{\hyperlink{class_sysc_add__pv}{a4}},\ \mbox{\hyperlink{mem__fn__cc_8hpp_a8578843f34b19c9d7eda7ce2c31ca88b}{A5}}\ \mbox{\hyperlink{class_sysc_add__pv}{a5}},\ \mbox{\hyperlink{mem__fn__cc_8hpp_a517625cd635b9236a02785e388086ae8}{A6}}\ \mbox{\hyperlink{class_sysc_add__pv}{a6}},\ \mbox{\hyperlink{mem__fn__cc_8hpp_a68b56b0b372123336cdc5135d092fe4f}{A7}}\ \mbox{\hyperlink{class_sysc_add__pv}{a7}})\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00814\ \textcolor{keyword}{\ \ \ \ }\{}
+\DoxyCodeLine{00815\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{mem__fn_8hpp_a76811f5057db2ee0ab2f31467800ccfa}{SC\_BOOST\_MEM\_FN\_RETURN}}\ (t.*\mbox{\hyperlink{bind__template_8hpp_a5bffa5ba7163be1080445f808a43a327}{f\_}})(a1,\ \mbox{\hyperlink{class_sysc_add__pv}{a2}},\ \mbox{\hyperlink{class_sysc_add__pv}{a3}},\ \mbox{\hyperlink{class_sysc_add__pv}{a4}},\ \mbox{\hyperlink{class_sysc_add__pv}{a5}},\ \mbox{\hyperlink{class_sysc_add__pv}{a6}},\ \mbox{\hyperlink{class_sysc_add__pv}{a7}});}
+\DoxyCodeLine{00816\ \ \ \ \ \}}
+\DoxyCodeLine{00817\ }
+\DoxyCodeLine{00818\ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{namespacesc__dt_a670409225d70df53b3b5e5156a061ba6}{operator==}}(\mbox{\hyperlink{mem__fn_8hpp_a148b51c6578c9ebbf545abf944152166}{SC\_BOOST\_MEM\_FN\_NAME}}(\mbox{\hyperlink{class_sysc_add__pv}{cmf7}})\ \textcolor{keyword}{const}\ \&\ \mbox{\hyperlink{class_sysc_add__pv}{rhs}})\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00819\ \textcolor{keyword}{\ \ \ \ }\{}
+\DoxyCodeLine{00820\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{bind__template_8hpp_a5bffa5ba7163be1080445f808a43a327}{f\_}}\ ==\ \mbox{\hyperlink{class_sysc_add__pv}{rhs}}.f\_;}
+\DoxyCodeLine{00821\ \ \ \ \ \}}
+\DoxyCodeLine{00822\ }
+\DoxyCodeLine{00823\ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{namespacesc__dt_ac521149d132e9c77a5d9029aa86344db}{operator!=}}(\mbox{\hyperlink{mem__fn_8hpp_a148b51c6578c9ebbf545abf944152166}{SC\_BOOST\_MEM\_FN\_NAME}}(\mbox{\hyperlink{class_sysc_add__pv}{cmf7}})\ \textcolor{keyword}{const}\ \&\ \mbox{\hyperlink{class_sysc_add__pv}{rhs}})\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00824\ \textcolor{keyword}{\ \ \ \ }\{}
+\DoxyCodeLine{00825\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{bind__template_8hpp_a5bffa5ba7163be1080445f808a43a327}{f\_}}\ !=\ \mbox{\hyperlink{class_sysc_add__pv}{rhs}}.f\_;}
+\DoxyCodeLine{00826\ \ \ \ \ \}}
+\DoxyCodeLine{00827\ \};}
+\DoxyCodeLine{00828\ }
+\DoxyCodeLine{00829\ \textcolor{comment}{//\ mf8}}
+\DoxyCodeLine{00830\ }
+\DoxyCodeLine{00831\ \textcolor{keyword}{template}<\textcolor{keyword}{class}\ R,\ \textcolor{keyword}{class}\ T,\ \textcolor{keyword}{class}\ A1,\ \textcolor{keyword}{class}\ A2,\ \textcolor{keyword}{class}\ A3,\ \textcolor{keyword}{class}\ A4,\ \textcolor{keyword}{class}\ A5,\ \textcolor{keyword}{class}\ A6,\ \textcolor{keyword}{class}\ A7,\ \textcolor{keyword}{class}\ A8\ SC\_BOOST\_MEM\_FN\_CLASS\_F>\ \textcolor{keyword}{class\ }\mbox{\hyperlink{class_sysc_add__pv}{SC\_BOOST\_MEM\_FN\_NAME(mf8)}}}
+\DoxyCodeLine{00832\ \{}
+\DoxyCodeLine{00833\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00834\ }
+\DoxyCodeLine{00835\ \ \ \ \ \textcolor{keyword}{typedef}\ \mbox{\hyperlink{class_sysc_add__pv}{R}}\ \mbox{\hyperlink{bind__template_8hpp_a3003db32ff947cc71d89c477248e5172}{result\_type}};}
+\DoxyCodeLine{00836\ }
+\DoxyCodeLine{00837\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00838\ \ \ \ \ }
+\DoxyCodeLine{00839\ \ \ \ \ \mbox{\hyperlink{mem__fn_8hpp_a3ec63fb20dbbd33452c3f4c93a2c2588}{SC\_BOOST\_MEM\_FN\_TYPEDEF}}(\mbox{\hyperlink{class_sysc_add__pv}{R}}\ (\mbox{\hyperlink{mem__fn_8hpp_ac5a32bea9e3e8ba66edbf8681085fb49}{SC\_BOOST\_MEM\_FN\_CC}}\ \mbox{\hyperlink{mem__fn__cc_8hpp_adf1f3edb9115acb0a1e04209b7a9937b}{T}}::*F)\ (\mbox{\hyperlink{mem__fn__cc_8hpp_a04e585ae6243f4fc9527956ec817ebcc}{A1}},\ \mbox{\hyperlink{mem__fn__cc_8hpp_a9fbc78aa6f21ccf5de2008548a55fa41}{A2}},\ \mbox{\hyperlink{mem__fn__cc_8hpp_a89a06d984ae53ed8b1aa8347b32acc34}{A3}},\ \mbox{\hyperlink{mem__fn__cc_8hpp_adfe39a13c9fec4b6aa664ac26daf637f}{A4}},\ \mbox{\hyperlink{mem__fn__cc_8hpp_a8578843f34b19c9d7eda7ce2c31ca88b}{A5}},\ \mbox{\hyperlink{mem__fn__cc_8hpp_a517625cd635b9236a02785e388086ae8}{A6}},\ \mbox{\hyperlink{mem__fn__cc_8hpp_a68b56b0b372123336cdc5135d092fe4f}{A7}},\ \mbox{\hyperlink{class_sysc_add__pv}{A8}}))}
+\DoxyCodeLine{00840\ \ \ \ \ F\ \mbox{\hyperlink{bind__template_8hpp_a5bffa5ba7163be1080445f808a43a327}{f\_}};}
+\DoxyCodeLine{00841\ }
+\DoxyCodeLine{00842\ \ \ \ \ \textcolor{keyword}{template}<\textcolor{keyword}{class}\ U,\ \textcolor{keyword}{class}\ B1,\ \textcolor{keyword}{class}\ B2,\ \textcolor{keyword}{class}\ B3,\ \textcolor{keyword}{class}\ B4,\ \textcolor{keyword}{class}\ B5,\ \textcolor{keyword}{class}\ B6,\ \textcolor{keyword}{class}\ B7,\ \textcolor{keyword}{class}\ B8>\ \mbox{\hyperlink{class_sysc_add__pv}{R}}\ call(\mbox{\hyperlink{class_sysc_add__pv}{U}}\ \&\ \mbox{\hyperlink{class_sysc_add__pv}{u}},\ \mbox{\hyperlink{mem__fn__cc_8hpp_adf1f3edb9115acb0a1e04209b7a9937b}{T}}\ \textcolor{keyword}{const}\ *,\ B1\ \&\ \mbox{\hyperlink{class_sysc_add__pv}{b1}},\ B2\ \&\ \mbox{\hyperlink{class_sysc_add__pv}{b2}},\ B3\ \&\ \mbox{\hyperlink{class_sysc_add__pv}{b3}},\ B4\ \&\ \mbox{\hyperlink{class_sysc_add__pv}{b4}},\ B5\ \&\ \mbox{\hyperlink{class_sysc_add__pv}{b5}},\ B6\ \&\ \mbox{\hyperlink{class_sysc_add__pv}{b6}},\ B7\ \&\ \mbox{\hyperlink{class_sysc_add__pv}{b7}},\ B8\ \&\ \mbox{\hyperlink{class_sysc_add__pv}{b8}})\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00843\ \textcolor{keyword}{\ \ \ \ }\{}
+\DoxyCodeLine{00844\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{mem__fn_8hpp_a76811f5057db2ee0ab2f31467800ccfa}{SC\_BOOST\_MEM\_FN\_RETURN}}\ (\mbox{\hyperlink{class_sysc_add__pv}{u}}.*\mbox{\hyperlink{bind__template_8hpp_a5bffa5ba7163be1080445f808a43a327}{f\_}})(\mbox{\hyperlink{class_sysc_add__pv}{b1}},\ \mbox{\hyperlink{class_sysc_add__pv}{b2}},\ \mbox{\hyperlink{class_sysc_add__pv}{b3}},\ \mbox{\hyperlink{class_sysc_add__pv}{b4}},\ \mbox{\hyperlink{class_sysc_add__pv}{b5}},\ \mbox{\hyperlink{class_sysc_add__pv}{b6}},\ \mbox{\hyperlink{class_sysc_add__pv}{b7}},\ \mbox{\hyperlink{class_sysc_add__pv}{b8}});}
+\DoxyCodeLine{00845\ \ \ \ \ \}}
+\DoxyCodeLine{00846\ }
+\DoxyCodeLine{00847\ \ \ \ \ \textcolor{keyword}{template}<\textcolor{keyword}{class}\ U,\ \textcolor{keyword}{class}\ B1,\ \textcolor{keyword}{class}\ B2,\ \textcolor{keyword}{class}\ B3,\ \textcolor{keyword}{class}\ B4,\ \textcolor{keyword}{class}\ B5,\ \textcolor{keyword}{class}\ B6,\ \textcolor{keyword}{class}\ B7,\ \textcolor{keyword}{class}\ B8>\ \mbox{\hyperlink{class_sysc_add__pv}{R}}\ call(\mbox{\hyperlink{class_sysc_add__pv}{U}}\ \&\ \mbox{\hyperlink{class_sysc_add__pv}{u}},\ \textcolor{keywordtype}{void}\ \textcolor{keyword}{const}\ *,\ B1\ \&\ \mbox{\hyperlink{class_sysc_add__pv}{b1}},\ B2\ \&\ \mbox{\hyperlink{class_sysc_add__pv}{b2}},\ B3\ \&\ \mbox{\hyperlink{class_sysc_add__pv}{b3}},\ B4\ \&\ \mbox{\hyperlink{class_sysc_add__pv}{b4}},\ B5\ \&\ \mbox{\hyperlink{class_sysc_add__pv}{b5}},\ B6\ \&\ \mbox{\hyperlink{class_sysc_add__pv}{b6}},\ B7\ \&\ \mbox{\hyperlink{class_sysc_add__pv}{b7}},\ B8\ \&\ \mbox{\hyperlink{class_sysc_add__pv}{b8}})\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00848\ \textcolor{keyword}{\ \ \ \ }\{}
+\DoxyCodeLine{00849\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{mem__fn_8hpp_a76811f5057db2ee0ab2f31467800ccfa}{SC\_BOOST\_MEM\_FN\_RETURN}}\ (\mbox{\hyperlink{namespacesc__boost_a6841ce52726804956cc3a4fe85673da7}{get\_pointer}}(\mbox{\hyperlink{class_sysc_add__pv}{u}})-\/>*\mbox{\hyperlink{bind__template_8hpp_a5bffa5ba7163be1080445f808a43a327}{f\_}})(\mbox{\hyperlink{class_sysc_add__pv}{b1}},\ \mbox{\hyperlink{class_sysc_add__pv}{b2}},\ \mbox{\hyperlink{class_sysc_add__pv}{b3}},\ \mbox{\hyperlink{class_sysc_add__pv}{b4}},\ \mbox{\hyperlink{class_sysc_add__pv}{b5}},\ \mbox{\hyperlink{class_sysc_add__pv}{b6}},\ \mbox{\hyperlink{class_sysc_add__pv}{b7}},\ \mbox{\hyperlink{class_sysc_add__pv}{b8}});}
+\DoxyCodeLine{00850\ \ \ \ \ \}}
+\DoxyCodeLine{00851\ }
+\DoxyCodeLine{00852\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00853\ \ \ \ \ }
+\DoxyCodeLine{00854\ \ \ \ \ \textcolor{keyword}{explicit}\ \mbox{\hyperlink{mem__fn_8hpp_a148b51c6578c9ebbf545abf944152166}{SC\_BOOST\_MEM\_FN\_NAME}}(\mbox{\hyperlink{class_sysc_add__pv}{mf8}})(F\ f):\ \mbox{\hyperlink{bind__template_8hpp_a5bffa5ba7163be1080445f808a43a327}{f\_}}(f)\ \{\}}
+\DoxyCodeLine{00855\ }
+\DoxyCodeLine{00856\ \ \ \ \ \mbox{\hyperlink{class_sysc_add__pv}{R}}\ \mbox{\hyperlink{bind__template_8hpp_aaaead712fe7dc29c1799e7d8f77d1cfb}{operator()}}(\mbox{\hyperlink{mem__fn__cc_8hpp_adf1f3edb9115acb0a1e04209b7a9937b}{T}}\ *\ p,\ \mbox{\hyperlink{mem__fn__cc_8hpp_a04e585ae6243f4fc9527956ec817ebcc}{A1}}\ a1,\ \mbox{\hyperlink{mem__fn__cc_8hpp_a9fbc78aa6f21ccf5de2008548a55fa41}{A2}}\ \mbox{\hyperlink{class_sysc_add__pv}{a2}},\ \mbox{\hyperlink{mem__fn__cc_8hpp_a89a06d984ae53ed8b1aa8347b32acc34}{A3}}\ \mbox{\hyperlink{class_sysc_add__pv}{a3}},\ \mbox{\hyperlink{mem__fn__cc_8hpp_adfe39a13c9fec4b6aa664ac26daf637f}{A4}}\ \mbox{\hyperlink{class_sysc_add__pv}{a4}},\ \mbox{\hyperlink{mem__fn__cc_8hpp_a8578843f34b19c9d7eda7ce2c31ca88b}{A5}}\ \mbox{\hyperlink{class_sysc_add__pv}{a5}},\ \mbox{\hyperlink{mem__fn__cc_8hpp_a517625cd635b9236a02785e388086ae8}{A6}}\ \mbox{\hyperlink{class_sysc_add__pv}{a6}},\ \mbox{\hyperlink{mem__fn__cc_8hpp_a68b56b0b372123336cdc5135d092fe4f}{A7}}\ \mbox{\hyperlink{class_sysc_add__pv}{a7}},\ \mbox{\hyperlink{class_sysc_add__pv}{A8}}\ \mbox{\hyperlink{class_sysc_add__pv}{a8}})\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00857\ \textcolor{keyword}{\ \ \ \ }\{}
+\DoxyCodeLine{00858\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{mem__fn_8hpp_a76811f5057db2ee0ab2f31467800ccfa}{SC\_BOOST\_MEM\_FN\_RETURN}}\ (p-\/>*\mbox{\hyperlink{bind__template_8hpp_a5bffa5ba7163be1080445f808a43a327}{f\_}})(a1,\ \mbox{\hyperlink{class_sysc_add__pv}{a2}},\ \mbox{\hyperlink{class_sysc_add__pv}{a3}},\ \mbox{\hyperlink{class_sysc_add__pv}{a4}},\ \mbox{\hyperlink{class_sysc_add__pv}{a5}},\ \mbox{\hyperlink{class_sysc_add__pv}{a6}},\ \mbox{\hyperlink{class_sysc_add__pv}{a7}},\ \mbox{\hyperlink{class_sysc_add__pv}{a8}});}
+\DoxyCodeLine{00859\ \ \ \ \ \}}
+\DoxyCodeLine{00860\ }
+\DoxyCodeLine{00861\ \ \ \ \ \textcolor{keyword}{template}<\textcolor{keyword}{class}\ U>\ \mbox{\hyperlink{class_sysc_add__pv}{R}}\ \mbox{\hyperlink{bind__template_8hpp_aaaead712fe7dc29c1799e7d8f77d1cfb}{operator()}}(\mbox{\hyperlink{class_sysc_add__pv}{U}}\ \&\ \mbox{\hyperlink{class_sysc_add__pv}{u}},\ \mbox{\hyperlink{mem__fn__cc_8hpp_a04e585ae6243f4fc9527956ec817ebcc}{A1}}\ a1,\ \mbox{\hyperlink{mem__fn__cc_8hpp_a9fbc78aa6f21ccf5de2008548a55fa41}{A2}}\ \mbox{\hyperlink{class_sysc_add__pv}{a2}},\ \mbox{\hyperlink{mem__fn__cc_8hpp_a89a06d984ae53ed8b1aa8347b32acc34}{A3}}\ \mbox{\hyperlink{class_sysc_add__pv}{a3}},\ \mbox{\hyperlink{mem__fn__cc_8hpp_adfe39a13c9fec4b6aa664ac26daf637f}{A4}}\ \mbox{\hyperlink{class_sysc_add__pv}{a4}},\ \mbox{\hyperlink{mem__fn__cc_8hpp_a8578843f34b19c9d7eda7ce2c31ca88b}{A5}}\ \mbox{\hyperlink{class_sysc_add__pv}{a5}},\ \mbox{\hyperlink{mem__fn__cc_8hpp_a517625cd635b9236a02785e388086ae8}{A6}}\ \mbox{\hyperlink{class_sysc_add__pv}{a6}},\ \mbox{\hyperlink{mem__fn__cc_8hpp_a68b56b0b372123336cdc5135d092fe4f}{A7}}\ \mbox{\hyperlink{class_sysc_add__pv}{a7}},\ \mbox{\hyperlink{class_sysc_add__pv}{A8}}\ \mbox{\hyperlink{class_sysc_add__pv}{a8}})\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00862\ \textcolor{keyword}{\ \ \ \ }\{}
+\DoxyCodeLine{00863\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{mem__fn_8hpp_a76811f5057db2ee0ab2f31467800ccfa}{SC\_BOOST\_MEM\_FN\_RETURN}}\ call(\mbox{\hyperlink{class_sysc_add__pv}{u}},\ \&\mbox{\hyperlink{class_sysc_add__pv}{u}},\ a1,\ \mbox{\hyperlink{class_sysc_add__pv}{a2}},\ \mbox{\hyperlink{class_sysc_add__pv}{a3}},\ \mbox{\hyperlink{class_sysc_add__pv}{a4}},\ \mbox{\hyperlink{class_sysc_add__pv}{a5}},\ \mbox{\hyperlink{class_sysc_add__pv}{a6}},\ \mbox{\hyperlink{class_sysc_add__pv}{a7}},\ \mbox{\hyperlink{class_sysc_add__pv}{a8}});}
+\DoxyCodeLine{00864\ \ \ \ \ \}}
+\DoxyCodeLine{00865\ }
+\DoxyCodeLine{00866\ \ \ \ \ \mbox{\hyperlink{class_sysc_add__pv}{R}}\ \mbox{\hyperlink{bind__template_8hpp_aaaead712fe7dc29c1799e7d8f77d1cfb}{operator()}}(\mbox{\hyperlink{mem__fn__cc_8hpp_adf1f3edb9115acb0a1e04209b7a9937b}{T}}\ \&\ t,\ \mbox{\hyperlink{mem__fn__cc_8hpp_a04e585ae6243f4fc9527956ec817ebcc}{A1}}\ a1,\ \mbox{\hyperlink{mem__fn__cc_8hpp_a9fbc78aa6f21ccf5de2008548a55fa41}{A2}}\ \mbox{\hyperlink{class_sysc_add__pv}{a2}},\ \mbox{\hyperlink{mem__fn__cc_8hpp_a89a06d984ae53ed8b1aa8347b32acc34}{A3}}\ \mbox{\hyperlink{class_sysc_add__pv}{a3}},\ \mbox{\hyperlink{mem__fn__cc_8hpp_adfe39a13c9fec4b6aa664ac26daf637f}{A4}}\ \mbox{\hyperlink{class_sysc_add__pv}{a4}},\ \mbox{\hyperlink{mem__fn__cc_8hpp_a8578843f34b19c9d7eda7ce2c31ca88b}{A5}}\ \mbox{\hyperlink{class_sysc_add__pv}{a5}},\ \mbox{\hyperlink{mem__fn__cc_8hpp_a517625cd635b9236a02785e388086ae8}{A6}}\ \mbox{\hyperlink{class_sysc_add__pv}{a6}},\ \mbox{\hyperlink{mem__fn__cc_8hpp_a68b56b0b372123336cdc5135d092fe4f}{A7}}\ \mbox{\hyperlink{class_sysc_add__pv}{a7}},\ \mbox{\hyperlink{class_sysc_add__pv}{A8}}\ \mbox{\hyperlink{class_sysc_add__pv}{a8}})\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00867\ \textcolor{keyword}{\ \ \ \ }\{}
+\DoxyCodeLine{00868\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{mem__fn_8hpp_a76811f5057db2ee0ab2f31467800ccfa}{SC\_BOOST\_MEM\_FN\_RETURN}}\ (t.*\mbox{\hyperlink{bind__template_8hpp_a5bffa5ba7163be1080445f808a43a327}{f\_}})(a1,\ \mbox{\hyperlink{class_sysc_add__pv}{a2}},\ \mbox{\hyperlink{class_sysc_add__pv}{a3}},\ \mbox{\hyperlink{class_sysc_add__pv}{a4}},\ \mbox{\hyperlink{class_sysc_add__pv}{a5}},\ \mbox{\hyperlink{class_sysc_add__pv}{a6}},\ \mbox{\hyperlink{class_sysc_add__pv}{a7}},\ \mbox{\hyperlink{class_sysc_add__pv}{a8}});}
+\DoxyCodeLine{00869\ \ \ \ \ \}}
+\DoxyCodeLine{00870\ }
+\DoxyCodeLine{00871\ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{namespacesc__dt_a670409225d70df53b3b5e5156a061ba6}{operator==}}(\mbox{\hyperlink{mem__fn_8hpp_a148b51c6578c9ebbf545abf944152166}{SC\_BOOST\_MEM\_FN\_NAME}}(\mbox{\hyperlink{class_sysc_add__pv}{mf8}})\ \textcolor{keyword}{const}\ \&\ \mbox{\hyperlink{class_sysc_add__pv}{rhs}})\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00872\ \textcolor{keyword}{\ \ \ \ }\{}
+\DoxyCodeLine{00873\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{bind__template_8hpp_a5bffa5ba7163be1080445f808a43a327}{f\_}}\ ==\ \mbox{\hyperlink{class_sysc_add__pv}{rhs}}.f\_;}
+\DoxyCodeLine{00874\ \ \ \ \ \}}
+\DoxyCodeLine{00875\ }
+\DoxyCodeLine{00876\ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{namespacesc__dt_ac521149d132e9c77a5d9029aa86344db}{operator!=}}(\mbox{\hyperlink{mem__fn_8hpp_a148b51c6578c9ebbf545abf944152166}{SC\_BOOST\_MEM\_FN\_NAME}}(\mbox{\hyperlink{class_sysc_add__pv}{mf8}})\ \textcolor{keyword}{const}\ \&\ \mbox{\hyperlink{class_sysc_add__pv}{rhs}})\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00877\ \textcolor{keyword}{\ \ \ \ }\{}
+\DoxyCodeLine{00878\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{bind__template_8hpp_a5bffa5ba7163be1080445f808a43a327}{f\_}}\ !=\ \mbox{\hyperlink{class_sysc_add__pv}{rhs}}.f\_;}
+\DoxyCodeLine{00879\ \ \ \ \ \}}
+\DoxyCodeLine{00880\ \};}
+\DoxyCodeLine{00881\ }
+\DoxyCodeLine{00882\ \textcolor{comment}{//\ cmf8}}
+\DoxyCodeLine{00883\ }
+\DoxyCodeLine{00884\ \textcolor{keyword}{template}<\textcolor{keyword}{class}\ R,\ \textcolor{keyword}{class}\ T,\ \textcolor{keyword}{class}\ A1,\ \textcolor{keyword}{class}\ A2,\ \textcolor{keyword}{class}\ A3,\ \textcolor{keyword}{class}\ A4,\ \textcolor{keyword}{class}\ A5,\ \textcolor{keyword}{class}\ A6,\ \textcolor{keyword}{class}\ A7,\ \textcolor{keyword}{class}\ A8\ SC\_BOOST\_MEM\_FN\_CLASS\_F>\ \textcolor{keyword}{class\ }\mbox{\hyperlink{class_sysc_add__pv}{SC\_BOOST\_MEM\_FN\_NAME(cmf8)}}}
+\DoxyCodeLine{00885\ \{}
+\DoxyCodeLine{00886\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00887\ }
+\DoxyCodeLine{00888\ \ \ \ \ \textcolor{keyword}{typedef}\ \mbox{\hyperlink{class_sysc_add__pv}{R}}\ \mbox{\hyperlink{bind__template_8hpp_a3003db32ff947cc71d89c477248e5172}{result\_type}};}
+\DoxyCodeLine{00889\ }
+\DoxyCodeLine{00890\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00891\ \ \ \ \ }
+\DoxyCodeLine{00892\ \ \ \ \ \mbox{\hyperlink{mem__fn_8hpp_a3ec63fb20dbbd33452c3f4c93a2c2588}{SC\_BOOST\_MEM\_FN\_TYPEDEF}}(\mbox{\hyperlink{class_sysc_add__pv}{R}}\ (\mbox{\hyperlink{mem__fn_8hpp_ac5a32bea9e3e8ba66edbf8681085fb49}{SC\_BOOST\_MEM\_FN\_CC}}\ \mbox{\hyperlink{mem__fn__cc_8hpp_adf1f3edb9115acb0a1e04209b7a9937b}{T}}::*F)\ (\mbox{\hyperlink{mem__fn__cc_8hpp_a04e585ae6243f4fc9527956ec817ebcc}{A1}},\ \mbox{\hyperlink{mem__fn__cc_8hpp_a9fbc78aa6f21ccf5de2008548a55fa41}{A2}},\ \mbox{\hyperlink{mem__fn__cc_8hpp_a89a06d984ae53ed8b1aa8347b32acc34}{A3}},\ \mbox{\hyperlink{mem__fn__cc_8hpp_adfe39a13c9fec4b6aa664ac26daf637f}{A4}},\ \mbox{\hyperlink{mem__fn__cc_8hpp_a8578843f34b19c9d7eda7ce2c31ca88b}{A5}},\ \mbox{\hyperlink{mem__fn__cc_8hpp_a517625cd635b9236a02785e388086ae8}{A6}},\ \mbox{\hyperlink{mem__fn__cc_8hpp_a68b56b0b372123336cdc5135d092fe4f}{A7}},\ \mbox{\hyperlink{class_sysc_add__pv}{A8}})\ \mbox{\hyperlink{class_sysc_add__pv}{const}})}
+\DoxyCodeLine{00893\ \ \ \ \ F\ \mbox{\hyperlink{bind__template_8hpp_a5bffa5ba7163be1080445f808a43a327}{f\_}};}
+\DoxyCodeLine{00894\ }
+\DoxyCodeLine{00895\ \ \ \ \ \textcolor{keyword}{template}<\textcolor{keyword}{class}\ U,\ \textcolor{keyword}{class}\ B1,\ \textcolor{keyword}{class}\ B2,\ \textcolor{keyword}{class}\ B3,\ \textcolor{keyword}{class}\ B4,\ \textcolor{keyword}{class}\ B5,\ \textcolor{keyword}{class}\ B6,\ \textcolor{keyword}{class}\ B7,\ \textcolor{keyword}{class}\ B8>\ \mbox{\hyperlink{class_sysc_add__pv}{R}}\ call(\mbox{\hyperlink{class_sysc_add__pv}{U}}\ \&\ \mbox{\hyperlink{class_sysc_add__pv}{u}},\ \mbox{\hyperlink{mem__fn__cc_8hpp_adf1f3edb9115acb0a1e04209b7a9937b}{T}}\ \textcolor{keyword}{const}\ *,\ B1\ \&\ \mbox{\hyperlink{class_sysc_add__pv}{b1}},\ B2\ \&\ \mbox{\hyperlink{class_sysc_add__pv}{b2}},\ B3\ \&\ \mbox{\hyperlink{class_sysc_add__pv}{b3}},\ B4\ \&\ \mbox{\hyperlink{class_sysc_add__pv}{b4}},\ B5\ \&\ \mbox{\hyperlink{class_sysc_add__pv}{b5}},\ B6\ \&\ \mbox{\hyperlink{class_sysc_add__pv}{b6}},\ B7\ \&\ \mbox{\hyperlink{class_sysc_add__pv}{b7}},\ B8\ \&\ \mbox{\hyperlink{class_sysc_add__pv}{b8}})\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00896\ \textcolor{keyword}{\ \ \ \ }\{}
+\DoxyCodeLine{00897\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{mem__fn_8hpp_a76811f5057db2ee0ab2f31467800ccfa}{SC\_BOOST\_MEM\_FN\_RETURN}}\ (\mbox{\hyperlink{class_sysc_add__pv}{u}}.*\mbox{\hyperlink{bind__template_8hpp_a5bffa5ba7163be1080445f808a43a327}{f\_}})(\mbox{\hyperlink{class_sysc_add__pv}{b1}},\ \mbox{\hyperlink{class_sysc_add__pv}{b2}},\ \mbox{\hyperlink{class_sysc_add__pv}{b3}},\ \mbox{\hyperlink{class_sysc_add__pv}{b4}},\ \mbox{\hyperlink{class_sysc_add__pv}{b5}},\ \mbox{\hyperlink{class_sysc_add__pv}{b6}},\ \mbox{\hyperlink{class_sysc_add__pv}{b7}},\ \mbox{\hyperlink{class_sysc_add__pv}{b8}});}
+\DoxyCodeLine{00898\ \ \ \ \ \}}
+\DoxyCodeLine{00899\ }
+\DoxyCodeLine{00900\ \ \ \ \ \textcolor{keyword}{template}<\textcolor{keyword}{class}\ U,\ \textcolor{keyword}{class}\ B1,\ \textcolor{keyword}{class}\ B2,\ \textcolor{keyword}{class}\ B3,\ \textcolor{keyword}{class}\ B4,\ \textcolor{keyword}{class}\ B5,\ \textcolor{keyword}{class}\ B6,\ \textcolor{keyword}{class}\ B7,\ \textcolor{keyword}{class}\ B8>\ \mbox{\hyperlink{class_sysc_add__pv}{R}}\ call(\mbox{\hyperlink{class_sysc_add__pv}{U}}\ \&\ \mbox{\hyperlink{class_sysc_add__pv}{u}},\ \textcolor{keywordtype}{void}\ \textcolor{keyword}{const}\ *,\ B1\ \&\ \mbox{\hyperlink{class_sysc_add__pv}{b1}},\ B2\ \&\ \mbox{\hyperlink{class_sysc_add__pv}{b2}},\ B3\ \&\ \mbox{\hyperlink{class_sysc_add__pv}{b3}},\ B4\ \&\ \mbox{\hyperlink{class_sysc_add__pv}{b4}},\ B5\ \&\ \mbox{\hyperlink{class_sysc_add__pv}{b5}},\ B6\ \&\ \mbox{\hyperlink{class_sysc_add__pv}{b6}},\ B7\ \&\ \mbox{\hyperlink{class_sysc_add__pv}{b7}},\ B8\ \&\ \mbox{\hyperlink{class_sysc_add__pv}{b8}})\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00901\ \textcolor{keyword}{\ \ \ \ }\{}
+\DoxyCodeLine{00902\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{mem__fn_8hpp_a76811f5057db2ee0ab2f31467800ccfa}{SC\_BOOST\_MEM\_FN\_RETURN}}\ (\mbox{\hyperlink{namespacesc__boost_a6841ce52726804956cc3a4fe85673da7}{get\_pointer}}(\mbox{\hyperlink{class_sysc_add__pv}{u}})-\/>*\mbox{\hyperlink{bind__template_8hpp_a5bffa5ba7163be1080445f808a43a327}{f\_}})(\mbox{\hyperlink{class_sysc_add__pv}{b1}},\ \mbox{\hyperlink{class_sysc_add__pv}{b2}},\ \mbox{\hyperlink{class_sysc_add__pv}{b3}},\ \mbox{\hyperlink{class_sysc_add__pv}{b4}},\ \mbox{\hyperlink{class_sysc_add__pv}{b5}},\ \mbox{\hyperlink{class_sysc_add__pv}{b6}},\ \mbox{\hyperlink{class_sysc_add__pv}{b7}},\ \mbox{\hyperlink{class_sysc_add__pv}{b8}});}
+\DoxyCodeLine{00903\ \ \ \ \ \}}
+\DoxyCodeLine{00904\ }
+\DoxyCodeLine{00905\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00906\ \ \ \ \ }
+\DoxyCodeLine{00907\ \ \ \ \ \textcolor{keyword}{explicit}\ \mbox{\hyperlink{mem__fn_8hpp_a148b51c6578c9ebbf545abf944152166}{SC\_BOOST\_MEM\_FN\_NAME}}(\mbox{\hyperlink{class_sysc_add__pv}{cmf8}})(F\ f):\ \mbox{\hyperlink{bind__template_8hpp_a5bffa5ba7163be1080445f808a43a327}{f\_}}(f)\ \{\}}
+\DoxyCodeLine{00908\ }
+\DoxyCodeLine{00909\ \ \ \ \ \mbox{\hyperlink{class_sysc_add__pv}{R}}\ \mbox{\hyperlink{bind__template_8hpp_aaaead712fe7dc29c1799e7d8f77d1cfb}{operator()}}(\mbox{\hyperlink{mem__fn__cc_8hpp_adf1f3edb9115acb0a1e04209b7a9937b}{T}}\ \textcolor{keyword}{const}\ *\ p,\ \mbox{\hyperlink{mem__fn__cc_8hpp_a04e585ae6243f4fc9527956ec817ebcc}{A1}}\ a1,\ \mbox{\hyperlink{mem__fn__cc_8hpp_a9fbc78aa6f21ccf5de2008548a55fa41}{A2}}\ \mbox{\hyperlink{class_sysc_add__pv}{a2}},\ \mbox{\hyperlink{mem__fn__cc_8hpp_a89a06d984ae53ed8b1aa8347b32acc34}{A3}}\ \mbox{\hyperlink{class_sysc_add__pv}{a3}},\ \mbox{\hyperlink{mem__fn__cc_8hpp_adfe39a13c9fec4b6aa664ac26daf637f}{A4}}\ \mbox{\hyperlink{class_sysc_add__pv}{a4}},\ \mbox{\hyperlink{mem__fn__cc_8hpp_a8578843f34b19c9d7eda7ce2c31ca88b}{A5}}\ \mbox{\hyperlink{class_sysc_add__pv}{a5}},\ \mbox{\hyperlink{mem__fn__cc_8hpp_a517625cd635b9236a02785e388086ae8}{A6}}\ \mbox{\hyperlink{class_sysc_add__pv}{a6}},\ \mbox{\hyperlink{mem__fn__cc_8hpp_a68b56b0b372123336cdc5135d092fe4f}{A7}}\ \mbox{\hyperlink{class_sysc_add__pv}{a7}},\ \mbox{\hyperlink{class_sysc_add__pv}{A8}}\ \mbox{\hyperlink{class_sysc_add__pv}{a8}})\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00910\ \textcolor{keyword}{\ \ \ \ }\{}
+\DoxyCodeLine{00911\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{mem__fn_8hpp_a76811f5057db2ee0ab2f31467800ccfa}{SC\_BOOST\_MEM\_FN\_RETURN}}\ (p-\/>*\mbox{\hyperlink{bind__template_8hpp_a5bffa5ba7163be1080445f808a43a327}{f\_}})(a1,\ \mbox{\hyperlink{class_sysc_add__pv}{a2}},\ \mbox{\hyperlink{class_sysc_add__pv}{a3}},\ \mbox{\hyperlink{class_sysc_add__pv}{a4}},\ \mbox{\hyperlink{class_sysc_add__pv}{a5}},\ \mbox{\hyperlink{class_sysc_add__pv}{a6}},\ \mbox{\hyperlink{class_sysc_add__pv}{a7}},\ \mbox{\hyperlink{class_sysc_add__pv}{a8}});}
+\DoxyCodeLine{00912\ \ \ \ \ \}}
+\DoxyCodeLine{00913\ }
+\DoxyCodeLine{00914\ \ \ \ \ \textcolor{keyword}{template}<\textcolor{keyword}{class}\ U>\ \mbox{\hyperlink{class_sysc_add__pv}{R}}\ \mbox{\hyperlink{bind__template_8hpp_aaaead712fe7dc29c1799e7d8f77d1cfb}{operator()}}(\mbox{\hyperlink{class_sysc_add__pv}{U}}\ \textcolor{keyword}{const}\ \&\ \mbox{\hyperlink{class_sysc_add__pv}{u}},\ \mbox{\hyperlink{mem__fn__cc_8hpp_a04e585ae6243f4fc9527956ec817ebcc}{A1}}\ a1,\ \mbox{\hyperlink{mem__fn__cc_8hpp_a9fbc78aa6f21ccf5de2008548a55fa41}{A2}}\ \mbox{\hyperlink{class_sysc_add__pv}{a2}},\ \mbox{\hyperlink{mem__fn__cc_8hpp_a89a06d984ae53ed8b1aa8347b32acc34}{A3}}\ \mbox{\hyperlink{class_sysc_add__pv}{a3}},\ \mbox{\hyperlink{mem__fn__cc_8hpp_adfe39a13c9fec4b6aa664ac26daf637f}{A4}}\ \mbox{\hyperlink{class_sysc_add__pv}{a4}},\ \mbox{\hyperlink{mem__fn__cc_8hpp_a8578843f34b19c9d7eda7ce2c31ca88b}{A5}}\ \mbox{\hyperlink{class_sysc_add__pv}{a5}},\ \mbox{\hyperlink{mem__fn__cc_8hpp_a517625cd635b9236a02785e388086ae8}{A6}}\ \mbox{\hyperlink{class_sysc_add__pv}{a6}},\ \mbox{\hyperlink{mem__fn__cc_8hpp_a68b56b0b372123336cdc5135d092fe4f}{A7}}\ \mbox{\hyperlink{class_sysc_add__pv}{a7}},\ \mbox{\hyperlink{class_sysc_add__pv}{A8}}\ \mbox{\hyperlink{class_sysc_add__pv}{a8}})\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00915\ \textcolor{keyword}{\ \ \ \ }\{}
+\DoxyCodeLine{00916\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{mem__fn_8hpp_a76811f5057db2ee0ab2f31467800ccfa}{SC\_BOOST\_MEM\_FN\_RETURN}}\ call(\mbox{\hyperlink{class_sysc_add__pv}{u}},\ \&\mbox{\hyperlink{class_sysc_add__pv}{u}},\ a1,\ \mbox{\hyperlink{class_sysc_add__pv}{a2}},\ \mbox{\hyperlink{class_sysc_add__pv}{a3}},\ \mbox{\hyperlink{class_sysc_add__pv}{a4}},\ \mbox{\hyperlink{class_sysc_add__pv}{a5}},\ \mbox{\hyperlink{class_sysc_add__pv}{a6}},\ \mbox{\hyperlink{class_sysc_add__pv}{a7}},\ \mbox{\hyperlink{class_sysc_add__pv}{a8}});}
+\DoxyCodeLine{00917\ \ \ \ \ \}}
+\DoxyCodeLine{00918\ }
+\DoxyCodeLine{00919\ \ \ \ \ \mbox{\hyperlink{class_sysc_add__pv}{R}}\ \mbox{\hyperlink{bind__template_8hpp_aaaead712fe7dc29c1799e7d8f77d1cfb}{operator()}}(\mbox{\hyperlink{mem__fn__cc_8hpp_adf1f3edb9115acb0a1e04209b7a9937b}{T}}\ \textcolor{keyword}{const}\ \&\ t,\ \mbox{\hyperlink{mem__fn__cc_8hpp_a04e585ae6243f4fc9527956ec817ebcc}{A1}}\ a1,\ \mbox{\hyperlink{mem__fn__cc_8hpp_a9fbc78aa6f21ccf5de2008548a55fa41}{A2}}\ \mbox{\hyperlink{class_sysc_add__pv}{a2}},\ \mbox{\hyperlink{mem__fn__cc_8hpp_a89a06d984ae53ed8b1aa8347b32acc34}{A3}}\ \mbox{\hyperlink{class_sysc_add__pv}{a3}},\ \mbox{\hyperlink{mem__fn__cc_8hpp_adfe39a13c9fec4b6aa664ac26daf637f}{A4}}\ \mbox{\hyperlink{class_sysc_add__pv}{a4}},\ \mbox{\hyperlink{mem__fn__cc_8hpp_a8578843f34b19c9d7eda7ce2c31ca88b}{A5}}\ \mbox{\hyperlink{class_sysc_add__pv}{a5}},\ \mbox{\hyperlink{mem__fn__cc_8hpp_a517625cd635b9236a02785e388086ae8}{A6}}\ \mbox{\hyperlink{class_sysc_add__pv}{a6}},\ \mbox{\hyperlink{mem__fn__cc_8hpp_a68b56b0b372123336cdc5135d092fe4f}{A7}}\ \mbox{\hyperlink{class_sysc_add__pv}{a7}},\ \mbox{\hyperlink{class_sysc_add__pv}{A8}}\ \mbox{\hyperlink{class_sysc_add__pv}{a8}})\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00920\ \textcolor{keyword}{\ \ \ \ }\{}
+\DoxyCodeLine{00921\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{mem__fn_8hpp_a76811f5057db2ee0ab2f31467800ccfa}{SC\_BOOST\_MEM\_FN\_RETURN}}\ (t.*\mbox{\hyperlink{bind__template_8hpp_a5bffa5ba7163be1080445f808a43a327}{f\_}})(a1,\ \mbox{\hyperlink{class_sysc_add__pv}{a2}},\ \mbox{\hyperlink{class_sysc_add__pv}{a3}},\ \mbox{\hyperlink{class_sysc_add__pv}{a4}},\ \mbox{\hyperlink{class_sysc_add__pv}{a5}},\ \mbox{\hyperlink{class_sysc_add__pv}{a6}},\ \mbox{\hyperlink{class_sysc_add__pv}{a7}},\ \mbox{\hyperlink{class_sysc_add__pv}{a8}});}
+\DoxyCodeLine{00922\ \ \ \ \ \}}
+\DoxyCodeLine{00923\ }
+\DoxyCodeLine{00924\ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{namespacesc__dt_a670409225d70df53b3b5e5156a061ba6}{operator==}}(\mbox{\hyperlink{mem__fn_8hpp_a148b51c6578c9ebbf545abf944152166}{SC\_BOOST\_MEM\_FN\_NAME}}(\mbox{\hyperlink{class_sysc_add__pv}{cmf8}})\ \textcolor{keyword}{const}\ \&\ \mbox{\hyperlink{class_sysc_add__pv}{rhs}})\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00925\ \textcolor{keyword}{\ \ \ \ }\{}
+\DoxyCodeLine{00926\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{bind__template_8hpp_a5bffa5ba7163be1080445f808a43a327}{f\_}}\ ==\ \mbox{\hyperlink{class_sysc_add__pv}{rhs}}.f\_;}
+\DoxyCodeLine{00927\ \ \ \ \ \}}
+\DoxyCodeLine{00928\ }
+\DoxyCodeLine{00929\ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{namespacesc__dt_ac521149d132e9c77a5d9029aa86344db}{operator!=}}(\mbox{\hyperlink{mem__fn_8hpp_a148b51c6578c9ebbf545abf944152166}{SC\_BOOST\_MEM\_FN\_NAME}}(\mbox{\hyperlink{class_sysc_add__pv}{cmf8}})\ \textcolor{keyword}{const}\ \&\ \mbox{\hyperlink{class_sysc_add__pv}{rhs}})\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00930\ \textcolor{keyword}{\ \ \ \ }\{}
+\DoxyCodeLine{00931\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{bind__template_8hpp_a5bffa5ba7163be1080445f808a43a327}{f\_}}\ !=\ \mbox{\hyperlink{class_sysc_add__pv}{rhs}}.f\_;}
+\DoxyCodeLine{00932\ \ \ \ \ \}}
+\DoxyCodeLine{00933\ \};}
+\DoxyCodeLine{00934\ }
+
+\end{DoxyCode}

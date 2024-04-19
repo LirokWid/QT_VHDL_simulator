@@ -1,0 +1,92 @@
+\doxysection{sc\+\_\+typeindex.\+h}
+\hypertarget{sc__typeindex_8h_source}{}\label{sc__typeindex_8h_source}\index{C:/Users/BJRODIER/Documents/QT\_REPO/QT\_VHDL\_simulator/code/Ressources/SystemC/include/sysc/utils/sc\_typeindex.h@{C:/Users/BJRODIER/Documents/QT\_REPO/QT\_VHDL\_simulator/code/Ressources/SystemC/include/sysc/utils/sc\_typeindex.h}}
+\mbox{\hyperlink{sc__typeindex_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{comment}{/*****************************************************************************}}
+\DoxyCodeLine{00002\ \textcolor{comment}{}}
+\DoxyCodeLine{00003\ \textcolor{comment}{\ \ Licensed\ to\ Accellera\ Systems\ Initiative\ Inc.\ (Accellera)\ under\ one\ or}}
+\DoxyCodeLine{00004\ \textcolor{comment}{\ \ more\ contributor\ license\ agreements.\ \ See\ the\ NOTICE\ file\ distributed}}
+\DoxyCodeLine{00005\ \textcolor{comment}{\ \ with\ this\ work\ for\ additional\ information\ regarding\ copyright\ ownership.}}
+\DoxyCodeLine{00006\ \textcolor{comment}{\ \ Accellera\ licenses\ this\ file\ to\ you\ under\ the\ Apache\ License,\ Version\ 2.0}}
+\DoxyCodeLine{00007\ \textcolor{comment}{\ \ (the\ "{}License"{});\ you\ may\ not\ use\ this\ file\ except\ in\ compliance\ with\ the}}
+\DoxyCodeLine{00008\ \textcolor{comment}{\ \ License.\ \ You\ may\ obtain\ a\ copy\ of\ the\ License\ at}}
+\DoxyCodeLine{00009\ \textcolor{comment}{}}
+\DoxyCodeLine{00010\ \textcolor{comment}{\ \ \ \ http://www.apache.org/licenses/LICENSE-\/2.0}}
+\DoxyCodeLine{00011\ \textcolor{comment}{}}
+\DoxyCodeLine{00012\ \textcolor{comment}{\ \ Unless\ required\ by\ applicable\ law\ or\ agreed\ to\ in\ writing,\ software}}
+\DoxyCodeLine{00013\ \textcolor{comment}{\ \ distributed\ under\ the\ License\ is\ distributed\ on\ an\ "{}AS\ IS"{}\ BASIS,}}
+\DoxyCodeLine{00014\ \textcolor{comment}{\ \ WITHOUT\ WARRANTIES\ OR\ CONDITIONS\ OF\ ANY\ KIND,\ either\ express\ or}}
+\DoxyCodeLine{00015\ \textcolor{comment}{\ \ implied.\ \ See\ the\ License\ for\ the\ specific\ language\ governing}}
+\DoxyCodeLine{00016\ \textcolor{comment}{\ \ permissions\ and\ limitations\ under\ the\ License.}}
+\DoxyCodeLine{00017\ \textcolor{comment}{}}
+\DoxyCodeLine{00018\ \textcolor{comment}{\ *****************************************************************************/}}
+\DoxyCodeLine{00019\ }
+\DoxyCodeLine{00020\ \textcolor{comment}{/*****************************************************************************}}
+\DoxyCodeLine{00021\ \textcolor{comment}{}}
+\DoxyCodeLine{00022\ \textcolor{comment}{\ \ sc\_typeindex.h\ -\/-\/\ Wrapper\ around\ std::typeinfo\ to\ allow\ usage\ in\ containers}}
+\DoxyCodeLine{00023\ \textcolor{comment}{}}
+\DoxyCodeLine{00024\ \textcolor{comment}{\ \ Original\ Author:\ Philipp\ A.\ Hartmann,\ Intel\ Corporation}}
+\DoxyCodeLine{00025\ \textcolor{comment}{}}
+\DoxyCodeLine{00026\ \textcolor{comment}{\ \ NOTE:\ The\ type\ sc\_type\_index\ is\ implementation-\/defined\ and\ should\ not\ be}}
+\DoxyCodeLine{00027\ \textcolor{comment}{\ \ \ \ \ \ \ \ used\ within\ user\ models.\ \ After\ C++11\ is\ fully\ adopted,\ all\ uses\ shall}}
+\DoxyCodeLine{00028\ \textcolor{comment}{\ \ \ \ \ \ \ \ be\ replaced\ by\ std::type\_index.}}
+\DoxyCodeLine{00029\ \textcolor{comment}{}}
+\DoxyCodeLine{00030\ \textcolor{comment}{\ *****************************************************************************/}}
+\DoxyCodeLine{00031\ \textcolor{preprocessor}{\#ifndef\ SYSC\_UTILS\_SC\_TYPEINDEX\_H\_INCLUDED\_}}
+\DoxyCodeLine{00032\ \textcolor{preprocessor}{\#define\ SYSC\_UTILS\_SC\_TYPEINDEX\_H\_INCLUDED\_}}
+\DoxyCodeLine{00033\ }
+\DoxyCodeLine{00034\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{sc__cmnhdr_8h}{sysc/kernel/sc\_cmnhdr.h}}"{}}\ \textcolor{comment}{//\ SC\_CPLUSPLUS}}
+\DoxyCodeLine{00035\ }
+\DoxyCodeLine{00036\ \textcolor{preprocessor}{\#include\ <typeinfo>}}
+\DoxyCodeLine{00037\ }
+\DoxyCodeLine{00038\ \textcolor{preprocessor}{\#if\ SC\_CPLUSPLUS\ >=\ 201103L}}
+\DoxyCodeLine{00039\ \textcolor{preprocessor}{\#include\ <typeindex>}\ \textcolor{comment}{//\ C++11\ has\ std::typeindex\ to\ serve\ our\ needs}}
+\DoxyCodeLine{00040\ }
+\DoxyCodeLine{00041\ \textcolor{keyword}{namespace\ }\mbox{\hyperlink{namespacesc__core}{sc\_core}}\ \{}
+\DoxyCodeLine{00042\ \textcolor{keyword}{typedef}\ std::type\_index\ sc\_type\_index;}
+\DoxyCodeLine{00043\ \}\ \textcolor{comment}{//\ namespace\ sc\_core}}
+\DoxyCodeLine{00044\ }
+\DoxyCodeLine{00045\ \textcolor{preprocessor}{\#else\ }\textcolor{comment}{//\ C++03\ implementation}}
+\DoxyCodeLine{00046\ }
+\DoxyCodeLine{00047\ \textcolor{keyword}{namespace\ }\mbox{\hyperlink{namespacesc__core}{sc\_core}}\ \{}
+\DoxyCodeLine{00048\ }
+\DoxyCodeLine{00049\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classsc__core_1_1sc__type__index}{sc\_type\_index}}}
+\DoxyCodeLine{00050\ \{}
+\DoxyCodeLine{00051\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00052\ \ \ \mbox{\hyperlink{classsc__core_1_1sc__type__index_a63f4b7f78e9d43a45a066d20a2db7ca2}{sc\_type\_index}}(\textcolor{keyword}{const}\ std::type\_info\&\ \mbox{\hyperlink{class_sysc_add__pv}{ti}})}
+\DoxyCodeLine{00053\ \ \ \ \ :\ \mbox{\hyperlink{classsc__core_1_1sc__type__index_a8b31273808e4e7051a76e1bf3a16bfeb}{info\_}}(\&\mbox{\hyperlink{class_sysc_add__pv}{ti}})}
+\DoxyCodeLine{00054\ \ \ \{\}}
+\DoxyCodeLine{00055\ }
+\DoxyCodeLine{00056\ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{classsc__core_1_1sc__type__index_a9f7d285b48123148c8025061df34e328}{operator==}}(\ \textcolor{keyword}{const}\ \mbox{\hyperlink{classsc__core_1_1sc__type__index}{sc\_type\_index}}\&\ \mbox{\hyperlink{class_sysc_add__pv}{rhs}}\ )\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00057\ \textcolor{keyword}{\ \ \ \ }\{\ \textcolor{keywordflow}{return}\ *\mbox{\hyperlink{classsc__core_1_1sc__type__index_a8b31273808e4e7051a76e1bf3a16bfeb}{info\_}}\ ==\ *\mbox{\hyperlink{class_sysc_add__pv}{rhs}}.info\_;\ \}}
+\DoxyCodeLine{00058\ }
+\DoxyCodeLine{00059\ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{classsc__core_1_1sc__type__index_a2986dd36bdeff9faf931d905aca352e9}{operator!=}}(\ \textcolor{keyword}{const}\ \mbox{\hyperlink{classsc__core_1_1sc__type__index}{sc\_type\_index}}\&\ \mbox{\hyperlink{class_sysc_add__pv}{rhs}}\ )\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00060\ \textcolor{keyword}{\ \ \ \ }\{\ \textcolor{keywordflow}{return}\ *\mbox{\hyperlink{classsc__core_1_1sc__type__index_a8b31273808e4e7051a76e1bf3a16bfeb}{info\_}}\ !=\ *\mbox{\hyperlink{class_sysc_add__pv}{rhs}}.info\_;\ \}}
+\DoxyCodeLine{00061\ }
+\DoxyCodeLine{00062\ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{classsc__core_1_1sc__type__index_a5d0af22914adeadabec34d84e0cd0a5c}{operator<\ }}(\ \textcolor{keyword}{const}\ \mbox{\hyperlink{classsc__core_1_1sc__type__index}{sc\_type\_index}}\&\ \mbox{\hyperlink{class_sysc_add__pv}{rhs}}\ )\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00063\ \textcolor{keyword}{\ \ \ \ }\{\ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{classsc__core_1_1sc__type__index_a8b31273808e4e7051a76e1bf3a16bfeb}{info\_}}-\/>before(\ *\mbox{\hyperlink{class_sysc_add__pv}{rhs}}.info\_\ );\ \}}
+\DoxyCodeLine{00064\ }
+\DoxyCodeLine{00065\ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{classsc__core_1_1sc__type__index_ae006770266546fee531948230324a1d7}{operator<=}}(\ \textcolor{keyword}{const}\ \mbox{\hyperlink{classsc__core_1_1sc__type__index}{sc\_type\_index}}\&\ \mbox{\hyperlink{class_sysc_add__pv}{rhs}}\ )\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00066\ \textcolor{keyword}{\ \ \ \ }\{\ \textcolor{keywordflow}{return}\ !(*\textcolor{keyword}{this}\ >\ \mbox{\hyperlink{class_sysc_add__pv}{rhs}});\ \}}
+\DoxyCodeLine{00067\ }
+\DoxyCodeLine{00068\ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{classsc__core_1_1sc__type__index_a6dbe78b0e474bc1d7f5aef4752375452}{operator>\ }}(\ \textcolor{keyword}{const}\ \mbox{\hyperlink{classsc__core_1_1sc__type__index}{sc\_type\_index}}\&\ \mbox{\hyperlink{class_sysc_add__pv}{rhs}}\ )\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00069\ \textcolor{keyword}{\ \ \ \ }\{\ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{class_sysc_add__pv}{rhs}}.info\_-\/>before(\ *\mbox{\hyperlink{classsc__core_1_1sc__type__index_a8b31273808e4e7051a76e1bf3a16bfeb}{info\_}}\ );\ \}}
+\DoxyCodeLine{00070\ }
+\DoxyCodeLine{00071\ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{classsc__core_1_1sc__type__index_a17d6b10bec20ba48ebd5017bd1e70578}{operator>=}}(\ \textcolor{keyword}{const}\ \mbox{\hyperlink{classsc__core_1_1sc__type__index}{sc\_type\_index}}\&\ \mbox{\hyperlink{class_sysc_add__pv}{rhs}}\ )\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00072\ \textcolor{keyword}{\ \ \ \ }\{\ \textcolor{keywordflow}{return}\ !(*\textcolor{keyword}{this}\ <\ \mbox{\hyperlink{class_sysc_add__pv}{rhs}});\ \}}
+\DoxyCodeLine{00073\ }
+\DoxyCodeLine{00074\ \ \ \textcolor{keyword}{const}\ \textcolor{keywordtype}{char}*\ \mbox{\hyperlink{classsc__core_1_1sc__type__index_aae7fb74c914b5cd687e8bba62aeb2f60}{name}}()\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00075\ \textcolor{keyword}{\ \ \ \ }\{\ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{classsc__core_1_1sc__type__index_a8b31273808e4e7051a76e1bf3a16bfeb}{info\_}}-\/>\mbox{\hyperlink{classsc__core_1_1sc__object_a4da9c6e99326cd2619958e049625bc58}{name}}();\ \}}
+\DoxyCodeLine{00076\ }
+\DoxyCodeLine{00077\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00078\ \ \ std::type\_info\ \textcolor{keyword}{const}*\ \mbox{\hyperlink{classsc__core_1_1sc__type__index_a8b31273808e4e7051a76e1bf3a16bfeb}{info\_}};}
+\DoxyCodeLine{00079\ }
+\DoxyCodeLine{00080\ \};\ \textcolor{comment}{//\ class\ sc\_type\_index}}
+\DoxyCodeLine{00081\ }
+\DoxyCodeLine{00082\ \}\ \textcolor{comment}{//\ namespace\ sc\_core}}
+\DoxyCodeLine{00083\ }
+\DoxyCodeLine{00084\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{//\ SC\_CPLUSPLUS\ <\ 201103L}}
+\DoxyCodeLine{00085\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{//\ SYSC\_UTILS\_SC\_TYPEINDEX\_H\_INCLUDED\_}}
+\DoxyCodeLine{00086\ \textcolor{comment}{//\ Taf!}}
+
+\end{DoxyCode}

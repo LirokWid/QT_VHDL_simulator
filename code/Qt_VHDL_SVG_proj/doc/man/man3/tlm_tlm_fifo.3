@@ -1,0 +1,559 @@
+.TH "tlm::tlm_fifo< T >" 3 "VHDL simulator" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+tlm::tlm_fifo< T >
+.SH SYNOPSIS
+.br
+.PP
+.PP
+\fR#include <tlm_fifo\&.h>\fP
+.PP
+Inherits \fBtlm::tlm_fifo_get_if< T >\fP, \fBtlm::tlm_fifo_put_if< T >\fP, and \fBsc_core::sc_prim_channel\fP\&.
+.PP
+Inherited by \fBtlm::tlm_analysis_fifo< T >\fP\&.
+.SS "Public Member Functions"
+
+.in +1c
+.ti -1c
+.RI "\fBtlm_fifo\fP (int \fBsize_\fP=1)"
+.br
+.ti -1c
+.RI "\fBtlm_fifo\fP (\fBconst\fP \fBchar\fP *\fBname_\fP, int \fBsize_\fP=1)"
+.br
+.ti -1c
+.RI "\fBvirtual\fP \fB~tlm_fifo\fP ()"
+.br
+.ti -1c
+.RI "\fBT\fP \fBget\fP (\fBtlm_tag\fP< \fBT\fP > *=0)"
+.br
+.ti -1c
+.RI "\fBbool\fP \fBnb_get\fP (\fBT\fP &)"
+.br
+.ti -1c
+.RI "\fBbool\fP \fBnb_can_get\fP (\fBtlm_tag\fP< \fBT\fP > *=0) \fBconst\fP"
+.br
+.ti -1c
+.RI "\fBconst\fP \fBsc_core::sc_event\fP & \fBok_to_get\fP (\fBtlm_tag\fP< \fBT\fP > *=0) \fBconst\fP"
+.br
+.ti -1c
+.RI "\fBT\fP \fBpeek\fP (\fBtlm_tag\fP< \fBT\fP > *=0) \fBconst\fP"
+.br
+.ti -1c
+.RI "\fBbool\fP \fBnb_peek\fP (\fBT\fP &) \fBconst\fP"
+.br
+.ti -1c
+.RI "\fBbool\fP \fBnb_can_peek\fP (\fBtlm_tag\fP< \fBT\fP > *=0) \fBconst\fP"
+.br
+.ti -1c
+.RI "\fBconst\fP \fBsc_core::sc_event\fP & \fBok_to_peek\fP (\fBtlm_tag\fP< \fBT\fP > *=0) \fBconst\fP"
+.br
+.ti -1c
+.RI "\fBvoid\fP \fBput\fP (\fBconst\fP \fBT\fP &)"
+.br
+.ti -1c
+.RI "\fBbool\fP \fBnb_put\fP (\fBconst\fP \fBT\fP &)"
+.br
+.ti -1c
+.RI "\fBbool\fP \fBnb_can_put\fP (\fBtlm_tag\fP< \fBT\fP > *=0) \fBconst\fP"
+.br
+.ti -1c
+.RI "\fBconst\fP \fBsc_core::sc_event\fP & \fBok_to_put\fP (\fBtlm_tag\fP< \fBT\fP > *=0) \fBconst\fP"
+.br
+.ti -1c
+.RI "\fBvoid\fP \fBnb_expand\fP (\fBunsigned\fP int \fBn\fP=1)"
+.br
+.ti -1c
+.RI "\fBvoid\fP \fBnb_unbound\fP (\fBunsigned\fP int \fBn\fP=16)"
+.br
+.ti -1c
+.RI "\fBbool\fP \fBnb_reduce\fP (\fBunsigned\fP int \fBn\fP=1)"
+.br
+.ti -1c
+.RI "\fBbool\fP \fBnb_bound\fP (\fBunsigned\fP int \fBn\fP)"
+.br
+.ti -1c
+.RI "\fBbool\fP \fBnb_peek\fP (\fBT\fP &, int \fBn\fP) \fBconst\fP"
+.br
+.ti -1c
+.RI "\fBbool\fP \fBnb_poke\fP (\fBconst\fP \fBT\fP &, int \fBn\fP=0)"
+.br
+.ti -1c
+.RI "int \fBused\fP () \fBconst\fP"
+.br
+.ti -1c
+.RI "int \fBsize\fP () \fBconst\fP"
+.br
+.ti -1c
+.RI "\fBvoid\fP \fBdebug\fP () \fBconst\fP"
+.br
+.ti -1c
+.RI "\fBconst\fP \fBchar\fP * \fBkind\fP () \fBconst\fP"
+.br
+.in -1c
+
+Public Member Functions inherited from \fBtlm::tlm_blocking_get_if< T >\fP
+.in +1c
+.ti -1c
+.RI "\fBvirtual\fP \fBvoid\fP \fBget\fP (\fBT\fP &t)"
+.br
+.in -1c
+
+Public Member Functions inherited from \fBsc_core::sc_interface\fP
+.in +1c
+.ti -1c
+.RI "\fBvirtual\fP \fBvoid\fP \fBregister_port\fP (\fBsc_port_base\fP &\fBport_\fP, \fBconst\fP \fBchar\fP *\fBif_typename_\fP)"
+.br
+.ti -1c
+.RI "\fBvirtual\fP \fBconst\fP \fBsc_event\fP & \fBdefault_event\fP () \fBconst\fP"
+.br
+.ti -1c
+.RI "\fBvirtual\fP \fB~sc_interface\fP ()"
+.br
+.in -1c
+
+Public Member Functions inherited from \fBtlm::tlm_blocking_peek_if< T >\fP
+.in +1c
+.ti -1c
+.RI "\fBvirtual\fP \fBvoid\fP \fBpeek\fP (\fBT\fP &t) \fBconst\fP"
+.br
+.in -1c
+
+Public Member Functions inherited from \fBsc_core::sc_prim_channel\fP
+.in +1c
+.ti -1c
+.RI "\fBbool\fP \fBupdate_requested\fP ()"
+.br
+.ti -1c
+.RI "\fBvoid\fP \fBrequest_update\fP ()"
+.br
+.ti -1c
+.RI "\fBvoid\fP \fBasync_request_update\fP ()"
+.br
+.in -1c
+
+Public Member Functions inherited from \fBsc_core::sc_object\fP
+.in +1c
+.ti -1c
+.RI "\fBconst\fP \fBchar\fP * \fBname\fP () \fBconst\fP"
+.br
+.ti -1c
+.RI "\fBconst\fP \fBchar\fP * \fBbasename\fP () \fBconst\fP"
+.br
+.ti -1c
+.RI "\fBvirtual\fP \fBvoid\fP \fBprint\fP (::std::ostream &\fBos\fP=::std::cout) \fBconst\fP"
+.br
+.ti -1c
+.RI "\fBvirtual\fP \fBvoid\fP \fBdump\fP (::std::ostream &\fBos\fP=::std::cout) \fBconst\fP"
+.br
+.ti -1c
+.RI "\fBvirtual\fP \fBvoid\fP \fBtrace\fP (\fBsc_trace_file\fP *tf) \fBconst\fP"
+.br
+.ti -1c
+.RI "\fBsc_simcontext\fP * \fBsimcontext\fP () \fBconst\fP"
+.br
+.ti -1c
+.RI "\fBbool\fP \fBadd_attribute\fP (\fBsc_attr_base\fP &)"
+.br
+.ti -1c
+.RI "\fBsc_attr_base\fP * \fBget_attribute\fP (\fBconst\fP std::string &\fBname_\fP)"
+.br
+.ti -1c
+.RI "\fBconst\fP \fBsc_attr_base\fP * \fBget_attribute\fP (\fBconst\fP std::string &\fBname_\fP) \fBconst\fP"
+.br
+.ti -1c
+.RI "\fBsc_attr_base\fP * \fBremove_attribute\fP (\fBconst\fP std::string &\fBname_\fP)"
+.br
+.ti -1c
+.RI "\fBvoid\fP \fBremove_all_attributes\fP ()"
+.br
+.ti -1c
+.RI "int \fBnum_attributes\fP () \fBconst\fP"
+.br
+.ti -1c
+.RI "\fBsc_attr_cltn\fP & \fBattr_cltn\fP ()"
+.br
+.ti -1c
+.RI "\fBconst\fP \fBsc_attr_cltn\fP & \fBattr_cltn\fP () \fBconst\fP"
+.br
+.ti -1c
+.RI "\fBvirtual\fP \fBconst\fP std::vector< \fBsc_event\fP * > & \fBget_child_events\fP () \fBconst\fP"
+.br
+.ti -1c
+.RI "\fBvirtual\fP \fBconst\fP std::vector< \fBsc_object\fP * > & \fBget_child_objects\fP () \fBconst\fP"
+.br
+.ti -1c
+.RI "\fBsc_object\fP * \fBget_parent\fP () \fBconst\fP"
+.br
+.ti -1c
+.RI "\fBsc_object\fP * \fBget_parent_object\fP () \fBconst\fP"
+.br
+.in -1c
+.SS "Static Public Attributes"
+
+.in +1c
+.ti -1c
+.RI "\fBstatic\fP \fBconst\fP \fBchar\fP *\fBconst\fP \fBkind_string\fP = 'tlm_fifo'"
+.br
+.in -1c
+.SS "Protected Member Functions"
+
+.in +1c
+.ti -1c
+.RI "\fBsc_core::sc_event\fP & \fBread_event\fP (\fBtlm_tag\fP< \fBT\fP > *=0)"
+.br
+.ti -1c
+.RI "\fBvoid\fP \fBupdate\fP ()"
+.br
+.ti -1c
+.RI "\fBvoid\fP \fBinit\fP (int)"
+.br
+.in -1c
+
+Protected Member Functions inherited from \fBsc_core::sc_interface\fP
+.in +1c
+.ti -1c
+.RI "\fBsc_interface\fP ()"
+.br
+.in -1c
+
+Protected Member Functions inherited from \fBsc_core::sc_prim_channel\fP
+.in +1c
+.ti -1c
+.RI "\fBsc_prim_channel\fP ()"
+.br
+.ti -1c
+.RI "\fBsc_prim_channel\fP (\fBconst\fP \fBchar\fP *)"
+.br
+.ti -1c
+.RI "\fBvirtual\fP \fB~sc_prim_channel\fP ()"
+.br
+.ti -1c
+.RI "\fBvirtual\fP \fBvoid\fP \fBbefore_end_of_elaboration\fP ()"
+.br
+.ti -1c
+.RI "\fBvirtual\fP \fBvoid\fP \fBend_of_elaboration\fP ()"
+.br
+.ti -1c
+.RI "\fBvirtual\fP \fBvoid\fP \fBstart_of_simulation\fP ()"
+.br
+.ti -1c
+.RI "\fBvirtual\fP \fBvoid\fP \fBend_of_simulation\fP ()"
+.br
+.ti -1c
+.RI "\fBbool\fP \fBasync_attach_suspending\fP ()"
+.br
+.ti -1c
+.RI "\fBbool\fP \fBasync_detach_suspending\fP ()"
+.br
+.ti -1c
+.RI "\fBvoid\fP \fBwait\fP ()"
+.br
+.ti -1c
+.RI "\fBvoid\fP \fBwait\fP (\fBconst\fP \fBsc_event\fP &\fBe\fP)"
+.br
+.ti -1c
+.RI "\fBvoid\fP \fBwait\fP (\fBconst\fP \fBsc_event_or_list\fP &\fBel\fP)"
+.br
+.ti -1c
+.RI "\fBvoid\fP \fBwait\fP (\fBconst\fP \fBsc_event_and_list\fP &\fBel\fP)"
+.br
+.ti -1c
+.RI "\fBvoid\fP \fBwait\fP (\fBconst\fP \fBsc_time\fP &t)"
+.br
+.ti -1c
+.RI "\fBvoid\fP \fBwait\fP (\fBdouble\fP v, \fBsc_time_unit\fP \fBtu\fP)"
+.br
+.ti -1c
+.RI "\fBvoid\fP \fBwait\fP (\fBconst\fP \fBsc_time\fP &t, \fBconst\fP \fBsc_event\fP &\fBe\fP)"
+.br
+.ti -1c
+.RI "\fBvoid\fP \fBwait\fP (\fBdouble\fP v, \fBsc_time_unit\fP \fBtu\fP, \fBconst\fP \fBsc_event\fP &\fBe\fP)"
+.br
+.ti -1c
+.RI "\fBvoid\fP \fBwait\fP (\fBconst\fP \fBsc_time\fP &t, \fBconst\fP \fBsc_event_or_list\fP &\fBel\fP)"
+.br
+.ti -1c
+.RI "\fBvoid\fP \fBwait\fP (\fBdouble\fP v, \fBsc_time_unit\fP \fBtu\fP, \fBconst\fP \fBsc_event_or_list\fP &\fBel\fP)"
+.br
+.ti -1c
+.RI "\fBvoid\fP \fBwait\fP (\fBconst\fP \fBsc_time\fP &t, \fBconst\fP \fBsc_event_and_list\fP &\fBel\fP)"
+.br
+.ti -1c
+.RI "\fBvoid\fP \fBwait\fP (\fBdouble\fP v, \fBsc_time_unit\fP \fBtu\fP, \fBconst\fP \fBsc_event_and_list\fP &\fBel\fP)"
+.br
+.ti -1c
+.RI "\fBvoid\fP \fBwait\fP (int \fBn\fP)"
+.br
+.ti -1c
+.RI "\fBvoid\fP \fBnext_trigger\fP ()"
+.br
+.ti -1c
+.RI "\fBvoid\fP \fBnext_trigger\fP (\fBconst\fP \fBsc_event\fP &\fBe\fP)"
+.br
+.ti -1c
+.RI "\fBvoid\fP \fBnext_trigger\fP (\fBconst\fP \fBsc_event_or_list\fP &\fBel\fP)"
+.br
+.ti -1c
+.RI "\fBvoid\fP \fBnext_trigger\fP (\fBconst\fP \fBsc_event_and_list\fP &\fBel\fP)"
+.br
+.ti -1c
+.RI "\fBvoid\fP \fBnext_trigger\fP (\fBconst\fP \fBsc_time\fP &t)"
+.br
+.ti -1c
+.RI "\fBvoid\fP \fBnext_trigger\fP (\fBdouble\fP v, \fBsc_time_unit\fP \fBtu\fP)"
+.br
+.ti -1c
+.RI "\fBvoid\fP \fBnext_trigger\fP (\fBconst\fP \fBsc_time\fP &t, \fBconst\fP \fBsc_event\fP &\fBe\fP)"
+.br
+.ti -1c
+.RI "\fBvoid\fP \fBnext_trigger\fP (\fBdouble\fP v, \fBsc_time_unit\fP \fBtu\fP, \fBconst\fP \fBsc_event\fP &\fBe\fP)"
+.br
+.ti -1c
+.RI "\fBvoid\fP \fBnext_trigger\fP (\fBconst\fP \fBsc_time\fP &t, \fBconst\fP \fBsc_event_or_list\fP &\fBel\fP)"
+.br
+.ti -1c
+.RI "\fBvoid\fP \fBnext_trigger\fP (\fBdouble\fP v, \fBsc_time_unit\fP \fBtu\fP, \fBconst\fP \fBsc_event_or_list\fP &\fBel\fP)"
+.br
+.ti -1c
+.RI "\fBvoid\fP \fBnext_trigger\fP (\fBconst\fP \fBsc_time\fP &t, \fBconst\fP \fBsc_event_and_list\fP &\fBel\fP)"
+.br
+.ti -1c
+.RI "\fBvoid\fP \fBnext_trigger\fP (\fBdouble\fP v, \fBsc_time_unit\fP \fBtu\fP, \fBconst\fP \fBsc_event_and_list\fP &\fBel\fP)"
+.br
+.ti -1c
+.RI "\fBbool\fP \fBtimed_out\fP ()"
+.br
+.in -1c
+
+Protected Member Functions inherited from \fBsc_core::sc_object\fP
+.in +1c
+.ti -1c
+.RI "\fBsc_object\fP ()"
+.br
+.ti -1c
+.RI "\fBsc_object\fP (\fBconst\fP \fBchar\fP *\fBnm\fP)"
+.br
+.ti -1c
+.RI "\fBsc_object\fP (\fBconst\fP \fBsc_object\fP &)"
+.br
+.ti -1c
+.RI "\fBsc_object\fP & \fBoperator=\fP (\fBconst\fP \fBsc_object\fP &)"
+.br
+.ti -1c
+.RI "\fBvirtual\fP \fB~sc_object\fP ()"
+.br
+.ti -1c
+.RI "\fBvirtual\fP \fBvoid\fP \fBadd_child_event\fP (\fBsc_event\fP *\fBevent_p\fP)"
+.br
+.ti -1c
+.RI "\fBvirtual\fP \fBvoid\fP \fBadd_child_object\fP (\fBsc_object\fP *\fBobject_p\fP)"
+.br
+.ti -1c
+.RI "\fBvirtual\fP \fBbool\fP \fBremove_child_event\fP (\fBsc_event\fP *\fBevent_p\fP)"
+.br
+.ti -1c
+.RI "\fBvirtual\fP \fBbool\fP \fBremove_child_object\fP (\fBsc_object\fP *\fBobject_p\fP)"
+.br
+.ti -1c
+.RI "\fBphase_cb_mask\fP \fBregister_simulation_phase_callback\fP (\fBphase_cb_mask\fP)"
+.br
+.ti -1c
+.RI "\fBphase_cb_mask\fP \fBunregister_simulation_phase_callback\fP (\fBphase_cb_mask\fP)"
+.br
+.in -1c
+.SS "Protected Attributes"
+
+.in +1c
+.ti -1c
+.RI "\fBcircular_buffer\fP< \fBT\fP > \fBbuffer\fP"
+.br
+.ti -1c
+.RI "int \fBm_size\fP"
+.br
+.ti -1c
+.RI "int \fBm_num_readable\fP"
+.br
+.ti -1c
+.RI "int \fBm_num_read\fP"
+.br
+.ti -1c
+.RI "int \fBm_num_written\fP"
+.br
+.ti -1c
+.RI "\fBbool\fP \fBm_expand\fP"
+.br
+.ti -1c
+.RI "int \fBm_num_read_no_notify\fP"
+.br
+.ti -1c
+.RI "\fBsc_core::sc_event\fP \fBm_data_read_event\fP"
+.br
+.ti -1c
+.RI "\fBsc_core::sc_event\fP \fBm_data_written_event\fP"
+.br
+.in -1c
+.SS "Private Member Functions"
+
+.in +1c
+.ti -1c
+.RI "\fBtlm_fifo\fP (\fBconst\fP \fBtlm_fifo\fP< \fBT\fP > &)"
+.br
+.ti -1c
+.RI "\fBtlm_fifo\fP & \fBoperator=\fP (\fBconst\fP \fBtlm_fifo\fP< \fBT\fP > &)"
+.br
+.ti -1c
+.RI "\fBbool\fP \fBis_empty\fP () \fBconst\fP"
+.br
+.ti -1c
+.RI "\fBbool\fP \fBis_full\fP () \fBconst\fP"
+.br
+.in -1c
+.SS "Additional Inherited Members"
+
+
+Public Types inherited from \fBsc_core::sc_prim_channel\fP
+.in +1c
+.ti -1c
+.RI "enum { \fBlist_end\fP = 0xdb }"
+.br
+.in -1c
+
+Public Types inherited from \fBsc_core::sc_object\fP
+.in +1c
+.ti -1c
+.RI "\fBtypedef\fP \fBunsigned\fP \fBphase_cb_mask\fP"
+.br
+.in -1c
+.SH "Constructor & Destructor Documentation"
+.PP 
+.SS "template<\fBtypename\fP \fBT\fP > \fBtlm::tlm_fifo\fP< \fBT\fP >::tlm_fifo (int size_ = \fR1\fP)\fR [inline]\fP, \fR [explicit]\fP"
+
+.SS "template<\fBtypename\fP \fBT\fP > \fBtlm::tlm_fifo\fP< \fBT\fP >::tlm_fifo (\fBconst\fP \fBchar\fP * name_, int size_ = \fR1\fP)\fR [inline]\fP, \fR [explicit]\fP"
+
+.SS "template<\fBtypename\fP \fBT\fP > \fBvirtual\fP \fBtlm::tlm_fifo\fP< \fBT\fP >::~\fBtlm_fifo\fP ()\fR [inline]\fP, \fR [virtual]\fP"
+
+.SS "template<\fBtypename\fP \fBT\fP > \fBtlm::tlm_fifo\fP< \fBT\fP >::tlm_fifo (\fBconst\fP \fBtlm_fifo\fP< \fBT\fP > &)\fR [private]\fP"
+
+.SH "Member Function Documentation"
+.PP 
+.SS "template<\fBtypename\fP \fBT\fP > \fBvoid\fP \fBtlm::tlm_fifo\fP< \fBT\fP >::debug () const\fR [inline]\fP, \fR [virtual]\fP"
+
+.PP
+Implements \fBtlm::tlm_fifo_debug_if< T >\fP\&.
+.SS "template<\fBtypename\fP \fBT\fP > \fBT\fP \fBtlm::tlm_fifo\fP< \fBT\fP >::get (\fBtlm_tag\fP< \fBT\fP > * = \fR0\fP)\fR [inline]\fP, \fR [virtual]\fP"
+
+.PP
+Implements \fBtlm::tlm_blocking_get_if< T >\fP\&.
+.SS "template<\fBtypename\fP \fBT\fP > \fBvoid\fP \fBtlm::tlm_fifo\fP< \fBT\fP >::init (int size_)\fR [inline]\fP, \fR [protected]\fP"
+
+.SS "template<\fBtypename\fP \fBT\fP > \fBbool\fP \fBtlm::tlm_fifo\fP< \fBT\fP >::is_empty () const\fR [inline]\fP, \fR [private]\fP"
+
+.SS "template<\fBtypename\fP \fBT\fP > \fBbool\fP \fBtlm::tlm_fifo\fP< \fBT\fP >::is_full () const\fR [inline]\fP, \fR [private]\fP"
+
+.SS "template<\fBtypename\fP \fBT\fP > \fBconst\fP \fBchar\fP * \fBtlm::tlm_fifo\fP< \fBT\fP >::kind () const\fR [inline]\fP, \fR [virtual]\fP"
+
+.PP
+Reimplemented from \fBsc_core::sc_prim_channel\fP\&.
+.SS "template<\fBtypename\fP \fBT\fP > \fBbool\fP \fBtlm::tlm_fifo\fP< \fBT\fP >::nb_bound (\fBunsigned\fP int n)\fR [inline]\fP"
+
+.SS "template<\fBtypename\fP \fBT\fP > \fBbool\fP \fBtlm::tlm_fifo\fP< \fBT\fP >::nb_can_get (\fBtlm_tag\fP< \fBT\fP > * = \fR0\fP) const\fR [inline]\fP, \fR [virtual]\fP"
+
+.PP
+Implements \fBtlm::tlm_nonblocking_get_if< T >\fP\&.
+.SS "template<\fBtypename\fP \fBT\fP > \fBbool\fP \fBtlm::tlm_fifo\fP< \fBT\fP >::nb_can_peek (\fBtlm_tag\fP< \fBT\fP > * = \fR0\fP) const\fR [inline]\fP, \fR [virtual]\fP"
+
+.PP
+Implements \fBtlm::tlm_nonblocking_peek_if< T >\fP\&.
+.SS "template<\fBtypename\fP \fBT\fP > \fBbool\fP \fBtlm::tlm_fifo\fP< \fBT\fP >::nb_can_put (\fBtlm_tag\fP< \fBT\fP > * = \fR0\fP) const\fR [inline]\fP, \fR [virtual]\fP"
+
+.PP
+Implements \fBtlm::tlm_nonblocking_put_if< T >\fP\&.
+.SS "template<\fBtypename\fP \fBT\fP > \fBvoid\fP \fBtlm::tlm_fifo\fP< \fBT\fP >::nb_expand (\fBunsigned\fP int n = \fR1\fP)\fR [inline]\fP"
+
+.SS "template<\fBtypename\fP \fBT\fP > \fBbool\fP \fBtlm::tlm_fifo\fP< \fBT\fP >::nb_get (\fBT\fP & val_)\fR [inline]\fP, \fR [virtual]\fP"
+
+.PP
+Implements \fBtlm::tlm_nonblocking_get_if< T >\fP\&.
+.SS "template<\fBtypename\fP \fBT\fP > \fBbool\fP \fBtlm::tlm_fifo\fP< \fBT\fP >::nb_peek (\fBT\fP & t) const\fR [inline]\fP, \fR [virtual]\fP"
+
+.PP
+Implements \fBtlm::tlm_nonblocking_peek_if< T >\fP\&.
+.SS "template<\fBtypename\fP \fBT\fP > \fBbool\fP \fBtlm::tlm_fifo\fP< \fBT\fP >::nb_peek (\fBT\fP & t, int n) const\fR [inline]\fP, \fR [virtual]\fP"
+
+.PP
+Implements \fBtlm::tlm_fifo_debug_if< T >\fP\&.
+.SS "template<\fBtypename\fP \fBT\fP > \fBbool\fP \fBtlm::tlm_fifo\fP< \fBT\fP >::nb_poke (\fBconst\fP \fBT\fP & t, int n = \fR0\fP)\fR [inline]\fP, \fR [virtual]\fP"
+
+.PP
+Implements \fBtlm::tlm_fifo_debug_if< T >\fP\&.
+.SS "template<\fBtypename\fP \fBT\fP > \fBbool\fP \fBtlm::tlm_fifo\fP< \fBT\fP >::nb_put (\fBconst\fP \fBT\fP & val_)\fR [inline]\fP, \fR [virtual]\fP"
+
+.PP
+Implements \fBtlm::tlm_nonblocking_put_if< T >\fP\&.
+.SS "template<\fBtypename\fP \fBT\fP > \fBbool\fP \fBtlm::tlm_fifo\fP< \fBT\fP >::nb_reduce (\fBunsigned\fP int n = \fR1\fP)\fR [inline]\fP"
+
+.SS "template<\fBtypename\fP \fBT\fP > \fBvoid\fP \fBtlm::tlm_fifo\fP< \fBT\fP >::nb_unbound (\fBunsigned\fP int n = \fR16\fP)\fR [inline]\fP"
+
+.SS "template<\fBtypename\fP \fBT\fP > \fBconst\fP \fBsc_core::sc_event\fP & \fBtlm::tlm_fifo\fP< \fBT\fP >::ok_to_get (\fBtlm_tag\fP< \fBT\fP > * = \fR0\fP) const\fR [inline]\fP, \fR [virtual]\fP"
+
+.PP
+Implements \fBtlm::tlm_nonblocking_get_if< T >\fP\&.
+.SS "template<\fBtypename\fP \fBT\fP > \fBconst\fP \fBsc_core::sc_event\fP & \fBtlm::tlm_fifo\fP< \fBT\fP >::ok_to_peek (\fBtlm_tag\fP< \fBT\fP > * = \fR0\fP) const\fR [inline]\fP, \fR [virtual]\fP"
+
+.PP
+Implements \fBtlm::tlm_nonblocking_peek_if< T >\fP\&.
+.SS "template<\fBtypename\fP \fBT\fP > \fBconst\fP \fBsc_core::sc_event\fP & \fBtlm::tlm_fifo\fP< \fBT\fP >::ok_to_put (\fBtlm_tag\fP< \fBT\fP > * = \fR0\fP) const\fR [inline]\fP, \fR [virtual]\fP"
+
+.PP
+Implements \fBtlm::tlm_nonblocking_put_if< T >\fP\&.
+.SS "template<\fBtypename\fP \fBT\fP > \fBtlm_fifo\fP & \fBtlm::tlm_fifo\fP< \fBT\fP >\fB::operator\fP= (\fBconst\fP \fBtlm_fifo\fP< \fBT\fP > &)\fR [private]\fP"
+
+.SS "template<\fBtypename\fP \fBT\fP > \fBT\fP \fBtlm::tlm_fifo\fP< \fBT\fP >::peek (\fBtlm_tag\fP< \fBT\fP > * = \fR0\fP) const\fR [inline]\fP, \fR [virtual]\fP"
+
+.PP
+Implements \fBtlm::tlm_blocking_peek_if< T >\fP\&.
+.SS "template<\fBtypename\fP \fBT\fP > \fBvoid\fP \fBtlm::tlm_fifo\fP< \fBT\fP >::put (\fBconst\fP \fBT\fP & val_)\fR [inline]\fP, \fR [virtual]\fP"
+
+.PP
+Implements \fBtlm::tlm_blocking_put_if< T >\fP\&.
+.SS "template<\fBtypename\fP \fBT\fP > \fBsc_core::sc_event\fP & \fBtlm::tlm_fifo\fP< \fBT\fP >::read_event (\fBtlm_tag\fP< \fBT\fP > * = \fR0\fP)\fR [inline]\fP, \fR [protected]\fP"
+
+.SS "template<\fBtypename\fP \fBT\fP > int \fBtlm::tlm_fifo\fP< \fBT\fP >::size () const\fR [inline]\fP, \fR [virtual]\fP"
+
+.PP
+Implements \fBtlm::tlm_fifo_debug_if< T >\fP\&.
+.SS "template<\fBtypename\fP \fBT\fP > \fBvoid\fP \fBtlm::tlm_fifo\fP< \fBT\fP >::update ()\fR [inline]\fP, \fR [protected]\fP, \fR [virtual]\fP"
+
+.PP
+Reimplemented from \fBsc_core::sc_prim_channel\fP\&.
+.SS "template<\fBtypename\fP \fBT\fP > int \fBtlm::tlm_fifo\fP< \fBT\fP >::used () const\fR [inline]\fP, \fR [virtual]\fP"
+
+.PP
+Implements \fBtlm::tlm_fifo_debug_if< T >\fP\&.
+.SH "Member Data Documentation"
+.PP 
+.SS "template<\fBtypename\fP \fBT\fP > \fBcircular_buffer\fP<\fBT\fP> \fBtlm::tlm_fifo\fP< \fBT\fP >::buffer\fR [protected]\fP"
+
+.SS "template<\fBtypename\fP \fBT\fP > \fBconst\fP \fBchar\fP *\fBconst\fP \fBtlm::tlm_fifo\fP< \fBT\fP >::kind_string = 'tlm_fifo'\fR [static]\fP"
+
+.SS "template<\fBtypename\fP \fBT\fP > \fBsc_core::sc_event\fP \fBtlm::tlm_fifo\fP< \fBT\fP >::m_data_read_event\fR [protected]\fP"
+
+.SS "template<\fBtypename\fP \fBT\fP > \fBsc_core::sc_event\fP \fBtlm::tlm_fifo\fP< \fBT\fP >::m_data_written_event\fR [protected]\fP"
+
+.SS "template<\fBtypename\fP \fBT\fP > \fBbool\fP \fBtlm::tlm_fifo\fP< \fBT\fP >::m_expand\fR [protected]\fP"
+
+.SS "template<\fBtypename\fP \fBT\fP > int \fBtlm::tlm_fifo\fP< \fBT\fP >::m_num_read\fR [protected]\fP"
+
+.SS "template<\fBtypename\fP \fBT\fP > int \fBtlm::tlm_fifo\fP< \fBT\fP >::m_num_read_no_notify\fR [protected]\fP"
+
+.SS "template<\fBtypename\fP \fBT\fP > int \fBtlm::tlm_fifo\fP< \fBT\fP >::m_num_readable\fR [protected]\fP"
+
+.SS "template<\fBtypename\fP \fBT\fP > int \fBtlm::tlm_fifo\fP< \fBT\fP >::m_num_written\fR [protected]\fP"
+
+.SS "template<\fBtypename\fP \fBT\fP > int \fBtlm::tlm_fifo\fP< \fBT\fP >::m_size\fR [protected]\fP"
+
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for VHDL simulator from the source code\&.

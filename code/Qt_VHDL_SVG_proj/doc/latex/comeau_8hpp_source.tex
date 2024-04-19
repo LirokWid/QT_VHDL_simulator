@@ -1,0 +1,65 @@
+\doxysection{comeau.\+hpp}
+\hypertarget{comeau_8hpp_source}{}\label{comeau_8hpp_source}\index{C:/Users/BJRODIER/Documents/QT\_REPO/QT\_VHDL\_simulator/code/Ressources/SystemC/include/sysc/packages/boost/config/compiler/comeau.hpp@{C:/Users/BJRODIER/Documents/QT\_REPO/QT\_VHDL\_simulator/code/Ressources/SystemC/include/sysc/packages/boost/config/compiler/comeau.hpp}}
+\mbox{\hyperlink{comeau_8hpp}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{comment}{//\ \ (C)\ Copyright\ John\ Maddock\ 2001.\ }}
+\DoxyCodeLine{00002\ \textcolor{comment}{//\ \ (C)\ Copyright\ Douglas\ Gregor\ 2001.\ }}
+\DoxyCodeLine{00003\ \textcolor{comment}{//\ \ (C)\ Copyright\ Peter\ Dimov\ 2001.\ }}
+\DoxyCodeLine{00004\ \textcolor{comment}{//\ \ (C)\ Copyright\ Aleksey\ Gurtovoy\ 2003.\ }}
+\DoxyCodeLine{00005\ \textcolor{comment}{//\ \ (C)\ Copyright\ Beman\ Dawes\ 2003.\ }}
+\DoxyCodeLine{00006\ \textcolor{comment}{//\ \ (C)\ Copyright\ Jens\ Maurer\ 2003.\ }}
+\DoxyCodeLine{00007\ \textcolor{comment}{//\ \ Use,\ modification\ and\ distribution\ are\ subject\ to\ the\ }}
+\DoxyCodeLine{00008\ \textcolor{comment}{//\ \ Boost\ Software\ License,\ Version\ 1.0.\ (See\ accompanying\ file\ }}
+\DoxyCodeLine{00009\ \textcolor{comment}{//\ \ LICENSE\_1\_0.txt\ or\ copy\ at\ http://www.boost.org/LICENSE\_1\_0.txt)}}
+\DoxyCodeLine{00010\ }
+\DoxyCodeLine{00011\ \textcolor{comment}{//\ \ See\ http://www.boost.org\ for\ most\ recent\ version.}}
+\DoxyCodeLine{00012\ }
+\DoxyCodeLine{00013\ \textcolor{comment}{//\ \ Comeau\ C++\ compiler\ setup:}}
+\DoxyCodeLine{00014\ }
+\DoxyCodeLine{00015\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{common__edg_8hpp}{sysc/packages/boost/config/compiler/common\_edg.hpp}}"{}}}
+\DoxyCodeLine{00016\ }
+\DoxyCodeLine{00017\ \textcolor{preprocessor}{\#if\ (\_\_COMO\_VERSION\_\_\ <=\ 4245)}}
+\DoxyCodeLine{00018\ }
+\DoxyCodeLine{00019\ \textcolor{preprocessor}{\#\ \ if\ defined(\_MSC\_VER)\ \&\&\ \_MSC\_VER\ <=\ 1300}}
+\DoxyCodeLine{00020\ \textcolor{preprocessor}{\#\ \ \ \ \ if\ \_MSC\_VER\ >\ 100}}
+\DoxyCodeLine{00021\ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ only\ set\ this\ in\ non-\/strict\ mode:}}
+\DoxyCodeLine{00022\ \textcolor{preprocessor}{\#\ \ \ \ \ \ \ \ define\ SC\_BOOST\_NO\_ARGUMENT\_DEPENDENT\_LOOKUP}}
+\DoxyCodeLine{00023\ \textcolor{preprocessor}{\#\ \ \ \ \ endif}}
+\DoxyCodeLine{00024\ \textcolor{preprocessor}{\#\ \ endif}}
+\DoxyCodeLine{00025\ }
+\DoxyCodeLine{00026\ \textcolor{comment}{//\ Void\ returns\ don't\ work\ when\ emulating\ VC\ 6\ (Peter\ Dimov)}}
+\DoxyCodeLine{00027\ }
+\DoxyCodeLine{00028\ \textcolor{preprocessor}{\#\ \ if\ defined(\_MSC\_VER)\ \&\&\ (\_MSC\_VER\ ==\ 1200)}}
+\DoxyCodeLine{00029\ \textcolor{preprocessor}{\#\ \ \ \ \ define\ SC\_BOOST\_NO\_VOID\_RETURNS}}
+\DoxyCodeLine{00030\ \textcolor{preprocessor}{\#\ \ endif}}
+\DoxyCodeLine{00031\ }
+\DoxyCodeLine{00032\ \textcolor{preprocessor}{\#endif\ \ }\textcolor{comment}{//\ version\ 4245}}
+\DoxyCodeLine{00033\ }
+\DoxyCodeLine{00034\ \textcolor{comment}{//}}
+\DoxyCodeLine{00035\ \textcolor{comment}{//\ enable\ \_\_int64\ support\ in\ VC\ emulation\ mode}}
+\DoxyCodeLine{00036\ \textcolor{comment}{//}}
+\DoxyCodeLine{00037\ \textcolor{preprocessor}{\#\ \ if\ defined(\_MSC\_VER)\ \&\&\ (\_MSC\_VER\ >=\ 1200)}}
+\DoxyCodeLine{00038\ \textcolor{preprocessor}{\#\ \ \ \ \ define\ SC\_BOOST\_HAS\_MS\_INT64}}
+\DoxyCodeLine{00039\ \textcolor{preprocessor}{\#\ \ endif}}
+\DoxyCodeLine{00040\ }
+\DoxyCodeLine{00041\ \textcolor{preprocessor}{\#define\ SC\_BOOST\_COMPILER\ "{}Comeau\ compiler\ version\ "{}\ SC\_BOOST\_STRINGIZE(\_\_COMO\_VERSION\_\_)}}
+\DoxyCodeLine{00042\ }
+\DoxyCodeLine{00043\ \textcolor{comment}{//}}
+\DoxyCodeLine{00044\ \textcolor{comment}{//\ versions\ check:}}
+\DoxyCodeLine{00045\ \textcolor{comment}{//\ we\ don't\ know\ Comeau\ prior\ to\ version\ 4245:}}
+\DoxyCodeLine{00046\ \textcolor{preprocessor}{\#if\ \_\_COMO\_VERSION\_\_\ <\ 4245}}
+\DoxyCodeLine{00047\ \textcolor{preprocessor}{\#\ \ error\ "{}Compiler\ not\ configured\ -\/\ please\ reconfigure"{}}}
+\DoxyCodeLine{00048\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00049\ \textcolor{comment}{//}}
+\DoxyCodeLine{00050\ \textcolor{comment}{//\ last\ known\ and\ checked\ version\ is\ 4245:}}
+\DoxyCodeLine{00051\ \textcolor{preprocessor}{\#if\ (\_\_COMO\_VERSION\_\_\ >\ 4245)}}
+\DoxyCodeLine{00052\ \textcolor{preprocessor}{\#\ \ if\ defined(SC\_BOOST\_ASSERT\_CONFIG)}}
+\DoxyCodeLine{00053\ \textcolor{preprocessor}{\#\ \ \ \ \ error\ "{}Unknown\ compiler\ version\ -\/\ please\ run\ the\ configure\ tests\ and\ report\ the\ results"{}}}
+\DoxyCodeLine{00054\ \textcolor{preprocessor}{\#\ \ endif}}
+\DoxyCodeLine{00055\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00056\ }
+\DoxyCodeLine{00057\ }
+\DoxyCodeLine{00058\ }
+\DoxyCodeLine{00059\ }
+
+\end{DoxyCode}

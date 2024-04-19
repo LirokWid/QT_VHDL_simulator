@@ -1,0 +1,97 @@
+\doxysection{sc\+\_\+string\+\_\+view.\+h}
+\hypertarget{sc__string__view_8h_source}{}\label{sc__string__view_8h_source}\index{C:/Users/BJRODIER/Documents/QT\_REPO/QT\_VHDL\_simulator/code/Ressources/SystemC/include/sysc/utils/sc\_string\_view.h@{C:/Users/BJRODIER/Documents/QT\_REPO/QT\_VHDL\_simulator/code/Ressources/SystemC/include/sysc/utils/sc\_string\_view.h}}
+\mbox{\hyperlink{sc__string__view_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{comment}{/*****************************************************************************}}
+\DoxyCodeLine{00002\ \textcolor{comment}{}}
+\DoxyCodeLine{00003\ \textcolor{comment}{\ \ Licensed\ to\ Accellera\ Systems\ Initiative\ Inc.\ (Accellera)\ under\ one\ or}}
+\DoxyCodeLine{00004\ \textcolor{comment}{\ \ more\ contributor\ license\ agreements.\ \ See\ the\ NOTICE\ file\ distributed}}
+\DoxyCodeLine{00005\ \textcolor{comment}{\ \ with\ this\ work\ for\ additional\ information\ regarding\ copyright\ ownership.}}
+\DoxyCodeLine{00006\ \textcolor{comment}{\ \ Accellera\ licenses\ this\ file\ to\ you\ under\ the\ Apache\ License,\ Version\ 2.0}}
+\DoxyCodeLine{00007\ \textcolor{comment}{\ \ (the\ "{}License"{});\ you\ may\ not\ use\ this\ file\ except\ in\ compliance\ with\ the}}
+\DoxyCodeLine{00008\ \textcolor{comment}{\ \ License.\ \ You\ may\ obtain\ a\ copy\ of\ the\ License\ at}}
+\DoxyCodeLine{00009\ \textcolor{comment}{}}
+\DoxyCodeLine{00010\ \textcolor{comment}{\ \ \ \ http://www.apache.org/licenses/LICENSE-\/2.0}}
+\DoxyCodeLine{00011\ \textcolor{comment}{}}
+\DoxyCodeLine{00012\ \textcolor{comment}{\ \ Unless\ required\ by\ applicable\ law\ or\ agreed\ to\ in\ writing,\ software}}
+\DoxyCodeLine{00013\ \textcolor{comment}{\ \ distributed\ under\ the\ License\ is\ distributed\ on\ an\ "{}AS\ IS"{}\ BASIS,}}
+\DoxyCodeLine{00014\ \textcolor{comment}{\ \ WITHOUT\ WARRANTIES\ OR\ CONDITIONS\ OF\ ANY\ KIND,\ either\ express\ or}}
+\DoxyCodeLine{00015\ \textcolor{comment}{\ \ implied.\ \ See\ the\ License\ for\ the\ specific\ language\ governing}}
+\DoxyCodeLine{00016\ \textcolor{comment}{\ \ permissions\ and\ limitations\ under\ the\ License.}}
+\DoxyCodeLine{00017\ \textcolor{comment}{}}
+\DoxyCodeLine{00018\ \textcolor{comment}{\ *****************************************************************************/}}
+\DoxyCodeLine{00019\ }
+\DoxyCodeLine{00020\ \textcolor{comment}{/*****************************************************************************}}
+\DoxyCodeLine{00021\ \textcolor{comment}{}}
+\DoxyCodeLine{00022\ \textcolor{comment}{\ \ sc\_string\_view.h\ -\/-\/\ Non-\/owning,\ constant\ reference\ to\ a\ character\ string}}
+\DoxyCodeLine{00023\ \textcolor{comment}{}}
+\DoxyCodeLine{00024\ \textcolor{comment}{\ \ Original\ Author:\ Philipp\ A\ Hartmann,\ Intel}}
+\DoxyCodeLine{00025\ \textcolor{comment}{}}
+\DoxyCodeLine{00026\ \textcolor{comment}{\ \ Intended\ to\ follow\ C++\ Library\ Fundamentals\ TS}}
+\DoxyCodeLine{00027\ \textcolor{comment}{\ \ \ \ http://open-\/std.org/jtc1/sc22/wg21/docs/papers/2015/n4480.html\#string.view}}
+\DoxyCodeLine{00028\ \textcolor{comment}{}}
+\DoxyCodeLine{00029\ \textcolor{comment}{\ \ NOTE:\ The\ types\ sc\_string\_view\ and\ sc\_zstring\_view\ are\ implementation-\/}}
+\DoxyCodeLine{00030\ \textcolor{comment}{\ \ \ \ \ \ \ \ defined\ and\ should\ not\ be\ used\ within\ user\ models.\ \ After\ C++17\ is}}
+\DoxyCodeLine{00031\ \textcolor{comment}{\ \ \ \ \ \ \ \ fully\ adopted,\ all\ uses\ shall\ be\ replaced\ by\ std::string\_view.}}
+\DoxyCodeLine{00032\ \textcolor{comment}{}}
+\DoxyCodeLine{00033\ \textcolor{comment}{\ *****************************************************************************/}}
+\DoxyCodeLine{00034\ }
+\DoxyCodeLine{00035\ \textcolor{preprocessor}{\#ifndef\ SYSC\_UTILS\_STRING\_VIEW\_H\_INCLUDED\_}}
+\DoxyCodeLine{00036\ \textcolor{preprocessor}{\#define\ SYSC\_UTILS\_STRING\_VIEW\_H\_INCLUDED\_}}
+\DoxyCodeLine{00037\ }
+\DoxyCodeLine{00038\ \textcolor{preprocessor}{\#include\ <\mbox{\hyperlink{sc__cmnhdr_8h}{sysc/kernel/sc\_cmnhdr.h}}>}}
+\DoxyCodeLine{00039\ }
+\DoxyCodeLine{00040\ \textcolor{preprocessor}{\#if\ SC\_CPLUSPLUS\ >=\ 201402L\ \&\&\ defined(\_\_has\_include)}}
+\DoxyCodeLine{00041\ \textcolor{preprocessor}{\#\ \ if\ SC\_CPLUSPLUS\ >\ 201402L\ \&\&\ \_\_has\_include(<string\_view>)\ }\textcolor{comment}{/*\ since\ C++17\ */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{00042\ \textcolor{preprocessor}{\#\ \ \ \ define\ SC\_STRING\_VIEW\_NS\_\ std}}
+\DoxyCodeLine{00043\ \textcolor{preprocessor}{\#\ \ \ \ include\ <string\_view>}}
+\DoxyCodeLine{00044\ \ \ \ \textcolor{comment}{/*\ \ available\ in\ Library\ Fundamentals,\ ISO/IEC\ TS\ 19568:2015\ */}}
+\DoxyCodeLine{00045\ \textcolor{preprocessor}{\#\ \ elif\ \_\_has\_include(<experimental/string\_view>)}}
+\DoxyCodeLine{00046\ \textcolor{preprocessor}{\#\ \ \ \ define\ SC\_STRING\_VIEW\_NS\_\ std::experimental}}
+\DoxyCodeLine{00047\ \textcolor{preprocessor}{\#\ \ \ \ include\ <experimental/string\_view>}}
+\DoxyCodeLine{00048\ \textcolor{preprocessor}{\#\ \ endif}}
+\DoxyCodeLine{00049\ \textcolor{preprocessor}{\#else}}
+\DoxyCodeLine{00050\ \textcolor{comment}{//\ TODO:\ other\ ways\ to\ detect\ availability\ of\ std::(experimental::)string\_view?}}
+\DoxyCodeLine{00051\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00052\ }
+\DoxyCodeLine{00053\ \textcolor{preprocessor}{\#ifndef\ SC\_STRING\_VIEW\_NS\_}}
+\DoxyCodeLine{00054\ \textcolor{comment}{//\ fallback\ to\ (mostly\ compatible)\ implementation\ from\ Boost}}
+\DoxyCodeLine{00055\ \textcolor{preprocessor}{\#\ \ include\ <\mbox{\hyperlink{string__view_8hpp}{sysc/packages/boost/utility/string\_view.hpp}}>}}
+\DoxyCodeLine{00056\ \textcolor{preprocessor}{\#\ \ define\ SC\_STRING\_VIEW\_NS\_\ sc\_boost}}
+\DoxyCodeLine{00057\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{//\ Boost\ fallback}}
+\DoxyCodeLine{00058\ }
+\DoxyCodeLine{00059\ \textcolor{keyword}{namespace\ }\mbox{\hyperlink{namespacesc__core}{sc\_core}}\ \{}
+\DoxyCodeLine{00060\ }
+\DoxyCodeLine{00062\ \textcolor{keyword}{typedef}\ SC\_STRING\_VIEW\_NS\_::string\_view\ \mbox{\hyperlink{namespacesc__core_adb3d9b08b4e375cf994afcd629c8e49c}{sc\_string\_view}};}
+\DoxyCodeLine{00063\ \textcolor{comment}{//\ TODO:\ add\ ABI\ guard\ against\ inconsistent\ configurations}}
+\DoxyCodeLine{00064\ }
+\DoxyCodeLine{00066\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classsc__core_1_1sc__zstring__view}{sc\_zstring\_view}}\ :\ \textcolor{keyword}{public}\ \mbox{\hyperlink{namespacesc__core_adb3d9b08b4e375cf994afcd629c8e49c}{sc\_string\_view}}}
+\DoxyCodeLine{00067\ \{}
+\DoxyCodeLine{00068\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00069\ \ \ \textcolor{comment}{/*\ constexpr\ */}\ \mbox{\hyperlink{classsc__core_1_1sc__zstring__view_a3ba077ad5eae272d272f99b1327cf583}{sc\_zstring\_view}}()\ \textcolor{comment}{/*\ noexcept\ */}}
+\DoxyCodeLine{00070\ \ \ \ \ :\ \mbox{\hyperlink{namespacesc__core_adb3d9b08b4e375cf994afcd629c8e49c}{sc\_string\_view}}()\ \{\}}
+\DoxyCodeLine{00071\ }
+\DoxyCodeLine{00072\ \ \ \textcolor{comment}{/*\ constexpr\ */}\ \mbox{\hyperlink{classsc__core_1_1sc__zstring__view_a07a6a506626a403cd5a3d14f4167d930}{sc\_zstring\_view}}(\textcolor{keyword}{const}\ \textcolor{keywordtype}{char}*\ s)\ \textcolor{comment}{/*\ noexcept\ */}}
+\DoxyCodeLine{00073\ \ \ \ \ :\ \mbox{\hyperlink{namespacesc__core_adb3d9b08b4e375cf994afcd629c8e49c}{sc\_string\_view}}(s)\ \{\}}
+\DoxyCodeLine{00074\ }
+\DoxyCodeLine{00075\ \ \ \mbox{\hyperlink{classsc__core_1_1sc__zstring__view_acad8522315c5f1502143fd14d9c663b7}{sc\_zstring\_view}}(\textcolor{keyword}{const}\ std::string\&\ s)\ \textcolor{comment}{/*\ noexcept\ */}}
+\DoxyCodeLine{00076\ \ \ \ \ :\ \mbox{\hyperlink{namespacesc__core_adb3d9b08b4e375cf994afcd629c8e49c}{sc\_string\_view}}(s)\ \{\}}
+\DoxyCodeLine{00077\ }
+\DoxyCodeLine{00078\ \ \ \textcolor{comment}{/*\ constexpr\ */}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classsc__core_1_1sc__zstring__view_a08dff0b1ad0af000bc04e1c0016f37b1}{swap}}(\mbox{\hyperlink{classsc__core_1_1sc__zstring__view}{sc\_zstring\_view}}\&\ s)\ \textcolor{comment}{/*\ noexcept\ */}}
+\DoxyCodeLine{00079\ \ \ \ \ \{\ sc\_string\_view::swap(s);\ \}}
+\DoxyCodeLine{00080\ }
+\DoxyCodeLine{00081\ \ \ \textcolor{comment}{/*\ constexpr\ */}\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{char}*\ \mbox{\hyperlink{classsc__core_1_1sc__zstring__view_aad21166113970c4005bf94321b59f731}{c\_str}}()\ \mbox{\hyperlink{class_sysc_add__pv}{const}}\ \textcolor{comment}{/*\ noexcept\ */}}
+\DoxyCodeLine{00082\ \ \ \ \ \{\ \textcolor{keywordflow}{return}\ data();\ \}}
+\DoxyCodeLine{00083\ }
+\DoxyCodeLine{00084\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00085\ \ \ \textcolor{comment}{//\ Hide\ invariant-\/breaking\ function}}
+\DoxyCodeLine{00086\ \ \ \textcolor{keyword}{using\ }sc\_string\_view::remove\_suffix;}
+\DoxyCodeLine{00087\ \};\ \textcolor{comment}{//\ class\ sc\_zstring\_view}}
+\DoxyCodeLine{00088\ }
+\DoxyCodeLine{00089\ \}\ \textcolor{comment}{//\ namespace\ sc\_core}}
+\DoxyCodeLine{00090\ }
+\DoxyCodeLine{00091\ \textcolor{preprocessor}{\#undef\ SC\_STRING\_VIEW\_NS\_}}
+\DoxyCodeLine{00092\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{//\ SYSC\_UTILS\_STRING\_VIEW\_H\_INCLUDED\_}}
+\DoxyCodeLine{00093\ \textcolor{comment}{//\ Taf!}}
+
+\end{DoxyCode}

@@ -1,0 +1,92 @@
+\doxysection{select\+\_\+platform\+\_\+config.\+hpp}
+\hypertarget{select__platform__config_8hpp_source}{}\label{select__platform__config_8hpp_source}\index{C:/Users/BJRODIER/Documents/QT\_REPO/QT\_VHDL\_simulator/code/Ressources/SystemC/include/sysc/packages/boost/config/select\_platform\_config.hpp@{C:/Users/BJRODIER/Documents/QT\_REPO/QT\_VHDL\_simulator/code/Ressources/SystemC/include/sysc/packages/boost/config/select\_platform\_config.hpp}}
+\mbox{\hyperlink{select__platform__config_8hpp}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{comment}{//\ \ Boost\ compiler\ configuration\ selection\ header\ file}}
+\DoxyCodeLine{00002\ }
+\DoxyCodeLine{00003\ \textcolor{comment}{//\ \ (C)\ Copyright\ John\ Maddock\ 2001\ -\/\ 2002.\ }}
+\DoxyCodeLine{00004\ \textcolor{comment}{//\ \ (C)\ Copyright\ Jens\ Maurer\ 2001.\ }}
+\DoxyCodeLine{00005\ \textcolor{comment}{//\ \ Use,\ modification\ and\ distribution\ are\ subject\ to\ the\ }}
+\DoxyCodeLine{00006\ \textcolor{comment}{//\ \ Boost\ Software\ License,\ Version\ 1.0.\ (See\ accompanying\ file\ }}
+\DoxyCodeLine{00007\ \textcolor{comment}{//\ \ LICENSE\_1\_0.txt\ or\ copy\ at\ http://www.boost.org/LICENSE\_1\_0.txt)}}
+\DoxyCodeLine{00008\ }
+\DoxyCodeLine{00009\ \textcolor{comment}{//\ \ See\ http://www.boost.org\ for\ most\ recent\ version.}}
+\DoxyCodeLine{00010\ }
+\DoxyCodeLine{00011\ \textcolor{comment}{//\ locate\ which\ platform\ we\ are\ on\ and\ define\ SC\_BOOST\_PLATFORM\_CONFIG\ as\ needed.}}
+\DoxyCodeLine{00012\ \textcolor{comment}{//\ Note\ that\ we\ define\ the\ headers\ to\ include\ using\ "{}header\_name"{}\ not}}
+\DoxyCodeLine{00013\ \textcolor{comment}{//\ <header\_name>\ in\ order\ to\ prevent\ macro\ expansion\ within\ the\ header}}
+\DoxyCodeLine{00014\ \textcolor{comment}{//\ name\ (for\ example\ "{}linux"{}\ is\ a\ macro\ on\ linux\ systems).}}
+\DoxyCodeLine{00015\ }
+\DoxyCodeLine{00016\ \textcolor{preprocessor}{\#if\ defined(linux)\ ||\ defined(\_\_linux)\ ||\ defined(\_\_linux\_\_)}}
+\DoxyCodeLine{00017\ \textcolor{comment}{//\ linux:}}
+\DoxyCodeLine{00018\ \textcolor{preprocessor}{\#\ \ define\ SC\_BOOST\_PLATFORM\_CONFIG\ "{}sysc/packages/boost/config/platform/linux.hpp"{}}}
+\DoxyCodeLine{00019\ }
+\DoxyCodeLine{00020\ \textcolor{preprocessor}{\#elif\ defined(\_\_FreeBSD\_\_)\ ||\ defined(\_\_NetBSD\_\_)\ ||\ defined(\_\_OpenBSD\_\_)\ ||\ defined(\_\_DragonFly\_\_)}}
+\DoxyCodeLine{00021\ \textcolor{comment}{//\ BSD:}}
+\DoxyCodeLine{00022\ \textcolor{preprocessor}{\#\ \ define\ SC\_BOOST\_PLATFORM\_CONFIG\ "{}sysc/packages/boost/config/platform/bsd.hpp"{}}}
+\DoxyCodeLine{00023\ }
+\DoxyCodeLine{00024\ \textcolor{preprocessor}{\#elif\ defined(sun)\ ||\ defined(\_\_sun)}}
+\DoxyCodeLine{00025\ \textcolor{comment}{//\ solaris:}}
+\DoxyCodeLine{00026\ \textcolor{preprocessor}{\#\ \ define\ SC\_BOOST\_PLATFORM\_CONFIG\ "{}sysc/packages/boost/config/platform/solaris.hpp"{}}}
+\DoxyCodeLine{00027\ }
+\DoxyCodeLine{00028\ \textcolor{preprocessor}{\#elif\ defined(\_\_sgi)}}
+\DoxyCodeLine{00029\ \textcolor{comment}{//\ SGI\ Irix:}}
+\DoxyCodeLine{00030\ \textcolor{preprocessor}{\#\ \ define\ SC\_BOOST\_PLATFORM\_CONFIG\ "{}sysc/packages/boost/config/platform/irix.hpp"{}}}
+\DoxyCodeLine{00031\ }
+\DoxyCodeLine{00032\ \textcolor{preprocessor}{\#elif\ defined(\_\_hpux)}}
+\DoxyCodeLine{00033\ \textcolor{comment}{//\ hp\ unix:}}
+\DoxyCodeLine{00034\ \textcolor{preprocessor}{\#\ \ define\ SC\_BOOST\_PLATFORM\_CONFIG\ "{}sysc/packages/boost/config/platform/hpux.hpp"{}}}
+\DoxyCodeLine{00035\ }
+\DoxyCodeLine{00036\ \textcolor{preprocessor}{\#elif\ defined(\_\_CYGWIN\_\_)}}
+\DoxyCodeLine{00037\ \textcolor{comment}{//\ cygwin\ is\ not\ win32:}}
+\DoxyCodeLine{00038\ \textcolor{preprocessor}{\#\ \ define\ SC\_BOOST\_PLATFORM\_CONFIG\ "{}sysc/packages/boost/config/platform/cygwin.hpp"{}}}
+\DoxyCodeLine{00039\ }
+\DoxyCodeLine{00040\ \textcolor{preprocessor}{\#elif\ defined(\_WIN32)\ ||\ defined(\_\_WIN32\_\_)\ ||\ defined(WIN32)}}
+\DoxyCodeLine{00041\ \textcolor{comment}{//\ win32:}}
+\DoxyCodeLine{00042\ \textcolor{preprocessor}{\#\ \ define\ SC\_BOOST\_PLATFORM\_CONFIG\ "{}sysc/packages/boost/config/platform/win32.hpp"{}}}
+\DoxyCodeLine{00043\ }
+\DoxyCodeLine{00044\ \textcolor{preprocessor}{\#elif\ defined(\_\_BEOS\_\_)}}
+\DoxyCodeLine{00045\ \textcolor{comment}{//\ BeOS}}
+\DoxyCodeLine{00046\ \textcolor{preprocessor}{\#\ \ define\ SC\_BOOST\_PLATFORM\_CONFIG\ "{}sysc/packages/boost/config/platform/beos.hpp"{}}}
+\DoxyCodeLine{00047\ }
+\DoxyCodeLine{00048\ \textcolor{preprocessor}{\#elif\ defined(macintosh)\ ||\ defined(\_\_APPLE\_\_)\ ||\ defined(\_\_APPLE\_CC\_\_)}}
+\DoxyCodeLine{00049\ \textcolor{comment}{//\ MacOS}}
+\DoxyCodeLine{00050\ \textcolor{preprocessor}{\#\ \ define\ SC\_BOOST\_PLATFORM\_CONFIG\ "{}sysc/packages/boost/config/platform/macos.hpp"{}}}
+\DoxyCodeLine{00051\ }
+\DoxyCodeLine{00052\ \textcolor{preprocessor}{\#elif\ defined(\_\_IBMCPP\_\_)\ ||\ defined(\_AIX)}}
+\DoxyCodeLine{00053\ \textcolor{comment}{//\ IBM}}
+\DoxyCodeLine{00054\ \textcolor{preprocessor}{\#\ \ define\ SC\_BOOST\_PLATFORM\_CONFIG\ "{}sysc/packages/boost/config/platform/aix.hpp"{}}}
+\DoxyCodeLine{00055\ }
+\DoxyCodeLine{00056\ \textcolor{preprocessor}{\#elif\ defined(\_\_amigaos\_\_)}}
+\DoxyCodeLine{00057\ \textcolor{comment}{//\ AmigaOS}}
+\DoxyCodeLine{00058\ \textcolor{preprocessor}{\#\ \ define\ SC\_BOOST\_PLATFORM\_CONFIG\ "{}sysc/packages/boost/config/platform/amigaos.hpp"{}}}
+\DoxyCodeLine{00059\ }
+\DoxyCodeLine{00060\ \textcolor{preprocessor}{\#else}}
+\DoxyCodeLine{00061\ }
+\DoxyCodeLine{00062\ \textcolor{preprocessor}{\#\ \ if\ defined(unix)\ \(\backslash\)}}
+\DoxyCodeLine{00063\ \textcolor{preprocessor}{\ \ \ \ \ \ ||\ defined(\_\_unix)\ \(\backslash\)}}
+\DoxyCodeLine{00064\ \textcolor{preprocessor}{\ \ \ \ \ \ ||\ defined(\_XOPEN\_SOURCE)\ \(\backslash\)}}
+\DoxyCodeLine{00065\ \textcolor{preprocessor}{\ \ \ \ \ \ ||\ defined(\_POSIX\_SOURCE)}}
+\DoxyCodeLine{00066\ }
+\DoxyCodeLine{00067\ \ \ \ \textcolor{comment}{//\ generic\ unix\ platform:}}
+\DoxyCodeLine{00068\ }
+\DoxyCodeLine{00069\ \textcolor{preprocessor}{\#\ \ ifndef\ SC\_BOOST\_HAS\_UNISTD\_H}}
+\DoxyCodeLine{00070\ \textcolor{preprocessor}{\#\ \ \ \ \ define\ SC\_BOOST\_HAS\_UNISTD\_H}}
+\DoxyCodeLine{00071\ \textcolor{preprocessor}{\#\ \ endif}}
+\DoxyCodeLine{00072\ }
+\DoxyCodeLine{00073\ \textcolor{preprocessor}{\#\ \ include\ <\mbox{\hyperlink{posix__features_8hpp}{sysc/packages/boost/config/posix\_features.hpp}}>}}
+\DoxyCodeLine{00074\ }
+\DoxyCodeLine{00075\ \textcolor{preprocessor}{\#\ \ endif}}
+\DoxyCodeLine{00076\ }
+\DoxyCodeLine{00077\ \textcolor{preprocessor}{\#\ \ if\ defined\ (SC\_BOOST\_ASSERT\_CONFIG)}}
+\DoxyCodeLine{00078\ \ \ \ \ \ \ \textcolor{comment}{//\ this\ must\ come\ last\ -\/\ generate\ an\ error\ if\ we\ don't}}
+\DoxyCodeLine{00079\ \ \ \ \ \ \ \textcolor{comment}{//\ recognise\ the\ platform:}}
+\DoxyCodeLine{00080\ \textcolor{preprocessor}{\#\ \ \ \ \ error\ "{}Unknown\ platform\ -\/\ please\ configure\ and\ report\ the\ results\ to\ boost.org"{}}}
+\DoxyCodeLine{00081\ \textcolor{preprocessor}{\#\ \ endif}}
+\DoxyCodeLine{00082\ }
+\DoxyCodeLine{00083\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00084\ }
+\DoxyCodeLine{00085\ }
+\DoxyCodeLine{00086\ }
+
+\end{DoxyCode}

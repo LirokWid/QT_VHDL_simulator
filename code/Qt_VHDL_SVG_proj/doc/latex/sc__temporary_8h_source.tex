@@ -1,0 +1,235 @@
+\doxysection{sc\+\_\+temporary.\+h}
+\hypertarget{sc__temporary_8h_source}{}\label{sc__temporary_8h_source}\index{C:/Users/BJRODIER/Documents/QT\_REPO/QT\_VHDL\_simulator/code/Ressources/SystemC/include/sysc/utils/sc\_temporary.h@{C:/Users/BJRODIER/Documents/QT\_REPO/QT\_VHDL\_simulator/code/Ressources/SystemC/include/sysc/utils/sc\_temporary.h}}
+\mbox{\hyperlink{sc__temporary_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{comment}{/*****************************************************************************}}
+\DoxyCodeLine{00002\ \textcolor{comment}{}}
+\DoxyCodeLine{00003\ \textcolor{comment}{\ \ Licensed\ to\ Accellera\ Systems\ Initiative\ Inc.\ (Accellera)\ under\ one\ or}}
+\DoxyCodeLine{00004\ \textcolor{comment}{\ \ more\ contributor\ license\ agreements.\ \ See\ the\ NOTICE\ file\ distributed}}
+\DoxyCodeLine{00005\ \textcolor{comment}{\ \ with\ this\ work\ for\ additional\ information\ regarding\ copyright\ ownership.}}
+\DoxyCodeLine{00006\ \textcolor{comment}{\ \ Accellera\ licenses\ this\ file\ to\ you\ under\ the\ Apache\ License,\ Version\ 2.0}}
+\DoxyCodeLine{00007\ \textcolor{comment}{\ \ (the\ "{}License"{});\ you\ may\ not\ use\ this\ file\ except\ in\ compliance\ with\ the}}
+\DoxyCodeLine{00008\ \textcolor{comment}{\ \ License.\ \ You\ may\ obtain\ a\ copy\ of\ the\ License\ at}}
+\DoxyCodeLine{00009\ \textcolor{comment}{}}
+\DoxyCodeLine{00010\ \textcolor{comment}{\ \ \ \ http://www.apache.org/licenses/LICENSE-\/2.0}}
+\DoxyCodeLine{00011\ \textcolor{comment}{}}
+\DoxyCodeLine{00012\ \textcolor{comment}{\ \ Unless\ required\ by\ applicable\ law\ or\ agreed\ to\ in\ writing,\ software}}
+\DoxyCodeLine{00013\ \textcolor{comment}{\ \ distributed\ under\ the\ License\ is\ distributed\ on\ an\ "{}AS\ IS"{}\ BASIS,}}
+\DoxyCodeLine{00014\ \textcolor{comment}{\ \ WITHOUT\ WARRANTIES\ OR\ CONDITIONS\ OF\ ANY\ KIND,\ either\ express\ or}}
+\DoxyCodeLine{00015\ \textcolor{comment}{\ \ implied.\ \ See\ the\ License\ for\ the\ specific\ language\ governing}}
+\DoxyCodeLine{00016\ \textcolor{comment}{\ \ permissions\ and\ limitations\ under\ the\ License.}}
+\DoxyCodeLine{00017\ \textcolor{comment}{}}
+\DoxyCodeLine{00018\ \textcolor{comment}{\ *****************************************************************************/}}
+\DoxyCodeLine{00019\ }
+\DoxyCodeLine{00020\ \textcolor{comment}{/*****************************************************************************}}
+\DoxyCodeLine{00021\ \textcolor{comment}{}}
+\DoxyCodeLine{00022\ \textcolor{comment}{\ \ sc\_temporary.h\ -\/-\/\ Temporary\ value\ pool\ classes.}}
+\DoxyCodeLine{00023\ \textcolor{comment}{}}
+\DoxyCodeLine{00024\ \textcolor{comment}{\ \ Original\ Author:\ Andy\ Goodrich,\ Forte\ Design\ Systems,\ Inc.}}
+\DoxyCodeLine{00025\ \textcolor{comment}{}}
+\DoxyCodeLine{00026\ \textcolor{comment}{\ \ CHANGE\ LOG\ AT\ END\ OF\ FILE}}
+\DoxyCodeLine{00027\ \textcolor{comment}{\ *****************************************************************************/}}
+\DoxyCodeLine{00028\ }
+\DoxyCodeLine{00029\ \textcolor{preprocessor}{\#ifndef\ SC\_TEMPORARY\_H}}
+\DoxyCodeLine{00030\ \textcolor{preprocessor}{\#define\ SC\_TEMPORARY\_H}}
+\DoxyCodeLine{00031\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{sc__cmnhdr_8h}{sysc/kernel/sc\_cmnhdr.h}}"{}}}
+\DoxyCodeLine{00032\ }
+\DoxyCodeLine{00033\ \textcolor{preprocessor}{\#include\ <cstddef>}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ std::size\_t}}
+\DoxyCodeLine{00034\ }
+\DoxyCodeLine{00035\ \textcolor{keyword}{namespace\ }\mbox{\hyperlink{namespacesc__core}{sc\_core}}\ \{}
+\DoxyCodeLine{00036\ }
+\DoxyCodeLine{00037\ \textcolor{comment}{//-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{00038\ \textcolor{comment}{//\ sc\_byte\_heap\ -\/\ CLASS\ MANAGING\ A\ TEMPORARY\ HEAP\ OF\ BYTES}}
+\DoxyCodeLine{00039\ \textcolor{comment}{//}}
+\DoxyCodeLine{00040\ \textcolor{comment}{//\ This\ facility\ implements\ a\ heap\ of\ temporary\ byte\ allocations.\ Once\ an\ }}
+\DoxyCodeLine{00041\ \textcolor{comment}{//\ request\ has\ been\ allocated\ it\ is\ not\ freed.\ However\ the\ entire\ heap\ }}
+\DoxyCodeLine{00042\ \textcolor{comment}{//\ wraps\ and\ the\ storage\ is\ reused.\ This\ means\ that\ no\ allocations\ should}}
+\DoxyCodeLine{00043\ \textcolor{comment}{//\ be\ assumed\ as\ permanent.\ Allocations\ are\ double-\/word\ aligned.\ This\ is}}
+\DoxyCodeLine{00044\ \textcolor{comment}{//\ raw\ storage,\ so\ objects\ which\ contain\ virtual\ methods\ cannot\ be\ allocated}}
+\DoxyCodeLine{00045\ \textcolor{comment}{//\ with\ this\ object.\ See\ the\ sc\_vpool\ object\ for\ that\ type\ of\ storage\ }}
+\DoxyCodeLine{00046\ \textcolor{comment}{//\ allocation.}}
+\DoxyCodeLine{00047\ \textcolor{comment}{//}}
+\DoxyCodeLine{00048\ \textcolor{comment}{//\ char*\ allocate(\ int\ size\ )}}
+\DoxyCodeLine{00049\ \textcolor{comment}{//\ \ \ This\ method\ returns\ a\ pointer\ to\ block\ of\ size\ bytes.\ The\ block}}
+\DoxyCodeLine{00050\ \textcolor{comment}{//\ \ \ returned\ is\ the\ next\ available\ one\ in\ the\ heap.\ If\ the\ current\ heap}}
+\DoxyCodeLine{00051\ \textcolor{comment}{//\ \ \ cannot\ fullfil\ the\ request\ it\ will\ be\ rewound\ and\ storage\ allocated\ from}}
+\DoxyCodeLine{00052\ \textcolor{comment}{//\ \ \ its\ start.\ All\ allocations\ start\ on\ an\ 8-\/byte\ boundary.}}
+\DoxyCodeLine{00053\ \textcolor{comment}{//\ \ \ \ \ \ \ size\ =\ number\ of\ bytes\ to\ be\ allocated.}}
+\DoxyCodeLine{00054\ \textcolor{comment}{//}}
+\DoxyCodeLine{00055\ \textcolor{comment}{//\ void\ initialize(\ int\ heap\_size=0x100000\ )}}
+\DoxyCodeLine{00056\ \textcolor{comment}{//\ \ \ This\ method\ allocates\ the\ storage\ to\ be\ managed.\ If\ there\ is\ already}}
+\DoxyCodeLine{00057\ \textcolor{comment}{//\ \ \ a\ block\ of\ storage\ under\ management\ it\ is\ freed.\ If\ no\ argument\ is}}
+\DoxyCodeLine{00058\ \textcolor{comment}{//\ \ \ provided\ for\ the\ heap\ size,\ a\ megabyte\ will\ be\ allocated.}}
+\DoxyCodeLine{00059\ \textcolor{comment}{//\ \ \ \ \ \ \ heap\_size\ =\ number\ of\ bytes\ to\ allocate\ for\ the\ heap.}}
+\DoxyCodeLine{00060\ \textcolor{comment}{//}}
+\DoxyCodeLine{00061\ \textcolor{comment}{//\ unsigned\ int\ length()}}
+\DoxyCodeLine{00062\ \textcolor{comment}{//\ \ \ This\ method\ returns\ the\ size\ of\ this\ object's\ heap\ in\ bytes.}}
+\DoxyCodeLine{00063\ \textcolor{comment}{//}}
+\DoxyCodeLine{00064\ \textcolor{comment}{//\ sc\_byte\_heap()}}
+\DoxyCodeLine{00065\ \textcolor{comment}{//\ \ \ This\ is\ the\ non-\/initialized\ object\ instance\ constructor.\ It\ does\ not\ }}
+\DoxyCodeLine{00066\ \textcolor{comment}{//\ \ \ allocate\ the\ heap\ storage,\ that\ is\ done\ by\ the\ initialize()\ method.}}
+\DoxyCodeLine{00067\ \textcolor{comment}{//}}
+\DoxyCodeLine{00068\ \textcolor{comment}{//\ sc\_byte\_heap(int)}}
+\DoxyCodeLine{00069\ \textcolor{comment}{//\ \ \ This\ is\ the\ initializing\ object\ instance\ constructor.\ It\ does\ allocates}}
+\DoxyCodeLine{00070\ \textcolor{comment}{//\ \ \ a\ heap\ of\ the\ specified\ number\ of\ bytes.}}
+\DoxyCodeLine{00071\ \textcolor{comment}{//\ \ \ \ \ \ \ heap\_size\ =\ number\ of\ bytes\ to\ allocate\ for\ the\ heap.}}
+\DoxyCodeLine{00072\ \textcolor{comment}{//-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{00073\ \textcolor{keyword}{class\ }\mbox{\hyperlink{sc__cmnhdr_8h_aff4a86b3f5de3ac2097081e7166fe89f}{SC\_API}}\ \mbox{\hyperlink{classsc__core_1_1sc__byte__heap}{sc\_byte\_heap}}\ \{}
+\DoxyCodeLine{00074\ \ \ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00075\ \ \ \ \ \textcolor{keywordtype}{char}*\ \ \mbox{\hyperlink{classsc__core_1_1sc__byte__heap_a6757df0d85349d0cca958c6e4c5f41c6}{m\_bgn\_p}};\ \ \textcolor{comment}{//\ Beginning\ of\ heap\ storage.}}
+\DoxyCodeLine{00076\ \ \ \ \ \textcolor{keywordtype}{char}*\ \ \mbox{\hyperlink{classsc__core_1_1sc__byte__heap_a284a566947570fb7b361eb729d76a24f}{m\_end\_p}};\ \ \textcolor{comment}{//\ End\ of\ heap\ storage.}}
+\DoxyCodeLine{00077\ \ \ \ \ \textcolor{keywordtype}{char}*\ \ \mbox{\hyperlink{classsc__core_1_1sc__byte__heap_a98195d5afe037a3aea9a9b3305019b60}{m\_next\_p}};\ \textcolor{comment}{//\ Next\ heap\ location\ to\ be\ allocated.}}
+\DoxyCodeLine{00078\ }
+\DoxyCodeLine{00079\ \ \ \ \ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{char}*\ \mbox{\hyperlink{classsc__core_1_1sc__byte__heap_a773dee90a1d068aa1d2c8588502f47c6}{allocate}}(\ std::size\_t\ \mbox{\hyperlink{class_sysc_add__pv}{bytes\_n}}\ )}
+\DoxyCodeLine{00080\ \ \ \ \ \{}
+\DoxyCodeLine{00081\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{char}*\ \ \ \mbox{\hyperlink{class_sysc_add__pv}{result\_p}};}
+\DoxyCodeLine{00082\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_sysc_add__pv}{bytes\_n}}\ =\ (\mbox{\hyperlink{class_sysc_add__pv}{bytes\_n}}\ +\ 7)\ \&\ ((std::size\_t)(-\/8));}
+\DoxyCodeLine{00083\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_sysc_add__pv}{result\_p}}\ =\ m\_next\_p;}
+\DoxyCodeLine{00084\ \ \ \ \ \ \ \ \ m\_next\_p\ +=\ \mbox{\hyperlink{class_sysc_add__pv}{bytes\_n}};}
+\DoxyCodeLine{00085\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\ m\_next\_p\ >=\ m\_end\_p\ )}
+\DoxyCodeLine{00086\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00087\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_sysc_add__pv}{result\_p}}\ =\ m\_bgn\_p;}
+\DoxyCodeLine{00088\ \ \ \ \ \ \ \ \ \ \ \ \ m\_next\_p\ =\ m\_bgn\_p\ +\ \mbox{\hyperlink{class_sysc_add__pv}{bytes\_n}};}
+\DoxyCodeLine{00089\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00090\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{class_sysc_add__pv}{result\_p}};\ }
+\DoxyCodeLine{00091\ \ \ \ \ \}}
+\DoxyCodeLine{00092\ }
+\DoxyCodeLine{00093\ \ \ \ \ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classsc__core_1_1sc__byte__heap_a53979fc97a38e2a17f047a8cefaba0b0}{initialize}}(\ std::size\_t\ \mbox{\hyperlink{class_sysc_add__pv}{heap\_size}}=0x100000\ )}
+\DoxyCodeLine{00094\ \ \ \ \ \{}
+\DoxyCodeLine{00095\ \ \ \ \ \ \ \ \ \textcolor{keyword}{delete}\ []\ m\_bgn\_p;}
+\DoxyCodeLine{00096\ \ \ \ \ \ \ \ \ m\_bgn\_p\ =\ \textcolor{keyword}{new}\ \textcolor{keywordtype}{char}[\mbox{\hyperlink{class_sysc_add__pv}{heap\_size}}];}
+\DoxyCodeLine{00097\ \ \ \ \ \ \ \ \ m\_end\_p\ =\ \&m\_bgn\_p[\mbox{\hyperlink{class_sysc_add__pv}{heap\_size}}];}
+\DoxyCodeLine{00098\ \ \ \ \ \ \ \ \ m\_next\_p\ =\ m\_bgn\_p;}
+\DoxyCodeLine{00099\ \ \ \ \ \}}
+\DoxyCodeLine{00100\ }
+\DoxyCodeLine{00101\ \ \ \ \ \textcolor{keyword}{inline}\ std::size\_t\ \mbox{\hyperlink{classsc__core_1_1sc__byte__heap_a7fac0b24516bd925e4eac0a2bcb13f00}{length}}()}
+\DoxyCodeLine{00102\ \ \ \ \ \{}
+\DoxyCodeLine{00103\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ (std::size\_t)(m\_end\_p\ -\/\ m\_bgn\_p);}
+\DoxyCodeLine{00104\ \ \ \ \ \}}
+\DoxyCodeLine{00105\ }
+\DoxyCodeLine{00106\ \ \ \ \ \textcolor{keyword}{inline}\ \mbox{\hyperlink{classsc__core_1_1sc__byte__heap_a05c784aa054dfca5cded5b533262dddc}{sc\_byte\_heap}}()\ :\ }
+\DoxyCodeLine{00107\ \ \ \ \ \ \ \ \ m\_bgn\_p(0),\ m\_end\_p(0),\ m\_next\_p(0)}
+\DoxyCodeLine{00108\ \ \ \ \ \{}
+\DoxyCodeLine{00109\ \ \ \ \ \}}
+\DoxyCodeLine{00110\ }
+\DoxyCodeLine{00111\ \ \ \ \ \ \ \ \ \textcolor{keyword}{inline}\ \mbox{\hyperlink{classsc__core_1_1sc__byte__heap_ab804a187058af80cf0deebde1b4e1b69}{sc\_byte\_heap}}(\ std::size\_t\ \mbox{\hyperlink{class_sysc_add__pv}{heap\_size}}\ )\ :}
+\DoxyCodeLine{00112\ \ \ \ \ \ \ \ \ m\_bgn\_p(0),\ m\_end\_p(0),\ m\_next\_p(0)}
+\DoxyCodeLine{00113\ \ \ \ \ \{}
+\DoxyCodeLine{00114\ \ \ \ \ \ \ \ \ initialize(\ \mbox{\hyperlink{class_sysc_add__pv}{heap\_size}}\ );}
+\DoxyCodeLine{00115\ \ \ \ \ \}}
+\DoxyCodeLine{00116\ }
+\DoxyCodeLine{00117\ \ \ \ \ \textcolor{keyword}{inline}\ \mbox{\hyperlink{classsc__core_1_1sc__byte__heap_ac744e67b73a4efd878594f14bcf98712}{\string~sc\_byte\_heap}}()}
+\DoxyCodeLine{00118\ \ \ \ \ \{}
+\DoxyCodeLine{00119\ \ \ \ \ \ \ \ \ \textcolor{keyword}{delete}\ []\ m\_bgn\_p;}
+\DoxyCodeLine{00120\ \ \ \ \ \}}
+\DoxyCodeLine{00121\ }
+\DoxyCodeLine{00122\ \};}
+\DoxyCodeLine{00123\ }
+\DoxyCodeLine{00124\ }
+\DoxyCodeLine{00125\ \textcolor{comment}{//-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{00126\ \textcolor{comment}{//\ sc\_vpool<T>\ -\/\ CLASS\ MANAGING\ A\ TEMPORARY\ VECTOR\ OF\ CLASS\ T\ INSTANCES}}
+\DoxyCodeLine{00127\ \textcolor{comment}{//}}
+\DoxyCodeLine{00128\ \textcolor{comment}{//\ This\ class\ implements\ a\ fixed\ pool\ of\ objects\ contained\ in\ a\ vector.\ These}}
+\DoxyCodeLine{00129\ \textcolor{comment}{//\ objects\ are\ allocated\ via\ the\ allocate()\ method.\ An\ index,\ m\_pool\_i,\ }}
+\DoxyCodeLine{00130\ \textcolor{comment}{//\ indicates\ the\ next\ object\ to\ be\ allocated.\ The\ vector\ is\ a\ power\ of\ 2\ in}}
+\DoxyCodeLine{00131\ \textcolor{comment}{//\ size,\ and\ this\ fact\ is\ used\ to\ wrap\ the\ list\ when\ m\_pool\_i\ reaches\ the}}
+\DoxyCodeLine{00132\ \textcolor{comment}{//\ end\ of\ the\ vector.\ \ }}
+\DoxyCodeLine{00133\ \textcolor{comment}{//\ }}
+\DoxyCodeLine{00134\ \textcolor{comment}{//\ sc\_vpool(\ int\ log2,\ T*\ pool\_p=0\ )}}
+\DoxyCodeLine{00135\ \textcolor{comment}{//\ \ \ This\ is\ the\ object\ instance\ constructor\ for\ this\ class.\ It\ configures}}
+\DoxyCodeLine{00136\ \textcolor{comment}{//\ \ \ the\ object\ to\ manage\ a\ vector\ of\ 2**log2\ entries.\ If\ a\ vector\ is\ }}
+\DoxyCodeLine{00137\ \textcolor{comment}{//\ \ \ not\ supplied\ one\ will\ be\ allocated.}}
+\DoxyCodeLine{00138\ \textcolor{comment}{//\ \ \ \ \ log2\ \ \ =\ \ the\ log\ base\ two\ of\ the\ size\ of\ the\ vector.}}
+\DoxyCodeLine{00139\ \textcolor{comment}{//\ \ \ \ \ pool\_p\ -\/>\ vector\ of\ 2**log2\ entries\ to\ be\ managed\ or\ 0.}}
+\DoxyCodeLine{00140\ \textcolor{comment}{//}}
+\DoxyCodeLine{00141\ \textcolor{comment}{//\ \string~sc\_vpool()}}
+\DoxyCodeLine{00142\ \textcolor{comment}{//\ \ \ This\ is\ the\ object\ instance\ destructor\ for\ this\ class.\ It\ frees\ the}}
+\DoxyCodeLine{00143\ \textcolor{comment}{//\ \ \ block\ of\ storage\ which\ was\ being\ managed.}}
+\DoxyCodeLine{00144\ \textcolor{comment}{//}}
+\DoxyCodeLine{00145\ \textcolor{comment}{//\ T*\ allocate()}}
+\DoxyCodeLine{00146\ \textcolor{comment}{//\ \ \ This\ method\ returns\ the\ address\ of\ the\ next\ entry\ in\ the\ vector,\ m\_pool\_p,\ }}
+\DoxyCodeLine{00147\ \textcolor{comment}{//\ \ \ pointed\ to\ by\ the\ index,\ m\_pool\_i,\ and\ updates\ that\ index.\ The\ index}}
+\DoxyCodeLine{00148\ \textcolor{comment}{//\ \ \ update\ consists\ of\ adding\ 1\ to\ m\_pool\_i\ and\ masking\ it\ by\ m\_wrap.}}
+\DoxyCodeLine{00149\ \textcolor{comment}{//\ }}
+\DoxyCodeLine{00150\ \textcolor{comment}{//\ void\ reset()}}
+\DoxyCodeLine{00151\ \textcolor{comment}{//\ \ \ This\ method\ resets\ the\ allocation\ index,\ m\_pool\_i,\ to\ point\ to\ the\ start}}
+\DoxyCodeLine{00152\ \textcolor{comment}{//\ \ \ of\ the\ vector\ of\ objects\ under\ management.\ This\ call\ is\ not\ usually\ made}}
+\DoxyCodeLine{00153\ \textcolor{comment}{//\ \ \ since\ there\ are\ a\ fixed\ number\ of\ entries\ and\ the\ index\ wraps.\ However,}}
+\DoxyCodeLine{00154\ \textcolor{comment}{//\ \ \ for\ diagnostics\ tests\ it\ is\ convenient\ to\ be\ able\ to\ reset\ to\ the\ start}}
+\DoxyCodeLine{00155\ \textcolor{comment}{//\ \ \ of\ the\ vector.}}
+\DoxyCodeLine{00156\ \textcolor{comment}{//}}
+\DoxyCodeLine{00157\ \textcolor{comment}{//\ int\ size()}}
+\DoxyCodeLine{00158\ \textcolor{comment}{//\ \ \ This\ method\ returns\ the\ number\ of\ object\ instances\ contained\ in\ the}}
+\DoxyCodeLine{00159\ \textcolor{comment}{//\ \ \ vector\ being\ managed\ by\ this\ object\ instance.}}
+\DoxyCodeLine{00160\ \textcolor{comment}{//-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{00161\ \textcolor{keyword}{template}<\textcolor{keyword}{class}\ T>}
+\DoxyCodeLine{00162\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classsc__core_1_1sc__vpool}{sc\_vpool}}\ \{}
+\DoxyCodeLine{00163\ \ \ \textcolor{keyword}{protected}:}
+\DoxyCodeLine{00164\ \ \ \ \ std::size\_t\ \mbox{\hyperlink{classsc__core_1_1sc__vpool_aff7eb7691b1e8db15af19b9459123617}{m\_pool\_i}};\ \ \ \textcolor{comment}{//\ Index\ of\ next\ entry\ to\ m\_pool\_m\ to\ provide.}}
+\DoxyCodeLine{00165\ \ \ \ \ \mbox{\hyperlink{mem__fn__cc_8hpp_adf1f3edb9115acb0a1e04209b7a9937b}{T}}*\ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classsc__core_1_1sc__vpool_a11d0b4c4b790137c9d1df6848f9dfb40}{m\_pool\_p}};\ \ \textcolor{comment}{//\ Vector\ of\ temporaries.}}
+\DoxyCodeLine{00166\ \ \ \ \ std::size\_t\ \mbox{\hyperlink{classsc__core_1_1sc__vpool_a430f408c8db8337106d2aeed41196812}{m\_wrap}};\ \ \ \ \ \ \ \textcolor{comment}{//\ Mask\ to\ wrap\ vector\ index.}}
+\DoxyCodeLine{00167\ }
+\DoxyCodeLine{00168\ \ \ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00169\ \ \ \ \ \textcolor{keyword}{inline}\ \mbox{\hyperlink{classsc__core_1_1sc__vpool_ab5b01e7b12d2de407ae96b91814c12a4}{sc\_vpool}}(\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{class_sysc_add__pv}{log2}},\ \mbox{\hyperlink{mem__fn__cc_8hpp_adf1f3edb9115acb0a1e04209b7a9937b}{T}}*\ \mbox{\hyperlink{class_sysc_add__pv}{pool\_p}}=0\ );}
+\DoxyCodeLine{00170\ \ \ \ \ \textcolor{keyword}{inline}\ \mbox{\hyperlink{classsc__core_1_1sc__vpool_aa486fedc6c53b748dfdc26e155c6bb9a}{\string~sc\_vpool}}();}
+\DoxyCodeLine{00171\ \ \ \ \ \textcolor{keyword}{inline}\ \mbox{\hyperlink{mem__fn__cc_8hpp_adf1f3edb9115acb0a1e04209b7a9937b}{T}}*\ \mbox{\hyperlink{classsc__core_1_1sc__vpool_ada12261afe8aa7bf0051594e77442ee8}{allocate}}();}
+\DoxyCodeLine{00172\ \ \ \ \ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classsc__core_1_1sc__vpool_ab569f89ce8f7f8395ad8451b844e8533}{reset}}();}
+\DoxyCodeLine{00173\ \ \ \ \ \textcolor{keyword}{inline}\ std::size\_t\ \mbox{\hyperlink{classsc__core_1_1sc__vpool_a7605175ea69c4e71edf85467f42b7a71}{size}}();}
+\DoxyCodeLine{00174\ \};}
+\DoxyCodeLine{00175\ }
+\DoxyCodeLine{00176\ \textcolor{keyword}{template}<\textcolor{keyword}{class}\ T>\ \mbox{\hyperlink{classsc__core_1_1sc__vpool_ab5b01e7b12d2de407ae96b91814c12a4}{sc\_vpool<T>::sc\_vpool}}(\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{class_sysc_add__pv}{log2}},\ \mbox{\hyperlink{mem__fn__cc_8hpp_adf1f3edb9115acb0a1e04209b7a9937b}{T}}*\ \mbox{\hyperlink{class_sysc_add__pv}{pool\_p}}\ )}
+\DoxyCodeLine{00177\ \ \ :\ m\_pool\_i(\ 0\ )}
+\DoxyCodeLine{00178\ \ \ ,\ m\_pool\_p(\ \mbox{\hyperlink{class_sysc_add__pv}{pool\_p}}\ ?\ \mbox{\hyperlink{class_sysc_add__pv}{pool\_p}}\ :\ \mbox{\hyperlink{class_sysc_add__pv}{new}}\ \mbox{\hyperlink{mem__fn__cc_8hpp_adf1f3edb9115acb0a1e04209b7a9937b}{T}}[\mbox{\hyperlink{class_sysc_add__pv}{static\_cast}}<std::size\_t>(1)\ <<\ \mbox{\hyperlink{class_sysc_add__pv}{log2}}]\ )}
+\DoxyCodeLine{00179\ \ \ ,\ m\_wrap(\ \string~(\mbox{\hyperlink{class_sysc_add__pv}{static\_cast}}<std::size\_t>(-\/1)\ <<\ \mbox{\hyperlink{class_sysc_add__pv}{log2}})\ )}
+\DoxyCodeLine{00180\ \{}
+\DoxyCodeLine{00181\ \ \ \ \ \textcolor{comment}{//\ if\ (\ log2\ >\ 32\ )\ SC\_REPORT\_ERROR(SC\_ID\_POOL\_SIZE\_,\ "{}"{});}}
+\DoxyCodeLine{00182\ \}}
+\DoxyCodeLine{00183\ }
+\DoxyCodeLine{00184\ \textcolor{keyword}{template}<\textcolor{keyword}{class}\ T>\ \mbox{\hyperlink{classsc__core_1_1sc__vpool_aa486fedc6c53b748dfdc26e155c6bb9a}{sc\_vpool<T>::\string~sc\_vpool}}()}
+\DoxyCodeLine{00185\ \{}
+\DoxyCodeLine{00186\ \ \ \ \ \textcolor{comment}{//\ delete\ []\ m\_pool\_p;}}
+\DoxyCodeLine{00187\ \}}
+\DoxyCodeLine{00188\ }
+\DoxyCodeLine{00189\ \textcolor{keyword}{template}<\textcolor{keyword}{class}\ T>\ \mbox{\hyperlink{mem__fn__cc_8hpp_adf1f3edb9115acb0a1e04209b7a9937b}{T}}*\ \mbox{\hyperlink{classsc__core_1_1sc__vpool_ada12261afe8aa7bf0051594e77442ee8}{sc\_vpool<T>::allocate}}()}
+\DoxyCodeLine{00190\ \{}
+\DoxyCodeLine{00191\ \ \ \ \ \mbox{\hyperlink{mem__fn__cc_8hpp_adf1f3edb9115acb0a1e04209b7a9937b}{T}}*\ \mbox{\hyperlink{class_sysc_add__pv}{result\_p}};\ \ \ \textcolor{comment}{//\ Entry\ to\ return.}}
+\DoxyCodeLine{00192\ }
+\DoxyCodeLine{00193\ \ \ \ \ \mbox{\hyperlink{class_sysc_add__pv}{result\_p}}\ =\ \&m\_pool\_p[m\_pool\_i];}
+\DoxyCodeLine{00194\ \ \ \ \ m\_pool\_i\ =\ (m\_pool\_i\ +\ 1)\ \&\ m\_wrap;}
+\DoxyCodeLine{00195\ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{class_sysc_add__pv}{result\_p}};}
+\DoxyCodeLine{00196\ \}}
+\DoxyCodeLine{00197\ }
+\DoxyCodeLine{00198\ \textcolor{keyword}{template}<\textcolor{keyword}{class}\ T>\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classsc__core_1_1sc__vpool_ab569f89ce8f7f8395ad8451b844e8533}{sc\_vpool<T>::reset}}()}
+\DoxyCodeLine{00199\ \{}
+\DoxyCodeLine{00200\ \ \ \ \ m\_pool\_i\ =\ 0;}
+\DoxyCodeLine{00201\ \}}
+\DoxyCodeLine{00202\ }
+\DoxyCodeLine{00203\ \textcolor{keyword}{template}<\textcolor{keyword}{class}\ T>\ std::size\_t\ \mbox{\hyperlink{classsc__core_1_1sc__vpool_a7605175ea69c4e71edf85467f42b7a71}{sc\_vpool<T>::size}}()}
+\DoxyCodeLine{00204\ \{}
+\DoxyCodeLine{00205\ \ \ \ \ \textcolor{keywordflow}{return}\ m\_wrap\ +\ 1;}
+\DoxyCodeLine{00206\ \}}
+\DoxyCodeLine{00207\ }
+\DoxyCodeLine{00208\ \}\ \textcolor{comment}{//\ namespace\ sc\_core}}
+\DoxyCodeLine{00209\ }
+\DoxyCodeLine{00210\ \textcolor{comment}{//\ \$Log:\ sc\_temporary.h,v\ \$}}
+\DoxyCodeLine{00211\ \textcolor{comment}{//\ Revision\ 1.4\ \ 2011/08/26\ 20:46:19\ \ acg}}
+\DoxyCodeLine{00212\ \textcolor{comment}{//\ \ Andy\ Goodrich:\ moved\ the\ modification\ log\ to\ the\ end\ of\ the\ file\ to}}
+\DoxyCodeLine{00213\ \textcolor{comment}{//\ \ eliminate\ source\ line\ number\ skew\ when\ check-\/ins\ are\ done.}}
+\DoxyCodeLine{00214\ \textcolor{comment}{//}}
+\DoxyCodeLine{00215\ \textcolor{comment}{//\ Revision\ 1.3\ \ 2011/08/24\ 22:05:56\ \ acg}}
+\DoxyCodeLine{00216\ \textcolor{comment}{//\ \ Torsten\ Maehne:\ initialization\ changes\ to\ remove\ warnings.}}
+\DoxyCodeLine{00217\ \textcolor{comment}{//}}
+\DoxyCodeLine{00218\ \textcolor{comment}{//\ Revision\ 1.2\ \ 2011/02/18\ 20:38:44\ \ acg}}
+\DoxyCodeLine{00219\ \textcolor{comment}{//\ \ Andy\ Goodrich:\ Updated\ Copyright\ notice.}}
+\DoxyCodeLine{00220\ \textcolor{comment}{//}}
+\DoxyCodeLine{00221\ \textcolor{comment}{//\ Revision\ 1.1.1.1\ \ 2006/12/15\ 20:20:06\ \ acg}}
+\DoxyCodeLine{00222\ \textcolor{comment}{//\ SystemC\ 2.3}}
+\DoxyCodeLine{00223\ \textcolor{comment}{//}}
+\DoxyCodeLine{00224\ \textcolor{comment}{//\ Revision\ 1.3\ \ 2006/01/13\ 18:53:11\ \ acg}}
+\DoxyCodeLine{00225\ \textcolor{comment}{//\ Andy\ Goodrich:\ Added\ \$Log\ command\ so\ that\ CVS\ comments\ are\ reproduced\ in}}
+\DoxyCodeLine{00226\ \textcolor{comment}{//\ the\ source.}}
+\DoxyCodeLine{00227\ \textcolor{comment}{//}}
+\DoxyCodeLine{00228\ }
+\DoxyCodeLine{00229\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{//\ SC\_TEMPORARY\_H}}
+
+\end{DoxyCode}

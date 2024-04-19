@@ -1,0 +1,79 @@
+\doxysection{bsd.\+hpp}
+\hypertarget{bsd_8hpp_source}{}\label{bsd_8hpp_source}\index{C:/Users/BJRODIER/Documents/QT\_REPO/QT\_VHDL\_simulator/code/Ressources/SystemC/include/sysc/packages/boost/config/platform/bsd.hpp@{C:/Users/BJRODIER/Documents/QT\_REPO/QT\_VHDL\_simulator/code/Ressources/SystemC/include/sysc/packages/boost/config/platform/bsd.hpp}}
+\mbox{\hyperlink{bsd_8hpp}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{comment}{//\ \ (C)\ Copyright\ John\ Maddock\ 2001\ -\/\ 2003.\ }}
+\DoxyCodeLine{00002\ \textcolor{comment}{//\ \ (C)\ Copyright\ Darin\ Adler\ 2001.\ }}
+\DoxyCodeLine{00003\ \textcolor{comment}{//\ \ (C)\ Copyright\ Douglas\ Gregor\ 2002.\ }}
+\DoxyCodeLine{00004\ \textcolor{comment}{//\ \ Use,\ modification\ and\ distribution\ are\ subject\ to\ the\ }}
+\DoxyCodeLine{00005\ \textcolor{comment}{//\ \ Boost\ Software\ License,\ Version\ 1.0.\ (See\ accompanying\ file\ }}
+\DoxyCodeLine{00006\ \textcolor{comment}{//\ \ LICENSE\_1\_0.txt\ or\ copy\ at\ http://www.boost.org/LICENSE\_1\_0.txt)}}
+\DoxyCodeLine{00007\ }
+\DoxyCodeLine{00008\ \textcolor{comment}{//\ \ See\ http://www.boost.org\ for\ most\ recent\ version.}}
+\DoxyCodeLine{00009\ }
+\DoxyCodeLine{00010\ \textcolor{comment}{//\ \ generic\ BSD\ config\ options:}}
+\DoxyCodeLine{00011\ }
+\DoxyCodeLine{00012\ \textcolor{preprocessor}{\#if\ !defined(\_\_FreeBSD\_\_)\ \&\&\ !defined(\_\_NetBSD\_\_)\ \&\&\ !defined(\_\_OpenBSD\_\_)\ \&\&\ !defined(\_\_DragonFly\_\_)}}
+\DoxyCodeLine{00013\ \textcolor{preprocessor}{\#error\ "{}This\ platform\ is\ not\ BSD"{}}}
+\DoxyCodeLine{00014\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00015\ }
+\DoxyCodeLine{00016\ \textcolor{preprocessor}{\#ifdef\ \_\_FreeBSD\_\_}}
+\DoxyCodeLine{00017\ \textcolor{preprocessor}{\#define\ SC\_BOOST\_PLATFORM\ "{}FreeBSD\ "{}\ SC\_BOOST\_STRINGIZE(\_\_FreeBSD\_\_)}}
+\DoxyCodeLine{00018\ \textcolor{preprocessor}{\#elif\ defined(\_\_NetBSD\_\_)}}
+\DoxyCodeLine{00019\ \textcolor{preprocessor}{\#define\ SC\_BOOST\_PLATFORM\ "{}NetBSD\ "{}\ SC\_BOOST\_STRINGIZE(\_\_NetBSD\_\_)}}
+\DoxyCodeLine{00020\ \textcolor{preprocessor}{\#elif\ defined(\_\_OpenBSD\_\_)}}
+\DoxyCodeLine{00021\ \textcolor{preprocessor}{\#define\ SC\_BOOST\_PLATFORM\ "{}OpenBSD\ "{}\ SC\_BOOST\_STRINGIZE(\_\_OpenBSD\_\_)}}
+\DoxyCodeLine{00022\ \textcolor{preprocessor}{\#elif\ defined(\_\_DragonFly\_\_)}}
+\DoxyCodeLine{00023\ \textcolor{preprocessor}{\#define\ SC\_BOOST\_PLATFORM\ "{}DragonFly\ "{}\ SC\_BOOST\_STRINGIZE(\_\_DragonFly\_\_)}}
+\DoxyCodeLine{00024\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00025\ }
+\DoxyCodeLine{00026\ \textcolor{comment}{//}}
+\DoxyCodeLine{00027\ \textcolor{comment}{//\ is\ this\ the\ correct\ version\ check?}}
+\DoxyCodeLine{00028\ \textcolor{comment}{//\ FreeBSD\ has\ <nl\_types.h>\ but\ does\ not}}
+\DoxyCodeLine{00029\ \textcolor{comment}{//\ advertise\ the\ fact\ in\ <unistd.h>:}}
+\DoxyCodeLine{00030\ \textcolor{comment}{//}}
+\DoxyCodeLine{00031\ \textcolor{preprocessor}{\#if\ (defined(\_\_FreeBSD\_\_)\ \&\&\ (\_\_FreeBSD\_\_\ >=\ 3))\ ||\ defined(\_\_DragonFly\_\_)}}
+\DoxyCodeLine{00032\ \textcolor{preprocessor}{\#\ \ define\ SC\_BOOST\_HAS\_NL\_TYPES\_H}}
+\DoxyCodeLine{00033\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00034\ }
+\DoxyCodeLine{00035\ \textcolor{comment}{//}}
+\DoxyCodeLine{00036\ \textcolor{comment}{//\ FreeBSD\ 3.x\ has\ pthreads\ support,\ but\ defines\ \_POSIX\_THREADS\ in\ <pthread.h>}}
+\DoxyCodeLine{00037\ \textcolor{comment}{//\ and\ not\ in\ <unistd.h>}}
+\DoxyCodeLine{00038\ \textcolor{comment}{//}}
+\DoxyCodeLine{00039\ \textcolor{preprocessor}{\#if\ defined(\_\_FreeBSD\_\_)\ \&\&\ (\_\_FreeBSD\_\_\ <=\ 3)}}
+\DoxyCodeLine{00040\ \textcolor{preprocessor}{\#\ \ define\ SC\_BOOST\_HAS\_PTHREADS}}
+\DoxyCodeLine{00041\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00042\ }
+\DoxyCodeLine{00043\ \textcolor{comment}{//}}
+\DoxyCodeLine{00044\ \textcolor{comment}{//\ No\ wide\ character\ support\ in\ the\ BSD\ header\ files:}}
+\DoxyCodeLine{00045\ \textcolor{comment}{//}}
+\DoxyCodeLine{00046\ \textcolor{preprocessor}{\#if\ !(defined(\_\_FreeBSD\_\_)\ \&\&\ (\_\_FreeBSD\_\_\ >=\ 5))}}
+\DoxyCodeLine{00047\ \textcolor{preprocessor}{\#\ \ define\ SC\_BOOST\_NO\_CWCHAR}}
+\DoxyCodeLine{00048\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00049\ \textcolor{comment}{//}}
+\DoxyCodeLine{00050\ \textcolor{comment}{//\ The\ BSD\ <ctype.h>\ has\ macros\ only,\ no\ functions:}}
+\DoxyCodeLine{00051\ \textcolor{comment}{//}}
+\DoxyCodeLine{00052\ \textcolor{preprocessor}{\#if\ !defined(\_\_OpenBSD\_\_)}}
+\DoxyCodeLine{00053\ \textcolor{preprocessor}{\#\ \ define\ SC\_BOOST\_NO\_CTYPE\_FUNCTIONS}}
+\DoxyCodeLine{00054\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00055\ }
+\DoxyCodeLine{00056\ \textcolor{comment}{//}}
+\DoxyCodeLine{00057\ \textcolor{comment}{//\ thread\ API's\ not\ auto\ detected:}}
+\DoxyCodeLine{00058\ \textcolor{comment}{//}}
+\DoxyCodeLine{00059\ \textcolor{preprocessor}{\#define\ SC\_BOOST\_HAS\_SCHED\_YIELD}}
+\DoxyCodeLine{00060\ \textcolor{preprocessor}{\#define\ SC\_BOOST\_HAS\_NANOSLEEP}}
+\DoxyCodeLine{00061\ \textcolor{preprocessor}{\#define\ SC\_BOOST\_HAS\_GETTIMEOFDAY}}
+\DoxyCodeLine{00062\ \textcolor{preprocessor}{\#define\ SC\_BOOST\_HAS\_PTHREAD\_MUTEXATTR\_SETTYPE}}
+\DoxyCodeLine{00063\ \textcolor{preprocessor}{\#define\ SC\_BOOST\_HAS\_SIGACTION}}
+\DoxyCodeLine{00064\ }
+\DoxyCodeLine{00065\ \textcolor{comment}{//\ boilerplate\ code:}}
+\DoxyCodeLine{00066\ \textcolor{preprocessor}{\#define\ SC\_BOOST\_HAS\_UNISTD\_H}}
+\DoxyCodeLine{00067\ \textcolor{preprocessor}{\#include\ <\mbox{\hyperlink{posix__features_8hpp}{sysc/packages/boost/config/posix\_features.hpp}}>}}
+\DoxyCodeLine{00068\ }
+\DoxyCodeLine{00069\ }
+\DoxyCodeLine{00070\ }
+\DoxyCodeLine{00071\ }
+\DoxyCodeLine{00072\ }
+\DoxyCodeLine{00073\ }
+
+\end{DoxyCode}

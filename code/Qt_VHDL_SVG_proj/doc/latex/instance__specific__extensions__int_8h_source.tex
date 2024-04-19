@@ -1,0 +1,180 @@
+\doxysection{instance\+\_\+specific\+\_\+extensions\+\_\+int.\+h}
+\hypertarget{instance__specific__extensions__int_8h_source}{}\label{instance__specific__extensions__int_8h_source}\index{C:/Users/BJRODIER/Documents/QT\_REPO/QT\_VHDL\_simulator/code/Ressources/SystemC/include/tlm\_utils/instance\_specific\_extensions\_int.h@{C:/Users/BJRODIER/Documents/QT\_REPO/QT\_VHDL\_simulator/code/Ressources/SystemC/include/tlm\_utils/instance\_specific\_extensions\_int.h}}
+\mbox{\hyperlink{instance__specific__extensions__int_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{comment}{/*****************************************************************************}}
+\DoxyCodeLine{00002\ \textcolor{comment}{}}
+\DoxyCodeLine{00003\ \textcolor{comment}{\ \ Licensed\ to\ Accellera\ Systems\ Initiative\ Inc.\ (Accellera)\ under\ one\ or}}
+\DoxyCodeLine{00004\ \textcolor{comment}{\ \ more\ contributor\ license\ agreements.\ \ See\ the\ NOTICE\ file\ distributed}}
+\DoxyCodeLine{00005\ \textcolor{comment}{\ \ with\ this\ work\ for\ additional\ information\ regarding\ copyright\ ownership.}}
+\DoxyCodeLine{00006\ \textcolor{comment}{\ \ Accellera\ licenses\ this\ file\ to\ you\ under\ the\ Apache\ License,\ Version\ 2.0}}
+\DoxyCodeLine{00007\ \textcolor{comment}{\ \ (the\ "{}License"{});\ you\ may\ not\ use\ this\ file\ except\ in\ compliance\ with\ the}}
+\DoxyCodeLine{00008\ \textcolor{comment}{\ \ License.\ \ You\ may\ obtain\ a\ copy\ of\ the\ License\ at}}
+\DoxyCodeLine{00009\ \textcolor{comment}{}}
+\DoxyCodeLine{00010\ \textcolor{comment}{\ \ \ \ http://www.apache.org/licenses/LICENSE-\/2.0}}
+\DoxyCodeLine{00011\ \textcolor{comment}{}}
+\DoxyCodeLine{00012\ \textcolor{comment}{\ \ Unless\ required\ by\ applicable\ law\ or\ agreed\ to\ in\ writing,\ software}}
+\DoxyCodeLine{00013\ \textcolor{comment}{\ \ distributed\ under\ the\ License\ is\ distributed\ on\ an\ "{}AS\ IS"{}\ BASIS,}}
+\DoxyCodeLine{00014\ \textcolor{comment}{\ \ WITHOUT\ WARRANTIES\ OR\ CONDITIONS\ OF\ ANY\ KIND,\ either\ express\ or}}
+\DoxyCodeLine{00015\ \textcolor{comment}{\ \ implied.\ \ See\ the\ License\ for\ the\ specific\ language\ governing}}
+\DoxyCodeLine{00016\ \textcolor{comment}{\ \ permissions\ and\ limitations\ under\ the\ License.}}
+\DoxyCodeLine{00017\ \textcolor{comment}{}}
+\DoxyCodeLine{00018\ \textcolor{comment}{\ *****************************************************************************/}}
+\DoxyCodeLine{00019\ \textcolor{preprocessor}{\#ifndef\ TLM\_UTILS\_INSTANCE\_SPECIFIC\_EXTENSIONS\_INT\_H\_INCLUDED\_}}
+\DoxyCodeLine{00020\ \textcolor{preprocessor}{\#define\ TLM\_UTILS\_INSTANCE\_SPECIFIC\_EXTENSIONS\_INT\_H\_INCLUDED\_}}
+\DoxyCodeLine{00021\ }
+\DoxyCodeLine{00022\ \textcolor{preprocessor}{\#ifndef\ SC\_BUILD\ }\textcolor{comment}{//\ incluce\ full\ TLM,\ when\ not\ building\ the\ library}}
+\DoxyCodeLine{00023\ \textcolor{preprocessor}{\#include\ <tlm>}}
+\DoxyCodeLine{00024\ \textcolor{preprocessor}{\#else}}
+\DoxyCodeLine{00025\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{tlm__gp_8h}{tlm\_core/tlm\_2/tlm\_generic\_payload/tlm\_gp.h}}"{}}}
+\DoxyCodeLine{00026\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{//\ SC\_BUILD}}
+\DoxyCodeLine{00027\ }
+\DoxyCodeLine{00028\ \textcolor{keyword}{namespace\ }\mbox{\hyperlink{namespacetlm__utils}{tlm\_utils}}\ \{}
+\DoxyCodeLine{00029\ \textcolor{keyword}{class\ }\mbox{\hyperlink{sc__cmnhdr_8h_aff4a86b3f5de3ac2097081e7166fe89f}{SC\_API}}\ \mbox{\hyperlink{classtlm__utils_1_1ispex__base}{ispex\_base}};}
+\DoxyCodeLine{00030\ \textcolor{keyword}{class\ }\mbox{\hyperlink{sc__cmnhdr_8h_aff4a86b3f5de3ac2097081e7166fe89f}{SC\_API}}\ \mbox{\hyperlink{classtlm__utils_1_1instance__specific__extension__accessor}{instance\_specific\_extension\_accessor}};}
+\DoxyCodeLine{00031\ \textcolor{keyword}{class\ }\mbox{\hyperlink{sc__cmnhdr_8h_aff4a86b3f5de3ac2097081e7166fe89f}{SC\_API}}\ \mbox{\hyperlink{classtlm__utils_1_1instance__specific__extension__container}{instance\_specific\_extension\_container}};}
+\DoxyCodeLine{00032\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classtlm__utils_1_1instance__specific__extension__carrier}{instance\_specific\_extension\_carrier}};}
+\DoxyCodeLine{00033\ \textcolor{keyword}{class\ }instance\_specific\_extension\_container\_pool;}
+\DoxyCodeLine{00034\ \}}
+\DoxyCodeLine{00035\ }
+\DoxyCodeLine{00036\ \textcolor{keyword}{namespace\ }\mbox{\hyperlink{namespacetlm}{tlm}}\ \{}
+\DoxyCodeLine{00037\ \mbox{\hyperlink{sc__cmnhdr_8h_afd296367ff4ff514096587ab9244e39f}{SC\_API\_TEMPLATE\_DECL\_}}\ \mbox{\hyperlink{class_sysc_add__pv}{tlm\_array<tlm\_utils::ispex\_base*>}};}
+\DoxyCodeLine{00038\ \}\ \textcolor{comment}{//\ namespace\ tlm}}
+\DoxyCodeLine{00039\ }
+\DoxyCodeLine{00040\ \textcolor{keyword}{namespace\ }\mbox{\hyperlink{namespacetlm__utils}{tlm\_utils}}\ \{}
+\DoxyCodeLine{00041\ }
+\DoxyCodeLine{00042\ \textcolor{comment}{//The\ private\ extension\ base.\ Similar\ to\ normal\ extension\ base,\ but\ without\ clone\ and\ free}}
+\DoxyCodeLine{00043\ \textcolor{keyword}{class\ }\mbox{\hyperlink{sc__cmnhdr_8h_aff4a86b3f5de3ac2097081e7166fe89f}{SC\_API}}\ \mbox{\hyperlink{classtlm__utils_1_1ispex__base}{ispex\_base}}}
+\DoxyCodeLine{00044\ \{}
+\DoxyCodeLine{00045\ \ \ \ \ \textcolor{keyword}{friend}\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classtlm_1_1tlm__array}{tlm::tlm\_array}}<\mbox{\hyperlink{classtlm__utils_1_1ispex__base}{ispex\_base}}*>;}
+\DoxyCodeLine{00046\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classtlm__utils_1_1ispex__base_a5f1f0561c272a460b93dbd9d2cc10670}{free}}()\ \{\}\ \textcolor{comment}{//\ needed\ for\ explicit\ tlm\_array\ instantiation}}
+\DoxyCodeLine{00047\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00048\ \ \ \ \ \textcolor{keyword}{virtual}\ \mbox{\hyperlink{classtlm__utils_1_1ispex__base_afed46549cbda7a71b6e3aa7a3f540224}{\string~ispex\_base}}()\ \{\}}
+\DoxyCodeLine{00049\ \textcolor{keyword}{protected}:}
+\DoxyCodeLine{00050\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{classtlm__utils_1_1ispex__base_a922987c7673d887a2bef36f0aa7626b7}{register\_private\_extension}}(\textcolor{keyword}{const}\ std::type\_info\&);}
+\DoxyCodeLine{00051\ \};}
+\DoxyCodeLine{00052\ }
+\DoxyCodeLine{00053\ \textcolor{comment}{//this\ thing\ is\ basically\ a\ snippet\ of\ the\ generic\_payload}}
+\DoxyCodeLine{00054\ \textcolor{comment}{//\ it\ contains\ all\ the\ extension\ specific\ code\ (the\ extension\ API\ so\ to\ speak)}}
+\DoxyCodeLine{00055\ \textcolor{comment}{//\ the\ differences\ are:}}
+\DoxyCodeLine{00056\ \textcolor{comment}{//\ -\/\ it\ calls\ back\ to\ its\ owner\ whenever\ a\ real\ (==non-\/NULL)\ extension\ gets\ set\ for\ the\ first\ time}}
+\DoxyCodeLine{00057\ \textcolor{comment}{//\ -\/\ it\ calls\ back\ to\ its\ owner\ whenever\ a\ living\ (==non-\/NULL)\ extension\ gets\ cleared}}
+\DoxyCodeLine{00058\ \textcolor{keyword}{class\ }\mbox{\hyperlink{sc__cmnhdr_8h_aff4a86b3f5de3ac2097081e7166fe89f}{SC\_API}}\ \mbox{\hyperlink{classtlm__utils_1_1instance__specific__extensions__per__accessor}{instance\_specific\_extensions\_per\_accessor}}}
+\DoxyCodeLine{00059\ \{}
+\DoxyCodeLine{00060\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00061\ \ \ \textcolor{keyword}{typedef}\ \mbox{\hyperlink{classtlm__utils_1_1instance__specific__extension__container}{instance\_specific\_extension\_container}}\ \mbox{\hyperlink{classtlm__utils_1_1instance__specific__extensions__per__accessor_aeed8152d6082fc6a73a5e9cc75472944}{container\_type}};}
+\DoxyCodeLine{00062\ }
+\DoxyCodeLine{00063\ \ \ \textcolor{keyword}{explicit}}
+\DoxyCodeLine{00064\ \ \ \mbox{\hyperlink{classtlm__utils_1_1instance__specific__extensions__per__accessor_a3fa3912616df14f92cde75b77c4f83c3}{instance\_specific\_extensions\_per\_accessor}}(\mbox{\hyperlink{classtlm__utils_1_1instance__specific__extension__container}{container\_type}}*\ \mbox{\hyperlink{class_sysc_add__pv}{container}})}
+\DoxyCodeLine{00065\ \ \ \ \ :\ m\_container(\mbox{\hyperlink{class_sysc_add__pv}{container}})}
+\DoxyCodeLine{00066\ \ \ \{\}}
+\DoxyCodeLine{00067\ }
+\DoxyCodeLine{00068\ \ \ \textcolor{keyword}{template}\ <\textcolor{keyword}{typename}\ T>\ \mbox{\hyperlink{mem__fn__cc_8hpp_adf1f3edb9115acb0a1e04209b7a9937b}{T}}*\ \mbox{\hyperlink{classtlm__utils_1_1instance__specific__extensions__per__accessor_ac4a4fa1a029f91b6b0720f87112a368a}{set\_extension}}(\mbox{\hyperlink{mem__fn__cc_8hpp_adf1f3edb9115acb0a1e04209b7a9937b}{T}}*\ \mbox{\hyperlink{class_sysc_add__pv}{ext}})}
+\DoxyCodeLine{00069\ \ \ \{}
+\DoxyCodeLine{00070\ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{static\_cast<}\mbox{\hyperlink{mem__fn__cc_8hpp_adf1f3edb9115acb0a1e04209b7a9937b}{T}}*\textcolor{keyword}{>}(\ set\_extension(T::priv\_id,\ \mbox{\hyperlink{class_sysc_add__pv}{ext}})\ );}
+\DoxyCodeLine{00071\ \ \ \}}
+\DoxyCodeLine{00072\ }
+\DoxyCodeLine{00073\ \ \ \textcolor{comment}{//\ non-\/templatized\ version\ with\ manual\ index:}}
+\DoxyCodeLine{00074\ \ \ \mbox{\hyperlink{classtlm__utils_1_1ispex__base}{ispex\_base}}*\ \mbox{\hyperlink{classtlm__utils_1_1instance__specific__extensions__per__accessor_a8eb78ba40940bb14e74fd76a0727aa51}{set\_extension}}(\textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{int}\ index,\ \mbox{\hyperlink{classtlm__utils_1_1ispex__base}{ispex\_base}}*\ \mbox{\hyperlink{class_sysc_add__pv}{ext}});}
+\DoxyCodeLine{00075\ }
+\DoxyCodeLine{00076\ \ \ \textcolor{comment}{//\ Check\ for\ an\ extension,\ ext\ will\ point\ to\ 0\ if\ not\ present}}
+\DoxyCodeLine{00077\ \ \ \textcolor{keyword}{template}\ <\textcolor{keyword}{typename}\ T>\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classtlm__utils_1_1instance__specific__extensions__per__accessor_ad45c4b4a0cee1324fc81e006edb119d5}{get\_extension}}(\mbox{\hyperlink{mem__fn__cc_8hpp_adf1f3edb9115acb0a1e04209b7a9937b}{T}}*\&\ \mbox{\hyperlink{class_sysc_add__pv}{ext}})\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00078\ \textcolor{keyword}{\ \ }\{}
+\DoxyCodeLine{00079\ \ \ \ \ \ \ \mbox{\hyperlink{class_sysc_add__pv}{ext}}\ =\ \textcolor{keyword}{static\_cast<}\mbox{\hyperlink{mem__fn__cc_8hpp_adf1f3edb9115acb0a1e04209b7a9937b}{T}}*\textcolor{keyword}{>}(get\_extension(T::priv\_id));}
+\DoxyCodeLine{00080\ \ \ \}}
+\DoxyCodeLine{00081\ \ \ \textcolor{comment}{//\ Non-\/templatized\ version:}}
+\DoxyCodeLine{00082\ \ \ \ \mbox{\hyperlink{classtlm__utils_1_1ispex__base}{ispex\_base}}*\ \mbox{\hyperlink{classtlm__utils_1_1instance__specific__extensions__per__accessor_a985eb61cf6100a43141daa19b22ec41c}{get\_extension}}(\textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{int}\ index)\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00083\ }
+\DoxyCodeLine{00084\ \ \ \textcolor{comment}{//\ Clear\ extension,\ the\ argument\ is\ needed\ to\ find\ the\ right\ index:}}
+\DoxyCodeLine{00085\ \ \ \textcolor{keyword}{template}\ <\textcolor{keyword}{typename}\ T>\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classtlm__utils_1_1instance__specific__extensions__per__accessor_a2db25cbe65f4d57825aa57ccc26614fb}{clear\_extension}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{mem__fn__cc_8hpp_adf1f3edb9115acb0a1e04209b7a9937b}{T}}*)}
+\DoxyCodeLine{00086\ \ \ \{}
+\DoxyCodeLine{00087\ \ \ \ \ \ \ clear\_extension(T::priv\_id);}
+\DoxyCodeLine{00088\ \ \ \}}
+\DoxyCodeLine{00089\ }
+\DoxyCodeLine{00090\ \ \ \textcolor{comment}{//\ Non-\/templatized\ version\ with\ manual\ index}}
+\DoxyCodeLine{00091\ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classtlm__utils_1_1instance__specific__extensions__per__accessor_a6952e1be05ef77e591525bf5cb1ed291}{clear\_extension}}(\textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{int}\ index);}
+\DoxyCodeLine{00092\ }
+\DoxyCodeLine{00093\ \ \ \textcolor{comment}{//\ Make\ sure\ the\ extension\ array\ is\ large\ enough.\ Can\ be\ called\ once\ by}}
+\DoxyCodeLine{00094\ \ \ \textcolor{comment}{//\ an\ initiator\ module\ (before\ issuing\ the\ first\ transaction)\ to\ make}}
+\DoxyCodeLine{00095\ \ \ \textcolor{comment}{//\ sure\ that\ the\ extension\ array\ is\ of\ correct\ size.\ This\ is\ only\ needed}}
+\DoxyCodeLine{00096\ \ \ \textcolor{comment}{//\ if\ the\ initiator\ cannot\ guarantee\ that\ the\ generic\ payload\ object\ is}}
+\DoxyCodeLine{00097\ \ \ \textcolor{comment}{//\ allocated\ after\ C++\ static\ construction\ time.}}
+\DoxyCodeLine{00098\ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classtlm__utils_1_1instance__specific__extensions__per__accessor_a41dc49d4c5392cfdc421421735a570ee}{resize\_extensions}}();}
+\DoxyCodeLine{00099\ }
+\DoxyCodeLine{00100\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00101\ \ \ \mbox{\hyperlink{classtlm_1_1tlm__array}{tlm::tlm\_array<ispex\_base*>}}\ \mbox{\hyperlink{classtlm__utils_1_1instance__specific__extensions__per__accessor_af219fcf330feb945afc981203be2268b}{m\_extensions}};}
+\DoxyCodeLine{00102\ \ \ \mbox{\hyperlink{classtlm__utils_1_1instance__specific__extension__container}{container\_type}}*\ \mbox{\hyperlink{classtlm__utils_1_1instance__specific__extensions__per__accessor_a29751efaa831939a3b3aa2c3db726137}{m\_container}};}
+\DoxyCodeLine{00103\ }
+\DoxyCodeLine{00104\ \};\ \textcolor{comment}{//\ class\ instance\_specific\_extensions\_per\_accessor}}
+\DoxyCodeLine{00105\ }
+\DoxyCodeLine{00106\ \textcolor{preprocessor}{\#if\ defined(\_MSC\_VER)\ \&\&\ !defined(SC\_WIN\_DLL\_WARN)}}
+\DoxyCodeLine{00107\ \textcolor{preprocessor}{\#pragma\ warning(push)}}
+\DoxyCodeLine{00108\ \textcolor{preprocessor}{\#pragma\ warning(disable:\ 4251)\ }\textcolor{comment}{//\ DLL\ import\ for\ vector}}
+\DoxyCodeLine{00109\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00110\ }
+\DoxyCodeLine{00111\ \textcolor{comment}{//this\ thing\ contains\ the\ vector\ of\ extensions\ per\ accessor}}
+\DoxyCodeLine{00112\ \textcolor{comment}{//which\ can\ be\ really\ large\ so\ this\ one\ should\ be\ pool\ allocated}}
+\DoxyCodeLine{00113\ \textcolor{comment}{//\ therefore\ it\ keeps\ a\ use\_count\ of\ itself\ to\ automatically\ free\ itself}}
+\DoxyCodeLine{00114\ \textcolor{comment}{//\ -\/\ to\ this\ end\ it\ provides\ callbacks\ to\ the\ extensions\ per\ accessor}}
+\DoxyCodeLine{00115\ \textcolor{comment}{//\ \ \ to\ increment\ and\ decrement\ the\ use\_count}}
+\DoxyCodeLine{00116\ \textcolor{keyword}{class\ }\mbox{\hyperlink{sc__cmnhdr_8h_aff4a86b3f5de3ac2097081e7166fe89f}{SC\_API}}\ \mbox{\hyperlink{classtlm__utils_1_1instance__specific__extension__container}{instance\_specific\_extension\_container}}}
+\DoxyCodeLine{00117\ \{}
+\DoxyCodeLine{00118\ \ \ \textcolor{keyword}{friend}\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classtlm__utils_1_1instance__specific__extension__accessor}{instance\_specific\_extension\_accessor}};}
+\DoxyCodeLine{00119\ \ \ \textcolor{keyword}{friend}\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classtlm__utils_1_1instance__specific__extension__carrier}{instance\_specific\_extension\_carrier}};}
+\DoxyCodeLine{00120\ \ \ \textcolor{keyword}{friend}\ \textcolor{keyword}{class\ }instance\_specific\_extension\_container\_pool;}
+\DoxyCodeLine{00121\ \ \ \textcolor{keyword}{friend}\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classtlm__utils_1_1instance__specific__extensions__per__accessor}{instance\_specific\_extensions\_per\_accessor}};}
+\DoxyCodeLine{00122\ }
+\DoxyCodeLine{00123\ \ \ \textcolor{keyword}{typedef}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classtlm__utils_1_1instance__specific__extension__container_a186ec45dc883ed58efed9244ac8a88bd}{release\_fn}}(\mbox{\hyperlink{classtlm__utils_1_1instance__specific__extension__carrier}{instance\_specific\_extension\_carrier}}*,\textcolor{keywordtype}{void}*);}
+\DoxyCodeLine{00124\ }
+\DoxyCodeLine{00125\ \ \ \mbox{\hyperlink{classtlm__utils_1_1instance__specific__extension__container_ae6a95a4aa14e9036e213b1a1ac6d3854}{instance\_specific\_extension\_container}}();}
+\DoxyCodeLine{00126\ \ \ \mbox{\hyperlink{classtlm__utils_1_1instance__specific__extension__container_a06f594fb2d356cbc5a52683717fae158}{\string~instance\_specific\_extension\_container}}();}
+\DoxyCodeLine{00127\ }
+\DoxyCodeLine{00128\ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classtlm__utils_1_1instance__specific__extension__container_a58cfc1771308ddeb9bfa7e48c8938d6e}{resize}}();}
+\DoxyCodeLine{00129\ }
+\DoxyCodeLine{00130\ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classtlm__utils_1_1instance__specific__extension__container_ae4ee8b1b73ad83a0568d4626c1183979}{inc\_use\_count}}();}
+\DoxyCodeLine{00131\ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classtlm__utils_1_1instance__specific__extension__container_ad99743a3d526497f72582ea4ba9b7209}{dec\_use\_count}}();}
+\DoxyCodeLine{00132\ }
+\DoxyCodeLine{00133\ \ \ \textcolor{keyword}{static}\ \mbox{\hyperlink{classtlm__utils_1_1instance__specific__extension__container}{instance\_specific\_extension\_container}}*\ \mbox{\hyperlink{classtlm__utils_1_1instance__specific__extension__container_af4ef4dea273df3ef2cb0d8c9bd9df712}{create}}();}
+\DoxyCodeLine{00134\ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classtlm__utils_1_1instance__specific__extension__container_a126d0bd29095b630107b5e9dde3ef33e}{attach\_carrier}}(\mbox{\hyperlink{classtlm__utils_1_1instance__specific__extension__carrier}{instance\_specific\_extension\_carrier}}*,\ \textcolor{keywordtype}{void}*\ \mbox{\hyperlink{class_sysc_add__pv}{txn}},\ release\_fn*);}
+\DoxyCodeLine{00135\ }
+\DoxyCodeLine{00136\ \ \ \mbox{\hyperlink{classtlm__utils_1_1instance__specific__extensions__per__accessor}{instance\_specific\_extensions\_per\_accessor}}*\ \mbox{\hyperlink{classtlm__utils_1_1instance__specific__extension__container_a42c397c02815bd3e8ef96e2cdb508448}{get\_accessor}}(\textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{int}\ index);}
+\DoxyCodeLine{00137\ }
+\DoxyCodeLine{00138\ \ \ std::vector<instance\_specific\_extensions\_per\_accessor*>\ \mbox{\hyperlink{classtlm__utils_1_1instance__specific__extension__container_a8e42e80f08c3d7ffddfe8f07ed49cae0}{m\_ispex\_per\_accessor}};}
+\DoxyCodeLine{00139\ \ \ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{classtlm__utils_1_1instance__specific__extension__container_ad6ac6b8c6b588f43295ac53b65192503}{use\_count}};}
+\DoxyCodeLine{00140\ \ \ \textcolor{keywordtype}{void}*\ \mbox{\hyperlink{classtlm__utils_1_1instance__specific__extension__container_af436ecea52cef38df3866993a7b74d9f}{m\_txn}};}
+\DoxyCodeLine{00141\ \ \ release\_fn*\ \mbox{\hyperlink{classtlm__utils_1_1instance__specific__extension__container_aa5d24e3ee55b7ac797460e739face9c1}{m\_release\_fn}};}
+\DoxyCodeLine{00142\ \ \ \mbox{\hyperlink{classtlm__utils_1_1instance__specific__extension__carrier}{instance\_specific\_extension\_carrier}}*\ \mbox{\hyperlink{classtlm__utils_1_1instance__specific__extension__container_a3b78590266c05867ac4ae8f7e48de8ee}{m\_carrier}};}
+\DoxyCodeLine{00143\ \ \ \mbox{\hyperlink{classtlm__utils_1_1instance__specific__extension__container}{instance\_specific\_extension\_container}}*\ \mbox{\hyperlink{classtlm__utils_1_1instance__specific__extension__container_a58db63c0a4e0b8469e538640892ed420}{next}};\ \textcolor{comment}{//for\ pooling}}
+\DoxyCodeLine{00144\ }
+\DoxyCodeLine{00145\ \};\ \textcolor{comment}{//\ class\ instance\_specific\_extension\_container}}
+\DoxyCodeLine{00146\ }
+\DoxyCodeLine{00147\ \textcolor{preprocessor}{\#if\ defined(\_MSC\_VER)\ \&\&\ !defined(SC\_WIN\_DLL\_WARN)}}
+\DoxyCodeLine{00148\ \textcolor{preprocessor}{\#pragma\ warning(pop)}}
+\DoxyCodeLine{00149\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00150\ }
+\DoxyCodeLine{00151\ \textcolor{comment}{//\ -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{00152\ }
+\DoxyCodeLine{00153\ \textcolor{comment}{//This\ class\ 'hides'\ all\ the\ instance\ specific\ extension\ stuff\ from\ the\ user}}
+\DoxyCodeLine{00154\ \textcolor{comment}{//\ he\ instantiates\ one\ of\ those\ (e.g.\ instance\_specific\_extension\_accessor\ extAcc;)\ and\ can\ then\ access}}
+\DoxyCodeLine{00155\ \textcolor{comment}{//\ the\ private\ extensions}}
+\DoxyCodeLine{00156\ \textcolor{comment}{//\ \ \ \ extAcc(txn).extensionAPIFnCall()}}
+\DoxyCodeLine{00157\ \textcolor{comment}{//\ \ where\ extensionAPIFnCall\ is\ set\_extension,\ get\_extension,\ clear\_extension,...}}
+\DoxyCodeLine{00158\ \textcolor{keyword}{class\ }\mbox{\hyperlink{sc__cmnhdr_8h_aff4a86b3f5de3ac2097081e7166fe89f}{SC\_API}}\ \mbox{\hyperlink{classtlm__utils_1_1instance__specific__extension__accessor}{instance\_specific\_extension\_accessor}}}
+\DoxyCodeLine{00159\ \{}
+\DoxyCodeLine{00160\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00161\ \ \ \mbox{\hyperlink{classtlm__utils_1_1instance__specific__extension__accessor_a5c88f0ad0a89b1ecd977bda2220bd73f}{instance\_specific\_extension\_accessor}}();}
+\DoxyCodeLine{00162\ }
+\DoxyCodeLine{00163\ \ \ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ T>\ \textcolor{comment}{//\ implementation\ in\ instance\_specific\_extensions.h}}
+\DoxyCodeLine{00164\ \ \ \textcolor{keyword}{inline}\ \mbox{\hyperlink{classtlm__utils_1_1instance__specific__extensions__per__accessor}{instance\_specific\_extensions\_per\_accessor}}\&\ \mbox{\hyperlink{bind__template_8hpp_aaaead712fe7dc29c1799e7d8f77d1cfb}{operator()}}(\mbox{\hyperlink{mem__fn__cc_8hpp_adf1f3edb9115acb0a1e04209b7a9937b}{T}}\&\ \mbox{\hyperlink{class_sysc_add__pv}{txn}});}
+\DoxyCodeLine{00165\ }
+\DoxyCodeLine{00166\ \textcolor{keyword}{protected}:}
+\DoxyCodeLine{00167\ \ \ \textcolor{keyword}{template}<\textcolor{keyword}{typename}\ T>}
+\DoxyCodeLine{00168\ \ \ \textcolor{keyword}{static}\ \textcolor{keywordtype}{void}\ release\_carrier(\mbox{\hyperlink{classtlm__utils_1_1instance__specific__extension__carrier}{instance\_specific\_extension\_carrier}}*,\ \textcolor{keywordtype}{void}*\ \mbox{\hyperlink{class_sysc_add__pv}{txn}});}
+\DoxyCodeLine{00169\ }
+\DoxyCodeLine{00170\ \ \ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{classtlm__utils_1_1instance__specific__extension__accessor_ab7ccc45359ccf73306d2cd5eca6b8153}{m\_index}};}
+\DoxyCodeLine{00171\ \};\ \textcolor{comment}{//\ class\ instance\_specific\_extension\_accessor}}
+\DoxyCodeLine{00172\ }
+\DoxyCodeLine{00173\ \}\ \textcolor{comment}{//\ namespace\ tlm\_utils}}
+\DoxyCodeLine{00174\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{//\ TLM\_UTILS\_INSTANCE\_SPECIFIC\_EXTENSIONS\_INT\_H\_INCLUDED\_}}
+
+\end{DoxyCode}

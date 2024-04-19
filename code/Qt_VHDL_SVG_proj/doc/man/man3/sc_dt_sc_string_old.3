@@ -1,0 +1,307 @@
+.TH "sc_dt::sc_string_old" 3 "VHDL simulator" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+sc_dt::sc_string_old
+.SH SYNOPSIS
+.br
+.PP
+.PP
+\fR#include <sc_string\&.h>\fP
+.SS "Public Member Functions"
+
+.in +1c
+.ti -1c
+.RI "\fBsc_string_old\fP (int size=16)"
+.br
+.ti -1c
+.RI "\fBsc_string_old\fP (\fBconst\fP \fBchar\fP *s)"
+.br
+.ti -1c
+.RI "\fBsc_string_old\fP (\fBconst\fP \fBchar\fP *s, int \fBn\fP)"
+.br
+.ti -1c
+.RI "\fBsc_string_old\fP (\fBconst\fP \fBsc_string_old\fP &s)"
+.br
+.ti -1c
+.RI "\fB~sc_string_old\fP ()"
+.br
+.ti -1c
+.RI "\fBsc_string_old\fP & \fBoperator=\fP (\fBconst\fP \fBchar\fP *s)"
+.br
+.ti -1c
+.RI "\fBsc_string_old\fP & \fBoperator=\fP (\fBconst\fP \fBsc_string_old\fP &s)"
+.br
+.ti -1c
+.RI "\fBsc_string_old\fP & \fBoperator+=\fP (\fBconst\fP \fBchar\fP *s)"
+.br
+.ti -1c
+.RI "\fBsc_string_old\fP & \fBoperator+=\fP (\fBchar\fP \fBc\fP)"
+.br
+.ti -1c
+.RI "\fBsc_string_old\fP & \fBoperator+=\fP (\fBconst\fP \fBsc_string_old\fP &s)"
+.br
+.ti -1c
+.RI "\fBsc_string_old\fP \fBoperator+\fP (\fBconst\fP \fBchar\fP *s) \fBconst\fP"
+.br
+.ti -1c
+.RI "\fBsc_string_old\fP \fBoperator+\fP (\fBchar\fP \fBc\fP) \fBconst\fP"
+.br
+.ti -1c
+.RI "\fBsc_string_old\fP \fBoperator+\fP (\fBconst\fP \fBsc_string_old\fP &s) \fBconst\fP"
+.br
+.ti -1c
+.RI "\fBsc_string_old\fP \fBsubstr\fP (int first, int last) \fBconst\fP"
+.br
+.ti -1c
+.RI "\fBbool\fP \fBoperator==\fP (\fBconst\fP \fBchar\fP *s) \fBconst\fP"
+.br
+.ti -1c
+.RI "\fBbool\fP \fBoperator!=\fP (\fBconst\fP \fBchar\fP *s) \fBconst\fP"
+.br
+.ti -1c
+.RI "\fBbool\fP \fBoperator<\fP (\fBconst\fP \fBchar\fP *s) \fBconst\fP"
+.br
+.ti -1c
+.RI "\fBbool\fP \fBoperator<=\fP (\fBconst\fP \fBchar\fP *s) \fBconst\fP"
+.br
+.ti -1c
+.RI "\fBbool\fP \fBoperator>\fP (\fBconst\fP \fBchar\fP *s) \fBconst\fP"
+.br
+.ti -1c
+.RI "\fBbool\fP \fBoperator>=\fP (\fBconst\fP \fBchar\fP *s) \fBconst\fP"
+.br
+.ti -1c
+.RI "\fBbool\fP \fBoperator==\fP (\fBconst\fP \fBsc_string_old\fP &s) \fBconst\fP"
+.br
+.ti -1c
+.RI "\fBbool\fP \fBoperator!=\fP (\fBconst\fP \fBsc_string_old\fP &s) \fBconst\fP"
+.br
+.ti -1c
+.RI "\fBbool\fP \fBoperator<\fP (\fBconst\fP \fBsc_string_old\fP &s) \fBconst\fP"
+.br
+.ti -1c
+.RI "\fBbool\fP \fBoperator<=\fP (\fBconst\fP \fBsc_string_old\fP &s) \fBconst\fP"
+.br
+.ti -1c
+.RI "\fBbool\fP \fBoperator>\fP (\fBconst\fP \fBsc_string_old\fP &s) \fBconst\fP"
+.br
+.ti -1c
+.RI "\fBbool\fP \fBoperator>=\fP (\fBconst\fP \fBsc_string_old\fP &s) \fBconst\fP"
+.br
+.ti -1c
+.RI "int \fBlength\fP () \fBconst\fP"
+.br
+.ti -1c
+.RI "\fBconst\fP \fBchar\fP * \fBc_str\fP () \fBconst\fP"
+.br
+.ti -1c
+.RI "\fBoperator const char *\fP () \fBconst\fP"
+.br
+.ti -1c
+.RI "\fBchar\fP \fBoperator[]\fP (int index) \fBconst\fP"
+.br
+.ti -1c
+.RI "\fBchar\fP & \fBoperator[]\fP (int index)"
+.br
+.ti -1c
+.RI "template<\fBclass\fP \fBT\fP > \fBsc_string_old\fP & \fBfmt\fP (\fBconst\fP \fBT\fP &t)"
+.br
+.ti -1c
+.RI "\fBsc_string_old\fP & \fBfmt\fP (\fBconst\fP \fBsc_string_old\fP &s)"
+.br
+.ti -1c
+.RI "int \fBpos\fP (\fBconst\fP \fBsc_string_old\fP &\fBsub_string\fP) \fBconst\fP"
+.br
+.ti -1c
+.RI "\fBsc_string_old\fP & \fBremove\fP (\fBunsigned\fP index, \fBunsigned\fP \fBlength\fP)"
+.br
+.ti -1c
+.RI "\fBsc_string_old\fP & \fBinsert\fP (\fBconst\fP \fBsc_string_old\fP &\fBsub_string\fP, \fBunsigned\fP index)"
+.br
+.ti -1c
+.RI "\fBbool\fP \fBis_delimiter\fP (\fBconst\fP \fBsc_string_old\fP &\fBstr\fP, \fBunsigned\fP index) \fBconst\fP"
+.br
+.ti -1c
+.RI "\fBbool\fP \fBcontains\fP (\fBchar\fP \fBc\fP) \fBconst\fP"
+.br
+.ti -1c
+.RI "\fBsc_string_old\fP \fBuppercase\fP () \fBconst\fP"
+.br
+.ti -1c
+.RI "\fBsc_string_old\fP \fBlowercase\fP () \fBconst\fP"
+.br
+.ti -1c
+.RI "\fBvoid\fP \fBset\fP (int index, \fBchar\fP \fBc\fP)"
+.br
+.ti -1c
+.RI "int \fBcmp\fP (\fBconst\fP \fBchar\fP *s) \fBconst\fP"
+.br
+.ti -1c
+.RI "int \fBcmp\fP (\fBconst\fP \fBsc_string_old\fP &s) \fBconst\fP"
+.br
+.ti -1c
+.RI "\fBvoid\fP \fBprint\fP (::std::ostream &\fBos\fP=::std::cout) \fBconst\fP"
+.br
+.in -1c
+.SS "Static Public Member Functions"
+
+.in +1c
+.ti -1c
+.RI "\fBstatic\fP \fBsc_string_old\fP \fBto_string\fP (\fBconst\fP \fBchar\fP *\fBformat\fP,\&.\&.\&.)"
+.br
+.ti -1c
+.RI "\fBstatic\fP \fBsc_string_old\fP \fBmake_str\fP (\fBlong\fP \fBn\fP)"
+.br
+.in -1c
+.SS "Private Member Functions"
+
+.in +1c
+.ti -1c
+.RI "friend::std::ostream & \fBoperator<<\fP (::std::ostream &\fBos\fP, \fBconst\fP \fBsc_string_old\fP &\fBa\fP)"
+.br
+.ti -1c
+.RI "friend::std::istream & \fBoperator>>\fP (::std::istream &\fBis\fP, \fBsc_string_old\fP &\fBa\fP)"
+.br
+.ti -1c
+.RI "\fBsc_string_old\fP (\fBsc_string_rep\fP *\fBr\fP)"
+.br
+.ti -1c
+.RI "\fBvoid\fP \fBtest\fP (int \fBposition\fP) \fBconst\fP"
+.br
+.ti -1c
+.RI "\fBunsigned\fP \fBfmt_length\fP () \fBconst\fP"
+.br
+.in -1c
+.SS "Private Attributes"
+
+.in +1c
+.ti -1c
+.RI "\fBsc_string_rep\fP * \fBrep\fP"
+.br
+.in -1c
+.SS "Friends"
+
+.in +1c
+.ti -1c
+.RI "\fBsc_string_old\fP \fBoperator+\fP (\fBconst\fP \fBchar\fP *s, \fBconst\fP \fBsc_string_old\fP &t)"
+.br
+.in -1c
+.SH "Constructor & Destructor Documentation"
+.PP 
+.SS "sc_dt::sc_string_old::sc_string_old (int size = \fR16\fP)\fR [explicit]\fP"
+
+.SS "sc_dt::sc_string_old::sc_string_old (\fBconst\fP \fBchar\fP * s)"
+
+.SS "sc_dt::sc_string_old::sc_string_old (\fBconst\fP \fBchar\fP * s, int n)"
+
+.SS "sc_dt::sc_string_old::sc_string_old (\fBconst\fP \fBsc_string_old\fP & s)"
+
+.SS "sc_dt::sc_string_old::~sc_string_old ()"
+
+.SS "sc_dt::sc_string_old::sc_string_old (\fBsc_string_rep\fP * r)\fR [private]\fP"
+
+.SH "Member Function Documentation"
+.PP 
+.SS "\fBconst\fP \fBchar\fP * sc_dt::sc_string_old::c_str () const"
+
+.SS "int sc_dt::sc_string_old::cmp (\fBconst\fP \fBchar\fP * s) const"
+
+.SS "int sc_dt::sc_string_old::cmp (\fBconst\fP \fBsc_string_old\fP & s) const"
+
+.SS "\fBbool\fP sc_dt::sc_string_old::contains (\fBchar\fP c) const"
+
+.SS "\fBsc_string_old\fP & sc_dt::sc_string_old::fmt (\fBconst\fP \fBsc_string_old\fP & s)"
+
+.SS "template<\fBclass\fP \fBT\fP > \fBsc_string_old\fP & sc_dt::sc_string_old::fmt (\fBconst\fP \fBT\fP & t)\fR [inline]\fP"
+
+.SS "\fBunsigned\fP sc_dt::sc_string_old::fmt_length () const\fR [private]\fP"
+
+.SS "\fBsc_string_old\fP & sc_dt::sc_string_old::insert (\fBconst\fP \fBsc_string_old\fP & sub_string, \fBunsigned\fP index)"
+
+.SS "\fBbool\fP sc_dt::sc_string_old::is_delimiter (\fBconst\fP \fBsc_string_old\fP & str, \fBunsigned\fP index) const"
+
+.SS "int sc_dt::sc_string_old::length () const"
+
+.SS "\fBsc_string_old\fP sc_dt::sc_string_old::lowercase () const"
+
+.SS "\fBstatic\fP \fBsc_string_old\fP sc_dt::sc_string_old::make_str (\fBlong\fP n)\fR [static]\fP"
+
+.SS "sc_dt::sc_string_old::operator \fBconst\fP \fBchar\fP * () const"
+
+.SS "\fBbool\fP sc_dt::sc_string_old::operator!= (\fBconst\fP \fBchar\fP * s) const"
+
+.SS "\fBbool\fP sc_dt::sc_string_old::operator!= (\fBconst\fP \fBsc_string_old\fP & s) const"
+
+.SS "\fBsc_string_old\fP sc_dt::sc_string_old::operator+ (\fBchar\fP c) const"
+
+.SS "\fBsc_string_old\fP sc_dt::sc_string_old::operator+ (\fBconst\fP \fBchar\fP * s) const"
+
+.SS "\fBsc_string_old\fP sc_dt::sc_string_old::operator+ (\fBconst\fP \fBsc_string_old\fP & s) const"
+
+.SS "\fBsc_string_old\fP & sc_dt::sc_string_old::operator+= (\fBchar\fP c)"
+
+.SS "\fBsc_string_old\fP & sc_dt::sc_string_old::operator+= (\fBconst\fP \fBchar\fP * s)"
+
+.SS "\fBsc_string_old\fP & sc_dt::sc_string_old::operator+= (\fBconst\fP \fBsc_string_old\fP & s)"
+
+.SS "\fBbool\fP sc_dt::sc_string_old::operator< (\fBconst\fP \fBchar\fP * s) const"
+
+.SS "\fBbool\fP sc_dt::sc_string_old::operator< (\fBconst\fP \fBsc_string_old\fP & s) const"
+
+.SS "friend::std::ostream & sc_dt::sc_string_old::operator<< (::std::ostream & os, \fBconst\fP \fBsc_string_old\fP & a)\fR [private]\fP"
+
+.SS "\fBbool\fP sc_dt::sc_string_old::operator<= (\fBconst\fP \fBchar\fP * s) const"
+
+.SS "\fBbool\fP sc_dt::sc_string_old::operator<= (\fBconst\fP \fBsc_string_old\fP & s) const"
+
+.SS "\fBsc_string_old\fP & sc_dt::sc_string_old::operator= (\fBconst\fP \fBchar\fP * s)"
+
+.SS "\fBsc_string_old\fP & sc_dt::sc_string_old::operator= (\fBconst\fP \fBsc_string_old\fP & s)"
+
+.SS "\fBbool\fP sc_dt::sc_string_old::operator== (\fBconst\fP \fBchar\fP * s) const"
+
+.SS "\fBbool\fP sc_dt::sc_string_old::operator== (\fBconst\fP \fBsc_string_old\fP & s) const"
+
+.SS "\fBbool\fP sc_dt::sc_string_old::operator> (\fBconst\fP \fBchar\fP * s) const"
+
+.SS "\fBbool\fP sc_dt::sc_string_old::operator> (\fBconst\fP \fBsc_string_old\fP & s) const"
+
+.SS "\fBbool\fP sc_dt::sc_string_old::operator>= (\fBconst\fP \fBchar\fP * s) const"
+
+.SS "\fBbool\fP sc_dt::sc_string_old::operator>= (\fBconst\fP \fBsc_string_old\fP & s) const"
+
+.SS "friend::std::istream & sc_dt::sc_string_old::operator>> (::std::istream & is, \fBsc_string_old\fP & a)\fR [private]\fP"
+
+.SS "\fBchar\fP & sc_dt::sc_string_old::operator[] (int index)"
+
+.SS "\fBchar\fP sc_dt::sc_string_old::operator[] (int index) const"
+
+.SS "int sc_dt::sc_string_old::pos (\fBconst\fP \fBsc_string_old\fP & sub_string) const"
+
+.SS "\fBvoid\fP sc_dt::sc_string_old::print (::std::ostream & os = \fR::std::cout\fP) const"
+
+.SS "\fBsc_string_old\fP & sc_dt::sc_string_old::remove (\fBunsigned\fP index, \fBunsigned\fP length)"
+
+.SS "\fBvoid\fP sc_dt::sc_string_old::set (int index, \fBchar\fP c)"
+
+.SS "\fBsc_string_old\fP sc_dt::sc_string_old::substr (int first, int last) const"
+
+.SS "\fBvoid\fP sc_dt::sc_string_old::test (int position) const\fR [private]\fP"
+
+.SS "\fBstatic\fP \fBsc_string_old\fP sc_dt::sc_string_old::to_string (\fBconst\fP \fBchar\fP * format,  \&.\&.\&.)\fR [static]\fP"
+
+.SS "\fBsc_string_old\fP sc_dt::sc_string_old::uppercase () const"
+
+.SH "Friends And Related Symbol Documentation"
+.PP 
+.SS "\fBsc_string_old\fP \fBoperator\fP+ (\fBconst\fP \fBchar\fP * s, \fBconst\fP \fBsc_string_old\fP & t)\fR [friend]\fP"
+
+.SH "Member Data Documentation"
+.PP 
+.SS "\fBsc_string_rep\fP* sc_dt::sc_string_old::rep\fR [private]\fP"
+
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for VHDL simulator from the source code\&.

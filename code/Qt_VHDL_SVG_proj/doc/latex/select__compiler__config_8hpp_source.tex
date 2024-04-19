@@ -1,0 +1,89 @@
+\doxysection{select\+\_\+compiler\+\_\+config.\+hpp}
+\hypertarget{select__compiler__config_8hpp_source}{}\label{select__compiler__config_8hpp_source}\index{C:/Users/BJRODIER/Documents/QT\_REPO/QT\_VHDL\_simulator/code/Ressources/SystemC/include/sysc/packages/boost/config/select\_compiler\_config.hpp@{C:/Users/BJRODIER/Documents/QT\_REPO/QT\_VHDL\_simulator/code/Ressources/SystemC/include/sysc/packages/boost/config/select\_compiler\_config.hpp}}
+\mbox{\hyperlink{select__compiler__config_8hpp}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{comment}{//\ \ Boost\ compiler\ configuration\ selection\ header\ file}}
+\DoxyCodeLine{00002\ }
+\DoxyCodeLine{00003\ \textcolor{comment}{//\ \ (C)\ Copyright\ John\ Maddock\ 2001\ -\/\ 2003.\ }}
+\DoxyCodeLine{00004\ \textcolor{comment}{//\ \ (C)\ Copyright\ Martin\ Wille\ 2003.}}
+\DoxyCodeLine{00005\ \textcolor{comment}{//\ \ (C)\ Copyright\ Guillaume\ Melquiond\ 2003.\ }}
+\DoxyCodeLine{00006\ \textcolor{comment}{//\ \ Use,\ modification\ and\ distribution\ are\ subject\ to\ the\ }}
+\DoxyCodeLine{00007\ \textcolor{comment}{//\ \ Boost\ Software\ License,\ Version\ 1.0.\ (See\ accompanying\ file\ }}
+\DoxyCodeLine{00008\ \textcolor{comment}{//\ \ LICENSE\_1\_0.txt\ or\ copy\ at\ http://www.boost.org/LICENSE\_1\_0.txt)}}
+\DoxyCodeLine{00009\ }
+\DoxyCodeLine{00010\ \textcolor{comment}{//\ \ See\ http://www.boost.org\ for\ most\ recent\ version.}}
+\DoxyCodeLine{00011\ }
+\DoxyCodeLine{00012\ \textcolor{comment}{//\ locate\ which\ compiler\ we\ are\ using\ and\ define}}
+\DoxyCodeLine{00013\ \textcolor{comment}{//\ SC\_BOOST\_COMPILER\_CONFIG\ as\ needed:\ }}
+\DoxyCodeLine{00014\ }
+\DoxyCodeLine{00015\ \textcolor{preprocessor}{\#\ if\ defined\ \_\_COMO\_\_}}
+\DoxyCodeLine{00016\ \textcolor{comment}{//\ \ Comeau\ C++}}
+\DoxyCodeLine{00017\ \textcolor{preprocessor}{\#\ \ \ define\ SC\_BOOST\_COMPILER\_CONFIG\ "{}sysc/packages/boost/config/compiler/comeau.hpp"{}}}
+\DoxyCodeLine{00018\ }
+\DoxyCodeLine{00019\ \textcolor{preprocessor}{\#elif\ defined\ \_\_DMC\_\_}}
+\DoxyCodeLine{00020\ \textcolor{comment}{//\ \ Digital\ Mars\ C++}}
+\DoxyCodeLine{00021\ \textcolor{preprocessor}{\#\ \ \ define\ SC\_BOOST\_COMPILER\_CONFIG\ "{}sysc/packages/boost/config/compiler/digitalmars.hpp"{}}}
+\DoxyCodeLine{00022\ }
+\DoxyCodeLine{00023\ \textcolor{preprocessor}{\#elif\ defined(\_\_INTEL\_COMPILER)\ ||\ defined(\_\_ICL)\ ||\ defined(\_\_ICC)\ ||\ defined(\_\_ECC)}}
+\DoxyCodeLine{00024\ \textcolor{comment}{//\ \ Intel}}
+\DoxyCodeLine{00025\ \textcolor{preprocessor}{\#\ \ \ define\ SC\_BOOST\_COMPILER\_CONFIG\ "{}sysc/packages/boost/config/compiler/intel.hpp"{}}}
+\DoxyCodeLine{00026\ }
+\DoxyCodeLine{00027\ \textcolor{preprocessor}{\#\ elif\ defined\ \_\_GNUC\_\_}}
+\DoxyCodeLine{00028\ \textcolor{comment}{//\ \ GNU\ C++:}}
+\DoxyCodeLine{00029\ \textcolor{preprocessor}{\#\ \ \ define\ SC\_BOOST\_COMPILER\_CONFIG\ "{}sysc/packages/boost/config/compiler/gcc.hpp"{}}}
+\DoxyCodeLine{00030\ }
+\DoxyCodeLine{00031\ \textcolor{preprocessor}{\#elif\ defined\ \_\_KCC}}
+\DoxyCodeLine{00032\ \textcolor{comment}{//\ \ Kai\ C++}}
+\DoxyCodeLine{00033\ \textcolor{preprocessor}{\#\ \ \ define\ SC\_BOOST\_COMPILER\_CONFIG\ "{}sysc/packages/boost/config/compiler/kai.hpp"{}}}
+\DoxyCodeLine{00034\ }
+\DoxyCodeLine{00035\ \textcolor{preprocessor}{\#elif\ defined\ \_\_sgi}}
+\DoxyCodeLine{00036\ \textcolor{comment}{//\ \ SGI\ MIPSpro\ C++}}
+\DoxyCodeLine{00037\ \textcolor{preprocessor}{\#\ \ \ define\ SC\_BOOST\_COMPILER\_CONFIG\ "{}sysc/packages/boost/config/compiler/sgi\_mipspro.hpp"{}}}
+\DoxyCodeLine{00038\ }
+\DoxyCodeLine{00039\ \textcolor{preprocessor}{\#elif\ defined\ \_\_DECCXX}}
+\DoxyCodeLine{00040\ \textcolor{comment}{//\ \ Compaq\ Tru64\ Unix\ cxx}}
+\DoxyCodeLine{00041\ \textcolor{preprocessor}{\#\ \ \ define\ SC\_BOOST\_COMPILER\_CONFIG\ "{}sysc/packages/boost/config/compiler/compaq\_cxx.hpp"{}}}
+\DoxyCodeLine{00042\ }
+\DoxyCodeLine{00043\ \textcolor{preprocessor}{\#elif\ defined\ \_\_ghs}}
+\DoxyCodeLine{00044\ \textcolor{comment}{//\ \ Greenhills\ C++}}
+\DoxyCodeLine{00045\ \textcolor{preprocessor}{\#\ \ \ define\ SC\_BOOST\_COMPILER\_CONFIG\ "{}sysc/packages/boost/config/compiler/greenhills.hpp"{}}}
+\DoxyCodeLine{00046\ }
+\DoxyCodeLine{00047\ \textcolor{preprocessor}{\#elif\ defined\ \_\_BORLANDC\_\_}}
+\DoxyCodeLine{00048\ \textcolor{comment}{//\ \ Borland}}
+\DoxyCodeLine{00049\ \textcolor{preprocessor}{\#\ \ \ define\ SC\_BOOST\_COMPILER\_CONFIG\ "{}sysc/packages/boost/config/compiler/borland.hpp"{}}}
+\DoxyCodeLine{00050\ }
+\DoxyCodeLine{00051\ \textcolor{preprocessor}{\#elif\ defined\ \ \_\_MWERKS\_\_}}
+\DoxyCodeLine{00052\ \textcolor{comment}{//\ \ Metrowerks\ CodeWarrior}}
+\DoxyCodeLine{00053\ \textcolor{preprocessor}{\#\ \ \ define\ SC\_BOOST\_COMPILER\_CONFIG\ "{}sysc/packages/boost/config/compiler/metrowerks.hpp"{}}}
+\DoxyCodeLine{00054\ }
+\DoxyCodeLine{00055\ \textcolor{preprocessor}{\#elif\ defined\ \ \_\_SUNPRO\_CC}}
+\DoxyCodeLine{00056\ \textcolor{comment}{//\ \ Sun\ Workshop\ Compiler\ C++}}
+\DoxyCodeLine{00057\ \textcolor{preprocessor}{\#\ \ \ define\ SC\_BOOST\_COMPILER\_CONFIG\ "{}sysc/packages/boost/config/compiler/sunpro\_cc.hpp"{}}}
+\DoxyCodeLine{00058\ }
+\DoxyCodeLine{00059\ \textcolor{preprocessor}{\#elif\ defined\ \_\_HP\_aCC}}
+\DoxyCodeLine{00060\ \textcolor{comment}{//\ \ HP\ aCC}}
+\DoxyCodeLine{00061\ \textcolor{preprocessor}{\#\ \ \ define\ SC\_BOOST\_COMPILER\_CONFIG\ "{}sysc/packages/boost/config/compiler/hp\_acc.hpp"{}}}
+\DoxyCodeLine{00062\ }
+\DoxyCodeLine{00063\ \textcolor{preprocessor}{\#elif\ defined(\_\_MRC\_\_)\ ||\ defined(\_\_SC\_\_)}}
+\DoxyCodeLine{00064\ \textcolor{comment}{//\ \ MPW\ MrCpp\ or\ SCpp}}
+\DoxyCodeLine{00065\ \textcolor{preprocessor}{\#\ \ \ define\ SC\_BOOST\_COMPILER\_CONFIG\ "{}sysc/packages/boost/config/compiler/mpw.hpp"{}}}
+\DoxyCodeLine{00066\ }
+\DoxyCodeLine{00067\ \textcolor{preprocessor}{\#elif\ defined(\_\_IBMCPP\_\_)}}
+\DoxyCodeLine{00068\ \textcolor{comment}{//\ \ IBM\ Visual\ Age}}
+\DoxyCodeLine{00069\ \textcolor{preprocessor}{\#\ \ \ define\ SC\_BOOST\_COMPILER\_CONFIG\ "{}sysc/packages/boost/config/compiler/vacpp.hpp"{}}}
+\DoxyCodeLine{00070\ }
+\DoxyCodeLine{00071\ \textcolor{preprocessor}{\#elif\ defined\ \_MSC\_VER}}
+\DoxyCodeLine{00072\ \textcolor{comment}{//\ \ Microsoft\ Visual\ C++}}
+\DoxyCodeLine{00073\ \textcolor{comment}{//}}
+\DoxyCodeLine{00074\ \textcolor{comment}{//\ \ Must\ remain\ the\ last\ \#elif\ since\ some\ other\ vendors\ (Metrowerks,\ for}}
+\DoxyCodeLine{00075\ \textcolor{comment}{//\ \ example)\ also\ \#define\ \_MSC\_VER}}
+\DoxyCodeLine{00076\ \textcolor{preprocessor}{\#\ \ \ define\ SC\_BOOST\_COMPILER\_CONFIG\ "{}sysc/packages/boost/config/compiler/visualc.hpp"{}}}
+\DoxyCodeLine{00077\ }
+\DoxyCodeLine{00078\ \textcolor{preprocessor}{\#elif\ defined\ (SC\_BOOST\_ASSERT\_CONFIG)}}
+\DoxyCodeLine{00079\ \textcolor{comment}{//\ this\ must\ come\ last\ -\/\ generate\ an\ error\ if\ we\ don't}}
+\DoxyCodeLine{00080\ \textcolor{comment}{//\ recognise\ the\ compiler:}}
+\DoxyCodeLine{00081\ \textcolor{preprocessor}{\#\ \ error\ "{}Unknown\ compiler\ -\/\ please\ configure\ (http://www.boost.org/libs/config/config.htm\#configuring)\ and\ report\ the\ results\ to\ the\ main\ boost\ mailing\ list\ (http://www.boost.org/more/mailing\_lists.htm\#main)"{}}}
+\DoxyCodeLine{00082\ }
+\DoxyCodeLine{00083\ \textcolor{preprocessor}{\#endif}}
+
+\end{DoxyCode}

@@ -1,0 +1,52 @@
+\doxysection{aarch64.\+h}
+\hypertarget{aarch64_8h_source}{}\label{aarch64_8h_source}\index{C:/Users/BJRODIER/Documents/QT\_REPO/QT\_VHDL\_simulator/code/Ressources/SystemC/include/sysc/packages/qt/md/aarch64.h@{C:/Users/BJRODIER/Documents/QT\_REPO/QT\_VHDL\_simulator/code/Ressources/SystemC/include/sysc/packages/qt/md/aarch64.h}}
+\mbox{\hyperlink{aarch64_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#ifndef\ QUICKTHREADS\_AARCH\_64\_H}}
+\DoxyCodeLine{00002\ \textcolor{preprocessor}{\#define\ QUICKTHREADS\_AARCH\_64\_H}}
+\DoxyCodeLine{00003\ }
+\DoxyCodeLine{00004\ \textcolor{comment}{//\ For\ QUICKTHREADS\_SPUT\ in\ qt.h}}
+\DoxyCodeLine{00005\ \textcolor{keyword}{typedef}\ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{long}\ \mbox{\hyperlink{aarch64_8h_a7e200cdd70932f91502a9a28594c56da}{qt\_word\_t}};}
+\DoxyCodeLine{00006\ }
+\DoxyCodeLine{00007\ \textcolor{keyword}{extern}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{aarch64_8h_aa2f4631bb0e6ccd7c1fb4e2be528d67d}{qt\_start}}(\textcolor{keywordtype}{void});}
+\DoxyCodeLine{00008\ \textcolor{keyword}{extern}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{aarch64_8h_a0b7527956e668f9f8d8c11e8f1e18498}{qt\_vstart}}(\textcolor{keywordtype}{void});}
+\DoxyCodeLine{00009\ }
+\DoxyCodeLine{00010\ \textcolor{keyword}{extern}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{aarch64_8h_a5a308819b59cd9b0ae39e7e19f386d19}{qt\_error}}(\textcolor{keywordtype}{void});}
+\DoxyCodeLine{00011\ \textcolor{keyword}{extern}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{aarch64_8h_af181366422be553cc42ca58b1db3b151}{qt\_align}}(\textcolor{keywordtype}{void});}
+\DoxyCodeLine{00012\ }
+\DoxyCodeLine{00013\ }
+\DoxyCodeLine{00014\ \textcolor{comment}{//\ Stack\ must\ be\ 16-\/byte\ aligned\ at\ all\ times.}}
+\DoxyCodeLine{00015\ \textcolor{preprocessor}{\#define\ QUICKTHREADS\_STKALIGN\ (16)}}
+\DoxyCodeLine{00016\ \textcolor{preprocessor}{\#define\ QUICKTHREADS\_STKBASE\ \ (20\ *\ sizeof(qt\_word\_t))}}
+\DoxyCodeLine{00017\ \textcolor{preprocessor}{\#define\ QUICKTHREADS\_VSTKBASE\ (5\ *\ sizeof(qt\_word\_t))}}
+\DoxyCodeLine{00018\ }
+\DoxyCodeLine{00019\ \textcolor{preprocessor}{\#define\ QUICKTHREADS\_GROW\_DOWN}}
+\DoxyCodeLine{00020\ \textcolor{preprocessor}{\#define\ QUICKTHREADS\_ADJ(sp)\ \ (((char\ *)sp)\ -\/\ QUICKTHREADS\_STKBASE)}}
+\DoxyCodeLine{00021\ }
+\DoxyCodeLine{00022\ \textcolor{comment}{//\ Initialize\ a\ single-\/argument\ thread.}}
+\DoxyCodeLine{00023\ \textcolor{comment}{//}}
+\DoxyCodeLine{00024\ \textcolor{comment}{//\ Set\ up\ link\ index\ to\ point\ to\ the\ true\ initializer,\ qt\_start,}}
+\DoxyCodeLine{00025\ \textcolor{comment}{//\ which\ will\ call\ only(pu,\ pt,\ userf)\ read\ from\ the\ stack.}}
+\DoxyCodeLine{00026\ \textcolor{comment}{//}}
+\DoxyCodeLine{00027\ \textcolor{comment}{//\ (*helper)(old\_sp,\ a0,\ a1)\ will\ be\ called\ in\ between\ on\ the\ current}}
+\DoxyCodeLine{00028\ \textcolor{comment}{//\ stack,\ so\ FRAME\_INDEX\ needs\ to\ be\ correct\ and\ the\ other\ values}}
+\DoxyCodeLine{00029\ \textcolor{comment}{//\ appropriately\ stored.}}
+\DoxyCodeLine{00030\ \textcolor{preprocessor}{\#define\ QUICKTHREADS\_ARGS(sp,\ pu,\ pt,\ userf,\ only)\ \(\backslash\)}}
+\DoxyCodeLine{00031\ \textcolor{preprocessor}{\ \ \ (QUICKTHREADS\_SPUT(sp,\ QUICKTHREADS\_LINK\_INDEX,\ \ qt\_start),\ \(\backslash\)}}
+\DoxyCodeLine{00032\ \textcolor{preprocessor}{\ \ \ \ QUICKTHREADS\_SPUT(sp,\ QUICKTHREADS\_FRAME\_INDEX,\ sp),\ \ \ \ \ \ \ \(\backslash\)}}
+\DoxyCodeLine{00033\ \textcolor{preprocessor}{\ \ \ \ QUICKTHREADS\_SPUT(sp,\ QUICKTHREADS\_ONLY\_INDEX,\ \ only),\ \ \ \ \ \(\backslash\)}}
+\DoxyCodeLine{00034\ \textcolor{preprocessor}{\ \ \ \ QUICKTHREADS\_SPUT(sp,\ QUICKTHREADS\_USER\_INDEX,\ \ userf),\ \ \ \ \(\backslash\)}}
+\DoxyCodeLine{00035\ \textcolor{preprocessor}{\ \ \ \ QUICKTHREADS\_SPUT(sp,\ QUICKTHREADS\_ARGT\_INDEX,\ \ pt),\ \ \ \ \ \ \ \(\backslash\)}}
+\DoxyCodeLine{00036\ \textcolor{preprocessor}{\ \ \ \ QUICKTHREADS\_SPUT(sp,\ QUICKTHREADS\_ARGU\_INDEX,\ \ pu),\ \ \ \ \ \ \ \(\backslash\)}}
+\DoxyCodeLine{00037\ \textcolor{preprocessor}{\ \ \ \ sp)}}
+\DoxyCodeLine{00038\ }
+\DoxyCodeLine{00039\ \textcolor{preprocessor}{\#define\ QUICKTHREADS\_LINK\_INDEX\ \ -\/1\ }\textcolor{comment}{//\ x30;\ standard}}
+\DoxyCodeLine{00040\ \textcolor{preprocessor}{\#define\ QUICKTHREADS\_FRAME\_INDEX\ -\/2\ }\textcolor{comment}{//\ x29;\ standard}}
+\DoxyCodeLine{00041\ \textcolor{preprocessor}{\#define\ QUICKTHREADS\_ONLY\_INDEX\ \ -\/3\ }\textcolor{comment}{//\ x28;\ arbitrary}}
+\DoxyCodeLine{00042\ \textcolor{preprocessor}{\#define\ QUICKTHREADS\_USER\_INDEX\ \ -\/4\ }\textcolor{comment}{//\ x27;\ arbitrary}}
+\DoxyCodeLine{00043\ \textcolor{preprocessor}{\#define\ QUICKTHREADS\_ARGT\_INDEX\ \ -\/5\ }\textcolor{comment}{//\ x26;\ arbitrary}}
+\DoxyCodeLine{00044\ \textcolor{preprocessor}{\#define\ QUICKTHREADS\_ARGU\_INDEX\ \ -\/6\ }\textcolor{comment}{//\ x25;\ arbitrary}}
+\DoxyCodeLine{00045\ }
+\DoxyCodeLine{00046\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{//\ QUICKTHREADS\_AARCH\_64\_H}}
+
+\end{DoxyCode}

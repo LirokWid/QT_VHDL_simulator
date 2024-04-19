@@ -1,0 +1,281 @@
+\doxysection{sc\+\_\+clock.\+h}
+\hypertarget{sc__clock_8h_source}{}\label{sc__clock_8h_source}\index{C:/Users/BJRODIER/Documents/QT\_REPO/QT\_VHDL\_simulator/code/Ressources/SystemC/include/sysc/communication/sc\_clock.h@{C:/Users/BJRODIER/Documents/QT\_REPO/QT\_VHDL\_simulator/code/Ressources/SystemC/include/sysc/communication/sc\_clock.h}}
+\mbox{\hyperlink{sc__clock_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{comment}{/*****************************************************************************}}
+\DoxyCodeLine{00002\ \textcolor{comment}{}}
+\DoxyCodeLine{00003\ \textcolor{comment}{\ \ Licensed\ to\ Accellera\ Systems\ Initiative\ Inc.\ (Accellera)\ under\ one\ or}}
+\DoxyCodeLine{00004\ \textcolor{comment}{\ \ more\ contributor\ license\ agreements.\ \ See\ the\ NOTICE\ file\ distributed}}
+\DoxyCodeLine{00005\ \textcolor{comment}{\ \ with\ this\ work\ for\ additional\ information\ regarding\ copyright\ ownership.}}
+\DoxyCodeLine{00006\ \textcolor{comment}{\ \ Accellera\ licenses\ this\ file\ to\ you\ under\ the\ Apache\ License,\ Version\ 2.0}}
+\DoxyCodeLine{00007\ \textcolor{comment}{\ \ (the\ "{}License"{});\ you\ may\ not\ use\ this\ file\ except\ in\ compliance\ with\ the}}
+\DoxyCodeLine{00008\ \textcolor{comment}{\ \ License.\ \ You\ may\ obtain\ a\ copy\ of\ the\ License\ at}}
+\DoxyCodeLine{00009\ \textcolor{comment}{}}
+\DoxyCodeLine{00010\ \textcolor{comment}{\ \ \ \ http://www.apache.org/licenses/LICENSE-\/2.0}}
+\DoxyCodeLine{00011\ \textcolor{comment}{}}
+\DoxyCodeLine{00012\ \textcolor{comment}{\ \ Unless\ required\ by\ applicable\ law\ or\ agreed\ to\ in\ writing,\ software}}
+\DoxyCodeLine{00013\ \textcolor{comment}{\ \ distributed\ under\ the\ License\ is\ distributed\ on\ an\ "{}AS\ IS"{}\ BASIS,}}
+\DoxyCodeLine{00014\ \textcolor{comment}{\ \ WITHOUT\ WARRANTIES\ OR\ CONDITIONS\ OF\ ANY\ KIND,\ either\ express\ or}}
+\DoxyCodeLine{00015\ \textcolor{comment}{\ \ implied.\ \ See\ the\ License\ for\ the\ specific\ language\ governing}}
+\DoxyCodeLine{00016\ \textcolor{comment}{\ \ permissions\ and\ limitations\ under\ the\ License.}}
+\DoxyCodeLine{00017\ \textcolor{comment}{}}
+\DoxyCodeLine{00018\ \textcolor{comment}{\ *****************************************************************************/}}
+\DoxyCodeLine{00019\ }
+\DoxyCodeLine{00020\ \textcolor{comment}{/*****************************************************************************}}
+\DoxyCodeLine{00021\ \textcolor{comment}{}}
+\DoxyCodeLine{00022\ \textcolor{comment}{\ \ sc\_clock.h\ -\/-\/\ The\ clock\ channel.}}
+\DoxyCodeLine{00023\ \textcolor{comment}{}}
+\DoxyCodeLine{00024\ \textcolor{comment}{\ \ Original\ Author:\ Martin\ Janssen,\ Synopsys,\ Inc.,\ 2001-\/05-\/21}}
+\DoxyCodeLine{00025\ \textcolor{comment}{}}
+\DoxyCodeLine{00026\ \textcolor{comment}{\ \ CHANGE\ LOG\ IS\ AT\ THE\ END\ OF\ THE\ FILE}}
+\DoxyCodeLine{00027\ \textcolor{comment}{\ *****************************************************************************/}}
+\DoxyCodeLine{00028\ }
+\DoxyCodeLine{00029\ \textcolor{preprocessor}{\#ifndef\ SC\_CLOCK\_H}}
+\DoxyCodeLine{00030\ \textcolor{preprocessor}{\#define\ SC\_CLOCK\_H}}
+\DoxyCodeLine{00031\ }
+\DoxyCodeLine{00032\ }
+\DoxyCodeLine{00033\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{sc__module_8h}{sysc/kernel/sc\_module.h}}"{}}}
+\DoxyCodeLine{00034\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{sc__signal_8h}{sysc/communication/sc\_signal.h}}"{}}}
+\DoxyCodeLine{00035\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{sc__trace_8h}{sysc/tracing/sc\_trace.h}}"{}}}
+\DoxyCodeLine{00036\ }
+\DoxyCodeLine{00037\ \textcolor{keyword}{namespace\ }\mbox{\hyperlink{namespacesc__core}{sc\_core}}\ \{}
+\DoxyCodeLine{00038\ }
+\DoxyCodeLine{00039\ \textcolor{comment}{//\ -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{00040\ \textcolor{comment}{//\ \ CLASS\ :\ sc\_clock}}
+\DoxyCodeLine{00041\ \textcolor{comment}{//}}
+\DoxyCodeLine{00042\ \textcolor{comment}{//\ \ The\ clock\ channel.}}
+\DoxyCodeLine{00043\ \textcolor{comment}{//\ -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{00044\ }
+\DoxyCodeLine{00045\ \textcolor{keyword}{class\ }\mbox{\hyperlink{sc__cmnhdr_8h_aff4a86b3f5de3ac2097081e7166fe89f}{SC\_API}}\ \mbox{\hyperlink{classsc__core_1_1sc__clock}{sc\_clock}}}
+\DoxyCodeLine{00046\ \ \ :\ \textcolor{keyword}{public}\ \mbox{\hyperlink{classsc__core_1_1sc__signal}{sc\_signal}}<bool,SC\_ONE\_WRITER>}
+\DoxyCodeLine{00047\ \{}
+\DoxyCodeLine{00048\ \ \ \textcolor{keyword}{typedef}\ \mbox{\hyperlink{class_sysc_add__pv}{sc\_signal<bool,SC\_ONE\_WRITER>}}\ \mbox{\hyperlink{classsc__core_1_1sc__clock_a2d5a68c944e7909ec0e8f303d2c0087d}{base\_type}};}
+\DoxyCodeLine{00049\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00050\ }
+\DoxyCodeLine{00051\ \ \ \ \ \textcolor{keyword}{friend}\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classsc__core_1_1sc__clock__posedge__callback}{sc\_clock\_posedge\_callback}};}
+\DoxyCodeLine{00052\ \ \ \ \ \textcolor{keyword}{friend}\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classsc__core_1_1sc__clock__negedge__callback}{sc\_clock\_negedge\_callback}};}
+\DoxyCodeLine{00053\ }
+\DoxyCodeLine{00054\ \ \ \ \ \textcolor{comment}{//\ constructors}}
+\DoxyCodeLine{00055\ }
+\DoxyCodeLine{00056\ \ \ \ \ \mbox{\hyperlink{classsc__core_1_1sc__clock_a8df91318a074d67b530650e07fb01cd2}{sc\_clock}}();}
+\DoxyCodeLine{00057\ }
+\DoxyCodeLine{00058\ \ \ \ \ \textcolor{keyword}{explicit}\ \mbox{\hyperlink{classsc__core_1_1sc__clock_ad9dbd736634e2b0c5386ca6a85e835dd}{sc\_clock}}(\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{char}*\ \mbox{\hyperlink{class_sysc_add__pv}{name\_}}\ );}
+\DoxyCodeLine{00059\ }
+\DoxyCodeLine{00060\ \ \ \ \ \mbox{\hyperlink{classsc__core_1_1sc__clock_a0539a0568c8baa3e806ea81159bf4687}{sc\_clock}}(\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{char}*\ \mbox{\hyperlink{class_sysc_add__pv}{name\_}},}
+\DoxyCodeLine{00061\ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{classsc__core_1_1sc__time}{sc\_time}}\&\ \mbox{\hyperlink{class_sysc_add__pv}{period\_}},}
+\DoxyCodeLine{00062\ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{double}\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_sysc_add__pv}{duty\_cycle\_}}\ =\ 0.5,}
+\DoxyCodeLine{00063\ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{classsc__core_1_1sc__time}{sc\_time}}\&\ \mbox{\hyperlink{class_sysc_add__pv}{start\_time\_}}\ =\ SC\_ZERO\_TIME,}
+\DoxyCodeLine{00064\ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_sysc_add__pv}{posedge\_first\_}}\ =\ \textcolor{keyword}{true}\ );}
+\DoxyCodeLine{00065\ }
+\DoxyCodeLine{00066\ \ \ \ \ \mbox{\hyperlink{classsc__core_1_1sc__clock_aad710b4b8662b0843ef3d54c85db101c}{sc\_clock}}(\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{char}*\ \mbox{\hyperlink{class_sysc_add__pv}{name\_}},}
+\DoxyCodeLine{00067\ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{double}\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_sysc_add__pv}{period\_v\_}},}
+\DoxyCodeLine{00068\ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacesc__core_abecb00ba031fb67c85124f66eb70aed4}{sc\_time\_unit}}\ \ \ \mbox{\hyperlink{class_sysc_add__pv}{period\_tu\_}},}
+\DoxyCodeLine{00069\ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{double}\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_sysc_add__pv}{duty\_cycle\_}}\ =\ 0.5\ );}
+\DoxyCodeLine{00070\ }
+\DoxyCodeLine{00071\ \ \ \ \ \mbox{\hyperlink{classsc__core_1_1sc__clock_aab7bcbe7d4e5dcda73ce5ccdc247c968}{sc\_clock}}(\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{char}*\ \mbox{\hyperlink{class_sysc_add__pv}{name\_}},}
+\DoxyCodeLine{00072\ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{double}\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_sysc_add__pv}{period\_v\_}},}
+\DoxyCodeLine{00073\ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacesc__core_abecb00ba031fb67c85124f66eb70aed4}{sc\_time\_unit}}\ \ \ \mbox{\hyperlink{class_sysc_add__pv}{period\_tu\_}},}
+\DoxyCodeLine{00074\ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{double}\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_sysc_add__pv}{duty\_cycle\_}},}
+\DoxyCodeLine{00075\ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{double}\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_sysc_add__pv}{start\_time\_v\_}},}
+\DoxyCodeLine{00076\ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacesc__core_abecb00ba031fb67c85124f66eb70aed4}{sc\_time\_unit}}\ \ \ \mbox{\hyperlink{class_sysc_add__pv}{start\_time\_tu\_}},}
+\DoxyCodeLine{00077\ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_sysc_add__pv}{posedge\_first\_}}\ =\ \textcolor{keyword}{true}\ );}
+\DoxyCodeLine{00078\ }
+\DoxyCodeLine{00079\ \ \ \ \ \textcolor{comment}{//\ for\ backward\ compatibility\ with\ 1.0}}
+\DoxyCodeLine{00080\ \ \ \ \ \mbox{\hyperlink{classsc__core_1_1sc__clock_a65d5ec9a1d36d32e5ffcfcb9c61bd170}{sc\_clock}}(\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{char}*\ \mbox{\hyperlink{class_sysc_add__pv}{name\_}},}
+\DoxyCodeLine{00081\ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{double}\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_sysc_add__pv}{period\_}},\ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ in\ default\ time\ units}}
+\DoxyCodeLine{00082\ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{double}\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_sysc_add__pv}{duty\_cycle\_}}\ =\ 0.5,}
+\DoxyCodeLine{00083\ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{double}\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_sysc_add__pv}{start\_time\_}}\ =\ 0.0,\ \ \textcolor{comment}{//\ in\ default\ time\ units}}
+\DoxyCodeLine{00084\ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_sysc_add__pv}{posedge\_first\_}}\ =\ \textcolor{keyword}{true}\ );}
+\DoxyCodeLine{00085\ }
+\DoxyCodeLine{00086\ \ \ \ \ \textcolor{comment}{//\ destructor\ (does\ nothing)}}
+\DoxyCodeLine{00087\ \ \ \ \ \textcolor{keyword}{virtual}\ \mbox{\hyperlink{classsc__core_1_1sc__clock_af34d7a003fb00f0049d036424d0325f8}{\string~sc\_clock}}();}
+\DoxyCodeLine{00088\ }
+\DoxyCodeLine{00089\ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classsc__core_1_1sc__clock_a414e9883124060d3909d45246a324302}{register\_port}}(\ \mbox{\hyperlink{classsc__core_1_1sc__port__base}{sc\_port\_base}}\&,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{char}*\ \mbox{\hyperlink{classsc__core_1_1sc__signal__inout__if}{if\_type}}\ );}
+\DoxyCodeLine{00090\ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classsc__core_1_1sc__clock_a8367e909c544c188ca1c4d3b6d7c123d}{write}}(\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{bool}\&\ );}
+\DoxyCodeLine{00091\ }
+\DoxyCodeLine{00092\ \ \ \ \ \textcolor{comment}{//\ get\ the\ period}}
+\DoxyCodeLine{00093\ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{classsc__core_1_1sc__time}{sc\_time}}\&\ \mbox{\hyperlink{classsc__core_1_1sc__clock_a797d69c1c7783a966b79402c3e09e794}{period}}()\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00094\ \textcolor{keyword}{\ \ \ \ }\{\ \textcolor{keywordflow}{return}\ m\_period;\ \}}
+\DoxyCodeLine{00095\ }
+\DoxyCodeLine{00096\ \ \ \ \ \textcolor{comment}{//\ get\ the\ duty\ cycle}}
+\DoxyCodeLine{00097\ \ \ \ \ \textcolor{keywordtype}{double}\ \mbox{\hyperlink{classsc__core_1_1sc__clock_ac083e51c844e2aafb83ad420483a110e}{duty\_cycle}}()\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00098\ \textcolor{keyword}{\ \ \ \ }\{\ \textcolor{keywordflow}{return}\ m\_duty\_cycle;\ \}}
+\DoxyCodeLine{00099\ }
+\DoxyCodeLine{00100\ }
+\DoxyCodeLine{00101\ \ \ \ \ \textcolor{comment}{//\ get\ the\ current\ time\ /\ clock\ characteristics}}
+\DoxyCodeLine{00102\ }
+\DoxyCodeLine{00103\ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{classsc__core_1_1sc__clock_a0fdbe6e87b24020581fa1457614269c8}{posedge\_first}}()\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00104\ \textcolor{keyword}{\ \ \ \ \ \ \ \ }\{\ \textcolor{keywordflow}{return}\ m\_posedge\_first;\ \}}
+\DoxyCodeLine{00105\ }
+\DoxyCodeLine{00106\ \ \ \ \ \mbox{\hyperlink{classsc__core_1_1sc__time}{sc\_time}}\ \mbox{\hyperlink{classsc__core_1_1sc__clock_aa421ed8df1b206221e8df8926a2c51a3}{start\_time}}()\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00107\ \textcolor{keyword}{\ \ \ \ \ \ \ \ }\{\ \textcolor{keywordflow}{return}\ m\_start\_time;\ \}}
+\DoxyCodeLine{00108\ }
+\DoxyCodeLine{00109\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{const}\ \mbox{\hyperlink{classsc__core_1_1sc__time}{sc\_time}}\&\ \mbox{\hyperlink{classsc__core_1_1sc__clock_a94852e897bf7f41fd8bf2fe28d26cd44}{time\_stamp}}();}
+\DoxyCodeLine{00110\ }
+\DoxyCodeLine{00111\ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{char}*\ \mbox{\hyperlink{classsc__core_1_1sc__clock_a859993ff64a4e34109a75860d63c7ed6}{kind}}()\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00112\ \textcolor{keyword}{\ \ \ \ \ \ \ \ }\{\ \textcolor{keywordflow}{return}\ \textcolor{stringliteral}{"{}sc\_clock"{}};\ \}}
+\DoxyCodeLine{00113\ }
+\DoxyCodeLine{00114\ }
+\DoxyCodeLine{00115\ \textcolor{preprocessor}{\#if\ 0\ }\textcolor{comment}{//\ @@@@\#\#\#\#\ REMOVE}}
+\DoxyCodeLine{00116\ \ \ \ \ \textcolor{comment}{//\ for\ backward\ compatibility\ with\ 1.0}}
+\DoxyCodeLine{00117\ }
+\DoxyCodeLine{00118\ \ \ \ \ \mbox{\hyperlink{class_sysc_add__pv}{sc\_signal\_in\_if<bool>}}\&\ signal()}
+\DoxyCodeLine{00119\ \ \ \ \ \{\ \textcolor{keywordflow}{return}\ *\textcolor{keyword}{this};\ \}}
+\DoxyCodeLine{00120\ }
+\DoxyCodeLine{00121\ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{class_sysc_add__pv}{sc\_signal\_in\_if<bool>}}\&\ signal()\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00122\ \textcolor{keyword}{\ \ \ \ }\{\ \textcolor{keywordflow}{return}\ *\textcolor{keyword}{this};\ \}}
+\DoxyCodeLine{00123\ }
+\DoxyCodeLine{00124\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_sysc_add__pv}{start}}(\ \textcolor{keyword}{const}\ sc\_time\&\ \mbox{\hyperlink{class_sysc_add__pv}{duration}}\ )}
+\DoxyCodeLine{00125\ \ \ \ \ \{\ \mbox{\hyperlink{namespacesc__core_a41f3856be9ea1348458cbda87cff8230}{sc\_start}}(\ \mbox{\hyperlink{class_sysc_add__pv}{duration}}\ );\ \}}
+\DoxyCodeLine{00126\ }
+\DoxyCodeLine{00127\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_sysc_add__pv}{start}}(\ \textcolor{keywordtype}{double}\ v,\ sc\_time\_unit\ \mbox{\hyperlink{class_sysc_add__pv}{tu}}\ )}
+\DoxyCodeLine{00128\ \ \ \ \ \{\ \mbox{\hyperlink{namespacesc__core_a41f3856be9ea1348458cbda87cff8230}{sc\_start}}(\ sc\_time(v,\ \mbox{\hyperlink{class_sysc_add__pv}{tu}})\ );\ \}}
+\DoxyCodeLine{00129\ }
+\DoxyCodeLine{00130\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_sysc_add__pv}{start}}(\ \textcolor{keywordtype}{double}\ \mbox{\hyperlink{class_sysc_add__pv}{duration}}\ =\ -\/1\ )}
+\DoxyCodeLine{00131\ \ \ \ \ \{\ \mbox{\hyperlink{namespacesc__core_a41f3856be9ea1348458cbda87cff8230}{sc\_start}}(\ \mbox{\hyperlink{class_sysc_add__pv}{duration}}\ );\ \}}
+\DoxyCodeLine{00132\ }
+\DoxyCodeLine{00133\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keywordtype}{void}\ stop()}
+\DoxyCodeLine{00134\ \ \ \ \ \{\ \mbox{\hyperlink{namespacesc__core_a56b6c2c479ae28c8ebf51a038659e820}{sc\_stop}}();\ \}}
+\DoxyCodeLine{00135\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00136\ }
+\DoxyCodeLine{00137\ \textcolor{keyword}{protected}:}
+\DoxyCodeLine{00138\ }
+\DoxyCodeLine{00139\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classsc__core_1_1sc__clock_adf39da53280c49f5b733736fd6ec63bb}{before\_end\_of\_elaboration}}();}
+\DoxyCodeLine{00140\ }
+\DoxyCodeLine{00141\ \ \ \ \ \textcolor{comment}{//\ processes}}
+\DoxyCodeLine{00142\ \ \ \ \ \textcolor{keywordtype}{void}\ posedge\_action();}
+\DoxyCodeLine{00143\ \ \ \ \ \textcolor{keywordtype}{void}\ negedge\_action();}
+\DoxyCodeLine{00144\ }
+\DoxyCodeLine{00145\ }
+\DoxyCodeLine{00146\ \ \ \ \ \textcolor{comment}{//\ error\ reporting}}
+\DoxyCodeLine{00147\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classsc__core_1_1sc__clock_aed3c29fa9e20a6654168a0f05eda6fe2}{report\_error}}(\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{char}*\ \textcolor{keywordtype}{id},\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{char}*\ \mbox{\hyperlink{class_sysc_add__pv}{add\_msg}}\ =\ 0\ )\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00148\ }
+\DoxyCodeLine{00149\ }
+\DoxyCodeLine{00150\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classsc__core_1_1sc__clock_acedb1d6ee2093030f8a5826b26c916db}{init}}(\ \textcolor{keyword}{const}\ \mbox{\hyperlink{classsc__core_1_1sc__time}{sc\_time}}\&,\ \textcolor{keywordtype}{double},\ \textcolor{keyword}{const}\ \mbox{\hyperlink{classsc__core_1_1sc__time}{sc\_time}}\&,\ \textcolor{keywordtype}{bool}\ );}
+\DoxyCodeLine{00151\ }
+\DoxyCodeLine{00152\ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{classsc__core_1_1sc__clock_a4f2cde5450d198f38bf9e458c993c32a}{is\_clock}}()\textcolor{keyword}{\ const\ }\{\ \textcolor{keywordflow}{return}\ \textcolor{keyword}{true};\ \}}
+\DoxyCodeLine{00153\ }
+\DoxyCodeLine{00154\ \textcolor{keyword}{protected}:}
+\DoxyCodeLine{00155\ }
+\DoxyCodeLine{00156\ \ \ \ \ \mbox{\hyperlink{classsc__core_1_1sc__time}{sc\_time}}\ \ \mbox{\hyperlink{classsc__core_1_1sc__clock_a3df880c4c73f7be93870aec916e19cc8}{m\_period}};\ \ \ \ \ \ \ \textcolor{comment}{//\ the\ period\ of\ this\ clock}}
+\DoxyCodeLine{00157\ \ \ \ \ \textcolor{keywordtype}{double}\ \ \ \mbox{\hyperlink{classsc__core_1_1sc__clock_a5bda3fa42f3b7aac4aff650632fb0707}{m\_duty\_cycle}};\ \ \textcolor{comment}{//\ the\ duty\ cycle\ (fraction\ of\ period)}}
+\DoxyCodeLine{00158\ \ \ \ \ \mbox{\hyperlink{classsc__core_1_1sc__time}{sc\_time}}\ \ \mbox{\hyperlink{classsc__core_1_1sc__clock_a41591b90ba7122a59ca535aa41937b2b}{m\_start\_time}};\ \ \ \textcolor{comment}{//\ the\ start\ time\ of\ the\ first\ edge}}
+\DoxyCodeLine{00159\ \ \ \ \ \textcolor{keywordtype}{bool}\ \ \ \ \ \mbox{\hyperlink{classsc__core_1_1sc__clock_abe3221ced4f127034a75b03f3c6eca1a}{m\_posedge\_first}};\ \ \ \textcolor{comment}{//\ true\ if\ first\ edge\ is\ positive}}
+\DoxyCodeLine{00160\ \ \ \ \ \mbox{\hyperlink{classsc__core_1_1sc__time}{sc\_time}}\ \ \mbox{\hyperlink{classsc__core_1_1sc__clock_ac9b395d35e3895f151fe2f024872c9a6}{m\_posedge\_time}};\ \ \ \textcolor{comment}{//\ time\ till\ next\ positive\ edge}}
+\DoxyCodeLine{00161\ \ \ \ \ \mbox{\hyperlink{classsc__core_1_1sc__time}{sc\_time}}\ \ \mbox{\hyperlink{classsc__core_1_1sc__clock_a683ff7e5a8a9038b625d4e8886f78d26}{m\_negedge\_time}};\ \ \ \textcolor{comment}{//\ time\ till\ next\ negative\ edge}}
+\DoxyCodeLine{00162\ }
+\DoxyCodeLine{00163\ \ \ \ \ \mbox{\hyperlink{classsc__core_1_1sc__event}{sc\_event}}\ \mbox{\hyperlink{classsc__core_1_1sc__clock_afdfd334c6eeabc1f09daa5f7dec15e73}{m\_next\_posedge\_event}};}
+\DoxyCodeLine{00164\ \ \ \ \ \mbox{\hyperlink{classsc__core_1_1sc__event}{sc\_event}}\ \mbox{\hyperlink{classsc__core_1_1sc__clock_a49843f3482cb250e7c57dad9b9547777}{m\_next\_negedge\_event}};}
+\DoxyCodeLine{00165\ }
+\DoxyCodeLine{00166\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00167\ }
+\DoxyCodeLine{00168\ \ \ \ \ \textcolor{comment}{//\ disabled}}
+\DoxyCodeLine{00169\ \ \ \ \ \mbox{\hyperlink{classsc__core_1_1sc__clock_af00a5ae194c5efd3fa5ce0203269f578}{sc\_clock}}(\ \textcolor{keyword}{const}\ \mbox{\hyperlink{classsc__core_1_1sc__clock}{sc\_clock}}\&\ );}
+\DoxyCodeLine{00170\ \ \ \ \ \mbox{\hyperlink{classsc__core_1_1sc__clock}{sc\_clock}}\&\ \mbox{\hyperlink{class_sysc_add__pv}{operator\ =\ }}(\ \textcolor{keyword}{const}\ \mbox{\hyperlink{classsc__core_1_1sc__clock}{sc\_clock}}\&\ );}
+\DoxyCodeLine{00171\ \};}
+\DoxyCodeLine{00172\ }
+\DoxyCodeLine{00173\ }
+\DoxyCodeLine{00174\ \textcolor{comment}{//\ IIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIII}}
+\DoxyCodeLine{00175\ }
+\DoxyCodeLine{00176\ \textcolor{comment}{//\ processes}}
+\DoxyCodeLine{00177\ }
+\DoxyCodeLine{00178\ \textcolor{keyword}{inline}}
+\DoxyCodeLine{00179\ \textcolor{keywordtype}{void}}
+\DoxyCodeLine{00180\ \mbox{\hyperlink{classsc__core_1_1sc__clock_a80c5db81536238944f1afa04ebeb6f5e}{sc\_clock::posedge\_action}}()}
+\DoxyCodeLine{00181\ \{}
+\DoxyCodeLine{00182\ \ \ \ \ \mbox{\hyperlink{classsc__core_1_1sc__clock_a49843f3482cb250e7c57dad9b9547777}{m\_next\_negedge\_event}}.\mbox{\hyperlink{classsc__core_1_1sc__event_a661f9aba0b91042b020cd0fe6c7a353b}{notify\_internal}}(\ \mbox{\hyperlink{classsc__core_1_1sc__clock_a683ff7e5a8a9038b625d4e8886f78d26}{m\_negedge\_time}}\ );}
+\DoxyCodeLine{00183\ \ \ \ \ \mbox{\hyperlink{classsc__core_1_1sc__signal__t_a18d3142a72b4a4ca9016ace4333a8388}{m\_new\_val}}\ =\ \textcolor{keyword}{true};}
+\DoxyCodeLine{00184\ \ \ \ \ \mbox{\hyperlink{classsc__core_1_1sc__prim__channel_a4425be1df41342d34b811c9c4a311fd5}{request\_update}}();}
+\DoxyCodeLine{00185\ \}}
+\DoxyCodeLine{00186\ }
+\DoxyCodeLine{00187\ \textcolor{keyword}{inline}}
+\DoxyCodeLine{00188\ \textcolor{keywordtype}{void}}
+\DoxyCodeLine{00189\ \mbox{\hyperlink{classsc__core_1_1sc__clock_af77fbcea93195f794e042dca9eed2db7}{sc\_clock::negedge\_action}}()}
+\DoxyCodeLine{00190\ \{}
+\DoxyCodeLine{00191\ \ \ \ \ \mbox{\hyperlink{classsc__core_1_1sc__clock_afdfd334c6eeabc1f09daa5f7dec15e73}{m\_next\_posedge\_event}}.\mbox{\hyperlink{classsc__core_1_1sc__event_a661f9aba0b91042b020cd0fe6c7a353b}{notify\_internal}}(\ \mbox{\hyperlink{classsc__core_1_1sc__clock_ac9b395d35e3895f151fe2f024872c9a6}{m\_posedge\_time}}\ );}
+\DoxyCodeLine{00192\ \ \ \ \ \mbox{\hyperlink{classsc__core_1_1sc__signal__t_a18d3142a72b4a4ca9016ace4333a8388}{m\_new\_val}}\ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00193\ \ \ \ \ \mbox{\hyperlink{classsc__core_1_1sc__prim__channel_a4425be1df41342d34b811c9c4a311fd5}{request\_update}}();}
+\DoxyCodeLine{00194\ \}}
+\DoxyCodeLine{00195\ }
+\DoxyCodeLine{00196\ }
+\DoxyCodeLine{00197\ \textcolor{comment}{//\ -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{00198\ }
+\DoxyCodeLine{00199\ \textcolor{keyword}{class\ }\mbox{\hyperlink{sc__cmnhdr_8h_aff4a86b3f5de3ac2097081e7166fe89f}{SC\_API}}\ \mbox{\hyperlink{classsc__core_1_1sc__clock__posedge__callback}{sc\_clock\_posedge\_callback}}\ \{}
+\DoxyCodeLine{00200\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00201\ \ \ \ \ \mbox{\hyperlink{classsc__core_1_1sc__clock__posedge__callback_ac7ec5b4875df5d3e01a7117f67707964}{sc\_clock\_posedge\_callback}}(\mbox{\hyperlink{classsc__core_1_1sc__clock}{sc\_clock}}*\ \mbox{\hyperlink{class_sysc_add__pv}{target\_p}})\ :\ m\_target\_p(\mbox{\hyperlink{class_sysc_add__pv}{target\_p}})\ \{\}}
+\DoxyCodeLine{00202\ \ \ \ \ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{bind__template_8hpp_aaaead712fe7dc29c1799e7d8f77d1cfb}{operator\ ()\ }}()\ \{\ m\_target\_p-\/>posedge\_action();\ \}}
+\DoxyCodeLine{00203\ \ \ \textcolor{keyword}{protected}:}
+\DoxyCodeLine{00204\ \ \ \ \ \mbox{\hyperlink{classsc__core_1_1sc__clock}{sc\_clock}}*\ \mbox{\hyperlink{classsc__core_1_1sc__clock__posedge__callback_ae6a732e3687126327a05b8548921bcf3}{m\_target\_p}};}
+\DoxyCodeLine{00205\ \};}
+\DoxyCodeLine{00206\ }
+\DoxyCodeLine{00207\ \textcolor{keyword}{class\ }\mbox{\hyperlink{sc__cmnhdr_8h_aff4a86b3f5de3ac2097081e7166fe89f}{SC\_API}}\ \mbox{\hyperlink{classsc__core_1_1sc__clock__negedge__callback}{sc\_clock\_negedge\_callback}}\ \{}
+\DoxyCodeLine{00208\ \ \ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00209\ \ \ \ \ \mbox{\hyperlink{classsc__core_1_1sc__clock__negedge__callback_a31e68cb9fcce978fe18137444091fb2d}{sc\_clock\_negedge\_callback}}(\mbox{\hyperlink{classsc__core_1_1sc__clock}{sc\_clock}}*\ \mbox{\hyperlink{class_sysc_add__pv}{target\_p}})\ :\ m\_target\_p(\mbox{\hyperlink{class_sysc_add__pv}{target\_p}})\ \{\}}
+\DoxyCodeLine{00210\ \ \ \ \ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{bind__template_8hpp_aaaead712fe7dc29c1799e7d8f77d1cfb}{operator\ ()\ }}()\ \{\ m\_target\_p-\/>negedge\_action();\ \}}
+\DoxyCodeLine{00211\ \ \ \textcolor{keyword}{protected}:}
+\DoxyCodeLine{00212\ \ \ \ \ \mbox{\hyperlink{classsc__core_1_1sc__clock}{sc\_clock}}*\ \mbox{\hyperlink{classsc__core_1_1sc__clock__negedge__callback_ab5d5c28bffa635be08a3bbf1b56c4e83}{m\_target\_p}};}
+\DoxyCodeLine{00213\ \};}
+\DoxyCodeLine{00214\ }
+\DoxyCodeLine{00215\ }
+\DoxyCodeLine{00216\ \}\ \textcolor{comment}{//\ namespace\ sc\_core}}
+\DoxyCodeLine{00217\ }
+\DoxyCodeLine{00218\ \textcolor{comment}{/*****************************************************************************}}
+\DoxyCodeLine{00219\ \textcolor{comment}{}}
+\DoxyCodeLine{00220\ \textcolor{comment}{\ \ MODIFICATION\ LOG\ -\/\ modifiers,\ enter\ your\ name,\ affiliation,\ date\ and}}
+\DoxyCodeLine{00221\ \textcolor{comment}{\ \ changes\ you\ are\ making\ here.}}
+\DoxyCodeLine{00222\ \textcolor{comment}{}}
+\DoxyCodeLine{00223\ \textcolor{comment}{\ \ \ \ \ \ Name,\ Affiliation,\ Date:\ Bishnupriya\ Bhattacharya,\ Cadence\ Design\ Systems,}}
+\DoxyCodeLine{00224\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ 3\ October,\ 2003}}
+\DoxyCodeLine{00225\ \textcolor{comment}{\ \ Description\ of\ Modification:\ sc\_clock\ inherits\ from\ sc\_signal<bool>\ only}}
+\DoxyCodeLine{00226\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ instead\ of\ sc\_signal\_in\_if<bool>\ and\ sc\_module.}}
+\DoxyCodeLine{00227\ \textcolor{comment}{\ \ \ \ }}
+\DoxyCodeLine{00228\ \textcolor{comment}{\ \ \ \ \ \ Name,\ Affiliation,\ Date:}}
+\DoxyCodeLine{00229\ \textcolor{comment}{\ \ Description\ of\ Modification:}}
+\DoxyCodeLine{00230\ \textcolor{comment}{\ \ \ \ }}
+\DoxyCodeLine{00231\ \textcolor{comment}{\ *****************************************************************************/}}
+\DoxyCodeLine{00232\ \textcolor{comment}{//\$Log:\ sc\_clock.h,v\ \$}}
+\DoxyCodeLine{00233\ \textcolor{comment}{//Revision\ 1.5\ \ 2011/08/26\ 20:45:39\ \ acg}}
+\DoxyCodeLine{00234\ \textcolor{comment}{//\ Andy\ Goodrich:\ moved\ the\ modification\ log\ to\ the\ end\ of\ the\ file\ to}}
+\DoxyCodeLine{00235\ \textcolor{comment}{//\ eliminate\ source\ line\ number\ skew\ when\ check-\/ins\ are\ done.}}
+\DoxyCodeLine{00236\ \textcolor{comment}{//}}
+\DoxyCodeLine{00237\ \textcolor{comment}{//Revision\ 1.4\ \ 2011/08/24\ 22:05:35\ \ acg}}
+\DoxyCodeLine{00238\ \textcolor{comment}{//\ Torsten\ Maehne:\ initialization\ changes\ to\ remove\ warnings.}}
+\DoxyCodeLine{00239\ \textcolor{comment}{//}}
+\DoxyCodeLine{00240\ \textcolor{comment}{//Revision\ 1.3\ \ 2011/02/18\ 20:23:45\ \ acg}}
+\DoxyCodeLine{00241\ \textcolor{comment}{//\ Andy\ Goodrich:\ Copyright\ update.}}
+\DoxyCodeLine{00242\ \textcolor{comment}{//}}
+\DoxyCodeLine{00243\ \textcolor{comment}{//Revision\ 1.2\ \ 2011/01/20\ 16:52:15\ \ acg}}
+\DoxyCodeLine{00244\ \textcolor{comment}{//\ Andy\ Goodrich:\ changes\ for\ IEEE\ 1666\ 2011.}}
+\DoxyCodeLine{00245\ \textcolor{comment}{//}}
+\DoxyCodeLine{00246\ \textcolor{comment}{//Revision\ 1.1.1.1\ \ 2006/12/15\ 20:20:04\ \ acg}}
+\DoxyCodeLine{00247\ \textcolor{comment}{//SystemC\ 2.3}}
+\DoxyCodeLine{00248\ \textcolor{comment}{//}}
+\DoxyCodeLine{00249\ \textcolor{comment}{//Revision\ 1.5\ \ 2006/01/25\ 00:31:11\ \ acg}}
+\DoxyCodeLine{00250\ \textcolor{comment}{//\ Andy\ Goodrich:\ Changed\ over\ to\ use\ a\ standard\ message\ id\ of}}
+\DoxyCodeLine{00251\ \textcolor{comment}{//\ SC\_ID\_IEEE\_1666\_DEPRECATION\ for\ all\ deprecation\ messages.}}
+\DoxyCodeLine{00252\ \textcolor{comment}{//}}
+\DoxyCodeLine{00253\ \textcolor{comment}{//Revision\ 1.4\ \ 2006/01/24\ 20:43:25\ \ acg}}
+\DoxyCodeLine{00254\ \textcolor{comment}{//\ Andy\ Goodrich:\ convert\ notify\_delayed()\ calls\ into\ notify\_internal()\ calls.}}
+\DoxyCodeLine{00255\ \textcolor{comment}{//\ notify\_internal()\ is\ an\ implementation\ dependent\ version\ of\ notify\_delayed()}}
+\DoxyCodeLine{00256\ \textcolor{comment}{//\ that\ is\ simpler,\ and\ does\ not\ trigger\ the\ deprecation\ warning\ one\ would\ get}}
+\DoxyCodeLine{00257\ \textcolor{comment}{//\ using\ notify\_delayed().}}
+\DoxyCodeLine{00258\ \textcolor{comment}{//}}
+\DoxyCodeLine{00259\ \textcolor{comment}{//Revision\ 1.3\ \ 2006/01/18\ 21:42:26\ \ acg}}
+\DoxyCodeLine{00260\ \textcolor{comment}{//Andy\ Goodrich:\ Changes\ for\ check\ writer\ support,\ and\ tightening\ up\ sc\_clock}}
+\DoxyCodeLine{00261\ \textcolor{comment}{//port\ usage.}}
+\DoxyCodeLine{00262\ \textcolor{comment}{//}}
+\DoxyCodeLine{00263\ \textcolor{comment}{//Revision\ 1.2\ \ 2006/01/03\ 23:18:26\ \ acg}}
+\DoxyCodeLine{00264\ \textcolor{comment}{//Changed\ copyright\ to\ include\ 2006.}}
+\DoxyCodeLine{00265\ \textcolor{comment}{//}}
+\DoxyCodeLine{00266\ \textcolor{comment}{//Revision\ 1.1.1.1\ \ 2005/12/19\ 23:16:43\ \ acg}}
+\DoxyCodeLine{00267\ \textcolor{comment}{//First\ check\ in\ of\ SystemC\ 2.1\ into\ its\ own\ archive.}}
+\DoxyCodeLine{00268\ \textcolor{comment}{//}}
+\DoxyCodeLine{00269\ \textcolor{comment}{//Revision\ 1.14\ \ 2005/06/10\ 22:43:55\ \ acg}}
+\DoxyCodeLine{00270\ \textcolor{comment}{//Added\ CVS\ change\ log\ annotation.}}
+\DoxyCodeLine{00271\ \textcolor{comment}{//}}
+\DoxyCodeLine{00272\ }
+\DoxyCodeLine{00273\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00274\ }
+\DoxyCodeLine{00275\ \textcolor{comment}{//\ Taf!}}
+
+\end{DoxyCode}

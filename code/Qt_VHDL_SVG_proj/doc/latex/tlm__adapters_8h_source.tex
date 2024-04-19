@@ -1,0 +1,111 @@
+\doxysection{tlm\+\_\+adapters.\+h}
+\hypertarget{tlm__adapters_8h_source}{}\label{tlm__adapters_8h_source}\index{C:/Users/BJRODIER/Documents/QT\_REPO/QT\_VHDL\_simulator/code/Ressources/SystemC/include/tlm\_core/tlm\_1/tlm\_req\_rsp/tlm\_adapters/tlm\_adapters.h@{C:/Users/BJRODIER/Documents/QT\_REPO/QT\_VHDL\_simulator/code/Ressources/SystemC/include/tlm\_core/tlm\_1/tlm\_req\_rsp/tlm\_adapters/tlm\_adapters.h}}
+\mbox{\hyperlink{tlm__adapters_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{comment}{/*****************************************************************************}}
+\DoxyCodeLine{00002\ \textcolor{comment}{}}
+\DoxyCodeLine{00003\ \textcolor{comment}{\ \ Licensed\ to\ Accellera\ Systems\ Initiative\ Inc.\ (Accellera)\ under\ one\ or}}
+\DoxyCodeLine{00004\ \textcolor{comment}{\ \ more\ contributor\ license\ agreements.\ \ See\ the\ NOTICE\ file\ distributed}}
+\DoxyCodeLine{00005\ \textcolor{comment}{\ \ with\ this\ work\ for\ additional\ information\ regarding\ copyright\ ownership.}}
+\DoxyCodeLine{00006\ \textcolor{comment}{\ \ Accellera\ licenses\ this\ file\ to\ you\ under\ the\ Apache\ License,\ Version\ 2.0}}
+\DoxyCodeLine{00007\ \textcolor{comment}{\ \ (the\ "{}License"{});\ you\ may\ not\ use\ this\ file\ except\ in\ compliance\ with\ the}}
+\DoxyCodeLine{00008\ \textcolor{comment}{\ \ License.\ \ You\ may\ obtain\ a\ copy\ of\ the\ License\ at}}
+\DoxyCodeLine{00009\ \textcolor{comment}{}}
+\DoxyCodeLine{00010\ \textcolor{comment}{\ \ \ \ http://www.apache.org/licenses/LICENSE-\/2.0}}
+\DoxyCodeLine{00011\ \textcolor{comment}{}}
+\DoxyCodeLine{00012\ \textcolor{comment}{\ \ Unless\ required\ by\ applicable\ law\ or\ agreed\ to\ in\ writing,\ software}}
+\DoxyCodeLine{00013\ \textcolor{comment}{\ \ distributed\ under\ the\ License\ is\ distributed\ on\ an\ "{}AS\ IS"{}\ BASIS,}}
+\DoxyCodeLine{00014\ \textcolor{comment}{\ \ WITHOUT\ WARRANTIES\ OR\ CONDITIONS\ OF\ ANY\ KIND,\ either\ express\ or}}
+\DoxyCodeLine{00015\ \textcolor{comment}{\ \ implied.\ \ See\ the\ License\ for\ the\ specific\ language\ governing}}
+\DoxyCodeLine{00016\ \textcolor{comment}{\ \ permissions\ and\ limitations\ under\ the\ License.}}
+\DoxyCodeLine{00017\ \textcolor{comment}{}}
+\DoxyCodeLine{00018\ \textcolor{comment}{\ *****************************************************************************/}}
+\DoxyCodeLine{00019\ }
+\DoxyCodeLine{00020\ \textcolor{preprocessor}{\#ifndef\ \_\_TLM\_ADAPTERS\_H\_\_}}
+\DoxyCodeLine{00021\ \textcolor{preprocessor}{\#define\ \_\_TLM\_ADAPTERS\_H\_\_}}
+\DoxyCodeLine{00022\ }
+\DoxyCodeLine{00023\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{tlm__master__slave__ifs_8h}{tlm\_core/tlm\_1/tlm\_req\_rsp/tlm\_1\_interfaces/tlm\_master\_slave\_ifs.h}}"{}}}
+\DoxyCodeLine{00024\ }
+\DoxyCodeLine{00025\ \textcolor{keyword}{namespace\ }\mbox{\hyperlink{namespacetlm}{tlm}}\ \{}
+\DoxyCodeLine{00026\ }
+\DoxyCodeLine{00027\ \textcolor{keyword}{template}<\ \textcolor{keyword}{typename}\ REQ\ ,\ \textcolor{keyword}{typename}\ RSP\ >}
+\DoxyCodeLine{00028\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classtlm_1_1tlm__transport__to__master}{tlm\_transport\_to\_master}}\ :}
+\DoxyCodeLine{00029\ \ \ \textcolor{keyword}{public}\ \mbox{\hyperlink{classsc__core_1_1sc__module}{sc\_core::sc\_module}}\ ,}
+\DoxyCodeLine{00030\ \ \ \textcolor{keyword}{public}\ \textcolor{keyword}{virtual}\ \mbox{\hyperlink{classtlm_1_1tlm__transport__if}{tlm\_transport\_if}}<\ REQ\ ,\ RSP\ >}
+\DoxyCodeLine{00031\ \{}
+\DoxyCodeLine{00032\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00033\ \ \ \mbox{\hyperlink{classsc__core_1_1sc__export}{sc\_core::sc\_export<\ tlm\_transport\_if<\ REQ\ ,\ RSP\ >}}\ >\ \mbox{\hyperlink{classtlm_1_1tlm__transport__to__master_aaac19d0224d56a4f2c9e2d8d1dea57e5}{target\_export}};}
+\DoxyCodeLine{00034\ \ \ \mbox{\hyperlink{classsc__core_1_1sc__port}{sc\_core::sc\_port<\ tlm\_master\_if<\ REQ\ ,\ RSP\ >}}\ >\ \mbox{\hyperlink{classtlm_1_1tlm__transport__to__master_a23a5999f9ee712d3b247a81f9a70f240}{master\_port}};}
+\DoxyCodeLine{00035\ }
+\DoxyCodeLine{00036\ \ \ \mbox{\hyperlink{classtlm_1_1tlm__transport__to__master_adc5926eda52414eaf58d105fd0e2dcd9}{tlm\_transport\_to\_master}}(\ \mbox{\hyperlink{classsc__core_1_1sc__module__name}{sc\_core::sc\_module\_name}}\ \mbox{\hyperlink{class_sysc_add__pv}{nm}}\ )\ :}
+\DoxyCodeLine{00037\ \ \ \ \ \mbox{\hyperlink{namespacesc__core}{sc\_core}}::\mbox{\hyperlink{classsc__core_1_1sc__module_a1d63603202313bc8dccaa9f381731b41}{sc\_module}}(\ \mbox{\hyperlink{class_sysc_add__pv}{nm}}\ )\ \{}
+\DoxyCodeLine{00038\ }
+\DoxyCodeLine{00039\ \ \ \ \ \mbox{\hyperlink{classtlm_1_1tlm__transport__to__master_aaac19d0224d56a4f2c9e2d8d1dea57e5}{target\_export}}(\ *\textcolor{keyword}{this}\ );}
+\DoxyCodeLine{00040\ }
+\DoxyCodeLine{00041\ \ \ \}}
+\DoxyCodeLine{00042\ }
+\DoxyCodeLine{00043\ \ \ \mbox{\hyperlink{classtlm_1_1tlm__transport__to__master_adddc070bf33e3f2b467f24247b27971c}{tlm\_transport\_to\_master}}()\ :}
+\DoxyCodeLine{00044\ \ \ \ \ \mbox{\hyperlink{namespacesc__core}{sc\_core}}::\mbox{\hyperlink{classsc__core_1_1sc__module_a1d63603202313bc8dccaa9f381731b41}{sc\_module}}(\ \mbox{\hyperlink{namespacesc__core}{sc\_core}}::\mbox{\hyperlink{classsc__core_1_1sc__module_a961ce39e963a1f45e7e0c73ead0c9be6}{sc\_module\_name}}(\ \mbox{\hyperlink{namespacesc__core}{sc\_core}}::sc\_gen\_unique\_name(\ \textcolor{stringliteral}{"{}transport\_to\_master"{}}\ )\ )\ )\{}
+\DoxyCodeLine{00045\ }
+\DoxyCodeLine{00046\ \ \ \ \ \mbox{\hyperlink{classtlm_1_1tlm__transport__to__master_aaac19d0224d56a4f2c9e2d8d1dea57e5}{target\_export}}(\ *\textcolor{keyword}{this}\ );}
+\DoxyCodeLine{00047\ }
+\DoxyCodeLine{00048\ \ \ \}}
+\DoxyCodeLine{00049\ }
+\DoxyCodeLine{00050\ \ \ \mbox{\hyperlink{class_sysc_add__pv}{RSP}}\ \mbox{\hyperlink{classtlm_1_1tlm__transport__to__master_aa31c475ce235dfabfa9e0b68ea154295}{transport}}(\ \textcolor{keyword}{const}\ \mbox{\hyperlink{class_sysc_add__pv}{REQ}}\ \&\mbox{\hyperlink{class_sysc_add__pv}{req}}\ )\ \{}
+\DoxyCodeLine{00051\ }
+\DoxyCodeLine{00052\ \ \ \ \ \mbox{\hyperlink{classtlm_1_1tlm__transport__to__master_abf7e1943b77df90e6b77102f7be1f198}{mutex}}.\mbox{\hyperlink{classsc__core_1_1sc__mutex_a227813e3089b0d000bba8b39ed30a07e}{lock}}();}
+\DoxyCodeLine{00053\ }
+\DoxyCodeLine{00054\ \ \ \ \ \mbox{\hyperlink{classtlm_1_1tlm__transport__to__master_a23a5999f9ee712d3b247a81f9a70f240}{master\_port}}-\/>put(\ \mbox{\hyperlink{class_sysc_add__pv}{req}}\ );}
+\DoxyCodeLine{00055\ \ \ \ \ \mbox{\hyperlink{classtlm_1_1tlm__transport__to__master_a4dc5e530c22063798bf93f7abcf01970}{rsp}}\ =\ \mbox{\hyperlink{classtlm_1_1tlm__transport__to__master_a23a5999f9ee712d3b247a81f9a70f240}{master\_port}}-\/>get();}
+\DoxyCodeLine{00056\ }
+\DoxyCodeLine{00057\ \ \ \ \ \mbox{\hyperlink{classtlm_1_1tlm__transport__to__master_abf7e1943b77df90e6b77102f7be1f198}{mutex}}.\mbox{\hyperlink{classsc__core_1_1sc__mutex_a9497893c89e489b107ed2061851c6a3b}{unlock}}();}
+\DoxyCodeLine{00058\ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{classtlm_1_1tlm__transport__to__master_a4dc5e530c22063798bf93f7abcf01970}{rsp}};}
+\DoxyCodeLine{00059\ }
+\DoxyCodeLine{00060\ \ \ \}}
+\DoxyCodeLine{00061\ }
+\DoxyCodeLine{00062\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00063\ \ \ \mbox{\hyperlink{classsc__core_1_1sc__mutex}{sc\_core::sc\_mutex}}\ \mbox{\hyperlink{classtlm_1_1tlm__transport__to__master_abf7e1943b77df90e6b77102f7be1f198}{mutex}};}
+\DoxyCodeLine{00064\ \ \ \mbox{\hyperlink{class_sysc_add__pv}{RSP}}\ \mbox{\hyperlink{classtlm_1_1tlm__transport__to__master_a4dc5e530c22063798bf93f7abcf01970}{rsp}};}
+\DoxyCodeLine{00065\ }
+\DoxyCodeLine{00066\ \};}
+\DoxyCodeLine{00067\ }
+\DoxyCodeLine{00068\ \textcolor{keyword}{template}<\ \textcolor{keyword}{typename}\ REQ\ ,\ \textcolor{keyword}{typename}\ RSP\ >}
+\DoxyCodeLine{00069\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classtlm_1_1tlm__slave__to__transport}{tlm\_slave\_to\_transport}}\ :\ \textcolor{keyword}{public}\ \mbox{\hyperlink{classsc__core_1_1sc__module}{sc\_core::sc\_module}}}
+\DoxyCodeLine{00070\ \{}
+\DoxyCodeLine{00071\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00072\ }
+\DoxyCodeLine{00073\ \ \ \mbox{\hyperlink{classtlm_1_1tlm__slave__to__transport_a0dfc8ef1f480e9f7bb0688f6a0e88b5a}{SC\_HAS\_PROCESS}}(\ \mbox{\hyperlink{classtlm_1_1tlm__slave__to__transport}{tlm\_slave\_to\_transport}}\ );}
+\DoxyCodeLine{00074\ }
+\DoxyCodeLine{00075\ \ \ \mbox{\hyperlink{classsc__core_1_1sc__port}{sc\_core::sc\_port<\ tlm\_slave\_if<\ REQ\ ,\ RSP\ >}}\ >\ \mbox{\hyperlink{classtlm_1_1tlm__slave__to__transport_a23197c58d2d0c3592bd98a9e248d5245}{slave\_port}};}
+\DoxyCodeLine{00076\ \ \ \mbox{\hyperlink{classsc__core_1_1sc__port}{sc\_core::sc\_port<\ tlm\_transport\_if<\ REQ\ ,\ RSP\ >}}\ >\ \mbox{\hyperlink{classtlm_1_1tlm__slave__to__transport_a2547a445e870a1b4dfe6ccabfc3b9613}{initiator\_port}};}
+\DoxyCodeLine{00077\ }
+\DoxyCodeLine{00078\ \ \ \mbox{\hyperlink{classtlm_1_1tlm__slave__to__transport_a68783b29e2cb2178aa2ae0d44b6f16c8}{tlm\_slave\_to\_transport}}(\ \mbox{\hyperlink{classsc__core_1_1sc__module__name}{sc\_core::sc\_module\_name}}\ \mbox{\hyperlink{class_sysc_add__pv}{nm}}\ )\ :\ \mbox{\hyperlink{namespacesc__core}{sc\_core}}::\mbox{\hyperlink{classsc__core_1_1sc__module_a1d63603202313bc8dccaa9f381731b41}{sc\_module}}(\ \mbox{\hyperlink{class_sysc_add__pv}{nm}}\ )}
+\DoxyCodeLine{00079\ \ \ \{\}}
+\DoxyCodeLine{00080\ }
+\DoxyCodeLine{00081\ \ \ \mbox{\hyperlink{classtlm_1_1tlm__slave__to__transport_af90ed795dbb355691a0cae7dc76ca60e}{tlm\_slave\_to\_transport}}()\ :}
+\DoxyCodeLine{00082\ \ \ \ \ \mbox{\hyperlink{namespacesc__core}{sc\_core}}::\mbox{\hyperlink{classsc__core_1_1sc__module_a1d63603202313bc8dccaa9f381731b41}{sc\_module}}(\ \mbox{\hyperlink{namespacesc__core}{sc\_core}}::\mbox{\hyperlink{classsc__core_1_1sc__module_a961ce39e963a1f45e7e0c73ead0c9be6}{sc\_module\_name}}(\ \mbox{\hyperlink{namespacesc__core}{sc\_core}}::sc\_gen\_unique\_name(\textcolor{stringliteral}{"{}slave\_to\_transport"{}})\ )\ )}
+\DoxyCodeLine{00083\ \ \ \{\}}
+\DoxyCodeLine{00084\ }
+\DoxyCodeLine{00085\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00086\ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classtlm_1_1tlm__slave__to__transport_aa9c9e89901aca68232fa8f716d754f73}{run}}()\ \{}
+\DoxyCodeLine{00087\ }
+\DoxyCodeLine{00088\ \ \ \ \ \mbox{\hyperlink{class_sysc_add__pv}{REQ}}\ \mbox{\hyperlink{class_sysc_add__pv}{req}};}
+\DoxyCodeLine{00089\ \ \ \ \ \mbox{\hyperlink{class_sysc_add__pv}{RSP}}\ rsp;}
+\DoxyCodeLine{00090\ }
+\DoxyCodeLine{00091\ \ \ \ \ \textcolor{keywordflow}{while}(\ \textcolor{keyword}{true}\ )\ \{}
+\DoxyCodeLine{00092\ }
+\DoxyCodeLine{00093\ \ \ \ \ \ \mbox{\hyperlink{classtlm_1_1tlm__slave__to__transport_a23197c58d2d0c3592bd98a9e248d5245}{slave\_port}}-\/>get(\ \mbox{\hyperlink{class_sysc_add__pv}{req}}\ );}
+\DoxyCodeLine{00094\ \ \ \ \ \ rsp\ =\ \mbox{\hyperlink{classtlm_1_1tlm__slave__to__transport_a2547a445e870a1b4dfe6ccabfc3b9613}{initiator\_port}}-\/>transport(\ \mbox{\hyperlink{class_sysc_add__pv}{req}}\ );}
+\DoxyCodeLine{00095\ \ \ \ \ \ \mbox{\hyperlink{classtlm_1_1tlm__slave__to__transport_a23197c58d2d0c3592bd98a9e248d5245}{slave\_port}}-\/>put(\ rsp\ );}
+\DoxyCodeLine{00096\ }
+\DoxyCodeLine{00097\ \ \ \ \ \}}
+\DoxyCodeLine{00098\ }
+\DoxyCodeLine{00099\ \ \ \}}
+\DoxyCodeLine{00100\ }
+\DoxyCodeLine{00101\ \};}
+\DoxyCodeLine{00102\ }
+\DoxyCodeLine{00103\ \}\ \textcolor{comment}{//\ namespace\ tlm}}
+\DoxyCodeLine{00104\ }
+\DoxyCodeLine{00105\ \textcolor{preprocessor}{\#endif}}
+
+\end{DoxyCode}

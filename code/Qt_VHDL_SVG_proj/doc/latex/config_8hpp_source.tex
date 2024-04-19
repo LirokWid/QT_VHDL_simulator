@@ -1,0 +1,76 @@
+\doxysection{config.\+hpp}
+\hypertarget{config_8hpp_source}{}\label{config_8hpp_source}\index{C:/Users/BJRODIER/Documents/QT\_REPO/QT\_VHDL\_simulator/code/Ressources/SystemC/include/sysc/packages/boost/config.hpp@{C:/Users/BJRODIER/Documents/QT\_REPO/QT\_VHDL\_simulator/code/Ressources/SystemC/include/sysc/packages/boost/config.hpp}}
+\mbox{\hyperlink{config_8hpp}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{comment}{//\ \ Boost\ config.hpp\ configuration\ header\ file\ \ -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\///}}
+\DoxyCodeLine{00002\ }
+\DoxyCodeLine{00003\ \textcolor{comment}{//\ \ (C)\ Copyright\ John\ Maddock\ 2002.\ }}
+\DoxyCodeLine{00004\ \textcolor{comment}{//\ \ Use,\ modification\ and\ distribution\ are\ subject\ to\ the\ }}
+\DoxyCodeLine{00005\ \textcolor{comment}{//\ \ Boost\ Software\ License,\ Version\ 1.0.\ (See\ accompanying\ file\ }}
+\DoxyCodeLine{00006\ \textcolor{comment}{//\ \ LICENSE\_1\_0.txt\ or\ copy\ at\ http://www.boost.org/LICENSE\_1\_0.txt)}}
+\DoxyCodeLine{00007\ }
+\DoxyCodeLine{00008\ \textcolor{comment}{//\ \ See\ http://www.boost.org/libs/config\ for\ most\ recent\ version.}}
+\DoxyCodeLine{00009\ }
+\DoxyCodeLine{00010\ \textcolor{comment}{//\ \ Boost\ config.hpp\ policy\ and\ rationale\ documentation\ has\ been\ moved\ to}}
+\DoxyCodeLine{00011\ \textcolor{comment}{//\ \ http://www.boost.org/libs/config}}
+\DoxyCodeLine{00012\ \textcolor{comment}{//}}
+\DoxyCodeLine{00013\ \textcolor{comment}{//\ \ CAUTION:\ This\ file\ is\ intended\ to\ be\ completely\ stable\ -\/}}
+\DoxyCodeLine{00014\ \textcolor{comment}{//\ \ \ \ \ \ \ \ \ \ \ DO\ NOT\ MODIFY\ THIS\ FILE!}}
+\DoxyCodeLine{00015\ \textcolor{comment}{//}}
+\DoxyCodeLine{00016\ }
+\DoxyCodeLine{00017\ \textcolor{preprocessor}{\#ifndef\ SC\_BOOST\_CONFIG\_HPP}}
+\DoxyCodeLine{00018\ \textcolor{preprocessor}{\#define\ SC\_BOOST\_CONFIG\_HPP}}
+\DoxyCodeLine{00019\ }
+\DoxyCodeLine{00020\ \textcolor{comment}{//\ if\ we\ don't\ have\ a\ user\ config,\ then\ use\ the\ default\ location:}}
+\DoxyCodeLine{00021\ \textcolor{preprocessor}{\#if\ !defined(SC\_BOOST\_USER\_CONFIG)\ \&\&\ !defined(SC\_BOOST\_NO\_USER\_CONFIG)}}
+\DoxyCodeLine{00022\ \textcolor{preprocessor}{\#\ \ define\ SC\_BOOST\_USER\_CONFIG\ <sysc/packages/boost/config/user.hpp>}}
+\DoxyCodeLine{00023\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00024\ \textcolor{comment}{//\ include\ it\ first:}}
+\DoxyCodeLine{00025\ \textcolor{preprocessor}{\#ifdef\ SC\_BOOST\_USER\_CONFIG}}
+\DoxyCodeLine{00026\ \textcolor{preprocessor}{\#\ \ include\ SC\_BOOST\_USER\_CONFIG}}
+\DoxyCodeLine{00027\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00028\ }
+\DoxyCodeLine{00029\ \textcolor{comment}{//\ if\ we\ don't\ have\ a\ compiler\ config\ set,\ try\ and\ find\ one:}}
+\DoxyCodeLine{00030\ \textcolor{preprocessor}{\#if\ !defined(SC\_BOOST\_COMPILER\_CONFIG)\ \&\&\ !defined(SC\_BOOST\_NO\_COMPILER\_CONFIG)\ \&\&\ !defined(SC\_BOOST\_NO\_CONFIG)}}
+\DoxyCodeLine{00031\ \textcolor{preprocessor}{\#\ \ include\ <\mbox{\hyperlink{select__compiler__config_8hpp}{sysc/packages/boost/config/select\_compiler\_config.hpp}}>}}
+\DoxyCodeLine{00032\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00033\ \textcolor{comment}{//\ if\ we\ have\ a\ compiler\ config,\ include\ it\ now:}}
+\DoxyCodeLine{00034\ \textcolor{preprocessor}{\#ifdef\ SC\_BOOST\_COMPILER\_CONFIG}}
+\DoxyCodeLine{00035\ \textcolor{preprocessor}{\#\ \ include\ SC\_BOOST\_COMPILER\_CONFIG}}
+\DoxyCodeLine{00036\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00037\ }
+\DoxyCodeLine{00038\ \textcolor{comment}{//\ if\ we\ don't\ have\ a\ std\ library\ config\ set,\ try\ and\ find\ one:}}
+\DoxyCodeLine{00039\ \textcolor{preprocessor}{\#if\ !defined(SC\_BOOST\_STDLIB\_CONFIG)\ \&\&\ !defined(SC\_BOOST\_NO\_STDLIB\_CONFIG)\ \&\&\ !defined(SC\_BOOST\_NO\_CONFIG)}}
+\DoxyCodeLine{00040\ \textcolor{preprocessor}{\#\ \ include\ <\mbox{\hyperlink{select__stdlib__config_8hpp}{sysc/packages/boost/config/select\_stdlib\_config.hpp}}>}}
+\DoxyCodeLine{00041\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00042\ \textcolor{comment}{//\ if\ we\ have\ a\ std\ library\ config,\ include\ it\ now:}}
+\DoxyCodeLine{00043\ \textcolor{preprocessor}{\#ifdef\ SC\_BOOST\_STDLIB\_CONFIG}}
+\DoxyCodeLine{00044\ \textcolor{preprocessor}{\#\ \ include\ SC\_BOOST\_STDLIB\_CONFIG}}
+\DoxyCodeLine{00045\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00046\ }
+\DoxyCodeLine{00047\ \textcolor{comment}{//\ if\ we\ don't\ have\ a\ platform\ config\ set,\ try\ and\ find\ one:}}
+\DoxyCodeLine{00048\ \textcolor{preprocessor}{\#if\ !defined(SC\_BOOST\_PLATFORM\_CONFIG)\ \&\&\ !defined(SC\_BOOST\_NO\_PLATFORM\_CONFIG)\ \&\&\ !defined(SC\_BOOST\_NO\_CONFIG)}}
+\DoxyCodeLine{00049\ \textcolor{preprocessor}{\#\ \ include\ <\mbox{\hyperlink{select__platform__config_8hpp}{sysc/packages/boost/config/select\_platform\_config.hpp}}>}}
+\DoxyCodeLine{00050\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00051\ \textcolor{comment}{//\ if\ we\ have\ a\ platform\ config,\ include\ it\ now:}}
+\DoxyCodeLine{00052\ \textcolor{preprocessor}{\#ifdef\ SC\_BOOST\_PLATFORM\_CONFIG}}
+\DoxyCodeLine{00053\ \textcolor{preprocessor}{\#\ \ include\ SC\_BOOST\_PLATFORM\_CONFIG}}
+\DoxyCodeLine{00054\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00055\ }
+\DoxyCodeLine{00056\ \textcolor{comment}{//\ get\ config\ suffix\ code:}}
+\DoxyCodeLine{00057\ \textcolor{preprocessor}{\#include\ <\mbox{\hyperlink{suffix_8hpp}{sysc/packages/boost/config/suffix.hpp}}>}}
+\DoxyCodeLine{00058\ }
+\DoxyCodeLine{00059\ \textcolor{preprocessor}{\#endif\ \ }\textcolor{comment}{//\ SC\_BOOST\_CONFIG\_HPP}}
+\DoxyCodeLine{00060\ }
+\DoxyCodeLine{00061\ }
+\DoxyCodeLine{00062\ }
+\DoxyCodeLine{00063\ }
+\DoxyCodeLine{00064\ }
+\DoxyCodeLine{00065\ }
+\DoxyCodeLine{00066\ }
+\DoxyCodeLine{00067\ }
+\DoxyCodeLine{00068\ }
+\DoxyCodeLine{00069\ }
+\DoxyCodeLine{00070\ }
+
+\end{DoxyCode}

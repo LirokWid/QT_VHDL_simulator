@@ -1,0 +1,64 @@
+.TH "C:/Users/BJRODIER/Documents/QT_REPO/QT_VHDL_simulator/code/old_ui_project/qt-sc/sc_debug_object.cpp" 3 "VHDL simulator" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+C:/Users/BJRODIER/Documents/QT_REPO/QT_VHDL_simulator/code/old_ui_project/qt-sc/sc_debug_object.cpp
+.SH SYNOPSIS
+.br
+.PP
+\fR#include <sstream>\fP
+.br
+\fR#include 'sc_debug_object\&.h'\fP
+.br
+
+.SS "Macros"
+
+.in +1c
+.ti -1c
+.RI "#\fBdefine\fP \fBCLASSIFY_INFO\fP(\fBsztype\fP)       cout << 'DEBUG :: \fBobject\fP ' << this\->obj\->name() << '(' << \fBthis\fP\->obj\->kind() << ') classified \fBas\fP ' << sztype << endl"
+.br
+.ti -1c
+.RI "#\fBdefine\fP \fBCLASSIFY_OBJECT\fP(\fBtyp\fP,  \fBsck\fP,  \fBsztype\fP)"
+.br
+.ti -1c
+.RI "#\fBdefine\fP \fBREPORT_VALUE_AS\fP(\fBtyp\fP)"
+.br
+.ti -1c
+.RI "#\fBdefine\fP \fBREPORTALL_VALUE_AS\fP(\fBtyp\fP)"
+.br
+.in -1c
+.SH "Macro Definition Documentation"
+.PP 
+.SS "#\fBdefine\fP CLASSIFY_INFO(\fBsztype\fP)       cout << 'DEBUG :: \fBobject\fP ' << this\->obj\->name() << '(' << \fBthis\fP\->obj\->kind() << ') classified \fBas\fP ' << sztype << endl"
+
+.SS "#\fBdefine\fP CLASSIFY_OBJECT(\fBtyp\fP, \fBsck\fP, \fBsztype\fP)"
+\fBValue:\fP.PP
+.nf
+    if ( nullptr != dynamic_cast<typ *>(o) ) { \\
+        this\->sc_kind = sck; \\
+        /* CLASSIFY_INFO(sztype); */ \\
+        return; \\
+    }
+.fi
+
+.SS "#\fBdefine\fP REPORT_VALUE_AS(\fBtyp\fP)"
+\fBValue:\fP.PP
+.nf
+    if (nullptr != dynamic_cast<typ *>(obj)) { \\
+        ss << (dynamic_cast<typ *>(obj))\->read(); \\
+        return ss\&.str(); \\
+    }
+.fi
+
+.SS "#\fBdefine\fP REPORTALL_VALUE_AS(\fBtyp\fP)"
+\fBValue:\fP.PP
+.nf
+    REPORT_VALUE_AS(sc_signal<typ>) \\
+    REPORT_VALUE_AS(sc_in<typ>) \\
+    REPORT_VALUE_AS(sc_out<typ>) \\
+    REPORT_VALUE_AS(sc_inout<typ>)
+.fi
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for VHDL simulator from the source code\&.

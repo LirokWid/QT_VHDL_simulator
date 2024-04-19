@@ -1,0 +1,422 @@
+.TH "sc_core::sc_prim_channel" 3 "VHDL simulator" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+sc_core::sc_prim_channel
+.SH SYNOPSIS
+.br
+.PP
+.PP
+\fR#include <sc_prim_channel\&.h>\fP
+.PP
+Inherits \fBsc_core::sc_object\fP\&.
+.PP
+Inherited by \fBtlm::tlm_fifo< REQ >\fP, \fBtlm::tlm_fifo< RSP >\fP, \fBsc_core::sc_fifo< T >\fP, \fBsc_core::sc_signal_channel\fP, and \fBtlm::tlm_fifo< T >\fP\&.
+.SS "Public Types"
+
+.in +1c
+.ti -1c
+.RI "enum { \fBlist_end\fP = 0xdb }"
+.br
+.in -1c
+
+Public Types inherited from \fBsc_core::sc_object\fP
+.in +1c
+.ti -1c
+.RI "\fBtypedef\fP \fBunsigned\fP \fBphase_cb_mask\fP"
+.br
+.in -1c
+.SS "Public Member Functions"
+
+.in +1c
+.ti -1c
+.RI "\fBvirtual\fP \fBconst\fP \fBchar\fP * \fBkind\fP () \fBconst\fP"
+.br
+.ti -1c
+.RI "\fBbool\fP \fBupdate_requested\fP ()"
+.br
+.ti -1c
+.RI "\fBvoid\fP \fBrequest_update\fP ()"
+.br
+.ti -1c
+.RI "\fBvoid\fP \fBasync_request_update\fP ()"
+.br
+.in -1c
+
+Public Member Functions inherited from \fBsc_core::sc_object\fP
+.in +1c
+.ti -1c
+.RI "\fBconst\fP \fBchar\fP * \fBname\fP () \fBconst\fP"
+.br
+.ti -1c
+.RI "\fBconst\fP \fBchar\fP * \fBbasename\fP () \fBconst\fP"
+.br
+.ti -1c
+.RI "\fBvirtual\fP \fBvoid\fP \fBprint\fP (::std::ostream &\fBos\fP=::std::cout) \fBconst\fP"
+.br
+.ti -1c
+.RI "\fBvirtual\fP \fBvoid\fP \fBdump\fP (::std::ostream &\fBos\fP=::std::cout) \fBconst\fP"
+.br
+.ti -1c
+.RI "\fBvirtual\fP \fBvoid\fP \fBtrace\fP (\fBsc_trace_file\fP *tf) \fBconst\fP"
+.br
+.ti -1c
+.RI "\fBsc_simcontext\fP * \fBsimcontext\fP () \fBconst\fP"
+.br
+.ti -1c
+.RI "\fBbool\fP \fBadd_attribute\fP (\fBsc_attr_base\fP &)"
+.br
+.ti -1c
+.RI "\fBsc_attr_base\fP * \fBget_attribute\fP (\fBconst\fP std::string &\fBname_\fP)"
+.br
+.ti -1c
+.RI "\fBconst\fP \fBsc_attr_base\fP * \fBget_attribute\fP (\fBconst\fP std::string &\fBname_\fP) \fBconst\fP"
+.br
+.ti -1c
+.RI "\fBsc_attr_base\fP * \fBremove_attribute\fP (\fBconst\fP std::string &\fBname_\fP)"
+.br
+.ti -1c
+.RI "\fBvoid\fP \fBremove_all_attributes\fP ()"
+.br
+.ti -1c
+.RI "int \fBnum_attributes\fP () \fBconst\fP"
+.br
+.ti -1c
+.RI "\fBsc_attr_cltn\fP & \fBattr_cltn\fP ()"
+.br
+.ti -1c
+.RI "\fBconst\fP \fBsc_attr_cltn\fP & \fBattr_cltn\fP () \fBconst\fP"
+.br
+.ti -1c
+.RI "\fBvirtual\fP \fBconst\fP std::vector< \fBsc_event\fP * > & \fBget_child_events\fP () \fBconst\fP"
+.br
+.ti -1c
+.RI "\fBvirtual\fP \fBconst\fP std::vector< \fBsc_object\fP * > & \fBget_child_objects\fP () \fBconst\fP"
+.br
+.ti -1c
+.RI "\fBsc_object\fP * \fBget_parent\fP () \fBconst\fP"
+.br
+.ti -1c
+.RI "\fBsc_object\fP * \fBget_parent_object\fP () \fBconst\fP"
+.br
+.in -1c
+.SS "Protected Member Functions"
+
+.in +1c
+.ti -1c
+.RI "\fBsc_prim_channel\fP ()"
+.br
+.ti -1c
+.RI "\fBsc_prim_channel\fP (\fBconst\fP \fBchar\fP *)"
+.br
+.ti -1c
+.RI "\fBvirtual\fP \fB~sc_prim_channel\fP ()"
+.br
+.ti -1c
+.RI "\fBvirtual\fP \fBvoid\fP \fBupdate\fP ()"
+.br
+.ti -1c
+.RI "\fBvirtual\fP \fBvoid\fP \fBbefore_end_of_elaboration\fP ()"
+.br
+.ti -1c
+.RI "\fBvirtual\fP \fBvoid\fP \fBend_of_elaboration\fP ()"
+.br
+.ti -1c
+.RI "\fBvirtual\fP \fBvoid\fP \fBstart_of_simulation\fP ()"
+.br
+.ti -1c
+.RI "\fBvirtual\fP \fBvoid\fP \fBend_of_simulation\fP ()"
+.br
+.ti -1c
+.RI "\fBbool\fP \fBasync_attach_suspending\fP ()"
+.br
+.ti -1c
+.RI "\fBbool\fP \fBasync_detach_suspending\fP ()"
+.br
+.ti -1c
+.RI "\fBvoid\fP \fBwait\fP ()"
+.br
+.ti -1c
+.RI "\fBvoid\fP \fBwait\fP (\fBconst\fP \fBsc_event\fP &\fBe\fP)"
+.br
+.ti -1c
+.RI "\fBvoid\fP \fBwait\fP (\fBconst\fP \fBsc_event_or_list\fP &\fBel\fP)"
+.br
+.ti -1c
+.RI "\fBvoid\fP \fBwait\fP (\fBconst\fP \fBsc_event_and_list\fP &\fBel\fP)"
+.br
+.ti -1c
+.RI "\fBvoid\fP \fBwait\fP (\fBconst\fP \fBsc_time\fP &t)"
+.br
+.ti -1c
+.RI "\fBvoid\fP \fBwait\fP (\fBdouble\fP v, \fBsc_time_unit\fP \fBtu\fP)"
+.br
+.ti -1c
+.RI "\fBvoid\fP \fBwait\fP (\fBconst\fP \fBsc_time\fP &t, \fBconst\fP \fBsc_event\fP &\fBe\fP)"
+.br
+.ti -1c
+.RI "\fBvoid\fP \fBwait\fP (\fBdouble\fP v, \fBsc_time_unit\fP \fBtu\fP, \fBconst\fP \fBsc_event\fP &\fBe\fP)"
+.br
+.ti -1c
+.RI "\fBvoid\fP \fBwait\fP (\fBconst\fP \fBsc_time\fP &t, \fBconst\fP \fBsc_event_or_list\fP &\fBel\fP)"
+.br
+.ti -1c
+.RI "\fBvoid\fP \fBwait\fP (\fBdouble\fP v, \fBsc_time_unit\fP \fBtu\fP, \fBconst\fP \fBsc_event_or_list\fP &\fBel\fP)"
+.br
+.ti -1c
+.RI "\fBvoid\fP \fBwait\fP (\fBconst\fP \fBsc_time\fP &t, \fBconst\fP \fBsc_event_and_list\fP &\fBel\fP)"
+.br
+.ti -1c
+.RI "\fBvoid\fP \fBwait\fP (\fBdouble\fP v, \fBsc_time_unit\fP \fBtu\fP, \fBconst\fP \fBsc_event_and_list\fP &\fBel\fP)"
+.br
+.ti -1c
+.RI "\fBvoid\fP \fBwait\fP (int \fBn\fP)"
+.br
+.ti -1c
+.RI "\fBvoid\fP \fBnext_trigger\fP ()"
+.br
+.ti -1c
+.RI "\fBvoid\fP \fBnext_trigger\fP (\fBconst\fP \fBsc_event\fP &\fBe\fP)"
+.br
+.ti -1c
+.RI "\fBvoid\fP \fBnext_trigger\fP (\fBconst\fP \fBsc_event_or_list\fP &\fBel\fP)"
+.br
+.ti -1c
+.RI "\fBvoid\fP \fBnext_trigger\fP (\fBconst\fP \fBsc_event_and_list\fP &\fBel\fP)"
+.br
+.ti -1c
+.RI "\fBvoid\fP \fBnext_trigger\fP (\fBconst\fP \fBsc_time\fP &t)"
+.br
+.ti -1c
+.RI "\fBvoid\fP \fBnext_trigger\fP (\fBdouble\fP v, \fBsc_time_unit\fP \fBtu\fP)"
+.br
+.ti -1c
+.RI "\fBvoid\fP \fBnext_trigger\fP (\fBconst\fP \fBsc_time\fP &t, \fBconst\fP \fBsc_event\fP &\fBe\fP)"
+.br
+.ti -1c
+.RI "\fBvoid\fP \fBnext_trigger\fP (\fBdouble\fP v, \fBsc_time_unit\fP \fBtu\fP, \fBconst\fP \fBsc_event\fP &\fBe\fP)"
+.br
+.ti -1c
+.RI "\fBvoid\fP \fBnext_trigger\fP (\fBconst\fP \fBsc_time\fP &t, \fBconst\fP \fBsc_event_or_list\fP &\fBel\fP)"
+.br
+.ti -1c
+.RI "\fBvoid\fP \fBnext_trigger\fP (\fBdouble\fP v, \fBsc_time_unit\fP \fBtu\fP, \fBconst\fP \fBsc_event_or_list\fP &\fBel\fP)"
+.br
+.ti -1c
+.RI "\fBvoid\fP \fBnext_trigger\fP (\fBconst\fP \fBsc_time\fP &t, \fBconst\fP \fBsc_event_and_list\fP &\fBel\fP)"
+.br
+.ti -1c
+.RI "\fBvoid\fP \fBnext_trigger\fP (\fBdouble\fP v, \fBsc_time_unit\fP \fBtu\fP, \fBconst\fP \fBsc_event_and_list\fP &\fBel\fP)"
+.br
+.ti -1c
+.RI "\fBbool\fP \fBtimed_out\fP ()"
+.br
+.in -1c
+
+Protected Member Functions inherited from \fBsc_core::sc_object\fP
+.in +1c
+.ti -1c
+.RI "\fBsc_object\fP ()"
+.br
+.ti -1c
+.RI "\fBsc_object\fP (\fBconst\fP \fBchar\fP *\fBnm\fP)"
+.br
+.ti -1c
+.RI "\fBsc_object\fP (\fBconst\fP \fBsc_object\fP &)"
+.br
+.ti -1c
+.RI "\fBsc_object\fP & \fBoperator=\fP (\fBconst\fP \fBsc_object\fP &)"
+.br
+.ti -1c
+.RI "\fBvirtual\fP \fB~sc_object\fP ()"
+.br
+.ti -1c
+.RI "\fBvirtual\fP \fBvoid\fP \fBadd_child_event\fP (\fBsc_event\fP *\fBevent_p\fP)"
+.br
+.ti -1c
+.RI "\fBvirtual\fP \fBvoid\fP \fBadd_child_object\fP (\fBsc_object\fP *\fBobject_p\fP)"
+.br
+.ti -1c
+.RI "\fBvirtual\fP \fBbool\fP \fBremove_child_event\fP (\fBsc_event\fP *\fBevent_p\fP)"
+.br
+.ti -1c
+.RI "\fBvirtual\fP \fBbool\fP \fBremove_child_object\fP (\fBsc_object\fP *\fBobject_p\fP)"
+.br
+.ti -1c
+.RI "\fBphase_cb_mask\fP \fBregister_simulation_phase_callback\fP (\fBphase_cb_mask\fP)"
+.br
+.ti -1c
+.RI "\fBphase_cb_mask\fP \fBunregister_simulation_phase_callback\fP (\fBphase_cb_mask\fP)"
+.br
+.in -1c
+.SS "Private Member Functions"
+
+.in +1c
+.ti -1c
+.RI "\fBvoid\fP \fBperform_update\fP ()"
+.br
+.ti -1c
+.RI "\fBvoid\fP \fBconstruction_done\fP ()"
+.br
+.ti -1c
+.RI "\fBvoid\fP \fBelaboration_done\fP ()"
+.br
+.ti -1c
+.RI "\fBvoid\fP \fBstart_simulation\fP ()"
+.br
+.ti -1c
+.RI "\fBvoid\fP \fBsimulation_done\fP ()"
+.br
+.ti -1c
+.RI "\fBsc_prim_channel\fP (\fBconst\fP \fBsc_prim_channel\fP &)"
+.br
+.ti -1c
+.RI "\fBsc_prim_channel\fP & \fBoperator=\fP (\fBconst\fP \fBsc_prim_channel\fP &)"
+.br
+.in -1c
+.SS "Private Attributes"
+
+.in +1c
+.ti -1c
+.RI "\fBsc_prim_channel_registry\fP * \fBm_registry\fP"
+.br
+.ti -1c
+.RI "\fBsc_prim_channel\fP * \fBm_update_next_p\fP"
+.br
+.in -1c
+.SS "Friends"
+
+.in +1c
+.ti -1c
+.RI "\fBclass\fP \fBsc_prim_channel_registry\fP"
+.br
+.in -1c
+.SH "Member Enumeration Documentation"
+.PP 
+.SS "\fBanonymous\fP \fBenum\fP"
+
+.PP
+\fBEnumerator\fP
+.in +1c
+.TP
+\fB\fIlist_end \fP\fP
+.SH "Constructor & Destructor Documentation"
+.PP 
+.SS "sc_core::sc_prim_channel::sc_prim_channel ()\fR [protected]\fP"
+
+.SS "sc_core::sc_prim_channel::sc_prim_channel (\fBconst\fP \fBchar\fP *)\fR [explicit]\fP, \fR [protected]\fP"
+
+.SS "\fBvirtual\fP sc_core::sc_prim_channel::~sc_prim_channel ()\fR [protected]\fP, \fR [virtual]\fP"
+
+.SS "sc_core::sc_prim_channel::sc_prim_channel (\fBconst\fP \fBsc_prim_channel\fP &)\fR [private]\fP"
+
+.SH "Member Function Documentation"
+.PP 
+.SS "\fBbool\fP sc_core::sc_prim_channel::async_attach_suspending ()\fR [inline]\fP, \fR [protected]\fP"
+
+.SS "\fBbool\fP sc_core::sc_prim_channel::async_detach_suspending ()\fR [inline]\fP, \fR [protected]\fP"
+
+.SS "\fBvoid\fP sc_core::sc_prim_channel::async_request_update ()\fR [inline]\fP"
+
+.SS "\fBvirtual\fP \fBvoid\fP sc_core::sc_prim_channel::before_end_of_elaboration ()\fR [protected]\fP, \fR [virtual]\fP"
+
+.PP
+Reimplemented in \fBsc_core::sc_clock\fP\&.
+.SS "\fBvoid\fP sc_core::sc_prim_channel::construction_done ()\fR [private]\fP"
+
+.SS "\fBvoid\fP sc_core::sc_prim_channel::elaboration_done ()\fR [private]\fP"
+
+.SS "\fBvirtual\fP \fBvoid\fP sc_core::sc_prim_channel::end_of_elaboration ()\fR [protected]\fP, \fR [virtual]\fP"
+
+.SS "\fBvirtual\fP \fBvoid\fP sc_core::sc_prim_channel::end_of_simulation ()\fR [protected]\fP, \fR [virtual]\fP"
+
+.SS "\fBvirtual\fP \fBconst\fP \fBchar\fP * sc_core::sc_prim_channel::kind () const\fR [inline]\fP, \fR [virtual]\fP"
+
+.PP
+Reimplemented from \fBsc_core::sc_object\fP\&.
+.PP
+Reimplemented in \fBsc_core::sc_buffer< T, POL >\fP, \fBsc_core::sc_clock\fP, \fBsc_core::sc_fifo< T >\fP, \fBsc_core::sc_signal_channel\fP, \fBsc_core::sc_signal_t< T, POL >\fP, \fBsc_core::sc_signal_t< bool, POL >\fP, \fBsc_core::sc_signal_t< sc_dt::sc_logic, POL >\fP, \fBsc_core::sc_signal_t< sc_dt::sc_lv, POL >\fP, \fBsc_core::sc_signal_t< sc_dt::sc_lv< 32 >, POL >\fP, \fBsc_core::sc_signal_t< sc_dt::sc_lv< W >, POL >\fP, \fBsc_core::sc_signal_resolved\fP, \fBsc_core::sc_signal_rv< W >\fP, \fBtlm::tlm_fifo< T >\fP, \fBtlm::tlm_fifo< REQ >\fP, and \fBtlm::tlm_fifo< RSP >\fP\&.
+.SS "\fBvoid\fP sc_core::sc_prim_channel::next_trigger ()\fR [inline]\fP, \fR [protected]\fP"
+
+.SS "\fBvoid\fP sc_core::sc_prim_channel::next_trigger (\fBconst\fP \fBsc_event\fP & e)\fR [inline]\fP, \fR [protected]\fP"
+
+.SS "\fBvoid\fP sc_core::sc_prim_channel::next_trigger (\fBconst\fP \fBsc_event_and_list\fP & el)\fR [inline]\fP, \fR [protected]\fP"
+
+.SS "\fBvoid\fP sc_core::sc_prim_channel::next_trigger (\fBconst\fP \fBsc_event_or_list\fP & el)\fR [inline]\fP, \fR [protected]\fP"
+
+.SS "\fBvoid\fP sc_core::sc_prim_channel::next_trigger (\fBconst\fP \fBsc_time\fP & t)\fR [inline]\fP, \fR [protected]\fP"
+
+.SS "\fBvoid\fP sc_core::sc_prim_channel::next_trigger (\fBconst\fP \fBsc_time\fP & t, \fBconst\fP \fBsc_event\fP & e)\fR [inline]\fP, \fR [protected]\fP"
+
+.SS "\fBvoid\fP sc_core::sc_prim_channel::next_trigger (\fBconst\fP \fBsc_time\fP & t, \fBconst\fP \fBsc_event_and_list\fP & el)\fR [inline]\fP, \fR [protected]\fP"
+
+.SS "\fBvoid\fP sc_core::sc_prim_channel::next_trigger (\fBconst\fP \fBsc_time\fP & t, \fBconst\fP \fBsc_event_or_list\fP & el)\fR [inline]\fP, \fR [protected]\fP"
+
+.SS "\fBvoid\fP sc_core::sc_prim_channel::next_trigger (\fBdouble\fP v, \fBsc_time_unit\fP tu)\fR [inline]\fP, \fR [protected]\fP"
+
+.SS "\fBvoid\fP sc_core::sc_prim_channel::next_trigger (\fBdouble\fP v, \fBsc_time_unit\fP tu, \fBconst\fP \fBsc_event\fP & e)\fR [inline]\fP, \fR [protected]\fP"
+
+.SS "\fBvoid\fP sc_core::sc_prim_channel::next_trigger (\fBdouble\fP v, \fBsc_time_unit\fP tu, \fBconst\fP \fBsc_event_and_list\fP & el)\fR [inline]\fP, \fR [protected]\fP"
+
+.SS "\fBvoid\fP sc_core::sc_prim_channel::next_trigger (\fBdouble\fP v, \fBsc_time_unit\fP tu, \fBconst\fP \fBsc_event_or_list\fP & el)\fR [inline]\fP, \fR [protected]\fP"
+
+.SS "\fBsc_prim_channel\fP & sc_core::sc_prim_channel::operator= (\fBconst\fP \fBsc_prim_channel\fP &)\fR [private]\fP"
+
+.SS "\fBvoid\fP sc_core::sc_prim_channel::perform_update ()\fR [inline]\fP, \fR [private]\fP"
+
+.SS "\fBvoid\fP sc_core::sc_prim_channel::request_update ()\fR [inline]\fP"
+
+.SS "\fBvoid\fP sc_core::sc_prim_channel::simulation_done ()\fR [private]\fP"
+
+.SS "\fBvirtual\fP \fBvoid\fP sc_core::sc_prim_channel::start_of_simulation ()\fR [protected]\fP, \fR [virtual]\fP"
+
+.SS "\fBvoid\fP sc_core::sc_prim_channel::start_simulation ()\fR [private]\fP"
+
+.SS "\fBbool\fP sc_core::sc_prim_channel::timed_out ()\fR [inline]\fP, \fR [protected]\fP"
+
+.SS "\fBvirtual\fP \fBvoid\fP sc_core::sc_prim_channel::update ()\fR [protected]\fP, \fR [virtual]\fP"
+
+.PP
+Reimplemented in \fBsc_core::sc_buffer< T, POL >\fP, \fBsc_core::sc_fifo< T >\fP, \fBsc_core::sc_signal_t< T, POL >\fP, \fBsc_core::sc_signal_t< bool, POL >\fP, \fBsc_core::sc_signal_t< sc_dt::sc_logic, POL >\fP, \fBsc_core::sc_signal_t< sc_dt::sc_lv, POL >\fP, \fBsc_core::sc_signal_t< sc_dt::sc_lv< 32 >, POL >\fP, \fBsc_core::sc_signal_t< sc_dt::sc_lv< W >, POL >\fP, \fBsc_core::sc_signal< bool, POL >\fP, \fBsc_core::sc_signal< sc_dt::sc_logic, POL >\fP, \fBsc_core::sc_signal_resolved\fP, \fBsc_core::sc_signal_rv< W >\fP, \fBtlm::tlm_fifo< T >\fP, \fBtlm::tlm_fifo< REQ >\fP, and \fBtlm::tlm_fifo< RSP >\fP\&.
+.SS "\fBbool\fP sc_core::sc_prim_channel::update_requested ()\fR [inline]\fP"
+
+.SS "\fBvoid\fP sc_core::sc_prim_channel::wait ()\fR [inline]\fP, \fR [protected]\fP"
+
+.SS "\fBvoid\fP sc_core::sc_prim_channel::wait (\fBconst\fP \fBsc_event\fP & e)\fR [inline]\fP, \fR [protected]\fP"
+
+.SS "\fBvoid\fP sc_core::sc_prim_channel::wait (\fBconst\fP \fBsc_event_and_list\fP & el)\fR [inline]\fP, \fR [protected]\fP"
+
+.SS "\fBvoid\fP sc_core::sc_prim_channel::wait (\fBconst\fP \fBsc_event_or_list\fP & el)\fR [inline]\fP, \fR [protected]\fP"
+
+.SS "\fBvoid\fP sc_core::sc_prim_channel::wait (\fBconst\fP \fBsc_time\fP & t)\fR [inline]\fP, \fR [protected]\fP"
+
+.SS "\fBvoid\fP sc_core::sc_prim_channel::wait (\fBconst\fP \fBsc_time\fP & t, \fBconst\fP \fBsc_event\fP & e)\fR [inline]\fP, \fR [protected]\fP"
+
+.SS "\fBvoid\fP sc_core::sc_prim_channel::wait (\fBconst\fP \fBsc_time\fP & t, \fBconst\fP \fBsc_event_and_list\fP & el)\fR [inline]\fP, \fR [protected]\fP"
+
+.SS "\fBvoid\fP sc_core::sc_prim_channel::wait (\fBconst\fP \fBsc_time\fP & t, \fBconst\fP \fBsc_event_or_list\fP & el)\fR [inline]\fP, \fR [protected]\fP"
+
+.SS "\fBvoid\fP sc_core::sc_prim_channel::wait (\fBdouble\fP v, \fBsc_time_unit\fP tu)\fR [inline]\fP, \fR [protected]\fP"
+
+.SS "\fBvoid\fP sc_core::sc_prim_channel::wait (\fBdouble\fP v, \fBsc_time_unit\fP tu, \fBconst\fP \fBsc_event\fP & e)\fR [inline]\fP, \fR [protected]\fP"
+
+.SS "\fBvoid\fP sc_core::sc_prim_channel::wait (\fBdouble\fP v, \fBsc_time_unit\fP tu, \fBconst\fP \fBsc_event_and_list\fP & el)\fR [inline]\fP, \fR [protected]\fP"
+
+.SS "\fBvoid\fP sc_core::sc_prim_channel::wait (\fBdouble\fP v, \fBsc_time_unit\fP tu, \fBconst\fP \fBsc_event_or_list\fP & el)\fR [inline]\fP, \fR [protected]\fP"
+
+.SS "\fBvoid\fP sc_core::sc_prim_channel::wait (int n)\fR [inline]\fP, \fR [protected]\fP"
+
+.SH "Friends And Related Symbol Documentation"
+.PP 
+.SS "\fBfriend\fP \fBclass\fP \fBsc_prim_channel_registry\fP\fR [friend]\fP"
+
+.SH "Member Data Documentation"
+.PP 
+.SS "\fBsc_prim_channel_registry\fP* sc_core::sc_prim_channel::m_registry\fR [private]\fP"
+
+.SS "\fBsc_prim_channel\fP* sc_core::sc_prim_channel::m_update_next_p\fR [private]\fP"
+
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for VHDL simulator from the source code\&.

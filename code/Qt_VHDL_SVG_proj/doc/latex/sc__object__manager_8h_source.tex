@@ -1,0 +1,158 @@
+\doxysection{sc\+\_\+object\+\_\+manager.\+h}
+\hypertarget{sc__object__manager_8h_source}{}\label{sc__object__manager_8h_source}\index{C:/Users/BJRODIER/Documents/QT\_REPO/QT\_VHDL\_simulator/code/Ressources/SystemC/include/sysc/kernel/sc\_object\_manager.h@{C:/Users/BJRODIER/Documents/QT\_REPO/QT\_VHDL\_simulator/code/Ressources/SystemC/include/sysc/kernel/sc\_object\_manager.h}}
+\mbox{\hyperlink{sc__object__manager_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{comment}{/*****************************************************************************}}
+\DoxyCodeLine{00002\ \textcolor{comment}{}}
+\DoxyCodeLine{00003\ \textcolor{comment}{\ \ Licensed\ to\ Accellera\ Systems\ Initiative\ Inc.\ (Accellera)\ under\ one\ or}}
+\DoxyCodeLine{00004\ \textcolor{comment}{\ \ more\ contributor\ license\ agreements.\ \ See\ the\ NOTICE\ file\ distributed}}
+\DoxyCodeLine{00005\ \textcolor{comment}{\ \ with\ this\ work\ for\ additional\ information\ regarding\ copyright\ ownership.}}
+\DoxyCodeLine{00006\ \textcolor{comment}{\ \ Accellera\ licenses\ this\ file\ to\ you\ under\ the\ Apache\ License,\ Version\ 2.0}}
+\DoxyCodeLine{00007\ \textcolor{comment}{\ \ (the\ "{}License"{});\ you\ may\ not\ use\ this\ file\ except\ in\ compliance\ with\ the}}
+\DoxyCodeLine{00008\ \textcolor{comment}{\ \ License.\ \ You\ may\ obtain\ a\ copy\ of\ the\ License\ at}}
+\DoxyCodeLine{00009\ \textcolor{comment}{}}
+\DoxyCodeLine{00010\ \textcolor{comment}{\ \ \ \ http://www.apache.org/licenses/LICENSE-\/2.0}}
+\DoxyCodeLine{00011\ \textcolor{comment}{}}
+\DoxyCodeLine{00012\ \textcolor{comment}{\ \ Unless\ required\ by\ applicable\ law\ or\ agreed\ to\ in\ writing,\ software}}
+\DoxyCodeLine{00013\ \textcolor{comment}{\ \ distributed\ under\ the\ License\ is\ distributed\ on\ an\ "{}AS\ IS"{}\ BASIS,}}
+\DoxyCodeLine{00014\ \textcolor{comment}{\ \ WITHOUT\ WARRANTIES\ OR\ CONDITIONS\ OF\ ANY\ KIND,\ either\ express\ or}}
+\DoxyCodeLine{00015\ \textcolor{comment}{\ \ implied.\ \ See\ the\ License\ for\ the\ specific\ language\ governing}}
+\DoxyCodeLine{00016\ \textcolor{comment}{\ \ permissions\ and\ limitations\ under\ the\ License.}}
+\DoxyCodeLine{00017\ \textcolor{comment}{}}
+\DoxyCodeLine{00018\ \textcolor{comment}{\ *****************************************************************************/}}
+\DoxyCodeLine{00019\ }
+\DoxyCodeLine{00020\ \textcolor{comment}{/*****************************************************************************}}
+\DoxyCodeLine{00021\ \textcolor{comment}{}}
+\DoxyCodeLine{00022\ \textcolor{comment}{\ \ sc\_object\_manager.h\ -\/-\/\ Manager\ of\ objects\ (naming,\ \&c.)}}
+\DoxyCodeLine{00023\ \textcolor{comment}{}}
+\DoxyCodeLine{00024\ \textcolor{comment}{\ \ Original\ Author:\ Stan\ Y.\ Liao,\ Synopsys,\ Inc.}}
+\DoxyCodeLine{00025\ \textcolor{comment}{}}
+\DoxyCodeLine{00026\ \textcolor{comment}{\ \ CHANGE\ LOG\ AT\ THE\ END\ OF\ THE\ FILE}}
+\DoxyCodeLine{00027\ \textcolor{comment}{\ *****************************************************************************/}}
+\DoxyCodeLine{00028\ }
+\DoxyCodeLine{00029\ }
+\DoxyCodeLine{00030\ \textcolor{preprocessor}{\#ifndef\ SC\_OBJECT\_MANAGER\_H}}
+\DoxyCodeLine{00031\ \textcolor{preprocessor}{\#define\ SC\_OBJECT\_MANAGER\_H}}
+\DoxyCodeLine{00032\ }
+\DoxyCodeLine{00033\ \textcolor{preprocessor}{\#include\ <map>}}
+\DoxyCodeLine{00034\ \textcolor{preprocessor}{\#include\ <vector>}}
+\DoxyCodeLine{00035\ }
+\DoxyCodeLine{00036\ \textcolor{keyword}{namespace\ }\mbox{\hyperlink{namespacesc__core}{sc\_core}}\ \{}
+\DoxyCodeLine{00037\ }
+\DoxyCodeLine{00038\ \textcolor{keyword}{class\ }\mbox{\hyperlink{namespacesc__core_a3340deedb93937b2bd9e26fa19e0dab9}{sc\_event}};}
+\DoxyCodeLine{00039\ \textcolor{keyword}{class\ }\mbox{\hyperlink{namespacesc__core_a8eb02df3abf893e699a4802f7c7e029b}{sc\_object}};}
+\DoxyCodeLine{00040\ \textcolor{keyword}{class\ }sc\_module\_name;}
+\DoxyCodeLine{00041\ }
+\DoxyCodeLine{00042\ }
+\DoxyCodeLine{00043\ \textcolor{comment}{//\ -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{00044\ \textcolor{comment}{//\ \ CLASS\ :\ sc\_object\_manager}}
+\DoxyCodeLine{00045\ \textcolor{comment}{//}}
+\DoxyCodeLine{00046\ \textcolor{comment}{//\ \ Manager\ of\ objects.}}
+\DoxyCodeLine{00047\ \textcolor{comment}{//\ -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{00048\ }
+\DoxyCodeLine{00049\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classsc__core_1_1sc__object__manager}{sc\_object\_manager}}}
+\DoxyCodeLine{00050\ \{}
+\DoxyCodeLine{00051\ \ \ \ \ \textcolor{keyword}{friend}\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classsc__core_1_1sc__event}{sc\_event}};}
+\DoxyCodeLine{00052\ \ \ \ \ \textcolor{keyword}{friend}\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classsc__core_1_1sc__object}{sc\_object}};}
+\DoxyCodeLine{00053\ \ \ \ \ \textcolor{keyword}{friend}\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classsc__core_1_1sc__simcontext}{sc\_simcontext}};}
+\DoxyCodeLine{00054\ }
+\DoxyCodeLine{00055\ \textcolor{keyword}{protected}:}
+\DoxyCodeLine{00056\ \ \ \ \ \textcolor{keyword}{enum}\ \mbox{\hyperlink{classsc__core_1_1sc__object__manager_a3f6a9e214d55d0c1a4c4c780e40b25aa}{sc\_name\_origin}}}
+\DoxyCodeLine{00057\ \ \ \ \ \{}
+\DoxyCodeLine{00058\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classsc__core_1_1sc__object__manager_a3f6a9e214d55d0c1a4c4c780e40b25aaaf9efc183a648f960837e1b9c766d2e36}{SC\_NAME\_NONE}},}
+\DoxyCodeLine{00059\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classsc__core_1_1sc__object__manager_a3f6a9e214d55d0c1a4c4c780e40b25aaaabdf0015a043d67983a9755313dab962}{SC\_NAME\_OBJECT}},}
+\DoxyCodeLine{00060\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classsc__core_1_1sc__object__manager_a3f6a9e214d55d0c1a4c4c780e40b25aaa259bf0b9168b997f48c490f884e25b63}{SC\_NAME\_EVENT}},}
+\DoxyCodeLine{00061\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classsc__core_1_1sc__object__manager_a3f6a9e214d55d0c1a4c4c780e40b25aaa4f2de4629fb81cce8f55c433ece1ecbf}{SC\_NAME\_EXTERNAL}}}
+\DoxyCodeLine{00062\ \ \ \ \ \};}
+\DoxyCodeLine{00063\ }
+\DoxyCodeLine{00064\ \ \ \ \ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structsc__core_1_1sc__object__manager_1_1table__entry}{table\_entry}}}
+\DoxyCodeLine{00065\ \ \ \ \ \{}
+\DoxyCodeLine{00066\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structsc__core_1_1sc__object__manager_1_1table__entry_a36777caa86b3cf8f156884a7ce1791fe}{table\_entry}}()\ :\ \mbox{\hyperlink{structsc__core_1_1sc__object__manager_1_1table__entry_a529be0c2808b88c2b8c115a09d9541b1}{m\_element\_p}}(\mbox{\hyperlink{class_sysc_add__pv}{NULL}}),\ \mbox{\hyperlink{structsc__core_1_1sc__object__manager_1_1table__entry_ad65268d76ba077f4b1c4f6038dec9542}{m\_name\_origin}}(\mbox{\hyperlink{classsc__core_1_1sc__object__manager_a3f6a9e214d55d0c1a4c4c780e40b25aaaf9efc183a648f960837e1b9c766d2e36}{SC\_NAME\_NONE}})\ \{\}}
+\DoxyCodeLine{00067\ }
+\DoxyCodeLine{00068\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}*\ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structsc__core_1_1sc__object__manager_1_1table__entry_a529be0c2808b88c2b8c115a09d9541b1}{m\_element\_p}};\ \textcolor{comment}{//\ can\ be\ an\ sc\_object\ or\ an\ sc\_event}}
+\DoxyCodeLine{00069\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classsc__core_1_1sc__object__manager_a3f6a9e214d55d0c1a4c4c780e40b25aa}{sc\_name\_origin}}\ \mbox{\hyperlink{structsc__core_1_1sc__object__manager_1_1table__entry_ad65268d76ba077f4b1c4f6038dec9542}{m\_name\_origin}};}
+\DoxyCodeLine{00070\ \ \ \ \ \};}
+\DoxyCodeLine{00071\ }
+\DoxyCodeLine{00072\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00073\ \ \ \ \ \textcolor{keyword}{typedef}\ std::map<std::string,table\_entry>\ \mbox{\hyperlink{classsc__core_1_1sc__object__manager_ab1452de611bfbbdc6827054bd3fa5206}{instance\_table\_t}};}
+\DoxyCodeLine{00074\ \ \ \ \ \textcolor{keyword}{typedef}\ std::vector<sc\_object*>\ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classsc__core_1_1sc__object__manager_a147e76e83b65b96bb70aef7368fc2f00}{object\_vector\_t}};}
+\DoxyCodeLine{00075\ }
+\DoxyCodeLine{00076\ \ \ \ \ \mbox{\hyperlink{classsc__core_1_1sc__object__manager_a64632290b56003e5a06a756405eb1663}{sc\_object\_manager}}();}
+\DoxyCodeLine{00077\ \ \ \ \ \mbox{\hyperlink{classsc__core_1_1sc__object__manager_a14a3b81d6c83e22ea1c1a0184137bfae}{\string~sc\_object\_manager}}();}
+\DoxyCodeLine{00078\ }
+\DoxyCodeLine{00079\ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{classsc__core_1_1sc__object__manager_a1b5e11045dd14ffc1769ecd66ae7c3cc}{name\_exists}}(\textcolor{keyword}{const}\ std::string\&\ name);}
+\DoxyCodeLine{00080\ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keywordtype}{char}*\ \mbox{\hyperlink{classsc__core_1_1sc__object__manager_a0bbbc2d28e584a70cc22b28c8ad6ca48}{get\_name}}(\textcolor{keyword}{const}\ std::string\&\ name);}
+\DoxyCodeLine{00081\ }
+\DoxyCodeLine{00082\ \ \ \ \ \mbox{\hyperlink{classsc__core_1_1sc__event}{sc\_event}}*\ \mbox{\hyperlink{classsc__core_1_1sc__object__manager_a8f844890b7a4c4fa622a49b4f8c010ea}{find\_event}}(\textcolor{keyword}{const}\ \textcolor{keywordtype}{char}*\ name);}
+\DoxyCodeLine{00083\ }
+\DoxyCodeLine{00084\ \ \ \ \ \mbox{\hyperlink{classsc__core_1_1sc__object}{sc\_object}}*\ \mbox{\hyperlink{classsc__core_1_1sc__object__manager_a3158bf52fcec451593cf268e65a1a466}{find\_object}}(\textcolor{keyword}{const}\ \textcolor{keywordtype}{char}*\ name);}
+\DoxyCodeLine{00085\ \ \ \ \ \mbox{\hyperlink{classsc__core_1_1sc__object}{sc\_object}}*\ \mbox{\hyperlink{classsc__core_1_1sc__object__manager_a6084f6ef936546ddbf4ba5b5834d15b9}{first\_object}}();}
+\DoxyCodeLine{00086\ \ \ \ \ \mbox{\hyperlink{classsc__core_1_1sc__object}{sc\_object}}*\ \mbox{\hyperlink{classsc__core_1_1sc__object__manager_aa02cada6af49a6bc8efb93a887b33da3}{next\_object}}();}
+\DoxyCodeLine{00087\ }
+\DoxyCodeLine{00088\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classsc__core_1_1sc__object__manager_a33a07a5677400b797161b0c1e04973ea}{hierarchy\_push}}(\mbox{\hyperlink{classsc__core_1_1sc__object}{sc\_object}}*\ \mbox{\hyperlink{class_sysc_add__pv}{mdl}});}
+\DoxyCodeLine{00089\ \ \ \ \ \mbox{\hyperlink{classsc__core_1_1sc__object}{sc\_object}}*\ \mbox{\hyperlink{classsc__core_1_1sc__object__manager_ad728a7f027222da5f3c60e5b30d97141}{hierarchy\_pop}}();}
+\DoxyCodeLine{00090\ \ \ \ \ \mbox{\hyperlink{classsc__core_1_1sc__object}{sc\_object}}*\ \mbox{\hyperlink{classsc__core_1_1sc__object__manager_ac6b7ad626750c3fa2a5f3a6982316f04}{hierarchy\_curr}}();}
+\DoxyCodeLine{00091\ \ \ \ \ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{classsc__core_1_1sc__object__manager_a2ed3e0f05c478e501eee750c96e32c56}{hierarchy\_size}}();}
+\DoxyCodeLine{00092\ }
+\DoxyCodeLine{00093\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classsc__core_1_1sc__object__manager_a7cb5b3f6c893750ae0ca03602dab8041}{push\_module\_name}}(\mbox{\hyperlink{classsc__core_1_1sc__module__name}{sc\_module\_name}}*\ \mbox{\hyperlink{class_sysc_add__pv}{mod\_name}});}
+\DoxyCodeLine{00094\ \ \ \ \ \mbox{\hyperlink{classsc__core_1_1sc__module__name}{sc\_module\_name}}*\ \mbox{\hyperlink{classsc__core_1_1sc__object__manager_a234f5349e4fbd26a664b5cb5657e04fd}{pop\_module\_name}}();}
+\DoxyCodeLine{00095\ \ \ \ \ \mbox{\hyperlink{classsc__core_1_1sc__module__name}{sc\_module\_name}}*\ \mbox{\hyperlink{classsc__core_1_1sc__object__manager_a0d7096b107f6934241224458b44de013}{top\_of\_module\_name\_stack}}();}
+\DoxyCodeLine{00096\ }
+\DoxyCodeLine{00097\ }
+\DoxyCodeLine{00098\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00099\ \ \ \ \ std::string\ \mbox{\hyperlink{classsc__core_1_1sc__object__manager_a643ed232b24c36e5228586d508e1e44c}{create\_name}}(\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{char}*\ \mbox{\hyperlink{class_sysc_add__pv}{leaf\_name}}\ );}
+\DoxyCodeLine{00100\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classsc__core_1_1sc__object__manager_a0f92d2976a71c11cf41c029c5bc0f22f}{insert\_event}}(\textcolor{keyword}{const}\ std::string\&\ name,\ \mbox{\hyperlink{classsc__core_1_1sc__event}{sc\_event}}*\ obj);}
+\DoxyCodeLine{00101\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classsc__core_1_1sc__object__manager_a4be622a929a1c780e8a181a6ed8e5c9b}{insert\_object}}(\textcolor{keyword}{const}\ std::string\&\ name,\ \mbox{\hyperlink{classsc__core_1_1sc__object}{sc\_object}}*\ obj);}
+\DoxyCodeLine{00102\ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{classsc__core_1_1sc__object__manager_ac7263423f3ea8da8547dd133a9c8e998}{insert\_external\_name}}(\textcolor{keyword}{const}\ std::string\&\ name);}
+\DoxyCodeLine{00103\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classsc__core_1_1sc__object__manager_a667ac65fd54ad711bd5d8513b8b73423}{remove\_event}}(\textcolor{keyword}{const}\ std::string\&\ name);}
+\DoxyCodeLine{00104\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classsc__core_1_1sc__object__manager_ac43a507ed227d034d051a46e3caa3114}{remove\_object}}(\textcolor{keyword}{const}\ std::string\&\ name);}
+\DoxyCodeLine{00105\ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{classsc__core_1_1sc__object__manager_a06958ba4f409af28306792e444acb052}{remove\_external\_name}}(\textcolor{keyword}{const}\ std::string\&\ name);}
+\DoxyCodeLine{00106\ }
+\DoxyCodeLine{00107\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00108\ }
+\DoxyCodeLine{00109\ \ \ \ \ instance\_table\_t::iterator\ \mbox{\hyperlink{classsc__core_1_1sc__object__manager_afecdc3ddd3461740e751050b3d1df057}{m\_event\_it}};\ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ event\ instance\ iterator.}}
+\DoxyCodeLine{00110\ \ \ \ \ \textcolor{keywordtype}{bool}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classsc__core_1_1sc__object__manager_a85a3f480f68e1a53f536b1352d2c8ac1}{m\_event\_walk\_ok}};\ \ \ \ \ \textcolor{comment}{//\ true\ if\ can\ walk\ events.}}
+\DoxyCodeLine{00111\ \ \ \ \ \mbox{\hyperlink{classsc__core_1_1sc__object__manager_ab1452de611bfbbdc6827054bd3fa5206}{instance\_table\_t}}\ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classsc__core_1_1sc__object__manager_a9d1f48720611cd1506539aeab350cd89}{m\_instance\_table}};\ \ \ \ \textcolor{comment}{//\ table\ of\ instances.}}
+\DoxyCodeLine{00112\ \ \ \ \ \mbox{\hyperlink{classsc__core_1_1sc__module__name}{sc\_module\_name}}*\ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classsc__core_1_1sc__object__manager_a72a4d7d1ce79f17611c4dae2f463730a}{m\_module\_name\_stack}};\ \textcolor{comment}{//\ sc\_module\_name\ stack.}}
+\DoxyCodeLine{00113\ \ \ \ \ instance\_table\_t::iterator\ \mbox{\hyperlink{classsc__core_1_1sc__object__manager_affbd6d99a72a7f3f140ac5574930429f}{m\_object\_it}};\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ object\ instance\ iterator.}}
+\DoxyCodeLine{00114\ \ \ \ \ \mbox{\hyperlink{classsc__core_1_1sc__object__manager_a147e76e83b65b96bb70aef7368fc2f00}{object\_vector\_t}}\ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classsc__core_1_1sc__object__manager_a9323e10ab8dd7fbad16036b717f3a318}{m\_object\_stack}};\ \ \ \ \ \ \textcolor{comment}{//\ sc\_object\ stack.}}
+\DoxyCodeLine{00115\ \ \ \ \ \textcolor{keywordtype}{bool}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classsc__core_1_1sc__object__manager_ab8bb0860ca04ff7bed903d6d2b98754d}{m\_object\_walk\_ok}};\ \ \ \ \textcolor{comment}{//\ true\ if\ can\ walk\ objects.}}
+\DoxyCodeLine{00116\ \};}
+\DoxyCodeLine{00117\ }
+\DoxyCodeLine{00118\ \}\ \textcolor{comment}{//\ namespace\ sc\_core}}
+\DoxyCodeLine{00119\ }
+\DoxyCodeLine{00120\ \textcolor{comment}{//\ \$Log:\ sc\_object\_manager.h,v\ \$}}
+\DoxyCodeLine{00121\ \textcolor{comment}{//\ Revision\ 1.9\ \ 2011/08/26\ 20:46:10\ \ acg}}
+\DoxyCodeLine{00122\ \textcolor{comment}{//\ \ Andy\ Goodrich:\ moved\ the\ modification\ log\ to\ the\ end\ of\ the\ file\ to}}
+\DoxyCodeLine{00123\ \textcolor{comment}{//\ \ eliminate\ source\ line\ number\ skew\ when\ check-\/ins\ are\ done.}}
+\DoxyCodeLine{00124\ \textcolor{comment}{//}}
+\DoxyCodeLine{00125\ \textcolor{comment}{//\ Revision\ 1.8\ \ 2011/03/06\ 15:55:11\ \ acg}}
+\DoxyCodeLine{00126\ \textcolor{comment}{//\ \ Andy\ Goodrich:\ Changes\ for\ named\ events.}}
+\DoxyCodeLine{00127\ \textcolor{comment}{//}}
+\DoxyCodeLine{00128\ \textcolor{comment}{//\ Revision\ 1.7\ \ 2011/03/05\ 19:44:20\ \ acg}}
+\DoxyCodeLine{00129\ \textcolor{comment}{//\ \ Andy\ Goodrich:\ changes\ for\ object\ and\ event\ naming\ and\ structures.}}
+\DoxyCodeLine{00130\ \textcolor{comment}{//}}
+\DoxyCodeLine{00131\ \textcolor{comment}{//\ Revision\ 1.6\ \ 2011/03/05\ 01:39:21\ \ acg}}
+\DoxyCodeLine{00132\ \textcolor{comment}{//\ \ Andy\ Goodrich:\ changes\ for\ named\ events.}}
+\DoxyCodeLine{00133\ \textcolor{comment}{//}}
+\DoxyCodeLine{00134\ \textcolor{comment}{//\ Revision\ 1.5\ \ 2011/02/18\ 20:27:14\ \ acg}}
+\DoxyCodeLine{00135\ \textcolor{comment}{//\ \ Andy\ Goodrich:\ Updated\ Copyrights.}}
+\DoxyCodeLine{00136\ \textcolor{comment}{//}}
+\DoxyCodeLine{00137\ \textcolor{comment}{//\ Revision\ 1.4\ \ 2011/02/13\ 21:47:37\ \ acg}}
+\DoxyCodeLine{00138\ \textcolor{comment}{//\ \ Andy\ Goodrich:\ update\ copyright\ notice.}}
+\DoxyCodeLine{00139\ \textcolor{comment}{//}}
+\DoxyCodeLine{00140\ \textcolor{comment}{//\ Revision\ 1.3\ \ 2010/07/22\ 20:02:33\ \ acg}}
+\DoxyCodeLine{00141\ \textcolor{comment}{//\ \ Andy\ Goodrich:\ bug\ fixes.}}
+\DoxyCodeLine{00142\ \textcolor{comment}{//}}
+\DoxyCodeLine{00143\ \textcolor{comment}{//\ Revision\ 1.2\ \ 2008/05/22\ 17:06:26\ \ acg}}
+\DoxyCodeLine{00144\ \textcolor{comment}{//\ \ Andy\ Goodrich:\ updated\ copyright\ notice\ to\ include\ 2008.}}
+\DoxyCodeLine{00145\ \textcolor{comment}{//}}
+\DoxyCodeLine{00146\ \textcolor{comment}{//\ Revision\ 1.1.1.1\ \ 2006/12/15\ 20:20:05\ \ acg}}
+\DoxyCodeLine{00147\ \textcolor{comment}{//\ SystemC\ 2.3}}
+\DoxyCodeLine{00148\ \textcolor{comment}{//}}
+\DoxyCodeLine{00149\ \textcolor{comment}{//\ Revision\ 1.3\ \ 2006/01/13\ 18:44:30\ \ acg}}
+\DoxyCodeLine{00150\ \textcolor{comment}{//\ Added\ \$Log\ to\ record\ CVS\ changes\ into\ the\ source.}}
+\DoxyCodeLine{00151\ }
+\DoxyCodeLine{00152\ \textcolor{preprocessor}{\#endif}}
+
+\end{DoxyCode}

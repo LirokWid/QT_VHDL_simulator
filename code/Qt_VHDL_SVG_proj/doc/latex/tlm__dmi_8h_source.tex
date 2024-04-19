@@ -1,0 +1,120 @@
+\doxysection{tlm\+\_\+dmi.\+h}
+\hypertarget{tlm__dmi_8h_source}{}\label{tlm__dmi_8h_source}\index{C:/Users/BJRODIER/Documents/QT\_REPO/QT\_VHDL\_simulator/code/Ressources/SystemC/include/tlm\_core/tlm\_2/tlm\_2\_interfaces/tlm\_dmi.h@{C:/Users/BJRODIER/Documents/QT\_REPO/QT\_VHDL\_simulator/code/Ressources/SystemC/include/tlm\_core/tlm\_2/tlm\_2\_interfaces/tlm\_dmi.h}}
+\mbox{\hyperlink{tlm__dmi_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{comment}{/*****************************************************************************}}
+\DoxyCodeLine{00002\ \textcolor{comment}{}}
+\DoxyCodeLine{00003\ \textcolor{comment}{\ \ Licensed\ to\ Accellera\ Systems\ Initiative\ Inc.\ (Accellera)\ under\ one\ or}}
+\DoxyCodeLine{00004\ \textcolor{comment}{\ \ more\ contributor\ license\ agreements.\ \ See\ the\ NOTICE\ file\ distributed}}
+\DoxyCodeLine{00005\ \textcolor{comment}{\ \ with\ this\ work\ for\ additional\ information\ regarding\ copyright\ ownership.}}
+\DoxyCodeLine{00006\ \textcolor{comment}{\ \ Accellera\ licenses\ this\ file\ to\ you\ under\ the\ Apache\ License,\ Version\ 2.0}}
+\DoxyCodeLine{00007\ \textcolor{comment}{\ \ (the\ "{}License"{});\ you\ may\ not\ use\ this\ file\ except\ in\ compliance\ with\ the}}
+\DoxyCodeLine{00008\ \textcolor{comment}{\ \ License.\ \ You\ may\ obtain\ a\ copy\ of\ the\ License\ at}}
+\DoxyCodeLine{00009\ \textcolor{comment}{}}
+\DoxyCodeLine{00010\ \textcolor{comment}{\ \ \ \ http://www.apache.org/licenses/LICENSE-\/2.0}}
+\DoxyCodeLine{00011\ \textcolor{comment}{}}
+\DoxyCodeLine{00012\ \textcolor{comment}{\ \ Unless\ required\ by\ applicable\ law\ or\ agreed\ to\ in\ writing,\ software}}
+\DoxyCodeLine{00013\ \textcolor{comment}{\ \ distributed\ under\ the\ License\ is\ distributed\ on\ an\ "{}AS\ IS"{}\ BASIS,}}
+\DoxyCodeLine{00014\ \textcolor{comment}{\ \ WITHOUT\ WARRANTIES\ OR\ CONDITIONS\ OF\ ANY\ KIND,\ either\ express\ or}}
+\DoxyCodeLine{00015\ \textcolor{comment}{\ \ implied.\ \ See\ the\ License\ for\ the\ specific\ language\ governing}}
+\DoxyCodeLine{00016\ \textcolor{comment}{\ \ permissions\ and\ limitations\ under\ the\ License.}}
+\DoxyCodeLine{00017\ \textcolor{comment}{}}
+\DoxyCodeLine{00018\ \textcolor{comment}{\ *****************************************************************************/}}
+\DoxyCodeLine{00019\ }
+\DoxyCodeLine{00020\ \textcolor{preprocessor}{\#ifndef\ \_\_TLM\_DMI\_H\_\_}}
+\DoxyCodeLine{00021\ \textcolor{preprocessor}{\#define\ \_\_TLM\_DMI\_H\_\_}}
+\DoxyCodeLine{00022\ }
+\DoxyCodeLine{00023\ \textcolor{preprocessor}{\#include\ <systemc>}}
+\DoxyCodeLine{00024\ }
+\DoxyCodeLine{00025\ \textcolor{keyword}{namespace\ }\mbox{\hyperlink{namespacetlm}{tlm}}\ \{}
+\DoxyCodeLine{00026\ }
+\DoxyCodeLine{00027\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classtlm_1_1tlm__dmi}{tlm\_dmi}}}
+\DoxyCodeLine{00028\ \{}
+\DoxyCodeLine{00029\ \ \ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00030\ }
+\DoxyCodeLine{00031\ \ \ \textcolor{comment}{//\ Enum\ for\ indicating\ the\ access\ granted\ to\ the\ initiator.\ }}
+\DoxyCodeLine{00032\ \ \ \textcolor{comment}{//\ The\ initiator\ uses\ gp.m\_command\ to\ indicate\ it\ intention\ (read/write)}}
+\DoxyCodeLine{00033\ \ \ \textcolor{comment}{//\ \ The\ target\ is\ allowed\ to\ promote\ DMI\_ACCESS\_READ\ or\ DMI\_ACCESS\_WRITE}}
+\DoxyCodeLine{00034\ \ \ \textcolor{comment}{//\ \ requests\ to\ dmi\_access\_read\_write.}}
+\DoxyCodeLine{00035\ }
+\DoxyCodeLine{00036\ \ \ \textcolor{keyword}{enum}\ \mbox{\hyperlink{classtlm_1_1tlm__dmi_a8fc92dc8c771f97369d6a12a13e8c1a8}{dmi\_access\_e}}}
+\DoxyCodeLine{00037\ \ \ \{\ \mbox{\hyperlink{classtlm_1_1tlm__dmi_a8fc92dc8c771f97369d6a12a13e8c1a8a1a282b2058b3b43646a020de91913306}{DMI\_ACCESS\_NONE}}\ \ \ \ \ \ \ =\ 0x00\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ no\ access}}
+\DoxyCodeLine{00038\ \ \ ,\ \mbox{\hyperlink{classtlm_1_1tlm__dmi_a8fc92dc8c771f97369d6a12a13e8c1a8ae37e04a9732cb484e65f03b4ce7b70ca}{DMI\_ACCESS\_READ}}\ \ \ \ \ \ \ =\ 0x01\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ read\ access}}
+\DoxyCodeLine{00039\ \ \ ,\ \mbox{\hyperlink{classtlm_1_1tlm__dmi_a8fc92dc8c771f97369d6a12a13e8c1a8a0c27d136e87e70b3d765ec83f34cb1bf}{DMI\_ACCESS\_WRITE}}\ \ \ \ \ \ =\ 0x02\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ write\ access}}
+\DoxyCodeLine{00040\ \ \ ,\ \mbox{\hyperlink{classtlm_1_1tlm__dmi_a8fc92dc8c771f97369d6a12a13e8c1a8abe5d42f1c4ab9c8c9be6b5af1009a373}{DMI\_ACCESS\_READ\_WRITE}}\ =\ \mbox{\hyperlink{classtlm_1_1tlm__dmi_a8fc92dc8c771f97369d6a12a13e8c1a8ae37e04a9732cb484e65f03b4ce7b70ca}{DMI\_ACCESS\_READ}}\ |\ \mbox{\hyperlink{classtlm_1_1tlm__dmi_a8fc92dc8c771f97369d6a12a13e8c1a8a0c27d136e87e70b3d765ec83f34cb1bf}{DMI\_ACCESS\_WRITE}}\ \textcolor{comment}{//\ read/write\ access}}
+\DoxyCodeLine{00041\ \ \ \};}
+\DoxyCodeLine{00042\ \ \ }
+\DoxyCodeLine{00043\ \ \ \mbox{\hyperlink{classtlm_1_1tlm__dmi_a51f02afce1495f9ea53c700e8a654cff}{tlm\_dmi}}\ (\textcolor{keywordtype}{void})}
+\DoxyCodeLine{00044\ \ \ \{}
+\DoxyCodeLine{00045\ \ \ \ \ \mbox{\hyperlink{classtlm_1_1tlm__dmi_a1ae6d9f5a4218be540b95c13519189c8}{init}}();}
+\DoxyCodeLine{00046\ \ \ \}}
+\DoxyCodeLine{00047\ \ \ }
+\DoxyCodeLine{00048\ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classtlm_1_1tlm__dmi_a1ae6d9f5a4218be540b95c13519189c8}{init}}\ (\textcolor{keywordtype}{void})}
+\DoxyCodeLine{00049\ \ \ \{}
+\DoxyCodeLine{00050\ \ \ \ \ \mbox{\hyperlink{classtlm_1_1tlm__dmi_aad2ba4bfc978fba8cc6c2dbaa1bc46bf}{m\_dmi\_ptr}}\ \ \ \ \ \ \ \ \ \ \ =\ 0x0;}
+\DoxyCodeLine{00051\ \ \ \ \ \mbox{\hyperlink{classtlm_1_1tlm__dmi_a69043eaf5aec4ecf28db3e2d58d2259a}{m\_dmi\_start\_address}}\ =\ 0x0;}
+\DoxyCodeLine{00052\ \ \ \ \ \mbox{\hyperlink{classtlm_1_1tlm__dmi_a4c65bc1ea21371629c60031492d68ba6}{m\_dmi\_end\_address}}\ \ \ =\ (\mbox{\hyperlink{namespacesc__dt_a0e509e6e05abf63a5c3f08a342e4cd91}{sc\_dt::uint64}})(-\/1);}
+\DoxyCodeLine{00053\ \ \ \ \ \mbox{\hyperlink{classtlm_1_1tlm__dmi_a9609f752489607a718960eef93bcf3f9}{m\_dmi\_access}}\ \ \ \ \ \ \ \ =\ \mbox{\hyperlink{classtlm_1_1tlm__dmi_a8fc92dc8c771f97369d6a12a13e8c1a8a1a282b2058b3b43646a020de91913306}{DMI\_ACCESS\_NONE}};}
+\DoxyCodeLine{00054\ \ \ \ \ \mbox{\hyperlink{classtlm_1_1tlm__dmi_a6582b35d27b8d9bcad850cbb4d5c31de}{m\_dmi\_read\_latency}}\ \ =\ \mbox{\hyperlink{namespacesc__core_aba4538758f734d8796fd0e92b430c50c}{sc\_core::SC\_ZERO\_TIME}};}
+\DoxyCodeLine{00055\ \ \ \ \ \mbox{\hyperlink{classtlm_1_1tlm__dmi_a147192b0516777ed7e462797a2db2fdc}{m\_dmi\_write\_latency}}\ =\ \mbox{\hyperlink{namespacesc__core_aba4538758f734d8796fd0e92b430c50c}{sc\_core::SC\_ZERO\_TIME}};}
+\DoxyCodeLine{00056\ \ \ \}}
+\DoxyCodeLine{00057\ \ \ }
+\DoxyCodeLine{00058\ \ \ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{char}*\ \ \ \ \mbox{\hyperlink{classtlm_1_1tlm__dmi_ad3ec992ed49cd4464362fd80a9d17e0f}{get\_dmi\_ptr}}\ \ \ \ \ \ \ \ \ \ \ (\textcolor{keywordtype}{void})\textcolor{keyword}{\ const\ }\{\textcolor{keywordflow}{return}\ \mbox{\hyperlink{classtlm_1_1tlm__dmi_aad2ba4bfc978fba8cc6c2dbaa1bc46bf}{m\_dmi\_ptr}};\}}
+\DoxyCodeLine{00059\ \ \ \mbox{\hyperlink{class_sysc_add__pv}{sc\_dt::uint64}}\ \ \ \ \ \mbox{\hyperlink{classtlm_1_1tlm__dmi_aa7e7a4c4b3bbf79162dadf1fe729c960}{get\_start\_address}}\ \ \ \ \ (\textcolor{keywordtype}{void})\textcolor{keyword}{\ const\ }\{\textcolor{keywordflow}{return}\ \mbox{\hyperlink{classtlm_1_1tlm__dmi_a69043eaf5aec4ecf28db3e2d58d2259a}{m\_dmi\_start\_address}};\}}
+\DoxyCodeLine{00060\ \ \ \mbox{\hyperlink{class_sysc_add__pv}{sc\_dt::uint64}}\ \ \ \ \ \mbox{\hyperlink{classtlm_1_1tlm__dmi_a3d2f1fb7c25a97259522b57cbb70ae8c}{get\_end\_address}}\ \ \ \ \ \ \ (\textcolor{keywordtype}{void})\textcolor{keyword}{\ const\ }\{\textcolor{keywordflow}{return}\ \mbox{\hyperlink{classtlm_1_1tlm__dmi_a4c65bc1ea21371629c60031492d68ba6}{m\_dmi\_end\_address}};\}}
+\DoxyCodeLine{00061\ \ \ \mbox{\hyperlink{classsc__core_1_1sc__time}{sc\_core::sc\_time}}\ \ \mbox{\hyperlink{classtlm_1_1tlm__dmi_a626698cff3bf539f4fc1f30be189e71e}{get\_read\_latency}}\ \ \ \ \ \ (\textcolor{keywordtype}{void})\textcolor{keyword}{\ const\ }\{\textcolor{keywordflow}{return}\ \mbox{\hyperlink{classtlm_1_1tlm__dmi_a6582b35d27b8d9bcad850cbb4d5c31de}{m\_dmi\_read\_latency}};\}}
+\DoxyCodeLine{00062\ \ \ \mbox{\hyperlink{classsc__core_1_1sc__time}{sc\_core::sc\_time}}\ \ \mbox{\hyperlink{classtlm_1_1tlm__dmi_a69d850047aa1e85883989fb9b7676f52}{get\_write\_latency}}\ \ \ \ \ (\textcolor{keywordtype}{void})\textcolor{keyword}{\ const\ }\{\textcolor{keywordflow}{return}\ \mbox{\hyperlink{classtlm_1_1tlm__dmi_a147192b0516777ed7e462797a2db2fdc}{m\_dmi\_write\_latency}};\}}
+\DoxyCodeLine{00063\ \ \ \mbox{\hyperlink{classtlm_1_1tlm__dmi_a8fc92dc8c771f97369d6a12a13e8c1a8}{dmi\_access\_e}}\ \ \ \ \ \ \mbox{\hyperlink{classtlm_1_1tlm__dmi_a3559e9ab2083a25c0776731636736759}{get\_granted\_access}}\ \ \ \ (\textcolor{keywordtype}{void})\textcolor{keyword}{\ const\ }\{\textcolor{keywordflow}{return}\ \mbox{\hyperlink{classtlm_1_1tlm__dmi_a9609f752489607a718960eef93bcf3f9}{m\_dmi\_access}};\}}
+\DoxyCodeLine{00064\ \ \ \textcolor{keywordtype}{bool}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classtlm_1_1tlm__dmi_a837a0f377b693b504c82013f1f746f12}{is\_none\_allowed}}\ \ \ \ \ \ \ (\textcolor{keywordtype}{void})\textcolor{keyword}{\ const\ }\{\textcolor{keywordflow}{return}\ \mbox{\hyperlink{classtlm_1_1tlm__dmi_a9609f752489607a718960eef93bcf3f9}{m\_dmi\_access}}\ ==\ \mbox{\hyperlink{classtlm_1_1tlm__dmi_a8fc92dc8c771f97369d6a12a13e8c1a8a1a282b2058b3b43646a020de91913306}{DMI\_ACCESS\_NONE}};\}}
+\DoxyCodeLine{00065\ \ \ \textcolor{keywordtype}{bool}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classtlm_1_1tlm__dmi_a47a9ec4ba0fff2771658b5eb43305e3c}{is\_read\_allowed}}\ \ \ \ \ \ \ (\textcolor{keywordtype}{void})\textcolor{keyword}{\ const\ }\{\textcolor{keywordflow}{return}\ (\mbox{\hyperlink{classtlm_1_1tlm__dmi_a9609f752489607a718960eef93bcf3f9}{m\_dmi\_access}}\ \&\ \mbox{\hyperlink{classtlm_1_1tlm__dmi_a8fc92dc8c771f97369d6a12a13e8c1a8ae37e04a9732cb484e65f03b4ce7b70ca}{DMI\_ACCESS\_READ}})\ ==\ \mbox{\hyperlink{classtlm_1_1tlm__dmi_a8fc92dc8c771f97369d6a12a13e8c1a8ae37e04a9732cb484e65f03b4ce7b70ca}{DMI\_ACCESS\_READ}};\}}
+\DoxyCodeLine{00066\ \ \ \textcolor{keywordtype}{bool}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classtlm_1_1tlm__dmi_a9b634e24f761ba00ad8f5c4eca223c60}{is\_write\_allowed}}\ \ \ \ \ \ (\textcolor{keywordtype}{void})\textcolor{keyword}{\ const\ }\{\textcolor{keywordflow}{return}\ (\mbox{\hyperlink{classtlm_1_1tlm__dmi_a9609f752489607a718960eef93bcf3f9}{m\_dmi\_access}}\ \&\ \mbox{\hyperlink{classtlm_1_1tlm__dmi_a8fc92dc8c771f97369d6a12a13e8c1a8a0c27d136e87e70b3d765ec83f34cb1bf}{DMI\_ACCESS\_WRITE}})\ ==\ \mbox{\hyperlink{classtlm_1_1tlm__dmi_a8fc92dc8c771f97369d6a12a13e8c1a8a0c27d136e87e70b3d765ec83f34cb1bf}{DMI\_ACCESS\_WRITE}};\}}
+\DoxyCodeLine{00067\ \ \ \textcolor{keywordtype}{bool}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classtlm_1_1tlm__dmi_a5398cfe8bffc11ab7578ef012d7215e8}{is\_read\_write\_allowed}}\ (\textcolor{keywordtype}{void})\textcolor{keyword}{\ const\ }\{\textcolor{keywordflow}{return}\ (\mbox{\hyperlink{classtlm_1_1tlm__dmi_a9609f752489607a718960eef93bcf3f9}{m\_dmi\_access}}\ \&\ \mbox{\hyperlink{classtlm_1_1tlm__dmi_a8fc92dc8c771f97369d6a12a13e8c1a8abe5d42f1c4ab9c8c9be6b5af1009a373}{DMI\_ACCESS\_READ\_WRITE}})\ ==\ \mbox{\hyperlink{classtlm_1_1tlm__dmi_a8fc92dc8c771f97369d6a12a13e8c1a8abe5d42f1c4ab9c8c9be6b5af1009a373}{DMI\_ACCESS\_READ\_WRITE}};\}}
+\DoxyCodeLine{00068\ }
+\DoxyCodeLine{00069\ \ \ \textcolor{keywordtype}{void}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classtlm_1_1tlm__dmi_ab6a4f4d1651adaa1ecd34f9a323ed88b}{set\_dmi\_ptr}}\ \ \ \ \ \ \ \ \ \ \ (\textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{char}*\ p)\ \ \ \{\mbox{\hyperlink{classtlm_1_1tlm__dmi_aad2ba4bfc978fba8cc6c2dbaa1bc46bf}{m\_dmi\_ptr}}\ =\ p;\}}
+\DoxyCodeLine{00070\ \ \ \textcolor{keywordtype}{void}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classtlm_1_1tlm__dmi_ade04e8aa0b5d239cac70d015ee05d3a2}{set\_start\_address}}\ \ \ \ \ (\mbox{\hyperlink{class_sysc_add__pv}{sc\_dt::uint64}}\ \mbox{\hyperlink{class_sysc_add__pv}{addr}})\ \{\mbox{\hyperlink{classtlm_1_1tlm__dmi_a69043eaf5aec4ecf28db3e2d58d2259a}{m\_dmi\_start\_address}}\ =\ \mbox{\hyperlink{class_sysc_add__pv}{addr}};\}}
+\DoxyCodeLine{00071\ \ \ \textcolor{keywordtype}{void}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classtlm_1_1tlm__dmi_af0cb3b46a1b291537734ade4521d1e81}{set\_end\_address}}\ \ \ \ \ \ \ (\mbox{\hyperlink{class_sysc_add__pv}{sc\_dt::uint64}}\ \mbox{\hyperlink{class_sysc_add__pv}{addr}})\ \{\mbox{\hyperlink{classtlm_1_1tlm__dmi_a4c65bc1ea21371629c60031492d68ba6}{m\_dmi\_end\_address}}\ =\ \mbox{\hyperlink{class_sysc_add__pv}{addr}};\}}
+\DoxyCodeLine{00072\ \ \ \textcolor{keywordtype}{void}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classtlm_1_1tlm__dmi_afb8cff88a44137995b87bd817a6f5d20}{set\_read\_latency}}\ \ \ \ \ \ (\mbox{\hyperlink{classsc__core_1_1sc__time}{sc\_core::sc\_time}}\ t)\ \{\mbox{\hyperlink{classtlm_1_1tlm__dmi_a6582b35d27b8d9bcad850cbb4d5c31de}{m\_dmi\_read\_latency}}\ =\ t;\}}
+\DoxyCodeLine{00073\ \ \ \textcolor{keywordtype}{void}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classtlm_1_1tlm__dmi_a9ef94262d531b558cd228a3a8d994572}{set\_write\_latency}}\ \ \ \ \ (\mbox{\hyperlink{classsc__core_1_1sc__time}{sc\_core::sc\_time}}\ t)\ \{\mbox{\hyperlink{classtlm_1_1tlm__dmi_a147192b0516777ed7e462797a2db2fdc}{m\_dmi\_write\_latency}}\ =\ t;\}}
+\DoxyCodeLine{00074\ \ \ \textcolor{keywordtype}{void}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classtlm_1_1tlm__dmi_a20c6b24588c7e37cc3791cb1bda91fae}{set\_granted\_access}}\ \ \ \ (\mbox{\hyperlink{classtlm_1_1tlm__dmi_a8fc92dc8c771f97369d6a12a13e8c1a8}{dmi\_access\_e}}\ \mbox{\hyperlink{class_sysc_add__pv}{a}})\ \ \ \ \ \{\mbox{\hyperlink{classtlm_1_1tlm__dmi_a9609f752489607a718960eef93bcf3f9}{m\_dmi\_access}}\ =\ \mbox{\hyperlink{class_sysc_add__pv}{a}};\}}
+\DoxyCodeLine{00075\ \ \ \textcolor{keywordtype}{void}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classtlm_1_1tlm__dmi_a2762bf2e1fe57edc0560f3a9b12020f0}{allow\_none}}\ \ \ \ \ \ \ \ \ \ \ \ (\textcolor{keywordtype}{void})\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{\mbox{\hyperlink{classtlm_1_1tlm__dmi_a9609f752489607a718960eef93bcf3f9}{m\_dmi\_access}}\ =\ \mbox{\hyperlink{classtlm_1_1tlm__dmi_a8fc92dc8c771f97369d6a12a13e8c1a8a1a282b2058b3b43646a020de91913306}{DMI\_ACCESS\_NONE}};\}}
+\DoxyCodeLine{00076\ \ \ \textcolor{keywordtype}{void}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classtlm_1_1tlm__dmi_aa06b17d31336935256ff4bcf069e4397}{allow\_read}}\ \ \ \ \ \ \ \ \ \ \ \ (\textcolor{keywordtype}{void})\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{\mbox{\hyperlink{classtlm_1_1tlm__dmi_a9609f752489607a718960eef93bcf3f9}{m\_dmi\_access}}\ =\ \mbox{\hyperlink{classtlm_1_1tlm__dmi_a8fc92dc8c771f97369d6a12a13e8c1a8ae37e04a9732cb484e65f03b4ce7b70ca}{DMI\_ACCESS\_READ}};\}}
+\DoxyCodeLine{00077\ \ \ \textcolor{keywordtype}{void}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classtlm_1_1tlm__dmi_aeb2c251526983084e48190a6951ef7cb}{allow\_write}}\ \ \ \ \ \ \ \ \ \ \ (\textcolor{keywordtype}{void})\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{\mbox{\hyperlink{classtlm_1_1tlm__dmi_a9609f752489607a718960eef93bcf3f9}{m\_dmi\_access}}\ =\ \mbox{\hyperlink{classtlm_1_1tlm__dmi_a8fc92dc8c771f97369d6a12a13e8c1a8a0c27d136e87e70b3d765ec83f34cb1bf}{DMI\_ACCESS\_WRITE}};\}}
+\DoxyCodeLine{00078\ \ \ \textcolor{keywordtype}{void}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classtlm_1_1tlm__dmi_a4a48dd5d8f1fcd9b4ec14e2cdfaddad8}{allow\_read\_write}}\ \ \ \ \ \ (\textcolor{keywordtype}{void})\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{\mbox{\hyperlink{classtlm_1_1tlm__dmi_a9609f752489607a718960eef93bcf3f9}{m\_dmi\_access}}\ =\ \mbox{\hyperlink{classtlm_1_1tlm__dmi_a8fc92dc8c771f97369d6a12a13e8c1a8abe5d42f1c4ab9c8c9be6b5af1009a373}{DMI\_ACCESS\_READ\_WRITE}};\}}
+\DoxyCodeLine{00079\ }
+\DoxyCodeLine{00080\ \ \ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00081\ }
+\DoxyCodeLine{00082\ \ \ \textcolor{comment}{//\ If\ the\ forward\ call\ is\ successful,\ the\ target\ returns\ the\ dmi\_ptr,}}
+\DoxyCodeLine{00083\ \ \ \textcolor{comment}{//\ which\ must\ point\ to\ the\ data\ element\ corresponding\ to\ the}}
+\DoxyCodeLine{00084\ \ \ \textcolor{comment}{//\ dmi\_start\_address.\ The\ data\ is\ organized\ as\ a\ byte\ array\ with\ the}}
+\DoxyCodeLine{00085\ \ \ \textcolor{comment}{//\ endianness\ of\ the\ target\ (endianness\ member\ of\ the\ tlm\_dmi\ struct).}}
+\DoxyCodeLine{00086\ \ \ }
+\DoxyCodeLine{00087\ \ \ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{char}*\ \ \ \mbox{\hyperlink{classtlm_1_1tlm__dmi_aad2ba4bfc978fba8cc6c2dbaa1bc46bf}{m\_dmi\_ptr}};}
+\DoxyCodeLine{00088\ \ \ }
+\DoxyCodeLine{00089\ \ \ \textcolor{comment}{//\ The\ absolute\ start\ and\ end\ addresses\ of\ the\ DMI\ region.\ If\ the\ decoder}}
+\DoxyCodeLine{00090\ \ \ \textcolor{comment}{//\ logic\ in\ the\ interconnect\ changes\ the\ address\ field\ e.g.\ by\ masking,\ the}}
+\DoxyCodeLine{00091\ \ \ \textcolor{comment}{//\ interconnect\ is\ responsible\ to\ transform\ the\ relative\ address\ back\ to\ an}}
+\DoxyCodeLine{00092\ \ \ \textcolor{comment}{//\ absolute\ address\ again.}}
+\DoxyCodeLine{00093\ \ \ }
+\DoxyCodeLine{00094\ \ \ \mbox{\hyperlink{class_sysc_add__pv}{sc\_dt::uint64}}\ \ \ \ \mbox{\hyperlink{classtlm_1_1tlm__dmi_a69043eaf5aec4ecf28db3e2d58d2259a}{m\_dmi\_start\_address}};}
+\DoxyCodeLine{00095\ \ \ \mbox{\hyperlink{class_sysc_add__pv}{sc\_dt::uint64}}\ \ \ \ \mbox{\hyperlink{classtlm_1_1tlm__dmi_a4c65bc1ea21371629c60031492d68ba6}{m\_dmi\_end\_address}};}
+\DoxyCodeLine{00096\ }
+\DoxyCodeLine{00097\ \ \ \textcolor{comment}{//\ Granted\ access}}
+\DoxyCodeLine{00098\ \ \ }
+\DoxyCodeLine{00099\ \ \ \mbox{\hyperlink{classtlm_1_1tlm__dmi_a8fc92dc8c771f97369d6a12a13e8c1a8}{dmi\_access\_e}}\ \ \ \ \ \mbox{\hyperlink{classtlm_1_1tlm__dmi_a9609f752489607a718960eef93bcf3f9}{m\_dmi\_access}};}
+\DoxyCodeLine{00100\ }
+\DoxyCodeLine{00101\ \ \ \textcolor{comment}{//\ These\ members\ define\ the\ latency\ of\ read/write\ transactions.\ The}}
+\DoxyCodeLine{00102\ \ \ \textcolor{comment}{//\ initiator\ must\ initialize\ these\ members\ to\ zero\ before\ requesting\ a}}
+\DoxyCodeLine{00103\ \ \ \textcolor{comment}{//\ dmi\ pointer,\ because\ both\ the\ interconnect\ as\ well\ as\ the\ target\ can}}
+\DoxyCodeLine{00104\ \ \ \textcolor{comment}{//\ add\ to\ the\ total\ transaction\ latency.}}
+\DoxyCodeLine{00105\ \ \ \textcolor{comment}{//\ Depending\ on\ the\ 'type'\ attribute\ only\ one,\ or\ both\ of\ these\ attributes}}
+\DoxyCodeLine{00106\ \ \ \textcolor{comment}{//\ will\ be\ valid.}}
+\DoxyCodeLine{00107\ \ \ }
+\DoxyCodeLine{00108\ \ \ \mbox{\hyperlink{classsc__core_1_1sc__time}{sc\_core::sc\_time}}\ \mbox{\hyperlink{classtlm_1_1tlm__dmi_a6582b35d27b8d9bcad850cbb4d5c31de}{m\_dmi\_read\_latency}};}
+\DoxyCodeLine{00109\ \ \ \mbox{\hyperlink{classsc__core_1_1sc__time}{sc\_core::sc\_time}}\ \mbox{\hyperlink{classtlm_1_1tlm__dmi_a147192b0516777ed7e462797a2db2fdc}{m\_dmi\_write\_latency}};}
+\DoxyCodeLine{00110\ \};}
+\DoxyCodeLine{00111\ }
+\DoxyCodeLine{00112\ \}\ \textcolor{comment}{//\ namespace\ tlm}}
+\DoxyCodeLine{00113\ }
+\DoxyCodeLine{00114\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{/*\ TLM\_DMI\_HEADER\ */}\textcolor{preprocessor}{}}
+
+\end{DoxyCode}

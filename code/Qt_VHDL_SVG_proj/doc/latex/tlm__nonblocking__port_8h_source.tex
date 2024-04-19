@@ -1,0 +1,97 @@
+\doxysection{tlm\+\_\+nonblocking\+\_\+port.\+h}
+\hypertarget{tlm__nonblocking__port_8h_source}{}\label{tlm__nonblocking__port_8h_source}\index{C:/Users/BJRODIER/Documents/QT\_REPO/QT\_VHDL\_simulator/code/Ressources/SystemC/include/tlm\_core/tlm\_1/tlm\_req\_rsp/tlm\_ports/tlm\_nonblocking\_port.h@{C:/Users/BJRODIER/Documents/QT\_REPO/QT\_VHDL\_simulator/code/Ressources/SystemC/include/tlm\_core/tlm\_1/tlm\_req\_rsp/tlm\_ports/tlm\_nonblocking\_port.h}}
+\mbox{\hyperlink{tlm__nonblocking__port_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{comment}{/*****************************************************************************}}
+\DoxyCodeLine{00002\ \textcolor{comment}{}}
+\DoxyCodeLine{00003\ \textcolor{comment}{\ \ Licensed\ to\ Accellera\ Systems\ Initiative\ Inc.\ (Accellera)\ under\ one\ or}}
+\DoxyCodeLine{00004\ \textcolor{comment}{\ \ more\ contributor\ license\ agreements.\ \ See\ the\ NOTICE\ file\ distributed}}
+\DoxyCodeLine{00005\ \textcolor{comment}{\ \ with\ this\ work\ for\ additional\ information\ regarding\ copyright\ ownership.}}
+\DoxyCodeLine{00006\ \textcolor{comment}{\ \ Accellera\ licenses\ this\ file\ to\ you\ under\ the\ Apache\ License,\ Version\ 2.0}}
+\DoxyCodeLine{00007\ \textcolor{comment}{\ \ (the\ "{}License"{});\ you\ may\ not\ use\ this\ file\ except\ in\ compliance\ with\ the}}
+\DoxyCodeLine{00008\ \textcolor{comment}{\ \ License.\ \ You\ may\ obtain\ a\ copy\ of\ the\ License\ at}}
+\DoxyCodeLine{00009\ \textcolor{comment}{}}
+\DoxyCodeLine{00010\ \textcolor{comment}{\ \ \ \ http://www.apache.org/licenses/LICENSE-\/2.0}}
+\DoxyCodeLine{00011\ \textcolor{comment}{}}
+\DoxyCodeLine{00012\ \textcolor{comment}{\ \ Unless\ required\ by\ applicable\ law\ or\ agreed\ to\ in\ writing,\ software}}
+\DoxyCodeLine{00013\ \textcolor{comment}{\ \ distributed\ under\ the\ License\ is\ distributed\ on\ an\ "{}AS\ IS"{}\ BASIS,}}
+\DoxyCodeLine{00014\ \textcolor{comment}{\ \ WITHOUT\ WARRANTIES\ OR\ CONDITIONS\ OF\ ANY\ KIND,\ either\ express\ or}}
+\DoxyCodeLine{00015\ \textcolor{comment}{\ \ implied.\ \ See\ the\ License\ for\ the\ specific\ language\ governing}}
+\DoxyCodeLine{00016\ \textcolor{comment}{\ \ permissions\ and\ limitations\ under\ the\ License.}}
+\DoxyCodeLine{00017\ \textcolor{comment}{}}
+\DoxyCodeLine{00018\ \textcolor{comment}{\ *****************************************************************************/}}
+\DoxyCodeLine{00019\ }
+\DoxyCodeLine{00020\ \textcolor{preprocessor}{\#ifndef\ \_\_TLM\_NONBLOCKING\_PORT\_H\_\_}}
+\DoxyCodeLine{00021\ \textcolor{preprocessor}{\#define\ \_\_TLM\_NONBLOCKING\_PORT\_H\_\_}}
+\DoxyCodeLine{00022\ }
+\DoxyCodeLine{00023\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{tlm__core__ifs_8h}{tlm\_core/tlm\_1/tlm\_req\_rsp/tlm\_1\_interfaces/tlm\_core\_ifs.h}}"{}}}
+\DoxyCodeLine{00024\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{tlm__event__finder_8h}{tlm\_core/tlm\_1/tlm\_req\_rsp/tlm\_ports/tlm\_event\_finder.h}}"{}}}
+\DoxyCodeLine{00025\ }
+\DoxyCodeLine{00026\ \textcolor{keyword}{namespace\ }\mbox{\hyperlink{namespacetlm}{tlm}}\ \{}
+\DoxyCodeLine{00027\ }
+\DoxyCodeLine{00028\ \textcolor{keyword}{template}\ <\ \textcolor{keyword}{typename}\ T\ >}
+\DoxyCodeLine{00029\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classtlm_1_1tlm__nonblocking__get__port}{tlm\_nonblocking\_get\_port}}\ :}
+\DoxyCodeLine{00030\ \textcolor{keyword}{public}\ \mbox{\hyperlink{classsc__core_1_1sc__port}{sc\_core::sc\_port}}<\ tlm\_nonblocking\_get\_if<\ T\ >\ ,\ 1\ >}
+\DoxyCodeLine{00031\ \{}
+\DoxyCodeLine{00032\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00033\ \ \ \textcolor{keyword}{typedef}\ \mbox{\hyperlink{class_sysc_add__pv}{tlm\_nonblocking\_get\_if<T>}}\ \mbox{\hyperlink{classtlm_1_1tlm__nonblocking__get__port_afe26505553762e20d253dfae1806a1b6}{get\_if\_type}};}
+\DoxyCodeLine{00034\ }
+\DoxyCodeLine{00035\ \ \ \mbox{\hyperlink{classtlm_1_1tlm__nonblocking__get__port_ae49d8554efefa1fc207081cc6d38ca12}{tlm\_nonblocking\_get\_port}}(\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{char}\ *\mbox{\hyperlink{class_sysc_add__pv}{port\_name}}\ )\ :}
+\DoxyCodeLine{00036\ \ \ \ \ \mbox{\hyperlink{namespacesc__core}{sc\_core}}::\mbox{\hyperlink{classsc__core_1_1sc__port_a5d5899d71f4b216585ef575d3ba248e0}{sc\_port}}<\ \mbox{\hyperlink{classtlm_1_1tlm__nonblocking__get__if}{tlm\_nonblocking\_get\_if}}<\ \mbox{\hyperlink{mem__fn__cc_8hpp_adf1f3edb9115acb0a1e04209b7a9937b}{T}}\ >\ ,\ 1\ >(\ \mbox{\hyperlink{class_sysc_add__pv}{port\_name}}\ )\ \{\}}
+\DoxyCodeLine{00037\ }
+\DoxyCodeLine{00038\ \ \ \mbox{\hyperlink{classsc__core_1_1sc__event__finder}{sc\_core::sc\_event\_finder}}\&\ \mbox{\hyperlink{classtlm_1_1tlm__nonblocking__get__port_aac9704a69c2f694f6234bbc67616a456}{ok\_to\_get}}()\textcolor{keyword}{\ const\ }\{}
+\DoxyCodeLine{00039\ }
+\DoxyCodeLine{00040\ \ \ \ \ \textcolor{keywordflow}{return}\ *\textcolor{keyword}{new}\ \mbox{\hyperlink{class_sysc_add__pv}{tlm\_event\_finder\_t<\ get\_if\_type\ ,\ T\ >}}(}
+\DoxyCodeLine{00041\ \ \ \ \ \ \ \ *\textcolor{keyword}{this},}
+\DoxyCodeLine{00042\ \ \ \ \ \ \ \ \&get\_if\_type::ok\_to\_get\ );}
+\DoxyCodeLine{00043\ }
+\DoxyCodeLine{00044\ \ \ \}}
+\DoxyCodeLine{00045\ }
+\DoxyCodeLine{00046\ \};}
+\DoxyCodeLine{00047\ }
+\DoxyCodeLine{00048\ \textcolor{keyword}{template}\ <\ \textcolor{keyword}{typename}\ T\ >}
+\DoxyCodeLine{00049\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classtlm_1_1tlm__nonblocking__peek__port}{tlm\_nonblocking\_peek\_port}}\ :}
+\DoxyCodeLine{00050\ \textcolor{keyword}{public}\ \mbox{\hyperlink{classsc__core_1_1sc__port}{sc\_core::sc\_port}}<\ tlm\_nonblocking\_peek\_if<\ T\ >\ ,\ 1\ >}
+\DoxyCodeLine{00051\ \{}
+\DoxyCodeLine{00052\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00053\ \ \ \textcolor{keyword}{typedef}\ \mbox{\hyperlink{class_sysc_add__pv}{tlm\_nonblocking\_peek\_if<T>}}\ \mbox{\hyperlink{classtlm_1_1tlm__nonblocking__peek__port_a2d714c546d1d8db0b882fe5e76ddfa74}{peek\_if\_type}};}
+\DoxyCodeLine{00054\ }
+\DoxyCodeLine{00055\ \ \ \mbox{\hyperlink{classtlm_1_1tlm__nonblocking__peek__port_a9a6844405c2d766d0848201d4ddeee9a}{tlm\_nonblocking\_peek\_port}}(\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{char}\ *\mbox{\hyperlink{class_sysc_add__pv}{port\_name}}\ )\ :}
+\DoxyCodeLine{00056\ \ \ \ \ \mbox{\hyperlink{namespacesc__core}{sc\_core}}::\mbox{\hyperlink{classsc__core_1_1sc__port_a5d5899d71f4b216585ef575d3ba248e0}{sc\_port}}<\ \mbox{\hyperlink{classtlm_1_1tlm__nonblocking__peek__if}{tlm\_nonblocking\_peek\_if}}<\ \mbox{\hyperlink{mem__fn__cc_8hpp_adf1f3edb9115acb0a1e04209b7a9937b}{T}}\ >\ ,\ 1\ >(\ \mbox{\hyperlink{class_sysc_add__pv}{port\_name}}\ )\ \{\}}
+\DoxyCodeLine{00057\ }
+\DoxyCodeLine{00058\ \ \ \mbox{\hyperlink{classsc__core_1_1sc__event__finder}{sc\_core::sc\_event\_finder}}\&\ \mbox{\hyperlink{classtlm_1_1tlm__nonblocking__peek__port_a571f5e28bda30182ef5c4effb4e41b09}{ok\_to\_peek}}()\textcolor{keyword}{\ const\ }\{}
+\DoxyCodeLine{00059\ }
+\DoxyCodeLine{00060\ \ \ \ \ \textcolor{keywordflow}{return}\ *\textcolor{keyword}{new}\ \mbox{\hyperlink{class_sysc_add__pv}{tlm\_event\_finder\_t<\ peek\_if\_type\ ,\ T\ >}}(}
+\DoxyCodeLine{00061\ \ \ \ \ \ \ \ *\textcolor{keyword}{this},}
+\DoxyCodeLine{00062\ \ \ \ \ \ \ \ \&peek\_if\_type::ok\_to\_peek\ );}
+\DoxyCodeLine{00063\ }
+\DoxyCodeLine{00064\ \ \ \}}
+\DoxyCodeLine{00065\ }
+\DoxyCodeLine{00066\ \};}
+\DoxyCodeLine{00067\ }
+\DoxyCodeLine{00068\ }
+\DoxyCodeLine{00069\ \textcolor{keyword}{template}\ <\ \textcolor{keyword}{typename}\ T\ >}
+\DoxyCodeLine{00070\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classtlm_1_1tlm__nonblocking__put__port}{tlm\_nonblocking\_put\_port}}\ :}
+\DoxyCodeLine{00071\ \textcolor{keyword}{public}\ \mbox{\hyperlink{classsc__core_1_1sc__port}{sc\_core::sc\_port}}<\ tlm\_nonblocking\_put\_if<\ T\ >\ ,\ 1\ >}
+\DoxyCodeLine{00072\ \{}
+\DoxyCodeLine{00073\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00074\ \ \ \textcolor{keyword}{typedef}\ \mbox{\hyperlink{class_sysc_add__pv}{tlm\_nonblocking\_put\_if<T>}}\ \mbox{\hyperlink{classtlm_1_1tlm__nonblocking__put__port_add17773dc38639db09d88ef0c871b0a0}{put\_if\_type}};}
+\DoxyCodeLine{00075\ }
+\DoxyCodeLine{00076\ \ \ \mbox{\hyperlink{classtlm_1_1tlm__nonblocking__put__port_a3350559710f974de36a2b9c8e0acdd21}{tlm\_nonblocking\_put\_port}}(\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{char}\ *\mbox{\hyperlink{class_sysc_add__pv}{port\_name}}\ )\ :}
+\DoxyCodeLine{00077\ \ \ \ \ \mbox{\hyperlink{namespacesc__core}{sc\_core}}::\mbox{\hyperlink{classsc__core_1_1sc__port_a5d5899d71f4b216585ef575d3ba248e0}{sc\_port}}<\ \mbox{\hyperlink{classtlm_1_1tlm__nonblocking__put__if}{tlm\_nonblocking\_put\_if}}<\ \mbox{\hyperlink{mem__fn__cc_8hpp_adf1f3edb9115acb0a1e04209b7a9937b}{T}}\ >\ ,\ 1\ >(\ \mbox{\hyperlink{class_sysc_add__pv}{port\_name}}\ )\ \{\}}
+\DoxyCodeLine{00078\ }
+\DoxyCodeLine{00079\ \ \ \mbox{\hyperlink{classsc__core_1_1sc__event__finder}{sc\_core::sc\_event\_finder}}\&\ \mbox{\hyperlink{classtlm_1_1tlm__nonblocking__put__port_ab3358fcce2dce11543ad146bc2ce7152}{ok\_to\_put}}()\textcolor{keyword}{\ const\ }\{}
+\DoxyCodeLine{00080\ }
+\DoxyCodeLine{00081\ \ \ \ \ \textcolor{keywordflow}{return}\ *\textcolor{keyword}{new}\ \mbox{\hyperlink{class_sysc_add__pv}{tlm\_event\_finder\_t<\ put\_if\_type\ ,\ T\ >}}(}
+\DoxyCodeLine{00082\ \ \ \ \ \ \ \ \ \ \ \ \ \ *\textcolor{keyword}{this},}
+\DoxyCodeLine{00083\ \ \ \ \ \ \ \ \&put\_if\_type::ok\_to\_put\ );}
+\DoxyCodeLine{00084\ }
+\DoxyCodeLine{00085\ \ \ \}}
+\DoxyCodeLine{00086\ }
+\DoxyCodeLine{00087\ \};}
+\DoxyCodeLine{00088\ }
+\DoxyCodeLine{00089\ \}\ \textcolor{comment}{//\ namespace\ tlm}}
+\DoxyCodeLine{00090\ }
+\DoxyCodeLine{00091\ \textcolor{preprocessor}{\#endif}}
+
+\end{DoxyCode}

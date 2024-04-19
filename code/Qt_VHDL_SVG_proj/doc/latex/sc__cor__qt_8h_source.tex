@@ -1,0 +1,160 @@
+\doxysection{sc\+\_\+cor\+\_\+qt.\+h}
+\hypertarget{sc__cor__qt_8h_source}{}\label{sc__cor__qt_8h_source}\index{C:/Users/BJRODIER/Documents/QT\_REPO/QT\_VHDL\_simulator/code/Ressources/SystemC/include/sysc/kernel/sc\_cor\_qt.h@{C:/Users/BJRODIER/Documents/QT\_REPO/QT\_VHDL\_simulator/code/Ressources/SystemC/include/sysc/kernel/sc\_cor\_qt.h}}
+\mbox{\hyperlink{sc__cor__qt_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{comment}{/*****************************************************************************}}
+\DoxyCodeLine{00002\ \textcolor{comment}{}}
+\DoxyCodeLine{00003\ \textcolor{comment}{\ \ Licensed\ to\ Accellera\ Systems\ Initiative\ Inc.\ (Accellera)\ under\ one\ or}}
+\DoxyCodeLine{00004\ \textcolor{comment}{\ \ more\ contributor\ license\ agreements.\ \ See\ the\ NOTICE\ file\ distributed}}
+\DoxyCodeLine{00005\ \textcolor{comment}{\ \ with\ this\ work\ for\ additional\ information\ regarding\ copyright\ ownership.}}
+\DoxyCodeLine{00006\ \textcolor{comment}{\ \ Accellera\ licenses\ this\ file\ to\ you\ under\ the\ Apache\ License,\ Version\ 2.0}}
+\DoxyCodeLine{00007\ \textcolor{comment}{\ \ (the\ "{}License"{});\ you\ may\ not\ use\ this\ file\ except\ in\ compliance\ with\ the}}
+\DoxyCodeLine{00008\ \textcolor{comment}{\ \ License.\ \ You\ may\ obtain\ a\ copy\ of\ the\ License\ at}}
+\DoxyCodeLine{00009\ \textcolor{comment}{}}
+\DoxyCodeLine{00010\ \textcolor{comment}{\ \ \ \ http://www.apache.org/licenses/LICENSE-\/2.0}}
+\DoxyCodeLine{00011\ \textcolor{comment}{}}
+\DoxyCodeLine{00012\ \textcolor{comment}{\ \ Unless\ required\ by\ applicable\ law\ or\ agreed\ to\ in\ writing,\ software}}
+\DoxyCodeLine{00013\ \textcolor{comment}{\ \ distributed\ under\ the\ License\ is\ distributed\ on\ an\ "{}AS\ IS"{}\ BASIS,}}
+\DoxyCodeLine{00014\ \textcolor{comment}{\ \ WITHOUT\ WARRANTIES\ OR\ CONDITIONS\ OF\ ANY\ KIND,\ either\ express\ or}}
+\DoxyCodeLine{00015\ \textcolor{comment}{\ \ implied.\ \ See\ the\ License\ for\ the\ specific\ language\ governing}}
+\DoxyCodeLine{00016\ \textcolor{comment}{\ \ permissions\ and\ limitations\ under\ the\ License.}}
+\DoxyCodeLine{00017\ \textcolor{comment}{}}
+\DoxyCodeLine{00018\ \textcolor{comment}{\ *****************************************************************************/}}
+\DoxyCodeLine{00019\ }
+\DoxyCodeLine{00020\ \textcolor{comment}{/*****************************************************************************}}
+\DoxyCodeLine{00021\ \textcolor{comment}{}}
+\DoxyCodeLine{00022\ \textcolor{comment}{\ \ sc\_cor\_qt.h\ -\/-\/\ Coroutine\ implementation\ with\ QuickThreads.}}
+\DoxyCodeLine{00023\ \textcolor{comment}{}}
+\DoxyCodeLine{00024\ \textcolor{comment}{\ \ Original\ Author:\ Martin\ Janssen,\ Synopsys,\ Inc.,\ 2001-\/12-\/18}}
+\DoxyCodeLine{00025\ \textcolor{comment}{}}
+\DoxyCodeLine{00026\ \textcolor{comment}{\ \ CHANGE\ LOG\ AT\ THE\ END\ OF\ THE\ FILE}}
+\DoxyCodeLine{00027\ \textcolor{comment}{\ *****************************************************************************/}}
+\DoxyCodeLine{00028\ }
+\DoxyCodeLine{00029\ }
+\DoxyCodeLine{00030\ \textcolor{preprocessor}{\#ifndef\ SC\_COR\_QT\_H}}
+\DoxyCodeLine{00031\ \textcolor{preprocessor}{\#define\ SC\_COR\_QT\_H}}
+\DoxyCodeLine{00032\ }
+\DoxyCodeLine{00033\ }
+\DoxyCodeLine{00034\ \textcolor{preprocessor}{\#if\ !defined(\_WIN32)\ \&\&\ !defined(WIN32)\ \&\&\ !defined(WIN64)\ \ \&\&\ !defined(SC\_USE\_PTHREADS)}}
+\DoxyCodeLine{00035\ }
+\DoxyCodeLine{00036\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{sc__cor_8h}{sysc/kernel/sc\_cor.h}}"{}}}
+\DoxyCodeLine{00037\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{qt_8h}{sysc/packages/qt/qt.h}}"{}}}
+\DoxyCodeLine{00038\ }
+\DoxyCodeLine{00039\ \textcolor{keyword}{namespace\ }\mbox{\hyperlink{namespacesc__core}{sc\_core}}\ \{}
+\DoxyCodeLine{00040\ }
+\DoxyCodeLine{00041\ \textcolor{keyword}{class\ }sc\_cor\_pkg\_qt;}
+\DoxyCodeLine{00042\ \textcolor{keyword}{typedef}\ \mbox{\hyperlink{classsc__core_1_1sc__cor__pkg__qt}{sc\_cor\_pkg\_qt}}\ \mbox{\hyperlink{namespacesc__core_a57ab3d3104d7157c2c6f43e6ffa53e3c}{sc\_cor\_pkg\_t}};}
+\DoxyCodeLine{00043\ }
+\DoxyCodeLine{00044\ \textcolor{comment}{//\ -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{00045\ \textcolor{comment}{//\ \ CLASS\ :\ sc\_cor\_qt}}
+\DoxyCodeLine{00046\ \textcolor{comment}{//}}
+\DoxyCodeLine{00047\ \textcolor{comment}{//\ \ Coroutine\ class\ implemented\ with\ QuickThreads.}}
+\DoxyCodeLine{00048\ \textcolor{comment}{//\ -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{00049\ }
+\DoxyCodeLine{00050\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classsc__core_1_1sc__cor__qt}{sc\_cor\_qt}}}
+\DoxyCodeLine{00051\ :\ \textcolor{keyword}{public}\ \mbox{\hyperlink{classsc__core_1_1sc__cor}{sc\_cor}}}
+\DoxyCodeLine{00052\ \{}
+\DoxyCodeLine{00053\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00054\ }
+\DoxyCodeLine{00055\ \ \ \ \ \textcolor{comment}{//\ constructor}}
+\DoxyCodeLine{00056\ \ \ \ \ \mbox{\hyperlink{classsc__core_1_1sc__cor__qt_a8a8fbc6f3f807d3dcab1e0861a24afcf}{sc\_cor\_qt}}()}
+\DoxyCodeLine{00057\ \ \ \ \ :\ \mbox{\hyperlink{classsc__core_1_1sc__cor__qt_abf2a5dc720de1d411033a4726e2ce0ec}{m\_stack\_size}}(\ 0\ ),\ \mbox{\hyperlink{classsc__core_1_1sc__cor__qt_a5b6146b3d096ea04e6bd186f36ac150e}{m\_stack}}(\ 0\ ),\ \mbox{\hyperlink{classsc__core_1_1sc__cor__qt_a48a46f3d13f22cca30a6c0de4cace81b}{m\_sp}}(\ 0\ ),\ \mbox{\hyperlink{classsc__core_1_1sc__cor__qt_a91f4460a0529ca7a3909fec4e41b28b4}{m\_pkg}}(\ 0\ )}
+\DoxyCodeLine{00058\ \ \ \ \ \{\}}
+\DoxyCodeLine{00059\ }
+\DoxyCodeLine{00060\ \ \ \ \ \textcolor{comment}{//\ destructor}}
+\DoxyCodeLine{00061\ \ \ \ \ \textcolor{keyword}{virtual}\ \mbox{\hyperlink{classsc__core_1_1sc__cor__qt_a9a54ade5f86eb0f55867309c950d983b}{\string~sc\_cor\_qt}}()}
+\DoxyCodeLine{00062\ \ \ \ \ \ \ \ \ \{\ \textcolor{keyword}{delete}[]\ (\textcolor{keywordtype}{char}*)\ \mbox{\hyperlink{classsc__core_1_1sc__cor__qt_a5b6146b3d096ea04e6bd186f36ac150e}{m\_stack}};\ \}}
+\DoxyCodeLine{00063\ }
+\DoxyCodeLine{00064\ \ \ \ \ \textcolor{comment}{//\ switch\ stack\ protection\ on/off}}
+\DoxyCodeLine{00065\ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classsc__core_1_1sc__cor__qt_af1961179e6c1edb2bef6d879e79fd53f}{stack\_protect}}(\ \textcolor{keywordtype}{bool}\ enable\ );}
+\DoxyCodeLine{00066\ }
+\DoxyCodeLine{00067\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00068\ }
+\DoxyCodeLine{00069\ \ \ \ \ std::size\_t\ \ \ \ \mbox{\hyperlink{classsc__core_1_1sc__cor__qt_abf2a5dc720de1d411033a4726e2ce0ec}{m\_stack\_size}};\ \ \textcolor{comment}{//\ stack\ size}}
+\DoxyCodeLine{00070\ \ \ \ \ \textcolor{keywordtype}{void}*\ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classsc__core_1_1sc__cor__qt_a5b6146b3d096ea04e6bd186f36ac150e}{m\_stack}};\ \ \ \ \ \ \ \textcolor{comment}{//\ stack}}
+\DoxyCodeLine{00071\ \ \ \ \ \mbox{\hyperlink{structqt__t}{qt\_t}}*\ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classsc__core_1_1sc__cor__qt_a48a46f3d13f22cca30a6c0de4cace81b}{m\_sp}};\ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ stack\ pointer}}
+\DoxyCodeLine{00072\ }
+\DoxyCodeLine{00073\ \ \ \ \ \mbox{\hyperlink{classsc__core_1_1sc__cor__pkg__qt}{sc\_cor\_pkg\_qt}}*\ \mbox{\hyperlink{classsc__core_1_1sc__cor__qt_a91f4460a0529ca7a3909fec4e41b28b4}{m\_pkg}};\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ the\ creating\ coroutine\ package}}
+\DoxyCodeLine{00074\ }
+\DoxyCodeLine{00075\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00076\ }
+\DoxyCodeLine{00077\ \ \ \ \ \textcolor{comment}{//\ disabled}}
+\DoxyCodeLine{00078\ \ \ \ \ \mbox{\hyperlink{classsc__core_1_1sc__cor__qt_aff78e148756f10ee7be0c2adfacb653a}{sc\_cor\_qt}}(\ \textcolor{keyword}{const}\ \mbox{\hyperlink{classsc__core_1_1sc__cor__qt}{sc\_cor\_qt}}\&\ );}
+\DoxyCodeLine{00079\ \ \ \ \ \mbox{\hyperlink{classsc__core_1_1sc__cor__qt}{sc\_cor\_qt}}\&\ \mbox{\hyperlink{classsc__core_1_1sc__cor__qt_a6f1998bf6076ec185f457a86cc40227a}{operator\ =\ }}(\ \textcolor{keyword}{const}\ \mbox{\hyperlink{classsc__core_1_1sc__cor__qt}{sc\_cor\_qt}}\&\ );}
+\DoxyCodeLine{00080\ \};}
+\DoxyCodeLine{00081\ }
+\DoxyCodeLine{00082\ }
+\DoxyCodeLine{00083\ \textcolor{comment}{//\ -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{00084\ \textcolor{comment}{//\ \ CLASS\ :\ sc\_cor\_pkg\_qt}}
+\DoxyCodeLine{00085\ \textcolor{comment}{//}}
+\DoxyCodeLine{00086\ \textcolor{comment}{//\ \ Coroutine\ package\ class\ implemented\ with\ QuickThreads.}}
+\DoxyCodeLine{00087\ \textcolor{comment}{//\ -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{00088\ }
+\DoxyCodeLine{00089\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classsc__core_1_1sc__cor__pkg__qt}{sc\_cor\_pkg\_qt}}}
+\DoxyCodeLine{00090\ :\ \textcolor{keyword}{public}\ \mbox{\hyperlink{classsc__core_1_1sc__cor__pkg}{sc\_cor\_pkg}}}
+\DoxyCodeLine{00091\ \{}
+\DoxyCodeLine{00092\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00093\ }
+\DoxyCodeLine{00094\ \ \ \ \ \textcolor{comment}{//\ constructor}}
+\DoxyCodeLine{00095\ \ \ \ \ \mbox{\hyperlink{classsc__core_1_1sc__cor__pkg__qt_afb6a6007cc04016f0509c937da8b3f9d}{sc\_cor\_pkg\_qt}}(\ \mbox{\hyperlink{classsc__core_1_1sc__simcontext}{sc\_simcontext}}*\ \mbox{\hyperlink{class_sysc_add__pv}{simc}}\ );}
+\DoxyCodeLine{00096\ }
+\DoxyCodeLine{00097\ \ \ \ \ \textcolor{comment}{//\ destructor}}
+\DoxyCodeLine{00098\ \ \ \ \ \textcolor{keyword}{virtual}\ \mbox{\hyperlink{classsc__core_1_1sc__cor__pkg__qt_a970ce51fe19b03f1d2593455085ed19d}{\string~sc\_cor\_pkg\_qt}}();}
+\DoxyCodeLine{00099\ }
+\DoxyCodeLine{00100\ \ \ \ \ \textcolor{comment}{//\ create\ a\ new\ coroutine}}
+\DoxyCodeLine{00101\ \ \ \ \ \textcolor{keyword}{virtual}\ \mbox{\hyperlink{classsc__core_1_1sc__cor}{sc\_cor}}*\ \mbox{\hyperlink{classsc__core_1_1sc__cor__pkg__qt_ad2d8e7d87838377d5db819d370972add}{create}}(\ std::size\_t\ \mbox{\hyperlink{class_sysc_add__pv}{stack\_size}},\ \mbox{\hyperlink{namespacesc__core_a9030af66bee257f67a0f5331b8682e97}{sc\_cor\_fn}}*\ \mbox{\hyperlink{class_sysc_add__pv}{fn}},\ \textcolor{keywordtype}{void}*\ arg\ );}
+\DoxyCodeLine{00102\ }
+\DoxyCodeLine{00103\ \ \ \ \ \textcolor{comment}{//\ yield\ to\ the\ next\ coroutine}}
+\DoxyCodeLine{00104\ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classsc__core_1_1sc__cor__pkg__qt_a586a2e4047ae45e6785aa14bd29147aa}{yield}}(\ \mbox{\hyperlink{classsc__core_1_1sc__cor}{sc\_cor}}*\ next\_cor\ );}
+\DoxyCodeLine{00105\ }
+\DoxyCodeLine{00106\ \ \ \ \ \textcolor{comment}{//\ abort\ the\ current\ coroutine\ (and\ resume\ the\ next\ coroutine)}}
+\DoxyCodeLine{00107\ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classsc__core_1_1sc__cor__pkg__qt_ad61303da808bb0287949f7d288634fbe}{abort}}(\ \mbox{\hyperlink{classsc__core_1_1sc__cor}{sc\_cor}}*\ next\_cor\ );}
+\DoxyCodeLine{00108\ }
+\DoxyCodeLine{00109\ \ \ \ \ \textcolor{comment}{//\ get\ the\ main\ coroutine}}
+\DoxyCodeLine{00110\ \ \ \ \ \textcolor{keyword}{virtual}\ \mbox{\hyperlink{classsc__core_1_1sc__cor}{sc\_cor}}*\ \mbox{\hyperlink{classsc__core_1_1sc__cor__pkg__qt_a9647b1806aafdce0562d68cf4d81aa35}{get\_main}}();}
+\DoxyCodeLine{00111\ }
+\DoxyCodeLine{00112\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00113\ }
+\DoxyCodeLine{00114\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{classsc__core_1_1sc__cor__pkg__qt_a496948d72ffb9f75997849b6eeeb036e}{instance\_count}};}
+\DoxyCodeLine{00115\ }
+\DoxyCodeLine{00116\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00117\ }
+\DoxyCodeLine{00118\ \ \ \ \ \textcolor{comment}{//\ disabled}}
+\DoxyCodeLine{00119\ \ \ \ \ \mbox{\hyperlink{classsc__core_1_1sc__cor__pkg__qt_a7a7cf26202a068008cbf968989d5026b}{sc\_cor\_pkg\_qt}}();}
+\DoxyCodeLine{00120\ \ \ \ \ \mbox{\hyperlink{classsc__core_1_1sc__cor__pkg__qt_a358242783515cd3b7bed127276deb466}{sc\_cor\_pkg\_qt}}(\ \textcolor{keyword}{const}\ \mbox{\hyperlink{classsc__core_1_1sc__cor__pkg__qt}{sc\_cor\_pkg\_qt}}\&\ );}
+\DoxyCodeLine{00121\ \ \ \ \ \mbox{\hyperlink{classsc__core_1_1sc__cor__pkg__qt}{sc\_cor\_pkg\_qt}}\&\ \mbox{\hyperlink{classsc__core_1_1sc__cor__pkg__qt_a89ae02f3533b051fda03ebe8f58217e4}{operator\ =\ }}(\ \textcolor{keyword}{const}\ \mbox{\hyperlink{classsc__core_1_1sc__cor__pkg__qt}{sc\_cor\_pkg\_qt}}\&\ );}
+\DoxyCodeLine{00122\ \};}
+\DoxyCodeLine{00123\ }
+\DoxyCodeLine{00124\ \}\ \textcolor{comment}{//\ namespace\ sc\_core}}
+\DoxyCodeLine{00125\ }
+\DoxyCodeLine{00126\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00127\ }
+\DoxyCodeLine{00128\ \textcolor{comment}{//\ \$Log:\ sc\_cor\_qt.h,v\ \$}}
+\DoxyCodeLine{00129\ \textcolor{comment}{//\ Revision\ 1.6\ \ 2011/08/29\ 18:04:32\ \ acg}}
+\DoxyCodeLine{00130\ \textcolor{comment}{//\ \ Philipp\ A.\ Hartmann:\ miscellaneous\ clean\ ups.}}
+\DoxyCodeLine{00131\ \textcolor{comment}{//}}
+\DoxyCodeLine{00132\ \textcolor{comment}{//\ Revision\ 1.5\ \ 2011/08/26\ 20:46:09\ \ acg}}
+\DoxyCodeLine{00133\ \textcolor{comment}{//\ \ Andy\ Goodrich:\ moved\ the\ modification\ log\ to\ the\ end\ of\ the\ file\ to}}
+\DoxyCodeLine{00134\ \textcolor{comment}{//\ \ eliminate\ source\ line\ number\ skew\ when\ check-\/ins\ are\ done.}}
+\DoxyCodeLine{00135\ \textcolor{comment}{//}}
+\DoxyCodeLine{00136\ \textcolor{comment}{//\ Revision\ 1.4\ \ 2011/02/18\ 20:27:14\ \ acg}}
+\DoxyCodeLine{00137\ \textcolor{comment}{//\ \ Andy\ Goodrich:\ Updated\ Copyrights.}}
+\DoxyCodeLine{00138\ \textcolor{comment}{//}}
+\DoxyCodeLine{00139\ \textcolor{comment}{//\ Revision\ 1.3\ \ 2011/02/13\ 21:47:37\ \ acg}}
+\DoxyCodeLine{00140\ \textcolor{comment}{//\ \ Andy\ Goodrich:\ update\ copyright\ notice.}}
+\DoxyCodeLine{00141\ \textcolor{comment}{//}}
+\DoxyCodeLine{00142\ \textcolor{comment}{//\ Revision\ 1.2\ \ 2008/05/22\ 17:06:25\ \ acg}}
+\DoxyCodeLine{00143\ \textcolor{comment}{//\ \ Andy\ Goodrich:\ updated\ copyright\ notice\ to\ include\ 2008.}}
+\DoxyCodeLine{00144\ \textcolor{comment}{//}}
+\DoxyCodeLine{00145\ \textcolor{comment}{//\ Revision\ 1.1.1.1\ \ 2006/12/15\ 20:20:05\ \ acg}}
+\DoxyCodeLine{00146\ \textcolor{comment}{//\ SystemC\ 2.3}}
+\DoxyCodeLine{00147\ \textcolor{comment}{//}}
+\DoxyCodeLine{00148\ \textcolor{comment}{//\ Revision\ 1.3\ \ 2006/01/13\ 18:44:29\ \ acg}}
+\DoxyCodeLine{00149\ \textcolor{comment}{//\ Added\ \$Log\ to\ record\ CVS\ changes\ into\ the\ source.}}
+\DoxyCodeLine{00150\ \textcolor{comment}{//}}
+\DoxyCodeLine{00151\ }
+\DoxyCodeLine{00152\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00153\ }
+\DoxyCodeLine{00154\ \textcolor{comment}{//\ Taf!}}
+
+\end{DoxyCode}

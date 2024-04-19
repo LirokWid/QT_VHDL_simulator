@@ -1,0 +1,784 @@
+\doxysection{tlm\+\_\+endian\+\_\+conv.\+h}
+\hypertarget{tlm__endian__conv_8h_source}{}\label{tlm__endian__conv_8h_source}\index{C:/Users/BJRODIER/Documents/QT\_REPO/QT\_VHDL\_simulator/code/Ressources/SystemC/include/tlm\_core/tlm\_2/tlm\_generic\_payload/tlm\_endian\_conv.h@{C:/Users/BJRODIER/Documents/QT\_REPO/QT\_VHDL\_simulator/code/Ressources/SystemC/include/tlm\_core/tlm\_2/tlm\_generic\_payload/tlm\_endian\_conv.h}}
+\mbox{\hyperlink{tlm__endian__conv_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{comment}{/*****************************************************************************}}
+\DoxyCodeLine{00002\ \textcolor{comment}{}}
+\DoxyCodeLine{00003\ \textcolor{comment}{\ \ Licensed\ to\ Accellera\ Systems\ Initiative\ Inc.\ (Accellera)\ under\ one\ or}}
+\DoxyCodeLine{00004\ \textcolor{comment}{\ \ more\ contributor\ license\ agreements.\ \ See\ the\ NOTICE\ file\ distributed}}
+\DoxyCodeLine{00005\ \textcolor{comment}{\ \ with\ this\ work\ for\ additional\ information\ regarding\ copyright\ ownership.}}
+\DoxyCodeLine{00006\ \textcolor{comment}{\ \ Accellera\ licenses\ this\ file\ to\ you\ under\ the\ Apache\ License,\ Version\ 2.0}}
+\DoxyCodeLine{00007\ \textcolor{comment}{\ \ (the\ "{}License"{});\ you\ may\ not\ use\ this\ file\ except\ in\ compliance\ with\ the}}
+\DoxyCodeLine{00008\ \textcolor{comment}{\ \ License.\ \ You\ may\ obtain\ a\ copy\ of\ the\ License\ at}}
+\DoxyCodeLine{00009\ \textcolor{comment}{}}
+\DoxyCodeLine{00010\ \textcolor{comment}{\ \ \ \ http://www.apache.org/licenses/LICENSE-\/2.0}}
+\DoxyCodeLine{00011\ \textcolor{comment}{}}
+\DoxyCodeLine{00012\ \textcolor{comment}{\ \ Unless\ required\ by\ applicable\ law\ or\ agreed\ to\ in\ writing,\ software}}
+\DoxyCodeLine{00013\ \textcolor{comment}{\ \ distributed\ under\ the\ License\ is\ distributed\ on\ an\ "{}AS\ IS"{}\ BASIS,}}
+\DoxyCodeLine{00014\ \textcolor{comment}{\ \ WITHOUT\ WARRANTIES\ OR\ CONDITIONS\ OF\ ANY\ KIND,\ either\ express\ or}}
+\DoxyCodeLine{00015\ \textcolor{comment}{\ \ implied.\ \ See\ the\ License\ for\ the\ specific\ language\ governing}}
+\DoxyCodeLine{00016\ \textcolor{comment}{\ \ permissions\ and\ limitations\ under\ the\ License.}}
+\DoxyCodeLine{00017\ \textcolor{comment}{}}
+\DoxyCodeLine{00018\ \textcolor{comment}{\ *****************************************************************************/}}
+\DoxyCodeLine{00019\ }
+\DoxyCodeLine{00020\ }
+\DoxyCodeLine{00021\ \textcolor{preprocessor}{\#ifndef\ \_\_TLM\_ENDIAN\_CONV\_H\_\_}}
+\DoxyCodeLine{00022\ \textcolor{preprocessor}{\#define\ \_\_TLM\_ENDIAN\_CONV\_H\_\_}}
+\DoxyCodeLine{00023\ }
+\DoxyCodeLine{00024\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{tlm__gp_8h}{tlm\_core/tlm\_2/tlm\_generic\_payload/tlm\_gp.h}}"{}}}
+\DoxyCodeLine{00025\ }
+\DoxyCodeLine{00026\ \textcolor{preprocessor}{\#include\ <cstring>}\ \textcolor{comment}{//\ std::memset}}
+\DoxyCodeLine{00027\ }
+\DoxyCodeLine{00028\ \textcolor{keyword}{namespace\ }\mbox{\hyperlink{namespacetlm}{tlm}}\ \{}
+\DoxyCodeLine{00029\ }
+\DoxyCodeLine{00030\ \textcolor{comment}{/*}}
+\DoxyCodeLine{00031\ \textcolor{comment}{Tranaction-\/Level\ Modelling}}
+\DoxyCodeLine{00032\ \textcolor{comment}{Endianness\ Helper\ Functions}}
+\DoxyCodeLine{00033\ \textcolor{comment}{}}
+\DoxyCodeLine{00034\ \textcolor{comment}{DESCRIPTION}}
+\DoxyCodeLine{00035\ \textcolor{comment}{A\ set\ of\ functions\ for\ helping\ users\ to\ get\ the\ endianness}}
+\DoxyCodeLine{00036\ \textcolor{comment}{right\ in\ their\ TLM\ models\ of\ system\ initiators.\ \ These\ functions\ are}}
+\DoxyCodeLine{00037\ \textcolor{comment}{for\ use\ within\ an\ initiator.\ \ They\ can\ not\ be\ used\ as-\/is\ outside}}
+\DoxyCodeLine{00038\ \textcolor{comment}{an\ initiator\ because\ the\ extension\ used\ to\ store\ context\ will\ not\ work}}
+\DoxyCodeLine{00039\ \textcolor{comment}{if\ cascaded,\ and\ they\ do\ not\ respect\ the\ generic\ payload\ mutability}}
+\DoxyCodeLine{00040\ \textcolor{comment}{rules.\ \ However\ this\ code\ may\ be\ easily\ copied\ and\ adapted\ for\ use}}
+\DoxyCodeLine{00041\ \textcolor{comment}{in\ bridges,\ etc..}}
+\DoxyCodeLine{00042\ \textcolor{comment}{}}
+\DoxyCodeLine{00043\ \textcolor{comment}{These\ functions\ are\ not\ compulsory.\ \ There\ are\ other\ legitimate\ ways\ to}}
+\DoxyCodeLine{00044\ \textcolor{comment}{achieve\ the\ same\ functionality.\ \ If\ extra\ information\ is\ available\ at}}
+\DoxyCodeLine{00045\ \textcolor{comment}{compile\ time\ about\ the\ nature\ of\ an\ initiator's\ transactions,\ this\ can}}
+\DoxyCodeLine{00046\ \textcolor{comment}{be\ exploited\ to\ accelerate\ simulations\ by\ creating\ further\ functions}}
+\DoxyCodeLine{00047\ \textcolor{comment}{similar\ to\ those\ in\ this\ file.\ \ In\ general\ a\ functional\ transaction\ can\ be}}
+\DoxyCodeLine{00048\ \textcolor{comment}{described\ in\ more\ than\ one\ way\ by\ a\ TLM-\/2\ GP\ object.}}
+\DoxyCodeLine{00049\ \textcolor{comment}{}}
+\DoxyCodeLine{00050\ \textcolor{comment}{The\ functions\ convert\ the\ endianness\ of\ a\ GP\ object,\ either\ on\ request\ or}}
+\DoxyCodeLine{00051\ \textcolor{comment}{response.\ \ They\ should\ only\ be\ used\ when\ the\ initiator's\ endianness}}
+\DoxyCodeLine{00052\ \textcolor{comment}{does\ not\ match\ the\ host's\ endianness.\ \ They\ assume\ 'arithmetic\ mode'}}
+\DoxyCodeLine{00053\ \textcolor{comment}{meaning\ that\ within\ a\ data\ word\ the\ byte\ order\ is\ always\ host-\/endian.}}
+\DoxyCodeLine{00054\ \textcolor{comment}{For\ non-\/arithmetic\ mode\ initiators\ they\ can\ be\ used\ with\ a\ data\ word}}
+\DoxyCodeLine{00055\ \textcolor{comment}{size\ of\ 1\ byte.}}
+\DoxyCodeLine{00056\ \textcolor{comment}{}}
+\DoxyCodeLine{00057\ \textcolor{comment}{All\ the\ functions\ are\ templates,\ for\ example:}}
+\DoxyCodeLine{00058\ \textcolor{comment}{}}
+\DoxyCodeLine{00059\ \textcolor{comment}{template<class\ DATAWORD>\ inline\ void}}
+\DoxyCodeLine{00060\ \textcolor{comment}{\ \ to\_hostendian\_generic(tlm\_generic\_payload\ *txn,\ int\ sizeof\_databus)}}
+\DoxyCodeLine{00061\ \textcolor{comment}{}}
+\DoxyCodeLine{00062\ \textcolor{comment}{The\ template\ parameter\ provides\ the\ data\ word\ width.\ \ Having\ this\ as\ a\ class}}
+\DoxyCodeLine{00063\ \textcolor{comment}{makes\ it\ easy\ to\ use\ it\ for\ copy\ and\ swap\ operations\ within\ the\ functions.}}
+\DoxyCodeLine{00064\ \textcolor{comment}{If\ the\ assignment\ operator\ for\ this\ class\ is\ overloaded,\ the\ endianness}}
+\DoxyCodeLine{00065\ \textcolor{comment}{conversion\ function\ may\ not\ have\ the\ desired\ effect.}}
+\DoxyCodeLine{00066\ \textcolor{comment}{}}
+\DoxyCodeLine{00067\ \textcolor{comment}{All\ the\ functions\ have\ the\ same\ signature\ except\ for\ different\ names.}}
+\DoxyCodeLine{00068\ \textcolor{comment}{}}
+\DoxyCodeLine{00069\ \textcolor{comment}{The\ principle\ is\ that\ a\ function\ to\_hostendian\_convtype()\ is\ called\ when\ the}}
+\DoxyCodeLine{00070\ \textcolor{comment}{initiator-\/endian\ transaction\ is\ created,\ and\ the\ matching\ function}}
+\DoxyCodeLine{00071\ \textcolor{comment}{from\_hostendian\_convtype()\ is\ called\ when\ the\ transaction\ is\ completed,\ for}}
+\DoxyCodeLine{00072\ \textcolor{comment}{example\ before\ read\ data\ can\ be\ used.\ \ In\ some\ cases\ the\ from\_\ function\ is}}
+\DoxyCodeLine{00073\ \textcolor{comment}{redundant\ but\ an\ empty\ function\ is\ provided\ anyway.\ \ It\ is\ strongly}}
+\DoxyCodeLine{00074\ \textcolor{comment}{recommended\ that\ the\ from\_\ function\ is\ called,\ in\ case\ it\ ceases\ to\ be}}
+\DoxyCodeLine{00075\ \textcolor{comment}{redundant\ in\ future\ versions\ of\ this\ code.}}
+\DoxyCodeLine{00076\ \textcolor{comment}{}}
+\DoxyCodeLine{00077\ \textcolor{comment}{No\ context\ needs\ to\ be\ managed\ outside\ the\ two\ functions,\ except\ that\ they}}
+\DoxyCodeLine{00078\ \textcolor{comment}{must\ be\ called\ with\ the\ same\ template\ parameter\ and\ the\ same\ bus\ width.}}
+\DoxyCodeLine{00079\ \textcolor{comment}{}}
+\DoxyCodeLine{00080\ \textcolor{comment}{For\ initiator\ models\ that\ can\ not\ easily\ manage\ this\ context\ information,}}
+\DoxyCodeLine{00081\ \textcolor{comment}{a\ single\ entry\ point\ for\ the\ from\_\ function\ is\ provided,\ which\ will\ be}}
+\DoxyCodeLine{00082\ \textcolor{comment}{a\ little\ slower\ than\ calling\ the\ correct\ from\_\ function\ directly,\ as}}
+\DoxyCodeLine{00083\ \textcolor{comment}{it\ can\ not\ be\ inlined.}}
+\DoxyCodeLine{00084\ \textcolor{comment}{}}
+\DoxyCodeLine{00085\ \textcolor{comment}{All\ functions\ assume\ power-\/of-\/2\ bus\ and\ data\ word\ widths.}}
+\DoxyCodeLine{00086\ \textcolor{comment}{}}
+\DoxyCodeLine{00087\ \textcolor{comment}{Functions\ offered:}}
+\DoxyCodeLine{00088\ \textcolor{comment}{}}
+\DoxyCodeLine{00089\ \textcolor{comment}{0)\ A\ pair\ of\ functions\ that\ work\ for\ almost\ all\ TLM2\ GP\ transactions.\ \ The}}
+\DoxyCodeLine{00090\ \textcolor{comment}{only\ limitations\ are\ that\ data\ and\ bus\ widths\ should\ be\ powers\ of\ 2,\ and\ that}}
+\DoxyCodeLine{00091\ \textcolor{comment}{the\ data\ length\ should\ be\ an\ integer\ number\ of\ streaming\ widths\ and\ that\ the}}
+\DoxyCodeLine{00092\ \textcolor{comment}{streaming\ width\ should\ be\ an\ integer\ number\ of\ data\ words.}}
+\DoxyCodeLine{00093\ \textcolor{comment}{These\ functions\ always\ allocate\ new\ data\ and\ byte\ enable\ buffers\ and\ copy}}
+\DoxyCodeLine{00094\ \textcolor{comment}{data\ one\ byte\ at\ a\ time.}}
+\DoxyCodeLine{00095\ \textcolor{comment}{\ \ tlm\_to\_hostendian\_generic(tlm\_generic\_payload\ *txn,\ int\ sizeof\_databus)}}
+\DoxyCodeLine{00096\ \textcolor{comment}{\ \ tlm\_from\_hostendian\_generic(tlm\_generic\_payload\ *txn,\ int\ sizeof\_databus)}}
+\DoxyCodeLine{00097\ \textcolor{comment}{}}
+\DoxyCodeLine{00098\ \textcolor{comment}{1)\ A\ pair\ of\ functions\ that\ work\ for\ all\ transactions\ regardless\ of\ data\ and}}
+\DoxyCodeLine{00099\ \textcolor{comment}{bus\ data\ sizes\ and\ address\ alignment\ except\ for\ the\ the\ following}}
+\DoxyCodeLine{00100\ \textcolor{comment}{limitations:}}
+\DoxyCodeLine{00101\ \textcolor{comment}{-\/\ byte-\/enables\ are\ supported\ only\ when\ byte-\/enable\ granularity\ is\ no\ finer}}
+\DoxyCodeLine{00102\ \textcolor{comment}{than\ the\ data\ word\ (every\ data\ word\ is\ wholly\ enabled\ or\ wholly\ disabled)}}
+\DoxyCodeLine{00103\ \textcolor{comment}{-\/\ byte-\/enable-\/length\ is\ not\ supported\ (if\ byte\ enables\ are\ present,\ the\ byte}}
+\DoxyCodeLine{00104\ \textcolor{comment}{enable\ length\ must\ be\ equal\ to\ the\ data\ length).}}
+\DoxyCodeLine{00105\ \textcolor{comment}{-\/\ streaming\ width\ is\ not\ supported}}
+\DoxyCodeLine{00106\ \textcolor{comment}{-\/\ data\ word\ wider\ than\ bus\ word\ is\ not\ supported}}
+\DoxyCodeLine{00107\ \textcolor{comment}{A\ new\ data\ buffer\ and\ a\ new\ byte\ enable\ buffer\ are\ always\ allocated.\ \ Byte}}
+\DoxyCodeLine{00108\ \textcolor{comment}{enables\ are\ assumed\ to\ be\ needed\ even\ if\ not\ required\ for\ the\ original}}
+\DoxyCodeLine{00109\ \textcolor{comment}{(unconverted)\ transaction.\ \ Data\ is\ copied\ to\ the\ new\ buffer\ on\ request}}
+\DoxyCodeLine{00110\ \textcolor{comment}{(for\ writes)\ or\ on\ response\ (for\ reads).\ \ Copies\ are\ done\ word-\/by-\/word}}
+\DoxyCodeLine{00111\ \textcolor{comment}{where\ possible.}}
+\DoxyCodeLine{00112\ \textcolor{comment}{\ \ tlm\_to\_hostendian\_word(tlm\_generic\_payload\ *txn,\ int\ sizeof\_databus)}}
+\DoxyCodeLine{00113\ \textcolor{comment}{\ \ tlm\_from\_hostendian\_word(tlm\_generic\_payload\ *txn,\ int\ sizeof\_databus)}}
+\DoxyCodeLine{00114\ \textcolor{comment}{}}
+\DoxyCodeLine{00115\ \textcolor{comment}{2)\ If\ the\ original\ transaction\ is\ both\ word\ and\ bus-\/aligned\ then\ this\ pair\ of}}
+\DoxyCodeLine{00116\ \textcolor{comment}{functions\ can\ be\ used.\ \ It\ will\ complete\ faster\ than\ the\ generic\ function}}
+\DoxyCodeLine{00117\ \textcolor{comment}{because\ the\ data\ reordering\ function\ is\ much\ simpler\ and\ no\ address}}
+\DoxyCodeLine{00118\ \textcolor{comment}{conversion\ is\ required.}}
+\DoxyCodeLine{00119\ \textcolor{comment}{The\ following\ limitations\ apply:}}
+\DoxyCodeLine{00120\ \textcolor{comment}{-\/\ byte-\/enables\ are\ supported\ only\ when\ byte-\/enable\ granularity\ is\ no\ finer}}
+\DoxyCodeLine{00121\ \textcolor{comment}{than\ the\ data\ word\ (every\ data\ word\ is\ wholly\ enabled\ or\ wholly\ disabled)}}
+\DoxyCodeLine{00122\ \textcolor{comment}{-\/\ byte-\/enable-\/length\ is\ not\ supported\ (if\ byte\ enables\ are\ present,\ the\ byte}}
+\DoxyCodeLine{00123\ \textcolor{comment}{enable\ length\ must\ be\ equal\ to\ the\ data\ length).}}
+\DoxyCodeLine{00124\ \textcolor{comment}{-\/\ streaming\ width\ is\ not\ supported}}
+\DoxyCodeLine{00125\ \textcolor{comment}{-\/\ data\ word\ wider\ than\ bus\ word\ is\ not\ supported}}
+\DoxyCodeLine{00126\ \textcolor{comment}{-\/\ the\ transaction\ must\ be\ an\ integer\ number\ of\ bus\ words}}
+\DoxyCodeLine{00127\ \textcolor{comment}{-\/\ the\ address\ must\ be\ aligned\ to\ the\ bus\ width}}
+\DoxyCodeLine{00128\ \textcolor{comment}{\ \ tlm\_to\_hostendian\_aligned(tlm\_generic\_payload\ *txn,\ int\ sizeof\_databus)}}
+\DoxyCodeLine{00129\ \textcolor{comment}{\ \ tlm\_from\_hostendian\_aligned(tlm\_generic\_payload\ *txn,\ int\ sizeof\_databus)}}
+\DoxyCodeLine{00130\ \textcolor{comment}{}}
+\DoxyCodeLine{00131\ \textcolor{comment}{3)\ For\ single\ word\ transactions\ that\ don't\ cross\ a\ bus\ word\ boundary\ it}}
+\DoxyCodeLine{00132\ \textcolor{comment}{is\ always\ safe\ to\ work\ in-\/place\ and\ the\ conversion\ is\ very\ simple.\ \ Again,}}
+\DoxyCodeLine{00133\ \textcolor{comment}{streaming\ width\ and\ byte-\/enable\ length\ are\ not\ supported,\ and\ byte-\/enables}}
+\DoxyCodeLine{00134\ \textcolor{comment}{may\ not\ changes\ within\ a\ data\ word.}}
+\DoxyCodeLine{00135\ \textcolor{comment}{\ \ tlm\_to\_hostendian\_single(tlm\_generic\_payload\ *txn,\ int\ sizeof\_databus)}}
+\DoxyCodeLine{00136\ \textcolor{comment}{\ \ tlm\_from\_hostendian\_single(tlm\_generic\_payload\ *txn,\ int\ sizeof\_databus)}}
+\DoxyCodeLine{00137\ \textcolor{comment}{}}
+\DoxyCodeLine{00138\ \textcolor{comment}{4)\ A\ single\ entry\ point\ for\ accessing\ the\ correct\ from\_\ function\ without}}
+\DoxyCodeLine{00139\ \textcolor{comment}{needing\ to\ store\ context.}}
+\DoxyCodeLine{00140\ \textcolor{comment}{\ \ tlm\_from\_hostendian(tlm\_generic\_payload\ *txn)}}
+\DoxyCodeLine{00141\ \textcolor{comment}{*/}}
+\DoxyCodeLine{00142\ }
+\DoxyCodeLine{00143\ }
+\DoxyCodeLine{00144\ }
+\DoxyCodeLine{00145\ \textcolor{preprocessor}{\#ifndef\ uchar}}
+\DoxyCodeLine{00146\ \textcolor{preprocessor}{\#define\ uchar\ unsigned\ char}}
+\DoxyCodeLine{00147\ \textcolor{preprocessor}{\#else}}
+\DoxyCodeLine{00148\ \textcolor{preprocessor}{\#define\ TLM\_END\_CONV\_DONT\_UNDEF\_UCHAR}}
+\DoxyCodeLine{00149\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00150\ }
+\DoxyCodeLine{00151\ }
+\DoxyCodeLine{00153\ \textcolor{comment}{//\ Generic\ Utilities}}
+\DoxyCodeLine{00154\ }
+\DoxyCodeLine{00155\ \textcolor{keyword}{class\ }tlm\_endian\_context;}
+\DoxyCodeLine{00156\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classtlm_1_1tlm__endian__context__pool}{tlm\_endian\_context\_pool}}\ \{}
+\DoxyCodeLine{00157\ \ \ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00158\ \ \ \ \ \mbox{\hyperlink{classtlm_1_1tlm__endian__context}{tlm\_endian\_context}}\ *\mbox{\hyperlink{classtlm_1_1tlm__endian__context__pool_a73dea6477d0aa6498f04c664432c5a76}{first}};}
+\DoxyCodeLine{00159\ \ \ \ \ \textcolor{keyword}{inline}\ \mbox{\hyperlink{classtlm_1_1tlm__endian__context__pool_a55547e739563478725d4a5a089147050}{tlm\_endian\_context\_pool}}();}
+\DoxyCodeLine{00160\ \ \ \ \ \textcolor{keyword}{inline}\ \mbox{\hyperlink{classtlm_1_1tlm__endian__context__pool_afb3b7b00dfcbb56ff7c16e4b8423cec7}{\string~tlm\_endian\_context\_pool}}();}
+\DoxyCodeLine{00161\ \ \ \ \ \textcolor{keyword}{inline}\ \mbox{\hyperlink{classtlm_1_1tlm__endian__context}{tlm\_endian\_context}}\ *\mbox{\hyperlink{classtlm_1_1tlm__endian__context__pool_aa38c31e12f7ccc9a2610442de40074a8}{pop}}();}
+\DoxyCodeLine{00162\ \ \ \ \ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classtlm_1_1tlm__endian__context__pool_a9fdbced80c0806f06b828ee8d8abbe4d}{push}}(\mbox{\hyperlink{classtlm_1_1tlm__endian__context}{tlm\_endian\_context}}\ *\mbox{\hyperlink{class_sysc_add__pv}{c}});}
+\DoxyCodeLine{00163\ \};}
+\DoxyCodeLine{00164\ \textcolor{keyword}{static}\ \mbox{\hyperlink{classtlm_1_1tlm__endian__context__pool}{tlm\_endian\_context\_pool}}\ global\_tlm\_endian\_context\_pool;}
+\DoxyCodeLine{00165\ }
+\DoxyCodeLine{00166\ \textcolor{comment}{//\ an\ extension\ to\ keep\ the\ information\ needed\ for\ reconversion\ of\ response}}
+\DoxyCodeLine{00167\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classtlm_1_1tlm__endian__context}{tlm\_endian\_context}}\ :\ \textcolor{keyword}{public}\ \mbox{\hyperlink{classtlm_1_1tlm__extension}{tlm\_extension}}<tlm\_endian\_context>\ \{}
+\DoxyCodeLine{00168\ \ \ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00169\ \ \ \ \ \mbox{\hyperlink{classtlm_1_1tlm__endian__context_a4e4d0854fd319afef702cfc3d92d4225}{tlm\_endian\_context}}()\ :\ \mbox{\hyperlink{classtlm_1_1tlm__endian__context_a8e7bccafad1987ed0053e00f9ec422fb}{dbuf\_size}}(0),\ \mbox{\hyperlink{classtlm_1_1tlm__endian__context_ac78a65ded76e412bac9973765c6d7ae5}{bebuf\_size}}(0)\ \{\}}
+\DoxyCodeLine{00170\ \ \ \ \ \mbox{\hyperlink{classtlm_1_1tlm__endian__context_a6647f750726e6c2ac5edabe569dde4bd}{\string~tlm\_endian\_context}}()\ \{}
+\DoxyCodeLine{00171\ \ \ \ \ \ \ \textcolor{keywordflow}{if}(\mbox{\hyperlink{classtlm_1_1tlm__endian__context_a8e7bccafad1987ed0053e00f9ec422fb}{dbuf\_size}}\ >\ 0)\ \textcolor{keyword}{delete}\ []\ \mbox{\hyperlink{classtlm_1_1tlm__endian__context_a881e78625efff381112316271f8c0baa}{new\_dbuf}};}
+\DoxyCodeLine{00172\ \ \ \ \ \ \ \textcolor{keywordflow}{if}(\mbox{\hyperlink{classtlm_1_1tlm__endian__context_ac78a65ded76e412bac9973765c6d7ae5}{bebuf\_size}}\ >\ 0)\ \textcolor{keyword}{delete}\ []\ \mbox{\hyperlink{classtlm_1_1tlm__endian__context_a32ee9f4cae59221799c53558e01aff04}{new\_bebuf}};}
+\DoxyCodeLine{00173\ \ \ \ \ \}}
+\DoxyCodeLine{00174\ }
+\DoxyCodeLine{00175\ \ \ \ \ \mbox{\hyperlink{class_sysc_add__pv}{sc\_dt::uint64}}\ \mbox{\hyperlink{classtlm_1_1tlm__endian__context_a9bdc4824409e45580b25760be2270836}{address}};\ \ \ \ \ \textcolor{comment}{//\ used\ by\ generic,\ word}}
+\DoxyCodeLine{00176\ \ \ \ \ \mbox{\hyperlink{class_sysc_add__pv}{sc\_dt::uint64}}\ \mbox{\hyperlink{classtlm_1_1tlm__endian__context_a4b592ed6192127e7f2df6c810bbf1499}{new\_address}};\ \ \ \ \ \textcolor{comment}{//\ used\ by\ generic}}
+\DoxyCodeLine{00177\ \ \ \ \ \mbox{\hyperlink{tlm__endian__conv_8h_aa8ddf20cdd716b652e76e23e5e700893}{uchar}}\ *\mbox{\hyperlink{classtlm_1_1tlm__endian__context_a73fa2084a54be6b76aabc6f36ecbf6d1}{data\_ptr}};\ \ \ \ \ \textcolor{comment}{//\ used\ by\ generic,\ word,\ aligned}}
+\DoxyCodeLine{00178\ \ \ \ \ \mbox{\hyperlink{tlm__endian__conv_8h_aa8ddf20cdd716b652e76e23e5e700893}{uchar}}\ *\mbox{\hyperlink{classtlm_1_1tlm__endian__context_ae4a357d465b80c6c6b049e48a736d34b}{byte\_enable}};\ \ \textcolor{comment}{//\ used\ by\ word}}
+\DoxyCodeLine{00179\ \ \ \ \ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{classtlm_1_1tlm__endian__context_acaa2d690d4f526cbf6b39575033d717e}{length}};\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ used\ by\ generic,\ word}}
+\DoxyCodeLine{00180\ \ \ \ \ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{classtlm_1_1tlm__endian__context_ad43407778698362ee2f0b92b9b43394a}{stream\_width}};\ \ \ \textcolor{comment}{//\ used\ by\ generic}}
+\DoxyCodeLine{00181\ }
+\DoxyCodeLine{00182\ \ \ \ \ \textcolor{comment}{//\ used\ by\ common\ entry\ point\ on\ response}}
+\DoxyCodeLine{00183\ \ \ \ \ \mbox{\hyperlink{class_sysc_add__pv}{void}}\ (*\mbox{\hyperlink{classtlm_1_1tlm__endian__context_a99c418c2b412892d9c2aeadc5cdb6377}{from\_f}})(\mbox{\hyperlink{classtlm_1_1tlm__generic__payload}{tlm\_generic\_payload}}\ *\mbox{\hyperlink{class_sysc_add__pv}{txn}},\ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{classtlm_1_1tlm__endian__context_addd9342d542c433f48b7b19af829bb43}{sizeof\_databus}});}
+\DoxyCodeLine{00184\ \ \ \ \ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{classtlm_1_1tlm__endian__context_addd9342d542c433f48b7b19af829bb43}{sizeof\_databus}};}
+\DoxyCodeLine{00185\ }
+\DoxyCodeLine{00186\ \ \ \ \ \textcolor{comment}{//\ reordering\ buffers\ for\ data\ and\ byte-\/enables}}
+\DoxyCodeLine{00187\ \ \ \ \ \mbox{\hyperlink{tlm__endian__conv_8h_aa8ddf20cdd716b652e76e23e5e700893}{uchar}}\ *\mbox{\hyperlink{classtlm_1_1tlm__endian__context_a881e78625efff381112316271f8c0baa}{new\_dbuf}},\ *\mbox{\hyperlink{classtlm_1_1tlm__endian__context_a32ee9f4cae59221799c53558e01aff04}{new\_bebuf}};}
+\DoxyCodeLine{00188\ \ \ \ \ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{classtlm_1_1tlm__endian__context_a8e7bccafad1987ed0053e00f9ec422fb}{dbuf\_size}},\ \mbox{\hyperlink{classtlm_1_1tlm__endian__context_ac78a65ded76e412bac9973765c6d7ae5}{bebuf\_size}};}
+\DoxyCodeLine{00189\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classtlm_1_1tlm__endian__context_ae667b8c79527e2ac2fe5355e1e5854d5}{establish\_dbuf}}(\textcolor{keywordtype}{int}\ len)\ \{}
+\DoxyCodeLine{00190\ \ \ \ \ \ \ \textcolor{keywordflow}{if}(len\ <=\ \mbox{\hyperlink{classtlm_1_1tlm__endian__context_a8e7bccafad1987ed0053e00f9ec422fb}{dbuf\_size}})\ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{00191\ \ \ \ \ \ \ \textcolor{keywordflow}{if}(\mbox{\hyperlink{classtlm_1_1tlm__endian__context_a8e7bccafad1987ed0053e00f9ec422fb}{dbuf\_size}}\ >\ 0)\ \textcolor{keyword}{delete}\ []\ \mbox{\hyperlink{classtlm_1_1tlm__endian__context_a881e78625efff381112316271f8c0baa}{new\_dbuf}};}
+\DoxyCodeLine{00192\ \ \ \ \ \ \ \mbox{\hyperlink{classtlm_1_1tlm__endian__context_a881e78625efff381112316271f8c0baa}{new\_dbuf}}\ =\ \textcolor{keyword}{new}\ \mbox{\hyperlink{tlm__endian__conv_8h_aa8ddf20cdd716b652e76e23e5e700893}{uchar}}[len];}
+\DoxyCodeLine{00193\ \ \ \ \ \ \ \mbox{\hyperlink{classtlm_1_1tlm__endian__context_a8e7bccafad1987ed0053e00f9ec422fb}{dbuf\_size}}\ =\ len;}
+\DoxyCodeLine{00194\ \ \ \ \ \}}
+\DoxyCodeLine{00195\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classtlm_1_1tlm__endian__context_ae291fca8f514174828d9d17b3adbe4ba}{establish\_bebuf}}(\textcolor{keywordtype}{int}\ len)\ \{}
+\DoxyCodeLine{00196\ \ \ \ \ \ \ \textcolor{keywordflow}{if}(len\ <=\ \mbox{\hyperlink{classtlm_1_1tlm__endian__context_ac78a65ded76e412bac9973765c6d7ae5}{bebuf\_size}})\ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{00197\ \ \ \ \ \ \ \textcolor{keywordflow}{if}(\mbox{\hyperlink{classtlm_1_1tlm__endian__context_ac78a65ded76e412bac9973765c6d7ae5}{bebuf\_size}}\ >\ 0)\ \textcolor{keyword}{delete}\ []\ \mbox{\hyperlink{classtlm_1_1tlm__endian__context_a32ee9f4cae59221799c53558e01aff04}{new\_bebuf}};}
+\DoxyCodeLine{00198\ \ \ \ \ \ \ \mbox{\hyperlink{classtlm_1_1tlm__endian__context_a32ee9f4cae59221799c53558e01aff04}{new\_bebuf}}\ =\ \textcolor{keyword}{new}\ \mbox{\hyperlink{tlm__endian__conv_8h_aa8ddf20cdd716b652e76e23e5e700893}{uchar}}[len];}
+\DoxyCodeLine{00199\ \ \ \ \ \ \ \mbox{\hyperlink{classtlm_1_1tlm__endian__context_ac78a65ded76e412bac9973765c6d7ae5}{bebuf\_size}}\ =\ len;}
+\DoxyCodeLine{00200\ \ \ \ \ \}}
+\DoxyCodeLine{00201\ }
+\DoxyCodeLine{00202\ \ \ \ \ \textcolor{comment}{//\ required\ for\ extension\ management}}
+\DoxyCodeLine{00203\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classtlm_1_1tlm__endian__context_a260582657c6ebcd9f650d5df38242c7b}{free}}()\ \{}
+\DoxyCodeLine{00204\ \ \ \ \ \ \ global\_tlm\_endian\_context\_pool.push(\textcolor{keyword}{this});}
+\DoxyCodeLine{00205\ \ \ \ \ \}}
+\DoxyCodeLine{00206\ \ \ \ \ \mbox{\hyperlink{classtlm_1_1tlm__extension__base}{tlm\_extension\_base}}*\ \mbox{\hyperlink{classtlm_1_1tlm__endian__context_aa615521e58db5aae98fc59e26c88d361}{clone}}()\textcolor{keyword}{\ const\ }\{\textcolor{keywordflow}{return}\ 0;\}}
+\DoxyCodeLine{00207\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classtlm_1_1tlm__endian__context_a3ae93523f40ea5aa42e29992a4ef2ac0}{copy\_from}}(\mbox{\hyperlink{classtlm_1_1tlm__extension__base}{tlm\_extension\_base}}\ \textcolor{keyword}{const}\ \&)\ \{\textcolor{keywordflow}{return};\}}
+\DoxyCodeLine{00208\ }
+\DoxyCodeLine{00209\ \ \ \ \ \textcolor{comment}{//\ for\ pooling}}
+\DoxyCodeLine{00210\ \ \ \ \ \mbox{\hyperlink{classtlm_1_1tlm__endian__context}{tlm\_endian\_context}}\ *\mbox{\hyperlink{classtlm_1_1tlm__endian__context_a4c0fdcaea2fff64e1eeb8b3650bc8686}{next}};}
+\DoxyCodeLine{00211\ \};}
+\DoxyCodeLine{00212\ \textcolor{comment}{//\ Assumptions\ about\ transaction\ contexts:}}
+\DoxyCodeLine{00213\ \textcolor{comment}{//\ 1)\ only\ the\ address\ attribute\ of\ a\ transaction}}
+\DoxyCodeLine{00214\ \textcolor{comment}{//\ is\ mutable.\ \ all\ other\ attributes\ are\ unchanged\ from\ the\ request\ to}}
+\DoxyCodeLine{00215\ \textcolor{comment}{//\ response\ side\ conversion.}}
+\DoxyCodeLine{00216\ \textcolor{comment}{//\ 2)\ the\ conversion\ functions\ in\ this\ file\ do\ not\ respect\ the\ mutability}}
+\DoxyCodeLine{00217\ \textcolor{comment}{//\ rules\ and\ do\ not\ put\ the\ transaction\ back\ into\ its\ original\ state\ after}}
+\DoxyCodeLine{00218\ \textcolor{comment}{//\ completion.\ \ so\ if\ the\ initiator\ has\ any\ cleaning\ up\ to\ do\ (eg\ of\ byte}}
+\DoxyCodeLine{00219\ \textcolor{comment}{//\ enable\ buffers),\ it\ needs\ to\ store\ its\ own\ context.\ \ the\ transaction}}
+\DoxyCodeLine{00220\ \textcolor{comment}{//\ returned\ to\ the\ initiator\ may\ contain\ pointers\ to\ data\ and\ byte\ enable}}
+\DoxyCodeLine{00221\ \textcolor{comment}{//\ that\ can/must\ not\ be\ deleted.}}
+\DoxyCodeLine{00222\ \textcolor{comment}{//\ 3)\ the\ conversion\ functions\ in\ this\ file\ use\ an\ extension\ to\ store}}
+\DoxyCodeLine{00223\ \textcolor{comment}{//\ context\ information.\ \ they\ do\ not\ remove\ this\ extension.\ \ the\ initiator}}
+\DoxyCodeLine{00224\ \textcolor{comment}{//\ should\ not\ remove\ it\ unless\ it\ deletes\ the\ generic\ payload}}
+\DoxyCodeLine{00225\ \textcolor{comment}{//\ object.}}
+\DoxyCodeLine{00226\ }
+\DoxyCodeLine{00227\ \textcolor{keyword}{inline}\ \mbox{\hyperlink{classtlm_1_1tlm__endian__context}{tlm\_endian\_context}}\ *\mbox{\hyperlink{namespacetlm_a41181c4fd8f02a320ab88b4f99c8355a}{establish\_context}}(\mbox{\hyperlink{classtlm_1_1tlm__generic__payload}{tlm\_generic\_payload}}\ *\mbox{\hyperlink{class_sysc_add__pv}{txn}})\ \{}
+\DoxyCodeLine{00228\ \ \ \mbox{\hyperlink{classtlm_1_1tlm__endian__context}{tlm\_endian\_context}}\ *\mbox{\hyperlink{class_sysc_add__pv}{tc}}\ =\ \mbox{\hyperlink{class_sysc_add__pv}{txn}}-\/>get\_extension<\mbox{\hyperlink{classtlm_1_1tlm__endian__context}{tlm\_endian\_context}}>();}
+\DoxyCodeLine{00229\ \ \ \textcolor{keywordflow}{if}(\mbox{\hyperlink{class_sysc_add__pv}{tc}}\ ==\ 0)\ \{}
+\DoxyCodeLine{00230\ \ \ \ \ \mbox{\hyperlink{class_sysc_add__pv}{tc}}\ =\ global\_tlm\_endian\_context\_pool.pop();}
+\DoxyCodeLine{00231\ \ \ \ \ \mbox{\hyperlink{class_sysc_add__pv}{txn}}-\/>set\_extension(\mbox{\hyperlink{class_sysc_add__pv}{tc}});}
+\DoxyCodeLine{00232\ \ \ \}}
+\DoxyCodeLine{00233\ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{class_sysc_add__pv}{tc}};}
+\DoxyCodeLine{00234\ \}}
+\DoxyCodeLine{00235\ }
+\DoxyCodeLine{00236\ \textcolor{keyword}{inline}\ \mbox{\hyperlink{classtlm_1_1tlm__endian__context__pool_a55547e739563478725d4a5a089147050}{tlm\_endian\_context\_pool::tlm\_endian\_context\_pool}}()\ :\ first(0)\ \{\}}
+\DoxyCodeLine{00237\ }
+\DoxyCodeLine{00238\ \textcolor{keyword}{inline}\ \mbox{\hyperlink{classtlm_1_1tlm__endian__context__pool_afb3b7b00dfcbb56ff7c16e4b8423cec7}{tlm\_endian\_context\_pool::\string~tlm\_endian\_context\_pool}}()\ \{}
+\DoxyCodeLine{00239\ \ \ \textcolor{keywordflow}{while}(\mbox{\hyperlink{classtlm_1_1tlm__endian__context__pool_a73dea6477d0aa6498f04c664432c5a76}{first}}\ !=\ 0)\ \{}
+\DoxyCodeLine{00240\ \ \ \ \ \mbox{\hyperlink{classtlm_1_1tlm__endian__context}{tlm\_endian\_context}}\ *next\ =\ \mbox{\hyperlink{classtlm_1_1tlm__endian__context__pool_a73dea6477d0aa6498f04c664432c5a76}{first}}-\/>\mbox{\hyperlink{classtlm_1_1tlm__endian__context_a4c0fdcaea2fff64e1eeb8b3650bc8686}{next}};}
+\DoxyCodeLine{00241\ \ \ \ \ \textcolor{keyword}{delete}\ \mbox{\hyperlink{classtlm_1_1tlm__endian__context__pool_a73dea6477d0aa6498f04c664432c5a76}{first}};}
+\DoxyCodeLine{00242\ \ \ \ \ \mbox{\hyperlink{classtlm_1_1tlm__endian__context__pool_a73dea6477d0aa6498f04c664432c5a76}{first}}\ =\ next;}
+\DoxyCodeLine{00243\ \ \ \}}
+\DoxyCodeLine{00244\ \}}
+\DoxyCodeLine{00245\ }
+\DoxyCodeLine{00246\ \mbox{\hyperlink{classtlm_1_1tlm__endian__context}{tlm\_endian\_context}}\ *\mbox{\hyperlink{classtlm_1_1tlm__endian__context__pool_aa38c31e12f7ccc9a2610442de40074a8}{tlm\_endian\_context\_pool::pop}}()\ \{}
+\DoxyCodeLine{00247\ \ \ \textcolor{keywordflow}{if}(\mbox{\hyperlink{classtlm_1_1tlm__endian__context__pool_a73dea6477d0aa6498f04c664432c5a76}{first}}\ ==\ 0)\ \textcolor{keywordflow}{return}\ \textcolor{keyword}{new}\ \mbox{\hyperlink{classtlm_1_1tlm__endian__context}{tlm\_endian\_context}};}
+\DoxyCodeLine{00248\ \ \ \mbox{\hyperlink{classtlm_1_1tlm__endian__context}{tlm\_endian\_context}}\ *\mbox{\hyperlink{class_sysc_add__pv}{r}}\ =\ \mbox{\hyperlink{classtlm_1_1tlm__endian__context__pool_a73dea6477d0aa6498f04c664432c5a76}{first}};}
+\DoxyCodeLine{00249\ \ \ \mbox{\hyperlink{classtlm_1_1tlm__endian__context__pool_a73dea6477d0aa6498f04c664432c5a76}{first}}\ =\ \mbox{\hyperlink{classtlm_1_1tlm__endian__context__pool_a73dea6477d0aa6498f04c664432c5a76}{first}}-\/>\mbox{\hyperlink{classtlm_1_1tlm__endian__context_a4c0fdcaea2fff64e1eeb8b3650bc8686}{next}};}
+\DoxyCodeLine{00250\ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{class_sysc_add__pv}{r}};}
+\DoxyCodeLine{00251\ \}}
+\DoxyCodeLine{00252\ }
+\DoxyCodeLine{00253\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classtlm_1_1tlm__endian__context__pool_a9fdbced80c0806f06b828ee8d8abbe4d}{tlm\_endian\_context\_pool::push}}(\mbox{\hyperlink{classtlm_1_1tlm__endian__context}{tlm\_endian\_context}}\ *\mbox{\hyperlink{class_sysc_add__pv}{c}})\ \{}
+\DoxyCodeLine{00254\ \ \ \mbox{\hyperlink{class_sysc_add__pv}{c}}-\/>next\ =\ \mbox{\hyperlink{classtlm_1_1tlm__endian__context__pool_a73dea6477d0aa6498f04c664432c5a76}{first}};}
+\DoxyCodeLine{00255\ \ \ \mbox{\hyperlink{classtlm_1_1tlm__endian__context__pool_a73dea6477d0aa6498f04c664432c5a76}{first}}\ =\ \mbox{\hyperlink{class_sysc_add__pv}{c}};}
+\DoxyCodeLine{00256\ \}}
+\DoxyCodeLine{00257\ }
+\DoxyCodeLine{00258\ }
+\DoxyCodeLine{00259\ \textcolor{comment}{//\ a\ set\ of\ constants\ for\ efficient\ filling\ of\ byte\ enables}}
+\DoxyCodeLine{00260\ \textcolor{keyword}{template}<\textcolor{keyword}{class}\ D>\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classtlm_1_1tlm__bool}{tlm\_bool}}\ \{}
+\DoxyCodeLine{00261\ \ \ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00262\ \ \ \ \ \textcolor{keyword}{static}\ \mbox{\hyperlink{class_sysc_add__pv}{D}}\ \mbox{\hyperlink{classtlm_1_1tlm__bool_a4d94e18943c3348ffc1a63d42dc7c05f}{TLM\_TRUE}};}
+\DoxyCodeLine{00263\ \ \ \ \ \textcolor{keyword}{static}\ \mbox{\hyperlink{class_sysc_add__pv}{D}}\ \mbox{\hyperlink{classtlm_1_1tlm__bool_a05e9260a8b590567d128501634a3c1f9}{TLM\_FALSE}};}
+\DoxyCodeLine{00264\ \ \ \ \ \textcolor{keyword}{static}\ \mbox{\hyperlink{class_sysc_add__pv}{D}}\ \mbox{\hyperlink{classtlm_1_1tlm__bool_a09a7ec73e84adb2c54878081e61e3799}{make\_uchar\_array}}(\mbox{\hyperlink{tlm__endian__conv_8h_aa8ddf20cdd716b652e76e23e5e700893}{uchar}}\ \mbox{\hyperlink{class_sysc_add__pv}{c}})\ \{}
+\DoxyCodeLine{00265\ \ \ \ \ \ \ \mbox{\hyperlink{class_sysc_add__pv}{D}}\ d;}
+\DoxyCodeLine{00266\ \ \ \ \ \ \ \mbox{\hyperlink{tlm__endian__conv_8h_aa8ddf20cdd716b652e76e23e5e700893}{uchar}}\ *\mbox{\hyperlink{class_sysc_add__pv}{tmp}}\ =\ (\mbox{\hyperlink{tlm__endian__conv_8h_aa8ddf20cdd716b652e76e23e5e700893}{uchar}}\ *)(\&d);}
+\DoxyCodeLine{00267\ \ \ \ \ \ \ \textcolor{keywordflow}{for}(\mbox{\hyperlink{class_sysc_add__pv}{ptrdiff\_t}}\ \mbox{\hyperlink{class_sysc_add__pv}{i}}=0;\ \mbox{\hyperlink{class_sysc_add__pv}{i}}!=\textcolor{keyword}{sizeof}(\mbox{\hyperlink{class_sysc_add__pv}{D}});\ \mbox{\hyperlink{class_sysc_add__pv}{i}}++)\ \mbox{\hyperlink{class_sysc_add__pv}{tmp}}[\mbox{\hyperlink{class_sysc_add__pv}{i}}]\ =\ \mbox{\hyperlink{class_sysc_add__pv}{c}};\ \ \textcolor{comment}{//\ 64BITFIX\ negligable\ risk\ but\ easy\ fix\ //}}
+\DoxyCodeLine{00268\ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ d;}
+\DoxyCodeLine{00269\ \ \ \ \ \}}
+\DoxyCodeLine{00270\ \ \ \ \ \textcolor{comment}{//\ also\ provides\ an\ syntax-\/efficient\ tester,\ using\ a}}
+\DoxyCodeLine{00271\ \ \ \ \ \textcolor{comment}{//\ copy\ constuctor\ and\ an\ implicit\ cast\ to\ boolean}}
+\DoxyCodeLine{00272\ \ \ \ \ \mbox{\hyperlink{classtlm_1_1tlm__bool_a9824e7f98684f1894b3db42108be58ef}{tlm\_bool}}(\mbox{\hyperlink{class_sysc_add__pv}{D}}\ \&d)\ :\ \mbox{\hyperlink{classtlm_1_1tlm__bool_ae9862c124610a5d8e01834ce953d5aef}{b}}(*((\mbox{\hyperlink{tlm__endian__conv_8h_aa8ddf20cdd716b652e76e23e5e700893}{uchar}}*)\&d)\ !=\ \mbox{\hyperlink{tlm__gp_8h_aee6c671fa7a49f01da4a966f33067175}{TLM\_BYTE\_DISABLED}})\ \{\}}
+\DoxyCodeLine{00273\ \ \ \ \ \textcolor{keyword}{operator}\ \mbox{\hyperlink{class_sysc_add__pv}{bool}}()\textcolor{keyword}{\ const\ }\{\textcolor{keywordflow}{return}\ \mbox{\hyperlink{classtlm_1_1tlm__bool_ae9862c124610a5d8e01834ce953d5aef}{b}};\}}
+\DoxyCodeLine{00274\ \ \ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00275\ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{classtlm_1_1tlm__bool_ae9862c124610a5d8e01834ce953d5aef}{b}};}
+\DoxyCodeLine{00276\ \};}
+\DoxyCodeLine{00277\ }
+\DoxyCodeLine{00278\ \textcolor{keyword}{template}<\textcolor{keyword}{class}\ D>\ \mbox{\hyperlink{class_sysc_add__pv}{D}}\ \mbox{\hyperlink{classtlm_1_1tlm__bool}{tlm\_bool<D>::TLM\_TRUE}}}
+\DoxyCodeLine{00279\ \ \ =\ \mbox{\hyperlink{classtlm_1_1tlm__bool_a09a7ec73e84adb2c54878081e61e3799}{tlm\_bool<D>::make\_uchar\_array}}(\mbox{\hyperlink{tlm__gp_8h_af8d2c3eb34ebd54e62bb2016614a827f}{TLM\_BYTE\_ENABLED}});}
+\DoxyCodeLine{00280\ \textcolor{keyword}{template}<\textcolor{keyword}{class}\ D>\ \mbox{\hyperlink{class_sysc_add__pv}{D}}\ \mbox{\hyperlink{classtlm_1_1tlm__bool}{tlm\_bool<D>::TLM\_FALSE}}}
+\DoxyCodeLine{00281\ \ \ =\ \mbox{\hyperlink{classtlm_1_1tlm__bool_a09a7ec73e84adb2c54878081e61e3799}{tlm\_bool<D>::make\_uchar\_array}}(\mbox{\hyperlink{tlm__gp_8h_aee6c671fa7a49f01da4a966f33067175}{TLM\_BYTE\_DISABLED}});}
+\DoxyCodeLine{00282\ }
+\DoxyCodeLine{00283\ }
+\DoxyCodeLine{00284\ }
+\DoxyCodeLine{00286\ \textcolor{comment}{//\ function\ set\ (0):\ Utilities}}
+\DoxyCodeLine{00287\ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{namespacetlm_a00c757c3a05f6f752c3517548d3d9bfc}{copy\_db0}}(\mbox{\hyperlink{tlm__endian__conv_8h_aa8ddf20cdd716b652e76e23e5e700893}{uchar}}\ *\mbox{\hyperlink{class_sysc_add__pv}{src1}},\ \mbox{\hyperlink{tlm__endian__conv_8h_aa8ddf20cdd716b652e76e23e5e700893}{uchar}}\ *\mbox{\hyperlink{class_sysc_add__pv}{src2}},\ \mbox{\hyperlink{tlm__endian__conv_8h_aa8ddf20cdd716b652e76e23e5e700893}{uchar}}\ *\mbox{\hyperlink{class_sysc_add__pv}{dest1}},\ \mbox{\hyperlink{tlm__endian__conv_8h_aa8ddf20cdd716b652e76e23e5e700893}{uchar}}\ *\mbox{\hyperlink{class_sysc_add__pv}{dest2}})\ \{}
+\DoxyCodeLine{00288\ \ \ *\mbox{\hyperlink{class_sysc_add__pv}{dest1}}\ =\ *\mbox{\hyperlink{class_sysc_add__pv}{src1}};}
+\DoxyCodeLine{00289\ \ \ *\mbox{\hyperlink{class_sysc_add__pv}{dest2}}\ =\ *\mbox{\hyperlink{class_sysc_add__pv}{src2}};}
+\DoxyCodeLine{00290\ \}}
+\DoxyCodeLine{00291\ }
+\DoxyCodeLine{00292\ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{namespacetlm_aa46881a54275e9de75dd42d68c596775}{copy\_dbtrue0}}(\mbox{\hyperlink{tlm__endian__conv_8h_aa8ddf20cdd716b652e76e23e5e700893}{uchar}}\ *\mbox{\hyperlink{class_sysc_add__pv}{src1}},\ \mbox{\hyperlink{tlm__endian__conv_8h_aa8ddf20cdd716b652e76e23e5e700893}{uchar}}\ *\ \textcolor{comment}{/*\ src2\ */},\ \mbox{\hyperlink{tlm__endian__conv_8h_aa8ddf20cdd716b652e76e23e5e700893}{uchar}}\ *\mbox{\hyperlink{class_sysc_add__pv}{dest1}},\ \mbox{\hyperlink{tlm__endian__conv_8h_aa8ddf20cdd716b652e76e23e5e700893}{uchar}}\ *\mbox{\hyperlink{class_sysc_add__pv}{dest2}})\ \{}
+\DoxyCodeLine{00293\ \ \ *\mbox{\hyperlink{class_sysc_add__pv}{dest1}}\ =\ *\mbox{\hyperlink{class_sysc_add__pv}{src1}};}
+\DoxyCodeLine{00294\ \ \ *\mbox{\hyperlink{class_sysc_add__pv}{dest2}}\ =\ \mbox{\hyperlink{tlm__gp_8h_af8d2c3eb34ebd54e62bb2016614a827f}{TLM\_BYTE\_ENABLED}};}
+\DoxyCodeLine{00295\ \}}
+\DoxyCodeLine{00296\ }
+\DoxyCodeLine{00297\ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{namespacetlm_a56005dfa954345b1430b139de4b8d71b}{copy\_btrue0}}(\mbox{\hyperlink{tlm__endian__conv_8h_aa8ddf20cdd716b652e76e23e5e700893}{uchar}}\ *\ \textcolor{comment}{/*\ src1\ */},\ \mbox{\hyperlink{tlm__endian__conv_8h_aa8ddf20cdd716b652e76e23e5e700893}{uchar}}\ *\ \textcolor{comment}{/*\ src2\ */},\ \mbox{\hyperlink{tlm__endian__conv_8h_aa8ddf20cdd716b652e76e23e5e700893}{uchar}}\ *\ \textcolor{comment}{/*\ dest1\ */},\ \mbox{\hyperlink{tlm__endian__conv_8h_aa8ddf20cdd716b652e76e23e5e700893}{uchar}}\ *\mbox{\hyperlink{class_sysc_add__pv}{dest2}})\ \{}
+\DoxyCodeLine{00298\ \ \ *\mbox{\hyperlink{class_sysc_add__pv}{dest2}}\ =\ \mbox{\hyperlink{tlm__gp_8h_af8d2c3eb34ebd54e62bb2016614a827f}{TLM\_BYTE\_ENABLED}};}
+\DoxyCodeLine{00299\ \}}
+\DoxyCodeLine{00300\ }
+\DoxyCodeLine{00301\ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{namespacetlm_ae0817f2a223b5c6d7b67573f9c2fcab7}{copy\_b0}}(\mbox{\hyperlink{tlm__endian__conv_8h_aa8ddf20cdd716b652e76e23e5e700893}{uchar}}\ *\ \textcolor{comment}{/*\ src1\ */},\ \mbox{\hyperlink{tlm__endian__conv_8h_aa8ddf20cdd716b652e76e23e5e700893}{uchar}}\ *\mbox{\hyperlink{class_sysc_add__pv}{src2}},\ \mbox{\hyperlink{tlm__endian__conv_8h_aa8ddf20cdd716b652e76e23e5e700893}{uchar}}\ *\ \textcolor{comment}{/*\ dest1\ */},\ \mbox{\hyperlink{tlm__endian__conv_8h_aa8ddf20cdd716b652e76e23e5e700893}{uchar}}\ *\mbox{\hyperlink{class_sysc_add__pv}{dest2}})\ \{}
+\DoxyCodeLine{00302\ \ \ *\mbox{\hyperlink{class_sysc_add__pv}{dest2}}\ =\ *\mbox{\hyperlink{class_sysc_add__pv}{src2}};}
+\DoxyCodeLine{00303\ \}}
+\DoxyCodeLine{00304\ }
+\DoxyCodeLine{00305\ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{namespacetlm_a7f9767c130155d0424b2ccad468f75f5}{copy\_dbyb0}}(\mbox{\hyperlink{tlm__endian__conv_8h_aa8ddf20cdd716b652e76e23e5e700893}{uchar}}\ *\mbox{\hyperlink{class_sysc_add__pv}{src1}},\ \mbox{\hyperlink{tlm__endian__conv_8h_aa8ddf20cdd716b652e76e23e5e700893}{uchar}}\ *\ \textcolor{comment}{/*\ src2\ */},\ \mbox{\hyperlink{tlm__endian__conv_8h_aa8ddf20cdd716b652e76e23e5e700893}{uchar}}\ *\mbox{\hyperlink{class_sysc_add__pv}{dest1}},\ \mbox{\hyperlink{tlm__endian__conv_8h_aa8ddf20cdd716b652e76e23e5e700893}{uchar}}\ *\mbox{\hyperlink{class_sysc_add__pv}{dest2}})\ \{}
+\DoxyCodeLine{00306\ \ \ \textcolor{keywordflow}{if}(*\mbox{\hyperlink{class_sysc_add__pv}{dest2}}\ ==\ \mbox{\hyperlink{tlm__gp_8h_af8d2c3eb34ebd54e62bb2016614a827f}{TLM\_BYTE\_ENABLED}})\ *\mbox{\hyperlink{class_sysc_add__pv}{src1}}\ =\ *\mbox{\hyperlink{class_sysc_add__pv}{dest1}};}
+\DoxyCodeLine{00307\ \}}
+\DoxyCodeLine{00308\ }
+\DoxyCodeLine{00309\ }
+\DoxyCodeLine{00310\ \textcolor{keyword}{template}<\textcolor{keyword}{class\ }\mbox{\hyperlink{class_sysc_add__pv}{D}},}
+\DoxyCodeLine{00311\ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_sysc_add__pv}{COPY}}(\mbox{\hyperlink{tlm__endian__conv_8h_aa8ddf20cdd716b652e76e23e5e700893}{uchar}}\ *\mbox{\hyperlink{class_sysc_add__pv}{he\_d}},\ \mbox{\hyperlink{tlm__endian__conv_8h_aa8ddf20cdd716b652e76e23e5e700893}{uchar}}\ *\mbox{\hyperlink{class_sysc_add__pv}{he\_b}},\ \mbox{\hyperlink{tlm__endian__conv_8h_aa8ddf20cdd716b652e76e23e5e700893}{uchar}}\ *\mbox{\hyperlink{class_sysc_add__pv}{ie\_d}},\ \mbox{\hyperlink{tlm__endian__conv_8h_aa8ddf20cdd716b652e76e23e5e700893}{uchar}}\ *\mbox{\hyperlink{class_sysc_add__pv}{ie\_b}})>}
+\DoxyCodeLine{00312\ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{namespacetlm_a359c8efb8d0f3bfa77d00495720f72e3}{loop\_generic0}}(\textcolor{keywordtype}{int}\ \mbox{\hyperlink{class_sysc_add__pv}{new\_len}},\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{class_sysc_add__pv}{new\_stream\_width}},}
+\DoxyCodeLine{00313\ \ \ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{class_sysc_add__pv}{orig\_stream\_width}},\ \textcolor{keywordtype}{int}\ sizeof\_databus,}
+\DoxyCodeLine{00314\ \ \ \mbox{\hyperlink{class_sysc_add__pv}{sc\_dt::uint64}}\ \mbox{\hyperlink{class_sysc_add__pv}{orig\_start\_address}},\ \mbox{\hyperlink{class_sysc_add__pv}{sc\_dt::uint64}}\ \mbox{\hyperlink{class_sysc_add__pv}{new\_start\_address}},\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{class_sysc_add__pv}{be\_length}},}
+\DoxyCodeLine{00315\ \ \ \mbox{\hyperlink{tlm__endian__conv_8h_aa8ddf20cdd716b652e76e23e5e700893}{uchar}}\ *\mbox{\hyperlink{class_sysc_add__pv}{ie\_data}},\ \mbox{\hyperlink{tlm__endian__conv_8h_aa8ddf20cdd716b652e76e23e5e700893}{uchar}}\ *\mbox{\hyperlink{class_sysc_add__pv}{ie\_be}},\ \mbox{\hyperlink{tlm__endian__conv_8h_aa8ddf20cdd716b652e76e23e5e700893}{uchar}}\ *\mbox{\hyperlink{class_sysc_add__pv}{he\_data}},\ \mbox{\hyperlink{tlm__endian__conv_8h_aa8ddf20cdd716b652e76e23e5e700893}{uchar}}\ *\mbox{\hyperlink{class_sysc_add__pv}{he\_be}})\ \{}
+\DoxyCodeLine{00316\ }
+\DoxyCodeLine{00317\ \ \ \textcolor{keywordflow}{for}(\textcolor{keywordtype}{int}\ \mbox{\hyperlink{class_sysc_add__pv}{orig\_sword}}\ =\ 0,\ \mbox{\hyperlink{class_sysc_add__pv}{new\_sword}}\ =\ 0;\ \mbox{\hyperlink{class_sysc_add__pv}{new\_sword}}\ <\ \mbox{\hyperlink{class_sysc_add__pv}{new\_len}};}
+\DoxyCodeLine{00318\ \ \ \ \ \ \ \mbox{\hyperlink{class_sysc_add__pv}{new\_sword}}\ +=\ \mbox{\hyperlink{class_sysc_add__pv}{new\_stream\_width}},\ \mbox{\hyperlink{class_sysc_add__pv}{orig\_sword}}\ +=\ \mbox{\hyperlink{class_sysc_add__pv}{orig\_stream\_width}})\ \{}
+\DoxyCodeLine{00319\ }
+\DoxyCodeLine{00320\ \ \ \ \ \mbox{\hyperlink{class_sysc_add__pv}{sc\_dt::uint64}}\ \mbox{\hyperlink{class_sysc_add__pv}{ie\_addr}}\ =\ \mbox{\hyperlink{class_sysc_add__pv}{orig\_start\_address}};}
+\DoxyCodeLine{00321\ \ \ \ \ \textcolor{keywordflow}{for}(\textcolor{keywordtype}{int}\ \mbox{\hyperlink{class_sysc_add__pv}{orig\_dword}}\ =\ \mbox{\hyperlink{class_sysc_add__pv}{orig\_sword}};}
+\DoxyCodeLine{00322\ \ \ \ \ \ \ \mbox{\hyperlink{class_sysc_add__pv}{orig\_dword}}\ <\ \mbox{\hyperlink{class_sysc_add__pv}{orig\_sword}}\ +\ \mbox{\hyperlink{class_sysc_add__pv}{orig\_stream\_width}};\ \mbox{\hyperlink{class_sysc_add__pv}{orig\_dword}}\ +=\ \textcolor{keyword}{sizeof}(\mbox{\hyperlink{class_sysc_add__pv}{D}}))\ \{}
+\DoxyCodeLine{00323\ }
+\DoxyCodeLine{00324\ \ \ \ \ \ \ \textcolor{keywordflow}{for}(\textcolor{keywordtype}{int}\ \mbox{\hyperlink{class_sysc_add__pv}{curr\_byte}}\ =\ \mbox{\hyperlink{class_sysc_add__pv}{orig\_dword}}\ +\ \textcolor{keyword}{sizeof}(\mbox{\hyperlink{class_sysc_add__pv}{D}})\ -\/\ 1;}
+\DoxyCodeLine{00325\ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_sysc_add__pv}{curr\_byte}}\ >=\ \mbox{\hyperlink{class_sysc_add__pv}{orig\_dword}};\ \mbox{\hyperlink{class_sysc_add__pv}{curr\_byte}}-\/-\/)\ \{}
+\DoxyCodeLine{00326\ }
+\DoxyCodeLine{00327\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_sysc_add__pv}{ptrdiff\_t}}\ \mbox{\hyperlink{class_sysc_add__pv}{he\_index}}\ =\ ((\mbox{\hyperlink{class_sysc_add__pv}{ie\_addr}}++)\ \string^\ (sizeof\_databus\ -\/\ 1))}
+\DoxyCodeLine{00328\ \ \ \ \ \ \ \ \ \ \ -\/\ \mbox{\hyperlink{class_sysc_add__pv}{new\_start\_address}}\ +\ \mbox{\hyperlink{class_sysc_add__pv}{new\_sword}};\ \ \textcolor{comment}{//\ 64BITFIX\ //}}
+\DoxyCodeLine{00329\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_sysc_add__pv}{COPY}}(\mbox{\hyperlink{class_sysc_add__pv}{ie\_data}}+\mbox{\hyperlink{class_sysc_add__pv}{curr\_byte}},}
+\DoxyCodeLine{00330\ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_sysc_add__pv}{ie\_be}}+(\mbox{\hyperlink{class_sysc_add__pv}{curr\_byte}}\ \%\ \mbox{\hyperlink{class_sysc_add__pv}{be\_length}}),\ \ \textcolor{comment}{//\ 64BITRISK\ no\ risk\ of\ overflow,\ always\ positive\ //}}
+\DoxyCodeLine{00331\ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_sysc_add__pv}{he\_data}}+\mbox{\hyperlink{class_sysc_add__pv}{he\_index}},\ \mbox{\hyperlink{class_sysc_add__pv}{he\_be}}+\mbox{\hyperlink{class_sysc_add__pv}{he\_index}});}
+\DoxyCodeLine{00332\ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00333\ \ \ \ \ \}}
+\DoxyCodeLine{00334\ \ \ \}}
+\DoxyCodeLine{00335\ \}}
+\DoxyCodeLine{00336\ }
+\DoxyCodeLine{00337\ }
+\DoxyCodeLine{00339\ \textcolor{comment}{//\ function\ set\ (0):\ Response}}
+\DoxyCodeLine{00340\ \textcolor{keyword}{template}<\textcolor{keyword}{class}\ DATAWORD>\ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{void}}
+\DoxyCodeLine{00341\ \mbox{\hyperlink{namespacetlm_abb3081374516eb70f1bdbf0febb38338}{tlm\_from\_hostendian\_generic}}(\mbox{\hyperlink{classtlm_1_1tlm__generic__payload}{tlm\_generic\_payload}}\ *\mbox{\hyperlink{class_sysc_add__pv}{txn}},\ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{int}\ sizeof\_databus)\ \{}
+\DoxyCodeLine{00342\ \ \ \textcolor{keywordflow}{if}(\mbox{\hyperlink{class_sysc_add__pv}{txn}}-\/>is\_read())\ \{}
+\DoxyCodeLine{00343\ \ \ \ \ \mbox{\hyperlink{classtlm_1_1tlm__endian__context}{tlm\_endian\_context}}\ *\mbox{\hyperlink{class_sysc_add__pv}{tc}}\ =\ \mbox{\hyperlink{class_sysc_add__pv}{txn}}-\/>template\ \mbox{\hyperlink{class_sysc_add__pv}{get\_extension<tlm\_endian\_context>}}();}
+\DoxyCodeLine{00344\ \ \ \ \ \mbox{\hyperlink{class_sysc_add__pv}{loop\_generic0<DATAWORD,\ \&copy\_dbyb0>}}(\mbox{\hyperlink{class_sysc_add__pv}{txn}}-\/>get\_data\_length(),}
+\DoxyCodeLine{00345\ \ \ \ \ \ \ \mbox{\hyperlink{class_sysc_add__pv}{txn}}-\/>get\_streaming\_width(),\ \mbox{\hyperlink{class_sysc_add__pv}{tc}}-\/>stream\_width,\ sizeof\_databus,\ \mbox{\hyperlink{class_sysc_add__pv}{tc}}-\/>address,}
+\DoxyCodeLine{00346\ \ \ \ \ \ \ \mbox{\hyperlink{class_sysc_add__pv}{tc}}-\/>new\_address,\ \mbox{\hyperlink{class_sysc_add__pv}{txn}}-\/>get\_data\_length(),\ \mbox{\hyperlink{class_sysc_add__pv}{tc}}-\/>data\_ptr,\ 0,\ \mbox{\hyperlink{class_sysc_add__pv}{txn}}-\/>get\_data\_ptr(),}
+\DoxyCodeLine{00347\ \ \ \ \ \ \ \mbox{\hyperlink{class_sysc_add__pv}{txn}}-\/>get\_byte\_enable\_ptr());}
+\DoxyCodeLine{00348\ \ \ \}}
+\DoxyCodeLine{00349\ \}}
+\DoxyCodeLine{00350\ }
+\DoxyCodeLine{00351\ }
+\DoxyCodeLine{00353\ \textcolor{comment}{//\ function\ set\ (0):\ Request}}
+\DoxyCodeLine{00354\ \textcolor{keyword}{template}<\textcolor{keyword}{class}\ DATAWORD>\ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{void}}
+\DoxyCodeLine{00355\ \mbox{\hyperlink{namespacetlm_a6e25722bab5145be565bf90088ea9ff4}{tlm\_to\_hostendian\_generic}}(\mbox{\hyperlink{classtlm_1_1tlm__generic__payload}{tlm\_generic\_payload}}\ *\mbox{\hyperlink{class_sysc_add__pv}{txn}},\ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{int}\ sizeof\_databus)\ \{}
+\DoxyCodeLine{00356\ \ \ \mbox{\hyperlink{classtlm_1_1tlm__endian__context}{tlm\_endian\_context}}\ *\mbox{\hyperlink{class_sysc_add__pv}{tc}}\ =\ \mbox{\hyperlink{namespacetlm_a41181c4fd8f02a320ab88b4f99c8355a}{establish\_context}}(\mbox{\hyperlink{class_sysc_add__pv}{txn}});}
+\DoxyCodeLine{00357\ \ \ \mbox{\hyperlink{class_sysc_add__pv}{tc}}-\/>from\_f\ =\ \&(\mbox{\hyperlink{class_sysc_add__pv}{tlm\_from\_hostendian\_generic<DATAWORD>}});}
+\DoxyCodeLine{00358\ \ \ \mbox{\hyperlink{class_sysc_add__pv}{tc}}-\/>sizeof\_databus\ =\ sizeof\_databus;}
+\DoxyCodeLine{00359\ }
+\DoxyCodeLine{00360\ \ \ \textcolor{comment}{//\ calculate\ new\ size:\ \ nr\ stream\ words\ multiplied\ by\ big\ enough\ stream\ width}}
+\DoxyCodeLine{00361\ \ \ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{class_sysc_add__pv}{s\_width}}\ =\ \mbox{\hyperlink{class_sysc_add__pv}{txn}}-\/>get\_streaming\_width();}
+\DoxyCodeLine{00362\ \ \ \textcolor{keywordtype}{int}\ length\ =\ \mbox{\hyperlink{class_sysc_add__pv}{txn}}-\/>get\_data\_length();}
+\DoxyCodeLine{00363\ \ \ \textcolor{keywordflow}{if}(\mbox{\hyperlink{class_sysc_add__pv}{s\_width}}\ >=\ length)\ \mbox{\hyperlink{class_sysc_add__pv}{s\_width}}\ =\ length;}
+\DoxyCodeLine{00364\ \ \ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{class_sysc_add__pv}{nr\_stream\_words}}\ =\ length/\mbox{\hyperlink{class_sysc_add__pv}{s\_width}};}
+\DoxyCodeLine{00365\ }
+\DoxyCodeLine{00366\ \ \ \textcolor{comment}{//\ find\ out\ in\ which\ bus\ word\ the\ stream\ word\ starts\ and\ ends}}
+\DoxyCodeLine{00367\ \ \ \mbox{\hyperlink{class_sysc_add__pv}{sc\_dt::uint64}}\ new\_address\ =\ (\mbox{\hyperlink{class_sysc_add__pv}{txn}}-\/>get\_address()\ \&\ \string~(sizeof\_databus\ -\/\ 1));}
+\DoxyCodeLine{00368\ \ \ \mbox{\hyperlink{class_sysc_add__pv}{sc\_dt::uint64}}\ \mbox{\hyperlink{class_sysc_add__pv}{end\_address}}\ =\ ((\mbox{\hyperlink{class_sysc_add__pv}{txn}}-\/>get\_address()\ +\ \mbox{\hyperlink{class_sysc_add__pv}{s\_width}}\ -\/\ 1)}
+\DoxyCodeLine{00369\ \ \ \ \ \&\ \string~(sizeof\_databus\ -\/\ 1));}
+\DoxyCodeLine{00370\ }
+\DoxyCodeLine{00371\ \ \ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{class_sysc_add__pv}{new\_stream\_width}}\ =\ \mbox{\hyperlink{class_sysc_add__pv}{end\_address}}\ -\/\ new\_address\ +\ sizeof\_databus;}
+\DoxyCodeLine{00372\ \ \ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{class_sysc_add__pv}{new\_length}}\ =\ \mbox{\hyperlink{class_sysc_add__pv}{new\_stream\_width}}\ *\ \mbox{\hyperlink{class_sysc_add__pv}{nr\_stream\_words}};}
+\DoxyCodeLine{00373\ }
+\DoxyCodeLine{00374\ \ \ \textcolor{comment}{//\ store\ context}}
+\DoxyCodeLine{00375\ \ \ \mbox{\hyperlink{class_sysc_add__pv}{tc}}-\/>data\_ptr\ =\ \mbox{\hyperlink{class_sysc_add__pv}{txn}}-\/>get\_data\_ptr();}
+\DoxyCodeLine{00376\ \ \ \mbox{\hyperlink{class_sysc_add__pv}{tc}}-\/>address\ =\ \mbox{\hyperlink{class_sysc_add__pv}{txn}}-\/>get\_address();}
+\DoxyCodeLine{00377\ \ \ \mbox{\hyperlink{class_sysc_add__pv}{tc}}-\/>new\_address\ =\ new\_address;}
+\DoxyCodeLine{00378\ \ \ \mbox{\hyperlink{class_sysc_add__pv}{tc}}-\/>stream\_width\ =\ \mbox{\hyperlink{class_sysc_add__pv}{s\_width}};}
+\DoxyCodeLine{00379\ \ \ \mbox{\hyperlink{tlm__endian__conv_8h_aa8ddf20cdd716b652e76e23e5e700893}{uchar}}\ *\mbox{\hyperlink{class_sysc_add__pv}{orig\_be}}\ =\ \mbox{\hyperlink{class_sysc_add__pv}{txn}}-\/>get\_byte\_enable\_ptr();}
+\DoxyCodeLine{00380\ \ \ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{class_sysc_add__pv}{orig\_be\_length}}\ =\ \mbox{\hyperlink{class_sysc_add__pv}{txn}}-\/>get\_byte\_enable\_length();}
+\DoxyCodeLine{00381\ }
+\DoxyCodeLine{00382\ \ \ \textcolor{comment}{//\ create\ data\ and\ byte-\/enable\ buffers}}
+\DoxyCodeLine{00383\ \ \ \mbox{\hyperlink{class_sysc_add__pv}{txn}}-\/>set\_address(new\_address);}
+\DoxyCodeLine{00384\ \ \ \mbox{\hyperlink{class_sysc_add__pv}{tc}}-\/>establish\_dbuf(\mbox{\hyperlink{class_sysc_add__pv}{new\_length}});}
+\DoxyCodeLine{00385\ \ \ \mbox{\hyperlink{class_sysc_add__pv}{txn}}-\/>set\_data\_ptr(\mbox{\hyperlink{class_sysc_add__pv}{tc}}-\/>new\_dbuf);}
+\DoxyCodeLine{00386\ \ \ \mbox{\hyperlink{class_sysc_add__pv}{tc}}-\/>establish\_bebuf(\mbox{\hyperlink{class_sysc_add__pv}{new\_length}});}
+\DoxyCodeLine{00387\ \ \ \mbox{\hyperlink{class_sysc_add__pv}{txn}}-\/>set\_byte\_enable\_ptr(\mbox{\hyperlink{class_sysc_add__pv}{tc}}-\/>new\_bebuf);}
+\DoxyCodeLine{00388\ \ \ std::memset(\mbox{\hyperlink{class_sysc_add__pv}{txn}}-\/>get\_byte\_enable\_ptr(),\ \mbox{\hyperlink{tlm__gp_8h_aee6c671fa7a49f01da4a966f33067175}{TLM\_BYTE\_DISABLED}},\ \mbox{\hyperlink{class_sysc_add__pv}{new\_length}});}
+\DoxyCodeLine{00389\ \ \ \mbox{\hyperlink{class_sysc_add__pv}{txn}}-\/>set\_streaming\_width(\mbox{\hyperlink{class_sysc_add__pv}{new\_stream\_width}});}
+\DoxyCodeLine{00390\ \ \ \mbox{\hyperlink{class_sysc_add__pv}{txn}}-\/>set\_data\_length(\mbox{\hyperlink{class_sysc_add__pv}{new\_length}});}
+\DoxyCodeLine{00391\ \ \ \mbox{\hyperlink{class_sysc_add__pv}{txn}}-\/>set\_byte\_enable\_length(\mbox{\hyperlink{class_sysc_add__pv}{new\_length}});}
+\DoxyCodeLine{00392\ }
+\DoxyCodeLine{00393\ \ \ \textcolor{comment}{//\ copy\ data\ and/or\ byte\ enables}}
+\DoxyCodeLine{00394\ \ \ \textcolor{keywordflow}{if}(\mbox{\hyperlink{class_sysc_add__pv}{txn}}-\/>is\_write())\ \{}
+\DoxyCodeLine{00395\ \ \ \ \ \textcolor{keywordflow}{if}(\mbox{\hyperlink{class_sysc_add__pv}{orig\_be}}\ ==\ 0)\ \{}
+\DoxyCodeLine{00396\ \ \ \ \ \ \ \mbox{\hyperlink{class_sysc_add__pv}{loop\_generic0<DATAWORD,\ \&copy\_dbtrue0>}}(\mbox{\hyperlink{class_sysc_add__pv}{new\_length}},}
+\DoxyCodeLine{00397\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_sysc_add__pv}{new\_stream\_width}},\ \mbox{\hyperlink{class_sysc_add__pv}{s\_width}},\ sizeof\_databus,\ \mbox{\hyperlink{class_sysc_add__pv}{tc}}-\/>address,}
+\DoxyCodeLine{00398\ \ \ \ \ \ \ \ \ new\_address,\ \mbox{\hyperlink{class_sysc_add__pv}{new\_length}},\ \mbox{\hyperlink{class_sysc_add__pv}{tc}}-\/>data\_ptr,\ 0,\ \mbox{\hyperlink{class_sysc_add__pv}{txn}}-\/>get\_data\_ptr(),}
+\DoxyCodeLine{00399\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_sysc_add__pv}{txn}}-\/>get\_byte\_enable\_ptr());}
+\DoxyCodeLine{00400\ \ \ \ \ \}\ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{00401\ \ \ \ \ \ \ \mbox{\hyperlink{class_sysc_add__pv}{loop\_generic0<DATAWORD,\ \&copy\_db0>}}(\mbox{\hyperlink{class_sysc_add__pv}{new\_length}},}
+\DoxyCodeLine{00402\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_sysc_add__pv}{new\_stream\_width}},\ \mbox{\hyperlink{class_sysc_add__pv}{s\_width}},\ sizeof\_databus,\ \mbox{\hyperlink{class_sysc_add__pv}{tc}}-\/>address,}
+\DoxyCodeLine{00403\ \ \ \ \ \ \ \ \ new\_address,\ \mbox{\hyperlink{class_sysc_add__pv}{orig\_be\_length}},\ \mbox{\hyperlink{class_sysc_add__pv}{tc}}-\/>data\_ptr,\ \mbox{\hyperlink{class_sysc_add__pv}{orig\_be}},\ \mbox{\hyperlink{class_sysc_add__pv}{txn}}-\/>get\_data\_ptr(),}
+\DoxyCodeLine{00404\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_sysc_add__pv}{txn}}-\/>get\_byte\_enable\_ptr());}
+\DoxyCodeLine{00405\ \ \ \ \ \}}
+\DoxyCodeLine{00406\ \ \ \}\ \textcolor{keywordflow}{else}\ \{\ \textcolor{comment}{//\ read\ transaction}}
+\DoxyCodeLine{00407\ \ \ \ \ \textcolor{keywordflow}{if}(\mbox{\hyperlink{class_sysc_add__pv}{orig\_be}}\ ==\ 0)\ \{}
+\DoxyCodeLine{00408\ \ \ \ \ \ \ \mbox{\hyperlink{class_sysc_add__pv}{loop\_generic0<DATAWORD,\ \&copy\_btrue0>}}(\mbox{\hyperlink{class_sysc_add__pv}{new\_length}},}
+\DoxyCodeLine{00409\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_sysc_add__pv}{new\_stream\_width}},\ \mbox{\hyperlink{class_sysc_add__pv}{s\_width}},\ sizeof\_databus,\ \mbox{\hyperlink{class_sysc_add__pv}{tc}}-\/>address,}
+\DoxyCodeLine{00410\ \ \ \ \ \ \ \ \ new\_address,\ \mbox{\hyperlink{class_sysc_add__pv}{new\_length}},\ \mbox{\hyperlink{class_sysc_add__pv}{tc}}-\/>data\_ptr,\ 0,\ \mbox{\hyperlink{class_sysc_add__pv}{txn}}-\/>get\_data\_ptr(),}
+\DoxyCodeLine{00411\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_sysc_add__pv}{txn}}-\/>get\_byte\_enable\_ptr());}
+\DoxyCodeLine{00412\ \ \ \ \ \}\ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{00413\ \ \ \ \ \ \ \mbox{\hyperlink{class_sysc_add__pv}{loop\_generic0<DATAWORD,\ \&copy\_b0>}}(\mbox{\hyperlink{class_sysc_add__pv}{new\_length}},}
+\DoxyCodeLine{00414\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_sysc_add__pv}{new\_stream\_width}},\ \mbox{\hyperlink{class_sysc_add__pv}{s\_width}},\ sizeof\_databus,\ \mbox{\hyperlink{class_sysc_add__pv}{tc}}-\/>address,}
+\DoxyCodeLine{00415\ \ \ \ \ \ \ \ \ new\_address,\ \mbox{\hyperlink{class_sysc_add__pv}{orig\_be\_length}},\ \mbox{\hyperlink{class_sysc_add__pv}{tc}}-\/>data\_ptr,\ \mbox{\hyperlink{class_sysc_add__pv}{orig\_be}},\ \mbox{\hyperlink{class_sysc_add__pv}{txn}}-\/>get\_data\_ptr(),}
+\DoxyCodeLine{00416\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_sysc_add__pv}{txn}}-\/>get\_byte\_enable\_ptr());}
+\DoxyCodeLine{00417\ \ \ \ \ \}}
+\DoxyCodeLine{00418\ \ \ \}}
+\DoxyCodeLine{00419\ \}}
+\DoxyCodeLine{00420\ }
+\DoxyCodeLine{00421\ }
+\DoxyCodeLine{00422\ }
+\DoxyCodeLine{00424\ \textcolor{comment}{//\ function\ set\ (1):\ Utilities}}
+\DoxyCodeLine{00425\ \textcolor{keyword}{template}<\textcolor{keyword}{class}\ D>}
+\DoxyCodeLine{00426\ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{namespacetlm_a92d92fbd870248fe462313a6dead46f7}{copy\_d1}}(\mbox{\hyperlink{tlm__endian__conv_8h_aa8ddf20cdd716b652e76e23e5e700893}{uchar}}\ *\mbox{\hyperlink{class_sysc_add__pv}{src1}},\ \mbox{\hyperlink{tlm__endian__conv_8h_aa8ddf20cdd716b652e76e23e5e700893}{uchar}}\ *\mbox{\hyperlink{class_sysc_add__pv}{src2}},\ \mbox{\hyperlink{tlm__endian__conv_8h_aa8ddf20cdd716b652e76e23e5e700893}{uchar}}\ *\mbox{\hyperlink{class_sysc_add__pv}{dest1}},\ \mbox{\hyperlink{tlm__endian__conv_8h_aa8ddf20cdd716b652e76e23e5e700893}{uchar}}\ *\mbox{\hyperlink{class_sysc_add__pv}{dest2}})\ \{}
+\DoxyCodeLine{00427\ \ \ *((\mbox{\hyperlink{class_sysc_add__pv}{D}}\ *)\mbox{\hyperlink{class_sysc_add__pv}{dest1}})\ =\ *((\mbox{\hyperlink{class_sysc_add__pv}{D}}\ *)\mbox{\hyperlink{class_sysc_add__pv}{src1}});}
+\DoxyCodeLine{00428\ \ \ *((\mbox{\hyperlink{class_sysc_add__pv}{D}}\ *)\mbox{\hyperlink{class_sysc_add__pv}{dest2}})\ =\ \mbox{\hyperlink{classtlm_1_1tlm__bool}{tlm\_bool<D>::TLM\_TRUE}};}
+\DoxyCodeLine{00429\ \}}
+\DoxyCodeLine{00430\ }
+\DoxyCodeLine{00431\ \textcolor{keyword}{template}<\textcolor{keyword}{class}\ D>}
+\DoxyCodeLine{00432\ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{namespacetlm_ac826e05cbf33165b9b3ea1df9f2737dd}{copy\_db1}}(\mbox{\hyperlink{tlm__endian__conv_8h_aa8ddf20cdd716b652e76e23e5e700893}{uchar}}\ *\mbox{\hyperlink{class_sysc_add__pv}{src1}},\ \mbox{\hyperlink{tlm__endian__conv_8h_aa8ddf20cdd716b652e76e23e5e700893}{uchar}}\ *\mbox{\hyperlink{class_sysc_add__pv}{src2}},\ \mbox{\hyperlink{tlm__endian__conv_8h_aa8ddf20cdd716b652e76e23e5e700893}{uchar}}\ *\mbox{\hyperlink{class_sysc_add__pv}{dest1}},\ \mbox{\hyperlink{tlm__endian__conv_8h_aa8ddf20cdd716b652e76e23e5e700893}{uchar}}\ *\mbox{\hyperlink{class_sysc_add__pv}{dest2}})\ \{}
+\DoxyCodeLine{00433\ \ \ *((\mbox{\hyperlink{class_sysc_add__pv}{D}}\ *)\mbox{\hyperlink{class_sysc_add__pv}{dest1}})\ =\ *((\mbox{\hyperlink{class_sysc_add__pv}{D}}\ *)\mbox{\hyperlink{class_sysc_add__pv}{src1}});}
+\DoxyCodeLine{00434\ \ \ *((\mbox{\hyperlink{class_sysc_add__pv}{D}}\ *)\mbox{\hyperlink{class_sysc_add__pv}{dest2}})\ =\ *((\mbox{\hyperlink{class_sysc_add__pv}{D}}\ *)\mbox{\hyperlink{class_sysc_add__pv}{src2}});}
+\DoxyCodeLine{00435\ \}}
+\DoxyCodeLine{00436\ }
+\DoxyCodeLine{00437\ \textcolor{keyword}{template}<\textcolor{keyword}{class}\ D>}
+\DoxyCodeLine{00438\ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{namespacetlm_aa1f1576db2a448d36610c83141ad9289}{true\_b1}}(\mbox{\hyperlink{tlm__endian__conv_8h_aa8ddf20cdd716b652e76e23e5e700893}{uchar}}\ *\mbox{\hyperlink{class_sysc_add__pv}{src1}},\ \mbox{\hyperlink{tlm__endian__conv_8h_aa8ddf20cdd716b652e76e23e5e700893}{uchar}}\ *\mbox{\hyperlink{class_sysc_add__pv}{src2}},\ \mbox{\hyperlink{tlm__endian__conv_8h_aa8ddf20cdd716b652e76e23e5e700893}{uchar}}\ *\mbox{\hyperlink{class_sysc_add__pv}{dest1}},\ \mbox{\hyperlink{tlm__endian__conv_8h_aa8ddf20cdd716b652e76e23e5e700893}{uchar}}\ *\mbox{\hyperlink{class_sysc_add__pv}{dest2}})\ \{}
+\DoxyCodeLine{00439\ \ \ *((\mbox{\hyperlink{class_sysc_add__pv}{D}}\ *)\mbox{\hyperlink{class_sysc_add__pv}{dest2}})\ =\ \mbox{\hyperlink{classtlm_1_1tlm__bool}{tlm\_bool<D>::TLM\_TRUE}};}
+\DoxyCodeLine{00440\ \}}
+\DoxyCodeLine{00441\ }
+\DoxyCodeLine{00442\ \textcolor{keyword}{template}<\textcolor{keyword}{class}\ D>}
+\DoxyCodeLine{00443\ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{namespacetlm_acda54dc4e51c00432708b0ceb2a1e034}{copy\_b1}}(\mbox{\hyperlink{tlm__endian__conv_8h_aa8ddf20cdd716b652e76e23e5e700893}{uchar}}\ *\mbox{\hyperlink{class_sysc_add__pv}{src1}},\ \mbox{\hyperlink{tlm__endian__conv_8h_aa8ddf20cdd716b652e76e23e5e700893}{uchar}}\ *\mbox{\hyperlink{class_sysc_add__pv}{src2}},\ \mbox{\hyperlink{tlm__endian__conv_8h_aa8ddf20cdd716b652e76e23e5e700893}{uchar}}\ *\mbox{\hyperlink{class_sysc_add__pv}{dest1}},\ \mbox{\hyperlink{tlm__endian__conv_8h_aa8ddf20cdd716b652e76e23e5e700893}{uchar}}\ *\mbox{\hyperlink{class_sysc_add__pv}{dest2}})\ \{}
+\DoxyCodeLine{00444\ \ \ *((\mbox{\hyperlink{class_sysc_add__pv}{D}}\ *)\mbox{\hyperlink{class_sysc_add__pv}{dest2}})\ =\ *((\mbox{\hyperlink{class_sysc_add__pv}{D}}\ *)\mbox{\hyperlink{class_sysc_add__pv}{src2}});}
+\DoxyCodeLine{00445\ \}}
+\DoxyCodeLine{00446\ }
+\DoxyCodeLine{00447\ \textcolor{keyword}{template}<\textcolor{keyword}{class}\ D>}
+\DoxyCodeLine{00448\ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{namespacetlm_a31a69eb2a4407679a2d41a672be52619}{copy\_dbyb1}}(\mbox{\hyperlink{tlm__endian__conv_8h_aa8ddf20cdd716b652e76e23e5e700893}{uchar}}\ *\mbox{\hyperlink{class_sysc_add__pv}{src1}},\ \mbox{\hyperlink{tlm__endian__conv_8h_aa8ddf20cdd716b652e76e23e5e700893}{uchar}}\ *\mbox{\hyperlink{class_sysc_add__pv}{src2}},\ \mbox{\hyperlink{tlm__endian__conv_8h_aa8ddf20cdd716b652e76e23e5e700893}{uchar}}\ *\mbox{\hyperlink{class_sysc_add__pv}{dest1}},\ \mbox{\hyperlink{tlm__endian__conv_8h_aa8ddf20cdd716b652e76e23e5e700893}{uchar}}\ *\mbox{\hyperlink{class_sysc_add__pv}{dest2}})\ \{}
+\DoxyCodeLine{00449\ \ \ \textcolor{keywordflow}{if}(*\mbox{\hyperlink{class_sysc_add__pv}{src2}}\ !=\ \mbox{\hyperlink{tlm__gp_8h_aee6c671fa7a49f01da4a966f33067175}{TLM\_BYTE\_DISABLED}})\ \ *((\mbox{\hyperlink{class_sysc_add__pv}{D}}\ *)\mbox{\hyperlink{class_sysc_add__pv}{src1}})\ =\ *((\mbox{\hyperlink{class_sysc_add__pv}{D}}\ *)\mbox{\hyperlink{class_sysc_add__pv}{dest1}});}
+\DoxyCodeLine{00450\ \}}
+\DoxyCodeLine{00451\ }
+\DoxyCodeLine{00452\ \textcolor{keyword}{template}<\textcolor{keyword}{class}\ D>}
+\DoxyCodeLine{00453\ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{namespacetlm_ad4cfcf9b935840067f5facc8ec9d4d1c}{copy\_dbytrue1}}(\mbox{\hyperlink{tlm__endian__conv_8h_aa8ddf20cdd716b652e76e23e5e700893}{uchar}}\ *\mbox{\hyperlink{class_sysc_add__pv}{src1}},\ \mbox{\hyperlink{tlm__endian__conv_8h_aa8ddf20cdd716b652e76e23e5e700893}{uchar}}\ *\mbox{\hyperlink{class_sysc_add__pv}{src2}},\ \mbox{\hyperlink{tlm__endian__conv_8h_aa8ddf20cdd716b652e76e23e5e700893}{uchar}}\ *\mbox{\hyperlink{class_sysc_add__pv}{dest1}},\ \mbox{\hyperlink{tlm__endian__conv_8h_aa8ddf20cdd716b652e76e23e5e700893}{uchar}}\ *\mbox{\hyperlink{class_sysc_add__pv}{dest2}})\ \{}
+\DoxyCodeLine{00454\ \ \ *((\mbox{\hyperlink{class_sysc_add__pv}{D}}\ *)\mbox{\hyperlink{class_sysc_add__pv}{src1}})\ =\ *((\mbox{\hyperlink{class_sysc_add__pv}{D}}\ *)\mbox{\hyperlink{class_sysc_add__pv}{dest1}});}
+\DoxyCodeLine{00455\ \}}
+\DoxyCodeLine{00456\ }
+\DoxyCodeLine{00457\ \textcolor{keyword}{template}<\textcolor{keyword}{class}\ D>\ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{namespacetlm_adacc2fc933c3678fd7b209e9450fd6c1}{false\_b1}}(\mbox{\hyperlink{tlm__endian__conv_8h_aa8ddf20cdd716b652e76e23e5e700893}{uchar}}\ *\mbox{\hyperlink{class_sysc_add__pv}{dest1}})\ \{}
+\DoxyCodeLine{00458\ \ \ *((\mbox{\hyperlink{class_sysc_add__pv}{D}}\ *)\mbox{\hyperlink{class_sysc_add__pv}{dest1}})\ =\ \mbox{\hyperlink{classtlm_1_1tlm__bool}{tlm\_bool<D>::TLM\_FALSE}};}
+\DoxyCodeLine{00459\ \}}
+\DoxyCodeLine{00460\ }
+\DoxyCodeLine{00461\ \textcolor{keyword}{template}<\textcolor{keyword}{class}\ D>\ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{namespacetlm_a10c2bbd745fcbb0978ad85b898a41101}{no\_b1}}(\mbox{\hyperlink{tlm__endian__conv_8h_aa8ddf20cdd716b652e76e23e5e700893}{uchar}}\ *\mbox{\hyperlink{class_sysc_add__pv}{dest1}})\ \{}
+\DoxyCodeLine{00462\ \}}
+\DoxyCodeLine{00463\ }
+\DoxyCodeLine{00464\ \textcolor{keyword}{template}<\textcolor{keyword}{class\ }\mbox{\hyperlink{class_sysc_add__pv}{D}},}
+\DoxyCodeLine{00465\ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_sysc_add__pv}{COPY}}(\mbox{\hyperlink{tlm__endian__conv_8h_aa8ddf20cdd716b652e76e23e5e700893}{uchar}}\ *\mbox{\hyperlink{class_sysc_add__pv}{src1}},\ \mbox{\hyperlink{tlm__endian__conv_8h_aa8ddf20cdd716b652e76e23e5e700893}{uchar}}\ *\mbox{\hyperlink{class_sysc_add__pv}{src2}},\ \mbox{\hyperlink{tlm__endian__conv_8h_aa8ddf20cdd716b652e76e23e5e700893}{uchar}}\ *\mbox{\hyperlink{class_sysc_add__pv}{dest1}},\ \mbox{\hyperlink{tlm__endian__conv_8h_aa8ddf20cdd716b652e76e23e5e700893}{uchar}}\ *\mbox{\hyperlink{class_sysc_add__pv}{dest2}}),}
+\DoxyCodeLine{00466\ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_sysc_add__pv}{COPYuchar}}(\mbox{\hyperlink{tlm__endian__conv_8h_aa8ddf20cdd716b652e76e23e5e700893}{uchar}}\ *\mbox{\hyperlink{class_sysc_add__pv}{src1}},\ \mbox{\hyperlink{tlm__endian__conv_8h_aa8ddf20cdd716b652e76e23e5e700893}{uchar}}\ *\mbox{\hyperlink{class_sysc_add__pv}{src2}},\ \mbox{\hyperlink{tlm__endian__conv_8h_aa8ddf20cdd716b652e76e23e5e700893}{uchar}}\ *\mbox{\hyperlink{class_sysc_add__pv}{dest1}},\ \mbox{\hyperlink{tlm__endian__conv_8h_aa8ddf20cdd716b652e76e23e5e700893}{uchar}}\ *\mbox{\hyperlink{class_sysc_add__pv}{dest2}}),}
+\DoxyCodeLine{00467\ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_sysc_add__pv}{FILLFALSE}}(\mbox{\hyperlink{tlm__endian__conv_8h_aa8ddf20cdd716b652e76e23e5e700893}{uchar}}\ *\mbox{\hyperlink{class_sysc_add__pv}{dest1}}),\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_sysc_add__pv}{FILLFALSEuchar}}(\mbox{\hyperlink{tlm__endian__conv_8h_aa8ddf20cdd716b652e76e23e5e700893}{uchar}}\ *\mbox{\hyperlink{class_sysc_add__pv}{dest1}})>}
+\DoxyCodeLine{00468\ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{namespacetlm_a6b6866f3458818124792857a6e83bd41}{loop\_word1}}(}
+\DoxyCodeLine{00469\ \ \ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{class_sysc_add__pv}{bytes\_left}},\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{class_sysc_add__pv}{len0}},\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{class_sysc_add__pv}{lenN}},\ \textcolor{keywordtype}{int}\ sizeof\_databus,}
+\DoxyCodeLine{00470\ \ \ \mbox{\hyperlink{tlm__endian__conv_8h_aa8ddf20cdd716b652e76e23e5e700893}{uchar}}\ *\mbox{\hyperlink{class_sysc_add__pv}{start}},\ \mbox{\hyperlink{tlm__endian__conv_8h_aa8ddf20cdd716b652e76e23e5e700893}{uchar}}\ *end,\ \mbox{\hyperlink{tlm__endian__conv_8h_aa8ddf20cdd716b652e76e23e5e700893}{uchar}}\ *\mbox{\hyperlink{class_sysc_add__pv}{src}},\ \mbox{\hyperlink{tlm__endian__conv_8h_aa8ddf20cdd716b652e76e23e5e700893}{uchar}}\ *\mbox{\hyperlink{class_sysc_add__pv}{bsrc}},\ \mbox{\hyperlink{tlm__endian__conv_8h_aa8ddf20cdd716b652e76e23e5e700893}{uchar}}\ *\mbox{\hyperlink{class_sysc_add__pv}{dest}},\ \mbox{\hyperlink{tlm__endian__conv_8h_aa8ddf20cdd716b652e76e23e5e700893}{uchar}}\ *\mbox{\hyperlink{class_sysc_add__pv}{bdest}})\ \{}
+\DoxyCodeLine{00471\ \ \ \mbox{\hyperlink{class_sysc_add__pv}{ptrdiff\_t}}\ \mbox{\hyperlink{class_sysc_add__pv}{d2b\_src}}\ =\ \mbox{\hyperlink{class_sysc_add__pv}{bsrc}}\ -\/\ \mbox{\hyperlink{class_sysc_add__pv}{src}};\ \ \textcolor{comment}{//\ 64BITFIX\ was\ int\ //}}
+\DoxyCodeLine{00472\ \ \ \mbox{\hyperlink{class_sysc_add__pv}{ptrdiff\_t}}\ \mbox{\hyperlink{class_sysc_add__pv}{d2b\_dest}}\ =\ \mbox{\hyperlink{class_sysc_add__pv}{bdest}}\ -\/\ \mbox{\hyperlink{class_sysc_add__pv}{dest}};\ \ \textcolor{comment}{//\ 64BITFIX\ was\ int\ //}}
+\DoxyCodeLine{00473\ \ \ \mbox{\hyperlink{tlm__endian__conv_8h_aa8ddf20cdd716b652e76e23e5e700893}{uchar}}\ *\mbox{\hyperlink{class_sysc_add__pv}{original\_dest}}\ =\ \mbox{\hyperlink{class_sysc_add__pv}{dest}};}
+\DoxyCodeLine{00474\ }
+\DoxyCodeLine{00475\ \ \ \textcolor{keywordflow}{while}(\textcolor{keyword}{true})\ \{}
+\DoxyCodeLine{00476\ \ \ \ \ \textcolor{comment}{//\ len0\ bytes\ at\ start\ of\ a\ bus\ word}}
+\DoxyCodeLine{00477\ \ \ \ \ \textcolor{keywordflow}{if}((\mbox{\hyperlink{class_sysc_add__pv}{src}}\ >=\ \mbox{\hyperlink{class_sysc_add__pv}{start}})\ \&\&\ (\mbox{\hyperlink{class_sysc_add__pv}{src}}\ <\ end))\ \{}
+\DoxyCodeLine{00478\ \ \ \ \ \ \ \textcolor{keywordflow}{for}(\textcolor{keywordtype}{int}\ \mbox{\hyperlink{class_sysc_add__pv}{i}}=0;\ \mbox{\hyperlink{class_sysc_add__pv}{i}}<\mbox{\hyperlink{class_sysc_add__pv}{len0}};\ \mbox{\hyperlink{class_sysc_add__pv}{i}}++)\ \{}
+\DoxyCodeLine{00479\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_sysc_add__pv}{COPYuchar}}(\mbox{\hyperlink{class_sysc_add__pv}{src}},\ \mbox{\hyperlink{class_sysc_add__pv}{src}}+\mbox{\hyperlink{class_sysc_add__pv}{d2b\_src}},\ \mbox{\hyperlink{class_sysc_add__pv}{dest}},\ \mbox{\hyperlink{class_sysc_add__pv}{dest}}+\mbox{\hyperlink{class_sysc_add__pv}{d2b\_dest}});}
+\DoxyCodeLine{00480\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_sysc_add__pv}{src}}++;}
+\DoxyCodeLine{00481\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_sysc_add__pv}{dest}}++;}
+\DoxyCodeLine{00482\ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00483\ \ \ \ \ \ \ \mbox{\hyperlink{class_sysc_add__pv}{bytes\_left}}\ -\/=\ \mbox{\hyperlink{class_sysc_add__pv}{len0}};}
+\DoxyCodeLine{00484\ \ \ \ \ \ \ \textcolor{keywordflow}{if}(\mbox{\hyperlink{class_sysc_add__pv}{bytes\_left}}\ <=\ 0)\ \textcolor{keywordflow}{return}\ int(\mbox{\hyperlink{class_sysc_add__pv}{dest}}\ -\/\ \mbox{\hyperlink{class_sysc_add__pv}{original\_dest}});}
+\DoxyCodeLine{00485\ \ \ \ \ \}\ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{00486\ \ \ \ \ \ \ \textcolor{keywordflow}{for}(\textcolor{keywordtype}{int}\ \mbox{\hyperlink{class_sysc_add__pv}{i}}=0;\ \mbox{\hyperlink{class_sysc_add__pv}{i}}<\mbox{\hyperlink{class_sysc_add__pv}{len0}};\ \mbox{\hyperlink{class_sysc_add__pv}{i}}++)\ \{}
+\DoxyCodeLine{00487\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_sysc_add__pv}{FILLFALSEuchar}}(\mbox{\hyperlink{class_sysc_add__pv}{dest}}+\mbox{\hyperlink{class_sysc_add__pv}{d2b\_dest}});}
+\DoxyCodeLine{00488\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_sysc_add__pv}{src}}++;}
+\DoxyCodeLine{00489\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_sysc_add__pv}{dest}}++;}
+\DoxyCodeLine{00490\ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00491\ \ \ \ \ \}}
+\DoxyCodeLine{00492\ \ \ \ \ \mbox{\hyperlink{class_sysc_add__pv}{src}}\ -\/=\ 2\ *\ \textcolor{keyword}{sizeof}(\mbox{\hyperlink{class_sysc_add__pv}{D}});}
+\DoxyCodeLine{00493\ }
+\DoxyCodeLine{00494\ \ \ \ \ \textcolor{comment}{//\ sequence\ of\ full\ data\ word\ fragments}}
+\DoxyCodeLine{00495\ \ \ \ \ \textcolor{keywordflow}{for}(\textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{class_sysc_add__pv}{i}}=1;\ \mbox{\hyperlink{class_sysc_add__pv}{i}}<sizeof\_databus/\textcolor{keyword}{sizeof}(\mbox{\hyperlink{class_sysc_add__pv}{D}});\ \mbox{\hyperlink{class_sysc_add__pv}{i}}++)\ \{}
+\DoxyCodeLine{00496\ \ \ \ \ \ \ \textcolor{keywordflow}{if}((\mbox{\hyperlink{class_sysc_add__pv}{src}}\ >=\ \mbox{\hyperlink{class_sysc_add__pv}{start}})\ \&\&\ (\mbox{\hyperlink{class_sysc_add__pv}{src}}\ <\ end))\ \{}
+\DoxyCodeLine{00497\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_sysc_add__pv}{COPY}}(\mbox{\hyperlink{class_sysc_add__pv}{src}},\ \mbox{\hyperlink{class_sysc_add__pv}{src}}+\mbox{\hyperlink{class_sysc_add__pv}{d2b\_src}},\ \mbox{\hyperlink{class_sysc_add__pv}{dest}},\ \mbox{\hyperlink{class_sysc_add__pv}{dest}}+\mbox{\hyperlink{class_sysc_add__pv}{d2b\_dest}});}
+\DoxyCodeLine{00498\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_sysc_add__pv}{bytes\_left}}\ -\/=\ \textcolor{keyword}{sizeof}(\mbox{\hyperlink{class_sysc_add__pv}{D}});}
+\DoxyCodeLine{00499\ \ \ \ \ \ \ \}\ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{00500\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_sysc_add__pv}{FILLFALSE}}(\mbox{\hyperlink{class_sysc_add__pv}{dest}}+\mbox{\hyperlink{class_sysc_add__pv}{d2b\_dest}});}
+\DoxyCodeLine{00501\ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00502\ \ \ \ \ \ \ \mbox{\hyperlink{class_sysc_add__pv}{dest}}\ +=\ \textcolor{keyword}{sizeof}(\mbox{\hyperlink{class_sysc_add__pv}{D}});}
+\DoxyCodeLine{00503\ \ \ \ \ \ \ \textcolor{keywordflow}{if}(\mbox{\hyperlink{class_sysc_add__pv}{bytes\_left}}\ <=\ 0)\ \textcolor{keywordflow}{return}\ int(\mbox{\hyperlink{class_sysc_add__pv}{dest}}\ -\/\ \mbox{\hyperlink{class_sysc_add__pv}{original\_dest}});}
+\DoxyCodeLine{00504\ \ \ \ \ \ \ \mbox{\hyperlink{class_sysc_add__pv}{src}}\ -\/=\ \textcolor{keyword}{sizeof}(\mbox{\hyperlink{class_sysc_add__pv}{D}});}
+\DoxyCodeLine{00505\ \ \ \ \ \}}
+\DoxyCodeLine{00506\ }
+\DoxyCodeLine{00507\ \ \ \ \ \textcolor{comment}{//\ lenN\ bytes\ at\ end\ of\ bus\ word}}
+\DoxyCodeLine{00508\ \ \ \ \ \textcolor{keywordflow}{if}((\mbox{\hyperlink{class_sysc_add__pv}{src}}\ >=\ \mbox{\hyperlink{class_sysc_add__pv}{start}})\ \&\&\ (\mbox{\hyperlink{class_sysc_add__pv}{src}}\ <\ end))\ \{}
+\DoxyCodeLine{00509\ \ \ \ \ \ \ \textcolor{keywordflow}{for}(\textcolor{keywordtype}{int}\ \mbox{\hyperlink{class_sysc_add__pv}{i}}=0;\ \mbox{\hyperlink{class_sysc_add__pv}{i}}<\mbox{\hyperlink{class_sysc_add__pv}{lenN}};\ \mbox{\hyperlink{class_sysc_add__pv}{i}}++)\ \{}
+\DoxyCodeLine{00510\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_sysc_add__pv}{COPYuchar}}(\mbox{\hyperlink{class_sysc_add__pv}{src}},\ \mbox{\hyperlink{class_sysc_add__pv}{src}}+\mbox{\hyperlink{class_sysc_add__pv}{d2b\_src}},\ \mbox{\hyperlink{class_sysc_add__pv}{dest}},\ \mbox{\hyperlink{class_sysc_add__pv}{dest}}+\mbox{\hyperlink{class_sysc_add__pv}{d2b\_dest}});}
+\DoxyCodeLine{00511\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_sysc_add__pv}{src}}++;}
+\DoxyCodeLine{00512\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_sysc_add__pv}{dest}}++;}
+\DoxyCodeLine{00513\ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00514\ \ \ \ \ \ \ \mbox{\hyperlink{class_sysc_add__pv}{bytes\_left}}\ -\/=\ \mbox{\hyperlink{class_sysc_add__pv}{lenN}};}
+\DoxyCodeLine{00515\ \ \ \ \ \ \ \textcolor{keywordflow}{if}(\mbox{\hyperlink{class_sysc_add__pv}{bytes\_left}}\ <=\ 0)\ \textcolor{keywordflow}{return}\ int(\mbox{\hyperlink{class_sysc_add__pv}{dest}}\ -\/\ \mbox{\hyperlink{class_sysc_add__pv}{original\_dest}});}
+\DoxyCodeLine{00516\ \ \ \ \ \}\ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{00517\ \ \ \ \ \ \ \textcolor{keywordflow}{for}(\textcolor{keywordtype}{int}\ \mbox{\hyperlink{class_sysc_add__pv}{i}}=0;\ \mbox{\hyperlink{class_sysc_add__pv}{i}}<\mbox{\hyperlink{class_sysc_add__pv}{lenN}};\ \mbox{\hyperlink{class_sysc_add__pv}{i}}++)\ \{}
+\DoxyCodeLine{00518\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_sysc_add__pv}{FILLFALSEuchar}}(\mbox{\hyperlink{class_sysc_add__pv}{dest}}+\mbox{\hyperlink{class_sysc_add__pv}{d2b\_dest}});}
+\DoxyCodeLine{00519\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_sysc_add__pv}{src}}++;}
+\DoxyCodeLine{00520\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_sysc_add__pv}{dest}}++;}
+\DoxyCodeLine{00521\ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00522\ \ \ \ \ \}}
+\DoxyCodeLine{00523\ \ \ \ \ \mbox{\hyperlink{class_sysc_add__pv}{src}}\ +=\ 2\ *\ sizeof\_databus;}
+\DoxyCodeLine{00524\ \ \ \}}
+\DoxyCodeLine{00525\ \}}
+\DoxyCodeLine{00526\ }
+\DoxyCodeLine{00527\ }
+\DoxyCodeLine{00529\ \textcolor{comment}{//\ function\ set\ (1):\ Response}}
+\DoxyCodeLine{00530\ \textcolor{keyword}{template}<\textcolor{keyword}{class}\ DATAWORD>\ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{void}}
+\DoxyCodeLine{00531\ \mbox{\hyperlink{namespacetlm_a8b3fd08c65997be7edd9c132990bb659}{tlm\_from\_hostendian\_word}}(\mbox{\hyperlink{classtlm_1_1tlm__generic__payload}{tlm\_generic\_payload}}\ *\mbox{\hyperlink{class_sysc_add__pv}{txn}},\ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{int}\ sizeof\_databus)\ \{}
+\DoxyCodeLine{00532\ \ \ \textcolor{keywordflow}{if}(\mbox{\hyperlink{class_sysc_add__pv}{txn}}-\/>is\_read())\ \{}
+\DoxyCodeLine{00533\ \ \ \ \ \mbox{\hyperlink{classtlm_1_1tlm__endian__context}{tlm\_endian\_context}}\ *\mbox{\hyperlink{class_sysc_add__pv}{tc}}\ =\ \mbox{\hyperlink{class_sysc_add__pv}{txn}}-\/>template\ \mbox{\hyperlink{class_sysc_add__pv}{get\_extension<tlm\_endian\_context>}}();}
+\DoxyCodeLine{00534\ \ \ \ \ \mbox{\hyperlink{class_sysc_add__pv}{sc\_dt::uint64}}\ \mbox{\hyperlink{class_sysc_add__pv}{b\_mask}}\ =\ sizeof\_databus\ -\/\ 1;}
+\DoxyCodeLine{00535\ \ \ \ \ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{class_sysc_add__pv}{d\_mask}}\ =\ \textcolor{keyword}{sizeof}(\mbox{\hyperlink{class_sysc_add__pv}{DATAWORD}})\ -\/\ 1;}
+\DoxyCodeLine{00536\ \ \ \ \ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{class_sysc_add__pv}{a\_offset}}\ =\ \textcolor{keyword}{static\_cast<}\textcolor{keywordtype}{int}\textcolor{keyword}{>}(\mbox{\hyperlink{class_sysc_add__pv}{tc}}-\/>address\ \&\ \mbox{\hyperlink{class_sysc_add__pv}{b\_mask}});}
+\DoxyCodeLine{00537\ \ \ \ \ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{class_sysc_add__pv}{len0}}\ =\ (sizeof\_databus\ -\/\ \mbox{\hyperlink{class_sysc_add__pv}{a\_offset}})\ \&\ \mbox{\hyperlink{class_sysc_add__pv}{d\_mask}};}
+\DoxyCodeLine{00538\ \ \ \ \ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{class_sysc_add__pv}{lenN}}\ =\ \textcolor{keyword}{sizeof}(\mbox{\hyperlink{class_sysc_add__pv}{DATAWORD}})\ -\/\ \mbox{\hyperlink{class_sysc_add__pv}{len0}};}
+\DoxyCodeLine{00539\ \ \ \ \ \mbox{\hyperlink{tlm__endian__conv_8h_aa8ddf20cdd716b652e76e23e5e700893}{uchar}}\ *\mbox{\hyperlink{class_sysc_add__pv}{d\_start}}\ =\ \mbox{\hyperlink{class_sysc_add__pv}{tc}}-\/>data\_ptr;}
+\DoxyCodeLine{00540\ \ \ \ \ \mbox{\hyperlink{tlm__endian__conv_8h_aa8ddf20cdd716b652e76e23e5e700893}{uchar}}\ *\mbox{\hyperlink{class_sysc_add__pv}{d\_end}}\ =\ \mbox{\hyperlink{class_sysc_add__pv}{ptrdiff\_t}}(\mbox{\hyperlink{class_sysc_add__pv}{tc}}-\/>length)\ +\ \mbox{\hyperlink{class_sysc_add__pv}{d\_start}};\ \ \textcolor{comment}{//\ 64BITFIX\ probably\ redundant\ //}}
+\DoxyCodeLine{00541\ \ \ \ \ \mbox{\hyperlink{tlm__endian__conv_8h_aa8ddf20cdd716b652e76e23e5e700893}{uchar}}\ *d\ =\ \mbox{\hyperlink{class_sysc_add__pv}{ptrdiff\_t}}(((sizeof\_databus\ -\/\ \mbox{\hyperlink{class_sysc_add__pv}{a\_offset}})\ \&\ \string~\mbox{\hyperlink{class_sysc_add__pv}{d\_mask}})\ +\ \mbox{\hyperlink{class_sysc_add__pv}{lenN}})\ +\ \mbox{\hyperlink{class_sysc_add__pv}{d\_start}};\ \ \textcolor{comment}{//\ 64BITFIX\ probably\ redundant\ //}}
+\DoxyCodeLine{00542\ }
+\DoxyCodeLine{00543\ \ \ \ \ \textcolor{comment}{//\ iterate\ over\ transaction\ copying\ data\ qualified\ by\ byte-\/enables}}
+\DoxyCodeLine{00544\ \ \ \ \ \textcolor{keywordflow}{if}(\mbox{\hyperlink{class_sysc_add__pv}{tc}}-\/>byte\_enable\ ==\ 0)\ \{}
+\DoxyCodeLine{00545\ \ \ \ \ \ \ \mbox{\hyperlink{class_sysc_add__pv}{loop\_word1<DATAWORD,\ \&copy\_dbytrue1<DATAWORD>}},}
+\DoxyCodeLine{00546\ \ \ \ \ \ \ \ \ \&\mbox{\hyperlink{class_sysc_add__pv}{copy\_dbytrue1<uchar>}},\ \&\mbox{\hyperlink{class_sysc_add__pv}{no\_b1<DATAWORD>}},\ \&\mbox{\hyperlink{class_sysc_add__pv}{no\_b1<uchar>}}\ >(}
+\DoxyCodeLine{00547\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_sysc_add__pv}{tc}}-\/>length,\ \mbox{\hyperlink{class_sysc_add__pv}{len0}},\ \mbox{\hyperlink{class_sysc_add__pv}{lenN}},\ sizeof\_databus,\ \mbox{\hyperlink{class_sysc_add__pv}{d\_start}},\ \mbox{\hyperlink{class_sysc_add__pv}{d\_end}},\ d,}
+\DoxyCodeLine{00548\ \ \ \ \ \ \ \ \ 0,\ \mbox{\hyperlink{class_sysc_add__pv}{txn}}-\/>get\_data\_ptr(),\ 0);}
+\DoxyCodeLine{00549\ \ \ \ \ \}\ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{00550\ \ \ \ \ \ \ \mbox{\hyperlink{class_sysc_add__pv}{loop\_word1<DATAWORD,\ \&copy\_dbyb1<DATAWORD>}},}
+\DoxyCodeLine{00551\ \ \ \ \ \ \ \ \ \&\mbox{\hyperlink{class_sysc_add__pv}{copy\_dbyb1<uchar>}},\ \&\mbox{\hyperlink{class_sysc_add__pv}{no\_b1<DATAWORD>}},\ \&\mbox{\hyperlink{class_sysc_add__pv}{no\_b1<uchar>}}\ >(}
+\DoxyCodeLine{00552\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_sysc_add__pv}{tc}}-\/>length,\ \mbox{\hyperlink{class_sysc_add__pv}{len0}},\ \mbox{\hyperlink{class_sysc_add__pv}{lenN}},\ sizeof\_databus,\ \mbox{\hyperlink{class_sysc_add__pv}{d\_start}},\ \mbox{\hyperlink{class_sysc_add__pv}{d\_end}},\ d,}
+\DoxyCodeLine{00553\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_sysc_add__pv}{tc}}-\/>byte\_enable\ -\/\ \mbox{\hyperlink{class_sysc_add__pv}{d\_start}}\ +\ d,\ \mbox{\hyperlink{class_sysc_add__pv}{txn}}-\/>get\_data\_ptr(),\ 0);}
+\DoxyCodeLine{00554\ \ \ \ \ \}}
+\DoxyCodeLine{00555\ \ \ \}}
+\DoxyCodeLine{00556\ \}}
+\DoxyCodeLine{00557\ }
+\DoxyCodeLine{00558\ }
+\DoxyCodeLine{00560\ \textcolor{comment}{//\ function\ set\ (1):\ Request}}
+\DoxyCodeLine{00561\ \textcolor{keyword}{template}<\textcolor{keyword}{class}\ DATAWORD>\ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{void}}
+\DoxyCodeLine{00562\ \mbox{\hyperlink{namespacetlm_a147a052f029f6c858276feaff77d3127}{tlm\_to\_hostendian\_word}}(\mbox{\hyperlink{classtlm_1_1tlm__generic__payload}{tlm\_generic\_payload}}\ *\mbox{\hyperlink{class_sysc_add__pv}{txn}},\ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{int}\ sizeof\_databus)\ \{}
+\DoxyCodeLine{00563\ \ \ \mbox{\hyperlink{classtlm_1_1tlm__endian__context}{tlm\_endian\_context}}\ *\mbox{\hyperlink{class_sysc_add__pv}{tc}}\ =\ \mbox{\hyperlink{namespacetlm_a41181c4fd8f02a320ab88b4f99c8355a}{establish\_context}}(\mbox{\hyperlink{class_sysc_add__pv}{txn}});}
+\DoxyCodeLine{00564\ \ \ \mbox{\hyperlink{class_sysc_add__pv}{tc}}-\/>from\_f\ =\ \&(\mbox{\hyperlink{class_sysc_add__pv}{tlm\_from\_hostendian\_word<DATAWORD>}});}
+\DoxyCodeLine{00565\ \ \ \mbox{\hyperlink{class_sysc_add__pv}{tc}}-\/>sizeof\_databus\ =\ sizeof\_databus;}
+\DoxyCodeLine{00566\ }
+\DoxyCodeLine{00567\ \ \ \mbox{\hyperlink{class_sysc_add__pv}{sc\_dt::uint64}}\ \mbox{\hyperlink{class_sysc_add__pv}{b\_mask}}\ =\ sizeof\_databus\ -\/\ 1;}
+\DoxyCodeLine{00568\ \ \ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{class_sysc_add__pv}{d\_mask}}\ =\ \textcolor{keyword}{sizeof}(\mbox{\hyperlink{class_sysc_add__pv}{DATAWORD}})\ -\/\ 1;}
+\DoxyCodeLine{00569\ \ \ \mbox{\hyperlink{class_sysc_add__pv}{sc\_dt::uint64}}\ \mbox{\hyperlink{class_sysc_add__pv}{a\_aligned}}\ =\ \mbox{\hyperlink{class_sysc_add__pv}{txn}}-\/>get\_address()\ \&\ \mbox{\hyperlink{class_sysc_add__pv}{\string~b\_mask}};}
+\DoxyCodeLine{00570\ \ \ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{class_sysc_add__pv}{a\_offset}}\ =\ \textcolor{keyword}{static\_cast<}\textcolor{keywordtype}{int}\textcolor{keyword}{>}(\mbox{\hyperlink{class_sysc_add__pv}{txn}}-\/>get\_address()\ \&\ \mbox{\hyperlink{class_sysc_add__pv}{b\_mask}});}
+\DoxyCodeLine{00571\ \ \ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{class_sysc_add__pv}{len0}}\ =\ (sizeof\_databus\ -\/\ \mbox{\hyperlink{class_sysc_add__pv}{a\_offset}})\ \&\ \mbox{\hyperlink{class_sysc_add__pv}{d\_mask}};}
+\DoxyCodeLine{00572\ \ \ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{class_sysc_add__pv}{lenN}}\ =\ \textcolor{keyword}{sizeof}(\mbox{\hyperlink{class_sysc_add__pv}{DATAWORD}})\ -\/\ \mbox{\hyperlink{class_sysc_add__pv}{len0}};}
+\DoxyCodeLine{00573\ \ \ \mbox{\hyperlink{tlm__endian__conv_8h_aa8ddf20cdd716b652e76e23e5e700893}{uchar}}\ *\mbox{\hyperlink{class_sysc_add__pv}{d\_start}}\ =\ \mbox{\hyperlink{class_sysc_add__pv}{txn}}-\/>get\_data\_ptr();}
+\DoxyCodeLine{00574\ \ \ \mbox{\hyperlink{tlm__endian__conv_8h_aa8ddf20cdd716b652e76e23e5e700893}{uchar}}\ *\mbox{\hyperlink{class_sysc_add__pv}{d\_end}}\ =\ \mbox{\hyperlink{class_sysc_add__pv}{ptrdiff\_t}}(\mbox{\hyperlink{class_sysc_add__pv}{txn}}-\/>get\_data\_length())\ +\ \mbox{\hyperlink{class_sysc_add__pv}{d\_start}};\ \ \textcolor{comment}{//\ 64BITFIX\ probably\ redundant\ //}}
+\DoxyCodeLine{00575\ \ \ \mbox{\hyperlink{tlm__endian__conv_8h_aa8ddf20cdd716b652e76e23e5e700893}{uchar}}\ *d\ =\ \mbox{\hyperlink{class_sysc_add__pv}{ptrdiff\_t}}(((sizeof\_databus\ -\/\ \mbox{\hyperlink{class_sysc_add__pv}{a\_offset}})\ \&\ \string~\mbox{\hyperlink{class_sysc_add__pv}{d\_mask}})\ +\ \mbox{\hyperlink{class_sysc_add__pv}{lenN}})\ +\ \mbox{\hyperlink{class_sysc_add__pv}{d\_start}};\ \ \textcolor{comment}{//\ 64BITFIX\ probably\ redundant\ //}}
+\DoxyCodeLine{00576\ }
+\DoxyCodeLine{00577\ \ \ \textcolor{comment}{//\ create\ new\ data\ and\ byte\ enable\ buffers}}
+\DoxyCodeLine{00578\ \ \ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{class_sysc_add__pv}{long\_enough}}\ =\ \mbox{\hyperlink{class_sysc_add__pv}{txn}}-\/>get\_data\_length()\ +\ 2\ *\ sizeof\_databus;}
+\DoxyCodeLine{00579\ \ \ \mbox{\hyperlink{class_sysc_add__pv}{tc}}-\/>establish\_dbuf(\mbox{\hyperlink{class_sysc_add__pv}{long\_enough}});}
+\DoxyCodeLine{00580\ \ \ \mbox{\hyperlink{tlm__endian__conv_8h_aa8ddf20cdd716b652e76e23e5e700893}{uchar}}\ *\mbox{\hyperlink{class_sysc_add__pv}{new\_data}}\ =\ \mbox{\hyperlink{class_sysc_add__pv}{tc}}-\/>new\_dbuf;}
+\DoxyCodeLine{00581\ \ \ \mbox{\hyperlink{class_sysc_add__pv}{tc}}-\/>establish\_bebuf(\mbox{\hyperlink{class_sysc_add__pv}{long\_enough}});}
+\DoxyCodeLine{00582\ \ \ \mbox{\hyperlink{tlm__endian__conv_8h_aa8ddf20cdd716b652e76e23e5e700893}{uchar}}\ *\mbox{\hyperlink{class_sysc_add__pv}{new\_be}}\ =\ \mbox{\hyperlink{class_sysc_add__pv}{tc}}-\/>new\_bebuf;}
+\DoxyCodeLine{00583\ }
+\DoxyCodeLine{00584\ \ \ \textcolor{keywordflow}{if}(\mbox{\hyperlink{class_sysc_add__pv}{txn}}-\/>is\_read())\ \{}
+\DoxyCodeLine{00585\ \ \ \ \ \mbox{\hyperlink{class_sysc_add__pv}{tc}}-\/>data\_ptr\ =\ \mbox{\hyperlink{class_sysc_add__pv}{d\_start}};}
+\DoxyCodeLine{00586\ \ \ \ \ \mbox{\hyperlink{class_sysc_add__pv}{tc}}-\/>address\ =\ \mbox{\hyperlink{class_sysc_add__pv}{txn}}-\/>get\_address();}
+\DoxyCodeLine{00587\ \ \ \ \ \mbox{\hyperlink{class_sysc_add__pv}{tc}}-\/>byte\_enable\ =\ \mbox{\hyperlink{class_sysc_add__pv}{txn}}-\/>get\_byte\_enable\_ptr();}
+\DoxyCodeLine{00588\ \ \ \ \ \mbox{\hyperlink{class_sysc_add__pv}{tc}}-\/>length\ =\ \mbox{\hyperlink{class_sysc_add__pv}{txn}}-\/>get\_data\_length();}
+\DoxyCodeLine{00589\ \ \ \ \ \textcolor{keywordflow}{if}(\mbox{\hyperlink{class_sysc_add__pv}{txn}}-\/>get\_byte\_enable\_ptr()\ ==\ 0)\ \{}
+\DoxyCodeLine{00590\ \ \ \ \ \ \ \textcolor{comment}{//\ iterate\ over\ transaction\ creating\ new\ byte\ enables\ from\ all-\/true}}
+\DoxyCodeLine{00591\ \ \ \ \ \ \ \mbox{\hyperlink{class_sysc_add__pv}{txn}}-\/>set\_data\_length(\mbox{\hyperlink{namespacetlm_a6b6866f3458818124792857a6e83bd41}{loop\_word1}}<\mbox{\hyperlink{class_sysc_add__pv}{DATAWORD}},\ \&\mbox{\hyperlink{class_sysc_add__pv}{true\_b1<DATAWORD>}},}
+\DoxyCodeLine{00592\ \ \ \ \ \ \ \ \ \&\mbox{\hyperlink{class_sysc_add__pv}{true\_b1<uchar>}},\ \&\mbox{\hyperlink{class_sysc_add__pv}{false\_b1<DATAWORD>}},\ \&\mbox{\hyperlink{class_sysc_add__pv}{false\_b1<uchar>}}\ >(}
+\DoxyCodeLine{00593\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_sysc_add__pv}{txn}}-\/>get\_data\_length(),\ \mbox{\hyperlink{class_sysc_add__pv}{len0}},\ \mbox{\hyperlink{class_sysc_add__pv}{lenN}},\ sizeof\_databus,}
+\DoxyCodeLine{00594\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_sysc_add__pv}{d\_start}},\ \mbox{\hyperlink{class_sysc_add__pv}{d\_end}},\ d,\ 0,\ \mbox{\hyperlink{class_sysc_add__pv}{new\_data}},\ \mbox{\hyperlink{class_sysc_add__pv}{new\_be}}));}
+\DoxyCodeLine{00595\ \ \ \ \ \}\ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{00596\ \ \ \ \ \ \ \textcolor{comment}{//\ iterate\ over\ transaction\ copying\ byte\ enables}}
+\DoxyCodeLine{00597\ \ \ \ \ \ \ \mbox{\hyperlink{class_sysc_add__pv}{txn}}-\/>set\_data\_length(\mbox{\hyperlink{namespacetlm_a6b6866f3458818124792857a6e83bd41}{loop\_word1}}<\mbox{\hyperlink{class_sysc_add__pv}{DATAWORD}},\ \&\mbox{\hyperlink{class_sysc_add__pv}{copy\_b1<DATAWORD>}},}
+\DoxyCodeLine{00598\ \ \ \ \ \ \ \ \ \&\mbox{\hyperlink{class_sysc_add__pv}{copy\_b1<uchar>}},\ \&\mbox{\hyperlink{class_sysc_add__pv}{false\_b1<DATAWORD>}},\ \&\mbox{\hyperlink{class_sysc_add__pv}{false\_b1<uchar>}}\ >(}
+\DoxyCodeLine{00599\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_sysc_add__pv}{txn}}-\/>get\_data\_length(),\ \mbox{\hyperlink{class_sysc_add__pv}{len0}},\ \mbox{\hyperlink{class_sysc_add__pv}{lenN}},\ sizeof\_databus,\ \mbox{\hyperlink{class_sysc_add__pv}{d\_start}},\ \mbox{\hyperlink{class_sysc_add__pv}{d\_end}},}
+\DoxyCodeLine{00600\ \ \ \ \ \ \ \ \ d,\ \mbox{\hyperlink{class_sysc_add__pv}{txn}}-\/>get\_byte\_enable\_ptr()\ -\/\ \mbox{\hyperlink{class_sysc_add__pv}{d\_start}}\ +\ d,\ \mbox{\hyperlink{class_sysc_add__pv}{new\_data}},\ \mbox{\hyperlink{class_sysc_add__pv}{new\_be}}));}
+\DoxyCodeLine{00601\ \ \ \ \ \}}
+\DoxyCodeLine{00602\ \ \ \}\ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{00603\ \ \ \ \ \textcolor{comment}{//\ WRITE}}
+\DoxyCodeLine{00604\ \ \ \ \ \textcolor{keywordflow}{if}(\mbox{\hyperlink{class_sysc_add__pv}{txn}}-\/>get\_byte\_enable\_ptr()\ ==\ 0)\ \{}
+\DoxyCodeLine{00605\ \ \ \ \ \ \ \textcolor{comment}{//\ iterate\ over\ transaction\ copying\ data\ and\ creating\ new\ byte-\/enables}}
+\DoxyCodeLine{00606\ \ \ \ \ \ \ \mbox{\hyperlink{class_sysc_add__pv}{txn}}-\/>set\_data\_length(\mbox{\hyperlink{namespacetlm_a6b6866f3458818124792857a6e83bd41}{loop\_word1}}<\mbox{\hyperlink{class_sysc_add__pv}{DATAWORD}},\ \&\mbox{\hyperlink{class_sysc_add__pv}{copy\_d1<DATAWORD>}},}
+\DoxyCodeLine{00607\ \ \ \ \ \ \ \ \ \&\mbox{\hyperlink{class_sysc_add__pv}{copy\_d1<uchar>}},\ \&\mbox{\hyperlink{class_sysc_add__pv}{false\_b1<DATAWORD>}},\ \&\mbox{\hyperlink{class_sysc_add__pv}{false\_b1<uchar>}}\ >(}
+\DoxyCodeLine{00608\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_sysc_add__pv}{txn}}-\/>get\_data\_length(),\ \mbox{\hyperlink{class_sysc_add__pv}{len0}},\ \mbox{\hyperlink{class_sysc_add__pv}{lenN}},\ sizeof\_databus,}
+\DoxyCodeLine{00609\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_sysc_add__pv}{d\_start}},\ \mbox{\hyperlink{class_sysc_add__pv}{d\_end}},\ d,\ 0,\ \mbox{\hyperlink{class_sysc_add__pv}{new\_data}},\ \mbox{\hyperlink{class_sysc_add__pv}{new\_be}}));}
+\DoxyCodeLine{00610\ \ \ \ \ \}\ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{00611\ \ \ \ \ \ \ \textcolor{comment}{//\ iterate\ over\ transaction\ copying\ data\ and\ byte-\/enables}}
+\DoxyCodeLine{00612\ \ \ \ \ \ \ \mbox{\hyperlink{class_sysc_add__pv}{txn}}-\/>set\_data\_length(\mbox{\hyperlink{namespacetlm_a6b6866f3458818124792857a6e83bd41}{loop\_word1}}<\mbox{\hyperlink{class_sysc_add__pv}{DATAWORD}},\ \&\mbox{\hyperlink{class_sysc_add__pv}{copy\_db1<DATAWORD>}},}
+\DoxyCodeLine{00613\ \ \ \ \ \ \ \ \ \&\mbox{\hyperlink{class_sysc_add__pv}{copy\_db1<uchar>}},\ \&\mbox{\hyperlink{class_sysc_add__pv}{false\_b1<DATAWORD>}},\ \&\mbox{\hyperlink{class_sysc_add__pv}{false\_b1<uchar>}}\ >(}
+\DoxyCodeLine{00614\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_sysc_add__pv}{txn}}-\/>get\_data\_length(),\ \mbox{\hyperlink{class_sysc_add__pv}{len0}},\ \mbox{\hyperlink{class_sysc_add__pv}{lenN}},\ sizeof\_databus,\ \mbox{\hyperlink{class_sysc_add__pv}{d\_start}},\ \mbox{\hyperlink{class_sysc_add__pv}{d\_end}},}
+\DoxyCodeLine{00615\ \ \ \ \ \ \ \ \ d,\ \mbox{\hyperlink{class_sysc_add__pv}{txn}}-\/>get\_byte\_enable\_ptr()\ -\/\ \mbox{\hyperlink{class_sysc_add__pv}{d\_start}}\ +\ d,\ \mbox{\hyperlink{class_sysc_add__pv}{new\_data}},\ \mbox{\hyperlink{class_sysc_add__pv}{new\_be}}));}
+\DoxyCodeLine{00616\ \ \ \ \ \}}
+\DoxyCodeLine{00617\ \ \ \}}
+\DoxyCodeLine{00618\ \ \ \mbox{\hyperlink{class_sysc_add__pv}{txn}}-\/>set\_byte\_enable\_length(\mbox{\hyperlink{class_sysc_add__pv}{txn}}-\/>get\_data\_length());}
+\DoxyCodeLine{00619\ \ \ \mbox{\hyperlink{class_sysc_add__pv}{txn}}-\/>set\_streaming\_width(\mbox{\hyperlink{class_sysc_add__pv}{txn}}-\/>get\_data\_length());}
+\DoxyCodeLine{00620\ \ \ \mbox{\hyperlink{class_sysc_add__pv}{txn}}-\/>set\_data\_ptr(\mbox{\hyperlink{class_sysc_add__pv}{new\_data}});}
+\DoxyCodeLine{00621\ \ \ \mbox{\hyperlink{class_sysc_add__pv}{txn}}-\/>set\_byte\_enable\_ptr(\mbox{\hyperlink{class_sysc_add__pv}{new\_be}});}
+\DoxyCodeLine{00622\ \ \ \mbox{\hyperlink{class_sysc_add__pv}{txn}}-\/>set\_address(\mbox{\hyperlink{class_sysc_add__pv}{a\_aligned}});}
+\DoxyCodeLine{00623\ \}}
+\DoxyCodeLine{00624\ }
+\DoxyCodeLine{00625\ }
+\DoxyCodeLine{00626\ }
+\DoxyCodeLine{00628\ \textcolor{comment}{//\ function\ set\ (2):\ Utilities}}
+\DoxyCodeLine{00629\ \textcolor{keyword}{template}<\textcolor{keyword}{class}\ D>\ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{namespacetlm_ae9bd0dc5a551997936a14496dc74c2bd}{copy\_d2}}(\mbox{\hyperlink{class_sysc_add__pv}{D}}\ *\mbox{\hyperlink{class_sysc_add__pv}{src1}},\ \mbox{\hyperlink{class_sysc_add__pv}{D}}\ *\mbox{\hyperlink{class_sysc_add__pv}{src2}},\ \mbox{\hyperlink{class_sysc_add__pv}{D}}\ *\mbox{\hyperlink{class_sysc_add__pv}{dest1}},\ \mbox{\hyperlink{class_sysc_add__pv}{D}}\ *\mbox{\hyperlink{class_sysc_add__pv}{dest2}})\ \{}
+\DoxyCodeLine{00630\ \ \ *\mbox{\hyperlink{class_sysc_add__pv}{dest1}}\ =\ *\mbox{\hyperlink{class_sysc_add__pv}{src1}};}
+\DoxyCodeLine{00631\ \}}
+\DoxyCodeLine{00632\ }
+\DoxyCodeLine{00633\ \textcolor{keyword}{template}<\textcolor{keyword}{class}\ D>\ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{namespacetlm_a590a45f0d65a12be3293cc6f5b643cb3}{copy\_db2}}(\mbox{\hyperlink{class_sysc_add__pv}{D}}\ *\mbox{\hyperlink{class_sysc_add__pv}{src1}},\ \mbox{\hyperlink{class_sysc_add__pv}{D}}\ *\mbox{\hyperlink{class_sysc_add__pv}{src2}},\ \mbox{\hyperlink{class_sysc_add__pv}{D}}\ *\mbox{\hyperlink{class_sysc_add__pv}{dest1}},\ \mbox{\hyperlink{class_sysc_add__pv}{D}}\ *\mbox{\hyperlink{class_sysc_add__pv}{dest2}})\ \{}
+\DoxyCodeLine{00634\ \ \ *\mbox{\hyperlink{class_sysc_add__pv}{dest1}}\ =\ *\mbox{\hyperlink{class_sysc_add__pv}{src1}};}
+\DoxyCodeLine{00635\ \ \ *\mbox{\hyperlink{class_sysc_add__pv}{dest2}}\ =\ *\mbox{\hyperlink{class_sysc_add__pv}{src2}};}
+\DoxyCodeLine{00636\ \}}
+\DoxyCodeLine{00637\ }
+\DoxyCodeLine{00638\ \textcolor{keyword}{template}<\textcolor{keyword}{class}\ D>}
+\DoxyCodeLine{00639\ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{namespacetlm_a7781d4539a236db2861d0b7d8ead59a1}{copy\_dbyb2}}(\mbox{\hyperlink{class_sysc_add__pv}{D}}\ *\mbox{\hyperlink{class_sysc_add__pv}{src1}},\ \mbox{\hyperlink{class_sysc_add__pv}{D}}\ *\mbox{\hyperlink{class_sysc_add__pv}{src2}},\ \mbox{\hyperlink{class_sysc_add__pv}{D}}\ *\mbox{\hyperlink{class_sysc_add__pv}{dest1}},\ \mbox{\hyperlink{class_sysc_add__pv}{D}}\ *\mbox{\hyperlink{class_sysc_add__pv}{dest2}})\ \{}
+\DoxyCodeLine{00640\ \ \ \textcolor{keywordflow}{if}(\mbox{\hyperlink{class_sysc_add__pv}{tlm\_bool<D>}}(*\mbox{\hyperlink{class_sysc_add__pv}{src2}}))\ *\mbox{\hyperlink{class_sysc_add__pv}{dest1}}\ =\ *\mbox{\hyperlink{class_sysc_add__pv}{src1}};}
+\DoxyCodeLine{00641\ \}}
+\DoxyCodeLine{00642\ }
+\DoxyCodeLine{00643\ \textcolor{keyword}{template}<\textcolor{keyword}{class}\ D,\ \textcolor{keywordtype}{void}\ COPY(D\ *src1,\ D\ *src2,\ D\ *dest1,\ D\ *dest2)>}
+\DoxyCodeLine{00644\ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{namespacetlm_a10c0650ddb610e48a59e7974ea8bf9b7}{loop\_aligned2}}(\mbox{\hyperlink{class_sysc_add__pv}{D}}\ *\mbox{\hyperlink{class_sysc_add__pv}{src1}},\ \mbox{\hyperlink{class_sysc_add__pv}{D}}\ *\mbox{\hyperlink{class_sysc_add__pv}{src2}},\ \mbox{\hyperlink{class_sysc_add__pv}{D}}\ *\mbox{\hyperlink{class_sysc_add__pv}{dest1}},\ \mbox{\hyperlink{class_sysc_add__pv}{D}}\ *\mbox{\hyperlink{class_sysc_add__pv}{dest2}},}
+\DoxyCodeLine{00645\ \ \ \ \ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{class_sysc_add__pv}{words}},\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{class_sysc_add__pv}{words\_per\_bus}})\ \{}
+\DoxyCodeLine{00646\ \ \ \mbox{\hyperlink{class_sysc_add__pv}{ptrdiff\_t}}\ \mbox{\hyperlink{class_sysc_add__pv}{src1to2}}\ =\ (\textcolor{keywordtype}{char}\ *)\mbox{\hyperlink{class_sysc_add__pv}{src2}}\ -\/\ (\textcolor{keywordtype}{char}\ *)\mbox{\hyperlink{class_sysc_add__pv}{src1}};\ \ \textcolor{comment}{//\ 64BITFIX\ was\ int\ and\ operands\ were\ cast\ to\ int\ //}}
+\DoxyCodeLine{00647\ \ \ \mbox{\hyperlink{class_sysc_add__pv}{ptrdiff\_t}}\ \mbox{\hyperlink{class_sysc_add__pv}{dest1to2}}\ =\ (\textcolor{keywordtype}{char}\ *)\mbox{\hyperlink{class_sysc_add__pv}{dest2}}\ -\/\ (\textcolor{keywordtype}{char}\ *)\mbox{\hyperlink{class_sysc_add__pv}{dest1}};\ \ \textcolor{comment}{//\ 64BITFIX\ was\ int\ and\ operands\ were\ cast\ to\ int\ //}}
+\DoxyCodeLine{00648\ }
+\DoxyCodeLine{00649\ \ \ \mbox{\hyperlink{class_sysc_add__pv}{D}}\ *done\ =\ \mbox{\hyperlink{class_sysc_add__pv}{src1}}\ +\ \mbox{\hyperlink{class_sysc_add__pv}{ptrdiff\_t}}(\mbox{\hyperlink{class_sysc_add__pv}{words}});\ \ \textcolor{comment}{//\ 64BITFIX\ //}}
+\DoxyCodeLine{00650\ \ \ \mbox{\hyperlink{class_sysc_add__pv}{D}}\ *\mbox{\hyperlink{class_sysc_add__pv}{bus\_start}}\ =\ \mbox{\hyperlink{class_sysc_add__pv}{src1}};}
+\DoxyCodeLine{00651\ \ \ \mbox{\hyperlink{class_sysc_add__pv}{src1}}\ +=\ \mbox{\hyperlink{class_sysc_add__pv}{ptrdiff\_t}}(\mbox{\hyperlink{class_sysc_add__pv}{words\_per\_bus}}\ -\/\ 1);\ \ \textcolor{comment}{//\ 64BITFIX\ //}}
+\DoxyCodeLine{00652\ }
+\DoxyCodeLine{00653\ \ \ \textcolor{keywordflow}{while}(\textcolor{keyword}{true})\ \{}
+\DoxyCodeLine{00654\ \ \ \ \ \mbox{\hyperlink{class_sysc_add__pv}{COPY}}(\mbox{\hyperlink{class_sysc_add__pv}{src1}},\ (\mbox{\hyperlink{class_sysc_add__pv}{D}}\ *)(\mbox{\hyperlink{class_sysc_add__pv}{src1to2}}+(\textcolor{keywordtype}{char}\ *)\mbox{\hyperlink{class_sysc_add__pv}{src1}}),\ \mbox{\hyperlink{class_sysc_add__pv}{dest1}},\ (\mbox{\hyperlink{class_sysc_add__pv}{D}}\ *)(\mbox{\hyperlink{class_sysc_add__pv}{dest1to2}}+(\textcolor{keywordtype}{char}\ *)\mbox{\hyperlink{class_sysc_add__pv}{dest1}}));\ \ \ \textcolor{comment}{//\ 64BITFIX\ //}}
+\DoxyCodeLine{00655\ \ \ \ \ \mbox{\hyperlink{class_sysc_add__pv}{dest1}}++;}
+\DoxyCodeLine{00656\ \ \ \ \ \textcolor{keywordflow}{if}((-\/-\/\mbox{\hyperlink{class_sysc_add__pv}{src1}})\ <\ \mbox{\hyperlink{class_sysc_add__pv}{bus\_start}})\ \{}
+\DoxyCodeLine{00657\ \ \ \ \ \ \ \mbox{\hyperlink{class_sysc_add__pv}{bus\_start}}\ +=\ \mbox{\hyperlink{class_sysc_add__pv}{ptrdiff\_t}}(\mbox{\hyperlink{class_sysc_add__pv}{words\_per\_bus}});\ \ \textcolor{comment}{//\ 64BITFIX\ //}}
+\DoxyCodeLine{00658\ \ \ \ \ \ \ \textcolor{keywordflow}{if}(\mbox{\hyperlink{class_sysc_add__pv}{bus\_start}}\ ==\ done)\ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00659\ \ \ \ \ \ \ \mbox{\hyperlink{class_sysc_add__pv}{src1}}\ =\ \mbox{\hyperlink{class_sysc_add__pv}{bus\_start}}\ +\ \mbox{\hyperlink{class_sysc_add__pv}{ptrdiff\_t}}(\mbox{\hyperlink{class_sysc_add__pv}{words\_per\_bus}}\ -\/\ 1);\ \ \textcolor{comment}{//\ 64BITFIX\ //}}
+\DoxyCodeLine{00660\ \ \ \ \ \}}
+\DoxyCodeLine{00661\ \ \ \}}
+\DoxyCodeLine{00662\ \}}
+\DoxyCodeLine{00663\ }
+\DoxyCodeLine{00664\ }
+\DoxyCodeLine{00666\ \textcolor{comment}{//\ function\ set\ (2):\ Response}}
+\DoxyCodeLine{00667\ \textcolor{keyword}{template}<\textcolor{keyword}{class}\ DATAWORD>\ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{void}}
+\DoxyCodeLine{00668\ \mbox{\hyperlink{namespacetlm_af87c8e8c8f708d47c0a53709795b87af}{tlm\_from\_hostendian\_aligned}}(\mbox{\hyperlink{classtlm_1_1tlm__generic__payload}{tlm\_generic\_payload}}\ *\mbox{\hyperlink{class_sysc_add__pv}{txn}},\ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{int}\ sizeof\_databus)\ \{}
+\DoxyCodeLine{00669\ \ \ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{class_sysc_add__pv}{words\_per\_bus}}\ =\ sizeof\_databus/\textcolor{keyword}{sizeof}(\mbox{\hyperlink{class_sysc_add__pv}{DATAWORD}});}
+\DoxyCodeLine{00670\ \ \ \textcolor{keywordflow}{if}(\mbox{\hyperlink{class_sysc_add__pv}{words\_per\_bus}}\ ==\ 1)\ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{00671\ \ \ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{class_sysc_add__pv}{words}}\ =\ (\mbox{\hyperlink{class_sysc_add__pv}{txn}}-\/>get\_data\_length())/\textcolor{keyword}{sizeof}(\mbox{\hyperlink{class_sysc_add__pv}{DATAWORD}});}
+\DoxyCodeLine{00672\ \ \ \mbox{\hyperlink{classtlm_1_1tlm__endian__context}{tlm\_endian\_context}}\ *\mbox{\hyperlink{class_sysc_add__pv}{tc}}\ =\ \mbox{\hyperlink{class_sysc_add__pv}{txn}}-\/>template\ \mbox{\hyperlink{class_sysc_add__pv}{get\_extension<tlm\_endian\_context>}}();}
+\DoxyCodeLine{00673\ }
+\DoxyCodeLine{00674\ \ \ \textcolor{keywordflow}{if}(\mbox{\hyperlink{class_sysc_add__pv}{txn}}-\/>get\_byte\_enable\_ptr()\ ==\ 0)\ \{}
+\DoxyCodeLine{00675\ \ \ \ \ \textcolor{comment}{//\ no\ byte\ enables}}
+\DoxyCodeLine{00676\ \ \ \ \ \textcolor{keywordflow}{if}(\mbox{\hyperlink{class_sysc_add__pv}{txn}}-\/>is\_read())\ \{}
+\DoxyCodeLine{00677\ \ \ \ \ \ \ \textcolor{comment}{//\ RD\ without\ byte\ enables.\ \ Copy\ data\ to\ original\ buffer}}
+\DoxyCodeLine{00678\ \ \ \ \ \ \ \mbox{\hyperlink{class_sysc_add__pv}{loop\_aligned2<DATAWORD,\ \&copy\_d2<DATAWORD>}}\ >(}
+\DoxyCodeLine{00679\ \ \ \ \ \ \ \ \ (\mbox{\hyperlink{class_sysc_add__pv}{DATAWORD}}\ *)(\mbox{\hyperlink{class_sysc_add__pv}{txn}}-\/>get\_data\_ptr()),}
+\DoxyCodeLine{00680\ \ \ \ \ \ \ \ \ 0,\ (\mbox{\hyperlink{class_sysc_add__pv}{DATAWORD}}\ *)(\mbox{\hyperlink{class_sysc_add__pv}{tc}}-\/>data\_ptr),\ 0,\ \mbox{\hyperlink{class_sysc_add__pv}{words}},\ \mbox{\hyperlink{class_sysc_add__pv}{words\_per\_bus}});}
+\DoxyCodeLine{00681\ \ \ \ \ \}}
+\DoxyCodeLine{00682\ \ \ \}\ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{00683\ \ \ \ \ \textcolor{comment}{//\ byte\ enables\ present}}
+\DoxyCodeLine{00684\ \ \ \ \ \textcolor{keywordflow}{if}(\mbox{\hyperlink{class_sysc_add__pv}{txn}}-\/>is\_read())\ \{}
+\DoxyCodeLine{00685\ \ \ \ \ \ \ \textcolor{comment}{//\ RD\ with\ byte\ enables.\ \ Copy\ data\ qualified\ by\ byte-\/enables}}
+\DoxyCodeLine{00686\ \ \ \ \ \ \ \mbox{\hyperlink{class_sysc_add__pv}{loop\_aligned2<DATAWORD,\ \&copy\_dbyb2<DATAWORD>}}\ >(}
+\DoxyCodeLine{00687\ \ \ \ \ \ \ \ \ (\mbox{\hyperlink{class_sysc_add__pv}{DATAWORD}}\ *)(\mbox{\hyperlink{class_sysc_add__pv}{txn}}-\/>get\_data\_ptr()),}
+\DoxyCodeLine{00688\ \ \ \ \ \ \ \ \ (\mbox{\hyperlink{class_sysc_add__pv}{DATAWORD}}\ *)(\mbox{\hyperlink{class_sysc_add__pv}{txn}}-\/>get\_byte\_enable\_ptr()),}
+\DoxyCodeLine{00689\ \ \ \ \ \ \ \ \ (\mbox{\hyperlink{class_sysc_add__pv}{DATAWORD}}\ *)(\mbox{\hyperlink{class_sysc_add__pv}{tc}}-\/>data\_ptr),\ 0,\ \mbox{\hyperlink{class_sysc_add__pv}{words}},\ \mbox{\hyperlink{class_sysc_add__pv}{words\_per\_bus}});}
+\DoxyCodeLine{00690\ \ \ \ \ \}}
+\DoxyCodeLine{00691\ \ \ \}}
+\DoxyCodeLine{00692\ \}}
+\DoxyCodeLine{00693\ }
+\DoxyCodeLine{00694\ }
+\DoxyCodeLine{00696\ \textcolor{comment}{//\ function\ set\ (2):\ Request}}
+\DoxyCodeLine{00697\ \textcolor{keyword}{template}<\textcolor{keyword}{class}\ DATAWORD>\ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{void}}
+\DoxyCodeLine{00698\ \mbox{\hyperlink{namespacetlm_aa6e9834e6cf69a6bb45acdb902629727}{tlm\_to\_hostendian\_aligned}}(\mbox{\hyperlink{classtlm_1_1tlm__generic__payload}{tlm\_generic\_payload}}\ *\mbox{\hyperlink{class_sysc_add__pv}{txn}},\ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{int}\ sizeof\_databus)\ \{}
+\DoxyCodeLine{00699\ \ \ \mbox{\hyperlink{classtlm_1_1tlm__endian__context}{tlm\_endian\_context}}\ *\mbox{\hyperlink{class_sysc_add__pv}{tc}}\ =\ \mbox{\hyperlink{namespacetlm_a41181c4fd8f02a320ab88b4f99c8355a}{establish\_context}}(\mbox{\hyperlink{class_sysc_add__pv}{txn}});}
+\DoxyCodeLine{00700\ \ \ \mbox{\hyperlink{class_sysc_add__pv}{tc}}-\/>from\_f\ =\ \&(\mbox{\hyperlink{class_sysc_add__pv}{tlm\_from\_hostendian\_aligned<DATAWORD>}});}
+\DoxyCodeLine{00701\ \ \ \mbox{\hyperlink{class_sysc_add__pv}{tc}}-\/>sizeof\_databus\ =\ sizeof\_databus;}
+\DoxyCodeLine{00702\ }
+\DoxyCodeLine{00703\ \ \ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{class_sysc_add__pv}{words\_per\_bus}}\ =\ sizeof\_databus/\textcolor{keyword}{sizeof}(\mbox{\hyperlink{class_sysc_add__pv}{DATAWORD}});}
+\DoxyCodeLine{00704\ \ \ \textcolor{keywordflow}{if}(\mbox{\hyperlink{class_sysc_add__pv}{words\_per\_bus}}\ ==\ 1)\ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{00705\ \ \ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{class_sysc_add__pv}{words}}\ =\ (\mbox{\hyperlink{class_sysc_add__pv}{txn}}-\/>get\_data\_length())/\textcolor{keyword}{sizeof}(\mbox{\hyperlink{class_sysc_add__pv}{DATAWORD}});}
+\DoxyCodeLine{00706\ }
+\DoxyCodeLine{00707\ \ \ \mbox{\hyperlink{class_sysc_add__pv}{DATAWORD}}\ *\mbox{\hyperlink{class_sysc_add__pv}{original\_be}}\ =\ (\mbox{\hyperlink{class_sysc_add__pv}{DATAWORD}}\ *)(\mbox{\hyperlink{class_sysc_add__pv}{txn}}-\/>get\_byte\_enable\_ptr());}
+\DoxyCodeLine{00708\ \ \ \mbox{\hyperlink{class_sysc_add__pv}{DATAWORD}}\ *\mbox{\hyperlink{class_sysc_add__pv}{original\_data}}\ =\ (\mbox{\hyperlink{class_sysc_add__pv}{DATAWORD}}\ *)(\mbox{\hyperlink{class_sysc_add__pv}{txn}}-\/>get\_data\_ptr());}
+\DoxyCodeLine{00709\ }
+\DoxyCodeLine{00710\ \ \ \textcolor{comment}{//\ always\ allocate\ a\ new\ data\ buffer}}
+\DoxyCodeLine{00711\ \ \ \mbox{\hyperlink{class_sysc_add__pv}{tc}}-\/>establish\_dbuf(\mbox{\hyperlink{class_sysc_add__pv}{txn}}-\/>get\_data\_length());}
+\DoxyCodeLine{00712\ \ \ \mbox{\hyperlink{class_sysc_add__pv}{txn}}-\/>set\_data\_ptr(\mbox{\hyperlink{class_sysc_add__pv}{tc}}-\/>new\_dbuf);}
+\DoxyCodeLine{00713\ }
+\DoxyCodeLine{00714\ \ \ \textcolor{keywordflow}{if}(\mbox{\hyperlink{class_sysc_add__pv}{original\_be}}\ ==\ 0)\ \{}
+\DoxyCodeLine{00715\ \ \ \ \ \textcolor{comment}{//\ no\ byte\ enables}}
+\DoxyCodeLine{00716\ \ \ \ \ \textcolor{keywordflow}{if}(\mbox{\hyperlink{class_sysc_add__pv}{txn}}-\/>is\_write())\ \{}
+\DoxyCodeLine{00717\ \ \ \ \ \ \ \textcolor{comment}{//\ WR\ no\ byte\ enables.\ \ Copy\ data}}
+\DoxyCodeLine{00718\ \ \ \ \ \ \ \mbox{\hyperlink{class_sysc_add__pv}{loop\_aligned2<DATAWORD,\ \&copy\_d2<DATAWORD>}}\ >(\mbox{\hyperlink{class_sysc_add__pv}{original\_data}},\ 0,}
+\DoxyCodeLine{00719\ \ \ \ \ \ \ \ \ (\mbox{\hyperlink{class_sysc_add__pv}{DATAWORD}}\ *)(\mbox{\hyperlink{class_sysc_add__pv}{txn}}-\/>get\_data\_ptr()),\ 0,}
+\DoxyCodeLine{00720\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_sysc_add__pv}{words}},\ \mbox{\hyperlink{class_sysc_add__pv}{words\_per\_bus}});}
+\DoxyCodeLine{00721\ \ \ \ \ \}\ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{00722\ \ \ \ \ \ \ \textcolor{comment}{//\ RD\ no\ byte\ enables.\ \ Save\ original\ data\ pointer}}
+\DoxyCodeLine{00723\ \ \ \ \ \ \ \mbox{\hyperlink{class_sysc_add__pv}{tc}}-\/>data\_ptr\ =\ (\mbox{\hyperlink{tlm__endian__conv_8h_aa8ddf20cdd716b652e76e23e5e700893}{uchar}}\ *)\mbox{\hyperlink{class_sysc_add__pv}{original\_data}};}
+\DoxyCodeLine{00724\ \ \ \ \ \}}
+\DoxyCodeLine{00725\ \ \ \}\ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{00726\ \ \ \ \ \textcolor{comment}{//\ byte\ enables\ present}}
+\DoxyCodeLine{00727\ \ \ \ \ \textcolor{comment}{//\ allocate\ a\ new\ buffer\ for\ them}}
+\DoxyCodeLine{00728\ \ \ \ \ \mbox{\hyperlink{class_sysc_add__pv}{tc}}-\/>establish\_bebuf(\mbox{\hyperlink{class_sysc_add__pv}{txn}}-\/>get\_data\_length());}
+\DoxyCodeLine{00729\ \ \ \ \ \mbox{\hyperlink{class_sysc_add__pv}{txn}}-\/>set\_byte\_enable\_ptr(\mbox{\hyperlink{class_sysc_add__pv}{tc}}-\/>new\_bebuf);}
+\DoxyCodeLine{00730\ \ \ \ \ \mbox{\hyperlink{class_sysc_add__pv}{txn}}-\/>set\_byte\_enable\_length(\mbox{\hyperlink{class_sysc_add__pv}{txn}}-\/>get\_data\_length());}
+\DoxyCodeLine{00731\ }
+\DoxyCodeLine{00732\ \ \ \ \ \textcolor{keywordflow}{if}(\mbox{\hyperlink{class_sysc_add__pv}{txn}}-\/>is\_write())\ \{}
+\DoxyCodeLine{00733\ \ \ \ \ \ \ \textcolor{comment}{//\ WR\ with\ byte\ enables.\ \ Copy\ data\ and\ BEs}}
+\DoxyCodeLine{00734\ \ \ \ \ \ \ \mbox{\hyperlink{class_sysc_add__pv}{loop\_aligned2<DATAWORD,\ \&copy\_db2<DATAWORD>}}\ >(\mbox{\hyperlink{class_sysc_add__pv}{original\_data}},\ \mbox{\hyperlink{class_sysc_add__pv}{original\_be}},}
+\DoxyCodeLine{00735\ \ \ \ \ \ \ \ \ (\mbox{\hyperlink{class_sysc_add__pv}{DATAWORD}}\ *)(\mbox{\hyperlink{class_sysc_add__pv}{txn}}-\/>get\_data\_ptr()),}
+\DoxyCodeLine{00736\ \ \ \ \ \ \ \ \ (\mbox{\hyperlink{class_sysc_add__pv}{DATAWORD}}\ *)(\mbox{\hyperlink{class_sysc_add__pv}{txn}}-\/>get\_byte\_enable\_ptr()),\ \mbox{\hyperlink{class_sysc_add__pv}{words}},\ \mbox{\hyperlink{class_sysc_add__pv}{words\_per\_bus}});}
+\DoxyCodeLine{00737\ \ \ \ \ \}\ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{00738\ \ \ \ \ \ \ \textcolor{comment}{//\ RD\ with\ byte\ enables.\ \ Save\ original\ data\ pointer}}
+\DoxyCodeLine{00739\ \ \ \ \ \ \ \mbox{\hyperlink{class_sysc_add__pv}{tc}}-\/>data\_ptr\ =\ (\mbox{\hyperlink{tlm__endian__conv_8h_aa8ddf20cdd716b652e76e23e5e700893}{uchar}}\ *)\mbox{\hyperlink{class_sysc_add__pv}{original\_data}};}
+\DoxyCodeLine{00740\ \ \ \ \ \ \ \textcolor{comment}{//\ Copy\ byte\ enables\ to\ new\ buffer}}
+\DoxyCodeLine{00741\ \ \ \ \ \ \ \mbox{\hyperlink{class_sysc_add__pv}{loop\_aligned2<DATAWORD,\ \&copy\_d2<DATAWORD>}}\ >(\mbox{\hyperlink{class_sysc_add__pv}{original\_be}},\ 0,}
+\DoxyCodeLine{00742\ \ \ \ \ \ \ \ \ (\mbox{\hyperlink{class_sysc_add__pv}{DATAWORD}}\ *)(\mbox{\hyperlink{class_sysc_add__pv}{txn}}-\/>get\_byte\_enable\_ptr()),\ 0,}
+\DoxyCodeLine{00743\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_sysc_add__pv}{words}},\ \mbox{\hyperlink{class_sysc_add__pv}{words\_per\_bus}});}
+\DoxyCodeLine{00744\ \ \ \ \ \}}
+\DoxyCodeLine{00745\ \ \ \}}
+\DoxyCodeLine{00746\ \}}
+\DoxyCodeLine{00747\ }
+\DoxyCodeLine{00748\ }
+\DoxyCodeLine{00749\ }
+\DoxyCodeLine{00751\ \textcolor{comment}{//\ function\ set\ (3):\ Response}}
+\DoxyCodeLine{00752\ \textcolor{keyword}{template}<\textcolor{keyword}{class}\ DATAWORD>\ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{void}}
+\DoxyCodeLine{00753\ \mbox{\hyperlink{namespacetlm_ab4039880c471f76a5549d8c4a86167a8}{tlm\_from\_hostendian\_single}}(\mbox{\hyperlink{classtlm_1_1tlm__generic__payload}{tlm\_generic\_payload}}\ *\mbox{\hyperlink{class_sysc_add__pv}{txn}},\ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{int}\ sizeof\_databus)\ \{}
+\DoxyCodeLine{00754\ \ \ \textcolor{comment}{//\ nothing\ needs\ to\ be\ done\ here}}
+\DoxyCodeLine{00755\ \}}
+\DoxyCodeLine{00756\ }
+\DoxyCodeLine{00757\ }
+\DoxyCodeLine{00759\ \textcolor{comment}{//\ function\ set\ (3):\ Request}}
+\DoxyCodeLine{00760\ \textcolor{keyword}{template}<\textcolor{keyword}{class}\ DATAWORD>\ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{void}}
+\DoxyCodeLine{00761\ \mbox{\hyperlink{namespacetlm_a11bd52e7224f7375c0983ae04f3b0264}{tlm\_to\_hostendian\_single}}(\mbox{\hyperlink{classtlm_1_1tlm__generic__payload}{tlm\_generic\_payload}}\ *\mbox{\hyperlink{class_sysc_add__pv}{txn}},\ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{int}\ sizeof\_databus)\ \{}
+\DoxyCodeLine{00762\ \ \ \mbox{\hyperlink{classtlm_1_1tlm__endian__context}{tlm\_endian\_context}}\ *\mbox{\hyperlink{class_sysc_add__pv}{tc}}\ =\ \mbox{\hyperlink{namespacetlm_a41181c4fd8f02a320ab88b4f99c8355a}{establish\_context}}(\mbox{\hyperlink{class_sysc_add__pv}{txn}});}
+\DoxyCodeLine{00763\ \ \ \mbox{\hyperlink{class_sysc_add__pv}{tc}}-\/>from\_f\ =\ \&(\mbox{\hyperlink{class_sysc_add__pv}{tlm\_from\_hostendian\_single<DATAWORD>}});}
+\DoxyCodeLine{00764\ \ \ \mbox{\hyperlink{class_sysc_add__pv}{tc}}-\/>sizeof\_databus\ =\ sizeof\_databus;}
+\DoxyCodeLine{00765\ }
+\DoxyCodeLine{00766\ \ \ \textcolor{comment}{//\ only\ need\ to\ change\ the\ address,\ always\ safe\ to\ work\ in-\/place}}
+\DoxyCodeLine{00767\ \ \ \mbox{\hyperlink{class_sysc_add__pv}{sc\_dt::uint64}}\ mask\ =\ sizeof\_databus-\/1;}
+\DoxyCodeLine{00768\ \ \ \mbox{\hyperlink{class_sysc_add__pv}{sc\_dt::uint64}}\ \mbox{\hyperlink{class_sysc_add__pv}{a}}\ =\ \mbox{\hyperlink{class_sysc_add__pv}{txn}}-\/>get\_address();}
+\DoxyCodeLine{00769\ \ \ \mbox{\hyperlink{class_sysc_add__pv}{txn}}-\/>set\_address((\mbox{\hyperlink{class_sysc_add__pv}{a}}\ \&\ \string~mask)\ |}
+\DoxyCodeLine{00770\ \ \ \ \ (sizeof\_databus\ -\/\ (\mbox{\hyperlink{class_sysc_add__pv}{a}}\ \&\ mask)\ -\/\ \textcolor{keyword}{sizeof}(\mbox{\hyperlink{class_sysc_add__pv}{DATAWORD}})));}
+\DoxyCodeLine{00771\ \}}
+\DoxyCodeLine{00772\ }
+\DoxyCodeLine{00773\ }
+\DoxyCodeLine{00774\ }
+\DoxyCodeLine{00776\ \textcolor{comment}{//\ helper\ function\ which\ works\ for\ all\ responses}}
+\DoxyCodeLine{00777\ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{namespacetlm_a7089b671b64863a5d1f59b8b5c9f648f}{tlm\_from\_hostendian}}(\mbox{\hyperlink{classtlm_1_1tlm__generic__payload}{tlm\_generic\_payload}}\ *\mbox{\hyperlink{class_sysc_add__pv}{txn}})\ \{}
+\DoxyCodeLine{00778\ \ \ \mbox{\hyperlink{classtlm_1_1tlm__endian__context}{tlm\_endian\_context}}\ *\mbox{\hyperlink{class_sysc_add__pv}{tc}}\ =\ \mbox{\hyperlink{class_sysc_add__pv}{txn}}-\/>get\_extension<\mbox{\hyperlink{classtlm_1_1tlm__endian__context}{tlm\_endian\_context}}>();}
+\DoxyCodeLine{00779\ \ \ (*(\mbox{\hyperlink{class_sysc_add__pv}{tc}}-\/>from\_f))(\mbox{\hyperlink{class_sysc_add__pv}{txn}},\ \mbox{\hyperlink{class_sysc_add__pv}{tc}}-\/>sizeof\_databus);}
+\DoxyCodeLine{00780\ \}}
+\DoxyCodeLine{00781\ }
+\DoxyCodeLine{00782\ }
+\DoxyCodeLine{00783\ \textcolor{preprocessor}{\#ifndef\ TLM\_END\_CONV\_DONT\_UNDEF\_UCHAR}}
+\DoxyCodeLine{00784\ \textcolor{preprocessor}{\#undef\ uchar}}
+\DoxyCodeLine{00785\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00786\ }
+\DoxyCodeLine{00787\ \}\ \ \textcolor{comment}{//\ namespace\ tlm}}
+\DoxyCodeLine{00788\ }
+\DoxyCodeLine{00789\ }
+\DoxyCodeLine{00790\ \textcolor{preprocessor}{\#endif\ \ }\textcolor{comment}{//\ multiple-\/inclusion\ protection}}
+\DoxyCodeLine{00791\ }
+
+\end{DoxyCode}

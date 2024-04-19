@@ -1,0 +1,335 @@
+\doxysection{multi\+\_\+passthrough\+\_\+target\+\_\+socket.\+h}
+\hypertarget{multi__passthrough__target__socket_8h_source}{}\label{multi__passthrough__target__socket_8h_source}\index{C:/Users/BJRODIER/Documents/QT\_REPO/QT\_VHDL\_simulator/code/Ressources/SystemC/include/tlm\_utils/multi\_passthrough\_target\_socket.h@{C:/Users/BJRODIER/Documents/QT\_REPO/QT\_VHDL\_simulator/code/Ressources/SystemC/include/tlm\_utils/multi\_passthrough\_target\_socket.h}}
+\mbox{\hyperlink{multi__passthrough__target__socket_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{comment}{/*****************************************************************************}}
+\DoxyCodeLine{00002\ \textcolor{comment}{}}
+\DoxyCodeLine{00003\ \textcolor{comment}{\ \ Licensed\ to\ Accellera\ Systems\ Initiative\ Inc.\ (Accellera)\ under\ one\ or}}
+\DoxyCodeLine{00004\ \textcolor{comment}{\ \ more\ contributor\ license\ agreements.\ \ See\ the\ NOTICE\ file\ distributed}}
+\DoxyCodeLine{00005\ \textcolor{comment}{\ \ with\ this\ work\ for\ additional\ information\ regarding\ copyright\ ownership.}}
+\DoxyCodeLine{00006\ \textcolor{comment}{\ \ Accellera\ licenses\ this\ file\ to\ you\ under\ the\ Apache\ License,\ Version\ 2.0}}
+\DoxyCodeLine{00007\ \textcolor{comment}{\ \ (the\ "{}License"{});\ you\ may\ not\ use\ this\ file\ except\ in\ compliance\ with\ the}}
+\DoxyCodeLine{00008\ \textcolor{comment}{\ \ License.\ \ You\ may\ obtain\ a\ copy\ of\ the\ License\ at}}
+\DoxyCodeLine{00009\ \textcolor{comment}{}}
+\DoxyCodeLine{00010\ \textcolor{comment}{\ \ \ \ http://www.apache.org/licenses/LICENSE-\/2.0}}
+\DoxyCodeLine{00011\ \textcolor{comment}{}}
+\DoxyCodeLine{00012\ \textcolor{comment}{\ \ Unless\ required\ by\ applicable\ law\ or\ agreed\ to\ in\ writing,\ software}}
+\DoxyCodeLine{00013\ \textcolor{comment}{\ \ distributed\ under\ the\ License\ is\ distributed\ on\ an\ "{}AS\ IS"{}\ BASIS,}}
+\DoxyCodeLine{00014\ \textcolor{comment}{\ \ WITHOUT\ WARRANTIES\ OR\ CONDITIONS\ OF\ ANY\ KIND,\ either\ express\ or}}
+\DoxyCodeLine{00015\ \textcolor{comment}{\ \ implied.\ \ See\ the\ License\ for\ the\ specific\ language\ governing}}
+\DoxyCodeLine{00016\ \textcolor{comment}{\ \ permissions\ and\ limitations\ under\ the\ License.}}
+\DoxyCodeLine{00017\ \textcolor{comment}{}}
+\DoxyCodeLine{00018\ \textcolor{comment}{\ *****************************************************************************/}}
+\DoxyCodeLine{00019\ \textcolor{preprocessor}{\#ifndef\ TLM\_UTILS\_MULTI\_PASSTHROUGH\_TARGET\_SOCKET\_H\_INCLUDED\_}}
+\DoxyCodeLine{00020\ \textcolor{preprocessor}{\#define\ TLM\_UTILS\_MULTI\_PASSTHROUGH\_TARGET\_SOCKET\_H\_INCLUDED\_}}
+\DoxyCodeLine{00021\ }
+\DoxyCodeLine{00022\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{multi__socket__bases_8h}{tlm\_utils/multi\_socket\_bases.h}}"{}}}
+\DoxyCodeLine{00023\ }
+\DoxyCodeLine{00024\ \textcolor{keyword}{namespace\ }\mbox{\hyperlink{namespacetlm__utils}{tlm\_utils}}\ \{}
+\DoxyCodeLine{00025\ }
+\DoxyCodeLine{00026\ \textcolor{comment}{/*}}
+\DoxyCodeLine{00027\ \textcolor{comment}{This\ class\ implements\ a\ trivial\ multi\ target\ socket.}}
+\DoxyCodeLine{00028\ \textcolor{comment}{The\ triviality\ refers\ to\ the\ fact\ that\ the\ socket\ does\ not}}
+\DoxyCodeLine{00029\ \textcolor{comment}{do\ blocking\ to\ non-\/blocking\ or\ non-\/blocking\ to\ blocking\ conversions.}}
+\DoxyCodeLine{00030\ \textcolor{comment}{}}
+\DoxyCodeLine{00031\ \textcolor{comment}{It\ allows\ to\ connect\ multiple\ initiators\ to\ this\ socket.}}
+\DoxyCodeLine{00032\ \textcolor{comment}{The\ user\ has\ to\ register\ callbacks\ for\ the\ fw\ interface\ methods}}
+\DoxyCodeLine{00033\ \textcolor{comment}{he\ likes\ to\ use.\ The\ callbacks\ are\ basically\ equal\ to\ the\ fw\ interface}}
+\DoxyCodeLine{00034\ \textcolor{comment}{methods\ but\ carry\ an\ additional\ integer\ that\ indicates\ to\ which}}
+\DoxyCodeLine{00035\ \textcolor{comment}{index\ of\ this\ socket\ the\ calling\ initiator\ is\ connected.}}
+\DoxyCodeLine{00036\ \textcolor{comment}{*/}}
+\DoxyCodeLine{00037\ \textcolor{keyword}{template}\ <\textcolor{keyword}{typename}\ \mbox{\hyperlink{class_sysc_add__pv}{MODULE}},}
+\DoxyCodeLine{00038\ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{class_sysc_add__pv}{BUSWIDTH}}\ =\ 32,}
+\DoxyCodeLine{00039\ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{typename}\ \mbox{\hyperlink{class_sysc_add__pv}{TYPES}}\ =\ \mbox{\hyperlink{structtlm_1_1tlm__base__protocol__types}{tlm::tlm\_base\_protocol\_types}},}
+\DoxyCodeLine{00040\ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{class_sysc_add__pv}{N}}=0,}
+\DoxyCodeLine{00041\ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacesc__core_ad08dd04b5b8f4cacc78c81516672e9eb}{sc\_core::sc\_port\_policy}}\ \mbox{\hyperlink{class_sysc_add__pv}{POL}}\ =\ \mbox{\hyperlink{namespacesc__core_ad08dd04b5b8f4cacc78c81516672e9ebae5eac58d624fbaafa84db6b644cdea0d}{sc\_core::SC\_ONE\_OR\_MORE\_BOUND}}>}
+\DoxyCodeLine{00042\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classtlm__utils_1_1multi__passthrough__target__socket}{multi\_passthrough\_target\_socket}}}
+\DoxyCodeLine{00043\ \ \ :\ \textcolor{keyword}{public}\ \mbox{\hyperlink{classtlm__utils_1_1multi__target__base}{multi\_target\_base}}<\ BUSWIDTH,\ TYPES,\ N,\ POL>}
+\DoxyCodeLine{00044\ \ \ ,\ \textcolor{keyword}{public}\ \mbox{\hyperlink{classtlm__utils_1_1multi__to__multi__bind__base}{multi\_to\_multi\_bind\_base}}<TYPES>}
+\DoxyCodeLine{00045\ \{}
+\DoxyCodeLine{00046\ }
+\DoxyCodeLine{00047\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00048\ }
+\DoxyCodeLine{00049\ \ \ \textcolor{comment}{//typedefs}}
+\DoxyCodeLine{00050\ \ \ \textcolor{comment}{//\ \ tlm\ 2.0\ types\ for\ nb\_transport}}
+\DoxyCodeLine{00051\ \ \ \textcolor{keyword}{typedef}\ \textcolor{keyword}{typename}\ TYPES::tlm\_payload\_type\ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classtlm__utils_1_1multi__passthrough__target__socket_aec647d3b9c3487051267c1d173ebcce2}{transaction\_type}};}
+\DoxyCodeLine{00052\ \ \ \textcolor{keyword}{typedef}\ \textcolor{keyword}{typename}\ TYPES::tlm\_phase\_type\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classtlm__utils_1_1multi__passthrough__target__socket_a3d8ab5fa9336bfb2fdb1800ea864f87b}{phase\_type}};}
+\DoxyCodeLine{00053\ \ \ \textcolor{keyword}{typedef}\ \mbox{\hyperlink{namespacetlm_adac10369502c45362dded44267fea971}{tlm::tlm\_sync\_enum}}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classtlm__utils_1_1multi__passthrough__target__socket_a2157ba87a62bbba14744d7e8d4e71377}{sync\_enum\_type}};}
+\DoxyCodeLine{00054\ }
+\DoxyCodeLine{00055\ \ \ \textcolor{comment}{//\ \ typedefs\ to\ keep\ the\ fn\ ptr\ notations\ short}}
+\DoxyCodeLine{00056\ \ \ \textcolor{keyword}{typedef}\ \mbox{\hyperlink{classtlm__utils_1_1multi__passthrough__target__socket_a2157ba87a62bbba14744d7e8d4e71377}{sync\_enum\_type}}\ (\mbox{\hyperlink{class_sysc_add__pv}{MODULE}}::*\mbox{\hyperlink{classtlm__utils_1_1multi__passthrough__target__socket_ab8d9797304236ac8c37887223e4c795d}{nb\_cb}})(int,\ \mbox{\hyperlink{classtlm__utils_1_1multi__passthrough__target__socket_aec647d3b9c3487051267c1d173ebcce2}{transaction\_type}}\&,\ \mbox{\hyperlink{classtlm__utils_1_1multi__passthrough__target__socket_a3d8ab5fa9336bfb2fdb1800ea864f87b}{phase\_type}}\&,\ \mbox{\hyperlink{namespacesc__core}{sc\_core}}::sc\_time\&);}
+\DoxyCodeLine{00057\ \ \ \textcolor{keyword}{typedef}\ \mbox{\hyperlink{class_sysc_add__pv}{void}}\ (\mbox{\hyperlink{class_sysc_add__pv}{MODULE}}::*\mbox{\hyperlink{classtlm__utils_1_1multi__passthrough__target__socket_aa094c95b6d2b1c2fe79dd8299706e2f8}{b\_cb}})(int,\ \mbox{\hyperlink{classtlm__utils_1_1multi__passthrough__target__socket_aec647d3b9c3487051267c1d173ebcce2}{transaction\_type}}\&,\ \mbox{\hyperlink{namespacesc__core}{sc\_core}}::sc\_time\&);}
+\DoxyCodeLine{00058\ \ \ \textcolor{keyword}{typedef}\ \textcolor{keywordtype}{unsigned}\ int\ (\mbox{\hyperlink{class_sysc_add__pv}{MODULE}}::*\mbox{\hyperlink{classtlm__utils_1_1multi__passthrough__target__socket_a4260d4513a33a628812901e771abe74e}{dbg\_cb}})(int,\ \mbox{\hyperlink{classtlm__utils_1_1multi__passthrough__target__socket_aec647d3b9c3487051267c1d173ebcce2}{transaction\_type}}\&\ \mbox{\hyperlink{class_sysc_add__pv}{txn}});}
+\DoxyCodeLine{00059\ \ \ \textcolor{keyword}{typedef}\ \mbox{\hyperlink{class_sysc_add__pv}{bool}}\ (\mbox{\hyperlink{class_sysc_add__pv}{MODULE}}::*\mbox{\hyperlink{classtlm__utils_1_1multi__passthrough__target__socket_ac3b20ae98de0c9f5b620bb0589777956}{dmi\_cb}})(int,\ \mbox{\hyperlink{classtlm__utils_1_1multi__passthrough__target__socket_aec647d3b9c3487051267c1d173ebcce2}{transaction\_type}}\&\ \mbox{\hyperlink{class_sysc_add__pv}{txn}},\ \mbox{\hyperlink{namespacetlm}{tlm}}::tlm\_dmi\&\ \mbox{\hyperlink{class_sysc_add__pv}{dmi}});}
+\DoxyCodeLine{00060\ }
+\DoxyCodeLine{00061\ \ \ \textcolor{keyword}{typedef}\ \mbox{\hyperlink{class_sysc_add__pv}{multi\_target\_base<BUSWIDTH,\ TYPES,\ N,\ POL>}}\ \mbox{\hyperlink{classtlm__utils_1_1multi__passthrough__target__socket_a458a6cf75552df1eaca088d6795af64b}{base\_type}};}
+\DoxyCodeLine{00062\ }
+\DoxyCodeLine{00063\ \ \ \textcolor{keyword}{typedef}\ \textcolor{keyword}{typename}\ \mbox{\hyperlink{classtlm_1_1tlm__base__initiator__socket__b}{base\_type::base\_initiator\_socket\_type}}\ \mbox{\hyperlink{classtlm__utils_1_1multi__passthrough__target__socket_a8b6255a7f8da77d0391e6c0f8211d807}{base\_initiator\_socket\_type}};}
+\DoxyCodeLine{00064\ }
+\DoxyCodeLine{00065\ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{char}*\ \mbox{\hyperlink{classtlm__utils_1_1multi__passthrough__target__socket_a61112311195dfb272934a21bf78f818a}{default\_name}}()}
+\DoxyCodeLine{00066\ \ \ \ \ \{\ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{namespacesc__core_a378479e6d63d99df82cd55b6b8ee7aa8}{sc\_core::sc\_gen\_unique\_name}}(\textcolor{stringliteral}{"{}multi\_passthrough\_target\_socket"{}});\ \}}
+\DoxyCodeLine{00067\ }
+\DoxyCodeLine{00068\ \ \ \textcolor{comment}{//CTOR}}
+\DoxyCodeLine{00069\ \ \ \textcolor{keyword}{explicit}\ \mbox{\hyperlink{classtlm__utils_1_1multi__passthrough__target__socket_a4046d5fdb77cd3236e1a1be40b2c5c71}{multi\_passthrough\_target\_socket}}(\textcolor{keyword}{const}\ \textcolor{keywordtype}{char}*\ \mbox{\hyperlink{classsc__core_1_1sc__object_a4da9c6e99326cd2619958e049625bc58}{name}}\ =\ \mbox{\hyperlink{classtlm__utils_1_1multi__passthrough__target__socket_a61112311195dfb272934a21bf78f818a}{default\_name}}())}
+\DoxyCodeLine{00070\ \ \ \ \ \ \ :\ \mbox{\hyperlink{classtlm__utils_1_1multi__target__base}{base\_type}}(\mbox{\hyperlink{classsc__core_1_1sc__object_a4da9c6e99326cd2619958e049625bc58}{name}})}
+\DoxyCodeLine{00071\ \ \ \ \ \ \ ,\ \mbox{\hyperlink{classtlm__utils_1_1multi__passthrough__target__socket_a7e9e13514ee7bc498c75914dcbc59ed1}{m\_hierarch\_bind}}(0)}
+\DoxyCodeLine{00072\ \ \ \ \ \ \ ,\ \mbox{\hyperlink{classtlm__utils_1_1multi__passthrough__target__socket_a59eaa6ded69f29bd8cdaddac15b98b46}{m\_eoe\_disabled}}(\mbox{\hyperlink{class_sysc_add__pv}{false}})}
+\DoxyCodeLine{00073\ \ \ \ \ \ \ ,\ \mbox{\hyperlink{classtlm__utils_1_1multi__passthrough__target__socket_a4ef4c49624611b6bdf441aa522d3fb0f}{m\_export\_callback\_created}}(\mbox{\hyperlink{class_sysc_add__pv}{false}})}
+\DoxyCodeLine{00074\ \ \ \{}
+\DoxyCodeLine{00075\ \ \ \}}
+\DoxyCodeLine{00076\ }
+\DoxyCodeLine{00077\ \ \ \mbox{\hyperlink{classtlm__utils_1_1multi__passthrough__target__socket_a36c7e975e8fa3949daffb93204089c36}{\string~multi\_passthrough\_target\_socket}}()\{}
+\DoxyCodeLine{00078\ \ \ \ \ \textcolor{comment}{//clean\ up\ everything\ allocated\ by\ 'new'}}
+\DoxyCodeLine{00079\ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{class_sysc_add__pv}{i}}=0;\ \mbox{\hyperlink{class_sysc_add__pv}{i}}<\mbox{\hyperlink{classtlm__utils_1_1multi__passthrough__target__socket_a04e91d988371f22394dbacd872403215}{m\_binders}}.size();\ \mbox{\hyperlink{class_sysc_add__pv}{i}}++)\ \textcolor{keyword}{delete}\ \mbox{\hyperlink{classtlm__utils_1_1multi__passthrough__target__socket_a04e91d988371f22394dbacd872403215}{m\_binders}}[\mbox{\hyperlink{class_sysc_add__pv}{i}}];}
+\DoxyCodeLine{00080\ \ \ \}}
+\DoxyCodeLine{00081\ }
+\DoxyCodeLine{00082\ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classtlm__utils_1_1multi__passthrough__target__socket_a8f6f3cb48354b3e57f273f46d8f3f837}{check\_export\_binding}}()}
+\DoxyCodeLine{00083\ \ \ \{}
+\DoxyCodeLine{00084\ \ \ \ \ \textcolor{comment}{//if\ our\ export\ hasn't\ been\ bound\ yet\ (due\ to\ a\ hierarch\ binding)}}
+\DoxyCodeLine{00085\ \ \ \ \ \textcolor{comment}{//\ \ we\ bind\ it\ now.}}
+\DoxyCodeLine{00086\ \ \ \ \ \textcolor{comment}{//We\ do\ that\ here\ as\ the\ user\ of\ the\ target\ port\ HAS\ to\ bind\ at\ least\ on\ callback,}}
+\DoxyCodeLine{00087\ \ \ \ \ \textcolor{comment}{//otherwise\ the\ socket\ was\ useless.\ Nevertheless,\ the\ target\ socket\ may\ still}}
+\DoxyCodeLine{00088\ \ \ \ \ \textcolor{comment}{//\ stay\ unbound\ afterwards.}}
+\DoxyCodeLine{00089\ \ \ \ \ \textcolor{keywordflow}{if}\ (!\mbox{\hyperlink{classsc__core_1_1sc__export}{sc\_core::sc\_export}}<\mbox{\hyperlink{classtlm_1_1tlm__fw__transport__if}{tlm::tlm\_fw\_transport\_if<TYPES>}}\ >\mbox{\hyperlink{classsc__core_1_1sc__export_afc328e39f74fca5e041201bc2dfa9b8b}{::get\_interface}}())}
+\DoxyCodeLine{00090\ \ \ \ \ \{}
+\DoxyCodeLine{00091\ \ \ \ \ \ \ \textcolor{comment}{//\ We\ bind\ to\ a\ callback\_binder\ that\ will\ be\ used\ as\ the\ first\ interface}}
+\DoxyCodeLine{00092\ \ \ \ \ \ \ \textcolor{comment}{//\ i.e.\ calls\ to\ the\ sc\_export\ will\ have\ the\ same\ ID\ as\ calls\ from\ the\ first\ initator}}
+\DoxyCodeLine{00093\ \ \ \ \ \ \ \textcolor{comment}{//\ socket\ bound}}
+\DoxyCodeLine{00094\ \ \ \ \ \ \ \mbox{\hyperlink{class_sysc_add__pv}{callback\_binder\_fw<TYPES>}}\ *\ \mbox{\hyperlink{class_sysc_add__pv}{binder}};}
+\DoxyCodeLine{00095\ }
+\DoxyCodeLine{00096\ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\mbox{\hyperlink{classtlm__utils_1_1multi__passthrough__target__socket_a04e91d988371f22394dbacd872403215}{m\_binders}}.size()\ ==\ 0)}
+\DoxyCodeLine{00097\ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00098\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_sysc_add__pv}{binder}}\ =\ \textcolor{keyword}{new}\ \mbox{\hyperlink{class_sysc_add__pv}{callback\_binder\_fw<TYPES>}}(\textcolor{keyword}{this},\ \mbox{\hyperlink{classtlm__utils_1_1multi__passthrough__target__socket_a04e91d988371f22394dbacd872403215}{m\_binders}}.size());}
+\DoxyCodeLine{00099\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classtlm__utils_1_1multi__passthrough__target__socket_a04e91d988371f22394dbacd872403215}{m\_binders}}.push\_back(\mbox{\hyperlink{class_sysc_add__pv}{binder}});}
+\DoxyCodeLine{00100\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classtlm__utils_1_1multi__passthrough__target__socket_a4ef4c49624611b6bdf441aa522d3fb0f}{m\_export\_callback\_created}}\ =\ \textcolor{keyword}{true};}
+\DoxyCodeLine{00101\ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00102\ \ \ \ \ \ \ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{00103\ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00104\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_sysc_add__pv}{binder}}\ =\ \mbox{\hyperlink{classtlm__utils_1_1multi__passthrough__target__socket_a04e91d988371f22394dbacd872403215}{m\_binders}}[0];}
+\DoxyCodeLine{00105\ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00106\ }
+\DoxyCodeLine{00107\ \ \ \ \ \ \ \mbox{\hyperlink{classsc__core_1_1sc__export}{sc\_core::sc\_export<tlm::tlm\_fw\_transport\_if<TYPES>}}\ >\mbox{\hyperlink{classtlm__utils_1_1multi__passthrough__target__socket_a928893a2fcceb11721b3c7574a8a69ad}{::bind}}(*\mbox{\hyperlink{class_sysc_add__pv}{binder}});}
+\DoxyCodeLine{00108\ \ \ \ \ \}}
+\DoxyCodeLine{00109\ \ \ \}}
+\DoxyCodeLine{00110\ }
+\DoxyCodeLine{00111\ \ \ \textcolor{comment}{//register\ callback\ for\ nb\ transport\ of\ fw\ interface}}
+\DoxyCodeLine{00112\ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classtlm__utils_1_1multi__passthrough__target__socket_ae3fd3a28bd9a1eafca122bc5e9dd7a5c}{register\_nb\_transport\_fw}}(\mbox{\hyperlink{class_sysc_add__pv}{MODULE}}*\ \mbox{\hyperlink{class_sysc_add__pv}{mod}},}
+\DoxyCodeLine{00113\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classtlm__utils_1_1multi__passthrough__target__socket_ab8d9797304236ac8c37887223e4c795d}{nb\_cb}}\ cb)}
+\DoxyCodeLine{00114\ \ \ \{}
+\DoxyCodeLine{00115\ \ \ \ \ \mbox{\hyperlink{classtlm__utils_1_1multi__passthrough__target__socket_a8f6f3cb48354b3e57f273f46d8f3f837}{check\_export\_binding}}();}
+\DoxyCodeLine{00116\ }
+\DoxyCodeLine{00117\ \ \ \ \ \textcolor{comment}{//warn\ if\ there\ already\ is\ a\ callback}}
+\DoxyCodeLine{00118\ \ \ \ \ \textcolor{keywordflow}{if}\ (\mbox{\hyperlink{classtlm__utils_1_1multi__passthrough__target__socket_ae24bfbc0e40f7674196ade223ac92193}{m\_nb\_f}}.is\_valid())\{}
+\DoxyCodeLine{00119\ \ \ \ \ \ \ \mbox{\hyperlink{classtlm__utils_1_1convenience__socket__base_a28dca4a50ce451ea48ba254574430599}{display\_warning}}(\textcolor{stringliteral}{"{}NBTransport\_bw\ callback\ already\ registered."{}});}
+\DoxyCodeLine{00120\ \ \ \ \ \ \ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{00121\ \ \ \ \ \}}
+\DoxyCodeLine{00122\ }
+\DoxyCodeLine{00123\ \ \ \ \ \textcolor{comment}{//set\ the\ functor}}
+\DoxyCodeLine{00124\ \ \ \ \ \mbox{\hyperlink{classtlm__utils_1_1multi__passthrough__target__socket_ae24bfbc0e40f7674196ade223ac92193}{m\_nb\_f}}.set\_function(\mbox{\hyperlink{class_sysc_add__pv}{mod}},\ cb);}
+\DoxyCodeLine{00125\ \ \ \}}
+\DoxyCodeLine{00126\ }
+\DoxyCodeLine{00127\ \ \ \textcolor{comment}{//register\ callback\ for\ b\ transport\ of\ fw\ interface}}
+\DoxyCodeLine{00128\ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classtlm__utils_1_1multi__passthrough__target__socket_ad55d7072ab4226012c84b3d6b146e9fb}{register\_b\_transport}}(\mbox{\hyperlink{class_sysc_add__pv}{MODULE}}*\ \mbox{\hyperlink{class_sysc_add__pv}{mod}},}
+\DoxyCodeLine{00129\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classtlm__utils_1_1multi__passthrough__target__socket_aa094c95b6d2b1c2fe79dd8299706e2f8}{b\_cb}}\ cb)}
+\DoxyCodeLine{00130\ \ \ \{}
+\DoxyCodeLine{00131\ \ \ \ \ \mbox{\hyperlink{classtlm__utils_1_1multi__passthrough__target__socket_a8f6f3cb48354b3e57f273f46d8f3f837}{check\_export\_binding}}();}
+\DoxyCodeLine{00132\ }
+\DoxyCodeLine{00133\ \ \ \ \ \textcolor{comment}{//warn\ if\ there\ already\ is\ a\ callback}}
+\DoxyCodeLine{00134\ \ \ \ \ \textcolor{keywordflow}{if}\ (\mbox{\hyperlink{classtlm__utils_1_1multi__passthrough__target__socket_ad5c7e8e78eb1bec160a71facdf3cae3b}{m\_b\_f}}.is\_valid())\{}
+\DoxyCodeLine{00135\ \ \ \ \ \ \ \mbox{\hyperlink{classtlm__utils_1_1convenience__socket__base_a28dca4a50ce451ea48ba254574430599}{display\_warning}}(\textcolor{stringliteral}{"{}BTransport\ callback\ already\ registered."{}});}
+\DoxyCodeLine{00136\ \ \ \ \ \ \ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{00137\ \ \ \ \ \}}
+\DoxyCodeLine{00138\ }
+\DoxyCodeLine{00139\ \ \ \ \ \textcolor{comment}{//set\ the\ functor}}
+\DoxyCodeLine{00140\ \ \ \ \ \mbox{\hyperlink{classtlm__utils_1_1multi__passthrough__target__socket_ad5c7e8e78eb1bec160a71facdf3cae3b}{m\_b\_f}}.set\_function(\mbox{\hyperlink{class_sysc_add__pv}{mod}},\ cb);}
+\DoxyCodeLine{00141\ \ \ \}}
+\DoxyCodeLine{00142\ }
+\DoxyCodeLine{00143\ \ \ \textcolor{comment}{//register\ callback\ for\ debug\ transport\ of\ fw\ interface}}
+\DoxyCodeLine{00144\ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classtlm__utils_1_1multi__passthrough__target__socket_a551123b8402877778918e796c9e5d259}{register\_transport\_dbg}}(\mbox{\hyperlink{class_sysc_add__pv}{MODULE}}*\ \mbox{\hyperlink{class_sysc_add__pv}{mod}},}
+\DoxyCodeLine{00145\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classtlm__utils_1_1multi__passthrough__target__socket_a4260d4513a33a628812901e771abe74e}{dbg\_cb}}\ cb)}
+\DoxyCodeLine{00146\ \ \ \{}
+\DoxyCodeLine{00147\ \ \ \ \ \mbox{\hyperlink{classtlm__utils_1_1multi__passthrough__target__socket_a8f6f3cb48354b3e57f273f46d8f3f837}{check\_export\_binding}}();}
+\DoxyCodeLine{00148\ }
+\DoxyCodeLine{00149\ \ \ \ \ \textcolor{comment}{//warn\ if\ there\ already\ is\ a\ callback}}
+\DoxyCodeLine{00150\ \ \ \ \ \textcolor{keywordflow}{if}\ (\mbox{\hyperlink{classtlm__utils_1_1multi__passthrough__target__socket_a1e561aae8501e351d4f7fd6a7ff24086}{m\_dbg\_f}}.is\_valid())\{}
+\DoxyCodeLine{00151\ \ \ \ \ \ \ \mbox{\hyperlink{classtlm__utils_1_1convenience__socket__base_a28dca4a50ce451ea48ba254574430599}{display\_warning}}(\textcolor{stringliteral}{"{}DebugTransport\ callback\ already\ registered."{}});}
+\DoxyCodeLine{00152\ \ \ \ \ \ \ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{00153\ \ \ \ \ \}}
+\DoxyCodeLine{00154\ }
+\DoxyCodeLine{00155\ \ \ \ \ \textcolor{comment}{//set\ the\ functor}}
+\DoxyCodeLine{00156\ \ \ \ \ \mbox{\hyperlink{classtlm__utils_1_1multi__passthrough__target__socket_a1e561aae8501e351d4f7fd6a7ff24086}{m\_dbg\_f}}.set\_function(\mbox{\hyperlink{class_sysc_add__pv}{mod}},\ cb);}
+\DoxyCodeLine{00157\ \ \ \}}
+\DoxyCodeLine{00158\ }
+\DoxyCodeLine{00159\ \ \ \textcolor{comment}{//register\ callback\ for\ DMI\ of\ fw\ interface}}
+\DoxyCodeLine{00160\ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classtlm__utils_1_1multi__passthrough__target__socket_a437cf9e7f479a86bced10a3fd4785f7c}{register\_get\_direct\_mem\_ptr}}(\mbox{\hyperlink{class_sysc_add__pv}{MODULE}}*\ \mbox{\hyperlink{class_sysc_add__pv}{mod}},}
+\DoxyCodeLine{00161\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classtlm__utils_1_1multi__passthrough__target__socket_ac3b20ae98de0c9f5b620bb0589777956}{dmi\_cb}}\ cb)}
+\DoxyCodeLine{00162\ \ \ \{}
+\DoxyCodeLine{00163\ \ \ \ \ \mbox{\hyperlink{classtlm__utils_1_1multi__passthrough__target__socket_a8f6f3cb48354b3e57f273f46d8f3f837}{check\_export\_binding}}();}
+\DoxyCodeLine{00164\ }
+\DoxyCodeLine{00165\ \ \ \ \ \textcolor{comment}{//warn\ if\ there\ already\ is\ a\ callback}}
+\DoxyCodeLine{00166\ \ \ \ \ \textcolor{keywordflow}{if}\ (\mbox{\hyperlink{classtlm__utils_1_1multi__passthrough__target__socket_a0bf0a44728962268a815678d038beb8c}{m\_dmi\_f}}.is\_valid())\{}
+\DoxyCodeLine{00167\ \ \ \ \ \ \ \mbox{\hyperlink{classtlm__utils_1_1convenience__socket__base_a28dca4a50ce451ea48ba254574430599}{display\_warning}}(\textcolor{stringliteral}{"{}DMI\ callback\ already\ registered."{}});}
+\DoxyCodeLine{00168\ \ \ \ \ \ \ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{00169\ \ \ \ \ \}}
+\DoxyCodeLine{00170\ }
+\DoxyCodeLine{00171\ \ \ \ \ \textcolor{comment}{//set\ the\ functor}}
+\DoxyCodeLine{00172\ \ \ \ \ \mbox{\hyperlink{classtlm__utils_1_1multi__passthrough__target__socket_a0bf0a44728962268a815678d038beb8c}{m\_dmi\_f}}.set\_function(\mbox{\hyperlink{class_sysc_add__pv}{mod}},\ cb);}
+\DoxyCodeLine{00173\ \ \ \}}
+\DoxyCodeLine{00174\ }
+\DoxyCodeLine{00175\ }
+\DoxyCodeLine{00176\ \ \ \textcolor{comment}{//Override\ virtual\ functions\ of\ the\ tlm\_target\_socket:}}
+\DoxyCodeLine{00177\ \ \ \textcolor{comment}{//\ this\ function\ is\ called\ whenever\ an\ sc\_port\ (as\ part\ of\ a\ init\ socket)}}
+\DoxyCodeLine{00178\ \ \ \textcolor{comment}{//\ \ wants\ to\ bind\ to\ the\ export\ of\ the\ underlying\ tlm\_target\_socket}}
+\DoxyCodeLine{00179\ \ \ \textcolor{comment}{//At\ this\ time\ a\ callback\ binder\ is\ created\ an\ returned\ to\ the\ sc\_port}}
+\DoxyCodeLine{00180\ \ \ \textcolor{comment}{//\ of\ the\ init\ socket,\ so\ that\ it\ binds\ to\ the\ callback\ binder}}
+\DoxyCodeLine{00181\ \ \ \textcolor{keyword}{virtual}\ \mbox{\hyperlink{classtlm_1_1tlm__fw__transport__if}{tlm::tlm\_fw\_transport\_if<TYPES>}}\&\ \mbox{\hyperlink{classtlm__utils_1_1multi__passthrough__target__socket_ae7cb013c5970e9f3195d94d67786b641}{get\_base\_interface}}()}
+\DoxyCodeLine{00182\ \ \ \{}
+\DoxyCodeLine{00183\ \ \ \ \ \textcolor{comment}{//error\ if\ this\ socket\ is\ already\ bound\ hierarchically}}
+\DoxyCodeLine{00184\ \ \ \ \ \textcolor{keywordflow}{if}\ (\mbox{\hyperlink{classtlm__utils_1_1multi__passthrough__target__socket_a7e9e13514ee7bc498c75914dcbc59ed1}{m\_hierarch\_bind}})\ \mbox{\hyperlink{classtlm__utils_1_1convenience__socket__base_a775288e905b5b6b12fc30f671615eb52}{display\_error}}(\textcolor{stringliteral}{"{}Socket\ already\ bound\ hierarchically."{}});}
+\DoxyCodeLine{00185\ }
+\DoxyCodeLine{00186\ \ \ \ \ \textcolor{keywordflow}{if}\ (\mbox{\hyperlink{classtlm__utils_1_1multi__passthrough__target__socket_a4ef4c49624611b6bdf441aa522d3fb0f}{m\_export\_callback\_created}})\ \{}
+\DoxyCodeLine{00187\ \ \ \ \ \ \ \textcolor{comment}{//\ consume\ binder\ created\ from\ the\ callback\ registration}}
+\DoxyCodeLine{00188\ \ \ \ \ \ \ \mbox{\hyperlink{classtlm__utils_1_1multi__passthrough__target__socket_a4ef4c49624611b6bdf441aa522d3fb0f}{m\_export\_callback\_created}}\ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00189\ \ \ \ \ \}\ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{00190\ \ \ \ \ \ \ \mbox{\hyperlink{classtlm__utils_1_1multi__passthrough__target__socket_a04e91d988371f22394dbacd872403215}{m\_binders}}.push\_back(\textcolor{keyword}{new}\ \mbox{\hyperlink{class_sysc_add__pv}{callback\_binder\_fw<TYPES>}}(\textcolor{keyword}{this},\ \mbox{\hyperlink{classtlm__utils_1_1multi__passthrough__target__socket_a04e91d988371f22394dbacd872403215}{m\_binders}}.size()));}
+\DoxyCodeLine{00191\ \ \ \ \ \}}
+\DoxyCodeLine{00192\ }
+\DoxyCodeLine{00193\ \ \ \ \ \textcolor{keywordflow}{return}\ *\mbox{\hyperlink{classtlm__utils_1_1multi__passthrough__target__socket_a04e91d988371f22394dbacd872403215}{m\_binders}}[\mbox{\hyperlink{classtlm__utils_1_1multi__passthrough__target__socket_a04e91d988371f22394dbacd872403215}{m\_binders}}.size()-\/1];}
+\DoxyCodeLine{00194\ \ \ \}}
+\DoxyCodeLine{00195\ }
+\DoxyCodeLine{00196\ \ \ \textcolor{comment}{//\ const\ overload\ not\ allowed\ for\ multi-\/sockets}}
+\DoxyCodeLine{00197\ \ \ \textcolor{keyword}{virtual}\ \textcolor{keyword}{const}\ \mbox{\hyperlink{classtlm_1_1tlm__fw__transport__if}{tlm::tlm\_fw\_transport\_if<TYPES>}}\&\ \mbox{\hyperlink{classtlm__utils_1_1multi__passthrough__target__socket_a3d0cdeb39ac927d86c154bb760a8e03a}{get\_base\_interface}}()\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00198\ \textcolor{keyword}{\ \ }\{}
+\DoxyCodeLine{00199\ \ \ \ \ \mbox{\hyperlink{classtlm__utils_1_1convenience__socket__base_a775288e905b5b6b12fc30f671615eb52}{display\_error}}(\textcolor{stringliteral}{"{}'get\_base\_interface()\ const'\ not\ allowed\ for\ multi-\/sockets."{}});}
+\DoxyCodeLine{00200\ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{classtlm_1_1tlm__base__target__socket__b_a0c29e6c5569683753abe02bccbe87d5f}{base\_type::get\_base\_interface}}();}
+\DoxyCodeLine{00201\ \ \ \}}
+\DoxyCodeLine{00202\ }
+\DoxyCodeLine{00203\ \ \ \textcolor{comment}{//just\ return\ the\ export\ of\ the\ underlying\ tlm\_target\_socket\ in\ case\ of\ a\ hierarchical\ bind}}
+\DoxyCodeLine{00204\ \ \ \textcolor{keyword}{virtual}\ \mbox{\hyperlink{classsc__core_1_1sc__export}{sc\_core::sc\_export<tlm::tlm\_fw\_transport\_if<TYPES>}}\ >\&\ \mbox{\hyperlink{classtlm__utils_1_1multi__passthrough__target__socket_ac24e02104caa2fbde9926d132839d601}{get\_base\_export}}()}
+\DoxyCodeLine{00205\ \ \ \{}
+\DoxyCodeLine{00206\ \ \ \ \ \textcolor{keywordflow}{return}\ *\textcolor{keyword}{this};}
+\DoxyCodeLine{00207\ \ \ \}}
+\DoxyCodeLine{00208\ }
+\DoxyCodeLine{00209\ \ \ \textcolor{comment}{//just\ return\ the\ export\ of\ the\ underlying\ tlm\_target\_socket\ in\ case\ of\ a\ hierarchical\ bind}}
+\DoxyCodeLine{00210\ \ \ \textcolor{keyword}{virtual}\ \textcolor{keyword}{const}\ \mbox{\hyperlink{classsc__core_1_1sc__export}{sc\_core::sc\_export<tlm::tlm\_fw\_transport\_if<TYPES>}}\ >\&\ \mbox{\hyperlink{classtlm__utils_1_1multi__passthrough__target__socket_a295c7fe7f7dde8f0fe16e1ad4ca4177f}{get\_base\_export}}()\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00211\ \textcolor{keyword}{\ \ }\{}
+\DoxyCodeLine{00212\ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{classtlm_1_1tlm__base__target__socket__b_a86b6ef09fd6ee8db7399d03e117097a3}{base\_type::get\_base\_export}}();}
+\DoxyCodeLine{00213\ \ \ \}}
+\DoxyCodeLine{00214\ }
+\DoxyCodeLine{00215\ \ \ \textcolor{comment}{//the\ standard\ end\ of\ elaboration\ callback}}
+\DoxyCodeLine{00216\ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classtlm__utils_1_1multi__passthrough__target__socket_a28a6bd16ef2f6734399c6c41e2925da2}{end\_of\_elaboration}}()\{}
+\DoxyCodeLine{00217\ \ \ \ \ \textcolor{comment}{//'break'\ here\ if\ the\ socket\ was\ told\ not\ to\ do\ callback\ binding}}
+\DoxyCodeLine{00218\ \ \ \ \ \textcolor{keywordflow}{if}\ (\mbox{\hyperlink{classtlm__utils_1_1multi__passthrough__target__socket_a59eaa6ded69f29bd8cdaddac15b98b46}{m\_eoe\_disabled}})\ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{00219\ }
+\DoxyCodeLine{00220\ \ \ \ \ \textcolor{comment}{//get\ the\ callback\ binders\ and\ the\ multi\ binds\ of\ the\ top\ of\ the\ hierachical\ bind\ chain}}
+\DoxyCodeLine{00221\ \ \ \ \ \textcolor{comment}{//\ NOTE:\ this\ could\ be\ the\ same\ socket\ if\ there\ is\ no\ hierachical\ bind}}
+\DoxyCodeLine{00222\ \ \ \ \ std::vector<callback\_binder\_fw<TYPES>*\ >\&\ \mbox{\hyperlink{class_sysc_add__pv}{binders}}=\mbox{\hyperlink{classtlm__utils_1_1multi__passthrough__target__socket_ab941d69df194435dc8598edee41aaacf}{get\_hierarch\_bind}}()-\/>\mbox{\hyperlink{classtlm__utils_1_1multi__target__base__if_abc6ca52489fc36ec191358db19ee8547}{get\_binders}}();}
+\DoxyCodeLine{00223\ \ \ \ \ std::map<unsigned\ int,\ tlm::tlm\_bw\_transport\_if<TYPES>*>\&\ \ \mbox{\hyperlink{class_sysc_add__pv}{multi\_binds}}=\mbox{\hyperlink{classtlm__utils_1_1multi__passthrough__target__socket_ab941d69df194435dc8598edee41aaacf}{get\_hierarch\_bind}}()-\/>\mbox{\hyperlink{classtlm__utils_1_1multi__target__base__if_a3927aee68d250c8c3a172a5bfca5874f}{get\_multi\_binds}}();}
+\DoxyCodeLine{00224\ }
+\DoxyCodeLine{00225\ \ \ \ \ \textcolor{comment}{//\ complete\ binding\ only\ if\ there\ has\ been\ a\ real\ bind}}
+\DoxyCodeLine{00226\ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{class_sysc_add__pv}{locally\_unbound}}\ =\ (\mbox{\hyperlink{class_sysc_add__pv}{binders}}.size()\ ==\ 1\ \&\&\ \mbox{\hyperlink{classtlm__utils_1_1multi__passthrough__target__socket_a4ef4c49624611b6bdf441aa522d3fb0f}{m\_export\_callback\_created}});}
+\DoxyCodeLine{00227\ \ \ \ \ \textcolor{comment}{//\ no\ call\ to\ get\_base\_interface\ has\ consumed\ the\ export\ -\/\ ignore}}
+\DoxyCodeLine{00228\ \ \ \ \ \textcolor{keywordflow}{if}\ (\mbox{\hyperlink{class_sysc_add__pv}{locally\_unbound}}\ \&\&\ !\mbox{\hyperlink{classtlm__utils_1_1multi__passthrough__target__socket_a7e9e13514ee7bc498c75914dcbc59ed1}{m\_hierarch\_bind}})}
+\DoxyCodeLine{00229\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{00230\ }
+\DoxyCodeLine{00231\ \ \ \ \ \textcolor{comment}{//\ iterate\ over\ all\ binders}}
+\DoxyCodeLine{00232\ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{class_sysc_add__pv}{i}}=0;\ \mbox{\hyperlink{class_sysc_add__pv}{i}}<\mbox{\hyperlink{class_sysc_add__pv}{binders}}.size();\ \mbox{\hyperlink{class_sysc_add__pv}{i}}++)\ \{}
+\DoxyCodeLine{00233\ \ \ \ \ \ \ \mbox{\hyperlink{class_sysc_add__pv}{binders}}[\mbox{\hyperlink{class_sysc_add__pv}{i}}]-\/>set\_callbacks(\mbox{\hyperlink{classtlm__utils_1_1multi__passthrough__target__socket_ae24bfbc0e40f7674196ade223ac92193}{m\_nb\_f}},\ \mbox{\hyperlink{classtlm__utils_1_1multi__passthrough__target__socket_ad5c7e8e78eb1bec160a71facdf3cae3b}{m\_b\_f}},\ \mbox{\hyperlink{classtlm__utils_1_1multi__passthrough__target__socket_a0bf0a44728962268a815678d038beb8c}{m\_dmi\_f}},\ \mbox{\hyperlink{classtlm__utils_1_1multi__passthrough__target__socket_a1e561aae8501e351d4f7fd6a7ff24086}{m\_dbg\_f}});\ \textcolor{comment}{//set\ the\ callbacks\ for\ the\ binder}}
+\DoxyCodeLine{00234\ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\mbox{\hyperlink{class_sysc_add__pv}{multi\_binds}}.\mbox{\hyperlink{class_sysc_logic_gate__pv_a085cba6bc6d680b71d173d4adc1bbe92}{find}}(\mbox{\hyperlink{class_sysc_add__pv}{i}})!=\mbox{\hyperlink{class_sysc_add__pv}{multi\_binds}}.end())\ \textcolor{comment}{//check\ if\ this\ connection\ is\ multi-\/multi}}
+\DoxyCodeLine{00235\ \ \ \ \ \ \ \ \ \textcolor{comment}{//if\ so\ remember\ the\ interface}}
+\DoxyCodeLine{00236\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classtlm__utils_1_1multi__passthrough__target__socket_a21833df2daf8f4412d360d43289412e5}{m\_sockets}}.push\_back(\mbox{\hyperlink{class_sysc_add__pv}{multi\_binds}}[\mbox{\hyperlink{class_sysc_add__pv}{i}}]);}
+\DoxyCodeLine{00237\ \ \ \ \ \ \ \textcolor{keywordflow}{else}\{\ \textcolor{comment}{//if\ we\ are\ bound\ to\ a\ normal\ socket}}
+\DoxyCodeLine{00238\ \ \ \ \ \ \ \ \ \textcolor{comment}{//get\ the\ calling\ port\ and\ try\ to\ cast\ it\ into\ a\ tlm\ socket\ base}}
+\DoxyCodeLine{00239\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classtlm_1_1tlm__base__initiator__socket__b}{base\_initiator\_socket\_type}}*\ test=\textcolor{keyword}{dynamic\_cast<}\mbox{\hyperlink{classtlm_1_1tlm__base__initiator__socket__b}{base\_initiator\_socket\_type}}*\textcolor{keyword}{>}(\mbox{\hyperlink{class_sysc_add__pv}{binders}}[\mbox{\hyperlink{class_sysc_add__pv}{i}}]-\/>get\_other\_side());}
+\DoxyCodeLine{00240\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!test)\{\mbox{\hyperlink{classtlm__utils_1_1convenience__socket__base_a775288e905b5b6b12fc30f671615eb52}{display\_error}}(\textcolor{stringliteral}{"{}Not\ bound\ to\ tlm\_socket."{}});\}}
+\DoxyCodeLine{00241\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classtlm__utils_1_1multi__passthrough__target__socket_a21833df2daf8f4412d360d43289412e5}{m\_sockets}}.push\_back(\&test-\/>\mbox{\hyperlink{classtlm_1_1tlm__base__initiator__socket__b_ac9907db2255d7798e6a24affdefd0498}{get\_base\_interface}}());\ \textcolor{comment}{//remember\ the\ interface}}
+\DoxyCodeLine{00242\ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00243\ \ \ \ \ \}}
+\DoxyCodeLine{00244\ \ \ \}}
+\DoxyCodeLine{00245\ }
+\DoxyCodeLine{00246\ \ \ \textcolor{comment}{//}}
+\DoxyCodeLine{00247\ \ \ \textcolor{comment}{//\ Bind\ multi\ target\ socket\ to\ multi\ target\ socket\ (hierarchical\ bind)}}
+\DoxyCodeLine{00248\ \ \ \textcolor{comment}{//}}
+\DoxyCodeLine{00249\ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classtlm__utils_1_1multi__passthrough__target__socket_a928893a2fcceb11721b3c7574a8a69ad}{bind}}(\mbox{\hyperlink{classtlm__utils_1_1multi__target__base}{base\_type}}\&\ s)}
+\DoxyCodeLine{00250\ \ \ \{}
+\DoxyCodeLine{00251\ \ \ \ \ \textcolor{comment}{//warn\ if\ already\ bound\ hierarchically}}
+\DoxyCodeLine{00252\ \ \ \ \ \textcolor{keywordflow}{if}\ (\mbox{\hyperlink{classtlm__utils_1_1multi__passthrough__target__socket_a59eaa6ded69f29bd8cdaddac15b98b46}{m\_eoe\_disabled}})\{}
+\DoxyCodeLine{00253\ \ \ \ \ \ \ \mbox{\hyperlink{classtlm__utils_1_1convenience__socket__base_a28dca4a50ce451ea48ba254574430599}{display\_warning}}(\textcolor{stringliteral}{"{}Socket\ already\ bound\ hierarchically.\ Bind\ attempt\ ignored."{}});}
+\DoxyCodeLine{00254\ \ \ \ \ \ \ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{00255\ \ \ \ \ \}}
+\DoxyCodeLine{00256\ }
+\DoxyCodeLine{00257\ \ \ \ \ \textcolor{comment}{//disable\ our\ own\ end\ of\ elaboration\ call}}
+\DoxyCodeLine{00258\ \ \ \ \ \mbox{\hyperlink{classtlm__utils_1_1multi__passthrough__target__socket_a8149d174826744005af19a0612c60d34}{disable\_cb\_bind}}();}
+\DoxyCodeLine{00259\ }
+\DoxyCodeLine{00260\ \ \ \ \ \textcolor{comment}{//inform\ the\ bound\ target\ socket\ that\ it\ is\ bound\ hierarchically\ now}}
+\DoxyCodeLine{00261\ \ \ \ \ s.\mbox{\hyperlink{classtlm__utils_1_1multi__target__base_abab0009c7fc6a97b924e16500dc04c54}{set\_hierarch\_bind}}((\mbox{\hyperlink{classtlm__utils_1_1multi__target__base}{base\_type}}*)\textcolor{keyword}{this});}
+\DoxyCodeLine{00262\ \ \ \ \ \mbox{\hyperlink{classsc__core_1_1sc__export_a20c7218de453124e4e1bb7fcffe2bebf}{base\_type::bind}}(s);\ \textcolor{comment}{//satisfy\ SystemC}}
+\DoxyCodeLine{00263\ \ \ \}}
+\DoxyCodeLine{00264\ }
+\DoxyCodeLine{00265\ \ \ \textcolor{comment}{//operator\ notation\ for\ hierarchical\ bind}}
+\DoxyCodeLine{00266\ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{bind__template_8hpp_aaaead712fe7dc29c1799e7d8f77d1cfb}{operator()\ }}(\mbox{\hyperlink{classtlm__utils_1_1multi__target__base}{base\_type}}\&\ s)}
+\DoxyCodeLine{00267\ \ \ \{}
+\DoxyCodeLine{00268\ \ \ \ \ \mbox{\hyperlink{classtlm__utils_1_1multi__passthrough__target__socket_a928893a2fcceb11721b3c7574a8a69ad}{bind}}(s);}
+\DoxyCodeLine{00269\ \ \ \}}
+\DoxyCodeLine{00270\ }
+\DoxyCodeLine{00271\ \ \ \textcolor{comment}{//get\ access\ to\ sub\ port}}
+\DoxyCodeLine{00272\ \ \ \mbox{\hyperlink{classtlm_1_1tlm__bw__transport__if}{tlm::tlm\_bw\_transport\_if<TYPES>}}*\ \mbox{\hyperlink{classtlm__utils_1_1multi__passthrough__target__socket_ae360f03aeea24f89c04d9ce87f71afdf}{operator[]}}(\textcolor{keywordtype}{int}\ \mbox{\hyperlink{class_sysc_add__pv}{i}})\{\textcolor{keywordflow}{return}\ \mbox{\hyperlink{classtlm__utils_1_1multi__passthrough__target__socket_a21833df2daf8f4412d360d43289412e5}{m\_sockets}}[\mbox{\hyperlink{class_sysc_add__pv}{i}}];\}}
+\DoxyCodeLine{00273\ }
+\DoxyCodeLine{00274\ \ \ \textcolor{comment}{//get\ number\ of\ bound\ initiators}}
+\DoxyCodeLine{00275\ \ \ \textcolor{comment}{//\ NOTE:\ this\ is\ only\ valid\ at\ end\ of\ elaboration!}}
+\DoxyCodeLine{00276\ \ \ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{classtlm__utils_1_1multi__passthrough__target__socket_a52282bc1eed89307c9730c8c2dc5844e}{size}}()\{\textcolor{keywordflow}{return}\ \mbox{\hyperlink{classtlm__utils_1_1multi__passthrough__target__socket_ab941d69df194435dc8598edee41aaacf}{get\_hierarch\_bind}}()-\/>\mbox{\hyperlink{classtlm__utils_1_1multi__target__base__if_abc6ca52489fc36ec191358db19ee8547}{get\_binders}}().size();\}}
+\DoxyCodeLine{00277\ }
+\DoxyCodeLine{00278\ \textcolor{keyword}{protected}:}
+\DoxyCodeLine{00279\ \ \ \textcolor{keyword}{using\ }\mbox{\hyperlink{classtlm__utils_1_1convenience__socket__base_a28dca4a50ce451ea48ba254574430599}{base\_type::display\_warning}};}
+\DoxyCodeLine{00280\ \ \ \textcolor{keyword}{using\ }\mbox{\hyperlink{classtlm__utils_1_1convenience__socket__base_a775288e905b5b6b12fc30f671615eb52}{base\_type::display\_error}};}
+\DoxyCodeLine{00281\ }
+\DoxyCodeLine{00282\ \ \ \textcolor{comment}{//implementation\ of\ base\ class\ interface}}
+\DoxyCodeLine{00283\ \ \ \mbox{\hyperlink{classtlm__utils_1_1multi__target__base}{base\_type}}*\ \mbox{\hyperlink{classtlm__utils_1_1multi__passthrough__target__socket_ab941d69df194435dc8598edee41aaacf}{get\_hierarch\_bind}}()\{\textcolor{keywordflow}{if}\ (\mbox{\hyperlink{classtlm__utils_1_1multi__passthrough__target__socket_a7e9e13514ee7bc498c75914dcbc59ed1}{m\_hierarch\_bind}})\ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{classtlm__utils_1_1multi__passthrough__target__socket_a7e9e13514ee7bc498c75914dcbc59ed1}{m\_hierarch\_bind}}-\/>\mbox{\hyperlink{classtlm__utils_1_1multi__target__base_a5d85b2c6b4a726402ee8f06cc617d887}{get\_hierarch\_bind}}();\ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{return}\ \textcolor{keyword}{this};\}}
+\DoxyCodeLine{00284\ \ \ std::map<unsigned\ int,\ tlm::tlm\_bw\_transport\_if<TYPES>*>\&\ \ \mbox{\hyperlink{classtlm__utils_1_1multi__passthrough__target__socket_aae39fc5d09e75cb4b5135ce1ab10b86e}{get\_multi\_binds}}()\{\textcolor{keywordflow}{return}\ \mbox{\hyperlink{classtlm__utils_1_1multi__passthrough__target__socket_af8809fbaf64f7b1094800c00d197245e}{m\_multi\_binds}};\}}
+\DoxyCodeLine{00285\ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classtlm__utils_1_1multi__passthrough__target__socket_a2d6de8a2efa121fc7916efffe649a4b5}{set\_hierarch\_bind}}(\mbox{\hyperlink{classtlm__utils_1_1multi__target__base}{base\_type}}*\ \mbox{\hyperlink{class_sysc_add__pv}{h}})\{\mbox{\hyperlink{classtlm__utils_1_1multi__passthrough__target__socket_a7e9e13514ee7bc498c75914dcbc59ed1}{m\_hierarch\_bind}}=\mbox{\hyperlink{class_sysc_add__pv}{h}};\}}
+\DoxyCodeLine{00286\ \ \ \mbox{\hyperlink{classtlm_1_1tlm__fw__transport__if}{tlm::tlm\_fw\_transport\_if<TYPES>}}*\ \mbox{\hyperlink{classtlm__utils_1_1multi__passthrough__target__socket_a5103654dcf97cc35054bd99f55e3d8ba}{get\_last\_binder}}(\mbox{\hyperlink{classtlm_1_1tlm__bw__transport__if}{tlm::tlm\_bw\_transport\_if<TYPES>}}*\ \mbox{\hyperlink{class_sysc_add__pv}{other}})\{}
+\DoxyCodeLine{00287\ \ \ \ \ \mbox{\hyperlink{classtlm__utils_1_1multi__passthrough__target__socket_af8809fbaf64f7b1094800c00d197245e}{m\_multi\_binds}}[\mbox{\hyperlink{classtlm__utils_1_1multi__passthrough__target__socket_a04e91d988371f22394dbacd872403215}{m\_binders}}.size()-\/1]=\mbox{\hyperlink{class_sysc_add__pv}{other}};}
+\DoxyCodeLine{00288\ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{classtlm__utils_1_1multi__passthrough__target__socket_a04e91d988371f22394dbacd872403215}{m\_binders}}[\mbox{\hyperlink{classtlm__utils_1_1multi__passthrough__target__socket_a04e91d988371f22394dbacd872403215}{m\_binders}}.size()-\/1];}
+\DoxyCodeLine{00289\ \ \ \}}
+\DoxyCodeLine{00290\ }
+\DoxyCodeLine{00291\ \ \ \textcolor{comment}{//map\ that\ stores\ to\ which\ index\ a\ multi\ init\ socket\ is\ connected}}
+\DoxyCodeLine{00292\ \ \ \textcolor{comment}{//\ and\ the\ interface\ of\ the\ multi\ init\ socket}}
+\DoxyCodeLine{00293\ \ \ std::map<unsigned\ int,\ tlm::tlm\_bw\_transport\_if<TYPES>*>\ \mbox{\hyperlink{classtlm__utils_1_1multi__passthrough__target__socket_af8809fbaf64f7b1094800c00d197245e}{m\_multi\_binds}};}
+\DoxyCodeLine{00294\ }
+\DoxyCodeLine{00295\ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classtlm__utils_1_1multi__passthrough__target__socket_a8149d174826744005af19a0612c60d34}{disable\_cb\_bind}}()\{\ \mbox{\hyperlink{classtlm__utils_1_1multi__passthrough__target__socket_a59eaa6ded69f29bd8cdaddac15b98b46}{m\_eoe\_disabled}}=\textcolor{keyword}{true};\}}
+\DoxyCodeLine{00296\ \ \ std::vector<callback\_binder\_fw<TYPES>*\ >\&\ \mbox{\hyperlink{classtlm__utils_1_1multi__passthrough__target__socket_a3d22d6f0dd198e084c04107fbbea4d5f}{get\_binders}}()\{\textcolor{keywordflow}{return}\ \mbox{\hyperlink{classtlm__utils_1_1multi__passthrough__target__socket_a04e91d988371f22394dbacd872403215}{m\_binders}};\}}
+\DoxyCodeLine{00297\ \ \ \textcolor{comment}{//vector\ of\ connected\ sockets}}
+\DoxyCodeLine{00298\ \ \ std::vector<tlm::tlm\_bw\_transport\_if<TYPES>*>\ \mbox{\hyperlink{classtlm__utils_1_1multi__passthrough__target__socket_a21833df2daf8f4412d360d43289412e5}{m\_sockets}};}
+\DoxyCodeLine{00299\ \ \ \textcolor{comment}{//vector\ of\ binders\ that\ convert\ untagged\ interface\ into\ tagged\ interface}}
+\DoxyCodeLine{00300\ \ \ std::vector<callback\_binder\_fw<TYPES>*>\ \mbox{\hyperlink{classtlm__utils_1_1multi__passthrough__target__socket_a04e91d988371f22394dbacd872403215}{m\_binders}};}
+\DoxyCodeLine{00301\ }
+\DoxyCodeLine{00302\ \ \ \mbox{\hyperlink{classtlm__utils_1_1multi__target__base}{base\_type}}*\ \ \mbox{\hyperlink{classtlm__utils_1_1multi__passthrough__target__socket_a7e9e13514ee7bc498c75914dcbc59ed1}{m\_hierarch\_bind}};\ \textcolor{comment}{//pointer\ to\ hierarchical\ bound\ multi\ port}}
+\DoxyCodeLine{00303\ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{classtlm__utils_1_1multi__passthrough__target__socket_a59eaa6ded69f29bd8cdaddac15b98b46}{m\_eoe\_disabled}};\ \textcolor{comment}{//bool\ that\ disables\ callback\ bindings\ at\ end\ of\ elaboration}}
+\DoxyCodeLine{00304\ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{classtlm__utils_1_1multi__passthrough__target__socket_a4ef4c49624611b6bdf441aa522d3fb0f}{m\_export\_callback\_created}};\ \textcolor{comment}{//bool\ that\ indicates\ that\ a\ binder\ has\ been\ created\ from\ a\ callback\ registration}}
+\DoxyCodeLine{00305\ }
+\DoxyCodeLine{00306\ \ \ \textcolor{comment}{//callbacks\ as\ functors}}
+\DoxyCodeLine{00307\ \ \ \textcolor{comment}{//\ (allows\ to\ pass\ the\ callback\ to\ another\ socket\ that\ does\ not\ know\ the\ type\ of\ the\ module\ that\ owns}}
+\DoxyCodeLine{00308\ \ \ \textcolor{comment}{//\ \ the\ callbacks)}}
+\DoxyCodeLine{00309\ \ \ \textcolor{keyword}{typename}\ \mbox{\hyperlink{class_sysc_add__pv}{callback\_binder\_fw<TYPES>::nb\_func\_type}}\ \ \ \ \mbox{\hyperlink{classtlm__utils_1_1multi__passthrough__target__socket_ae24bfbc0e40f7674196ade223ac92193}{m\_nb\_f}};}
+\DoxyCodeLine{00310\ \ \ \textcolor{keyword}{typename}\ \mbox{\hyperlink{class_sysc_add__pv}{callback\_binder\_fw<TYPES>::b\_func\_type}}\ \ \ \ \ \mbox{\hyperlink{classtlm__utils_1_1multi__passthrough__target__socket_ad5c7e8e78eb1bec160a71facdf3cae3b}{m\_b\_f}};}
+\DoxyCodeLine{00311\ \ \ \textcolor{keyword}{typename}\ \mbox{\hyperlink{class_sysc_add__pv}{callback\_binder\_fw<TYPES>::debug\_func\_type}}\ \mbox{\hyperlink{classtlm__utils_1_1multi__passthrough__target__socket_a1e561aae8501e351d4f7fd6a7ff24086}{m\_dbg\_f}};}
+\DoxyCodeLine{00312\ \ \ \textcolor{keyword}{typename}\ \mbox{\hyperlink{class_sysc_add__pv}{callback\_binder\_fw<TYPES>::dmi\_func\_type}}\ \ \ \mbox{\hyperlink{classtlm__utils_1_1multi__passthrough__target__socket_a0bf0a44728962268a815678d038beb8c}{m\_dmi\_f}};}
+\DoxyCodeLine{00313\ \};}
+\DoxyCodeLine{00314\ }
+\DoxyCodeLine{00315\ \textcolor{keyword}{template}\ <\textcolor{keyword}{typename}\ \mbox{\hyperlink{class_sysc_add__pv}{MODULE}},}
+\DoxyCodeLine{00316\ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{class_sysc_add__pv}{BUSWIDTH}}\ =\ 32,}
+\DoxyCodeLine{00317\ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{typename}\ \mbox{\hyperlink{class_sysc_add__pv}{TYPES}}\ =\ \mbox{\hyperlink{structtlm_1_1tlm__base__protocol__types}{tlm::tlm\_base\_protocol\_types}},}
+\DoxyCodeLine{00318\ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{class_sysc_add__pv}{N}}=0>}
+\DoxyCodeLine{00319\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classtlm__utils_1_1multi__passthrough__target__socket__optional}{multi\_passthrough\_target\_socket\_optional}}}
+\DoxyCodeLine{00320\ \ \ :\ \textcolor{keyword}{public}\ \mbox{\hyperlink{classtlm__utils_1_1multi__passthrough__target__socket}{multi\_passthrough\_target\_socket}}<MODULE,BUSWIDTH,TYPES,N,sc\_core::SC\_ZERO\_OR\_MORE\_BOUND>}
+\DoxyCodeLine{00321\ \{}
+\DoxyCodeLine{00322\ \ \ \textcolor{keyword}{typedef}\ \mbox{\hyperlink{class_sysc_add__pv}{multi\_passthrough\_target\_socket<MODULE,BUSWIDTH,TYPES,N,sc\_core::SC\_ZERO\_OR\_MORE\_BOUND>}}\ \mbox{\hyperlink{classtlm__utils_1_1multi__passthrough__target__socket__optional_a838247713d65f421881672151453168a}{socket\_b}};}
+\DoxyCodeLine{00323\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00324\ \ \ \mbox{\hyperlink{classtlm__utils_1_1multi__passthrough__target__socket__optional_ac88d7d82c131ae4cbbded94a2e73f4b4}{multi\_passthrough\_target\_socket\_optional}}()\ :\ \mbox{\hyperlink{class_sysc_add__pv}{socket\_b}}()\ \{\}}
+\DoxyCodeLine{00325\ \ \ \textcolor{keyword}{explicit}\ \mbox{\hyperlink{classtlm__utils_1_1multi__passthrough__target__socket__optional_a9066789cfb067027ee06a06e3b06cbf8}{multi\_passthrough\_target\_socket\_optional}}(\textcolor{keyword}{const}\ \textcolor{keywordtype}{char}*\ \mbox{\hyperlink{classsc__core_1_1sc__object_a4da9c6e99326cd2619958e049625bc58}{name}})\ :\ \mbox{\hyperlink{class_sysc_add__pv}{socket\_b}}(\mbox{\hyperlink{classsc__core_1_1sc__object_a4da9c6e99326cd2619958e049625bc58}{name}})\ \{\}}
+\DoxyCodeLine{00326\ \};}
+\DoxyCodeLine{00327\ }
+\DoxyCodeLine{00328\ \}\ \textcolor{comment}{//\ namespace\ tlm\_utils}}
+\DoxyCodeLine{00329\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{//\ TLM\_UTILS\_MULTI\_PASSTHROUGH\_TARGET\_SOCKET\_H\_INCLUDED\_}}
+
+\end{DoxyCode}

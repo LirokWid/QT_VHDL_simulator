@@ -1,0 +1,365 @@
+\doxysection{systemc.\+h}
+\hypertarget{systemc_8h_source}{}\label{systemc_8h_source}\index{C:/Users/BJRODIER/Documents/QT\_REPO/QT\_VHDL\_simulator/code/Ressources/SystemC/include/systemc.h@{C:/Users/BJRODIER/Documents/QT\_REPO/QT\_VHDL\_simulator/code/Ressources/SystemC/include/systemc.h}}
+\mbox{\hyperlink{systemc_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{comment}{/*****************************************************************************}}
+\DoxyCodeLine{00002\ \textcolor{comment}{}}
+\DoxyCodeLine{00003\ \textcolor{comment}{\ \ Licensed\ to\ Accellera\ Systems\ Initiative\ Inc.\ (Accellera)\ under\ one\ or}}
+\DoxyCodeLine{00004\ \textcolor{comment}{\ \ more\ contributor\ license\ agreements.\ \ See\ the\ NOTICE\ file\ distributed}}
+\DoxyCodeLine{00005\ \textcolor{comment}{\ \ with\ this\ work\ for\ additional\ information\ regarding\ copyright\ ownership.}}
+\DoxyCodeLine{00006\ \textcolor{comment}{\ \ Accellera\ licenses\ this\ file\ to\ you\ under\ the\ Apache\ License,\ Version\ 2.0}}
+\DoxyCodeLine{00007\ \textcolor{comment}{\ \ (the\ "{}License"{});\ you\ may\ not\ use\ this\ file\ except\ in\ compliance\ with\ the}}
+\DoxyCodeLine{00008\ \textcolor{comment}{\ \ License.\ \ You\ may\ obtain\ a\ copy\ of\ the\ License\ at}}
+\DoxyCodeLine{00009\ \textcolor{comment}{}}
+\DoxyCodeLine{00010\ \textcolor{comment}{\ \ \ \ http://www.apache.org/licenses/LICENSE-\/2.0}}
+\DoxyCodeLine{00011\ \textcolor{comment}{}}
+\DoxyCodeLine{00012\ \textcolor{comment}{\ \ Unless\ required\ by\ applicable\ law\ or\ agreed\ to\ in\ writing,\ software}}
+\DoxyCodeLine{00013\ \textcolor{comment}{\ \ distributed\ under\ the\ License\ is\ distributed\ on\ an\ "{}AS\ IS"{}\ BASIS,}}
+\DoxyCodeLine{00014\ \textcolor{comment}{\ \ WITHOUT\ WARRANTIES\ OR\ CONDITIONS\ OF\ ANY\ KIND,\ either\ express\ or}}
+\DoxyCodeLine{00015\ \textcolor{comment}{\ \ implied.\ \ See\ the\ License\ for\ the\ specific\ language\ governing}}
+\DoxyCodeLine{00016\ \textcolor{comment}{\ \ permissions\ and\ limitations\ under\ the\ License.}}
+\DoxyCodeLine{00017\ \textcolor{comment}{}}
+\DoxyCodeLine{00018\ \textcolor{comment}{\ *****************************************************************************/}}
+\DoxyCodeLine{00019\ }
+\DoxyCodeLine{00020\ \textcolor{comment}{/*****************************************************************************}}
+\DoxyCodeLine{00021\ \textcolor{comment}{}}
+\DoxyCodeLine{00022\ \textcolor{comment}{\ \ systemc.h\ -\/\ Top-\/level\ include\ file\ for\ the\ SystemC\ library\ with\ usings.}}
+\DoxyCodeLine{00023\ \textcolor{comment}{}}
+\DoxyCodeLine{00024\ \textcolor{comment}{\ \ Original\ Author:\ Stan\ Y.\ Liao,\ Synopsys,\ Inc.}}
+\DoxyCodeLine{00025\ \textcolor{comment}{}}
+\DoxyCodeLine{00026\ \textcolor{comment}{\ *****************************************************************************/}}
+\DoxyCodeLine{00027\ }
+\DoxyCodeLine{00028\ \textcolor{comment}{/*****************************************************************************}}
+\DoxyCodeLine{00029\ \textcolor{comment}{}}
+\DoxyCodeLine{00030\ \textcolor{comment}{\ \ MODIFICATION\ LOG\ -\/\ modifiers,\ enter\ your\ name,\ affiliation,\ date\ and}}
+\DoxyCodeLine{00031\ \textcolor{comment}{\ \ changes\ you\ are\ making\ here.}}
+\DoxyCodeLine{00032\ \textcolor{comment}{}}
+\DoxyCodeLine{00033\ \textcolor{comment}{\ \ \ \ \ \ Name,\ Affiliation,\ Date:\ Andy\ Goodrich,\ Forte\ Design\ Systems,\ 31\ Mar\ 2005}}
+\DoxyCodeLine{00034\ \textcolor{comment}{\ \ Description\ of\ Modification:\ Changes\ for\ namespace\ support.}}
+\DoxyCodeLine{00035\ \textcolor{comment}{}}
+\DoxyCodeLine{00036\ \textcolor{comment}{\ *****************************************************************************/}}
+\DoxyCodeLine{00037\ }
+\DoxyCodeLine{00038\ \textcolor{preprocessor}{\#ifndef\ SYSTEMC\_H}}
+\DoxyCodeLine{00039\ \textcolor{preprocessor}{\#define\ SYSTEMC\_H}}
+\DoxyCodeLine{00040\ }
+\DoxyCodeLine{00041\ \textcolor{comment}{//\ INCLUDE\ SYSTEM\ (std)\ DEFINITIONS:}}
+\DoxyCodeLine{00042\ }
+\DoxyCodeLine{00043\ \textcolor{preprocessor}{\#include\ <cassert>}}
+\DoxyCodeLine{00044\ \textcolor{preprocessor}{\#include\ <climits>}}
+\DoxyCodeLine{00045\ \textcolor{preprocessor}{\#include\ <cmath>}\ \textcolor{comment}{//\ math.h?}}
+\DoxyCodeLine{00046\ \textcolor{preprocessor}{\#include\ <cstddef>}}
+\DoxyCodeLine{00047\ \textcolor{preprocessor}{\#include\ <cstdio>}}
+\DoxyCodeLine{00048\ \textcolor{preprocessor}{\#include\ <cstdlib>}}
+\DoxyCodeLine{00049\ \textcolor{preprocessor}{\#include\ <cstring>}}
+\DoxyCodeLine{00050\ \textcolor{preprocessor}{\#include\ <exception>}}
+\DoxyCodeLine{00051\ \textcolor{preprocessor}{\#include\ <fstream>}}
+\DoxyCodeLine{00052\ \textcolor{preprocessor}{\#include\ <iostream>}}
+\DoxyCodeLine{00053\ \textcolor{preprocessor}{\#include\ <memory>}}
+\DoxyCodeLine{00054\ \textcolor{preprocessor}{\#include\ <string>}}
+\DoxyCodeLine{00055\ \textcolor{preprocessor}{\#if\ defined(\_\_sun)\ ||\ defined(\_\_sun\_\_)}}
+\DoxyCodeLine{00056\ \textcolor{preprocessor}{\#\ \ \ include\ <inttypes.h>}}
+\DoxyCodeLine{00057\ \textcolor{preprocessor}{\#elif\ !defined(WIN32)\ \&\&\ !defined(\_WIN32)}}
+\DoxyCodeLine{00058\ \textcolor{preprocessor}{\#\ \ \ include\ <stdint.h>}}
+\DoxyCodeLine{00059\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00060\ \textcolor{preprocessor}{\#include\ <typeinfo>}}
+\DoxyCodeLine{00061\ \textcolor{preprocessor}{\#include\ <utility>}}
+\DoxyCodeLine{00062\ \textcolor{preprocessor}{\#include\ <vector>}}
+\DoxyCodeLine{00063\ }
+\DoxyCodeLine{00064\ \textcolor{comment}{//\ C++11\ deprecates\ std::gets,\ as\ it\ can't\ be\ used\ safely.}}
+\DoxyCodeLine{00065\ \textcolor{comment}{//\ Compilers\ are\ starting\ to\ remove\ it\ from\ their\ headers.}}
+\DoxyCodeLine{00066\ \textcolor{preprocessor}{\#if\ defined(\_\_cplusplus)\ \&\&\ (\_\_cplusplus\ >=\ 201103L)\ ||\ \(\backslash\)}}
+\DoxyCodeLine{00067\ \textcolor{preprocessor}{\ \ \ \ defined(\_MSC\_VER)\ \&\&\ (\_MSC\_VER\ >=\ 1900)}}
+\DoxyCodeLine{00068\ \textcolor{preprocessor}{\#define\ SC\_NO\_STDGETS\_}}
+\DoxyCodeLine{00069\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00070\ }
+\DoxyCodeLine{00071\ \textcolor{comment}{//\ USINGS\ FOR\ I/O\ STREAM\ SUPPORT:}}
+\DoxyCodeLine{00072\ }
+\DoxyCodeLine{00073\ \ \ \ \ \textcolor{keyword}{using\ }std::ios;}
+\DoxyCodeLine{00074\ \ \ \ \ \textcolor{keyword}{using\ }std::streambuf;}
+\DoxyCodeLine{00075\ \ \ \ \ \textcolor{keyword}{using\ }std::streampos;}
+\DoxyCodeLine{00076\ \ \ \ \ \textcolor{keyword}{using\ }std::streamsize;}
+\DoxyCodeLine{00077\ \ \ \ \ \textcolor{keyword}{using\ }std::iostream;}
+\DoxyCodeLine{00078\ \ \ \ \ \textcolor{keyword}{using\ }std::istream;}
+\DoxyCodeLine{00079\ \ \ \ \ \textcolor{keyword}{using\ }std::ostream;}
+\DoxyCodeLine{00080\ \ \ \ \ \textcolor{keyword}{using\ }std::cin;}
+\DoxyCodeLine{00081\ \ \ \ \ \textcolor{keyword}{using\ }std::cout;}
+\DoxyCodeLine{00082\ \ \ \ \ \textcolor{keyword}{using\ }std::cerr;}
+\DoxyCodeLine{00083\ \ \ \ \ \textcolor{keyword}{using\ }std::endl;}
+\DoxyCodeLine{00084\ \ \ \ \ \textcolor{keyword}{using\ }std::flush;}
+\DoxyCodeLine{00085\ \ \ \ \ \textcolor{keyword}{using\ }std::dec;}
+\DoxyCodeLine{00086\ \ \ \ \ \textcolor{keyword}{using\ }std::hex;}
+\DoxyCodeLine{00087\ \ \ \ \ \textcolor{keyword}{using\ }std::oct;}
+\DoxyCodeLine{00088\ \ \ \ \ \textcolor{keyword}{using\ }std::noshowbase;}
+\DoxyCodeLine{00089\ \ \ \ \ \textcolor{keyword}{using\ }std::showbase;}
+\DoxyCodeLine{00090\ }
+\DoxyCodeLine{00091\ \ \ \ \ \textcolor{keyword}{using\ }std::fstream;}
+\DoxyCodeLine{00092\ \ \ \ \ \textcolor{keyword}{using\ }std::ifstream;}
+\DoxyCodeLine{00093\ \ \ \ \ \textcolor{keyword}{using\ }std::ofstream;}
+\DoxyCodeLine{00094\ }
+\DoxyCodeLine{00095\ \textcolor{comment}{//\ \ from\ <cstdio>:}}
+\DoxyCodeLine{00096\ }
+\DoxyCodeLine{00097\ \ \ \ \ \textcolor{keyword}{using\ }std::size\_t;}
+\DoxyCodeLine{00098\ \ \ \ \ \textcolor{keyword}{using\ }std::FILE;}
+\DoxyCodeLine{00099\ \ \ \ \ \textcolor{keyword}{using\ }std::fpos\_t;}
+\DoxyCodeLine{00100\ \ \ \ \ \textcolor{keyword}{using\ }std::fclose;}
+\DoxyCodeLine{00101\ \ \ \ \ \textcolor{keyword}{using\ }std::clearerr;}
+\DoxyCodeLine{00102\ }
+\DoxyCodeLine{00103\ \ \ \ \ \textcolor{keyword}{using\ }std::remove;}
+\DoxyCodeLine{00104\ \ \ \ \ \textcolor{keyword}{using\ }std::rename;}
+\DoxyCodeLine{00105\ \ \ \ \ \textcolor{keyword}{using\ }std::tmpfile;}
+\DoxyCodeLine{00106\ \ \ \ \ \textcolor{keyword}{using\ }std::tmpnam;}
+\DoxyCodeLine{00107\ \ \ \ \ \textcolor{keyword}{using\ }std::fflush;}
+\DoxyCodeLine{00108\ \ \ \ \ \textcolor{keyword}{using\ }std::fopen;}
+\DoxyCodeLine{00109\ \ \ \ \ \textcolor{keyword}{using\ }std::freopen;}
+\DoxyCodeLine{00110\ \ \ \ \ \textcolor{keyword}{using\ }std::setbuf;}
+\DoxyCodeLine{00111\ \ \ \ \ \textcolor{keyword}{using\ }std::setvbuf;}
+\DoxyCodeLine{00112\ \ \ \ \ \textcolor{keyword}{using\ }std::fprintf;}
+\DoxyCodeLine{00113\ \ \ \ \ \textcolor{keyword}{using\ }std::fscanf;}
+\DoxyCodeLine{00114\ \ \ \ \ \textcolor{keyword}{using\ }std::printf;}
+\DoxyCodeLine{00115\ \ \ \ \ \textcolor{keyword}{using\ }std::scanf;}
+\DoxyCodeLine{00116\ \ \ \ \ \textcolor{keyword}{using\ }std::sprintf;}
+\DoxyCodeLine{00117\ \ \ \ \ \textcolor{keyword}{using\ }std::sscanf;}
+\DoxyCodeLine{00118\ \ \ \ \ \textcolor{keyword}{using\ }std::vfprintf;}
+\DoxyCodeLine{00119\ \ \ \ \ \textcolor{keyword}{using\ }std::vprintf;}
+\DoxyCodeLine{00120\ \ \ \ \ \textcolor{keyword}{using\ }std::vsprintf;}
+\DoxyCodeLine{00121\ \ \ \ \ \textcolor{keyword}{using\ }std::fgetc;}
+\DoxyCodeLine{00122\ \ \ \ \ \textcolor{keyword}{using\ }std::fgets;}
+\DoxyCodeLine{00123\ \ \ \ \ \textcolor{keyword}{using\ }std::fputc;}
+\DoxyCodeLine{00124\ \ \ \ \ \textcolor{keyword}{using\ }std::fputs;}
+\DoxyCodeLine{00125\ \ \ \ \ \textcolor{keyword}{using\ }std::getc;}
+\DoxyCodeLine{00126\ \ \ \ \ \textcolor{keyword}{using\ }std::getchar;}
+\DoxyCodeLine{00127\ \textcolor{preprocessor}{\#ifndef\ SC\_NO\_STDGETS\_}}
+\DoxyCodeLine{00128\ \ \ \ \ \textcolor{keyword}{using\ }std::gets;}
+\DoxyCodeLine{00129\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00130\ \ \ \ \ \textcolor{keyword}{using\ }std::putc;}
+\DoxyCodeLine{00131\ \ \ \ \ \textcolor{keyword}{using\ }std::putchar;}
+\DoxyCodeLine{00132\ \ \ \ \ \textcolor{keyword}{using\ }std::puts;}
+\DoxyCodeLine{00133\ \ \ \ \ \textcolor{keyword}{using\ }std::ungetc;}
+\DoxyCodeLine{00134\ \ \ \ \ \textcolor{keyword}{using\ }std::fread;}
+\DoxyCodeLine{00135\ \ \ \ \ \textcolor{keyword}{using\ }std::fwrite;}
+\DoxyCodeLine{00136\ \ \ \ \ \textcolor{keyword}{using\ }std::fgetpos;}
+\DoxyCodeLine{00137\ \ \ \ \ \textcolor{keyword}{using\ }std::fseek;}
+\DoxyCodeLine{00138\ \ \ \ \ \textcolor{keyword}{using\ }std::fsetpos;}
+\DoxyCodeLine{00139\ \ \ \ \ \textcolor{keyword}{using\ }std::ftell;}
+\DoxyCodeLine{00140\ \ \ \ \ \textcolor{keyword}{using\ }std::rewind;}
+\DoxyCodeLine{00141\ \ \ \ \ \textcolor{keyword}{using\ }std::feof;}
+\DoxyCodeLine{00142\ \ \ \ \ \textcolor{keyword}{using\ }std::ferror;}
+\DoxyCodeLine{00143\ \ \ \ \ \textcolor{keyword}{using\ }std::perror;}
+\DoxyCodeLine{00144\ }
+\DoxyCodeLine{00145\ \textcolor{comment}{//\ \ from\ <cstdlib>:}}
+\DoxyCodeLine{00146\ }
+\DoxyCodeLine{00147\ \ \ \ \ \textcolor{keyword}{using\ }std::div\_t;}
+\DoxyCodeLine{00148\ \ \ \ \ \textcolor{keyword}{using\ }std::ldiv\_t;}
+\DoxyCodeLine{00149\ }
+\DoxyCodeLine{00150\ \ \ \ \ \textcolor{keyword}{using\ }std::atof;}
+\DoxyCodeLine{00151\ \ \ \ \ \textcolor{keyword}{using\ }std::atoi;}
+\DoxyCodeLine{00152\ \ \ \ \ \textcolor{keyword}{using\ }std::atol;}
+\DoxyCodeLine{00153\ \ \ \ \ \textcolor{keyword}{using\ }std::strtod;}
+\DoxyCodeLine{00154\ \ \ \ \ \textcolor{keyword}{using\ }std::strtol;}
+\DoxyCodeLine{00155\ \ \ \ \ \textcolor{keyword}{using\ }std::strtoul;}
+\DoxyCodeLine{00156\ \ \ \ \ \textcolor{keyword}{using\ }std::rand;}
+\DoxyCodeLine{00157\ \ \ \ \ \textcolor{keyword}{using\ }std::srand;}
+\DoxyCodeLine{00158\ \ \ \ \ \textcolor{keyword}{using\ }std::calloc;}
+\DoxyCodeLine{00159\ \ \ \ \ \textcolor{keyword}{using\ }std::free;}
+\DoxyCodeLine{00160\ \ \ \ \ \textcolor{keyword}{using\ }std::malloc;}
+\DoxyCodeLine{00161\ \ \ \ \ \textcolor{keyword}{using\ }std::realloc;}
+\DoxyCodeLine{00162\ \ \ \ \ \textcolor{keyword}{using\ }std::abort;}
+\DoxyCodeLine{00163\ \ \ \ \ \textcolor{keyword}{using\ }std::atexit;}
+\DoxyCodeLine{00164\ \ \ \ \ \textcolor{keyword}{using\ }std::exit;}
+\DoxyCodeLine{00165\ \ \ \ \ \textcolor{keyword}{using\ }std::getenv;}
+\DoxyCodeLine{00166\ \ \ \ \ \textcolor{keyword}{using\ }std::system;}
+\DoxyCodeLine{00167\ \ \ \ \ \textcolor{keyword}{using\ }std::bsearch;}
+\DoxyCodeLine{00168\ \ \ \ \ \textcolor{keyword}{using\ }std::qsort;}
+\DoxyCodeLine{00169\ \ \ \ \ \textcolor{keyword}{using\ }std::abs;}
+\DoxyCodeLine{00170\ \ \ \ \ \textcolor{keyword}{using\ }std::div;}
+\DoxyCodeLine{00171\ \ \ \ \ \textcolor{keyword}{using\ }std::labs;}
+\DoxyCodeLine{00172\ \ \ \ \ \textcolor{keyword}{using\ }std::ldiv;}
+\DoxyCodeLine{00173\ \ \ \ \ \textcolor{keyword}{using\ }std::mblen;}
+\DoxyCodeLine{00174\ \ \ \ \ \textcolor{keyword}{using\ }std::mbtowc;}
+\DoxyCodeLine{00175\ \ \ \ \ \textcolor{keyword}{using\ }std::mbstowcs;}
+\DoxyCodeLine{00176\ \textcolor{preprocessor}{\#if\ !defined(\_\_CYGWIN\_\_)\ \&\&\ !defined(\_\_CYGWIN32)}}
+\DoxyCodeLine{00177\ \ \ \ \ \textcolor{keyword}{using\ }std::wctomb;}
+\DoxyCodeLine{00178\ \ \ \ \ \textcolor{keyword}{using\ }std::wcstombs;}
+\DoxyCodeLine{00179\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00180\ }
+\DoxyCodeLine{00181\ \textcolor{comment}{//\ \ from\ <cstring>:}}
+\DoxyCodeLine{00182\ }
+\DoxyCodeLine{00183\ \ \ \ \ \textcolor{keyword}{using\ }std::memcpy;}
+\DoxyCodeLine{00184\ \ \ \ \ \textcolor{keyword}{using\ }std::memmove;}
+\DoxyCodeLine{00185\ \ \ \ \ \textcolor{keyword}{using\ }std::strcpy;}
+\DoxyCodeLine{00186\ \ \ \ \ \textcolor{keyword}{using\ }std::strncpy;}
+\DoxyCodeLine{00187\ \ \ \ \ \textcolor{keyword}{using\ }std::strcat;}
+\DoxyCodeLine{00188\ \ \ \ \ \textcolor{keyword}{using\ }std::strncat;}
+\DoxyCodeLine{00189\ \ \ \ \ \textcolor{keyword}{using\ }std::memcmp;}
+\DoxyCodeLine{00190\ \ \ \ \ \textcolor{keyword}{using\ }std::strcmp;}
+\DoxyCodeLine{00191\ \ \ \ \ \textcolor{keyword}{using\ }std::strcoll;}
+\DoxyCodeLine{00192\ \ \ \ \ \textcolor{keyword}{using\ }std::strncmp;}
+\DoxyCodeLine{00193\ \ \ \ \ \textcolor{keyword}{using\ }std::strxfrm;}
+\DoxyCodeLine{00194\ \ \ \ \ \textcolor{keyword}{using\ }std::memchr;}
+\DoxyCodeLine{00195\ \ \ \ \ \textcolor{keyword}{using\ }std::strchr;}
+\DoxyCodeLine{00196\ \ \ \ \ \textcolor{keyword}{using\ }std::strcspn;}
+\DoxyCodeLine{00197\ \ \ \ \ \textcolor{keyword}{using\ }std::strpbrk;}
+\DoxyCodeLine{00198\ \ \ \ \ \textcolor{keyword}{using\ }std::strrchr;}
+\DoxyCodeLine{00199\ \ \ \ \ \textcolor{keyword}{using\ }std::strspn;}
+\DoxyCodeLine{00200\ \ \ \ \ \textcolor{keyword}{using\ }std::strstr;}
+\DoxyCodeLine{00201\ \ \ \ \ \textcolor{keyword}{using\ }std::strtok;}
+\DoxyCodeLine{00202\ \ \ \ \ \textcolor{keyword}{using\ }std::memset;}
+\DoxyCodeLine{00203\ \ \ \ \ \textcolor{keyword}{using\ }std::strerror;}
+\DoxyCodeLine{00204\ \ \ \ \ \textcolor{keyword}{using\ }std::strlen;}
+\DoxyCodeLine{00205\ }
+\DoxyCodeLine{00206\ \textcolor{comment}{//\ deprecated\ strstream\ support}}
+\DoxyCodeLine{00207\ \textcolor{preprocessor}{\#if\ defined(\ SC\_INCLUDE\_STRSTREAM\ )}}
+\DoxyCodeLine{00208\ \textcolor{preprocessor}{\#include\ <strstream>}}
+\DoxyCodeLine{00209\ }
+\DoxyCodeLine{00210\ \ \ \ \ \textcolor{keyword}{using\ }std::strstream;}
+\DoxyCodeLine{00211\ \ \ \ \ \textcolor{keyword}{using\ }std::strstreambuf;}
+\DoxyCodeLine{00212\ \ \ \ \ \textcolor{keyword}{using\ }std::istrstream;}
+\DoxyCodeLine{00213\ \ \ \ \ \textcolor{keyword}{using\ }std::ostrstream;}
+\DoxyCodeLine{00214\ }
+\DoxyCodeLine{00215\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{//\ SC\_INCLUDE\_STRSTREAM}}
+\DoxyCodeLine{00216\ }
+\DoxyCodeLine{00217\ \textcolor{comment}{//\ INCLUDE\ SYSTEMC\ DEFINITIONS\ for\ sc\_dt\ AND\ sc\_core\ NAMESPACES:}}
+\DoxyCodeLine{00218\ }
+\DoxyCodeLine{00219\ \textcolor{preprocessor}{\#include\ "{}systemc"{}}}
+\DoxyCodeLine{00220\ }
+\DoxyCodeLine{00221\ \textcolor{comment}{//\ USINGS\ FOR\ THE\ sc\_dt\ NAMESPACE:}}
+\DoxyCodeLine{00222\ }
+\DoxyCodeLine{00223\ \textcolor{keyword}{using\ }\mbox{\hyperlink{namespacesc__dt_a4d7f17e93afae1c969127c6b80baa0f9a307c54bef660788d5be06b7db68b7942}{sc\_dt::SC\_BIN}};}
+\DoxyCodeLine{00224\ \textcolor{keyword}{using\ }\mbox{\hyperlink{namespacesc__dt_a4d7f17e93afae1c969127c6b80baa0f9a6b148eae66cb447584899b7b0b25e23d}{sc\_dt::SC\_BIN\_SM}};}
+\DoxyCodeLine{00225\ \textcolor{keyword}{using\ }\mbox{\hyperlink{namespacesc__dt_a4d7f17e93afae1c969127c6b80baa0f9a3f0b0a2200db8c111e7275278bac962c}{sc\_dt::SC\_BIN\_US}};}
+\DoxyCodeLine{00226\ \textcolor{keyword}{using\ }\mbox{\hyperlink{namespacesc__dt_a4d7f17e93afae1c969127c6b80baa0f9a1cec3b96584130b8fce5557f58cda822}{sc\_dt::SC\_CSD}};}
+\DoxyCodeLine{00227\ \textcolor{keyword}{using\ }\mbox{\hyperlink{namespacesc__dt_a4d7f17e93afae1c969127c6b80baa0f9ae9985e111b26103887bc8cb856062d70}{sc\_dt::SC\_DEC}};}
+\DoxyCodeLine{00228\ \textcolor{keyword}{using\ }\mbox{\hyperlink{namespacesc__dt_a4d7f17e93afae1c969127c6b80baa0f9a3bba378d8c598eaebcbfd61a3341413b}{sc\_dt::SC\_HEX}};}
+\DoxyCodeLine{00229\ \textcolor{keyword}{using\ }\mbox{\hyperlink{namespacesc__dt_a4d7f17e93afae1c969127c6b80baa0f9a2269b5783b048c0d2c13abc7977c2e47}{sc\_dt::SC\_HEX\_SM}};}
+\DoxyCodeLine{00230\ \textcolor{keyword}{using\ }\mbox{\hyperlink{namespacesc__dt_a4d7f17e93afae1c969127c6b80baa0f9ac20afd6fc8d81e8c690b939a00319713}{sc\_dt::SC\_HEX\_US}};}
+\DoxyCodeLine{00231\ \textcolor{keyword}{using\ }\mbox{\hyperlink{namespacesc__dt_a25005703c75ba468a44b9ea0049ca020}{sc\_dt::SC\_LOGIC\_0}};}
+\DoxyCodeLine{00232\ \textcolor{keyword}{using\ }\mbox{\hyperlink{namespacesc__dt_abdf9e0f09e061d1555405455bbe82fa8}{sc\_dt::SC\_LOGIC\_1}};}
+\DoxyCodeLine{00233\ \textcolor{keyword}{using\ }\mbox{\hyperlink{namespacesc__dt_a27ddf1f8f8c822de2e92b32187242685}{sc\_dt::SC\_LOGIC\_X}};}
+\DoxyCodeLine{00234\ \textcolor{keyword}{using\ }\mbox{\hyperlink{namespacesc__dt_ab13df6d63ebe69825d595166e6bd62db}{sc\_dt::SC\_LOGIC\_Z}};}
+\DoxyCodeLine{00235\ \textcolor{keyword}{using\ }\mbox{\hyperlink{namespacesc__dt_a4d7f17e93afae1c969127c6b80baa0f9a57b0fc7080c8e8823dd373416e61e38d}{sc\_dt::SC\_NOBASE}};}
+\DoxyCodeLine{00236\ \textcolor{keyword}{using\ }\mbox{\hyperlink{namespacesc__dt_a4d7f17e93afae1c969127c6b80baa0f9ab5bd29df600aa251432d9cf565e3969c}{sc\_dt::SC\_OCT}};}
+\DoxyCodeLine{00237\ \textcolor{keyword}{using\ }\mbox{\hyperlink{namespacesc__dt_a4d7f17e93afae1c969127c6b80baa0f9a7422976e4f533f6c8989d33301ffbdb1}{sc\_dt::SC\_OCT\_SM}};}
+\DoxyCodeLine{00238\ \textcolor{keyword}{using\ }\mbox{\hyperlink{namespacesc__dt_a4d7f17e93afae1c969127c6b80baa0f9a27b98a3dc7d893f39c987f846cd26ea3}{sc\_dt::SC\_OCT\_US}};}
+\DoxyCodeLine{00239\ \textcolor{keyword}{using\ }\mbox{\hyperlink{namespacesc__dt_a7241d680b54f08c83418b8743a42b667}{sc\_dt::int64}};}
+\DoxyCodeLine{00240\ \textcolor{keyword}{using\ }\mbox{\hyperlink{namespacesc__dt_a70309af0a57c62146ef043406ee357ed}{sc\_dt::sc\_abs}};}
+\DoxyCodeLine{00241\ \textcolor{keyword}{using\ }\mbox{\hyperlink{classsc__dt_1_1sc__bigint}{sc\_dt::sc\_bigint}};}
+\DoxyCodeLine{00242\ \textcolor{keyword}{using\ }\mbox{\hyperlink{classsc__dt_1_1sc__biguint}{sc\_dt::sc\_biguint}};}
+\DoxyCodeLine{00243\ \textcolor{keyword}{using\ }\mbox{\hyperlink{classsc__dt_1_1sc__bit}{sc\_dt::sc\_bit}};}
+\DoxyCodeLine{00244\ \textcolor{keyword}{using\ }\mbox{\hyperlink{classsc__dt_1_1sc__bv}{sc\_dt::sc\_bv}};}
+\DoxyCodeLine{00245\ \textcolor{keyword}{using\ }\mbox{\hyperlink{classsc__dt_1_1sc__bv__base}{sc\_dt::sc\_bv\_base}};}
+\DoxyCodeLine{00246\ \textcolor{keyword}{using\ }\mbox{\hyperlink{namespacesc__dt_ac387c29028ace5ebdafd46a173a8146a}{sc\_dt::sc\_digit}};}
+\DoxyCodeLine{00247\ \textcolor{keyword}{using\ }\mbox{\hyperlink{classsc__dt_1_1sc__int}{sc\_dt::sc\_int}};}
+\DoxyCodeLine{00248\ \textcolor{keyword}{using\ }\mbox{\hyperlink{classsc__dt_1_1sc__int__base}{sc\_dt::sc\_int\_base}};}
+\DoxyCodeLine{00249\ \textcolor{keyword}{using\ }\mbox{\hyperlink{namespacesc__dt_a2807181c85d066592b433897abdac33d}{sc\_dt::sc\_io\_show\_base}};}
+\DoxyCodeLine{00250\ \textcolor{keyword}{using\ }\mbox{\hyperlink{classsc__dt_1_1sc__context}{sc\_dt::sc\_length\_context}};}
+\DoxyCodeLine{00251\ \textcolor{keyword}{using\ }\mbox{\hyperlink{classsc__dt_1_1sc__length__param}{sc\_dt::sc\_length\_param}};}
+\DoxyCodeLine{00252\ \textcolor{keyword}{using\ }\mbox{\hyperlink{classsc__dt_1_1sc__logic}{sc\_dt::sc\_logic}};}
+\DoxyCodeLine{00253\ \textcolor{keyword}{using\ }\mbox{\hyperlink{classsc__dt_1_1sc__lv}{sc\_dt::sc\_lv}};}
+\DoxyCodeLine{00254\ \textcolor{keyword}{using\ }\mbox{\hyperlink{classsc__dt_1_1sc__lv__base}{sc\_dt::sc\_lv\_base}};}
+\DoxyCodeLine{00255\ \textcolor{keyword}{using\ }\mbox{\hyperlink{namespacesc__dt_a9581de8910dbf6afa1f540eba7492667}{sc\_dt::sc\_max}};}
+\DoxyCodeLine{00256\ \textcolor{keyword}{using\ }\mbox{\hyperlink{namespacesc__dt_a6cb4684e5692dd4775e0ae72516a9c35}{sc\_dt::sc\_min}};}
+\DoxyCodeLine{00257\ \textcolor{keyword}{using\ }\mbox{\hyperlink{namespacesc__dt_a4d7f17e93afae1c969127c6b80baa0f9}{sc\_dt::sc\_numrep}};}
+\DoxyCodeLine{00258\ \textcolor{keyword}{using\ }\mbox{\hyperlink{classsc__dt_1_1sc__signed}{sc\_dt::sc\_signed}};}
+\DoxyCodeLine{00259\ \textcolor{keyword}{using\ }\mbox{\hyperlink{classsc__dt_1_1sc__uint}{sc\_dt::sc\_uint}};}
+\DoxyCodeLine{00260\ \textcolor{keyword}{using\ }\mbox{\hyperlink{classsc__dt_1_1sc__uint__base}{sc\_dt::sc\_uint\_base}};}
+\DoxyCodeLine{00261\ \textcolor{keyword}{using\ }\mbox{\hyperlink{classsc__dt_1_1sc__unsigned}{sc\_dt::sc\_unsigned}};}
+\DoxyCodeLine{00262\ \textcolor{keyword}{using\ }\mbox{\hyperlink{namespacesc__dt_a0e509e6e05abf63a5c3f08a342e4cd91}{sc\_dt::uint64}};}
+\DoxyCodeLine{00263\ \textcolor{comment}{//\ \#ifdef\ SC\_DT\_DEPRECATED}}
+\DoxyCodeLine{00264\ \textcolor{keyword}{using\ }\mbox{\hyperlink{namespacesc__dt_a9939afb4ad3a190c37c6cfae3db19cd1}{sc\_dt::sc\_logic\_0}};}
+\DoxyCodeLine{00265\ \textcolor{keyword}{using\ }\mbox{\hyperlink{namespacesc__dt_a2ebde04b326927bc2f0491f46a452465}{sc\_dt::sc\_logic\_1}};}
+\DoxyCodeLine{00266\ \textcolor{keyword}{using\ }\mbox{\hyperlink{namespacesc__dt_ad83b8fc992264f7c2d2b60b388bb6dfb}{sc\_dt::sc\_logic\_Z}};}
+\DoxyCodeLine{00267\ \textcolor{keyword}{using\ }\mbox{\hyperlink{namespacesc__dt_a9949ec7524434b94c0a0cefabdb61d65}{sc\_dt::sc\_logic\_X}};}
+\DoxyCodeLine{00268\ \textcolor{comment}{//\ \#endif}}
+\DoxyCodeLine{00269\ }
+\DoxyCodeLine{00270\ \textcolor{preprocessor}{\#ifdef\ SC\_INCLUDE\_FX}}
+\DoxyCodeLine{00271\ \ \ \ \ \textcolor{keyword}{using\ }\mbox{\hyperlink{classsc__dt_1_1sc__fxnum}{sc\_dt::sc\_fxnum}};}
+\DoxyCodeLine{00272\ \ \ \ \ \textcolor{keyword}{using\ }\mbox{\hyperlink{classsc__dt_1_1sc__fxnum__bitref}{sc\_dt::sc\_fxnum\_bitref}};}
+\DoxyCodeLine{00273\ \ \ \ \ \textcolor{keyword}{using\ }\mbox{\hyperlink{classsc__dt_1_1sc__fxnum__fast}{sc\_dt::sc\_fxnum\_fast}};}
+\DoxyCodeLine{00274\ \ \ \ \ \textcolor{keyword}{using\ }\mbox{\hyperlink{classsc__dt_1_1sc__fix}{sc\_dt::sc\_fix}};}
+\DoxyCodeLine{00275\ \ \ \ \ \textcolor{keyword}{using\ }\mbox{\hyperlink{classsc__dt_1_1sc__fix__fast}{sc\_dt::sc\_fix\_fast}};}
+\DoxyCodeLine{00276\ \ \ \ \ \textcolor{keyword}{using\ }\mbox{\hyperlink{classsc__dt_1_1sc__ufix}{sc\_dt::sc\_ufix}};}
+\DoxyCodeLine{00277\ \ \ \ \ \textcolor{keyword}{using\ }\mbox{\hyperlink{classsc__dt_1_1sc__ufix__fast}{sc\_dt::sc\_ufix\_fast}};}
+\DoxyCodeLine{00278\ \ \ \ \ \textcolor{keyword}{using\ }\mbox{\hyperlink{classsc__dt_1_1sc__fixed}{sc\_dt::sc\_fixed}};}
+\DoxyCodeLine{00279\ \ \ \ \ \textcolor{keyword}{using\ }\mbox{\hyperlink{classsc__dt_1_1sc__fixed__fast}{sc\_dt::sc\_fixed\_fast}};}
+\DoxyCodeLine{00280\ \ \ \ \ \textcolor{keyword}{using\ }\mbox{\hyperlink{classsc__dt_1_1sc__ufixed}{sc\_dt::sc\_ufixed}};}
+\DoxyCodeLine{00281\ \ \ \ \ \textcolor{keyword}{using\ }\mbox{\hyperlink{classsc__dt_1_1sc__ufixed__fast}{sc\_dt::sc\_ufixed\_fast}};}
+\DoxyCodeLine{00282\ \ \ \ \ \textcolor{keyword}{using\ }\mbox{\hyperlink{classsc__dt_1_1sc__fxval}{sc\_dt::sc\_fxval}};}
+\DoxyCodeLine{00283\ \ \ \ \ \textcolor{keyword}{using\ }\mbox{\hyperlink{classsc__dt_1_1sc__fxval__fast}{sc\_dt::sc\_fxval\_fast}};}
+\DoxyCodeLine{00284\ \ \ \ \ \textcolor{keyword}{using\ }\mbox{\hyperlink{classsc__dt_1_1sc__fxcast__switch}{sc\_dt::sc\_fxcast\_switch}};}
+\DoxyCodeLine{00285\ \ \ \ \ \textcolor{keyword}{using\ }\mbox{\hyperlink{classsc__dt_1_1sc__context}{sc\_dt::sc\_fxcast\_context}};}
+\DoxyCodeLine{00286\ \ \ \ \ \textcolor{keyword}{using\ }\mbox{\hyperlink{classsc__dt_1_1sc__fxtype__params}{sc\_dt::sc\_fxtype\_params}};}
+\DoxyCodeLine{00287\ \ \ \ \ \textcolor{keyword}{using\ }\mbox{\hyperlink{classsc__dt_1_1sc__context}{sc\_dt::sc\_fxtype\_context}};}
+\DoxyCodeLine{00288\ \ \ \ \ \textcolor{keyword}{using\ }\mbox{\hyperlink{namespacesc__dt_a231ecdcc13fcad8eb53b7020c93bb721}{sc\_dt::sc\_q\_mode}};}
+\DoxyCodeLine{00289\ \ \ \ \ \textcolor{keyword}{using\ }\mbox{\hyperlink{namespacesc__dt_a231ecdcc13fcad8eb53b7020c93bb721a36e005cfebfe572beead8ac908a98a5f}{sc\_dt::SC\_RND}};}
+\DoxyCodeLine{00290\ \ \ \ \ \textcolor{keyword}{using\ }\mbox{\hyperlink{namespacesc__dt_a231ecdcc13fcad8eb53b7020c93bb721ab8065af719aa3b64fcb7e8b762777d37}{sc\_dt::SC\_RND\_ZERO}};}
+\DoxyCodeLine{00291\ \ \ \ \ \textcolor{keyword}{using\ }\mbox{\hyperlink{namespacesc__dt_a231ecdcc13fcad8eb53b7020c93bb721a5a6dc4fabb906810d07b4988a3556306}{sc\_dt::SC\_RND\_MIN\_INF}};}
+\DoxyCodeLine{00292\ \ \ \ \ \textcolor{keyword}{using\ }\mbox{\hyperlink{namespacesc__dt_a231ecdcc13fcad8eb53b7020c93bb721ae54536bffed693c870ca369ec8105232}{sc\_dt::SC\_RND\_INF}};}
+\DoxyCodeLine{00293\ \ \ \ \ \textcolor{keyword}{using\ }\mbox{\hyperlink{namespacesc__dt_a231ecdcc13fcad8eb53b7020c93bb721a3208a876fbd9d52d1d6831e597701fd8}{sc\_dt::SC\_RND\_CONV}};}
+\DoxyCodeLine{00294\ \ \ \ \ \textcolor{keyword}{using\ }\mbox{\hyperlink{namespacesc__dt_a231ecdcc13fcad8eb53b7020c93bb721aaceb6b9a67ca6b69bda017d5b85ad59a}{sc\_dt::SC\_TRN}};}
+\DoxyCodeLine{00295\ \ \ \ \ \textcolor{keyword}{using\ }\mbox{\hyperlink{namespacesc__dt_a231ecdcc13fcad8eb53b7020c93bb721a916ed5dda67312b52f23dc5e5b688ff4}{sc\_dt::SC\_TRN\_ZERO}};}
+\DoxyCodeLine{00296\ \ \ \ \ \textcolor{keyword}{using\ }\mbox{\hyperlink{namespacesc__dt_af938546ec8f720ce20f21c3b0931c2e5}{sc\_dt::sc\_o\_mode}};}
+\DoxyCodeLine{00297\ \ \ \ \ \textcolor{keyword}{using\ }\mbox{\hyperlink{namespacesc__dt_af938546ec8f720ce20f21c3b0931c2e5ae2ac4621bb524bf811267c20a93cf663}{sc\_dt::SC\_SAT}};}
+\DoxyCodeLine{00298\ \ \ \ \ \textcolor{keyword}{using\ }\mbox{\hyperlink{namespacesc__dt_af938546ec8f720ce20f21c3b0931c2e5a9770e01c1e895c56da0da5ae03b223f5}{sc\_dt::SC\_SAT\_ZERO}};}
+\DoxyCodeLine{00299\ \ \ \ \ \textcolor{keyword}{using\ }\mbox{\hyperlink{namespacesc__dt_af938546ec8f720ce20f21c3b0931c2e5a77ced946513ae051d4b02772a5266a01}{sc\_dt::SC\_SAT\_SYM}};}
+\DoxyCodeLine{00300\ \ \ \ \ \textcolor{keyword}{using\ }\mbox{\hyperlink{namespacesc__dt_af938546ec8f720ce20f21c3b0931c2e5a1cb308125ec9f13dd2d00062d9821333}{sc\_dt::SC\_WRAP}};}
+\DoxyCodeLine{00301\ \ \ \ \ \textcolor{keyword}{using\ }\mbox{\hyperlink{namespacesc__dt_af938546ec8f720ce20f21c3b0931c2e5a26ccb388310d8f37081295aa5c5c1273}{sc\_dt::SC\_WRAP\_SM}};}
+\DoxyCodeLine{00302\ \ \ \ \ \textcolor{keyword}{using\ }\mbox{\hyperlink{namespacesc__dt_ac3088a9000bafb9fa9e323e2bd1fbae9}{sc\_dt::sc\_switch}};}
+\DoxyCodeLine{00303\ \ \ \ \ \textcolor{keyword}{using\ }\mbox{\hyperlink{namespacesc__dt_ac3088a9000bafb9fa9e323e2bd1fbae9a4c634ecb88fc0afc63cc4a614c091c7b}{sc\_dt::SC\_OFF}};}
+\DoxyCodeLine{00304\ \ \ \ \ \textcolor{keyword}{using\ }\mbox{\hyperlink{namespacesc__dt_ac3088a9000bafb9fa9e323e2bd1fbae9a9134bc2b049e2b99d40c2aa3ccbac6e6}{sc\_dt::SC\_ON}};}
+\DoxyCodeLine{00305\ \ \ \ \ \textcolor{keyword}{using\ }\mbox{\hyperlink{namespacesc__dt_a7d611fc1a2b578e4630fa7ccf455327b}{sc\_dt::sc\_fmt}};}
+\DoxyCodeLine{00306\ \ \ \ \ \textcolor{keyword}{using\ }\mbox{\hyperlink{namespacesc__dt_a7d611fc1a2b578e4630fa7ccf455327ba279868695677057493ec01c302caf0b6}{sc\_dt::SC\_F}};}
+\DoxyCodeLine{00307\ \ \ \ \ \textcolor{keyword}{using\ }\mbox{\hyperlink{namespacesc__dt_a7d611fc1a2b578e4630fa7ccf455327baa4d9bb83f1d3f84d59edf29e5e20da30}{sc\_dt::SC\_E}};}
+\DoxyCodeLine{00308\ \ \ \ \ \textcolor{keyword}{using\ }\mbox{\hyperlink{namespacesc__dt_a4945f594b517cd356c50caae3f84707b}{sc\_dt::sc\_context\_begin}};}
+\DoxyCodeLine{00309\ \ \ \ \ \textcolor{keyword}{using\ }\mbox{\hyperlink{namespacesc__dt_a4945f594b517cd356c50caae3f84707ba1a2efdcd4a33cdc683c11659bb8388f3}{sc\_dt::SC\_NOW}};}
+\DoxyCodeLine{00310\ \ \ \ \ \textcolor{keyword}{using\ }\mbox{\hyperlink{namespacesc__dt_a4945f594b517cd356c50caae3f84707ba8c6efc38edcc0bb78fff64747e4ca724}{sc\_dt::SC\_LATER}};}
+\DoxyCodeLine{00311\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{//\ SC\_INCLUDE\_FX}}
+\DoxyCodeLine{00312\ }
+\DoxyCodeLine{00313\ \textcolor{preprocessor}{\#if\ 0\ }\textcolor{comment}{//\ defined(\ \_MSC\_VER\ )\ //\ supported\ versions\ of\ MSVC\ should\ support\ ADL}}
+\DoxyCodeLine{00314\ }
+\DoxyCodeLine{00315\ \ \ \ \ \textcolor{keyword}{using\ }\mbox{\hyperlink{namespacesc__dt_a999b6968ffdbf89e68bbc87a952abe0d}{sc\_dt::equal}};}
+\DoxyCodeLine{00316\ \ \ \ \ \textcolor{keyword}{using\ }\mbox{\hyperlink{namespacesc__dt_ab15929c97a4ca6b79389507b1451956c}{sc\_dt::not\_equal}};}
+\DoxyCodeLine{00317\ \ \ \ \ \textcolor{keyword}{using\ }\mbox{\hyperlink{namespacesc__dt_a3e1cba88964b069aefdb6ebb8835ebd9}{sc\_dt::b\_not}};}
+\DoxyCodeLine{00318\ \ \ \ \ \textcolor{keyword}{using\ }\mbox{\hyperlink{namespacesc__dt_a317a689be435008162622e6800e313e6}{sc\_dt::b\_and}};}
+\DoxyCodeLine{00319\ \ \ \ \ \textcolor{keyword}{using\ }\mbox{\hyperlink{namespacesc__dt_af803e94a717c2fb04bde9239894bac72}{sc\_dt::b\_or}};}
+\DoxyCodeLine{00320\ \ \ \ \ \textcolor{keyword}{using\ }\mbox{\hyperlink{namespacesc__dt_a2c9a301a7045bae3ddda330c288feb18}{sc\_dt::b\_xor}};}
+\DoxyCodeLine{00321\ \ \ \ \ \textcolor{keyword}{using\ }\mbox{\hyperlink{namespacesc__dt_a41723883670db833547392e5a1514869}{sc\_dt::lrotate}};}
+\DoxyCodeLine{00322\ \ \ \ \ \textcolor{keyword}{using\ }\mbox{\hyperlink{namespacesc__dt_ae1528e0cdec3a9db1c3ef36a73e1da9a}{sc\_dt::rrotate}};}
+\DoxyCodeLine{00323\ \ \ \ \ \textcolor{keyword}{using\ }\mbox{\hyperlink{namespacesc__dt_a3c9da926c002a145b38e6bac95f63c3e}{sc\_dt::reverse}};}
+\DoxyCodeLine{00324\ \ \ \ \ \textcolor{keyword}{using\ }\mbox{\hyperlink{namespacesc__dt_a7dfa6b058e6b1a337569e75474de10b3}{sc\_dt::concat}};}
+\DoxyCodeLine{00325\ \ \ \ \ \textcolor{keyword}{using\ }\mbox{\hyperlink{namespacesc__dt_ad05bdd5291b54f5fba9798ba11d46c23}{sc\_dt::and\_reduce}};}
+\DoxyCodeLine{00326\ \ \ \ \ \textcolor{keyword}{using\ }\mbox{\hyperlink{namespacesc__dt_a259706f3eac3e4c70de123e5be79e1c0}{sc\_dt::or\_reduce}};}
+\DoxyCodeLine{00327\ \ \ \ \ \textcolor{keyword}{using\ }\mbox{\hyperlink{namespacesc__dt_a3b1de6eae3d82b0de9142a19d4e33477}{sc\_dt::xor\_reduce}};}
+\DoxyCodeLine{00328\ \ \ \ \ \textcolor{keyword}{using\ }\mbox{\hyperlink{namespacesc__dt_ae6f5a5440839dc6ea982f17928e83727}{sc\_dt::nand\_reduce}};}
+\DoxyCodeLine{00329\ \ \ \ \ \textcolor{keyword}{using\ }\mbox{\hyperlink{namespacesc__dt_a83111b85def0b1dab8ee044692bb0092}{sc\_dt::nor\_reduce}};}
+\DoxyCodeLine{00330\ \ \ \ \ \textcolor{keyword}{using\ }\mbox{\hyperlink{namespacesc__dt_ae67746c712128eb78f7656260f6384b2}{sc\_dt::xnor\_reduce}};}
+\DoxyCodeLine{00331\ }
+\DoxyCodeLine{00332\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{//\ defined(\ \_MSC\_VER\ )}}
+\DoxyCodeLine{00333\ }
+\DoxyCodeLine{00334\ }
+\DoxyCodeLine{00335\ \textcolor{comment}{//\ USINGS\ FOR\ sc\_core:}}
+\DoxyCodeLine{00336\ \textcolor{comment}{//}}
+\DoxyCodeLine{00337\ \textcolor{comment}{//\ The\ explicit\ using\ for\ ::sc\_core::wait\ is\ to\ remove\ an\ ambiguity\ with}}
+\DoxyCodeLine{00338\ \textcolor{comment}{//\ the\ constructor\ for\ the\ system's\ union\ wait\ on\ Unix\ and\ Linux.\ This}}
+\DoxyCodeLine{00339\ \textcolor{comment}{//\ causes\ problems\ with\ aCC,\ so\ users\ of\ aCC\ should\ explicitly\ select}}
+\DoxyCodeLine{00340\ \textcolor{comment}{//\ the\ SystemC\ wait\ functions\ using\ ::sc\_core::wait(...).\ This\ is\ actually}}
+\DoxyCodeLine{00341\ \textcolor{comment}{//\ a\ good\ idea\ for\ SystemC\ programmers\ in\ general.}}
+\DoxyCodeLine{00342\ }
+\DoxyCodeLine{00343\ \textcolor{keyword}{using\ namespace\ }\mbox{\hyperlink{namespacesc__core}{sc\_core}};}
+\DoxyCodeLine{00344\ }
+\DoxyCodeLine{00345\ \textcolor{preprocessor}{\#if\ !defined(\ \_\_HP\_aCC\ )}}
+\DoxyCodeLine{00346\ \ \ \ \ using\ ::sc\_core::wait;}
+\DoxyCodeLine{00347\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{//\ !defined(\ \_\_HP\_aCC\ )}}
+\DoxyCodeLine{00348\ }
+\DoxyCodeLine{00349\ \textcolor{preprocessor}{\#ifdef\ SC\_USE\_SC\_STRING\_OLD}}
+\DoxyCodeLine{00350\ \ \ \ \ \textcolor{keyword}{using\ \ \ }\mbox{\hyperlink{classsc__dt_1_1sc__string__old}{sc\_dt::sc\_string\_old}};}
+\DoxyCodeLine{00351\ \ \ \ \ \textcolor{keyword}{typedef}\ \mbox{\hyperlink{classsc__dt_1_1sc__string__old}{sc\_dt::sc\_string\_old}}\ \mbox{\hyperlink{class_sysc_add__pv}{sc\_string}};}
+\DoxyCodeLine{00352\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00353\ \textcolor{preprocessor}{\#ifdef\ SC\_USE\_STD\_STRING}}
+\DoxyCodeLine{00354\ \ \ \ \ \textcolor{keyword}{typedef}\ ::std::string\ \mbox{\hyperlink{class_sysc_add__pv}{sc\_string}};}
+\DoxyCodeLine{00355\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00356\ }
+\DoxyCodeLine{00357\ \textcolor{preprocessor}{\#undef\ SC\_NO\_STDGETS\_}}
+\DoxyCodeLine{00358\ }
+\DoxyCodeLine{00359\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{//\ SYSTEMC\_H}}
+
+\end{DoxyCode}

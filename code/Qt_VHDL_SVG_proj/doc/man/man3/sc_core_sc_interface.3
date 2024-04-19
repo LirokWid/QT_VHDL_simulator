@@ -1,0 +1,66 @@
+.TH "sc_core::sc_interface" 3 "VHDL simulator" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+sc_core::sc_interface
+.SH SYNOPSIS
+.br
+.PP
+.PP
+\fR#include <sc_interface\&.h>\fP
+.PP
+Inherited by \fBsc_core::sc_signal_in_if< sc_dt::sc_lv >\fP\fR [virtual]\fP, \fBsc_core::sc_signal_in_if< bool >\fP\fR [virtual]\fP, \fBsc_core::sc_signal_in_if< sc_dt::sc_lv< W > >\fP\fR [virtual]\fP, \fBsc_core::sc_signal_in_if< sc_dt::sc_logic >\fP\fR [virtual]\fP, \fBsc_core::sc_signal_in_if< typename sc_dt::sc_lv >\fP\fR [virtual]\fP, \fBsc_core::sc_signal_in_if< sc_dt::sc_lv< 32 > >\fP\fR [virtual]\fP, \fBsc_core::sc_signal_write_if< sc_dt::sc_lv >\fP\fR [virtual]\fP, \fBsc_core::sc_signal_write_if< bool >\fP\fR [virtual]\fP, \fBsc_core::sc_signal_write_if< sc_dt::sc_logic >\fP\fR [virtual]\fP, \fBsc_core::sc_signal_write_if< sc_dt::sc_lv< W > >\fP\fR [virtual]\fP, \fBsc_core::sc_signal_write_if< typename sc_dt::sc_lv >\fP\fR [virtual]\fP, \fBsc_core::sc_signal_write_if< sc_dt::sc_lv< 32 > >\fP\fR [virtual]\fP, \fBtlm::tlm_blocking_get_if< RSP >\fP\fR [virtual]\fP, \fBtlm::tlm_blocking_get_if< REQ >\fP\fR [virtual]\fP, \fBtlm::tlm_blocking_get_if< GET_DATA >\fP\fR [virtual]\fP, \fBtlm::tlm_blocking_peek_if< RSP >\fP\fR [virtual]\fP, \fBtlm::tlm_blocking_peek_if< REQ >\fP\fR [virtual]\fP, \fBtlm::tlm_blocking_peek_if< GET_DATA >\fP\fR [virtual]\fP, \fBtlm::tlm_blocking_put_if< REQ >\fP\fR [virtual]\fP, \fBtlm::tlm_blocking_put_if< RSP >\fP\fR [virtual]\fP, \fBtlm::tlm_blocking_put_if< PUT_DATA >\fP\fR [virtual]\fP, \fBtlm::tlm_blocking_transport_if< TYPES::tlm_payload_type >\fP\fR [virtual]\fP, \fBtlm::tlm_bw_nonblocking_transport_if< TYPES::tlm_payload_type, TYPES::tlm_phase_type >\fP\fR [virtual]\fP, \fBtlm::tlm_fifo_debug_if< REQ >\fP\fR [virtual]\fP, \fBtlm::tlm_fifo_debug_if< RSP >\fP\fR [virtual]\fP, \fBtlm::tlm_fw_direct_mem_if< TYPES::tlm_payload_type >\fP\fR [virtual]\fP, \fBtlm::tlm_fw_nonblocking_transport_if< TYPES::tlm_payload_type, TYPES::tlm_phase_type >\fP\fR [virtual]\fP, \fBtlm::tlm_nonblocking_get_if< RSP >\fP\fR [virtual]\fP, \fBtlm::tlm_nonblocking_get_if< REQ >\fP\fR [virtual]\fP, \fBtlm::tlm_nonblocking_get_if< GET_DATA >\fP\fR [virtual]\fP, \fBtlm::tlm_nonblocking_peek_if< RSP >\fP\fR [virtual]\fP, \fBtlm::tlm_nonblocking_peek_if< REQ >\fP\fR [virtual]\fP, \fBtlm::tlm_nonblocking_peek_if< GET_DATA >\fP\fR [virtual]\fP, \fBtlm::tlm_nonblocking_put_if< REQ >\fP\fR [virtual]\fP, \fBtlm::tlm_nonblocking_put_if< RSP >\fP\fR [virtual]\fP, \fBtlm::tlm_nonblocking_put_if< PUT_DATA >\fP\fR [virtual]\fP, \fBtlm::tlm_transport_dbg_if< TYPES::tlm_payload_type >\fP\fR [virtual]\fP, \fBsc_core::sc_event_queue_if\fP\fR [virtual]\fP, \fBsc_core::sc_fifo_blocking_in_if< T >\fP\fR [virtual]\fP, \fBsc_core::sc_fifo_blocking_out_if< T >\fP\fR [virtual]\fP, \fBsc_core::sc_fifo_nonblocking_in_if< T >\fP\fR [virtual]\fP, \fBsc_core::sc_fifo_nonblocking_out_if< T >\fP\fR [virtual]\fP, \fBsc_core::sc_mutex_if\fP\fR [virtual]\fP, \fBsc_core::sc_semaphore_if\fP\fR [virtual]\fP, \fBsc_core::sc_signal_in_if< T >\fP\fR [virtual]\fP, \fBsc_core::sc_signal_in_if< bool >\fP\fR [virtual]\fP, \fBsc_core::sc_signal_in_if< sc_dt::sc_logic >\fP\fR [virtual]\fP, \fBsc_core::sc_signal_write_if< T >\fP\fR [virtual]\fP, \fBtlm::tlm_blocking_get_if< T >\fP\fR [virtual]\fP, \fBtlm::tlm_blocking_peek_if< T >\fP\fR [virtual]\fP, \fBtlm::tlm_blocking_put_if< T >\fP\fR [virtual]\fP, \fBtlm::tlm_blocking_transport_if< TRANS >\fP\fR [virtual]\fP, \fBtlm::tlm_bw_direct_mem_if\fP\fR [virtual]\fP, \fBtlm::tlm_bw_nonblocking_transport_if< TRANS, PHASE >\fP\fR [virtual]\fP, \fBtlm::tlm_delayed_write_if< T >\fP\fR [virtual]\fP, \fBtlm::tlm_fifo_config_size_if\fP\fR [virtual]\fP, \fBtlm::tlm_fifo_debug_if< T >\fP\fR [virtual]\fP, \fBtlm::tlm_fw_direct_mem_if< TRANS >\fP\fR [virtual]\fP, \fBtlm::tlm_fw_nonblocking_transport_if< TRANS, PHASE >\fP\fR [virtual]\fP, \fBtlm::tlm_nonblocking_get_if< T >\fP\fR [virtual]\fP, \fBtlm::tlm_nonblocking_peek_if< T >\fP\fR [virtual]\fP, \fBtlm::tlm_nonblocking_put_if< T >\fP\fR [virtual]\fP, \fBtlm::tlm_transport_dbg_if< TRANS >\fP\fR [virtual]\fP, \fBtlm::tlm_transport_if< REQ, RSP >\fP\fR [virtual]\fP, and \fBtlm::tlm_write_if< T >\fP\fR [virtual]\fP\&.
+.SS "Public Member Functions"
+
+.in +1c
+.ti -1c
+.RI "\fBvirtual\fP \fBvoid\fP \fBregister_port\fP (\fBsc_port_base\fP &\fBport_\fP, \fBconst\fP \fBchar\fP *\fBif_typename_\fP)"
+.br
+.ti -1c
+.RI "\fBvirtual\fP \fBconst\fP \fBsc_event\fP & \fBdefault_event\fP () \fBconst\fP"
+.br
+.ti -1c
+.RI "\fBvirtual\fP \fB~sc_interface\fP ()"
+.br
+.in -1c
+.SS "Protected Member Functions"
+
+.in +1c
+.ti -1c
+.RI "\fBsc_interface\fP ()"
+.br
+.in -1c
+.SS "Private Member Functions"
+
+.in +1c
+.ti -1c
+.RI "\fBsc_interface\fP (\fBconst\fP \fBsc_interface\fP &)"
+.br
+.ti -1c
+.RI "\fBsc_interface\fP & \fBoperator=\fP (\fBconst\fP \fBsc_interface\fP &)"
+.br
+.in -1c
+.SH "Constructor & Destructor Documentation"
+.PP 
+.SS "\fBvirtual\fP sc_core::sc_interface::~sc_interface ()\fR [virtual]\fP"
+
+.SS "sc_core::sc_interface::sc_interface ()\fR [protected]\fP"
+
+.SS "sc_core::sc_interface::sc_interface (\fBconst\fP \fBsc_interface\fP &)\fR [private]\fP"
+
+.SH "Member Function Documentation"
+.PP 
+.SS "\fBvirtual\fP \fBconst\fP \fBsc_event\fP & sc_core::sc_interface::default_event () const\fR [virtual]\fP"
+
+.PP
+Reimplemented in \fBsc_core::sc_event_queue\fP, \fBsc_core::sc_signal_t< T, POL >\fP, \fBsc_core::sc_signal_t< bool, POL >\fP, \fBsc_core::sc_signal_t< sc_dt::sc_logic, POL >\fP, \fBsc_core::sc_signal_t< sc_dt::sc_lv, POL >\fP, \fBsc_core::sc_signal_t< sc_dt::sc_lv< 32 >, POL >\fP, and \fBsc_core::sc_signal_t< sc_dt::sc_lv< W >, POL >\fP\&.
+.SS "\fBsc_interface\fP & sc_core::sc_interface::operator= (\fBconst\fP \fBsc_interface\fP &)\fR [private]\fP"
+
+.SS "\fBvirtual\fP \fBvoid\fP sc_core::sc_interface::register_port (\fBsc_port_base\fP & port_, \fBconst\fP \fBchar\fP * if_typename_)\fR [virtual]\fP"
+
+.PP
+Reimplemented in \fBtlm_utils::callback_binder_fw< TYPES >\fP, \fBtlm_utils::callback_binder_fw< tlm::tlm_base_protocol_types >\fP, \fBsc_core::sc_fifo< T >\fP, \fBsc_core::sc_signal_t< T, POL >\fP, \fBsc_core::sc_signal_t< bool, POL >\fP, \fBsc_core::sc_signal_t< sc_dt::sc_logic, POL >\fP, \fBsc_core::sc_signal_t< sc_dt::sc_lv, POL >\fP, \fBsc_core::sc_signal_t< sc_dt::sc_lv< 32 >, POL >\fP, \fBsc_core::sc_signal_t< sc_dt::sc_lv< W >, POL >\fP, \fBsc_core::sc_signal_resolved\fP, \fBsc_core::sc_signal_rv< W >\fP, and \fBsc_core::sc_clock\fP\&.
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for VHDL simulator from the source code\&.

@@ -1,0 +1,175 @@
+\doxysection{sc\+\_\+cor\+\_\+fiber.\+h}
+\hypertarget{sc__cor__fiber_8h_source}{}\label{sc__cor__fiber_8h_source}\index{C:/Users/BJRODIER/Documents/QT\_REPO/QT\_VHDL\_simulator/code/Ressources/SystemC/include/sysc/kernel/sc\_cor\_fiber.h@{C:/Users/BJRODIER/Documents/QT\_REPO/QT\_VHDL\_simulator/code/Ressources/SystemC/include/sysc/kernel/sc\_cor\_fiber.h}}
+\mbox{\hyperlink{sc__cor__fiber_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{comment}{/*****************************************************************************}}
+\DoxyCodeLine{00002\ \textcolor{comment}{}}
+\DoxyCodeLine{00003\ \textcolor{comment}{\ \ Licensed\ to\ Accellera\ Systems\ Initiative\ Inc.\ (Accellera)\ under\ one\ or}}
+\DoxyCodeLine{00004\ \textcolor{comment}{\ \ more\ contributor\ license\ agreements.\ \ See\ the\ NOTICE\ file\ distributed}}
+\DoxyCodeLine{00005\ \textcolor{comment}{\ \ with\ this\ work\ for\ additional\ information\ regarding\ copyright\ ownership.}}
+\DoxyCodeLine{00006\ \textcolor{comment}{\ \ Accellera\ licenses\ this\ file\ to\ you\ under\ the\ Apache\ License,\ Version\ 2.0}}
+\DoxyCodeLine{00007\ \textcolor{comment}{\ \ (the\ "{}License"{});\ you\ may\ not\ use\ this\ file\ except\ in\ compliance\ with\ the}}
+\DoxyCodeLine{00008\ \textcolor{comment}{\ \ License.\ \ You\ may\ obtain\ a\ copy\ of\ the\ License\ at}}
+\DoxyCodeLine{00009\ \textcolor{comment}{}}
+\DoxyCodeLine{00010\ \textcolor{comment}{\ \ \ \ http://www.apache.org/licenses/LICENSE-\/2.0}}
+\DoxyCodeLine{00011\ \textcolor{comment}{}}
+\DoxyCodeLine{00012\ \textcolor{comment}{\ \ Unless\ required\ by\ applicable\ law\ or\ agreed\ to\ in\ writing,\ software}}
+\DoxyCodeLine{00013\ \textcolor{comment}{\ \ distributed\ under\ the\ License\ is\ distributed\ on\ an\ "{}AS\ IS"{}\ BASIS,}}
+\DoxyCodeLine{00014\ \textcolor{comment}{\ \ WITHOUT\ WARRANTIES\ OR\ CONDITIONS\ OF\ ANY\ KIND,\ either\ express\ or}}
+\DoxyCodeLine{00015\ \textcolor{comment}{\ \ implied.\ \ See\ the\ License\ for\ the\ specific\ language\ governing}}
+\DoxyCodeLine{00016\ \textcolor{comment}{\ \ permissions\ and\ limitations\ under\ the\ License.}}
+\DoxyCodeLine{00017\ \textcolor{comment}{}}
+\DoxyCodeLine{00018\ \textcolor{comment}{\ *****************************************************************************/}}
+\DoxyCodeLine{00019\ }
+\DoxyCodeLine{00020\ \textcolor{comment}{/*****************************************************************************}}
+\DoxyCodeLine{00021\ \textcolor{comment}{}}
+\DoxyCodeLine{00022\ \textcolor{comment}{\ \ sc\_cor\_fiber.h\ -\/-\/\ Coroutine\ implementation\ with\ fibers.}}
+\DoxyCodeLine{00023\ \textcolor{comment}{}}
+\DoxyCodeLine{00024\ \textcolor{comment}{\ \ Original\ Author:\ Martin\ Janssen,\ Synopsys,\ Inc.,\ 2001-\/12-\/18}}
+\DoxyCodeLine{00025\ \textcolor{comment}{}}
+\DoxyCodeLine{00026\ \textcolor{comment}{\ \ CHANGE\ LOG\ AT\ THE\ END\ OF\ THE\ FILE}}
+\DoxyCodeLine{00027\ \textcolor{comment}{\ *****************************************************************************/}}
+\DoxyCodeLine{00028\ }
+\DoxyCodeLine{00029\ }
+\DoxyCodeLine{00030\ \textcolor{preprocessor}{\#ifndef\ SC\_COR\_FIBER\_H}}
+\DoxyCodeLine{00031\ \textcolor{preprocessor}{\#define\ SC\_COR\_FIBER\_H}}
+\DoxyCodeLine{00032\ }
+\DoxyCodeLine{00033\ \textcolor{preprocessor}{\#if\ defined(\_WIN32)\ ||\ defined(WIN32)\ ||\ defined(WIN64)}}
+\DoxyCodeLine{00034\ }
+\DoxyCodeLine{00035\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{sc__cor_8h}{sysc/kernel/sc\_cor.h}}"{}}}
+\DoxyCodeLine{00036\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{sc__cmnhdr_8h}{sysc/kernel/sc\_cmnhdr.h}}"{}}}
+\DoxyCodeLine{00037\ }
+\DoxyCodeLine{00038\ \textcolor{preprocessor}{\#if\ defined(\_\_GNUC\_\_)\ \&\&\ \_\_USING\_SJLJ\_EXCEPTIONS\_\_}}
+\DoxyCodeLine{00039\ \ \ \ \textcolor{comment}{//\ \_Unwind\_SjLj\_Register()\ \&\ \_Unwind\_SjLj\_Unregister()\ only\ need\ first\ field.}}
+\DoxyCodeLine{00040\ \ \ \ \textcolor{keyword}{struct\ }\mbox{\hyperlink{class_sysc_add__pv}{SjLj\_Function\_Context}}\ \{}
+\DoxyCodeLine{00041\ \ \ \ \ \ \ \ \textcolor{keyword}{struct\ }\mbox{\hyperlink{class_sysc_add__pv}{SjLj\_Function\_Context}}\ *\mbox{\hyperlink{class_sysc_add__pv_a57417948111cea94689e3dbc33fd51d1}{prev}};}
+\DoxyCodeLine{00042\ \ \ \ \};}
+\DoxyCodeLine{00043\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00044\ }
+\DoxyCodeLine{00045\ \textcolor{keyword}{namespace\ }\mbox{\hyperlink{namespacesc__core}{sc\_core}}\ \{}
+\DoxyCodeLine{00046\ }
+\DoxyCodeLine{00047\ \textcolor{keyword}{class\ }\mbox{\hyperlink{class_sysc_add__pv}{sc\_cor\_pkg\_fiber}};}
+\DoxyCodeLine{00048\ \textcolor{keyword}{typedef}\ \mbox{\hyperlink{class_sysc_add__pv}{sc\_cor\_pkg\_fiber}}\ \mbox{\hyperlink{namespacesc__core_a57ab3d3104d7157c2c6f43e6ffa53e3c}{sc\_cor\_pkg\_t}};}
+\DoxyCodeLine{00049\ }
+\DoxyCodeLine{00050\ \textcolor{preprocessor}{\#if(\ defined(\_MSC\_VER)\ \&\&\ \_MSC\_VER\ >=\ 1300\ )}}
+\DoxyCodeLine{00051\ \textcolor{keyword}{typedef}\ std::size\_t\ size\_t;}
+\DoxyCodeLine{00052\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00053\ }
+\DoxyCodeLine{00054\ \textcolor{comment}{//\ -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{00055\ \textcolor{comment}{//\ \ CLASS\ :\ sc\_cor\_fiber}}
+\DoxyCodeLine{00056\ \textcolor{comment}{//}}
+\DoxyCodeLine{00057\ \textcolor{comment}{//\ \ Coroutine\ class\ implemented\ with\ QuickThreads.}}
+\DoxyCodeLine{00058\ \textcolor{comment}{//\ -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{00059\ }
+\DoxyCodeLine{00060\ \textcolor{keyword}{class\ }\mbox{\hyperlink{class_sysc_add__pv}{sc\_cor\_fiber}}}
+\DoxyCodeLine{00061\ :\ \textcolor{keyword}{public}\ sc\_cor}
+\DoxyCodeLine{00062\ \{}
+\DoxyCodeLine{00063\ }
+\DoxyCodeLine{00064\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00065\ }
+\DoxyCodeLine{00066\ \ \ \ \ \textcolor{comment}{//\ constructor}}
+\DoxyCodeLine{00067\ \ \ \ \ \mbox{\hyperlink{class_sysc_add__pv}{sc\_cor\_fiber}}()}
+\DoxyCodeLine{00068\ \ \ \ \ :\ m\_stack\_size(\ 0\ ),\ \mbox{\hyperlink{class_sysc_add__pv}{m\_fiber}}(\ 0\ ),\ m\_pkg(\ 0\ )}
+\DoxyCodeLine{00069\ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00070\ \textcolor{preprocessor}{\#\ \ \ \ \ \ \ \ \ if\ defined(\_\_GNUC\_\_)\ \&\&\ \_\_USING\_SJLJ\_EXCEPTIONS\_\_}}
+\DoxyCodeLine{00071\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_sysc_add__pv}{m\_eh}}.prev\ =\ 0;}
+\DoxyCodeLine{00072\ \textcolor{preprocessor}{\#\ \ \ \ \ \ \ \ \ endif}}
+\DoxyCodeLine{00073\ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00074\ }
+\DoxyCodeLine{00075\ \ \ \ \ \textcolor{comment}{//\ destructor}}
+\DoxyCodeLine{00076\ \ \ \ \ \textcolor{keyword}{virtual}\ \mbox{\hyperlink{class_sysc_add__pv}{\string~sc\_cor\_fiber}}();}
+\DoxyCodeLine{00077\ }
+\DoxyCodeLine{00078\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00079\ }
+\DoxyCodeLine{00080\ \ \ \ \ std::size\_t\ \ \ \ \ \ \ m\_stack\_size;\ \ \ \ \ \textcolor{comment}{//\ stack\ size}}
+\DoxyCodeLine{00081\ \ \ \ \ \textcolor{keywordtype}{void}*\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_sysc_add__pv}{m\_fiber}};\ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ fiber}}
+\DoxyCodeLine{00082\ }
+\DoxyCodeLine{00083\ \ \ \ \ \mbox{\hyperlink{class_sysc_add__pv}{sc\_cor\_pkg\_fiber}}*\ m\_pkg;\ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ the\ creating\ coroutine\ package}}
+\DoxyCodeLine{00084\ \textcolor{preprocessor}{\#if\ defined(\_\_GNUC\_\_)\ \&\&\ \_\_USING\_SJLJ\_EXCEPTIONS\_\_}}
+\DoxyCodeLine{00085\ \ \ \ \ \textcolor{keyword}{struct\ }\mbox{\hyperlink{class_sysc_add__pv}{SjLj\_Function\_Context}}\ \mbox{\hyperlink{class_sysc_add__pv}{m\_eh}};\ \ \textcolor{comment}{//\ the\ exception\ handling\ context}}
+\DoxyCodeLine{00086\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00087\ }
+\DoxyCodeLine{00088\ }
+\DoxyCodeLine{00089\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00090\ }
+\DoxyCodeLine{00091\ \ \ \ \ \textcolor{comment}{//\ disabled}}
+\DoxyCodeLine{00092\ \ \ \ \ \mbox{\hyperlink{class_sysc_add__pv}{sc\_cor\_fiber}}(\ \textcolor{keyword}{const}\ \mbox{\hyperlink{class_sysc_add__pv}{sc\_cor\_fiber}}\&\ );}
+\DoxyCodeLine{00093\ \ \ \ \ \mbox{\hyperlink{class_sysc_add__pv}{sc\_cor\_fiber}}\&\ \mbox{\hyperlink{class_sysc_add__pv}{operator\ =\ }}(\ \textcolor{keyword}{const}\ \mbox{\hyperlink{class_sysc_add__pv}{sc\_cor\_fiber}}\&\ );}
+\DoxyCodeLine{00094\ \};}
+\DoxyCodeLine{00095\ }
+\DoxyCodeLine{00096\ }
+\DoxyCodeLine{00097\ \textcolor{comment}{//\ -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{00098\ \textcolor{comment}{//\ \ CLASS\ :\ sc\_cor\_pkg\_fiber}}
+\DoxyCodeLine{00099\ \textcolor{comment}{//}}
+\DoxyCodeLine{00100\ \textcolor{comment}{//\ \ Coroutine\ package\ class\ implemented\ with\ QuickThreads.}}
+\DoxyCodeLine{00101\ \textcolor{comment}{//\ -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{00102\ }
+\DoxyCodeLine{00103\ \textcolor{keyword}{class\ }\mbox{\hyperlink{sc__cmnhdr_8h_aff4a86b3f5de3ac2097081e7166fe89f}{SC\_API}}\ \mbox{\hyperlink{class_sysc_add__pv}{sc\_cor\_pkg\_fiber}}}
+\DoxyCodeLine{00104\ :\ \textcolor{keyword}{public}\ sc\_cor\_pkg}
+\DoxyCodeLine{00105\ \{}
+\DoxyCodeLine{00106\ \ \ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00107\ }
+\DoxyCodeLine{00108\ \ \ \ \ \textcolor{comment}{//\ constructor}}
+\DoxyCodeLine{00109\ \ \ \ \ \mbox{\hyperlink{class_sysc_add__pv}{sc\_cor\_pkg\_fiber}}(\ sc\_simcontext*\ \mbox{\hyperlink{class_sysc_add__pv}{simc}}\ );}
+\DoxyCodeLine{00110\ }
+\DoxyCodeLine{00111\ \ \ \ \ \textcolor{comment}{//\ destructor}}
+\DoxyCodeLine{00112\ \ \ \ \ \textcolor{keyword}{virtual}\ \mbox{\hyperlink{class_sysc_add__pv}{\string~sc\_cor\_pkg\_fiber}}();}
+\DoxyCodeLine{00113\ }
+\DoxyCodeLine{00114\ \ \ \ \ \textcolor{comment}{//\ create\ a\ new\ coroutine}}
+\DoxyCodeLine{00115\ \ \ \ \ \textcolor{keyword}{virtual}\ sc\_cor*\ create(\ std::size\_t\ \mbox{\hyperlink{class_sysc_add__pv}{stack\_size}},\ sc\_cor\_fn*\ \mbox{\hyperlink{class_sysc_add__pv}{fn}},\ \textcolor{keywordtype}{void}*\ arg\ );}
+\DoxyCodeLine{00116\ }
+\DoxyCodeLine{00117\ \ \ \ \ \textcolor{comment}{//\ yield\ to\ the\ next\ coroutine}}
+\DoxyCodeLine{00118\ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{void}\ yield(\ sc\_cor*\ next\_cor\ );}
+\DoxyCodeLine{00119\ }
+\DoxyCodeLine{00120\ \ \ \ \ \textcolor{comment}{//\ abort\ the\ current\ coroutine\ (and\ resume\ the\ next\ coroutine)}}
+\DoxyCodeLine{00121\ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{void}\ abort(\ sc\_cor*\ next\_cor\ );}
+\DoxyCodeLine{00122\ }
+\DoxyCodeLine{00123\ \ \ \ \ \textcolor{comment}{//\ get\ the\ main\ coroutine}}
+\DoxyCodeLine{00124\ \ \ \ \ \textcolor{keyword}{virtual}\ sc\_cor*\ get\_main();}
+\DoxyCodeLine{00125\ }
+\DoxyCodeLine{00126\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00127\ }
+\DoxyCodeLine{00128\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keywordtype}{int}\ instance\_count;}
+\DoxyCodeLine{00129\ }
+\DoxyCodeLine{00130\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00131\ }
+\DoxyCodeLine{00132\ \ \ \ \ \textcolor{comment}{//\ disabled}}
+\DoxyCodeLine{00133\ \ \ \ \ \mbox{\hyperlink{class_sysc_add__pv}{sc\_cor\_pkg\_fiber}}();}
+\DoxyCodeLine{00134\ \ \ \ \ \mbox{\hyperlink{class_sysc_add__pv}{sc\_cor\_pkg\_fiber}}(\ \textcolor{keyword}{const}\ \mbox{\hyperlink{class_sysc_add__pv}{sc\_cor\_pkg\_fiber}}\&\ );}
+\DoxyCodeLine{00135\ \ \ \ \ \mbox{\hyperlink{class_sysc_add__pv}{sc\_cor\_pkg\_fiber}}\&\ \mbox{\hyperlink{class_sysc_add__pv}{operator\ =\ }}(\ \textcolor{keyword}{const}\ \mbox{\hyperlink{class_sysc_add__pv}{sc\_cor\_pkg\_fiber}}\&\ );}
+\DoxyCodeLine{00136\ \};}
+\DoxyCodeLine{00137\ }
+\DoxyCodeLine{00138\ \}\ \textcolor{comment}{//\ namespace\ sc\_core}}
+\DoxyCodeLine{00139\ }
+\DoxyCodeLine{00140\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{//\ WIN32}}
+\DoxyCodeLine{00141\ }
+\DoxyCodeLine{00142\ \textcolor{comment}{//\ \$Log:\ sc\_cor\_fiber.h,v\ \$}}
+\DoxyCodeLine{00143\ \textcolor{comment}{//\ Revision\ 1.6\ \ 2011/08/26\ 20:46:09\ \ acg}}
+\DoxyCodeLine{00144\ \textcolor{comment}{//\ \ Andy\ Goodrich:\ moved\ the\ modification\ log\ to\ the\ end\ of\ the\ file\ to}}
+\DoxyCodeLine{00145\ \textcolor{comment}{//\ \ eliminate\ source\ line\ number\ skew\ when\ check-\/ins\ are\ done.}}
+\DoxyCodeLine{00146\ \textcolor{comment}{//}}
+\DoxyCodeLine{00147\ \textcolor{comment}{//\ Revision\ 1.5\ \ 2011/06/25\ 17:08:39\ \ acg}}
+\DoxyCodeLine{00148\ \textcolor{comment}{//\ \ Andy\ Goodrich:\ Jerome\ Cornet's\ changes\ to\ use\ libtool\ to\ build\ the}}
+\DoxyCodeLine{00149\ \textcolor{comment}{//\ \ library.}}
+\DoxyCodeLine{00150\ \textcolor{comment}{//}}
+\DoxyCodeLine{00151\ \textcolor{comment}{//\ Revision\ 1.4\ \ 2011/02/18\ 20:27:14\ \ acg}}
+\DoxyCodeLine{00152\ \textcolor{comment}{//\ \ Andy\ Goodrich:\ Updated\ Copyrights.}}
+\DoxyCodeLine{00153\ \textcolor{comment}{//}}
+\DoxyCodeLine{00154\ \textcolor{comment}{//\ Revision\ 1.3\ \ 2011/02/13\ 21:47:37\ \ acg}}
+\DoxyCodeLine{00155\ \textcolor{comment}{//\ \ Andy\ Goodrich:\ update\ copyright\ notice.}}
+\DoxyCodeLine{00156\ \textcolor{comment}{//}}
+\DoxyCodeLine{00157\ \textcolor{comment}{//\ Revision\ 1.2\ \ 2008/05/22\ 17:06:25\ \ acg}}
+\DoxyCodeLine{00158\ \textcolor{comment}{//\ \ Andy\ Goodrich:\ updated\ copyright\ notice\ to\ include\ 2008.}}
+\DoxyCodeLine{00159\ \textcolor{comment}{//}}
+\DoxyCodeLine{00160\ \textcolor{comment}{//\ Revision\ 1.1.1.1\ \ 2006/12/15\ 20:20:05\ \ acg}}
+\DoxyCodeLine{00161\ \textcolor{comment}{//\ SystemC\ 2.3}}
+\DoxyCodeLine{00162\ \textcolor{comment}{//}}
+\DoxyCodeLine{00163\ \textcolor{comment}{//\ Revision\ 1.3\ \ 2006/01/13\ 18:44:29\ \ acg}}
+\DoxyCodeLine{00164\ \textcolor{comment}{//\ Added\ \$Log\ to\ record\ CVS\ changes\ into\ the\ source.}}
+\DoxyCodeLine{00165\ \textcolor{comment}{//}}
+\DoxyCodeLine{00166\ }
+\DoxyCodeLine{00167\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00168\ }
+\DoxyCodeLine{00169\ \textcolor{comment}{//\ Taf!}}
+
+\end{DoxyCode}

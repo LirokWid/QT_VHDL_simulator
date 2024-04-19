@@ -1,0 +1,146 @@
+\doxysection{tlm\+\_\+fifo\+\_\+put\+\_\+get.\+h}
+\hypertarget{tlm__fifo__put__get_8h_source}{}\label{tlm__fifo__put__get_8h_source}\index{C:/Users/BJRODIER/Documents/QT\_REPO/QT\_VHDL\_simulator/code/Ressources/SystemC/include/tlm\_core/tlm\_1/tlm\_req\_rsp/tlm\_channels/tlm\_fifo/tlm\_fifo\_put\_get.h@{C:/Users/BJRODIER/Documents/QT\_REPO/QT\_VHDL\_simulator/code/Ressources/SystemC/include/tlm\_core/tlm\_1/tlm\_req\_rsp/tlm\_channels/tlm\_fifo/tlm\_fifo\_put\_get.h}}
+\mbox{\hyperlink{tlm__fifo__put__get_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{comment}{/*****************************************************************************}}
+\DoxyCodeLine{00002\ \textcolor{comment}{}}
+\DoxyCodeLine{00003\ \textcolor{comment}{\ \ Licensed\ to\ Accellera\ Systems\ Initiative\ Inc.\ (Accellera)\ under\ one\ or}}
+\DoxyCodeLine{00004\ \textcolor{comment}{\ \ more\ contributor\ license\ agreements.\ \ See\ the\ NOTICE\ file\ distributed}}
+\DoxyCodeLine{00005\ \textcolor{comment}{\ \ with\ this\ work\ for\ additional\ information\ regarding\ copyright\ ownership.}}
+\DoxyCodeLine{00006\ \textcolor{comment}{\ \ Accellera\ licenses\ this\ file\ to\ you\ under\ the\ Apache\ License,\ Version\ 2.0}}
+\DoxyCodeLine{00007\ \textcolor{comment}{\ \ (the\ "{}License"{});\ you\ may\ not\ use\ this\ file\ except\ in\ compliance\ with\ the}}
+\DoxyCodeLine{00008\ \textcolor{comment}{\ \ License.\ \ You\ may\ obtain\ a\ copy\ of\ the\ License\ at}}
+\DoxyCodeLine{00009\ \textcolor{comment}{}}
+\DoxyCodeLine{00010\ \textcolor{comment}{\ \ \ \ http://www.apache.org/licenses/LICENSE-\/2.0}}
+\DoxyCodeLine{00011\ \textcolor{comment}{}}
+\DoxyCodeLine{00012\ \textcolor{comment}{\ \ Unless\ required\ by\ applicable\ law\ or\ agreed\ to\ in\ writing,\ software}}
+\DoxyCodeLine{00013\ \textcolor{comment}{\ \ distributed\ under\ the\ License\ is\ distributed\ on\ an\ "{}AS\ IS"{}\ BASIS,}}
+\DoxyCodeLine{00014\ \textcolor{comment}{\ \ WITHOUT\ WARRANTIES\ OR\ CONDITIONS\ OF\ ANY\ KIND,\ either\ express\ or}}
+\DoxyCodeLine{00015\ \textcolor{comment}{\ \ implied.\ \ See\ the\ License\ for\ the\ specific\ language\ governing}}
+\DoxyCodeLine{00016\ \textcolor{comment}{\ \ permissions\ and\ limitations\ under\ the\ License.}}
+\DoxyCodeLine{00017\ \textcolor{comment}{}}
+\DoxyCodeLine{00018\ \textcolor{comment}{\ *****************************************************************************/}}
+\DoxyCodeLine{00019\ }
+\DoxyCodeLine{00020\ \textcolor{preprocessor}{\#ifndef\ \_\_TLM\_FIFO\_PUT\_GET\_IF\_H\_\_}}
+\DoxyCodeLine{00021\ \textcolor{preprocessor}{\#define\ \_\_TLM\_FIFO\_PUT\_GET\_IF\_H\_\_}}
+\DoxyCodeLine{00022\ }
+\DoxyCodeLine{00023\ \textcolor{keyword}{namespace\ }\mbox{\hyperlink{namespacetlm}{tlm}}\ \{}
+\DoxyCodeLine{00024\ }
+\DoxyCodeLine{00025\ \textcolor{comment}{/******************************************************************}}
+\DoxyCodeLine{00026\ \textcolor{comment}{//}}
+\DoxyCodeLine{00027\ \textcolor{comment}{//\ get\ interface}}
+\DoxyCodeLine{00028\ \textcolor{comment}{//}}
+\DoxyCodeLine{00029\ \textcolor{comment}{******************************************************************/}}
+\DoxyCodeLine{00030\ }
+\DoxyCodeLine{00031\ \textcolor{keyword}{template}\ <\textcolor{keyword}{typename}\ T>}
+\DoxyCodeLine{00032\ \textcolor{keyword}{inline}}
+\DoxyCodeLine{00033\ \mbox{\hyperlink{mem__fn__cc_8hpp_adf1f3edb9115acb0a1e04209b7a9937b}{T}}}
+\DoxyCodeLine{00034\ \mbox{\hyperlink{classtlm_1_1tlm__fifo_adb00c2039a7299456ea986c266929dce}{tlm\_fifo<T>::get}}(\ \mbox{\hyperlink{class_sysc_add__pv}{tlm\_tag<T>}}\ *\ )}
+\DoxyCodeLine{00035\ \{}
+\DoxyCodeLine{00036\ }
+\DoxyCodeLine{00037\ \ \ \textcolor{keywordflow}{while}(\ is\_empty()\ )\ \{}
+\DoxyCodeLine{00038\ \ \ \ \ wait(\ m\_data\_written\_event\ );}
+\DoxyCodeLine{00039\ \ \ \}}
+\DoxyCodeLine{00040\ }
+\DoxyCodeLine{00041\ \ \ m\_num\_read\ ++;}
+\DoxyCodeLine{00042\ \ \ request\_update();}
+\DoxyCodeLine{00043\ }
+\DoxyCodeLine{00044\ \ \ \textcolor{keywordflow}{return}\ buffer.read();}
+\DoxyCodeLine{00045\ }
+\DoxyCodeLine{00046\ \}}
+\DoxyCodeLine{00047\ }
+\DoxyCodeLine{00048\ \textcolor{comment}{//\ non-\/blocking\ read}}
+\DoxyCodeLine{00049\ }
+\DoxyCodeLine{00050\ \textcolor{keyword}{template}\ <\textcolor{keyword}{typename}\ T>}
+\DoxyCodeLine{00051\ \textcolor{keyword}{inline}}
+\DoxyCodeLine{00052\ \textcolor{keywordtype}{bool}}
+\DoxyCodeLine{00053\ \mbox{\hyperlink{classtlm_1_1tlm__fifo_a114a4b71a75eb4d97b649c724be86bf4}{tlm\_fifo<T>::nb\_get}}(\ \mbox{\hyperlink{mem__fn__cc_8hpp_adf1f3edb9115acb0a1e04209b7a9937b}{T}}\&\ \mbox{\hyperlink{class_sysc_add__pv}{val\_}}\ )}
+\DoxyCodeLine{00054\ \{}
+\DoxyCodeLine{00055\ }
+\DoxyCodeLine{00056\ \ \ \textcolor{keywordflow}{if}(\ is\_empty()\ )\ \{}
+\DoxyCodeLine{00057\ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00058\ \ \ \}}
+\DoxyCodeLine{00059\ }
+\DoxyCodeLine{00060\ \ \ m\_num\_read\ ++;}
+\DoxyCodeLine{00061\ \ \ request\_update();}
+\DoxyCodeLine{00062\ }
+\DoxyCodeLine{00063\ \ \ \mbox{\hyperlink{class_sysc_add__pv}{val\_}}\ =\ buffer.read();}
+\DoxyCodeLine{00064\ }
+\DoxyCodeLine{00065\ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{true};}
+\DoxyCodeLine{00066\ }
+\DoxyCodeLine{00067\ \}}
+\DoxyCodeLine{00068\ }
+\DoxyCodeLine{00069\ \textcolor{keyword}{template}\ <\textcolor{keyword}{typename}\ T>}
+\DoxyCodeLine{00070\ \textcolor{keyword}{inline}}
+\DoxyCodeLine{00071\ \textcolor{keywordtype}{bool}}
+\DoxyCodeLine{00072\ \mbox{\hyperlink{classtlm_1_1tlm__fifo_a2fc504656b1fc7c83b3c69d163349514}{tlm\_fifo<T>::nb\_can\_get}}(\ \mbox{\hyperlink{class_sysc_add__pv}{tlm\_tag<T>}}\ *\ )\textcolor{keyword}{\ const\ }\{}
+\DoxyCodeLine{00073\ }
+\DoxyCodeLine{00074\ \ \ \textcolor{keywordflow}{return}\ !is\_empty();}
+\DoxyCodeLine{00075\ }
+\DoxyCodeLine{00076\ \}}
+\DoxyCodeLine{00077\ }
+\DoxyCodeLine{00078\ }
+\DoxyCodeLine{00079\ \textcolor{comment}{/******************************************************************}}
+\DoxyCodeLine{00080\ \textcolor{comment}{//}}
+\DoxyCodeLine{00081\ \textcolor{comment}{//\ put\ interface}}
+\DoxyCodeLine{00082\ \textcolor{comment}{//}}
+\DoxyCodeLine{00083\ \textcolor{comment}{******************************************************************/}}
+\DoxyCodeLine{00084\ }
+\DoxyCodeLine{00085\ \textcolor{keyword}{template}\ <\textcolor{keyword}{typename}\ T>}
+\DoxyCodeLine{00086\ \textcolor{keyword}{inline}}
+\DoxyCodeLine{00087\ \textcolor{keywordtype}{void}}
+\DoxyCodeLine{00088\ \mbox{\hyperlink{classtlm_1_1tlm__fifo_af524acf04ccddc57681fff2ffbbdc49c}{tlm\_fifo<T>::put}}(\ \textcolor{keyword}{const}\ \mbox{\hyperlink{mem__fn__cc_8hpp_adf1f3edb9115acb0a1e04209b7a9937b}{T}}\&\ \mbox{\hyperlink{class_sysc_add__pv}{val\_}}\ )}
+\DoxyCodeLine{00089\ \{}
+\DoxyCodeLine{00090\ \ \ \ \ \textcolor{keywordflow}{while}(\ is\_full()\ )\ \{}
+\DoxyCodeLine{00091\ \ \ wait(\ m\_data\_read\_event\ );}
+\DoxyCodeLine{00092\ \ \ \ \ \}}
+\DoxyCodeLine{00093\ }
+\DoxyCodeLine{00094\ \ \ \ \ \textcolor{keywordflow}{if}(\ buffer.is\_full()\ )\ \{}
+\DoxyCodeLine{00095\ }
+\DoxyCodeLine{00096\ \ \ \ \ \ \ buffer.resize(\ buffer.size()\ *\ 2\ );}
+\DoxyCodeLine{00097\ }
+\DoxyCodeLine{00098\ \ \ \ \ \}}
+\DoxyCodeLine{00099\ }
+\DoxyCodeLine{00100\ \ \ \ \ m\_num\_written\ ++;}
+\DoxyCodeLine{00101\ \ \ \ \ buffer.write(\ \mbox{\hyperlink{class_sysc_add__pv}{val\_}}\ );}
+\DoxyCodeLine{00102\ }
+\DoxyCodeLine{00103\ \ \ \ \ request\_update();}
+\DoxyCodeLine{00104\ \}}
+\DoxyCodeLine{00105\ }
+\DoxyCodeLine{00106\ \textcolor{keyword}{template}\ <\textcolor{keyword}{typename}\ T>}
+\DoxyCodeLine{00107\ \textcolor{keyword}{inline}}
+\DoxyCodeLine{00108\ \textcolor{keywordtype}{bool}}
+\DoxyCodeLine{00109\ \mbox{\hyperlink{classtlm_1_1tlm__fifo_acbc7ab6989faeb2316f2670358fed7d6}{tlm\_fifo<T>::nb\_put}}(\ \textcolor{keyword}{const}\ \mbox{\hyperlink{mem__fn__cc_8hpp_adf1f3edb9115acb0a1e04209b7a9937b}{T}}\&\ \mbox{\hyperlink{class_sysc_add__pv}{val\_}}\ )}
+\DoxyCodeLine{00110\ \{}
+\DoxyCodeLine{00111\ }
+\DoxyCodeLine{00112\ \ \ \textcolor{keywordflow}{if}(\ is\_full()\ )\ \{}
+\DoxyCodeLine{00113\ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00114\ \ \ \}}
+\DoxyCodeLine{00115\ }
+\DoxyCodeLine{00116\ \ \ \textcolor{keywordflow}{if}(\ buffer.is\_full()\ )\ \{}
+\DoxyCodeLine{00117\ }
+\DoxyCodeLine{00118\ \ \ \ \ buffer.resize(\ buffer.size()\ *\ 2\ );}
+\DoxyCodeLine{00119\ }
+\DoxyCodeLine{00120\ \ \ \}}
+\DoxyCodeLine{00121\ }
+\DoxyCodeLine{00122\ \ \ m\_num\_written\ ++;}
+\DoxyCodeLine{00123\ \ \ buffer.write(\ \mbox{\hyperlink{class_sysc_add__pv}{val\_}}\ );}
+\DoxyCodeLine{00124\ \ \ request\_update();}
+\DoxyCodeLine{00125\ }
+\DoxyCodeLine{00126\ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{true};}
+\DoxyCodeLine{00127\ \}}
+\DoxyCodeLine{00128\ }
+\DoxyCodeLine{00129\ \textcolor{keyword}{template}\ <\ \textcolor{keyword}{typename}\ T\ >}
+\DoxyCodeLine{00130\ \textcolor{keyword}{inline}}
+\DoxyCodeLine{00131\ \textcolor{keywordtype}{bool}}
+\DoxyCodeLine{00132\ \mbox{\hyperlink{classtlm_1_1tlm__fifo_ae19e25c224c3820ac3950c1d02837f60}{tlm\_fifo<T>::nb\_can\_put}}(\ \mbox{\hyperlink{class_sysc_add__pv}{tlm\_tag<T>}}\ *\ )\textcolor{keyword}{\ const\ }\{}
+\DoxyCodeLine{00133\ }
+\DoxyCodeLine{00134\ \ \ \textcolor{keywordflow}{return}\ !is\_full();}
+\DoxyCodeLine{00135\ }
+\DoxyCodeLine{00136\ \}}
+\DoxyCodeLine{00137\ }
+\DoxyCodeLine{00138\ \}\ \textcolor{comment}{//\ namespace\ tlm}}
+\DoxyCodeLine{00139\ }
+\DoxyCodeLine{00140\ \textcolor{preprocessor}{\#endif}}
+
+\end{DoxyCode}

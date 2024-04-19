@@ -1,0 +1,99 @@
+\doxysection{tlm\+\_\+fifo\+\_\+resize.\+h}
+\hypertarget{tlm__fifo__resize_8h_source}{}\label{tlm__fifo__resize_8h_source}\index{C:/Users/BJRODIER/Documents/QT\_REPO/QT\_VHDL\_simulator/code/Ressources/SystemC/include/tlm\_core/tlm\_1/tlm\_req\_rsp/tlm\_channels/tlm\_fifo/tlm\_fifo\_resize.h@{C:/Users/BJRODIER/Documents/QT\_REPO/QT\_VHDL\_simulator/code/Ressources/SystemC/include/tlm\_core/tlm\_1/tlm\_req\_rsp/tlm\_channels/tlm\_fifo/tlm\_fifo\_resize.h}}
+\mbox{\hyperlink{tlm__fifo__resize_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{comment}{/*****************************************************************************}}
+\DoxyCodeLine{00002\ \textcolor{comment}{}}
+\DoxyCodeLine{00003\ \textcolor{comment}{\ \ Licensed\ to\ Accellera\ Systems\ Initiative\ Inc.\ (Accellera)\ under\ one\ or}}
+\DoxyCodeLine{00004\ \textcolor{comment}{\ \ more\ contributor\ license\ agreements.\ \ See\ the\ NOTICE\ file\ distributed}}
+\DoxyCodeLine{00005\ \textcolor{comment}{\ \ with\ this\ work\ for\ additional\ information\ regarding\ copyright\ ownership.}}
+\DoxyCodeLine{00006\ \textcolor{comment}{\ \ Accellera\ licenses\ this\ file\ to\ you\ under\ the\ Apache\ License,\ Version\ 2.0}}
+\DoxyCodeLine{00007\ \textcolor{comment}{\ \ (the\ "{}License"{});\ you\ may\ not\ use\ this\ file\ except\ in\ compliance\ with\ the}}
+\DoxyCodeLine{00008\ \textcolor{comment}{\ \ License.\ \ You\ may\ obtain\ a\ copy\ of\ the\ License\ at}}
+\DoxyCodeLine{00009\ \textcolor{comment}{}}
+\DoxyCodeLine{00010\ \textcolor{comment}{\ \ \ \ http://www.apache.org/licenses/LICENSE-\/2.0}}
+\DoxyCodeLine{00011\ \textcolor{comment}{}}
+\DoxyCodeLine{00012\ \textcolor{comment}{\ \ Unless\ required\ by\ applicable\ law\ or\ agreed\ to\ in\ writing,\ software}}
+\DoxyCodeLine{00013\ \textcolor{comment}{\ \ distributed\ under\ the\ License\ is\ distributed\ on\ an\ "{}AS\ IS"{}\ BASIS,}}
+\DoxyCodeLine{00014\ \textcolor{comment}{\ \ WITHOUT\ WARRANTIES\ OR\ CONDITIONS\ OF\ ANY\ KIND,\ either\ express\ or}}
+\DoxyCodeLine{00015\ \textcolor{comment}{\ \ implied.\ \ See\ the\ License\ for\ the\ specific\ language\ governing}}
+\DoxyCodeLine{00016\ \textcolor{comment}{\ \ permissions\ and\ limitations\ under\ the\ License.}}
+\DoxyCodeLine{00017\ \textcolor{comment}{}}
+\DoxyCodeLine{00018\ \textcolor{comment}{\ *****************************************************************************/}}
+\DoxyCodeLine{00019\ }
+\DoxyCodeLine{00020\ \textcolor{preprocessor}{\#ifndef\ \_\_TLM\_FIFO\_RESIZE\_H\_\_}}
+\DoxyCodeLine{00021\ \textcolor{preprocessor}{\#define\ \_\_TLM\_FIFO\_RESIZE\_H\_\_}}
+\DoxyCodeLine{00022\ }
+\DoxyCodeLine{00023\ \textcolor{comment}{/******************************************************************}}
+\DoxyCodeLine{00024\ \textcolor{comment}{//}}
+\DoxyCodeLine{00025\ \textcolor{comment}{//\ resize\ interface}}
+\DoxyCodeLine{00026\ \textcolor{comment}{//}}
+\DoxyCodeLine{00027\ \textcolor{comment}{******************************************************************/}}
+\DoxyCodeLine{00028\ }
+\DoxyCodeLine{00029\ \textcolor{keyword}{namespace\ }\mbox{\hyperlink{namespacetlm}{tlm}}\ \{}
+\DoxyCodeLine{00030\ }
+\DoxyCodeLine{00031\ \textcolor{keyword}{template}\ <\ \textcolor{keyword}{typename}\ T>}
+\DoxyCodeLine{00032\ \textcolor{keyword}{inline}}
+\DoxyCodeLine{00033\ \textcolor{keywordtype}{void}}
+\DoxyCodeLine{00034\ \mbox{\hyperlink{classtlm_1_1tlm__fifo_add714fa3d116f7f4533358c94cfe5fab}{tlm\_fifo<T>::nb\_expand}}(\ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{class_sysc_add__pv}{n}}\ )\ \{}
+\DoxyCodeLine{00035\ }
+\DoxyCodeLine{00036\ \ \ \textcolor{keywordflow}{if}(\ m\_size\ >=\ 0\ )\ \{}
+\DoxyCodeLine{00037\ \ \ \ \ m\_expand\ =\ \textcolor{keyword}{true};}
+\DoxyCodeLine{00038\ \ \ \ \ m\_size\ +=\ \mbox{\hyperlink{class_sysc_add__pv}{n}};}
+\DoxyCodeLine{00039\ \ \ \ \ request\_update();}
+\DoxyCodeLine{00040\ \ \ \}}
+\DoxyCodeLine{00041\ \}}
+\DoxyCodeLine{00042\ }
+\DoxyCodeLine{00043\ \textcolor{keyword}{template}\ <\ \textcolor{keyword}{typename}\ T>}
+\DoxyCodeLine{00044\ \textcolor{keyword}{inline}}
+\DoxyCodeLine{00045\ \textcolor{keywordtype}{void}}
+\DoxyCodeLine{00046\ \mbox{\hyperlink{classtlm_1_1tlm__fifo_a56debf3cf19c009b4fd4e4b33a4b96c9}{tlm\_fifo<T>::nb\_unbound}}(\ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{class_sysc_add__pv}{n}}\ )\ \{}
+\DoxyCodeLine{00047\ }
+\DoxyCodeLine{00048\ \ \ m\_expand\ =\ \textcolor{keyword}{true};}
+\DoxyCodeLine{00049\ \ \ m\_size\ =\ -\/\mbox{\hyperlink{class_sysc_add__pv}{n}};}
+\DoxyCodeLine{00050\ }
+\DoxyCodeLine{00051\ \ \ \textcolor{keywordflow}{if}(\ buffer.size()\ <\ \textcolor{keyword}{static\_cast<}\textcolor{keywordtype}{int}\textcolor{keyword}{>}(\ \mbox{\hyperlink{class_sysc_add__pv}{n}}\ )\ )\ \{}
+\DoxyCodeLine{00052\ \ \ \ \ buffer.resize(\ \mbox{\hyperlink{class_sysc_add__pv}{n}}\ );}
+\DoxyCodeLine{00053\ \ \ \}}
+\DoxyCodeLine{00054\ }
+\DoxyCodeLine{00055\ \ \ request\_update();}
+\DoxyCodeLine{00056\ }
+\DoxyCodeLine{00057\ \}}
+\DoxyCodeLine{00058\ }
+\DoxyCodeLine{00059\ \textcolor{keyword}{template}\ <\ \textcolor{keyword}{typename}\ T>}
+\DoxyCodeLine{00060\ \textcolor{keyword}{inline}}
+\DoxyCodeLine{00061\ \textcolor{keywordtype}{bool}}
+\DoxyCodeLine{00062\ \mbox{\hyperlink{classtlm_1_1tlm__fifo_a62ccdbae129fedca3822ed350b6cb8ce}{tlm\_fifo<T>::nb\_reduce}}(\ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{class_sysc_add__pv}{n}}\ )\ \{}
+\DoxyCodeLine{00063\ }
+\DoxyCodeLine{00064\ \ \ \textcolor{keywordflow}{if}(\ m\_size\ <\ 0\ )\ \{}
+\DoxyCodeLine{00065\ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00066\ \ \ \}}
+\DoxyCodeLine{00067\ }
+\DoxyCodeLine{00068\ \ \ \textcolor{keywordflow}{return}\ nb\_bound(\ size()\ -\/\ \mbox{\hyperlink{class_sysc_add__pv}{n}}\ );}
+\DoxyCodeLine{00069\ }
+\DoxyCodeLine{00070\ \}}
+\DoxyCodeLine{00071\ }
+\DoxyCodeLine{00072\ \textcolor{keyword}{template}\ <\ \textcolor{keyword}{typename}\ T>}
+\DoxyCodeLine{00073\ \textcolor{keyword}{inline}}
+\DoxyCodeLine{00074\ \textcolor{keywordtype}{bool}}
+\DoxyCodeLine{00075\ \mbox{\hyperlink{classtlm_1_1tlm__fifo_aa286baba14fbad08df582abc1a211933}{tlm\_fifo<T>::nb\_bound}}(\ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{class_sysc_add__pv}{new\_size}}\ )\ \{}
+\DoxyCodeLine{00076\ }
+\DoxyCodeLine{00077\ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{class_sysc_add__pv}{ret}}\ =\ \textcolor{keyword}{true};}
+\DoxyCodeLine{00078\ }
+\DoxyCodeLine{00079\ \ \ \textcolor{keywordflow}{if}(\ \textcolor{keyword}{static\_cast<}\textcolor{keywordtype}{int}\textcolor{keyword}{>}(\ \mbox{\hyperlink{class_sysc_add__pv}{new\_size}}\ )\ <\ used()\ )\ \{}
+\DoxyCodeLine{00080\ }
+\DoxyCodeLine{00081\ \ \ \ \ \mbox{\hyperlink{class_sysc_add__pv}{new\_size}}\ =\ used();}
+\DoxyCodeLine{00082\ \ \ \ \ \mbox{\hyperlink{class_sysc_add__pv}{ret}}\ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00083\ }
+\DoxyCodeLine{00084\ \ \ \}}
+\DoxyCodeLine{00085\ }
+\DoxyCodeLine{00086\ \ \ m\_size\ =\ \mbox{\hyperlink{class_sysc_add__pv}{new\_size}};}
+\DoxyCodeLine{00087\ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{class_sysc_add__pv}{ret}};}
+\DoxyCodeLine{00088\ }
+\DoxyCodeLine{00089\ \}}
+\DoxyCodeLine{00090\ }
+\DoxyCodeLine{00091\ \}\ \textcolor{comment}{//\ namespace\ tlm}}
+\DoxyCodeLine{00092\ }
+\DoxyCodeLine{00093\ \textcolor{preprocessor}{\#endif}}
+
+\end{DoxyCode}

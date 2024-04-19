@@ -1,0 +1,147 @@
+\doxysection{sc\+\_\+cthread\+\_\+process.\+h}
+\hypertarget{sc__cthread__process_8h_source}{}\label{sc__cthread__process_8h_source}\index{C:/Users/BJRODIER/Documents/QT\_REPO/QT\_VHDL\_simulator/code/Ressources/SystemC/include/sysc/kernel/sc\_cthread\_process.h@{C:/Users/BJRODIER/Documents/QT\_REPO/QT\_VHDL\_simulator/code/Ressources/SystemC/include/sysc/kernel/sc\_cthread\_process.h}}
+\mbox{\hyperlink{sc__cthread__process_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{comment}{/*****************************************************************************}}
+\DoxyCodeLine{00002\ \textcolor{comment}{}}
+\DoxyCodeLine{00003\ \textcolor{comment}{\ \ Licensed\ to\ Accellera\ Systems\ Initiative\ Inc.\ (Accellera)\ under\ one\ or}}
+\DoxyCodeLine{00004\ \textcolor{comment}{\ \ more\ contributor\ license\ agreements.\ \ See\ the\ NOTICE\ file\ distributed}}
+\DoxyCodeLine{00005\ \textcolor{comment}{\ \ with\ this\ work\ for\ additional\ information\ regarding\ copyright\ ownership.}}
+\DoxyCodeLine{00006\ \textcolor{comment}{\ \ Accellera\ licenses\ this\ file\ to\ you\ under\ the\ Apache\ License,\ Version\ 2.0}}
+\DoxyCodeLine{00007\ \textcolor{comment}{\ \ (the\ "{}License"{});\ you\ may\ not\ use\ this\ file\ except\ in\ compliance\ with\ the}}
+\DoxyCodeLine{00008\ \textcolor{comment}{\ \ License.\ \ You\ may\ obtain\ a\ copy\ of\ the\ License\ at}}
+\DoxyCodeLine{00009\ \textcolor{comment}{}}
+\DoxyCodeLine{00010\ \textcolor{comment}{\ \ \ \ http://www.apache.org/licenses/LICENSE-\/2.0}}
+\DoxyCodeLine{00011\ \textcolor{comment}{}}
+\DoxyCodeLine{00012\ \textcolor{comment}{\ \ Unless\ required\ by\ applicable\ law\ or\ agreed\ to\ in\ writing,\ software}}
+\DoxyCodeLine{00013\ \textcolor{comment}{\ \ distributed\ under\ the\ License\ is\ distributed\ on\ an\ "{}AS\ IS"{}\ BASIS,}}
+\DoxyCodeLine{00014\ \textcolor{comment}{\ \ WITHOUT\ WARRANTIES\ OR\ CONDITIONS\ OF\ ANY\ KIND,\ either\ express\ or}}
+\DoxyCodeLine{00015\ \textcolor{comment}{\ \ implied.\ \ See\ the\ License\ for\ the\ specific\ language\ governing}}
+\DoxyCodeLine{00016\ \textcolor{comment}{\ \ permissions\ and\ limitations\ under\ the\ License.}}
+\DoxyCodeLine{00017\ \textcolor{comment}{}}
+\DoxyCodeLine{00018\ \textcolor{comment}{\ *****************************************************************************/}}
+\DoxyCodeLine{00019\ }
+\DoxyCodeLine{00020\ \textcolor{comment}{/*****************************************************************************}}
+\DoxyCodeLine{00021\ \textcolor{comment}{}}
+\DoxyCodeLine{00022\ \textcolor{comment}{\ \ sc\_cthread\_process.h\ -\/-\/\ Clocked\ thread\ declarations}}
+\DoxyCodeLine{00023\ \textcolor{comment}{}}
+\DoxyCodeLine{00024\ \textcolor{comment}{\ \ Original\ Author:\ Andy\ Goodrich,\ Forte\ Design\ Systems,\ 4\ August\ 2005}}
+\DoxyCodeLine{00025\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }}
+\DoxyCodeLine{00026\ \textcolor{comment}{}}
+\DoxyCodeLine{00027\ \textcolor{comment}{\ \ CHANGE\ LOG\ AT\ THE\ END\ OF\ THE\ FILE}}
+\DoxyCodeLine{00028\ \textcolor{comment}{\ *****************************************************************************/}}
+\DoxyCodeLine{00029\ }
+\DoxyCodeLine{00030\ }
+\DoxyCodeLine{00031\ \textcolor{preprocessor}{\#if\ !defined(sc\_cthread\_process\_h\_INCLUDED)}}
+\DoxyCodeLine{00032\ \textcolor{preprocessor}{\#define\ sc\_cthread\_process\_h\_INCLUDED}}
+\DoxyCodeLine{00033\ }
+\DoxyCodeLine{00034\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{sc__thread__process_8h}{sysc/kernel/sc\_thread\_process.h}}"{}}}
+\DoxyCodeLine{00035\ }
+\DoxyCodeLine{00036\ \textcolor{keyword}{namespace\ }\mbox{\hyperlink{namespacesc__core}{sc\_core}}\ \{}
+\DoxyCodeLine{00037\ }
+\DoxyCodeLine{00038\ \textcolor{comment}{//\ friend\ function\ declarations:}}
+\DoxyCodeLine{00039\ }
+\DoxyCodeLine{00040\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{sc__cmnhdr_8h_aff4a86b3f5de3ac2097081e7166fe89f}{SC\_API}}\ \mbox{\hyperlink{namespacesc__core_a070d0a6bbdad69a7955c71616adbb4f9}{halt}}(\ \mbox{\hyperlink{classsc__core_1_1sc__simcontext}{sc\_simcontext}}*\ );}
+\DoxyCodeLine{00041\ }
+\DoxyCodeLine{00042\ \textcolor{comment}{//==============================================================================}}
+\DoxyCodeLine{00043\ \textcolor{comment}{//\ sc\_cthread\_process\ -\/}}
+\DoxyCodeLine{00044\ \textcolor{comment}{//}}
+\DoxyCodeLine{00045\ \textcolor{comment}{//==============================================================================}}
+\DoxyCodeLine{00046\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classsc__core_1_1sc__cthread__process}{sc\_cthread\_process}}\ :\ \textcolor{keyword}{public}\ \mbox{\hyperlink{classsc__core_1_1sc__thread__process}{sc\_thread\_process}}\ \{}
+\DoxyCodeLine{00047\ }
+\DoxyCodeLine{00048\ \ \ \ \ \textcolor{keyword}{friend}\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classsc__core_1_1sc__module}{sc\_module}};}
+\DoxyCodeLine{00049\ \ \ \ \ \textcolor{keyword}{friend}\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classsc__core_1_1sc__process__handle}{sc\_process\_handle}};}
+\DoxyCodeLine{00050\ \ \ \ \ \textcolor{keyword}{friend}\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classsc__core_1_1sc__cthread__process_a12ba92f261d993145709693ea4466b47}{sc\_process\_table}};}
+\DoxyCodeLine{00051\ \ \ \ \ \textcolor{keyword}{friend}\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classsc__core_1_1sc__thread__process}{sc\_thread\_process}};}
+\DoxyCodeLine{00052\ \ \ \ \ \textcolor{keyword}{friend}\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classsc__core_1_1sc__simcontext}{sc\_simcontext}};}
+\DoxyCodeLine{00053\ }
+\DoxyCodeLine{00054\ \ \ \ \ \textcolor{keyword}{friend}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classsc__core_1_1sc__cthread__process_af0edeaaa6479384ae9d350e1a14cb38c}{sc\_cthread\_cor\_fn}}(\ \textcolor{keywordtype}{void}*\ );}
+\DoxyCodeLine{00055\ }
+\DoxyCodeLine{00056\ \ \ \ \ \textcolor{keyword}{friend}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classsc__core_1_1sc__cthread__process_a887d9cef1ef509da06b593112f1e49cc}{halt}}(\ \mbox{\hyperlink{classsc__core_1_1sc__simcontext}{sc\_simcontext}}*\ );}
+\DoxyCodeLine{00057\ }
+\DoxyCodeLine{00058\ \ \ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00059\ \ \ \ \ \mbox{\hyperlink{classsc__core_1_1sc__cthread__process_a3a2a145fb3efeff97281aef1b0f56ad2}{sc\_cthread\_process}}(\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{char}*\ \mbox{\hyperlink{class_sysc_add__pv}{name\_p}},\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{class_sysc_add__pv}{free\_host}},}
+\DoxyCodeLine{00060\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacesc__core_a3c3c6a60b0462a2cb00c7c294417c02e}{SC\_ENTRY\_FUNC}}\ \mbox{\hyperlink{class_sysc_add__pv}{method\_p}},\ \mbox{\hyperlink{classsc__core_1_1sc__process__host}{sc\_process\_host}}*\ \mbox{\hyperlink{class_sysc_add__pv}{host\_p}},\ }
+\DoxyCodeLine{00061\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{classsc__core_1_1sc__spawn__options}{sc\_spawn\_options}}*\ \mbox{\hyperlink{class_sysc_add__pv}{opt\_p}}\ );}
+\DoxyCodeLine{00062\ }
+\DoxyCodeLine{00063\ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classsc__core_1_1sc__cthread__process_ad41b2ec5bfa52fb89f849c9c37cde4aa}{dont\_initialize}}(\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{class_sysc_add__pv}{dont}}\ );}
+\DoxyCodeLine{00064\ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{char}*\ \mbox{\hyperlink{classsc__core_1_1sc__cthread__process_a5e142df1592d00a005fea284baf06e59}{kind}}()\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00065\ \textcolor{keyword}{\ \ \ \ \ \ \ \ }\{\ \textcolor{keywordflow}{return}\ \textcolor{stringliteral}{"{}sc\_cthread\_process"{}};\ \}}
+\DoxyCodeLine{00066\ }
+\DoxyCodeLine{00067\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00068\ }
+\DoxyCodeLine{00069\ \ \ \ \ \mbox{\hyperlink{classsc__core_1_1sc__cthread__process_a55bb69b54eed4882724d5029f322bb3d}{sc\_cthread\_process}}(\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{char}*\ \ \ \mbox{\hyperlink{class_sysc_add__pv}{nm}},}
+\DoxyCodeLine{00070\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacesc__core_a3c3c6a60b0462a2cb00c7c294417c02e}{SC\_ENTRY\_FUNC}}\ \mbox{\hyperlink{class_sysc_add__pv}{fn}},}
+\DoxyCodeLine{00071\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classsc__core_1_1sc__process__host}{sc\_process\_host}}*\ \ \ \ \mbox{\hyperlink{class_sysc_add__pv}{host}}\ );}
+\DoxyCodeLine{00072\ }
+\DoxyCodeLine{00073\ \ \ \ \ \textcolor{comment}{//\ may\ not\ be\ deleted\ manually\ (called\ from\ sc\_process\_b)}}
+\DoxyCodeLine{00074\ \ \ \ \ \textcolor{keyword}{virtual}\ \mbox{\hyperlink{classsc__core_1_1sc__cthread__process_a888afe3fc0463663105218dc22a17e62}{\string~sc\_cthread\_process}}();}
+\DoxyCodeLine{00075\ }
+\DoxyCodeLine{00076\ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{classsc__core_1_1sc__cthread__process_aa88a17bd72ce4afc3fd047b507fe4725}{eval\_watchlist}}();}
+\DoxyCodeLine{00077\ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{classsc__core_1_1sc__cthread__process_a2b9f4f988be9a6577968323a955550c8}{eval\_watchlist\_curr\_level}}();}
+\DoxyCodeLine{00078\ }
+\DoxyCodeLine{00079\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classsc__core_1_1sc__cthread__process_aeefcceb31b9ff915bb910014012ba9ec}{wait\_halt}}();}
+\DoxyCodeLine{00080\ }
+\DoxyCodeLine{00081\ \};}
+\DoxyCodeLine{00082\ }
+\DoxyCodeLine{00083\ \textcolor{comment}{//-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{00084\ \textcolor{comment}{//"{}sc\_cthread\_process::wait\_halt"{}}}
+\DoxyCodeLine{00085\ \textcolor{comment}{//}}
+\DoxyCodeLine{00086\ \textcolor{comment}{//-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{00087\ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classsc__core_1_1sc__cthread__process_aeefcceb31b9ff915bb910014012ba9ec}{sc\_cthread\_process::wait\_halt}}()}
+\DoxyCodeLine{00088\ \{}
+\DoxyCodeLine{00089\ \ \ \ \ \mbox{\hyperlink{classsc__core_1_1sc__thread__process_a7197061aa125a49db17292aa9a1ad27e}{m\_wait\_cycle\_n}}\ =\ 0;}
+\DoxyCodeLine{00090\ \ \ \ \ \mbox{\hyperlink{classsc__core_1_1sc__thread__process_a10b86857b0e76993ddb457eb4989db35}{suspend\_me}}();}
+\DoxyCodeLine{00091\ \ \ \ \ \textcolor{keywordflow}{throw}\ \mbox{\hyperlink{classsc__core_1_1sc__halt}{sc\_halt}}();}
+\DoxyCodeLine{00092\ \}}
+\DoxyCodeLine{00093\ }
+\DoxyCodeLine{00094\ \}\ \textcolor{comment}{//\ namespace\ sc\_core\ }}
+\DoxyCodeLine{00095\ }
+\DoxyCodeLine{00096\ \textcolor{comment}{//\ \$Log:\ sc\_cthread\_process.h,v\ \$}}
+\DoxyCodeLine{00097\ \textcolor{comment}{//\ Revision\ 1.8\ \ 2011/08/26\ 20:46:09\ \ acg}}
+\DoxyCodeLine{00098\ \textcolor{comment}{//\ \ Andy\ Goodrich:\ moved\ the\ modification\ log\ to\ the\ end\ of\ the\ file\ to}}
+\DoxyCodeLine{00099\ \textcolor{comment}{//\ \ eliminate\ source\ line\ number\ skew\ when\ check-\/ins\ are\ done.}}
+\DoxyCodeLine{00100\ \textcolor{comment}{//}}
+\DoxyCodeLine{00101\ \textcolor{comment}{//\ Revision\ 1.7\ \ 2011/02/18\ 20:27:14\ \ acg}}
+\DoxyCodeLine{00102\ \textcolor{comment}{//\ \ Andy\ Goodrich:\ Updated\ Copyrights.}}
+\DoxyCodeLine{00103\ \textcolor{comment}{//}}
+\DoxyCodeLine{00104\ \textcolor{comment}{//\ Revision\ 1.6\ \ 2011/02/13\ 21:47:37\ \ acg}}
+\DoxyCodeLine{00105\ \textcolor{comment}{//\ \ Andy\ Goodrich:\ update\ copyright\ notice.}}
+\DoxyCodeLine{00106\ \textcolor{comment}{//}}
+\DoxyCodeLine{00107\ \textcolor{comment}{//\ Revision\ 1.5\ \ 2011/02/11\ 13:25:24\ \ acg}}
+\DoxyCodeLine{00108\ \textcolor{comment}{//\ \ Andy\ Goodrich:\ Philipp\ A.\ Hartmann's\ changes:}}
+\DoxyCodeLine{00109\ \textcolor{comment}{//\ \ \ \ (1)\ Removal\ of\ SC\_CTHREAD\ method\ overloads.}}
+\DoxyCodeLine{00110\ \textcolor{comment}{//\ \ \ \ (2)\ New\ exception\ processing\ code.}}
+\DoxyCodeLine{00111\ \textcolor{comment}{//}}
+\DoxyCodeLine{00112\ \textcolor{comment}{//\ Revision\ 1.4\ \ 2011/02/01\ 21:01:41\ \ acg}}
+\DoxyCodeLine{00113\ \textcolor{comment}{//\ \ Andy\ Goodrich:\ removed\ throw\_reset()\ as\ it\ is\ now\ handled\ by\ the\ parent}}
+\DoxyCodeLine{00114\ \textcolor{comment}{//\ \ method\ sc\_thread\_process::throw\_reset().}}
+\DoxyCodeLine{00115\ \textcolor{comment}{//}}
+\DoxyCodeLine{00116\ \textcolor{comment}{//\ Revision\ 1.3\ \ 2011/01/18\ 20:10:44\ \ acg}}
+\DoxyCodeLine{00117\ \textcolor{comment}{//\ \ Andy\ Goodrich:\ changes\ for\ IEEE1666\_2011\ semantics.}}
+\DoxyCodeLine{00118\ \textcolor{comment}{//}}
+\DoxyCodeLine{00119\ \textcolor{comment}{//\ Revision\ 1.2\ \ 2008/05/22\ 17:06:25\ \ acg}}
+\DoxyCodeLine{00120\ \textcolor{comment}{//\ \ Andy\ Goodrich:\ updated\ copyright\ notice\ to\ include\ 2008.}}
+\DoxyCodeLine{00121\ \textcolor{comment}{//}}
+\DoxyCodeLine{00122\ \textcolor{comment}{//\ Revision\ 1.1.1.1\ \ 2006/12/15\ 20:20:05\ \ acg}}
+\DoxyCodeLine{00123\ \textcolor{comment}{//\ SystemC\ 2.3}}
+\DoxyCodeLine{00124\ \textcolor{comment}{//}}
+\DoxyCodeLine{00125\ \textcolor{comment}{//\ Revision\ 1.6\ \ 2006/05/08\ 17:57:13\ \ acg}}
+\DoxyCodeLine{00126\ \textcolor{comment}{//\ \ Andy\ Goodrich:\ Added\ David\ Long's\ forward\ declarations\ for\ friend\ functions}}
+\DoxyCodeLine{00127\ \textcolor{comment}{//\ \ to\ keep\ the\ Microsoft\ C++\ compiler\ happy.}}
+\DoxyCodeLine{00128\ \textcolor{comment}{//}}
+\DoxyCodeLine{00129\ \textcolor{comment}{//\ Revision\ 1.5\ \ 2006/04/20\ 17:08:16\ \ acg}}
+\DoxyCodeLine{00130\ \textcolor{comment}{//\ \ Andy\ Goodrich:\ 3.0\ style\ process\ changes.}}
+\DoxyCodeLine{00131\ \textcolor{comment}{//}}
+\DoxyCodeLine{00132\ \textcolor{comment}{//\ Revision\ 1.4\ \ 2006/04/11\ 23:13:20\ \ acg}}
+\DoxyCodeLine{00133\ \textcolor{comment}{//\ \ \ Andy\ Goodrich:\ Changes\ for\ reduced\ reset\ support\ that\ only\ includes}}
+\DoxyCodeLine{00134\ \textcolor{comment}{//\ \ \ sc\_cthread,\ but\ has\ preliminary\ hooks\ for\ expanding\ to\ method\ and\ thread}}
+\DoxyCodeLine{00135\ \textcolor{comment}{//\ \ \ processes\ also.}}
+\DoxyCodeLine{00136\ \textcolor{comment}{//}}
+\DoxyCodeLine{00137\ \textcolor{comment}{//\ Revision\ 1.3\ \ 2006/01/13\ 18:44:29\ \ acg}}
+\DoxyCodeLine{00138\ \textcolor{comment}{//\ Added\ \$Log\ to\ record\ CVS\ changes\ into\ the\ source.}}
+\DoxyCodeLine{00139\ \textcolor{comment}{//}}
+\DoxyCodeLine{00140\ }
+\DoxyCodeLine{00141\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{//\ !defined(sc\_cthread\_process\_h\_INCLUDED)}}
+
+\end{DoxyCode}

@@ -1,0 +1,84 @@
+\doxysection{macos.\+hpp}
+\hypertarget{macos_8hpp_source}{}\label{macos_8hpp_source}\index{C:/Users/BJRODIER/Documents/QT\_REPO/QT\_VHDL\_simulator/code/Ressources/SystemC/include/sysc/packages/boost/config/platform/macos.hpp@{C:/Users/BJRODIER/Documents/QT\_REPO/QT\_VHDL\_simulator/code/Ressources/SystemC/include/sysc/packages/boost/config/platform/macos.hpp}}
+\mbox{\hyperlink{macos_8hpp}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{comment}{//\ \ (C)\ Copyright\ John\ Maddock\ 2001\ -\/\ 2003.\ }}
+\DoxyCodeLine{00002\ \textcolor{comment}{//\ \ (C)\ Copyright\ Darin\ Adler\ 2001\ -\/\ 2002.\ }}
+\DoxyCodeLine{00003\ \textcolor{comment}{//\ \ (C)\ Copyright\ Bill\ Kempf\ 2002.\ }}
+\DoxyCodeLine{00004\ \textcolor{comment}{//\ \ Use,\ modification\ and\ distribution\ are\ subject\ to\ the\ }}
+\DoxyCodeLine{00005\ \textcolor{comment}{//\ \ Boost\ Software\ License,\ Version\ 1.0.\ (See\ accompanying\ file\ }}
+\DoxyCodeLine{00006\ \textcolor{comment}{//\ \ LICENSE\_1\_0.txt\ or\ copy\ at\ http://www.boost.org/LICENSE\_1\_0.txt)}}
+\DoxyCodeLine{00007\ }
+\DoxyCodeLine{00008\ \textcolor{comment}{//\ \ See\ http://www.boost.org\ for\ most\ recent\ version.}}
+\DoxyCodeLine{00009\ }
+\DoxyCodeLine{00010\ \textcolor{comment}{//\ \ Mac\ OS\ specific\ config\ options:}}
+\DoxyCodeLine{00011\ }
+\DoxyCodeLine{00012\ \textcolor{preprocessor}{\#define\ SC\_BOOST\_PLATFORM\ "{}Mac\ OS"{}}}
+\DoxyCodeLine{00013\ }
+\DoxyCodeLine{00014\ \textcolor{preprocessor}{\#if\ \_\_MACH\_\_\ \&\&\ !defined(\_MSL\_USING\_MSL\_C)}}
+\DoxyCodeLine{00015\ }
+\DoxyCodeLine{00016\ \textcolor{comment}{//\ Using\ the\ Mac\ OS\ X\ system\ BSD-\/style\ C\ library.}}
+\DoxyCodeLine{00017\ }
+\DoxyCodeLine{00018\ \textcolor{preprocessor}{\#\ \ ifndef\ SC\_BOOST\_HAS\_UNISTD\_H}}
+\DoxyCodeLine{00019\ \textcolor{preprocessor}{\#\ \ \ \ define\ SC\_BOOST\_HAS\_UNISTD\_H}}
+\DoxyCodeLine{00020\ \textcolor{preprocessor}{\#\ \ endif}}
+\DoxyCodeLine{00021\ \textcolor{comment}{//}}
+\DoxyCodeLine{00022\ \textcolor{comment}{//\ Begin\ by\ including\ our\ boilerplate\ code\ for\ POSIX}}
+\DoxyCodeLine{00023\ \textcolor{comment}{//\ feature\ detection,\ this\ is\ safe\ even\ when\ using}}
+\DoxyCodeLine{00024\ \textcolor{comment}{//\ the\ MSL\ as\ Metrowerks\ supply\ their\ own\ <unistd.h>}}
+\DoxyCodeLine{00025\ \textcolor{comment}{//\ to\ replace\ the\ platform-\/native\ BSD\ one.\ G++\ users}}
+\DoxyCodeLine{00026\ \textcolor{comment}{//\ should\ also\ always\ be\ able\ to\ do\ this\ on\ MaxOS\ X.}}
+\DoxyCodeLine{00027\ \textcolor{comment}{//}}
+\DoxyCodeLine{00028\ \textcolor{preprocessor}{\#\ \ include\ <\mbox{\hyperlink{posix__features_8hpp}{sysc/packages/boost/config/posix\_features.hpp}}>}}
+\DoxyCodeLine{00029\ \textcolor{preprocessor}{\#\ \ ifndef\ SC\_BOOST\_HAS\_STDINT\_H}}
+\DoxyCodeLine{00030\ \textcolor{preprocessor}{\#\ \ \ \ \ define\ SC\_BOOST\_HAS\_STDINT\_H}}
+\DoxyCodeLine{00031\ \textcolor{preprocessor}{\#\ \ endif}}
+\DoxyCodeLine{00032\ }
+\DoxyCodeLine{00033\ \textcolor{comment}{//}}
+\DoxyCodeLine{00034\ \textcolor{comment}{//\ BSD\ runtime\ has\ pthreads,\ sigaction,\ sched\_yield\ and\ gettimeofday,}}
+\DoxyCodeLine{00035\ \textcolor{comment}{//\ of\ these\ only\ pthreads\ are\ advertised\ in\ <unistd.h>,\ so\ set\ the\ }}
+\DoxyCodeLine{00036\ \textcolor{comment}{//\ other\ options\ explicitly:}}
+\DoxyCodeLine{00037\ \textcolor{comment}{//}}
+\DoxyCodeLine{00038\ \textcolor{preprocessor}{\#\ \ define\ SC\_BOOST\_HAS\_SCHED\_YIELD}}
+\DoxyCodeLine{00039\ \textcolor{preprocessor}{\#\ \ define\ SC\_BOOST\_HAS\_GETTIMEOFDAY}}
+\DoxyCodeLine{00040\ \textcolor{preprocessor}{\#\ \ define\ SC\_BOOST\_HAS\_SIGACTION}}
+\DoxyCodeLine{00041\ }
+\DoxyCodeLine{00042\ \textcolor{preprocessor}{\#\ \ if\ (\_\_GNUC\_\_\ <\ 3)\ \&\&\ !defined(\ \_\_APPLE\_CC\_\_)}}
+\DoxyCodeLine{00043\ }
+\DoxyCodeLine{00044\ \textcolor{comment}{//\ GCC\ strange\ "{}ignore\ std"{}\ mode\ works\ better\ if\ you\ pretend\ everything}}
+\DoxyCodeLine{00045\ \textcolor{comment}{//\ is\ in\ the\ std\ namespace,\ for\ the\ most\ part.}}
+\DoxyCodeLine{00046\ }
+\DoxyCodeLine{00047\ \textcolor{preprocessor}{\#\ \ \ \ define\ SC\_BOOST\_NO\_STDC\_NAMESPACE}}
+\DoxyCodeLine{00048\ \textcolor{preprocessor}{\#\ \ endif}}
+\DoxyCodeLine{00049\ }
+\DoxyCodeLine{00050\ \textcolor{preprocessor}{\#else}}
+\DoxyCodeLine{00051\ }
+\DoxyCodeLine{00052\ \textcolor{comment}{//\ Using\ the\ MSL\ C\ library.}}
+\DoxyCodeLine{00053\ }
+\DoxyCodeLine{00054\ \textcolor{comment}{//\ We\ will\ eventually\ support\ threads\ in\ non-\/Carbon\ builds,\ but\ we\ do}}
+\DoxyCodeLine{00055\ \textcolor{comment}{//\ not\ support\ this\ yet.}}
+\DoxyCodeLine{00056\ \textcolor{preprocessor}{\#\ \ if\ (\ defined(TARGET\_API\_MAC\_CARBON)\ \&\&\ TARGET\_API\_MAC\_CARBON\ )\ ||\ (\ defined(TARGET\_CARBON)\ \&\&\ TARGET\_CARBON\ )}}
+\DoxyCodeLine{00057\ }
+\DoxyCodeLine{00058\ \textcolor{preprocessor}{\#\ \ if\ !defined(SC\_BOOST\_HAS\_PTHREADS)}}
+\DoxyCodeLine{00059\ \textcolor{preprocessor}{\#\ \ \ \ define\ SC\_BOOST\_HAS\_MPTASKS}}
+\DoxyCodeLine{00060\ \textcolor{preprocessor}{\#\ \ elif\ (\ \_\_dest\_os\ ==\ \_\_mac\_os\_x\ )}}
+\DoxyCodeLine{00061\ \textcolor{comment}{//\ We\ are\ doing\ a\ Carbon/Mach-\/O/MSL\ build\ which\ has\ pthreads,\ but\ only\ the}}
+\DoxyCodeLine{00062\ \textcolor{comment}{//\ gettimeofday\ and\ no\ posix.}}
+\DoxyCodeLine{00063\ \textcolor{preprocessor}{\#\ \ define\ SC\_BOOST\_HAS\_GETTIMEOFDAY}}
+\DoxyCodeLine{00064\ \textcolor{preprocessor}{\#\ \ endif}}
+\DoxyCodeLine{00065\ }
+\DoxyCodeLine{00066\ \textcolor{comment}{//\ The\ MP\ task\ implementation\ of\ Boost\ Threads\ aims\ to\ replace\ MP-\/unsafe}}
+\DoxyCodeLine{00067\ \textcolor{comment}{//\ parts\ of\ the\ MSL,\ so\ we\ turn\ on\ threads\ unconditionally.}}
+\DoxyCodeLine{00068\ \textcolor{preprocessor}{\#\ \ \ \ define\ SC\_BOOST\_HAS\_THREADS}}
+\DoxyCodeLine{00069\ }
+\DoxyCodeLine{00070\ \textcolor{comment}{//\ The\ remote\ call\ manager\ depends\ on\ this.}}
+\DoxyCodeLine{00071\ \textcolor{preprocessor}{\#\ \ \ \ define\ SC\_BOOST\_BIND\_ENABLE\_PASCAL}}
+\DoxyCodeLine{00072\ }
+\DoxyCodeLine{00073\ \textcolor{preprocessor}{\#\ \ endif}}
+\DoxyCodeLine{00074\ }
+\DoxyCodeLine{00075\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00076\ }
+\DoxyCodeLine{00077\ }
+\DoxyCodeLine{00078\ }
+
+\end{DoxyCode}

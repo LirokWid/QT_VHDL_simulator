@@ -1,0 +1,110 @@
+\doxysection{metrowerks.\+hpp}
+\hypertarget{metrowerks_8hpp_source}{}\label{metrowerks_8hpp_source}\index{C:/Users/BJRODIER/Documents/QT\_REPO/QT\_VHDL\_simulator/code/Ressources/SystemC/include/sysc/packages/boost/config/compiler/metrowerks.hpp@{C:/Users/BJRODIER/Documents/QT\_REPO/QT\_VHDL\_simulator/code/Ressources/SystemC/include/sysc/packages/boost/config/compiler/metrowerks.hpp}}
+\mbox{\hyperlink{metrowerks_8hpp}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{comment}{//\ \ (C)\ Copyright\ John\ Maddock\ 2001.\ }}
+\DoxyCodeLine{00002\ \textcolor{comment}{//\ \ (C)\ Copyright\ Darin\ Adler\ 2001.\ }}
+\DoxyCodeLine{00003\ \textcolor{comment}{//\ \ (C)\ Copyright\ Peter\ Dimov\ 2001.\ }}
+\DoxyCodeLine{00004\ \textcolor{comment}{//\ \ (C)\ Copyright\ David\ Abrahams\ 2001\ -\/\ 2002.\ }}
+\DoxyCodeLine{00005\ \textcolor{comment}{//\ \ (C)\ Copyright\ Beman\ Dawes\ 2001\ -\/\ 2003.\ }}
+\DoxyCodeLine{00006\ \textcolor{comment}{//\ \ (C)\ Copyright\ Stefan\ Slapeta\ 2004.\ }}
+\DoxyCodeLine{00007\ \textcolor{comment}{//\ \ Use,\ modification\ and\ distribution\ are\ subject\ to\ the\ }}
+\DoxyCodeLine{00008\ \textcolor{comment}{//\ \ Boost\ Software\ License,\ Version\ 1.0.\ (See\ accompanying\ file\ }}
+\DoxyCodeLine{00009\ \textcolor{comment}{//\ \ LICENSE\_1\_0.txt\ or\ copy\ at\ http://www.boost.org/LICENSE\_1\_0.txt)}}
+\DoxyCodeLine{00010\ }
+\DoxyCodeLine{00011\ \textcolor{comment}{//\ \ See\ http://www.boost.org\ for\ most\ recent\ version.}}
+\DoxyCodeLine{00012\ }
+\DoxyCodeLine{00013\ \textcolor{comment}{//\ \ Metrowerks\ C++\ compiler\ setup:}}
+\DoxyCodeLine{00014\ }
+\DoxyCodeLine{00015\ \textcolor{comment}{//\ locale\ support\ is\ disabled\ when\ linking\ with\ the\ dynamic\ runtime}}
+\DoxyCodeLine{00016\ \textcolor{preprocessor}{\#\ \ \ ifdef\ \_MSL\_NO\_LOCALE}}
+\DoxyCodeLine{00017\ \textcolor{preprocessor}{\#\ \ \ \ \ define\ SC\_BOOST\_NO\_STD\_LOCALE}}
+\DoxyCodeLine{00018\ \textcolor{preprocessor}{\#\ \ \ endif\ }}
+\DoxyCodeLine{00019\ }
+\DoxyCodeLine{00020\ \textcolor{preprocessor}{\#\ \ \ if\ \_\_MWERKS\_\_\ <=\ 0x2301\ \ }\textcolor{comment}{//\ 5.3}}
+\DoxyCodeLine{00021\ \textcolor{preprocessor}{\#\ \ \ \ \ define\ SC\_BOOST\_NO\_FUNCTION\_TEMPLATE\_ORDERING}}
+\DoxyCodeLine{00022\ \textcolor{preprocessor}{\#\ \ \ \ \ define\ SC\_BOOST\_NO\_POINTER\_TO\_MEMBER\_CONST}}
+\DoxyCodeLine{00023\ \textcolor{preprocessor}{\#\ \ \ \ \ define\ SC\_BOOST\_NO\_DEPENDENT\_TYPES\_IN\_TEMPLATE\_VALUE\_PARAMETERS}}
+\DoxyCodeLine{00024\ \textcolor{preprocessor}{\#\ \ \ \ \ define\ SC\_BOOST\_NO\_MEMBER\_TEMPLATE\_KEYWORD}}
+\DoxyCodeLine{00025\ \textcolor{preprocessor}{\#\ \ \ endif}}
+\DoxyCodeLine{00026\ }
+\DoxyCodeLine{00027\ \textcolor{preprocessor}{\#\ \ \ if\ \_\_MWERKS\_\_\ <=\ 0x2401\ \ }\textcolor{comment}{//\ 6.2}}
+\DoxyCodeLine{00028\ \textcolor{comment}{//\#\ \ \ \ \ define\ SC\_BOOST\_NO\_FUNCTION\_TEMPLATE\_ORDERING}}
+\DoxyCodeLine{00029\ \textcolor{preprocessor}{\#\ \ \ endif}}
+\DoxyCodeLine{00030\ }
+\DoxyCodeLine{00031\ \textcolor{preprocessor}{\#\ \ \ if(\_\_MWERKS\_\_\ <=\ 0x2407)\ \ }\textcolor{comment}{//\ 7.x}}
+\DoxyCodeLine{00032\ \textcolor{preprocessor}{\#\ \ \ \ \ define\ SC\_BOOST\_NO\_MEMBER\_FUNCTION\_SPECIALIZATIONS}}
+\DoxyCodeLine{00033\ \textcolor{preprocessor}{\#\ \ \ \ \ define\ SC\_BOOST\_NO\_UNREACHABLE\_RETURN\_DETECTION}}
+\DoxyCodeLine{00034\ \textcolor{preprocessor}{\#\ \ \ endif}}
+\DoxyCodeLine{00035\ }
+\DoxyCodeLine{00036\ \textcolor{preprocessor}{\#\ \ \ if(\_\_MWERKS\_\_\ <=\ 0x3003)\ \ }\textcolor{comment}{//\ 8.x}}
+\DoxyCodeLine{00037\ \textcolor{preprocessor}{\#\ \ \ \ \ define\ SC\_BOOST\_NO\_SFINAE}}
+\DoxyCodeLine{00038\ \textcolor{preprocessor}{\#\ \ \ \ endif}}
+\DoxyCodeLine{00039\ }
+\DoxyCodeLine{00040\ \textcolor{comment}{//\ the\ "{}||\ !defined(SC\_BOOST\_STRICT\_CONFIG)"{}\ part\ should\ apply\ to\ the\ last}}
+\DoxyCodeLine{00041\ \textcolor{comment}{//\ tested\ version\ *only*:}}
+\DoxyCodeLine{00042\ \textcolor{preprocessor}{\#\ \ \ if(\_\_MWERKS\_\_\ <=\ 0x3206)\ ||\ !defined(SC\_BOOST\_STRICT\_CONFIG)\ }\textcolor{comment}{//\ 9.5}}
+\DoxyCodeLine{00043\ \textcolor{preprocessor}{\#\ \ \ \ \ define\ SC\_BOOST\_NO\_MEMBER\_TEMPLATE\_FRIENDS}}
+\DoxyCodeLine{00044\ \textcolor{preprocessor}{\#\ \ \ \ \ define\ SC\_BOOST\_NO\_IS\_ABSTRACT}}
+\DoxyCodeLine{00045\ \textcolor{preprocessor}{\#\ \ \ \ endif}}
+\DoxyCodeLine{00046\ }
+\DoxyCodeLine{00047\ \textcolor{preprocessor}{\#if\ !\_\_option(wchar\_type)}}
+\DoxyCodeLine{00048\ \textcolor{preprocessor}{\#\ \ \ define\ SC\_BOOST\_NO\_INTRINSIC\_WCHAR\_T}}
+\DoxyCodeLine{00049\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00050\ }
+\DoxyCodeLine{00051\ \textcolor{preprocessor}{\#if\ !\_\_option(exceptions)}}
+\DoxyCodeLine{00052\ \textcolor{preprocessor}{\#\ \ \ define\ SC\_BOOST\_NO\_EXCEPTIONS}}
+\DoxyCodeLine{00053\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00054\ }
+\DoxyCodeLine{00055\ \textcolor{preprocessor}{\#if\ (\_\_INTEL\_\_\ \&\&\ \_WIN32)\ ||\ (\_\_POWERPC\_\_\ \&\&\ macintosh)}}
+\DoxyCodeLine{00056\ \textcolor{preprocessor}{\#\ \ \ if\ \_\_MWERKS\_\_\ ==\ 0x3000}}
+\DoxyCodeLine{00057\ \textcolor{preprocessor}{\#\ \ \ \ \ define\ SC\_BOOST\_COMPILER\_VERSION\ 8.0}}
+\DoxyCodeLine{00058\ \textcolor{preprocessor}{\#\ \ \ elif\ \_\_MWERKS\_\_\ ==\ 0x3001}}
+\DoxyCodeLine{00059\ \textcolor{preprocessor}{\#\ \ \ \ \ define\ SC\_BOOST\_COMPILER\_VERSION\ 8.1}}
+\DoxyCodeLine{00060\ \textcolor{preprocessor}{\#\ \ \ elif\ \_\_MWERKS\_\_\ ==\ 0x3002}}
+\DoxyCodeLine{00061\ \textcolor{preprocessor}{\#\ \ \ \ \ define\ SC\_BOOST\_COMPILER\_VERSION\ 8.2}}
+\DoxyCodeLine{00062\ \textcolor{preprocessor}{\#\ \ \ elif\ \_\_MWERKS\_\_\ ==\ 0x3003}}
+\DoxyCodeLine{00063\ \textcolor{preprocessor}{\#\ \ \ \ \ define\ SC\_BOOST\_COMPILER\_VERSION\ 8.3}}
+\DoxyCodeLine{00064\ \textcolor{preprocessor}{\#\ \ \ elif\ \_\_MWERKS\_\_\ ==\ 0x3200}}
+\DoxyCodeLine{00065\ \textcolor{preprocessor}{\#\ \ \ \ \ define\ SC\_BOOST\_COMPILER\_VERSION\ 9.0}}
+\DoxyCodeLine{00066\ \textcolor{preprocessor}{\#\ \ \ elif\ \_\_MWERKS\_\_\ ==\ 0x3201}}
+\DoxyCodeLine{00067\ \textcolor{preprocessor}{\#\ \ \ \ \ define\ SC\_BOOST\_COMPILER\_VERSION\ 9.1}}
+\DoxyCodeLine{00068\ \textcolor{preprocessor}{\#\ \ \ elif\ \_\_MWERKS\_\_\ ==\ 0x3202}}
+\DoxyCodeLine{00069\ \textcolor{preprocessor}{\#\ \ \ \ \ define\ SC\_BOOST\_COMPILER\_VERSION\ 9.2}}
+\DoxyCodeLine{00070\ \textcolor{preprocessor}{\#\ \ \ elif\ \_\_MWERKS\_\_\ ==\ 0x3204}}
+\DoxyCodeLine{00071\ \textcolor{preprocessor}{\#\ \ \ \ \ define\ SC\_BOOST\_COMPILER\_VERSION\ 9.3}}
+\DoxyCodeLine{00072\ \textcolor{preprocessor}{\#\ \ \ elif\ \_\_MWERKS\_\_\ ==\ 0x3205}}
+\DoxyCodeLine{00073\ \textcolor{preprocessor}{\#\ \ \ \ \ define\ SC\_BOOST\_COMPILER\_VERSION\ 9.4}}
+\DoxyCodeLine{00074\ \textcolor{preprocessor}{\#\ \ \ elif\ \_\_MWERKS\_\_\ ==\ 0x3206}}
+\DoxyCodeLine{00075\ \textcolor{preprocessor}{\#\ \ \ \ \ define\ SC\_BOOST\_COMPILER\_VERSION\ 9.5}}
+\DoxyCodeLine{00076\ \textcolor{preprocessor}{\#\ \ \ else}}
+\DoxyCodeLine{00077\ \textcolor{preprocessor}{\#\ \ \ \ \ define\ SC\_BOOST\_COMPILER\_VERSION\ \_\_MWERKS\_\_}}
+\DoxyCodeLine{00078\ \textcolor{preprocessor}{\#\ \ \ endif}}
+\DoxyCodeLine{00079\ \textcolor{preprocessor}{\#else}}
+\DoxyCodeLine{00080\ \textcolor{preprocessor}{\#\ \ define\ SC\_BOOST\_COMPILER\_VERSION\ \_\_MWERKS\_\_}}
+\DoxyCodeLine{00081\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00082\ }
+\DoxyCodeLine{00083\ \textcolor{preprocessor}{\#define\ SC\_BOOST\_COMPILER\ "{}Metrowerks\ CodeWarrior\ C++\ version\ "{}\ SC\_BOOST\_STRINGIZE(SC\_BOOST\_COMPILER\_VERSION)}}
+\DoxyCodeLine{00084\ }
+\DoxyCodeLine{00085\ \textcolor{comment}{//}}
+\DoxyCodeLine{00086\ \textcolor{comment}{//\ versions\ check:}}
+\DoxyCodeLine{00087\ \textcolor{comment}{//\ we\ don't\ support\ Metrowerks\ prior\ to\ version\ 5.3:}}
+\DoxyCodeLine{00088\ \textcolor{preprocessor}{\#if\ \_\_MWERKS\_\_\ <\ 0x2301}}
+\DoxyCodeLine{00089\ \textcolor{preprocessor}{\#\ \ error\ "{}Compiler\ not\ supported\ or\ configured\ -\/\ please\ reconfigure"{}}}
+\DoxyCodeLine{00090\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00091\ \textcolor{comment}{//}}
+\DoxyCodeLine{00092\ \textcolor{comment}{//\ last\ known\ and\ checked\ version:}}
+\DoxyCodeLine{00093\ \textcolor{preprocessor}{\#if\ (\_\_MWERKS\_\_\ >\ 0x3205)}}
+\DoxyCodeLine{00094\ \textcolor{preprocessor}{\#\ \ if\ defined(SC\_BOOST\_ASSERT\_CONFIG)}}
+\DoxyCodeLine{00095\ \textcolor{preprocessor}{\#\ \ \ \ \ error\ "{}Unknown\ compiler\ version\ -\/\ please\ run\ the\ configure\ tests\ and\ report\ the\ results"{}}}
+\DoxyCodeLine{00096\ \textcolor{preprocessor}{\#\ \ endif}}
+\DoxyCodeLine{00097\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00098\ }
+\DoxyCodeLine{00099\ }
+\DoxyCodeLine{00100\ }
+\DoxyCodeLine{00101\ }
+\DoxyCodeLine{00102\ }
+\DoxyCodeLine{00103\ }
+\DoxyCodeLine{00104\ }
+
+\end{DoxyCode}

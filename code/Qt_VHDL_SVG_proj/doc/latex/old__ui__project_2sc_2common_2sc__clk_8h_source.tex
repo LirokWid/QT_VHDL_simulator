@@ -1,0 +1,40 @@
+\doxysection{sc\+\_\+clk.\+h}
+\hypertarget{old__ui__project_2sc_2common_2sc__clk_8h_source}{}\label{old__ui__project_2sc_2common_2sc__clk_8h_source}\index{C:/Users/BJRODIER/Documents/QT\_REPO/QT\_VHDL\_simulator/code/old\_ui\_project/sc/common/sc\_clk.h@{C:/Users/BJRODIER/Documents/QT\_REPO/QT\_VHDL\_simulator/code/old\_ui\_project/sc/common/sc\_clk.h}}
+\mbox{\hyperlink{old__ui__project_2sc_2common_2sc__clk_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#ifndef\ SC\_CLK\_H}}
+\DoxyCodeLine{00002\ \textcolor{preprocessor}{\#define\ SC\_CLK\_H}}
+\DoxyCodeLine{00003\ }
+\DoxyCodeLine{00004\ \textcolor{preprocessor}{\#include\ <\mbox{\hyperlink{systemc_8h}{systemc.h}}>}}
+\DoxyCodeLine{00005\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{sc__config_8h}{sc\_config.h}}"{}}}
+\DoxyCodeLine{00006\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{sc__run_8h}{sc\_run.h}}"{}}}
+\DoxyCodeLine{00007\ }
+\DoxyCodeLine{00008\ \mbox{\hyperlink{sc__module_8h_a0e65c5055705b9e5f558d3f0ec28a120}{SC\_MODULE}}\ (\mbox{\hyperlink{class_sysc_add__pv}{scClk}})\ \{}
+\DoxyCodeLine{00009\ \ \ \ \ \textcolor{comment}{//\ -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/\ \ \ \ \ \ Ports\ \ \ \ \ \ -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{00010\ \ \ \ \ \mbox{\hyperlink{class_sysc_add__pv}{sc\_out<bool>}}\ \mbox{\hyperlink{class_sysc_add__pv}{clk}}\{\textcolor{stringliteral}{"{}clk\_o"{}}\};}
+\DoxyCodeLine{00011\ }
+\DoxyCodeLine{00012\ \ \ \ \ \mbox{\hyperlink{sc__module_8h_a6d981485fe8c8c7ea1a42fcd4487e6a1}{SC\_CTOR}}(\mbox{\hyperlink{class_sysc_add__pv}{scClk}})\ \{}
+\DoxyCodeLine{00013\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{sc__module_8h_a78f626bc71b853c1f8618e74ec6f0512}{SC\_THREAD}}(\mbox{\hyperlink{class_sysc_add__pv}{clockThread}});}
+\DoxyCodeLine{00014\ \ \ \ \ \}}
+\DoxyCodeLine{00015\ }
+\DoxyCodeLine{00016\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_sysc_add__pv}{clockThread}}\ ()\ \{}
+\DoxyCodeLine{00017\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classsc__core_1_1sc__time}{sc\_time}}\ \mbox{\hyperlink{class_sysc_add__pv}{ustep}}\ =\ \mbox{\hyperlink{sc__config_8cpp_a2764c7bbda787d396a128db3c35b6da1}{sc\_getMicrostep}}();}
+\DoxyCodeLine{00018\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{class_sysc_add__pv}{semiperiod\_usteps}}\ =\ \mbox{\hyperlink{sc__config_8cpp_a9afb9e4f503a59374abea1843679a863}{sc\_getClkSemiperiodMicrosteps}}();}
+\DoxyCodeLine{00019\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{class_sysc_add__pv}{act\_edge}}\ =\ \mbox{\hyperlink{sc__config_8cpp_a9fa8e3a406e94f63d746393a379900ec}{sc\_getClkActEdge}}();}
+\DoxyCodeLine{00020\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{while}\ (1)\ \{}
+\DoxyCodeLine{00021\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_sysc_add__pv}{clk}}.write(\mbox{\hyperlink{class_sysc_add__pv}{act\_edge}});}
+\DoxyCodeLine{00022\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{int}\ \mbox{\hyperlink{class_sysc_add__pv}{i}}\ =\ 0;\ \mbox{\hyperlink{class_sysc_add__pv}{i}}\ <\ \mbox{\hyperlink{class_sysc_add__pv}{semiperiod\_usteps}};\ \mbox{\hyperlink{class_sysc_add__pv}{i}}++)\ \{}
+\DoxyCodeLine{00023\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacesc__core_a3c8b4f07530fb5b54f3a6896e4ef68c3}{wait}}(\mbox{\hyperlink{class_sysc_add__pv}{ustep}});}
+\DoxyCodeLine{00024\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00025\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_sysc_add__pv}{clk}}.write(!\mbox{\hyperlink{class_sysc_add__pv}{act\_edge}});}
+\DoxyCodeLine{00026\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{int}\ \mbox{\hyperlink{class_sysc_add__pv}{i}}\ =\ 0;\ \mbox{\hyperlink{class_sysc_add__pv}{i}}\ <\ \mbox{\hyperlink{class_sysc_add__pv}{semiperiod\_usteps}};\ \mbox{\hyperlink{class_sysc_add__pv}{i}}++)\ \{}
+\DoxyCodeLine{00027\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{namespacesc__core_a3c8b4f07530fb5b54f3a6896e4ef68c3}{wait}}(\mbox{\hyperlink{class_sysc_add__pv}{ustep}});}
+\DoxyCodeLine{00028\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00029\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00030\ \ \ \ \ \}}
+\DoxyCodeLine{00031\ }
+\DoxyCodeLine{00032\ \};}
+\DoxyCodeLine{00033\ }
+\DoxyCodeLine{00034\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{//\ SC\_CLK\_H}}
+
+\end{DoxyCode}

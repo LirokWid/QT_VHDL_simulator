@@ -1,0 +1,108 @@
+.TH "systemc_modules/sc_mux.h" 3 "VHDL simulator" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+systemc_modules/sc_mux.h
+.SH SYNOPSIS
+.br
+.PP
+\fR#include <systemc\&.h>\fP
+.br
+\fR#include 'sc_gates\&.h'\fP
+.br
+\fR#include 'sc_gates_pv\&.h'\fP
+.br
+
+.SS "Classes"
+
+.in +1c
+.ti -1c
+.RI "class \fBSyscMux< N, W, SELW, SEL_INVALID_BEH, SEL_XORZ_CONV >\fP"
+.br
+.ti -1c
+.RI "class \fBSyscMux_pv< N, W, SELW, SEL_INVALID_BEH, SEL_XORZ_CONV >\fP"
+.br
+.in -1c
+.SS "Macros"
+
+.in +1c
+.ti -1c
+.RI "#\fBdefine\fP \fBMUX_DEPENDS_ON_GATES\fP   1"
+.br
+.in -1c
+.SS "Typedefs"
+
+.in +1c
+.ti -1c
+.RI "\fBtypedef\fP \fBenum\fP \fBMUX_CONV_SEL_XORZ_e\fP \fBMUX_CONV_SEL_XORZ_t\fP"
+.br
+.ti -1c
+.RI "\fBtypedef\fP \fBenum\fP \fBMUX_SEL_INVALID_BEH_e\fP \fBMUX_SEL_INVALID_BEH_t\fP"
+.br
+.in -1c
+.SS "Enumerations"
+
+.in +1c
+.ti -1c
+.RI "enum \fBMUX_CONV_SEL_XORZ_e\fP { \fBMUX_CONV_SEL_XORZ_FIRST\fP, \fBMUX_CONV_SEL_XORZ_LAST\fP, \fBMUX_CONV_SEL_XORZ_SYSTEMC\fP }"
+.br
+.ti -1c
+.RI "enum \fBMUX_SEL_INVALID_BEH_e\fP { \fBMUX_BEH_SEL_INVALID_ZEROES\fP, \fBMUX_BEH_SEL_INVALID_ONES\fP, \fBMUX_BEH_SEL_INVALID_FIRST\fP, \fBMUX_BEH_SEL_INVALID_LAST\fP }"
+.br
+.in -1c
+.SH "Macro Definition Documentation"
+.PP 
+.SS "#\fBdefine\fP MUX_DEPENDS_ON_GATES   1"
+
+.SH "Typedef Documentation"
+.PP 
+.SS "\fBtypedef\fP \fBenum\fP \fBMUX_CONV_SEL_XORZ_e\fP \fBMUX_CONV_SEL_XORZ_t\fP"
+Numeric conversion to use when selection value contains X or Z 
+.SS "\fBtypedef\fP \fBenum\fP \fBMUX_SEL_INVALID_BEH_e\fP \fBMUX_SEL_INVALID_BEH_t\fP"
+Mux behaviour for invalid selection input value 
+.SH "Enumeration Type Documentation"
+.PP 
+.SS "\fBenum\fP \fBMUX_CONV_SEL_XORZ_e\fP"
+Numeric conversion to use when selection value contains X or Z 
+.PP
+\fBEnumerator\fP
+.in +1c
+.TP
+\fB\fIMUX_CONV_SEL_XORZ_FIRST \fP\fP
+Assume selection = 0 (first data input, default) 
+.TP
+\fB\fIMUX_CONV_SEL_XORZ_LAST \fP\fP
+Assume selection = N-1 (last data input) 
+.br
+ 
+.TP
+\fB\fIMUX_CONV_SEL_XORZ_SYSTEMC \fP\fP
+SystemC's default conversion (issues warning) 
+.br
+ 
+.SS "\fBenum\fP \fBMUX_SEL_INVALID_BEH_e\fP"
+Mux behaviour for invalid selection input value 
+.PP
+\fBEnumerator\fP
+.in +1c
+.TP
+\fB\fIMUX_BEH_SEL_INVALID_ZEROES \fP\fP
+Set output to all zeroes (default) 
+.TP
+\fB\fIMUX_BEH_SEL_INVALID_ONES \fP\fP
+Set output to all ones 
+.br
+ 
+.TP
+\fB\fIMUX_BEH_SEL_INVALID_FIRST \fP\fP
+Set output to first data input 
+.br
+ 
+.TP
+\fB\fIMUX_BEH_SEL_INVALID_LAST \fP\fP
+Set output to last data input 
+.br
+ 
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for VHDL simulator from the source code\&.

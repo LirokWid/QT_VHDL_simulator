@@ -1,0 +1,125 @@
+\doxysection{enable\+\_\+if.\+hpp}
+\hypertarget{enable__if_8hpp_source}{}\label{enable__if_8hpp_source}\index{C:/Users/BJRODIER/Documents/QT\_REPO/QT\_VHDL\_simulator/code/Ressources/SystemC/include/sysc/packages/boost/utility/enable\_if.hpp@{C:/Users/BJRODIER/Documents/QT\_REPO/QT\_VHDL\_simulator/code/Ressources/SystemC/include/sysc/packages/boost/utility/enable\_if.hpp}}
+\mbox{\hyperlink{enable__if_8hpp}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{comment}{//\ Boost\ enable\_if\ library}}
+\DoxyCodeLine{00002\ }
+\DoxyCodeLine{00003\ \textcolor{comment}{//\ Copyright\ 2003\ ©\ The\ Trustees\ of\ Indiana\ University.}}
+\DoxyCodeLine{00004\ }
+\DoxyCodeLine{00005\ \textcolor{comment}{//\ Use,\ modification,\ and\ distribution\ is\ subject\ to\ the\ Boost\ Software}}
+\DoxyCodeLine{00006\ \textcolor{comment}{//\ License,\ Version\ 1.0.\ (See\ accompanying\ file\ LICENSE\_1\_0.txt\ or\ copy\ at}}
+\DoxyCodeLine{00007\ \textcolor{comment}{//\ http://www.boost.org/LICENSE\_1\_0.txt)}}
+\DoxyCodeLine{00008\ }
+\DoxyCodeLine{00009\ \textcolor{comment}{//\ \ \ \ Authors:\ Jaakko\ Järvi\ (jajarvi\ at\ osl.iu.edu)}}
+\DoxyCodeLine{00010\ \textcolor{comment}{//\ \ \ \ \ \ \ \ \ \ \ \ \ Jeremiah\ Willcock\ (jewillco\ at\ osl.iu.edu)}}
+\DoxyCodeLine{00011\ \textcolor{comment}{//\ \ \ \ \ \ \ \ \ \ \ \ \ Andrew\ Lumsdaine\ (lums\ at\ osl.iu.edu)}}
+\DoxyCodeLine{00012\ }
+\DoxyCodeLine{00013\ }
+\DoxyCodeLine{00014\ \textcolor{preprocessor}{\#ifndef\ SC\_BOOST\_UTILITY\_ENABLE\_IF\_HPP}}
+\DoxyCodeLine{00015\ \textcolor{preprocessor}{\#define\ SC\_BOOST\_UTILITY\_ENABLE\_IF\_HPP}}
+\DoxyCodeLine{00016\ }
+\DoxyCodeLine{00017\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{config_8hpp}{sysc/packages/boost/config.hpp}}"{}}}
+\DoxyCodeLine{00018\ }
+\DoxyCodeLine{00019\ \textcolor{comment}{//\ Even\ the\ definition\ of\ enable\_if\ causes\ problems\ on\ some\ compilers,}}
+\DoxyCodeLine{00020\ \textcolor{comment}{//\ so\ it's\ macroed\ out\ for\ all\ compilers\ that\ do\ not\ support\ SFINAE}}
+\DoxyCodeLine{00021\ }
+\DoxyCodeLine{00022\ \textcolor{preprocessor}{\#ifndef\ SC\_BOOST\_NO\_SFINAE}}
+\DoxyCodeLine{00023\ }
+\DoxyCodeLine{00024\ \textcolor{keyword}{namespace\ }\mbox{\hyperlink{namespacesc__boost}{sc\_boost}}}
+\DoxyCodeLine{00025\ \{}
+\DoxyCodeLine{00026\ \ }
+\DoxyCodeLine{00027\ \ \ \textcolor{keyword}{template}\ <\textcolor{keywordtype}{bool}\ B,\ \textcolor{keyword}{class}\ T\ =\ \textcolor{keywordtype}{void}>}
+\DoxyCodeLine{00028\ \ \ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structsc__boost_1_1enable__if__c}{enable\_if\_c}}\ \{}
+\DoxyCodeLine{00029\ \ \ \ \ \textcolor{keyword}{typedef}\ \mbox{\hyperlink{mem__fn__cc_8hpp_adf1f3edb9115acb0a1e04209b7a9937b}{T}}\ \mbox{\hyperlink{structsc__boost_1_1enable__if__c_ae435603c116cc68bc75bfc02f6edf991}{type}};}
+\DoxyCodeLine{00030\ \ \ \};}
+\DoxyCodeLine{00031\ }
+\DoxyCodeLine{00032\ \ \ \textcolor{keyword}{template}\ <\textcolor{keyword}{class}\ T>}
+\DoxyCodeLine{00033\ \ \ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structsc__boost_1_1enable__if__c}{enable\_if\_c}}<\mbox{\hyperlink{class_sysc_add__pv}{false}},\ \mbox{\hyperlink{mem__fn__cc_8hpp_adf1f3edb9115acb0a1e04209b7a9937b}{T}}>\ \{\};}
+\DoxyCodeLine{00034\ }
+\DoxyCodeLine{00035\ \ \ \textcolor{keyword}{template}\ <\textcolor{keyword}{class}\ Cond,\ \textcolor{keyword}{class}\ T\ =\ \textcolor{keywordtype}{void}>\ }
+\DoxyCodeLine{00036\ \ \ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structsc__boost_1_1enable__if}{enable\_if}}\ :\ \textcolor{keyword}{public}\ \mbox{\hyperlink{structsc__boost_1_1enable__if__c}{enable\_if\_c}}<Cond::value,\ T>\ \{\};}
+\DoxyCodeLine{00037\ }
+\DoxyCodeLine{00038\ \ \ \textcolor{keyword}{template}\ <\textcolor{keywordtype}{bool}\ B,\ \textcolor{keyword}{class}\ T>}
+\DoxyCodeLine{00039\ \ \ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structsc__boost_1_1lazy__enable__if__c}{lazy\_enable\_if\_c}}\ \{}
+\DoxyCodeLine{00040\ \ \ \ \ \textcolor{keyword}{typedef}\ \textcolor{keyword}{typename}\ T::type\ \mbox{\hyperlink{structsc__boost_1_1lazy__enable__if__c_ae05e752bfe00d6b46bace6532ff7b8c0}{type}};}
+\DoxyCodeLine{00041\ \ \ \};}
+\DoxyCodeLine{00042\ }
+\DoxyCodeLine{00043\ \ \ \textcolor{keyword}{template}\ <\textcolor{keyword}{class}\ T>}
+\DoxyCodeLine{00044\ \ \ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structsc__boost_1_1lazy__enable__if__c}{lazy\_enable\_if\_c}}<\mbox{\hyperlink{class_sysc_add__pv}{false}},\ \mbox{\hyperlink{mem__fn__cc_8hpp_adf1f3edb9115acb0a1e04209b7a9937b}{T}}>\ \{\};}
+\DoxyCodeLine{00045\ }
+\DoxyCodeLine{00046\ \ \ \textcolor{keyword}{template}\ <\textcolor{keyword}{class}\ Cond,\ \textcolor{keyword}{class}\ T>\ }
+\DoxyCodeLine{00047\ \ \ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structsc__boost_1_1lazy__enable__if}{lazy\_enable\_if}}\ :\ \textcolor{keyword}{public}\ \mbox{\hyperlink{structsc__boost_1_1lazy__enable__if__c}{lazy\_enable\_if\_c}}<Cond::value,\ T>\ \{\};}
+\DoxyCodeLine{00048\ }
+\DoxyCodeLine{00049\ }
+\DoxyCodeLine{00050\ \ \ \textcolor{keyword}{template}\ <\textcolor{keywordtype}{bool}\ B,\ \textcolor{keyword}{class}\ T\ =\ \textcolor{keywordtype}{void}>}
+\DoxyCodeLine{00051\ \ \ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structsc__boost_1_1disable__if__c}{disable\_if\_c}}\ \{}
+\DoxyCodeLine{00052\ \ \ \ \ \textcolor{keyword}{typedef}\ \mbox{\hyperlink{mem__fn__cc_8hpp_adf1f3edb9115acb0a1e04209b7a9937b}{T}}\ \mbox{\hyperlink{structsc__boost_1_1disable__if__c_ab2b4c3ecef3aa45edf6ed8af38025b8c}{type}};}
+\DoxyCodeLine{00053\ \ \ \};}
+\DoxyCodeLine{00054\ }
+\DoxyCodeLine{00055\ \ \ \textcolor{keyword}{template}\ <\textcolor{keyword}{class}\ T>}
+\DoxyCodeLine{00056\ \ \ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structsc__boost_1_1disable__if__c}{disable\_if\_c}}<\mbox{\hyperlink{class_sysc_add__pv}{true}},\ \mbox{\hyperlink{mem__fn__cc_8hpp_adf1f3edb9115acb0a1e04209b7a9937b}{T}}>\ \{\};}
+\DoxyCodeLine{00057\ }
+\DoxyCodeLine{00058\ \ \ \textcolor{keyword}{template}\ <\textcolor{keyword}{class}\ Cond,\ \textcolor{keyword}{class}\ T\ =\ \textcolor{keywordtype}{void}>\ }
+\DoxyCodeLine{00059\ \ \ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structsc__boost_1_1disable__if}{disable\_if}}\ :\ \textcolor{keyword}{public}\ \mbox{\hyperlink{structsc__boost_1_1disable__if__c}{disable\_if\_c}}<Cond::value,\ T>\ \{\};}
+\DoxyCodeLine{00060\ }
+\DoxyCodeLine{00061\ \ \ \textcolor{keyword}{template}\ <\textcolor{keywordtype}{bool}\ B,\ \textcolor{keyword}{class}\ T>}
+\DoxyCodeLine{00062\ \ \ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structsc__boost_1_1lazy__disable__if__c}{lazy\_disable\_if\_c}}\ \{}
+\DoxyCodeLine{00063\ \ \ \ \ \textcolor{keyword}{typedef}\ \textcolor{keyword}{typename}\ T::type\ \mbox{\hyperlink{structsc__boost_1_1lazy__disable__if__c_ace50dc57631f630b91869d34f16ed5c9}{type}};}
+\DoxyCodeLine{00064\ \ \ \};}
+\DoxyCodeLine{00065\ }
+\DoxyCodeLine{00066\ \ \ \textcolor{keyword}{template}\ <\textcolor{keyword}{class}\ T>}
+\DoxyCodeLine{00067\ \ \ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structsc__boost_1_1lazy__disable__if__c}{lazy\_disable\_if\_c}}<\mbox{\hyperlink{class_sysc_add__pv}{true}},\ \mbox{\hyperlink{mem__fn__cc_8hpp_adf1f3edb9115acb0a1e04209b7a9937b}{T}}>\ \{\};}
+\DoxyCodeLine{00068\ }
+\DoxyCodeLine{00069\ \ \ \textcolor{keyword}{template}\ <\textcolor{keyword}{class}\ Cond,\ \textcolor{keyword}{class}\ T>\ }
+\DoxyCodeLine{00070\ \ \ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structsc__boost_1_1lazy__disable__if}{lazy\_disable\_if}}\ :\ \textcolor{keyword}{public}\ \mbox{\hyperlink{structsc__boost_1_1lazy__disable__if__c}{lazy\_disable\_if\_c}}<Cond::value,\ T>\ \{\};}
+\DoxyCodeLine{00071\ }
+\DoxyCodeLine{00072\ \}\ \textcolor{comment}{//\ namespace\ sc\_boost}}
+\DoxyCodeLine{00073\ }
+\DoxyCodeLine{00074\ \textcolor{preprocessor}{\#else}}
+\DoxyCodeLine{00075\ }
+\DoxyCodeLine{00076\ \textcolor{keyword}{namespace\ }\mbox{\hyperlink{namespacesc__boost}{sc\_boost}}\ \{}
+\DoxyCodeLine{00077\ }
+\DoxyCodeLine{00078\ \ \ \textcolor{keyword}{namespace\ }detail\ \{\ \textcolor{keyword}{typedef}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_sysc_add__pv}{enable\_if\_default\_T}};\ \}}
+\DoxyCodeLine{00079\ }
+\DoxyCodeLine{00080\ \ \ \textcolor{keyword}{template}\ <\textcolor{keyword}{typename}\ T>}
+\DoxyCodeLine{00081\ \ \ \textcolor{keyword}{struct\ }\mbox{\hyperlink{class_sysc_add__pv}{enable\_if\_does\_not\_work\_on\_this\_compiler}};}
+\DoxyCodeLine{00082\ }
+\DoxyCodeLine{00083\ \ \ \textcolor{keyword}{template}\ <\textcolor{keywordtype}{bool}\ B,\ \textcolor{keyword}{class}\ T\ =\ detail::enable\_if\_default\_T>}
+\DoxyCodeLine{00084\ \ \ \textcolor{keyword}{struct\ }enable\_if\_c\ :\ \mbox{\hyperlink{class_sysc_add__pv}{enable\_if\_does\_not\_work\_on\_this\_compiler}}<T>}
+\DoxyCodeLine{00085\ \ \ \{\ \};}
+\DoxyCodeLine{00086\ }
+\DoxyCodeLine{00087\ \ \ \textcolor{keyword}{template}\ <\textcolor{keywordtype}{bool}\ B,\ \textcolor{keyword}{class}\ T\ =\ detail::enable\_if\_default\_T>\ }
+\DoxyCodeLine{00088\ \ \ \textcolor{keyword}{struct\ }disable\_if\_c\ :\ \mbox{\hyperlink{class_sysc_add__pv}{enable\_if\_does\_not\_work\_on\_this\_compiler}}<T>}
+\DoxyCodeLine{00089\ \ \ \{\ \};}
+\DoxyCodeLine{00090\ }
+\DoxyCodeLine{00091\ \ \ \textcolor{keyword}{template}\ <\textcolor{keywordtype}{bool}\ B,\ \textcolor{keyword}{class}\ T\ =\ detail::enable\_if\_default\_T>\ }
+\DoxyCodeLine{00092\ \ \ \textcolor{keyword}{struct\ }lazy\_enable\_if\_c\ :\ \mbox{\hyperlink{class_sysc_add__pv}{enable\_if\_does\_not\_work\_on\_this\_compiler}}<T>}
+\DoxyCodeLine{00093\ \ \ \{\ \};}
+\DoxyCodeLine{00094\ }
+\DoxyCodeLine{00095\ \ \ \textcolor{keyword}{template}\ <\textcolor{keywordtype}{bool}\ B,\ \textcolor{keyword}{class}\ T\ =\ detail::enable\_if\_default\_T>\ }
+\DoxyCodeLine{00096\ \ \ \textcolor{keyword}{struct\ }lazy\_disable\_if\_c\ :\ \mbox{\hyperlink{class_sysc_add__pv}{enable\_if\_does\_not\_work\_on\_this\_compiler}}<T>}
+\DoxyCodeLine{00097\ \ \ \{\ \};}
+\DoxyCodeLine{00098\ }
+\DoxyCodeLine{00099\ \ \ \textcolor{keyword}{template}\ <\textcolor{keyword}{class}\ Cond,\ \textcolor{keyword}{class}\ T\ =\ detail::enable\_if\_default\_T>\ }
+\DoxyCodeLine{00100\ \ \ \textcolor{keyword}{struct\ }enable\_if\ :\ \mbox{\hyperlink{class_sysc_add__pv}{enable\_if\_does\_not\_work\_on\_this\_compiler}}<T>}
+\DoxyCodeLine{00101\ \ \ \{\ \};}
+\DoxyCodeLine{00102\ }
+\DoxyCodeLine{00103\ \ \ \textcolor{keyword}{template}\ <\textcolor{keyword}{class}\ Cond,\ \textcolor{keyword}{class}\ T\ =\ detail::enable\_if\_default\_T>\ }
+\DoxyCodeLine{00104\ \ \ \textcolor{keyword}{struct\ }disable\_if\ :\ \mbox{\hyperlink{class_sysc_add__pv}{enable\_if\_does\_not\_work\_on\_this\_compiler}}<T>}
+\DoxyCodeLine{00105\ \ \ \{\ \};}
+\DoxyCodeLine{00106\ }
+\DoxyCodeLine{00107\ \ \ \textcolor{keyword}{template}\ <\textcolor{keyword}{class}\ Cond,\ \textcolor{keyword}{class}\ T\ =\ detail::enable\_if\_default\_T>\ }
+\DoxyCodeLine{00108\ \ \ \textcolor{keyword}{struct\ }lazy\_enable\_if\ :\ \mbox{\hyperlink{class_sysc_add__pv}{enable\_if\_does\_not\_work\_on\_this\_compiler}}<T>}
+\DoxyCodeLine{00109\ \ \ \{\ \};}
+\DoxyCodeLine{00110\ }
+\DoxyCodeLine{00111\ \ \ \textcolor{keyword}{template}\ <\textcolor{keyword}{class}\ Cond,\ \textcolor{keyword}{class}\ T\ =\ detail::enable\_if\_default\_T>\ }
+\DoxyCodeLine{00112\ \ \ \textcolor{keyword}{struct\ }lazy\_disable\_if\ :\ \mbox{\hyperlink{class_sysc_add__pv}{enable\_if\_does\_not\_work\_on\_this\_compiler}}<T>}
+\DoxyCodeLine{00113\ \ \ \{\ \};}
+\DoxyCodeLine{00114\ }
+\DoxyCodeLine{00115\ \}\ \textcolor{comment}{//\ namespace\ sc\_boost}}
+\DoxyCodeLine{00116\ }
+\DoxyCodeLine{00117\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{//\ SC\_BOOST\_NO\_SFINAE}}
+\DoxyCodeLine{00118\ }
+\DoxyCodeLine{00119\ \textcolor{preprocessor}{\#endif}}
+
+\end{DoxyCode}

@@ -1,0 +1,572 @@
+\doxysection{powerpc\+\_\+sys5.\+h}
+\hypertarget{powerpc__sys5_8h_source}{}\label{powerpc__sys5_8h_source}\index{C:/Users/BJRODIER/Documents/QT\_REPO/QT\_VHDL\_simulator/code/Ressources/SystemC/include/sysc/packages/qt/md/powerpc\_sys5.h@{C:/Users/BJRODIER/Documents/QT\_REPO/QT\_VHDL\_simulator/code/Ressources/SystemC/include/sysc/packages/qt/md/powerpc\_sys5.h}}
+\mbox{\hyperlink{powerpc__sys5_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{comment}{/*}}
+\DoxyCodeLine{00002\ \textcolor{comment}{\ \ \ +\ *\ QuickThreads\ -\/-\/\ Threads-\/building\ toolkit.}}
+\DoxyCodeLine{00003\ \textcolor{comment}{\ \ \ +\ *\ Copyright\ (c)\ 1993\ by\ David\ Keppel}}
+\DoxyCodeLine{00004\ \textcolor{comment}{\ \ \ +\ *}}
+\DoxyCodeLine{00005\ \textcolor{comment}{\ \ \ +\ *\ Permission\ to\ use,\ copy,\ modify\ and\ distribute\ this\ software\ and}}
+\DoxyCodeLine{00006\ \textcolor{comment}{\ \ \ +\ *\ its\ documentation\ for\ any\ purpose\ and\ without\ fee\ is\ hereby}}
+\DoxyCodeLine{00007\ \textcolor{comment}{\ \ \ +\ *\ granted,\ provided\ that\ the\ above\ copyright\ notice\ and\ this\ notice}}
+\DoxyCodeLine{00008\ \textcolor{comment}{\ \ \ +\ *\ appear\ in\ all\ copies.\ \ This\ software\ is\ provided\ as\ a}}
+\DoxyCodeLine{00009\ \textcolor{comment}{\ \ \ +\ *\ proof-\/of-\/concept\ and\ for\ demonstration\ purposes;\ there\ is\ no}}
+\DoxyCodeLine{00010\ \textcolor{comment}{\ \ \ +\ *\ representation\ about\ the\ suitability\ of\ this\ software\ for\ any}}
+\DoxyCodeLine{00011\ \textcolor{comment}{\ \ \ +\ *\ purpose.}}
+\DoxyCodeLine{00012\ \textcolor{comment}{\ \ \ +\ *}}
+\DoxyCodeLine{00013\ \textcolor{comment}{}}
+\DoxyCodeLine{00014\ \textcolor{comment}{\ \ \ +\ *\ PowerPC-\/Sys5\ thread\ switching\ module.}}
+\DoxyCodeLine{00015\ \textcolor{comment}{\ \ \ +\ *\ }}
+\DoxyCodeLine{00016\ \textcolor{comment}{\ \ \ +\ *\ This\ software\ is\ largely\ based\ on\ the\ original\ PowerPC-\/Linux\ porting}}
+\DoxyCodeLine{00017\ \textcolor{comment}{\ \ \ +\ *\ developed\ by\ Ken\ Aaker\ <kenaaker@silverbacksystems.com>}}
+\DoxyCodeLine{00018\ \textcolor{comment}{\ \ \ +\ *\ }}
+\DoxyCodeLine{00019\ \textcolor{comment}{\ \ \ +\ *\ Marco\ Bucci\ <marco.bucci@inwind.it>}}
+\DoxyCodeLine{00020\ \textcolor{comment}{\ \ \ +\ *\ December\ 2002}}
+\DoxyCodeLine{00021\ \textcolor{comment}{\ \ \ +\ *}}
+\DoxyCodeLine{00022\ \textcolor{comment}{\ \ \ +\ */}}
+\DoxyCodeLine{00023\ }
+\DoxyCodeLine{00024\ }
+\DoxyCodeLine{00025\ \textcolor{preprocessor}{\#ifndef\ QUICKTHREADS\_POWERPC\_H}}
+\DoxyCodeLine{00026\ \textcolor{preprocessor}{\#define\ QUICKTHREADS\_POWERPC\_H}}
+\DoxyCodeLine{00027\ }
+\DoxyCodeLine{00028\ }
+\DoxyCodeLine{00029\ \textcolor{comment}{/*****************************************************************************}}
+\DoxyCodeLine{00030\ \textcolor{comment}{\ *}}
+\DoxyCodeLine{00031\ \textcolor{comment}{\ *\ DESCRIPTION}}
+\DoxyCodeLine{00032\ \textcolor{comment}{\ *}}
+\DoxyCodeLine{00033\ \textcolor{comment}{\ *\ This\ is\ the\ QuickThreads\ switching\ module\ implementation\ for\ PowerPC\ }}
+\DoxyCodeLine{00034\ \textcolor{comment}{\ *\ running\ under\ System\ V\ ABI\ (Application\ Binary\ Interface)\ [2].\ It\ was}}
+\DoxyCodeLine{00035\ \textcolor{comment}{\ *\ developed\ by\ porting\ the\ MacOS\ X\ version\ and\ tested\ under\ LinuxPPC.}}
+\DoxyCodeLine{00036\ \textcolor{comment}{\ *}}
+\DoxyCodeLine{00037\ \textcolor{comment}{\ *\ Notice\ that\ this\ is\ not\ the\ same\ than\ the\ PowerPC\ Mach\ \ ABI\ used\ by\ MacOSX}}
+\DoxyCodeLine{00038\ \textcolor{comment}{\ *\ [1].}}
+\DoxyCodeLine{00039\ \textcolor{comment}{\ *}}
+\DoxyCodeLine{00040\ \textcolor{comment}{\ *\ IMPLEMENTATION\ NOTES}}
+\DoxyCodeLine{00041\ \textcolor{comment}{\ *}}
+\DoxyCodeLine{00042\ \textcolor{comment}{\ *\ 1)\ Porting\ on\ System\ V\ ABI}}
+\DoxyCodeLine{00043\ \textcolor{comment}{\ *\ Excluding\ the\ variant\ argument\ calling\ convention,\ Mach\ and\ System\ V\ ABI}}
+\DoxyCodeLine{00044\ \textcolor{comment}{\ *\ are\ enough\ similar\ and\ it\ could\ be\ possible\ to\ use\ some\ simple\ macro,\ to}}
+\DoxyCodeLine{00045\ \textcolor{comment}{\ *\ adapt\ the\ code\ for\ both\ the\ ABIs.\ Actually,\ the\ only\ relevant\ difference\ }}
+\DoxyCodeLine{00046\ \textcolor{comment}{\ *\ is\ in\ the\ linkage\ area\ structure\ and\ in\ the\ position\ where\ the\ Link\ and}}
+\DoxyCodeLine{00047\ \textcolor{comment}{\ *\ the\ Condition\ registers\ are\ saved.\ As\ to\ the\ calling\ conventions,\ there}}
+\DoxyCodeLine{00048\ \textcolor{comment}{\ *\ are\ differences\ with\ floating\ points\ argument\ passing\ and\ with\ variant}}
+\DoxyCodeLine{00049\ \textcolor{comment}{\ *\ argument\ lists.\ Notice\ that,\ on\ Mach,\ the\ caller's\ stack\ frame\ allocates}}
+\DoxyCodeLine{00050\ \textcolor{comment}{\ *\ space\ to\ hold\ all\ arguments\ ([1]\ p.51),\ while\ on\ System\ V,\ the\ caller's}}
+\DoxyCodeLine{00051\ \textcolor{comment}{\ *\ stack\ frame\ allocates\ space\ to\ hold\ just\ the\ arguments\ that\ don't\ fit\ into}}
+\DoxyCodeLine{00052\ \textcolor{comment}{\ *\ registers\ ([2]\ p.3.18).}}
+\DoxyCodeLine{00053\ \textcolor{comment}{\ *}}
+\DoxyCodeLine{00054\ \textcolor{comment}{\ *\ 2)\ Variant\ argument\ list\ implementation}}
+\DoxyCodeLine{00055\ \textcolor{comment}{\ *\ Variant\ argument\ calling\ on\ a\ RISC\ machine\ is\ not\ easy\ to\ implement\ since}}
+\DoxyCodeLine{00056\ \textcolor{comment}{\ *\ parameters\ are\ passed\ via\ registers\ instead\ of\ via\ stack.\ In\ a\ general}}
+\DoxyCodeLine{00057\ \textcolor{comment}{\ *\ variant\ argument\ implementation,\ the\ caller's\ stack\ must\ map\ the\ whole}}
+\DoxyCodeLine{00058\ \textcolor{comment}{\ *\ parameter\ list\ following\ the\ rules\ related\ to\ the\ use\ of\ the\ GPR\ and\ FPR}}
+\DoxyCodeLine{00059\ \textcolor{comment}{\ *\ parameter\ registers\ and\ the\ stack\ alignment\ ([2]\ p.3-\/21).\ }}
+\DoxyCodeLine{00060\ \textcolor{comment}{\ *\ This\ implementation\ is\ quite\ simple\ and\ not\ general.\ It\ works\ under\ the}}
+\DoxyCodeLine{00061\ \textcolor{comment}{\ *\ hypothesis\ that\ arguments\ are\ 4-\/bytes\ aligned\ integers.}}
+\DoxyCodeLine{00062\ \textcolor{comment}{\ *}}
+\DoxyCodeLine{00063\ \textcolor{comment}{\ *\ 3)\ This\ heather\ file\ organisation}}
+\DoxyCodeLine{00064\ \textcolor{comment}{\ *\ I\ preferred\ to\ not\ make\ confusion\ between\ macros\ that\ are\ needed\ (i.e.}}
+\DoxyCodeLine{00065\ \textcolor{comment}{\ *\ directly\ used)\ by\ QuickThreads\ and\ internal\ "{}implementation"{}\ macros.\ You}}
+\DoxyCodeLine{00066\ \textcolor{comment}{\ *\ will\ find\ QuickThreds\ macros\ in\ the\ end\ of\ this\ header.\ Sometime\ they\ just}}
+\DoxyCodeLine{00067\ \textcolor{comment}{\ *\ refer\ to\ an\ analogous\ "{}internal"{}\ macro.\ On\ the\ top,\ there\ are\ the\ macros}}
+\DoxyCodeLine{00068\ \textcolor{comment}{\ *\ that\ I\ used\ to\ make\ more\ clean\ (I\ hope)\ the\ implementation.\ I\ could\ include}}
+\DoxyCodeLine{00069\ \textcolor{comment}{\ *\ some\ system\ heather\ (as\ to\ stack\ layout\ definitions,\ prologs\ and\ epilogs,}}
+\DoxyCodeLine{00070\ \textcolor{comment}{\ *\ etc.),\ but\ I\ preferred\ to\ have\ a\ self-\/contained\ heather\ in\ order\ to\ make}}
+\DoxyCodeLine{00071\ \textcolor{comment}{\ *\ all\ more\ clear\ for\ mantaining\ and\ for\ possible\ porting\ on\ another\ ABI.}}
+\DoxyCodeLine{00072\ \textcolor{comment}{\ *}}
+\DoxyCodeLine{00073\ \textcolor{comment}{\ *}}
+\DoxyCodeLine{00074\ \textcolor{comment}{\ *\ REFERENCES}}
+\DoxyCodeLine{00075\ \textcolor{comment}{\ *}}
+\DoxyCodeLine{00076\ \textcolor{comment}{\ *\ [1]\ -\/\ Mach-\/O\ Runtime\ Architecture}}
+\DoxyCodeLine{00077\ \textcolor{comment}{\ *\ \ \ \ \ \ \ Runtime\ Concepts\ and\ Conventions\ for\ Mac\ OS\ X\ Programs}}
+\DoxyCodeLine{00078\ \textcolor{comment}{\ *\ \ \ \ \ \ \ Preliminary\ July\ 2002}}
+\DoxyCodeLine{00079\ \textcolor{comment}{\ *}}
+\DoxyCodeLine{00080\ \textcolor{comment}{\ *\ [2]\ -\/\ SYSTEM\ V\ APPLICATION\ BINARY\ INTERFACE}}
+\DoxyCodeLine{00081\ \textcolor{comment}{\ *\ \ \ \ \ \ \ PowerPC\ Processor\ Supplement}}
+\DoxyCodeLine{00082\ \textcolor{comment}{\ *\ \ \ \ \ \ \ September\ 1995}}
+\DoxyCodeLine{00083\ \textcolor{comment}{\ *}}
+\DoxyCodeLine{00084\ \textcolor{comment}{}}
+\DoxyCodeLine{00085\ \textcolor{comment}{\ *****************************************************************************/}}
+\DoxyCodeLine{00086\ }
+\DoxyCodeLine{00087\ \textcolor{comment}{/*****************************************************************************}}
+\DoxyCodeLine{00088\ \textcolor{comment}{\ *}}
+\DoxyCodeLine{00089\ \textcolor{comment}{\ *\ \ PowerPC\ System\ V\ Stack\ frame\ (see\ [2])}}
+\DoxyCodeLine{00090\ \textcolor{comment}{\ *\ \ }}
+\DoxyCodeLine{00091\ \textcolor{comment}{\ \ }}
+\DoxyCodeLine{00092\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ ................}}
+\DoxyCodeLine{00093\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ +\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ +}}
+\DoxyCodeLine{00094\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ |\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ |\ }}
+\DoxyCodeLine{00095\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ +-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/+}}
+\DoxyCodeLine{00096\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ |\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ |\ Caller's\ LR}}
+\DoxyCodeLine{00097\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ +\ \ CALLER'S\ LINKAGE\ AREA\ \ \ +}}
+\DoxyCodeLine{00098\ \textcolor{comment}{\ backchain\ -\/>\ \ \ |\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ |\ Caller's\ backchain}}
+\DoxyCodeLine{00099\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ +==========================+}}
+\DoxyCodeLine{00100\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ |\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ |\ FPR31}}
+\DoxyCodeLine{00101\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ +\ \ \ \ \ \ FPR\ SAVE\ AREA\ \ \ \ \ \ \ +}}
+\DoxyCodeLine{00102\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ ..............}}
+\DoxyCodeLine{00103\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ +\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ +}}
+\DoxyCodeLine{00104\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ |\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ |\ FPRn}}
+\DoxyCodeLine{00105\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ +-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/+}}
+\DoxyCodeLine{00106\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ |\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ |\ GPR31}}
+\DoxyCodeLine{00107\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ +\ \ \ \ \ \ GPR\ SAVE\ AREA\ \ \ \ \ \ \ +}}
+\DoxyCodeLine{00108\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ ..............}}
+\DoxyCodeLine{00109\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ +\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ +}}
+\DoxyCodeLine{00110\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ |\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ |\ GPRn}}
+\DoxyCodeLine{00111\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ +-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/+}}
+\DoxyCodeLine{00112\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ |\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ |\ }}
+\DoxyCodeLine{00113\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ +\ \ \ \ \ \ ALIGNMEBNT\ PAD\ \ \ \ \ \ +}}
+\DoxyCodeLine{00114\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ ..............}}
+\DoxyCodeLine{00115\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ +\ \ \ \ \ \ \ (if\ needed)\ \ \ \ \ \ \ \ +}}
+\DoxyCodeLine{00116\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ |\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ |}}
+\DoxyCodeLine{00117\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ +-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/+}}
+\DoxyCodeLine{00118\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ |\ \ \ \ \ \ \ \ \ CR\ SAVE\ \ \ \ \ \ \ \ \ \ |}}
+\DoxyCodeLine{00119\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ +-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/+}}
+\DoxyCodeLine{00120\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ |\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ |\ }}
+\DoxyCodeLine{00121\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ +\ \ \ LOCAL\ VARIABLES\ AREA\ \ \ +}}
+\DoxyCodeLine{00122\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ ..............}}
+\DoxyCodeLine{00123\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ +\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ +}}
+\DoxyCodeLine{00124\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ |\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ |}}
+\DoxyCodeLine{00125\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ +-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/+}}
+\DoxyCodeLine{00126\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ |\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ |\ PAR(n-\/7)}}
+\DoxyCodeLine{00127\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ +\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ +}}
+\DoxyCodeLine{00128\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ |\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ |\ }}
+\DoxyCodeLine{00129\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ +\ \ \ \ \ \ PARAMETER\ AREA\ \ \ \ \ \ +}}
+\DoxyCodeLine{00130\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ ..............}}
+\DoxyCodeLine{00131\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ +\ \ \ \ \ \ for\ FUTURE\ call\ \ \ \ \ +}}
+\DoxyCodeLine{00132\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ |\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ |\ PAR(9)}}
+\DoxyCodeLine{00133\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ +\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ +}}
+\DoxyCodeLine{00134\ \textcolor{comment}{\ SP\ +\ 8\ -\/>\ \ \ \ \ \ |\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ |\ PAR(8)}}
+\DoxyCodeLine{00135\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ +-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/+}}
+\DoxyCodeLine{00136\ \textcolor{comment}{\ SP\ +\ 4\ -\/>\ \ \ \ \ \ |\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ |\ LR\ callee-\/save\ for\ FUTURE\ call}}
+\DoxyCodeLine{00137\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ +\ \ \ \ \ \ \ LINKAGE\ AREA\ \ \ \ \ \ \ +}}
+\DoxyCodeLine{00138\ \textcolor{comment}{\ SP\ -\/>\ \ \ \ \ \ \ \ \ \ |\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ |\ backchain}}
+\DoxyCodeLine{00139\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ +==========================+}}
+\DoxyCodeLine{00140\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ STACK\ TOP\ (lower\ address)}}
+\DoxyCodeLine{00141\ \textcolor{comment}{\ \ }}
+\DoxyCodeLine{00142\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Stack\ grows\ down}}
+\DoxyCodeLine{00143\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ |}}
+\DoxyCodeLine{00144\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ V}}
+\DoxyCodeLine{00145\ \textcolor{comment}{\ }}
+\DoxyCodeLine{00146\ \textcolor{comment}{}}
+\DoxyCodeLine{00147\ \textcolor{comment}{\ *\ NOTE:}}
+\DoxyCodeLine{00148\ \textcolor{comment}{\ *}}
+\DoxyCodeLine{00149\ \textcolor{comment}{\ *\ 1)\ In\ this\ figure\ parameter\ are\ supposed\ to\ be\ integer\ 4-\/bytes\ aligned\ and}}
+\DoxyCodeLine{00150\ \textcolor{comment}{\ *\ are\ numbered\ 0,\ 1,\ 2,...\ n.}}
+\DoxyCodeLine{00151\ \textcolor{comment}{\ *}}
+\DoxyCodeLine{00152\ \textcolor{comment}{\ *\ 2)\ Parameter\ are\ allocated\ in\ the\ CALLER's\ parameter\ area.\ This\ area\ must}}
+\DoxyCodeLine{00153\ \textcolor{comment}{\ *\ be\ large\ enough\ to\ hold\ all\ parameters\ that\ cannot\ fit\ in\ registers\ (no\ }}
+\DoxyCodeLine{00154\ \textcolor{comment}{\ *\ more\ parameter\ registers\ are\ available);}}
+\DoxyCodeLine{00155\ \textcolor{comment}{\ *}}
+\DoxyCodeLine{00156\ \textcolor{comment}{\ *\ 3)\ The\ callee\ saves\ LR\ in\ the\ caller's\ linkage\ area.\ CR\ as\ all\ other}}
+\DoxyCodeLine{00157\ \textcolor{comment}{\ *\ callee's\ state\ are\ saved\ in\ its\ own\ stack\ frame.}}
+\DoxyCodeLine{00158\ \textcolor{comment}{\ *}}
+\DoxyCodeLine{00159\ \textcolor{comment}{\ }}
+\DoxyCodeLine{00160\ \textcolor{comment}{\ *****************************************************************************/}\ }
+\DoxyCodeLine{00161\ }
+\DoxyCodeLine{00162\ }
+\DoxyCodeLine{00163\ \textcolor{comment}{/*****************************************************************************}}
+\DoxyCodeLine{00164\ \textcolor{comment}{\ *\ }}
+\DoxyCodeLine{00165\ \textcolor{comment}{\ *\ Stack\ initialization\ for\ a\ single\ argument\ thread}}
+\DoxyCodeLine{00166\ \textcolor{comment}{\ *}}
+\DoxyCodeLine{00167\ \textcolor{comment}{}}
+\DoxyCodeLine{00168\ \textcolor{comment}{}}
+\DoxyCodeLine{00169\ \textcolor{comment}{\ top\ +\ QUICKTHREADS\_STKBASE\ -\/>\ \ \ \ \ \ \ \ \ \ \ STACK\ BOTTOM\ (higher\ address)}}
+\DoxyCodeLine{00170\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ +==========================+}}
+\DoxyCodeLine{00171\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ |\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ |}}
+\DoxyCodeLine{00172\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ +\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ +}}
+\DoxyCodeLine{00173\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ ..............}}
+\DoxyCodeLine{00174\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ +\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ +}}
+\DoxyCodeLine{00175\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ |\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ |}}
+\DoxyCodeLine{00176\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ +-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/+}}
+\DoxyCodeLine{00177\ \textcolor{comment}{\ top\ +\ QUICKTHREADS\_ONLY\_INDEX\ *\ 4\ -\/>\ \ \ \ |\ only\ param\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ |\ PAR(3)}}
+\DoxyCodeLine{00178\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ +\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ +}}
+\DoxyCodeLine{00179\ \textcolor{comment}{\ top\ +\ QUICKTHREADS\_USER\_INDEX\ *\ 4\ -\/>\ \ \ \ |\ userf\ param\ \ \ \ \ \ \ \ \ \ \ \ \ \ |\ PAR(2)}}
+\DoxyCodeLine{00180\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ +\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ +}}
+\DoxyCodeLine{00181\ \textcolor{comment}{\ top\ +\ QUICKTHREADS\_ARGT\_INDEX\ *\ 4\ -\/>\ \ \ \ |\ t\ param\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ |\ PAR(1)}}
+\DoxyCodeLine{00182\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ +\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ +}}
+\DoxyCodeLine{00183\ \textcolor{comment}{\ top\ +\ QUICKTHREADS\_ARGU\_INDEX\ *\ 4\ -\/>\ \ \ \ |\ u\ param\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ |\ PAR(0)}}
+\DoxyCodeLine{00184\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ +-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/+}}
+\DoxyCodeLine{00185\ \textcolor{comment}{\ top\ +\ QUICKTHREADS\_RETURN\_INDEX\ *\ 4\ -\/>\ \ |\ qt\_start\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ |\ LR\ save}}
+\DoxyCodeLine{00186\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ +\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ +}}
+\DoxyCodeLine{00187\ \textcolor{comment}{\ top\ +\ QUICKTHREADS\_BLOCKI\_FRAME\_SIZE\ -\/>\ |\ top\ +\ QUICKTHREADS\_STKBASE\ \ \ \ \ \ \ \ \ |\ backchain\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }}
+\DoxyCodeLine{00188\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ +==========================+}}
+\DoxyCodeLine{00189\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ |\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ |}}
+\DoxyCodeLine{00190\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ +\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ +}}
+\DoxyCodeLine{00191\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ ..............}}
+\DoxyCodeLine{00192\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ +\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ +}}
+\DoxyCodeLine{00193\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ |\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ |}}
+\DoxyCodeLine{00194\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ +-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/+}}
+\DoxyCodeLine{00195\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ |\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ |\ }}
+\DoxyCodeLine{00196\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ +\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ +}}
+\DoxyCodeLine{00197\ \textcolor{comment}{\ top\ -\/>\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ |top\ +\ QUICKTHREADS\_BLOCKI\_FRAME\_SIZE|\ backchain}}
+\DoxyCodeLine{00198\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ +==========================+}}
+\DoxyCodeLine{00199\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ STACK\ TOP\ (lower\ address)}}
+\DoxyCodeLine{00200\ \textcolor{comment}{\ \ }}
+\DoxyCodeLine{00201\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Stack\ grows\ down}}
+\DoxyCodeLine{00202\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ |}}
+\DoxyCodeLine{00203\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ V}}
+\DoxyCodeLine{00204\ \textcolor{comment}{}}
+\DoxyCodeLine{00205\ \textcolor{comment}{\ *****************************************************************************}}
+\DoxyCodeLine{00206\ \textcolor{comment}{\ *}}
+\DoxyCodeLine{00207\ \textcolor{comment}{\ *\ Stack\ initialization\ for\ a\ variant\ argument\ thread}}
+\DoxyCodeLine{00208\ \textcolor{comment}{\ *}}
+\DoxyCodeLine{00209\ \textcolor{comment}{}}
+\DoxyCodeLine{00210\ \textcolor{comment}{\ bottom\ -\/>\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ STACK\ BOTTOM\ (higher\ address)}}
+\DoxyCodeLine{00211\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ +==========================+}}
+\DoxyCodeLine{00212\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ |\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ |}}
+\DoxyCodeLine{00213\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ +\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ +}}
+\DoxyCodeLine{00214\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ ..............}}
+\DoxyCodeLine{00215\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ +\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ +}}
+\DoxyCodeLine{00216\ \textcolor{comment}{\ top\ +\ QUICKTHREADS\_VSTKBASE\ -\/>\ \ \ \ \ \ \ \ \ \ |\ arg(0)\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ |\ PAR(4)}}
+\DoxyCodeLine{00217\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ +-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/+}}
+\DoxyCodeLine{00218\ \textcolor{comment}{\ top\ +\ QUICKTHREADS\_CLEANUP\_INDEX\ *\ 4\ -\/>\ |\ cleanup\ param\ \ \ \ \ \ \ \ \ \ \ \ |\ PAR(3)}}
+\DoxyCodeLine{00219\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ +\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ +}}
+\DoxyCodeLine{00220\ \textcolor{comment}{\ top\ +\ QUICKTHREADS\_USER\_INDEX\ *\ 4\ -\/>\ \ \ \ |\ userf\ param\ \ \ \ \ \ \ \ \ \ \ \ \ \ |\ PAR(2)\ \ }}
+\DoxyCodeLine{00221\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ +\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ +}}
+\DoxyCodeLine{00222\ \textcolor{comment}{\ top\ +\ QUICKTHREADS\_VSTARTUP\_INDEX\ *\ 4\ -\/>|\ startup\ param\ \ \ \ \ \ \ \ \ \ \ \ |\ PAR(1)}}
+\DoxyCodeLine{00223\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ +\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ +}}
+\DoxyCodeLine{00224\ \textcolor{comment}{\ top\ +\ QUICKTHREADS\_ARGT\_INDEX\ *\ 4\ -\/>\ \ \ \ |\ t\ param\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ |\ PAR(0)}}
+\DoxyCodeLine{00225\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ +-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/+}}
+\DoxyCodeLine{00226\ \textcolor{comment}{\ top\ +\ QUICKTHREADS\_RETURN\_INDEX\ *\ 4\ -\/>\ \ |\ qt\_start\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ |\ LR\ save}}
+\DoxyCodeLine{00227\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ +\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ +}}
+\DoxyCodeLine{00228\ \textcolor{comment}{\ top\ +\ QUICKTHREADS\_BLOCKI\_FRAME\_SIZE\ -\/>\ |\ top\ +\ QUICKTHREADS\_STKBASE\ \ \ \ \ \ \ \ \ |\ backchain\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }}
+\DoxyCodeLine{00229\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ +==========================+}}
+\DoxyCodeLine{00230\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ |\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ |}}
+\DoxyCodeLine{00231\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ +\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ +}}
+\DoxyCodeLine{00232\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ ..............}}
+\DoxyCodeLine{00233\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ +\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ +}}
+\DoxyCodeLine{00234\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ |\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ |}}
+\DoxyCodeLine{00235\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ +-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/+}}
+\DoxyCodeLine{00236\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ |\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ |\ }}
+\DoxyCodeLine{00237\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ +\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ +}}
+\DoxyCodeLine{00238\ \textcolor{comment}{\ top\ -\/>\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ |top\ +\ QUICKTHREADS\_BLOCKI\_FRAME\_SIZE|\ backchain}}
+\DoxyCodeLine{00239\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ +==========================+}}
+\DoxyCodeLine{00240\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ STACK\ TOP\ (lower\ address)}}
+\DoxyCodeLine{00241\ \textcolor{comment}{\ \ }}
+\DoxyCodeLine{00242\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Stack\ grows\ down}}
+\DoxyCodeLine{00243\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ |}}
+\DoxyCodeLine{00244\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ V}}
+\DoxyCodeLine{00245\ \textcolor{comment}{}}
+\DoxyCodeLine{00246\ \textcolor{comment}{*\ NOTE:}}
+\DoxyCodeLine{00247\ \textcolor{comment}{*}}
+\DoxyCodeLine{00248\ \textcolor{comment}{*\ Parameters\ are\ passed\ to\ "{}qt\_start"{}\ or\ to\ "{}qt\_vstart"{}\ putting\ them\ into}}
+\DoxyCodeLine{00249\ \textcolor{comment}{*\ the\ stack\ frames\ of\ "{}qt\_start"{}\ or\ "{}qt\_vstart"{}\ themselves.\ This\ not\ a}}
+\DoxyCodeLine{00250\ \textcolor{comment}{*\ conventional\ parameter\ passing\ because\ parameters\ should\ be\ put\ into\ the}}
+\DoxyCodeLine{00251\ \textcolor{comment}{*\ caller's\ stack,\ not\ into\ the\ callee's\ one.\ Actually\ \ we\ must\ consider}}
+\DoxyCodeLine{00252\ \textcolor{comment}{*\ that\ as\ a\ preload\ of\ the\ parameter\ area\ that\ "{}qt\_start"{}\ or\ "{}qt\_vstart"{}}}
+\DoxyCodeLine{00253\ \textcolor{comment}{*\ will\ use\ for\ their\ own\ calls.}}
+\DoxyCodeLine{00254\ \textcolor{comment}{*\ \ Be\ aware\ of\ the\ fact\ that,\ during\ a\ call,\ the\ caller's\ parameter\ area\ is,}}
+\DoxyCodeLine{00255\ \textcolor{comment}{*\ in\ a\ certain\ sense,\ volatile.\ In\ facts,\ the\ callee\ can\ save\ parameter}}
+\DoxyCodeLine{00256\ \textcolor{comment}{*\ registers\ on\ the\ caller's\ parameter\ area.}}
+\DoxyCodeLine{00257\ \textcolor{comment}{*}}
+\DoxyCodeLine{00258\ \textcolor{comment}{\ *****************************************************************************/}\ }
+\DoxyCodeLine{00259\ }
+\DoxyCodeLine{00260\ }
+\DoxyCodeLine{00261\ \textcolor{comment}{/*****************************************************************************}}
+\DoxyCodeLine{00262\ \textcolor{comment}{\ }}
+\DoxyCodeLine{00263\ \textcolor{comment}{\ \ \ Define\ PowerPC\ System\ V\ related\ macros}}
+\DoxyCodeLine{00264\ \textcolor{comment}{\ }}
+\DoxyCodeLine{00265\ \textcolor{comment}{\ *****************************************************************************/}\ }
+\DoxyCodeLine{00266\ }
+\DoxyCodeLine{00267\ }
+\DoxyCodeLine{00268\ }
+\DoxyCodeLine{00269\ \textcolor{keyword}{typedef}\ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{long}\ \mbox{\hyperlink{powerpc__sys5_8h_ac9ab22d5daf79608bd61f688fdb06b63}{PPC\_W}};}
+\DoxyCodeLine{00270\ }
+\DoxyCodeLine{00271\ \textcolor{comment}{/*\ Stack\ pointer\ must\ always\ be\ a\ multiple\ of\ 16\ */}}
+\DoxyCodeLine{00272\ \textcolor{preprocessor}{\#define\ PPC\_STACK\_INCR\ \ 16\ \ \ \ \ \ }}
+\DoxyCodeLine{00273\ \textcolor{preprocessor}{\#define\ PPC\_ROUND\_STACK(length)\ \(\backslash\)}}
+\DoxyCodeLine{00274\ \textcolor{preprocessor}{\ \ \ \ (((length)+PPC\_STACK\_INCR-\/1)\ \&\ \string~(PPC\_STACK\_INCR-\/1))}}
+\DoxyCodeLine{00275\ }
+\DoxyCodeLine{00276\ }
+\DoxyCodeLine{00277\ \textcolor{preprocessor}{\#define\ PPC\_LINKAGE\_AREA\ 8\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }}
+\DoxyCodeLine{00278\ \textcolor{preprocessor}{\#define\ PPC\_LR\_SAVE\ 4}}
+\DoxyCodeLine{00279\ }
+\DoxyCodeLine{00280\ \textcolor{preprocessor}{\#define\ PPC\_PARAM\_AREA(n)\ (4*(n))}}
+\DoxyCodeLine{00281\ }
+\DoxyCodeLine{00282\ \textcolor{preprocessor}{\#define\ PPC\_GPR\_SAVE\_AREA\ (4*19)\ \ \ \ \ \ \ \ }\textcolor{comment}{/*\ GPR13-\/GPR31\ must\ be\ saved\ */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{00283\ \textcolor{preprocessor}{\#define\ PPC\_FPR\_SAVE\_AREA\ (8*18)\ \ \ \ \ \ \ \ }\textcolor{comment}{/*\ FPR14-\/FPR31\ must\ be\ saved\ */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{00284\ }
+\DoxyCodeLine{00285\ \textcolor{comment}{/*\ Define\ parameter\ offset\ on\ the\ stack.}}
+\DoxyCodeLine{00286\ \textcolor{comment}{\ *\ NOTICE:\ Parameters\ are\ numbered\ 0,\ 1,\ ...,\ n.\ }}
+\DoxyCodeLine{00287\ \textcolor{comment}{*/}}
+\DoxyCodeLine{00288\ \textcolor{preprocessor}{\#define\ PPC\_PAR(i)\ (PPC\_LINKAGE\_AREA+(i)*4)}}
+\DoxyCodeLine{00289\ }
+\DoxyCodeLine{00290\ \textcolor{comment}{/*****************************************************************************}}
+\DoxyCodeLine{00291\ \textcolor{comment}{\ }}
+\DoxyCodeLine{00292\ \textcolor{comment}{\ \ \ Define\ stack\ frames}}
+\DoxyCodeLine{00293\ \textcolor{comment}{\ }}
+\DoxyCodeLine{00294\ \textcolor{comment}{\ *****************************************************************************/}\ }
+\DoxyCodeLine{00295\ }
+\DoxyCodeLine{00296\ }
+\DoxyCodeLine{00297\ \textcolor{comment}{/*\ Define\ the\ "{}qt\_blocki"{}\ and\ "{}qt\_abort"{}\ stack\ frame.\ We\ use\ the\ same\ stack}}
+\DoxyCodeLine{00298\ \textcolor{comment}{\ *\ frame\ for\ both.\ }}
+\DoxyCodeLine{00299\ \textcolor{comment}{\ *}}
+\DoxyCodeLine{00300\ \textcolor{comment}{}}
+\DoxyCodeLine{00301\ \textcolor{comment}{\ top\ +\ S\ -\/>\ \ }}
+\DoxyCodeLine{00302\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ +==========================+}}
+\DoxyCodeLine{00303\ \textcolor{comment}{\ top\ +\ S\ -\/\ 4\ -\/>\ \ \ \ \ \ \ \ \ |\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ |\ GPR31\ }}
+\DoxyCodeLine{00304\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ +\ \ \ \ \ \ GPR\ SAVE\ AREA\ \ \ \ \ \ \ +}}
+\DoxyCodeLine{00305\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ ..............}}
+\DoxyCodeLine{00306\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ +\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ +}}
+\DoxyCodeLine{00307\ \textcolor{comment}{\ top\ +\ S\ -\/\ 19\ *\ 4\ -\/>\ \ \ \ |\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ |\ GPR13}}
+\DoxyCodeLine{00308\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ +-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/+}}
+\DoxyCodeLine{00309\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ |\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ |\ }}
+\DoxyCodeLine{00310\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ +\ \ \ \ \ \ ALIGNMEBNT\ PAD\ \ \ \ \ \ +}}
+\DoxyCodeLine{00311\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ ..............}}
+\DoxyCodeLine{00312\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ +\ \ \ \ \ \ \ (if\ needed)\ \ \ \ \ \ \ \ +}}
+\DoxyCodeLine{00313\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ |\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ |}}
+\DoxyCodeLine{00314\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ +-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/+}}
+\DoxyCodeLine{00315\ \textcolor{comment}{\ top\ +\ 8\ -\/>\ \ \ \ \ \ \ \ \ \ \ \ \ |\ \ \ \ \ \ \ \ \ CR\ SAVE\ \ \ \ \ \ \ \ \ \ |}}
+\DoxyCodeLine{00316\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ +-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/+}}
+\DoxyCodeLine{00317\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ |\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ |}}
+\DoxyCodeLine{00318\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ +\ \ \ \ \ \ \ LINKAGE\ AREA\ \ \ \ \ \ \ +}}
+\DoxyCodeLine{00319\ \textcolor{comment}{\ top\ -\/>\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ |\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ |}}
+\DoxyCodeLine{00320\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ +==========================+}}
+\DoxyCodeLine{00321\ \textcolor{comment}{\ */}}
+\DoxyCodeLine{00322\ }
+\DoxyCodeLine{00323\ \textcolor{preprocessor}{\#define\ QUICKTHREADS\_BLOCKI\_FRAME\_SIZE\ \(\backslash\)}}
+\DoxyCodeLine{00324\ \textcolor{preprocessor}{\ \ \ \ PPC\_ROUND\_STACK(PPC\_LINKAGE\_AREA+4+PPC\_GPR\_SAVE\_AREA)}}
+\DoxyCodeLine{00325\ \ \ \ \ }
+\DoxyCodeLine{00326\ \textcolor{preprocessor}{\#define\ QUICKTHREADS\_BLOCKI\_CR\_SAVE\ 8}}
+\DoxyCodeLine{00327\ }
+\DoxyCodeLine{00328\ \textcolor{comment}{/*\ Offset\ to\ the\ base\ of\ the\ GPR\ save\ area.\ Save\ from\ GPR13\ to\ GPR31}}
+\DoxyCodeLine{00329\ \textcolor{comment}{\ *\ increasing\ address.\ }}
+\DoxyCodeLine{00330\ \textcolor{comment}{\ */}}
+\DoxyCodeLine{00331\ \textcolor{preprocessor}{\#define\ QUICKTHREADS\_BLOCKI\_GPR\_SAVE(i)\ (QUICKTHREADS\_BLOCKI\_FRAME\_SIZE-\/4+(i-\/31)*4)}}
+\DoxyCodeLine{00332\ }
+\DoxyCodeLine{00333\ }
+\DoxyCodeLine{00334\ }
+\DoxyCodeLine{00335\ \textcolor{comment}{/*\ Define\ the\ "{}qt\_block"{}\ stack\ frame.\ Notice\ that\ since\ "{}qt\_black"{}\ calls}}
+\DoxyCodeLine{00336\ \textcolor{comment}{\ *\ "{}qt\_blocki"{},\ GPR\ registers\ are\ saved\ into\ "{}qt\_blocki"{}\ stack\ frame.}}
+\DoxyCodeLine{00337\ \textcolor{comment}{\ *}}
+\DoxyCodeLine{00338\ \textcolor{comment}{}}
+\DoxyCodeLine{00339\ \textcolor{comment}{\ top\ +\ S\ -\/>\ \ }}
+\DoxyCodeLine{00340\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ +==========================+}}
+\DoxyCodeLine{00341\ \textcolor{comment}{\ top\ +\ S\ -\/\ 8\ -\/>\ \ \ \ \ \ \ \ \ |\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ |\ FPR31\ }}
+\DoxyCodeLine{00342\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ +\ \ \ \ \ \ FPR\ SAVE\ AREA\ \ \ \ \ \ \ +}}
+\DoxyCodeLine{00343\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ ..............}}
+\DoxyCodeLine{00344\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ +\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ +}}
+\DoxyCodeLine{00345\ \textcolor{comment}{\ top\ +\ S\ -\/\ 18\ *\ 8\ -\/>\ \ \ \ |\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ |\ FPR14}}
+\DoxyCodeLine{00346\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ +-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/+}}
+\DoxyCodeLine{00347\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ |\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ |\ }}
+\DoxyCodeLine{00348\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ +\ \ \ \ \ \ ALIGNMEBNT\ PAD\ \ \ \ \ \ +}}
+\DoxyCodeLine{00349\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ ..............}}
+\DoxyCodeLine{00350\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ +\ \ \ \ \ \ \ (if\ needed)\ \ \ \ \ \ \ \ +}}
+\DoxyCodeLine{00351\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ |\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ |}}
+\DoxyCodeLine{00352\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ +-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/+}}
+\DoxyCodeLine{00353\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ |\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ |}}
+\DoxyCodeLine{00354\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ +\ \ \ \ \ \ \ LINKAGE\ AREA\ \ \ \ \ \ \ +}}
+\DoxyCodeLine{00355\ \textcolor{comment}{\ top\ -\/>\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ |\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ |}}
+\DoxyCodeLine{00356\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ +==========================+}}
+\DoxyCodeLine{00357\ \textcolor{comment}{\ */}}
+\DoxyCodeLine{00358\ }
+\DoxyCodeLine{00359\ \textcolor{preprocessor}{\#define\ QUICKTHREADS\_BLOCK\_FRAME\_SIZE\ \(\backslash\)}}
+\DoxyCodeLine{00360\ \textcolor{preprocessor}{\ \ \ \ PPC\_ROUND\_STACK(PPC\_LINKAGE\_AREA+PPC\_FPR\_SAVE\_AREA)}}
+\DoxyCodeLine{00361\ }
+\DoxyCodeLine{00362\ \textcolor{comment}{/*\ Offset\ to\ the\ location\ where\ registers\ are\ saved.}}
+\DoxyCodeLine{00363\ \textcolor{comment}{\ */}}
+\DoxyCodeLine{00364\ \textcolor{preprocessor}{\#define\ QUICKTHREADS\_BLOCK\_FPR\_SAVE(i)\ (QUICKTHREADS\_BLOCK\_FRAME\_SIZE-\/8+(i-\/31)*8)}}
+\DoxyCodeLine{00365\ }
+\DoxyCodeLine{00366\ }
+\DoxyCodeLine{00367\ \textcolor{comment}{/*\ Define\ the\ "{}qt\_start"{}\ frame\ size.\ It\ consists\ just\ of\ the\ linkage\ area\ and\ }}
+\DoxyCodeLine{00368\ \textcolor{comment}{\ *\ the\ parameter\ area.\ }}
+\DoxyCodeLine{00369\ \textcolor{comment}{\ *}}
+\DoxyCodeLine{00370\ \textcolor{comment}{}}
+\DoxyCodeLine{00371\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ +==========================+}}
+\DoxyCodeLine{00372\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ |\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ |\ }}
+\DoxyCodeLine{00373\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ +\ \ \ \ \ \ ALIGNMEBNT\ PAD\ \ \ \ \ \ +}}
+\DoxyCodeLine{00374\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ ..............}}
+\DoxyCodeLine{00375\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ +\ \ \ \ \ \ \ (if\ needed)\ \ \ \ \ \ \ \ +}}
+\DoxyCodeLine{00376\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ |\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ |}}
+\DoxyCodeLine{00377\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ +-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/+}}
+\DoxyCodeLine{00378\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ |\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ |\ only\ par}}
+\DoxyCodeLine{00379\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ +\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ +}}
+\DoxyCodeLine{00380\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ |\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ |\ userf\ par}}
+\DoxyCodeLine{00381\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ +\ \ \ \ \ \ PARAMETER\ AREA\ \ \ \ \ \ +}}
+\DoxyCodeLine{00382\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ |\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ |\ t\ par}}
+\DoxyCodeLine{00383\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ +\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ +}}
+\DoxyCodeLine{00384\ \textcolor{comment}{\ top\ +\ 8\ -\/>\ \ \ \ \ \ \ \ \ \ \ \ \ |\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ |\ u\ par}}
+\DoxyCodeLine{00385\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ +-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/+}}
+\DoxyCodeLine{00386\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ |\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ |}}
+\DoxyCodeLine{00387\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ +\ \ \ \ \ \ \ LINKAGE\ AREA\ \ \ \ \ \ \ +}}
+\DoxyCodeLine{00388\ \textcolor{comment}{\ top\ -\/>\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ |\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ |}}
+\DoxyCodeLine{00389\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ +==========================+}}
+\DoxyCodeLine{00390\ \textcolor{comment}{}}
+\DoxyCodeLine{00391\ \textcolor{comment}{\ */}}
+\DoxyCodeLine{00392\ \textcolor{preprocessor}{\#define\ QUICKTHREADS\_START\_FRAME\_SIZE\ PPC\_ROUND\_STACK(PPC\_LINKAGE\_AREA+PPC\_PARAM\_AREA(4))}}
+\DoxyCodeLine{00393\ }
+\DoxyCodeLine{00394\ }
+\DoxyCodeLine{00395\ }
+\DoxyCodeLine{00396\ \textcolor{comment}{/*\ Define\ the\ "{}qt\_vstart"{}\ frame.\ It\ consists\ of\ the\ linkage\ area,\ the\ fix\ parameter\ }}
+\DoxyCodeLine{00397\ \textcolor{comment}{\ *\ area,\ the\ variant\ argument\ list\ and\ a\ local\ variable\ area\ used\ in\ "{}qt\_vstart"{}}}
+\DoxyCodeLine{00398\ \textcolor{comment}{\ *\ implementation.}}
+\DoxyCodeLine{00399\ \textcolor{comment}{\ *}}
+\DoxyCodeLine{00400\ \textcolor{comment}{}}
+\DoxyCodeLine{00401\ \textcolor{comment}{\ backchain\ -\/>\ \ }}
+\DoxyCodeLine{00402\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ +==========================+}}
+\DoxyCodeLine{00403\ \textcolor{comment}{\ backchain\ -\/\ 4\ -\/>\ \ \ \ \ \ \ |\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ |\ }}
+\DoxyCodeLine{00404\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ +\ \ \ LOCAL\ VARIABLES\ AREA\ \ \ +}}
+\DoxyCodeLine{00405\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ ..............}}
+\DoxyCodeLine{00406\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ +\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ +}}
+\DoxyCodeLine{00407\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ |\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ |}}
+\DoxyCodeLine{00408\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ +-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/+}}
+\DoxyCodeLine{00409\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ |\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ |\ }}
+\DoxyCodeLine{00410\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ +\ \ \ \ \ \ ALIGNMEBNT\ PAD\ \ \ \ \ \ +}}
+\DoxyCodeLine{00411\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ ..............}}
+\DoxyCodeLine{00412\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ +\ \ \ \ \ \ \ (if\ needed)\ \ \ \ \ \ \ \ +}}
+\DoxyCodeLine{00413\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ |\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ |}}
+\DoxyCodeLine{00414\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ +-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/+}}
+\DoxyCodeLine{00415\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ |\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ |\ arg(n)}}
+\DoxyCodeLine{00416\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ +\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ +}}
+\DoxyCodeLine{00417\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ |\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ |\ }}
+\DoxyCodeLine{00418\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ +\ \ VARIABLE\ ARGUMENT\ LIST\ \ +}}
+\DoxyCodeLine{00419\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ ..............}}
+\DoxyCodeLine{00420\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ +\ \ \ \ \ \ for\ userf\ call\ \ \ \ \ \ +}}
+\DoxyCodeLine{00421\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ |\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ |\ arg(1)}}
+\DoxyCodeLine{00422\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ +\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ +}}
+\DoxyCodeLine{00423\ \textcolor{comment}{\ top\ +\ 8\ +\ 16\ -\/>\ \ \ \ \ \ \ \ |\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ |\ arg(0)}}
+\DoxyCodeLine{00424\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ +-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/+}}
+\DoxyCodeLine{00425\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ |\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ |\ cleanup\ par}}
+\DoxyCodeLine{00426\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ +\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ +}}
+\DoxyCodeLine{00427\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ |\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ |\ userf\ par}}
+\DoxyCodeLine{00428\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ +\ \ \ \ \ \ PARAMETER\ AREA\ \ \ \ \ \ +}}
+\DoxyCodeLine{00429\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ |\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ |\ startup\ par}}
+\DoxyCodeLine{00430\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ +\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ +}}
+\DoxyCodeLine{00431\ \textcolor{comment}{\ top\ +\ 8\ -\/>\ \ \ \ \ \ \ \ \ \ \ \ \ |\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ |\ t\ par}}
+\DoxyCodeLine{00432\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ +-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/+}}
+\DoxyCodeLine{00433\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ |\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ |}}
+\DoxyCodeLine{00434\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ +\ \ \ \ \ \ \ LINKAGE\ AREA\ \ \ \ \ \ \ +}}
+\DoxyCodeLine{00435\ \textcolor{comment}{\ top\ -\/>\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ |\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ |}}
+\DoxyCodeLine{00436\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ +==========================+}}
+\DoxyCodeLine{00437\ \textcolor{comment}{}}
+\DoxyCodeLine{00438\ \textcolor{comment}{\ */}}
+\DoxyCodeLine{00439\ \textcolor{preprocessor}{\#define\ QUICKTHREADS\_VARGS\_LOCAL\_AREA\ (4*4)\ \ \ \ \ }\textcolor{comment}{/*\ local\ variable\ area\ */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{00440\ }
+\DoxyCodeLine{00441\ \textcolor{comment}{/*\ The\ offset\ the\ stack\ will\ be\ moved\ back\ before\ to\ call\ "{}userf(...)"{}.}}
+\DoxyCodeLine{00442\ \textcolor{comment}{\ *\ The\ linckage\ area\ must\ be\ moved\ to\ be\ adiacent\ to\ the\ part\ of\ the\ variant}}
+\DoxyCodeLine{00443\ \textcolor{comment}{\ *\ argument\ list\ that\ is\ in\ the\ stack.\ Notice\ that,\ since\ the\ first\ 8}}
+\DoxyCodeLine{00444\ \textcolor{comment}{\ *\ parameters\ are\ passed\ via\ registers,\ the\ offset\ is\ equal\ to\ the\ size\ of}}
+\DoxyCodeLine{00445\ \textcolor{comment}{\ *\ 4+8\ parameters.\ */}}
+\DoxyCodeLine{00446\ \textcolor{preprocessor}{\#define\ QUICKTHREADS\_VARGS\_BKOFF\ PPC\_PARAM\_AREA(4+8)}}
+\DoxyCodeLine{00447\ }
+\DoxyCodeLine{00448\ \textcolor{preprocessor}{\#define\ QUICKTHREADS\_VSTART\_FRAME\_SIZE(varbytes)\ \(\backslash\)}}
+\DoxyCodeLine{00449\ \textcolor{preprocessor}{\ \ \ \ PPC\_ROUND\_STACK(PPC\_LINKAGE\_AREA+QUICKTHREADS\_VARGS\_BKOFF+(varbytes)+\ \(\backslash\)}}
+\DoxyCodeLine{00450\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ QUICKTHREADS\_VARGS\_LOCAL\_AREA)}}
+\DoxyCodeLine{00451\ }
+\DoxyCodeLine{00452\ \textcolor{comment}{/*\ Offset\ to\ the\ base\ of\ the\ varian\ argument\ list\ */}}
+\DoxyCodeLine{00453\ \textcolor{preprocessor}{\#define\ QUICKTHREADS\_VSTART\_LIST\_BASE\ (PPC\_LINKAGE\_AREA+PPC\_PARAM\_AREA(4))}}
+\DoxyCodeLine{00454\ }
+\DoxyCodeLine{00455\ }
+\DoxyCodeLine{00456\ \textcolor{comment}{/*\ Notice\ that\ qt\_start\ and\ qt\_vstart\ have\ no\ parameters,\ actually\ their}}
+\DoxyCodeLine{00457\ \textcolor{comment}{\ *\ parameters\ are\ written\ in\ their\ stack\ frame\ during\ thread\ initialization}}
+\DoxyCodeLine{00458\ \textcolor{comment}{\ */}}
+\DoxyCodeLine{00459\ \textcolor{keyword}{extern}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{powerpc__sys5_8h_aa2f4631bb0e6ccd7c1fb4e2be528d67d}{qt\_start}}(\textcolor{keywordtype}{void});}
+\DoxyCodeLine{00460\ \textcolor{keyword}{extern}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{powerpc__sys5_8h_a0b7527956e668f9f8d8c11e8f1e18498}{qt\_vstart}}(\textcolor{keywordtype}{void});}
+\DoxyCodeLine{00461\ }
+\DoxyCodeLine{00462\ }
+\DoxyCodeLine{00463\ }
+\DoxyCodeLine{00464\ \textcolor{comment}{/*\ Offset\ (in\ words)\ of\ the\ location\ where\ the\ block\ routine\ saves\ its\ return}}
+\DoxyCodeLine{00465\ \textcolor{comment}{\ *\ address\ (i.e.\ LR).\ SP\ points\ the\ top\ of\ the\ block\ routine\ stack\ and,}}
+\DoxyCodeLine{00466\ \textcolor{comment}{\ *\ following\ ppc\ calling\ conventions,\ the\ return\ address\ is\ saved\ in\ the}}
+\DoxyCodeLine{00467\ \textcolor{comment}{\ *\ previous\ (caller's)\ stack\ frame.}}
+\DoxyCodeLine{00468\ \textcolor{comment}{\ */}}
+\DoxyCodeLine{00469\ \textcolor{preprocessor}{\#define\ QUICKTHREADS\_RETURN\_INDEX\ ((QUICKTHREADS\_BLOCKI\_FRAME\_SIZE+PPC\_LR\_SAVE)/sizeof(PPC\_W))}}
+\DoxyCodeLine{00470\ }
+\DoxyCodeLine{00471\ \textcolor{comment}{/*\ static\ variable\ used\ to\ get\ the\ stack\ bottom\ in\ "{}VARGS"{}\ initialization\ */}}
+\DoxyCodeLine{00472\ \textcolor{keyword}{static}\ \textcolor{keywordtype}{void}\ *qt\_sp\_bottom\_save;}
+\DoxyCodeLine{00473\ }
+\DoxyCodeLine{00474\ \textcolor{preprocessor}{\#define\ QUICKTHREADS\_ARG\_INDEX(i)\ ((QUICKTHREADS\_BLOCKI\_FRAME\_SIZE+PPC\_PAR(i))/sizeof(PPC\_W))}}
+\DoxyCodeLine{00475\ }
+\DoxyCodeLine{00476\ \textcolor{comment}{/*****************************************************************************}}
+\DoxyCodeLine{00477\ \textcolor{comment}{}}
+\DoxyCodeLine{00478\ \textcolor{comment}{\ \ \ \ QuickThreads\ needed\ definitions}}
+\DoxyCodeLine{00479\ \textcolor{comment}{}}
+\DoxyCodeLine{00480\ \textcolor{comment}{\ *****************************************************************************/}}
+\DoxyCodeLine{00481\ }
+\DoxyCodeLine{00482\ }
+\DoxyCodeLine{00483\ \textcolor{preprocessor}{\#define\ QUICKTHREADS\_GROW\_DOWN}}
+\DoxyCodeLine{00484\ \textcolor{preprocessor}{\#define\ QUICKTHREADS\_STKALIGN\ \ \ PPC\_STACK\_INCR}}
+\DoxyCodeLine{00485\ \textcolor{keyword}{typedef}\ \mbox{\hyperlink{class_sysc_add__pv}{PPC\_W}}\ \mbox{\hyperlink{powerpc__sys5_8h_a438bd7ef1b18b951e4afa14dcc2c9543}{qt\_word\_t}};}
+\DoxyCodeLine{00486\ }
+\DoxyCodeLine{00487\ }
+\DoxyCodeLine{00488\ \textcolor{comment}{/*\ This\ macro\ is\ used\ by\ "{}QUICKTHREADS\_ARGS"{}\ to\ initialize\ a\ single\ argument\ thread.}}
+\DoxyCodeLine{00489\ \textcolor{comment}{\ *\ -\/\ set\ "{}qt\_start"{}\ as\ the\ "{}qt\_block"{}\ or\ "{}qt\_blocki"{}\ return\ address;}}
+\DoxyCodeLine{00490\ \textcolor{comment}{\ *\ -\/\ set\ the\ top\ of\ the\ stack\ backchain;}}
+\DoxyCodeLine{00491\ \textcolor{comment}{\ *\ -\/\ set\ the\ next\ backchain\ (not\ needed,\ but\ just\ to\ be\ "{}clean"{}).\ \ \ }}
+\DoxyCodeLine{00492\ \textcolor{comment}{\ */}}
+\DoxyCodeLine{00493\ \textcolor{preprocessor}{\#define\ QUICKTHREADS\_ARGS\_MD(sp)\ \(\backslash\)}}
+\DoxyCodeLine{00494\ \textcolor{preprocessor}{\ \ \ \ (QUICKTHREADS\_SPUT\ (sp,\ QUICKTHREADS\_RETURN\_INDEX,\ qt\_start),\ \(\backslash\)}}
+\DoxyCodeLine{00495\ \textcolor{preprocessor}{\ \ \ \ QUICKTHREADS\_SPUT\ (sp,\ 0,\ sp+QUICKTHREADS\_BLOCKI\_FRAME\_SIZE),\ \(\backslash\)}}
+\DoxyCodeLine{00496\ \textcolor{preprocessor}{\ \ \ \ QUICKTHREADS\_SPUT\ (sp,\ QUICKTHREADS\_BLOCKI\_FRAME\_SIZE/sizeof(PPC\_W),\ \(\backslash\)}}
+\DoxyCodeLine{00497\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ sp+QUICKTHREADS\_BLOCKI\_FRAME\_SIZE+QUICKTHREADS\_START\_FRAME\_SIZE))}}
+\DoxyCodeLine{00498\ }
+\DoxyCodeLine{00499\ }
+\DoxyCodeLine{00500\ \textcolor{comment}{/*\ This\ macro\ is\ used\ by\ "{}QUICKTHREADS\_VARGS"{}\ to\ initialize\ a\ variant\ argument\ thread.\ }}
+\DoxyCodeLine{00501\ \textcolor{comment}{\ *\ It\ returns\ the\ pointer\ to\ the\ top\ of\ the\ argument\ list.}}
+\DoxyCodeLine{00502\ \textcolor{comment}{\ *\ We\ also\ use\ it\ to\ get\ the\ stack\ bottom\ via\ a\ static\ variable.\ This\ is\ a\ bit\ }}
+\DoxyCodeLine{00503\ \textcolor{comment}{\ *\ "{}dirty"{},\ it\ could\ be\ better\ to\ do\ it\ in\ "{}qt\_vargs"{},\ but\ we\ don't\ want\ change\ }}
+\DoxyCodeLine{00504\ \textcolor{comment}{\ *\ anything\ out\ of\ this\ file.}}
+\DoxyCodeLine{00505\ \textcolor{comment}{\ *\ We\ need\ the\ stack\ bottom\ to\ allocate\ a\ local\ variable\ area\ used\ by}}
+\DoxyCodeLine{00506\ \textcolor{comment}{\ *\ "{}qt\_vstart"{}.\ }}
+\DoxyCodeLine{00507\ \textcolor{comment}{\ */}}
+\DoxyCodeLine{00508\ \textcolor{preprocessor}{\#define\ QUICKTHREADS\_VARGS\_MD0(sp,\ varbytes)\ \(\backslash\)}}
+\DoxyCodeLine{00509\ \textcolor{preprocessor}{\ \ ((qt\_sp\_bottom\_save\ =\ sp),\ \(\backslash\)}}
+\DoxyCodeLine{00510\ \textcolor{preprocessor}{\ \ ((qt\_t\ *)(((char\ *)(sp))\ -\/\ \(\backslash\)}}
+\DoxyCodeLine{00511\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ (QUICKTHREADS\_VSTART\_FRAME\_SIZE(varbytes)-\/QUICKTHREADS\_VSTART\_LIST\_BASE))))}}
+\DoxyCodeLine{00512\ }
+\DoxyCodeLine{00513\ }
+\DoxyCodeLine{00514\ \textcolor{comment}{/*\ This\ macro\ is\ used\ by\ "{}QUICKTHREADS\_VARGS"{}\ to\ initialize\ a\ variant\ argument\ thread.}}
+\DoxyCodeLine{00515\ \textcolor{comment}{\ *\ -\/\ set\ "{}qt\_start"{}\ as\ the\ "{}qt\_block"{}\ or\ "{}qt\_blocki"{}\ return\ address;}}
+\DoxyCodeLine{00516\ \textcolor{comment}{\ *\ -\/\ set\ the\ top\ of\ the\ stackback\ chain;}}
+\DoxyCodeLine{00517\ \textcolor{comment}{\ *\ -\/\ set\ the\ next\ backchain\ (it\ points\ the\ stack\ botton).\ \ \ }}
+\DoxyCodeLine{00518\ \textcolor{comment}{\ */}}
+\DoxyCodeLine{00519\ \textcolor{preprocessor}{\#define\ QUICKTHREADS\_VARGS\_MD1(sp)\ \(\backslash\)}}
+\DoxyCodeLine{00520\ \textcolor{preprocessor}{\ \ \ \ (QUICKTHREADS\_SPUT\ (sp,\ QUICKTHREADS\_RETURN\_INDEX,\ qt\_vstart),\ \(\backslash\)}}
+\DoxyCodeLine{00521\ \textcolor{preprocessor}{\ \ \ \ QUICKTHREADS\_SPUT\ (sp,\ 0,\ sp+QUICKTHREADS\_BLOCKI\_FRAME\_SIZE),\ \(\backslash\)}}
+\DoxyCodeLine{00522\ \textcolor{preprocessor}{\ \ \ \ QUICKTHREADS\_SPUT\ (sp,\ (QUICKTHREADS\_BLOCKI\_FRAME\_SIZE)/sizeof(PPC\_W),\ \(\backslash\)}}
+\DoxyCodeLine{00523\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ qt\_sp\_bottom\_save))}}
+\DoxyCodeLine{00524\ }
+\DoxyCodeLine{00525\ }
+\DoxyCodeLine{00526\ \textcolor{comment}{/*\ Activate\ "{}qt\_vargs"{}\ as\ the\ initialization\ routine\ for\ the\ variant\ }}
+\DoxyCodeLine{00527\ \textcolor{comment}{\ *\ argument\ threads}}
+\DoxyCodeLine{00528\ \textcolor{comment}{\ */}\ }
+\DoxyCodeLine{00529\ \textcolor{preprocessor}{\#define\ QUICKTHREADS\_VARGS\_DEFAULT\ }}
+\DoxyCodeLine{00530\ }
+\DoxyCodeLine{00531\ \textcolor{comment}{/*\ Override\ "{}qt\_vargs"{}\ with\ "{}qt\_vargs\_stdarg"{}.}}
+\DoxyCodeLine{00532\ \textcolor{comment}{\ *\ On\ LinuxPPC\ "{}qt\_vargs"{}\ doesn't\ work,\ "{}qt\_vargs\_stdarg"{}\ uses\ a\ more}}
+\DoxyCodeLine{00533\ \textcolor{comment}{\ *\ standard\ way\ to\ retrieve\ arguments\ from\ the\ variant\ list.}}
+\DoxyCodeLine{00534\ \textcolor{comment}{\ */}}
+\DoxyCodeLine{00535\ \textcolor{preprocessor}{\#define\ QUICKTHREADS\_VARGS(sp,\ nbytes,\ vargs,\ pt,\ startup,\ vuserf,\ cleanup)\ \(\backslash\)}}
+\DoxyCodeLine{00536\ \textcolor{preprocessor}{\ \ \ \ \ \ ((qt\_t\ *)qt\_vargs\_stdarg\ (sp,\ nbytes,\ vargs,\ pt,\ startup,\ vuserf,\ cleanup))}}
+\DoxyCodeLine{00537\ }
+\DoxyCodeLine{00538\ }
+\DoxyCodeLine{00539\ \textcolor{comment}{/*\ This\ macro\ is\ used\ by\ "{}QUICKTHREADS\_ADJ(sp)"{}\ to\ get\ the\ stack\ top\ form\ the\ stack}}
+\DoxyCodeLine{00540\ \textcolor{comment}{\ *\ bottom\ during\ a\ single\ argument\ thread\ initialization.}}
+\DoxyCodeLine{00541\ \textcolor{comment}{\ *\ It\ is\ the\ space\ we\ need\ to\ allocate\ for\ a\ single\ argument\ thread:\ the\ stack\ }}
+\DoxyCodeLine{00542\ \textcolor{comment}{\ *\ frame\ for\ the\ block\ routine\ ("{}qt\_block"{}\ or\ "{}qt\_blocki"{})\ and\ for\ "{}qt\_start"{}.}}
+\DoxyCodeLine{00543\ \textcolor{comment}{\ */}}
+\DoxyCodeLine{00544\ \textcolor{preprocessor}{\#define\ QUICKTHREADS\_STKBASE\ \(\backslash\)}}
+\DoxyCodeLine{00545\ \textcolor{preprocessor}{\ \ \ \ (QUICKTHREADS\_BLOCKI\_FRAME\_SIZE+QUICKTHREADS\_START\_FRAME\_SIZE)}}
+\DoxyCodeLine{00546\ }
+\DoxyCodeLine{00547\ \textcolor{comment}{/*\ This\ macro\ is\ used\ by\ "{}QUICKTHREADS\_VADJ(sp)"{}\ to\ get\ the\ stack\ top\ from\ the\ base}}
+\DoxyCodeLine{00548\ \textcolor{comment}{\ *\ of\ the\ variant\ argument\ list\ during\ a\ variant\ argument\ thread\ initialization.}}
+\DoxyCodeLine{00549\ \textcolor{comment}{\ */}}
+\DoxyCodeLine{00550\ \textcolor{preprocessor}{\#define\ QUICKTHREADS\_VSTKBASE\ \ \ (QUICKTHREADS\_BLOCKI\_FRAME\_SIZE+QUICKTHREADS\_VSTART\_LIST\_BASE)}}
+\DoxyCodeLine{00551\ }
+\DoxyCodeLine{00552\ \textcolor{comment}{/*\ The\ *index*\ (positive\ offset)\ of\ where\ to\ put\ each\ value.\ */}}
+\DoxyCodeLine{00553\ }
+\DoxyCodeLine{00554\ \textcolor{preprocessor}{\#define\ QUICKTHREADS\_ARGU\_INDEX\ QUICKTHREADS\_ARG\_INDEX(0)}}
+\DoxyCodeLine{00555\ \textcolor{preprocessor}{\#define\ QUICKTHREADS\_ARGT\_INDEX\ QUICKTHREADS\_ARG\_INDEX(1)}}
+\DoxyCodeLine{00556\ \textcolor{preprocessor}{\#define\ QUICKTHREADS\_USER\_INDEX\ QUICKTHREADS\_ARG\_INDEX(2)}}
+\DoxyCodeLine{00557\ \textcolor{preprocessor}{\#define\ QUICKTHREADS\_ONLY\_INDEX\ QUICKTHREADS\_ARG\_INDEX(3)}}
+\DoxyCodeLine{00558\ }
+\DoxyCodeLine{00559\ }
+\DoxyCodeLine{00560\ \textcolor{preprocessor}{\#define\ QUICKTHREADS\_VARGT\_INDEX\ \ \ \ \ \ \ \ QUICKTHREADS\_ARG\_INDEX(0)}}
+\DoxyCodeLine{00561\ \textcolor{preprocessor}{\#define\ QUICKTHREADS\_VSTARTUP\_INDEX\ QUICKTHREADS\_ARG\_INDEX(1)}}
+\DoxyCodeLine{00562\ \textcolor{preprocessor}{\#define\ QUICKTHREADS\_VUSERF\_INDEX\ \ \ \ \ \ \ QUICKTHREADS\_ARG\_INDEX(2)}}
+\DoxyCodeLine{00563\ \textcolor{preprocessor}{\#define\ QUICKTHREADS\_VCLEANUP\_INDEX\ QUICKTHREADS\_ARG\_INDEX(3)}}
+\DoxyCodeLine{00564\ }
+\DoxyCodeLine{00565\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{/*\ ndef\ QUICKTHREADS\_POWERPC\_H\ */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{00566\ }
+
+\end{DoxyCode}

@@ -1,0 +1,27 @@
+var classsc__core_1_1sc__trace__file__base =
+[
+    [ "unit_type", "classsc__core_1_1sc__trace__file__base.html#a8357689bac9966b249466484b4c55cb6", null ],
+    [ "sc_trace_file_base", "classsc__core_1_1sc__trace__file__base.html#a8a6aef13f76425684cc08befb5a99c0e", null ],
+    [ "~sc_trace_file_base", "classsc__core_1_1sc__trace__file__base.html#ab35588b6ea329d79c69b31658fbd8778", null ],
+    [ "sc_trace_file_base", "classsc__core_1_1sc__trace__file__base.html#a61a5a21a8fa0f12680ec3b39da02de80", null ],
+    [ "add_trace_check", "classsc__core_1_1sc__trace__file__base.html#af95ab8679ec14edc8985ecadca2ac829", null ],
+    [ "delta_cycles", "classsc__core_1_1sc__trace__file__base.html#a743eb3eb40455411df1830454f9931e8", null ],
+    [ "delta_cycles", "classsc__core_1_1sc__trace__file__base.html#acb1e7ad96a8e09aef202ad03843dfa76", null ],
+    [ "do_initialize", "classsc__core_1_1sc__trace__file__base.html#aedbd58025e31611e211007863c7d419c", null ],
+    [ "filename", "classsc__core_1_1sc__trace__file__base.html#a02e813fbcc631eb8a4ec44c127288e78", null ],
+    [ "has_low_units", "classsc__core_1_1sc__trace__file__base.html#acc570f5ccf7aab26fbfcf17d1d00dcac", null ],
+    [ "initialize", "classsc__core_1_1sc__trace__file__base.html#a91348e323ea49aac8f7114efa917b162", null ],
+    [ "is_initialized", "classsc__core_1_1sc__trace__file__base.html#aa586ce4a52d911dc90d2a9398a88f78c", null ],
+    [ "low_units_len", "classsc__core_1_1sc__trace__file__base.html#aec9aa20c2bde875961c24f0b7b926061", null ],
+    [ "open_fp", "classsc__core_1_1sc__trace__file__base.html#a3fdb5b97623c439fe196c726f6606ef2", null ],
+    [ "operator=", "classsc__core_1_1sc__trace__file__base.html#a1dee5a0af673815451f8e68ca8e09d79", null ],
+    [ "set_time_unit", "classsc__core_1_1sc__trace__file__base.html#ac9a65f967a8384a1cda985fd0f1f1b3d", null ],
+    [ "timestamp_in_trace_units", "classsc__core_1_1sc__trace__file__base.html#a8060980ce1854be89d26fd24fdd96bea", null ],
+    [ "filename_", "classsc__core_1_1sc__trace__file__base.html#a3c8c36225421d5fe71393432bc343b69", null ],
+    [ "fp", "classsc__core_1_1sc__trace__file__base.html#aabe7a92009444f039a6fde72881c9ca9", null ],
+    [ "initialized_", "classsc__core_1_1sc__trace__file__base.html#a92d2abf5358d95fbbb01538c3eb3456b", null ],
+    [ "kernel_unit_fs", "classsc__core_1_1sc__trace__file__base.html#a53874043c95b084e292f8ab6616b365a", null ],
+    [ "timescale_set_by_user", "classsc__core_1_1sc__trace__file__base.html#a4b362b10f37d233af3c7098e456a2481", null ],
+    [ "trace_delta_cycles_", "classsc__core_1_1sc__trace__file__base.html#a846e3925c2831c248a096c940d4398e5", null ],
+    [ "trace_unit_fs", "classsc__core_1_1sc__trace__file__base.html#ae1b6e8a76787d54db130bf25bcd96f52", null ]
+];

@@ -1,0 +1,146 @@
+\doxysection{sc\+\_\+join.\+h}
+\hypertarget{sc__join_8h_source}{}\label{sc__join_8h_source}\index{C:/Users/BJRODIER/Documents/QT\_REPO/QT\_VHDL\_simulator/code/Ressources/SystemC/include/sysc/kernel/sc\_join.h@{C:/Users/BJRODIER/Documents/QT\_REPO/QT\_VHDL\_simulator/code/Ressources/SystemC/include/sysc/kernel/sc\_join.h}}
+\mbox{\hyperlink{sc__join_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{comment}{/*****************************************************************************}}
+\DoxyCodeLine{00002\ \textcolor{comment}{}}
+\DoxyCodeLine{00003\ \textcolor{comment}{\ \ Licensed\ to\ Accellera\ Systems\ Initiative\ Inc.\ (Accellera)\ under\ one\ or}}
+\DoxyCodeLine{00004\ \textcolor{comment}{\ \ more\ contributor\ license\ agreements.\ \ See\ the\ NOTICE\ file\ distributed}}
+\DoxyCodeLine{00005\ \textcolor{comment}{\ \ with\ this\ work\ for\ additional\ information\ regarding\ copyright\ ownership.}}
+\DoxyCodeLine{00006\ \textcolor{comment}{\ \ Accellera\ licenses\ this\ file\ to\ you\ under\ the\ Apache\ License,\ Version\ 2.0}}
+\DoxyCodeLine{00007\ \textcolor{comment}{\ \ (the\ "{}License"{});\ you\ may\ not\ use\ this\ file\ except\ in\ compliance\ with\ the}}
+\DoxyCodeLine{00008\ \textcolor{comment}{\ \ License.\ \ You\ may\ obtain\ a\ copy\ of\ the\ License\ at}}
+\DoxyCodeLine{00009\ \textcolor{comment}{}}
+\DoxyCodeLine{00010\ \textcolor{comment}{\ \ \ \ http://www.apache.org/licenses/LICENSE-\/2.0}}
+\DoxyCodeLine{00011\ \textcolor{comment}{}}
+\DoxyCodeLine{00012\ \textcolor{comment}{\ \ Unless\ required\ by\ applicable\ law\ or\ agreed\ to\ in\ writing,\ software}}
+\DoxyCodeLine{00013\ \textcolor{comment}{\ \ distributed\ under\ the\ License\ is\ distributed\ on\ an\ "{}AS\ IS"{}\ BASIS,}}
+\DoxyCodeLine{00014\ \textcolor{comment}{\ \ WITHOUT\ WARRANTIES\ OR\ CONDITIONS\ OF\ ANY\ KIND,\ either\ express\ or}}
+\DoxyCodeLine{00015\ \textcolor{comment}{\ \ implied.\ \ See\ the\ License\ for\ the\ specific\ language\ governing}}
+\DoxyCodeLine{00016\ \textcolor{comment}{\ \ permissions\ and\ limitations\ under\ the\ License.}}
+\DoxyCodeLine{00017\ \textcolor{comment}{}}
+\DoxyCodeLine{00018\ \textcolor{comment}{\ *****************************************************************************/}}
+\DoxyCodeLine{00019\ }
+\DoxyCodeLine{00020\ \textcolor{comment}{/*****************************************************************************}}
+\DoxyCodeLine{00021\ \textcolor{comment}{}}
+\DoxyCodeLine{00022\ \textcolor{comment}{\ \ sc\_join.h\ -\/-\/\ Join\ Process\ Synchronization\ Definition}}
+\DoxyCodeLine{00023\ \textcolor{comment}{}}
+\DoxyCodeLine{00024\ \textcolor{comment}{\ \ Original\ Author:\ Andy\ Goodrich,\ Forte\ Design\ Systems,\ 5\ May\ 2003}}
+\DoxyCodeLine{00025\ \textcolor{comment}{}}
+\DoxyCodeLine{00026\ \textcolor{comment}{\ \ CHANGE\ LOG\ AT\ THE\ END\ OF\ THE\ FILE}}
+\DoxyCodeLine{00027\ \textcolor{comment}{\ *****************************************************************************/}}
+\DoxyCodeLine{00028\ }
+\DoxyCodeLine{00029\ \textcolor{comment}{//\ \$Log:\ sc\_join.h,v\ \$}}
+\DoxyCodeLine{00030\ \textcolor{comment}{//\ Revision\ 1.8\ \ 2011/08/26\ 21:45:00\ \ acg}}
+\DoxyCodeLine{00031\ \textcolor{comment}{//\ \ Andy\ Goodrich:\ fix\ internal\ event\ naming.}}
+\DoxyCodeLine{00032\ \textcolor{comment}{//}}
+\DoxyCodeLine{00033\ \textcolor{comment}{//\ Revision\ 1.7\ \ 2011/08/26\ 20:46:09\ \ acg}}
+\DoxyCodeLine{00034\ \textcolor{comment}{//\ \ Andy\ Goodrich:\ moved\ the\ modification\ log\ to\ the\ end\ of\ the\ file\ to}}
+\DoxyCodeLine{00035\ \textcolor{comment}{//\ \ eliminate\ source\ line\ number\ skew\ when\ check-\/ins\ are\ done.}}
+\DoxyCodeLine{00036\ \textcolor{comment}{//}}
+\DoxyCodeLine{00037\ }
+\DoxyCodeLine{00038\ \textcolor{preprocessor}{\#ifndef\ SC\_JOIN\_H}}
+\DoxyCodeLine{00039\ \textcolor{preprocessor}{\#define\ SC\_JOIN\_H}}
+\DoxyCodeLine{00040\ }
+\DoxyCodeLine{00041\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{sc__process_8h}{sysc/kernel/sc\_process.h}}"{}}}
+\DoxyCodeLine{00042\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{sc__wait_8h}{sysc/kernel/sc\_wait.h}}"{}}}
+\DoxyCodeLine{00043\ }
+\DoxyCodeLine{00044\ \textcolor{keyword}{namespace\ }\mbox{\hyperlink{namespacesc__core}{sc\_core}}\ \{}
+\DoxyCodeLine{00045\ }
+\DoxyCodeLine{00046\ \textcolor{comment}{//==============================================================================}}
+\DoxyCodeLine{00047\ \textcolor{comment}{//\ CLASS\ sc\_join}}
+\DoxyCodeLine{00048\ \textcolor{comment}{//}}
+\DoxyCodeLine{00049\ \textcolor{comment}{//\ This\ class\ provides\ a\ way\ of\ waiting\ for\ a\ set\ of\ threads\ to\ complete\ their}}
+\DoxyCodeLine{00050\ \textcolor{comment}{//\ execution.\ The\ threads\ whose\ completion\ is\ to\ be\ monitored\ are\ registered,}}
+\DoxyCodeLine{00051\ \textcolor{comment}{//\ and\ upon\ their\ completion\ an\ event\ notification\ will\ occur.}}
+\DoxyCodeLine{00052\ \textcolor{comment}{//==============================================================================}}
+\DoxyCodeLine{00053\ \textcolor{keyword}{class\ }\mbox{\hyperlink{sc__cmnhdr_8h_aff4a86b3f5de3ac2097081e7166fe89f}{SC\_API}}\ \mbox{\hyperlink{classsc__core_1_1sc__join}{sc\_join}}\ :\ \textcolor{keyword}{public}\ \mbox{\hyperlink{classsc__core_1_1sc__process__monitor}{sc\_process\_monitor}}\ \{}
+\DoxyCodeLine{00054\ \ \ \ \ \textcolor{keyword}{friend}\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classsc__core_1_1sc__process__b}{sc\_process\_b}};}
+\DoxyCodeLine{00055\ \ \ \ \ \textcolor{keyword}{friend}\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classsc__core_1_1sc__process__handle}{sc\_process\_handle}};}
+\DoxyCodeLine{00056\ \ \ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00057\ \ \ \ \ \mbox{\hyperlink{classsc__core_1_1sc__join_a4cde2217e9dc310dac6e171d4beaa401}{sc\_join}}();}
+\DoxyCodeLine{00058\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classsc__core_1_1sc__join_a2f52f9900ea49d9631085457d06c76d8}{add\_process}}(\ \mbox{\hyperlink{classsc__core_1_1sc__process__handle}{sc\_process\_handle}}\ \mbox{\hyperlink{class_sysc_add__pv}{process\_h}}\ );}
+\DoxyCodeLine{00059\ \ \ \ \ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{int}\ process\_count();}
+\DoxyCodeLine{00060\ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classsc__core_1_1sc__join_a4b27527d947fa209e590be377fc1bfc6}{signal}}(\mbox{\hyperlink{namespacesc__core_a624b4003393c71616779c6342b40c076}{sc\_thread\_handle}}\ \mbox{\hyperlink{class_sysc_add__pv}{thread\_p}},\ \textcolor{keywordtype}{int}\ type);}
+\DoxyCodeLine{00061\ \ \ \ \ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{namespacesc__core_a3c8b4f07530fb5b54f3a6896e4ef68c3}{wait}}();}
+\DoxyCodeLine{00062\ \ \ \ \ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{void}\ wait\_clocked();}
+\DoxyCodeLine{00063\ }
+\DoxyCodeLine{00064\ \ \ \textcolor{keyword}{protected}:\ }
+\DoxyCodeLine{00065\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classsc__core_1_1sc__join_ac464f33542cd74c2c9ff38fec7da4711}{add\_process}}(\ \mbox{\hyperlink{classsc__core_1_1sc__process__b}{sc\_process\_b}}*\ \mbox{\hyperlink{class_sysc_add__pv}{process\_p}}\ );}
+\DoxyCodeLine{00066\ }
+\DoxyCodeLine{00067\ \ \ \textcolor{keyword}{protected}:}
+\DoxyCodeLine{00068\ \ \ \ \ \mbox{\hyperlink{classsc__core_1_1sc__event}{sc\_event}}\ \mbox{\hyperlink{classsc__core_1_1sc__join_abbbe87abf1ee04cde953c1c7785fd5c1}{m\_join\_event}};\ \ \textcolor{comment}{//\ Event\ to\ notify\ when\ all\ threads\ have\ reported.}}
+\DoxyCodeLine{00069\ \ \ \ \ \textcolor{keywordtype}{int}\ \ \ \ \ \ \mbox{\hyperlink{classsc__core_1_1sc__join_a79f6fbfcfff4a276b50f59c15a9476d1}{m\_threads\_n}};\ \ \ \textcolor{comment}{//\ \#\ of\ threads\ still\ need\ to\ wait\ for.}}
+\DoxyCodeLine{00070\ }
+\DoxyCodeLine{00071\ \ \ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00072\ \ \ \ \ \mbox{\hyperlink{classsc__core_1_1sc__join_afdfd3743d6d6423ea0f6f8cfff31bebf}{sc\_join}}(\ \textcolor{keyword}{const}\ \mbox{\hyperlink{classsc__core_1_1sc__join}{sc\_join}}\&\ );}
+\DoxyCodeLine{00073\ \ \ \ \ \mbox{\hyperlink{classsc__core_1_1sc__join}{sc\_join}}\&\ \mbox{\hyperlink{class_sysc_add__pv}{operator\ =\ }}(\ \textcolor{keyword}{const}\ \mbox{\hyperlink{classsc__core_1_1sc__join}{sc\_join}}\&\ );}
+\DoxyCodeLine{00074\ \};}
+\DoxyCodeLine{00075\ }
+\DoxyCodeLine{00076\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{classsc__core_1_1sc__join_a0f3fee55d73a3905714e521667833c66}{sc\_join::process\_count}}()\ \{\ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{classsc__core_1_1sc__join_a79f6fbfcfff4a276b50f59c15a9476d1}{m\_threads\_n}};\ \}}
+\DoxyCodeLine{00077\ }
+\DoxyCodeLine{00078\ \textcolor{comment}{//\ suspend\ a\ thread\ that\ does\ not\ have\ a\ sensitivity\ list:}}
+\DoxyCodeLine{00079\ }
+\DoxyCodeLine{00080\ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classsc__core_1_1sc__join_a1f91b77504f459ece8224c7609850383}{sc\_join::wait}}()\ \{\ \mbox{\hyperlink{namespacesc__core_a3c8b4f07530fb5b54f3a6896e4ef68c3}{::sc\_core::wait}}(\mbox{\hyperlink{classsc__core_1_1sc__join_abbbe87abf1ee04cde953c1c7785fd5c1}{m\_join\_event}});\ \}}
+\DoxyCodeLine{00081\ }
+\DoxyCodeLine{00082\ \textcolor{comment}{//\ suspend\ a\ thread\ that\ has\ a\ sensitivity\ list:}}
+\DoxyCodeLine{00083\ }
+\DoxyCodeLine{00084\ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classsc__core_1_1sc__join_a5d33269959003ddbf5d5d80a1a1fbe1d}{sc\_join::wait\_clocked}}()}
+\DoxyCodeLine{00085\ \{}
+\DoxyCodeLine{00086\ \ \ \ \ \textcolor{keywordflow}{do}\ \{\ \mbox{\hyperlink{namespacesc__core_a3c8b4f07530fb5b54f3a6896e4ef68c3}{::sc\_core::wait}}();\ \}\ \textcolor{keywordflow}{while}\ (\mbox{\hyperlink{classsc__core_1_1sc__join_a79f6fbfcfff4a276b50f59c15a9476d1}{m\_threads\_n}}\ !=\ 0);}
+\DoxyCodeLine{00087\ \}}
+\DoxyCodeLine{00088\ }
+\DoxyCodeLine{00089\ \textcolor{preprocessor}{\#define\ SC\_CJOIN\ \(\backslash\)}}
+\DoxyCodeLine{00090\ \textcolor{preprocessor}{\ \ \ \ \};\ \(\backslash\)}}
+\DoxyCodeLine{00091\ \textcolor{preprocessor}{\ \ \ \ sc\_core::sc\_join\ \ \ \ \ \ \ \ \ \ \ join;\ \(\backslash\)}}
+\DoxyCodeLine{00092\ \textcolor{preprocessor}{\ \ \ \ for\ (\ unsigned\ int\ i\ =\ 0;\ \(\backslash\)}}
+\DoxyCodeLine{00093\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ i\ <\ sizeof(forkees)/sizeof(sc\_core::sc\_process\_handle);\ \(\backslash\)}}
+\DoxyCodeLine{00094\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ i++\ )\ \(\backslash\)}}
+\DoxyCodeLine{00095\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ join.add\_process(forkees[i]);\ \(\backslash\)}}
+\DoxyCodeLine{00096\ \textcolor{preprocessor}{\ \ \ \ join.wait\_clocked();\ \(\backslash\)}}
+\DoxyCodeLine{00097\ \textcolor{preprocessor}{\}}}
+\DoxyCodeLine{00098\ }
+\DoxyCodeLine{00099\ \textcolor{preprocessor}{\#define\ SC\_FORK\ \(\backslash\)}}
+\DoxyCodeLine{00100\ \textcolor{preprocessor}{\{\ \(\backslash\)}}
+\DoxyCodeLine{00101\ \textcolor{preprocessor}{\ \ \ \ sc\_core::sc\_process\_handle\ forkees[]\ =\ \{}}
+\DoxyCodeLine{00102\ }
+\DoxyCodeLine{00103\ \textcolor{preprocessor}{\#define\ SC\_JOIN\ \(\backslash\)}}
+\DoxyCodeLine{00104\ \textcolor{preprocessor}{\ \ \ \ \};\ \(\backslash\)}}
+\DoxyCodeLine{00105\ \textcolor{preprocessor}{\ \ \ \ sc\_core::sc\_join\ \ \ \ \ \ \ \ \ \ \ join;\ \(\backslash\)}}
+\DoxyCodeLine{00106\ \textcolor{preprocessor}{\ \ \ \ for\ (\ unsigned\ int\ i\ =\ 0;\ \(\backslash\)}}
+\DoxyCodeLine{00107\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ i\ <\ sizeof(forkees)/sizeof(sc\_core::sc\_process\_handle);\ \(\backslash\)}}
+\DoxyCodeLine{00108\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ i++\ )\ \(\backslash\)}}
+\DoxyCodeLine{00109\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ join.add\_process(forkees[i]);\ \(\backslash\)}}
+\DoxyCodeLine{00110\ \textcolor{preprocessor}{\ \ \ \ join.wait();\ \(\backslash\)}}
+\DoxyCodeLine{00111\ \textcolor{preprocessor}{\}}}
+\DoxyCodeLine{00112\ }
+\DoxyCodeLine{00113\ \}\ \textcolor{comment}{//\ namespace\ sc\_core}}
+\DoxyCodeLine{00114\ }
+\DoxyCodeLine{00115\ \textcolor{comment}{//\ Revision\ 1.6\ \ 2011/08/24\ 22:05:50\ \ acg}}
+\DoxyCodeLine{00116\ \textcolor{comment}{//\ \ Torsten\ Maehne:\ initialization\ changes\ to\ remove\ warnings.}}
+\DoxyCodeLine{00117\ \textcolor{comment}{//}}
+\DoxyCodeLine{00118\ \textcolor{comment}{//\ Revision\ 1.5\ \ 2011/02/18\ 20:27:14\ \ acg}}
+\DoxyCodeLine{00119\ \textcolor{comment}{//\ \ Andy\ Goodrich:\ Updated\ Copyrights.}}
+\DoxyCodeLine{00120\ \textcolor{comment}{//}}
+\DoxyCodeLine{00121\ \textcolor{comment}{//\ Revision\ 1.4\ \ 2011/02/13\ 21:47:37\ \ acg}}
+\DoxyCodeLine{00122\ \textcolor{comment}{//\ \ Andy\ Goodrich:\ update\ copyright\ notice.}}
+\DoxyCodeLine{00123\ \textcolor{comment}{//}}
+\DoxyCodeLine{00124\ \textcolor{comment}{//\ Revision\ 1.3\ \ 2009/07/28\ 01:10:53\ \ acg}}
+\DoxyCodeLine{00125\ \textcolor{comment}{//\ \ Andy\ Goodrich:\ updates\ for\ 2.3\ release\ candidate.}}
+\DoxyCodeLine{00126\ \textcolor{comment}{//}}
+\DoxyCodeLine{00127\ \textcolor{comment}{//\ Revision\ 1.2\ \ 2008/05/22\ 17:06:25\ \ acg}}
+\DoxyCodeLine{00128\ \textcolor{comment}{//\ \ Andy\ Goodrich:\ updated\ copyright\ notice\ to\ include\ 2008.}}
+\DoxyCodeLine{00129\ \textcolor{comment}{//}}
+\DoxyCodeLine{00130\ \textcolor{comment}{//\ Revision\ 1.1.1.1\ \ 2006/12/15\ 20:20:05\ \ acg}}
+\DoxyCodeLine{00131\ \textcolor{comment}{//\ SystemC\ 2.3}}
+\DoxyCodeLine{00132\ \textcolor{comment}{//}}
+\DoxyCodeLine{00133\ \textcolor{comment}{//\ Revision\ 1.5\ \ 2006/04/28\ 21:38:27\ \ acg}}
+\DoxyCodeLine{00134\ \textcolor{comment}{//\ \ Andy\ Goodrich:\ fixed\ loop\ constraint\ that\ was\ using\ sizeof(sc\_thread\_handle)}}
+\DoxyCodeLine{00135\ \textcolor{comment}{//\ \ rather\ than\ sizeof(sc\_process\_handle).}}
+\DoxyCodeLine{00136\ \textcolor{comment}{//}}
+\DoxyCodeLine{00137\ \textcolor{comment}{//\ Revision\ 1.4\ \ 2006/01/13\ 18:44:29\ \ acg}}
+\DoxyCodeLine{00138\ \textcolor{comment}{//\ Added\ \$Log\ to\ record\ CVS\ changes\ into\ the\ source.}}
+\DoxyCodeLine{00139\ }
+\DoxyCodeLine{00140\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{//\ SC\_JOIN\_H}}
+
+\end{DoxyCode}

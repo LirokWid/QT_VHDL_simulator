@@ -1,0 +1,162 @@
+.TH "sc_core::sc_runnable" 3 "VHDL simulator" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+sc_core::sc_runnable
+.SH SYNOPSIS
+.br
+.PP
+.PP
+\fR#include <sc_runnable\&.h>\fP
+.SS "Public Member Functions"
+
+.in +1c
+.ti -1c
+.RI "\fBsc_runnable\fP ()"
+.br
+.ti -1c
+.RI "\fB~sc_runnable\fP ()"
+.br
+.ti -1c
+.RI "\fBvoid\fP \fBinit\fP ()"
+.br
+.ti -1c
+.RI "\fBvoid\fP \fBtoggle_methods\fP ()"
+.br
+.ti -1c
+.RI "\fBvoid\fP \fBtoggle_threads\fP ()"
+.br
+.ti -1c
+.RI "\fBvoid\fP \fBremove_method\fP (\fBsc_method_handle\fP)"
+.br
+.ti -1c
+.RI "\fBvoid\fP \fBremove_thread\fP (\fBsc_thread_handle\fP)"
+.br
+.ti -1c
+.RI "\fBvoid\fP \fBexecute_method_next\fP (\fBsc_method_handle\fP)"
+.br
+.ti -1c
+.RI "\fBvoid\fP \fBexecute_thread_next\fP (\fBsc_thread_handle\fP)"
+.br
+.ti -1c
+.RI "\fBvoid\fP \fBpush_back_method\fP (\fBsc_method_handle\fP)"
+.br
+.ti -1c
+.RI "\fBvoid\fP \fBpush_back_thread\fP (\fBsc_thread_handle\fP)"
+.br
+.ti -1c
+.RI "\fBvoid\fP \fBpush_front_method\fP (\fBsc_method_handle\fP)"
+.br
+.ti -1c
+.RI "\fBvoid\fP \fBpush_front_thread\fP (\fBsc_thread_handle\fP)"
+.br
+.ti -1c
+.RI "\fBbool\fP \fBis_initialized\fP () \fBconst\fP"
+.br
+.ti -1c
+.RI "\fBbool\fP \fBis_empty\fP () \fBconst\fP"
+.br
+.ti -1c
+.RI "\fBsc_method_handle\fP \fBpop_method\fP ()"
+.br
+.ti -1c
+.RI "\fBsc_thread_handle\fP \fBpop_thread\fP ()"
+.br
+.ti -1c
+.RI "\fBvoid\fP \fBdump\fP () \fBconst\fP"
+.br
+.in -1c
+.SS "Private Member Functions"
+
+.in +1c
+.ti -1c
+.RI "\fBsc_runnable\fP (\fBconst\fP \fBsc_runnable\fP &)"
+.br
+.ti -1c
+.RI "\fBsc_runnable\fP & \fBoperator=\fP (\fBconst\fP \fBsc_runnable\fP &)"
+.br
+.in -1c
+.SS "Private Attributes"
+
+.in +1c
+.ti -1c
+.RI "\fBsc_method_handle\fP \fBm_methods_push_head\fP"
+.br
+.ti -1c
+.RI "\fBsc_method_handle\fP \fBm_methods_push_tail\fP"
+.br
+.ti -1c
+.RI "\fBsc_method_handle\fP \fBm_methods_pop\fP"
+.br
+.ti -1c
+.RI "\fBsc_thread_handle\fP \fBm_threads_push_head\fP"
+.br
+.ti -1c
+.RI "\fBsc_thread_handle\fP \fBm_threads_push_tail\fP"
+.br
+.ti -1c
+.RI "\fBsc_thread_handle\fP \fBm_threads_pop\fP"
+.br
+.in -1c
+.SH "Constructor & Destructor Documentation"
+.PP 
+.SS "sc_core::sc_runnable::sc_runnable ()\fR [inline]\fP"
+
+.SS "sc_core::sc_runnable::~sc_runnable ()\fR [inline]\fP"
+
+.SS "sc_core::sc_runnable::sc_runnable (\fBconst\fP \fBsc_runnable\fP &)\fR [private]\fP"
+
+.SH "Member Function Documentation"
+.PP 
+.SS "\fBvoid\fP sc_core::sc_runnable::dump () const\fR [inline]\fP"
+
+.SS "\fBvoid\fP sc_core::sc_runnable::execute_method_next (\fBsc_method_handle\fP method_h)\fR [inline]\fP"
+
+.SS "\fBvoid\fP sc_core::sc_runnable::execute_thread_next (\fBsc_thread_handle\fP thread_h)\fR [inline]\fP"
+
+.SS "\fBvoid\fP sc_core::sc_runnable::init ()\fR [inline]\fP"
+
+.SS "\fBbool\fP sc_core::sc_runnable::is_empty () const\fR [inline]\fP"
+
+.SS "\fBbool\fP sc_core::sc_runnable::is_initialized () const\fR [inline]\fP"
+
+.SS "\fBsc_runnable\fP & sc_core::sc_runnable::operator= (\fBconst\fP \fBsc_runnable\fP &)\fR [private]\fP"
+
+.SS "\fBsc_method_handle\fP sc_core::sc_runnable::pop_method ()\fR [inline]\fP"
+
+.SS "\fBsc_thread_handle\fP sc_core::sc_runnable::pop_thread ()\fR [inline]\fP"
+
+.SS "\fBvoid\fP sc_core::sc_runnable::push_back_method (\fBsc_method_handle\fP method_h)\fR [inline]\fP"
+
+.SS "\fBvoid\fP sc_core::sc_runnable::push_back_thread (\fBsc_thread_handle\fP thread_h)\fR [inline]\fP"
+
+.SS "\fBvoid\fP sc_core::sc_runnable::push_front_method (\fBsc_method_handle\fP method_h)\fR [inline]\fP"
+
+.SS "\fBvoid\fP sc_core::sc_runnable::push_front_thread (\fBsc_thread_handle\fP thread_h)\fR [inline]\fP"
+
+.SS "\fBvoid\fP sc_core::sc_runnable::remove_method (\fBsc_method_handle\fP remove_p)\fR [inline]\fP"
+
+.SS "\fBvoid\fP sc_core::sc_runnable::remove_thread (\fBsc_thread_handle\fP remove_p)\fR [inline]\fP"
+
+.SS "\fBvoid\fP sc_core::sc_runnable::toggle_methods ()\fR [inline]\fP"
+
+.SS "\fBvoid\fP sc_core::sc_runnable::toggle_threads ()\fR [inline]\fP"
+
+.SH "Member Data Documentation"
+.PP 
+.SS "\fBsc_method_handle\fP sc_core::sc_runnable::m_methods_pop\fR [private]\fP"
+
+.SS "\fBsc_method_handle\fP sc_core::sc_runnable::m_methods_push_head\fR [private]\fP"
+
+.SS "\fBsc_method_handle\fP sc_core::sc_runnable::m_methods_push_tail\fR [private]\fP"
+
+.SS "\fBsc_thread_handle\fP sc_core::sc_runnable::m_threads_pop\fR [private]\fP"
+
+.SS "\fBsc_thread_handle\fP sc_core::sc_runnable::m_threads_push_head\fR [private]\fP"
+
+.SS "\fBsc_thread_handle\fP sc_core::sc_runnable::m_threads_push_tail\fR [private]\fP"
+
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for VHDL simulator from the source code\&.

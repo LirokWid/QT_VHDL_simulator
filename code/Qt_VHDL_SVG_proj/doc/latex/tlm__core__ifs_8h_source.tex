@@ -1,0 +1,155 @@
+\doxysection{tlm\+\_\+core\+\_\+ifs.\+h}
+\hypertarget{tlm__core__ifs_8h_source}{}\label{tlm__core__ifs_8h_source}\index{C:/Users/BJRODIER/Documents/QT\_REPO/QT\_VHDL\_simulator/code/Ressources/SystemC/include/tlm\_core/tlm\_1/tlm\_req\_rsp/tlm\_1\_interfaces/tlm\_core\_ifs.h@{C:/Users/BJRODIER/Documents/QT\_REPO/QT\_VHDL\_simulator/code/Ressources/SystemC/include/tlm\_core/tlm\_1/tlm\_req\_rsp/tlm\_1\_interfaces/tlm\_core\_ifs.h}}
+\mbox{\hyperlink{tlm__core__ifs_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{comment}{/*****************************************************************************}}
+\DoxyCodeLine{00002\ \textcolor{comment}{}}
+\DoxyCodeLine{00003\ \textcolor{comment}{\ \ Licensed\ to\ Accellera\ Systems\ Initiative\ Inc.\ (Accellera)\ under\ one\ or}}
+\DoxyCodeLine{00004\ \textcolor{comment}{\ \ more\ contributor\ license\ agreements.\ \ See\ the\ NOTICE\ file\ distributed}}
+\DoxyCodeLine{00005\ \textcolor{comment}{\ \ with\ this\ work\ for\ additional\ information\ regarding\ copyright\ ownership.}}
+\DoxyCodeLine{00006\ \textcolor{comment}{\ \ Accellera\ licenses\ this\ file\ to\ you\ under\ the\ Apache\ License,\ Version\ 2.0}}
+\DoxyCodeLine{00007\ \textcolor{comment}{\ \ (the\ "{}License"{});\ you\ may\ not\ use\ this\ file\ except\ in\ compliance\ with\ the}}
+\DoxyCodeLine{00008\ \textcolor{comment}{\ \ License.\ \ You\ may\ obtain\ a\ copy\ of\ the\ License\ at}}
+\DoxyCodeLine{00009\ \textcolor{comment}{}}
+\DoxyCodeLine{00010\ \textcolor{comment}{\ \ \ \ http://www.apache.org/licenses/LICENSE-\/2.0}}
+\DoxyCodeLine{00011\ \textcolor{comment}{}}
+\DoxyCodeLine{00012\ \textcolor{comment}{\ \ Unless\ required\ by\ applicable\ law\ or\ agreed\ to\ in\ writing,\ software}}
+\DoxyCodeLine{00013\ \textcolor{comment}{\ \ distributed\ under\ the\ License\ is\ distributed\ on\ an\ "{}AS\ IS"{}\ BASIS,}}
+\DoxyCodeLine{00014\ \textcolor{comment}{\ \ WITHOUT\ WARRANTIES\ OR\ CONDITIONS\ OF\ ANY\ KIND,\ either\ express\ or}}
+\DoxyCodeLine{00015\ \textcolor{comment}{\ \ implied.\ \ See\ the\ License\ for\ the\ specific\ language\ governing}}
+\DoxyCodeLine{00016\ \textcolor{comment}{\ \ permissions\ and\ limitations\ under\ the\ License.}}
+\DoxyCodeLine{00017\ \textcolor{comment}{}}
+\DoxyCodeLine{00018\ \textcolor{comment}{\ *****************************************************************************/}}
+\DoxyCodeLine{00019\ }
+\DoxyCodeLine{00020\ \textcolor{comment}{//}}
+\DoxyCodeLine{00021\ \textcolor{comment}{//\ Note\ to\ the\ LRM\ writer\ :\ This\ is\ the\ core\ of\ the\ TLM\ standard}}
+\DoxyCodeLine{00022\ \textcolor{comment}{//}}
+\DoxyCodeLine{00023\ }
+\DoxyCodeLine{00024\ }
+\DoxyCodeLine{00025\ \textcolor{preprocessor}{\#ifndef\ \_\_TLM\_CORE\_IFS\_H\_\_}}
+\DoxyCodeLine{00026\ \textcolor{preprocessor}{\#define\ \_\_TLM\_CORE\_IFS\_H\_\_}}
+\DoxyCodeLine{00027\ }
+\DoxyCodeLine{00028\ \textcolor{comment}{//\#include\ <systemc>}}
+\DoxyCodeLine{00029\ }
+\DoxyCodeLine{00030\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{tlm__tag_8h}{tlm\_core/tlm\_1/tlm\_req\_rsp/tlm\_1\_interfaces/tlm\_tag.h}}"{}}}
+\DoxyCodeLine{00031\ }
+\DoxyCodeLine{00032\ \textcolor{keyword}{namespace\ }\mbox{\hyperlink{namespacetlm}{tlm}}\ \{}
+\DoxyCodeLine{00033\ }
+\DoxyCodeLine{00034\ \textcolor{comment}{//\ bidirectional\ blocking\ interfaces}}
+\DoxyCodeLine{00035\ }
+\DoxyCodeLine{00036\ \textcolor{keyword}{template}\ <\ \textcolor{keyword}{typename}\ REQ\ ,\ \textcolor{keyword}{typename}\ RSP\ >}
+\DoxyCodeLine{00037\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classtlm_1_1tlm__transport__if}{tlm\_transport\_if}}\ :\ \textcolor{keyword}{public}\ \textcolor{keyword}{virtual}\ \mbox{\hyperlink{classsc__core_1_1sc__interface}{sc\_core::sc\_interface}}}
+\DoxyCodeLine{00038\ \{}
+\DoxyCodeLine{00039\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00040\ \ \ \textcolor{keyword}{virtual}\ \mbox{\hyperlink{class_sysc_add__pv}{RSP}}\ \mbox{\hyperlink{classtlm_1_1tlm__transport__if_a2d276873385703711a4518bb56aadc56}{transport}}(\ \textcolor{keyword}{const}\ \mbox{\hyperlink{class_sysc_add__pv}{REQ}}\ \&\ )\ =\ 0;}
+\DoxyCodeLine{00041\ }
+\DoxyCodeLine{00042\ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classtlm_1_1tlm__transport__if_a61735af8eb69a169ea6c2606ee2e20cc}{transport}}(\ \textcolor{keyword}{const}\ \mbox{\hyperlink{class_sysc_add__pv}{REQ}}\ \&\mbox{\hyperlink{class_sysc_add__pv}{req}}\ ,\ \mbox{\hyperlink{class_sysc_add__pv}{RSP}}\ \&rsp\ )\ \{}
+\DoxyCodeLine{00043\ \ \ \ \ rsp\ =\ \mbox{\hyperlink{classtlm_1_1tlm__transport__if_a2d276873385703711a4518bb56aadc56}{transport}}(\ \mbox{\hyperlink{class_sysc_add__pv}{req}}\ );}
+\DoxyCodeLine{00044\ \ \ \}}
+\DoxyCodeLine{00045\ }
+\DoxyCodeLine{00046\ \};}
+\DoxyCodeLine{00047\ }
+\DoxyCodeLine{00048\ }
+\DoxyCodeLine{00049\ \textcolor{comment}{//\ uni-\/directional\ blocking\ interfaces}}
+\DoxyCodeLine{00050\ }
+\DoxyCodeLine{00051\ \textcolor{keyword}{template}\ <\ \textcolor{keyword}{typename}\ T\ >}
+\DoxyCodeLine{00052\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classtlm_1_1tlm__blocking__get__if}{tlm\_blocking\_get\_if}}\ :\ \textcolor{keyword}{public}\ \textcolor{keyword}{virtual}\ \mbox{\hyperlink{classsc__core_1_1sc__interface}{sc\_core::sc\_interface}}}
+\DoxyCodeLine{00053\ \{}
+\DoxyCodeLine{00054\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00055\ \ \ \textcolor{keyword}{virtual}\ \mbox{\hyperlink{mem__fn__cc_8hpp_adf1f3edb9115acb0a1e04209b7a9937b}{T}}\ \mbox{\hyperlink{classtlm_1_1tlm__blocking__get__if_a1896a467a2abb84c83727fd4b430bb03}{get}}(\ \mbox{\hyperlink{class_sysc_add__pv}{tlm\_tag<T>}}\ *t\ =\ 0\ )\ =\ 0;}
+\DoxyCodeLine{00056\ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classtlm_1_1tlm__blocking__get__if_a74c2dc0f6c9e729eae1d0a1d59bf2067}{get}}(\ \mbox{\hyperlink{mem__fn__cc_8hpp_adf1f3edb9115acb0a1e04209b7a9937b}{T}}\ \&t\ )\ \{\ t\ =\ \mbox{\hyperlink{classtlm_1_1tlm__blocking__get__if_a74c2dc0f6c9e729eae1d0a1d59bf2067}{get}}();\ \}}
+\DoxyCodeLine{00057\ }
+\DoxyCodeLine{00058\ \};}
+\DoxyCodeLine{00059\ }
+\DoxyCodeLine{00060\ \textcolor{keyword}{template}\ <\ \textcolor{keyword}{typename}\ T\ >}
+\DoxyCodeLine{00061\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classtlm_1_1tlm__blocking__put__if}{tlm\_blocking\_put\_if}}\ :\ \textcolor{keyword}{public}\ \textcolor{keyword}{virtual}\ \mbox{\hyperlink{classsc__core_1_1sc__interface}{sc\_core::sc\_interface}}}
+\DoxyCodeLine{00062\ \{}
+\DoxyCodeLine{00063\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00064\ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classtlm_1_1tlm__blocking__put__if_a290f17531327c121cdd6beb7c132fb28}{put}}(\ \textcolor{keyword}{const}\ \mbox{\hyperlink{mem__fn__cc_8hpp_adf1f3edb9115acb0a1e04209b7a9937b}{T}}\ \&t\ )\ =\ 0;}
+\DoxyCodeLine{00065\ \};}
+\DoxyCodeLine{00066\ }
+\DoxyCodeLine{00067\ \textcolor{comment}{//\ uni-\/directional\ non\ blocking\ interfaces}}
+\DoxyCodeLine{00068\ }
+\DoxyCodeLine{00069\ \textcolor{keyword}{template}\ <\ \textcolor{keyword}{typename}\ T\ >}
+\DoxyCodeLine{00070\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classtlm_1_1tlm__nonblocking__get__if}{tlm\_nonblocking\_get\_if}}\ :\ \textcolor{keyword}{public}\ \textcolor{keyword}{virtual}\ \mbox{\hyperlink{classsc__core_1_1sc__interface}{sc\_core::sc\_interface}}}
+\DoxyCodeLine{00071\ \{}
+\DoxyCodeLine{00072\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00073\ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{classtlm_1_1tlm__nonblocking__get__if_a9d83e8465db11c3bfb628369b5106148}{nb\_get}}(\ \mbox{\hyperlink{mem__fn__cc_8hpp_adf1f3edb9115acb0a1e04209b7a9937b}{T}}\ \&t\ )\ =\ 0;}
+\DoxyCodeLine{00074\ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{classtlm_1_1tlm__nonblocking__get__if_af8bb0bcb1732f33c981c8dbf72c1fbb9}{nb\_can\_get}}(\ \mbox{\hyperlink{class_sysc_add__pv}{tlm\_tag<T>}}\ *t\ =\ 0\ )\ \textcolor{keyword}{const}\ =\ 0;}
+\DoxyCodeLine{00075\ \ \ \textcolor{keyword}{virtual}\ \textcolor{keyword}{const}\ \mbox{\hyperlink{classsc__core_1_1sc__event}{sc\_core::sc\_event}}\ \&\mbox{\hyperlink{classtlm_1_1tlm__nonblocking__get__if_ab2c33d4c6c608079937c41b14a275e25}{ok\_to\_get}}(\ \mbox{\hyperlink{class_sysc_add__pv}{tlm\_tag<T>}}\ *t\ =\ 0\ )\ \textcolor{keyword}{const}\ =\ 0;}
+\DoxyCodeLine{00076\ \};}
+\DoxyCodeLine{00077\ }
+\DoxyCodeLine{00078\ \textcolor{keyword}{template}\ <\ \textcolor{keyword}{typename}\ T\ >}
+\DoxyCodeLine{00079\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classtlm_1_1tlm__nonblocking__put__if}{tlm\_nonblocking\_put\_if}}\ :\ \textcolor{keyword}{public}\ \textcolor{keyword}{virtual}\ \mbox{\hyperlink{classsc__core_1_1sc__interface}{sc\_core::sc\_interface}}}
+\DoxyCodeLine{00080\ \{}
+\DoxyCodeLine{00081\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00082\ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{classtlm_1_1tlm__nonblocking__put__if_a4342018a981d238b254d642d2114bac5}{nb\_put}}(\ \textcolor{keyword}{const}\ \mbox{\hyperlink{mem__fn__cc_8hpp_adf1f3edb9115acb0a1e04209b7a9937b}{T}}\ \&t\ )\ =\ 0;}
+\DoxyCodeLine{00083\ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{classtlm_1_1tlm__nonblocking__put__if_a8f4b6891fbea8fa45dbf9dc8582a6f0d}{nb\_can\_put}}(\ \mbox{\hyperlink{class_sysc_add__pv}{tlm\_tag<T>}}\ *t\ =\ 0\ )\ \textcolor{keyword}{const}\ =\ 0;}
+\DoxyCodeLine{00084\ \ \ \textcolor{keyword}{virtual}\ \textcolor{keyword}{const}\ \mbox{\hyperlink{classsc__core_1_1sc__event}{sc\_core::sc\_event}}\ \&\mbox{\hyperlink{classtlm_1_1tlm__nonblocking__put__if_a386cf2c6c13009dbee83d9046160660d}{ok\_to\_put}}(\ \mbox{\hyperlink{class_sysc_add__pv}{tlm\_tag<T>}}\ *t\ =\ 0\ )\ \textcolor{keyword}{const}\ =\ 0;}
+\DoxyCodeLine{00085\ \};}
+\DoxyCodeLine{00086\ }
+\DoxyCodeLine{00087\ }
+\DoxyCodeLine{00088\ \textcolor{comment}{//\ combined\ uni-\/directional\ blocking\ and\ non\ blocking}}
+\DoxyCodeLine{00089\ }
+\DoxyCodeLine{00090\ \textcolor{keyword}{template}\ <\ \textcolor{keyword}{typename}\ T\ >}
+\DoxyCodeLine{00091\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classtlm_1_1tlm__get__if}{tlm\_get\_if}}\ :}
+\DoxyCodeLine{00092\ \ \ \textcolor{keyword}{public}\ \textcolor{keyword}{virtual}\ \mbox{\hyperlink{classtlm_1_1tlm__blocking__get__if}{tlm\_blocking\_get\_if}}<\ T\ >\ ,}
+\DoxyCodeLine{00093\ \ \ \textcolor{keyword}{public}\ \textcolor{keyword}{virtual}\ \mbox{\hyperlink{classtlm_1_1tlm__nonblocking__get__if}{tlm\_nonblocking\_get\_if}}<\ T\ >\ \{\};}
+\DoxyCodeLine{00094\ }
+\DoxyCodeLine{00095\ \textcolor{keyword}{template}\ <\ \textcolor{keyword}{typename}\ T\ >}
+\DoxyCodeLine{00096\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classtlm_1_1tlm__put__if}{tlm\_put\_if}}\ :}
+\DoxyCodeLine{00097\ \ \ \textcolor{keyword}{public}\ \textcolor{keyword}{virtual}\ \mbox{\hyperlink{classtlm_1_1tlm__blocking__put__if}{tlm\_blocking\_put\_if}}<\ T\ >\ ,}
+\DoxyCodeLine{00098\ \ \ \textcolor{keyword}{public}\ \textcolor{keyword}{virtual}\ \mbox{\hyperlink{classtlm_1_1tlm__nonblocking__put__if}{tlm\_nonblocking\_put\_if}}<\ T\ >\ \{\};}
+\DoxyCodeLine{00099\ }
+\DoxyCodeLine{00100\ }
+\DoxyCodeLine{00101\ \textcolor{comment}{//\ peek\ interfaces}}
+\DoxyCodeLine{00102\ }
+\DoxyCodeLine{00103\ \textcolor{keyword}{template}\ <\ \textcolor{keyword}{typename}\ T\ >}
+\DoxyCodeLine{00104\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classtlm_1_1tlm__blocking__peek__if}{tlm\_blocking\_peek\_if}}\ :\ \textcolor{keyword}{public}\ \textcolor{keyword}{virtual}\ \mbox{\hyperlink{classsc__core_1_1sc__interface}{sc\_core::sc\_interface}}}
+\DoxyCodeLine{00105\ \{}
+\DoxyCodeLine{00106\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00107\ \ \ \textcolor{keyword}{virtual}\ \mbox{\hyperlink{mem__fn__cc_8hpp_adf1f3edb9115acb0a1e04209b7a9937b}{T}}\ \mbox{\hyperlink{classtlm_1_1tlm__blocking__peek__if_ac35a8e1bc51bfdcd9425183fa4ad0a8e}{peek}}(\ \mbox{\hyperlink{class_sysc_add__pv}{tlm\_tag<T>}}\ *t\ =\ 0\ )\ \textcolor{keyword}{const}\ =\ 0;}
+\DoxyCodeLine{00108\ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classtlm_1_1tlm__blocking__peek__if_a765d23175e3b10ad889e7e1ff0970b9f}{peek}}(\ \mbox{\hyperlink{mem__fn__cc_8hpp_adf1f3edb9115acb0a1e04209b7a9937b}{T}}\ \&t\ )\textcolor{keyword}{\ const\ }\{\ t\ =\ \mbox{\hyperlink{classtlm_1_1tlm__blocking__peek__if_a765d23175e3b10ad889e7e1ff0970b9f}{peek}}();\ \}}
+\DoxyCodeLine{00109\ }
+\DoxyCodeLine{00110\ \};}
+\DoxyCodeLine{00111\ }
+\DoxyCodeLine{00112\ \textcolor{keyword}{template}\ <\ \textcolor{keyword}{typename}\ T\ >}
+\DoxyCodeLine{00113\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classtlm_1_1tlm__nonblocking__peek__if}{tlm\_nonblocking\_peek\_if}}\ :\ \textcolor{keyword}{public}\ \textcolor{keyword}{virtual}\ \mbox{\hyperlink{classsc__core_1_1sc__interface}{sc\_core::sc\_interface}}}
+\DoxyCodeLine{00114\ \{}
+\DoxyCodeLine{00115\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00116\ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{classtlm_1_1tlm__nonblocking__peek__if_acda9f1feda9ee5f03ad90e3ac9838b64}{nb\_peek}}(\ \mbox{\hyperlink{mem__fn__cc_8hpp_adf1f3edb9115acb0a1e04209b7a9937b}{T}}\ \&t\ )\ \textcolor{keyword}{const}\ =\ 0;}
+\DoxyCodeLine{00117\ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{classtlm_1_1tlm__nonblocking__peek__if_ac018695f84dcbe60afb5ea963ef96618}{nb\_can\_peek}}(\ \mbox{\hyperlink{class_sysc_add__pv}{tlm\_tag<T>}}\ *t\ =\ 0\ )\ \textcolor{keyword}{const}\ =\ 0;}
+\DoxyCodeLine{00118\ \ \ \textcolor{keyword}{virtual}\ \textcolor{keyword}{const}\ \mbox{\hyperlink{classsc__core_1_1sc__event}{sc\_core::sc\_event}}\ \&\mbox{\hyperlink{classtlm_1_1tlm__nonblocking__peek__if_a05bcdcd1185544db06beb2d8e1816532}{ok\_to\_peek}}(\ \mbox{\hyperlink{class_sysc_add__pv}{tlm\_tag<T>}}\ *t\ =\ 0\ )\ \textcolor{keyword}{const}\ =\ 0;}
+\DoxyCodeLine{00119\ \};}
+\DoxyCodeLine{00120\ }
+\DoxyCodeLine{00121\ \textcolor{keyword}{template}\ <\ \textcolor{keyword}{typename}\ T\ >}
+\DoxyCodeLine{00122\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classtlm_1_1tlm__peek__if}{tlm\_peek\_if}}\ :}
+\DoxyCodeLine{00123\ \ \ \textcolor{keyword}{public}\ \textcolor{keyword}{virtual}\ \mbox{\hyperlink{classtlm_1_1tlm__blocking__peek__if}{tlm\_blocking\_peek\_if}}<\ T\ >\ ,}
+\DoxyCodeLine{00124\ \ \ \textcolor{keyword}{public}\ \textcolor{keyword}{virtual}\ \mbox{\hyperlink{classtlm_1_1tlm__nonblocking__peek__if}{tlm\_nonblocking\_peek\_if}}<\ T\ >\ \{\};}
+\DoxyCodeLine{00125\ }
+\DoxyCodeLine{00126\ \textcolor{comment}{//\ get\_peek\ interfaces}}
+\DoxyCodeLine{00127\ }
+\DoxyCodeLine{00128\ \textcolor{keyword}{template}\ <\ \textcolor{keyword}{typename}\ T\ >}
+\DoxyCodeLine{00129\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classtlm_1_1tlm__blocking__get__peek__if}{tlm\_blocking\_get\_peek\_if}}\ :}
+\DoxyCodeLine{00130\ \ \ \textcolor{keyword}{public}\ \textcolor{keyword}{virtual}\ \mbox{\hyperlink{classtlm_1_1tlm__blocking__get__if}{tlm\_blocking\_get\_if}}<T>\ ,}
+\DoxyCodeLine{00131\ \ \ \textcolor{keyword}{public}\ \textcolor{keyword}{virtual}\ \mbox{\hyperlink{classtlm_1_1tlm__blocking__peek__if}{tlm\_blocking\_peek\_if}}<T>\ \{\};}
+\DoxyCodeLine{00132\ }
+\DoxyCodeLine{00133\ \textcolor{keyword}{template}\ <\ \textcolor{keyword}{typename}\ T\ >}
+\DoxyCodeLine{00134\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classtlm_1_1tlm__nonblocking__get__peek__if}{tlm\_nonblocking\_get\_peek\_if}}\ :}
+\DoxyCodeLine{00135\ \ \ \textcolor{keyword}{public}\ \textcolor{keyword}{virtual}\ \mbox{\hyperlink{classtlm_1_1tlm__nonblocking__get__if}{tlm\_nonblocking\_get\_if}}<T>\ ,}
+\DoxyCodeLine{00136\ \ \ \textcolor{keyword}{public}\ \textcolor{keyword}{virtual}\ \mbox{\hyperlink{classtlm_1_1tlm__nonblocking__peek__if}{tlm\_nonblocking\_peek\_if}}<T>\ \{\};}
+\DoxyCodeLine{00137\ }
+\DoxyCodeLine{00138\ }
+\DoxyCodeLine{00139\ \textcolor{keyword}{template}\ <\ \textcolor{keyword}{typename}\ T\ >}
+\DoxyCodeLine{00140\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classtlm_1_1tlm__get__peek__if}{tlm\_get\_peek\_if}}\ :}
+\DoxyCodeLine{00141\ \ \ \textcolor{keyword}{public}\ \textcolor{keyword}{virtual}\ \mbox{\hyperlink{classtlm_1_1tlm__get__if}{tlm\_get\_if}}<T>\ ,}
+\DoxyCodeLine{00142\ \ \ \textcolor{keyword}{public}\ \textcolor{keyword}{virtual}\ \mbox{\hyperlink{classtlm_1_1tlm__peek__if}{tlm\_peek\_if}}<T>\ ,}
+\DoxyCodeLine{00143\ \ \ \textcolor{keyword}{public}\ \textcolor{keyword}{virtual}\ \mbox{\hyperlink{classtlm_1_1tlm__blocking__get__peek__if}{tlm\_blocking\_get\_peek\_if}}<T>\ ,}
+\DoxyCodeLine{00144\ \ \ \textcolor{keyword}{public}\ \textcolor{keyword}{virtual}\ \mbox{\hyperlink{classtlm_1_1tlm__nonblocking__get__peek__if}{tlm\_nonblocking\_get\_peek\_if}}<T>}
+\DoxyCodeLine{00145\ \ \ \{\};}
+\DoxyCodeLine{00146\ }
+\DoxyCodeLine{00147\ \}\ \textcolor{comment}{//\ namespace\ tlm}}
+\DoxyCodeLine{00148\ }
+\DoxyCodeLine{00149\ \textcolor{preprocessor}{\#endif}}
+
+\end{DoxyCode}

@@ -1,0 +1,4 @@
+var structsc__core_1_1sc__meta_1_1remove__special__fptr_3_01special__result_01_6_07_5_08_07_t_08_01_4 =
+[
+    [ "type", "structsc__core_1_1sc__meta_1_1remove__special__fptr_3_01special__result_01_6_07_5_08_07_t_08_01_4.html#ac61ae9b84752e3c6e057dcecc37b7f4b", null ]
+];

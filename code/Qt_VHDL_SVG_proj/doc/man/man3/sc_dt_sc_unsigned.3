@@ -1,0 +1,2625 @@
+.TH "sc_dt::sc_unsigned" 3 "VHDL simulator" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+sc_dt::sc_unsigned
+.SH SYNOPSIS
+.br
+.PP
+.PP
+\fR#include <sc_unsigned\&.h>\fP
+.PP
+Inherits \fBsc_dt::sc_value_base\fP\&.
+.PP
+Inherited by \fBsc_dt::sc_biguint< W >\fP\&.
+.SS "Public Member Functions"
+
+.in +1c
+.ti -1c
+.RI "\fBsc_unsigned\fP (int \fBnb\fP=\fBsc_length_param\fP()\&.len())"
+.br
+.ti -1c
+.RI "\fBsc_unsigned\fP (\fBconst\fP \fBsc_unsigned\fP &v)"
+.br
+.ti -1c
+.RI "\fBsc_unsigned\fP (\fBconst\fP \fBsc_signed\fP &v)"
+.br
+.ti -1c
+.RI "template<\fBclass\fP \fBT\fP > \fBsc_unsigned\fP (\fBconst\fP \fBsc_generic_base\fP< \fBT\fP > &v)"
+.br
+.ti -1c
+.RI "\fBsc_unsigned\fP (\fBconst\fP \fBsc_bv_base\fP &v)"
+.br
+.ti -1c
+.RI "\fBsc_unsigned\fP (\fBconst\fP \fBsc_lv_base\fP &v)"
+.br
+.ti -1c
+.RI "\fBsc_unsigned\fP (\fBconst\fP \fBsc_int_subref_r\fP &v)"
+.br
+.ti -1c
+.RI "\fBsc_unsigned\fP (\fBconst\fP \fBsc_uint_subref_r\fP &v)"
+.br
+.ti -1c
+.RI "\fBsc_unsigned\fP (\fBconst\fP \fBsc_signed_subref_r\fP &v)"
+.br
+.ti -1c
+.RI "\fBsc_unsigned\fP (\fBconst\fP \fBsc_unsigned_subref_r\fP &v)"
+.br
+.ti -1c
+.RI "\fBconst\fP \fBsc_unsigned\fP & \fBoperator=\fP (\fBconst\fP \fBsc_unsigned\fP &v)"
+.br
+.ti -1c
+.RI "\fBconst\fP \fBsc_unsigned\fP & \fBoperator=\fP (\fBconst\fP \fBsc_unsigned_subref_r\fP &\fBa\fP)"
+.br
+.ti -1c
+.RI "template<\fBclass\fP \fBT\fP > \fBconst\fP \fBsc_unsigned\fP & \fBoperator=\fP (\fBconst\fP \fBsc_generic_base\fP< \fBT\fP > &\fBa\fP)"
+.br
+.ti -1c
+.RI "\fBconst\fP \fBsc_unsigned\fP & \fBoperator=\fP (\fBconst\fP \fBsc_signed\fP &v)"
+.br
+.ti -1c
+.RI "\fBconst\fP \fBsc_unsigned\fP & \fBoperator=\fP (\fBconst\fP \fBsc_signed_subref_r\fP &\fBa\fP)"
+.br
+.ti -1c
+.RI "\fBconst\fP \fBsc_unsigned\fP & \fBoperator=\fP (\fBconst\fP \fBchar\fP *v)"
+.br
+.ti -1c
+.RI "\fBconst\fP \fBsc_unsigned\fP & \fBoperator=\fP (\fBint64\fP v)"
+.br
+.ti -1c
+.RI "\fBconst\fP \fBsc_unsigned\fP & \fBoperator=\fP (\fBuint64\fP v)"
+.br
+.ti -1c
+.RI "\fBconst\fP \fBsc_unsigned\fP & \fBoperator=\fP (\fBlong\fP v)"
+.br
+.ti -1c
+.RI "\fBconst\fP \fBsc_unsigned\fP & \fBoperator=\fP (\fBunsigned\fP \fBlong\fP v)"
+.br
+.ti -1c
+.RI "\fBconst\fP \fBsc_unsigned\fP & \fBoperator=\fP (int v)"
+.br
+.ti -1c
+.RI "\fBconst\fP \fBsc_unsigned\fP & \fBoperator=\fP (\fBunsigned\fP int v)"
+.br
+.ti -1c
+.RI "\fBconst\fP \fBsc_unsigned\fP & \fBoperator=\fP (\fBdouble\fP v)"
+.br
+.ti -1c
+.RI "\fBconst\fP \fBsc_unsigned\fP & \fBoperator=\fP (\fBconst\fP \fBsc_int_base\fP &v)"
+.br
+.ti -1c
+.RI "\fBconst\fP \fBsc_unsigned\fP & \fBoperator=\fP (\fBconst\fP \fBsc_uint_base\fP &v)"
+.br
+.ti -1c
+.RI "\fBconst\fP \fBsc_unsigned\fP & \fBoperator=\fP (\fBconst\fP \fBsc_bv_base\fP &)"
+.br
+.ti -1c
+.RI "\fBconst\fP \fBsc_unsigned\fP & \fBoperator=\fP (\fBconst\fP \fBsc_lv_base\fP &)"
+.br
+.ti -1c
+.RI "\fBvirtual\fP \fB~sc_unsigned\fP ()"
+.br
+.ti -1c
+.RI "\fBsc_digit\fP * \fBget_raw\fP () \fBconst\fP"
+.br
+.ti -1c
+.RI "\fBvirtual\fP int \fBconcat_length\fP (\fBbool\fP *\fBxz_present_p\fP) \fBconst\fP"
+.br
+.ti -1c
+.RI "\fBvirtual\fP \fBbool\fP \fBconcat_get_ctrl\fP (\fBsc_digit\fP *\fBdst_p\fP, int \fBlow_i\fP) \fBconst\fP"
+.br
+.ti -1c
+.RI "\fBvirtual\fP \fBbool\fP \fBconcat_get_data\fP (\fBsc_digit\fP *\fBdst_p\fP, int \fBlow_i\fP) \fBconst\fP"
+.br
+.ti -1c
+.RI "\fBvirtual\fP \fBuint64\fP \fBconcat_get_uint64\fP () \fBconst\fP"
+.br
+.ti -1c
+.RI "\fBvirtual\fP \fBvoid\fP \fBconcat_set\fP (\fBint64\fP \fBsrc\fP, int \fBlow_i\fP)"
+.br
+.ti -1c
+.RI "\fBvirtual\fP \fBvoid\fP \fBconcat_set\fP (\fBconst\fP \fBsc_signed\fP &\fBsrc\fP, int \fBlow_i\fP)"
+.br
+.ti -1c
+.RI "\fBvirtual\fP \fBvoid\fP \fBconcat_set\fP (\fBconst\fP \fBsc_unsigned\fP &\fBsrc\fP, int \fBlow_i\fP)"
+.br
+.ti -1c
+.RI "\fBvirtual\fP \fBvoid\fP \fBconcat_set\fP (\fBuint64\fP \fBsrc\fP, int \fBlow_i\fP)"
+.br
+.ti -1c
+.RI "\fBsc_unsigned\fP & \fBoperator++\fP ()"
+.br
+.ti -1c
+.RI "\fBconst\fP \fBsc_unsigned\fP \fBoperator++\fP (int)"
+.br
+.ti -1c
+.RI "\fBsc_unsigned\fP & \fBoperator\-\-\fP ()"
+.br
+.ti -1c
+.RI "\fBconst\fP \fBsc_unsigned\fP \fBoperator\-\-\fP (int)"
+.br
+.ti -1c
+.RI "\fBvoid\fP \fBcheck_index\fP (int \fBi\fP) \fBconst\fP"
+.br
+.ti -1c
+.RI "\fBvoid\fP \fBinvalid_index\fP (int \fBi\fP) \fBconst\fP"
+.br
+.ti -1c
+.RI "\fBsc_unsigned_bitref\fP & \fBoperator[]\fP (int \fBi\fP)"
+.br
+.ti -1c
+.RI "\fBconst\fP \fBsc_unsigned_bitref_r\fP & \fBoperator[]\fP (int \fBi\fP) \fBconst\fP"
+.br
+.ti -1c
+.RI "\fBsc_unsigned_bitref\fP & \fBbit\fP (int \fBi\fP)"
+.br
+.ti -1c
+.RI "\fBconst\fP \fBsc_unsigned_bitref_r\fP & \fBbit\fP (int \fBi\fP) \fBconst\fP"
+.br
+.ti -1c
+.RI "\fBvoid\fP \fBcheck_range\fP (int \fBl\fP, int \fBr\fP) \fBconst\fP"
+.br
+.ti -1c
+.RI "\fBvoid\fP \fBinvalid_range\fP (int \fBl\fP, int \fBr\fP) \fBconst\fP"
+.br
+.ti -1c
+.RI "\fBsc_unsigned_subref\fP & \fBrange\fP (int \fBi\fP, int \fBj\fP)"
+.br
+.ti -1c
+.RI "\fBconst\fP \fBsc_unsigned_subref_r\fP & \fBrange\fP (int \fBi\fP, int \fBj\fP) \fBconst\fP"
+.br
+.ti -1c
+.RI "\fBsc_unsigned_subref\fP & \fBoperator()\fP (int \fBi\fP, int \fBj\fP)"
+.br
+.ti -1c
+.RI "\fBconst\fP \fBsc_unsigned_subref_r\fP & \fBoperator()\fP (int \fBi\fP, int \fBj\fP) \fBconst\fP"
+.br
+.ti -1c
+.RI "int \fBto_int\fP () \fBconst\fP"
+.br
+.ti -1c
+.RI "\fBunsigned\fP int \fBto_uint\fP () \fBconst\fP"
+.br
+.ti -1c
+.RI "\fBlong\fP \fBto_long\fP () \fBconst\fP"
+.br
+.ti -1c
+.RI "\fBunsigned\fP \fBlong\fP \fBto_ulong\fP () \fBconst\fP"
+.br
+.ti -1c
+.RI "\fBint64\fP \fBto_int64\fP () \fBconst\fP"
+.br
+.ti -1c
+.RI "\fBuint64\fP \fBto_uint64\fP () \fBconst\fP"
+.br
+.ti -1c
+.RI "\fBdouble\fP \fBto_double\fP () \fBconst\fP"
+.br
+.ti -1c
+.RI "\fBconst\fP std::string \fBto_string\fP (\fBsc_numrep\fP \fBnumrep\fP=\fBSC_DEC\fP) \fBconst\fP"
+.br
+.ti -1c
+.RI "\fBconst\fP std::string \fBto_string\fP (\fBsc_numrep\fP \fBnumrep\fP, \fBbool\fP \fBw_prefix\fP) \fBconst\fP"
+.br
+.ti -1c
+.RI "\fBvoid\fP \fBprint\fP (::std::ostream &\fBos\fP=::std::cout) \fBconst\fP"
+.br
+.ti -1c
+.RI "\fBvoid\fP \fBscan\fP (::std::istream &\fBis\fP=::std::cin)"
+.br
+.ti -1c
+.RI "\fBvoid\fP \fBdump\fP (::std::ostream &\fBos\fP=::std::cout) \fBconst\fP"
+.br
+.ti -1c
+.RI "int \fBlength\fP () \fBconst\fP"
+.br
+.ti -1c
+.RI "\fBbool\fP \fBiszero\fP () \fBconst\fP"
+.br
+.ti -1c
+.RI "\fBbool\fP \fBsign\fP () \fBconst\fP"
+.br
+.ti -1c
+.RI "\fBbool\fP \fBand_reduce\fP () \fBconst\fP"
+.br
+.ti -1c
+.RI "\fBbool\fP \fBnand_reduce\fP () \fBconst\fP"
+.br
+.ti -1c
+.RI "\fBbool\fP \fBor_reduce\fP () \fBconst\fP"
+.br
+.ti -1c
+.RI "\fBbool\fP \fBnor_reduce\fP () \fBconst\fP"
+.br
+.ti -1c
+.RI "\fBbool\fP \fBxor_reduce\fP () \fBconst\fP"
+.br
+.ti -1c
+.RI "\fBbool\fP \fBxnor_reduce\fP () \fBconst\fP"
+.br
+.ti -1c
+.RI "\fBbool\fP \fBtest\fP (int \fBi\fP) \fBconst\fP"
+.br
+.ti -1c
+.RI "\fBvoid\fP \fBset\fP (int \fBi\fP)"
+.br
+.ti -1c
+.RI "\fBvoid\fP \fBclear\fP (int \fBi\fP)"
+.br
+.ti -1c
+.RI "\fBvoid\fP \fBset\fP (int \fBi\fP, \fBbool\fP v)"
+.br
+.ti -1c
+.RI "\fBvoid\fP \fBinvert\fP (int \fBi\fP)"
+.br
+.ti -1c
+.RI "\fBvoid\fP \fBreverse\fP ()"
+.br
+.ti -1c
+.RI "\fBvoid\fP \fBget_packed_rep\fP (\fBsc_digit\fP *\fBbuf\fP) \fBconst\fP"
+.br
+.ti -1c
+.RI "\fBvoid\fP \fBset_packed_rep\fP (\fBsc_digit\fP *\fBbuf\fP)"
+.br
+.ti -1c
+.RI "\fBconst\fP \fBsc_unsigned\fP & \fBoperator+=\fP (\fBconst\fP \fBsc_signed\fP &v)"
+.br
+.ti -1c
+.RI "\fBconst\fP \fBsc_unsigned\fP & \fBoperator+=\fP (\fBconst\fP \fBsc_unsigned\fP &v)"
+.br
+.ti -1c
+.RI "\fBconst\fP \fBsc_unsigned\fP & \fBoperator+=\fP (\fBint64\fP v)"
+.br
+.ti -1c
+.RI "\fBconst\fP \fBsc_unsigned\fP & \fBoperator+=\fP (\fBuint64\fP v)"
+.br
+.ti -1c
+.RI "\fBconst\fP \fBsc_unsigned\fP & \fBoperator+=\fP (\fBlong\fP v)"
+.br
+.ti -1c
+.RI "\fBconst\fP \fBsc_unsigned\fP & \fBoperator+=\fP (\fBunsigned\fP \fBlong\fP v)"
+.br
+.ti -1c
+.RI "\fBconst\fP \fBsc_unsigned\fP & \fBoperator+=\fP (int v)"
+.br
+.ti -1c
+.RI "\fBconst\fP \fBsc_unsigned\fP & \fBoperator+=\fP (\fBunsigned\fP int v)"
+.br
+.ti -1c
+.RI "\fBconst\fP \fBsc_unsigned\fP & \fBoperator+=\fP (\fBconst\fP \fBsc_int_base\fP &v)"
+.br
+.ti -1c
+.RI "\fBconst\fP \fBsc_unsigned\fP & \fBoperator+=\fP (\fBconst\fP \fBsc_uint_base\fP &v)"
+.br
+.ti -1c
+.RI "\fBconst\fP \fBsc_unsigned\fP & \fBoperator\-=\fP (\fBconst\fP \fBsc_signed\fP &v)"
+.br
+.ti -1c
+.RI "\fBconst\fP \fBsc_unsigned\fP & \fBoperator\-=\fP (\fBconst\fP \fBsc_unsigned\fP &v)"
+.br
+.ti -1c
+.RI "\fBconst\fP \fBsc_unsigned\fP & \fBoperator\-=\fP (\fBint64\fP v)"
+.br
+.ti -1c
+.RI "\fBconst\fP \fBsc_unsigned\fP & \fBoperator\-=\fP (\fBuint64\fP v)"
+.br
+.ti -1c
+.RI "\fBconst\fP \fBsc_unsigned\fP & \fBoperator\-=\fP (\fBlong\fP v)"
+.br
+.ti -1c
+.RI "\fBconst\fP \fBsc_unsigned\fP & \fBoperator\-=\fP (\fBunsigned\fP \fBlong\fP v)"
+.br
+.ti -1c
+.RI "\fBconst\fP \fBsc_unsigned\fP & \fBoperator\-=\fP (int v)"
+.br
+.ti -1c
+.RI "\fBconst\fP \fBsc_unsigned\fP & \fBoperator\-=\fP (\fBunsigned\fP int v)"
+.br
+.ti -1c
+.RI "\fBconst\fP \fBsc_unsigned\fP & \fBoperator\-=\fP (\fBconst\fP \fBsc_int_base\fP &v)"
+.br
+.ti -1c
+.RI "\fBconst\fP \fBsc_unsigned\fP & \fBoperator\-=\fP (\fBconst\fP \fBsc_uint_base\fP &v)"
+.br
+.ti -1c
+.RI "\fBconst\fP \fBsc_unsigned\fP & \fBoperator*=\fP (\fBconst\fP \fBsc_signed\fP &v)"
+.br
+.ti -1c
+.RI "\fBconst\fP \fBsc_unsigned\fP & \fBoperator*=\fP (\fBconst\fP \fBsc_unsigned\fP &v)"
+.br
+.ti -1c
+.RI "\fBconst\fP \fBsc_unsigned\fP & \fBoperator*=\fP (\fBint64\fP v)"
+.br
+.ti -1c
+.RI "\fBconst\fP \fBsc_unsigned\fP & \fBoperator*=\fP (\fBuint64\fP v)"
+.br
+.ti -1c
+.RI "\fBconst\fP \fBsc_unsigned\fP & \fBoperator*=\fP (\fBlong\fP v)"
+.br
+.ti -1c
+.RI "\fBconst\fP \fBsc_unsigned\fP & \fBoperator*=\fP (\fBunsigned\fP \fBlong\fP v)"
+.br
+.ti -1c
+.RI "\fBconst\fP \fBsc_unsigned\fP & \fBoperator*=\fP (int v)"
+.br
+.ti -1c
+.RI "\fBconst\fP \fBsc_unsigned\fP & \fBoperator*=\fP (\fBunsigned\fP int v)"
+.br
+.ti -1c
+.RI "\fBconst\fP \fBsc_unsigned\fP & \fBoperator*=\fP (\fBconst\fP \fBsc_int_base\fP &v)"
+.br
+.ti -1c
+.RI "\fBconst\fP \fBsc_unsigned\fP & \fBoperator*=\fP (\fBconst\fP \fBsc_uint_base\fP &v)"
+.br
+.ti -1c
+.RI "\fBconst\fP \fBsc_unsigned\fP & \fBoperator/=\fP (\fBconst\fP \fBsc_signed\fP &v)"
+.br
+.ti -1c
+.RI "\fBconst\fP \fBsc_unsigned\fP & \fBoperator/=\fP (\fBconst\fP \fBsc_unsigned\fP &v)"
+.br
+.ti -1c
+.RI "\fBconst\fP \fBsc_unsigned\fP & \fBoperator/=\fP (\fBint64\fP v)"
+.br
+.ti -1c
+.RI "\fBconst\fP \fBsc_unsigned\fP & \fBoperator/=\fP (\fBuint64\fP v)"
+.br
+.ti -1c
+.RI "\fBconst\fP \fBsc_unsigned\fP & \fBoperator/=\fP (\fBlong\fP v)"
+.br
+.ti -1c
+.RI "\fBconst\fP \fBsc_unsigned\fP & \fBoperator/=\fP (\fBunsigned\fP \fBlong\fP v)"
+.br
+.ti -1c
+.RI "\fBconst\fP \fBsc_unsigned\fP & \fBoperator/=\fP (int v)"
+.br
+.ti -1c
+.RI "\fBconst\fP \fBsc_unsigned\fP & \fBoperator/=\fP (\fBunsigned\fP int v)"
+.br
+.ti -1c
+.RI "\fBconst\fP \fBsc_unsigned\fP & \fBoperator/=\fP (\fBconst\fP \fBsc_int_base\fP &v)"
+.br
+.ti -1c
+.RI "\fBconst\fP \fBsc_unsigned\fP & \fBoperator/=\fP (\fBconst\fP \fBsc_uint_base\fP &v)"
+.br
+.ti -1c
+.RI "\fBconst\fP \fBsc_unsigned\fP & \fBoperator%=\fP (\fBconst\fP \fBsc_signed\fP &v)"
+.br
+.ti -1c
+.RI "\fBconst\fP \fBsc_unsigned\fP & \fBoperator%=\fP (\fBconst\fP \fBsc_unsigned\fP &v)"
+.br
+.ti -1c
+.RI "\fBconst\fP \fBsc_unsigned\fP & \fBoperator%=\fP (\fBint64\fP v)"
+.br
+.ti -1c
+.RI "\fBconst\fP \fBsc_unsigned\fP & \fBoperator%=\fP (\fBuint64\fP v)"
+.br
+.ti -1c
+.RI "\fBconst\fP \fBsc_unsigned\fP & \fBoperator%=\fP (\fBlong\fP v)"
+.br
+.ti -1c
+.RI "\fBconst\fP \fBsc_unsigned\fP & \fBoperator%=\fP (\fBunsigned\fP \fBlong\fP v)"
+.br
+.ti -1c
+.RI "\fBconst\fP \fBsc_unsigned\fP & \fBoperator%=\fP (int v)"
+.br
+.ti -1c
+.RI "\fBconst\fP \fBsc_unsigned\fP & \fBoperator%=\fP (\fBunsigned\fP int v)"
+.br
+.ti -1c
+.RI "\fBconst\fP \fBsc_unsigned\fP & \fBoperator%=\fP (\fBconst\fP \fBsc_int_base\fP &v)"
+.br
+.ti -1c
+.RI "\fBconst\fP \fBsc_unsigned\fP & \fBoperator%=\fP (\fBconst\fP \fBsc_uint_base\fP &v)"
+.br
+.ti -1c
+.RI "\fBconst\fP \fBsc_unsigned\fP & \fBoperator&=\fP (\fBconst\fP \fBsc_signed\fP &v)"
+.br
+.ti -1c
+.RI "\fBconst\fP \fBsc_unsigned\fP & \fBoperator&=\fP (\fBconst\fP \fBsc_unsigned\fP &v)"
+.br
+.ti -1c
+.RI "\fBconst\fP \fBsc_unsigned\fP & \fBoperator&=\fP (\fBint64\fP v)"
+.br
+.ti -1c
+.RI "\fBconst\fP \fBsc_unsigned\fP & \fBoperator&=\fP (\fBuint64\fP v)"
+.br
+.ti -1c
+.RI "\fBconst\fP \fBsc_unsigned\fP & \fBoperator&=\fP (\fBlong\fP v)"
+.br
+.ti -1c
+.RI "\fBconst\fP \fBsc_unsigned\fP & \fBoperator&=\fP (\fBunsigned\fP \fBlong\fP v)"
+.br
+.ti -1c
+.RI "\fBconst\fP \fBsc_unsigned\fP & \fBoperator&=\fP (int v)"
+.br
+.ti -1c
+.RI "\fBconst\fP \fBsc_unsigned\fP & \fBoperator&=\fP (\fBunsigned\fP int v)"
+.br
+.ti -1c
+.RI "\fBconst\fP \fBsc_unsigned\fP & \fBoperator&=\fP (\fBconst\fP \fBsc_int_base\fP &v)"
+.br
+.ti -1c
+.RI "\fBconst\fP \fBsc_unsigned\fP & \fBoperator&=\fP (\fBconst\fP \fBsc_uint_base\fP &v)"
+.br
+.ti -1c
+.RI "\fBconst\fP \fBsc_unsigned\fP & \fBoperator|=\fP (\fBconst\fP \fBsc_signed\fP &v)"
+.br
+.ti -1c
+.RI "\fBconst\fP \fBsc_unsigned\fP & \fBoperator|=\fP (\fBconst\fP \fBsc_unsigned\fP &v)"
+.br
+.ti -1c
+.RI "\fBconst\fP \fBsc_unsigned\fP & \fBoperator|=\fP (\fBint64\fP v)"
+.br
+.ti -1c
+.RI "\fBconst\fP \fBsc_unsigned\fP & \fBoperator|=\fP (\fBuint64\fP v)"
+.br
+.ti -1c
+.RI "\fBconst\fP \fBsc_unsigned\fP & \fBoperator|=\fP (\fBlong\fP v)"
+.br
+.ti -1c
+.RI "\fBconst\fP \fBsc_unsigned\fP & \fBoperator|=\fP (\fBunsigned\fP \fBlong\fP v)"
+.br
+.ti -1c
+.RI "\fBconst\fP \fBsc_unsigned\fP & \fBoperator|=\fP (int v)"
+.br
+.ti -1c
+.RI "\fBconst\fP \fBsc_unsigned\fP & \fBoperator|=\fP (\fBunsigned\fP int v)"
+.br
+.ti -1c
+.RI "\fBconst\fP \fBsc_unsigned\fP & \fBoperator|=\fP (\fBconst\fP \fBsc_int_base\fP &v)"
+.br
+.ti -1c
+.RI "\fBconst\fP \fBsc_unsigned\fP & \fBoperator|=\fP (\fBconst\fP \fBsc_uint_base\fP &v)"
+.br
+.ti -1c
+.RI "\fBconst\fP \fBsc_unsigned\fP & \fBoperator^=\fP (\fBconst\fP \fBsc_signed\fP &v)"
+.br
+.ti -1c
+.RI "\fBconst\fP \fBsc_unsigned\fP & \fBoperator^=\fP (\fBconst\fP \fBsc_unsigned\fP &v)"
+.br
+.ti -1c
+.RI "\fBconst\fP \fBsc_unsigned\fP & \fBoperator^=\fP (\fBint64\fP v)"
+.br
+.ti -1c
+.RI "\fBconst\fP \fBsc_unsigned\fP & \fBoperator^=\fP (\fBuint64\fP v)"
+.br
+.ti -1c
+.RI "\fBconst\fP \fBsc_unsigned\fP & \fBoperator^=\fP (\fBlong\fP v)"
+.br
+.ti -1c
+.RI "\fBconst\fP \fBsc_unsigned\fP & \fBoperator^=\fP (\fBunsigned\fP \fBlong\fP v)"
+.br
+.ti -1c
+.RI "\fBconst\fP \fBsc_unsigned\fP & \fBoperator^=\fP (int v)"
+.br
+.ti -1c
+.RI "\fBconst\fP \fBsc_unsigned\fP & \fBoperator^=\fP (\fBunsigned\fP int v)"
+.br
+.ti -1c
+.RI "\fBconst\fP \fBsc_unsigned\fP & \fBoperator^=\fP (\fBconst\fP \fBsc_int_base\fP &v)"
+.br
+.ti -1c
+.RI "\fBconst\fP \fBsc_unsigned\fP & \fBoperator^=\fP (\fBconst\fP \fBsc_uint_base\fP &v)"
+.br
+.ti -1c
+.RI "\fBconst\fP \fBsc_unsigned\fP & \fBoperator<<=\fP (\fBconst\fP \fBsc_signed\fP &v)"
+.br
+.ti -1c
+.RI "\fBconst\fP \fBsc_unsigned\fP & \fBoperator<<=\fP (\fBconst\fP \fBsc_unsigned\fP &v)"
+.br
+.ti -1c
+.RI "\fBconst\fP \fBsc_unsigned\fP & \fBoperator<<=\fP (\fBint64\fP v)"
+.br
+.ti -1c
+.RI "\fBconst\fP \fBsc_unsigned\fP & \fBoperator<<=\fP (\fBuint64\fP v)"
+.br
+.ti -1c
+.RI "\fBconst\fP \fBsc_unsigned\fP & \fBoperator<<=\fP (\fBlong\fP v)"
+.br
+.ti -1c
+.RI "\fBconst\fP \fBsc_unsigned\fP & \fBoperator<<=\fP (\fBunsigned\fP \fBlong\fP v)"
+.br
+.ti -1c
+.RI "\fBconst\fP \fBsc_unsigned\fP & \fBoperator<<=\fP (int v)"
+.br
+.ti -1c
+.RI "\fBconst\fP \fBsc_unsigned\fP & \fBoperator<<=\fP (\fBunsigned\fP int v)"
+.br
+.ti -1c
+.RI "\fBconst\fP \fBsc_unsigned\fP & \fBoperator<<=\fP (\fBconst\fP \fBsc_int_base\fP &v)"
+.br
+.ti -1c
+.RI "\fBconst\fP \fBsc_unsigned\fP & \fBoperator<<=\fP (\fBconst\fP \fBsc_uint_base\fP &v)"
+.br
+.ti -1c
+.RI "\fBconst\fP \fBsc_unsigned\fP & \fBoperator>>=\fP (\fBconst\fP \fBsc_signed\fP &v)"
+.br
+.ti -1c
+.RI "\fBconst\fP \fBsc_unsigned\fP & \fBoperator>>=\fP (\fBconst\fP \fBsc_unsigned\fP &v)"
+.br
+.ti -1c
+.RI "\fBconst\fP \fBsc_unsigned\fP & \fBoperator>>=\fP (\fBint64\fP v)"
+.br
+.ti -1c
+.RI "\fBconst\fP \fBsc_unsigned\fP & \fBoperator>>=\fP (\fBuint64\fP v)"
+.br
+.ti -1c
+.RI "\fBconst\fP \fBsc_unsigned\fP & \fBoperator>>=\fP (\fBlong\fP v)"
+.br
+.ti -1c
+.RI "\fBconst\fP \fBsc_unsigned\fP & \fBoperator>>=\fP (\fBunsigned\fP \fBlong\fP v)"
+.br
+.ti -1c
+.RI "\fBconst\fP \fBsc_unsigned\fP & \fBoperator>>=\fP (int v)"
+.br
+.ti -1c
+.RI "\fBconst\fP \fBsc_unsigned\fP & \fBoperator>>=\fP (\fBunsigned\fP int v)"
+.br
+.ti -1c
+.RI "\fBconst\fP \fBsc_unsigned\fP & \fBoperator>>=\fP (\fBconst\fP \fBsc_int_base\fP &v)"
+.br
+.ti -1c
+.RI "\fBconst\fP \fBsc_unsigned\fP & \fBoperator>>=\fP (\fBconst\fP \fBsc_uint_base\fP &v)"
+.br
+.in -1c
+
+Public Member Functions inherited from \fBsc_dt::sc_value_base\fP
+.in +1c
+.ti -1c
+.RI "\fBvirtual\fP \fB~sc_value_base\fP ()"
+.br
+.in -1c
+.SS "Static Public Attributes"
+
+.in +1c
+.ti -1c
+.RI "\fBstatic\fP \fBsc_core::sc_vpool\fP< \fBsc_unsigned\fP > \fBm_pool\fP"
+.br
+.in -1c
+.SS "Private Types"
+
+.in +1c
+.ti -1c
+.RI "\fBtypedef\fP \fBbool\fP \fBelemtype\fP"
+.br
+.in -1c
+.SS "Private Member Functions"
+
+.in +1c
+.ti -1c
+.RI "\fBvoid\fP \fBinvalid_init\fP (\fBconst\fP \fBchar\fP *\fBtype_name\fP, int \fBnb\fP) \fBconst\fP"
+.br
+.ti -1c
+.RI "\fBsc_unsigned\fP (\fBconst\fP \fBsc_unsigned\fP &v, \fBsmall_type\fP s)"
+.br
+.ti -1c
+.RI "\fBsc_unsigned\fP (\fBconst\fP \fBsc_signed\fP &v, \fBsmall_type\fP s)"
+.br
+.ti -1c
+.RI "\fBsc_unsigned\fP (\fBsmall_type\fP s, int \fBnb\fP, int \fBnd\fP, \fBsc_digit\fP *d, \fBbool\fP alloc=\fBtrue\fP)"
+.br
+.ti -1c
+.RI "\fBsc_unsigned\fP (\fBconst\fP \fBsc_signed\fP *\fBu\fP, int \fBl\fP, int \fBr\fP)"
+.br
+.ti -1c
+.RI "\fBsc_unsigned\fP (\fBconst\fP \fBsc_unsigned\fP *\fBu\fP, int \fBl\fP, int \fBr\fP)"
+.br
+.ti -1c
+.RI "\fBsmall_type\fP \fBdefault_sign\fP () \fBconst\fP"
+.br
+.ti -1c
+.RI "int \fBnum_bits\fP (int \fBnb\fP) \fBconst\fP"
+.br
+.ti -1c
+.RI "\fBbool\fP \fBcheck_if_outside\fP (int \fBbit_num\fP) \fBconst\fP"
+.br
+.ti -1c
+.RI "\fBvoid\fP \fBcopy_digits\fP (int \fBnb\fP, int \fBnd\fP, \fBconst\fP \fBsc_digit\fP *d)"
+.br
+.ti -1c
+.RI "\fBvoid\fP \fBmakezero\fP ()"
+.br
+.ti -1c
+.RI "\fBvoid\fP \fBconvert_2C_to_SM\fP ()"
+.br
+.ti -1c
+.RI "\fBvoid\fP \fBconvert_SM_to_2C_to_SM\fP ()"
+.br
+.ti -1c
+.RI "\fBvoid\fP \fBconvert_SM_to_2C\fP ()"
+.br
+.in -1c
+.SS "Private Attributes"
+
+.in +1c
+.ti -1c
+.RI "\fBsmall_type\fP \fBsgn\fP"
+.br
+.ti -1c
+.RI "int \fBnbits\fP"
+.br
+.ti -1c
+.RI "int \fBndigits\fP"
+.br
+.ti -1c
+.RI "\fBsc_digit\fP * \fBdigit\fP"
+.br
+.in -1c
+.SS "Friends"
+
+.in +1c
+.ti -1c
+.RI "\fBclass\fP \fBsc_concatref\fP"
+.br
+.ti -1c
+.RI "\fBclass\fP \fBsc_unsigned_bitref_r\fP"
+.br
+.ti -1c
+.RI "\fBclass\fP \fBsc_unsigned_bitref\fP"
+.br
+.ti -1c
+.RI "\fBclass\fP \fBsc_unsigned_subref_r\fP"
+.br
+.ti -1c
+.RI "\fBclass\fP \fBsc_unsigned_subref\fP"
+.br
+.ti -1c
+.RI "\fBclass\fP \fBsc_signed\fP"
+.br
+.ti -1c
+.RI "\fBclass\fP \fBsc_signed_subref\fP"
+.br
+.ti -1c
+.RI "\fBclass\fP \fBsc_signed_subref_r\fP"
+.br
+.ti -1c
+.RI "\fBSC_API\fP \fBsc_signed\fP \fBoperator+\fP (\fBconst\fP \fBsc_unsigned\fP &\fBu\fP, \fBconst\fP \fBsc_signed\fP &v)"
+.br
+.ti -1c
+.RI "\fBSC_API\fP \fBsc_signed\fP \fBoperator+\fP (\fBconst\fP \fBsc_signed\fP &\fBu\fP, \fBconst\fP \fBsc_unsigned\fP &v)"
+.br
+.ti -1c
+.RI "\fBSC_API\fP \fBsc_unsigned\fP \fBoperator+\fP (\fBconst\fP \fBsc_unsigned\fP &\fBu\fP, \fBconst\fP \fBsc_unsigned\fP &v)"
+.br
+.ti -1c
+.RI "\fBSC_API\fP \fBsc_signed\fP \fBoperator+\fP (\fBconst\fP \fBsc_unsigned\fP &\fBu\fP, \fBint64\fP v)"
+.br
+.ti -1c
+.RI "\fBSC_API\fP \fBsc_unsigned\fP \fBoperator+\fP (\fBconst\fP \fBsc_unsigned\fP &\fBu\fP, \fBuint64\fP v)"
+.br
+.ti -1c
+.RI "\fBSC_API\fP \fBsc_signed\fP \fBoperator+\fP (\fBconst\fP \fBsc_unsigned\fP &\fBu\fP, \fBlong\fP v)"
+.br
+.ti -1c
+.RI "\fBSC_API\fP \fBsc_unsigned\fP \fBoperator+\fP (\fBconst\fP \fBsc_unsigned\fP &\fBu\fP, \fBunsigned\fP \fBlong\fP v)"
+.br
+.ti -1c
+.RI "\fBSC_API\fP \fBsc_signed\fP \fBoperator+\fP (\fBconst\fP \fBsc_unsigned\fP &\fBu\fP, int v)"
+.br
+.ti -1c
+.RI "\fBsc_unsigned\fP \fBoperator+\fP (\fBconst\fP \fBsc_unsigned\fP &\fBu\fP, \fBunsigned\fP int v)"
+.br
+.ti -1c
+.RI "\fBSC_API\fP \fBsc_signed\fP \fBoperator+\fP (\fBint64\fP \fBu\fP, \fBconst\fP \fBsc_unsigned\fP &v)"
+.br
+.ti -1c
+.RI "\fBSC_API\fP \fBsc_unsigned\fP \fBoperator+\fP (\fBuint64\fP \fBu\fP, \fBconst\fP \fBsc_unsigned\fP &v)"
+.br
+.ti -1c
+.RI "\fBSC_API\fP \fBsc_signed\fP \fBoperator+\fP (\fBlong\fP \fBu\fP, \fBconst\fP \fBsc_unsigned\fP &v)"
+.br
+.ti -1c
+.RI "\fBSC_API\fP \fBsc_unsigned\fP \fBoperator+\fP (\fBunsigned\fP \fBlong\fP \fBu\fP, \fBconst\fP \fBsc_unsigned\fP &v)"
+.br
+.ti -1c
+.RI "\fBSC_API\fP \fBsc_signed\fP \fBoperator+\fP (int \fBu\fP, \fBconst\fP \fBsc_unsigned\fP &v)"
+.br
+.ti -1c
+.RI "\fBsc_unsigned\fP \fBoperator+\fP (\fBunsigned\fP int \fBu\fP, \fBconst\fP \fBsc_unsigned\fP &v)"
+.br
+.ti -1c
+.RI "\fBSC_API\fP \fBsc_unsigned\fP \fBoperator+\fP (\fBconst\fP \fBsc_unsigned\fP &\fBu\fP, \fBconst\fP \fBsc_uint_base\fP &v)"
+.br
+.ti -1c
+.RI "\fBSC_API\fP \fBsc_signed\fP \fBoperator+\fP (\fBconst\fP \fBsc_unsigned\fP &\fBu\fP, \fBconst\fP \fBsc_int_base\fP &v)"
+.br
+.ti -1c
+.RI "\fBSC_API\fP \fBsc_unsigned\fP \fBoperator+\fP (\fBconst\fP \fBsc_uint_base\fP &\fBu\fP, \fBconst\fP \fBsc_unsigned\fP &v)"
+.br
+.ti -1c
+.RI "\fBSC_API\fP \fBsc_signed\fP \fBoperator+\fP (\fBconst\fP \fBsc_int_base\fP &\fBu\fP, \fBconst\fP \fBsc_unsigned\fP &v)"
+.br
+.ti -1c
+.RI "\fBSC_API\fP \fBsc_signed\fP \fBoperator\-\fP (\fBconst\fP \fBsc_unsigned\fP &\fBu\fP, \fBconst\fP \fBsc_signed\fP &v)"
+.br
+.ti -1c
+.RI "\fBSC_API\fP \fBsc_signed\fP \fBoperator\-\fP (\fBconst\fP \fBsc_signed\fP &\fBu\fP, \fBconst\fP \fBsc_unsigned\fP &v)"
+.br
+.ti -1c
+.RI "\fBSC_API\fP \fBsc_signed\fP \fBoperator\-\fP (\fBconst\fP \fBsc_unsigned\fP &\fBu\fP, \fBconst\fP \fBsc_unsigned\fP &v)"
+.br
+.ti -1c
+.RI "\fBSC_API\fP \fBsc_signed\fP \fBoperator\-\fP (\fBconst\fP \fBsc_unsigned\fP &\fBu\fP, \fBint64\fP v)"
+.br
+.ti -1c
+.RI "\fBSC_API\fP \fBsc_signed\fP \fBoperator\-\fP (\fBconst\fP \fBsc_unsigned\fP &\fBu\fP, \fBuint64\fP v)"
+.br
+.ti -1c
+.RI "\fBSC_API\fP \fBsc_signed\fP \fBoperator\-\fP (\fBconst\fP \fBsc_unsigned\fP &\fBu\fP, \fBlong\fP v)"
+.br
+.ti -1c
+.RI "\fBSC_API\fP \fBsc_signed\fP \fBoperator\-\fP (\fBconst\fP \fBsc_unsigned\fP &\fBu\fP, \fBunsigned\fP \fBlong\fP v)"
+.br
+.ti -1c
+.RI "\fBSC_API\fP \fBsc_signed\fP \fBoperator\-\fP (\fBconst\fP \fBsc_unsigned\fP &\fBu\fP, int v)"
+.br
+.ti -1c
+.RI "\fBSC_API\fP \fBsc_signed\fP \fBoperator\-\fP (\fBconst\fP \fBsc_unsigned\fP &\fBu\fP, \fBunsigned\fP int v)"
+.br
+.ti -1c
+.RI "\fBSC_API\fP \fBsc_signed\fP \fBoperator\-\fP (\fBint64\fP \fBu\fP, \fBconst\fP \fBsc_unsigned\fP &v)"
+.br
+.ti -1c
+.RI "\fBSC_API\fP \fBsc_signed\fP \fBoperator\-\fP (\fBuint64\fP \fBu\fP, \fBconst\fP \fBsc_unsigned\fP &v)"
+.br
+.ti -1c
+.RI "\fBSC_API\fP \fBsc_signed\fP \fBoperator\-\fP (\fBlong\fP \fBu\fP, \fBconst\fP \fBsc_unsigned\fP &v)"
+.br
+.ti -1c
+.RI "\fBSC_API\fP \fBsc_signed\fP \fBoperator\-\fP (\fBunsigned\fP \fBlong\fP \fBu\fP, \fBconst\fP \fBsc_unsigned\fP &v)"
+.br
+.ti -1c
+.RI "\fBSC_API\fP \fBsc_signed\fP \fBoperator\-\fP (int \fBu\fP, \fBconst\fP \fBsc_unsigned\fP &v)"
+.br
+.ti -1c
+.RI "\fBSC_API\fP \fBsc_signed\fP \fBoperator\-\fP (\fBunsigned\fP int \fBu\fP, \fBconst\fP \fBsc_unsigned\fP &v)"
+.br
+.ti -1c
+.RI "\fBSC_API\fP \fBsc_signed\fP \fBoperator\-\fP (\fBconst\fP \fBsc_unsigned\fP &\fBu\fP, \fBconst\fP \fBsc_uint_base\fP &v)"
+.br
+.ti -1c
+.RI "\fBSC_API\fP \fBsc_signed\fP \fBoperator\-\fP (\fBconst\fP \fBsc_unsigned\fP &\fBu\fP, \fBconst\fP \fBsc_int_base\fP &v)"
+.br
+.ti -1c
+.RI "\fBSC_API\fP \fBsc_signed\fP \fBoperator\-\fP (\fBconst\fP \fBsc_uint_base\fP &\fBu\fP, \fBconst\fP \fBsc_unsigned\fP &v)"
+.br
+.ti -1c
+.RI "\fBSC_API\fP \fBsc_signed\fP \fBoperator\-\fP (\fBconst\fP \fBsc_int_base\fP &\fBu\fP, \fBconst\fP \fBsc_unsigned\fP &v)"
+.br
+.ti -1c
+.RI "\fBSC_API\fP \fBsc_signed\fP \fBoperator*\fP (\fBconst\fP \fBsc_unsigned\fP &\fBu\fP, \fBconst\fP \fBsc_signed\fP &v)"
+.br
+.ti -1c
+.RI "\fBSC_API\fP \fBsc_signed\fP \fBoperator*\fP (\fBconst\fP \fBsc_signed\fP &\fBu\fP, \fBconst\fP \fBsc_unsigned\fP &v)"
+.br
+.ti -1c
+.RI "\fBSC_API\fP \fBsc_unsigned\fP \fBoperator*\fP (\fBconst\fP \fBsc_unsigned\fP &\fBu\fP, \fBconst\fP \fBsc_unsigned\fP &v)"
+.br
+.ti -1c
+.RI "\fBSC_API\fP \fBsc_signed\fP \fBoperator*\fP (\fBconst\fP \fBsc_unsigned\fP &\fBu\fP, \fBint64\fP v)"
+.br
+.ti -1c
+.RI "\fBSC_API\fP \fBsc_unsigned\fP \fBoperator*\fP (\fBconst\fP \fBsc_unsigned\fP &\fBu\fP, \fBuint64\fP v)"
+.br
+.ti -1c
+.RI "\fBSC_API\fP \fBsc_signed\fP \fBoperator*\fP (\fBconst\fP \fBsc_unsigned\fP &\fBu\fP, \fBlong\fP v)"
+.br
+.ti -1c
+.RI "\fBSC_API\fP \fBsc_unsigned\fP \fBoperator*\fP (\fBconst\fP \fBsc_unsigned\fP &\fBu\fP, \fBunsigned\fP \fBlong\fP v)"
+.br
+.ti -1c
+.RI "\fBSC_API\fP \fBsc_signed\fP \fBoperator*\fP (\fBconst\fP \fBsc_unsigned\fP &\fBu\fP, int v)"
+.br
+.ti -1c
+.RI "\fBsc_unsigned\fP \fBoperator*\fP (\fBconst\fP \fBsc_unsigned\fP &\fBu\fP, \fBunsigned\fP int v)"
+.br
+.ti -1c
+.RI "\fBSC_API\fP \fBsc_signed\fP \fBoperator*\fP (\fBint64\fP \fBu\fP, \fBconst\fP \fBsc_unsigned\fP &v)"
+.br
+.ti -1c
+.RI "\fBSC_API\fP \fBsc_unsigned\fP \fBoperator*\fP (\fBuint64\fP \fBu\fP, \fBconst\fP \fBsc_unsigned\fP &v)"
+.br
+.ti -1c
+.RI "\fBSC_API\fP \fBsc_signed\fP \fBoperator*\fP (\fBlong\fP \fBu\fP, \fBconst\fP \fBsc_unsigned\fP &v)"
+.br
+.ti -1c
+.RI "\fBSC_API\fP \fBsc_unsigned\fP \fBoperator*\fP (\fBunsigned\fP \fBlong\fP \fBu\fP, \fBconst\fP \fBsc_unsigned\fP &v)"
+.br
+.ti -1c
+.RI "\fBSC_API\fP \fBsc_signed\fP \fBoperator*\fP (int \fBu\fP, \fBconst\fP \fBsc_unsigned\fP &v)"
+.br
+.ti -1c
+.RI "\fBsc_unsigned\fP \fBoperator*\fP (\fBunsigned\fP int \fBu\fP, \fBconst\fP \fBsc_unsigned\fP &v)"
+.br
+.ti -1c
+.RI "\fBSC_API\fP \fBsc_unsigned\fP \fBoperator*\fP (\fBconst\fP \fBsc_unsigned\fP &\fBu\fP, \fBconst\fP \fBsc_uint_base\fP &v)"
+.br
+.ti -1c
+.RI "\fBSC_API\fP \fBsc_signed\fP \fBoperator*\fP (\fBconst\fP \fBsc_unsigned\fP &\fBu\fP, \fBconst\fP \fBsc_int_base\fP &v)"
+.br
+.ti -1c
+.RI "\fBSC_API\fP \fBsc_unsigned\fP \fBoperator*\fP (\fBconst\fP \fBsc_uint_base\fP &\fBu\fP, \fBconst\fP \fBsc_unsigned\fP &v)"
+.br
+.ti -1c
+.RI "\fBSC_API\fP \fBsc_signed\fP \fBoperator*\fP (\fBconst\fP \fBsc_int_base\fP &\fBu\fP, \fBconst\fP \fBsc_unsigned\fP &v)"
+.br
+.ti -1c
+.RI "\fBSC_API\fP \fBsc_signed\fP \fBoperator/\fP (\fBconst\fP \fBsc_unsigned\fP &\fBu\fP, \fBconst\fP \fBsc_signed\fP &v)"
+.br
+.ti -1c
+.RI "\fBSC_API\fP \fBsc_signed\fP \fBoperator/\fP (\fBconst\fP \fBsc_signed\fP &\fBu\fP, \fBconst\fP \fBsc_unsigned\fP &v)"
+.br
+.ti -1c
+.RI "\fBSC_API\fP \fBsc_unsigned\fP \fBoperator/\fP (\fBconst\fP \fBsc_unsigned\fP &\fBu\fP, \fBconst\fP \fBsc_unsigned\fP &v)"
+.br
+.ti -1c
+.RI "\fBSC_API\fP \fBsc_signed\fP \fBoperator/\fP (\fBconst\fP \fBsc_unsigned\fP &\fBu\fP, \fBint64\fP v)"
+.br
+.ti -1c
+.RI "\fBSC_API\fP \fBsc_unsigned\fP \fBoperator/\fP (\fBconst\fP \fBsc_unsigned\fP &\fBu\fP, \fBuint64\fP v)"
+.br
+.ti -1c
+.RI "\fBSC_API\fP \fBsc_signed\fP \fBoperator/\fP (\fBconst\fP \fBsc_unsigned\fP &\fBu\fP, \fBlong\fP v)"
+.br
+.ti -1c
+.RI "\fBSC_API\fP \fBsc_unsigned\fP \fBoperator/\fP (\fBconst\fP \fBsc_unsigned\fP &\fBu\fP, \fBunsigned\fP \fBlong\fP v)"
+.br
+.ti -1c
+.RI "\fBSC_API\fP \fBsc_signed\fP \fBoperator/\fP (\fBconst\fP \fBsc_unsigned\fP &\fBu\fP, int v)"
+.br
+.ti -1c
+.RI "\fBsc_unsigned\fP \fBoperator/\fP (\fBconst\fP \fBsc_unsigned\fP &\fBu\fP, \fBunsigned\fP int v)"
+.br
+.ti -1c
+.RI "\fBSC_API\fP \fBsc_signed\fP \fBoperator/\fP (\fBint64\fP \fBu\fP, \fBconst\fP \fBsc_unsigned\fP &v)"
+.br
+.ti -1c
+.RI "\fBSC_API\fP \fBsc_unsigned\fP \fBoperator/\fP (\fBuint64\fP \fBu\fP, \fBconst\fP \fBsc_unsigned\fP &v)"
+.br
+.ti -1c
+.RI "\fBSC_API\fP \fBsc_signed\fP \fBoperator/\fP (\fBlong\fP \fBu\fP, \fBconst\fP \fBsc_unsigned\fP &v)"
+.br
+.ti -1c
+.RI "\fBSC_API\fP \fBsc_unsigned\fP \fBoperator/\fP (\fBunsigned\fP \fBlong\fP \fBu\fP, \fBconst\fP \fBsc_unsigned\fP &v)"
+.br
+.ti -1c
+.RI "\fBSC_API\fP \fBsc_signed\fP \fBoperator/\fP (int \fBu\fP, \fBconst\fP \fBsc_unsigned\fP &v)"
+.br
+.ti -1c
+.RI "\fBsc_unsigned\fP \fBoperator/\fP (\fBunsigned\fP int \fBu\fP, \fBconst\fP \fBsc_unsigned\fP &v)"
+.br
+.ti -1c
+.RI "\fBSC_API\fP \fBsc_unsigned\fP \fBoperator/\fP (\fBconst\fP \fBsc_unsigned\fP &\fBu\fP, \fBconst\fP \fBsc_uint_base\fP &v)"
+.br
+.ti -1c
+.RI "\fBSC_API\fP \fBsc_signed\fP \fBoperator/\fP (\fBconst\fP \fBsc_unsigned\fP &\fBu\fP, \fBconst\fP \fBsc_int_base\fP &v)"
+.br
+.ti -1c
+.RI "\fBSC_API\fP \fBsc_unsigned\fP \fBoperator/\fP (\fBconst\fP \fBsc_uint_base\fP &\fBu\fP, \fBconst\fP \fBsc_unsigned\fP &v)"
+.br
+.ti -1c
+.RI "\fBSC_API\fP \fBsc_signed\fP \fBoperator/\fP (\fBconst\fP \fBsc_int_base\fP &\fBu\fP, \fBconst\fP \fBsc_unsigned\fP &v)"
+.br
+.ti -1c
+.RI "\fBSC_API\fP \fBsc_signed\fP \fBoperator%\fP (\fBconst\fP \fBsc_unsigned\fP &\fBu\fP, \fBconst\fP \fBsc_signed\fP &v)"
+.br
+.ti -1c
+.RI "\fBSC_API\fP \fBsc_signed\fP \fBoperator%\fP (\fBconst\fP \fBsc_signed\fP &\fBu\fP, \fBconst\fP \fBsc_unsigned\fP &v)"
+.br
+.ti -1c
+.RI "\fBSC_API\fP \fBsc_unsigned\fP \fBoperator%\fP (\fBconst\fP \fBsc_unsigned\fP &\fBu\fP, \fBconst\fP \fBsc_unsigned\fP &v)"
+.br
+.ti -1c
+.RI "\fBSC_API\fP \fBsc_signed\fP \fBoperator%\fP (\fBconst\fP \fBsc_unsigned\fP &\fBu\fP, \fBint64\fP v)"
+.br
+.ti -1c
+.RI "\fBSC_API\fP \fBsc_unsigned\fP \fBoperator%\fP (\fBconst\fP \fBsc_unsigned\fP &\fBu\fP, \fBuint64\fP v)"
+.br
+.ti -1c
+.RI "\fBSC_API\fP \fBsc_signed\fP \fBoperator%\fP (\fBconst\fP \fBsc_unsigned\fP &\fBu\fP, \fBlong\fP v)"
+.br
+.ti -1c
+.RI "\fBSC_API\fP \fBsc_unsigned\fP \fBoperator%\fP (\fBconst\fP \fBsc_unsigned\fP &\fBu\fP, \fBunsigned\fP \fBlong\fP v)"
+.br
+.ti -1c
+.RI "\fBSC_API\fP \fBsc_signed\fP \fBoperator%\fP (\fBconst\fP \fBsc_unsigned\fP &\fBu\fP, int v)"
+.br
+.ti -1c
+.RI "\fBsc_unsigned\fP \fBoperator%\fP (\fBconst\fP \fBsc_unsigned\fP &\fBu\fP, \fBunsigned\fP int v)"
+.br
+.ti -1c
+.RI "\fBSC_API\fP \fBsc_signed\fP \fBoperator%\fP (\fBint64\fP \fBu\fP, \fBconst\fP \fBsc_unsigned\fP &v)"
+.br
+.ti -1c
+.RI "\fBSC_API\fP \fBsc_unsigned\fP \fBoperator%\fP (\fBuint64\fP \fBu\fP, \fBconst\fP \fBsc_unsigned\fP &v)"
+.br
+.ti -1c
+.RI "\fBSC_API\fP \fBsc_signed\fP \fBoperator%\fP (\fBlong\fP \fBu\fP, \fBconst\fP \fBsc_unsigned\fP &v)"
+.br
+.ti -1c
+.RI "\fBSC_API\fP \fBsc_unsigned\fP \fBoperator%\fP (\fBunsigned\fP \fBlong\fP \fBu\fP, \fBconst\fP \fBsc_unsigned\fP &v)"
+.br
+.ti -1c
+.RI "\fBSC_API\fP \fBsc_signed\fP \fBoperator%\fP (int \fBu\fP, \fBconst\fP \fBsc_unsigned\fP &v)"
+.br
+.ti -1c
+.RI "\fBsc_unsigned\fP \fBoperator%\fP (\fBunsigned\fP int \fBu\fP, \fBconst\fP \fBsc_unsigned\fP &v)"
+.br
+.ti -1c
+.RI "\fBSC_API\fP \fBsc_unsigned\fP \fBoperator%\fP (\fBconst\fP \fBsc_unsigned\fP &\fBu\fP, \fBconst\fP \fBsc_uint_base\fP &v)"
+.br
+.ti -1c
+.RI "\fBSC_API\fP \fBsc_signed\fP \fBoperator%\fP (\fBconst\fP \fBsc_unsigned\fP &\fBu\fP, \fBconst\fP \fBsc_int_base\fP &v)"
+.br
+.ti -1c
+.RI "\fBSC_API\fP \fBsc_unsigned\fP \fBoperator%\fP (\fBconst\fP \fBsc_uint_base\fP &\fBu\fP, \fBconst\fP \fBsc_unsigned\fP &v)"
+.br
+.ti -1c
+.RI "\fBSC_API\fP \fBsc_signed\fP \fBoperator%\fP (\fBconst\fP \fBsc_int_base\fP &\fBu\fP, \fBconst\fP \fBsc_unsigned\fP &v)"
+.br
+.ti -1c
+.RI "\fBSC_API\fP \fBsc_signed\fP \fBoperator&\fP (\fBconst\fP \fBsc_unsigned\fP &\fBu\fP, \fBconst\fP \fBsc_signed\fP &v)"
+.br
+.ti -1c
+.RI "\fBSC_API\fP \fBsc_signed\fP \fBoperator&\fP (\fBconst\fP \fBsc_signed\fP &\fBu\fP, \fBconst\fP \fBsc_unsigned\fP &v)"
+.br
+.ti -1c
+.RI "\fBSC_API\fP \fBsc_unsigned\fP \fBoperator&\fP (\fBconst\fP \fBsc_unsigned\fP &\fBu\fP, \fBconst\fP \fBsc_unsigned\fP &v)"
+.br
+.ti -1c
+.RI "\fBSC_API\fP \fBsc_signed\fP \fBoperator&\fP (\fBconst\fP \fBsc_unsigned\fP &\fBu\fP, \fBint64\fP v)"
+.br
+.ti -1c
+.RI "\fBSC_API\fP \fBsc_unsigned\fP \fBoperator&\fP (\fBconst\fP \fBsc_unsigned\fP &\fBu\fP, \fBuint64\fP v)"
+.br
+.ti -1c
+.RI "\fBSC_API\fP \fBsc_signed\fP \fBoperator&\fP (\fBconst\fP \fBsc_unsigned\fP &\fBu\fP, \fBlong\fP v)"
+.br
+.ti -1c
+.RI "\fBSC_API\fP \fBsc_unsigned\fP \fBoperator&\fP (\fBconst\fP \fBsc_unsigned\fP &\fBu\fP, \fBunsigned\fP \fBlong\fP v)"
+.br
+.ti -1c
+.RI "\fBSC_API\fP \fBsc_signed\fP \fBoperator&\fP (\fBconst\fP \fBsc_unsigned\fP &\fBu\fP, int v)"
+.br
+.ti -1c
+.RI "\fBsc_unsigned\fP \fBoperator&\fP (\fBconst\fP \fBsc_unsigned\fP &\fBu\fP, \fBunsigned\fP int v)"
+.br
+.ti -1c
+.RI "\fBSC_API\fP \fBsc_signed\fP \fBoperator&\fP (\fBint64\fP \fBu\fP, \fBconst\fP \fBsc_unsigned\fP &v)"
+.br
+.ti -1c
+.RI "\fBSC_API\fP \fBsc_unsigned\fP \fBoperator&\fP (\fBuint64\fP \fBu\fP, \fBconst\fP \fBsc_unsigned\fP &v)"
+.br
+.ti -1c
+.RI "\fBSC_API\fP \fBsc_signed\fP \fBoperator&\fP (\fBlong\fP \fBu\fP, \fBconst\fP \fBsc_unsigned\fP &v)"
+.br
+.ti -1c
+.RI "\fBSC_API\fP \fBsc_unsigned\fP \fBoperator&\fP (\fBunsigned\fP \fBlong\fP \fBu\fP, \fBconst\fP \fBsc_unsigned\fP &v)"
+.br
+.ti -1c
+.RI "\fBSC_API\fP \fBsc_signed\fP \fBoperator&\fP (int \fBu\fP, \fBconst\fP \fBsc_unsigned\fP &v)"
+.br
+.ti -1c
+.RI "\fBsc_unsigned\fP \fBoperator&\fP (\fBunsigned\fP int \fBu\fP, \fBconst\fP \fBsc_unsigned\fP &v)"
+.br
+.ti -1c
+.RI "\fBSC_API\fP \fBsc_unsigned\fP \fBoperator&\fP (\fBconst\fP \fBsc_unsigned\fP &\fBu\fP, \fBconst\fP \fBsc_uint_base\fP &v)"
+.br
+.ti -1c
+.RI "\fBSC_API\fP \fBsc_signed\fP \fBoperator&\fP (\fBconst\fP \fBsc_unsigned\fP &\fBu\fP, \fBconst\fP \fBsc_int_base\fP &v)"
+.br
+.ti -1c
+.RI "\fBSC_API\fP \fBsc_unsigned\fP \fBoperator&\fP (\fBconst\fP \fBsc_uint_base\fP &\fBu\fP, \fBconst\fP \fBsc_unsigned\fP &v)"
+.br
+.ti -1c
+.RI "\fBSC_API\fP \fBsc_signed\fP \fBoperator&\fP (\fBconst\fP \fBsc_int_base\fP &\fBu\fP, \fBconst\fP \fBsc_unsigned\fP &v)"
+.br
+.ti -1c
+.RI "\fBSC_API\fP \fBsc_signed\fP \fBoperator|\fP (\fBconst\fP \fBsc_unsigned\fP &\fBu\fP, \fBconst\fP \fBsc_signed\fP &v)"
+.br
+.ti -1c
+.RI "\fBSC_API\fP \fBsc_signed\fP \fBoperator|\fP (\fBconst\fP \fBsc_signed\fP &\fBu\fP, \fBconst\fP \fBsc_unsigned\fP &v)"
+.br
+.ti -1c
+.RI "\fBSC_API\fP \fBsc_unsigned\fP \fBoperator|\fP (\fBconst\fP \fBsc_unsigned\fP &\fBu\fP, \fBconst\fP \fBsc_unsigned\fP &v)"
+.br
+.ti -1c
+.RI "\fBSC_API\fP \fBsc_signed\fP \fBoperator|\fP (\fBconst\fP \fBsc_unsigned\fP &\fBu\fP, \fBint64\fP v)"
+.br
+.ti -1c
+.RI "\fBSC_API\fP \fBsc_unsigned\fP \fBoperator|\fP (\fBconst\fP \fBsc_unsigned\fP &\fBu\fP, \fBuint64\fP v)"
+.br
+.ti -1c
+.RI "\fBSC_API\fP \fBsc_signed\fP \fBoperator|\fP (\fBconst\fP \fBsc_unsigned\fP &\fBu\fP, \fBlong\fP v)"
+.br
+.ti -1c
+.RI "\fBSC_API\fP \fBsc_unsigned\fP \fBoperator|\fP (\fBconst\fP \fBsc_unsigned\fP &\fBu\fP, \fBunsigned\fP \fBlong\fP v)"
+.br
+.ti -1c
+.RI "\fBSC_API\fP \fBsc_signed\fP \fBoperator|\fP (\fBconst\fP \fBsc_unsigned\fP &\fBu\fP, int v)"
+.br
+.ti -1c
+.RI "\fBsc_unsigned\fP \fBoperator|\fP (\fBconst\fP \fBsc_unsigned\fP &\fBu\fP, \fBunsigned\fP int v)"
+.br
+.ti -1c
+.RI "\fBSC_API\fP \fBsc_signed\fP \fBoperator|\fP (\fBint64\fP \fBu\fP, \fBconst\fP \fBsc_unsigned\fP &v)"
+.br
+.ti -1c
+.RI "\fBSC_API\fP \fBsc_unsigned\fP \fBoperator|\fP (\fBuint64\fP \fBu\fP, \fBconst\fP \fBsc_unsigned\fP &v)"
+.br
+.ti -1c
+.RI "\fBSC_API\fP \fBsc_signed\fP \fBoperator|\fP (\fBlong\fP \fBu\fP, \fBconst\fP \fBsc_unsigned\fP &v)"
+.br
+.ti -1c
+.RI "\fBSC_API\fP \fBsc_unsigned\fP \fBoperator|\fP (\fBunsigned\fP \fBlong\fP \fBu\fP, \fBconst\fP \fBsc_unsigned\fP &v)"
+.br
+.ti -1c
+.RI "\fBSC_API\fP \fBsc_signed\fP \fBoperator|\fP (int \fBu\fP, \fBconst\fP \fBsc_unsigned\fP &v)"
+.br
+.ti -1c
+.RI "\fBsc_unsigned\fP \fBoperator|\fP (\fBunsigned\fP int \fBu\fP, \fBconst\fP \fBsc_unsigned\fP &v)"
+.br
+.ti -1c
+.RI "\fBSC_API\fP \fBsc_unsigned\fP \fBoperator|\fP (\fBconst\fP \fBsc_unsigned\fP &\fBu\fP, \fBconst\fP \fBsc_uint_base\fP &v)"
+.br
+.ti -1c
+.RI "\fBSC_API\fP \fBsc_signed\fP \fBoperator|\fP (\fBconst\fP \fBsc_unsigned\fP &\fBu\fP, \fBconst\fP \fBsc_int_base\fP &v)"
+.br
+.ti -1c
+.RI "\fBSC_API\fP \fBsc_unsigned\fP \fBoperator|\fP (\fBconst\fP \fBsc_uint_base\fP &\fBu\fP, \fBconst\fP \fBsc_unsigned\fP &v)"
+.br
+.ti -1c
+.RI "\fBSC_API\fP \fBsc_signed\fP \fBoperator|\fP (\fBconst\fP \fBsc_int_base\fP &\fBu\fP, \fBconst\fP \fBsc_unsigned\fP &v)"
+.br
+.ti -1c
+.RI "\fBSC_API\fP \fBsc_signed\fP \fBoperator^\fP (\fBconst\fP \fBsc_unsigned\fP &\fBu\fP, \fBconst\fP \fBsc_signed\fP &v)"
+.br
+.ti -1c
+.RI "\fBSC_API\fP \fBsc_signed\fP \fBoperator^\fP (\fBconst\fP \fBsc_signed\fP &\fBu\fP, \fBconst\fP \fBsc_unsigned\fP &v)"
+.br
+.ti -1c
+.RI "\fBSC_API\fP \fBsc_unsigned\fP \fBoperator^\fP (\fBconst\fP \fBsc_unsigned\fP &\fBu\fP, \fBconst\fP \fBsc_unsigned\fP &v)"
+.br
+.ti -1c
+.RI "\fBSC_API\fP \fBsc_signed\fP \fBoperator^\fP (\fBconst\fP \fBsc_unsigned\fP &\fBu\fP, \fBint64\fP v)"
+.br
+.ti -1c
+.RI "\fBSC_API\fP \fBsc_unsigned\fP \fBoperator^\fP (\fBconst\fP \fBsc_unsigned\fP &\fBu\fP, \fBuint64\fP v)"
+.br
+.ti -1c
+.RI "\fBSC_API\fP \fBsc_signed\fP \fBoperator^\fP (\fBconst\fP \fBsc_unsigned\fP &\fBu\fP, \fBlong\fP v)"
+.br
+.ti -1c
+.RI "\fBSC_API\fP \fBsc_unsigned\fP \fBoperator^\fP (\fBconst\fP \fBsc_unsigned\fP &\fBu\fP, \fBunsigned\fP \fBlong\fP v)"
+.br
+.ti -1c
+.RI "\fBSC_API\fP \fBsc_signed\fP \fBoperator^\fP (\fBconst\fP \fBsc_unsigned\fP &\fBu\fP, int v)"
+.br
+.ti -1c
+.RI "\fBsc_unsigned\fP \fBoperator^\fP (\fBconst\fP \fBsc_unsigned\fP &\fBu\fP, \fBunsigned\fP int v)"
+.br
+.ti -1c
+.RI "\fBSC_API\fP \fBsc_signed\fP \fBoperator^\fP (\fBint64\fP \fBu\fP, \fBconst\fP \fBsc_unsigned\fP &v)"
+.br
+.ti -1c
+.RI "\fBSC_API\fP \fBsc_unsigned\fP \fBoperator^\fP (\fBuint64\fP \fBu\fP, \fBconst\fP \fBsc_unsigned\fP &v)"
+.br
+.ti -1c
+.RI "\fBSC_API\fP \fBsc_signed\fP \fBoperator^\fP (\fBlong\fP \fBu\fP, \fBconst\fP \fBsc_unsigned\fP &v)"
+.br
+.ti -1c
+.RI "\fBSC_API\fP \fBsc_unsigned\fP \fBoperator^\fP (\fBunsigned\fP \fBlong\fP \fBu\fP, \fBconst\fP \fBsc_unsigned\fP &v)"
+.br
+.ti -1c
+.RI "\fBSC_API\fP \fBsc_signed\fP \fBoperator^\fP (int \fBu\fP, \fBconst\fP \fBsc_unsigned\fP &v)"
+.br
+.ti -1c
+.RI "\fBsc_unsigned\fP \fBoperator^\fP (\fBunsigned\fP int \fBu\fP, \fBconst\fP \fBsc_unsigned\fP &v)"
+.br
+.ti -1c
+.RI "\fBSC_API\fP \fBsc_unsigned\fP \fBoperator^\fP (\fBconst\fP \fBsc_unsigned\fP &\fBu\fP, \fBconst\fP \fBsc_uint_base\fP &v)"
+.br
+.ti -1c
+.RI "\fBSC_API\fP \fBsc_signed\fP \fBoperator^\fP (\fBconst\fP \fBsc_unsigned\fP &\fBu\fP, \fBconst\fP \fBsc_int_base\fP &v)"
+.br
+.ti -1c
+.RI "\fBSC_API\fP \fBsc_unsigned\fP \fBoperator^\fP (\fBconst\fP \fBsc_uint_base\fP &\fBu\fP, \fBconst\fP \fBsc_unsigned\fP &v)"
+.br
+.ti -1c
+.RI "\fBSC_API\fP \fBsc_signed\fP \fBoperator^\fP (\fBconst\fP \fBsc_int_base\fP &\fBu\fP, \fBconst\fP \fBsc_unsigned\fP &v)"
+.br
+.ti -1c
+.RI "\fBSC_API\fP \fBsc_unsigned\fP \fBoperator<<\fP (\fBconst\fP \fBsc_unsigned\fP &\fBu\fP, \fBconst\fP \fBsc_signed\fP &v)"
+.br
+.ti -1c
+.RI "\fBSC_API\fP \fBsc_signed\fP \fBoperator<<\fP (\fBconst\fP \fBsc_signed\fP &\fBu\fP, \fBconst\fP \fBsc_unsigned\fP &v)"
+.br
+.ti -1c
+.RI "\fBSC_API\fP \fBsc_unsigned\fP \fBoperator<<\fP (\fBconst\fP \fBsc_unsigned\fP &\fBu\fP, \fBconst\fP \fBsc_unsigned\fP &v)"
+.br
+.ti -1c
+.RI "\fBSC_API\fP \fBsc_unsigned\fP \fBoperator<<\fP (\fBconst\fP \fBsc_unsigned\fP &\fBu\fP, \fBint64\fP v)"
+.br
+.ti -1c
+.RI "\fBSC_API\fP \fBsc_unsigned\fP \fBoperator<<\fP (\fBconst\fP \fBsc_unsigned\fP &\fBu\fP, \fBuint64\fP v)"
+.br
+.ti -1c
+.RI "\fBSC_API\fP \fBsc_unsigned\fP \fBoperator<<\fP (\fBconst\fP \fBsc_unsigned\fP &\fBu\fP, \fBlong\fP v)"
+.br
+.ti -1c
+.RI "\fBSC_API\fP \fBsc_unsigned\fP \fBoperator<<\fP (\fBconst\fP \fBsc_unsigned\fP &\fBu\fP, \fBunsigned\fP \fBlong\fP v)"
+.br
+.ti -1c
+.RI "\fBsc_unsigned\fP \fBoperator<<\fP (\fBconst\fP \fBsc_unsigned\fP &\fBu\fP, int v)"
+.br
+.ti -1c
+.RI "\fBsc_unsigned\fP \fBoperator<<\fP (\fBconst\fP \fBsc_unsigned\fP &\fBu\fP, \fBunsigned\fP int v)"
+.br
+.ti -1c
+.RI "\fBSC_API\fP \fBsc_unsigned\fP \fBoperator<<\fP (\fBconst\fP \fBsc_unsigned\fP &\fBu\fP, \fBconst\fP \fBsc_uint_base\fP &v)"
+.br
+.ti -1c
+.RI "\fBSC_API\fP \fBsc_unsigned\fP \fBoperator<<\fP (\fBconst\fP \fBsc_unsigned\fP &\fBu\fP, \fBconst\fP \fBsc_int_base\fP &v)"
+.br
+.ti -1c
+.RI "\fBSC_API\fP \fBsc_unsigned\fP \fBoperator>>\fP (\fBconst\fP \fBsc_unsigned\fP &\fBu\fP, \fBconst\fP \fBsc_signed\fP &v)"
+.br
+.ti -1c
+.RI "\fBSC_API\fP \fBsc_signed\fP \fBoperator>>\fP (\fBconst\fP \fBsc_signed\fP &\fBu\fP, \fBconst\fP \fBsc_unsigned\fP &v)"
+.br
+.ti -1c
+.RI "\fBSC_API\fP \fBsc_unsigned\fP \fBoperator>>\fP (\fBconst\fP \fBsc_unsigned\fP &\fBu\fP, \fBconst\fP \fBsc_unsigned\fP &v)"
+.br
+.ti -1c
+.RI "\fBSC_API\fP \fBsc_unsigned\fP \fBoperator>>\fP (\fBconst\fP \fBsc_unsigned\fP &\fBu\fP, \fBint64\fP v)"
+.br
+.ti -1c
+.RI "\fBSC_API\fP \fBsc_unsigned\fP \fBoperator>>\fP (\fBconst\fP \fBsc_unsigned\fP &\fBu\fP, \fBuint64\fP v)"
+.br
+.ti -1c
+.RI "\fBSC_API\fP \fBsc_unsigned\fP \fBoperator>>\fP (\fBconst\fP \fBsc_unsigned\fP &\fBu\fP, \fBlong\fP v)"
+.br
+.ti -1c
+.RI "\fBSC_API\fP \fBsc_unsigned\fP \fBoperator>>\fP (\fBconst\fP \fBsc_unsigned\fP &\fBu\fP, \fBunsigned\fP \fBlong\fP v)"
+.br
+.ti -1c
+.RI "\fBsc_unsigned\fP \fBoperator>>\fP (\fBconst\fP \fBsc_unsigned\fP &\fBu\fP, int v)"
+.br
+.ti -1c
+.RI "\fBsc_unsigned\fP \fBoperator>>\fP (\fBconst\fP \fBsc_unsigned\fP &\fBu\fP, \fBunsigned\fP int v)"
+.br
+.ti -1c
+.RI "\fBSC_API\fP \fBsc_unsigned\fP \fBoperator>>\fP (\fBconst\fP \fBsc_unsigned\fP &, \fBconst\fP \fBsc_uint_base\fP &)"
+.br
+.ti -1c
+.RI "\fBSC_API\fP \fBsc_unsigned\fP \fBoperator>>\fP (\fBconst\fP \fBsc_unsigned\fP &, \fBconst\fP \fBsc_int_base\fP &)"
+.br
+.ti -1c
+.RI "\fBSC_API\fP \fBsc_unsigned\fP \fBoperator+\fP (\fBconst\fP \fBsc_unsigned\fP &\fBu\fP)"
+.br
+.ti -1c
+.RI "\fBSC_API\fP \fBsc_signed\fP \fBoperator\-\fP (\fBconst\fP \fBsc_unsigned\fP &\fBu\fP)"
+.br
+.ti -1c
+.RI "\fBSC_API\fP \fBbool\fP \fBoperator==\fP (\fBconst\fP \fBsc_unsigned\fP &\fBu\fP, \fBconst\fP \fBsc_signed\fP &v)"
+.br
+.ti -1c
+.RI "\fBSC_API\fP \fBbool\fP \fBoperator==\fP (\fBconst\fP \fBsc_signed\fP &\fBu\fP, \fBconst\fP \fBsc_unsigned\fP &v)"
+.br
+.ti -1c
+.RI "\fBSC_API\fP \fBbool\fP \fBoperator==\fP (\fBconst\fP \fBsc_unsigned\fP &\fBu\fP, \fBconst\fP \fBsc_unsigned\fP &v)"
+.br
+.ti -1c
+.RI "\fBSC_API\fP \fBbool\fP \fBoperator==\fP (\fBconst\fP \fBsc_unsigned\fP &\fBu\fP, \fBint64\fP v)"
+.br
+.ti -1c
+.RI "\fBSC_API\fP \fBbool\fP \fBoperator==\fP (\fBconst\fP \fBsc_unsigned\fP &\fBu\fP, \fBuint64\fP v)"
+.br
+.ti -1c
+.RI "\fBSC_API\fP \fBbool\fP \fBoperator==\fP (\fBconst\fP \fBsc_unsigned\fP &\fBu\fP, \fBlong\fP v)"
+.br
+.ti -1c
+.RI "\fBSC_API\fP \fBbool\fP \fBoperator==\fP (\fBconst\fP \fBsc_unsigned\fP &\fBu\fP, \fBunsigned\fP \fBlong\fP v)"
+.br
+.ti -1c
+.RI "\fBbool\fP \fBoperator==\fP (\fBconst\fP \fBsc_unsigned\fP &\fBu\fP, int v)"
+.br
+.ti -1c
+.RI "\fBbool\fP \fBoperator==\fP (\fBconst\fP \fBsc_unsigned\fP &\fBu\fP, \fBunsigned\fP int v)"
+.br
+.ti -1c
+.RI "\fBSC_API\fP \fBbool\fP \fBoperator==\fP (\fBint64\fP \fBu\fP, \fBconst\fP \fBsc_unsigned\fP &v)"
+.br
+.ti -1c
+.RI "\fBSC_API\fP \fBbool\fP \fBoperator==\fP (\fBuint64\fP \fBu\fP, \fBconst\fP \fBsc_unsigned\fP &v)"
+.br
+.ti -1c
+.RI "\fBSC_API\fP \fBbool\fP \fBoperator==\fP (\fBlong\fP \fBu\fP, \fBconst\fP \fBsc_unsigned\fP &v)"
+.br
+.ti -1c
+.RI "\fBSC_API\fP \fBbool\fP \fBoperator==\fP (\fBunsigned\fP \fBlong\fP \fBu\fP, \fBconst\fP \fBsc_unsigned\fP &v)"
+.br
+.ti -1c
+.RI "\fBbool\fP \fBoperator==\fP (int \fBu\fP, \fBconst\fP \fBsc_unsigned\fP &v)"
+.br
+.ti -1c
+.RI "\fBbool\fP \fBoperator==\fP (\fBunsigned\fP int \fBu\fP, \fBconst\fP \fBsc_unsigned\fP &v)"
+.br
+.ti -1c
+.RI "\fBSC_API\fP \fBbool\fP \fBoperator==\fP (\fBconst\fP \fBsc_unsigned\fP &\fBu\fP, \fBconst\fP \fBsc_uint_base\fP &v)"
+.br
+.ti -1c
+.RI "\fBSC_API\fP \fBbool\fP \fBoperator==\fP (\fBconst\fP \fBsc_unsigned\fP &\fBu\fP, \fBconst\fP \fBsc_int_base\fP &v)"
+.br
+.ti -1c
+.RI "\fBSC_API\fP \fBbool\fP \fBoperator==\fP (\fBconst\fP \fBsc_uint_base\fP &\fBu\fP, \fBconst\fP \fBsc_unsigned\fP &v)"
+.br
+.ti -1c
+.RI "\fBSC_API\fP \fBbool\fP \fBoperator==\fP (\fBconst\fP \fBsc_int_base\fP &\fBu\fP, \fBconst\fP \fBsc_unsigned\fP &v)"
+.br
+.ti -1c
+.RI "\fBSC_API\fP \fBbool\fP \fBoperator!=\fP (\fBconst\fP \fBsc_unsigned\fP &\fBu\fP, \fBconst\fP \fBsc_signed\fP &v)"
+.br
+.ti -1c
+.RI "\fBSC_API\fP \fBbool\fP \fBoperator!=\fP (\fBconst\fP \fBsc_signed\fP &\fBu\fP, \fBconst\fP \fBsc_unsigned\fP &v)"
+.br
+.ti -1c
+.RI "\fBSC_API\fP \fBbool\fP \fBoperator!=\fP (\fBconst\fP \fBsc_unsigned\fP &\fBu\fP, \fBconst\fP \fBsc_unsigned\fP &v)"
+.br
+.ti -1c
+.RI "\fBSC_API\fP \fBbool\fP \fBoperator!=\fP (\fBconst\fP \fBsc_unsigned\fP &\fBu\fP, \fBint64\fP v)"
+.br
+.ti -1c
+.RI "\fBSC_API\fP \fBbool\fP \fBoperator!=\fP (\fBconst\fP \fBsc_unsigned\fP &\fBu\fP, \fBuint64\fP v)"
+.br
+.ti -1c
+.RI "\fBSC_API\fP \fBbool\fP \fBoperator!=\fP (\fBconst\fP \fBsc_unsigned\fP &\fBu\fP, \fBlong\fP v)"
+.br
+.ti -1c
+.RI "\fBSC_API\fP \fBbool\fP \fBoperator!=\fP (\fBconst\fP \fBsc_unsigned\fP &\fBu\fP, \fBunsigned\fP \fBlong\fP v)"
+.br
+.ti -1c
+.RI "\fBbool\fP \fBoperator!=\fP (\fBconst\fP \fBsc_unsigned\fP &\fBu\fP, int v)"
+.br
+.ti -1c
+.RI "\fBbool\fP \fBoperator!=\fP (\fBconst\fP \fBsc_unsigned\fP &\fBu\fP, \fBunsigned\fP int v)"
+.br
+.ti -1c
+.RI "\fBSC_API\fP \fBbool\fP \fBoperator!=\fP (\fBint64\fP \fBu\fP, \fBconst\fP \fBsc_unsigned\fP &v)"
+.br
+.ti -1c
+.RI "\fBSC_API\fP \fBbool\fP \fBoperator!=\fP (\fBuint64\fP \fBu\fP, \fBconst\fP \fBsc_unsigned\fP &v)"
+.br
+.ti -1c
+.RI "\fBSC_API\fP \fBbool\fP \fBoperator!=\fP (\fBlong\fP \fBu\fP, \fBconst\fP \fBsc_unsigned\fP &v)"
+.br
+.ti -1c
+.RI "\fBSC_API\fP \fBbool\fP \fBoperator!=\fP (\fBunsigned\fP \fBlong\fP \fBu\fP, \fBconst\fP \fBsc_unsigned\fP &v)"
+.br
+.ti -1c
+.RI "\fBbool\fP \fBoperator!=\fP (int \fBu\fP, \fBconst\fP \fBsc_unsigned\fP &v)"
+.br
+.ti -1c
+.RI "\fBbool\fP \fBoperator!=\fP (\fBunsigned\fP int \fBu\fP, \fBconst\fP \fBsc_unsigned\fP &v)"
+.br
+.ti -1c
+.RI "\fBSC_API\fP \fBbool\fP \fBoperator!=\fP (\fBconst\fP \fBsc_unsigned\fP &\fBu\fP, \fBconst\fP \fBsc_uint_base\fP &v)"
+.br
+.ti -1c
+.RI "\fBSC_API\fP \fBbool\fP \fBoperator!=\fP (\fBconst\fP \fBsc_unsigned\fP &\fBu\fP, \fBconst\fP \fBsc_int_base\fP &v)"
+.br
+.ti -1c
+.RI "\fBSC_API\fP \fBbool\fP \fBoperator!=\fP (\fBconst\fP \fBsc_uint_base\fP &\fBu\fP, \fBconst\fP \fBsc_unsigned\fP &v)"
+.br
+.ti -1c
+.RI "\fBSC_API\fP \fBbool\fP \fBoperator!=\fP (\fBconst\fP \fBsc_int_base\fP &\fBu\fP, \fBconst\fP \fBsc_unsigned\fP &v)"
+.br
+.ti -1c
+.RI "\fBSC_API\fP \fBbool\fP \fBoperator<\fP (\fBconst\fP \fBsc_unsigned\fP &\fBu\fP, \fBconst\fP \fBsc_signed\fP &v)"
+.br
+.ti -1c
+.RI "\fBSC_API\fP \fBbool\fP \fBoperator<\fP (\fBconst\fP \fBsc_signed\fP &\fBu\fP, \fBconst\fP \fBsc_unsigned\fP &v)"
+.br
+.ti -1c
+.RI "\fBSC_API\fP \fBbool\fP \fBoperator<\fP (\fBconst\fP \fBsc_unsigned\fP &\fBu\fP, \fBconst\fP \fBsc_unsigned\fP &v)"
+.br
+.ti -1c
+.RI "\fBSC_API\fP \fBbool\fP \fBoperator<\fP (\fBconst\fP \fBsc_unsigned\fP &\fBu\fP, \fBint64\fP v)"
+.br
+.ti -1c
+.RI "\fBSC_API\fP \fBbool\fP \fBoperator<\fP (\fBconst\fP \fBsc_unsigned\fP &\fBu\fP, \fBuint64\fP v)"
+.br
+.ti -1c
+.RI "\fBSC_API\fP \fBbool\fP \fBoperator<\fP (\fBconst\fP \fBsc_unsigned\fP &\fBu\fP, \fBlong\fP v)"
+.br
+.ti -1c
+.RI "\fBSC_API\fP \fBbool\fP \fBoperator<\fP (\fBconst\fP \fBsc_unsigned\fP &\fBu\fP, \fBunsigned\fP \fBlong\fP v)"
+.br
+.ti -1c
+.RI "\fBbool\fP \fBoperator<\fP (\fBconst\fP \fBsc_unsigned\fP &\fBu\fP, int v)"
+.br
+.ti -1c
+.RI "\fBbool\fP \fBoperator<\fP (\fBconst\fP \fBsc_unsigned\fP &\fBu\fP, \fBunsigned\fP int v)"
+.br
+.ti -1c
+.RI "\fBSC_API\fP \fBbool\fP \fBoperator<\fP (\fBint64\fP \fBu\fP, \fBconst\fP \fBsc_unsigned\fP &v)"
+.br
+.ti -1c
+.RI "\fBSC_API\fP \fBbool\fP \fBoperator<\fP (\fBuint64\fP \fBu\fP, \fBconst\fP \fBsc_unsigned\fP &v)"
+.br
+.ti -1c
+.RI "\fBSC_API\fP \fBbool\fP \fBoperator<\fP (\fBlong\fP \fBu\fP, \fBconst\fP \fBsc_unsigned\fP &v)"
+.br
+.ti -1c
+.RI "\fBSC_API\fP \fBbool\fP \fBoperator<\fP (\fBunsigned\fP \fBlong\fP \fBu\fP, \fBconst\fP \fBsc_unsigned\fP &v)"
+.br
+.ti -1c
+.RI "\fBbool\fP \fBoperator<\fP (int \fBu\fP, \fBconst\fP \fBsc_unsigned\fP &v)"
+.br
+.ti -1c
+.RI "\fBbool\fP \fBoperator<\fP (\fBunsigned\fP int \fBu\fP, \fBconst\fP \fBsc_unsigned\fP &v)"
+.br
+.ti -1c
+.RI "\fBSC_API\fP \fBbool\fP \fBoperator<\fP (\fBconst\fP \fBsc_unsigned\fP &\fBu\fP, \fBconst\fP \fBsc_uint_base\fP &v)"
+.br
+.ti -1c
+.RI "\fBSC_API\fP \fBbool\fP \fBoperator<\fP (\fBconst\fP \fBsc_unsigned\fP &\fBu\fP, \fBconst\fP \fBsc_int_base\fP &v)"
+.br
+.ti -1c
+.RI "\fBSC_API\fP \fBbool\fP \fBoperator<\fP (\fBconst\fP \fBsc_uint_base\fP &\fBu\fP, \fBconst\fP \fBsc_unsigned\fP &v)"
+.br
+.ti -1c
+.RI "\fBSC_API\fP \fBbool\fP \fBoperator<\fP (\fBconst\fP \fBsc_int_base\fP &\fBu\fP, \fBconst\fP \fBsc_unsigned\fP &v)"
+.br
+.ti -1c
+.RI "\fBSC_API\fP \fBbool\fP \fBoperator<=\fP (\fBconst\fP \fBsc_unsigned\fP &\fBu\fP, \fBconst\fP \fBsc_signed\fP &v)"
+.br
+.ti -1c
+.RI "\fBSC_API\fP \fBbool\fP \fBoperator<=\fP (\fBconst\fP \fBsc_signed\fP &\fBu\fP, \fBconst\fP \fBsc_unsigned\fP &v)"
+.br
+.ti -1c
+.RI "\fBSC_API\fP \fBbool\fP \fBoperator<=\fP (\fBconst\fP \fBsc_unsigned\fP &\fBu\fP, \fBconst\fP \fBsc_unsigned\fP &v)"
+.br
+.ti -1c
+.RI "\fBSC_API\fP \fBbool\fP \fBoperator<=\fP (\fBconst\fP \fBsc_unsigned\fP &\fBu\fP, \fBint64\fP v)"
+.br
+.ti -1c
+.RI "\fBSC_API\fP \fBbool\fP \fBoperator<=\fP (\fBconst\fP \fBsc_unsigned\fP &\fBu\fP, \fBuint64\fP v)"
+.br
+.ti -1c
+.RI "\fBSC_API\fP \fBbool\fP \fBoperator<=\fP (\fBconst\fP \fBsc_unsigned\fP &\fBu\fP, \fBlong\fP v)"
+.br
+.ti -1c
+.RI "\fBSC_API\fP \fBbool\fP \fBoperator<=\fP (\fBconst\fP \fBsc_unsigned\fP &\fBu\fP, \fBunsigned\fP \fBlong\fP v)"
+.br
+.ti -1c
+.RI "\fBbool\fP \fBoperator<=\fP (\fBconst\fP \fBsc_unsigned\fP &\fBu\fP, int v)"
+.br
+.ti -1c
+.RI "\fBbool\fP \fBoperator<=\fP (\fBconst\fP \fBsc_unsigned\fP &\fBu\fP, \fBunsigned\fP int v)"
+.br
+.ti -1c
+.RI "\fBSC_API\fP \fBbool\fP \fBoperator<=\fP (\fBint64\fP \fBu\fP, \fBconst\fP \fBsc_unsigned\fP &v)"
+.br
+.ti -1c
+.RI "\fBSC_API\fP \fBbool\fP \fBoperator<=\fP (\fBuint64\fP \fBu\fP, \fBconst\fP \fBsc_unsigned\fP &v)"
+.br
+.ti -1c
+.RI "\fBSC_API\fP \fBbool\fP \fBoperator<=\fP (\fBlong\fP \fBu\fP, \fBconst\fP \fBsc_unsigned\fP &v)"
+.br
+.ti -1c
+.RI "\fBSC_API\fP \fBbool\fP \fBoperator<=\fP (\fBunsigned\fP \fBlong\fP \fBu\fP, \fBconst\fP \fBsc_unsigned\fP &v)"
+.br
+.ti -1c
+.RI "\fBbool\fP \fBoperator<=\fP (int \fBu\fP, \fBconst\fP \fBsc_unsigned\fP &v)"
+.br
+.ti -1c
+.RI "\fBbool\fP \fBoperator<=\fP (\fBunsigned\fP int \fBu\fP, \fBconst\fP \fBsc_unsigned\fP &v)"
+.br
+.ti -1c
+.RI "\fBSC_API\fP \fBbool\fP \fBoperator<=\fP (\fBconst\fP \fBsc_unsigned\fP &\fBu\fP, \fBconst\fP \fBsc_uint_base\fP &v)"
+.br
+.ti -1c
+.RI "\fBSC_API\fP \fBbool\fP \fBoperator<=\fP (\fBconst\fP \fBsc_unsigned\fP &\fBu\fP, \fBconst\fP \fBsc_int_base\fP &v)"
+.br
+.ti -1c
+.RI "\fBSC_API\fP \fBbool\fP \fBoperator<=\fP (\fBconst\fP \fBsc_uint_base\fP &\fBu\fP, \fBconst\fP \fBsc_unsigned\fP &v)"
+.br
+.ti -1c
+.RI "\fBSC_API\fP \fBbool\fP \fBoperator<=\fP (\fBconst\fP \fBsc_int_base\fP &\fBu\fP, \fBconst\fP \fBsc_unsigned\fP &v)"
+.br
+.ti -1c
+.RI "\fBSC_API\fP \fBbool\fP \fBoperator>\fP (\fBconst\fP \fBsc_unsigned\fP &\fBu\fP, \fBconst\fP \fBsc_signed\fP &v)"
+.br
+.ti -1c
+.RI "\fBSC_API\fP \fBbool\fP \fBoperator>\fP (\fBconst\fP \fBsc_signed\fP &\fBu\fP, \fBconst\fP \fBsc_unsigned\fP &v)"
+.br
+.ti -1c
+.RI "\fBSC_API\fP \fBbool\fP \fBoperator>\fP (\fBconst\fP \fBsc_unsigned\fP &\fBu\fP, \fBconst\fP \fBsc_unsigned\fP &v)"
+.br
+.ti -1c
+.RI "\fBSC_API\fP \fBbool\fP \fBoperator>\fP (\fBconst\fP \fBsc_unsigned\fP &\fBu\fP, \fBint64\fP v)"
+.br
+.ti -1c
+.RI "\fBSC_API\fP \fBbool\fP \fBoperator>\fP (\fBconst\fP \fBsc_unsigned\fP &\fBu\fP, \fBuint64\fP v)"
+.br
+.ti -1c
+.RI "\fBSC_API\fP \fBbool\fP \fBoperator>\fP (\fBconst\fP \fBsc_unsigned\fP &\fBu\fP, \fBlong\fP v)"
+.br
+.ti -1c
+.RI "\fBSC_API\fP \fBbool\fP \fBoperator>\fP (\fBconst\fP \fBsc_unsigned\fP &\fBu\fP, \fBunsigned\fP \fBlong\fP v)"
+.br
+.ti -1c
+.RI "\fBbool\fP \fBoperator>\fP (\fBconst\fP \fBsc_unsigned\fP &\fBu\fP, int v)"
+.br
+.ti -1c
+.RI "\fBbool\fP \fBoperator>\fP (\fBconst\fP \fBsc_unsigned\fP &\fBu\fP, \fBunsigned\fP int v)"
+.br
+.ti -1c
+.RI "\fBSC_API\fP \fBbool\fP \fBoperator>\fP (\fBint64\fP \fBu\fP, \fBconst\fP \fBsc_unsigned\fP &v)"
+.br
+.ti -1c
+.RI "\fBSC_API\fP \fBbool\fP \fBoperator>\fP (\fBuint64\fP \fBu\fP, \fBconst\fP \fBsc_unsigned\fP &v)"
+.br
+.ti -1c
+.RI "\fBSC_API\fP \fBbool\fP \fBoperator>\fP (\fBlong\fP \fBu\fP, \fBconst\fP \fBsc_unsigned\fP &v)"
+.br
+.ti -1c
+.RI "\fBSC_API\fP \fBbool\fP \fBoperator>\fP (\fBunsigned\fP \fBlong\fP \fBu\fP, \fBconst\fP \fBsc_unsigned\fP &v)"
+.br
+.ti -1c
+.RI "\fBbool\fP \fBoperator>\fP (int \fBu\fP, \fBconst\fP \fBsc_unsigned\fP &v)"
+.br
+.ti -1c
+.RI "\fBbool\fP \fBoperator>\fP (\fBunsigned\fP int \fBu\fP, \fBconst\fP \fBsc_unsigned\fP &v)"
+.br
+.ti -1c
+.RI "\fBSC_API\fP \fBbool\fP \fBoperator>\fP (\fBconst\fP \fBsc_unsigned\fP &\fBu\fP, \fBconst\fP \fBsc_uint_base\fP &v)"
+.br
+.ti -1c
+.RI "\fBSC_API\fP \fBbool\fP \fBoperator>\fP (\fBconst\fP \fBsc_unsigned\fP &\fBu\fP, \fBconst\fP \fBsc_int_base\fP &v)"
+.br
+.ti -1c
+.RI "\fBSC_API\fP \fBbool\fP \fBoperator>\fP (\fBconst\fP \fBsc_uint_base\fP &\fBu\fP, \fBconst\fP \fBsc_unsigned\fP &v)"
+.br
+.ti -1c
+.RI "\fBSC_API\fP \fBbool\fP \fBoperator>\fP (\fBconst\fP \fBsc_int_base\fP &\fBu\fP, \fBconst\fP \fBsc_unsigned\fP &v)"
+.br
+.ti -1c
+.RI "\fBSC_API\fP \fBbool\fP \fBoperator>=\fP (\fBconst\fP \fBsc_unsigned\fP &\fBu\fP, \fBconst\fP \fBsc_signed\fP &v)"
+.br
+.ti -1c
+.RI "\fBSC_API\fP \fBbool\fP \fBoperator>=\fP (\fBconst\fP \fBsc_signed\fP &\fBu\fP, \fBconst\fP \fBsc_unsigned\fP &v)"
+.br
+.ti -1c
+.RI "\fBSC_API\fP \fBbool\fP \fBoperator>=\fP (\fBconst\fP \fBsc_unsigned\fP &\fBu\fP, \fBconst\fP \fBsc_unsigned\fP &v)"
+.br
+.ti -1c
+.RI "\fBSC_API\fP \fBbool\fP \fBoperator>=\fP (\fBconst\fP \fBsc_unsigned\fP &\fBu\fP, \fBint64\fP v)"
+.br
+.ti -1c
+.RI "\fBSC_API\fP \fBbool\fP \fBoperator>=\fP (\fBconst\fP \fBsc_unsigned\fP &\fBu\fP, \fBuint64\fP v)"
+.br
+.ti -1c
+.RI "\fBSC_API\fP \fBbool\fP \fBoperator>=\fP (\fBconst\fP \fBsc_unsigned\fP &\fBu\fP, \fBlong\fP v)"
+.br
+.ti -1c
+.RI "\fBSC_API\fP \fBbool\fP \fBoperator>=\fP (\fBconst\fP \fBsc_unsigned\fP &\fBu\fP, \fBunsigned\fP \fBlong\fP v)"
+.br
+.ti -1c
+.RI "\fBbool\fP \fBoperator>=\fP (\fBconst\fP \fBsc_unsigned\fP &\fBu\fP, int v)"
+.br
+.ti -1c
+.RI "\fBbool\fP \fBoperator>=\fP (\fBconst\fP \fBsc_unsigned\fP &\fBu\fP, \fBunsigned\fP int v)"
+.br
+.ti -1c
+.RI "\fBSC_API\fP \fBbool\fP \fBoperator>=\fP (\fBint64\fP \fBu\fP, \fBconst\fP \fBsc_unsigned\fP &v)"
+.br
+.ti -1c
+.RI "\fBSC_API\fP \fBbool\fP \fBoperator>=\fP (\fBuint64\fP \fBu\fP, \fBconst\fP \fBsc_unsigned\fP &v)"
+.br
+.ti -1c
+.RI "\fBSC_API\fP \fBbool\fP \fBoperator>=\fP (\fBlong\fP \fBu\fP, \fBconst\fP \fBsc_unsigned\fP &v)"
+.br
+.ti -1c
+.RI "\fBSC_API\fP \fBbool\fP \fBoperator>=\fP (\fBunsigned\fP \fBlong\fP \fBu\fP, \fBconst\fP \fBsc_unsigned\fP &v)"
+.br
+.ti -1c
+.RI "\fBbool\fP \fBoperator>=\fP (int \fBu\fP, \fBconst\fP \fBsc_unsigned\fP &v)"
+.br
+.ti -1c
+.RI "\fBbool\fP \fBoperator>=\fP (\fBunsigned\fP int \fBu\fP, \fBconst\fP \fBsc_unsigned\fP &v)"
+.br
+.ti -1c
+.RI "\fBSC_API\fP \fBbool\fP \fBoperator>=\fP (\fBconst\fP \fBsc_unsigned\fP &\fBu\fP, \fBconst\fP \fBsc_uint_base\fP &v)"
+.br
+.ti -1c
+.RI "\fBSC_API\fP \fBbool\fP \fBoperator>=\fP (\fBconst\fP \fBsc_unsigned\fP &\fBu\fP, \fBconst\fP \fBsc_int_base\fP &v)"
+.br
+.ti -1c
+.RI "\fBSC_API\fP \fBbool\fP \fBoperator>=\fP (\fBconst\fP \fBsc_uint_base\fP &\fBu\fP, \fBconst\fP \fBsc_unsigned\fP &v)"
+.br
+.ti -1c
+.RI "\fBSC_API\fP \fBbool\fP \fBoperator>=\fP (\fBconst\fP \fBsc_int_base\fP &\fBu\fP, \fBconst\fP \fBsc_unsigned\fP &v)"
+.br
+.ti -1c
+.RI "\fBSC_API\fP \fBsc_unsigned\fP \fBoperator~\fP (\fBconst\fP \fBsc_unsigned\fP &\fBu\fP)"
+.br
+.ti -1c
+.RI "int \fBcompare_unsigned\fP (\fBsmall_type\fP \fBus\fP, int \fBunb\fP, int \fBund\fP, \fBconst\fP \fBsc_digit\fP *\fBud\fP, \fBsmall_type\fP \fBvs\fP, int \fBvnb\fP, int \fBvnd\fP, \fBconst\fP \fBsc_digit\fP *\fBvd\fP, \fBsmall_type\fP \fBif_u_signed\fP, \fBsmall_type\fP \fBif_v_signed\fP)"
+.br
+.ti -1c
+.RI "\fBsc_unsigned\fP \fBadd_unsigned_friend\fP (\fBsmall_type\fP \fBus\fP, int \fBunb\fP, int \fBund\fP, \fBconst\fP \fBsc_digit\fP *\fBud\fP, \fBsmall_type\fP \fBvs\fP, int \fBvnb\fP, int \fBvnd\fP, \fBconst\fP \fBsc_digit\fP *\fBvd\fP)"
+.br
+.ti -1c
+.RI "\fBsc_unsigned\fP \fBsub_unsigned_friend\fP (\fBsmall_type\fP \fBus\fP, int \fBunb\fP, int \fBund\fP, \fBconst\fP \fBsc_digit\fP *\fBud\fP, \fBsmall_type\fP \fBvs\fP, int \fBvnb\fP, int \fBvnd\fP, \fBconst\fP \fBsc_digit\fP *\fBvd\fP)"
+.br
+.ti -1c
+.RI "\fBsc_unsigned\fP \fBmul_unsigned_friend\fP (\fBsmall_type\fP s, int \fBunb\fP, int \fBund\fP, \fBconst\fP \fBsc_digit\fP *\fBud\fP, int \fBvnb\fP, int \fBvnd\fP, \fBconst\fP \fBsc_digit\fP *\fBvd\fP)"
+.br
+.ti -1c
+.RI "\fBsc_unsigned\fP \fBdiv_unsigned_friend\fP (\fBsmall_type\fP s, int \fBunb\fP, int \fBund\fP, \fBconst\fP \fBsc_digit\fP *\fBud\fP, int \fBvnb\fP, int \fBvnd\fP, \fBconst\fP \fBsc_digit\fP *\fBvd\fP)"
+.br
+.ti -1c
+.RI "\fBsc_unsigned\fP \fBmod_unsigned_friend\fP (\fBsmall_type\fP \fBus\fP, int \fBunb\fP, int \fBund\fP, \fBconst\fP \fBsc_digit\fP *\fBud\fP, int \fBvnb\fP, int \fBvnd\fP, \fBconst\fP \fBsc_digit\fP *\fBvd\fP)"
+.br
+.ti -1c
+.RI "\fBsc_unsigned\fP \fBand_unsigned_friend\fP (\fBsmall_type\fP \fBus\fP, int \fBunb\fP, int \fBund\fP, \fBconst\fP \fBsc_digit\fP *\fBud\fP, \fBsmall_type\fP \fBvs\fP, int \fBvnb\fP, int \fBvnd\fP, \fBconst\fP \fBsc_digit\fP *\fBvd\fP)"
+.br
+.ti -1c
+.RI "\fBsc_unsigned\fP \fBor_unsigned_friend\fP (\fBsmall_type\fP \fBus\fP, int \fBunb\fP, int \fBund\fP, \fBconst\fP \fBsc_digit\fP *\fBud\fP, \fBsmall_type\fP \fBvs\fP, int \fBvnb\fP, int \fBvnd\fP, \fBconst\fP \fBsc_digit\fP *\fBvd\fP)"
+.br
+.ti -1c
+.RI "\fBsc_unsigned\fP \fBxor_unsigned_friend\fP (\fBsmall_type\fP \fBus\fP, int \fBunb\fP, int \fBund\fP, \fBconst\fP \fBsc_digit\fP *\fBud\fP, \fBsmall_type\fP \fBvs\fP, int \fBvnb\fP, int \fBvnd\fP, \fBconst\fP \fBsc_digit\fP *\fBvd\fP)"
+.br
+.in -1c
+.SH "Member Typedef Documentation"
+.PP 
+.SS "\fBtypedef\fP \fBbool\fP \fBsc_dt::sc_unsigned::elemtype\fP\fR [private]\fP"
+
+.SH "Constructor & Destructor Documentation"
+.PP 
+.SS "sc_dt::sc_unsigned::sc_unsigned (int nb = \fR\fBsc_length_param\fP()\&.len()\fP)\fR [explicit]\fP"
+
+.SS "sc_dt::sc_unsigned::sc_unsigned (\fBconst\fP \fBsc_unsigned\fP & v)"
+
+.SS "sc_dt::sc_unsigned::sc_unsigned (\fBconst\fP \fBsc_signed\fP & v)"
+
+.SS "template<\fBclass\fP \fBT\fP > sc_dt::sc_unsigned::sc_unsigned (\fBconst\fP \fBsc_generic_base\fP< \fBT\fP > & v)\fR [explicit]\fP"
+
+.SS "sc_dt::sc_unsigned::sc_unsigned (\fBconst\fP \fBsc_bv_base\fP & v)\fR [explicit]\fP"
+
+.SS "sc_dt::sc_unsigned::sc_unsigned (\fBconst\fP \fBsc_lv_base\fP & v)\fR [explicit]\fP"
+
+.SS "sc_dt::sc_unsigned::sc_unsigned (\fBconst\fP \fBsc_int_subref_r\fP & v)\fR [explicit]\fP"
+
+.SS "sc_dt::sc_unsigned::sc_unsigned (\fBconst\fP \fBsc_uint_subref_r\fP & v)\fR [explicit]\fP"
+
+.SS "sc_dt::sc_unsigned::sc_unsigned (\fBconst\fP \fBsc_signed_subref_r\fP & v)\fR [explicit]\fP"
+
+.SS "sc_dt::sc_unsigned::sc_unsigned (\fBconst\fP \fBsc_unsigned_subref_r\fP & v)\fR [explicit]\fP"
+
+.SS "\fBvirtual\fP sc_dt::sc_unsigned::~sc_unsigned ()\fR [inline]\fP, \fR [virtual]\fP"
+
+.SS "sc_dt::sc_unsigned::sc_unsigned (\fBconst\fP \fBsc_unsigned\fP & v, \fBsmall_type\fP s)\fR [private]\fP"
+
+.SS "sc_dt::sc_unsigned::sc_unsigned (\fBconst\fP \fBsc_signed\fP & v, \fBsmall_type\fP s)\fR [private]\fP"
+
+.SS "sc_dt::sc_unsigned::sc_unsigned (\fBsmall_type\fP s, int nb, int nd, \fBsc_digit\fP * d, \fBbool\fP alloc = \fR\fBtrue\fP\fP)\fR [private]\fP"
+
+.SS "sc_dt::sc_unsigned::sc_unsigned (\fBconst\fP \fBsc_signed\fP * u, int l, int r)\fR [private]\fP"
+
+.SS "sc_dt::sc_unsigned::sc_unsigned (\fBconst\fP \fBsc_unsigned\fP * u, int l, int r)\fR [private]\fP"
+
+.SH "Member Function Documentation"
+.PP 
+.SS "\fBbool\fP sc_dt::sc_unsigned::and_reduce () const"
+
+.SS "\fBsc_unsigned_bitref\fP & sc_dt::sc_unsigned::bit (int i)\fR [inline]\fP"
+
+.SS "\fBconst\fP \fBsc_unsigned_bitref_r\fP & sc_dt::sc_unsigned::bit (int i) const\fR [inline]\fP"
+
+.SS "\fBbool\fP sc_dt::sc_unsigned::check_if_outside (int bit_num) const\fR [private]\fP"
+
+.SS "\fBvoid\fP sc_dt::sc_unsigned::check_index (int i) const\fR [inline]\fP"
+
+.SS "\fBvoid\fP sc_dt::sc_unsigned::check_range (int l, int r) const\fR [inline]\fP"
+
+.SS "\fBvoid\fP sc_dt::sc_unsigned::clear (int i)"
+
+.SS "\fBvirtual\fP \fBbool\fP sc_dt::sc_unsigned::concat_get_ctrl (\fBsc_digit\fP * dst_p, int low_i) const\fR [virtual]\fP"
+
+.PP
+Reimplemented from \fBsc_dt::sc_value_base\fP\&.
+.SS "\fBvirtual\fP \fBbool\fP sc_dt::sc_unsigned::concat_get_data (\fBsc_digit\fP * dst_p, int low_i) const\fR [virtual]\fP"
+
+.PP
+Reimplemented from \fBsc_dt::sc_value_base\fP\&.
+.SS "\fBvirtual\fP \fBuint64\fP sc_dt::sc_unsigned::concat_get_uint64 () const\fR [virtual]\fP"
+
+.PP
+Reimplemented from \fBsc_dt::sc_value_base\fP\&.
+.SS "\fBvirtual\fP int sc_dt::sc_unsigned::concat_length (\fBbool\fP * xz_present_p) const\fR [inline]\fP, \fR [virtual]\fP"
+
+.PP
+Reimplemented from \fBsc_dt::sc_value_base\fP\&.
+.SS "\fBvirtual\fP \fBvoid\fP sc_dt::sc_unsigned::concat_set (\fBconst\fP \fBsc_signed\fP & src, int low_i)\fR [virtual]\fP"
+
+.PP
+Reimplemented from \fBsc_dt::sc_value_base\fP\&.
+.SS "\fBvirtual\fP \fBvoid\fP sc_dt::sc_unsigned::concat_set (\fBconst\fP \fBsc_unsigned\fP & src, int low_i)\fR [virtual]\fP"
+
+.PP
+Reimplemented from \fBsc_dt::sc_value_base\fP\&.
+.SS "\fBvirtual\fP \fBvoid\fP sc_dt::sc_unsigned::concat_set (\fBint64\fP src, int low_i)\fR [virtual]\fP"
+
+.PP
+Reimplemented from \fBsc_dt::sc_value_base\fP\&.
+.SS "\fBvirtual\fP \fBvoid\fP sc_dt::sc_unsigned::concat_set (\fBuint64\fP src, int low_i)\fR [virtual]\fP"
+
+.PP
+Reimplemented from \fBsc_dt::sc_value_base\fP\&.
+.SS "\fBvoid\fP sc_dt::sc_unsigned::convert_2C_to_SM ()\fR [inline]\fP, \fR [private]\fP"
+
+.SS "\fBvoid\fP sc_dt::sc_unsigned::convert_SM_to_2C ()\fR [inline]\fP, \fR [private]\fP"
+
+.SS "\fBvoid\fP sc_dt::sc_unsigned::convert_SM_to_2C_to_SM ()\fR [inline]\fP, \fR [private]\fP"
+
+.SS "\fBvoid\fP sc_dt::sc_unsigned::copy_digits (int nb, int nd, \fBconst\fP \fBsc_digit\fP * d)\fR [inline]\fP, \fR [private]\fP"
+
+.SS "\fBsmall_type\fP sc_dt::sc_unsigned::default_sign () const\fR [inline]\fP, \fR [private]\fP"
+
+.SS "\fBvoid\fP sc_dt::sc_unsigned::dump (::std::ostream & os = \fR::std::cout\fP) const"
+
+.SS "\fBvoid\fP sc_dt::sc_unsigned::get_packed_rep (\fBsc_digit\fP * buf) const"
+
+.SS "\fBsc_digit\fP * sc_dt::sc_unsigned::get_raw () const\fR [inline]\fP"
+
+.SS "\fBvoid\fP sc_dt::sc_unsigned::invalid_index (int i) const"
+
+.SS "\fBvoid\fP sc_dt::sc_unsigned::invalid_init (\fBconst\fP \fBchar\fP * type_name, int nb) const\fR [private]\fP"
+
+.SS "\fBvoid\fP sc_dt::sc_unsigned::invalid_range (int l, int r) const"
+
+.SS "\fBvoid\fP sc_dt::sc_unsigned::invert (int i)\fR [inline]\fP"
+
+.SS "\fBbool\fP sc_dt::sc_unsigned::iszero () const"
+
+.SS "int sc_dt::sc_unsigned::length () const\fR [inline]\fP"
+
+.SS "\fBvoid\fP sc_dt::sc_unsigned::makezero ()\fR [inline]\fP, \fR [private]\fP"
+
+.SS "\fBbool\fP sc_dt::sc_unsigned::nand_reduce () const\fR [inline]\fP"
+
+.SS "\fBbool\fP sc_dt::sc_unsigned::nor_reduce () const\fR [inline]\fP"
+
+.SS "int sc_dt::sc_unsigned::num_bits (int nb) const\fR [inline]\fP, \fR [private]\fP"
+
+.SS "\fBconst\fP \fBsc_unsigned\fP & sc_dt::sc_unsigned::operator%= (\fBconst\fP \fBsc_int_base\fP & v)"
+
+.SS "\fBconst\fP \fBsc_unsigned\fP & sc_dt::sc_unsigned::operator%= (\fBconst\fP \fBsc_signed\fP & v)"
+
+.SS "\fBconst\fP \fBsc_unsigned\fP & sc_dt::sc_unsigned::operator%= (\fBconst\fP \fBsc_uint_base\fP & v)"
+
+.SS "\fBconst\fP \fBsc_unsigned\fP & sc_dt::sc_unsigned::operator%= (\fBconst\fP \fBsc_unsigned\fP & v)"
+
+.SS "\fBconst\fP \fBsc_unsigned\fP & sc_dt::sc_unsigned::operator%= (int v)\fR [inline]\fP"
+
+.SS "\fBconst\fP \fBsc_unsigned\fP & sc_dt::sc_unsigned::operator%= (\fBint64\fP v)"
+
+.SS "\fBconst\fP \fBsc_unsigned\fP & sc_dt::sc_unsigned::operator%= (\fBlong\fP v)"
+
+.SS "\fBconst\fP \fBsc_unsigned\fP & sc_dt::sc_unsigned::operator%= (\fBuint64\fP v)"
+
+.SS "\fBconst\fP \fBsc_unsigned\fP & sc_dt::sc_unsigned::operator%= (\fBunsigned\fP int v)\fR [inline]\fP"
+
+.SS "\fBconst\fP \fBsc_unsigned\fP & sc_dt::sc_unsigned::operator%= (\fBunsigned\fP \fBlong\fP v)"
+
+.SS "\fBconst\fP \fBsc_unsigned\fP & sc_dt::sc_unsigned::operator&= (\fBconst\fP \fBsc_int_base\fP & v)"
+
+.SS "\fBconst\fP \fBsc_unsigned\fP & sc_dt::sc_unsigned::operator&= (\fBconst\fP \fBsc_signed\fP & v)"
+
+.SS "\fBconst\fP \fBsc_unsigned\fP & sc_dt::sc_unsigned::operator&= (\fBconst\fP \fBsc_uint_base\fP & v)"
+
+.SS "\fBconst\fP \fBsc_unsigned\fP & sc_dt::sc_unsigned::operator&= (\fBconst\fP \fBsc_unsigned\fP & v)"
+
+.SS "\fBconst\fP \fBsc_unsigned\fP & sc_dt::sc_unsigned::operator&= (int v)\fR [inline]\fP"
+
+.SS "\fBconst\fP \fBsc_unsigned\fP & sc_dt::sc_unsigned::operator&= (\fBint64\fP v)"
+
+.SS "\fBconst\fP \fBsc_unsigned\fP & sc_dt::sc_unsigned::operator&= (\fBlong\fP v)"
+
+.SS "\fBconst\fP \fBsc_unsigned\fP & sc_dt::sc_unsigned::operator&= (\fBuint64\fP v)"
+
+.SS "\fBconst\fP \fBsc_unsigned\fP & sc_dt::sc_unsigned::operator&= (\fBunsigned\fP int v)\fR [inline]\fP"
+
+.SS "\fBconst\fP \fBsc_unsigned\fP & sc_dt::sc_unsigned::operator&= (\fBunsigned\fP \fBlong\fP v)"
+
+.SS "\fBsc_unsigned_subref\fP & sc_dt::sc_unsigned::operator() (int i, int j)\fR [inline]\fP"
+
+.SS "\fBconst\fP \fBsc_unsigned_subref_r\fP & sc_dt::sc_unsigned::operator() (int i, int j) const\fR [inline]\fP"
+
+.SS "\fBconst\fP \fBsc_unsigned\fP & sc_dt::sc_unsigned::operator*= (\fBconst\fP \fBsc_int_base\fP & v)"
+
+.SS "\fBconst\fP \fBsc_unsigned\fP & sc_dt::sc_unsigned::operator*= (\fBconst\fP \fBsc_signed\fP & v)"
+
+.SS "\fBconst\fP \fBsc_unsigned\fP & sc_dt::sc_unsigned::operator*= (\fBconst\fP \fBsc_uint_base\fP & v)"
+
+.SS "\fBconst\fP \fBsc_unsigned\fP & sc_dt::sc_unsigned::operator*= (\fBconst\fP \fBsc_unsigned\fP & v)"
+
+.SS "\fBconst\fP \fBsc_unsigned\fP & sc_dt::sc_unsigned::operator*= (int v)\fR [inline]\fP"
+
+.SS "\fBconst\fP \fBsc_unsigned\fP & sc_dt::sc_unsigned::operator*= (\fBint64\fP v)"
+
+.SS "\fBconst\fP \fBsc_unsigned\fP & sc_dt::sc_unsigned::operator*= (\fBlong\fP v)"
+
+.SS "\fBconst\fP \fBsc_unsigned\fP & sc_dt::sc_unsigned::operator*= (\fBuint64\fP v)"
+
+.SS "\fBconst\fP \fBsc_unsigned\fP & sc_dt::sc_unsigned::operator*= (\fBunsigned\fP int v)\fR [inline]\fP"
+
+.SS "\fBconst\fP \fBsc_unsigned\fP & sc_dt::sc_unsigned::operator*= (\fBunsigned\fP \fBlong\fP v)"
+
+.SS "\fBsc_unsigned\fP & sc_dt::sc_unsigned::operator++ ()"
+
+.SS "\fBconst\fP \fBsc_unsigned\fP sc_dt::sc_unsigned::operator++ (int)"
+
+.SS "\fBconst\fP \fBsc_unsigned\fP & sc_dt::sc_unsigned::operator+= (\fBconst\fP \fBsc_int_base\fP & v)"
+
+.SS "\fBconst\fP \fBsc_unsigned\fP & sc_dt::sc_unsigned::operator+= (\fBconst\fP \fBsc_signed\fP & v)"
+
+.SS "\fBconst\fP \fBsc_unsigned\fP & sc_dt::sc_unsigned::operator+= (\fBconst\fP \fBsc_uint_base\fP & v)"
+
+.SS "\fBconst\fP \fBsc_unsigned\fP & sc_dt::sc_unsigned::operator+= (\fBconst\fP \fBsc_unsigned\fP & v)"
+
+.SS "\fBconst\fP \fBsc_unsigned\fP & sc_dt::sc_unsigned::operator+= (int v)\fR [inline]\fP"
+
+.SS "\fBconst\fP \fBsc_unsigned\fP & sc_dt::sc_unsigned::operator+= (\fBint64\fP v)"
+
+.SS "\fBconst\fP \fBsc_unsigned\fP & sc_dt::sc_unsigned::operator+= (\fBlong\fP v)"
+
+.SS "\fBconst\fP \fBsc_unsigned\fP & sc_dt::sc_unsigned::operator+= (\fBuint64\fP v)"
+
+.SS "\fBconst\fP \fBsc_unsigned\fP & sc_dt::sc_unsigned::operator+= (\fBunsigned\fP int v)\fR [inline]\fP"
+
+.SS "\fBconst\fP \fBsc_unsigned\fP & sc_dt::sc_unsigned::operator+= (\fBunsigned\fP \fBlong\fP v)"
+
+.SS "\fBsc_unsigned\fP & sc_dt::sc_unsigned::operator\-\- ()"
+
+.SS "\fBconst\fP \fBsc_unsigned\fP sc_dt::sc_unsigned::operator\-\- (int)"
+
+.SS "\fBconst\fP \fBsc_unsigned\fP & sc_dt::sc_unsigned::operator\-= (\fBconst\fP \fBsc_int_base\fP & v)"
+
+.SS "\fBconst\fP \fBsc_unsigned\fP & sc_dt::sc_unsigned::operator\-= (\fBconst\fP \fBsc_signed\fP & v)"
+
+.SS "\fBconst\fP \fBsc_unsigned\fP & sc_dt::sc_unsigned::operator\-= (\fBconst\fP \fBsc_uint_base\fP & v)"
+
+.SS "\fBconst\fP \fBsc_unsigned\fP & sc_dt::sc_unsigned::operator\-= (\fBconst\fP \fBsc_unsigned\fP & v)"
+
+.SS "\fBconst\fP \fBsc_unsigned\fP & sc_dt::sc_unsigned::operator\-= (int v)\fR [inline]\fP"
+
+.SS "\fBconst\fP \fBsc_unsigned\fP & sc_dt::sc_unsigned::operator\-= (\fBint64\fP v)"
+
+.SS "\fBconst\fP \fBsc_unsigned\fP & sc_dt::sc_unsigned::operator\-= (\fBlong\fP v)"
+
+.SS "\fBconst\fP \fBsc_unsigned\fP & sc_dt::sc_unsigned::operator\-= (\fBuint64\fP v)"
+
+.SS "\fBconst\fP \fBsc_unsigned\fP & sc_dt::sc_unsigned::operator\-= (\fBunsigned\fP int v)\fR [inline]\fP"
+
+.SS "\fBconst\fP \fBsc_unsigned\fP & sc_dt::sc_unsigned::operator\-= (\fBunsigned\fP \fBlong\fP v)"
+
+.SS "\fBconst\fP \fBsc_unsigned\fP & sc_dt::sc_unsigned::operator/= (\fBconst\fP \fBsc_int_base\fP & v)"
+
+.SS "\fBconst\fP \fBsc_unsigned\fP & sc_dt::sc_unsigned::operator/= (\fBconst\fP \fBsc_signed\fP & v)"
+
+.SS "\fBconst\fP \fBsc_unsigned\fP & sc_dt::sc_unsigned::operator/= (\fBconst\fP \fBsc_uint_base\fP & v)"
+
+.SS "\fBconst\fP \fBsc_unsigned\fP & sc_dt::sc_unsigned::operator/= (\fBconst\fP \fBsc_unsigned\fP & v)"
+
+.SS "\fBconst\fP \fBsc_unsigned\fP & sc_dt::sc_unsigned::operator/= (int v)\fR [inline]\fP"
+
+.SS "\fBconst\fP \fBsc_unsigned\fP & sc_dt::sc_unsigned::operator/= (\fBint64\fP v)"
+
+.SS "\fBconst\fP \fBsc_unsigned\fP & sc_dt::sc_unsigned::operator/= (\fBlong\fP v)"
+
+.SS "\fBconst\fP \fBsc_unsigned\fP & sc_dt::sc_unsigned::operator/= (\fBuint64\fP v)"
+
+.SS "\fBconst\fP \fBsc_unsigned\fP & sc_dt::sc_unsigned::operator/= (\fBunsigned\fP int v)\fR [inline]\fP"
+
+.SS "\fBconst\fP \fBsc_unsigned\fP & sc_dt::sc_unsigned::operator/= (\fBunsigned\fP \fBlong\fP v)"
+
+.SS "\fBconst\fP \fBsc_unsigned\fP & sc_dt::sc_unsigned::operator<<= (\fBconst\fP \fBsc_int_base\fP & v)"
+
+.SS "\fBconst\fP \fBsc_unsigned\fP & sc_dt::sc_unsigned::operator<<= (\fBconst\fP \fBsc_signed\fP & v)"
+
+.SS "\fBconst\fP \fBsc_unsigned\fP & sc_dt::sc_unsigned::operator<<= (\fBconst\fP \fBsc_uint_base\fP & v)"
+
+.SS "\fBconst\fP \fBsc_unsigned\fP & sc_dt::sc_unsigned::operator<<= (\fBconst\fP \fBsc_unsigned\fP & v)"
+
+.SS "\fBconst\fP \fBsc_unsigned\fP & sc_dt::sc_unsigned::operator<<= (int v)\fR [inline]\fP"
+
+.SS "\fBconst\fP \fBsc_unsigned\fP & sc_dt::sc_unsigned::operator<<= (\fBint64\fP v)"
+
+.SS "\fBconst\fP \fBsc_unsigned\fP & sc_dt::sc_unsigned::operator<<= (\fBlong\fP v)"
+
+.SS "\fBconst\fP \fBsc_unsigned\fP & sc_dt::sc_unsigned::operator<<= (\fBuint64\fP v)"
+
+.SS "\fBconst\fP \fBsc_unsigned\fP & sc_dt::sc_unsigned::operator<<= (\fBunsigned\fP int v)\fR [inline]\fP"
+
+.SS "\fBconst\fP \fBsc_unsigned\fP & sc_dt::sc_unsigned::operator<<= (\fBunsigned\fP \fBlong\fP v)"
+
+.SS "\fBconst\fP \fBsc_unsigned\fP & sc_dt::sc_unsigned::operator= (\fBconst\fP \fBchar\fP * v)"
+
+.SS "\fBconst\fP \fBsc_unsigned\fP & sc_dt::sc_unsigned::operator= (\fBconst\fP \fBsc_bv_base\fP &)"
+
+.SS "template<\fBclass\fP \fBT\fP > \fBconst\fP \fBsc_unsigned\fP & sc_dt::sc_unsigned::operator= (\fBconst\fP \fBsc_generic_base\fP< \fBT\fP > & a)\fR [inline]\fP"
+
+.SS "\fBconst\fP \fBsc_unsigned\fP & sc_dt::sc_unsigned::operator= (\fBconst\fP \fBsc_int_base\fP & v)"
+
+.SS "\fBconst\fP \fBsc_unsigned\fP & sc_dt::sc_unsigned::operator= (\fBconst\fP \fBsc_lv_base\fP &)"
+
+.SS "\fBconst\fP \fBsc_unsigned\fP & sc_dt::sc_unsigned::operator= (\fBconst\fP \fBsc_signed\fP & v)"
+
+.SS "\fBconst\fP \fBsc_unsigned\fP & sc_dt::sc_unsigned::operator= (\fBconst\fP \fBsc_signed_subref_r\fP & a)"
+
+.SS "\fBconst\fP \fBsc_unsigned\fP & sc_dt::sc_unsigned::operator= (\fBconst\fP \fBsc_uint_base\fP & v)"
+
+.SS "\fBconst\fP \fBsc_unsigned\fP & sc_dt::sc_unsigned::operator= (\fBconst\fP \fBsc_unsigned\fP & v)"
+
+.SS "\fBconst\fP \fBsc_unsigned\fP & sc_dt::sc_unsigned::operator= (\fBconst\fP \fBsc_unsigned_subref_r\fP & a)"
+
+.SS "\fBconst\fP \fBsc_unsigned\fP & sc_dt::sc_unsigned::operator= (\fBdouble\fP v)"
+
+.SS "\fBconst\fP \fBsc_unsigned\fP & sc_dt::sc_unsigned::operator= (int v)\fR [inline]\fP"
+
+.SS "\fBconst\fP \fBsc_unsigned\fP & sc_dt::sc_unsigned::operator= (\fBint64\fP v)"
+
+.SS "\fBconst\fP \fBsc_unsigned\fP & sc_dt::sc_unsigned::operator= (\fBlong\fP v)"
+
+.SS "\fBconst\fP \fBsc_unsigned\fP & sc_dt::sc_unsigned::operator= (\fBuint64\fP v)"
+
+.SS "\fBconst\fP \fBsc_unsigned\fP & sc_dt::sc_unsigned::operator= (\fBunsigned\fP int v)\fR [inline]\fP"
+
+.SS "\fBconst\fP \fBsc_unsigned\fP & sc_dt::sc_unsigned::operator= (\fBunsigned\fP \fBlong\fP v)"
+
+.SS "\fBconst\fP \fBsc_unsigned\fP & sc_dt::sc_unsigned::operator>>= (\fBconst\fP \fBsc_int_base\fP & v)"
+
+.SS "\fBconst\fP \fBsc_unsigned\fP & sc_dt::sc_unsigned::operator>>= (\fBconst\fP \fBsc_signed\fP & v)"
+
+.SS "\fBconst\fP \fBsc_unsigned\fP & sc_dt::sc_unsigned::operator>>= (\fBconst\fP \fBsc_uint_base\fP & v)"
+
+.SS "\fBconst\fP \fBsc_unsigned\fP & sc_dt::sc_unsigned::operator>>= (\fBconst\fP \fBsc_unsigned\fP & v)"
+
+.SS "\fBconst\fP \fBsc_unsigned\fP & sc_dt::sc_unsigned::operator>>= (int v)\fR [inline]\fP"
+
+.SS "\fBconst\fP \fBsc_unsigned\fP & sc_dt::sc_unsigned::operator>>= (\fBint64\fP v)"
+
+.SS "\fBconst\fP \fBsc_unsigned\fP & sc_dt::sc_unsigned::operator>>= (\fBlong\fP v)"
+
+.SS "\fBconst\fP \fBsc_unsigned\fP & sc_dt::sc_unsigned::operator>>= (\fBuint64\fP v)"
+
+.SS "\fBconst\fP \fBsc_unsigned\fP & sc_dt::sc_unsigned::operator>>= (\fBunsigned\fP int v)\fR [inline]\fP"
+
+.SS "\fBconst\fP \fBsc_unsigned\fP & sc_dt::sc_unsigned::operator>>= (\fBunsigned\fP \fBlong\fP v)"
+
+.SS "\fBsc_unsigned_bitref\fP & sc_dt::sc_unsigned::operator[] (int i)\fR [inline]\fP"
+
+.SS "\fBconst\fP \fBsc_unsigned_bitref_r\fP & sc_dt::sc_unsigned::operator[] (int i) const\fR [inline]\fP"
+
+.SS "\fBconst\fP \fBsc_unsigned\fP & sc_dt::sc_unsigned::operator^= (\fBconst\fP \fBsc_int_base\fP & v)"
+
+.SS "\fBconst\fP \fBsc_unsigned\fP & sc_dt::sc_unsigned::operator^= (\fBconst\fP \fBsc_signed\fP & v)"
+
+.SS "\fBconst\fP \fBsc_unsigned\fP & sc_dt::sc_unsigned::operator^= (\fBconst\fP \fBsc_uint_base\fP & v)"
+
+.SS "\fBconst\fP \fBsc_unsigned\fP & sc_dt::sc_unsigned::operator^= (\fBconst\fP \fBsc_unsigned\fP & v)"
+
+.SS "\fBconst\fP \fBsc_unsigned\fP & sc_dt::sc_unsigned::operator^= (int v)\fR [inline]\fP"
+
+.SS "\fBconst\fP \fBsc_unsigned\fP & sc_dt::sc_unsigned::operator^= (\fBint64\fP v)"
+
+.SS "\fBconst\fP \fBsc_unsigned\fP & sc_dt::sc_unsigned::operator^= (\fBlong\fP v)"
+
+.SS "\fBconst\fP \fBsc_unsigned\fP & sc_dt::sc_unsigned::operator^= (\fBuint64\fP v)"
+
+.SS "\fBconst\fP \fBsc_unsigned\fP & sc_dt::sc_unsigned::operator^= (\fBunsigned\fP int v)\fR [inline]\fP"
+
+.SS "\fBconst\fP \fBsc_unsigned\fP & sc_dt::sc_unsigned::operator^= (\fBunsigned\fP \fBlong\fP v)"
+
+.SS "\fBconst\fP \fBsc_unsigned\fP & sc_dt::sc_unsigned::operator|= (\fBconst\fP \fBsc_int_base\fP & v)"
+
+.SS "\fBconst\fP \fBsc_unsigned\fP & sc_dt::sc_unsigned::operator|= (\fBconst\fP \fBsc_signed\fP & v)"
+
+.SS "\fBconst\fP \fBsc_unsigned\fP & sc_dt::sc_unsigned::operator|= (\fBconst\fP \fBsc_uint_base\fP & v)"
+
+.SS "\fBconst\fP \fBsc_unsigned\fP & sc_dt::sc_unsigned::operator|= (\fBconst\fP \fBsc_unsigned\fP & v)"
+
+.SS "\fBconst\fP \fBsc_unsigned\fP & sc_dt::sc_unsigned::operator|= (int v)\fR [inline]\fP"
+
+.SS "\fBconst\fP \fBsc_unsigned\fP & sc_dt::sc_unsigned::operator|= (\fBint64\fP v)"
+
+.SS "\fBconst\fP \fBsc_unsigned\fP & sc_dt::sc_unsigned::operator|= (\fBlong\fP v)"
+
+.SS "\fBconst\fP \fBsc_unsigned\fP & sc_dt::sc_unsigned::operator|= (\fBuint64\fP v)"
+
+.SS "\fBconst\fP \fBsc_unsigned\fP & sc_dt::sc_unsigned::operator|= (\fBunsigned\fP int v)\fR [inline]\fP"
+
+.SS "\fBconst\fP \fBsc_unsigned\fP & sc_dt::sc_unsigned::operator|= (\fBunsigned\fP \fBlong\fP v)"
+
+.SS "\fBbool\fP sc_dt::sc_unsigned::or_reduce () const"
+
+.SS "\fBvoid\fP sc_dt::sc_unsigned::print (::std::ostream & os = \fR::std::cout\fP) const\fR [inline]\fP"
+
+.SS "\fBsc_unsigned_subref\fP & sc_dt::sc_unsigned::range (int i, int j)\fR [inline]\fP"
+
+.SS "\fBconst\fP \fBsc_unsigned_subref_r\fP & sc_dt::sc_unsigned::range (int i, int j) const\fR [inline]\fP"
+
+.SS "\fBvoid\fP sc_dt::sc_unsigned::reverse ()"
+
+.SS "\fBvoid\fP sc_dt::sc_unsigned::scan (::std::istream & is = \fR::std::cin\fP)"
+
+.SS "\fBvoid\fP sc_dt::sc_unsigned::set (int i)"
+
+.SS "\fBvoid\fP sc_dt::sc_unsigned::set (int i, \fBbool\fP v)\fR [inline]\fP"
+
+.SS "\fBvoid\fP sc_dt::sc_unsigned::set_packed_rep (\fBsc_digit\fP * buf)"
+
+.SS "\fBbool\fP sc_dt::sc_unsigned::sign () const\fR [inline]\fP"
+
+.SS "\fBbool\fP sc_dt::sc_unsigned::test (int i) const"
+
+.SS "\fBdouble\fP sc_dt::sc_unsigned::to_double () const"
+
+.SS "int sc_dt::sc_unsigned::to_int () const"
+
+.SS "\fBint64\fP sc_dt::sc_unsigned::to_int64 () const"
+
+.SS "\fBlong\fP sc_dt::sc_unsigned::to_long () const"
+
+.SS "\fBconst\fP std::string sc_dt::sc_unsigned::to_string (\fBsc_numrep\fP numrep, \fBbool\fP w_prefix) const"
+
+.SS "\fBconst\fP std::string sc_dt::sc_unsigned::to_string (\fBsc_numrep\fP numrep = \fR\fBSC_DEC\fP\fP) const"
+
+.SS "\fBunsigned\fP int sc_dt::sc_unsigned::to_uint () const"
+
+.SS "\fBuint64\fP sc_dt::sc_unsigned::to_uint64 () const"
+
+.SS "\fBunsigned\fP \fBlong\fP sc_dt::sc_unsigned::to_ulong () const"
+
+.SS "\fBbool\fP sc_dt::sc_unsigned::xnor_reduce () const\fR [inline]\fP"
+
+.SS "\fBbool\fP sc_dt::sc_unsigned::xor_reduce () const"
+
+.SH "Friends And Related Symbol Documentation"
+.PP 
+.SS "\fBsc_unsigned\fP add_unsigned_friend (\fBsmall_type\fP us, int unb, int und, \fBconst\fP \fBsc_digit\fP * ud, \fBsmall_type\fP vs, int vnb, int vnd, \fBconst\fP \fBsc_digit\fP * vd)\fR [friend]\fP"
+
+.SS "\fBsc_unsigned\fP and_unsigned_friend (\fBsmall_type\fP us, int unb, int und, \fBconst\fP \fBsc_digit\fP * ud, \fBsmall_type\fP vs, int vnb, int vnd, \fBconst\fP \fBsc_digit\fP * vd)\fR [friend]\fP"
+
+.SS "int compare_unsigned (\fBsmall_type\fP us, int unb, int und, \fBconst\fP \fBsc_digit\fP * ud, \fBsmall_type\fP vs, int vnb, int vnd, \fBconst\fP \fBsc_digit\fP * vd, \fBsmall_type\fP if_u_signed, \fBsmall_type\fP if_v_signed)\fR [friend]\fP"
+
+.SS "\fBsc_unsigned\fP div_unsigned_friend (\fBsmall_type\fP s, int unb, int und, \fBconst\fP \fBsc_digit\fP * ud, int vnb, int vnd, \fBconst\fP \fBsc_digit\fP * vd)\fR [friend]\fP"
+
+.SS "\fBsc_unsigned\fP mod_unsigned_friend (\fBsmall_type\fP us, int unb, int und, \fBconst\fP \fBsc_digit\fP * ud, int vnb, int vnd, \fBconst\fP \fBsc_digit\fP * vd)\fR [friend]\fP"
+
+.SS "\fBsc_unsigned\fP mul_unsigned_friend (\fBsmall_type\fP s, int unb, int und, \fBconst\fP \fBsc_digit\fP * ud, int vnb, int vnd, \fBconst\fP \fBsc_digit\fP * vd)\fR [friend]\fP"
+
+.SS "\fBSC_API\fP \fBbool\fP operator!= (\fBconst\fP \fBsc_int_base\fP & u, \fBconst\fP \fBsc_unsigned\fP & v)\fR [friend]\fP"
+
+.SS "\fBSC_API\fP \fBbool\fP operator!= (\fBconst\fP \fBsc_signed\fP & u, \fBconst\fP \fBsc_unsigned\fP & v)\fR [friend]\fP"
+
+.SS "\fBSC_API\fP \fBbool\fP operator!= (\fBconst\fP \fBsc_uint_base\fP & u, \fBconst\fP \fBsc_unsigned\fP & v)\fR [friend]\fP"
+
+.SS "\fBSC_API\fP \fBbool\fP operator!= (\fBconst\fP \fBsc_unsigned\fP & u, \fBconst\fP \fBsc_int_base\fP & v)\fR [friend]\fP"
+
+.SS "\fBSC_API\fP \fBbool\fP operator!= (\fBconst\fP \fBsc_unsigned\fP & u, \fBconst\fP \fBsc_signed\fP & v)\fR [friend]\fP"
+
+.SS "\fBSC_API\fP \fBbool\fP operator!= (\fBconst\fP \fBsc_unsigned\fP & u, \fBconst\fP \fBsc_uint_base\fP & v)\fR [friend]\fP"
+
+.SS "\fBSC_API\fP \fBbool\fP operator!= (\fBconst\fP \fBsc_unsigned\fP & u, \fBconst\fP \fBsc_unsigned\fP & v)\fR [friend]\fP"
+
+.SS "\fBbool\fP operator!= (\fBconst\fP \fBsc_unsigned\fP & u, int v)\fR [friend]\fP"
+
+.SS "\fBSC_API\fP \fBbool\fP operator!= (\fBconst\fP \fBsc_unsigned\fP & u, \fBint64\fP v)\fR [friend]\fP"
+
+.SS "\fBSC_API\fP \fBbool\fP operator!= (\fBconst\fP \fBsc_unsigned\fP & u, \fBlong\fP v)\fR [friend]\fP"
+
+.SS "\fBSC_API\fP \fBbool\fP operator!= (\fBconst\fP \fBsc_unsigned\fP & u, \fBuint64\fP v)\fR [friend]\fP"
+
+.SS "\fBbool\fP operator!= (\fBconst\fP \fBsc_unsigned\fP & u, \fBunsigned\fP int v)\fR [friend]\fP"
+
+.SS "\fBSC_API\fP \fBbool\fP operator!= (\fBconst\fP \fBsc_unsigned\fP & u, \fBunsigned\fP \fBlong\fP v)\fR [friend]\fP"
+
+.SS "\fBbool\fP operator!= (int u, \fBconst\fP \fBsc_unsigned\fP & v)\fR [friend]\fP"
+
+.SS "\fBSC_API\fP \fBbool\fP operator!= (\fBint64\fP u, \fBconst\fP \fBsc_unsigned\fP & v)\fR [friend]\fP"
+
+.SS "\fBSC_API\fP \fBbool\fP operator!= (\fBlong\fP u, \fBconst\fP \fBsc_unsigned\fP & v)\fR [friend]\fP"
+
+.SS "\fBSC_API\fP \fBbool\fP operator!= (\fBuint64\fP u, \fBconst\fP \fBsc_unsigned\fP & v)\fR [friend]\fP"
+
+.SS "\fBbool\fP operator!= (\fBunsigned\fP int u, \fBconst\fP \fBsc_unsigned\fP & v)\fR [friend]\fP"
+
+.SS "\fBSC_API\fP \fBbool\fP operator!= (\fBunsigned\fP \fBlong\fP u, \fBconst\fP \fBsc_unsigned\fP & v)\fR [friend]\fP"
+
+.SS "\fBSC_API\fP \fBsc_signed\fP \fBoperator\fP% (\fBconst\fP \fBsc_int_base\fP & u, \fBconst\fP \fBsc_unsigned\fP & v)\fR [friend]\fP"
+
+.SS "\fBSC_API\fP \fBsc_signed\fP \fBoperator\fP% (\fBconst\fP \fBsc_signed\fP & u, \fBconst\fP \fBsc_unsigned\fP & v)\fR [friend]\fP"
+
+.SS "\fBSC_API\fP \fBsc_unsigned\fP \fBoperator\fP% (\fBconst\fP \fBsc_uint_base\fP & u, \fBconst\fP \fBsc_unsigned\fP & v)\fR [friend]\fP"
+
+.SS "\fBSC_API\fP \fBsc_signed\fP \fBoperator\fP% (\fBconst\fP \fBsc_unsigned\fP & u, \fBconst\fP \fBsc_int_base\fP & v)\fR [friend]\fP"
+
+.SS "\fBSC_API\fP \fBsc_signed\fP \fBoperator\fP% (\fBconst\fP \fBsc_unsigned\fP & u, \fBconst\fP \fBsc_signed\fP & v)\fR [friend]\fP"
+
+.SS "\fBSC_API\fP \fBsc_unsigned\fP \fBoperator\fP% (\fBconst\fP \fBsc_unsigned\fP & u, \fBconst\fP \fBsc_uint_base\fP & v)\fR [friend]\fP"
+
+.SS "\fBSC_API\fP \fBsc_unsigned\fP \fBoperator\fP% (\fBconst\fP \fBsc_unsigned\fP & u, \fBconst\fP \fBsc_unsigned\fP & v)\fR [friend]\fP"
+
+.SS "\fBSC_API\fP \fBsc_signed\fP \fBoperator\fP% (\fBconst\fP \fBsc_unsigned\fP & u, int v)\fR [friend]\fP"
+
+.SS "\fBSC_API\fP \fBsc_signed\fP \fBoperator\fP% (\fBconst\fP \fBsc_unsigned\fP & u, \fBint64\fP v)\fR [friend]\fP"
+
+.SS "\fBSC_API\fP \fBsc_signed\fP \fBoperator\fP% (\fBconst\fP \fBsc_unsigned\fP & u, \fBlong\fP v)\fR [friend]\fP"
+
+.SS "\fBSC_API\fP \fBsc_unsigned\fP \fBoperator\fP% (\fBconst\fP \fBsc_unsigned\fP & u, \fBuint64\fP v)\fR [friend]\fP"
+
+.SS "\fBsc_unsigned\fP \fBoperator\fP% (\fBconst\fP \fBsc_unsigned\fP & u, \fBunsigned\fP int v)\fR [friend]\fP"
+
+.SS "\fBSC_API\fP \fBsc_unsigned\fP \fBoperator\fP% (\fBconst\fP \fBsc_unsigned\fP & u, \fBunsigned\fP \fBlong\fP v)\fR [friend]\fP"
+
+.SS "\fBSC_API\fP \fBsc_signed\fP \fBoperator\fP% (int u, \fBconst\fP \fBsc_unsigned\fP & v)\fR [friend]\fP"
+
+.SS "\fBSC_API\fP \fBsc_signed\fP \fBoperator\fP% (\fBint64\fP u, \fBconst\fP \fBsc_unsigned\fP & v)\fR [friend]\fP"
+
+.SS "\fBSC_API\fP \fBsc_signed\fP \fBoperator\fP% (\fBlong\fP u, \fBconst\fP \fBsc_unsigned\fP & v)\fR [friend]\fP"
+
+.SS "\fBSC_API\fP \fBsc_unsigned\fP \fBoperator\fP% (\fBuint64\fP u, \fBconst\fP \fBsc_unsigned\fP & v)\fR [friend]\fP"
+
+.SS "\fBsc_unsigned\fP \fBoperator\fP% (\fBunsigned\fP int u, \fBconst\fP \fBsc_unsigned\fP & v)\fR [friend]\fP"
+
+.SS "\fBSC_API\fP \fBsc_unsigned\fP \fBoperator\fP% (\fBunsigned\fP \fBlong\fP u, \fBconst\fP \fBsc_unsigned\fP & v)\fR [friend]\fP"
+
+.SS "\fBSC_API\fP \fBsc_signed\fP \fBoperator\fP& (\fBconst\fP \fBsc_int_base\fP & u, \fBconst\fP \fBsc_unsigned\fP & v)\fR [friend]\fP"
+
+.SS "\fBSC_API\fP \fBsc_signed\fP \fBoperator\fP& (\fBconst\fP \fBsc_signed\fP & u, \fBconst\fP \fBsc_unsigned\fP & v)\fR [friend]\fP"
+
+.SS "\fBSC_API\fP \fBsc_unsigned\fP \fBoperator\fP& (\fBconst\fP \fBsc_uint_base\fP & u, \fBconst\fP \fBsc_unsigned\fP & v)\fR [friend]\fP"
+
+.SS "\fBSC_API\fP \fBsc_signed\fP \fBoperator\fP& (\fBconst\fP \fBsc_unsigned\fP & u, \fBconst\fP \fBsc_int_base\fP & v)\fR [friend]\fP"
+
+.SS "\fBSC_API\fP \fBsc_signed\fP \fBoperator\fP& (\fBconst\fP \fBsc_unsigned\fP & u, \fBconst\fP \fBsc_signed\fP & v)\fR [friend]\fP"
+
+.SS "\fBSC_API\fP \fBsc_unsigned\fP \fBoperator\fP& (\fBconst\fP \fBsc_unsigned\fP & u, \fBconst\fP \fBsc_uint_base\fP & v)\fR [friend]\fP"
+
+.SS "\fBSC_API\fP \fBsc_unsigned\fP \fBoperator\fP& (\fBconst\fP \fBsc_unsigned\fP & u, \fBconst\fP \fBsc_unsigned\fP & v)\fR [friend]\fP"
+
+.SS "\fBSC_API\fP \fBsc_signed\fP \fBoperator\fP& (\fBconst\fP \fBsc_unsigned\fP & u, int v)\fR [friend]\fP"
+
+.SS "\fBSC_API\fP \fBsc_signed\fP \fBoperator\fP& (\fBconst\fP \fBsc_unsigned\fP & u, \fBint64\fP v)\fR [friend]\fP"
+
+.SS "\fBSC_API\fP \fBsc_signed\fP \fBoperator\fP& (\fBconst\fP \fBsc_unsigned\fP & u, \fBlong\fP v)\fR [friend]\fP"
+
+.SS "\fBSC_API\fP \fBsc_unsigned\fP \fBoperator\fP& (\fBconst\fP \fBsc_unsigned\fP & u, \fBuint64\fP v)\fR [friend]\fP"
+
+.SS "\fBsc_unsigned\fP \fBoperator\fP& (\fBconst\fP \fBsc_unsigned\fP & u, \fBunsigned\fP int v)\fR [friend]\fP"
+
+.SS "\fBSC_API\fP \fBsc_unsigned\fP \fBoperator\fP& (\fBconst\fP \fBsc_unsigned\fP & u, \fBunsigned\fP \fBlong\fP v)\fR [friend]\fP"
+
+.SS "\fBSC_API\fP \fBsc_signed\fP \fBoperator\fP& (int u, \fBconst\fP \fBsc_unsigned\fP & v)\fR [friend]\fP"
+
+.SS "\fBSC_API\fP \fBsc_signed\fP \fBoperator\fP& (\fBint64\fP u, \fBconst\fP \fBsc_unsigned\fP & v)\fR [friend]\fP"
+
+.SS "\fBSC_API\fP \fBsc_signed\fP \fBoperator\fP& (\fBlong\fP u, \fBconst\fP \fBsc_unsigned\fP & v)\fR [friend]\fP"
+
+.SS "\fBSC_API\fP \fBsc_unsigned\fP \fBoperator\fP& (\fBuint64\fP u, \fBconst\fP \fBsc_unsigned\fP & v)\fR [friend]\fP"
+
+.SS "\fBsc_unsigned\fP \fBoperator\fP& (\fBunsigned\fP int u, \fBconst\fP \fBsc_unsigned\fP & v)\fR [friend]\fP"
+
+.SS "\fBSC_API\fP \fBsc_unsigned\fP \fBoperator\fP& (\fBunsigned\fP \fBlong\fP u, \fBconst\fP \fBsc_unsigned\fP & v)\fR [friend]\fP"
+
+.SS "\fBSC_API\fP \fBsc_signed\fP \fBoperator\fP* (\fBconst\fP \fBsc_int_base\fP & u, \fBconst\fP \fBsc_unsigned\fP & v)\fR [friend]\fP"
+
+.SS "\fBSC_API\fP \fBsc_signed\fP \fBoperator\fP* (\fBconst\fP \fBsc_signed\fP & u, \fBconst\fP \fBsc_unsigned\fP & v)\fR [friend]\fP"
+
+.SS "\fBSC_API\fP \fBsc_unsigned\fP \fBoperator\fP* (\fBconst\fP \fBsc_uint_base\fP & u, \fBconst\fP \fBsc_unsigned\fP & v)\fR [friend]\fP"
+
+.SS "\fBSC_API\fP \fBsc_signed\fP \fBoperator\fP* (\fBconst\fP \fBsc_unsigned\fP & u, \fBconst\fP \fBsc_int_base\fP & v)\fR [friend]\fP"
+
+.SS "\fBSC_API\fP \fBsc_signed\fP \fBoperator\fP* (\fBconst\fP \fBsc_unsigned\fP & u, \fBconst\fP \fBsc_signed\fP & v)\fR [friend]\fP"
+
+.SS "\fBSC_API\fP \fBsc_unsigned\fP \fBoperator\fP* (\fBconst\fP \fBsc_unsigned\fP & u, \fBconst\fP \fBsc_uint_base\fP & v)\fR [friend]\fP"
+
+.SS "\fBSC_API\fP \fBsc_unsigned\fP \fBoperator\fP* (\fBconst\fP \fBsc_unsigned\fP & u, \fBconst\fP \fBsc_unsigned\fP & v)\fR [friend]\fP"
+
+.SS "\fBSC_API\fP \fBsc_signed\fP \fBoperator\fP* (\fBconst\fP \fBsc_unsigned\fP & u, int v)\fR [friend]\fP"
+
+.SS "\fBSC_API\fP \fBsc_signed\fP \fBoperator\fP* (\fBconst\fP \fBsc_unsigned\fP & u, \fBint64\fP v)\fR [friend]\fP"
+
+.SS "\fBSC_API\fP \fBsc_signed\fP \fBoperator\fP* (\fBconst\fP \fBsc_unsigned\fP & u, \fBlong\fP v)\fR [friend]\fP"
+
+.SS "\fBSC_API\fP \fBsc_unsigned\fP \fBoperator\fP* (\fBconst\fP \fBsc_unsigned\fP & u, \fBuint64\fP v)\fR [friend]\fP"
+
+.SS "\fBsc_unsigned\fP \fBoperator\fP* (\fBconst\fP \fBsc_unsigned\fP & u, \fBunsigned\fP int v)\fR [friend]\fP"
+
+.SS "\fBSC_API\fP \fBsc_unsigned\fP \fBoperator\fP* (\fBconst\fP \fBsc_unsigned\fP & u, \fBunsigned\fP \fBlong\fP v)\fR [friend]\fP"
+
+.SS "\fBSC_API\fP \fBsc_signed\fP \fBoperator\fP* (int u, \fBconst\fP \fBsc_unsigned\fP & v)\fR [friend]\fP"
+
+.SS "\fBSC_API\fP \fBsc_signed\fP \fBoperator\fP* (\fBint64\fP u, \fBconst\fP \fBsc_unsigned\fP & v)\fR [friend]\fP"
+
+.SS "\fBSC_API\fP \fBsc_signed\fP \fBoperator\fP* (\fBlong\fP u, \fBconst\fP \fBsc_unsigned\fP & v)\fR [friend]\fP"
+
+.SS "\fBSC_API\fP \fBsc_unsigned\fP \fBoperator\fP* (\fBuint64\fP u, \fBconst\fP \fBsc_unsigned\fP & v)\fR [friend]\fP"
+
+.SS "\fBsc_unsigned\fP \fBoperator\fP* (\fBunsigned\fP int u, \fBconst\fP \fBsc_unsigned\fP & v)\fR [friend]\fP"
+
+.SS "\fBSC_API\fP \fBsc_unsigned\fP \fBoperator\fP* (\fBunsigned\fP \fBlong\fP u, \fBconst\fP \fBsc_unsigned\fP & v)\fR [friend]\fP"
+
+.SS "\fBSC_API\fP \fBsc_signed\fP \fBoperator\fP+ (\fBconst\fP \fBsc_int_base\fP & u, \fBconst\fP \fBsc_unsigned\fP & v)\fR [friend]\fP"
+
+.SS "\fBSC_API\fP \fBsc_signed\fP \fBoperator\fP+ (\fBconst\fP \fBsc_signed\fP & u, \fBconst\fP \fBsc_unsigned\fP & v)\fR [friend]\fP"
+
+.SS "\fBSC_API\fP \fBsc_unsigned\fP \fBoperator\fP+ (\fBconst\fP \fBsc_uint_base\fP & u, \fBconst\fP \fBsc_unsigned\fP & v)\fR [friend]\fP"
+
+.SS "\fBSC_API\fP \fBsc_unsigned\fP \fBoperator\fP+ (\fBconst\fP \fBsc_unsigned\fP & u)\fR [friend]\fP"
+
+.SS "\fBSC_API\fP \fBsc_signed\fP \fBoperator\fP+ (\fBconst\fP \fBsc_unsigned\fP & u, \fBconst\fP \fBsc_int_base\fP & v)\fR [friend]\fP"
+
+.SS "\fBSC_API\fP \fBsc_signed\fP \fBoperator\fP+ (\fBconst\fP \fBsc_unsigned\fP & u, \fBconst\fP \fBsc_signed\fP & v)\fR [friend]\fP"
+
+.SS "\fBSC_API\fP \fBsc_unsigned\fP \fBoperator\fP+ (\fBconst\fP \fBsc_unsigned\fP & u, \fBconst\fP \fBsc_uint_base\fP & v)\fR [friend]\fP"
+
+.SS "\fBSC_API\fP \fBsc_unsigned\fP \fBoperator\fP+ (\fBconst\fP \fBsc_unsigned\fP & u, \fBconst\fP \fBsc_unsigned\fP & v)\fR [friend]\fP"
+
+.SS "\fBSC_API\fP \fBsc_signed\fP \fBoperator\fP+ (\fBconst\fP \fBsc_unsigned\fP & u, int v)\fR [friend]\fP"
+
+.SS "\fBSC_API\fP \fBsc_signed\fP \fBoperator\fP+ (\fBconst\fP \fBsc_unsigned\fP & u, \fBint64\fP v)\fR [friend]\fP"
+
+.SS "\fBSC_API\fP \fBsc_signed\fP \fBoperator\fP+ (\fBconst\fP \fBsc_unsigned\fP & u, \fBlong\fP v)\fR [friend]\fP"
+
+.SS "\fBSC_API\fP \fBsc_unsigned\fP \fBoperator\fP+ (\fBconst\fP \fBsc_unsigned\fP & u, \fBuint64\fP v)\fR [friend]\fP"
+
+.SS "\fBsc_unsigned\fP \fBoperator\fP+ (\fBconst\fP \fBsc_unsigned\fP & u, \fBunsigned\fP int v)\fR [friend]\fP"
+
+.SS "\fBSC_API\fP \fBsc_unsigned\fP \fBoperator\fP+ (\fBconst\fP \fBsc_unsigned\fP & u, \fBunsigned\fP \fBlong\fP v)\fR [friend]\fP"
+
+.SS "\fBSC_API\fP \fBsc_signed\fP \fBoperator\fP+ (int u, \fBconst\fP \fBsc_unsigned\fP & v)\fR [friend]\fP"
+
+.SS "\fBSC_API\fP \fBsc_signed\fP \fBoperator\fP+ (\fBint64\fP u, \fBconst\fP \fBsc_unsigned\fP & v)\fR [friend]\fP"
+
+.SS "\fBSC_API\fP \fBsc_signed\fP \fBoperator\fP+ (\fBlong\fP u, \fBconst\fP \fBsc_unsigned\fP & v)\fR [friend]\fP"
+
+.SS "\fBSC_API\fP \fBsc_unsigned\fP \fBoperator\fP+ (\fBuint64\fP u, \fBconst\fP \fBsc_unsigned\fP & v)\fR [friend]\fP"
+
+.SS "\fBsc_unsigned\fP \fBoperator\fP+ (\fBunsigned\fP int u, \fBconst\fP \fBsc_unsigned\fP & v)\fR [friend]\fP"
+
+.SS "\fBSC_API\fP \fBsc_unsigned\fP \fBoperator\fP+ (\fBunsigned\fP \fBlong\fP u, \fBconst\fP \fBsc_unsigned\fP & v)\fR [friend]\fP"
+
+.SS "\fBSC_API\fP \fBsc_signed\fP \fBoperator\fP\- (\fBconst\fP \fBsc_int_base\fP & u, \fBconst\fP \fBsc_unsigned\fP & v)\fR [friend]\fP"
+
+.SS "\fBSC_API\fP \fBsc_signed\fP \fBoperator\fP\- (\fBconst\fP \fBsc_signed\fP & u, \fBconst\fP \fBsc_unsigned\fP & v)\fR [friend]\fP"
+
+.SS "\fBSC_API\fP \fBsc_signed\fP \fBoperator\fP\- (\fBconst\fP \fBsc_uint_base\fP & u, \fBconst\fP \fBsc_unsigned\fP & v)\fR [friend]\fP"
+
+.SS "\fBSC_API\fP \fBsc_signed\fP \fBoperator\fP\- (\fBconst\fP \fBsc_unsigned\fP & u)\fR [friend]\fP"
+
+.SS "\fBSC_API\fP \fBsc_signed\fP \fBoperator\fP\- (\fBconst\fP \fBsc_unsigned\fP & u, \fBconst\fP \fBsc_int_base\fP & v)\fR [friend]\fP"
+
+.SS "\fBSC_API\fP \fBsc_signed\fP \fBoperator\fP\- (\fBconst\fP \fBsc_unsigned\fP & u, \fBconst\fP \fBsc_signed\fP & v)\fR [friend]\fP"
+
+.SS "\fBSC_API\fP \fBsc_signed\fP \fBoperator\fP\- (\fBconst\fP \fBsc_unsigned\fP & u, \fBconst\fP \fBsc_uint_base\fP & v)\fR [friend]\fP"
+
+.SS "\fBSC_API\fP \fBsc_signed\fP \fBoperator\fP\- (\fBconst\fP \fBsc_unsigned\fP & u, \fBconst\fP \fBsc_unsigned\fP & v)\fR [friend]\fP"
+
+.SS "\fBSC_API\fP \fBsc_signed\fP \fBoperator\fP\- (\fBconst\fP \fBsc_unsigned\fP & u, int v)\fR [friend]\fP"
+
+.SS "\fBSC_API\fP \fBsc_signed\fP \fBoperator\fP\- (\fBconst\fP \fBsc_unsigned\fP & u, \fBint64\fP v)\fR [friend]\fP"
+
+.SS "\fBSC_API\fP \fBsc_signed\fP \fBoperator\fP\- (\fBconst\fP \fBsc_unsigned\fP & u, \fBlong\fP v)\fR [friend]\fP"
+
+.SS "\fBSC_API\fP \fBsc_signed\fP \fBoperator\fP\- (\fBconst\fP \fBsc_unsigned\fP & u, \fBuint64\fP v)\fR [friend]\fP"
+
+.SS "\fBSC_API\fP \fBsc_signed\fP \fBoperator\fP\- (\fBconst\fP \fBsc_unsigned\fP & u, \fBunsigned\fP int v)\fR [friend]\fP"
+
+.SS "\fBSC_API\fP \fBsc_signed\fP \fBoperator\fP\- (\fBconst\fP \fBsc_unsigned\fP & u, \fBunsigned\fP \fBlong\fP v)\fR [friend]\fP"
+
+.SS "\fBSC_API\fP \fBsc_signed\fP \fBoperator\fP\- (int u, \fBconst\fP \fBsc_unsigned\fP & v)\fR [friend]\fP"
+
+.SS "\fBSC_API\fP \fBsc_signed\fP \fBoperator\fP\- (\fBint64\fP u, \fBconst\fP \fBsc_unsigned\fP & v)\fR [friend]\fP"
+
+.SS "\fBSC_API\fP \fBsc_signed\fP \fBoperator\fP\- (\fBlong\fP u, \fBconst\fP \fBsc_unsigned\fP & v)\fR [friend]\fP"
+
+.SS "\fBSC_API\fP \fBsc_signed\fP \fBoperator\fP\- (\fBuint64\fP u, \fBconst\fP \fBsc_unsigned\fP & v)\fR [friend]\fP"
+
+.SS "\fBSC_API\fP \fBsc_signed\fP \fBoperator\fP\- (\fBunsigned\fP int u, \fBconst\fP \fBsc_unsigned\fP & v)\fR [friend]\fP"
+
+.SS "\fBSC_API\fP \fBsc_signed\fP \fBoperator\fP\- (\fBunsigned\fP \fBlong\fP u, \fBconst\fP \fBsc_unsigned\fP & v)\fR [friend]\fP"
+
+.SS "\fBSC_API\fP \fBsc_signed\fP \fBoperator\fP/ (\fBconst\fP \fBsc_int_base\fP & u, \fBconst\fP \fBsc_unsigned\fP & v)\fR [friend]\fP"
+
+.SS "\fBSC_API\fP \fBsc_signed\fP \fBoperator\fP/ (\fBconst\fP \fBsc_signed\fP & u, \fBconst\fP \fBsc_unsigned\fP & v)\fR [friend]\fP"
+
+.SS "\fBSC_API\fP \fBsc_unsigned\fP \fBoperator\fP/ (\fBconst\fP \fBsc_uint_base\fP & u, \fBconst\fP \fBsc_unsigned\fP & v)\fR [friend]\fP"
+
+.SS "\fBSC_API\fP \fBsc_signed\fP \fBoperator\fP/ (\fBconst\fP \fBsc_unsigned\fP & u, \fBconst\fP \fBsc_int_base\fP & v)\fR [friend]\fP"
+
+.SS "\fBSC_API\fP \fBsc_signed\fP \fBoperator\fP/ (\fBconst\fP \fBsc_unsigned\fP & u, \fBconst\fP \fBsc_signed\fP & v)\fR [friend]\fP"
+
+.SS "\fBSC_API\fP \fBsc_unsigned\fP \fBoperator\fP/ (\fBconst\fP \fBsc_unsigned\fP & u, \fBconst\fP \fBsc_uint_base\fP & v)\fR [friend]\fP"
+
+.SS "\fBSC_API\fP \fBsc_unsigned\fP \fBoperator\fP/ (\fBconst\fP \fBsc_unsigned\fP & u, \fBconst\fP \fBsc_unsigned\fP & v)\fR [friend]\fP"
+
+.SS "\fBSC_API\fP \fBsc_signed\fP \fBoperator\fP/ (\fBconst\fP \fBsc_unsigned\fP & u, int v)\fR [friend]\fP"
+
+.SS "\fBSC_API\fP \fBsc_signed\fP \fBoperator\fP/ (\fBconst\fP \fBsc_unsigned\fP & u, \fBint64\fP v)\fR [friend]\fP"
+
+.SS "\fBSC_API\fP \fBsc_signed\fP \fBoperator\fP/ (\fBconst\fP \fBsc_unsigned\fP & u, \fBlong\fP v)\fR [friend]\fP"
+
+.SS "\fBSC_API\fP \fBsc_unsigned\fP \fBoperator\fP/ (\fBconst\fP \fBsc_unsigned\fP & u, \fBuint64\fP v)\fR [friend]\fP"
+
+.SS "\fBsc_unsigned\fP \fBoperator\fP/ (\fBconst\fP \fBsc_unsigned\fP & u, \fBunsigned\fP int v)\fR [friend]\fP"
+
+.SS "\fBSC_API\fP \fBsc_unsigned\fP \fBoperator\fP/ (\fBconst\fP \fBsc_unsigned\fP & u, \fBunsigned\fP \fBlong\fP v)\fR [friend]\fP"
+
+.SS "\fBSC_API\fP \fBsc_signed\fP \fBoperator\fP/ (int u, \fBconst\fP \fBsc_unsigned\fP & v)\fR [friend]\fP"
+
+.SS "\fBSC_API\fP \fBsc_signed\fP \fBoperator\fP/ (\fBint64\fP u, \fBconst\fP \fBsc_unsigned\fP & v)\fR [friend]\fP"
+
+.SS "\fBSC_API\fP \fBsc_signed\fP \fBoperator\fP/ (\fBlong\fP u, \fBconst\fP \fBsc_unsigned\fP & v)\fR [friend]\fP"
+
+.SS "\fBSC_API\fP \fBsc_unsigned\fP \fBoperator\fP/ (\fBuint64\fP u, \fBconst\fP \fBsc_unsigned\fP & v)\fR [friend]\fP"
+
+.SS "\fBsc_unsigned\fP \fBoperator\fP/ (\fBunsigned\fP int u, \fBconst\fP \fBsc_unsigned\fP & v)\fR [friend]\fP"
+
+.SS "\fBSC_API\fP \fBsc_unsigned\fP \fBoperator\fP/ (\fBunsigned\fP \fBlong\fP u, \fBconst\fP \fBsc_unsigned\fP & v)\fR [friend]\fP"
+
+.SS "\fBSC_API\fP \fBbool\fP \fBoperator\fP< (\fBconst\fP \fBsc_int_base\fP & u, \fBconst\fP \fBsc_unsigned\fP & v)\fR [friend]\fP"
+
+.SS "\fBSC_API\fP \fBbool\fP \fBoperator\fP< (\fBconst\fP \fBsc_signed\fP & u, \fBconst\fP \fBsc_unsigned\fP & v)\fR [friend]\fP"
+
+.SS "\fBSC_API\fP \fBbool\fP \fBoperator\fP< (\fBconst\fP \fBsc_uint_base\fP & u, \fBconst\fP \fBsc_unsigned\fP & v)\fR [friend]\fP"
+
+.SS "\fBSC_API\fP \fBbool\fP \fBoperator\fP< (\fBconst\fP \fBsc_unsigned\fP & u, \fBconst\fP \fBsc_int_base\fP & v)\fR [friend]\fP"
+
+.SS "\fBSC_API\fP \fBbool\fP \fBoperator\fP< (\fBconst\fP \fBsc_unsigned\fP & u, \fBconst\fP \fBsc_signed\fP & v)\fR [friend]\fP"
+
+.SS "\fBSC_API\fP \fBbool\fP \fBoperator\fP< (\fBconst\fP \fBsc_unsigned\fP & u, \fBconst\fP \fBsc_uint_base\fP & v)\fR [friend]\fP"
+
+.SS "\fBSC_API\fP \fBbool\fP \fBoperator\fP< (\fBconst\fP \fBsc_unsigned\fP & u, \fBconst\fP \fBsc_unsigned\fP & v)\fR [friend]\fP"
+
+.SS "\fBbool\fP \fBoperator\fP< (\fBconst\fP \fBsc_unsigned\fP & u, int v)\fR [friend]\fP"
+
+.SS "\fBSC_API\fP \fBbool\fP \fBoperator\fP< (\fBconst\fP \fBsc_unsigned\fP & u, \fBint64\fP v)\fR [friend]\fP"
+
+.SS "\fBSC_API\fP \fBbool\fP \fBoperator\fP< (\fBconst\fP \fBsc_unsigned\fP & u, \fBlong\fP v)\fR [friend]\fP"
+
+.SS "\fBSC_API\fP \fBbool\fP \fBoperator\fP< (\fBconst\fP \fBsc_unsigned\fP & u, \fBuint64\fP v)\fR [friend]\fP"
+
+.SS "\fBbool\fP \fBoperator\fP< (\fBconst\fP \fBsc_unsigned\fP & u, \fBunsigned\fP int v)\fR [friend]\fP"
+
+.SS "\fBSC_API\fP \fBbool\fP \fBoperator\fP< (\fBconst\fP \fBsc_unsigned\fP & u, \fBunsigned\fP \fBlong\fP v)\fR [friend]\fP"
+
+.SS "\fBbool\fP \fBoperator\fP< (int u, \fBconst\fP \fBsc_unsigned\fP & v)\fR [friend]\fP"
+
+.SS "\fBSC_API\fP \fBbool\fP \fBoperator\fP< (\fBint64\fP u, \fBconst\fP \fBsc_unsigned\fP & v)\fR [friend]\fP"
+
+.SS "\fBSC_API\fP \fBbool\fP \fBoperator\fP< (\fBlong\fP u, \fBconst\fP \fBsc_unsigned\fP & v)\fR [friend]\fP"
+
+.SS "\fBSC_API\fP \fBbool\fP \fBoperator\fP< (\fBuint64\fP u, \fBconst\fP \fBsc_unsigned\fP & v)\fR [friend]\fP"
+
+.SS "\fBbool\fP \fBoperator\fP< (\fBunsigned\fP int u, \fBconst\fP \fBsc_unsigned\fP & v)\fR [friend]\fP"
+
+.SS "\fBSC_API\fP \fBbool\fP \fBoperator\fP< (\fBunsigned\fP \fBlong\fP u, \fBconst\fP \fBsc_unsigned\fP & v)\fR [friend]\fP"
+
+.SS "\fBSC_API\fP \fBsc_signed\fP \fBoperator\fP<< (\fBconst\fP \fBsc_signed\fP & u, \fBconst\fP \fBsc_unsigned\fP & v)\fR [friend]\fP"
+
+.SS "\fBSC_API\fP \fBsc_unsigned\fP \fBoperator\fP<< (\fBconst\fP \fBsc_unsigned\fP & u, \fBconst\fP \fBsc_int_base\fP & v)\fR [friend]\fP"
+
+.SS "\fBSC_API\fP \fBsc_unsigned\fP \fBoperator\fP<< (\fBconst\fP \fBsc_unsigned\fP & u, \fBconst\fP \fBsc_signed\fP & v)\fR [friend]\fP"
+
+.SS "\fBSC_API\fP \fBsc_unsigned\fP \fBoperator\fP<< (\fBconst\fP \fBsc_unsigned\fP & u, \fBconst\fP \fBsc_uint_base\fP & v)\fR [friend]\fP"
+
+.SS "\fBSC_API\fP \fBsc_unsigned\fP \fBoperator\fP<< (\fBconst\fP \fBsc_unsigned\fP & u, \fBconst\fP \fBsc_unsigned\fP & v)\fR [friend]\fP"
+
+.SS "\fBsc_unsigned\fP \fBoperator\fP<< (\fBconst\fP \fBsc_unsigned\fP & u, int v)\fR [friend]\fP"
+
+.SS "\fBSC_API\fP \fBsc_unsigned\fP \fBoperator\fP<< (\fBconst\fP \fBsc_unsigned\fP & u, \fBint64\fP v)\fR [friend]\fP"
+
+.SS "\fBSC_API\fP \fBsc_unsigned\fP \fBoperator\fP<< (\fBconst\fP \fBsc_unsigned\fP & u, \fBlong\fP v)\fR [friend]\fP"
+
+.SS "\fBSC_API\fP \fBsc_unsigned\fP \fBoperator\fP<< (\fBconst\fP \fBsc_unsigned\fP & u, \fBuint64\fP v)\fR [friend]\fP"
+
+.SS "\fBsc_unsigned\fP \fBoperator\fP<< (\fBconst\fP \fBsc_unsigned\fP & u, \fBunsigned\fP int v)\fR [friend]\fP"
+
+.SS "\fBSC_API\fP \fBsc_unsigned\fP \fBoperator\fP<< (\fBconst\fP \fBsc_unsigned\fP & u, \fBunsigned\fP \fBlong\fP v)\fR [friend]\fP"
+
+.SS "\fBSC_API\fP \fBbool\fP \fBoperator\fP<= (\fBconst\fP \fBsc_int_base\fP & u, \fBconst\fP \fBsc_unsigned\fP & v)\fR [friend]\fP"
+
+.SS "\fBSC_API\fP \fBbool\fP \fBoperator\fP<= (\fBconst\fP \fBsc_signed\fP & u, \fBconst\fP \fBsc_unsigned\fP & v)\fR [friend]\fP"
+
+.SS "\fBSC_API\fP \fBbool\fP \fBoperator\fP<= (\fBconst\fP \fBsc_uint_base\fP & u, \fBconst\fP \fBsc_unsigned\fP & v)\fR [friend]\fP"
+
+.SS "\fBSC_API\fP \fBbool\fP \fBoperator\fP<= (\fBconst\fP \fBsc_unsigned\fP & u, \fBconst\fP \fBsc_int_base\fP & v)\fR [friend]\fP"
+
+.SS "\fBSC_API\fP \fBbool\fP \fBoperator\fP<= (\fBconst\fP \fBsc_unsigned\fP & u, \fBconst\fP \fBsc_signed\fP & v)\fR [friend]\fP"
+
+.SS "\fBSC_API\fP \fBbool\fP \fBoperator\fP<= (\fBconst\fP \fBsc_unsigned\fP & u, \fBconst\fP \fBsc_uint_base\fP & v)\fR [friend]\fP"
+
+.SS "\fBSC_API\fP \fBbool\fP \fBoperator\fP<= (\fBconst\fP \fBsc_unsigned\fP & u, \fBconst\fP \fBsc_unsigned\fP & v)\fR [friend]\fP"
+
+.SS "\fBbool\fP \fBoperator\fP<= (\fBconst\fP \fBsc_unsigned\fP & u, int v)\fR [friend]\fP"
+
+.SS "\fBSC_API\fP \fBbool\fP \fBoperator\fP<= (\fBconst\fP \fBsc_unsigned\fP & u, \fBint64\fP v)\fR [friend]\fP"
+
+.SS "\fBSC_API\fP \fBbool\fP \fBoperator\fP<= (\fBconst\fP \fBsc_unsigned\fP & u, \fBlong\fP v)\fR [friend]\fP"
+
+.SS "\fBSC_API\fP \fBbool\fP \fBoperator\fP<= (\fBconst\fP \fBsc_unsigned\fP & u, \fBuint64\fP v)\fR [friend]\fP"
+
+.SS "\fBbool\fP \fBoperator\fP<= (\fBconst\fP \fBsc_unsigned\fP & u, \fBunsigned\fP int v)\fR [friend]\fP"
+
+.SS "\fBSC_API\fP \fBbool\fP \fBoperator\fP<= (\fBconst\fP \fBsc_unsigned\fP & u, \fBunsigned\fP \fBlong\fP v)\fR [friend]\fP"
+
+.SS "\fBbool\fP \fBoperator\fP<= (int u, \fBconst\fP \fBsc_unsigned\fP & v)\fR [friend]\fP"
+
+.SS "\fBSC_API\fP \fBbool\fP \fBoperator\fP<= (\fBint64\fP u, \fBconst\fP \fBsc_unsigned\fP & v)\fR [friend]\fP"
+
+.SS "\fBSC_API\fP \fBbool\fP \fBoperator\fP<= (\fBlong\fP u, \fBconst\fP \fBsc_unsigned\fP & v)\fR [friend]\fP"
+
+.SS "\fBSC_API\fP \fBbool\fP \fBoperator\fP<= (\fBuint64\fP u, \fBconst\fP \fBsc_unsigned\fP & v)\fR [friend]\fP"
+
+.SS "\fBbool\fP \fBoperator\fP<= (\fBunsigned\fP int u, \fBconst\fP \fBsc_unsigned\fP & v)\fR [friend]\fP"
+
+.SS "\fBSC_API\fP \fBbool\fP \fBoperator\fP<= (\fBunsigned\fP \fBlong\fP u, \fBconst\fP \fBsc_unsigned\fP & v)\fR [friend]\fP"
+
+.SS "\fBSC_API\fP \fBbool\fP \fBoperator\fP== (\fBconst\fP \fBsc_int_base\fP & u, \fBconst\fP \fBsc_unsigned\fP & v)\fR [friend]\fP"
+
+.SS "\fBSC_API\fP \fBbool\fP \fBoperator\fP== (\fBconst\fP \fBsc_signed\fP & u, \fBconst\fP \fBsc_unsigned\fP & v)\fR [friend]\fP"
+
+.SS "\fBSC_API\fP \fBbool\fP \fBoperator\fP== (\fBconst\fP \fBsc_uint_base\fP & u, \fBconst\fP \fBsc_unsigned\fP & v)\fR [friend]\fP"
+
+.SS "\fBSC_API\fP \fBbool\fP \fBoperator\fP== (\fBconst\fP \fBsc_unsigned\fP & u, \fBconst\fP \fBsc_int_base\fP & v)\fR [friend]\fP"
+
+.SS "\fBSC_API\fP \fBbool\fP \fBoperator\fP== (\fBconst\fP \fBsc_unsigned\fP & u, \fBconst\fP \fBsc_signed\fP & v)\fR [friend]\fP"
+
+.SS "\fBSC_API\fP \fBbool\fP \fBoperator\fP== (\fBconst\fP \fBsc_unsigned\fP & u, \fBconst\fP \fBsc_uint_base\fP & v)\fR [friend]\fP"
+
+.SS "\fBSC_API\fP \fBbool\fP \fBoperator\fP== (\fBconst\fP \fBsc_unsigned\fP & u, \fBconst\fP \fBsc_unsigned\fP & v)\fR [friend]\fP"
+
+.SS "\fBbool\fP \fBoperator\fP== (\fBconst\fP \fBsc_unsigned\fP & u, int v)\fR [friend]\fP"
+
+.SS "\fBSC_API\fP \fBbool\fP \fBoperator\fP== (\fBconst\fP \fBsc_unsigned\fP & u, \fBint64\fP v)\fR [friend]\fP"
+
+.SS "\fBSC_API\fP \fBbool\fP \fBoperator\fP== (\fBconst\fP \fBsc_unsigned\fP & u, \fBlong\fP v)\fR [friend]\fP"
+
+.SS "\fBSC_API\fP \fBbool\fP \fBoperator\fP== (\fBconst\fP \fBsc_unsigned\fP & u, \fBuint64\fP v)\fR [friend]\fP"
+
+.SS "\fBbool\fP \fBoperator\fP== (\fBconst\fP \fBsc_unsigned\fP & u, \fBunsigned\fP int v)\fR [friend]\fP"
+
+.SS "\fBSC_API\fP \fBbool\fP \fBoperator\fP== (\fBconst\fP \fBsc_unsigned\fP & u, \fBunsigned\fP \fBlong\fP v)\fR [friend]\fP"
+
+.SS "\fBbool\fP \fBoperator\fP== (int u, \fBconst\fP \fBsc_unsigned\fP & v)\fR [friend]\fP"
+
+.SS "\fBSC_API\fP \fBbool\fP \fBoperator\fP== (\fBint64\fP u, \fBconst\fP \fBsc_unsigned\fP & v)\fR [friend]\fP"
+
+.SS "\fBSC_API\fP \fBbool\fP \fBoperator\fP== (\fBlong\fP u, \fBconst\fP \fBsc_unsigned\fP & v)\fR [friend]\fP"
+
+.SS "\fBSC_API\fP \fBbool\fP \fBoperator\fP== (\fBuint64\fP u, \fBconst\fP \fBsc_unsigned\fP & v)\fR [friend]\fP"
+
+.SS "\fBbool\fP \fBoperator\fP== (\fBunsigned\fP int u, \fBconst\fP \fBsc_unsigned\fP & v)\fR [friend]\fP"
+
+.SS "\fBSC_API\fP \fBbool\fP \fBoperator\fP== (\fBunsigned\fP \fBlong\fP u, \fBconst\fP \fBsc_unsigned\fP & v)\fR [friend]\fP"
+
+.SS "\fBSC_API\fP \fBbool\fP \fBoperator\fP> (\fBconst\fP \fBsc_int_base\fP & u, \fBconst\fP \fBsc_unsigned\fP & v)\fR [friend]\fP"
+
+.SS "\fBSC_API\fP \fBbool\fP \fBoperator\fP> (\fBconst\fP \fBsc_signed\fP & u, \fBconst\fP \fBsc_unsigned\fP & v)\fR [friend]\fP"
+
+.SS "\fBSC_API\fP \fBbool\fP \fBoperator\fP> (\fBconst\fP \fBsc_uint_base\fP & u, \fBconst\fP \fBsc_unsigned\fP & v)\fR [friend]\fP"
+
+.SS "\fBSC_API\fP \fBbool\fP \fBoperator\fP> (\fBconst\fP \fBsc_unsigned\fP & u, \fBconst\fP \fBsc_int_base\fP & v)\fR [friend]\fP"
+
+.SS "\fBSC_API\fP \fBbool\fP \fBoperator\fP> (\fBconst\fP \fBsc_unsigned\fP & u, \fBconst\fP \fBsc_signed\fP & v)\fR [friend]\fP"
+
+.SS "\fBSC_API\fP \fBbool\fP \fBoperator\fP> (\fBconst\fP \fBsc_unsigned\fP & u, \fBconst\fP \fBsc_uint_base\fP & v)\fR [friend]\fP"
+
+.SS "\fBSC_API\fP \fBbool\fP \fBoperator\fP> (\fBconst\fP \fBsc_unsigned\fP & u, \fBconst\fP \fBsc_unsigned\fP & v)\fR [friend]\fP"
+
+.SS "\fBbool\fP \fBoperator\fP> (\fBconst\fP \fBsc_unsigned\fP & u, int v)\fR [friend]\fP"
+
+.SS "\fBSC_API\fP \fBbool\fP \fBoperator\fP> (\fBconst\fP \fBsc_unsigned\fP & u, \fBint64\fP v)\fR [friend]\fP"
+
+.SS "\fBSC_API\fP \fBbool\fP \fBoperator\fP> (\fBconst\fP \fBsc_unsigned\fP & u, \fBlong\fP v)\fR [friend]\fP"
+
+.SS "\fBSC_API\fP \fBbool\fP \fBoperator\fP> (\fBconst\fP \fBsc_unsigned\fP & u, \fBuint64\fP v)\fR [friend]\fP"
+
+.SS "\fBbool\fP \fBoperator\fP> (\fBconst\fP \fBsc_unsigned\fP & u, \fBunsigned\fP int v)\fR [friend]\fP"
+
+.SS "\fBSC_API\fP \fBbool\fP \fBoperator\fP> (\fBconst\fP \fBsc_unsigned\fP & u, \fBunsigned\fP \fBlong\fP v)\fR [friend]\fP"
+
+.SS "\fBbool\fP \fBoperator\fP> (int u, \fBconst\fP \fBsc_unsigned\fP & v)\fR [friend]\fP"
+
+.SS "\fBSC_API\fP \fBbool\fP \fBoperator\fP> (\fBint64\fP u, \fBconst\fP \fBsc_unsigned\fP & v)\fR [friend]\fP"
+
+.SS "\fBSC_API\fP \fBbool\fP \fBoperator\fP> (\fBlong\fP u, \fBconst\fP \fBsc_unsigned\fP & v)\fR [friend]\fP"
+
+.SS "\fBSC_API\fP \fBbool\fP \fBoperator\fP> (\fBuint64\fP u, \fBconst\fP \fBsc_unsigned\fP & v)\fR [friend]\fP"
+
+.SS "\fBbool\fP \fBoperator\fP> (\fBunsigned\fP int u, \fBconst\fP \fBsc_unsigned\fP & v)\fR [friend]\fP"
+
+.SS "\fBSC_API\fP \fBbool\fP \fBoperator\fP> (\fBunsigned\fP \fBlong\fP u, \fBconst\fP \fBsc_unsigned\fP & v)\fR [friend]\fP"
+
+.SS "\fBSC_API\fP \fBbool\fP \fBoperator\fP>= (\fBconst\fP \fBsc_int_base\fP & u, \fBconst\fP \fBsc_unsigned\fP & v)\fR [friend]\fP"
+
+.SS "\fBSC_API\fP \fBbool\fP \fBoperator\fP>= (\fBconst\fP \fBsc_signed\fP & u, \fBconst\fP \fBsc_unsigned\fP & v)\fR [friend]\fP"
+
+.SS "\fBSC_API\fP \fBbool\fP \fBoperator\fP>= (\fBconst\fP \fBsc_uint_base\fP & u, \fBconst\fP \fBsc_unsigned\fP & v)\fR [friend]\fP"
+
+.SS "\fBSC_API\fP \fBbool\fP \fBoperator\fP>= (\fBconst\fP \fBsc_unsigned\fP & u, \fBconst\fP \fBsc_int_base\fP & v)\fR [friend]\fP"
+
+.SS "\fBSC_API\fP \fBbool\fP \fBoperator\fP>= (\fBconst\fP \fBsc_unsigned\fP & u, \fBconst\fP \fBsc_signed\fP & v)\fR [friend]\fP"
+
+.SS "\fBSC_API\fP \fBbool\fP \fBoperator\fP>= (\fBconst\fP \fBsc_unsigned\fP & u, \fBconst\fP \fBsc_uint_base\fP & v)\fR [friend]\fP"
+
+.SS "\fBSC_API\fP \fBbool\fP \fBoperator\fP>= (\fBconst\fP \fBsc_unsigned\fP & u, \fBconst\fP \fBsc_unsigned\fP & v)\fR [friend]\fP"
+
+.SS "\fBbool\fP \fBoperator\fP>= (\fBconst\fP \fBsc_unsigned\fP & u, int v)\fR [friend]\fP"
+
+.SS "\fBSC_API\fP \fBbool\fP \fBoperator\fP>= (\fBconst\fP \fBsc_unsigned\fP & u, \fBint64\fP v)\fR [friend]\fP"
+
+.SS "\fBSC_API\fP \fBbool\fP \fBoperator\fP>= (\fBconst\fP \fBsc_unsigned\fP & u, \fBlong\fP v)\fR [friend]\fP"
+
+.SS "\fBSC_API\fP \fBbool\fP \fBoperator\fP>= (\fBconst\fP \fBsc_unsigned\fP & u, \fBuint64\fP v)\fR [friend]\fP"
+
+.SS "\fBbool\fP \fBoperator\fP>= (\fBconst\fP \fBsc_unsigned\fP & u, \fBunsigned\fP int v)\fR [friend]\fP"
+
+.SS "\fBSC_API\fP \fBbool\fP \fBoperator\fP>= (\fBconst\fP \fBsc_unsigned\fP & u, \fBunsigned\fP \fBlong\fP v)\fR [friend]\fP"
+
+.SS "\fBbool\fP \fBoperator\fP>= (int u, \fBconst\fP \fBsc_unsigned\fP & v)\fR [friend]\fP"
+
+.SS "\fBSC_API\fP \fBbool\fP \fBoperator\fP>= (\fBint64\fP u, \fBconst\fP \fBsc_unsigned\fP & v)\fR [friend]\fP"
+
+.SS "\fBSC_API\fP \fBbool\fP \fBoperator\fP>= (\fBlong\fP u, \fBconst\fP \fBsc_unsigned\fP & v)\fR [friend]\fP"
+
+.SS "\fBSC_API\fP \fBbool\fP \fBoperator\fP>= (\fBuint64\fP u, \fBconst\fP \fBsc_unsigned\fP & v)\fR [friend]\fP"
+
+.SS "\fBbool\fP \fBoperator\fP>= (\fBunsigned\fP int u, \fBconst\fP \fBsc_unsigned\fP & v)\fR [friend]\fP"
+
+.SS "\fBSC_API\fP \fBbool\fP \fBoperator\fP>= (\fBunsigned\fP \fBlong\fP u, \fBconst\fP \fBsc_unsigned\fP & v)\fR [friend]\fP"
+
+.SS "\fBSC_API\fP \fBsc_signed\fP \fBoperator\fP>> (\fBconst\fP \fBsc_signed\fP & u, \fBconst\fP \fBsc_unsigned\fP & v)\fR [friend]\fP"
+
+.SS "\fBSC_API\fP \fBsc_unsigned\fP \fBoperator\fP>> (\fBconst\fP \fBsc_unsigned\fP &, \fBconst\fP \fBsc_int_base\fP &)\fR [friend]\fP"
+
+.SS "\fBSC_API\fP \fBsc_unsigned\fP \fBoperator\fP>> (\fBconst\fP \fBsc_unsigned\fP &, \fBconst\fP \fBsc_uint_base\fP &)\fR [friend]\fP"
+
+.SS "\fBSC_API\fP \fBsc_unsigned\fP \fBoperator\fP>> (\fBconst\fP \fBsc_unsigned\fP & u, \fBconst\fP \fBsc_signed\fP & v)\fR [friend]\fP"
+
+.SS "\fBSC_API\fP \fBsc_unsigned\fP \fBoperator\fP>> (\fBconst\fP \fBsc_unsigned\fP & u, \fBconst\fP \fBsc_unsigned\fP & v)\fR [friend]\fP"
+
+.SS "\fBsc_unsigned\fP \fBoperator\fP>> (\fBconst\fP \fBsc_unsigned\fP & u, int v)\fR [friend]\fP"
+
+.SS "\fBSC_API\fP \fBsc_unsigned\fP \fBoperator\fP>> (\fBconst\fP \fBsc_unsigned\fP & u, \fBint64\fP v)\fR [friend]\fP"
+
+.SS "\fBSC_API\fP \fBsc_unsigned\fP \fBoperator\fP>> (\fBconst\fP \fBsc_unsigned\fP & u, \fBlong\fP v)\fR [friend]\fP"
+
+.SS "\fBSC_API\fP \fBsc_unsigned\fP \fBoperator\fP>> (\fBconst\fP \fBsc_unsigned\fP & u, \fBuint64\fP v)\fR [friend]\fP"
+
+.SS "\fBsc_unsigned\fP \fBoperator\fP>> (\fBconst\fP \fBsc_unsigned\fP & u, \fBunsigned\fP int v)\fR [friend]\fP"
+
+.SS "\fBSC_API\fP \fBsc_unsigned\fP \fBoperator\fP>> (\fBconst\fP \fBsc_unsigned\fP & u, \fBunsigned\fP \fBlong\fP v)\fR [friend]\fP"
+
+.SS "\fBSC_API\fP \fBsc_signed\fP \fBoperator\fP^ (\fBconst\fP \fBsc_int_base\fP & u, \fBconst\fP \fBsc_unsigned\fP & v)\fR [friend]\fP"
+
+.SS "\fBSC_API\fP \fBsc_signed\fP \fBoperator\fP^ (\fBconst\fP \fBsc_signed\fP & u, \fBconst\fP \fBsc_unsigned\fP & v)\fR [friend]\fP"
+
+.SS "\fBSC_API\fP \fBsc_unsigned\fP \fBoperator\fP^ (\fBconst\fP \fBsc_uint_base\fP & u, \fBconst\fP \fBsc_unsigned\fP & v)\fR [friend]\fP"
+
+.SS "\fBSC_API\fP \fBsc_signed\fP \fBoperator\fP^ (\fBconst\fP \fBsc_unsigned\fP & u, \fBconst\fP \fBsc_int_base\fP & v)\fR [friend]\fP"
+
+.SS "\fBSC_API\fP \fBsc_signed\fP \fBoperator\fP^ (\fBconst\fP \fBsc_unsigned\fP & u, \fBconst\fP \fBsc_signed\fP & v)\fR [friend]\fP"
+
+.SS "\fBSC_API\fP \fBsc_unsigned\fP \fBoperator\fP^ (\fBconst\fP \fBsc_unsigned\fP & u, \fBconst\fP \fBsc_uint_base\fP & v)\fR [friend]\fP"
+
+.SS "\fBSC_API\fP \fBsc_unsigned\fP \fBoperator\fP^ (\fBconst\fP \fBsc_unsigned\fP & u, \fBconst\fP \fBsc_unsigned\fP & v)\fR [friend]\fP"
+
+.SS "\fBSC_API\fP \fBsc_signed\fP \fBoperator\fP^ (\fBconst\fP \fBsc_unsigned\fP & u, int v)\fR [friend]\fP"
+
+.SS "\fBSC_API\fP \fBsc_signed\fP \fBoperator\fP^ (\fBconst\fP \fBsc_unsigned\fP & u, \fBint64\fP v)\fR [friend]\fP"
+
+.SS "\fBSC_API\fP \fBsc_signed\fP \fBoperator\fP^ (\fBconst\fP \fBsc_unsigned\fP & u, \fBlong\fP v)\fR [friend]\fP"
+
+.SS "\fBSC_API\fP \fBsc_unsigned\fP \fBoperator\fP^ (\fBconst\fP \fBsc_unsigned\fP & u, \fBuint64\fP v)\fR [friend]\fP"
+
+.SS "\fBsc_unsigned\fP \fBoperator\fP^ (\fBconst\fP \fBsc_unsigned\fP & u, \fBunsigned\fP int v)\fR [friend]\fP"
+
+.SS "\fBSC_API\fP \fBsc_unsigned\fP \fBoperator\fP^ (\fBconst\fP \fBsc_unsigned\fP & u, \fBunsigned\fP \fBlong\fP v)\fR [friend]\fP"
+
+.SS "\fBSC_API\fP \fBsc_signed\fP \fBoperator\fP^ (int u, \fBconst\fP \fBsc_unsigned\fP & v)\fR [friend]\fP"
+
+.SS "\fBSC_API\fP \fBsc_signed\fP \fBoperator\fP^ (\fBint64\fP u, \fBconst\fP \fBsc_unsigned\fP & v)\fR [friend]\fP"
+
+.SS "\fBSC_API\fP \fBsc_signed\fP \fBoperator\fP^ (\fBlong\fP u, \fBconst\fP \fBsc_unsigned\fP & v)\fR [friend]\fP"
+
+.SS "\fBSC_API\fP \fBsc_unsigned\fP \fBoperator\fP^ (\fBuint64\fP u, \fBconst\fP \fBsc_unsigned\fP & v)\fR [friend]\fP"
+
+.SS "\fBsc_unsigned\fP \fBoperator\fP^ (\fBunsigned\fP int u, \fBconst\fP \fBsc_unsigned\fP & v)\fR [friend]\fP"
+
+.SS "\fBSC_API\fP \fBsc_unsigned\fP \fBoperator\fP^ (\fBunsigned\fP \fBlong\fP u, \fBconst\fP \fBsc_unsigned\fP & v)\fR [friend]\fP"
+
+.SS "\fBSC_API\fP \fBsc_signed\fP \fBoperator\fP| (\fBconst\fP \fBsc_int_base\fP & u, \fBconst\fP \fBsc_unsigned\fP & v)\fR [friend]\fP"
+
+.SS "\fBSC_API\fP \fBsc_signed\fP \fBoperator\fP| (\fBconst\fP \fBsc_signed\fP & u, \fBconst\fP \fBsc_unsigned\fP & v)\fR [friend]\fP"
+
+.SS "\fBSC_API\fP \fBsc_unsigned\fP \fBoperator\fP| (\fBconst\fP \fBsc_uint_base\fP & u, \fBconst\fP \fBsc_unsigned\fP & v)\fR [friend]\fP"
+
+.SS "\fBSC_API\fP \fBsc_signed\fP \fBoperator\fP| (\fBconst\fP \fBsc_unsigned\fP & u, \fBconst\fP \fBsc_int_base\fP & v)\fR [friend]\fP"
+
+.SS "\fBSC_API\fP \fBsc_signed\fP \fBoperator\fP| (\fBconst\fP \fBsc_unsigned\fP & u, \fBconst\fP \fBsc_signed\fP & v)\fR [friend]\fP"
+
+.SS "\fBSC_API\fP \fBsc_unsigned\fP \fBoperator\fP| (\fBconst\fP \fBsc_unsigned\fP & u, \fBconst\fP \fBsc_uint_base\fP & v)\fR [friend]\fP"
+
+.SS "\fBSC_API\fP \fBsc_unsigned\fP \fBoperator\fP| (\fBconst\fP \fBsc_unsigned\fP & u, \fBconst\fP \fBsc_unsigned\fP & v)\fR [friend]\fP"
+
+.SS "\fBSC_API\fP \fBsc_signed\fP \fBoperator\fP| (\fBconst\fP \fBsc_unsigned\fP & u, int v)\fR [friend]\fP"
+
+.SS "\fBSC_API\fP \fBsc_signed\fP \fBoperator\fP| (\fBconst\fP \fBsc_unsigned\fP & u, \fBint64\fP v)\fR [friend]\fP"
+
+.SS "\fBSC_API\fP \fBsc_signed\fP \fBoperator\fP| (\fBconst\fP \fBsc_unsigned\fP & u, \fBlong\fP v)\fR [friend]\fP"
+
+.SS "\fBSC_API\fP \fBsc_unsigned\fP \fBoperator\fP| (\fBconst\fP \fBsc_unsigned\fP & u, \fBuint64\fP v)\fR [friend]\fP"
+
+.SS "\fBsc_unsigned\fP \fBoperator\fP| (\fBconst\fP \fBsc_unsigned\fP & u, \fBunsigned\fP int v)\fR [friend]\fP"
+
+.SS "\fBSC_API\fP \fBsc_unsigned\fP \fBoperator\fP| (\fBconst\fP \fBsc_unsigned\fP & u, \fBunsigned\fP \fBlong\fP v)\fR [friend]\fP"
+
+.SS "\fBSC_API\fP \fBsc_signed\fP \fBoperator\fP| (int u, \fBconst\fP \fBsc_unsigned\fP & v)\fR [friend]\fP"
+
+.SS "\fBSC_API\fP \fBsc_signed\fP \fBoperator\fP| (\fBint64\fP u, \fBconst\fP \fBsc_unsigned\fP & v)\fR [friend]\fP"
+
+.SS "\fBSC_API\fP \fBsc_signed\fP \fBoperator\fP| (\fBlong\fP u, \fBconst\fP \fBsc_unsigned\fP & v)\fR [friend]\fP"
+
+.SS "\fBSC_API\fP \fBsc_unsigned\fP \fBoperator\fP| (\fBuint64\fP u, \fBconst\fP \fBsc_unsigned\fP & v)\fR [friend]\fP"
+
+.SS "\fBsc_unsigned\fP \fBoperator\fP| (\fBunsigned\fP int u, \fBconst\fP \fBsc_unsigned\fP & v)\fR [friend]\fP"
+
+.SS "\fBSC_API\fP \fBsc_unsigned\fP \fBoperator\fP| (\fBunsigned\fP \fBlong\fP u, \fBconst\fP \fBsc_unsigned\fP & v)\fR [friend]\fP"
+
+.SS "\fBSC_API\fP \fBsc_unsigned\fP operator~ (\fBconst\fP \fBsc_unsigned\fP & u)\fR [friend]\fP"
+
+.SS "\fBsc_unsigned\fP or_unsigned_friend (\fBsmall_type\fP us, int unb, int und, \fBconst\fP \fBsc_digit\fP * ud, \fBsmall_type\fP vs, int vnb, int vnd, \fBconst\fP \fBsc_digit\fP * vd)\fR [friend]\fP"
+
+.SS "\fBfriend\fP \fBclass\fP \fBsc_concatref\fP\fR [friend]\fP"
+
+.SS "\fBfriend\fP \fBclass\fP \fBsc_signed\fP\fR [friend]\fP"
+
+.SS "\fBfriend\fP \fBclass\fP \fBsc_signed_subref\fP\fR [friend]\fP"
+
+.SS "\fBfriend\fP \fBclass\fP \fBsc_signed_subref_r\fP\fR [friend]\fP"
+
+.SS "\fBfriend\fP \fBclass\fP \fBsc_unsigned_bitref\fP\fR [friend]\fP"
+
+.SS "\fBfriend\fP \fBclass\fP \fBsc_unsigned_bitref_r\fP\fR [friend]\fP"
+
+.SS "\fBfriend\fP \fBclass\fP \fBsc_unsigned_subref\fP\fR [friend]\fP"
+
+.SS "\fBfriend\fP \fBclass\fP \fBsc_unsigned_subref_r\fP\fR [friend]\fP"
+
+.SS "\fBsc_unsigned\fP sub_unsigned_friend (\fBsmall_type\fP us, int unb, int und, \fBconst\fP \fBsc_digit\fP * ud, \fBsmall_type\fP vs, int vnb, int vnd, \fBconst\fP \fBsc_digit\fP * vd)\fR [friend]\fP"
+
+.SS "\fBsc_unsigned\fP xor_unsigned_friend (\fBsmall_type\fP us, int unb, int und, \fBconst\fP \fBsc_digit\fP * ud, \fBsmall_type\fP vs, int vnb, int vnd, \fBconst\fP \fBsc_digit\fP * vd)\fR [friend]\fP"
+
+.SH "Member Data Documentation"
+.PP 
+.SS "\fBsc_digit\fP* sc_dt::sc_unsigned::digit\fR [private]\fP"
+
+.SS "\fBsc_core::sc_vpool\fP<\fBsc_unsigned\fP> sc_dt::sc_unsigned::m_pool\fR [static]\fP"
+
+.SS "int sc_dt::sc_unsigned::nbits\fR [private]\fP"
+
+.SS "int sc_dt::sc_unsigned::ndigits\fR [private]\fP"
+
+.SS "\fBsmall_type\fP sc_dt::sc_unsigned::sgn\fR [private]\fP"
+
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for VHDL simulator from the source code\&.

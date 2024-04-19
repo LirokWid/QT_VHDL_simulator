@@ -1,0 +1,219 @@
+.TH "C:/Users/BJRODIER/Documents/QT_REPO/QT_VHDL_simulator/code/Ressources/SystemC/include/sysc/kernel/sc_simcontext.h" 3 "VHDL simulator" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+C:/Users/BJRODIER/Documents/QT_REPO/QT_VHDL_simulator/code/Ressources/SystemC/include/sysc/kernel/sc_simcontext.h
+.SH SYNOPSIS
+.br
+.PP
+\fR#include 'sysc/kernel/sc_cmnhdr\&.h'\fP
+.br
+\fR#include 'sysc/kernel/sc_process\&.h'\fP
+.br
+\fR#include 'sysc/kernel/sc_status\&.h'\fP
+.br
+\fR#include 'sysc/kernel/sc_time\&.h'\fP
+.br
+\fR#include 'sysc/utils/sc_hash\&.h'\fP
+.br
+\fR#include 'sysc/utils/sc_pq\&.h'\fP
+.br
+
+.SS "Classes"
+
+.in +1c
+.ti -1c
+.RI "struct \fBsc_core::sc_curr_proc_info\fP"
+.br
+.ti -1c
+.RI "class \fBsc_core::sc_simcontext\fP"
+.br
+.in -1c
+.SS "Namespaces"
+
+.in +1c
+.ti -1c
+.RI "namespace \fBsc_core\fP"
+.br
+.in -1c
+.SS "Typedefs"
+
+.in +1c
+.ti -1c
+.RI "\fBtypedef\fP \fBsc_plist\fP< \fBsc_process_b\fP * > \fBsc_core::sc_process_list\fP"
+.br
+.ti -1c
+.RI "\fBtypedef\fP \fBconst\fP \fBsc_curr_proc_info\fP * \fBsc_core::sc_curr_proc_handle\fP"
+.br
+.in -1c
+.SS "Enumerations"
+
+.in +1c
+.ti -1c
+.RI "enum \fBsc_core::sc_stop_mode\fP { \fBsc_core::SC_STOP_FINISH_DELTA\fP, \fBsc_core::SC_STOP_IMMEDIATE\fP }"
+.br
+.ti -1c
+.RI "enum \fBsc_core::sc_starvation_policy\fP { \fBsc_core::SC_EXIT_ON_STARVATION\fP, \fBsc_core::SC_RUN_TO_TIME\fP }"
+.br
+.in -1c
+.SS "Functions"
+
+.in +1c
+.ti -1c
+.RI "\fBSC_API\fP \fBvoid\fP \fBsc_core::sc_set_stop_mode\fP (\fBsc_stop_mode\fP \fBmode\fP)"
+.br
+.ti -1c
+.RI "\fBSC_API\fP \fBsc_stop_mode\fP \fBsc_core::sc_get_stop_mode\fP ()"
+.br
+.ti -1c
+.RI "\fBSC_API\fP \fBvoid\fP \fBsc_core::sc_start\fP ()"
+.br
+.ti -1c
+.RI "\fBSC_API\fP \fBvoid\fP \fBsc_core::sc_start\fP (\fBconst\fP \fBsc_time\fP &\fBduration\fP, \fBsc_starvation_policy\fP p=\fBSC_RUN_TO_TIME\fP)"
+.br
+.ti -1c
+.RI "\fBvoid\fP \fBsc_core::sc_start\fP (int \fBduration\fP, \fBsc_time_unit\fP unit, \fBsc_starvation_policy\fP p=\fBSC_RUN_TO_TIME\fP)"
+.br
+.ti -1c
+.RI "\fBvoid\fP \fBsc_core::sc_start\fP (\fBdouble\fP \fBduration\fP, \fBsc_time_unit\fP unit, \fBsc_starvation_policy\fP p=\fBSC_RUN_TO_TIME\fP)"
+.br
+.ti -1c
+.RI "\fBSC_API\fP \fBvoid\fP \fBsc_core::sc_stop\fP ()"
+.br
+.ti -1c
+.RI "\fBSC_API\fP \fBsc_dt::uint64\fP \fBsc_core::sc_delta_count\fP ()"
+.br
+.ti -1c
+.RI "\fBSC_API\fP \fBsc_dt::uint64\fP \fBsc_core::sc_delta_count_at_current_time\fP ()"
+.br
+.ti -1c
+.RI "\fBSC_API\fP \fBconst\fP std::vector< \fBsc_event\fP * > & \fBsc_core::sc_get_top_level_events\fP (\fBconst\fP \fBsc_simcontext\fP *\fBsimc_p\fP)"
+.br
+.ti -1c
+.RI "\fBSC_API\fP \fBconst\fP std::vector< \fBsc_object\fP * > & \fBsc_core::sc_get_top_level_objects\fP (\fBconst\fP \fBsc_simcontext\fP *\fBsimc_p\fP)"
+.br
+.ti -1c
+.RI "\fBSC_API\fP \fBbool\fP \fBsc_core::sc_is_running\fP (\fBconst\fP \fBsc_simcontext\fP *\fBsimc_p\fP)"
+.br
+.ti -1c
+.RI "\fBSC_API\fP \fBvoid\fP \fBsc_core::sc_pause\fP ()"
+.br
+.ti -1c
+.RI "\fBSC_API\fP \fBbool\fP \fBsc_core::sc_end_of_simulation_invoked\fP ()"
+.br
+.ti -1c
+.RI "\fBSC_API\fP \fBbool\fP \fBsc_core::sc_start_of_simulation_invoked\fP ()"
+.br
+.ti -1c
+.RI "\fBSC_API\fP \fBvoid\fP \fBsc_core::sc_set_time_resolution\fP (\fBdouble\fP, \fBsc_time_unit\fP)"
+.br
+.ti -1c
+.RI "\fBSC_API\fP \fBsc_time\fP \fBsc_core::sc_get_time_resolution\fP ()"
+.br
+.ti -1c
+.RI "\fBSC_API\fP \fBvoid\fP \fBsc_core::sc_set_default_time_unit\fP (\fBdouble\fP, \fBsc_time_unit\fP)"
+.br
+.ti -1c
+.RI "\fBSC_API\fP \fBsc_time\fP \fBsc_core::sc_get_default_time_unit\fP ()"
+.br
+.ti -1c
+.RI "\fBSC_API\fP \fBbool\fP \fBsc_core::sc_pending_activity_at_current_time\fP (\fBconst\fP \fBsc_simcontext\fP *)"
+.br
+.ti -1c
+.RI "\fBSC_API\fP \fBbool\fP \fBsc_core::sc_pending_activity_at_future_time\fP (\fBconst\fP \fBsc_simcontext\fP *)"
+.br
+.ti -1c
+.RI "\fBSC_API\fP \fBsc_time\fP \fBsc_core::sc_time_to_pending_activity\fP (\fBconst\fP \fBsc_simcontext\fP *)"
+.br
+.ti -1c
+.RI "\fBsc_simcontext\fP * \fBsc_core::sc_get_curr_simcontext\fP ()"
+.br
+.ti -1c
+.RI "\fBsc_status\fP \fBsc_core::sc_get_status\fP ()"
+.br
+.ti -1c
+.RI "\fBSC_API\fP \fBsc_process_handle\fP \fBsc_core::sc_get_current_process_handle\fP ()"
+.br
+.ti -1c
+.RI "\fBsc_object\fP * \fBsc_core::sc_get_current_object\fP ()"
+.br
+.ti -1c
+.RI "\fBsc_process_b\fP * \fBsc_core::sc_get_current_process_b\fP ()"
+.br
+.ti -1c
+.RI "\fBSC_API\fP \fBsc_process_b\fP * \fBsc_core::sc_get_curr_process_handle\fP ()"
+.br
+.ti -1c
+.RI "\fBsc_curr_proc_kind\fP \fBsc_core::sc_get_curr_process_kind\fP ()"
+.br
+.ti -1c
+.RI "int \fBsc_core::sc_get_simulator_status\fP ()"
+.br
+.ti -1c
+.RI "\fBSC_API\fP \fBconst\fP \fBchar\fP * \fBsc_core::sc_gen_unique_name\fP (\fBconst\fP \fBchar\fP *, \fBbool\fP \fBpreserve_first\fP)"
+.br
+.ti -1c
+.RI "\fBSC_API\fP \fBvoid\fP \fBsc_core::sc_set_random_seed\fP (\fBunsigned\fP int \fBseed_\fP)"
+.br
+.ti -1c
+.RI "\fBSC_API\fP \fBvoid\fP \fBsc_core::sc_initialize\fP ()"
+.br
+.ti -1c
+.RI "\fBSC_API\fP \fBconst\fP \fBsc_time\fP & \fBsc_core::sc_max_time\fP ()"
+.br
+.ti -1c
+.RI "\fBSC_API\fP \fBconst\fP \fBsc_time\fP & \fBsc_core::sc_time_stamp\fP ()"
+.br
+.ti -1c
+.RI "\fBSC_API\fP \fBdouble\fP \fBsc_core::sc_simulation_time\fP ()"
+.br
+.ti -1c
+.RI "\fBSC_API\fP \fBsc_event\fP * \fBsc_core::sc_find_event\fP (\fBconst\fP \fBchar\fP *name)"
+.br
+.ti -1c
+.RI "\fBSC_API\fP \fBsc_object\fP * \fBsc_core::sc_find_object\fP (\fBconst\fP \fBchar\fP *name)"
+.br
+.ti -1c
+.RI "\fBSC_API\fP \fBbool\fP \fBsc_core::sc_is_unwinding\fP ()"
+.br
+.ti -1c
+.RI "\fBbool\fP \fBsc_core::sc_pending_activity\fP (\fBconst\fP \fBsc_simcontext\fP *\fBsimc_p\fP=\fBsc_get_curr_simcontext\fP())"
+.br
+.ti -1c
+.RI "\fBbool\fP \fBsc_core::sc_hierarchical_name_exists\fP (\fBconst\fP \fBchar\fP *name)"
+.br
+.ti -1c
+.RI "\fBbool\fP \fBsc_core::sc_hierarchical_name_exists\fP (\fBconst\fP \fBsc_object\fP *parent, \fBconst\fP \fBchar\fP *name)"
+.br
+.ti -1c
+.RI "\fBconst\fP \fBchar\fP * \fBsc_core::sc_get_hierarchical_name\fP (\fBconst\fP \fBchar\fP *name)"
+.br
+.ti -1c
+.RI "\fBconst\fP \fBchar\fP * \fBsc_core::sc_get_hierarchical_name\fP (\fBconst\fP \fBsc_object\fP *parent, \fBconst\fP \fBchar\fP *name)"
+.br
+.ti -1c
+.RI "\fBbool\fP \fBsc_core::sc_register_hierarchical_name\fP (\fBconst\fP \fBchar\fP *name)"
+.br
+.ti -1c
+.RI "\fBbool\fP \fBsc_core::sc_register_hierarchical_name\fP (\fBconst\fP \fBsc_object\fP *parent, \fBconst\fP \fBchar\fP *name)"
+.br
+.ti -1c
+.RI "\fBbool\fP \fBsc_core::sc_unregister_hierarchical_name\fP (\fBconst\fP \fBchar\fP *name)"
+.br
+.ti -1c
+.RI "\fBbool\fP \fBsc_core::sc_unregister_hierarchical_name\fP (\fBconst\fP \fBsc_object\fP *parent, \fBconst\fP \fBchar\fP *name)"
+.br
+.in -1c
+.SS "Variables"
+
+.in +1c
+.ti -1c
+.RI "\fBSC_API\fP \fBsc_simcontext\fP * \fBsc_core::sc_curr_simcontext\fP"
+.br
+.ti -1c
+.RI "\fBSC_API\fP \fBsc_simcontext\fP * \fBsc_core::sc_default_global_context\fP"
+.br
+.in -1c
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for VHDL simulator from the source code\&.

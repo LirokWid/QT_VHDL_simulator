@@ -1,0 +1,392 @@
+.TH "sc_core::vcd_trace_file" 3 "VHDL simulator" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+sc_core::vcd_trace_file
+.SH SYNOPSIS
+.br
+.PP
+.PP
+\fR#include <sc_vcd_trace\&.h>\fP
+.PP
+Inherits \fBsc_core::sc_trace_file_base\fP\&.
+.SS "Public Types"
+
+.in +1c
+.ti -1c
+.RI "enum \fBvcd_enum\fP { \fBVCD_WIRE\fP =0, \fBVCD_REAL\fP, \fBVCD_EVENT\fP, \fBVCD_TIME\fP, \fBVCD_LAST\fP }"
+.br
+.in -1c
+
+Public Types inherited from \fBsc_core::sc_trace_file_base\fP
+.in +1c
+.ti -1c
+.RI "\fBtypedef\fP \fBsc_time::value_type\fP \fBunit_type\fP"
+.br
+.in -1c
+.SS "Public Member Functions"
+
+.in +1c
+.ti -1c
+.RI "\fBvcd_trace_file\fP (\fBconst\fP \fBchar\fP *name)"
+.br
+.ti -1c
+.RI "\fB~vcd_trace_file\fP ()"
+.br
+.ti -1c
+.RI "std::string \fBobtain_name\fP ()"
+.br
+.in -1c
+
+Public Member Functions inherited from \fBsc_core::sc_trace_file_base\fP
+.in +1c
+.ti -1c
+.RI "\fBconst\fP \fBchar\fP * \fBfilename\fP () \fBconst\fP"
+.br
+.ti -1c
+.RI "\fBbool\fP \fBdelta_cycles\fP () \fBconst\fP"
+.br
+.ti -1c
+.RI "\fBvirtual\fP \fBvoid\fP \fBdelta_cycles\fP (\fBbool\fP \fBflag\fP)"
+.br
+.ti -1c
+.RI "\fBvirtual\fP \fBvoid\fP \fBset_time_unit\fP (\fBdouble\fP v, \fBsc_time_unit\fP \fBtu\fP)"
+.br
+.in -1c
+
+Public Member Functions inherited from \fBsc_core::sc_trace_file\fP
+.in +1c
+.ti -1c
+.RI "\fBsc_trace_file\fP ()"
+.br
+.ti -1c
+.RI "\fBvirtual\fP \fBvoid\fP \fBtrace\fP (\fBconst\fP \fBunsigned\fP int &\fBobject\fP, \fBconst\fP std::string &name, \fBconst\fP \fBchar\fP **\fBenum_literals\fP)=0"
+.br
+.ti -1c
+.RI "\fBvirtual\fP \fBvoid\fP \fBspace\fP (int \fBn\fP)"
+.br
+.in -1c
+.SS "Public Attributes"
+
+.in +1c
+.ti -1c
+.RI "std::vector< \fBvcd_trace\fP * > \fBtraces\fP"
+.br
+.in -1c
+.SS "Protected Member Functions"
+
+.in +1c
+.ti -1c
+.RI "\fBvirtual\fP \fBvoid\fP \fBtrace\fP (\fBconst\fP \fBsc_time\fP &\fBobject\fP, \fBconst\fP std::string &name)"
+.br
+.ti -1c
+.RI "\fBvirtual\fP \fBvoid\fP \fBtrace\fP (\fBconst\fP \fBsc_event\fP &\fBobject\fP, \fBconst\fP std::string &name)"
+.br
+.ti -1c
+.RI "\fBvoid\fP \fBtrace\fP (\fBconst\fP \fBbool\fP &\fBobject\fP, \fBconst\fP std::string &name)"
+.br
+.ti -1c
+.RI "\fBvirtual\fP \fBvoid\fP \fBtrace\fP (\fBconst\fP \fBsc_dt::sc_bit\fP &\fBobject\fP, \fBconst\fP std::string &name)"
+.br
+.ti -1c
+.RI "\fBvoid\fP \fBtrace\fP (\fBconst\fP \fBsc_dt::sc_logic\fP &\fBobject\fP, \fBconst\fP std::string &name)"
+.br
+.ti -1c
+.RI "\fBvoid\fP \fBtrace\fP (\fBconst\fP \fBunsigned\fP \fBchar\fP &\fBobject\fP, \fBconst\fP std::string &name, int width)"
+.br
+.ti -1c
+.RI "\fBvoid\fP \fBtrace\fP (\fBconst\fP \fBunsigned\fP \fBshort\fP &\fBobject\fP, \fBconst\fP std::string &name, int width)"
+.br
+.ti -1c
+.RI "\fBvoid\fP \fBtrace\fP (\fBconst\fP \fBunsigned\fP int &\fBobject\fP, \fBconst\fP std::string &name, int width)"
+.br
+.ti -1c
+.RI "\fBvoid\fP \fBtrace\fP (\fBconst\fP \fBunsigned\fP \fBlong\fP &\fBobject\fP, \fBconst\fP std::string &name, int width)"
+.br
+.ti -1c
+.RI "\fBvoid\fP \fBtrace\fP (\fBconst\fP \fBchar\fP &\fBobject\fP, \fBconst\fP std::string &name, int width)"
+.br
+.ti -1c
+.RI "\fBvoid\fP \fBtrace\fP (\fBconst\fP \fBshort\fP &\fBobject\fP, \fBconst\fP std::string &name, int width)"
+.br
+.ti -1c
+.RI "\fBvoid\fP \fBtrace\fP (\fBconst\fP int &\fBobject\fP, \fBconst\fP std::string &name, int width)"
+.br
+.ti -1c
+.RI "\fBvoid\fP \fBtrace\fP (\fBconst\fP \fBlong\fP &\fBobject\fP, \fBconst\fP std::string &name, int width)"
+.br
+.ti -1c
+.RI "\fBvoid\fP \fBtrace\fP (\fBconst\fP \fBsc_dt::int64\fP &\fBobject\fP, \fBconst\fP std::string &name, int width)"
+.br
+.ti -1c
+.RI "\fBvoid\fP \fBtrace\fP (\fBconst\fP \fBsc_dt::uint64\fP &\fBobject\fP, \fBconst\fP std::string &name, int width)"
+.br
+.ti -1c
+.RI "\fBvoid\fP \fBtrace\fP (\fBconst\fP \fBfloat\fP &\fBobject\fP, \fBconst\fP std::string &name)"
+.br
+.ti -1c
+.RI "\fBvoid\fP \fBtrace\fP (\fBconst\fP \fBdouble\fP &\fBobject\fP, \fBconst\fP std::string &name)"
+.br
+.ti -1c
+.RI "\fBvoid\fP \fBtrace\fP (\fBconst\fP \fBsc_dt::sc_uint_base\fP &\fBobject\fP, \fBconst\fP std::string &name)"
+.br
+.ti -1c
+.RI "\fBvoid\fP \fBtrace\fP (\fBconst\fP \fBsc_dt::sc_int_base\fP &\fBobject\fP, \fBconst\fP std::string &name)"
+.br
+.ti -1c
+.RI "\fBvoid\fP \fBtrace\fP (\fBconst\fP \fBsc_dt::sc_unsigned\fP &\fBobject\fP, \fBconst\fP std::string &name)"
+.br
+.ti -1c
+.RI "\fBvoid\fP \fBtrace\fP (\fBconst\fP \fBsc_dt::sc_signed\fP &\fBobject\fP, \fBconst\fP std::string &name)"
+.br
+.ti -1c
+.RI "\fBvoid\fP \fBtrace\fP (\fBconst\fP \fBsc_dt::sc_fxval\fP &\fBobject\fP, \fBconst\fP std::string &name)"
+.br
+.ti -1c
+.RI "\fBvoid\fP \fBtrace\fP (\fBconst\fP \fBsc_dt::sc_fxval_fast\fP &\fBobject\fP, \fBconst\fP std::string &name)"
+.br
+.ti -1c
+.RI "\fBvoid\fP \fBtrace\fP (\fBconst\fP \fBsc_dt::sc_fxnum\fP &\fBobject\fP, \fBconst\fP std::string &name)"
+.br
+.ti -1c
+.RI "\fBvoid\fP \fBtrace\fP (\fBconst\fP \fBsc_dt::sc_fxnum_fast\fP &\fBobject\fP, \fBconst\fP std::string &name)"
+.br
+.ti -1c
+.RI "template<\fBclass\fP \fBT\fP > \fBvoid\fP \fBtraceT\fP (\fBconst\fP \fBT\fP &\fBobject\fP, \fBconst\fP std::string &name, \fBvcd_enum\fP type=\fBVCD_WIRE\fP)"
+.br
+.ti -1c
+.RI "\fBvirtual\fP \fBvoid\fP \fBtrace\fP (\fBconst\fP \fBsc_dt::sc_bv_base\fP &\fBobject\fP, \fBconst\fP std::string &name)"
+.br
+.ti -1c
+.RI "\fBvirtual\fP \fBvoid\fP \fBtrace\fP (\fBconst\fP \fBsc_dt::sc_lv_base\fP &\fBobject\fP, \fBconst\fP std::string &name)"
+.br
+.ti -1c
+.RI "\fBvoid\fP \fBtrace\fP (\fBconst\fP \fBunsigned\fP &\fBobject\fP, \fBconst\fP std::string &name, \fBconst\fP \fBchar\fP **\fBenum_literals\fP)"
+.br
+.ti -1c
+.RI "\fBvoid\fP \fBwrite_comment\fP (\fBconst\fP std::string &\fBcomment\fP)"
+.br
+.ti -1c
+.RI "\fBvoid\fP \fBcycle\fP (\fBbool\fP \fBdelta_cycle\fP)"
+.br
+.in -1c
+
+Protected Member Functions inherited from \fBsc_core::sc_trace_file_base\fP
+.in +1c
+.ti -1c
+.RI "\fBsc_trace_file_base\fP (\fBconst\fP \fBchar\fP *name, \fBconst\fP \fBchar\fP *\fBextension\fP)"
+.br
+.ti -1c
+.RI "\fBbool\fP \fBis_initialized\fP () \fBconst\fP"
+.br
+.ti -1c
+.RI "\fBbool\fP \fBinitialize\fP ()"
+.br
+.ti -1c
+.RI "\fBvoid\fP \fBopen_fp\fP ()"
+.br
+.ti -1c
+.RI "\fBbool\fP \fBadd_trace_check\fP (\fBconst\fP std::string &name) \fBconst\fP"
+.br
+.ti -1c
+.RI "\fBbool\fP \fBhas_low_units\fP () \fBconst\fP"
+.br
+.ti -1c
+.RI "int \fBlow_units_len\fP () \fBconst\fP"
+.br
+.ti -1c
+.RI "\fBvoid\fP \fBtimestamp_in_trace_units\fP (\fBunit_type\fP &\fBhigh\fP, \fBunit_type\fP &\fBlow\fP) \fBconst\fP"
+.br
+.ti -1c
+.RI "\fBvirtual\fP \fB~sc_trace_file_base\fP ()"
+.br
+.in -1c
+
+Protected Member Functions inherited from \fBsc_core::sc_trace_file\fP
+.in +1c
+.ti -1c
+.RI "\fBconst\fP \fBsc_dt::uint64\fP & \fBevent_trigger_stamp\fP (\fBconst\fP \fBsc_event\fP &event) \fBconst\fP"
+.br
+.ti -1c
+.RI "\fBvirtual\fP \fB~sc_trace_file\fP ()"
+.br
+.in -1c
+.SS "Private Member Functions"
+
+.in +1c
+.ti -1c
+.RI "template<\fBtypename\fP \fBT\fP > \fBconst\fP \fBT\fP & \fBextract_ref\fP (\fBconst\fP \fBT\fP &\fBobject\fP) \fBconst\fP"
+.br
+.ti -1c
+.RI "\fBconst\fP \fBsc_dt::uint64\fP & \fBextract_ref\fP (\fBconst\fP \fBsc_event\fP &\fBobject\fP) \fBconst\fP"
+.br
+.ti -1c
+.RI "\fBvirtual\fP \fBvoid\fP \fBdo_initialize\fP ()"
+.br
+.ti -1c
+.RI "\fBvoid\fP \fBprint_time_stamp\fP (\fBunit_type\fP \fBnow_units_high\fP, \fBunit_type\fP \fBnow_units_low\fP) \fBconst\fP"
+.br
+.ti -1c
+.RI "\fBbool\fP \fBget_time_stamp\fP (\fBunit_type\fP &\fBnow_units_high\fP, \fBunit_type\fP &\fBnow_units_low\fP) \fBconst\fP"
+.br
+.in -1c
+.SS "Private Attributes"
+
+.in +1c
+.ti -1c
+.RI "\fBunsigned\fP \fBvcd_name_index\fP"
+.br
+.ti -1c
+.RI "\fBunit_type\fP \fBprevious_time_units_low\fP"
+.br
+.ti -1c
+.RI "\fBunit_type\fP \fBprevious_time_units_high\fP"
+.br
+.in -1c
+.SS "Additional Inherited Members"
+
+
+Static Protected Member Functions inherited from \fBsc_core::sc_trace_file_base\fP
+.in +1c
+.ti -1c
+.RI "\fBstatic\fP \fBsc_time::value_type\fP \fBunit_to_fs\fP (\fBsc_time_unit\fP \fBtu\fP)"
+.br
+.ti -1c
+.RI "\fBstatic\fP std::string \fBfs_unit_to_str\fP (\fBsc_trace_file_base::unit_type\fP \fBtu\fP)"
+.br
+.in -1c
+
+Protected Attributes inherited from \fBsc_core::sc_trace_file_base\fP
+.in +1c
+.ti -1c
+.RI "FILE * \fBfp\fP"
+.br
+.ti -1c
+.RI "\fBunit_type\fP \fBtrace_unit_fs\fP"
+.br
+.ti -1c
+.RI "\fBunit_type\fP \fBkernel_unit_fs\fP"
+.br
+.ti -1c
+.RI "\fBbool\fP \fBtimescale_set_by_user\fP"
+.br
+.in -1c
+.SH "Member Enumeration Documentation"
+.PP 
+.SS "\fBenum\fP \fBsc_core::vcd_trace_file::vcd_enum\fP"
+
+.PP
+\fBEnumerator\fP
+.in +1c
+.TP
+\fB\fIVCD_WIRE \fP\fP
+.TP
+\fB\fIVCD_REAL \fP\fP
+.TP
+\fB\fIVCD_EVENT \fP\fP
+.TP
+\fB\fIVCD_TIME \fP\fP
+.TP
+\fB\fIVCD_LAST \fP\fP
+.SH "Constructor & Destructor Documentation"
+.PP 
+.SS "sc_core::vcd_trace_file::vcd_trace_file (\fBconst\fP \fBchar\fP * name)"
+
+.SS "sc_core::vcd_trace_file::~vcd_trace_file ()"
+
+.SH "Member Function Documentation"
+.PP 
+.SS "\fBvoid\fP sc_core::vcd_trace_file::cycle (\fBbool\fP delta_cycle)\fR [protected]\fP, \fR [virtual]\fP"
+
+.PP
+Implements \fBsc_core::sc_trace_file\fP\&.
+.SS "\fBvirtual\fP \fBvoid\fP sc_core::vcd_trace_file::do_initialize ()\fR [private]\fP, \fR [virtual]\fP"
+
+.PP
+Implements \fBsc_core::sc_trace_file_base\fP\&.
+.SS "\fBconst\fP \fBsc_dt::uint64\fP & sc_core::vcd_trace_file::extract_ref (\fBconst\fP \fBsc_event\fP & object) const\fR [inline]\fP, \fR [private]\fP"
+
+.SS "template<\fBtypename\fP \fBT\fP > \fBconst\fP \fBT\fP & sc_core::vcd_trace_file::extract_ref (\fBconst\fP \fBT\fP & object) const\fR [inline]\fP, \fR [private]\fP"
+
+.SS "\fBbool\fP sc_core::vcd_trace_file::get_time_stamp (\fBunit_type\fP & now_units_high, \fBunit_type\fP & now_units_low) const\fR [private]\fP"
+
+.SS "std::string sc_core::vcd_trace_file::obtain_name ()"
+
+.SS "\fBvoid\fP sc_core::vcd_trace_file::print_time_stamp (\fBunit_type\fP now_units_high, \fBunit_type\fP now_units_low) const\fR [private]\fP"
+
+.SS "\fBvoid\fP sc_core::vcd_trace_file::trace (\fBconst\fP \fBbool\fP & object, \fBconst\fP std::string & name)\fR [protected]\fP"
+
+.SS "\fBvoid\fP sc_core::vcd_trace_file::trace (\fBconst\fP \fBchar\fP & object, \fBconst\fP std::string & name, int width)\fR [protected]\fP"
+
+.SS "\fBvoid\fP sc_core::vcd_trace_file::trace (\fBconst\fP \fBdouble\fP & object, \fBconst\fP std::string & name)\fR [protected]\fP"
+
+.SS "\fBvoid\fP sc_core::vcd_trace_file::trace (\fBconst\fP \fBfloat\fP & object, \fBconst\fP std::string & name)\fR [protected]\fP"
+
+.SS "\fBvoid\fP sc_core::vcd_trace_file::trace (\fBconst\fP int & object, \fBconst\fP std::string & name, int width)\fR [protected]\fP"
+
+.SS "\fBvoid\fP sc_core::vcd_trace_file::trace (\fBconst\fP \fBlong\fP & object, \fBconst\fP std::string & name, int width)\fR [protected]\fP"
+
+.SS "\fBvoid\fP sc_core::vcd_trace_file::trace (\fBconst\fP \fBsc_dt::int64\fP & object, \fBconst\fP std::string & name, int width)\fR [protected]\fP"
+
+.SS "\fBvirtual\fP \fBvoid\fP sc_core::vcd_trace_file::trace (\fBconst\fP \fBsc_dt::sc_bit\fP & object, \fBconst\fP std::string & name)\fR [protected]\fP, \fR [virtual]\fP"
+
+.SS "\fBvirtual\fP \fBvoid\fP sc_core::vcd_trace_file::trace (\fBconst\fP \fBsc_dt::sc_bv_base\fP & object, \fBconst\fP std::string & name)\fR [protected]\fP, \fR [virtual]\fP"
+
+.SS "\fBvoid\fP sc_core::vcd_trace_file::trace (\fBconst\fP \fBsc_dt::sc_fxnum\fP & object, \fBconst\fP std::string & name)\fR [protected]\fP"
+
+.SS "\fBvoid\fP sc_core::vcd_trace_file::trace (\fBconst\fP \fBsc_dt::sc_fxnum_fast\fP & object, \fBconst\fP std::string & name)\fR [protected]\fP"
+
+.SS "\fBvoid\fP sc_core::vcd_trace_file::trace (\fBconst\fP \fBsc_dt::sc_fxval\fP & object, \fBconst\fP std::string & name)\fR [protected]\fP"
+
+.SS "\fBvoid\fP sc_core::vcd_trace_file::trace (\fBconst\fP \fBsc_dt::sc_fxval_fast\fP & object, \fBconst\fP std::string & name)\fR [protected]\fP"
+
+.SS "\fBvoid\fP sc_core::vcd_trace_file::trace (\fBconst\fP \fBsc_dt::sc_int_base\fP & object, \fBconst\fP std::string & name)\fR [protected]\fP"
+
+.SS "\fBvoid\fP sc_core::vcd_trace_file::trace (\fBconst\fP \fBsc_dt::sc_logic\fP & object, \fBconst\fP std::string & name)\fR [protected]\fP"
+
+.SS "\fBvirtual\fP \fBvoid\fP sc_core::vcd_trace_file::trace (\fBconst\fP \fBsc_dt::sc_lv_base\fP & object, \fBconst\fP std::string & name)\fR [protected]\fP, \fR [virtual]\fP"
+
+.SS "\fBvoid\fP sc_core::vcd_trace_file::trace (\fBconst\fP \fBsc_dt::sc_signed\fP & object, \fBconst\fP std::string & name)\fR [protected]\fP"
+
+.SS "\fBvoid\fP sc_core::vcd_trace_file::trace (\fBconst\fP \fBsc_dt::sc_uint_base\fP & object, \fBconst\fP std::string & name)\fR [protected]\fP"
+
+.SS "\fBvoid\fP sc_core::vcd_trace_file::trace (\fBconst\fP \fBsc_dt::sc_unsigned\fP & object, \fBconst\fP std::string & name)\fR [protected]\fP"
+
+.SS "\fBvoid\fP sc_core::vcd_trace_file::trace (\fBconst\fP \fBsc_dt::uint64\fP & object, \fBconst\fP std::string & name, int width)\fR [protected]\fP"
+
+.SS "\fBvirtual\fP \fBvoid\fP sc_core::vcd_trace_file::trace (\fBconst\fP \fBsc_event\fP & object, \fBconst\fP std::string & name)\fR [protected]\fP, \fR [virtual]\fP"
+
+.SS "\fBvirtual\fP \fBvoid\fP sc_core::vcd_trace_file::trace (\fBconst\fP \fBsc_time\fP & object, \fBconst\fP std::string & name)\fR [protected]\fP, \fR [virtual]\fP"
+
+.SS "\fBvoid\fP sc_core::vcd_trace_file::trace (\fBconst\fP \fBshort\fP & object, \fBconst\fP std::string & name, int width)\fR [protected]\fP"
+
+.SS "\fBvoid\fP sc_core::vcd_trace_file::trace (\fBconst\fP \fBunsigned\fP & object, \fBconst\fP std::string & name, \fBconst\fP \fBchar\fP ** enum_literals)\fR [protected]\fP"
+
+.SS "\fBvoid\fP sc_core::vcd_trace_file::trace (\fBconst\fP \fBunsigned\fP \fBchar\fP & object, \fBconst\fP std::string & name, int width)\fR [protected]\fP"
+
+.SS "\fBvoid\fP sc_core::vcd_trace_file::trace (\fBconst\fP \fBunsigned\fP int & object, \fBconst\fP std::string & name, int width)\fR [protected]\fP"
+
+.SS "\fBvoid\fP sc_core::vcd_trace_file::trace (\fBconst\fP \fBunsigned\fP \fBlong\fP & object, \fBconst\fP std::string & name, int width)\fR [protected]\fP"
+
+.SS "\fBvoid\fP sc_core::vcd_trace_file::trace (\fBconst\fP \fBunsigned\fP \fBshort\fP & object, \fBconst\fP std::string & name, int width)\fR [protected]\fP"
+
+.SS "template<\fBclass\fP \fBT\fP > \fBvoid\fP sc_core::vcd_trace_file::traceT (\fBconst\fP \fBT\fP & object, \fBconst\fP std::string & name, \fBvcd_enum\fP type = \fR\fBVCD_WIRE\fP\fP)\fR [inline]\fP, \fR [protected]\fP"
+
+.SS "\fBvoid\fP sc_core::vcd_trace_file::write_comment (\fBconst\fP std::string & comment)\fR [protected]\fP, \fR [virtual]\fP"
+
+.PP
+Implements \fBsc_core::sc_trace_file\fP\&.
+.SH "Member Data Documentation"
+.PP 
+.SS "\fBunit_type\fP sc_core::vcd_trace_file::previous_time_units_high\fR [private]\fP"
+
+.SS "\fBunit_type\fP sc_core::vcd_trace_file::previous_time_units_low\fR [private]\fP"
+
+.SS "std::vector<\fBvcd_trace\fP*> sc_core::vcd_trace_file::traces"
+
+.SS "\fBunsigned\fP sc_core::vcd_trace_file::vcd_name_index\fR [private]\fP"
+
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for VHDL simulator from the source code\&.

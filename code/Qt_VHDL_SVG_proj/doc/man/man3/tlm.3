@@ -1,0 +1,584 @@
+.TH "tlm" 3 "VHDL simulator" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+tlm
+.SH SYNOPSIS
+.br
+.PP
+.SS "Classes"
+
+.in +1c
+.ti -1c
+.RI "class \fBcircular_buffer\fP"
+.br
+.ti -1c
+.RI "class \fBtlm_analysis_fifo\fP"
+.br
+.ti -1c
+.RI "class \fBtlm_analysis_if\fP"
+.br
+.ti -1c
+.RI "class \fBtlm_analysis_port\fP"
+.br
+.ti -1c
+.RI "struct \fBtlm_analysis_triple\fP"
+.br
+.ti -1c
+.RI "class \fBtlm_array\fP"
+.br
+.ti -1c
+.RI "class \fBtlm_base_initiator_socket\fP"
+.br
+.ti -1c
+.RI "class \fBtlm_base_initiator_socket_b\fP"
+.br
+.ti -1c
+.RI "struct \fBtlm_base_protocol_types\fP"
+.br
+.ti -1c
+.RI "class \fBtlm_base_socket_if\fP"
+.br
+.ti -1c
+.RI "class \fBtlm_base_target_socket\fP"
+.br
+.ti -1c
+.RI "class \fBtlm_base_target_socket_b\fP"
+.br
+.ti -1c
+.RI "class \fBtlm_blocking_get_if\fP"
+.br
+.ti -1c
+.RI "class \fBtlm_blocking_get_peek_if\fP"
+.br
+.ti -1c
+.RI "class \fBtlm_blocking_master_if\fP"
+.br
+.ti -1c
+.RI "class \fBtlm_blocking_peek_if\fP"
+.br
+.ti -1c
+.RI "class \fBtlm_blocking_put_if\fP"
+.br
+.ti -1c
+.RI "class \fBtlm_blocking_slave_if\fP"
+.br
+.ti -1c
+.RI "class \fBtlm_blocking_transport_if\fP"
+.br
+.ti -1c
+.RI "class \fBtlm_bool\fP"
+.br
+.ti -1c
+.RI "class \fBtlm_bw_direct_mem_if\fP"
+.br
+.ti -1c
+.RI "class \fBtlm_bw_nonblocking_transport_if\fP"
+.br
+.ti -1c
+.RI "class \fBtlm_bw_transport_if\fP"
+.br
+.ti -1c
+.RI "class \fBtlm_delayed_analysis_if\fP"
+.br
+.ti -1c
+.RI "class \fBtlm_delayed_write_if\fP"
+.br
+.ti -1c
+.RI "class \fBtlm_dmi\fP"
+.br
+.ti -1c
+.RI "class \fBtlm_endian_context\fP"
+.br
+.ti -1c
+.RI "class \fBtlm_endian_context_pool\fP"
+.br
+.ti -1c
+.RI "class \fBtlm_event_finder_t\fP"
+.br
+.ti -1c
+.RI "class \fBtlm_extension\fP"
+.br
+.ti -1c
+.RI "class \fBtlm_extension_base\fP"
+.br
+.ti -1c
+.RI "class \fBtlm_fifo\fP"
+.br
+.ti -1c
+.RI "class \fBtlm_fifo_config_size_if\fP"
+.br
+.ti -1c
+.RI "class \fBtlm_fifo_debug_if\fP"
+.br
+.ti -1c
+.RI "class \fBtlm_fifo_get_if\fP"
+.br
+.ti -1c
+.RI "class \fBtlm_fifo_put_if\fP"
+.br
+.ti -1c
+.RI "class \fBtlm_fw_direct_mem_if\fP"
+.br
+.ti -1c
+.RI "class \fBtlm_fw_nonblocking_transport_if\fP"
+.br
+.ti -1c
+.RI "class \fBtlm_fw_transport_if\fP"
+.br
+.ti -1c
+.RI "class \fBtlm_generic_payload\fP"
+.br
+.ti -1c
+.RI "class \fBtlm_get_if\fP"
+.br
+.ti -1c
+.RI "class \fBtlm_get_peek_if\fP"
+.br
+.ti -1c
+.RI "class \fBtlm_global_quantum\fP"
+.br
+.ti -1c
+.RI "class \fBtlm_initiator_socket\fP"
+.br
+.ti -1c
+.RI "class \fBtlm_master_if\fP"
+.br
+.ti -1c
+.RI "class \fBtlm_master_imp\fP"
+.br
+.ti -1c
+.RI "class \fBtlm_mm_interface\fP"
+.br
+.ti -1c
+.RI "class \fBtlm_nonblocking_get_if\fP"
+.br
+.ti -1c
+.RI "class \fBtlm_nonblocking_get_peek_if\fP"
+.br
+.ti -1c
+.RI "class \fBtlm_nonblocking_get_port\fP"
+.br
+.ti -1c
+.RI "class \fBtlm_nonblocking_master_if\fP"
+.br
+.ti -1c
+.RI "class \fBtlm_nonblocking_peek_if\fP"
+.br
+.ti -1c
+.RI "class \fBtlm_nonblocking_peek_port\fP"
+.br
+.ti -1c
+.RI "class \fBtlm_nonblocking_put_if\fP"
+.br
+.ti -1c
+.RI "class \fBtlm_nonblocking_put_port\fP"
+.br
+.ti -1c
+.RI "class \fBtlm_nonblocking_slave_if\fP"
+.br
+.ti -1c
+.RI "class \fBtlm_peek_if\fP"
+.br
+.ti -1c
+.RI "class \fBtlm_phase\fP"
+.br
+.ti -1c
+.RI "class \fBtlm_put_get_imp\fP"
+.br
+.ti -1c
+.RI "class \fBtlm_put_if\fP"
+.br
+.ti -1c
+.RI "class \fBtlm_req_rsp_channel\fP"
+.br
+.ti -1c
+.RI "class \fBtlm_slave_if\fP"
+.br
+.ti -1c
+.RI "class \fBtlm_slave_imp\fP"
+.br
+.ti -1c
+.RI "class \fBtlm_slave_to_transport\fP"
+.br
+.ti -1c
+.RI "class \fBtlm_tag\fP"
+.br
+.ti -1c
+.RI "class \fBtlm_target_socket\fP"
+.br
+.ti -1c
+.RI "class \fBtlm_transport_channel\fP"
+.br
+.ti -1c
+.RI "class \fBtlm_transport_dbg_if\fP"
+.br
+.ti -1c
+.RI "class \fBtlm_transport_if\fP"
+.br
+.ti -1c
+.RI "class \fBtlm_transport_to_master\fP"
+.br
+.ti -1c
+.RI "class \fBtlm_write_if\fP"
+.br
+.in -1c
+.SS "Enumerations"
+
+.in +1c
+.ti -1c
+.RI "enum \fBtlm_sync_enum\fP { \fBTLM_ACCEPTED\fP, \fBTLM_UPDATED\fP, \fBTLM_COMPLETED\fP }"
+.br
+.ti -1c
+.RI "enum \fBtlm_command\fP { \fBTLM_READ_COMMAND\fP, \fBTLM_WRITE_COMMAND\fP, \fBTLM_IGNORE_COMMAND\fP }"
+.br
+.ti -1c
+.RI "enum \fBtlm_response_status\fP { \fBTLM_OK_RESPONSE\fP = 1, \fBTLM_INCOMPLETE_RESPONSE\fP = 0, \fBTLM_GENERIC_ERROR_RESPONSE\fP = -1, \fBTLM_ADDRESS_ERROR_RESPONSE\fP = -2, \fBTLM_COMMAND_ERROR_RESPONSE\fP = -3, \fBTLM_BURST_ERROR_RESPONSE\fP = -4, \fBTLM_BYTE_ENABLE_ERROR_RESPONSE\fP = -5 }"
+.br
+.ti -1c
+.RI "enum \fBtlm_gp_option\fP { \fBTLM_MIN_PAYLOAD\fP, \fBTLM_FULL_PAYLOAD\fP, \fBTLM_FULL_PAYLOAD_ACCEPTED\fP }"
+.br
+.ti -1c
+.RI "enum \fBtlm_endianness\fP { \fBTLM_UNKNOWN_ENDIAN\fP, \fBTLM_LITTLE_ENDIAN\fP, \fBTLM_BIG_ENDIAN\fP }"
+.br
+.ti -1c
+.RI "enum \fBtlm_socket_category\fP { \fBTLM_UNKNOWN_SOCKET\fP = 0, \fBTLM_INITIATOR_SOCKET\fP = 0x1, \fBTLM_TARGET_SOCKET\fP = 0x2, \fBTLM_MULTI_SOCKET\fP = 0x10, \fBTLM_MULTI_INITIATOR_SOCKET\fP = TLM_INITIATOR_SOCKET | TLM_MULTI_SOCKET, \fBTLM_MULTI_TARGET_SOCKET\fP = TLM_TARGET_SOCKET | TLM_MULTI_SOCKET }"
+.br
+.in -1c
+.SS "Functions"
+
+.in +1c
+.ti -1c
+.RI "\fBtlm_endian_context\fP * \fBestablish_context\fP (\fBtlm_generic_payload\fP *\fBtxn\fP)"
+.br
+.ti -1c
+.RI "\fBvoid\fP \fBcopy_db0\fP (\fBuchar\fP *\fBsrc1\fP, \fBuchar\fP *\fBsrc2\fP, \fBuchar\fP *\fBdest1\fP, \fBuchar\fP *\fBdest2\fP)"
+.br
+.ti -1c
+.RI "\fBvoid\fP \fBcopy_dbtrue0\fP (\fBuchar\fP *\fBsrc1\fP, \fBuchar\fP *, \fBuchar\fP *\fBdest1\fP, \fBuchar\fP *\fBdest2\fP)"
+.br
+.ti -1c
+.RI "\fBvoid\fP \fBcopy_btrue0\fP (\fBuchar\fP *, \fBuchar\fP *, \fBuchar\fP *, \fBuchar\fP *\fBdest2\fP)"
+.br
+.ti -1c
+.RI "\fBvoid\fP \fBcopy_b0\fP (\fBuchar\fP *, \fBuchar\fP *\fBsrc2\fP, \fBuchar\fP *, \fBuchar\fP *\fBdest2\fP)"
+.br
+.ti -1c
+.RI "\fBvoid\fP \fBcopy_dbyb0\fP (\fBuchar\fP *\fBsrc1\fP, \fBuchar\fP *, \fBuchar\fP *\fBdest1\fP, \fBuchar\fP *\fBdest2\fP)"
+.br
+.ti -1c
+.RI "template<\fBclass\fP \fBD\fP , \fBvoid\fP  COPY> \fBvoid\fP \fBloop_generic0\fP (int \fBnew_len\fP, int \fBnew_stream_width\fP, int \fBorig_stream_width\fP, int sizeof_databus, \fBsc_dt::uint64\fP \fBorig_start_address\fP, \fBsc_dt::uint64\fP \fBnew_start_address\fP, int \fBbe_length\fP, \fBuchar\fP *\fBie_data\fP, \fBuchar\fP *\fBie_be\fP, \fBuchar\fP *\fBhe_data\fP, \fBuchar\fP *\fBhe_be\fP)"
+.br
+.ti -1c
+.RI "template<\fBclass\fP \fBDATAWORD\fP > \fBvoid\fP \fBtlm_from_hostendian_generic\fP (\fBtlm_generic_payload\fP *\fBtxn\fP, \fBunsigned\fP int sizeof_databus)"
+.br
+.ti -1c
+.RI "template<\fBclass\fP \fBDATAWORD\fP > \fBvoid\fP \fBtlm_to_hostendian_generic\fP (\fBtlm_generic_payload\fP *\fBtxn\fP, \fBunsigned\fP int sizeof_databus)"
+.br
+.ti -1c
+.RI "template<\fBclass\fP \fBD\fP > \fBvoid\fP \fBcopy_d1\fP (\fBuchar\fP *\fBsrc1\fP, \fBuchar\fP *\fBsrc2\fP, \fBuchar\fP *\fBdest1\fP, \fBuchar\fP *\fBdest2\fP)"
+.br
+.ti -1c
+.RI "template<\fBclass\fP \fBD\fP > \fBvoid\fP \fBcopy_db1\fP (\fBuchar\fP *\fBsrc1\fP, \fBuchar\fP *\fBsrc2\fP, \fBuchar\fP *\fBdest1\fP, \fBuchar\fP *\fBdest2\fP)"
+.br
+.ti -1c
+.RI "template<\fBclass\fP \fBD\fP > \fBvoid\fP \fBtrue_b1\fP (\fBuchar\fP *\fBsrc1\fP, \fBuchar\fP *\fBsrc2\fP, \fBuchar\fP *\fBdest1\fP, \fBuchar\fP *\fBdest2\fP)"
+.br
+.ti -1c
+.RI "template<\fBclass\fP \fBD\fP > \fBvoid\fP \fBcopy_b1\fP (\fBuchar\fP *\fBsrc1\fP, \fBuchar\fP *\fBsrc2\fP, \fBuchar\fP *\fBdest1\fP, \fBuchar\fP *\fBdest2\fP)"
+.br
+.ti -1c
+.RI "template<\fBclass\fP \fBD\fP > \fBvoid\fP \fBcopy_dbyb1\fP (\fBuchar\fP *\fBsrc1\fP, \fBuchar\fP *\fBsrc2\fP, \fBuchar\fP *\fBdest1\fP, \fBuchar\fP *\fBdest2\fP)"
+.br
+.ti -1c
+.RI "template<\fBclass\fP \fBD\fP > \fBvoid\fP \fBcopy_dbytrue1\fP (\fBuchar\fP *\fBsrc1\fP, \fBuchar\fP *\fBsrc2\fP, \fBuchar\fP *\fBdest1\fP, \fBuchar\fP *\fBdest2\fP)"
+.br
+.ti -1c
+.RI "template<\fBclass\fP \fBD\fP > \fBvoid\fP \fBfalse_b1\fP (\fBuchar\fP *\fBdest1\fP)"
+.br
+.ti -1c
+.RI "template<\fBclass\fP \fBD\fP > \fBvoid\fP \fBno_b1\fP (\fBuchar\fP *\fBdest1\fP)"
+.br
+.ti -1c
+.RI "template<\fBclass\fP \fBD\fP , \fBvoid\fP  COPY, \fBvoid\fP  COPYuchar, \fBvoid\fP  FILLFALSE, \fBvoid\fP  FILLFALSEuchar> int \fBloop_word1\fP (int \fBbytes_left\fP, int \fBlen0\fP, int \fBlenN\fP, int sizeof_databus, \fBuchar\fP *\fBstart\fP, \fBuchar\fP *end, \fBuchar\fP *\fBsrc\fP, \fBuchar\fP *\fBbsrc\fP, \fBuchar\fP *\fBdest\fP, \fBuchar\fP *\fBbdest\fP)"
+.br
+.ti -1c
+.RI "template<\fBclass\fP \fBDATAWORD\fP > \fBvoid\fP \fBtlm_from_hostendian_word\fP (\fBtlm_generic_payload\fP *\fBtxn\fP, \fBunsigned\fP int sizeof_databus)"
+.br
+.ti -1c
+.RI "template<\fBclass\fP \fBDATAWORD\fP > \fBvoid\fP \fBtlm_to_hostendian_word\fP (\fBtlm_generic_payload\fP *\fBtxn\fP, \fBunsigned\fP int sizeof_databus)"
+.br
+.ti -1c
+.RI "template<\fBclass\fP \fBD\fP > \fBvoid\fP \fBcopy_d2\fP (\fBD\fP *\fBsrc1\fP, \fBD\fP *\fBsrc2\fP, \fBD\fP *\fBdest1\fP, \fBD\fP *\fBdest2\fP)"
+.br
+.ti -1c
+.RI "template<\fBclass\fP \fBD\fP > \fBvoid\fP \fBcopy_db2\fP (\fBD\fP *\fBsrc1\fP, \fBD\fP *\fBsrc2\fP, \fBD\fP *\fBdest1\fP, \fBD\fP *\fBdest2\fP)"
+.br
+.ti -1c
+.RI "template<\fBclass\fP \fBD\fP > \fBvoid\fP \fBcopy_dbyb2\fP (\fBD\fP *\fBsrc1\fP, \fBD\fP *\fBsrc2\fP, \fBD\fP *\fBdest1\fP, \fBD\fP *\fBdest2\fP)"
+.br
+.ti -1c
+.RI "template<\fBclass\fP \fBD\fP , \fBvoid\fP  COPY> \fBvoid\fP \fBloop_aligned2\fP (\fBD\fP *\fBsrc1\fP, \fBD\fP *\fBsrc2\fP, \fBD\fP *\fBdest1\fP, \fBD\fP *\fBdest2\fP, int \fBwords\fP, int \fBwords_per_bus\fP)"
+.br
+.ti -1c
+.RI "template<\fBclass\fP \fBDATAWORD\fP > \fBvoid\fP \fBtlm_from_hostendian_aligned\fP (\fBtlm_generic_payload\fP *\fBtxn\fP, \fBunsigned\fP int sizeof_databus)"
+.br
+.ti -1c
+.RI "template<\fBclass\fP \fBDATAWORD\fP > \fBvoid\fP \fBtlm_to_hostendian_aligned\fP (\fBtlm_generic_payload\fP *\fBtxn\fP, \fBunsigned\fP int sizeof_databus)"
+.br
+.ti -1c
+.RI "template<\fBclass\fP \fBDATAWORD\fP > \fBvoid\fP \fBtlm_from_hostendian_single\fP (\fBtlm_generic_payload\fP *\fBtxn\fP, \fBunsigned\fP int sizeof_databus)"
+.br
+.ti -1c
+.RI "template<\fBclass\fP \fBDATAWORD\fP > \fBvoid\fP \fBtlm_to_hostendian_single\fP (\fBtlm_generic_payload\fP *\fBtxn\fP, \fBunsigned\fP int sizeof_databus)"
+.br
+.ti -1c
+.RI "\fBvoid\fP \fBtlm_from_hostendian\fP (\fBtlm_generic_payload\fP *\fBtxn\fP)"
+.br
+.ti -1c
+.RI "\fBSC_API\fP \fBunsigned\fP int \fBmax_num_extensions\fP ()"
+.br
+.ti -1c
+.RI "\fBtlm_endianness\fP \fBget_host_endianness\fP (\fBvoid\fP)"
+.br
+.ti -1c
+.RI "\fBbool\fP \fBhost_has_little_endianness\fP (\fBvoid\fP)"
+.br
+.ti -1c
+.RI "\fBbool\fP \fBhas_host_endianness\fP (\fBtlm_endianness\fP \fBendianness\fP)"
+.br
+.ti -1c
+.RI "std::ostream & \fBoperator<<\fP (std::ostream &s, \fBconst\fP \fBtlm_phase\fP &p)"
+.br
+.ti -1c
+.RI "\fBconst\fP \fBunsigned\fP int \fBtlm_version_major\fP (\fBTLM_VERSION_MAJOR\fP)"
+.br
+.ti -1c
+.RI "\fBconst\fP \fBunsigned\fP int \fBtlm_version_minor\fP (\fBTLM_VERSION_MINOR\fP)"
+.br
+.ti -1c
+.RI "\fBconst\fP \fBunsigned\fP int \fBtlm_version_patch\fP (\fBTLM_VERSION_PATCH\fP)"
+.br
+.ti -1c
+.RI "\fBconst\fP \fBbool\fP \fBtlm_is_prerelease\fP (\fBTLM_IS_PRERELEASE\fP)"
+.br
+.ti -1c
+.RI "\fBconst\fP std::string \fBtlm_version_string\fP (\fBTLM_VERSION_STRING\fP)"
+.br
+.ti -1c
+.RI "\fBconst\fP std::string \fBtlm_version_originator\fP (\fBTLM_VERSION_ORIGINATOR\fP)"
+.br
+.ti -1c
+.RI "\fBconst\fP std::string \fBtlm_version_prerelease\fP (\fBTLM_VERSION_PRERELEASE\fP)"
+.br
+.ti -1c
+.RI "\fBconst\fP std::string \fBtlm_version_release_date\fP (\fBTLM_VERSION_STRING_RELEASE_DATE\fP)"
+.br
+.ti -1c
+.RI "\fBconst\fP std::string \fBtlm_copyright_string\fP (\fBTLM_COPYRIGHT\fP)"
+.br
+.ti -1c
+.RI "\fBconst\fP std::string \fBtlm_version_string_2\fP (\fBTLM_VERSION_STRING_2\fP)"
+.br
+.ti -1c
+.RI "\fBconst\fP \fBchar\fP * \fBtlm_release\fP (\fBvoid\fP)"
+.br
+.ti -1c
+.RI "\fBconst\fP \fBchar\fP * \fBtlm_version\fP (\fBvoid\fP)"
+.br
+.ti -1c
+.RI "\fBconst\fP \fBchar\fP * \fBtlm_copyright\fP (\fBvoid\fP)"
+.br
+.in -1c
+.SS "Variables"
+
+.in +1c
+.ti -1c
+.RI "\fBSC_API_TEMPLATE_DECL_\fP \fBtlm_array< tlm_extension_base * >\fP"
+.br
+.in -1c
+.SH "Enumeration Type Documentation"
+.PP 
+.SS "\fBenum\fP \fBtlm::tlm_command\fP"
+
+.PP
+\fBEnumerator\fP
+.in +1c
+.TP
+\fB\fITLM_READ_COMMAND \fP\fP
+.TP
+\fB\fITLM_WRITE_COMMAND \fP\fP
+.TP
+\fB\fITLM_IGNORE_COMMAND \fP\fP
+.SS "\fBenum\fP \fBtlm::tlm_endianness\fP"
+
+.PP
+\fBEnumerator\fP
+.in +1c
+.TP
+\fB\fITLM_UNKNOWN_ENDIAN \fP\fP
+.TP
+\fB\fITLM_LITTLE_ENDIAN \fP\fP
+.TP
+\fB\fITLM_BIG_ENDIAN \fP\fP
+.SS "\fBenum\fP \fBtlm::tlm_gp_option\fP"
+
+.PP
+\fBEnumerator\fP
+.in +1c
+.TP
+\fB\fITLM_MIN_PAYLOAD \fP\fP
+.TP
+\fB\fITLM_FULL_PAYLOAD \fP\fP
+.TP
+\fB\fITLM_FULL_PAYLOAD_ACCEPTED \fP\fP
+.SS "\fBenum\fP \fBtlm::tlm_response_status\fP"
+
+.PP
+\fBEnumerator\fP
+.in +1c
+.TP
+\fB\fITLM_OK_RESPONSE \fP\fP
+.TP
+\fB\fITLM_INCOMPLETE_RESPONSE \fP\fP
+.TP
+\fB\fITLM_GENERIC_ERROR_RESPONSE \fP\fP
+.TP
+\fB\fITLM_ADDRESS_ERROR_RESPONSE \fP\fP
+.TP
+\fB\fITLM_COMMAND_ERROR_RESPONSE \fP\fP
+.TP
+\fB\fITLM_BURST_ERROR_RESPONSE \fP\fP
+.TP
+\fB\fITLM_BYTE_ENABLE_ERROR_RESPONSE \fP\fP
+.SS "\fBenum\fP \fBtlm::tlm_socket_category\fP"
+
+.PP
+\fBEnumerator\fP
+.in +1c
+.TP
+\fB\fITLM_UNKNOWN_SOCKET \fP\fP
+.TP
+\fB\fITLM_INITIATOR_SOCKET \fP\fP
+.TP
+\fB\fITLM_TARGET_SOCKET \fP\fP
+.TP
+\fB\fITLM_MULTI_SOCKET \fP\fP
+.TP
+\fB\fITLM_MULTI_INITIATOR_SOCKET \fP\fP
+.TP
+\fB\fITLM_MULTI_TARGET_SOCKET \fP\fP
+.SS "\fBenum\fP \fBtlm::tlm_sync_enum\fP"
+
+.PP
+\fBEnumerator\fP
+.in +1c
+.TP
+\fB\fITLM_ACCEPTED \fP\fP
+.TP
+\fB\fITLM_UPDATED \fP\fP
+.TP
+\fB\fITLM_COMPLETED \fP\fP
+.SH "Function Documentation"
+.PP 
+.SS "\fBvoid\fP tlm::copy_b0 (\fBuchar\fP *, \fBuchar\fP * src2, \fBuchar\fP *, \fBuchar\fP * dest2)\fR [inline]\fP"
+
+.SS "template<\fBclass\fP \fBD\fP > \fBvoid\fP tlm::copy_b1 (\fBuchar\fP * src1, \fBuchar\fP * src2, \fBuchar\fP * dest1, \fBuchar\fP * dest2)\fR [inline]\fP"
+
+.SS "\fBvoid\fP tlm::copy_btrue0 (\fBuchar\fP *, \fBuchar\fP *, \fBuchar\fP *, \fBuchar\fP * dest2)\fR [inline]\fP"
+
+.SS "template<\fBclass\fP \fBD\fP > \fBvoid\fP tlm::copy_d1 (\fBuchar\fP * src1, \fBuchar\fP * src2, \fBuchar\fP * dest1, \fBuchar\fP * dest2)\fR [inline]\fP"
+
+.SS "template<\fBclass\fP \fBD\fP > \fBvoid\fP tlm::copy_d2 (\fBD\fP * src1, \fBD\fP * src2, \fBD\fP * dest1, \fBD\fP * dest2)\fR [inline]\fP"
+
+.SS "\fBvoid\fP tlm::copy_db0 (\fBuchar\fP * src1, \fBuchar\fP * src2, \fBuchar\fP * dest1, \fBuchar\fP * dest2)\fR [inline]\fP"
+
+.SS "template<\fBclass\fP \fBD\fP > \fBvoid\fP tlm::copy_db1 (\fBuchar\fP * src1, \fBuchar\fP * src2, \fBuchar\fP * dest1, \fBuchar\fP * dest2)\fR [inline]\fP"
+
+.SS "template<\fBclass\fP \fBD\fP > \fBvoid\fP tlm::copy_db2 (\fBD\fP * src1, \fBD\fP * src2, \fBD\fP * dest1, \fBD\fP * dest2)\fR [inline]\fP"
+
+.SS "\fBvoid\fP tlm::copy_dbtrue0 (\fBuchar\fP * src1, \fBuchar\fP *, \fBuchar\fP * dest1, \fBuchar\fP * dest2)\fR [inline]\fP"
+
+.SS "\fBvoid\fP tlm::copy_dbyb0 (\fBuchar\fP * src1, \fBuchar\fP *, \fBuchar\fP * dest1, \fBuchar\fP * dest2)\fR [inline]\fP"
+
+.SS "template<\fBclass\fP \fBD\fP > \fBvoid\fP tlm::copy_dbyb1 (\fBuchar\fP * src1, \fBuchar\fP * src2, \fBuchar\fP * dest1, \fBuchar\fP * dest2)\fR [inline]\fP"
+
+.SS "template<\fBclass\fP \fBD\fP > \fBvoid\fP tlm::copy_dbyb2 (\fBD\fP * src1, \fBD\fP * src2, \fBD\fP * dest1, \fBD\fP * dest2)\fR [inline]\fP"
+
+.SS "template<\fBclass\fP \fBD\fP > \fBvoid\fP tlm::copy_dbytrue1 (\fBuchar\fP * src1, \fBuchar\fP * src2, \fBuchar\fP * dest1, \fBuchar\fP * dest2)\fR [inline]\fP"
+
+.SS "\fBtlm_endian_context\fP * tlm::establish_context (\fBtlm_generic_payload\fP * txn)\fR [inline]\fP"
+
+.SS "template<\fBclass\fP \fBD\fP > \fBvoid\fP tlm::false_b1 (\fBuchar\fP * dest1)\fR [inline]\fP"
+
+.SS "\fBtlm_endianness\fP tlm::get_host_endianness (\fBvoid\fP)\fR [inline]\fP"
+
+.SS "\fBbool\fP tlm::has_host_endianness (\fBtlm_endianness\fP endianness)\fR [inline]\fP"
+
+.SS "\fBbool\fP tlm::host_has_little_endianness (\fBvoid\fP)\fR [inline]\fP"
+
+.SS "template<\fBclass\fP \fBD\fP , \fBvoid\fP  COPY> \fBvoid\fP tlm::loop_aligned2 (\fBD\fP * src1, \fBD\fP * src2, \fBD\fP * dest1, \fBD\fP * dest2, int words, int words_per_bus)\fR [inline]\fP"
+
+.SS "template<\fBclass\fP \fBD\fP , \fBvoid\fP  COPY> \fBvoid\fP tlm::loop_generic0 (int new_len, int new_stream_width, int orig_stream_width, int sizeof_databus, \fBsc_dt::uint64\fP orig_start_address, \fBsc_dt::uint64\fP new_start_address, int be_length, \fBuchar\fP * ie_data, \fBuchar\fP * ie_be, \fBuchar\fP * he_data, \fBuchar\fP * he_be)\fR [inline]\fP"
+
+.SS "template<\fBclass\fP \fBD\fP , \fBvoid\fP  COPY, \fBvoid\fP  COPYuchar, \fBvoid\fP  FILLFALSE, \fBvoid\fP  FILLFALSEuchar> int tlm::loop_word1 (int bytes_left, int len0, int lenN, int sizeof_databus, \fBuchar\fP * start, \fBuchar\fP * end, \fBuchar\fP * src, \fBuchar\fP * bsrc, \fBuchar\fP * dest, \fBuchar\fP * bdest)\fR [inline]\fP"
+
+.SS "\fBSC_API\fP \fBunsigned\fP int tlm::max_num_extensions ()"
+
+.SS "template<\fBclass\fP \fBD\fP > \fBvoid\fP tlm::no_b1 (\fBuchar\fP * dest1)\fR [inline]\fP"
+
+.SS "std::ostream & tlm::operator<< (std::ostream & s, \fBconst\fP \fBtlm_phase\fP & p)\fR [inline]\fP"
+
+.SS "\fBconst\fP \fBchar\fP * tlm::tlm_copyright (\fBvoid\fP)\fR [inline]\fP"
+
+.SS "\fBconst\fP std::string tlm::tlm_copyright_string (\fBTLM_COPYRIGHT\fP)"
+
+.SS "\fBvoid\fP tlm::tlm_from_hostendian (\fBtlm_generic_payload\fP * txn)\fR [inline]\fP"
+
+.SS "template<\fBclass\fP \fBDATAWORD\fP > \fBvoid\fP tlm::tlm_from_hostendian_aligned (\fBtlm_generic_payload\fP * txn, \fBunsigned\fP int sizeof_databus)\fR [inline]\fP"
+
+.SS "template<\fBclass\fP \fBDATAWORD\fP > \fBvoid\fP tlm::tlm_from_hostendian_generic (\fBtlm_generic_payload\fP * txn, \fBunsigned\fP int sizeof_databus)\fR [inline]\fP"
+
+.SS "template<\fBclass\fP \fBDATAWORD\fP > \fBvoid\fP tlm::tlm_from_hostendian_single (\fBtlm_generic_payload\fP * txn, \fBunsigned\fP int sizeof_databus)\fR [inline]\fP"
+
+.SS "template<\fBclass\fP \fBDATAWORD\fP > \fBvoid\fP tlm::tlm_from_hostendian_word (\fBtlm_generic_payload\fP * txn, \fBunsigned\fP int sizeof_databus)\fR [inline]\fP"
+
+.SS "\fBconst\fP \fBbool\fP tlm::tlm_is_prerelease (\fBTLM_IS_PRERELEASE\fP)"
+
+.SS "\fBconst\fP \fBchar\fP * tlm::tlm_release (\fBvoid\fP)\fR [inline]\fP"
+
+.SS "template<\fBclass\fP \fBDATAWORD\fP > \fBvoid\fP tlm::tlm_to_hostendian_aligned (\fBtlm_generic_payload\fP * txn, \fBunsigned\fP int sizeof_databus)\fR [inline]\fP"
+
+.SS "template<\fBclass\fP \fBDATAWORD\fP > \fBvoid\fP tlm::tlm_to_hostendian_generic (\fBtlm_generic_payload\fP * txn, \fBunsigned\fP int sizeof_databus)\fR [inline]\fP"
+
+.SS "template<\fBclass\fP \fBDATAWORD\fP > \fBvoid\fP tlm::tlm_to_hostendian_single (\fBtlm_generic_payload\fP * txn, \fBunsigned\fP int sizeof_databus)\fR [inline]\fP"
+
+.SS "template<\fBclass\fP \fBDATAWORD\fP > \fBvoid\fP tlm::tlm_to_hostendian_word (\fBtlm_generic_payload\fP * txn, \fBunsigned\fP int sizeof_databus)\fR [inline]\fP"
+
+.SS "\fBconst\fP \fBchar\fP * tlm::tlm_version (\fBvoid\fP)\fR [inline]\fP"
+
+.SS "\fBconst\fP \fBunsigned\fP int tlm::tlm_version_major (\fBTLM_VERSION_MAJOR\fP)"
+
+.SS "\fBconst\fP \fBunsigned\fP int tlm::tlm_version_minor (\fBTLM_VERSION_MINOR\fP)"
+
+.SS "\fBconst\fP std::string tlm::tlm_version_originator (\fBTLM_VERSION_ORIGINATOR\fP)"
+
+.SS "\fBconst\fP \fBunsigned\fP int tlm::tlm_version_patch (\fBTLM_VERSION_PATCH\fP)"
+
+.SS "\fBconst\fP std::string tlm::tlm_version_prerelease (\fBTLM_VERSION_PRERELEASE\fP)"
+
+.SS "\fBconst\fP std::string tlm::tlm_version_release_date (\fBTLM_VERSION_STRING_RELEASE_DATE\fP)"
+
+.SS "\fBconst\fP std::string tlm::tlm_version_string (\fBTLM_VERSION_STRING\fP)"
+
+.SS "\fBconst\fP std::string tlm::tlm_version_string_2 (\fBTLM_VERSION_STRING_2\fP)"
+
+.SS "template<\fBclass\fP \fBD\fP > \fBvoid\fP tlm::true_b1 (\fBuchar\fP * src1, \fBuchar\fP * src2, \fBuchar\fP * dest1, \fBuchar\fP * dest2)\fR [inline]\fP"
+
+.SH "Variable Documentation"
+.PP 
+.SS "\fBSC_API_TEMPLATE_DECL_\fP \fBtlm::tlm_array\fP< \fBtlm_extension_base\fP * >"
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for VHDL simulator from the source code\&.

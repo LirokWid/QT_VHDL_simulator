@@ -1,0 +1,165 @@
+\doxysection{m88k.\+h}
+\hypertarget{m88k_8h_source}{}\label{m88k_8h_source}\index{C:/Users/BJRODIER/Documents/QT\_REPO/QT\_VHDL\_simulator/code/Ressources/SystemC/include/sysc/packages/qt/md/m88k.h@{C:/Users/BJRODIER/Documents/QT\_REPO/QT\_VHDL\_simulator/code/Ressources/SystemC/include/sysc/packages/qt/md/m88k.h}}
+\mbox{\hyperlink{m88k_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{comment}{/*}}
+\DoxyCodeLine{00002\ \textcolor{comment}{\ *\ QuickThreads\ -\/-\/\ Threads-\/building\ toolkit.}}
+\DoxyCodeLine{00003\ \textcolor{comment}{\ *\ Copyright\ (c)\ 1993\ by\ David\ Keppel}}
+\DoxyCodeLine{00004\ \textcolor{comment}{\ *}}
+\DoxyCodeLine{00005\ \textcolor{comment}{\ *\ Permission\ to\ use,\ copy,\ modify\ and\ distribute\ this\ software\ and}}
+\DoxyCodeLine{00006\ \textcolor{comment}{\ *\ its\ documentation\ for\ any\ purpose\ and\ without\ fee\ is\ hereby}}
+\DoxyCodeLine{00007\ \textcolor{comment}{\ *\ granted,\ provided\ that\ the\ above\ copyright\ notice\ and\ this\ notice}}
+\DoxyCodeLine{00008\ \textcolor{comment}{\ *\ appear\ in\ all\ copies.\ \ This\ software\ is\ provided\ as\ a}}
+\DoxyCodeLine{00009\ \textcolor{comment}{\ *\ proof-\/of-\/concept\ and\ for\ demonstration\ purposes;\ there\ is\ no}}
+\DoxyCodeLine{00010\ \textcolor{comment}{\ *\ representation\ about\ the\ suitability\ of\ this\ software\ for\ any}}
+\DoxyCodeLine{00011\ \textcolor{comment}{\ *\ purpose.}}
+\DoxyCodeLine{00012\ \textcolor{comment}{\ */}}
+\DoxyCodeLine{00013\ }
+\DoxyCodeLine{00014\ \textcolor{preprocessor}{\#ifndef\ QUICKTHREADS\_M88K\_H}}
+\DoxyCodeLine{00015\ \textcolor{preprocessor}{\#define\ QUICKTHREADS\_M88K\_H}}
+\DoxyCodeLine{00016\ }
+\DoxyCodeLine{00017\ \textcolor{keyword}{typedef}\ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{long}\ \mbox{\hyperlink{m88k_8h_a7e200cdd70932f91502a9a28594c56da}{qt\_word\_t}};}
+\DoxyCodeLine{00018\ }
+\DoxyCodeLine{00019\ \textcolor{preprocessor}{\#define\ QUICKTHREADS\_GROW\_DOWN}}
+\DoxyCodeLine{00020\ }
+\DoxyCodeLine{00021\ \textcolor{comment}{/*\ Stack\ layout\ on\ the\ mips:}}
+\DoxyCodeLine{00022\ \textcolor{comment}{}}
+\DoxyCodeLine{00023\ \textcolor{comment}{\ \ \ Callee-\/save\ registers\ are:\ \$16-\/\$23,\ \$30;\ \$f20-\/\$f30.}}
+\DoxyCodeLine{00024\ \textcolor{comment}{\ \ \ Also\ save\ \$31,\ return\ pc.}}
+\DoxyCodeLine{00025\ \textcolor{comment}{}}
+\DoxyCodeLine{00026\ \textcolor{comment}{\ \ \ Non-\/varargs:}}
+\DoxyCodeLine{00027\ \textcolor{comment}{}}
+\DoxyCodeLine{00028\ \textcolor{comment}{\ \ \ +-\/-\/-\/}}
+\DoxyCodeLine{00029\ \textcolor{comment}{\ \ \ |\ r30\ (fp)\ \ \ on\ startup\ ===\ 0}}
+\DoxyCodeLine{00030\ \textcolor{comment}{\ \ \ |\ r25}}
+\DoxyCodeLine{00031\ \textcolor{comment}{\ \ \ |\ r24}}
+\DoxyCodeLine{00032\ \textcolor{comment}{\ \ \ |\ r23}}
+\DoxyCodeLine{00033\ \textcolor{comment}{\ \ \ |\ r22}}
+\DoxyCodeLine{00034\ \textcolor{comment}{\ \ \ |\ r21}}
+\DoxyCodeLine{00035\ \textcolor{comment}{\ \ \ |\ r20}}
+\DoxyCodeLine{00036\ \textcolor{comment}{\ \ \ |\ r19}}
+\DoxyCodeLine{00037\ \textcolor{comment}{\ \ \ |\ r18}}
+\DoxyCodeLine{00038\ \textcolor{comment}{\ \ \ |\ r17\ \ \ \ on\ startup\ ===\ \`{}only'}}
+\DoxyCodeLine{00039\ \textcolor{comment}{\ \ \ |\ r16\ \ \ \ on\ startup\ ===\ \`{}userf'}}
+\DoxyCodeLine{00040\ \textcolor{comment}{\ \ \ |\ r15\ \ \ \ on\ startup\ ===\ \`{}pt'}}
+\DoxyCodeLine{00041\ \textcolor{comment}{\ \ \ |\ r14\ \ \ \ on\ startup\ ===\ \`{}pu'}}
+\DoxyCodeLine{00042\ \textcolor{comment}{\ \ \ |\ r1\ \ \ \ \ on\ startup\ ===\ \`{}qt\_start'}}
+\DoxyCodeLine{00043\ \textcolor{comment}{\ \ \ |\ 0}}
+\DoxyCodeLine{00044\ \textcolor{comment}{\ \ \ |\ 0}}
+\DoxyCodeLine{00045\ \textcolor{comment}{\ \ \ +-\/-\/-\/}}
+\DoxyCodeLine{00046\ \textcolor{comment}{\ \ \ |\ 0}}
+\DoxyCodeLine{00047\ \textcolor{comment}{\ \ \ |\ ...\ (8\ regs\ worth\ ===\ 32\ bytes\ of\ homing\ area)}}
+\DoxyCodeLine{00048\ \textcolor{comment}{\ \ \ |\ 0\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ <-\/-\/-\/\ sp}}
+\DoxyCodeLine{00049\ \textcolor{comment}{\ \ \ +-\/-\/-\/}}
+\DoxyCodeLine{00050\ \textcolor{comment}{}}
+\DoxyCodeLine{00051\ \textcolor{comment}{\ \ \ Conventions\ for\ varargs:}}
+\DoxyCodeLine{00052\ \textcolor{comment}{}}
+\DoxyCodeLine{00053\ \textcolor{comment}{\ \ \ |\ \ :}}
+\DoxyCodeLine{00054\ \textcolor{comment}{\ \ \ |\ arg8}}
+\DoxyCodeLine{00055\ \textcolor{comment}{\ \ \ +-\/-\/-\/}}
+\DoxyCodeLine{00056\ \textcolor{comment}{\ \ \ |\ r30\ (fp)\ \ \ arg7}}
+\DoxyCodeLine{00057\ \textcolor{comment}{\ \ \ |\ r25\ \ \ \ arg6}}
+\DoxyCodeLine{00058\ \textcolor{comment}{\ \ \ |\ r24\ \ \ \ arg5}}
+\DoxyCodeLine{00059\ \textcolor{comment}{\ \ \ |\ r23\ \ \ \ arg4}}
+\DoxyCodeLine{00060\ \textcolor{comment}{\ \ \ |\ r22\ \ \ \ arg3}}
+\DoxyCodeLine{00061\ \textcolor{comment}{\ \ \ |\ r21\ \ \ \ arg2}}
+\DoxyCodeLine{00062\ \textcolor{comment}{\ \ \ |\ r20\ \ \ \ arg1}}
+\DoxyCodeLine{00063\ \textcolor{comment}{\ \ \ |\ r19\ \ \ \ arg0}}
+\DoxyCodeLine{00064\ \textcolor{comment}{\ \ \ |\ r18}}
+\DoxyCodeLine{00065\ \textcolor{comment}{\ \ \ |\ r17\ \ \ \ on\ startup\ ===\ \`{}startup'}}
+\DoxyCodeLine{00066\ \textcolor{comment}{\ \ \ |\ r16\ \ \ \ on\ startup\ ===\ \`{}vuserf'}}
+\DoxyCodeLine{00067\ \textcolor{comment}{\ \ \ |\ r15\ \ \ \ on\ startup\ ===\ \`{}pt'}}
+\DoxyCodeLine{00068\ \textcolor{comment}{\ \ \ |\ r14\ \ \ \ on\ startup\ ===\ \`{}cleanup'}}
+\DoxyCodeLine{00069\ \textcolor{comment}{\ \ \ |\ r1\ \ \ \ \ on\ startup\ ===\ \`{}qt\_vstart'}}
+\DoxyCodeLine{00070\ \textcolor{comment}{\ \ \ |\ 0}}
+\DoxyCodeLine{00071\ \textcolor{comment}{\ \ \ |\ 0}}
+\DoxyCodeLine{00072\ \textcolor{comment}{\ \ \ +-\/-\/-\/}}
+\DoxyCodeLine{00073\ \textcolor{comment}{\ \ \ |\ 0}}
+\DoxyCodeLine{00074\ \textcolor{comment}{\ \ \ |\ ...\ (8\ regs\ worth\ ===\ 32\ bytes\ of\ homing\ area)}}
+\DoxyCodeLine{00075\ \textcolor{comment}{\ \ \ |\ 0\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ <-\/-\/-\/\ sp}}
+\DoxyCodeLine{00076\ \textcolor{comment}{\ \ \ +-\/-\/-\/}}
+\DoxyCodeLine{00077\ \textcolor{comment}{}}
+\DoxyCodeLine{00078\ \textcolor{comment}{\ \ \ */}}
+\DoxyCodeLine{00079\ }
+\DoxyCodeLine{00080\ }
+\DoxyCodeLine{00081\ \textcolor{comment}{/*\ Stack\ must\ be\ doubleword\ aligned.\ */}}
+\DoxyCodeLine{00082\ \textcolor{preprocessor}{\#define\ QUICKTHREADS\_STKALIGN\ \ \ (16)\ \ \ \ }\textcolor{comment}{/*\ Doubleword\ aligned.\ */}\textcolor{preprocessor}{}}
+\DoxyCodeLine{00083\ }
+\DoxyCodeLine{00084\ \textcolor{comment}{/*\ How\ much\ space\ is\ allocated\ to\ hold\ all\ the\ crud\ for}}
+\DoxyCodeLine{00085\ \textcolor{comment}{\ \ \ initialization:\ saved\ registers\ plus\ padding\ to\ keep\ the\ stack}}
+\DoxyCodeLine{00086\ \textcolor{comment}{\ \ \ aligned\ plus\ 8\ words\ of\ padding\ to\ use\ as\ a\ \`{}homing\ area'\ (for}}
+\DoxyCodeLine{00087\ \textcolor{comment}{\ \ \ r2-\/r9)\ when\ calling\ helper\ functions\ on\ the\ stack\ of\ the\ (not\ yet}}
+\DoxyCodeLine{00088\ \textcolor{comment}{\ \ \ started)\ thread.\ \ The\ varargs\ save\ area\ is\ small\ because\ it\ gets}}
+\DoxyCodeLine{00089\ \textcolor{comment}{\ \ \ overlapped\ with\ the\ top\ of\ the\ parameter\ list.\ \ In\ case\ the}}
+\DoxyCodeLine{00090\ \textcolor{comment}{\ \ \ parameter\ list\ is\ less\ than\ 8\ args,\ QUICKTHREADS\_ARGS\_MD0\ adds\ some\ dead}}
+\DoxyCodeLine{00091\ \textcolor{comment}{\ \ \ space\ at\ the\ top\ of\ the\ stack.\ */}}
+\DoxyCodeLine{00092\ }
+\DoxyCodeLine{00093\ \textcolor{preprocessor}{\#define\ QUICKTHREADS\_STKBASE\ \ \ \ (16*4\ +\ 8*4)}}
+\DoxyCodeLine{00094\ \textcolor{preprocessor}{\#define\ QUICKTHREADS\_VSTKBASE\ \ \ (8*4\ +\ 8*4)}}
+\DoxyCodeLine{00095\ }
+\DoxyCodeLine{00096\ }
+\DoxyCodeLine{00097\ \textcolor{comment}{/*\ Index\ of\ various\ registers.\ */}}
+\DoxyCodeLine{00098\ \textcolor{preprocessor}{\#define\ QUICKTHREADS\_1\ \ (8+2)}}
+\DoxyCodeLine{00099\ \textcolor{preprocessor}{\#define\ QUICKTHREADS\_14\ (8+3)}}
+\DoxyCodeLine{00100\ \textcolor{preprocessor}{\#define\ QUICKTHREADS\_15\ (8+4)}}
+\DoxyCodeLine{00101\ \textcolor{preprocessor}{\#define\ QUICKTHREADS\_16\ (8+5)}}
+\DoxyCodeLine{00102\ \textcolor{preprocessor}{\#define\ QUICKTHREADS\_17\ (8+6)}}
+\DoxyCodeLine{00103\ \textcolor{preprocessor}{\#define\ QUICKTHREADS\_30\ (8+15)}}
+\DoxyCodeLine{00104\ }
+\DoxyCodeLine{00105\ }
+\DoxyCodeLine{00106\ \textcolor{comment}{/*\ When\ a\ never-\/before-\/run\ thread\ is\ restored,\ the\ return\ pc\ points}}
+\DoxyCodeLine{00107\ \textcolor{comment}{\ \ \ to\ a\ fragment\ of\ code\ that\ starts\ the\ thread\ running.\ \ For}}
+\DoxyCodeLine{00108\ \textcolor{comment}{\ \ \ non-\/vargs\ functions,\ it\ sets\ up\ arguments\ and\ calls\ the\ client's}}
+\DoxyCodeLine{00109\ \textcolor{comment}{\ \ \ \`{}only'\ function.\ \ For\ varargs\ functions,\ the\ startup\ code\ calls\ the}}
+\DoxyCodeLine{00110\ \textcolor{comment}{\ \ \ startup,\ user,\ and\ cleanup\ functions.}}
+\DoxyCodeLine{00111\ \textcolor{comment}{}}
+\DoxyCodeLine{00112\ \textcolor{comment}{\ \ \ For\ non-\/varargs\ functions,\ we\ set\ the\ frame\ pointer\ to\ 0\ to}}
+\DoxyCodeLine{00113\ \textcolor{comment}{\ \ \ null-\/terminate\ the\ call\ chain.}}
+\DoxyCodeLine{00114\ \textcolor{comment}{}}
+\DoxyCodeLine{00115\ \textcolor{comment}{\ \ \ For\ varargs\ functions,\ the\ frame\ pointer\ register\ is\ used\ to\ hold}}
+\DoxyCodeLine{00116\ \textcolor{comment}{\ \ \ one\ of\ the\ arguments,\ so\ that\ all\ arguments\ can\ be\ laid\ out\ in}}
+\DoxyCodeLine{00117\ \textcolor{comment}{\ \ \ memory\ by\ the\ conventional\ \`{}qt\_vargs'\ varargs\ initialization}}
+\DoxyCodeLine{00118\ \textcolor{comment}{\ \ \ routine.}}
+\DoxyCodeLine{00119\ \textcolor{comment}{}}
+\DoxyCodeLine{00120\ \textcolor{comment}{\ \ \ The\ varargs\ startup\ routine\ always\ reads\ 8\ words\ of\ arguments\ from}}
+\DoxyCodeLine{00121\ \textcolor{comment}{\ \ \ the\ stack.\ \ If\ there\ are\ less\ than\ 8\ words\ of\ arguments,\ then\ the}}
+\DoxyCodeLine{00122\ \textcolor{comment}{\ \ \ arg\ list\ could\ call\ off\ the\ top\ of\ the\ stack.\ \ To\ prevent\ fall-\/off,}}
+\DoxyCodeLine{00123\ \textcolor{comment}{\ \ \ always\ allocate\ 8\ words.\ */}}
+\DoxyCodeLine{00124\ }
+\DoxyCodeLine{00125\ \textcolor{keyword}{extern}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{m88k_8h_aa2f4631bb0e6ccd7c1fb4e2be528d67d}{qt\_start}}(\textcolor{keywordtype}{void});}
+\DoxyCodeLine{00126\ \textcolor{preprocessor}{\#define\ QUICKTHREADS\_ARGS\_MD(sp)\ \(\backslash\)}}
+\DoxyCodeLine{00127\ \textcolor{preprocessor}{\ \ (QUICKTHREADS\_SPUT\ (sp,\ QUICKTHREADS\_1,\ qt\_start),\ \(\backslash\)}}
+\DoxyCodeLine{00128\ \textcolor{preprocessor}{\ \ \ QUICKTHREADS\_SPUT\ (sp,\ QUICKTHREADS\_30,\ 0))}}
+\DoxyCodeLine{00129\ }
+\DoxyCodeLine{00130\ }
+\DoxyCodeLine{00131\ \textcolor{comment}{/*\ The\ m88k\ uses\ a\ struct\ for\ \`{}va\_list',\ so\ pass\ a\ pointer\ to\ the}}
+\DoxyCodeLine{00132\ \textcolor{comment}{\ \ \ struct.\ */}}
+\DoxyCodeLine{00133\ }
+\DoxyCodeLine{00134\ \textcolor{keyword}{typedef}\ \mbox{\hyperlink{class_sysc_add__pv}{void}}\ (\mbox{\hyperlink{m88k_8h_aff5f836cf95eadb3104da51bba964c36}{qt\_function\_t}})(\mbox{\hyperlink{class_sysc_add__pv}{void}});}
+\DoxyCodeLine{00135\ }
+\DoxyCodeLine{00136\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structqt__t}{qt\_t}};}
+\DoxyCodeLine{00137\ \textcolor{keyword}{extern}\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structqt__t}{qt\_t}}\ *\mbox{\hyperlink{m88k_8h_a1fd9627d8e98590472c50d687934e137}{qt\_vargs}}\ (\textcolor{keyword}{struct}\ \mbox{\hyperlink{structqt__t}{qt\_t}}\ *\mbox{\hyperlink{class_sysc_add__pv}{sp}},\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{class_sysc_add__pv}{nbytes}},}
+\DoxyCodeLine{00138\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ *\mbox{\hyperlink{class_sysc_add__pv}{vargs}},\ \textcolor{keywordtype}{void}\ *\mbox{\hyperlink{class_sysc_add__pv}{pt}},}
+\DoxyCodeLine{00139\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{m88k_8h_aff5f836cf95eadb3104da51bba964c36}{qt\_function\_t}}\ *\mbox{\hyperlink{class_sysc_add__pv}{startup}},}
+\DoxyCodeLine{00140\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{m88k_8h_aff5f836cf95eadb3104da51bba964c36}{qt\_function\_t}}\ *\mbox{\hyperlink{class_sysc_add__pv}{vuserf}},}
+\DoxyCodeLine{00141\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{m88k_8h_aff5f836cf95eadb3104da51bba964c36}{qt\_function\_t}}\ *\mbox{\hyperlink{class_sysc_add__pv}{cleanup}});}
+\DoxyCodeLine{00142\ }
+\DoxyCodeLine{00143\ \textcolor{preprocessor}{\#define\ QUICKTHREADS\_VARGS(sp,\ nbytes,\ vargs,\ pt,\ startup,\ vuserf,\ cleanup)\ \(\backslash\)}}
+\DoxyCodeLine{00144\ \textcolor{preprocessor}{\ \ (qt\_vargs\ (sp,\ nbytes,\ \&(vargs),\ pt,\ (qt\_function\_t\ *)startup,\ \(\backslash\)}}
+\DoxyCodeLine{00145\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ \ (qt\_function\_t\ *)vuserf,\ (qt\_function\_t\ *)cleanup))}}
+\DoxyCodeLine{00146\ }
+\DoxyCodeLine{00147\ }
+\DoxyCodeLine{00148\ \textcolor{comment}{/*\ The\ *index*\ (positive\ offset)\ of\ where\ to\ put\ each\ value.\ */}}
+\DoxyCodeLine{00149\ \textcolor{preprocessor}{\#define\ QUICKTHREADS\_ONLY\_INDEX\ (QUICKTHREADS\_17)}}
+\DoxyCodeLine{00150\ \textcolor{preprocessor}{\#define\ QUICKTHREADS\_USER\_INDEX\ (QUICKTHREADS\_16)}}
+\DoxyCodeLine{00151\ \textcolor{preprocessor}{\#define\ QUICKTHREADS\_ARGT\_INDEX\ (QUICKTHREADS\_15)}}
+\DoxyCodeLine{00152\ \textcolor{preprocessor}{\#define\ QUICKTHREADS\_ARGU\_INDEX\ (QUICKTHREADS\_14)}}
+\DoxyCodeLine{00153\ }
+\DoxyCodeLine{00154\ \textcolor{preprocessor}{\#define\ QUICKTHREADS\_VCLEANUP\_INDEX\ (QUICKTHREADS\_14)}}
+\DoxyCodeLine{00155\ \textcolor{preprocessor}{\#define\ QUICKTHREADS\_VUSERF\_INDEX\ \ \ \ \ \ \ (QUICKTHREADS\_16)}}
+\DoxyCodeLine{00156\ \textcolor{preprocessor}{\#define\ QUICKTHREADS\_VSTARTUP\_INDEX\ (QUICKTHREADS\_17)}}
+\DoxyCodeLine{00157\ \textcolor{preprocessor}{\#define\ QUICKTHREADS\_VARGT\_INDEX\ \ \ \ \ \ \ \ (QUICKTHREADS\_15)}}
+\DoxyCodeLine{00158\ }
+\DoxyCodeLine{00159\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{/*\ ndef\ QUICKTHREADS\_M88K\_H\ */}\textcolor{preprocessor}{}}
+
+\end{DoxyCode}

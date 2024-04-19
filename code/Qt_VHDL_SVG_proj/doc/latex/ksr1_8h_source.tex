@@ -1,0 +1,170 @@
+\doxysection{ksr1.\+h}
+\hypertarget{ksr1_8h_source}{}\label{ksr1_8h_source}\index{C:/Users/BJRODIER/Documents/QT\_REPO/QT\_VHDL\_simulator/code/Ressources/SystemC/include/sysc/packages/qt/md/ksr1.h@{C:/Users/BJRODIER/Documents/QT\_REPO/QT\_VHDL\_simulator/code/Ressources/SystemC/include/sysc/packages/qt/md/ksr1.h}}
+\mbox{\hyperlink{ksr1_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{comment}{/*}}
+\DoxyCodeLine{00002\ \textcolor{comment}{\ *\ QuickThreads\ -\/-\/\ Threads-\/building\ toolkit.}}
+\DoxyCodeLine{00003\ \textcolor{comment}{\ *\ Copyright\ (c)\ 1993\ by\ David\ Keppel}}
+\DoxyCodeLine{00004\ \textcolor{comment}{\ *}}
+\DoxyCodeLine{00005\ \textcolor{comment}{\ *\ Permission\ to\ use,\ copy,\ modify\ and\ distribute\ this\ software\ and}}
+\DoxyCodeLine{00006\ \textcolor{comment}{\ *\ its\ documentation\ for\ any\ purpose\ and\ without\ fee\ is\ hereby}}
+\DoxyCodeLine{00007\ \textcolor{comment}{\ *\ granted,\ provided\ that\ the\ above\ copyright\ notice\ and\ this\ notice}}
+\DoxyCodeLine{00008\ \textcolor{comment}{\ *\ appear\ in\ all\ copies.\ \ This\ software\ is\ provided\ as\ a}}
+\DoxyCodeLine{00009\ \textcolor{comment}{\ *\ proof-\/of-\/concept\ and\ for\ demonstration\ purposes;\ there\ is\ no}}
+\DoxyCodeLine{00010\ \textcolor{comment}{\ *\ representation\ about\ the\ suitability\ of\ this\ software\ for\ any}}
+\DoxyCodeLine{00011\ \textcolor{comment}{\ *\ purpose.}}
+\DoxyCodeLine{00012\ \textcolor{comment}{\ */}}
+\DoxyCodeLine{00013\ }
+\DoxyCodeLine{00014\ \textcolor{preprocessor}{\#ifndef\ QUICKTHREADS\_KSR1\_H}}
+\DoxyCodeLine{00015\ \textcolor{preprocessor}{\#define\ QUICKTHREADS\_KSR1\_H}}
+\DoxyCodeLine{00016\ }
+\DoxyCodeLine{00017\ \textcolor{comment}{/*\ }}
+\DoxyCodeLine{00018\ \textcolor{comment}{\ \ \ Stack\ layout:}}
+\DoxyCodeLine{00019\ \textcolor{comment}{}}
+\DoxyCodeLine{00020\ \textcolor{comment}{\ \ \ Registers\ are\ saved\ in\ strictly\ low\ to\ high\ order,\ FPU\ regs\ first\ }}
+\DoxyCodeLine{00021\ \textcolor{comment}{\ \ \ (only\ if\ qt\_block\ is\ called),\ CEU\ regs\ second,\ IPU\ regs\ next,\ with\ no}}
+\DoxyCodeLine{00022\ \textcolor{comment}{\ \ \ padding\ between\ the\ groups.}}
+\DoxyCodeLine{00023\ \textcolor{comment}{}}
+\DoxyCodeLine{00024\ \textcolor{comment}{\ \ \ Callee-\/save:\ \ f16..f63;\ c15..c30;\ i12..i30.}}
+\DoxyCodeLine{00025\ \textcolor{comment}{\ \ \ Args\ passed\ in\ i2..i5.}}
+\DoxyCodeLine{00026\ \textcolor{comment}{}}
+\DoxyCodeLine{00027\ \textcolor{comment}{\ \ \ Note:\ c31\ is\ a\ private\ data\ pointer.\ \ It\ is\ not\ changed\ on\ thread}}
+\DoxyCodeLine{00028\ \textcolor{comment}{\ \ \ swaps\ with\ the\ assumption\ that\ it\ represents\ per-\/processor\ rather}}
+\DoxyCodeLine{00029\ \textcolor{comment}{\ \ \ than\ per-\/thread\ state.}}
+\DoxyCodeLine{00030\ \textcolor{comment}{}}
+\DoxyCodeLine{00031\ \textcolor{comment}{\ \ \ Note:\ i31\ is\ an\ instruction\ count\ register\ that\ is\ updated\ by\ the}}
+\DoxyCodeLine{00032\ \textcolor{comment}{\ \ \ context\ switch\ routines.\ \ Like\ c31,\ it\ is\ not\ changed\ on\ context}}
+\DoxyCodeLine{00033\ \textcolor{comment}{\ \ \ switches.}}
+\DoxyCodeLine{00034\ \textcolor{comment}{}}
+\DoxyCodeLine{00035\ \textcolor{comment}{\ \ \ This\ is\ what\ we\ want\ on\ startup:}}
+\DoxyCodeLine{00036\ \textcolor{comment}{}}
+\DoxyCodeLine{00037\ \textcolor{comment}{}}
+\DoxyCodeLine{00038\ \textcolor{comment}{\ \ \ +-\/-\/-\/-\/-\/-\/\ \ \ \ \ \ <-\/-\/\ BOS:\ Bottom\ of\ stack\ (grows\ down)}}
+\DoxyCodeLine{00039\ \textcolor{comment}{\ \ \ |\ 80\ (128\ -\/\ 48)\ bytes\ of\ padding\ to\ a\ 128-\/byte\ boundary}}
+\DoxyCodeLine{00040\ \textcolor{comment}{\ \ \ +-\/-\/-\/}}
+\DoxyCodeLine{00041\ \textcolor{comment}{\ \ \ |\ only}}
+\DoxyCodeLine{00042\ \textcolor{comment}{\ \ \ |\ userf}}
+\DoxyCodeLine{00043\ \textcolor{comment}{\ \ \ |\ t}}
+\DoxyCodeLine{00044\ \textcolor{comment}{\ \ \ |\ u}}
+\DoxyCodeLine{00045\ \textcolor{comment}{\ \ \ |\ qt\_start\$TXT}}
+\DoxyCodeLine{00046\ \textcolor{comment}{\ \ \ |\ (empty)\ \ \ \ \ \ \ \ <-\/-\/\ qt.sp}}
+\DoxyCodeLine{00047\ \textcolor{comment}{\ \ \ +-\/-\/-\/-\/-\/-\/\ \ \ \ \ \ <-\/-\/\ (BOS\ -\/\ 128)}}
+\DoxyCodeLine{00048\ \textcolor{comment}{}}
+\DoxyCodeLine{00049\ \textcolor{comment}{\ \ \ This\ is\ why\ we\ want\ this\ on\ startup:}}
+\DoxyCodeLine{00050\ \textcolor{comment}{\ \ \ }}
+\DoxyCodeLine{00051\ \textcolor{comment}{\ \ \ A\ thread\ begins\ running\ when\ the\ restore\ procedure\ switches\ thread\ stacks}}
+\DoxyCodeLine{00052\ \textcolor{comment}{\ \ \ and\ pops\ a\ return\ address\ off\ of\ the\ top\ of\ the\ new\ stack\ (see\ below}}
+\DoxyCodeLine{00053\ \textcolor{comment}{\ \ \ for\ the\ reason\ why\ we\ explicitly\ store\ qt\_start\$TXT).\ \ The}}
+\DoxyCodeLine{00054\ \textcolor{comment}{\ \ \ block\ procedure\ pushes\ two\ jump\ addresses\ on\ a\ thread's\ stack\ before}}
+\DoxyCodeLine{00055\ \textcolor{comment}{\ \ \ it\ switches\ stacks.\ \ The\ first\ is\ the\ return\ address\ for\ the\ block}}
+\DoxyCodeLine{00056\ \textcolor{comment}{\ \ \ procedure,\ and\ the\ second\ is\ a\ restore\ address.\ \ The\ return\ address}}
+\DoxyCodeLine{00057\ \textcolor{comment}{\ \ \ is\ used\ to\ jump\ back\ to\ the\ thread\ that\ has\ been\ switched\ to;\ \ the}}
+\DoxyCodeLine{00058\ \textcolor{comment}{\ \ \ restore\ address\ is\ a\ jump\ within\ the\ block\ code\ to\ restore\ the\ registers.}}
+\DoxyCodeLine{00059\ \textcolor{comment}{\ \ \ Normally,\ this\ is\ just\ a\ jump\ to\ the\ next\ address.\ \ However,\ on\ thread}}
+\DoxyCodeLine{00060\ \textcolor{comment}{\ \ \ startup,\ this\ is\ a\ jump\ to\ qt\_start\$TXT.\ \ (The\ block\ procedure\ stores}}
+\DoxyCodeLine{00061\ \textcolor{comment}{\ \ \ the\ restore\ address\ at\ an\ offset\ of\ 8\ bytes\ from\ the\ top\ of\ the\ stack,}}
+\DoxyCodeLine{00062\ \textcolor{comment}{\ \ \ which\ is\ also\ the\ offset\ at\ which\ qt\_start\$TXT\ is\ stored\ on\ the\ stacks}}
+\DoxyCodeLine{00063\ \textcolor{comment}{\ \ \ of\ new\ threads.\ \ Hence,\ when\ the\ block\ procedure\ switches\ to\ a\ new}}
+\DoxyCodeLine{00064\ \textcolor{comment}{\ \ \ thread\ stack,\ it\ will\ initially\ jump\ to\ qt\_start\$TXT;\ thereafter,}}
+\DoxyCodeLine{00065\ \textcolor{comment}{\ \ \ it\ jumps\ to\ the\ restore\ code.)}}
+\DoxyCodeLine{00066\ \textcolor{comment}{}}
+\DoxyCodeLine{00067\ \textcolor{comment}{\ \ \ qt\_start\$TXT,\ after\ it\ has\ read\ the\ initial\ data\ on\ the\ new\ thread's}}
+\DoxyCodeLine{00068\ \textcolor{comment}{\ \ \ stack\ and\ placed\ it\ in\ registers,\ pops\ the\ initial\ stack\ frame}}
+\DoxyCodeLine{00069\ \textcolor{comment}{\ \ \ and\ gives\ the\ thread\ the\ entire\ stack\ to\ use\ for\ execution.}}
+\DoxyCodeLine{00070\ \textcolor{comment}{}}
+\DoxyCodeLine{00071\ \textcolor{comment}{\ \ \ The\ KSR\ runtime\ system\ has\ an\ unusual\ treatment\ of\ pointers\ to}}
+\DoxyCodeLine{00072\ \textcolor{comment}{\ \ \ functions.\ \ From\ C,\ taking\ the\ \`{}name'\ of\ a\ function\ yields\ a}}
+\DoxyCodeLine{00073\ \textcolor{comment}{\ \ \ pointer\ to\ a\ \_constant\ block\_\ and\ *not*\ the\ address\ of\ the}}
+\DoxyCodeLine{00074\ \textcolor{comment}{\ \ \ function.\ \ The\ zero'th\ entry\ in\ the\ constant\ block\ is\ a\ pointer\ to}}
+\DoxyCodeLine{00075\ \textcolor{comment}{\ \ \ the\ function.}}
+\DoxyCodeLine{00076\ \textcolor{comment}{}}
+\DoxyCodeLine{00077\ \textcolor{comment}{\ \ \ We\ have\ to\ be\ careful:\ the\ restore\ procedure\ expects\ a\ return}}
+\DoxyCodeLine{00078\ \textcolor{comment}{\ \ \ address\ on\ the\ top\ of\ the\ stack\ (pointed\ to\ by\ qt.sp).\ \ This\ is\ not}}
+\DoxyCodeLine{00079\ \textcolor{comment}{\ \ \ a\ problem\ when\ restoring\ a\ thread\ that\ has\ run\ before,\ since\ the}}
+\DoxyCodeLine{00080\ \textcolor{comment}{\ \ \ block\ routine\ would\ have\ stored\ the\ return\ address\ on\ top\ of\ the}}
+\DoxyCodeLine{00081\ \textcolor{comment}{\ \ \ stack.\ \ However,\ when\ \`{}\`{}faking\ up''\ a\ thread\ start\ (bootstrapping\ a}}
+\DoxyCodeLine{00082\ \textcolor{comment}{\ \ \ thread\ stack\ frame),\ the\ top\ of\ the\ stack\ needs\ to\ contain\ a}}
+\DoxyCodeLine{00083\ \textcolor{comment}{\ \ \ pointer\ to\ the\ code\ that\ will\ start\ the\ thread\ running.}}
+\DoxyCodeLine{00084\ \textcolor{comment}{}}
+\DoxyCodeLine{00085\ \textcolor{comment}{\ \ \ The\ pointer\ to\ the\ startup\ code\ is\ *not*\ \`{}qt\_start'.\ \ It\ is\ the}}
+\DoxyCodeLine{00086\ \textcolor{comment}{\ \ \ word\ *pointed\ to*\ by\ \`{}qt\_start'.\ \ Thus,\ we\ dereference\ \`{}qt\_start',}}
+\DoxyCodeLine{00087\ \textcolor{comment}{\ \ \ see\ QUICKTHREADS\_ARGS\_MD\ below.}}
+\DoxyCodeLine{00088\ \textcolor{comment}{}}
+\DoxyCodeLine{00089\ \textcolor{comment}{\ \ \ On\ varargs\ startup\ (still\ unimplemented):}}
+\DoxyCodeLine{00090\ \textcolor{comment}{}}
+\DoxyCodeLine{00091\ \textcolor{comment}{\ \ \ |\ padding\ to\ 128\ byte\ boundary}}
+\DoxyCodeLine{00092\ \textcolor{comment}{\ \ \ |\ varargs\ \ \ \ \ \ \ \ <-\/-\/\ padded\ to\ a\ 128-\/byte-\/boundary}}
+\DoxyCodeLine{00093\ \textcolor{comment}{\ \ \ +-\/-\/-\/}}
+\DoxyCodeLine{00094\ \textcolor{comment}{\ \ \ |\ caller's\ frame,\ 16\ bytes}}
+\DoxyCodeLine{00095\ \textcolor{comment}{\ \ \ |\ 80\ bytes\ of\ padding\ (frame\ padded\ to\ a\ 128-\/byte\ boundary)}}
+\DoxyCodeLine{00096\ \textcolor{comment}{\ \ \ +-\/-\/-\/}}
+\DoxyCodeLine{00097\ \textcolor{comment}{\ \ \ |\ cleanup}}
+\DoxyCodeLine{00098\ \textcolor{comment}{\ \ \ |\ vuserf}}
+\DoxyCodeLine{00099\ \textcolor{comment}{\ \ \ |\ startup}}
+\DoxyCodeLine{00100\ \textcolor{comment}{\ \ \ |\ t}}
+\DoxyCodeLine{00101\ \textcolor{comment}{\ \ \ +-\/-\/-\/}}
+\DoxyCodeLine{00102\ \textcolor{comment}{\ \ \ |\ qt\_start\ \ \ \ \ \ \ <-\/-\/\ qt.sp}}
+\DoxyCodeLine{00103\ \textcolor{comment}{\ \ \ +-\/-\/-\/}}
+\DoxyCodeLine{00104\ \textcolor{comment}{}}
+\DoxyCodeLine{00105\ \textcolor{comment}{\ \ \ Of\ a\ suspended\ thread:}}
+\DoxyCodeLine{00106\ \textcolor{comment}{}}
+\DoxyCodeLine{00107\ \textcolor{comment}{\ \ \ +-\/-\/-\/}}
+\DoxyCodeLine{00108\ \textcolor{comment}{\ \ \ |\ caller's\ frame,\ 16\ bytes}}
+\DoxyCodeLine{00109\ \textcolor{comment}{\ \ \ |\ fpu\ registers\ 47\ regs\ *\ 8\ bytes/reg\ 376\ bytes}}
+\DoxyCodeLine{00110\ \textcolor{comment}{\ \ \ |\ ceu\ registers\ 16\ regs\ *\ 8\ bytes/reg\ 128\ bytes}}
+\DoxyCodeLine{00111\ \textcolor{comment}{\ \ \ |\ ipu\ registers\ 19\ regs\ *\ 8\ bytes/reg\ 152\ bytes}}
+\DoxyCodeLine{00112\ \textcolor{comment}{\ \ \ |\ \ :}}
+\DoxyCodeLine{00113\ \textcolor{comment}{\ \ \ |\ 80\ bytes\ of\ padding}}
+\DoxyCodeLine{00114\ \textcolor{comment}{\ \ \ |\ \ :}}
+\DoxyCodeLine{00115\ \textcolor{comment}{\ \ \ |\ qt\_restore\ \ \ \ \ <-\/-\/\ qt.sp}}
+\DoxyCodeLine{00116\ \textcolor{comment}{\ \ \ +-\/-\/-\/}}
+\DoxyCodeLine{00117\ \textcolor{comment}{}}
+\DoxyCodeLine{00118\ \textcolor{comment}{\ \ \ */}}
+\DoxyCodeLine{00119\ }
+\DoxyCodeLine{00120\ }
+\DoxyCodeLine{00121\ \textcolor{preprocessor}{\#define\ QUICKTHREADS\_STKALIGN\ \ \ 128}}
+\DoxyCodeLine{00122\ \textcolor{preprocessor}{\#define\ QUICKTHREADS\_GROW\_DOWN}}
+\DoxyCodeLine{00123\ \textcolor{keyword}{typedef}\ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{long}\ \mbox{\hyperlink{ksr1_8h_a7e200cdd70932f91502a9a28594c56da}{qt\_word\_t}};}
+\DoxyCodeLine{00124\ }
+\DoxyCodeLine{00125\ \textcolor{preprocessor}{\#define\ QUICKTHREADS\_STKBASE\ \ \ \ QUICKTHREADS\_STKALIGN}}
+\DoxyCodeLine{00126\ \textcolor{preprocessor}{\#define\ QUICKTHREADS\_VSTKBASE\ \ \ QUICKTHREADS\_STKBASE}}
+\DoxyCodeLine{00127\ }
+\DoxyCodeLine{00128\ \textcolor{keyword}{extern}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{ksr1_8h_aa2f4631bb0e6ccd7c1fb4e2be528d67d}{qt\_start}}(\textcolor{keywordtype}{void});}
+\DoxyCodeLine{00129\ \textcolor{comment}{/*}}
+\DoxyCodeLine{00130\ \textcolor{comment}{\ *\ See\ the\ discussion\ above\ for\ what\ indexing\ into\ a\ procedure\ ptr\ }}
+\DoxyCodeLine{00131\ \textcolor{comment}{\ *\ does\ for\ us\ (it's\ lovely,\ though,\ isn't\ it?).}}
+\DoxyCodeLine{00132\ \textcolor{comment}{\ *}}
+\DoxyCodeLine{00133\ \textcolor{comment}{\ *\ This\ assumes\ that\ the\ address\ of\ a\ procedure's\ code\ is\ the}}
+\DoxyCodeLine{00134\ \textcolor{comment}{\ *\ first\ word\ in\ a\ procedure's\ constant\ block.\ \ That's\ how\ the\ manual}}
+\DoxyCodeLine{00135\ \textcolor{comment}{\ *\ says\ it\ will\ be\ arranged.}}
+\DoxyCodeLine{00136\ \textcolor{comment}{\ */}}
+\DoxyCodeLine{00137\ \textcolor{preprocessor}{\#define\ QUICKTHREADS\_ARGS\_MD(sp)\ \ \ \ (QUICKTHREADS\_SPUT\ (sp,\ 1,\ ((qt\_word\_t\ *)qt\_start)[0]))}}
+\DoxyCodeLine{00138\ }
+\DoxyCodeLine{00139\ \textcolor{comment}{/*\ }}
+\DoxyCodeLine{00140\ \textcolor{comment}{\ *\ The\ *index*\ (positive\ offset)\ of\ where\ to\ put\ each\ value.}}
+\DoxyCodeLine{00141\ \textcolor{comment}{\ *\ See\ the\ picture\ of\ the\ stack\ above\ that\ explains\ the\ offsets.}}
+\DoxyCodeLine{00142\ \textcolor{comment}{\ */}}
+\DoxyCodeLine{00143\ \textcolor{preprocessor}{\#define\ QUICKTHREADS\_ONLY\_INDEX\ (5)}}
+\DoxyCodeLine{00144\ \textcolor{preprocessor}{\#define\ QUICKTHREADS\_USER\_INDEX\ (4)}}
+\DoxyCodeLine{00145\ \textcolor{preprocessor}{\#define\ QUICKTHREADS\_ARGT\_INDEX\ (3)}}
+\DoxyCodeLine{00146\ \textcolor{preprocessor}{\#define\ QUICKTHREADS\_ARGU\_INDEX\ (2)}}
+\DoxyCodeLine{00147\ }
+\DoxyCodeLine{00148\ \textcolor{preprocessor}{\#define\ QUICKTHREADS\_VARGS\_DEFAULT}}
+\DoxyCodeLine{00149\ \textcolor{preprocessor}{\#define\ QUICKTHREADS\_VARGS(sp,\ nb,\ vargs,\ pt,\ startup,\ vuserf,\ cleanup)\ \(\backslash\)}}
+\DoxyCodeLine{00150\ \textcolor{preprocessor}{\ \ \ \ \ \ (qt\_vargs\ (sp,\ nbytes,\ \&vargs,\ pt,\ startup,\ vuserf,\ cleanup))}}
+\DoxyCodeLine{00151\ }
+\DoxyCodeLine{00152\ }
+\DoxyCodeLine{00153\ \textcolor{preprocessor}{\#define\ QUICKTHREADS\_VARGS\_MD0(sp,\ vabytes)\ \(\backslash\)}}
+\DoxyCodeLine{00154\ \textcolor{preprocessor}{\ \ ((qt\_t\ *)(((char\ *)(sp))\ -\/\ 4*8\ -\/\ QUICKTHREADS\_STKROUNDUP(vabytes)))}}
+\DoxyCodeLine{00155\ }
+\DoxyCodeLine{00156\ \textcolor{keyword}{extern}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{ksr1_8h_a0b7527956e668f9f8d8c11e8f1e18498}{qt\_vstart}}(\textcolor{keywordtype}{void});}
+\DoxyCodeLine{00157\ \textcolor{preprocessor}{\#define\ QUICKTHREADS\_VARGS\_MD1(sp)\ \ (QUICKTHREADS\_SPUT\ (sp,\ 0,\ ((qt\_word\_t\ *)qt\_vstart)[0]))}}
+\DoxyCodeLine{00158\ }
+\DoxyCodeLine{00159\ \textcolor{preprocessor}{\#define\ QUICKTHREADS\_VCLEANUP\_INDEX\ (4)}}
+\DoxyCodeLine{00160\ \textcolor{preprocessor}{\#define\ QUICKTHREADS\_VUSERF\_INDEX\ \ \ \ \ \ \ (3)}}
+\DoxyCodeLine{00161\ \textcolor{preprocessor}{\#define\ QUICKTHREADS\_VSTARTUP\_INDEX\ (2)}}
+\DoxyCodeLine{00162\ \textcolor{preprocessor}{\#define\ QUICKTHREADS\_VARGT\_INDEX\ \ \ \ \ \ \ \ (1)}}
+\DoxyCodeLine{00163\ }
+\DoxyCodeLine{00164\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{/*\ def\ QUICKTHREADS\_KSR1\_H\ */}\textcolor{preprocessor}{}}
+
+\end{DoxyCode}

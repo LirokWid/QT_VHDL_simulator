@@ -1,0 +1,160 @@
+.TH "C:/Users/BJRODIER/Documents/QT_REPO/QT_VHDL_simulator/code/Ressources/SystemC/include/sysc/packages/qt/md/vax.h" 3 "VHDL simulator" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+C:/Users/BJRODIER/Documents/QT_REPO/QT_VHDL_simulator/code/Ressources/SystemC/include/sysc/packages/qt/md/vax.h
+.SH SYNOPSIS
+.br
+.PP
+.SS "Macros"
+
+.in +1c
+.ti -1c
+.RI "#\fBdefine\fP \fBQUICKTHREADS_STKBASE\fP   (10 * 4)"
+.br
+.ti -1c
+.RI "#\fBdefine\fP \fBQUICKTHREADS_VSTKBASE\fP   (9 * 4)"
+.br
+.ti -1c
+.RI "#\fBdefine\fP \fBQUICKTHREADS_STKALIGN\fP   (4)"
+.br
+.ti -1c
+.RI "#\fBdefine\fP \fBQUICKTHREADS_ONLY_INDEX\fP   (5)"
+.br
+.ti -1c
+.RI "#\fBdefine\fP \fBQUICKTHREADS_USER_INDEX\fP   (8)"
+.br
+.ti -1c
+.RI "#\fBdefine\fP \fBQUICKTHREADS_ARGT_INDEX\fP   (7)"
+.br
+.ti -1c
+.RI "#\fBdefine\fP \fBQUICKTHREADS_ARGU_INDEX\fP   (6)"
+.br
+.ti -1c
+.RI "#\fBdefine\fP \fBQUICKTHREADS_VSTARTUP_INDEX\fP   (6)"
+.br
+.ti -1c
+.RI "#\fBdefine\fP \fBQUICKTHREADS_VUSERF_INDEX\fP   (7)"
+.br
+.ti -1c
+.RI "#\fBdefine\fP \fBQUICKTHREADS_VCLEANUP_INDEX\fP   (8)"
+.br
+.ti -1c
+.RI "#\fBdefine\fP \fBQUICKTHREADS_VARGT_INDEX\fP   (5)"
+.br
+.ti -1c
+.RI "#\fBdefine\fP \fBQUICKTHREADS_GROW_DOWN\fP"
+.br
+.ti -1c
+.RI "#\fBdefine\fP \fBQUICKTHREADS_VAX_GMASK_NOREGS\fP   (0)"
+.br
+.ti -1c
+.RI "#\fBdefine\fP \fBQUICKTHREADS_ARGS_MD\fP(\fBsto\fP)"
+.br
+.ti -1c
+.RI "#\fBdefine\fP \fBQUICKTHREADS_VARGS_MD0\fP(\fBsto\fP,  \fBnbytes\fP)"
+.br
+.ti -1c
+.RI "#\fBdefine\fP \fBQUICKTHREADS_VARGS_ADJUST\fP(\fBsp\fP)   ((\fBchar\fP *)\fBsp\fP + 4)"
+.br
+.ti -1c
+.RI "#\fBdefine\fP \fBQUICKTHREADS_VARGS_MD1\fP(\fBsto\fP)"
+.br
+.ti -1c
+.RI "#\fBdefine\fP \fBQUICKTHREADS_VARGS_DEFAULT\fP"
+.br
+.in -1c
+.SS "Typedefs"
+
+.in +1c
+.ti -1c
+.RI "\fBtypedef\fP \fBunsigned\fP \fBlong\fP \fBqt_word_t\fP"
+.br
+.in -1c
+.SS "Functions"
+
+.in +1c
+.ti -1c
+.RI "\fBvoid\fP \fBqt_start\fP (\fBvoid\fP)"
+.br
+.ti -1c
+.RI "\fBvoid\fP \fBqt_vstart\fP (\fBvoid\fP)"
+.br
+.ti -1c
+.RI "\fBvoid\fP \fBqt_error\fP (\fBvoid\fP)"
+.br
+.in -1c
+.SH "Macro Definition Documentation"
+.PP 
+.SS "#\fBdefine\fP QUICKTHREADS_ARGS_MD(\fBsto\fP)"
+\fBValue:\fP.PP
+.nf
+    (QUICKTHREADS_SPUT (sto, 0, 0), \\
+     QUICKTHREADS_SPUT (sto, 1, QUICKTHREADS_VAX_GMASK_NOREGS), \\
+     QUICKTHREADS_SPUT (sto, 2, 0), \\
+     QUICKTHREADS_SPUT (sto, 3, 0), \\
+     QUICKTHREADS_SPUT (sto, 4, qt_start))
+.fi
+
+.SS "#\fBdefine\fP QUICKTHREADS_ARGT_INDEX   (7)"
+
+.SS "#\fBdefine\fP QUICKTHREADS_ARGU_INDEX   (6)"
+
+.SS "#\fBdefine\fP QUICKTHREADS_GROW_DOWN"
+
+.SS "#\fBdefine\fP QUICKTHREADS_ONLY_INDEX   (5)"
+
+.SS "#\fBdefine\fP QUICKTHREADS_STKALIGN   (4)"
+
+.SS "#\fBdefine\fP QUICKTHREADS_STKBASE   (10 * 4)"
+
+.SS "#\fBdefine\fP QUICKTHREADS_USER_INDEX   (8)"
+
+.SS "#\fBdefine\fP QUICKTHREADS_VARGS_ADJUST(\fBsp\fP)   ((\fBchar\fP *)\fBsp\fP + 4)"
+
+.SS "#\fBdefine\fP QUICKTHREADS_VARGS_DEFAULT"
+
+.SS "#\fBdefine\fP QUICKTHREADS_VARGS_MD0(\fBsto\fP, \fBnbytes\fP)"
+\fBValue:\fP.PP
+.nf
+    (QUICKTHREADS_SPUT (sto, (\-(nbytes)/4)\-1, (nbytes)/4), \\
+     ((char *)(((sto)\-4) \- QUICKTHREADS_STKROUNDUP(nbytes))))
+.fi
+
+.SS "#\fBdefine\fP QUICKTHREADS_VARGS_MD1(\fBsto\fP)"
+\fBValue:\fP.PP
+.nf
+    (QUICKTHREADS_SPUT (sto, 0, 0), \\
+     QUICKTHREADS_SPUT (sto, 1, QUICKTHREADS_VAX_GMASK_NOREGS), \\
+     QUICKTHREADS_SPUT (sto, 2, 0), \\
+     QUICKTHREADS_SPUT (sto, 3, 0), \\
+     QUICKTHREADS_SPUT (sto, 4, qt_vstart))
+.fi
+
+.SS "#\fBdefine\fP QUICKTHREADS_VARGT_INDEX   (5)"
+
+.SS "#\fBdefine\fP QUICKTHREADS_VAX_GMASK_NOREGS   (0)"
+
+.SS "#\fBdefine\fP QUICKTHREADS_VCLEANUP_INDEX   (8)"
+
+.SS "#\fBdefine\fP QUICKTHREADS_VSTARTUP_INDEX   (6)"
+
+.SS "#\fBdefine\fP QUICKTHREADS_VSTKBASE   (9 * 4)"
+
+.SS "#\fBdefine\fP QUICKTHREADS_VUSERF_INDEX   (7)"
+
+.SH "Typedef Documentation"
+.PP 
+.SS "\fBtypedef\fP \fBunsigned\fP \fBlong\fP \fBqt_word_t\fP"
+
+.SH "Function Documentation"
+.PP 
+.SS "\fBvoid\fP qt_error (\fBvoid\fP)\fR [extern]\fP"
+
+.SS "\fBvoid\fP qt_start (\fBvoid\fP)\fR [extern]\fP"
+
+.SS "\fBvoid\fP qt_vstart (\fBvoid\fP)\fR [extern]\fP"
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for VHDL simulator from the source code\&.

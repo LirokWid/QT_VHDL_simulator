@@ -1,0 +1,280 @@
+.TH "sc_core::sc_phash_base" 3 "VHDL simulator" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+sc_core::sc_phash_base
+.SH SYNOPSIS
+.br
+.PP
+.PP
+\fR#include <sc_hash\&.h>\fP
+.PP
+Inherited by \fBsc_core::sc_phash< void *, const T * >\fP, \fBsc_core::sc_strhash< int * >\fP, \fBsc_core::sc_pdhash< K, C >\fP, \fBsc_core::sc_phash< K, C >\fP, and \fBsc_core::sc_strhash< C >\fP\&.
+.SS "Public Types"
+
+.in +1c
+.ti -1c
+.RI "\fBtypedef\fP \fBunsigned\fP(* \fBhash_fn_t\fP) (\fBconst\fP \fBvoid\fP *)"
+.br
+.ti -1c
+.RI "\fBtypedef\fP int(* \fBcmpr_fn_t\fP) (\fBconst\fP \fBvoid\fP *, \fBconst\fP \fBvoid\fP *)"
+.br
+.in -1c
+.SS "Public Member Functions"
+
+.in +1c
+.ti -1c
+.RI "\fBsc_phash_base\fP (\fBvoid\fP *\fBdef\fP=0, int size=\fBPHASH_DEFAULT_INIT_TABLE_SIZE\fP, int \fBdensity\fP=\fBPHASH_DEFAULT_MAX_DENSITY\fP, \fBdouble\fP \fBgrow\fP=\fBPHASH_DEFAULT_GROW_FACTOR\fP, \fBbool\fP \fBreorder\fP=\fBPHASH_DEFAULT_REORDER_FLAG\fP, \fBhash_fn_t\fP \fBhash_fn\fP=\fBdefault_ptr_hash_fn\fP, \fBcmpr_fn_t\fP \fBcmpr_fn\fP=0)"
+.br
+.ti -1c
+.RI "\fB~sc_phash_base\fP ()"
+.br
+.ti -1c
+.RI "\fBvoid\fP \fBset_cmpr_fn\fP (\fBcmpr_fn_t\fP)"
+.br
+.ti -1c
+.RI "\fBvoid\fP \fBset_hash_fn\fP (\fBhash_fn_t\fP)"
+.br
+.ti -1c
+.RI "\fBbool\fP \fBempty\fP () \fBconst\fP"
+.br
+.ti -1c
+.RI "\fBunsigned\fP \fBcount\fP () \fBconst\fP"
+.br
+.ti -1c
+.RI "\fBvoid\fP \fBerase\fP ()"
+.br
+.ti -1c
+.RI "\fBvoid\fP \fBerase\fP (\fBvoid\fP(*kfree)(\fBvoid\fP *))"
+.br
+.ti -1c
+.RI "\fBvoid\fP \fBcopy\fP (\fBconst\fP \fBsc_phash_base\fP *)"
+.br
+.ti -1c
+.RI "\fBvoid\fP \fBcopy\fP (\fBconst\fP \fBsc_phash_base\fP &b)"
+.br
+.ti -1c
+.RI "\fBvoid\fP \fBcopy\fP (\fBconst\fP \fBsc_phash_base\fP &b, \fBvoid\fP *(*kdup)(\fBconst\fP \fBvoid\fP *), \fBvoid\fP(*kfree)(\fBvoid\fP *))"
+.br
+.ti -1c
+.RI "int \fBinsert\fP (\fBvoid\fP *\fBk\fP, \fBvoid\fP *\fBc\fP)"
+.br
+.ti -1c
+.RI "int \fBinsert\fP (\fBvoid\fP *\fBk\fP)"
+.br
+.ti -1c
+.RI "int \fBinsert\fP (\fBvoid\fP *\fBk\fP, \fBvoid\fP *\fBc\fP, \fBvoid\fP *(*kdup)(\fBconst\fP \fBvoid\fP *))"
+.br
+.ti -1c
+.RI "int \fBinsert_if_not_exists\fP (\fBvoid\fP *\fBk\fP, \fBvoid\fP *\fBc\fP)"
+.br
+.ti -1c
+.RI "int \fBinsert_if_not_exists\fP (\fBvoid\fP *\fBk\fP)"
+.br
+.ti -1c
+.RI "int \fBinsert_if_not_exists\fP (\fBvoid\fP *\fBk\fP, \fBvoid\fP *\fBc\fP, \fBvoid\fP *(*kdup)(\fBconst\fP \fBvoid\fP *))"
+.br
+.ti -1c
+.RI "int \fBremove\fP (\fBconst\fP \fBvoid\fP *\fBk\fP)"
+.br
+.ti -1c
+.RI "int \fBremove\fP (\fBconst\fP \fBvoid\fP *\fBk\fP, \fBvoid\fP **\fBpk\fP, \fBvoid\fP **\fBpc\fP)"
+.br
+.ti -1c
+.RI "int \fBremove\fP (\fBconst\fP \fBvoid\fP *\fBk\fP, \fBvoid\fP(*kfree)(\fBvoid\fP *))"
+.br
+.ti -1c
+.RI "int \fBremove_by_contents\fP (\fBconst\fP \fBvoid\fP *\fBc\fP)"
+.br
+.ti -1c
+.RI "int \fBremove_by_contents\fP (\fBbool\fP(*\fBpredicate\fP)(\fBconst\fP \fBvoid\fP *, \fBvoid\fP *), \fBvoid\fP *arg)"
+.br
+.ti -1c
+.RI "int \fBremove_by_contents\fP (\fBconst\fP \fBvoid\fP *\fBc\fP, \fBvoid\fP(*kfree)(\fBvoid\fP *))"
+.br
+.ti -1c
+.RI "int \fBremove_by_contents\fP (\fBbool\fP(*\fBpredicate\fP)(\fBconst\fP \fBvoid\fP *, \fBvoid\fP *), \fBvoid\fP *arg, \fBvoid\fP(*kfree)(\fBvoid\fP *))"
+.br
+.ti -1c
+.RI "int \fBlookup\fP (\fBconst\fP \fBvoid\fP *\fBk\fP, \fBvoid\fP **\fBpc\fP) \fBconst\fP"
+.br
+.ti -1c
+.RI "\fBbool\fP \fBcontains\fP (\fBconst\fP \fBvoid\fP *\fBk\fP) \fBconst\fP"
+.br
+.ti -1c
+.RI "\fBvoid\fP * \fBoperator[]\fP (\fBconst\fP \fBvoid\fP *key) \fBconst\fP"
+.br
+.in -1c
+.SS "Protected Member Functions"
+
+.in +1c
+.ti -1c
+.RI "\fBvoid\fP \fBrehash\fP ()"
+.br
+.ti -1c
+.RI "\fBunsigned\fP \fBdo_hash\fP (\fBconst\fP \fBvoid\fP *key) \fBconst\fP"
+.br
+.ti -1c
+.RI "\fBsc_phash_elem\fP * \fBadd_direct\fP (\fBvoid\fP *key, \fBvoid\fP *contents, \fBunsigned\fP \fBhash_val\fP)"
+.br
+.ti -1c
+.RI "\fBsc_phash_elem\fP * \fBfind_entry_c\fP (\fBunsigned\fP \fBhv\fP, \fBconst\fP \fBvoid\fP *\fBk\fP, \fBsc_phash_elem\fP ***\fBplast\fP)"
+.br
+.ti -1c
+.RI "\fBsc_phash_elem\fP * \fBfind_entry_q\fP (\fBunsigned\fP \fBhv\fP, \fBconst\fP \fBvoid\fP *\fBk\fP, \fBsc_phash_elem\fP ***\fBplast\fP)"
+.br
+.ti -1c
+.RI "\fBsc_phash_elem\fP * \fBfind_entry\fP (\fBunsigned\fP \fBhv\fP, \fBconst\fP \fBvoid\fP *\fBk\fP, \fBsc_phash_elem\fP ***\fBplast\fP=0) \fBconst\fP"
+.br
+.in -1c
+.SS "Protected Attributes"
+
+.in +1c
+.ti -1c
+.RI "\fBvoid\fP * \fBdefault_value\fP"
+.br
+.ti -1c
+.RI "int \fBnum_bins\fP"
+.br
+.ti -1c
+.RI "int \fBnum_entries\fP"
+.br
+.ti -1c
+.RI "int \fBmax_density\fP"
+.br
+.ti -1c
+.RI "int \fBreorder_flag\fP"
+.br
+.ti -1c
+.RI "\fBdouble\fP \fBgrow_factor\fP"
+.br
+.ti -1c
+.RI "\fBsc_phash_elem\fP ** \fBbins\fP"
+.br
+.ti -1c
+.RI "\fBhash_fn_t\fP \fBhash\fP"
+.br
+.ti -1c
+.RI "\fBcmpr_fn_t\fP \fBcmpr\fP"
+.br
+.in -1c
+.SS "Private Types"
+
+.in +1c
+.ti -1c
+.RI "\fBtypedef\fP \fBsc_phash_base_iter\fP \fBiterator\fP"
+.br
+.in -1c
+.SS "Friends"
+
+.in +1c
+.ti -1c
+.RI "\fBclass\fP \fBsc_phash_base_iter\fP"
+.br
+.in -1c
+.SH "Member Typedef Documentation"
+.PP 
+.SS "\fBtypedef\fP int(* sc_core::sc_phash_base::cmpr_fn_t) (\fBconst\fP \fBvoid\fP *, \fBconst\fP \fBvoid\fP *)"
+
+.SS "\fBtypedef\fP \fBunsigned\fP(* sc_core::sc_phash_base::hash_fn_t) (\fBconst\fP \fBvoid\fP *)"
+
+.SS "\fBtypedef\fP \fBsc_phash_base_iter\fP \fBsc_core::sc_phash_base::iterator\fP\fR [private]\fP"
+
+.SH "Constructor & Destructor Documentation"
+.PP 
+.SS "sc_core::sc_phash_base::sc_phash_base (\fBvoid\fP * def = \fR0\fP, int size = \fR\fBPHASH_DEFAULT_INIT_TABLE_SIZE\fP\fP, int density = \fR\fBPHASH_DEFAULT_MAX_DENSITY\fP\fP, \fBdouble\fP grow = \fR\fBPHASH_DEFAULT_GROW_FACTOR\fP\fP, \fBbool\fP reorder = \fR\fBPHASH_DEFAULT_REORDER_FLAG\fP\fP, \fBhash_fn_t\fP hash_fn = \fR\fBdefault_ptr_hash_fn\fP\fP, \fBcmpr_fn_t\fP cmpr_fn = \fR0\fP)"
+
+.SS "sc_core::sc_phash_base::~sc_phash_base ()"
+
+.SH "Member Function Documentation"
+.PP 
+.SS "\fBsc_phash_elem\fP * sc_core::sc_phash_base::add_direct (\fBvoid\fP * key, \fBvoid\fP * contents, \fBunsigned\fP hash_val)\fR [protected]\fP"
+
+.SS "\fBbool\fP sc_core::sc_phash_base::contains (\fBconst\fP \fBvoid\fP * k) const\fR [inline]\fP"
+
+.SS "\fBvoid\fP sc_core::sc_phash_base::copy (\fBconst\fP \fBsc_phash_base\fP & b)\fR [inline]\fP"
+
+.SS "\fBvoid\fP sc_core::sc_phash_base::copy (\fBconst\fP \fBsc_phash_base\fP & b, \fBvoid\fP *(*)(\fBconst\fP \fBvoid\fP *) kdup, \fBvoid\fP(*)(\fBvoid\fP *) kfree)"
+
+.SS "\fBvoid\fP sc_core::sc_phash_base::copy (\fBconst\fP \fBsc_phash_base\fP *)"
+
+.SS "\fBunsigned\fP sc_core::sc_phash_base::count () const\fR [inline]\fP"
+
+.SS "\fBunsigned\fP sc_core::sc_phash_base::do_hash (\fBconst\fP \fBvoid\fP * key) const\fR [inline]\fP, \fR [protected]\fP"
+
+.SS "\fBbool\fP sc_core::sc_phash_base::empty () const\fR [inline]\fP"
+
+.SS "\fBvoid\fP sc_core::sc_phash_base::erase ()"
+
+.SS "\fBvoid\fP sc_core::sc_phash_base::erase (\fBvoid\fP(*)(\fBvoid\fP *) kfree)"
+
+.SS "\fBsc_phash_elem\fP * sc_core::sc_phash_base::find_entry (\fBunsigned\fP hv, \fBconst\fP \fBvoid\fP * k, \fBsc_phash_elem\fP *** plast = \fR0\fP) const\fR [inline]\fP, \fR [protected]\fP"
+
+.SS "\fBsc_phash_elem\fP * sc_core::sc_phash_base::find_entry_c (\fBunsigned\fP hv, \fBconst\fP \fBvoid\fP * k, \fBsc_phash_elem\fP *** plast)\fR [protected]\fP"
+
+.SS "\fBsc_phash_elem\fP * sc_core::sc_phash_base::find_entry_q (\fBunsigned\fP hv, \fBconst\fP \fBvoid\fP * k, \fBsc_phash_elem\fP *** plast)\fR [protected]\fP"
+
+.SS "int sc_core::sc_phash_base::insert (\fBvoid\fP * k)\fR [inline]\fP"
+
+.SS "int sc_core::sc_phash_base::insert (\fBvoid\fP * k, \fBvoid\fP * c)"
+
+.SS "int sc_core::sc_phash_base::insert (\fBvoid\fP * k, \fBvoid\fP * c, \fBvoid\fP *(*)(\fBconst\fP \fBvoid\fP *) kdup)"
+
+.SS "int sc_core::sc_phash_base::insert_if_not_exists (\fBvoid\fP * k)\fR [inline]\fP"
+
+.SS "int sc_core::sc_phash_base::insert_if_not_exists (\fBvoid\fP * k, \fBvoid\fP * c)"
+
+.SS "int sc_core::sc_phash_base::insert_if_not_exists (\fBvoid\fP * k, \fBvoid\fP * c, \fBvoid\fP *(*)(\fBconst\fP \fBvoid\fP *) kdup)"
+
+.SS "int sc_core::sc_phash_base::lookup (\fBconst\fP \fBvoid\fP * k, \fBvoid\fP ** pc) const"
+
+.SS "\fBvoid\fP * sc_core::sc_phash_base::operator[] (\fBconst\fP \fBvoid\fP * key) const"
+
+.SS "\fBvoid\fP sc_core::sc_phash_base::rehash ()\fR [protected]\fP"
+
+.SS "int sc_core::sc_phash_base::remove (\fBconst\fP \fBvoid\fP * k)"
+
+.SS "int sc_core::sc_phash_base::remove (\fBconst\fP \fBvoid\fP * k, \fBvoid\fP ** pk, \fBvoid\fP ** pc)"
+
+.SS "int sc_core::sc_phash_base::remove (\fBconst\fP \fBvoid\fP * k, \fBvoid\fP(*)(\fBvoid\fP *) kfree)"
+
+.SS "int sc_core::sc_phash_base::remove_by_contents (\fBbool\fP(*)(\fBconst\fP \fBvoid\fP *, \fBvoid\fP *) predicate, \fBvoid\fP * arg)"
+
+.SS "int sc_core::sc_phash_base::remove_by_contents (\fBbool\fP(*)(\fBconst\fP \fBvoid\fP *, \fBvoid\fP *) predicate, \fBvoid\fP * arg, \fBvoid\fP(*)(\fBvoid\fP *) kfree)"
+
+.SS "int sc_core::sc_phash_base::remove_by_contents (\fBconst\fP \fBvoid\fP * c)"
+
+.SS "int sc_core::sc_phash_base::remove_by_contents (\fBconst\fP \fBvoid\fP * c, \fBvoid\fP(*)(\fBvoid\fP *) kfree)"
+
+.SS "\fBvoid\fP sc_core::sc_phash_base::set_cmpr_fn (\fBcmpr_fn_t\fP)"
+
+.SS "\fBvoid\fP sc_core::sc_phash_base::set_hash_fn (\fBhash_fn_t\fP)"
+
+.SH "Friends And Related Symbol Documentation"
+.PP 
+.SS "\fBfriend\fP \fBclass\fP \fBsc_phash_base_iter\fP\fR [friend]\fP"
+
+.SH "Member Data Documentation"
+.PP 
+.SS "\fBsc_phash_elem\fP** sc_core::sc_phash_base::bins\fR [protected]\fP"
+
+.SS "\fBcmpr_fn_t\fP sc_core::sc_phash_base::cmpr\fR [protected]\fP"
+
+.SS "\fBvoid\fP* sc_core::sc_phash_base::default_value\fR [protected]\fP"
+
+.SS "\fBdouble\fP sc_core::sc_phash_base::grow_factor\fR [protected]\fP"
+
+.SS "\fBhash_fn_t\fP sc_core::sc_phash_base::hash\fR [protected]\fP"
+
+.SS "int sc_core::sc_phash_base::max_density\fR [protected]\fP"
+
+.SS "int sc_core::sc_phash_base::num_bins\fR [protected]\fP"
+
+.SS "int sc_core::sc_phash_base::num_entries\fR [protected]\fP"
+
+.SS "int sc_core::sc_phash_base::reorder_flag\fR [protected]\fP"
+
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for VHDL simulator from the source code\&.

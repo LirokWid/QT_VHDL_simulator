@@ -1,0 +1,74 @@
+\doxysection{hpux.\+hpp}
+\hypertarget{hpux_8hpp_source}{}\label{hpux_8hpp_source}\index{C:/Users/BJRODIER/Documents/QT\_REPO/QT\_VHDL\_simulator/code/Ressources/SystemC/include/sysc/packages/boost/config/platform/hpux.hpp@{C:/Users/BJRODIER/Documents/QT\_REPO/QT\_VHDL\_simulator/code/Ressources/SystemC/include/sysc/packages/boost/config/platform/hpux.hpp}}
+\mbox{\hyperlink{hpux_8hpp}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{comment}{//\ \ (C)\ Copyright\ John\ Maddock\ 2001\ -\/\ 2003.\ }}
+\DoxyCodeLine{00002\ \textcolor{comment}{//\ \ (C)\ Copyright\ Jens\ Maurer\ 2001\ -\/\ 2003.\ }}
+\DoxyCodeLine{00003\ \textcolor{comment}{//\ \ (C)\ Copyright\ David\ Abrahams\ 2002.\ }}
+\DoxyCodeLine{00004\ \textcolor{comment}{//\ \ (C)\ Copyright\ Toon\ Knapen\ 2003.\ }}
+\DoxyCodeLine{00005\ \textcolor{comment}{//\ \ Use,\ modification\ and\ distribution\ are\ subject\ to\ the\ }}
+\DoxyCodeLine{00006\ \textcolor{comment}{//\ \ Boost\ Software\ License,\ Version\ 1.0.\ (See\ accompanying\ file\ }}
+\DoxyCodeLine{00007\ \textcolor{comment}{//\ \ LICENSE\_1\_0.txt\ or\ copy\ at\ http://www.boost.org/LICENSE\_1\_0.txt)}}
+\DoxyCodeLine{00008\ }
+\DoxyCodeLine{00009\ \textcolor{comment}{//\ \ See\ http://www.boost.org\ for\ most\ recent\ version.}}
+\DoxyCodeLine{00010\ }
+\DoxyCodeLine{00011\ \textcolor{comment}{//\ \ hpux\ specific\ config\ options:}}
+\DoxyCodeLine{00012\ }
+\DoxyCodeLine{00013\ \textcolor{preprocessor}{\#define\ SC\_BOOST\_PLATFORM\ "{}HP-\/UX"{}}}
+\DoxyCodeLine{00014\ }
+\DoxyCodeLine{00015\ \textcolor{comment}{//\ In\ principle,\ HP-\/UX\ has\ a\ nice\ <stdint.h>\ under\ the\ name\ <inttypes.h>}}
+\DoxyCodeLine{00016\ \textcolor{comment}{//\ However,\ it\ has\ the\ following\ problem:}}
+\DoxyCodeLine{00017\ \textcolor{comment}{//\ Use\ of\ UINT32\_C(0)\ results\ in\ "{}0u\ l"{}\ for\ the\ preprocessed\ source}}
+\DoxyCodeLine{00018\ \textcolor{comment}{//\ (verifyable\ with\ gcc\ 2.95.3,\ assumed\ for\ HP\ aCC)}}
+\DoxyCodeLine{00019\ \textcolor{comment}{//\ \#define\ SC\_BOOST\_HAS\_STDINT\_H}}
+\DoxyCodeLine{00020\ }
+\DoxyCodeLine{00021\ \textcolor{preprocessor}{\#define\ SC\_BOOST\_NO\_SWPRINTF\ }}
+\DoxyCodeLine{00022\ \textcolor{preprocessor}{\#define\ SC\_BOOST\_NO\_CWCTYPE}}
+\DoxyCodeLine{00023\ }
+\DoxyCodeLine{00024\ \textcolor{preprocessor}{\#if\ defined(\_\_GNUC\_\_)}}
+\DoxyCodeLine{00025\ \textcolor{preprocessor}{\#\ \ if\ (\_\_GNUC\_\_\ <\ 3)\ ||\ ((\_\_GNUC\_\_\ ==\ 3)\ \&\&\ (\_\_GNUC\_MINOR\_\_\ <\ 3))}}
+\DoxyCodeLine{00026\ \ \ \ \ \ \ \textcolor{comment}{//\ GNU\ C\ on\ HP-\/UX\ does\ not\ support\ threads\ (checked\ up\ to\ gcc\ 3.3)}}
+\DoxyCodeLine{00027\ \textcolor{preprocessor}{\#\ \ \ \ \ define\ SC\_BOOST\_DISABLE\_THREADS}}
+\DoxyCodeLine{00028\ \textcolor{preprocessor}{\#\ \ elif\ !defined(SC\_BOOST\_DISABLE\_THREADS)}}
+\DoxyCodeLine{00029\ \ \ \ \ \ \ \textcolor{comment}{//\ threads\ supported\ from\ gcc-\/3.3\ onwards:}}
+\DoxyCodeLine{00030\ \textcolor{preprocessor}{\#\ \ \ \ \ define\ SC\_BOOST\_HAS\_THREADS}}
+\DoxyCodeLine{00031\ \textcolor{preprocessor}{\#\ \ \ \ \ define\ SC\_BOOST\_HAS\_PTHREADS}}
+\DoxyCodeLine{00032\ \textcolor{preprocessor}{\#\ \ endif}}
+\DoxyCodeLine{00033\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00034\ }
+\DoxyCodeLine{00035\ \textcolor{comment}{//\ boilerplate\ code:}}
+\DoxyCodeLine{00036\ \textcolor{preprocessor}{\#define\ SC\_BOOST\_HAS\_UNISTD\_H}}
+\DoxyCodeLine{00037\ \textcolor{preprocessor}{\#include\ <\mbox{\hyperlink{posix__features_8hpp}{sysc/packages/boost/config/posix\_features.hpp}}>}}
+\DoxyCodeLine{00038\ }
+\DoxyCodeLine{00039\ \textcolor{comment}{//\ the\ following\ are\ always\ available:}}
+\DoxyCodeLine{00040\ \textcolor{preprocessor}{\#ifndef\ SC\_BOOST\_HAS\_GETTIMEOFDAY}}
+\DoxyCodeLine{00041\ \textcolor{preprocessor}{\#\ \ define\ SC\_BOOST\_HAS\_GETTIMEOFDAY}}
+\DoxyCodeLine{00042\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00043\ \textcolor{preprocessor}{\#ifndef\ SC\_BOOST\_HAS\_SCHED\_YIELD}}
+\DoxyCodeLine{00044\ \textcolor{preprocessor}{\#\ \ \ \ define\ SC\_BOOST\_HAS\_SCHED\_YIELD}}
+\DoxyCodeLine{00045\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00046\ \textcolor{preprocessor}{\#ifndef\ SC\_BOOST\_HAS\_PTHREAD\_MUTEXATTR\_SETTYPE}}
+\DoxyCodeLine{00047\ \textcolor{preprocessor}{\#\ \ \ \ define\ SC\_BOOST\_HAS\_PTHREAD\_MUTEXATTR\_SETTYPE}}
+\DoxyCodeLine{00048\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00049\ \textcolor{preprocessor}{\#ifndef\ SC\_BOOST\_HAS\_NL\_TYPES\_H}}
+\DoxyCodeLine{00050\ \textcolor{preprocessor}{\#\ \ \ \ define\ SC\_BOOST\_HAS\_NL\_TYPES\_H}}
+\DoxyCodeLine{00051\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00052\ \textcolor{preprocessor}{\#ifndef\ SC\_BOOST\_HAS\_NANOSLEEP}}
+\DoxyCodeLine{00053\ \textcolor{preprocessor}{\#\ \ \ \ define\ SC\_BOOST\_HAS\_NANOSLEEP}}
+\DoxyCodeLine{00054\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00055\ \textcolor{preprocessor}{\#ifndef\ SC\_BOOST\_HAS\_GETTIMEOFDAY}}
+\DoxyCodeLine{00056\ \textcolor{preprocessor}{\#\ \ \ \ define\ SC\_BOOST\_HAS\_GETTIMEOFDAY}}
+\DoxyCodeLine{00057\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00058\ \textcolor{preprocessor}{\#ifndef\ SC\_BOOST\_HAS\_DIRENT\_H}}
+\DoxyCodeLine{00059\ \textcolor{preprocessor}{\#\ \ \ \ define\ SC\_BOOST\_HAS\_DIRENT\_H}}
+\DoxyCodeLine{00060\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00061\ \textcolor{preprocessor}{\#ifndef\ SC\_BOOST\_HAS\_CLOCK\_GETTIME}}
+\DoxyCodeLine{00062\ \textcolor{preprocessor}{\#\ \ \ \ define\ SC\_BOOST\_HAS\_CLOCK\_GETTIME}}
+\DoxyCodeLine{00063\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00064\ \textcolor{preprocessor}{\#ifndef\ SC\_BOOST\_HAS\_SIGACTION}}
+\DoxyCodeLine{00065\ \textcolor{preprocessor}{\#\ \ define\ SC\_BOOST\_HAS\_SIGACTION}}
+\DoxyCodeLine{00066\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00067\ }
+\DoxyCodeLine{00068\ }
+
+\end{DoxyCode}

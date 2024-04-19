@@ -1,0 +1,28 @@
+var borland_8hpp =
+[
+    [ "SC_BOOST_ABI_PREFIX", "borland_8hpp.html#a4df48cde1219a44947f7348544ce6149", null ],
+    [ "SC_BOOST_ABI_SUFFIX", "borland_8hpp.html#a6e37b845a169f018fbc1b76cd0106349", null ],
+    [ "SC_BOOST_BCB_PARTIAL_SPECIALIZATION_BUG", "borland_8hpp.html#a38f43b2d88d077bd57b8cd956dee5848", null ],
+    [ "SC_BOOST_COMPILER", "borland_8hpp.html#a5fff16a37d2771056450f18a61eff4f8", null ],
+    [ "SC_BOOST_FUNCTION_SCOPE_USING_DECLARATION_BREAKS_ADL", "borland_8hpp.html#ab53ac1d269a154820770d38a044045ac", null ],
+    [ "SC_BOOST_HAS_DECLSPEC", "borland_8hpp.html#aed53b42e78132d4a6007646bc417ff0f", null ],
+    [ "SC_BOOST_HAS_DIRENT_H", "borland_8hpp.html#a6f309f30f5431aeb47e960f6b6eaf688", null ],
+    [ "SC_BOOST_NO_CV_SPECIALIZATIONS", "borland_8hpp.html#a97c5dd73480f75b1d2a5b1d24e2da98f", null ],
+    [ "SC_BOOST_NO_CV_VOID_SPECIALIZATIONS", "borland_8hpp.html#a33725d3f126eb2be04a84cbc2a7a08a9", null ],
+    [ "SC_BOOST_NO_DEDUCED_TYPENAME", "borland_8hpp.html#a0a26b1ee044d75c0b924f1828d5120a8", null ],
+    [ "SC_BOOST_NO_DEPENDENT_NESTED_DERIVATIONS", "borland_8hpp.html#a9397ce076331844178e406d7df2f8f3f", null ],
+    [ "SC_BOOST_NO_EXCEPTIONS", "borland_8hpp.html#a7d9f1bad819f85612c7d800df0566ce7", null ],
+    [ "SC_BOOST_NO_INTEGRAL_INT64_T", "borland_8hpp.html#a9994182ff25f8ebbf5f81aad2d6bf615", null ],
+    [ "SC_BOOST_NO_IS_ABSTRACT", "borland_8hpp.html#a2cf0ce0960c94ee067ae45ed11842028", null ],
+    [ "SC_BOOST_NO_LIMITS_COMPILE_TIME_CONSTANTS", "borland_8hpp.html#a0db9b24db09dde38ed39e980a4db773b", null ],
+    [ "SC_BOOST_NO_LIMITS_COMPILE_TIME_CONSTANTS", "borland_8hpp.html#a0db9b24db09dde38ed39e980a4db773b", null ],
+    [ "SC_BOOST_NO_MEMBER_TEMPLATE_FRIENDS", "borland_8hpp.html#a1fcacc717577b6edb425b2a0645afedb", null ],
+    [ "SC_BOOST_NO_MEMBER_TEMPLATE_FRIENDS", "borland_8hpp.html#a1fcacc717577b6edb425b2a0645afedb", null ],
+    [ "SC_BOOST_NO_PRIVATE_IN_AGGREGATE", "borland_8hpp.html#ad3fc4f3f75b7a0cc57fff84316da4848", null ],
+    [ "SC_BOOST_NO_SFINAE", "borland_8hpp.html#a5466231014e310ade256a6ebe7443088", null ],
+    [ "SC_BOOST_NO_TEMPLATE_TEMPLATES", "borland_8hpp.html#a4e65a259c539557f76c6837f8132095f", null ],
+    [ "SC_BOOST_NO_USING_DECLARATION_OVERLOADS_FROM_TYPENAME_BASE", "borland_8hpp.html#aec02942ab3c40f5ef87ec5474eded716", null ],
+    [ "SC_BOOST_NO_USING_TEMPLATE", "borland_8hpp.html#aabe85238ab4b6974d9eaf797d8fd33c8", null ],
+    [ "WCHAR_MAX", "borland_8hpp.html#a2a823f3ccf2306cfbaa34d8addf66010", null ],
+    [ "WCHAR_MIN", "borland_8hpp.html#a051084d5ebcabf282d9ca9bb2b891a78", null ]
+];

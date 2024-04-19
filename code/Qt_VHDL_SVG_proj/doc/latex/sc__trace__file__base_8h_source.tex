@@ -1,0 +1,171 @@
+\doxysection{sc\+\_\+trace\+\_\+file\+\_\+base.\+h}
+\hypertarget{sc__trace__file__base_8h_source}{}\label{sc__trace__file__base_8h_source}\index{C:/Users/BJRODIER/Documents/QT\_REPO/QT\_VHDL\_simulator/code/Ressources/SystemC/include/sysc/tracing/sc\_trace\_file\_base.h@{C:/Users/BJRODIER/Documents/QT\_REPO/QT\_VHDL\_simulator/code/Ressources/SystemC/include/sysc/tracing/sc\_trace\_file\_base.h}}
+\mbox{\hyperlink{sc__trace__file__base_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{comment}{/*****************************************************************************}}
+\DoxyCodeLine{00002\ \textcolor{comment}{}}
+\DoxyCodeLine{00003\ \textcolor{comment}{\ \ Licensed\ to\ Accellera\ Systems\ Initiative\ Inc.\ (Accellera)\ under\ one\ or}}
+\DoxyCodeLine{00004\ \textcolor{comment}{\ \ more\ contributor\ license\ agreements.\ \ See\ the\ NOTICE\ file\ distributed}}
+\DoxyCodeLine{00005\ \textcolor{comment}{\ \ with\ this\ work\ for\ additional\ information\ regarding\ copyright\ ownership.}}
+\DoxyCodeLine{00006\ \textcolor{comment}{\ \ Accellera\ licenses\ this\ file\ to\ you\ under\ the\ Apache\ License,\ Version\ 2.0}}
+\DoxyCodeLine{00007\ \textcolor{comment}{\ \ (the\ "{}License"{});\ you\ may\ not\ use\ this\ file\ except\ in\ compliance\ with\ the}}
+\DoxyCodeLine{00008\ \textcolor{comment}{\ \ License.\ \ You\ may\ obtain\ a\ copy\ of\ the\ License\ at}}
+\DoxyCodeLine{00009\ \textcolor{comment}{}}
+\DoxyCodeLine{00010\ \textcolor{comment}{\ \ \ \ http://www.apache.org/licenses/LICENSE-\/2.0}}
+\DoxyCodeLine{00011\ \textcolor{comment}{}}
+\DoxyCodeLine{00012\ \textcolor{comment}{\ \ Unless\ required\ by\ applicable\ law\ or\ agreed\ to\ in\ writing,\ software}}
+\DoxyCodeLine{00013\ \textcolor{comment}{\ \ distributed\ under\ the\ License\ is\ distributed\ on\ an\ "{}AS\ IS"{}\ BASIS,}}
+\DoxyCodeLine{00014\ \textcolor{comment}{\ \ WITHOUT\ WARRANTIES\ OR\ CONDITIONS\ OF\ ANY\ KIND,\ either\ express\ or}}
+\DoxyCodeLine{00015\ \textcolor{comment}{\ \ implied.\ \ See\ the\ License\ for\ the\ specific\ language\ governing}}
+\DoxyCodeLine{00016\ \textcolor{comment}{\ \ permissions\ and\ limitations\ under\ the\ License.}}
+\DoxyCodeLine{00017\ \textcolor{comment}{}}
+\DoxyCodeLine{00018\ \textcolor{comment}{\ *****************************************************************************/}}
+\DoxyCodeLine{00019\ }
+\DoxyCodeLine{00020\ \textcolor{comment}{/*****************************************************************************}}
+\DoxyCodeLine{00021\ \textcolor{comment}{}}
+\DoxyCodeLine{00022\ \textcolor{comment}{\ \ sc\_trace\_file\_base.h\ -\/\ Shared\ internal\ tracing\ implementation}}
+\DoxyCodeLine{00023\ \textcolor{comment}{}}
+\DoxyCodeLine{00024\ \textcolor{comment}{\ \ Original\ Author:\ Philipp\ A.\ Hartmann,\ OFFIS,\ 2013-\/11-\/15}}
+\DoxyCodeLine{00025\ \textcolor{comment}{}}
+\DoxyCodeLine{00026\ \textcolor{comment}{\ \ CHANGE\ LOG\ AT\ END\ OF\ FILE}}
+\DoxyCodeLine{00027\ \textcolor{comment}{\ *****************************************************************************/}}
+\DoxyCodeLine{00028\ }
+\DoxyCodeLine{00029\ \textcolor{comment}{/*****************************************************************************}}
+\DoxyCodeLine{00030\ \textcolor{comment}{}}
+\DoxyCodeLine{00031\ \textcolor{comment}{\ \ \ Acknowledgement:\ The\ tracing\ mechanism\ is\ based\ on\ the\ tracing}}
+\DoxyCodeLine{00032\ \textcolor{comment}{\ \ \ mechanism\ developed\ at\ Infineon\ (formerly\ Siemens\ HL).\ Though\ this}}
+\DoxyCodeLine{00033\ \textcolor{comment}{\ \ \ code\ is\ somewhat\ different,\ and\ significantly\ enhanced,\ the\ basics}}
+\DoxyCodeLine{00034\ \textcolor{comment}{\ \ \ are\ identical\ to\ what\ was\ originally\ contributed\ by\ Infineon.\ \ The}}
+\DoxyCodeLine{00035\ \textcolor{comment}{\ \ \ contribution\ of\ Infineon\ in\ the\ development\ of\ this\ tracing}}
+\DoxyCodeLine{00036\ \textcolor{comment}{\ \ \ technology\ is\ hereby\ acknowledged.}}
+\DoxyCodeLine{00037\ \textcolor{comment}{}}
+\DoxyCodeLine{00038\ \textcolor{comment}{\ *****************************************************************************/}}
+\DoxyCodeLine{00039\ }
+\DoxyCodeLine{00040\ \textcolor{preprocessor}{\#ifndef\ SC\_TRACE\_FILE\_BASE\_H\_INCLUDED\_}}
+\DoxyCodeLine{00041\ \textcolor{preprocessor}{\#define\ SC\_TRACE\_FILE\_BASE\_H\_INCLUDED\_}}
+\DoxyCodeLine{00042\ }
+\DoxyCodeLine{00043\ \textcolor{preprocessor}{\#include\ <cstdio>}}
+\DoxyCodeLine{00044\ }
+\DoxyCodeLine{00045\ \textcolor{comment}{//\ use\ callback-\/based\ tracing\ implementation}}
+\DoxyCodeLine{00046\ \textcolor{preprocessor}{\#if\ defined(\ SC\_ENABLE\_SIMULATION\_PHASE\_CALLBACKS\_TRACING\ )}}
+\DoxyCodeLine{00047\ \textcolor{preprocessor}{\#\ \ define\ SC\_TRACING\_PHASE\_CALLBACKS\_\ 1}}
+\DoxyCodeLine{00048\ \textcolor{preprocessor}{\#\ \ include\ "{}\mbox{\hyperlink{sc__object_8h}{sysc/kernel/sc\_object.h}}"{}}}
+\DoxyCodeLine{00049\ \textcolor{preprocessor}{\#else}}
+\DoxyCodeLine{00050\ \textcolor{preprocessor}{\#\ \ define\ SC\_TRACING\_PHASE\_CALLBACKS\_\ 0}}
+\DoxyCodeLine{00051\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00052\ }
+\DoxyCodeLine{00053\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{sc__trace_8h}{sysc/tracing/sc\_trace.h}}"{}}}
+\DoxyCodeLine{00054\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{sc__tracing__ids_8h}{sysc/tracing/sc\_tracing\_ids.h}}"{}}}
+\DoxyCodeLine{00055\ }
+\DoxyCodeLine{00056\ \textcolor{preprocessor}{\#if\ defined(\_MSC\_VER)\ \&\&\ !defined(SC\_WIN\_DLL\_WARN)}}
+\DoxyCodeLine{00057\ \textcolor{preprocessor}{\#pragma\ warning(push)}}
+\DoxyCodeLine{00058\ \textcolor{preprocessor}{\#pragma\ warning(disable:\ 4251)\ }\textcolor{comment}{//\ DLL\ import\ for\ std::string}}
+\DoxyCodeLine{00059\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00060\ }
+\DoxyCodeLine{00061\ \textcolor{keyword}{namespace\ }\mbox{\hyperlink{namespacesc__core}{sc\_core}}\ \{}
+\DoxyCodeLine{00062\ }
+\DoxyCodeLine{00063\ \textcolor{comment}{//\ shared\ implementation\ of\ trace\ files}}
+\DoxyCodeLine{00064\ \textcolor{keyword}{class\ }\mbox{\hyperlink{sc__cmnhdr_8h_aff4a86b3f5de3ac2097081e7166fe89f}{SC\_API}}\ \mbox{\hyperlink{classsc__core_1_1sc__trace__file__base}{sc\_trace\_file\_base}}}
+\DoxyCodeLine{00065\ \ \ :\ \textcolor{keyword}{public}\ \mbox{\hyperlink{classsc__core_1_1sc__trace__file}{sc\_trace\_file}}}
+\DoxyCodeLine{00066\ \textcolor{preprocessor}{\#if\ SC\_TRACING\_PHASE\_CALLBACKS\_}}
+\DoxyCodeLine{00067\ \ \ ,\ \textcolor{keyword}{private}\ \mbox{\hyperlink{classsc__core_1_1sc__object}{sc\_object}}\ \textcolor{comment}{//\ to\ be\ used\ as\ callback\ target}}
+\DoxyCodeLine{00068\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00069\ \{}
+\DoxyCodeLine{00070\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00071\ \ \ \ \ \textcolor{keyword}{typedef}\ \mbox{\hyperlink{classsc__core_1_1sc__time_a83e697fa67cbd57bd182f273a966f4d8}{sc\_time::value\_type}}\ \ \mbox{\hyperlink{classsc__core_1_1sc__trace__file__base_a8357689bac9966b249466484b4c55cb6}{unit\_type}};}
+\DoxyCodeLine{00072\ }
+\DoxyCodeLine{00073\ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keywordtype}{char}*\ \mbox{\hyperlink{classsc__core_1_1sc__trace__file__base_a02e813fbcc631eb8a4ec44c127288e78}{filename}}()\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00074\ \textcolor{keyword}{\ \ \ \ \ \ }\{\ \textcolor{keywordflow}{return}\ filename\_.c\_str();\ \}}
+\DoxyCodeLine{00075\ }
+\DoxyCodeLine{00076\ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{classsc__core_1_1sc__trace__file__base_a743eb3eb40455411df1830454f9931e8}{delta\_cycles}}()\textcolor{keyword}{\ const}}
+\DoxyCodeLine{00077\ \textcolor{keyword}{\ \ \ \ \ \ }\{\ \textcolor{keywordflow}{return}\ trace\_delta\_cycles\_;\ \}}
+\DoxyCodeLine{00078\ }
+\DoxyCodeLine{00079\ \ \ \ \ \textcolor{comment}{//\ Also\ trace\ transitions\ between\ delta\ cycles\ if\ flag\ is\ true.}}
+\DoxyCodeLine{00080\ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classsc__core_1_1sc__trace__file__base_acb1e7ad96a8e09aef202ad03843dfa76}{delta\_cycles}}(\textcolor{keywordtype}{bool}\ \mbox{\hyperlink{class_sysc_add__pv}{flag}});}
+\DoxyCodeLine{00081\ }
+\DoxyCodeLine{00082\ \ \ \ \ \textcolor{comment}{//\ set\ a\ user-\/define\ timescale\ unit\ for\ the\ trace\ file}}
+\DoxyCodeLine{00083\ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classsc__core_1_1sc__trace__file__base_ac9a65f967a8384a1cda985fd0f1f1b3d}{set\_time\_unit}}(\ \textcolor{keywordtype}{double}\ v,\ \mbox{\hyperlink{namespacesc__core_abecb00ba031fb67c85124f66eb70aed4}{sc\_time\_unit}}\ \mbox{\hyperlink{class_sysc_add__pv}{tu}});}
+\DoxyCodeLine{00084\ }
+\DoxyCodeLine{00085\ \textcolor{keyword}{protected}:}
+\DoxyCodeLine{00086\ \ \ \ \ \mbox{\hyperlink{classsc__core_1_1sc__trace__file__base_a8a6aef13f76425684cc08befb5a99c0e}{sc\_trace\_file\_base}}(\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{char}*\ name,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{char}*\ \mbox{\hyperlink{class_sysc_add__pv}{extension}}\ );}
+\DoxyCodeLine{00087\ }
+\DoxyCodeLine{00088\ \ \ \ \ \textcolor{comment}{//\ returns\ true,\ if\ trace\ file\ is\ already\ initialized}}
+\DoxyCodeLine{00089\ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{classsc__core_1_1sc__trace__file__base_aa586ce4a52d911dc90d2a9398a88f78c}{is\_initialized}}()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00090\ \ \ \ \ \textcolor{comment}{//\ returns\ true,\ iff\ initialization\ has\ been\ performed\ in\ this\ call}}
+\DoxyCodeLine{00091\ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{classsc__core_1_1sc__trace__file__base_a91348e323ea49aac8f7114efa917b162}{initialize}}();}
+\DoxyCodeLine{00092\ \ \ \ \ \textcolor{comment}{//\ ensure\ that\ file\ has\ been\ opened\ (needed\ for\ early\ write\_comment())}}
+\DoxyCodeLine{00093\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classsc__core_1_1sc__trace__file__base_a3fdb5b97623c439fe196c726f6606ef2}{open\_fp}}();}
+\DoxyCodeLine{00094\ \ \ \ \ \textcolor{comment}{//\ perform\ format\ specific\ initialization}}
+\DoxyCodeLine{00095\ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classsc__core_1_1sc__trace__file__base_aedbd58025e31611e211007863c7d419c}{do\_initialize}}()\ =\ 0;}
+\DoxyCodeLine{00096\ }
+\DoxyCodeLine{00097\ \ \ \ \ \textcolor{comment}{//\ returns\ true,\ if\ new\ trace\ objects\ can\ still\ be\ added}}
+\DoxyCodeLine{00098\ \ \ \ \ \textcolor{comment}{//\ (i.e.\ trace\ file\ is\ not\ yet\ initialized)}}
+\DoxyCodeLine{00099\ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{classsc__core_1_1sc__trace__file__base_af95ab8679ec14edc8985ecadca2ac829}{add\_trace\_check}}(\ \textcolor{keyword}{const}\ std::string\&\ name\ )\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00100\ }
+\DoxyCodeLine{00101\ \ \ \ \ \textcolor{comment}{//\ tracefile\ time\ unit\ <\ kernel\ unit,\ extra\ units\ will\ be\ placed\ in\ low\ part}}
+\DoxyCodeLine{00102\ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{classsc__core_1_1sc__trace__file__base_acc570f5ccf7aab26fbfcf17d1d00dcac}{has\_low\_units}}()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00103\ }
+\DoxyCodeLine{00104\ \ \ \ \ \textcolor{comment}{//\ number\ of\ decimal\ digits\ in\ low\ units}}
+\DoxyCodeLine{00105\ \ \ \ \ \textcolor{keywordtype}{int}\ \ \mbox{\hyperlink{classsc__core_1_1sc__trace__file__base_aec9aa20c2bde875961c24f0b7b926061}{low\_units\_len}}()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00106\ }
+\DoxyCodeLine{00107\ \ \ \ \ \textcolor{comment}{//\ get\ current\ kernel\ time\ in\ trace\ time\ units}}
+\DoxyCodeLine{00108\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classsc__core_1_1sc__trace__file__base_a8060980ce1854be89d26fd24fdd96bea}{timestamp\_in\_trace\_units}}(\mbox{\hyperlink{class_sysc_add__pv}{unit\_type}}\ \&\mbox{\hyperlink{class_sysc_add__pv}{high}},\ \mbox{\hyperlink{class_sysc_add__pv}{unit\_type}}\ \&\mbox{\hyperlink{class_sysc_add__pv}{low}})\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00109\ }
+\DoxyCodeLine{00110\ \ \ \ \ \textcolor{comment}{//\ Flush\ results\ and\ close\ file.}}
+\DoxyCodeLine{00111\ \ \ \ \ \textcolor{keyword}{virtual}\ \mbox{\hyperlink{classsc__core_1_1sc__trace__file__base_ab35588b6ea329d79c69b31658fbd8778}{\string~sc\_trace\_file\_base}}();}
+\DoxyCodeLine{00112\ }
+\DoxyCodeLine{00113\ \ \ \ \ \textcolor{keyword}{static}\ \mbox{\hyperlink{classsc__core_1_1sc__time_a83e697fa67cbd57bd182f273a966f4d8}{sc\_time::value\_type}}\ \mbox{\hyperlink{classsc__core_1_1sc__trace__file__base_ab6cbcc95dfb1b26e8f0b37776c2e3e81}{unit\_to\_fs}}(\mbox{\hyperlink{namespacesc__core_abecb00ba031fb67c85124f66eb70aed4}{sc\_time\_unit}}\ \mbox{\hyperlink{class_sysc_add__pv}{tu}});}
+\DoxyCodeLine{00114\ }
+\DoxyCodeLine{00115\ \ \ \ \ \textcolor{keyword}{static}\ std::string\ \mbox{\hyperlink{classsc__core_1_1sc__trace__file__base_a3062af4290662fa51e3aaabcec9b6533}{fs\_unit\_to\_str}}(\mbox{\hyperlink{class_sysc_add__pv}{sc\_trace\_file\_base::unit\_type}}\ \mbox{\hyperlink{class_sysc_add__pv}{tu}});}
+\DoxyCodeLine{00116\ }
+\DoxyCodeLine{00117\ \textcolor{preprocessor}{\#if\ SC\_TRACING\_PHASE\_CALLBACKS\_}}
+\DoxyCodeLine{00118\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00119\ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{void}\ simulation\_phase\_callback();}
+\DoxyCodeLine{00120\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{//\ SC\_TRACING\_PHASE\_CALLBACKS\_}}
+\DoxyCodeLine{00121\ }
+\DoxyCodeLine{00122\ \textcolor{keyword}{protected}:}
+\DoxyCodeLine{00123\ \ \ \ \ FILE*\ \mbox{\hyperlink{classsc__core_1_1sc__trace__file__base_aabe7a92009444f039a6fde72881c9ca9}{fp}};\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ pointer\ to\ the\ trace\ file}}
+\DoxyCodeLine{00124\ }
+\DoxyCodeLine{00125\ \ \ \ \ \mbox{\hyperlink{class_sysc_add__pv}{unit\_type}}\ \ \ \mbox{\hyperlink{classsc__core_1_1sc__trace__file__base_ae1b6e8a76787d54db130bf25bcd96f52}{trace\_unit\_fs}};\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ tracefile\ timescale\ unit\ in\ femtoseconds}}
+\DoxyCodeLine{00126\ \ \ \ \ \mbox{\hyperlink{class_sysc_add__pv}{unit\_type}}\ \ \ \mbox{\hyperlink{classsc__core_1_1sc__trace__file__base_a53874043c95b084e292f8ab6616b365a}{kernel\_unit\_fs}};\ \ \ \ \ \ \ \ \textcolor{comment}{//\ kernel\ timescale\ unit\ in\ femtoseconds}}
+\DoxyCodeLine{00127\ \ \ \ \ \textcolor{keywordtype}{bool}\ \ \ \ \ \ \ \ \mbox{\hyperlink{classsc__core_1_1sc__trace__file__base_a4b362b10f37d233af3c7098e456a2481}{timescale\_set\_by\_user}};\ \textcolor{comment}{//\ =\ true\ means\ set\ by\ user}}
+\DoxyCodeLine{00128\ }
+\DoxyCodeLine{00129\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00130\ \ \ \ \ std::string\ \mbox{\hyperlink{classsc__core_1_1sc__trace__file__base_a3c8c36225421d5fe71393432bc343b69}{filename\_}};\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ name\ of\ the\ file\ (for\ reporting)}}
+\DoxyCodeLine{00131\ \ \ \ \ \textcolor{keywordtype}{bool}\ \ \ \ \ \ \ \ \mbox{\hyperlink{classsc__core_1_1sc__trace__file__base_a92d2abf5358d95fbbb01538c3eb3456b}{initialized\_}};\ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ tracing\ started?}}
+\DoxyCodeLine{00132\ \ \ \ \ \textcolor{keywordtype}{bool}\ \ \ \ \ \ \ \ \mbox{\hyperlink{classsc__core_1_1sc__trace__file__base_a846e3925c2831c248a096c940d4398e5}{trace\_delta\_cycles\_}};\ \ \ \textcolor{comment}{//\ also\ trace\ delta\ transitions?}}
+\DoxyCodeLine{00133\ }
+\DoxyCodeLine{00134\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{classsc__core_1_1sc__trace__file__base_a5ea7256e82d730b6f54c93277fe846a2}{tracing\_initialized\_}};\ \ \textcolor{comment}{//\ shared\ setup\ of\ tracing\ implementation}}
+\DoxyCodeLine{00135\ }
+\DoxyCodeLine{00136\ \textcolor{keyword}{private}:\ \textcolor{comment}{//\ disabled}}
+\DoxyCodeLine{00137\ \ \ \ \ \mbox{\hyperlink{classsc__core_1_1sc__trace__file__base_a61a5a21a8fa0f12680ec3b39da02de80}{sc\_trace\_file\_base}}(\ \textcolor{keyword}{const}\ \mbox{\hyperlink{classsc__core_1_1sc__trace__file__base}{sc\_trace\_file\_base}}\&\ )\ \textcolor{comment}{/*\ =\ delete\ */};}
+\DoxyCodeLine{00138\ \ \ \ \ \mbox{\hyperlink{classsc__core_1_1sc__trace__file__base}{sc\_trace\_file\_base}}\&\ \mbox{\hyperlink{classsc__core_1_1sc__trace__file__base_a1dee5a0af673815451f8e68ca8e09d79}{operator=}}(\ \textcolor{keyword}{const}\ \mbox{\hyperlink{classsc__core_1_1sc__trace__file__base}{sc\_trace\_file\_base}}\&\ )\ \textcolor{comment}{/*\ =\ delete\ */};}
+\DoxyCodeLine{00139\ }
+\DoxyCodeLine{00140\ \};\ \textcolor{comment}{//\ class\ sc\_trace\_file\_base}}
+\DoxyCodeLine{00141\ }
+\DoxyCodeLine{00142\ \textcolor{comment}{//\ -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{00143\ }
+\DoxyCodeLine{00144\ }
+\DoxyCodeLine{00145\ \textcolor{comment}{//\ obtain\ formatted\ time\ string}}
+\DoxyCodeLine{00146\ \mbox{\hyperlink{sc__cmnhdr_8h_aff4a86b3f5de3ac2097081e7166fe89f}{SC\_API}}\ std::string\ \mbox{\hyperlink{namespacesc__core_a58773dbb41cf17f690c7086e5594e3f9}{localtime\_string}}();}
+\DoxyCodeLine{00147\ }
+\DoxyCodeLine{00148\ \}\ \textcolor{comment}{//\ namespace\ sc\_core}}
+\DoxyCodeLine{00149\ }
+\DoxyCodeLine{00150\ \textcolor{preprocessor}{\#if\ defined(\_MSC\_VER)\ \&\&\ !defined(SC\_WIN\_DLL\_WARN)}}
+\DoxyCodeLine{00151\ \textcolor{preprocessor}{\#pragma\ warning(pop)}}
+\DoxyCodeLine{00152\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00153\ }
+\DoxyCodeLine{00154\ \textcolor{comment}{/*****************************************************************************}}
+\DoxyCodeLine{00155\ \textcolor{comment}{}}
+\DoxyCodeLine{00156\ \textcolor{comment}{\ \ MODIFICATION\ LOG\ -\/\ modifiers,\ enter\ your\ name,\ affiliation,\ date\ and}}
+\DoxyCodeLine{00157\ \textcolor{comment}{\ \ changes\ you\ are\ making\ here.}}
+\DoxyCodeLine{00158\ \textcolor{comment}{}}
+\DoxyCodeLine{00159\ \textcolor{comment}{\ \ \ \ \ \ Name,\ Affiliation,\ Date:}}
+\DoxyCodeLine{00160\ \textcolor{comment}{\ \ Description\ of\ Modification:}}
+\DoxyCodeLine{00161\ \textcolor{comment}{}}
+\DoxyCodeLine{00162\ \textcolor{comment}{\ *****************************************************************************/}}
+\DoxyCodeLine{00163\ }
+\DoxyCodeLine{00164\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{//\ SC\_TRACE\_FILE\_BASE\_H\_INCLUDED\_}}
+\DoxyCodeLine{00165\ \textcolor{comment}{//\ Taf!}}
+
+\end{DoxyCode}

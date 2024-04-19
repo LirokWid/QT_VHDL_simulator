@@ -1,0 +1,146 @@
+.TH "C:/Users/BJRODIER/Documents/QT_REPO/QT_VHDL_simulator/code/Ressources/SystemC/include/sysc/kernel/sc_macros.h" 3 "VHDL simulator" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+C:/Users/BJRODIER/Documents/QT_REPO/QT_VHDL_simulator/code/Ressources/SystemC/include/sysc/kernel/sc_macros.h
+.SH SYNOPSIS
+.br
+.PP
+\fR#include 'sysc/kernel/sc_cmnhdr\&.h'\fP
+.br
+
+.SS "Namespaces"
+
+.in +1c
+.ti -1c
+.RI "namespace \fBsc_dt\fP"
+.br
+.in -1c
+.SS "Macros"
+
+.in +1c
+.ti -1c
+.RI "#\fBdefine\fP \fBSC_STRINGIFY_HELPER_\fP(\fBArg\fP)     \fBSC_STRINGIFY_HELPER_DEFERRED_\fP( \fBArg\fP )"
+.br
+.ti -1c
+.RI "#\fBdefine\fP \fBSC_STRINGIFY_HELPER_DEFERRED_\fP(\fBArg\fP)     \fBSC_STRINGIFY_HELPER_MORE_DEFERRED_\fP( \fBArg\fP )"
+.br
+.ti -1c
+.RI "#\fBdefine\fP \fBSC_STRINGIFY_HELPER_MORE_DEFERRED_\fP(\fBArg\fP)     #\fBArg\fP"
+.br
+.ti -1c
+.RI "#\fBdefine\fP \fBSC_CONCAT_HELPER_\fP(\fBa\fP,  b)     \fBSC_CONCAT_HELPER_DEFERRED_\fP( \fBa\fP, b )"
+.br
+.ti -1c
+.RI "#\fBdefine\fP \fBSC_CONCAT_HELPER_DEFERRED_\fP(\fBa\fP,  b)     \fBSC_CONCAT_HELPER_MORE_DEFERRED_\fP( \fBa\fP,b )"
+.br
+.ti -1c
+.RI "#\fBdefine\fP \fBSC_CONCAT_HELPER_MORE_DEFERRED_\fP(\fBa\fP,  b)     \fBa\fP ## b"
+.br
+.ti -1c
+.RI "#\fBdefine\fP \fBSC_CONCAT_UNDERSCORE_\fP(\fBa\fP,  b)     \fBSC_CONCAT_HELPER_\fP( \fBa\fP, \fBSC_CONCAT_HELPER_\fP( \fB_\fP, b ) )"
+.br
+.ti -1c
+.RI "#\fBdefine\fP \fBSC_EXPAND_HELPER_\fP(\fBx\fP)   \fBx\fP"
+.br
+.ti -1c
+.RI "#\fBdefine\fP \fBSC_WAIT\fP()"
+.br
+.ti -1c
+.RI "#\fBdefine\fP \fBSC_WAITN\fP(\fBn\fP)"
+.br
+.ti -1c
+.RI "#\fBdefine\fP \fBSC_WAIT_UNTIL\fP(\fBexpr\fP)     \fBdo\fP { \fBSC_WAIT\fP(); } \fBwhile\fP( !(\fBexpr\fP) )"
+.br
+.ti -1c
+.RI "#\fBdefine\fP \fBSC_NAMED\fP(\&.\&.\&.)     \fBSC_NAMED_IMPL_\fP(\fB__VA_ARGS__\fP)(\fB__VA_ARGS__\fP)"
+.br
+.ti -1c
+.RI "#\fBdefine\fP \fBSC_NAMED_IMPL_ONE_\fP(\fBinst\fP)       \fBinst\fP ( \fBSC_STRINGIFY_HELPER_\fP(\fBinst\fP) )"
+.br
+.ti -1c
+.RI "#\fBdefine\fP \fBSC_NAMED_IMPL_MORE_\fP(\fBinst\fP, \&.\&.\&.)       \fBinst\fP ( \fBSC_STRINGIFY_HELPER_\fP(\fBinst\fP), \fB__VA_ARGS__\fP )"
+.br
+.ti -1c
+.RI "#\fBdefine\fP \fBSC_NAMED_IMPL_\fP(\&.\&.\&.)     \fBSC_CONCAT_HELPER_\fP(SC_NAMED_IMPL_, \fBSC_NAMED_IMPL_EXPAND_\fP(\fB__VA_ARGS__\fP))"
+.br
+.ti -1c
+.RI "#\fBdefine\fP \fBSC_NAMED_IMPL_EXPAND_\fP(\&.\&.\&.)"
+.br
+.ti -1c
+.RI "#\fBdefine\fP \fBSC_NAMED_IMPL_EXPAND_SEQ_\fP(\fB_1\fP,  \fB_2\fP,  \fB_3\fP,  \fB_4\fP,  \fB_5\fP,  \fB_6\fP,  \fB_7\fP,  \fB_8\fP,  \fB_9\fP,  \fB_10\fP,  \fB_11\fP,  \fB_12\fP,  \fB_13\fP,  \fB_14\fP,  \fB_15\fP,  \fB_16\fP,  \fB_17\fP,  \fB_18\fP,  \fB_19\fP,  \fB_20\fP,  \fB_21\fP,  \fB_22\fP,  \fB_23\fP,  \fB_24\fP,  \fB_25\fP,  \fB_26\fP,  \fB_27\fP,  \fB_28\fP,  \fB_29\fP,  \fB_30\fP,  \fB_31\fP,  \fBN\fP, \&.\&.\&.)   \fBN\fP"
+.br
+.in -1c
+.SS "Functions"
+
+.in +1c
+.ti -1c
+.RI "template<\fBclass\fP \fBT\fP > \fBconst\fP \fBT\fP \fBsc_dt::sc_min\fP (\fBconst\fP \fBT\fP &\fBa\fP, \fBconst\fP \fBT\fP &\fBb\fP)"
+.br
+.ti -1c
+.RI "template<\fBclass\fP \fBT\fP > \fBconst\fP \fBT\fP \fBsc_dt::sc_max\fP (\fBconst\fP \fBT\fP &\fBa\fP, \fBconst\fP \fBT\fP &\fBb\fP)"
+.br
+.ti -1c
+.RI "template<\fBclass\fP \fBT\fP > \fBconst\fP \fBT\fP \fBsc_dt::sc_abs\fP (\fBconst\fP \fBT\fP &\fBa\fP)"
+.br
+.in -1c
+.SH "Macro Definition Documentation"
+.PP 
+.SS "#\fBdefine\fP SC_CONCAT_HELPER_(\fBa\fP, b)     \fBSC_CONCAT_HELPER_DEFERRED_\fP( \fBa\fP, b )"
+
+.SS "#\fBdefine\fP SC_CONCAT_HELPER_DEFERRED_(\fBa\fP, b)     \fBSC_CONCAT_HELPER_MORE_DEFERRED_\fP( \fBa\fP,b )"
+
+.SS "#\fBdefine\fP SC_CONCAT_HELPER_MORE_DEFERRED_(\fBa\fP, b)     \fBa\fP ## b"
+
+.SS "#\fBdefine\fP SC_CONCAT_UNDERSCORE_(\fBa\fP, b)     \fBSC_CONCAT_HELPER_\fP( \fBa\fP, \fBSC_CONCAT_HELPER_\fP( \fB_\fP, b ) )"
+
+.SS "#\fBdefine\fP SC_EXPAND_HELPER_(\fBx\fP)   \fBx\fP"
+
+.SS "#\fBdefine\fP SC_NAMED( \&.\&.\&.)     \fBSC_NAMED_IMPL_\fP(\fB__VA_ARGS__\fP)(\fB__VA_ARGS__\fP)"
+
+.SS "#\fBdefine\fP SC_NAMED_IMPL_( \&.\&.\&.)     \fBSC_CONCAT_HELPER_\fP(SC_NAMED_IMPL_, \fBSC_NAMED_IMPL_EXPAND_\fP(\fB__VA_ARGS__\fP))"
+
+.SS "#\fBdefine\fP SC_NAMED_IMPL_EXPAND_( \&.\&.\&.)"
+\fBValue:\fP.PP
+.nf
+  SC_EXPAND_HELPER_( SC_NAMED_IMPL_EXPAND_SEQ_( \\
+    __VA_ARGS__,                                        \\
+    MORE_,MORE_,MORE_,MORE_,MORE_,MORE_,MORE_,MORE_,    \\
+    MORE_,MORE_,MORE_,MORE_,MORE_,MORE_,MORE_,MORE_,    \\
+    MORE_,MORE_,MORE_,MORE_,MORE_,MORE_,MORE_,MORE_,    \\
+    MORE_,MORE_,MORE_,MORE_,MORE_,MORE_,ONE_, FAIL_ ) )
+.fi
+
+.SS "#\fBdefine\fP SC_NAMED_IMPL_EXPAND_SEQ_(\fB_1\fP, \fB_2\fP, \fB_3\fP, \fB_4\fP, \fB_5\fP, \fB_6\fP, \fB_7\fP, \fB_8\fP, \fB_9\fP, \fB_10\fP, \fB_11\fP, \fB_12\fP, \fB_13\fP, \fB_14\fP, \fB_15\fP, \fB_16\fP, \fB_17\fP, \fB_18\fP, \fB_19\fP, \fB_20\fP, \fB_21\fP, \fB_22\fP, \fB_23\fP, \fB_24\fP, \fB_25\fP, \fB_26\fP, \fB_27\fP, \fB_28\fP, \fB_29\fP, \fB_30\fP, \fB_31\fP, \fBN\fP,  \&.\&.\&.)   \fBN\fP"
+
+.SS "#\fBdefine\fP SC_NAMED_IMPL_MORE_(\fBinst\fP,  \&.\&.\&.)       \fBinst\fP ( \fBSC_STRINGIFY_HELPER_\fP(\fBinst\fP), \fB__VA_ARGS__\fP )"
+
+.SS "#\fBdefine\fP SC_NAMED_IMPL_ONE_(\fBinst\fP)       \fBinst\fP ( \fBSC_STRINGIFY_HELPER_\fP(\fBinst\fP) )"
+
+.SS "#\fBdefine\fP SC_STRINGIFY_HELPER_(\fBArg\fP)     \fBSC_STRINGIFY_HELPER_DEFERRED_\fP( \fBArg\fP )"
+
+.SS "#\fBdefine\fP SC_STRINGIFY_HELPER_DEFERRED_(\fBArg\fP)     \fBSC_STRINGIFY_HELPER_MORE_DEFERRED_\fP( \fBArg\fP )"
+
+.SS "#\fBdefine\fP SC_STRINGIFY_HELPER_MORE_DEFERRED_(\fBArg\fP)     #\fBArg\fP"
+
+.SS "#\fBdefine\fP SC_WAIT()"
+\fBValue:\fP.PP
+.nf
+    ::sc_core::sc_set_location( __FILE__, __LINE__ );   \\
+    ::sc_core::wait();                                  \\
+    ::sc_core::sc_set_location( NULL, 0 )
+.fi
+
+.SS "#\fBdefine\fP SC_WAIT_UNTIL(\fBexpr\fP)     \fBdo\fP { \fBSC_WAIT\fP(); } \fBwhile\fP( !(\fBexpr\fP) )"
+
+.SS "#\fBdefine\fP SC_WAITN(\fBn\fP)"
+\fBValue:\fP.PP
+.nf
+    ::sc_core::sc_set_location( __FILE__, __LINE__ );   \\
+    ::sc_core::wait(n);                                 \\
+    ::sc_core::sc_set_location( NULL, 0 )
+.fi
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for VHDL simulator from the source code\&.

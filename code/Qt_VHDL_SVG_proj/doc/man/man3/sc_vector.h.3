@@ -1,0 +1,144 @@
+.TH "C:/Users/BJRODIER/Documents/QT_REPO/QT_VHDL_simulator/code/Ressources/SystemC/include/sysc/utils/sc_vector.h" 3 "VHDL simulator" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+C:/Users/BJRODIER/Documents/QT_REPO/QT_VHDL_simulator/code/Ressources/SystemC/include/sysc/utils/sc_vector.h
+.SH SYNOPSIS
+.br
+.PP
+\fR#include <vector>\fP
+.br
+\fR#include <iterator>\fP
+.br
+\fR#include <string>\fP
+.br
+\fR#include <algorithm>\fP
+.br
+\fR#include 'sysc/kernel/sc_object\&.h'\fP
+.br
+\fR#include 'sysc/packages/boost/config\&.hpp'\fP
+.br
+\fR#include 'sysc/packages/boost/utility/enable_if\&.hpp'\fP
+.br
+
+.SS "Classes"
+
+.in +1c
+.ti -1c
+.RI "struct \fBsc_core::sc_meta::enable_if< Cond, T >\fP"
+.br
+.ti -1c
+.RI "struct \fBsc_core::sc_meta::remove_const< T >\fP"
+.br
+.ti -1c
+.RI "struct \fBsc_core::sc_meta::remove_const< const T >\fP"
+.br
+.ti -1c
+.RI "struct \fBsc_core::sc_meta::is_same< T, U >\fP"
+.br
+.ti -1c
+.RI "struct \fBsc_core::sc_meta::is_same< T, T >\fP"
+.br
+.ti -1c
+.RI "struct \fBsc_core::sc_meta::is_const< T >\fP"
+.br
+.ti -1c
+.RI "struct \fBsc_core::sc_meta::is_const< const T >\fP"
+.br
+.ti -1c
+.RI "struct \fBsc_core::sc_meta::is_more_const< CT, T >\fP"
+.br
+.ti -1c
+.RI "struct \fBsc_core::sc_meta::special_result\fP"
+.br
+.ti -1c
+.RI "struct \fBsc_core::sc_meta::remove_special_fptr< T >\fP"
+.br
+.ti -1c
+.RI "struct \fBsc_core::sc_meta::remove_special_fptr< special_result &(*)(T) >\fP"
+.br
+.ti -1c
+.RI "class \fBsc_core::sc_vector_base\fP"
+.br
+.ti -1c
+.RI "class \fBsc_core::sc_vector_base::context_scope\fP"
+.br
+.ti -1c
+.RI "struct \fBsc_core::sc_direct_access< ElementType >\fP"
+.br
+.ti -1c
+.RI "class \fBsc_core::sc_member_access< ElementType, AccessType >\fP"
+.br
+.ti -1c
+.RI "class \fBsc_core::sc_vector_iter< ElementType, AccessPolicy >\fP"
+.br
+.ti -1c
+.RI "struct \fBsc_core::sc_vector_iter< ElementType, AccessPolicy >::select_iter< U >\fP"
+.br
+.ti -1c
+.RI "struct \fBsc_core::sc_vector_iter< ElementType, AccessPolicy >::select_iter< const U >\fP"
+.br
+.ti -1c
+.RI "class \fBsc_core::sc_vector< T >\fP"
+.br
+.ti -1c
+.RI "class \fBsc_core::sc_vector_assembly< T, MT >\fP"
+.br
+.in -1c
+.SS "Namespaces"
+
+.in +1c
+.ti -1c
+.RI "namespace \fBsc_core\fP"
+.br
+.ti -1c
+.RI "namespace \fBsc_core::sc_meta\fP"
+.br
+.in -1c
+.SS "Macros"
+
+.in +1c
+.ti -1c
+.RI "#\fBdefine\fP \fBSC_STATIC_CONSTANT_\fP(\fBType\fP,  \fBValue\fP)       \fBSC_BOOST_STATIC_CONSTANT\fP(\fBType\fP,\fBValue\fP)"
+.br
+.ti -1c
+.RI "#\fBdefine\fP \fBSC_RPTYPE_\fP(\fBType\fP)"
+.br
+.ti -1c
+.RI "#\fBdefine\fP \fBSC_ENABLE_IF_\fP(\fBCond\fP)"
+.br
+.in -1c
+.SS "Functions"
+
+.in +1c
+.ti -1c
+.RI "template<\fBtypename\fP \fBContainer\fP , \fBtypename\fP \fBArgumentIterator\fP > Container::iterator \fBsc_core::sc_vector_do_bind\fP (\fBContainer\fP &\fBcont\fP, \fBArgumentIterator\fP first, \fBArgumentIterator\fP last, \fBtypename\fP Container::iterator \fBfrom\fP)"
+.br
+.ti -1c
+.RI "template<\fBtypename\fP \fBContainer\fP , \fBtypename\fP \fBArgumentIterator\fP > Container::iterator \fBsc_core::sc_vector_do_operator_paren\fP (\fBContainer\fP &\fBcont\fP, \fBArgumentIterator\fP first, \fBArgumentIterator\fP last, \fBtypename\fP Container::iterator \fBfrom\fP)"
+.br
+.ti -1c
+.RI "template<\fBtypename\fP \fBT\fP , \fBtypename\fP \fBMT\fP > \fBsc_vector_assembly\fP< \fBT\fP, \fBMT\fP > \fBsc_core::sc_assemble_vector\fP (\fBsc_vector\fP< \fBT\fP > &\fBvec\fP, \fBMT\fP(T::*ptr))"
+.br
+.in -1c
+.SH "Macro Definition Documentation"
+.PP 
+.SS "#\fBdefine\fP SC_ENABLE_IF_(\fBCond\fP)"
+\fBValue:\fP.PP
+.nf
+  typename ::sc_core::sc_meta::enable_if                   \\
+    < SC_RPTYPE_(Cond) >::type * = NULL
+.fi
+
+.SS "#\fBdefine\fP SC_RPTYPE_(\fBType\fP)"
+\fBValue:\fP.PP
+.nf
+  ::sc_core::sc_meta::remove_special_fptr         \\
+    < ::sc_core::sc_meta::special_result& (*) Type >::type::value
+.fi
+
+.SS "#\fBdefine\fP SC_STATIC_CONSTANT_(\fBType\fP, \fBValue\fP)       \fBSC_BOOST_STATIC_CONSTANT\fP(\fBType\fP,\fBValue\fP)"
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for VHDL simulator from the source code\&.

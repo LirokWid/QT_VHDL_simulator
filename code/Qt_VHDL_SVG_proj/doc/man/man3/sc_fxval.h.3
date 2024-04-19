@@ -1,0 +1,1082 @@
+.TH "C:/Users/BJRODIER/Documents/QT_REPO/QT_VHDL_simulator/code/Ressources/SystemC/include/sysc/datatypes/fx/sc_fxval.h" 3 "VHDL simulator" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+C:/Users/BJRODIER/Documents/QT_REPO/QT_VHDL_simulator/code/Ressources/SystemC/include/sysc/datatypes/fx/sc_fxval.h
+.SH SYNOPSIS
+.br
+.PP
+\fR#include 'sysc/datatypes/fx/scfx_rep\&.h'\fP
+.br
+\fR#include 'sysc/datatypes/int/sc_int_base\&.h'\fP
+.br
+\fR#include 'sysc/datatypes/int/sc_uint_base\&.h'\fP
+.br
+\fR#include 'sysc/datatypes/int/sc_signed\&.h'\fP
+.br
+\fR#include 'sysc/datatypes/int/sc_unsigned\&.h'\fP
+.br
+\fR#include 'sysc/datatypes/fx/sc_fxval_observer\&.h'\fP
+.br
+
+.SS "Classes"
+
+.in +1c
+.ti -1c
+.RI "class \fBsc_dt::sc_fxval\fP"
+.br
+.ti -1c
+.RI "class \fBsc_dt::sc_fxval_fast\fP"
+.br
+.in -1c
+.SS "Namespaces"
+
+.in +1c
+.ti -1c
+.RI "namespace \fBsc_dt\fP"
+.br
+.in -1c
+.SS "Macros"
+
+.in +1c
+.ti -1c
+.RI "#\fBdefine\fP \fBSCFX_EXPLICIT_\fP   \fBexplicit\fP"
+.br
+.ti -1c
+.RI "#\fBdefine\fP \fBSCFX_EXPLICIT_OTHER_\fP   \fBexplicit\fP"
+.br
+.ti -1c
+.RI "#\fBdefine\fP \fBDECL_BIN_OP_T\fP(\fBop\fP,  \fBtp\fP)"
+.br
+.ti -1c
+.RI "#\fBdefine\fP \fBDECL_BIN_OP_OTHER\fP(\fBop\fP)"
+.br
+.ti -1c
+.RI "#\fBdefine\fP \fBDECL_BIN_OP\fP(\fBop\fP,  dummy)"
+.br
+.ti -1c
+.RI "#\fBdefine\fP \fBDECL_BIN_FNC_T\fP(\fBfnc\fP,  \fBtp\fP)"
+.br
+.ti -1c
+.RI "#\fBdefine\fP \fBDECL_BIN_FNC_OTHER\fP(\fBfnc\fP)"
+.br
+.ti -1c
+.RI "#\fBdefine\fP \fBDECL_BIN_FNC\fP(\fBfnc\fP)"
+.br
+.ti -1c
+.RI "#\fBdefine\fP \fBDECL_REL_OP_T\fP(\fBop\fP,  \fBtp\fP)"
+.br
+.ti -1c
+.RI "#\fBdefine\fP \fBDECL_REL_OP_OTHER\fP(\fBop\fP)"
+.br
+.ti -1c
+.RI "#\fBdefine\fP \fBDECL_REL_OP\fP(\fBop\fP)"
+.br
+.ti -1c
+.RI "#\fBdefine\fP \fBDECL_ASN_OP_T\fP(\fBop\fP,  \fBtp\fP)       sc_fxval& \fBoperator\fP \fBop\fP( \fBtp\fP );"
+.br
+.ti -1c
+.RI "#\fBdefine\fP \fBDECL_ASN_OP_OTHER\fP(\fBop\fP)"
+.br
+.ti -1c
+.RI "#\fBdefine\fP \fBDECL_ASN_OP\fP(\fBop\fP)"
+.br
+.ti -1c
+.RI "#\fBdefine\fP \fBDECL_BIN_OP_T\fP(\fBop\fP,  \fBtp\fP)"
+.br
+.ti -1c
+.RI "#\fBdefine\fP \fBDECL_BIN_OP_OTHER\fP(\fBop\fP)"
+.br
+.ti -1c
+.RI "#\fBdefine\fP \fBDECL_BIN_OP\fP(\fBop\fP,  dummy)"
+.br
+.ti -1c
+.RI "#\fBdefine\fP \fBDECL_BIN_FNC_T\fP(\fBfnc\fP,  \fBtp\fP)"
+.br
+.ti -1c
+.RI "#\fBdefine\fP \fBDECL_BIN_FNC_OTHER\fP(\fBfnc\fP)"
+.br
+.ti -1c
+.RI "#\fBdefine\fP \fBDECL_BIN_FNC\fP(\fBfnc\fP)"
+.br
+.ti -1c
+.RI "#\fBdefine\fP \fBDECL_REL_OP_T\fP(\fBop\fP,  \fBtp\fP)"
+.br
+.ti -1c
+.RI "#\fBdefine\fP \fBDECL_REL_OP_OTHER\fP(\fBop\fP)"
+.br
+.ti -1c
+.RI "#\fBdefine\fP \fBDECL_REL_OP\fP(\fBop\fP)"
+.br
+.ti -1c
+.RI "#\fBdefine\fP \fBDECL_ASN_OP_T\fP(\fBop\fP,  \fBtp\fP)       sc_fxval_fast& \fBoperator\fP \fBop\fP( \fBtp\fP );"
+.br
+.ti -1c
+.RI "#\fBdefine\fP \fBDECL_ASN_OP_OTHER\fP(\fBop\fP)"
+.br
+.ti -1c
+.RI "#\fBdefine\fP \fBDECL_ASN_OP\fP(\fBop\fP)"
+.br
+.ti -1c
+.RI "#\fBdefine\fP \fBDEFN_CTOR_T\fP(\fBtp\fP,  arg)"
+.br
+.ti -1c
+.RI "#\fBdefine\fP \fBDEFN_CTOR_T_A\fP(\fBtp\fP)   \fBDEFN_CTOR_T\fP(\fBtp\fP,\fBa\fP)"
+.br
+.ti -1c
+.RI "#\fBdefine\fP \fBDEFN_CTOR_T_B\fP(\fBtp\fP)   \fBDEFN_CTOR_T\fP(\fBtp\fP,a\&.to_double())"
+.br
+.ti -1c
+.RI "#\fBdefine\fP \fBDEFN_CTOR_T_C\fP(\fBtp\fP)   \fBDEFN_CTOR_T\fP(\fBtp\fP,\fBa\&.value\fP())"
+.br
+.ti -1c
+.RI "#\fBdefine\fP \fBDEFN_BIN_OP_T\fP(\fBop\fP,  \fBfnc\fP,  \fBtp\fP)"
+.br
+.ti -1c
+.RI "#\fBdefine\fP \fBDEFN_BIN_OP_OTHER\fP(\fBop\fP,  \fBfnc\fP)"
+.br
+.ti -1c
+.RI "#\fBdefine\fP \fBDEFN_BIN_OP\fP(\fBop\fP,  \fBfnc\fP)"
+.br
+.ti -1c
+.RI "#\fBdefine\fP \fBDEFN_BIN_FNC_T\fP(\fBfnc\fP,  \fBtp\fP)"
+.br
+.ti -1c
+.RI "#\fBdefine\fP \fBDEFN_BIN_FNC_OTHER\fP(\fBfnc\fP)"
+.br
+.ti -1c
+.RI "#\fBdefine\fP \fBDEFN_BIN_FNC\fP(\fBfnc\fP)"
+.br
+.ti -1c
+.RI "#\fBdefine\fP \fBDEFN_REL_OP_T\fP(\fBop\fP,  \fBret\fP,  \fBtp\fP)"
+.br
+.ti -1c
+.RI "#\fBdefine\fP \fBDEFN_REL_OP_OTHER\fP(\fBop\fP,  \fBret\fP)"
+.br
+.ti -1c
+.RI "#\fBdefine\fP \fBDEFN_REL_OP\fP(\fBop\fP,  \fBret\fP)"
+.br
+.ti -1c
+.RI "#\fBdefine\fP \fBDEFN_ASN_OP_T\fP(\fBtp\fP)"
+.br
+.ti -1c
+.RI "#\fBdefine\fP \fBDEFN_ASN_OP_T\fP(\fBop\fP,  \fBfnc\fP,  \fBtp\fP)"
+.br
+.ti -1c
+.RI "#\fBdefine\fP \fBDEFN_ASN_OP_OTHER\fP(\fBop\fP,  \fBfnc\fP)"
+.br
+.ti -1c
+.RI "#\fBdefine\fP \fBDEFN_ASN_OP\fP(\fBop\fP,  \fBfnc\fP)"
+.br
+.ti -1c
+.RI "#\fBdefine\fP \fBDEFN_CTOR_T\fP(\fBtp\fP,  arg)"
+.br
+.ti -1c
+.RI "#\fBdefine\fP \fBDEFN_CTOR_T_A\fP(\fBtp\fP)   \fBDEFN_CTOR_T\fP(\fBtp\fP,\fBstatic_cast\fP<\fBdouble\fP>( \fBa\fP ))"
+.br
+.ti -1c
+.RI "#\fBdefine\fP \fBDEFN_CTOR_T_B\fP(\fBtp\fP)   \fBDEFN_CTOR_T\fP(\fBtp\fP,from_string( \fBa\fP ))"
+.br
+.ti -1c
+.RI "#\fBdefine\fP \fBDEFN_CTOR_T_C\fP(\fBtp\fP)   \fBDEFN_CTOR_T\fP(\fBtp\fP,a\&.to_double())"
+.br
+.ti -1c
+.RI "#\fBdefine\fP \fBDEFN_BIN_OP_T\fP(\fBop\fP,  \fBtp\fP)"
+.br
+.ti -1c
+.RI "#\fBdefine\fP \fBDEFN_BIN_OP_OTHER\fP(\fBop\fP)"
+.br
+.ti -1c
+.RI "#\fBdefine\fP \fBDEFN_BIN_OP\fP(\fBop\fP,  dummy)"
+.br
+.ti -1c
+.RI "#\fBdefine\fP \fBDEFN_BIN_FNC_T\fP(\fBfnc\fP,  \fBop\fP,  \fBtp\fP)"
+.br
+.ti -1c
+.RI "#\fBdefine\fP \fBDEFN_BIN_FNC_OTHER\fP(\fBfnc\fP,  \fBop\fP)"
+.br
+.ti -1c
+.RI "#\fBdefine\fP \fBDEFN_BIN_FNC\fP(\fBfnc\fP,  \fBop\fP)"
+.br
+.ti -1c
+.RI "#\fBdefine\fP \fBDEFN_REL_OP_T\fP(\fBop\fP,  \fBtp\fP)"
+.br
+.ti -1c
+.RI "#\fBdefine\fP \fBDEFN_REL_OP_OTHER\fP(\fBop\fP)"
+.br
+.ti -1c
+.RI "#\fBdefine\fP \fBDEFN_REL_OP\fP(\fBop\fP)"
+.br
+.ti -1c
+.RI "#\fBdefine\fP \fBDEFN_ASN_OP_T\fP(\fBtp\fP)"
+.br
+.ti -1c
+.RI "#\fBdefine\fP \fBDEFN_ASN_OP_T\fP(\fBop\fP,  \fBtp\fP)"
+.br
+.ti -1c
+.RI "#\fBdefine\fP \fBDEFN_ASN_OP_OTHER\fP(\fBop\fP)"
+.br
+.ti -1c
+.RI "#\fBdefine\fP \fBDEFN_ASN_OP\fP(\fBop\fP)"
+.br
+.in -1c
+.SS "Functions"
+
+.in +1c
+.ti -1c
+.RI "\fBvoid\fP \fBsc_dt::neg\fP (\fBsc_fxval\fP &\fBc\fP, \fBconst\fP \fBsc_fxval\fP &\fBa\fP)"
+.br
+.ti -1c
+.RI "\fBconst\fP \fBsc_fxval\fP \fBsc_dt::operator/\fP (\fBconst\fP \fBsc_fxval\fP &\fBa\fP, \fBconst\fP \fBsc_fxval\fP &\fBb\fP)"
+.br
+.ti -1c
+.RI "\fBsc_dt::DEFN_BIN_OP_T\fP (/, \fBdiv\fP, \fBint64\fP) DEFN_BIN_OP_T(/"
+.br
+.ti -1c
+.RI "\fBuint64\fP \fBsc_dt::DEFN_BIN_OP_T\fP (/, \fBdiv\fP, \fBconst\fP \fBsc_int_base\fP &) DEFN_BIN_OP_T(/"
+.br
+.ti -1c
+.RI "\fBuint64\fP \fBconst\fP \fBsc_uint_base\fP & \fBsc_dt::DEFN_BIN_OP_T\fP (/, \fBdiv\fP, \fBconst\fP \fBsc_signed\fP &) \fBinline\fP \fBconst\fP \fBsc_fxval\fP \fBoperator\fP<<(\fBconst\fP \fBsc_fxval\fP &\fBa\fP"
+.br
+.ti -1c
+.RI "\fBconst\fP \fBsc_fxval\fP \fBsc_dt::operator>>\fP (\fBconst\fP \fBsc_fxval\fP &\fBa\fP, int \fBb\fP)"
+.br
+.ti -1c
+.RI "\fBvoid\fP \fBsc_dt::lshift\fP (\fBsc_fxval\fP &\fBc\fP, \fBconst\fP \fBsc_fxval\fP &\fBa\fP, int \fBb\fP)"
+.br
+.ti -1c
+.RI "\fBvoid\fP \fBsc_dt::rshift\fP (\fBsc_fxval\fP &\fBc\fP, \fBconst\fP \fBsc_fxval\fP &\fBa\fP, int \fBb\fP)"
+.br
+.ti -1c
+.RI "inline::std::ostream & \fBsc_dt::operator<<\fP (::std::ostream &\fBos\fP, \fBconst\fP \fBsc_fxval\fP &\fBa\fP)"
+.br
+.ti -1c
+.RI "inline::std::istream & \fBsc_dt::operator>>\fP (::std::istream &\fBis\fP, \fBsc_fxval\fP &\fBa\fP)"
+.br
+.ti -1c
+.RI "\fBvoid\fP \fBsc_dt::neg\fP (\fBsc_fxval_fast\fP &\fBc\fP, \fBconst\fP \fBsc_fxval_fast\fP &\fBa\fP)"
+.br
+.ti -1c
+.RI "\fBconst\fP \fBsc_fxval_fast\fP \fBsc_dt::operator/\fP (\fBconst\fP \fBsc_fxval_fast\fP &\fBa\fP, \fBconst\fP \fBsc_fxval_fast\fP &\fBb\fP)"
+.br
+.ti -1c
+.RI "\fBconst\fP \fBsc_fxval_fast\fP \fBsc_dt::operator<<\fP (\fBconst\fP \fBsc_fxval_fast\fP &\fBa\fP, int \fBb\fP)"
+.br
+.ti -1c
+.RI "\fBconst\fP \fBsc_fxval_fast\fP \fBsc_dt::operator>>\fP (\fBconst\fP \fBsc_fxval_fast\fP &\fBa\fP, int \fBb\fP)"
+.br
+.ti -1c
+.RI "\fBvoid\fP \fBsc_dt::lshift\fP (\fBsc_fxval_fast\fP &\fBc\fP, \fBconst\fP \fBsc_fxval_fast\fP &\fBa\fP, int \fBb\fP)"
+.br
+.ti -1c
+.RI "\fBvoid\fP \fBsc_dt::rshift\fP (\fBsc_fxval_fast\fP &\fBc\fP, \fBconst\fP \fBsc_fxval_fast\fP &\fBa\fP, int \fBb\fP)"
+.br
+.ti -1c
+.RI "inline::std::ostream & \fBsc_dt::operator<<\fP (::std::ostream &\fBos\fP, \fBconst\fP \fBsc_fxval_fast\fP &\fBa\fP)"
+.br
+.ti -1c
+.RI "inline::std::istream & \fBsc_dt::operator>>\fP (::std::istream &\fBis\fP, \fBsc_fxval_fast\fP &\fBa\fP)"
+.br
+.in -1c
+.SS "Variables"
+
+.in +1c
+.ti -1c
+.RI "\fBsc_dt::div\fP"
+.br
+.ti -1c
+.RI "\fBuint64\fP \fBconst\fP \fBsc_uint_base\fP int \fBsc_dt::b\fP"
+.br
+.in -1c
+.SH "Macro Definition Documentation"
+.PP 
+.SS "#\fBdefine\fP DECL_ASN_OP(\fBop\fP)"
+\fBValue:\fP.PP
+.nf
+    DECL_ASN_OP_T(op,int)                                                     \\
+    DECL_ASN_OP_T(op,unsigned int)                                            \\
+    DECL_ASN_OP_T(op,long)                                                    \\
+    DECL_ASN_OP_T(op,unsigned long)                                           \\
+    DECL_ASN_OP_T(op,float)                                                  \\
+    DECL_ASN_OP_T(op,double)                                                  \\
+    DECL_ASN_OP_T(op,const char*)                                             \\
+    DECL_ASN_OP_T(op,const sc_fxval&)                                         \\
+    DECL_ASN_OP_T(op,const sc_fxval_fast&)                                    \\
+    DECL_ASN_OP_T(op,const sc_fxnum&)                                         \\
+    DECL_ASN_OP_T(op,const sc_fxnum_fast&)                                    \\
+    DECL_ASN_OP_OTHER(op)
+.fi
+
+.SS "#\fBdefine\fP DECL_ASN_OP(\fBop\fP)"
+\fBValue:\fP.PP
+.nf
+    DECL_ASN_OP_T(op,int)                                                     \\
+    DECL_ASN_OP_T(op,unsigned int)                                            \\
+    DECL_ASN_OP_T(op,long)                                                    \\
+    DECL_ASN_OP_T(op,unsigned long)                                           \\
+    DECL_ASN_OP_T(op,float)                                                  \\
+    DECL_ASN_OP_T(op,double)                                                  \\
+    DECL_ASN_OP_T(op,const char*)                                             \\
+    DECL_ASN_OP_T(op,const sc_fxval&)                                         \\
+    DECL_ASN_OP_T(op,const sc_fxval_fast&)                                    \\
+    DECL_ASN_OP_T(op,const sc_fxnum&)                                         \\
+    DECL_ASN_OP_T(op,const sc_fxnum_fast&)                                    \\
+    DECL_ASN_OP_OTHER(op)
+.fi
+
+.SS "#\fBdefine\fP DECL_ASN_OP_OTHER(\fBop\fP)"
+\fBValue:\fP.PP
+.nf
+    DECL_ASN_OP_T(op,int64)                                                   \\
+    DECL_ASN_OP_T(op,uint64)                                                  \\
+    DECL_ASN_OP_T(op,const sc_int_base&)                                      \\
+    DECL_ASN_OP_T(op,const sc_uint_base&)                                     \\
+    DECL_ASN_OP_T(op,const sc_signed&)                                        \\
+    DECL_ASN_OP_T(op,const sc_unsigned&)
+.fi
+
+.SS "#\fBdefine\fP DECL_ASN_OP_OTHER(\fBop\fP)"
+\fBValue:\fP.PP
+.nf
+    DECL_ASN_OP_T(op,int64)                                                   \\
+    DECL_ASN_OP_T(op,uint64)                                                  \\
+    DECL_ASN_OP_T(op,const sc_int_base&)                                      \\
+    DECL_ASN_OP_T(op,const sc_uint_base&)                                     \\
+    DECL_ASN_OP_T(op,const sc_signed&)                                        \\
+    DECL_ASN_OP_T(op,const sc_unsigned&)
+.fi
+
+.SS "#\fBdefine\fP DECL_ASN_OP_T(\fBop\fP, \fBtp\fP)       sc_fxval& \fBoperator\fP \fBop\fP( \fBtp\fP );"
+
+.SS "#\fBdefine\fP DECL_ASN_OP_T(\fBop\fP, \fBtp\fP)       sc_fxval_fast& \fBoperator\fP \fBop\fP( \fBtp\fP );"
+
+.SS "#\fBdefine\fP DECL_BIN_FNC(\fBfnc\fP)"
+\fBValue:\fP.PP
+.nf
+    friend void fnc ( sc_fxval&, const sc_fxval&, const sc_fxval& );          \\
+    DECL_BIN_FNC_T(fnc,int)                                                   \\
+    DECL_BIN_FNC_T(fnc,unsigned int)                                          \\
+    DECL_BIN_FNC_T(fnc,long)                                                  \\
+    DECL_BIN_FNC_T(fnc,unsigned long)                                         \\
+    DECL_BIN_FNC_T(fnc,float)                                                \\
+    DECL_BIN_FNC_T(fnc,double)                                                \\
+    DECL_BIN_FNC_T(fnc,const char*)                                           \\
+    DECL_BIN_FNC_T(fnc,const sc_fxval_fast&)                                  \\
+    DECL_BIN_FNC_T(fnc,const sc_fxnum_fast&)                                  \\
+    DECL_BIN_FNC_OTHER(fnc)
+.fi
+
+.SS "#\fBdefine\fP DECL_BIN_FNC(\fBfnc\fP)"
+\fBValue:\fP.PP
+.nf
+    friend void fnc ( sc_fxval_fast&, const sc_fxval_fast&,                   \\
+                      const sc_fxval_fast& );                                 \\
+    DECL_BIN_FNC_T(fnc,int)                                                   \\
+    DECL_BIN_FNC_T(fnc,unsigned int)                                          \\
+    DECL_BIN_FNC_T(fnc,long)                                                  \\
+    DECL_BIN_FNC_T(fnc,unsigned long)                                         \\
+    DECL_BIN_FNC_T(fnc,float)                                                \\
+    DECL_BIN_FNC_T(fnc,double)                                                \\
+    DECL_BIN_FNC_T(fnc,const char*)                                           \\
+    DECL_BIN_FNC_T(fnc,const sc_fxval&)                                       \\
+    DECL_BIN_FNC_T(fnc,const sc_fxnum&)                                       \\
+    DECL_BIN_FNC_OTHER(fnc)
+.fi
+
+.SS "#\fBdefine\fP DECL_BIN_FNC_OTHER(\fBfnc\fP)"
+\fBValue:\fP.PP
+.nf
+    DECL_BIN_FNC_T(fnc,int64)                                                 \\
+    DECL_BIN_FNC_T(fnc,uint64)                                                \\
+    DECL_BIN_FNC_T(fnc,const sc_int_base&)                                    \\
+    DECL_BIN_FNC_T(fnc,const sc_uint_base&)                                   \\
+    DECL_BIN_FNC_T(fnc,const sc_signed&)                                      \\
+    DECL_BIN_FNC_T(fnc,const sc_unsigned&)
+.fi
+
+.SS "#\fBdefine\fP DECL_BIN_FNC_OTHER(\fBfnc\fP)"
+\fBValue:\fP.PP
+.nf
+    DECL_BIN_FNC_T(fnc,int64)                                                 \\
+    DECL_BIN_FNC_T(fnc,uint64)                                                \\
+    DECL_BIN_FNC_T(fnc,const sc_int_base&)                                    \\
+    DECL_BIN_FNC_T(fnc,const sc_uint_base&)                                   \\
+    DECL_BIN_FNC_T(fnc,const sc_signed&)                                      \\
+    DECL_BIN_FNC_T(fnc,const sc_unsigned&)
+.fi
+
+.SS "#\fBdefine\fP DECL_BIN_FNC_T(\fBfnc\fP, \fBtp\fP)"
+\fBValue:\fP.PP
+.nf
+    friend void fnc ( sc_fxval&, const sc_fxval&, tp );                       \\
+    friend void fnc ( sc_fxval&, tp, const sc_fxval& );
+.fi
+
+.SS "#\fBdefine\fP DECL_BIN_FNC_T(\fBfnc\fP, \fBtp\fP)"
+\fBValue:\fP.PP
+.nf
+    friend void fnc ( sc_fxval_fast&, const sc_fxval_fast&, tp );             \\
+    friend void fnc ( sc_fxval_fast&, tp, const sc_fxval_fast& );
+.fi
+
+.SS "#\fBdefine\fP DECL_BIN_OP(\fBop\fP, dummy)"
+\fBValue:\fP.PP
+.nf
+    friend const sc_fxval operator op ( const sc_fxval&, const sc_fxval& );   \\
+    DECL_BIN_OP_T(op,int)                                                     \\
+    DECL_BIN_OP_T(op,unsigned int)                                            \\
+    DECL_BIN_OP_T(op,long)                                                    \\
+    DECL_BIN_OP_T(op,unsigned long)                                           \\
+    DECL_BIN_OP_T(op,float)                                                  \\
+    DECL_BIN_OP_T(op,double)                                                  \\
+    DECL_BIN_OP_T(op,const char*)                                             \\
+    DECL_BIN_OP_T(op,const sc_fxval_fast&)                                    \\
+    DECL_BIN_OP_T(op,const sc_fxnum_fast&)                                    \\
+    DECL_BIN_OP_OTHER(op)
+.fi
+
+.SS "#\fBdefine\fP DECL_BIN_OP(\fBop\fP, dummy)"
+\fBValue:\fP.PP
+.nf
+    friend const sc_fxval_fast operator op ( const sc_fxval_fast&,            \\
+                         const sc_fxval_fast& );          \\
+    DECL_BIN_OP_T(op,int)                                                     \\
+    DECL_BIN_OP_T(op,unsigned int)                                            \\
+    DECL_BIN_OP_T(op,long)                                                    \\
+    DECL_BIN_OP_T(op,unsigned long)                                           \\
+    DECL_BIN_OP_T(op,float)                                                  \\
+    DECL_BIN_OP_T(op,double)                                                  \\
+    DECL_BIN_OP_T(op,const char*)                                             \\
+    DECL_BIN_OP_OTHER(op)
+.fi
+
+.SS "#\fBdefine\fP DECL_BIN_OP_OTHER(\fBop\fP)"
+\fBValue:\fP.PP
+.nf
+    DECL_BIN_OP_T(op,int64)                                                   \\
+    DECL_BIN_OP_T(op,uint64)                                                  \\
+    DECL_BIN_OP_T(op,const sc_int_base&)                                      \\
+    DECL_BIN_OP_T(op,const sc_uint_base&)                                     \\
+    DECL_BIN_OP_T(op,const sc_signed&)                                        \\
+    DECL_BIN_OP_T(op,const sc_unsigned&)
+.fi
+
+.SS "#\fBdefine\fP DECL_BIN_OP_OTHER(\fBop\fP)"
+\fBValue:\fP.PP
+.nf
+    DECL_BIN_OP_T(op,int64)                                                   \\
+    DECL_BIN_OP_T(op,uint64)                                                  \\
+    DECL_BIN_OP_T(op,const sc_int_base&)                                      \\
+    DECL_BIN_OP_T(op,const sc_uint_base&)                                     \\
+    DECL_BIN_OP_T(op,const sc_signed&)                                        \\
+    DECL_BIN_OP_T(op,const sc_unsigned&)
+.fi
+
+.SS "#\fBdefine\fP DECL_BIN_OP_T(\fBop\fP, \fBtp\fP)"
+\fBValue:\fP.PP
+.nf
+    friend const sc_fxval operator op ( const sc_fxval&, tp );                \\
+    friend const sc_fxval operator op ( tp, const sc_fxval& );
+.fi
+
+.SS "#\fBdefine\fP DECL_BIN_OP_T(\fBop\fP, \fBtp\fP)"
+\fBValue:\fP.PP
+.nf
+    friend const sc_fxval_fast operator op ( const sc_fxval_fast&, tp );      \\
+    friend const sc_fxval_fast operator op ( tp, const sc_fxval_fast& );
+.fi
+
+.SS "#\fBdefine\fP DECL_REL_OP(\fBop\fP)"
+\fBValue:\fP.PP
+.nf
+    friend bool operator op ( const sc_fxval&, const sc_fxval& );             \\
+    DECL_REL_OP_T(op,int)                                                     \\
+    DECL_REL_OP_T(op,unsigned int)                                            \\
+    DECL_REL_OP_T(op,long)                                                    \\
+    DECL_REL_OP_T(op,unsigned long)                                           \\
+    DECL_REL_OP_T(op,float)                                                  \\
+    DECL_REL_OP_T(op,double)                                                  \\
+    DECL_REL_OP_T(op,const char*)                                             \\
+    DECL_REL_OP_T(op,const sc_fxval_fast&)                                    \\
+    DECL_REL_OP_T(op,const sc_fxnum_fast&)                                    \\
+    DECL_REL_OP_OTHER(op)
+.fi
+
+.SS "#\fBdefine\fP DECL_REL_OP(\fBop\fP)"
+\fBValue:\fP.PP
+.nf
+    friend bool operator op ( const sc_fxval_fast&, const sc_fxval_fast& );   \\
+    DECL_REL_OP_T(op,int)                                                     \\
+    DECL_REL_OP_T(op,unsigned int)                                            \\
+    DECL_REL_OP_T(op,long)                                                    \\
+    DECL_REL_OP_T(op,unsigned long)                                           \\
+    DECL_REL_OP_T(op,float)                                                  \\
+    DECL_REL_OP_T(op,double)                                                  \\
+    DECL_REL_OP_T(op,const char*)                                             \\
+    DECL_REL_OP_OTHER(op)
+.fi
+
+.SS "#\fBdefine\fP DECL_REL_OP_OTHER(\fBop\fP)"
+\fBValue:\fP.PP
+.nf
+    DECL_REL_OP_T(op,int64)                                                   \\
+    DECL_REL_OP_T(op,uint64)                                                  \\
+    DECL_REL_OP_T(op,const sc_int_base&)                                      \\
+    DECL_REL_OP_T(op,const sc_uint_base&)                                     \\
+    DECL_REL_OP_T(op,const sc_signed&)                                        \\
+    DECL_REL_OP_T(op,const sc_unsigned&)
+.fi
+
+.SS "#\fBdefine\fP DECL_REL_OP_OTHER(\fBop\fP)"
+\fBValue:\fP.PP
+.nf
+    DECL_REL_OP_T(op,int64)                                                   \\
+    DECL_REL_OP_T(op,uint64)                                                  \\
+    DECL_REL_OP_T(op,const sc_int_base&)                                      \\
+    DECL_REL_OP_T(op,const sc_uint_base&)                                     \\
+    DECL_REL_OP_T(op,const sc_signed&)                                        \\
+    DECL_REL_OP_T(op,const sc_unsigned&)
+.fi
+
+.SS "#\fBdefine\fP DECL_REL_OP_T(\fBop\fP, \fBtp\fP)"
+\fBValue:\fP.PP
+.nf
+    friend bool operator op ( const sc_fxval&, tp );                          \\
+    friend bool operator op ( tp, const sc_fxval& );
+.fi
+
+.SS "#\fBdefine\fP DECL_REL_OP_T(\fBop\fP, \fBtp\fP)"
+\fBValue:\fP.PP
+.nf
+    friend bool operator op ( const sc_fxval_fast&, tp );                     \\
+    friend bool operator op ( tp, const sc_fxval_fast& );
+.fi
+
+.SS "#\fBdefine\fP DEFN_ASN_OP(\fBop\fP)"
+\fBValue:\fP.PP
+.nf
+inline                                                                        \\
+sc_fxval_fast&                                                                \\
+sc_fxval_fast::operator op ( const sc_fxval_fast& b )                         \\
+{                                                                             \\
+    SC_FXVAL_FAST_OBSERVER_READ_( *this )                                     \\
+    SC_FXVAL_FAST_OBSERVER_READ_( b )                                         \\
+    m_val op b\&.m_val;                                                         \\
+    SC_FXVAL_FAST_OBSERVER_WRITE_( *this )                                    \\
+    return *this;                                                             \\
+}                                                                             \\
+                                                                              \\
+DEFN_ASN_OP_T(op,int)                                                         \\
+DEFN_ASN_OP_T(op,unsigned int)                                                \\
+DEFN_ASN_OP_T(op,long)                                                        \\
+DEFN_ASN_OP_T(op,unsigned long)                                               \\
+DEFN_ASN_OP_T(op,float)                                                      \\
+DEFN_ASN_OP_T(op,double)                                                      \\
+DEFN_ASN_OP_T(op,const char*)                                                 \\
+DEFN_ASN_OP_T(op,const sc_fxval&)                                             \\
+DEFN_ASN_OP_OTHER(op)
+.fi
+
+.SS "#\fBdefine\fP DEFN_ASN_OP(\fBop\fP, \fBfnc\fP)"
+\fBValue:\fP.PP
+.nf
+inline                                                                        \\
+sc_fxval&                                                                     \\
+sc_fxval::operator op ( const sc_fxval& b )                                   \\
+{                                                                             \\
+    SC_FXVAL_OBSERVER_READ_( *this )                                          \\
+    SC_FXVAL_OBSERVER_READ_( b )                                              \\
+    scfx_rep* new_rep = sc_dt::fnc ## _scfx_rep( *m_rep, *b\&.m_rep );         \\
+    delete m_rep;                                                             \\
+    m_rep = new_rep;                                                          \\
+    SC_FXVAL_OBSERVER_WRITE_( *this )                                         \\
+    return *this;                                                             \\
+}                                                                             \\
+                                                                              \\
+DEFN_ASN_OP_T(op,fnc,int)                                                     \\
+DEFN_ASN_OP_T(op,fnc,unsigned int)                                            \\
+DEFN_ASN_OP_T(op,fnc,long)                                                    \\
+DEFN_ASN_OP_T(op,fnc,unsigned long)                                           \\
+DEFN_ASN_OP_T(op,fnc,float)                                                  \\
+DEFN_ASN_OP_T(op,fnc,double)                                                  \\
+DEFN_ASN_OP_T(op,fnc,const char*)                                             \\
+DEFN_ASN_OP_T(op,fnc,const sc_fxval_fast&)                                    \\
+DEFN_ASN_OP_OTHER(op,fnc)
+.fi
+
+.SS "#\fBdefine\fP DEFN_ASN_OP_OTHER(\fBop\fP)"
+\fBValue:\fP.PP
+.nf
+DEFN_ASN_OP_T(op,int64)                                                       \\
+DEFN_ASN_OP_T(op,uint64)                                                      \\
+DEFN_ASN_OP_T(op,const sc_int_base&)                                          \\
+DEFN_ASN_OP_T(op,const sc_uint_base&)                                         \\
+DEFN_ASN_OP_T(op,const sc_signed&)                                            \\
+DEFN_ASN_OP_T(op,const sc_unsigned&)
+.fi
+
+.SS "#\fBdefine\fP DEFN_ASN_OP_OTHER(\fBop\fP, \fBfnc\fP)"
+\fBValue:\fP.PP
+.nf
+DEFN_ASN_OP_T(op,fnc,int64)                                                   \\
+DEFN_ASN_OP_T(op,fnc,uint64)                                                  \\
+DEFN_ASN_OP_T(op,fnc,const sc_int_base&)                                      \\
+DEFN_ASN_OP_T(op,fnc,const sc_uint_base&)                                     \\
+DEFN_ASN_OP_T(op,fnc,const sc_signed&)                                        \\
+DEFN_ASN_OP_T(op,fnc,const sc_unsigned&)
+.fi
+
+.SS "#\fBdefine\fP DEFN_ASN_OP_T(\fBop\fP, \fBfnc\fP, \fBtp\fP)"
+\fBValue:\fP.PP
+.nf
+inline                                                                        \\
+sc_fxval&                                                                     \\
+sc_fxval::operator op ( tp b )                                                \\
+{                                                                             \\
+    SC_FXVAL_OBSERVER_READ_( *this )                                          \\
+    sc_fxval tmp( b );                                                        \\
+    scfx_rep* new_rep = sc_dt::fnc ## _scfx_rep( *m_rep, *tmp\&.m_rep );       \\
+    delete m_rep;                                                             \\
+    m_rep = new_rep;                                                          \\
+    SC_FXVAL_OBSERVER_WRITE_( *this )                                         \\
+    return *this;                                                             \\
+}
+.fi
+
+.SS "#\fBdefine\fP DEFN_ASN_OP_T(\fBop\fP, \fBtp\fP)"
+\fBValue:\fP.PP
+.nf
+inline                                                                        \\
+sc_fxval_fast&                                                                \\
+sc_fxval_fast::operator op ( tp b )                                           \\
+{                                                                             \\
+    SC_FXVAL_FAST_OBSERVER_READ_( *this )                                     \\
+    sc_fxval_fast tmp( b );                                                   \\
+    m_val op tmp\&.m_val;                                                       \\
+    SC_FXVAL_FAST_OBSERVER_WRITE_( *this )                                    \\
+    return *this;                                                             \\
+}
+.fi
+
+.SS "#\fBdefine\fP DEFN_ASN_OP_T(\fBtp\fP)"
+\fBValue:\fP.PP
+.nf
+inline                                                                        \\
+sc_fxval&                                                                     \\
+sc_fxval::operator = ( tp b )                                                 \\
+{                                                                             \\
+    sc_fxval tmp( b );                                                        \\
+    *m_rep = *tmp\&.m_rep;                                                      \\
+    SC_FXVAL_OBSERVER_WRITE_( *this )                                         \\
+    return *this;                                                             \\
+}
+.fi
+
+.SS "#\fBdefine\fP DEFN_ASN_OP_T(\fBtp\fP)"
+\fBValue:\fP.PP
+.nf
+inline                                                                        \\
+sc_fxval_fast&                                                                \\
+sc_fxval_fast::operator = ( tp a )                                            \\
+{                                                                             \\
+    sc_fxval_fast tmp( a );                                                   \\
+    m_val = tmp\&.m_val;                                                        \\
+    SC_FXVAL_FAST_OBSERVER_WRITE_( *this )                                    \\
+    return *this;                                                             \\
+}
+.fi
+
+.SS "#\fBdefine\fP DEFN_BIN_FNC(\fBfnc\fP)"
+\fBValue:\fP.PP
+.nf
+inline                                                                        \\
+void                                                                          \\
+fnc( sc_fxval& c, const sc_fxval& a, const sc_fxval& b )                      \\
+{                                                                             \\
+    SC_FXVAL_OBSERVER_READ_( a )                                              \\
+    SC_FXVAL_OBSERVER_READ_( b )                                              \\
+    delete c\&.m_rep;                                                           \\
+    c\&.m_rep = sc_dt::fnc ## _scfx_rep( *a\&.m_rep, *b\&.m_rep );                 \\
+    SC_FXVAL_OBSERVER_WRITE_( c )                                             \\
+}                                                                             \\
+                                                                              \\
+DEFN_BIN_FNC_T(fnc,int)                                                       \\
+DEFN_BIN_FNC_T(fnc,unsigned int)                                              \\
+DEFN_BIN_FNC_T(fnc,long)                                                      \\
+DEFN_BIN_FNC_T(fnc,unsigned long)                                             \\
+DEFN_BIN_FNC_T(fnc,float)                                                    \\
+DEFN_BIN_FNC_T(fnc,double)                                                    \\
+DEFN_BIN_FNC_T(fnc,const char*)                                               \\
+DEFN_BIN_FNC_T(fnc,const sc_fxval_fast&)                                      \\
+DEFN_BIN_FNC_OTHER(fnc)
+.fi
+
+.SS "#\fBdefine\fP DEFN_BIN_FNC(\fBfnc\fP, \fBop\fP)"
+\fBValue:\fP.PP
+.nf
+inline                                                                        \\
+void                                                                          \\
+fnc ( sc_fxval_fast& c, const sc_fxval_fast& a, const sc_fxval_fast& b )      \\
+{                                                                             \\
+    SC_FXVAL_FAST_OBSERVER_READ_( a )                                         \\
+    SC_FXVAL_FAST_OBSERVER_READ_( b )                                         \\
+    c\&.m_val = a\&.m_val op b\&.m_val;                                             \\
+    SC_FXVAL_FAST_OBSERVER_WRITE_( c )                                        \\
+}                                                                             \\
+                                                                              \\
+DEFN_BIN_FNC_T(fnc,op,int)                                                    \\
+DEFN_BIN_FNC_T(fnc,op,unsigned int)                                           \\
+DEFN_BIN_FNC_T(fnc,op,long)                                                   \\
+DEFN_BIN_FNC_T(fnc,op,unsigned long)                                          \\
+DEFN_BIN_FNC_T(fnc,op,float)                                                 \\
+DEFN_BIN_FNC_T(fnc,op,double)                                                 \\
+DEFN_BIN_FNC_T(fnc,op,const char*)                                            \\
+DEFN_BIN_FNC_OTHER(fnc,op)
+.fi
+
+.SS "#\fBdefine\fP DEFN_BIN_FNC_OTHER(\fBfnc\fP)"
+\fBValue:\fP.PP
+.nf
+DEFN_BIN_FNC_T(fnc,int64)                                                     \\
+DEFN_BIN_FNC_T(fnc,uint64)                                                    \\
+DEFN_BIN_FNC_T(fnc,const sc_int_base&)                                        \\
+DEFN_BIN_FNC_T(fnc,const sc_uint_base&)                                       \\
+DEFN_BIN_FNC_T(fnc,const sc_signed&)                                          \\
+DEFN_BIN_FNC_T(fnc,const sc_unsigned&)
+.fi
+
+.SS "#\fBdefine\fP DEFN_BIN_FNC_OTHER(\fBfnc\fP, \fBop\fP)"
+\fBValue:\fP.PP
+.nf
+DEFN_BIN_FNC_T(fnc,op,int64)                                                  \\
+DEFN_BIN_FNC_T(fnc,op,uint64)                                                 \\
+DEFN_BIN_FNC_T(fnc,op,const sc_int_base&)                                     \\
+DEFN_BIN_FNC_T(fnc,op,const sc_uint_base&)                                    \\
+DEFN_BIN_FNC_T(fnc,op,const sc_signed&)                                       \\
+DEFN_BIN_FNC_T(fnc,op,const sc_unsigned&)
+.fi
+
+.SS "#\fBdefine\fP DEFN_BIN_FNC_T(\fBfnc\fP, \fBop\fP, \fBtp\fP)"
+\fBValue:\fP.PP
+.nf
+inline                                                                        \\
+void                                                                          \\
+fnc ( sc_fxval_fast& c, const sc_fxval_fast& a, tp b )                        \\
+{                                                                             \\
+    SC_FXVAL_FAST_OBSERVER_READ_( a )                                         \\
+    sc_fxval_fast tmp( b );                                                   \\
+    c\&.m_val = a\&.m_val op tmp\&.m_val;                                           \\
+    SC_FXVAL_FAST_OBSERVER_WRITE_( c )                                        \\
+}                                                                             \\
+                                                                              \\
+inline                                                                        \\
+void                                                                          \\
+fnc ( sc_fxval_fast& c, tp a, const sc_fxval_fast& b )                        \\
+{                                                                             \\
+    SC_FXVAL_FAST_OBSERVER_READ_( b )                                         \\
+    sc_fxval_fast tmp( a );                                                   \\
+    c\&.m_val = tmp\&.m_val op b\&.m_val;                                           \\
+    SC_FXVAL_FAST_OBSERVER_WRITE_( c )                                        \\
+}
+.fi
+
+.SS "#\fBdefine\fP DEFN_BIN_FNC_T(\fBfnc\fP, \fBtp\fP)"
+\fBValue:\fP.PP
+.nf
+inline                                                                        \\
+void                                                                          \\
+fnc ( sc_fxval& c, const sc_fxval& a, tp b )                                  \\
+{                                                                             \\
+    SC_FXVAL_OBSERVER_READ_( a )                                              \\
+    sc_fxval tmp( b );                                                        \\
+    delete c\&.m_rep;                                                           \\
+    c\&.m_rep = sc_dt::fnc ## _scfx_rep( *a\&.m_rep, *tmp\&.m_rep );               \\
+    SC_FXVAL_OBSERVER_WRITE_( c )                                             \\
+}                                                                             \\
+                                                                              \\
+inline                                                                        \\
+void                                                                          \\
+fnc ( sc_fxval& c, tp a, const sc_fxval& b )                                  \\
+{                                                                             \\
+    SC_FXVAL_OBSERVER_READ_( b )                                              \\
+    sc_fxval tmp( a );                                                        \\
+    delete c\&.m_rep;                                                           \\
+    c\&.m_rep = sc_dt::fnc ## _scfx_rep( *tmp\&.m_rep, *b\&.m_rep );               \\
+    SC_FXVAL_OBSERVER_WRITE_( c )                                             \\
+}
+.fi
+
+.SS "#\fBdefine\fP DEFN_BIN_OP(\fBop\fP, dummy)"
+\fBValue:\fP.PP
+.nf
+inline                                                                        \\
+const sc_fxval_fast                                                           \\
+operator op ( const sc_fxval_fast& a, const sc_fxval_fast& b )                \\
+{                                                                             \\
+    SC_FXVAL_FAST_OBSERVER_READ_( a )                                         \\
+    SC_FXVAL_FAST_OBSERVER_READ_( b )                                         \\
+    return sc_fxval_fast( a\&.m_val op b\&.m_val );                               \\
+}                                                                             \\
+                                                                              \\
+DEFN_BIN_OP_T(op,int)                                                         \\
+DEFN_BIN_OP_T(op,unsigned int)                                                \\
+DEFN_BIN_OP_T(op,long)                                                        \\
+DEFN_BIN_OP_T(op,unsigned long)                                               \\
+DEFN_BIN_OP_T(op,float)                                                      \\
+DEFN_BIN_OP_T(op,double)                                                      \\
+DEFN_BIN_OP_T(op,const char*)                                                 \\
+DEFN_BIN_OP_OTHER(op)
+.fi
+
+.SS "#\fBdefine\fP DEFN_BIN_OP(\fBop\fP, \fBfnc\fP)"
+\fBValue:\fP.PP
+.nf
+inline                                                                        \\
+const sc_fxval                                                                \\
+operator op ( const sc_fxval& a, const sc_fxval& b )                          \\
+{                                                                             \\
+    SC_FXVAL_OBSERVER_READ_( a )                                              \\
+    SC_FXVAL_OBSERVER_READ_( b )                                              \\
+    return sc_fxval( sc_dt::fnc ## _scfx_rep( *a\&.m_rep, *b\&.m_rep ) );        \\
+}                                                                             \\
+                                                                              \\
+DEFN_BIN_OP_T(op,fnc,int)                                                     \\
+DEFN_BIN_OP_T(op,fnc,unsigned int)                                            \\
+DEFN_BIN_OP_T(op,fnc,long)                                                    \\
+DEFN_BIN_OP_T(op,fnc,unsigned long)                                           \\
+DEFN_BIN_OP_T(op,fnc,float)                                                  \\
+DEFN_BIN_OP_T(op,fnc,double)                                                  \\
+DEFN_BIN_OP_T(op,fnc,const char*)                                             \\
+DEFN_BIN_OP_T(op,fnc,const sc_fxval_fast&)                                    \\
+DEFN_BIN_OP_OTHER(op,fnc)
+.fi
+
+.SS "#\fBdefine\fP DEFN_BIN_OP_OTHER(\fBop\fP)"
+\fBValue:\fP.PP
+.nf
+DEFN_BIN_OP_T(op,int64)                                                       \\
+DEFN_BIN_OP_T(op,uint64)                                                      \\
+DEFN_BIN_OP_T(op,const sc_int_base&)                                          \\
+DEFN_BIN_OP_T(op,const sc_uint_base&)                                         \\
+DEFN_BIN_OP_T(op,const sc_signed&)                                            \\
+DEFN_BIN_OP_T(op,const sc_unsigned&)
+.fi
+
+.SS "#\fBdefine\fP DEFN_BIN_OP_OTHER(\fBop\fP, \fBfnc\fP)"
+\fBValue:\fP.PP
+.nf
+DEFN_BIN_OP_T(op,fnc,int64)                                                   \\
+DEFN_BIN_OP_T(op,fnc,uint64)                                                  \\
+DEFN_BIN_OP_T(op,fnc,const sc_int_base&)                                      \\
+DEFN_BIN_OP_T(op,fnc,const sc_uint_base&)                                     \\
+DEFN_BIN_OP_T(op,fnc,const sc_signed&)                                        \\
+DEFN_BIN_OP_T(op,fnc,const sc_unsigned&)
+.fi
+
+.SS "#\fBdefine\fP DEFN_BIN_OP_T(\fBop\fP, \fBfnc\fP, \fBtp\fP)"
+\fBValue:\fP.PP
+.nf
+inline                                                                        \\
+const sc_fxval                                                                \\
+operator op ( const sc_fxval& a, tp b )                                       \\
+{                                                                             \\
+    SC_FXVAL_OBSERVER_READ_( a )                                              \\
+    sc_fxval tmp( b );                                                        \\
+    return sc_fxval( sc_dt::fnc ## _scfx_rep( *a\&.m_rep, *tmp\&.m_rep ) );      \\
+}                                                                             \\
+                                                                              \\
+inline                                                                        \\
+const sc_fxval                                                                \\
+operator op ( tp a, const sc_fxval& b )                                       \\
+{                                                                             \\
+    SC_FXVAL_OBSERVER_READ_( b )                                              \\
+    sc_fxval tmp( a );                                                        \\
+    return sc_fxval( sc_dt::fnc ## _scfx_rep( *tmp\&.m_rep, *b\&.m_rep ) );      \\
+}
+.fi
+
+.SS "#\fBdefine\fP DEFN_BIN_OP_T(\fBop\fP, \fBtp\fP)"
+\fBValue:\fP.PP
+.nf
+inline                                                                        \\
+const sc_fxval_fast                                                           \\
+operator op ( const sc_fxval_fast& a, tp b )                                  \\
+{                                                                             \\
+    SC_FXVAL_FAST_OBSERVER_READ_( a )                                         \\
+    sc_fxval_fast tmp( b );                                                   \\
+    return sc_fxval_fast( a\&.m_val op tmp\&.m_val );                             \\
+}                                                                             \\
+                                                                              \\
+inline                                                                        \\
+const sc_fxval_fast                                                           \\
+operator op ( tp a, const sc_fxval_fast& b )                                  \\
+{                                                                             \\
+    SC_FXVAL_FAST_OBSERVER_READ_( b )                                         \\
+    sc_fxval_fast tmp( a );                                                   \\
+    return sc_fxval_fast( tmp\&.m_val op b\&.m_val );                             \\
+}
+.fi
+
+.SS "#\fBdefine\fP DEFN_CTOR_T(\fBtp\fP, arg)"
+\fBValue:\fP.PP
+.nf
+inline                                                                        \\
+sc_fxval::sc_fxval( tp a,                                                     \\
+                    sc_fxval_observer* observer_ )                            \\
+: m_rep( new scfx_rep( arg ) ),                                               \\
+  m_observer( observer_ )                                                     \\
+{                                                                             \\
+    SC_FXVAL_OBSERVER_DEFAULT_                                                \\
+    SC_FXVAL_OBSERVER_CONSTRUCT_( *this )                                     \\
+    SC_FXVAL_OBSERVER_WRITE_( *this )                                         \\
+}
+.fi
+
+.SS "#\fBdefine\fP DEFN_CTOR_T(\fBtp\fP, arg)"
+\fBValue:\fP.PP
+.nf
+inline                                                                        \\
+sc_fxval_fast::sc_fxval_fast( tp a,                                           \\
+                              sc_fxval_fast_observer* observer_ )             \\
+: m_val( arg ),                                                               \\
+  m_observer( observer_ )                                                     \\
+{                                                                             \\
+    SC_FXVAL_FAST_OBSERVER_DEFAULT_                                           \\
+    SC_FXVAL_FAST_OBSERVER_CONSTRUCT_( *this )                                \\
+    SC_FXVAL_FAST_OBSERVER_WRITE_( *this )                                    \\
+}
+.fi
+
+.SS "#\fBdefine\fP DEFN_CTOR_T_A(\fBtp\fP)   \fBDEFN_CTOR_T\fP(\fBtp\fP,\fBa\fP)"
+
+.SS "#\fBdefine\fP DEFN_CTOR_T_A(\fBtp\fP)   \fBDEFN_CTOR_T\fP(\fBtp\fP,\fBstatic_cast\fP<\fBdouble\fP>( \fBa\fP ))"
+
+.SS "#\fBdefine\fP DEFN_CTOR_T_B(\fBtp\fP)   \fBDEFN_CTOR_T\fP(\fBtp\fP,a\&.to_double())"
+
+.SS "#\fBdefine\fP DEFN_CTOR_T_B(\fBtp\fP)   \fBDEFN_CTOR_T\fP(\fBtp\fP,from_string( \fBa\fP ))"
+
+.SS "#\fBdefine\fP DEFN_CTOR_T_C(\fBtp\fP)   \fBDEFN_CTOR_T\fP(\fBtp\fP,\fBa\&.value\fP())"
+
+.SS "#\fBdefine\fP DEFN_CTOR_T_C(\fBtp\fP)   \fBDEFN_CTOR_T\fP(\fBtp\fP,a\&.to_double())"
+
+.SS "#\fBdefine\fP DEFN_REL_OP(\fBop\fP)"
+\fBValue:\fP.PP
+.nf
+inline                                                                        \\
+bool                                                                          \\
+operator op ( const sc_fxval_fast& a, const sc_fxval_fast& b )                \\
+{                                                                             \\
+    SC_FXVAL_FAST_OBSERVER_READ_( a )                                         \\
+    SC_FXVAL_FAST_OBSERVER_READ_( b )                                         \\
+    return ( a\&.m_val op b\&.m_val );                                            \\
+}                                                                             \\
+                                                                              \\
+DEFN_REL_OP_T(op,int)                                                         \\
+DEFN_REL_OP_T(op,unsigned int)                                                \\
+DEFN_REL_OP_T(op,long)                                                        \\
+DEFN_REL_OP_T(op,unsigned long)                                               \\
+DEFN_REL_OP_T(op,float)                                                      \\
+DEFN_REL_OP_T(op,double)                                                      \\
+DEFN_REL_OP_T(op,const char*)                                                 \\
+DEFN_REL_OP_OTHER(op)
+.fi
+
+.SS "#\fBdefine\fP DEFN_REL_OP(\fBop\fP, \fBret\fP)"
+\fBValue:\fP.PP
+.nf
+inline                                                                        \\
+bool                                                                          \\
+operator op ( const sc_fxval& a, const sc_fxval& b)                           \\
+{                                                                             \\
+    SC_FXVAL_OBSERVER_READ_( a )                                              \\
+    SC_FXVAL_OBSERVER_READ_( b )                                              \\
+    int result = sc_dt::cmp_scfx_rep( *a\&.m_rep, *b\&.m_rep );                  \\
+    return ( ret );                                                           \\
+}                                                                             \\
+                                                                              \\
+DEFN_REL_OP_T(op,ret,int)                                                     \\
+DEFN_REL_OP_T(op,ret,unsigned int)                                            \\
+DEFN_REL_OP_T(op,ret,long)                                                    \\
+DEFN_REL_OP_T(op,ret,unsigned long)                                           \\
+DEFN_REL_OP_T(op,ret,float)                                                  \\
+DEFN_REL_OP_T(op,ret,double)                                                  \\
+DEFN_REL_OP_T(op,ret,const char*)                                             \\
+DEFN_REL_OP_T(op,ret,const sc_fxval_fast&)                                    \\
+DEFN_REL_OP_OTHER(op,ret)
+.fi
+
+.SS "#\fBdefine\fP DEFN_REL_OP_OTHER(\fBop\fP)"
+\fBValue:\fP.PP
+.nf
+DEFN_REL_OP_T(op,int64)                                                       \\
+DEFN_REL_OP_T(op,uint64)                                                      \\
+DEFN_REL_OP_T(op,const sc_int_base&)                                          \\
+DEFN_REL_OP_T(op,const sc_uint_base&)                                         \\
+DEFN_REL_OP_T(op,const sc_signed&)                                            \\
+DEFN_REL_OP_T(op,const sc_unsigned&)
+.fi
+
+.SS "#\fBdefine\fP DEFN_REL_OP_OTHER(\fBop\fP, \fBret\fP)"
+\fBValue:\fP.PP
+.nf
+DEFN_REL_OP_T(op,ret,int64)                                                   \\
+DEFN_REL_OP_T(op,ret,uint64)                                                  \\
+DEFN_REL_OP_T(op,ret,const sc_int_base&)                                      \\
+DEFN_REL_OP_T(op,ret,const sc_uint_base&)                                     \\
+DEFN_REL_OP_T(op,ret,const sc_signed&)                                        \\
+DEFN_REL_OP_T(op,ret,const sc_unsigned&)
+.fi
+
+.SS "#\fBdefine\fP DEFN_REL_OP_T(\fBop\fP, \fBret\fP, \fBtp\fP)"
+\fBValue:\fP.PP
+.nf
+inline                                                                        \\
+bool                                                                          \\
+operator op ( const sc_fxval& a, tp b )                                       \\
+{                                                                             \\
+    SC_FXVAL_OBSERVER_READ_( a )                                              \\
+    sc_fxval tmp( b );                                                        \\
+    int result = sc_dt::cmp_scfx_rep( *a\&.m_rep, *tmp\&.m_rep );                \\
+    return ( ret );                                                           \\
+}                                                                             \\
+                                                                              \\
+inline                                                                        \\
+bool                                                                          \\
+operator op ( tp a, const sc_fxval& b )                                       \\
+{                                                                             \\
+    SC_FXVAL_OBSERVER_READ_( b )                                              \\
+    sc_fxval tmp( a );                                                        \\
+    int result = sc_dt::cmp_scfx_rep( *tmp\&.m_rep, *b\&.m_rep );                \\
+    return ( ret );                                                           \\
+}
+.fi
+
+.SS "#\fBdefine\fP DEFN_REL_OP_T(\fBop\fP, \fBtp\fP)"
+\fBValue:\fP.PP
+.nf
+inline                                                                        \\
+bool                                                                          \\
+operator op ( const sc_fxval_fast& a, tp b )                                  \\
+{                                                                             \\
+    SC_FXVAL_FAST_OBSERVER_READ_( a )                                         \\
+    sc_fxval_fast tmp( b );                                                   \\
+    return ( a\&.m_val op tmp\&.m_val );                                          \\
+}                                                                             \\
+                                                                              \\
+inline                                                                        \\
+bool                                                                          \\
+operator op ( tp a, const sc_fxval_fast& b )                                  \\
+{                                                                             \\
+    SC_FXVAL_FAST_OBSERVER_READ_( b )                                         \\
+    sc_fxval_fast tmp( a );                                                   \\
+    return ( tmp\&.m_val op b\&.m_val );                                          \\
+}
+.fi
+
+.SS "#\fBdefine\fP SCFX_EXPLICIT_   \fBexplicit\fP"
+
+.SS "#\fBdefine\fP SCFX_EXPLICIT_OTHER_   \fBexplicit\fP"
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for VHDL simulator from the source code\&.

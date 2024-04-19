@@ -1,0 +1,798 @@
+.TH "sc_core::sc_process_b" 3 "VHDL simulator" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+sc_core::sc_process_b
+.SH SYNOPSIS
+.br
+.PP
+.PP
+\fR#include <sc_process\&.h>\fP
+.PP
+Inherits \fBsc_core::sc_object\fP\&.
+.PP
+Inherited by \fBsc_core::sc_method_process\fP, and \fBsc_core::sc_thread_process\fP\&.
+.SS "Public Types"
+
+.in +1c
+.ti -1c
+.RI "enum \fBprocess_throw_type\fP { \fBTHROW_NONE\fP = 0, \fBTHROW_KILL\fP, \fBTHROW_USER\fP, \fBTHROW_ASYNC_RESET\fP, \fBTHROW_SYNC_RESET\fP }"
+.br
+.ti -1c
+.RI "enum \fBprocess_state\fP { \fBps_bit_disabled\fP = 1, \fBps_bit_ready_to_run\fP = 2, \fBps_bit_suspended\fP = 4, \fBps_bit_zombie\fP = 8, \fBps_normal\fP = 0 }"
+.br
+.ti -1c
+.RI "enum \fBreset_type\fP { \fBreset_asynchronous\fP = 0, \fBreset_synchronous_off\fP, \fBreset_synchronous_on\fP }"
+.br
+.ti -1c
+.RI "enum \fBtrigger_t\fP { \fBSTATIC\fP, \fBEVENT\fP, \fBOR_LIST\fP, \fBAND_LIST\fP, \fBTIMEOUT\fP, \fBEVENT_TIMEOUT\fP, \fBOR_LIST_TIMEOUT\fP, \fBAND_LIST_TIMEOUT\fP }"
+.br
+.in -1c
+
+Public Types inherited from \fBsc_core::sc_object\fP
+.in +1c
+.ti -1c
+.RI "\fBtypedef\fP \fBunsigned\fP \fBphase_cb_mask\fP"
+.br
+.in -1c
+.SS "Public Member Functions"
+
+.in +1c
+.ti -1c
+.RI "\fBsc_process_b\fP (\fBconst\fP \fBchar\fP *\fBname_p\fP, \fBbool\fP \fBis_thread\fP, \fBbool\fP \fBfree_host\fP, \fBSC_ENTRY_FUNC\fP \fBmethod_p\fP, \fBsc_process_host\fP *\fBhost_p\fP, \fBconst\fP \fBsc_spawn_options\fP *\fBopt_p\fP)"
+.br
+.ti -1c
+.RI "int \fBcurrent_state\fP ()"
+.br
+.ti -1c
+.RI "\fBbool\fP \fBdont_initialize\fP () \fBconst\fP"
+.br
+.ti -1c
+.RI "\fBvirtual\fP \fBvoid\fP \fBdont_initialize\fP (\fBbool\fP \fBdont\fP)"
+.br
+.ti -1c
+.RI "std::string \fBdump_state\fP () \fBconst\fP"
+.br
+.ti -1c
+.RI "\fBconst\fP ::std::vector< \fBsc_object\fP * > & \fBget_child_objects\fP () \fBconst\fP"
+.br
+.ti -1c
+.RI "\fBsc_curr_proc_kind\fP \fBproc_kind\fP () \fBconst\fP"
+.br
+.ti -1c
+.RI "\fBsc_event\fP & \fBreset_event\fP ()"
+.br
+.ti -1c
+.RI "\fBsc_event\fP & \fBterminated_event\fP ()"
+.br
+.in -1c
+
+Public Member Functions inherited from \fBsc_core::sc_object\fP
+.in +1c
+.ti -1c
+.RI "\fBconst\fP \fBchar\fP * \fBname\fP () \fBconst\fP"
+.br
+.ti -1c
+.RI "\fBconst\fP \fBchar\fP * \fBbasename\fP () \fBconst\fP"
+.br
+.ti -1c
+.RI "\fBvirtual\fP \fBvoid\fP \fBprint\fP (::std::ostream &\fBos\fP=::std::cout) \fBconst\fP"
+.br
+.ti -1c
+.RI "\fBvirtual\fP \fBvoid\fP \fBdump\fP (::std::ostream &\fBos\fP=::std::cout) \fBconst\fP"
+.br
+.ti -1c
+.RI "\fBvirtual\fP \fBvoid\fP \fBtrace\fP (\fBsc_trace_file\fP *tf) \fBconst\fP"
+.br
+.ti -1c
+.RI "\fBvirtual\fP \fBconst\fP \fBchar\fP * \fBkind\fP () \fBconst\fP"
+.br
+.ti -1c
+.RI "\fBsc_simcontext\fP * \fBsimcontext\fP () \fBconst\fP"
+.br
+.ti -1c
+.RI "\fBbool\fP \fBadd_attribute\fP (\fBsc_attr_base\fP &)"
+.br
+.ti -1c
+.RI "\fBsc_attr_base\fP * \fBget_attribute\fP (\fBconst\fP std::string &\fBname_\fP)"
+.br
+.ti -1c
+.RI "\fBconst\fP \fBsc_attr_base\fP * \fBget_attribute\fP (\fBconst\fP std::string &\fBname_\fP) \fBconst\fP"
+.br
+.ti -1c
+.RI "\fBsc_attr_base\fP * \fBremove_attribute\fP (\fBconst\fP std::string &\fBname_\fP)"
+.br
+.ti -1c
+.RI "\fBvoid\fP \fBremove_all_attributes\fP ()"
+.br
+.ti -1c
+.RI "int \fBnum_attributes\fP () \fBconst\fP"
+.br
+.ti -1c
+.RI "\fBsc_attr_cltn\fP & \fBattr_cltn\fP ()"
+.br
+.ti -1c
+.RI "\fBconst\fP \fBsc_attr_cltn\fP & \fBattr_cltn\fP () \fBconst\fP"
+.br
+.ti -1c
+.RI "\fBvirtual\fP \fBconst\fP std::vector< \fBsc_event\fP * > & \fBget_child_events\fP () \fBconst\fP"
+.br
+.ti -1c
+.RI "\fBsc_object\fP * \fBget_parent\fP () \fBconst\fP"
+.br
+.ti -1c
+.RI "\fBsc_object\fP * \fBget_parent_object\fP () \fBconst\fP"
+.br
+.in -1c
+.SS "Static Public Member Functions"
+
+.in +1c
+.ti -1c
+.RI "\fBstatic\fP \fBsc_process_handle\fP \fBlast_created_process_handle\fP ()"
+.br
+.in -1c
+.SS "Public Attributes"
+
+.in +1c
+.ti -1c
+.RI "\fBconst\fP \fBchar\fP * \fBfile\fP"
+.br
+.ti -1c
+.RI "int \fBlineno\fP"
+.br
+.ti -1c
+.RI "int \fBproc_id\fP"
+.br
+.in -1c
+.SS "Protected Types"
+
+.in +1c
+.ti -1c
+.RI "enum \fBspawn_t\fP { \fBSPAWN_ELAB\fP = 0x0, \fBSPAWN_START\fP = 0x1, \fBSPAWN_SIM\fP = 0x2 }"
+.br
+.in -1c
+.SS "Protected Member Functions"
+
+.in +1c
+.ti -1c
+.RI "\fBvirtual\fP \fB~sc_process_b\fP ()"
+.br
+.ti -1c
+.RI "\fBvirtual\fP \fBvoid\fP \fBadd_child_object\fP (\fBsc_object\fP *)"
+.br
+.ti -1c
+.RI "\fBvoid\fP \fBadd_static_event\fP (\fBconst\fP \fBsc_event\fP &)"
+.br
+.ti -1c
+.RI "\fBbool\fP \fBdynamic\fP () \fBconst\fP"
+.br
+.ti -1c
+.RI "\fBconst\fP \fBchar\fP * \fBgen_unique_name\fP (\fBconst\fP \fBchar\fP *\fBbasename_\fP, \fBbool\fP \fBpreserve_first\fP)"
+.br
+.ti -1c
+.RI "\fBsc_report\fP * \fBget_last_report\fP ()"
+.br
+.ti -1c
+.RI "\fBbool\fP \fBis_disabled\fP () \fBconst\fP"
+.br
+.ti -1c
+.RI "\fBbool\fP \fBis_runnable\fP () \fBconst\fP"
+.br
+.ti -1c
+.RI "\fBvirtual\fP \fBbool\fP \fBremove_child_object\fP (\fBsc_object\fP *)"
+.br
+.ti -1c
+.RI "\fBvoid\fP \fBremove_dynamic_events\fP (\fBbool\fP \fBskip_timeout\fP=\fBfalse\fP)"
+.br
+.ti -1c
+.RI "\fBvoid\fP \fBremove_static_events\fP ()"
+.br
+.ti -1c
+.RI "\fBvoid\fP \fBset_last_report\fP (\fBsc_report\fP *\fBlast_p\fP)"
+.br
+.ti -1c
+.RI "\fBbool\fP \fBtimed_out\fP () \fBconst\fP"
+.br
+.ti -1c
+.RI "\fBvoid\fP \fBreport_error\fP (\fBconst\fP \fBchar\fP *\fBmsgid\fP, \fBconst\fP \fBchar\fP *msg='') \fBconst\fP"
+.br
+.ti -1c
+.RI "\fBvoid\fP \fBreport_immediate_self_notification\fP () \fBconst\fP"
+.br
+.ti -1c
+.RI "\fBvirtual\fP \fBvoid\fP \fBdisable_process\fP (\fBsc_descendant_inclusion_info\fP \fBdescendants\fP=\fBSC_NO_DESCENDANTS\fP)=0"
+.br
+.ti -1c
+.RI "\fBvoid\fP \fBdisconnect_process\fP ()"
+.br
+.ti -1c
+.RI "\fBvirtual\fP \fBvoid\fP \fBenable_process\fP (\fBsc_descendant_inclusion_info\fP \fBdescendants\fP=\fBSC_NO_DESCENDANTS\fP)=0"
+.br
+.ti -1c
+.RI "\fBvoid\fP \fBinitially_in_reset\fP (\fBbool\fP \fBasync\fP)"
+.br
+.ti -1c
+.RI "\fBbool\fP \fBis_unwinding\fP () \fBconst\fP"
+.br
+.ti -1c
+.RI "\fBbool\fP \fBstart_unwinding\fP ()"
+.br
+.ti -1c
+.RI "\fBbool\fP \fBclear_unwinding\fP ()"
+.br
+.ti -1c
+.RI "\fBvirtual\fP \fBvoid\fP \fBkill_process\fP (\fBsc_descendant_inclusion_info\fP \fBdescendants\fP=\fBSC_NO_DESCENDANTS\fP)=0"
+.br
+.ti -1c
+.RI "\fBvoid\fP \fBreset_changed\fP (\fBbool\fP \fBasync\fP, \fBbool\fP \fBasserted\fP)"
+.br
+.ti -1c
+.RI "\fBvoid\fP \fBreset_process\fP (\fBreset_type\fP \fBrt\fP, \fBsc_descendant_inclusion_info\fP \fBdescendants\fP=\fBSC_NO_DESCENDANTS\fP)"
+.br
+.ti -1c
+.RI "\fBvirtual\fP \fBvoid\fP \fBresume_process\fP (\fBsc_descendant_inclusion_info\fP \fBdescendants\fP=\fBSC_NO_DESCENDANTS\fP)=0"
+.br
+.ti -1c
+.RI "\fBvirtual\fP \fBvoid\fP \fBsuspend_process\fP (\fBsc_descendant_inclusion_info\fP \fBdescendants\fP=\fBSC_NO_DESCENDANTS\fP)=0"
+.br
+.ti -1c
+.RI "\fBvirtual\fP \fBvoid\fP \fBthrow_user\fP (\fBconst\fP \fBsc_throw_it_helper\fP &\fBhelper\fP, \fBsc_descendant_inclusion_info\fP \fBdescendants\fP=\fBSC_NO_DESCENDANTS\fP)=0"
+.br
+.ti -1c
+.RI "\fBvirtual\fP \fBvoid\fP \fBthrow_reset\fP (\fBbool\fP \fBasync\fP)=0"
+.br
+.ti -1c
+.RI "\fBvirtual\fP \fBbool\fP \fBterminated\fP () \fBconst\fP"
+.br
+.ti -1c
+.RI "\fBvoid\fP \fBtrigger_reset_event\fP ()"
+.br
+.ti -1c
+.RI "\fBvoid\fP \fBsemantics\fP ()"
+.br
+.in -1c
+
+Protected Member Functions inherited from \fBsc_core::sc_object\fP
+.in +1c
+.ti -1c
+.RI "\fBsc_object\fP ()"
+.br
+.ti -1c
+.RI "\fBsc_object\fP (\fBconst\fP \fBchar\fP *\fBnm\fP)"
+.br
+.ti -1c
+.RI "\fBsc_object\fP (\fBconst\fP \fBsc_object\fP &)"
+.br
+.ti -1c
+.RI "\fBsc_object\fP & \fBoperator=\fP (\fBconst\fP \fBsc_object\fP &)"
+.br
+.ti -1c
+.RI "\fBvirtual\fP \fB~sc_object\fP ()"
+.br
+.ti -1c
+.RI "\fBvirtual\fP \fBvoid\fP \fBadd_child_event\fP (\fBsc_event\fP *\fBevent_p\fP)"
+.br
+.ti -1c
+.RI "\fBvirtual\fP \fBbool\fP \fBremove_child_event\fP (\fBsc_event\fP *\fBevent_p\fP)"
+.br
+.ti -1c
+.RI "\fBphase_cb_mask\fP \fBregister_simulation_phase_callback\fP (\fBphase_cb_mask\fP)"
+.br
+.ti -1c
+.RI "\fBphase_cb_mask\fP \fBunregister_simulation_phase_callback\fP (\fBphase_cb_mask\fP)"
+.br
+.in -1c
+.SS "Static Protected Member Functions"
+
+.in +1c
+.ti -1c
+.RI "\fBstatic\fP \fBsc_process_b\fP * \fBlast_created_process_base\fP ()"
+.br
+.in -1c
+.SS "Protected Attributes"
+
+.in +1c
+.ti -1c
+.RI "int \fBm_active_areset_n\fP"
+.br
+.ti -1c
+.RI "int \fBm_active_reset_n\fP"
+.br
+.ti -1c
+.RI "\fBbool\fP \fBm_dont_init\fP"
+.br
+.ti -1c
+.RI "\fBspawn_t\fP \fBm_dynamic_proc\fP"
+.br
+.ti -1c
+.RI "\fBconst\fP \fBsc_event\fP * \fBm_event_p\fP"
+.br
+.ti -1c
+.RI "int \fBm_event_count\fP"
+.br
+.ti -1c
+.RI "\fBconst\fP \fBsc_event_list\fP * \fBm_event_list_p\fP"
+.br
+.ti -1c
+.RI "\fBsc_process_b\fP * \fBm_exist_p\fP"
+.br
+.ti -1c
+.RI "\fBbool\fP \fBm_free_host\fP"
+.br
+.ti -1c
+.RI "\fBbool\fP \fBm_has_reset_signal\fP"
+.br
+.ti -1c
+.RI "\fBbool\fP \fBm_has_stack\fP"
+.br
+.ti -1c
+.RI "\fBbool\fP \fBm_is_thread\fP"
+.br
+.ti -1c
+.RI "\fBsc_report\fP * \fBm_last_report_p\fP"
+.br
+.ti -1c
+.RI "\fBsc_name_gen\fP * \fBm_name_gen_p\fP"
+.br
+.ti -1c
+.RI "\fBsc_curr_proc_kind\fP \fBm_process_kind\fP"
+.br
+.ti -1c
+.RI "int \fBm_references_n\fP"
+.br
+.ti -1c
+.RI "std::vector< \fBsc_reset\fP * > \fBm_resets\fP"
+.br
+.ti -1c
+.RI "\fBsc_event\fP * \fBm_reset_event_p\fP"
+.br
+.ti -1c
+.RI "\fBsc_event\fP * \fBm_resume_event_p\fP"
+.br
+.ti -1c
+.RI "\fBsc_process_b\fP * \fBm_runnable_p\fP"
+.br
+.ti -1c
+.RI "\fBsc_process_host\fP * \fBm_semantics_host_p\fP"
+.br
+.ti -1c
+.RI "\fBSC_ENTRY_FUNC\fP \fBm_semantics_method_p\fP"
+.br
+.ti -1c
+.RI "int \fBm_state\fP"
+.br
+.ti -1c
+.RI "std::vector< \fBconst\fP \fBsc_event\fP * > \fBm_static_events\fP"
+.br
+.ti -1c
+.RI "\fBbool\fP \fBm_sticky_reset\fP"
+.br
+.ti -1c
+.RI "\fBsc_event\fP * \fBm_term_event_p\fP"
+.br
+.ti -1c
+.RI "\fBsc_throw_it_helper\fP * \fBm_throw_helper_p\fP"
+.br
+.ti -1c
+.RI "\fBprocess_throw_type\fP \fBm_throw_status\fP"
+.br
+.ti -1c
+.RI "\fBbool\fP \fBm_timed_out\fP"
+.br
+.ti -1c
+.RI "\fBsc_event\fP * \fBm_timeout_event_p\fP"
+.br
+.ti -1c
+.RI "\fBtrigger_t\fP \fBm_trigger_type\fP"
+.br
+.ti -1c
+.RI "\fBbool\fP \fBm_unwinding\fP"
+.br
+.in -1c
+.SS "Static Protected Attributes"
+
+.in +1c
+.ti -1c
+.RI "\fBstatic\fP \fBsc_process_b\fP * \fBm_last_created_process_p\fP"
+.br
+.in -1c
+.SS "Private Member Functions"
+
+.in +1c
+.ti -1c
+.RI "\fBvoid\fP \fBdelete_process\fP ()"
+.br
+.ti -1c
+.RI "\fBvoid\fP \fBreference_decrement\fP ()"
+.br
+.ti -1c
+.RI "\fBvoid\fP \fBreference_increment\fP ()"
+.br
+.in -1c
+.SS "Friends"
+
+.in +1c
+.ti -1c
+.RI "\fBclass\fP \fBsc_simcontext\fP"
+.br
+.ti -1c
+.RI "\fBclass\fP \fBsc_cthread_process\fP"
+.br
+.ti -1c
+.RI "\fBclass\fP \fBsc_method_process\fP"
+.br
+.ti -1c
+.RI "\fBclass\fP \fBsc_process_handle\fP"
+.br
+.ti -1c
+.RI "\fBclass\fP \fBsc_process_table\fP"
+.br
+.ti -1c
+.RI "\fBclass\fP \fBsc_thread_process\fP"
+.br
+.ti -1c
+.RI "\fBclass\fP \fBsc_event\fP"
+.br
+.ti -1c
+.RI "\fBclass\fP \fBsc_object\fP"
+.br
+.ti -1c
+.RI "\fBclass\fP \fBsc_port_base\fP"
+.br
+.ti -1c
+.RI "\fBclass\fP \fBsc_runnable\fP"
+.br
+.ti -1c
+.RI "\fBclass\fP \fBsc_sensitive\fP"
+.br
+.ti -1c
+.RI "\fBclass\fP \fBsc_sensitive_pos\fP"
+.br
+.ti -1c
+.RI "\fBclass\fP \fBsc_sensitive_neg\fP"
+.br
+.ti -1c
+.RI "\fBclass\fP \fBsc_module\fP"
+.br
+.ti -1c
+.RI "\fBclass\fP \fBsc_report_handler\fP"
+.br
+.ti -1c
+.RI "\fBclass\fP \fBsc_reset\fP"
+.br
+.ti -1c
+.RI "\fBclass\fP \fBsc_reset_finder\fP"
+.br
+.ti -1c
+.RI "\fBclass\fP \fBsc_unwind_exception\fP"
+.br
+.ti -1c
+.RI "\fBSC_API\fP \fBconst\fP \fBchar\fP * \fBsc_gen_unique_name\fP (\fBconst\fP \fBchar\fP *, \fBbool\fP \fBpreserve_first\fP)"
+.br
+.ti -1c
+.RI "\fBSC_API\fP \fBsc_process_handle\fP \fBsc_get_current_process_handle\fP ()"
+.br
+.ti -1c
+.RI "\fBvoid\fP \fBsc_thread_cor_fn\fP (\fBvoid\fP *arg)"
+.br
+.ti -1c
+.RI "\fBSC_API\fP \fBbool\fP \fBtimed_out\fP (\fBsc_simcontext\fP *)"
+.br
+.in -1c
+.SH "Member Enumeration Documentation"
+.PP 
+.SS "\fBenum\fP \fBsc_core::sc_process_b::process_state\fP"
+
+.PP
+\fBEnumerator\fP
+.in +1c
+.TP
+\fB\fIps_bit_disabled \fP\fP
+.TP
+\fB\fIps_bit_ready_to_run \fP\fP
+.TP
+\fB\fIps_bit_suspended \fP\fP
+.TP
+\fB\fIps_bit_zombie \fP\fP
+.TP
+\fB\fIps_normal \fP\fP
+.SS "\fBenum\fP \fBsc_core::sc_process_b::process_throw_type\fP"
+
+.PP
+\fBEnumerator\fP
+.in +1c
+.TP
+\fB\fITHROW_NONE \fP\fP
+.TP
+\fB\fITHROW_KILL \fP\fP
+.TP
+\fB\fITHROW_USER \fP\fP
+.TP
+\fB\fITHROW_ASYNC_RESET \fP\fP
+.TP
+\fB\fITHROW_SYNC_RESET \fP\fP
+.SS "\fBenum\fP \fBsc_core::sc_process_b::reset_type\fP"
+
+.PP
+\fBEnumerator\fP
+.in +1c
+.TP
+\fB\fIreset_asynchronous \fP\fP
+.TP
+\fB\fIreset_synchronous_off \fP\fP
+.TP
+\fB\fIreset_synchronous_on \fP\fP
+.SS "\fBenum\fP \fBsc_core::sc_process_b::spawn_t\fP\fR [protected]\fP"
+
+.PP
+\fBEnumerator\fP
+.in +1c
+.TP
+\fB\fISPAWN_ELAB \fP\fP
+.TP
+\fB\fISPAWN_START \fP\fP
+.TP
+\fB\fISPAWN_SIM \fP\fP
+.SS "\fBenum\fP \fBsc_core::sc_process_b::trigger_t\fP"
+
+.PP
+\fBEnumerator\fP
+.in +1c
+.TP
+\fB\fISTATIC \fP\fP
+.TP
+\fB\fIEVENT \fP\fP
+.TP
+\fB\fIOR_LIST \fP\fP
+.TP
+\fB\fIAND_LIST \fP\fP
+.TP
+\fB\fITIMEOUT \fP\fP
+.TP
+\fB\fIEVENT_TIMEOUT \fP\fP
+.TP
+\fB\fIOR_LIST_TIMEOUT \fP\fP
+.TP
+\fB\fIAND_LIST_TIMEOUT \fP\fP
+.SH "Constructor & Destructor Documentation"
+.PP 
+.SS "sc_core::sc_process_b::sc_process_b (\fBconst\fP \fBchar\fP * name_p, \fBbool\fP is_thread, \fBbool\fP free_host, \fBSC_ENTRY_FUNC\fP method_p, \fBsc_process_host\fP * host_p, \fBconst\fP \fBsc_spawn_options\fP * opt_p)"
+
+.SS "\fBvirtual\fP sc_core::sc_process_b::~sc_process_b ()\fR [protected]\fP, \fR [virtual]\fP"
+
+.SH "Member Function Documentation"
+.PP 
+.SS "\fBvoid\fP sc_core::sc_process_b::add_child_object (\fBsc_object\fP * object_p)\fR [inline]\fP, \fR [protected]\fP, \fR [virtual]\fP"
+
+.PP
+Reimplemented from \fBsc_core::sc_object\fP\&.
+.SS "\fBvoid\fP sc_core::sc_process_b::add_static_event (\fBconst\fP \fBsc_event\fP &)\fR [protected]\fP"
+
+.SS "\fBbool\fP sc_core::sc_process_b::clear_unwinding ()\fR [inline]\fP, \fR [protected]\fP"
+
+.SS "int sc_core::sc_process_b::current_state ()\fR [inline]\fP"
+
+.SS "\fBvoid\fP sc_core::sc_process_b::delete_process ()\fR [private]\fP"
+
+.SS "\fBvirtual\fP \fBvoid\fP sc_core::sc_process_b::disable_process (\fBsc_descendant_inclusion_info\fP descendants = \fR\fBSC_NO_DESCENDANTS\fP\fP)\fR [protected]\fP, \fR [pure virtual]\fP"
+
+.PP
+Implemented in \fBsc_core::sc_method_process\fP, and \fBsc_core::sc_thread_process\fP\&.
+.SS "\fBvoid\fP sc_core::sc_process_b::disconnect_process ()\fR [protected]\fP"
+
+.SS "\fBbool\fP sc_core::sc_process_b::dont_initialize () const\fR [inline]\fP"
+
+.SS "\fBvirtual\fP \fBvoid\fP sc_core::sc_process_b::dont_initialize (\fBbool\fP dont)\fR [virtual]\fP"
+
+.PP
+Reimplemented in \fBsc_core::sc_cthread_process\fP\&.
+.SS "std::string sc_core::sc_process_b::dump_state () const"
+
+.SS "\fBbool\fP sc_core::sc_process_b::dynamic () const\fR [inline]\fP, \fR [protected]\fP"
+
+.SS "\fBvirtual\fP \fBvoid\fP sc_core::sc_process_b::enable_process (\fBsc_descendant_inclusion_info\fP descendants = \fR\fBSC_NO_DESCENDANTS\fP\fP)\fR [protected]\fP, \fR [pure virtual]\fP"
+
+.PP
+Implemented in \fBsc_core::sc_method_process\fP, and \fBsc_core::sc_thread_process\fP\&.
+.SS "\fBconst\fP \fBchar\fP * sc_core::sc_process_b::gen_unique_name (\fBconst\fP \fBchar\fP * basename_, \fBbool\fP preserve_first)\fR [protected]\fP"
+
+.SS "const::std::vector< \fBsc_object\fP * > & sc_core::sc_process_b::get_child_objects () const\fR [inline]\fP, \fR [virtual]\fP"
+
+.PP
+Reimplemented from \fBsc_core::sc_object\fP\&.
+.SS "\fBsc_report\fP * sc_core::sc_process_b::get_last_report ()\fR [inline]\fP, \fR [protected]\fP"
+
+.SS "\fBvoid\fP sc_core::sc_process_b::initially_in_reset (\fBbool\fP async)\fR [inline]\fP, \fR [protected]\fP"
+
+.SS "\fBbool\fP sc_core::sc_process_b::is_disabled () const\fR [inline]\fP, \fR [protected]\fP"
+
+.SS "\fBbool\fP sc_core::sc_process_b::is_runnable () const\fR [inline]\fP, \fR [protected]\fP"
+
+.SS "\fBbool\fP sc_core::sc_process_b::is_unwinding () const\fR [inline]\fP, \fR [protected]\fP"
+
+.SS "\fBvirtual\fP \fBvoid\fP sc_core::sc_process_b::kill_process (\fBsc_descendant_inclusion_info\fP descendants = \fR\fBSC_NO_DESCENDANTS\fP\fP)\fR [protected]\fP, \fR [pure virtual]\fP"
+
+.PP
+Implemented in \fBsc_core::sc_method_process\fP, and \fBsc_core::sc_thread_process\fP\&.
+.SS "\fBsc_process_b\fP * sc_core::sc_process_b::last_created_process_base ()\fR [inline]\fP, \fR [static]\fP, \fR [protected]\fP"
+
+.SS "\fBsc_process_handle\fP sc_core::sc_process_b::last_created_process_handle ()\fR [inline]\fP, \fR [static]\fP"
+
+.SS "\fBsc_curr_proc_kind\fP sc_core::sc_process_b::proc_kind () const\fR [inline]\fP"
+
+.SS "\fBvoid\fP sc_core::sc_process_b::reference_decrement ()\fR [inline]\fP, \fR [private]\fP"
+
+.SS "\fBvoid\fP sc_core::sc_process_b::reference_increment ()\fR [inline]\fP, \fR [private]\fP"
+
+.SS "\fBbool\fP sc_core::sc_process_b::remove_child_object (\fBsc_object\fP * object_p)\fR [inline]\fP, \fR [protected]\fP, \fR [virtual]\fP"
+
+.PP
+Reimplemented from \fBsc_core::sc_object\fP\&.
+.SS "\fBvoid\fP sc_core::sc_process_b::remove_dynamic_events (\fBbool\fP skip_timeout = \fR\fBfalse\fP\fP)\fR [protected]\fP"
+
+.SS "\fBvoid\fP sc_core::sc_process_b::remove_static_events ()\fR [protected]\fP"
+
+.SS "\fBvoid\fP sc_core::sc_process_b::report_error (\fBconst\fP \fBchar\fP * msgid, \fBconst\fP \fBchar\fP * msg = \fR''\fP) const\fR [protected]\fP"
+
+.SS "\fBvoid\fP sc_core::sc_process_b::report_immediate_self_notification () const\fR [protected]\fP"
+
+.SS "\fBvoid\fP sc_core::sc_process_b::reset_changed (\fBbool\fP async, \fBbool\fP asserted)\fR [protected]\fP"
+
+.SS "\fBsc_event\fP & sc_core::sc_process_b::reset_event ()"
+
+.SS "\fBvoid\fP sc_core::sc_process_b::reset_process (\fBreset_type\fP rt, \fBsc_descendant_inclusion_info\fP descendants = \fR\fBSC_NO_DESCENDANTS\fP\fP)\fR [protected]\fP"
+
+.SS "\fBvirtual\fP \fBvoid\fP sc_core::sc_process_b::resume_process (\fBsc_descendant_inclusion_info\fP descendants = \fR\fBSC_NO_DESCENDANTS\fP\fP)\fR [protected]\fP, \fR [pure virtual]\fP"
+
+.PP
+Implemented in \fBsc_core::sc_method_process\fP, and \fBsc_core::sc_thread_process\fP\&.
+.SS "\fBvoid\fP sc_core::sc_process_b::semantics ()\fR [inline]\fP, \fR [protected]\fP"
+
+.SS "\fBvoid\fP sc_core::sc_process_b::set_last_report (\fBsc_report\fP * last_p)\fR [inline]\fP, \fR [protected]\fP"
+
+.SS "\fBbool\fP sc_core::sc_process_b::start_unwinding ()\fR [inline]\fP, \fR [protected]\fP"
+
+.SS "\fBvirtual\fP \fBvoid\fP sc_core::sc_process_b::suspend_process (\fBsc_descendant_inclusion_info\fP descendants = \fR\fBSC_NO_DESCENDANTS\fP\fP)\fR [protected]\fP, \fR [pure virtual]\fP"
+
+.PP
+Implemented in \fBsc_core::sc_method_process\fP, and \fBsc_core::sc_thread_process\fP\&.
+.SS "\fBbool\fP sc_core::sc_process_b::terminated () const\fR [inline]\fP, \fR [protected]\fP, \fR [virtual]\fP"
+
+.SS "\fBsc_event\fP & sc_core::sc_process_b::terminated_event ()"
+
+.SS "\fBvirtual\fP \fBvoid\fP sc_core::sc_process_b::throw_reset (\fBbool\fP async)\fR [protected]\fP, \fR [pure virtual]\fP"
+
+.PP
+Implemented in \fBsc_core::sc_method_process\fP, and \fBsc_core::sc_thread_process\fP\&.
+.SS "\fBvirtual\fP \fBvoid\fP sc_core::sc_process_b::throw_user (\fBconst\fP \fBsc_throw_it_helper\fP & helper, \fBsc_descendant_inclusion_info\fP descendants = \fR\fBSC_NO_DESCENDANTS\fP\fP)\fR [protected]\fP, \fR [pure virtual]\fP"
+
+.PP
+Implemented in \fBsc_core::sc_method_process\fP, and \fBsc_core::sc_thread_process\fP\&.
+.SS "\fBbool\fP sc_core::sc_process_b::timed_out () const\fR [inline]\fP, \fR [protected]\fP"
+
+.SS "\fBvoid\fP sc_core::sc_process_b::trigger_reset_event ()\fR [protected]\fP"
+
+.SH "Friends And Related Symbol Documentation"
+.PP 
+.SS "\fBfriend\fP \fBclass\fP \fBsc_cthread_process\fP\fR [friend]\fP"
+
+.SS "\fBfriend\fP \fBclass\fP \fBsc_event\fP\fR [friend]\fP"
+
+.SS "\fBSC_API\fP \fBconst\fP \fBchar\fP * sc_gen_unique_name (\fBconst\fP \fBchar\fP *, \fBbool\fP preserve_first)\fR [friend]\fP"
+
+.SS "\fBSC_API\fP \fBsc_process_handle\fP sc_get_current_process_handle ()\fR [friend]\fP"
+
+.SS "\fBfriend\fP \fBclass\fP \fBsc_method_process\fP\fR [friend]\fP"
+
+.SS "\fBfriend\fP \fBclass\fP \fBsc_module\fP\fR [friend]\fP"
+
+.SS "\fBfriend\fP \fBclass\fP \fBsc_object\fP\fR [friend]\fP"
+
+.SS "\fBfriend\fP \fBclass\fP \fBsc_port_base\fP\fR [friend]\fP"
+
+.SS "\fBfriend\fP \fBclass\fP \fBsc_process_handle\fP\fR [friend]\fP"
+
+.SS "\fBfriend\fP \fBclass\fP sc_process_table\fR [friend]\fP"
+
+.SS "\fBfriend\fP \fBclass\fP \fBsc_report_handler\fP\fR [friend]\fP"
+
+.SS "\fBfriend\fP \fBclass\fP \fBsc_reset\fP\fR [friend]\fP"
+
+.SS "\fBfriend\fP \fBclass\fP \fBsc_reset_finder\fP\fR [friend]\fP"
+
+.SS "\fBfriend\fP \fBclass\fP \fBsc_runnable\fP\fR [friend]\fP"
+
+.SS "\fBfriend\fP \fBclass\fP \fBsc_sensitive\fP\fR [friend]\fP"
+
+.SS "\fBfriend\fP \fBclass\fP \fBsc_sensitive_neg\fP\fR [friend]\fP"
+
+.SS "\fBfriend\fP \fBclass\fP \fBsc_sensitive_pos\fP\fR [friend]\fP"
+
+.SS "\fBfriend\fP \fBclass\fP \fBsc_simcontext\fP\fR [friend]\fP"
+
+.SS "\fBvoid\fP sc_thread_cor_fn (\fBvoid\fP * arg)\fR [friend]\fP"
+
+.SS "\fBfriend\fP \fBclass\fP \fBsc_thread_process\fP\fR [friend]\fP"
+
+.SS "\fBfriend\fP \fBclass\fP \fBsc_unwind_exception\fP\fR [friend]\fP"
+
+.SS "\fBSC_API\fP \fBbool\fP timed_out (\fBsc_simcontext\fP *)\fR [friend]\fP"
+
+.SH "Member Data Documentation"
+.PP 
+.SS "\fBconst\fP \fBchar\fP* sc_core::sc_process_b::file"
+
+.SS "int sc_core::sc_process_b::lineno"
+
+.SS "int sc_core::sc_process_b::m_active_areset_n\fR [protected]\fP"
+
+.SS "int sc_core::sc_process_b::m_active_reset_n\fR [protected]\fP"
+
+.SS "\fBbool\fP sc_core::sc_process_b::m_dont_init\fR [protected]\fP"
+
+.SS "\fBspawn_t\fP sc_core::sc_process_b::m_dynamic_proc\fR [protected]\fP"
+
+.SS "int sc_core::sc_process_b::m_event_count\fR [protected]\fP"
+
+.SS "\fBconst\fP \fBsc_event_list\fP* sc_core::sc_process_b::m_event_list_p\fR [protected]\fP"
+
+.SS "\fBconst\fP \fBsc_event\fP* sc_core::sc_process_b::m_event_p\fR [protected]\fP"
+
+.SS "\fBsc_process_b\fP* sc_core::sc_process_b::m_exist_p\fR [protected]\fP"
+
+.SS "\fBbool\fP sc_core::sc_process_b::m_free_host\fR [protected]\fP"
+
+.SS "\fBbool\fP sc_core::sc_process_b::m_has_reset_signal\fR [protected]\fP"
+
+.SS "\fBbool\fP sc_core::sc_process_b::m_has_stack\fR [protected]\fP"
+
+.SS "\fBbool\fP sc_core::sc_process_b::m_is_thread\fR [protected]\fP"
+
+.SS "\fBsc_process_b\fP* sc_core::sc_process_b::m_last_created_process_p\fR [static]\fP, \fR [protected]\fP"
+
+.SS "\fBsc_report\fP* sc_core::sc_process_b::m_last_report_p\fR [protected]\fP"
+
+.SS "\fBsc_name_gen\fP* sc_core::sc_process_b::m_name_gen_p\fR [protected]\fP"
+
+.SS "\fBsc_curr_proc_kind\fP sc_core::sc_process_b::m_process_kind\fR [protected]\fP"
+
+.SS "int sc_core::sc_process_b::m_references_n\fR [protected]\fP"
+
+.SS "\fBsc_event\fP* sc_core::sc_process_b::m_reset_event_p\fR [protected]\fP"
+
+.SS "std::vector<\fBsc_reset\fP*> sc_core::sc_process_b::m_resets\fR [protected]\fP"
+
+.SS "\fBsc_event\fP* sc_core::sc_process_b::m_resume_event_p\fR [protected]\fP"
+
+.SS "\fBsc_process_b\fP* sc_core::sc_process_b::m_runnable_p\fR [protected]\fP"
+
+.SS "\fBsc_process_host\fP* sc_core::sc_process_b::m_semantics_host_p\fR [protected]\fP"
+
+.SS "\fBSC_ENTRY_FUNC\fP sc_core::sc_process_b::m_semantics_method_p\fR [protected]\fP"
+
+.SS "int sc_core::sc_process_b::m_state\fR [protected]\fP"
+
+.SS "std::vector<\fBconst\fP \fBsc_event\fP*> sc_core::sc_process_b::m_static_events\fR [protected]\fP"
+
+.SS "\fBbool\fP sc_core::sc_process_b::m_sticky_reset\fR [protected]\fP"
+
+.SS "\fBsc_event\fP* sc_core::sc_process_b::m_term_event_p\fR [protected]\fP"
+
+.SS "\fBsc_throw_it_helper\fP* sc_core::sc_process_b::m_throw_helper_p\fR [protected]\fP"
+
+.SS "\fBprocess_throw_type\fP sc_core::sc_process_b::m_throw_status\fR [protected]\fP"
+
+.SS "\fBbool\fP sc_core::sc_process_b::m_timed_out\fR [protected]\fP"
+
+.SS "\fBsc_event\fP* sc_core::sc_process_b::m_timeout_event_p\fR [protected]\fP"
+
+.SS "\fBtrigger_t\fP sc_core::sc_process_b::m_trigger_type\fR [protected]\fP"
+
+.SS "\fBbool\fP sc_core::sc_process_b::m_unwinding\fR [protected]\fP"
+
+.SS "int sc_core::sc_process_b::proc_id"
+
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for VHDL simulator from the source code\&.

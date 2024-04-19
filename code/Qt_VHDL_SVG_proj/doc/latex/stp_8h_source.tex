@@ -1,0 +1,57 @@
+\doxysection{stp.\+h}
+\hypertarget{stp_8h_source}{}\label{stp_8h_source}\index{C:/Users/BJRODIER/Documents/QT\_REPO/QT\_VHDL\_simulator/code/Ressources/SystemC/include/sysc/packages/qt/stp.h@{C:/Users/BJRODIER/Documents/QT\_REPO/QT\_VHDL\_simulator/code/Ressources/SystemC/include/sysc/packages/qt/stp.h}}
+\mbox{\hyperlink{stp_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#ifndef\ STP\_H}}
+\DoxyCodeLine{00002\ \textcolor{preprocessor}{\#define\ STP\_H}}
+\DoxyCodeLine{00003\ }
+\DoxyCodeLine{00004\ \textcolor{comment}{/*}}
+\DoxyCodeLine{00005\ \textcolor{comment}{\ *\ QuickThreads\ -\/-\/\ Threads-\/building\ toolkit.}}
+\DoxyCodeLine{00006\ \textcolor{comment}{\ *\ Copyright\ (c)\ 1993\ by\ David\ Keppel}}
+\DoxyCodeLine{00007\ \textcolor{comment}{\ *}}
+\DoxyCodeLine{00008\ \textcolor{comment}{\ *\ Permission\ to\ use,\ copy,\ modify\ and\ distribute\ this\ software\ and}}
+\DoxyCodeLine{00009\ \textcolor{comment}{\ *\ its\ documentation\ for\ any\ purpose\ and\ without\ fee\ is\ hereby}}
+\DoxyCodeLine{00010\ \textcolor{comment}{\ *\ granted,\ provided\ that\ the\ above\ copyright\ notice\ and\ this\ notice}}
+\DoxyCodeLine{00011\ \textcolor{comment}{\ *\ appear\ in\ all\ copies.\ \ This\ software\ is\ provided\ as\ a}}
+\DoxyCodeLine{00012\ \textcolor{comment}{\ *\ proof-\/of-\/concept\ and\ for\ demonstration\ purposes;\ there\ is\ no}}
+\DoxyCodeLine{00013\ \textcolor{comment}{\ *\ representation\ about\ the\ suitability\ of\ this\ software\ for\ any}}
+\DoxyCodeLine{00014\ \textcolor{comment}{\ *\ purpose.}}
+\DoxyCodeLine{00015\ \textcolor{comment}{\ */}}
+\DoxyCodeLine{00016\ }
+\DoxyCodeLine{00017\ \textcolor{keyword}{typedef}\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{stp_8h_a33bb518bdcc0ee2c7ed3e6b716c7640c}{stp\_t}}\ \mbox{\hyperlink{stp_8h_a33bb518bdcc0ee2c7ed3e6b716c7640c}{stp\_t}};}
+\DoxyCodeLine{00018\ }
+\DoxyCodeLine{00019\ \textcolor{comment}{/*\ Each\ thread\ starts\ by\ calling\ a\ user-\/supplied\ function\ of\ this}}
+\DoxyCodeLine{00020\ \textcolor{comment}{\ \ \ type.\ */}}
+\DoxyCodeLine{00021\ }
+\DoxyCodeLine{00022\ \textcolor{keyword}{typedef}\ \mbox{\hyperlink{class_sysc_add__pv}{void}}\ (\mbox{\hyperlink{stp_8h_a8db822a40f8437729b39ce2f31f576be}{stp\_userf\_t}})(\textcolor{keywordtype}{void}\ *\mbox{\hyperlink{class_sysc_add__pv}{p0}});}
+\DoxyCodeLine{00023\ }
+\DoxyCodeLine{00024\ \textcolor{comment}{/*\ Call\ this\ before\ any\ other\ primitives.\ */}}
+\DoxyCodeLine{00025\ \textcolor{keyword}{extern}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{stp_8h_aa99fd676c0e0e73e900e1eea093c71f4}{stp\_init}}();}
+\DoxyCodeLine{00026\ }
+\DoxyCodeLine{00027\ \textcolor{comment}{/*\ When\ one\ or\ more\ threads\ are\ created\ by\ the\ main\ thread,}}
+\DoxyCodeLine{00028\ \textcolor{comment}{\ \ \ the\ system\ goes\ multithread\ when\ this\ is\ called.\ \ It\ is\ done}}
+\DoxyCodeLine{00029\ \textcolor{comment}{\ \ \ (no\ more\ runable\ threads)\ when\ this\ returns.\ */}}
+\DoxyCodeLine{00030\ }
+\DoxyCodeLine{00031\ \textcolor{keyword}{extern}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{stp_8h_ae1e4cc44f172de7463ec4c831e78b7fd}{stp\_start}}\ (\textcolor{keywordtype}{void});}
+\DoxyCodeLine{00032\ }
+\DoxyCodeLine{00033\ \textcolor{comment}{/*\ Create\ a\ thread\ and\ make\ it\ runable.\ \ When\ the\ thread\ starts}}
+\DoxyCodeLine{00034\ \textcolor{comment}{\ \ \ running\ it\ will\ call\ \`{}f'\ with\ arguments\ \`{}p0'\ and\ \`{}p1'.\ */}}
+\DoxyCodeLine{00035\ }
+\DoxyCodeLine{00036\ \textcolor{keyword}{extern}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{stp_8h_a64b30d19335732607ab7e30bc9983804}{stp\_create}}\ (\mbox{\hyperlink{stp_8h_a8db822a40f8437729b39ce2f31f576be}{stp\_userf\_t}}\ *f,\ \textcolor{keywordtype}{void}\ *\mbox{\hyperlink{class_sysc_add__pv}{p0}});}
+\DoxyCodeLine{00037\ }
+\DoxyCodeLine{00038\ \textcolor{comment}{/*\ The\ current\ thread\ stops\ running\ but\ stays\ runable.}}
+\DoxyCodeLine{00039\ \textcolor{comment}{\ \ \ It\ is\ an\ error\ to\ call\ \`{}stp\_yield'\ before\ \`{}stp\_start'}}
+\DoxyCodeLine{00040\ \textcolor{comment}{\ \ \ is\ called\ or\ after\ \`{}stp\_start'\ returns.\ */}}
+\DoxyCodeLine{00041\ }
+\DoxyCodeLine{00042\ \textcolor{keyword}{extern}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{stp_8h_a3a8fdfa9726969167bb3f333043e537e}{stp\_yield}}\ (\textcolor{keywordtype}{void});}
+\DoxyCodeLine{00043\ }
+\DoxyCodeLine{00044\ \textcolor{comment}{/*\ Like\ \`{}stp\_yield'\ but\ the\ thread\ is\ discarded.\ \ Any\ intermediate}}
+\DoxyCodeLine{00045\ \textcolor{comment}{\ \ \ state\ is\ lost.\ \ The\ thread\ can\ also\ terminate\ by\ simply}}
+\DoxyCodeLine{00046\ \textcolor{comment}{\ \ \ returning.\ */}}
+\DoxyCodeLine{00047\ }
+\DoxyCodeLine{00048\ \textcolor{keyword}{extern}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{stp_8h_ad0c145dc5cebecab0bb4e3ac40fc8e4d}{stp\_abort}}\ (\textcolor{keywordtype}{void});}
+\DoxyCodeLine{00049\ }
+\DoxyCodeLine{00050\ }
+\DoxyCodeLine{00051\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{/*\ ndef\ STP\_H\ */}\textcolor{preprocessor}{}}
+
+\end{DoxyCode}

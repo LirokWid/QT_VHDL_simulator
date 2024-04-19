@@ -1,0 +1,228 @@
+.TH "sc_core::sc_trace_file_base" 3 "VHDL simulator" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+sc_core::sc_trace_file_base
+.SH SYNOPSIS
+.br
+.PP
+.PP
+\fR#include <sc_trace_file_base\&.h>\fP
+.PP
+Inherits \fBsc_core::sc_trace_file\fP\&.
+.PP
+Inherited by \fBsc_core::vcd_trace_file\fP, and \fBsc_core::wif_trace_file\fP\&.
+.SS "Public Types"
+
+.in +1c
+.ti -1c
+.RI "\fBtypedef\fP \fBsc_time::value_type\fP \fBunit_type\fP"
+.br
+.in -1c
+.SS "Public Member Functions"
+
+.in +1c
+.ti -1c
+.RI "\fBconst\fP \fBchar\fP * \fBfilename\fP () \fBconst\fP"
+.br
+.ti -1c
+.RI "\fBbool\fP \fBdelta_cycles\fP () \fBconst\fP"
+.br
+.ti -1c
+.RI "\fBvirtual\fP \fBvoid\fP \fBdelta_cycles\fP (\fBbool\fP \fBflag\fP)"
+.br
+.ti -1c
+.RI "\fBvirtual\fP \fBvoid\fP \fBset_time_unit\fP (\fBdouble\fP v, \fBsc_time_unit\fP \fBtu\fP)"
+.br
+.in -1c
+
+Public Member Functions inherited from \fBsc_core::sc_trace_file\fP
+.in +1c
+.ti -1c
+.RI "\fBsc_trace_file\fP ()"
+.br
+.ti -1c
+.RI "\fBvirtual\fP \fBvoid\fP \fBtrace\fP (\fBconst\fP \fBunsigned\fP int &\fBobject\fP, \fBconst\fP std::string &name, \fBconst\fP \fBchar\fP **\fBenum_literals\fP)=0"
+.br
+.ti -1c
+.RI "\fBvirtual\fP \fBvoid\fP \fBwrite_comment\fP (\fBconst\fP std::string &\fBcomment\fP)=0"
+.br
+.ti -1c
+.RI "\fBvirtual\fP \fBvoid\fP \fBspace\fP (int \fBn\fP)"
+.br
+.in -1c
+.SS "Protected Member Functions"
+
+.in +1c
+.ti -1c
+.RI "\fBsc_trace_file_base\fP (\fBconst\fP \fBchar\fP *name, \fBconst\fP \fBchar\fP *\fBextension\fP)"
+.br
+.ti -1c
+.RI "\fBbool\fP \fBis_initialized\fP () \fBconst\fP"
+.br
+.ti -1c
+.RI "\fBbool\fP \fBinitialize\fP ()"
+.br
+.ti -1c
+.RI "\fBvoid\fP \fBopen_fp\fP ()"
+.br
+.ti -1c
+.RI "\fBvirtual\fP \fBvoid\fP \fBdo_initialize\fP ()=0"
+.br
+.ti -1c
+.RI "\fBbool\fP \fBadd_trace_check\fP (\fBconst\fP std::string &name) \fBconst\fP"
+.br
+.ti -1c
+.RI "\fBbool\fP \fBhas_low_units\fP () \fBconst\fP"
+.br
+.ti -1c
+.RI "int \fBlow_units_len\fP () \fBconst\fP"
+.br
+.ti -1c
+.RI "\fBvoid\fP \fBtimestamp_in_trace_units\fP (\fBunit_type\fP &\fBhigh\fP, \fBunit_type\fP &\fBlow\fP) \fBconst\fP"
+.br
+.ti -1c
+.RI "\fBvirtual\fP \fB~sc_trace_file_base\fP ()"
+.br
+.in -1c
+
+Protected Member Functions inherited from \fBsc_core::sc_trace_file\fP
+.in +1c
+.ti -1c
+.RI "\fBvirtual\fP \fBvoid\fP \fBcycle\fP (\fBbool\fP \fBdelta_cycle\fP)=0"
+.br
+.ti -1c
+.RI "\fBconst\fP \fBsc_dt::uint64\fP & \fBevent_trigger_stamp\fP (\fBconst\fP \fBsc_event\fP &event) \fBconst\fP"
+.br
+.ti -1c
+.RI "\fBvirtual\fP \fB~sc_trace_file\fP ()"
+.br
+.in -1c
+.SS "Static Protected Member Functions"
+
+.in +1c
+.ti -1c
+.RI "\fBstatic\fP \fBsc_time::value_type\fP \fBunit_to_fs\fP (\fBsc_time_unit\fP \fBtu\fP)"
+.br
+.ti -1c
+.RI "\fBstatic\fP std::string \fBfs_unit_to_str\fP (\fBsc_trace_file_base::unit_type\fP \fBtu\fP)"
+.br
+.in -1c
+.SS "Protected Attributes"
+
+.in +1c
+.ti -1c
+.RI "FILE * \fBfp\fP"
+.br
+.ti -1c
+.RI "\fBunit_type\fP \fBtrace_unit_fs\fP"
+.br
+.ti -1c
+.RI "\fBunit_type\fP \fBkernel_unit_fs\fP"
+.br
+.ti -1c
+.RI "\fBbool\fP \fBtimescale_set_by_user\fP"
+.br
+.in -1c
+.SS "Private Member Functions"
+
+.in +1c
+.ti -1c
+.RI "\fBsc_trace_file_base\fP (\fBconst\fP \fBsc_trace_file_base\fP &)"
+.br
+.ti -1c
+.RI "\fBsc_trace_file_base\fP & \fBoperator=\fP (\fBconst\fP \fBsc_trace_file_base\fP &)"
+.br
+.in -1c
+.SS "Private Attributes"
+
+.in +1c
+.ti -1c
+.RI "std::string \fBfilename_\fP"
+.br
+.ti -1c
+.RI "\fBbool\fP \fBinitialized_\fP"
+.br
+.ti -1c
+.RI "\fBbool\fP \fBtrace_delta_cycles_\fP"
+.br
+.in -1c
+.SS "Static Private Attributes"
+
+.in +1c
+.ti -1c
+.RI "\fBstatic\fP \fBbool\fP \fBtracing_initialized_\fP"
+.br
+.in -1c
+.SH "Member Typedef Documentation"
+.PP 
+.SS "\fBtypedef\fP \fBsc_time::value_type\fP \fBsc_core::sc_trace_file_base::unit_type\fP"
+
+.SH "Constructor & Destructor Documentation"
+.PP 
+.SS "sc_core::sc_trace_file_base::sc_trace_file_base (\fBconst\fP \fBchar\fP * name, \fBconst\fP \fBchar\fP * extension)\fR [protected]\fP"
+
+.SS "\fBvirtual\fP sc_core::sc_trace_file_base::~sc_trace_file_base ()\fR [protected]\fP, \fR [virtual]\fP"
+
+.SS "sc_core::sc_trace_file_base::sc_trace_file_base (\fBconst\fP \fBsc_trace_file_base\fP &)\fR [private]\fP"
+
+.SH "Member Function Documentation"
+.PP 
+.SS "\fBbool\fP sc_core::sc_trace_file_base::add_trace_check (\fBconst\fP std::string & name) const\fR [protected]\fP"
+
+.SS "\fBbool\fP sc_core::sc_trace_file_base::delta_cycles () const\fR [inline]\fP"
+
+.SS "\fBvirtual\fP \fBvoid\fP sc_core::sc_trace_file_base::delta_cycles (\fBbool\fP flag)\fR [virtual]\fP"
+
+.PP
+Reimplemented from \fBsc_core::sc_trace_file\fP\&.
+.SS "\fBvirtual\fP \fBvoid\fP sc_core::sc_trace_file_base::do_initialize ()\fR [protected]\fP, \fR [pure virtual]\fP"
+
+.PP
+Implemented in \fBsc_core::vcd_trace_file\fP, and \fBsc_core::wif_trace_file\fP\&.
+.SS "\fBconst\fP \fBchar\fP * sc_core::sc_trace_file_base::filename () const\fR [inline]\fP"
+
+.SS "\fBstatic\fP std::string sc_core::sc_trace_file_base::fs_unit_to_str (\fBsc_trace_file_base::unit_type\fP tu)\fR [static]\fP, \fR [protected]\fP"
+
+.SS "\fBbool\fP sc_core::sc_trace_file_base::has_low_units () const\fR [protected]\fP"
+
+.SS "\fBbool\fP sc_core::sc_trace_file_base::initialize ()\fR [protected]\fP"
+
+.SS "\fBbool\fP sc_core::sc_trace_file_base::is_initialized () const\fR [protected]\fP"
+
+.SS "int sc_core::sc_trace_file_base::low_units_len () const\fR [protected]\fP"
+
+.SS "\fBvoid\fP sc_core::sc_trace_file_base::open_fp ()\fR [protected]\fP"
+
+.SS "\fBsc_trace_file_base\fP & sc_core::sc_trace_file_base::operator= (\fBconst\fP \fBsc_trace_file_base\fP &)\fR [private]\fP"
+
+.SS "\fBvirtual\fP \fBvoid\fP sc_core::sc_trace_file_base::set_time_unit (\fBdouble\fP v, \fBsc_time_unit\fP tu)\fR [virtual]\fP"
+
+.PP
+Implements \fBsc_core::sc_trace_file\fP\&.
+.SS "\fBvoid\fP sc_core::sc_trace_file_base::timestamp_in_trace_units (\fBunit_type\fP & high, \fBunit_type\fP & low) const\fR [protected]\fP"
+
+.SS "\fBstatic\fP \fBsc_time::value_type\fP sc_core::sc_trace_file_base::unit_to_fs (\fBsc_time_unit\fP tu)\fR [static]\fP, \fR [protected]\fP"
+
+.SH "Member Data Documentation"
+.PP 
+.SS "std::string sc_core::sc_trace_file_base::filename_\fR [private]\fP"
+
+.SS "FILE* sc_core::sc_trace_file_base::fp\fR [protected]\fP"
+
+.SS "\fBbool\fP sc_core::sc_trace_file_base::initialized_\fR [private]\fP"
+
+.SS "\fBunit_type\fP sc_core::sc_trace_file_base::kernel_unit_fs\fR [protected]\fP"
+
+.SS "\fBbool\fP sc_core::sc_trace_file_base::timescale_set_by_user\fR [protected]\fP"
+
+.SS "\fBbool\fP sc_core::sc_trace_file_base::trace_delta_cycles_\fR [private]\fP"
+
+.SS "\fBunit_type\fP sc_core::sc_trace_file_base::trace_unit_fs\fR [protected]\fP"
+
+.SS "\fBbool\fP sc_core::sc_trace_file_base::tracing_initialized_\fR [static]\fP, \fR [private]\fP"
+
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for VHDL simulator from the source code\&.

@@ -1,0 +1,538 @@
+.TH "sc_dt::scfx_rep" 3 "VHDL simulator" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+sc_dt::scfx_rep
+.SH SYNOPSIS
+.br
+.PP
+.PP
+\fR#include <scfx_rep\&.h>\fP
+.SS "Public Member Functions"
+
+.in +1c
+.ti -1c
+.RI "\fBscfx_rep\fP ()"
+.br
+.ti -1c
+.RI "\fBscfx_rep\fP (int)"
+.br
+.ti -1c
+.RI "\fBscfx_rep\fP (\fBunsigned\fP int)"
+.br
+.ti -1c
+.RI "\fBscfx_rep\fP (\fBlong\fP)"
+.br
+.ti -1c
+.RI "\fBscfx_rep\fP (\fBunsigned\fP \fBlong\fP)"
+.br
+.ti -1c
+.RI "\fBscfx_rep\fP (\fBdouble\fP)"
+.br
+.ti -1c
+.RI "\fBscfx_rep\fP (\fBconst\fP \fBchar\fP *)"
+.br
+.ti -1c
+.RI "\fBscfx_rep\fP (\fBint64\fP)"
+.br
+.ti -1c
+.RI "\fBscfx_rep\fP (\fBuint64\fP)"
+.br
+.ti -1c
+.RI "\fBscfx_rep\fP (\fBconst\fP \fBsc_signed\fP &)"
+.br
+.ti -1c
+.RI "\fBscfx_rep\fP (\fBconst\fP \fBsc_unsigned\fP &)"
+.br
+.ti -1c
+.RI "\fBscfx_rep\fP (\fBconst\fP \fBscfx_rep\fP &)"
+.br
+.ti -1c
+.RI "\fB~scfx_rep\fP ()"
+.br
+.ti -1c
+.RI "\fBvoid\fP * \fBoperator new\fP (std::size_t)"
+.br
+.ti -1c
+.RI "\fBvoid\fP \fBoperator delete\fP (\fBvoid\fP *, std::size_t)"
+.br
+.ti -1c
+.RI "\fBvoid\fP \fBfrom_string\fP (\fBconst\fP \fBchar\fP *, int)"
+.br
+.ti -1c
+.RI "\fBdouble\fP \fBto_double\fP () \fBconst\fP"
+.br
+.ti -1c
+.RI "\fBuint64\fP \fBto_uint64\fP () \fBconst\fP"
+.br
+.ti -1c
+.RI "\fBconst\fP \fBchar\fP * \fBto_string\fP (\fBsc_numrep\fP, int, \fBsc_fmt\fP, \fBconst\fP \fBscfx_params\fP *=0) \fBconst\fP"
+.br
+.ti -1c
+.RI "\fBvoid\fP \fBoperator=\fP (\fBconst\fP \fBscfx_rep\fP &)"
+.br
+.ti -1c
+.RI "\fBvoid\fP \fBlshift\fP (int)"
+.br
+.ti -1c
+.RI "\fBvoid\fP \fBrshift\fP (int)"
+.br
+.ti -1c
+.RI "\fBvoid\fP \fBcast\fP (\fBconst\fP \fBscfx_params\fP &, \fBbool\fP &, \fBbool\fP &)"
+.br
+.ti -1c
+.RI "\fBbool\fP \fBis_neg\fP () \fBconst\fP"
+.br
+.ti -1c
+.RI "\fBbool\fP \fBis_zero\fP () \fBconst\fP"
+.br
+.ti -1c
+.RI "\fBbool\fP \fBis_nan\fP () \fBconst\fP"
+.br
+.ti -1c
+.RI "\fBbool\fP \fBis_inf\fP () \fBconst\fP"
+.br
+.ti -1c
+.RI "\fBbool\fP \fBis_normal\fP () \fBconst\fP"
+.br
+.ti -1c
+.RI "\fBvoid\fP \fBset_zero\fP (int=1)"
+.br
+.ti -1c
+.RI "\fBvoid\fP \fBset_nan\fP ()"
+.br
+.ti -1c
+.RI "\fBvoid\fP \fBset_inf\fP (int)"
+.br
+.ti -1c
+.RI "\fBbool\fP \fBget_bit\fP (int) \fBconst\fP"
+.br
+.ti -1c
+.RI "\fBbool\fP \fBset\fP (int, \fBconst\fP \fBscfx_params\fP &)"
+.br
+.ti -1c
+.RI "\fBbool\fP \fBclear\fP (int, \fBconst\fP \fBscfx_params\fP &)"
+.br
+.ti -1c
+.RI "\fBbool\fP \fBget_slice\fP (int, int, \fBconst\fP \fBscfx_params\fP &, \fBsc_bv_base\fP &) \fBconst\fP"
+.br
+.ti -1c
+.RI "\fBbool\fP \fBset_slice\fP (int, int, \fBconst\fP \fBscfx_params\fP &, \fBconst\fP \fBsc_bv_base\fP &)"
+.br
+.ti -1c
+.RI "\fBvoid\fP \fBprint\fP (::std::ostream &) \fBconst\fP"
+.br
+.ti -1c
+.RI "\fBvoid\fP \fBdump\fP (::std::ostream &) \fBconst\fP"
+.br
+.ti -1c
+.RI "\fBvoid\fP \fBget_type\fP (int &, int &, \fBsc_enc\fP &) \fBconst\fP"
+.br
+.ti -1c
+.RI "\fBbool\fP \fBrounding_flag\fP () \fBconst\fP"
+.br
+.in -1c
+.SS "Private Types"
+
+.in +1c
+.ti -1c
+.RI "enum \fBstate\fP { \fBnormal\fP, \fBinfinity\fP, \fBnot_a_number\fP }"
+.br
+.in -1c
+.SS "Private Member Functions"
+
+.in +1c
+.ti -1c
+.RI "\fBunsigned\fP int \fBdivide_by_ten\fP ()"
+.br
+.ti -1c
+.RI "int \fBfind_lsw\fP () \fBconst\fP"
+.br
+.ti -1c
+.RI "int \fBfind_msw\fP () \fBconst\fP"
+.br
+.ti -1c
+.RI "\fBvoid\fP \fBfind_sw\fP ()"
+.br
+.ti -1c
+.RI "\fBvoid\fP \fBmultiply_by_ten\fP ()"
+.br
+.ti -1c
+.RI "\fBvoid\fP \fBnormalize\fP (int)"
+.br
+.ti -1c
+.RI "\fBscfx_mant\fP * \fBresize\fP (int, int) \fBconst\fP"
+.br
+.ti -1c
+.RI "\fBvoid\fP \fBset_bin\fP (int)"
+.br
+.ti -1c
+.RI "\fBvoid\fP \fBset_oct\fP (int, int)"
+.br
+.ti -1c
+.RI "\fBvoid\fP \fBset_hex\fP (int, int)"
+.br
+.ti -1c
+.RI "\fBvoid\fP \fBshift_left\fP (int)"
+.br
+.ti -1c
+.RI "\fBvoid\fP \fBshift_right\fP (int)"
+.br
+.ti -1c
+.RI "\fBconst\fP \fBscfx_index\fP \fBcalc_indices\fP (int) \fBconst\fP"
+.br
+.ti -1c
+.RI "\fBvoid\fP \fBo_extend\fP (\fBconst\fP \fBscfx_index\fP &, \fBsc_enc\fP)"
+.br
+.ti -1c
+.RI "\fBbool\fP \fBo_bit_at\fP (\fBconst\fP \fBscfx_index\fP &) \fBconst\fP"
+.br
+.ti -1c
+.RI "\fBbool\fP \fBo_zero_left\fP (\fBconst\fP \fBscfx_index\fP &) \fBconst\fP"
+.br
+.ti -1c
+.RI "\fBbool\fP \fBo_zero_right\fP (\fBconst\fP \fBscfx_index\fP &) \fBconst\fP"
+.br
+.ti -1c
+.RI "\fBvoid\fP \fBo_set_low\fP (\fBconst\fP \fBscfx_index\fP &, \fBsc_enc\fP)"
+.br
+.ti -1c
+.RI "\fBvoid\fP \fBo_set_high\fP (\fBconst\fP \fBscfx_index\fP &, \fBconst\fP \fBscfx_index\fP &, \fBsc_enc\fP, int=1)"
+.br
+.ti -1c
+.RI "\fBvoid\fP \fBo_set\fP (\fBconst\fP \fBscfx_index\fP &, \fBconst\fP \fBscfx_index\fP &, \fBsc_enc\fP, \fBbool\fP)"
+.br
+.ti -1c
+.RI "\fBvoid\fP \fBo_invert\fP (\fBconst\fP \fBscfx_index\fP &)"
+.br
+.ti -1c
+.RI "\fBbool\fP \fBq_bit\fP (\fBconst\fP \fBscfx_index\fP &) \fBconst\fP"
+.br
+.ti -1c
+.RI "\fBvoid\fP \fBq_clear\fP (\fBconst\fP \fBscfx_index\fP &)"
+.br
+.ti -1c
+.RI "\fBvoid\fP \fBq_incr\fP (\fBconst\fP \fBscfx_index\fP &)"
+.br
+.ti -1c
+.RI "\fBbool\fP \fBq_odd\fP (\fBconst\fP \fBscfx_index\fP &) \fBconst\fP"
+.br
+.ti -1c
+.RI "\fBbool\fP \fBq_zero\fP (\fBconst\fP \fBscfx_index\fP &) \fBconst\fP"
+.br
+.ti -1c
+.RI "\fBvoid\fP \fBresize_to\fP (int, int=0)"
+.br
+.ti -1c
+.RI "int \fBsize\fP () \fBconst\fP"
+.br
+.ti -1c
+.RI "\fBvoid\fP \fBtoggle_tc\fP ()"
+.br
+.ti -1c
+.RI "\fBvoid\fP \fBquantization\fP (\fBconst\fP \fBscfx_params\fP &, \fBbool\fP &)"
+.br
+.ti -1c
+.RI "\fBvoid\fP \fBoverflow\fP (\fBconst\fP \fBscfx_params\fP &, \fBbool\fP &)"
+.br
+.ti -1c
+.RI "\fBvoid\fP \fBround\fP (int)"
+.br
+.in -1c
+.SS "Private Attributes"
+
+.in +1c
+.ti -1c
+.RI "\fBscfx_mant\fP \fBm_mant\fP"
+.br
+.ti -1c
+.RI "int \fBm_wp\fP"
+.br
+.ti -1c
+.RI "int \fBm_sign\fP"
+.br
+.ti -1c
+.RI "\fBstate\fP \fBm_state\fP"
+.br
+.ti -1c
+.RI "int \fBm_msw\fP"
+.br
+.ti -1c
+.RI "int \fBm_lsw\fP"
+.br
+.ti -1c
+.RI "\fBbool\fP \fBm_r_flag\fP"
+.br
+.in -1c
+.SS "Friends"
+
+.in +1c
+.ti -1c
+.RI "\fBSC_API\fP \fBvoid\fP \fBmultiply\fP (\fBscfx_rep\fP &, \fBconst\fP \fBscfx_rep\fP &, \fBconst\fP \fBscfx_rep\fP &, int)"
+.br
+.ti -1c
+.RI "\fBSC_API\fP \fBscfx_rep\fP * \fBneg_scfx_rep\fP (\fBconst\fP \fBscfx_rep\fP &)"
+.br
+.ti -1c
+.RI "\fBSC_API\fP \fBscfx_rep\fP * \fBmult_scfx_rep\fP (\fBconst\fP \fBscfx_rep\fP &, \fBconst\fP \fBscfx_rep\fP &, int)"
+.br
+.ti -1c
+.RI "\fBSC_API\fP \fBscfx_rep\fP * \fBdiv_scfx_rep\fP (\fBconst\fP \fBscfx_rep\fP &, \fBconst\fP \fBscfx_rep\fP &, int)"
+.br
+.ti -1c
+.RI "\fBSC_API\fP \fBscfx_rep\fP * \fBadd_scfx_rep\fP (\fBconst\fP \fBscfx_rep\fP &, \fBconst\fP \fBscfx_rep\fP &, int)"
+.br
+.ti -1c
+.RI "\fBSC_API\fP \fBscfx_rep\fP * \fBsub_scfx_rep\fP (\fBconst\fP \fBscfx_rep\fP &, \fBconst\fP \fBscfx_rep\fP &, int)"
+.br
+.ti -1c
+.RI "\fBSC_API\fP \fBscfx_rep\fP * \fBlsh_scfx_rep\fP (\fBconst\fP \fBscfx_rep\fP &, int)"
+.br
+.ti -1c
+.RI "\fBSC_API\fP \fBscfx_rep\fP * \fBrsh_scfx_rep\fP (\fBconst\fP \fBscfx_rep\fP &, int)"
+.br
+.ti -1c
+.RI "\fBSC_API\fP int \fBcmp_scfx_rep\fP (\fBconst\fP \fBscfx_rep\fP &, \fBconst\fP \fBscfx_rep\fP &)"
+.br
+.ti -1c
+.RI "\fBscfx_rep\fP * \fBquantization_scfx_rep\fP (\fBconst\fP \fBscfx_rep\fP &, \fBconst\fP \fBscfx_params\fP &, \fBbool\fP &)"
+.br
+.ti -1c
+.RI "\fBscfx_rep\fP * \fBoverflow_scfx_rep\fP (\fBconst\fP \fBscfx_rep\fP &, \fBconst\fP \fBscfx_params\fP &, \fBbool\fP &)"
+.br
+.ti -1c
+.RI "\fBvoid\fP \fBalign\fP (\fBconst\fP \fBscfx_rep\fP &, \fBconst\fP \fBscfx_rep\fP &, int &, int &, \fBscfx_mant_ref\fP &, \fBscfx_mant_ref\fP &)"
+.br
+.ti -1c
+.RI "int \fBcompare_msw\fP (\fBconst\fP \fBscfx_rep\fP &, \fBconst\fP \fBscfx_rep\fP &)"
+.br
+.ti -1c
+.RI "int \fBcompare_msw_ff\fP (\fBconst\fP \fBscfx_rep\fP &\fBlhs\fP, \fBconst\fP \fBscfx_rep\fP &\fBrhs\fP)"
+.br
+.ti -1c
+.RI "\fBvoid\fP \fBprint_dec\fP (\fBscfx_string\fP &, \fBconst\fP \fBscfx_rep\fP &, int, \fBsc_fmt\fP)"
+.br
+.ti -1c
+.RI "\fBvoid\fP \fBprint_other\fP (\fBscfx_string\fP &, \fBconst\fP \fBscfx_rep\fP &, \fBsc_numrep\fP, int, \fBsc_fmt\fP, \fBconst\fP \fBscfx_params\fP *)"
+.br
+.ti -1c
+.RI "int \fBcompare_abs\fP (\fBconst\fP \fBscfx_rep\fP &, \fBconst\fP \fBscfx_rep\fP &)"
+.br
+.in -1c
+.SH "Member Enumeration Documentation"
+.PP 
+.SS "\fBenum\fP \fBsc_dt::scfx_rep::state\fP\fR [private]\fP"
+
+.PP
+\fBEnumerator\fP
+.in +1c
+.TP
+\fB\fInormal \fP\fP
+.TP
+\fB\fIinfinity \fP\fP
+.TP
+\fB\fInot_a_number \fP\fP
+.SH "Constructor & Destructor Documentation"
+.PP 
+.SS "sc_dt::scfx_rep::scfx_rep ()"
+
+.SS "sc_dt::scfx_rep::scfx_rep (int)\fR [explicit]\fP"
+
+.SS "sc_dt::scfx_rep::scfx_rep (\fBunsigned\fP int)\fR [explicit]\fP"
+
+.SS "sc_dt::scfx_rep::scfx_rep (\fBlong\fP)\fR [explicit]\fP"
+
+.SS "sc_dt::scfx_rep::scfx_rep (\fBunsigned\fP \fBlong\fP)\fR [explicit]\fP"
+
+.SS "sc_dt::scfx_rep::scfx_rep (\fBdouble\fP)\fR [explicit]\fP"
+
+.SS "sc_dt::scfx_rep::scfx_rep (\fBconst\fP \fBchar\fP * s)\fR [inline]\fP, \fR [explicit]\fP"
+
+.SS "sc_dt::scfx_rep::scfx_rep (\fBint64\fP)\fR [explicit]\fP"
+
+.SS "sc_dt::scfx_rep::scfx_rep (\fBuint64\fP)\fR [explicit]\fP"
+
+.SS "sc_dt::scfx_rep::scfx_rep (\fBconst\fP \fBsc_signed\fP &)\fR [explicit]\fP"
+
+.SS "sc_dt::scfx_rep::scfx_rep (\fBconst\fP \fBsc_unsigned\fP &)\fR [explicit]\fP"
+
+.SS "sc_dt::scfx_rep::scfx_rep (\fBconst\fP \fBscfx_rep\fP &)"
+
+.SS "sc_dt::scfx_rep::~scfx_rep ()\fR [inline]\fP"
+
+.SH "Member Function Documentation"
+.PP 
+.SS "\fBconst\fP \fBscfx_index\fP sc_dt::scfx_rep::calc_indices (int n) const\fR [inline]\fP, \fR [private]\fP"
+
+.SS "\fBvoid\fP sc_dt::scfx_rep::cast (\fBconst\fP \fBscfx_params\fP &, \fBbool\fP &, \fBbool\fP &)"
+
+.SS "\fBbool\fP sc_dt::scfx_rep::clear (int, \fBconst\fP \fBscfx_params\fP &)"
+
+.SS "\fBunsigned\fP int sc_dt::scfx_rep::divide_by_ten ()\fR [private]\fP"
+
+.SS "\fBvoid\fP sc_dt::scfx_rep::dump (::std::ostream &) const"
+
+.SS "int sc_dt::scfx_rep::find_lsw () const\fR [inline]\fP, \fR [private]\fP"
+
+.SS "int sc_dt::scfx_rep::find_msw () const\fR [inline]\fP, \fR [private]\fP"
+
+.SS "\fBvoid\fP sc_dt::scfx_rep::find_sw ()\fR [inline]\fP, \fR [private]\fP"
+
+.SS "\fBvoid\fP sc_dt::scfx_rep::from_string (\fBconst\fP \fBchar\fP *, int)"
+
+.SS "\fBbool\fP sc_dt::scfx_rep::get_bit (int) const"
+
+.SS "\fBbool\fP sc_dt::scfx_rep::get_slice (int, int, \fBconst\fP \fBscfx_params\fP &, \fBsc_bv_base\fP &) const"
+
+.SS "\fBvoid\fP sc_dt::scfx_rep::get_type (int &, int &, \fBsc_enc\fP &) const"
+
+.SS "\fBbool\fP sc_dt::scfx_rep::is_inf () const\fR [inline]\fP"
+
+.SS "\fBbool\fP sc_dt::scfx_rep::is_nan () const\fR [inline]\fP"
+
+.SS "\fBbool\fP sc_dt::scfx_rep::is_neg () const\fR [inline]\fP"
+
+.SS "\fBbool\fP sc_dt::scfx_rep::is_normal () const\fR [inline]\fP"
+
+.SS "\fBbool\fP sc_dt::scfx_rep::is_zero () const\fR [inline]\fP"
+
+.SS "\fBvoid\fP sc_dt::scfx_rep::lshift (int)"
+
+.SS "\fBvoid\fP sc_dt::scfx_rep::multiply_by_ten ()\fR [private]\fP"
+
+.SS "\fBvoid\fP sc_dt::scfx_rep::normalize (int)\fR [private]\fP"
+
+.SS "\fBbool\fP sc_dt::scfx_rep::o_bit_at (\fBconst\fP \fBscfx_index\fP & x) const\fR [inline]\fP, \fR [private]\fP"
+
+.SS "\fBvoid\fP sc_dt::scfx_rep::o_extend (\fBconst\fP \fBscfx_index\fP & x, \fBsc_enc\fP enc)\fR [inline]\fP, \fR [private]\fP"
+
+.SS "\fBvoid\fP sc_dt::scfx_rep::o_invert (\fBconst\fP \fBscfx_index\fP & x2)\fR [inline]\fP, \fR [private]\fP"
+
+.SS "\fBvoid\fP sc_dt::scfx_rep::o_set (\fBconst\fP \fBscfx_index\fP & x, \fBconst\fP \fBscfx_index\fP & x3, \fBsc_enc\fP enc, \fBbool\fP under)\fR [inline]\fP, \fR [private]\fP"
+
+.SS "\fBvoid\fP sc_dt::scfx_rep::o_set_high (\fBconst\fP \fBscfx_index\fP & x, \fBconst\fP \fBscfx_index\fP & x2, \fBsc_enc\fP enc, int sign = \fR1\fP)\fR [inline]\fP, \fR [private]\fP"
+
+.SS "\fBvoid\fP sc_dt::scfx_rep::o_set_low (\fBconst\fP \fBscfx_index\fP & x, \fBsc_enc\fP enc)\fR [inline]\fP, \fR [private]\fP"
+
+.SS "\fBbool\fP sc_dt::scfx_rep::o_zero_left (\fBconst\fP \fBscfx_index\fP & x) const\fR [inline]\fP, \fR [private]\fP"
+
+.SS "\fBbool\fP sc_dt::scfx_rep::o_zero_right (\fBconst\fP \fBscfx_index\fP & x) const\fR [inline]\fP, \fR [private]\fP"
+
+.SS "\fBvoid\fP sc_dt::scfx_rep::operator \fBdelete\fP (\fBvoid\fP *, std::size_t)"
+
+.SS "\fBvoid\fP * sc_dt::scfx_rep::operator \fBnew\fP (std::size_t)"
+
+.SS "\fBvoid\fP sc_dt::scfx_rep::operator= (\fBconst\fP \fBscfx_rep\fP & f)\fR [inline]\fP"
+
+.SS "\fBvoid\fP sc_dt::scfx_rep::overflow (\fBconst\fP \fBscfx_params\fP &, \fBbool\fP &)\fR [private]\fP"
+
+.SS "\fBvoid\fP sc_dt::scfx_rep::print (::std::ostream &) const"
+
+.SS "\fBbool\fP sc_dt::scfx_rep::q_bit (\fBconst\fP \fBscfx_index\fP & x) const\fR [inline]\fP, \fR [private]\fP"
+
+.SS "\fBvoid\fP sc_dt::scfx_rep::q_clear (\fBconst\fP \fBscfx_index\fP & x)\fR [inline]\fP, \fR [private]\fP"
+
+.SS "\fBvoid\fP sc_dt::scfx_rep::q_incr (\fBconst\fP \fBscfx_index\fP & x)\fR [inline]\fP, \fR [private]\fP"
+
+.SS "\fBbool\fP sc_dt::scfx_rep::q_odd (\fBconst\fP \fBscfx_index\fP & x) const\fR [inline]\fP, \fR [private]\fP"
+
+.SS "\fBbool\fP sc_dt::scfx_rep::q_zero (\fBconst\fP \fBscfx_index\fP & x) const\fR [inline]\fP, \fR [private]\fP"
+
+.SS "\fBvoid\fP sc_dt::scfx_rep::quantization (\fBconst\fP \fBscfx_params\fP &, \fBbool\fP &)\fR [private]\fP"
+
+.SS "\fBscfx_mant\fP * sc_dt::scfx_rep::resize (int, int) const\fR [private]\fP"
+
+.SS "\fBvoid\fP sc_dt::scfx_rep::resize_to (int new_size, int restore = \fR0\fP)\fR [inline]\fP, \fR [private]\fP"
+
+.SS "\fBvoid\fP sc_dt::scfx_rep::round (int)\fR [private]\fP"
+
+.SS "\fBbool\fP sc_dt::scfx_rep::rounding_flag () const\fR [inline]\fP"
+
+.SS "\fBvoid\fP sc_dt::scfx_rep::rshift (int)"
+
+.SS "\fBbool\fP sc_dt::scfx_rep::set (int, \fBconst\fP \fBscfx_params\fP &)"
+
+.SS "\fBvoid\fP sc_dt::scfx_rep::set_bin (int)\fR [private]\fP"
+
+.SS "\fBvoid\fP sc_dt::scfx_rep::set_hex (int, int)\fR [private]\fP"
+
+.SS "\fBvoid\fP sc_dt::scfx_rep::set_inf (int sign)\fR [inline]\fP"
+
+.SS "\fBvoid\fP sc_dt::scfx_rep::set_nan ()\fR [inline]\fP"
+
+.SS "\fBvoid\fP sc_dt::scfx_rep::set_oct (int, int)\fR [private]\fP"
+
+.SS "\fBbool\fP sc_dt::scfx_rep::set_slice (int, int, \fBconst\fP \fBscfx_params\fP &, \fBconst\fP \fBsc_bv_base\fP &)"
+
+.SS "\fBvoid\fP sc_dt::scfx_rep::set_zero (int sign = \fR1\fP)\fR [inline]\fP"
+
+.SS "\fBvoid\fP sc_dt::scfx_rep::shift_left (int)\fR [private]\fP"
+
+.SS "\fBvoid\fP sc_dt::scfx_rep::shift_right (int)\fR [private]\fP"
+
+.SS "int sc_dt::scfx_rep::size () const\fR [inline]\fP, \fR [private]\fP"
+
+.SS "\fBdouble\fP sc_dt::scfx_rep::to_double () const"
+
+.SS "\fBconst\fP \fBchar\fP * sc_dt::scfx_rep::to_string (\fBsc_numrep\fP, int, \fBsc_fmt\fP, \fBconst\fP \fBscfx_params\fP * = \fR0\fP) const"
+
+.SS "\fBuint64\fP sc_dt::scfx_rep::to_uint64 () const"
+
+.SS "\fBvoid\fP sc_dt::scfx_rep::toggle_tc ()\fR [inline]\fP, \fR [private]\fP"
+
+.SH "Friends And Related Symbol Documentation"
+.PP 
+.SS "\fBSC_API\fP \fBscfx_rep\fP * add_scfx_rep (\fBconst\fP \fBscfx_rep\fP &, \fBconst\fP \fBscfx_rep\fP &, int)\fR [friend]\fP"
+
+.SS "\fBvoid\fP align (\fBconst\fP \fBscfx_rep\fP &, \fBconst\fP \fBscfx_rep\fP &, int &, int &, \fBscfx_mant_ref\fP &, \fBscfx_mant_ref\fP &)\fR [friend]\fP"
+
+.SS "\fBSC_API\fP int cmp_scfx_rep (\fBconst\fP \fBscfx_rep\fP &, \fBconst\fP \fBscfx_rep\fP &)\fR [friend]\fP"
+
+.SS "int compare_abs (\fBconst\fP \fBscfx_rep\fP &, \fBconst\fP \fBscfx_rep\fP &)\fR [friend]\fP"
+
+.SS "int compare_msw (\fBconst\fP \fBscfx_rep\fP &, \fBconst\fP \fBscfx_rep\fP &)\fR [friend]\fP"
+
+.SS "int compare_msw_ff (\fBconst\fP \fBscfx_rep\fP & lhs, \fBconst\fP \fBscfx_rep\fP & rhs)\fR [friend]\fP"
+
+.SS "\fBSC_API\fP \fBscfx_rep\fP * div_scfx_rep (\fBconst\fP \fBscfx_rep\fP &, \fBconst\fP \fBscfx_rep\fP &, int)\fR [friend]\fP"
+
+.SS "\fBSC_API\fP \fBscfx_rep\fP * lsh_scfx_rep (\fBconst\fP \fBscfx_rep\fP & a, int b)\fR [friend]\fP"
+
+.SS "\fBSC_API\fP \fBscfx_rep\fP * mult_scfx_rep (\fBconst\fP \fBscfx_rep\fP & a, \fBconst\fP \fBscfx_rep\fP & b, int max_wl = \fR\fBSC_DEFAULT_MAX_WL_\fP\fP)\fR [friend]\fP"
+
+.SS "\fBSC_API\fP \fBvoid\fP multiply (\fBscfx_rep\fP &, \fBconst\fP \fBscfx_rep\fP &, \fBconst\fP \fBscfx_rep\fP &, int)\fR [friend]\fP"
+
+.SS "\fBSC_API\fP \fBscfx_rep\fP * neg_scfx_rep (\fBconst\fP \fBscfx_rep\fP & a)\fR [friend]\fP"
+
+.SS "\fBscfx_rep\fP * overflow_scfx_rep (\fBconst\fP \fBscfx_rep\fP & a, \fBconst\fP \fBscfx_params\fP & params, \fBbool\fP & o_flag)\fR [friend]\fP"
+
+.SS "\fBvoid\fP print_dec (\fBscfx_string\fP &, \fBconst\fP \fBscfx_rep\fP &, int, \fBsc_fmt\fP)\fR [friend]\fP"
+
+.SS "\fBvoid\fP print_other (\fBscfx_string\fP &, \fBconst\fP \fBscfx_rep\fP &, \fBsc_numrep\fP, int, \fBsc_fmt\fP, \fBconst\fP \fBscfx_params\fP *)\fR [friend]\fP"
+
+.SS "\fBscfx_rep\fP * quantization_scfx_rep (\fBconst\fP \fBscfx_rep\fP & a, \fBconst\fP \fBscfx_params\fP & params, \fBbool\fP & q_flag)\fR [friend]\fP"
+
+.SS "\fBSC_API\fP \fBscfx_rep\fP * rsh_scfx_rep (\fBconst\fP \fBscfx_rep\fP & a, int b)\fR [friend]\fP"
+
+.SS "\fBSC_API\fP \fBscfx_rep\fP * sub_scfx_rep (\fBconst\fP \fBscfx_rep\fP &, \fBconst\fP \fBscfx_rep\fP &, int)\fR [friend]\fP"
+
+.SH "Member Data Documentation"
+.PP 
+.SS "int sc_dt::scfx_rep::m_lsw\fR [private]\fP"
+
+.SS "\fBscfx_mant\fP sc_dt::scfx_rep::m_mant\fR [private]\fP"
+
+.SS "int sc_dt::scfx_rep::m_msw\fR [private]\fP"
+
+.SS "\fBbool\fP sc_dt::scfx_rep::m_r_flag\fR [private]\fP"
+
+.SS "int sc_dt::scfx_rep::m_sign\fR [private]\fP"
+
+.SS "\fBstate\fP sc_dt::scfx_rep::m_state\fR [private]\fP"
+
+.SS "int sc_dt::scfx_rep::m_wp\fR [private]\fP"
+
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for VHDL simulator from the source code\&.

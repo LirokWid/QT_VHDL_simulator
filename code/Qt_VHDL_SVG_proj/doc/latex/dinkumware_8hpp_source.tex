@@ -1,0 +1,112 @@
+\doxysection{dinkumware.\+hpp}
+\hypertarget{dinkumware_8hpp_source}{}\label{dinkumware_8hpp_source}\index{C:/Users/BJRODIER/Documents/QT\_REPO/QT\_VHDL\_simulator/code/Ressources/SystemC/include/sysc/packages/boost/config/stdlib/dinkumware.hpp@{C:/Users/BJRODIER/Documents/QT\_REPO/QT\_VHDL\_simulator/code/Ressources/SystemC/include/sysc/packages/boost/config/stdlib/dinkumware.hpp}}
+\mbox{\hyperlink{dinkumware_8hpp}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{comment}{//\ \ (C)\ Copyright\ John\ Maddock\ 2001\ -\/\ 2003.}}
+\DoxyCodeLine{00002\ \textcolor{comment}{//\ \ (C)\ Copyright\ Jens\ Maurer\ 2001.}}
+\DoxyCodeLine{00003\ \textcolor{comment}{//\ \ (C)\ Copyright\ Peter\ Dimov\ 2001.}}
+\DoxyCodeLine{00004\ \textcolor{comment}{//\ \ (C)\ Copyright\ David\ Abrahams\ 2002.}}
+\DoxyCodeLine{00005\ \textcolor{comment}{//\ \ (C)\ Copyright\ Guillaume\ Melquiond\ 2003.}}
+\DoxyCodeLine{00006\ \textcolor{comment}{//\ \ Use,\ modification\ and\ distribution\ are\ subject\ to\ the}}
+\DoxyCodeLine{00007\ \textcolor{comment}{//\ \ Boost\ Software\ License,\ Version\ 1.0.\ (See\ accompanying\ file}}
+\DoxyCodeLine{00008\ \textcolor{comment}{//\ \ LICENSE\_1\_0.txt\ or\ copy\ at\ http://www.boost.org/LICENSE\_1\_0.txt)}}
+\DoxyCodeLine{00009\ }
+\DoxyCodeLine{00010\ \textcolor{comment}{//\ \ See\ http://www.boost.org\ for\ most\ recent\ version.}}
+\DoxyCodeLine{00011\ }
+\DoxyCodeLine{00012\ \textcolor{comment}{//\ \ Dinkumware\ standard\ library\ config:}}
+\DoxyCodeLine{00013\ }
+\DoxyCodeLine{00014\ \textcolor{preprocessor}{\#if\ !defined(\_YVALS)\ \&\&\ !defined(\_CPPLIB\_VER)}}
+\DoxyCodeLine{00015\ \textcolor{preprocessor}{\#include\ <utility>}}
+\DoxyCodeLine{00016\ \textcolor{preprocessor}{\#if\ !defined(\_YVALS)\ \&\&\ !defined(\_CPPLIB\_VER)}}
+\DoxyCodeLine{00017\ \textcolor{preprocessor}{\#error\ This\ is\ not\ the\ Dinkumware\ lib!}}
+\DoxyCodeLine{00018\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00019\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00020\ }
+\DoxyCodeLine{00021\ }
+\DoxyCodeLine{00022\ \textcolor{preprocessor}{\#if\ defined(\_CPPLIB\_VER)\ \&\&\ (\_CPPLIB\_VER\ >=\ 306)}}
+\DoxyCodeLine{00023\ \ \ \ \textcolor{comment}{//\ full\ dinkumware\ 3.06\ and\ above}}
+\DoxyCodeLine{00024\ \ \ \ \textcolor{comment}{//\ fully\ conforming\ provided\ the\ compiler\ supports\ it:}}
+\DoxyCodeLine{00025\ \textcolor{preprocessor}{\#\ \ if\ !(defined(\_GLOBAL\_USING)\ \&\&\ (\_GLOBAL\_USING+0\ >\ 0))\ \&\&\ !defined(\_\_BORLANDC\_\_)\ \&\&\ !defined(\_STD)\ \&\&\ !(defined(\_\_ICC)\ \&\&\ (\_\_ICC\ >=\ 700))\ \ \ }\textcolor{comment}{//\ can\ be\ defined\ in\ yvals.h}}
+\DoxyCodeLine{00026\ \textcolor{preprocessor}{\#\ \ \ \ \ define\ SC\_BOOST\_NO\_STDC\_NAMESPACE}}
+\DoxyCodeLine{00027\ \textcolor{preprocessor}{\#\ \ endif}}
+\DoxyCodeLine{00028\ \textcolor{preprocessor}{\#\ \ if\ !(defined(\_HAS\_MEMBER\_TEMPLATES\_REBIND)\ \&\&\ (\_HAS\_MEMBER\_TEMPLATES\_REBIND+0\ >\ 0))\ \&\&\ !(defined(\_MSC\_VER)\ \&\&\ (\_MSC\_VER\ >\ 1300))\ \&\&\ defined(SC\_BOOST\_MSVC)}}
+\DoxyCodeLine{00029\ \textcolor{preprocessor}{\#\ \ \ \ \ define\ SC\_BOOST\_NO\_STD\_ALLOCATOR}}
+\DoxyCodeLine{00030\ \textcolor{preprocessor}{\#\ \ endif}}
+\DoxyCodeLine{00031\ \textcolor{preprocessor}{\#\ \ define\ SC\_BOOST\_HAS\_PARTIAL\_STD\_ALLOCATOR}}
+\DoxyCodeLine{00032\ \textcolor{preprocessor}{\#\ \ if\ defined(SC\_BOOST\_MSVC)\ \&\&\ (SC\_BOOST\_MSVC\ <\ 1300)}}
+\DoxyCodeLine{00033\ \ \ \ \ \ \ \textcolor{comment}{//\ if\ this\ lib\ version\ is\ set\ up\ for\ vc6\ then\ there\ is\ no\ std::use\_facet:}}
+\DoxyCodeLine{00034\ \textcolor{preprocessor}{\#\ \ \ \ \ define\ SC\_BOOST\_NO\_STD\_USE\_FACET}}
+\DoxyCodeLine{00035\ \textcolor{preprocessor}{\#\ \ \ \ \ define\ SC\_BOOST\_HAS\_TWO\_ARG\_USE\_FACET}}
+\DoxyCodeLine{00036\ \ \ \ \ \ \ \textcolor{comment}{//\ C\ lib\ functions\ aren't\ in\ namespace\ std\ either:}}
+\DoxyCodeLine{00037\ \textcolor{preprocessor}{\#\ \ \ \ \ define\ SC\_BOOST\_NO\_STDC\_NAMESPACE}}
+\DoxyCodeLine{00038\ \ \ \ \ \ \ \textcolor{comment}{//\ and\ nor\ is\ <exception>}}
+\DoxyCodeLine{00039\ \textcolor{preprocessor}{\#\ \ \ \ \ define\ SC\_BOOST\_NO\_EXCEPTION\_STD\_NAMESPACE}}
+\DoxyCodeLine{00040\ \textcolor{preprocessor}{\#\ \ endif}}
+\DoxyCodeLine{00041\ \textcolor{comment}{//\ There's\ no\ numeric\_limits<long\ long>\ support\ unless\ \_LONGLONG\ is\ defined:}}
+\DoxyCodeLine{00042\ \textcolor{preprocessor}{\#\ \ if\ !defined(\_LONGLONG)\ \&\&\ (\_CPPLIB\_VER\ <=\ 310)}}
+\DoxyCodeLine{00043\ \textcolor{preprocessor}{\#\ \ \ \ \ define\ SC\_BOOST\_NO\_MS\_INT64\_NUMERIC\_LIMITS}}
+\DoxyCodeLine{00044\ \textcolor{preprocessor}{\#\ \ endif}}
+\DoxyCodeLine{00045\ \textcolor{comment}{//\ 3.06\ appears\ to\ have\ (non-\/sgi\ versions\ of)\ <hash\_set>\ \&\ <hash\_map>,}}
+\DoxyCodeLine{00046\ \textcolor{comment}{//\ and\ no\ <slist>\ at\ all}}
+\DoxyCodeLine{00047\ \textcolor{preprocessor}{\#else}}
+\DoxyCodeLine{00048\ \textcolor{preprocessor}{\#\ \ define\ SC\_BOOST\_MSVC\_STD\_ITERATOR\ 1}}
+\DoxyCodeLine{00049\ \textcolor{preprocessor}{\#\ \ define\ SC\_BOOST\_NO\_STD\_ITERATOR}}
+\DoxyCodeLine{00050\ \textcolor{preprocessor}{\#\ \ define\ SC\_BOOST\_NO\_TEMPLATED\_ITERATOR\_CONSTRUCTORS}}
+\DoxyCodeLine{00051\ \textcolor{preprocessor}{\#\ \ define\ SC\_BOOST\_NO\_STD\_ALLOCATOR}}
+\DoxyCodeLine{00052\ \textcolor{preprocessor}{\#\ \ define\ SC\_BOOST\_NO\_STDC\_NAMESPACE}}
+\DoxyCodeLine{00053\ \textcolor{preprocessor}{\#\ \ define\ SC\_BOOST\_NO\_STD\_USE\_FACET}}
+\DoxyCodeLine{00054\ \textcolor{preprocessor}{\#\ \ define\ SC\_BOOST\_NO\_STD\_OUTPUT\_ITERATOR\_ASSIGN}}
+\DoxyCodeLine{00055\ \textcolor{preprocessor}{\#\ \ define\ SC\_BOOST\_HAS\_MACRO\_USE\_FACET}}
+\DoxyCodeLine{00056\ \textcolor{preprocessor}{\#\ \ ifndef\ \_CPPLIB\_VER}}
+\DoxyCodeLine{00057\ \ \ \ \ \ \ \textcolor{comment}{//\ Updated\ Dinkum\ library\ defines\ this,\ and\ provides}}
+\DoxyCodeLine{00058\ \ \ \ \ \ \ \textcolor{comment}{//\ its\ own\ min\ and\ max\ definitions.}}
+\DoxyCodeLine{00059\ \textcolor{preprocessor}{\#\ \ \ \ \ define\ SC\_BOOST\_NO\_STD\_MIN\_MAX}}
+\DoxyCodeLine{00060\ \textcolor{preprocessor}{\#\ \ \ \ \ define\ SC\_BOOST\_NO\_MS\_INT64\_NUMERIC\_LIMITS}}
+\DoxyCodeLine{00061\ \textcolor{preprocessor}{\#\ \ endif}}
+\DoxyCodeLine{00062\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00063\ }
+\DoxyCodeLine{00064\ \textcolor{comment}{//}}
+\DoxyCodeLine{00065\ \textcolor{comment}{//\ std\ extension\ namespace\ is\ stdext\ for\ vc7.1\ and\ later,\ }}
+\DoxyCodeLine{00066\ \textcolor{comment}{//\ the\ same\ applies\ to\ other\ compilers\ that\ sit\ on\ top}}
+\DoxyCodeLine{00067\ \textcolor{comment}{//\ of\ vc7.1\ (Intel\ and\ Comeau):}}
+\DoxyCodeLine{00068\ \textcolor{comment}{//}}
+\DoxyCodeLine{00069\ \textcolor{preprocessor}{\#if\ defined(\_MSC\_VER)\ \&\&\ (\_MSC\_VER\ >=\ 1310)\ \&\&\ !defined(\_\_BORLANDC\_\_)}}
+\DoxyCodeLine{00070\ \textcolor{preprocessor}{\#\ \ define\ SC\_BOOST\_STD\_EXTENSION\_NAMESPACE\ stdext}}
+\DoxyCodeLine{00071\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00072\ }
+\DoxyCodeLine{00073\ }
+\DoxyCodeLine{00074\ \textcolor{preprocessor}{\#if\ (defined(\_MSC\_VER)\ \&\&\ (\_MSC\_VER\ <=\ 1300)\ \&\&\ !defined(\_\_BORLANDC\_\_))\ ||\ !defined(\_CPPLIB\_VER)\ ||\ (\_CPPLIB\_VER\ <\ 306)}}
+\DoxyCodeLine{00075\ \ \ \ \textcolor{comment}{//\ if\ we're\ using\ a\ dinkum\ lib\ that's}}
+\DoxyCodeLine{00076\ \ \ \ \textcolor{comment}{//\ been\ configured\ for\ VC6/7\ then\ there\ is}}
+\DoxyCodeLine{00077\ \ \ \ \textcolor{comment}{//\ no\ iterator\ traits\ (true\ even\ for\ icl)}}
+\DoxyCodeLine{00078\ \textcolor{preprocessor}{\#\ \ define\ SC\_BOOST\_NO\_STD\_ITERATOR\_TRAITS}}
+\DoxyCodeLine{00079\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00080\ }
+\DoxyCodeLine{00081\ \textcolor{preprocessor}{\#if\ defined(\_\_ICL)\ \&\&\ (\_\_ICL\ <\ 800)\ \&\&\ defined(\_CPPLIB\_VER)\ \&\&\ (\_CPPLIB\_VER\ <=\ 310)}}
+\DoxyCodeLine{00082\ \textcolor{comment}{//\ Intel\ C++\ chokes\ over\ any\ non-\/trivial\ use\ of\ <locale>}}
+\DoxyCodeLine{00083\ \textcolor{comment}{//\ this\ may\ be\ an\ overly\ restrictive\ define,\ but\ regex\ fails\ without\ it:}}
+\DoxyCodeLine{00084\ \textcolor{preprocessor}{\#\ \ define\ SC\_BOOST\_NO\_STD\_LOCALE}}
+\DoxyCodeLine{00085\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00086\ }
+\DoxyCodeLine{00087\ \textcolor{preprocessor}{\#ifdef\ \_CPPLIB\_VER}}
+\DoxyCodeLine{00088\ \textcolor{preprocessor}{\#\ \ define\ SC\_BOOST\_DINKUMWARE\_STDLIB\ \_CPPLIB\_VER}}
+\DoxyCodeLine{00089\ \textcolor{preprocessor}{\#else}}
+\DoxyCodeLine{00090\ \textcolor{preprocessor}{\#\ \ define\ SC\_BOOST\_DINKUMWARE\_STDLIB\ 1}}
+\DoxyCodeLine{00091\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00092\ }
+\DoxyCodeLine{00093\ \textcolor{preprocessor}{\#ifdef\ \_CPPLIB\_VER}}
+\DoxyCodeLine{00094\ \textcolor{preprocessor}{\#\ \ define\ SC\_BOOST\_STDLIB\ "{}Dinkumware\ standard\ library\ version\ "{}\ SC\_BOOST\_STRINGIZE(\_CPPLIB\_VER)}}
+\DoxyCodeLine{00095\ \textcolor{preprocessor}{\#else}}
+\DoxyCodeLine{00096\ \textcolor{preprocessor}{\#\ \ define\ SC\_BOOST\_STDLIB\ "{}Dinkumware\ standard\ library\ version\ 1.x"{}}}
+\DoxyCodeLine{00097\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00098\ }
+\DoxyCodeLine{00099\ }
+\DoxyCodeLine{00100\ }
+\DoxyCodeLine{00101\ }
+\DoxyCodeLine{00102\ }
+\DoxyCodeLine{00103\ }
+\DoxyCodeLine{00104\ }
+\DoxyCodeLine{00105\ }
+\DoxyCodeLine{00106\ }
+
+\end{DoxyCode}
