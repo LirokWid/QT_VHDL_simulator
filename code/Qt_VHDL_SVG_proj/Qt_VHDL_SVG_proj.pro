@@ -1,8 +1,12 @@
-QT = core
+QT = core gui
 QT += svg
 QT += xml
+QT += svgwidgets
+
+greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
 CONFIG += c++17 cmdline
+CONFIG += gnu++17
 
 # You can make your code fail to compile if it uses deprecated APIs.
 # In order to do so, uncomment the following line.
@@ -33,7 +37,7 @@ RESOURCES += \
     $$files("svg/*.svg")
 
 FORMS += \
-    #UI files
+    $$files("forms/*.ui")
 
 
 # Default rules for deployment.
