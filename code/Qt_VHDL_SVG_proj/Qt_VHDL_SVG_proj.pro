@@ -19,17 +19,20 @@ else: unix:!android: target.path = /opt/$${TARGET}/bin
 !isEmpty(target.path): INSTALLS += target
 
 QMAKE_INCDIR += \
-    parser_linker
-
+    parser_linker \
+    systemc_modules \
+    gui
 
 
 HEADERS += \
     $$files("parser_linker/*.h") \
-    $$files("systemc_modules/*.h")
+    $$files("systemc_modules/*.h") \
+    $$files("gui/*.h")
 
 SOURCES += \
     $$files("parser_linker/*.cpp") \
     $$files("systemc_modules/*.cpp") \
+    $$files("gui/*.cpp") \
     main.cpp
 
 
@@ -38,12 +41,6 @@ RESOURCES += \
 
 FORMS += \
     $$files("forms/*.ui")
-
-
-# Default rules for deployment.
-qnx: target.path = /tmp/$${TARGET}/bin
-else: unix:!android: target.path = /opt/$${TARGET}/bin
-!isEmpty(target.path): INSTALLS += target
 
 
 # SystemC
