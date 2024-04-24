@@ -7,6 +7,11 @@
 #include <QGraphicsSvgItem>
 
 
+#include <QMainWindow>
+#include <QFileSystemModel>
+#include <QFileDialog>
+#include <QTreeView>
+
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
 QT_END_NAMESPACE
@@ -26,10 +31,14 @@ signals:
 
 private slots:
 
+
+    void on_pushButton_clicked();
+
 private:
     Ui::MainWindow *ui;
 
-
+    QTreeView *treeView;
+    QFileSystemModel *model;
 };
 
 #endif // MAINWINDOW_H
