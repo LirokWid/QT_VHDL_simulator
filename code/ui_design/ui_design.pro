@@ -14,16 +14,21 @@ CONFIG += c++17
 
 SOURCES += \
     main.cpp \
-    mainwindow.cpp
+    mainwindow.cpp \
+    ui_svg_item.cpp \
+    view.cpp
 
 HEADERS += \
-    mainwindow.h
+    mainwindow.h \
+    ui_svg_item.h \
+    view.h
 
 FORMS += \
     mainwindow.ui
 
 RESOURCES += \
-    $$files("svg/*.svg")
+    $$files("svg/*.svg")\
+    $$files("ui_img/*.png")
 
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin

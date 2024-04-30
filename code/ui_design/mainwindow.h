@@ -4,6 +4,8 @@
 #include <QMainWindow>
 #include <QSvgWidget>
 
+#include "view.h"
+
 
 QT_BEGIN_NAMESPACE
 namespace Ui {
@@ -22,6 +24,8 @@ public:
 private:
     Ui::MainWindow *ui;
     QSvgWidget *svgWidget;
+
+    void init_svg_view();
 
 };
 #endif // MAINWINDOW_H
