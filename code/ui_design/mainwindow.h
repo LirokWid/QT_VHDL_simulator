@@ -3,6 +3,7 @@
 
 #include <QMainWindow>
 #include <QSvgWidget>
+#include "svgwidget.h"
 
 #include "view.h"
 
@@ -21,11 +22,16 @@ public:
     MainWindow(QWidget *parent = nullptr);
     ~MainWindow();
 
+private slots:
+    void on_pushButton_3_clicked();
+
 private:
     Ui::MainWindow *ui;
-    QSvgWidget *svgWidget;
+    SvgWidget *svgWidget;
 
     void init_svg_view();
+
+    bool state = false; //temp
 
 };
 #endif // MAINWINDOW_H

@@ -62,4 +62,5 @@ private:
 };
 
 #endif // VIEW_H
+
 */
