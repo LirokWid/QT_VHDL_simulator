@@ -6,14 +6,16 @@
 #include <QGraphicsSvgItem>
 #include <QSlider>
 
+#define min(X, Y) (((X) < (Y)) ? (X) : (Y))
+#define max(X, Y) (((X) > (Y)) ? (X) : (Y))
+#define BASE_ZOOM 50
+
 class SvgWidget : public QWidget {
     Q_OBJECT
 public:
     explicit SvgWidget(QWidget *parent = nullptr);
-
     void loadSvg(const QString& filePath);
     void clearScene();
-
     void setZoom(int value);
 
 private slots:
@@ -30,6 +32,8 @@ private:
     //mouse events
     QPoint lastMousePos;
     bool panning;
+
+    int zoomValue = BASE_ZOOM;
 };
 
 #endif // SVGWIDGET_H

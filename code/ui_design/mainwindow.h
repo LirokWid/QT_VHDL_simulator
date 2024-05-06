@@ -7,6 +7,9 @@
 
 #include "view.h"
 
+#define TEMP_SVG_PATH  ":/svg/mux_symp.svg"
+#define TEMP_SVG_PATH2 ":/svg/mux.svg"
+#define TEMP_SVG_PATH3 ":/svg/Schematic_Paco.svg"
 
 QT_BEGIN_NAMESPACE
 namespace Ui {
@@ -28,8 +31,6 @@ private slots:
 private:
     Ui::MainWindow *ui;
     SvgWidget *svgWidget;
-
-    void init_svg_view();
 
     bool state = false; //temp
 
