@@ -3,7 +3,7 @@
 
 #include "SvgParser.h" // Include the header file for the SvgParser inherited class
 
-#include <systemc.h>
+//#include <systemc.h>
 
 /**
  * @brief The svg_linker class
