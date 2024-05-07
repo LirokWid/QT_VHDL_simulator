@@ -4,6 +4,7 @@
 #include <QMainWindow>
 #include <QSvgWidget>
 #include "svgwidget.h"
+#include "filestreeview.h"
 
 #include "view.h"
 
@@ -26,11 +27,12 @@ public:
     ~MainWindow();
 
 private slots:
-    void on_pushButton_3_clicked();
+    void on_stop_clicked();
 
 private:
     Ui::MainWindow *ui;
     SvgWidget *svgWidget;
+    FilesTreeView *filesTreeView;
 
     bool state = false; //temp
 

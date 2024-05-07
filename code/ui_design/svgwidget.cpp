@@ -6,6 +6,9 @@
 #include <QWheelEvent>
 #include <QScrollBar>
 
+#define min(X, Y) (((X) < (Y)) ? (X) : (Y))
+#define max(X, Y) (((X) > (Y)) ? (X) : (Y))
+
 SvgWidget::SvgWidget(QWidget *parent)
     : QWidget(parent)
 {
@@ -15,17 +18,16 @@ SvgWidget::SvgWidget(QWidget *parent)
     graphicsView->setTransformationAnchor(QGraphicsView::AnchorUnderMouse);
     graphicsView->setDragMode(QGraphicsView::ScrollHandDrag);
 
-    QVBoxLayout *layout = new QVBoxLayout(this);
+    QHBoxLayout *layout = new QHBoxLayout(this);
     layout->addWidget(graphicsView);
 
-    zoomSlider = new QSlider(Qt::Horizontal, this);
+    zoomSlider = new QSlider(Qt::Vertical, this);
     zoomSlider->setRange(1, 100);
     zoomSlider->setValue(zoomValue);
     connect(zoomSlider, &QSlider::valueChanged, this, &SvgWidget::zoomChanged);
     layout->addWidget(zoomSlider);
 
     setLayout(layout);
-
 }
 
 

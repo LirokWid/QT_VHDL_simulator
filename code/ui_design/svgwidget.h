@@ -6,8 +6,8 @@
 #include <QGraphicsSvgItem>
 #include <QSlider>
 
-#define min(X, Y) (((X) < (Y)) ? (X) : (Y))
-#define max(X, Y) (((X) > (Y)) ? (X) : (Y))
+
+
 #define BASE_ZOOM 50
 
 class SvgWidget : public QWidget {

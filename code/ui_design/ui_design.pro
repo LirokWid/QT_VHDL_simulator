@@ -13,6 +13,7 @@ CONFIG += c++17
 #DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000    # disables all the APIs deprecated before Qt 6.0.0
 
 SOURCES += \
+    filestreeview.cpp \
     main.cpp \
     mainwindow.cpp \
     svgwidget.cpp \
@@ -20,6 +21,7 @@ SOURCES += \
     view.cpp
 
 HEADERS += \
+    filestreeview.h \
     mainwindow.h \
     svgwidget.h \
     ui_svg_item.h \
