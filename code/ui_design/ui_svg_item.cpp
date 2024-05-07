@@ -1,3 +1,4 @@
+/*
 #include "ui_svg_item.h"
 #include <QGraphicsSceneMouseEvent>
 #include <QPainter>
@@ -25,3 +26,4 @@ void ui_svg_item::paint(QPainter *painter, const QStyleOptionGraphicsItem *optio
 
     //load svg
 }
+*/

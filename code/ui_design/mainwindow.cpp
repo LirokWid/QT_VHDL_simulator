@@ -1,22 +1,11 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
 #include "view.h"
-
-#define TEMP_SVG_PATH ":/svg/mux_symp.svg"
-
-void MainWindow::init_svg_view()
-{
-    //TODO file error checking
-    //1. create a view and set it to the svgLayout
-    View *view = new View("Svg display view");
-    view->view()->setScene(new QGraphicsScene(view));
-    ui->svgLayout->addWidget(view);
+#include "svgwidget.h"
 
 
-    //svgWidget = new QSvgWidget(ui->centralwidget);
-    //svgWidget->load(QString(TEMP_SVG_PATH));
-    //ui->svgLayout->addWidget(svgWidget);
-}
+
+
 
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
@@ -24,7 +13,11 @@ MainWindow::MainWindow(QWidget *parent)
 {
     ui->setupUi(this);
     setWindowTitle(tr("VHDL SIMULATOR"));
-    init_svg_view();
+
+    //Setup the svg view
+    svgWidget = new SvgWidget();
+    svgWidget->loadSvg(TEMP_SVG_PATH);
+    ui->svgLayout->addWidget(svgWidget);
 }
 
 MainWindow::~MainWindow()
@@ -32,4 +25,19 @@ MainWindow::~MainWindow()
     delete ui;
 }
 
+void MainWindow::on_pushButton_3_clicked() //temp debug svgwidget
+{
+    if(state)
+    {
+        state = !state;
+        svgWidget->loadSvg(TEMP_SVG_PATH2);
+
+    }
+    else
+    {
+        state = !state;
+        svgWidget->loadSvg(TEMP_SVG_PATH3);
+    }
+    qDebug()<<"new svg loaded";
+}
 

@@ -3,9 +3,13 @@
 
 #include <QMainWindow>
 #include <QSvgWidget>
+#include "svgwidget.h"
 
 #include "view.h"
 
+#define TEMP_SVG_PATH  ":/svg/mux_symp.svg"
+#define TEMP_SVG_PATH2 ":/svg/mux.svg"
+#define TEMP_SVG_PATH3 ":/svg/Schematic_Paco.svg"
 
 QT_BEGIN_NAMESPACE
 namespace Ui {
@@ -21,11 +25,14 @@ public:
     MainWindow(QWidget *parent = nullptr);
     ~MainWindow();
 
+private slots:
+    void on_pushButton_3_clicked();
+
 private:
     Ui::MainWindow *ui;
-    QSvgWidget *svgWidget;
+    SvgWidget *svgWidget;
 
-    void init_svg_view();
+    bool state = false; //temp
 
 };
 #endif // MAINWINDOW_H
