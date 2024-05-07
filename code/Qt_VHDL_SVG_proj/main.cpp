@@ -7,7 +7,7 @@
  */
 
 
-#define GRAPHICAL
+#define GRAPHICA
 #ifdef GRAPHICAL
 
 #include "mainwindow.h"
