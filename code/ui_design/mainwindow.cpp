@@ -20,10 +20,13 @@ MainWindow::MainWindow(QWidget *parent)
     ui->svgLayout->addWidget(svgWidget);
 
     //Setup the tree view
-    filesTreeView = new FilesTreeView(ui->folder_btn, ui->treeView, this);
+    filesTreeView = new FilesTreeView(ui->folder_btn, ui->treeView, svgWidget, this);
 
     //Setup the svg file close button
     connect(ui->closeFile, &QPushButton::clicked, this, &MainWindow::closeSvg);
+
+    //Setup the debug window display
+    //TODO
 
 }
 
@@ -34,7 +37,7 @@ MainWindow::~MainWindow()
 
 void MainWindow::on_stop_clicked() //temp debug svgwidget
 {
-    if(state)
+    if (state)
     {
         state = !state;
         svgWidget->loadSvg(TEMP_SVG_PATH2);
@@ -55,6 +58,12 @@ void MainWindow::closeSvg()
     qDebug()<<"svg cleared";
 }
 
+void MainWindow::loadSvgFileFromPath(QString path)
+{
+    //Load the svg file into the svg widget
+    svgWidget->loadSvg(path);
+    qDebug()<<"svg loaded from path: "<<path;
+}
 
 
 

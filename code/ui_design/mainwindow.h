@@ -24,6 +24,8 @@ class MainWindow : public QMainWindow
 
 public:
     MainWindow(QWidget *parent = nullptr);
+    void loadSvgFileFromPath(QString path);
+
     ~MainWindow();
 
 private slots:

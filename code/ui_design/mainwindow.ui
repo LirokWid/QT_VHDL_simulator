@@ -67,7 +67,7 @@
       <widget class="QWidget" name="layoutWidget">
        <layout class="QGridLayout" name="fileSelectionGrid">
         <property name="sizeConstraint">
-         <enum>QLayout::SetMaximumSize</enum>
+         <enum>QLayout::SetNoConstraint</enum>
         </property>
         <property name="spacing">
          <number>10</number>
@@ -94,12 +94,18 @@
            <enum>QLayout::SetMinimumSize</enum>
           </property>
           <item>
-           <layout class="QHBoxLayout" name="horizontalLayout_2">
+           <layout class="QHBoxLayout" name="treeViewBtnLayout">
             <property name="sizeConstraint">
-             <enum>QLayout::SetFixedSize</enum>
+             <enum>QLayout::SetDefaultConstraint</enum>
             </property>
             <item>
              <widget class="QPushButton" name="folder_btn">
+              <property name="minimumSize">
+               <size>
+                <width>80</width>
+                <height>0</height>
+               </size>
+              </property>
               <property name="text">
                <string>load folder</string>
               </property>
@@ -107,20 +113,45 @@
             </item>
             <item>
              <widget class="QPushButton" name="closeFile">
+              <property name="minimumSize">
+               <size>
+                <width>80</width>
+                <height>0</height>
+               </size>
+              </property>
               <property name="text">
                <string>Close file</string>
               </property>
              </widget>
+            </item>
+            <item>
+             <spacer name="horizontalSpacer_2">
+              <property name="orientation">
+               <enum>Qt::Horizontal</enum>
+              </property>
+              <property name="sizeHint" stdset="0">
+               <size>
+                <width>40</width>
+                <height>20</height>
+               </size>
+              </property>
+             </spacer>
             </item>
            </layout>
           </item>
           <item>
            <widget class="QTreeView" name="treeView">
             <property name="sizePolicy">
-             <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+             <sizepolicy hsizetype="MinimumExpanding" vsizetype="MinimumExpanding">
               <horstretch>0</horstretch>
               <verstretch>0</verstretch>
              </sizepolicy>
+            </property>
+            <property name="minimumSize">
+             <size>
+              <width>200</width>
+              <height>200</height>
+             </size>
             </property>
            </widget>
           </item>
@@ -129,7 +160,7 @@
         <item row="0" column="0">
          <widget class="QTableView" name="filesTable">
           <property name="sizePolicy">
-           <sizepolicy hsizetype="Fixed" vsizetype="Preferred">
+           <sizepolicy hsizetype="MinimumExpanding" vsizetype="Preferred">
             <horstretch>0</horstretch>
             <verstretch>0</verstretch>
            </sizepolicy>
@@ -157,10 +188,29 @@
           <item>
            <layout class="QHBoxLayout" name="simControlLayout">
             <property name="sizeConstraint">
-             <enum>QLayout::SetMinimumSize</enum>
+             <enum>QLayout::SetDefaultConstraint</enum>
             </property>
             <item>
+             <spacer name="horizontalSpacer">
+              <property name="orientation">
+               <enum>Qt::Horizontal</enum>
+              </property>
+              <property name="sizeHint" stdset="0">
+               <size>
+                <width>40</width>
+                <height>20</height>
+               </size>
+              </property>
+             </spacer>
+            </item>
+            <item>
              <widget class="QPushButton" name="stop">
+              <property name="sizePolicy">
+               <sizepolicy hsizetype="Maximum" vsizetype="Fixed">
+                <horstretch>0</horstretch>
+                <verstretch>0</verstretch>
+               </sizepolicy>
+              </property>
               <property name="text">
                <string>sim stop</string>
               </property>
@@ -168,6 +218,12 @@
             </item>
             <item>
              <widget class="QPushButton" name="minus">
+              <property name="sizePolicy">
+               <sizepolicy hsizetype="Maximum" vsizetype="Fixed">
+                <horstretch>0</horstretch>
+                <verstretch>0</verstretch>
+               </sizepolicy>
+              </property>
               <property name="text">
                <string>sim -</string>
               </property>
@@ -175,6 +231,12 @@
             </item>
             <item>
              <widget class="QPushButton" name="plus">
+              <property name="sizePolicy">
+               <sizepolicy hsizetype="Maximum" vsizetype="Fixed">
+                <horstretch>0</horstretch>
+                <verstretch>0</verstretch>
+               </sizepolicy>
+              </property>
               <property name="text">
                <string>sim +</string>
               </property>
@@ -228,13 +290,14 @@
     <addaction name="actionLoad_SVG_file"/>
     <addaction name="actionExamples"/>
    </widget>
-   <widget class="QMenu" name="menuMqchine">
+   <widget class="QMenu" name="menuDebug">
     <property name="title">
-     <string>Machine</string>
+     <string>Debug</string>
     </property>
+    <addaction name="actionDebug_output"/>
    </widget>
    <addaction name="menuFile"/>
-   <addaction name="menuMqchine"/>
+   <addaction name="menuDebug"/>
   </widget>
   <action name="actionNew_Simulation">
    <property name="text">
@@ -249,6 +312,11 @@
   <action name="actionLoad_SVG_file">
    <property name="text">
     <string>Load SVG file</string>
+   </property>
+  </action>
+  <action name="actionDebug_output">
+   <property name="text">
+    <string>Debug output</string>
    </property>
   </action>
  </widget>

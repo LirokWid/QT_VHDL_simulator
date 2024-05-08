@@ -16,6 +16,7 @@ SOURCES += \
     filestreeview.cpp \
     main.cpp \
     mainwindow.cpp \
+    svghandling.cpp \
     svgwidget.cpp \
     ui_svg_item.cpp \
     view.cpp
@@ -23,6 +24,7 @@ SOURCES += \
 HEADERS += \
     filestreeview.h \
     mainwindow.h \
+    svghandling.h \
     svgwidget.h \
     ui_svg_item.h \
     view.h

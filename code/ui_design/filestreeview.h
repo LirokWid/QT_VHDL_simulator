@@ -7,12 +7,23 @@
 #include <QFileSystemModel>
 #include <QVBoxLayout>
 #include <QPushButton>
+#include "svghandling.h"
+#include "svgwidget.h"
 
-class FilesTreeView : public QWidget
+
+class FilesTreeView :
+    public QWidget,
+    public SvgHandling
 {
     Q_OBJECT
 public:
-    explicit FilesTreeView(QPushButton *folderButton, QTreeView *treeView, QWidget *parent = nullptr);
+    explicit FilesTreeView(
+        QPushButton *folderButton,
+        QTreeView *treeView,
+        SvgWidget *svgWidget,
+        QWidget *parent = nullptr
+    );
+    ~FilesTreeView();
 
 public slots:
     void searchFolder();
@@ -22,6 +33,8 @@ private:
     QPushButton *folderButton;
     QTreeView *treeView;
     QFileSystemModel *fileSystemModel;
+    SvgWidget *svgWidget;
+
 };
 
 #endif // FILESTREEVIEW_H
