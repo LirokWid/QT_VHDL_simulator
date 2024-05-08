@@ -7,11 +7,19 @@ FilesTreeView::FilesTreeView(QPushButton *folderButton, QTreeView *treeView, QWi
     folderButton(folderButton),
     treeView(treeView)
 {
+    //Change root path of the tree view
     connect(folderButton, &QPushButton::clicked, this, &FilesTreeView::searchFolder);
+
+    //Connect double click event to load svg into svgwidget
+    connect(treeView,&QTreeView::doubleClicked,this,&FilesTreeView::on_treeView_doubleClicked);
 
     fileSystemModel = new QFileSystemModel(this);
     fileSystemModel->setRootPath("");
     treeView->setModel(fileSystemModel);
+
+    treeView->setColumnWidth(0,150);
+    treeView->setColumnHidden(1,true); //Hide size column
+    treeView->setColumnHidden(2,true); //Hide type column
 }
 
 
@@ -33,3 +41,13 @@ void FilesTreeView::searchFolder()
         qDebug() << "No folder selected";
     }
 }
+
+
+void FilesTreeView::on_treeView_doubleClicked(const QModelIndex &index)
+{
+    //Load svg into svgwidget from the selected file
+
+
+    qDebug() << "Double clicked on: " << fileSystemModel->filePath(index);
+}
+

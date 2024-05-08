@@ -28,6 +28,8 @@ public:
 
 private slots:
     void on_stop_clicked();
+    void closeSvg();
+
 
 private:
     Ui::MainWindow *ui;

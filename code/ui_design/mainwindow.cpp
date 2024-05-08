@@ -22,6 +22,9 @@ MainWindow::MainWindow(QWidget *parent)
     //Setup the tree view
     filesTreeView = new FilesTreeView(ui->folder_btn, ui->treeView, this);
 
+    //Setup the svg file close button
+    connect(ui->closeFile, &QPushButton::clicked, this, &MainWindow::closeSvg);
+
 }
 
 MainWindow::~MainWindow()
@@ -44,4 +47,14 @@ void MainWindow::on_stop_clicked() //temp debug svgwidget
     }
     qDebug()<<"new svg loaded";
 }
+
+void MainWindow::closeSvg()
+{
+    //Clear the svg widget
+    svgWidget->loadSvg("");
+    qDebug()<<"svg cleared";
+}
+
+
+
 

@@ -16,6 +16,7 @@ public:
 
 public slots:
     void searchFolder();
+    void on_treeView_doubleClicked(const QModelIndex &index);
 
 private:
     QPushButton *folderButton;
