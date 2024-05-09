@@ -1,40 +1,57 @@
 #ifndef FILESTREEVIEW_H
 #define FILESTREEVIEW_H
 
-
 #include <QWidget>
+#include <QPushButton>
 #include <QTreeView>
 #include <QFileSystemModel>
-#include <QVBoxLayout>
-#include <QPushButton>
 #include "svghandling.h"
 #include "svgwidget.h"
+#include "simulationstate.h"
 
-
-class FilesTreeView :
-    public QWidget,
-    public SvgHandling
+/**
+ * @brief The FilesTreeView class provides functionality to manage files in a tree view.
+ */
+class FilesTreeView : public QWidget, public SvgHandling
 {
     Q_OBJECT
+
 public:
+    /**
+     * @brief Constructs a FilesTreeView object.
+     * @param folderButton The QPushButton used to open a folder.
+     * @param treeView The QTreeView for displaying files.
+     * @param svgWidget The SvgWidget for displaying SVG files.
+     * @param simulationState The SimulationState object for managing the state of the application.
+     * @param parent The parent widget.
+     */
     explicit FilesTreeView(
         QPushButton *folderButton,
         QTreeView *treeView,
         SvgWidget *svgWidget,
-        QWidget *parent = nullptr
-    );
+        SimulationState *simulationState,
+        QWidget *parent = nullptr);
+
     ~FilesTreeView();
 
 public slots:
+    /**
+     * @brief Slot to handle clicking on the folder button to search for a folder.
+     */
     void searchFolder();
-    void on_treeView_doubleClicked(const QModelIndex &index);
+
+    /**
+     * @brief Slot to handle double-clicking on a file in the tree view.
+     * @param index The index of the double-clicked file.
+     */
+    void handleFileDoubleClicked(const QModelIndex &index);
 
 private:
-    QPushButton *folderButton;
-    QTreeView *treeView;
-    QFileSystemModel *fileSystemModel;
-    SvgWidget *svgWidget;
-
+    QPushButton *folderButton; 		/**< The QPushButton used to open a folder. */
+    QTreeView *treeView; 		/**< The QTreeView for displaying files. */
+    SvgWidget *svgWidget; 		/**< The SvgWidget for displaying SVG files. */
+    QFileSystemModel *fileSystemModel;	/**< The file model used by the TreeView */
+    SimulationState *simulationState; 	/**< The SimulationState object for managing the state of the application */
 };
 
 #endif // FILESTREEVIEW_H

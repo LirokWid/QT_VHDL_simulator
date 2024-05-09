@@ -1,20 +1,17 @@
 #include "svghandling.h"
 
-
-SvgHandling::SvgHandling()
+SvgHandling::SvgHandling(SimulationState *simulationState, QObject *parent) :
+    QObject(parent),
+    simulationState(simulationState)
 {
     if (!tempDir.isValid())
     {
-        QMessageBox::critical(nullptr, QObject::tr("Error"), QObject::tr("Failed to create temporary directory."));
+        QMessageBox::critical(nullptr, tr("Error"), tr("Failed to create temporary directory."));
     }
 }
 
-SvgHandling::~SvgHandling() {
-    // Ensure that any remaining temporary files are deleted when the SvgHandling object is destroyed
-    deleteTempSvg("");
-}
-
-bool SvgHandling::copySvgToTemp(const QString &sourceFilePath, QString &tempFilePath) {
+bool SvgHandling::copySvgToTemp(const QString &sourceFilePath, QString &tempFilePath)
+{
     if (!tempDir.isValid())
     {
         return false;
@@ -24,7 +21,13 @@ bool SvgHandling::copySvgToTemp(const QString &sourceFilePath, QString &tempFile
     if (fileInfo.isFile() && fileInfo.suffix().toLower() == "svg")
     {
         tempFilePath = tempDir.path() + "/" + fileInfo.fileName();
-        return QFile::copy(sourceFilePath, tempFilePath);
+        bool success = QFile::copy(sourceFilePath, tempFilePath);
+        if (success)
+        {
+            // Emit signal to indicate SVG file is loaded
+            simulationState->setState(SimulationState::IDLE_SVG_LOADED);
+        }
+        return success;
     }
 
     return false;
@@ -35,5 +38,7 @@ void SvgHandling::deleteTempSvg(const QString &tempFilePath)
     if (!tempFilePath.isEmpty())
     {
         QFile::remove(tempFilePath);
+        // Emit signal to indicate SVG file is cleared
+        simulationState->setState(SimulationState::IDLE);
     }
 }
