@@ -5,14 +5,17 @@
 #include "filestreeview.h"
 
 
-
-
-MainWindow::MainWindow(QWidget *parent)
-    : QMainWindow(parent)
-    , ui(new Ui::MainWindow)
+MainWindow::MainWindow(QWidget *parent) :
+    QMainWindow(parent),
+    ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
     setWindowTitle(tr("SIMULATOR"));
+
+    //Setup the simulation state and label
+    simulationState = new SimulationState();
+    stateLabel = ui->label;
+    connect(simulationState, &SimulationState::stateChanged, this, &MainWindow::updateStateLabel);
 
     //Setup the svg view
     svgWidget = new SvgWidget();
@@ -20,7 +23,7 @@ MainWindow::MainWindow(QWidget *parent)
     ui->svgLayout->addWidget(svgWidget);
 
     //Setup the tree view
-    filesTreeView = new FilesTreeView(ui->folder_btn, ui->treeView, svgWidget, this);
+    filesTreeView = new FilesTreeView(ui->folder_btn, ui->treeView, svgWidget, simulationState, this);
 
     //Setup the svg file close button
     connect(ui->closeFile, &QPushButton::clicked, this, &MainWindow::closeSvg);
@@ -35,8 +38,10 @@ MainWindow::~MainWindow()
     delete ui;
 }
 
-void MainWindow::on_stop_clicked() //temp debug svgwidget
+
+void MainWindow::on_stop_clicked()
 {
+    /*                                      //temp debug svgwidget
     if (state)
     {
         state = !state;
@@ -49,6 +54,7 @@ void MainWindow::on_stop_clicked() //temp debug svgwidget
         svgWidget->loadSvg(TEMP_SVG_PATH3);
     }
     qDebug()<<"new svg loaded";
+*/
 }
 
 void MainWindow::closeSvg()
@@ -65,5 +71,22 @@ void MainWindow::loadSvgFileFromPath(QString path)
     qDebug()<<"svg loaded from path: "<<path;
 }
 
+void MainWindow::updateStateLabel(SimulationState::State state)
+{
+    switch (state) {
+    case SimulationState::IDLE:
+        stateLabel->setText("Idle");
+        break;
+    case SimulationState::IDLE_SVG_LOADED:
+        stateLabel->setText("Idle (SVG Loaded)");
+        break;
+    case SimulationState::RUNNING:
+        stateLabel->setText("Running");
+        break;
+    default:
+        stateLabel->setText("Unknown State");
+        break;
+    }
+}
 
 

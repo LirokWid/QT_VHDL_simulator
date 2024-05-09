@@ -16,6 +16,7 @@ SOURCES += \
     filestreeview.cpp \
     main.cpp \
     mainwindow.cpp \
+    simulationstate.cpp \
     svghandling.cpp \
     svgwidget.cpp \
     ui_svg_item.cpp \
@@ -24,6 +25,7 @@ SOURCES += \
 HEADERS += \
     filestreeview.h \
     mainwindow.h \
+    simulationstate.h \
     svghandling.h \
     svgwidget.h \
     ui_svg_item.h \

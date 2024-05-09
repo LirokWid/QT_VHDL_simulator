@@ -5,6 +5,7 @@
 #include <QSvgWidget>
 #include "svgwidget.h"
 #include "filestreeview.h"
+#include "simulationstate.h"
 
 #include "view.h"
 
@@ -29,16 +30,18 @@ public:
     ~MainWindow();
 
 private slots:
-    void on_stop_clicked();
+    void on_stop_clicked(); //temp debug svgwidget
     void closeSvg();
+    void updateStateLabel(SimulationState::State state);
+
 
 
 private:
     Ui::MainWindow *ui;
     SvgWidget *svgWidget;
     FilesTreeView *filesTreeView;
-
-    bool state = false; //temp
+    SimulationState *simulationState;
+    QLabel *stateLabel;
 
 };
 #endif // MAINWINDOW_H
