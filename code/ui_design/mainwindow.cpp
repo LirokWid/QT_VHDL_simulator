@@ -4,6 +4,7 @@
 #include "svgwidget.h"
 #include "filestreeview.h"
 
+#define DEBGUG
 
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
@@ -17,13 +18,18 @@ MainWindow::MainWindow(QWidget *parent) :
     stateLabel = ui->label;
     connect(simulationState, &SimulationState::stateChanged, this, &MainWindow::updateStateLabel);
 
-    //Setup the svg view
+    //Setup the svg view and handler for svg files management
     svgWidget = new SvgWidget();
-    svgWidget->loadSvg(TEMP_SVG_PATH);
     ui->svgLayout->addWidget(svgWidget);
 
+    svgHandler = new SvgHandler(simulationState, svgWidget, this);
+
+#ifdef DEBUG
+    svgHandler->changeSvg(TEMP_SVG_PATH);//debug
+#endif
+
     //Setup the tree view
-    filesTreeView = new FilesTreeView(ui->folder_btn, ui->treeView, svgWidget, simulationState, this);
+    filesTreeView = new FilesTreeView(ui->folder_btn, ui->treeView, svgHandler, simulationState, this);
 
     //Setup the svg file close button
     connect(ui->closeFile, &QPushButton::clicked, this, &MainWindow::closeSvg);
@@ -60,7 +66,7 @@ void MainWindow::on_stop_clicked()
 void MainWindow::closeSvg()
 {
     //Clear the svg widget
-    svgWidget->loadSvg("");
+    svgHandler->clearSvg();
     qDebug()<<"svg cleared";
 }
 

@@ -6,12 +6,14 @@
 #include "svgwidget.h"
 #include "filestreeview.h"
 #include "simulationstate.h"
+#include "svghandler.h"
 
 #include "view.h"
 
 #define TEMP_SVG_PATH  ":/svg/mux_symp.svg"
 #define TEMP_SVG_PATH2 ":/svg/mux.svg"
 #define TEMP_SVG_PATH3 ":/svg/Schematic_Paco.svg"
+
 
 QT_BEGIN_NAMESPACE
 namespace Ui {
@@ -42,6 +44,7 @@ private:
     FilesTreeView *filesTreeView;
     SimulationState *simulationState;
     QLabel *stateLabel;
+    SvgHandler *svgHandler;
 
 };
 #endif // MAINWINDOW_H

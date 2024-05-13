@@ -1,5 +1,5 @@
-#ifndef SVGHANDLING_H
-#define SVGHANDLING_H
+#ifndef SVGHANDLER_H
+#define SVGHANDLER_H
 
 #include <QObject>
 #include <QTemporaryDir>
@@ -11,7 +11,7 @@
 /**
  * @brief The SvgHandling class provides functionality to handle SVG files.
  */
-class SvgHandling : public QObject
+class SvgHandler : public QObject
 {
     Q_OBJECT
 
@@ -21,7 +21,14 @@ public:
      * @param simulationState The SimulationState object for managing the state of the application.
      * @param parent The parent object.
      */
-    explicit SvgHandling(SimulationState *simulationState, QObject *parent = nullptr);
+    explicit SvgHandler(SimulationState *simulationState, SvgWidget *svgWidget, QObject *parent = nullptr);
+
+    /**
+     * @brief changeSvg
+     * @param filePath
+     */
+    bool changeSvg(const QString &filePath);
+    bool clearSvg();
 
 protected:
     /**
@@ -39,8 +46,12 @@ protected:
     void deleteTempSvg(const QString &tempFilePath);
 
 private:
+    QString tempFilePath;
     SimulationState *simulationState; /**< The SimulationState object for managing the state of the application. */
+    SvgWidget *svgWidget;
+    QFileInfo *fileInfo;
     QTemporaryDir tempDir; /**< The temporary directory for storing SVG files. */
+    QString getTempFilePath() const;
 };
 
-#endif // SVGHANDLING_H
+#endif // SVGHANDLER_H

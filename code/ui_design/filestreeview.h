@@ -5,14 +5,14 @@
 #include <QPushButton>
 #include <QTreeView>
 #include <QFileSystemModel>
-#include "svghandling.h"
+#include "svghandler.h"
 #include "svgwidget.h"
 #include "simulationstate.h"
 
 /**
  * @brief The FilesTreeView class provides functionality to manage files in a tree view.
  */
-class FilesTreeView : public QWidget, public SvgHandling
+class FilesTreeView : public QWidget
 {
     Q_OBJECT
 
@@ -28,7 +28,7 @@ public:
     explicit FilesTreeView(
         QPushButton *folderButton,
         QTreeView *treeView,
-        SvgWidget *svgWidget,
+        SvgHandler *svgHandler,
         SimulationState *simulationState,
         QWidget *parent = nullptr);
 
@@ -52,6 +52,8 @@ private:
     SvgWidget *svgWidget; 		/**< The SvgWidget for displaying SVG files. */
     QFileSystemModel *fileSystemModel;	/**< The file model used by the TreeView */
     SimulationState *simulationState; 	/**< The SimulationState object for managing the state of the application */
+    SvgHandler *svgHandler;		/**< The SvgHandling object for handling SVG files */
+
 };
 
 #endif // FILESTREEVIEW_H

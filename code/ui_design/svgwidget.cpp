@@ -39,7 +39,11 @@ void SvgWidget::loadSvg(const QString& filePath)
     int height = graphicsView->scene()->height();
     graphicsView->fitInView(svgItem, Qt::KeepAspectRatio);
     setZoom(50);
+}
 
+void SvgWidget::clearSvg()
+{
+    clearScene();
 }
 
 void SvgWidget::clearScene()

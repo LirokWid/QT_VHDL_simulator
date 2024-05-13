@@ -1,6 +1,8 @@
 #include "simulationstate.h"
 
-SimulationState::SimulationState() : currentState(IDLE)
+SimulationState::SimulationState(QObject *parent) :
+    QObject(parent),
+    currentState(IDLE)
 {
 }
 

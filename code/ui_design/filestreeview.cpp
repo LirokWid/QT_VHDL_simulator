@@ -2,13 +2,21 @@
 #include <QPushButton>
 #include <QFileDialog>
 
-FilesTreeView::FilesTreeView(QPushButton *folderButton, QTreeView *treeView, SvgWidget *svgWidget, SimulationState *simulationState, QWidget *parent) :
+FilesTreeView::FilesTreeView(
+    QPushButton *folderButton,
+    QTreeView *treeView,
+    SvgHandler *svgHandler,
+    SimulationState *simulationState,
+    QWidget *parent
+    ) :
     QWidget(parent),
     folderButton(folderButton),
     treeView(treeView),
-    svgWidget(svgWidget),
     simulationState(simulationState)
 {
+    //Set up the svg widget
+    this->svgHandler = svgHandler;
+
     //Connect button to change root path of the tree view
     connect(folderButton, &QPushButton::clicked, this, &FilesTreeView::searchFolder);
 
@@ -27,8 +35,6 @@ FilesTreeView::FilesTreeView(QPushButton *folderButton, QTreeView *treeView, Svg
 
 FilesTreeView::~FilesTreeView()
 {
-    // Ensure that any remaining temporary files are deleted when the FilesTreeView is destroyed
-    deleteTempSvg("");
 }
 
 
@@ -60,16 +66,15 @@ void FilesTreeView::handleFileDoubleClicked(const QModelIndex &index) {
     }
 
     QString filePath = fileSystemModel->filePath(index);
-    QString tempFilePath;
-
-    if (copySvgToTemp(filePath, tempFilePath))
+    //Verify that the file is a valid svg file
+    if (!filePath.endsWith(".svg"))
     {
-        if (simulationState->getState() == SimulationState::IDLE_SVG_LOADED)
-        {
-            // Clear the temp SVG and replace it with the new one
-            deleteTempSvg("");
-        }
-        svgWidget->loadSvg(tempFilePath);
-        simulationState->setState(SimulationState::IDLE_SVG_LOADED);
+        qDebug() << "Invalid file type";
+        return;
+    }
+    else
+    {
+        //Load the svg file into the svg widget
+        svgHandler->changeSvg(filePath);
     }
 }
