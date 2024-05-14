@@ -3,15 +3,27 @@
 #include "view.h"
 #include "svgwidget.h"
 #include "filestreeview.h"
+#include "debugwindow.h"
+#include <QThread>
 
-#define DEBGUG
+#define DEBUG
 
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
     ui(new Ui::MainWindow)
 {
+    //Setup ui
     ui->setupUi(this);
     setWindowTitle(tr("SIMULATOR"));
+
+    //Setup the debug interface
+    debugWindow = new DebugWindow(ui->actionOpenDebugWindow, this);
+
+    for(int i=0;i<150;i++)
+    {//Debug
+        debugWindow->addMessage("test " + QString::number(i));
+    }
+
 
     //Setup the simulation state and label
     simulationState = new SimulationState();
@@ -41,26 +53,15 @@ MainWindow::MainWindow(QWidget *parent) :
 
 MainWindow::~MainWindow()
 {
+    delete debugWindow;
     delete ui;
 }
 
 
 void MainWindow::on_stop_clicked()
 {
-    /*                                      //temp debug svgwidget
-    if (state)
-    {
-        state = !state;
-        svgWidget->loadSvg(TEMP_SVG_PATH2);
-
-    }
-    else
-    {
-        state = !state;
-        svgWidget->loadSvg(TEMP_SVG_PATH3);
-    }
-    qDebug()<<"new svg loaded";
-*/
+    static unsigned int i;
+    debugWindow->addMessage(QString::number(i++));
 }
 
 void MainWindow::closeSvg()
@@ -94,5 +95,3 @@ void MainWindow::updateStateLabel(SimulationState::State state)
         break;
     }
 }
-
-

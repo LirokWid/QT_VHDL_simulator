@@ -7,6 +7,7 @@
 #include "filestreeview.h"
 #include "simulationstate.h"
 #include "svghandler.h"
+#include "debugwindow.h"
 
 #include "view.h"
 
@@ -36,8 +37,6 @@ private slots:
     void closeSvg();
     void updateStateLabel(SimulationState::State state);
 
-
-
 private:
     Ui::MainWindow *ui;
     SvgWidget *svgWidget;
@@ -45,6 +44,7 @@ private:
     SimulationState *simulationState;
     QLabel *stateLabel;
     SvgHandler *svgHandler;
+    DebugWindow *debugWindow;
 
 };
 #endif // MAINWINDOW_H
