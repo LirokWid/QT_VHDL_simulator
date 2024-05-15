@@ -3,6 +3,8 @@
 
 #include <QMainWindow>
 #include <QSvgWidget>
+#include "ui_mainwindow.h"
+
 #include "svgwidget.h"
 #include "filestreeview.h"
 #include "simulationstate.h"
@@ -11,9 +13,8 @@
 
 #include "view.h"
 
-#define TEMP_SVG_PATH  ":/svg/mux_symp.svg"
-#define TEMP_SVG_PATH2 ":/svg/mux.svg"
-#define TEMP_SVG_PATH3 ":/svg/Schematic_Paco.svg"
+
+
 
 
 QT_BEGIN_NAMESPACE
@@ -29,6 +30,7 @@ class MainWindow : public QMainWindow
 public:
     MainWindow(QWidget *parent = nullptr);
     void loadSvgFileFromPath(QString path);
+    void showDebugWindow();
 
     ~MainWindow();
 

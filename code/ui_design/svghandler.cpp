@@ -1,5 +1,6 @@
 #include "svghandler.h"
 
+#include "mainwindow.h"
 SvgHandler::SvgHandler(SimulationState *simulationState, SvgWidget *svgWidget, QObject *parent) :
     QObject(parent),
     simulationState(simulationState),
@@ -33,7 +34,9 @@ bool SvgHandler::changeSvg(const QString &filePath)
 
     if (copySvgToTemp(filePath, tempFilePath))
     {
+
         svgWidget->loadSvg(tempFilePath);
+        static_cast<MainWindow *>(parent())->showDebugWindow();
         return true;
     }
     return false;
@@ -53,6 +56,7 @@ bool SvgHandler::clearSvg()
 
         return true;
     }
+    return false;
 }
 
 QString SvgHandler::getTempFilePath() const

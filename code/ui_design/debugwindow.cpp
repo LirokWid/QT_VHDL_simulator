@@ -1,17 +1,12 @@
 // debugwindow.cpp
 #include "debugwindow.h"
-#include "qscrollbar.h"
-#include <QVBoxLayout>
-#include <QFile>
-#include <QTextStream>
-#include <QAction>
-#include <QMouseEvent>
-#include <QPushButton>
-#include <QCheckbox>
+#include "params.h"
 
 
 DebugWindow::DebugWindow(QAction *openTrigger, QWidget *parent) :
     QWidget(parent),
+    messageCount(0),
+    autoScrollEnabled(true),
     openTrigger(openTrigger)
 {
     /** ui setup ********************************************************************/
@@ -21,6 +16,8 @@ DebugWindow::DebugWindow(QAction *openTrigger, QWidget *parent) :
     QVBoxLayout *vLayout = new QVBoxLayout(this);
 
     textEdit = new QTextEdit(this);
+    textEdit->setStyleSheet("QTextEdit { background-color: #212121; color: white; }");
+    scrollBar = textEdit->verticalScrollBar();
     textEdit->setReadOnly(true);
     vLayout->addWidget(textEdit);
 
@@ -40,32 +37,61 @@ DebugWindow::DebugWindow(QAction *openTrigger, QWidget *parent) :
     connect(this->openTrigger, &QAction::triggered, this, &DebugWindow::openWindow);
     connect(clearButton, &QPushButton::clicked, this, &DebugWindow::clearMessages);
     connect(autoScrollBox, &QCheckBox::stateChanged, this, &DebugWindow::autoScrollHandle);
+    connect(scrollBar, &QScrollBar::valueChanged, this, &DebugWindow::scrollBarModifiedHandle);
 }
 
 
-void DebugWindow::addMessage(const QString &message)
+void DebugWindow::addMessage(const QString &message, Severity severity /* = Severity::Info */)
 {
-    QString newText = textEdit->toPlainText() + message + "\n";
-    // Truncate if necessary to keep only the last MAX_MESSAGES_NB lines
-    int extraLines = newText.count('\n') - MAX_MESSAGES_NB;
-    if (extraLines > 0)
+    QString color, strSeverity;
+    switch (severity)
     {
-        int index = newText.indexOf('\n', extraLines) + 1;
-        newText = newText.mid(index);
+    case Severity::Debug:
+        color = "gray";
+        strSeverity = "Debug: ";
+        break;
+    case Severity::Success:
+        color = "green";
+        strSeverity = "Success: ";
+        break;
+    case Severity::Warning:
+        color = "orange";
+        strSeverity = "Warning: ";
+        break;
+    case Severity::Error:
+        color = "red";
+        strSeverity = "ERROR: ";
+        break;
+    default: // Info
+        color = "white";
+        break;
     }
-    textEdit->setPlainText(newText);
 
-    if (autoScrollEnabled)
+    QString formattedMessage = QString("<font color=\"%1\">%2</font>")
+                                   .arg(color, strSeverity + message);
+
+    if(messageCount >= MAX_DEBUG_MESSAGES_NB)
     {
-        /*
-        // Scroll to the bottom
         QTextCursor cursor = textEdit->textCursor();
         cursor.movePosition(QTextCursor::Start);
-        textEdit->setTextCursor(cursor);
-*/
-        QScrollBar *scrollBar = textEdit->verticalScrollBar();
+        cursor.select(QTextCursor::BlockUnderCursor);
+        cursor.removeSelectedText();
+        cursor.deleteChar();
+        cursor.movePosition(QTextCursor::End);
+        --messageCount;
+    }
+
+    textEdit->append(formattedMessage);
+    ++messageCount;
+    autoScrollIfEnabled();
+}
+
+void DebugWindow::autoScrollIfEnabled()
+{
+    if(autoScrollEnabled)
+    {
+        textEdit->ensureCursorVisible();
         scrollBar->setValue(scrollBar->maximum());
-        //TODO finish this
     }
 }
 
@@ -74,19 +100,27 @@ void DebugWindow::autoScrollHandle(int state)
     autoScrollEnabled = (state == Qt::Checked);
 }
 
+void DebugWindow::scrollBarModifiedHandle()
+{
+    if (scrollBar->value() == scrollBar->maximum())
+    {// If the user scrolls to the bottom, enable auto-scroll
+        autoScrollEnabled = true;
+        autoScrollBox->setChecked(true);
+    }else
+    {// If the user scrolls up, disable auto-scroll
+        autoScrollEnabled = false;
+        autoScrollBox->setChecked(false);
+    }
+}
+
 void DebugWindow::openWindow()
 {
     this->show();
-    if(autoScrollEnabled)
-    {
-        // Scroll to the bottom
-        QTextCursor cursor = textEdit->textCursor();
-        cursor.movePosition(QTextCursor::Start);
-        textEdit->setTextCursor(cursor);
-    }
+    autoScrollIfEnabled();
 }
 
 void DebugWindow::clearMessages()
 {
     textEdit->clear();
+    messageCount = 0;
 }

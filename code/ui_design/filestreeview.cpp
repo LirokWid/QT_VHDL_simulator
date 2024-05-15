@@ -44,7 +44,7 @@ void FilesTreeView::searchFolder()
         this,
         tr("Open Directory"),
         QDir::homePath(),
-        QFileDialog::ShowDirsOnly | QFileDialog::DontResolveSymlinks
+        QFileDialog::DontUseNativeDialog
     );
 
     if (!folderPath.isEmpty())
@@ -59,7 +59,8 @@ void FilesTreeView::searchFolder()
 }
 
 
-void FilesTreeView::handleFileDoubleClicked(const QModelIndex &index) {
+void FilesTreeView::handleFileDoubleClicked(const QModelIndex &index)
+{
     if (!index.isValid())
     {
         return;

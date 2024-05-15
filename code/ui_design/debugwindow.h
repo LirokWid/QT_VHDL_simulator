@@ -1,32 +1,91 @@
-// debugwindow.h
 #ifndef DEBUGWINDOW_H
 #define DEBUGWINDOW_H
 
+#include <QMouseEvent>
+#include <QPushButton>
+#include <QScrollBar>
 #include <QWidget>
 #include <QTextEdit>
-#include <QCheckbox>
+#include <QCheckBox>
+#include <QVBoxLayout>
+#include <QFile>
+#include <QTextStream>
+#include <QAction>
 
+/**
+ * @brief The Severity enum
+ */
+enum class Severity {
+    Info,
+    Success,
+    Warning,
+    Error,
+    Debug
+};
+
+
+/**
+ * @brief The DebugWindow class provides a widget for displaying debug messages.
+ */
 class DebugWindow : public QWidget
 {
     Q_OBJECT
 public:
+    /**
+     * @brief Constructs a DebugWindow object.
+     * @param openTrigger The QAction object to trigger opening the debug window.
+     * @param parent The parent widget.
+     */
     explicit DebugWindow(QAction *openTrigger, QWidget *parent = nullptr);
 
-    void addMessage(const QString& message);
+    /**
+     * @brief Adds a debug message to the window.
+     * @param message The debug message to be added.
+     * @param severity The severity of the message.
+     */
+    void addMessage(const QString& message, Severity severity = Severity::Info);
+
+    /**
+     * @brief Opens the debug window.
+     */
     void openWindow();
 
+protected:
+    /**
+     * @brief Scrolls down to show the latest message.
+     */
+    void scrollDown();
+
 private:
-    void clearMessages();
-    QAction *openTrigger;
-    QTextEdit *textEdit;
-    QList<QString> messages;
-    QCheckBox *autoScrollBox;
-    bool autoScrollEnabled;
+    unsigned int messageCount;  /**< The number of messages currently displayed. */
+    bool autoScrollEnabled;     /**< Flag indicating whether auto-scrolling is enabled. */
+
+    QAction *openTrigger;       /**< The QAction that triggers opening the debug window. */
+    QTextEdit *textEdit;        /**< The QTextEdit widget for displaying debug messages. */
+    QList<QString> messages;    /**< List of debug messages. */
+    QCheckBox *autoScrollBox;   /**< Checkbox for enabling/disabling auto-scrolling. */
+    QScrollBar *scrollBar;      /**< Scrollbar for the QTextEdit widget. */
+
+    /**
+     * @brief Scrolls to the bottom if auto-scrolling is enabled.
+     */
+    void autoScrollIfEnabled();
+
+    /**
+     * @brief Handles the state change of the auto-scroll checkbox.
+     * @param state The new state of the checkbox.
+     */
     void autoScrollHandle(int state);
 
-    const int MAX_MESSAGES_NB = 50;
-    const int WINDOW_WIDTH = 1280;
-    const int WINDOW_HEIGHT = 720;
+    /**
+     * @brief Handles the scrollbar value change event.
+     */
+    void scrollBarModifiedHandle();
+
+    /**
+     * @brief Clears all messages from the debug window.
+     */
+    void clearMessages();
 };
 
 #endif // DEBUGWINDOW_H

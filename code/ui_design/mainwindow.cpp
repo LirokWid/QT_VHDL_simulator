@@ -1,12 +1,6 @@
 #include "mainwindow.h"
-#include "ui_mainwindow.h"
-#include "view.h"
-#include "svgwidget.h"
-#include "filestreeview.h"
-#include "debugwindow.h"
-#include <QThread>
 
-#define DEBUG
+#include "params.h"
 
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
@@ -19,10 +13,18 @@ MainWindow::MainWindow(QWidget *parent) :
     //Setup the debug interface
     debugWindow = new DebugWindow(ui->actionOpenDebugWindow, this);
 
+#ifdef DEBUG
     for(int i=0;i<150;i++)
-    {//Debug
+    {
         debugWindow->addMessage("test " + QString::number(i));
     }
+    debugWindow->addMessage("Error text",Severity::Error);
+    debugWindow->addMessage("Warning text",Severity::Warning);
+    debugWindow->addMessage("Success text",Severity::Success);
+    debugWindow->addMessage("Debug text",Severity::Debug);
+    debugWindow->addMessage("Info text",Severity::Info);
+
+#endif
 
 
     //Setup the simulation state and label
@@ -60,8 +62,13 @@ MainWindow::~MainWindow()
 
 void MainWindow::on_stop_clicked()
 {
+#ifdef DEBUG
     static unsigned int i;
-    debugWindow->addMessage(QString::number(i++));
+    if (i%2)
+        debugWindow->addMessage("PshBtn sssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssss " + QString::number(i++),Severity::Error);
+    else
+        debugWindow->addMessage("PshBtn " + QString::number(i++),Severity::Warning);
+#endif
 }
 
 void MainWindow::closeSvg()
@@ -76,6 +83,11 @@ void MainWindow::loadSvgFileFromPath(QString path)
     //Load the svg file into the svg widget
     svgWidget->loadSvg(path);
     qDebug()<<"svg loaded from path: "<<path;
+}
+
+void MainWindow::showDebugWindow()
+{
+    debugWindow->openWindow();
 }
 
 void MainWindow::updateStateLabel(SimulationState::State state)
