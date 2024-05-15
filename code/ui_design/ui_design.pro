@@ -27,6 +27,7 @@ HEADERS += \
     debugwindow.h \
     filestreeview.h \
     mainwindow.h \
+    params.h \
     simulationstate.h \
     svghandler.h \
     svgwidget.h \
