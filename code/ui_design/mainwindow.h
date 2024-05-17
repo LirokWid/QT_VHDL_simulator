@@ -48,5 +48,6 @@ private:
     SvgHandler *svgHandler;
     DebugWindow *debugWindow;
 
+    void setSplitterToLeft(QSplitter *splitter, int leftSize);
 };
 #endif // MAINWINDOW_H

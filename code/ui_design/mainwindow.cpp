@@ -48,9 +48,8 @@ MainWindow::MainWindow(QWidget *parent) :
     //Setup the svg file close button
     connect(ui->closeFile, &QPushButton::clicked, this, &MainWindow::closeSvg);
 
-    //Setup the debug window display
-    //TODO
-
+    //Force resize the splitter
+    setSplitterToLeft(ui->mainSplitter, 201);
 }
 
 MainWindow::~MainWindow()
@@ -65,7 +64,7 @@ void MainWindow::on_stop_clicked()
 #ifdef DEBUG
     static unsigned int i;
     if (i%2)
-        debugWindow->addMessage("PshBtn sssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssss " + QString::number(i++),Severity::Error);
+        debugWindow->addMessage("PshBtn ssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssss " + QString::number(i++),Severity::Error);
     else
         debugWindow->addMessage("PshBtn " + QString::number(i++),Severity::Warning);
 #endif
@@ -106,4 +105,17 @@ void MainWindow::updateStateLabel(SimulationState::State state)
         stateLabel->setText("Unknown State");
         break;
     }
+}
+
+void MainWindow::setSplitterToLeft(QSplitter *splitter, int leftSize)
+{
+    // Set a minimum size for the left widget
+    splitter->widget(0)->setMinimumSize(leftSize, 0);
+
+    // Calculate the size for the left and right widgets
+    QList<int> sizes;
+    sizes << leftSize << splitter->size().width() - leftSize;
+
+    // Set the sizes
+    splitter->setSizes(sizes);
 }
