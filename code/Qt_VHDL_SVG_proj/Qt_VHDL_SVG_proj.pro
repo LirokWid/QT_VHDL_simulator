@@ -1,8 +1,12 @@
-QT = core
+QT = core gui
 QT += svg
 QT += xml
+QT += svgwidgets
+
+greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
 CONFIG += c++17 cmdline
+CONFIG += gnu++17
 
 # You can make your code fail to compile if it uses deprecated APIs.
 # In order to do so, uncomment the following line.
@@ -15,16 +19,20 @@ else: unix:!android: target.path = /opt/$${TARGET}/bin
 !isEmpty(target.path): INSTALLS += target
 
 QMAKE_INCDIR += \
-    parser_linker
-
+    parser_linker \
+    systemc_modules \
+    gui
 
 
 HEADERS += \
     $$files("parser_linker/*.h") \
-    $$files("systemc_modules/*.h")
+    $$files("systemc_modules/*.h") \
+    $$files("gui/*.h")
 
 SOURCES += \
     $$files("parser_linker/*.cpp") \
+    $$files("systemc_modules/*.cpp") \
+    $$files("gui/*.cpp") \
     main.cpp
 
 
@@ -32,17 +40,12 @@ RESOURCES += \
     $$files("svg/*.svg")
 
 FORMS += \
-    #UI files
-
-
-# Default rules for deployment.
-qnx: target.path = /tmp/$${TARGET}/bin
-else: unix:!android: target.path = /opt/$${TARGET}/bin
-!isEmpty(target.path): INSTALLS += target
+    $$files("forms/*.ui")
 
 
 # SystemC
-SYSTEMC_INSTALL_PREFIX=C:/Qt/SystemC
+#SYSTEMC_INSTALL_PREFIX=C:/Qt/SystemC
+SYSTEMC_INSTALL_PREFIX=S:/Qt/SystemC
 LIBS        += -L$$SYSTEMC_INSTALL_PREFIX/lib/ -lsystemc
 INCLUDEPATH +=   $$SYSTEMC_INSTALL_PREFIX/include
 

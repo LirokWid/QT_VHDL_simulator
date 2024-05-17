@@ -1,6 +1,9 @@
-#include "scregister.h"
+//Legacy code here for no reason ?
+#if 0
+#include "sc_reg.h"
 
-scRegister::scRegister (::sc_core::sc_module_name) {
+scRegister::scRegister (::sc_core::sc_module_name)
+{
     SC_THREAD(store);
     rst_level = sc_getRstActLevel();
     ena_level = sc_getEnaActLevel();
@@ -25,4 +28,4 @@ void scRegister::store () {
         wait();
     }
 }
-
+#endif

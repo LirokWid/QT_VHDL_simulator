@@ -3,10 +3,11 @@
 
 #include <systemc.h>
 #include "sc_config.h"
-#include "sc_reg.h"
-#include "sc_flexint.h"
+//#include "sc_reg.h"
+//#include "sc_flexint.h"
 
-SC_MODULE (scCounter) {
+SC_MODULE(scCounter)
+{
     // ---------------------      Ports      ---------------------
     sc_in_clk           clock{"clock"};         // Falling-edge active clock input
     sc_in<bool>         reset_i{"reset_i"};     // Active-high synchronous reset input
@@ -18,24 +19,33 @@ SC_MODULE (scCounter) {
     bool                ena_level;              // Module parameter (aka "VHDL generic")
 
     // Constructor for the scRegister
-    SC_CTOR(scCounter) {
+    SC_CTOR(scCounter)
+    {
         SC_THREAD(doCount);
         rst_level = sc_getRstActLevel();
         ena_level = sc_getEnaActLevel();
         sensitive << reset_i;
-        if (sc_getClkActEdge()) {
+        if (sc_getClkActEdge())
+        {
             sensitive << clock.pos();
-        } else {
+        }
+        else
+        {
             sensitive << clock.neg();
         }
     }
 
     // Actual scCounter logic
-    void doCount () {
-        while(1) {
-            if (reset_i.read() == rst_level) {
+    void doCount ()
+    {
+        while(1)
+        {
+            if(reset_i.read() == rst_level)
+            {
                 q_o.write(0);
-            } else if (enable_i.read() == ena_level) {
+            }
+            else if(enable_i.read() == ena_level)
+            {
                 q_o.write(q_o.read().to_int64()+1);
             }
             wait();
@@ -43,8 +53,13 @@ SC_MODULE (scCounter) {
     }
 };
 
-
-SC_FLEXINT_MODULE (scFlexCounter) {
+/** TODO : check what this does -> code from old project, looks deprecated
+ *
+ *
+ *
+ *
+SC_FLEXINT_MODULE(scFlexCounter)
+{
 public:
     // ---------------------      Ports      ---------------------
     // Provided by base module scFlexModuleT
@@ -73,7 +88,8 @@ public:
 };
 
 
-SC_FLEXINT_MODULE_T (scFlexCounterT,typename T) {
+SC_FLEXINT_MODULE_T(scFlexCounterT,typename T)
+{
 public:
     // ---------------------      Ports      ---------------------
     // Provided by base module scFlexModuleT
@@ -125,7 +141,8 @@ public:
 
 
 
-SC_MODULE (scCounterStructural) {
+SC_MODULE (scCounterStructural)
+{
     // ---------------------      Ports      ---------------------
     sc_in_clk           clock{"clock"};         // Falling-edge active clock input
     sc_in<bool>         reset_i{"reset_i"};     // Active-high synchronous reset input
@@ -159,7 +176,8 @@ SC_MODULE (scCounterStructural) {
 };
 
 
-SC_FLEXINT_MODULE (scFlexCounterStructural) {
+SC_FLEXINT_MODULE(scFlexCounterStructural)
+{
 public:
     // ---------------------      Ports      ---------------------
     // Provided by base module scFlexModuleT
@@ -196,7 +214,8 @@ public:
 };
 
 
-SC_FLEXINT_MODULE_T (scFlexCounterStructuralT,typename T) {
+SC_FLEXINT_MODULE_T(scFlexCounterStructuralT,typename T)
+{
 public:
     // ---------------------      Ports      ---------------------
     // Provided by base module scFlexModuleT
@@ -248,5 +267,6 @@ public:
         }
     }
 };
+*/
 
 #endif // SC_COUNTER_H

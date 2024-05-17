@@ -1,24 +1,25 @@
 #include <pthread.h>
 #include <systemc.h>
 #include "sc_main.h"
+
 #include "sc_run.h"
-#include "sc_config.h"
+//#include "sc_config.h"
 #include "sc_qt_adaptor.h"
-#include "sc_rst.h"
-#include "sc_clk.h"
-#include "sc_mux.h"
-#include "sc_tri.h"
-#include "sc_terminals.h"
-#include "sc_gates.h"
-#include "sc_gates_pv.h"
-#include "sc_reg.h"
-#include "sc_arith.h"
+//#include "sc_rst.h"
+//#include "sc_clk.h"
+//#include "sc_mux.h"
+//#include "sc_tri.h"
+//#include "sc_terminals.h"
+//#include "sc_gates.h"
+//#include "sc_gates_pv.h"
+//#include "sc_reg.h"
+//#include "sc_arith.h"
 
-
+/* ????? what is this?
 
 template <bool CLKEDGE = DEFAULT_CLKEDGE, flexinterface_t FLEXINT = DEFAULT_FLEXINT>
-class U1block : public SyscFlexInt<CLKEDGE, FLEXINT> {
-
+class U1block : public SyscFlexInt<CLKEDGE, FLEXINT>
+{
 public:
     typedef  sc_lv<32>       data_t;
     typedef  sc_lv<1>        sel_t;
@@ -36,7 +37,7 @@ public:
     typedef U1block<CLKEDGE, FLEXINT> SC_CURRENT_USER_MODULE;
 
 private:
-    SyscMux<2,32>                 u3;
+    SyscMux<2,1,1,,1,1>                 u3;
     SyscReg<32,CLKEDGE,FLEXINT>   u2;
     SyscAdd<2,32>                 a1;
 
@@ -44,11 +45,8 @@ private:
     sc_signal<sc_lv<32>> wire2{"u3.y,u2.d"};
 
 public:
-    U1block(::sc_core::sc_module_name name)
-        : SyscFlexInt<CLKEDGE,FLEXINT>(name)
-        , u3("u3")
-        , u2("u2")
-        , a1("a1")
+    U1block(::sc_core::sc_module_name name): SyscFlexInt<CLKEDGE,FLEXINT>(name)
+        , u3("u3"), u2("u2"), a1("a1")
     {
         u3.d[0]->bind(wire1);
         u3.d[1]->bind(load);
@@ -65,6 +63,7 @@ public:
         u2.q.bind(q);
     }
 };
+*/
 
 
 /*
@@ -80,10 +79,15 @@ void *scSimMain(void *args)
 }
 
 
+int sc_main (int argc, char *argv[])
+{
+    return 0;
+}
+
 /*
  * Create design and run the simulation
- */
-int sc_main (int argc, char *argv[]) {
+
+
     (void)argc;
     (void)argv;
 
@@ -135,5 +139,8 @@ int sc_main (int argc, char *argv[]) {
     u1.q(wire2);
 
     sc_start(); // Run forever
+
+
     return 0;
 }
+*/

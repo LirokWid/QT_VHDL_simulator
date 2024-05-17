@@ -5,6 +5,7 @@
 #include "sc_gates.h"
 #include "sc_gates_pv.h"
 
+
 #if 0
 template <typename T, unsigned int N=2>
 class scMuxT : public ::sc_core::sc_module {
@@ -64,7 +65,8 @@ public:
 /**
  * Numeric conversion to use when selection value contains X or Z
  */
-typedef enum MUX_CONV_SEL_XORZ_e {
+typedef enum MUX_CONV_SEL_XORZ_e
+{
     MUX_CONV_SEL_XORZ_FIRST,  /**< Assume selection = 0 (first data input, default) */
     MUX_CONV_SEL_XORZ_LAST,   /**< Assume selection = N-1 (last data input)         */
     MUX_CONV_SEL_XORZ_SYSTEMC /**< SystemC's default conversion (issues warning)    */
@@ -73,7 +75,8 @@ typedef enum MUX_CONV_SEL_XORZ_e {
 /**
  * Mux behaviour for invalid selection input value
  */
-typedef enum MUX_SEL_INVALID_BEH_e {
+typedef enum MUX_SEL_INVALID_BEH_e
+{
     MUX_BEH_SEL_INVALID_ZEROES, /**< Set output to all zeroes (default) */
     MUX_BEH_SEL_INVALID_ONES,   /**< Set output to all ones             */
     MUX_BEH_SEL_INVALID_FIRST,  /**< Set output to first data input     */
@@ -81,40 +84,59 @@ typedef enum MUX_SEL_INVALID_BEH_e {
 } MUX_SEL_INVALID_BEH_t;
 
 
-#define MUX_DEPENDS_ON_GATES 1
+#define MUX_DEPENDS_ON_GATES true
 
-#ifdef MUX_DEPENDS_ON_GATES
+#if MUX_DEPENDS_ON_GATES
 
-
-template <unsigned int N = 2,
-          unsigned int W = 1, unsigned int SELW = 1,
-          MUX_SEL_INVALID_BEH_t SEL_INVALID_BEH = MUX_BEH_SEL_INVALID_ZEROES,
-          MUX_CONV_SEL_XORZ_t   SEL_XORZ_CONV = MUX_CONV_SEL_XORZ_FIRST>
-class SyscMux : public SyscLogicGate<N,W> {
+/**
+ * @brief The SyscMux class
+ * @details A generic SystemC module that implements a MUX gate with N inputs and W bits per input.
+ * The gate is combinational, i.e., the output is updated whenever any of the inputs changes.
+ */
+template <
+    unsigned int N = 2,
+    unsigned int W = 1,
+    unsigned int SELW = 1,
+    MUX_SEL_INVALID_BEH_t SEL_INVALID_BEH = MUX_BEH_SEL_INVALID_ZEROES,
+    MUX_CONV_SEL_XORZ_t   SEL_XORZ_CONV = MUX_CONV_SEL_XORZ_FIRST
+    >
+class SyscMux : public SyscLogicGate<N,W>
+{
 public:
-    static inline const unsigned int log2_N_ = static_cast<int>(ceil(log(N)));
     static_assert(SELW >= 1, "SyscMuxT DESIGN ERROR: SELW must be >=1");
+
+    static inline const unsigned int log2_N_ = static_cast<int>(ceil(log(N)));
     static_assert(SELW >= log2_N_, "SyscMuxT DESIGN ERROR: SELW must be >= log_2(N)");
 
-    typedef  sc_lv<SELW>       sel_t;
-    sc_in<sel_t>  sel{"sel"}; // Selection input (from 0 to N-1)
+    typedef sc_lv<SELW> sel_t;
+
+    sc_in<sel_t> sel{"sel"}; // Selection input (from 0 to N-1)
 
     typedef SyscLogicGate<N,W> BASE_MODULE;
     typedef typename BASE_MODULE::data_t data_t;
+
     typedef SyscMux<N,W,SELW,SEL_INVALID_BEH,SEL_XORZ_CONV> SC_CURRENT_USER_MODULE;
+
     static inline const data_t all0{::sc_dt::SC_LOGIC_0};
     static inline const data_t all1{::sc_dt::SC_LOGIC_1};
-    SyscMux(::sc_core::sc_module_name name) : SyscLogicGate<N,W>(name) {
+
+    SyscMux(::sc_core::sc_module_name name) : SyscLogicGate<N,W>(name)
+    {
         sc_module::sensitive << sel;
     }
 
-    virtual void combinational () {
+    virtual void combinational()
+    {
         std::string sel_value(sel.read().to_string());
         unsigned int temp = 0;
-        if (sel_value.find_first_of("xXzZ") == std::string::npos) {
+        if (sel_value.find_first_of("xXzZ") == std::string::npos)
+        {
             temp = static_cast<sc_uint<log2_N_>>(sel->read());
-        } else {
-            switch(SEL_XORZ_CONV) {
+        }
+        else
+        {
+            switch(SEL_XORZ_CONV)
+            {
             case MUX_CONV_SEL_XORZ_LAST:
                 temp = N - 1;
                 break;
@@ -125,10 +147,15 @@ public:
                 temp = 0;
             }
         }
-        if (temp < N) {
+
+        if (temp < N)
+        {
             BASE_MODULE::y.write(BASE_MODULE::d[temp]->read());
-        } else {
-            switch (SEL_INVALID_BEH) {
+        }
+        else
+        {
+            switch (SEL_INVALID_BEH)
+            {
             case MUX_BEH_SEL_INVALID_ONES:
                 BASE_MODULE::y.write(all1);
                 break;
@@ -145,14 +172,22 @@ public:
     }
 };
 
-template <unsigned int N = 2,
-          unsigned int W = 1, unsigned int SELW = 1,
-          MUX_SEL_INVALID_BEH_t SEL_INVALID_BEH = MUX_BEH_SEL_INVALID_ZEROES,
-          MUX_CONV_SEL_XORZ_t   SEL_XORZ_CONV = MUX_CONV_SEL_XORZ_FIRST>
-class SyscMux_pv : public SyscLogicGate_pv<N,W> {
+/**
+ * @brief The SyscMux_pv class
+ * @details A generic SystemC module that implements a MUX gate with N inputs and W bits per input.
+ * The gate is combinational, i.e., the output is updated whenever any of the inputs changes.
+ */
+template <  unsigned int N = 2,
+            unsigned int W = 1,
+            unsigned int SELW = 1,
+            MUX_SEL_INVALID_BEH_t SEL_INVALID_BEH = MUX_BEH_SEL_INVALID_ZEROES,
+            MUX_CONV_SEL_XORZ_t   SEL_XORZ_CONV = MUX_CONV_SEL_XORZ_FIRST>
+class SyscMux_pv : public SyscLogicGate_pv<N,W>
+{
 public:
-    static inline const unsigned int log2_N_ = static_cast<int>(ceil(log(N)));
     static_assert(SELW >= 1, "SyscMuxT DESIGN ERROR: SELW must be >=1");
+
+    static inline const unsigned int log2_N_ = static_cast<int>(ceil(log(N)));
     static_assert(SELW >= log2_N_, "SyscMuxT DESIGN ERROR: SELW must be >= log_2(N)");
 
     typedef  sc_lv<SELW>       sel_t;
@@ -163,7 +198,8 @@ public:
     typedef SyscMux_pv<N,W,SELW,SEL_INVALID_BEH,SEL_XORZ_CONV> SC_CURRENT_USER_MODULE;
     static inline const data_t all0{::sc_dt::SC_LOGIC_0};
     static inline const data_t all1{::sc_dt::SC_LOGIC_1};
-    SyscMux_pv(::sc_core::sc_module_name name) : SyscLogicGate_pv<N,W>(name) {
+    SyscMux_pv(::sc_core::sc_module_name name) : SyscLogicGate_pv<N,W>(name)
+    {
         sc_module::sensitive << sel;
     }
 
@@ -184,10 +220,14 @@ public:
                 temp = 0;
             }
         }
-        if (temp < N) {
+        if (temp < N)
+        {
             BASE_MODULE::y.write(BASE_MODULE::d[temp]->read());
-        } else {
-            switch (SEL_INVALID_BEH) {
+        }
+        else
+        {
+            switch (SEL_INVALID_BEH)
+            {
             case MUX_BEH_SEL_INVALID_ONES:
                 BASE_MODULE::y.write(all1);
                 break;
@@ -203,9 +243,11 @@ public:
         }
     }
 
-    /////////////////////////////////////////////TODO///////////////////////////////////////////////////////////
+    //TODO//TODO//TODO//TODO//TODO//TODO//TODO//TODO//TODO//TODO//TODO//TODO//TODO//TODO//TODO//TODO//TODO//TODO//TODO//TODO/
     // Assume you've parsed name as prefix, index (eg: "d0" is prefix "d", index 0)(eg: "sel" is prefix "sel", index -1)
     // Connect to wire
+
+    /*
     switch (prefix) {
     case "d":
         if (index == -1) // Error
@@ -220,6 +262,8 @@ public:
     default:
         // Error
     }
+
+    */
 };
 
 
@@ -229,9 +273,9 @@ public:
 
 
 template <unsigned int N = 2,
-          unsigned int W = 1,
-          MUX_SEL_INVALID_BEH_t SEL_INVALID_BEH = MUX_BEH_SEL_INVALID_ZEROES,
-          MUX_CONV_SEL_XORZ_t   SEL_XORZ_CONV = MUX_CONV_SEL_XORZ_FIRST>
+         unsigned int W = 1,
+         MUX_SEL_INVALID_BEH_t SEL_INVALID_BEH = MUX_BEH_SEL_INVALID_ZEROES,
+         MUX_CONV_SEL_XORZ_t   SEL_XORZ_CONV = MUX_CONV_SEL_XORZ_FIRST>
 class SyscMuxT : public ::sc_core::sc_module {
 public:
     static_assert(N >= 2, "SyscMuxT DESIGN ERROR: N must be >=2");
@@ -242,9 +286,9 @@ public:
     typedef  sc_lv<log2_N_> sel_t;
 
     sc_in<data_t>          *d[N];       // Data input
-                                        // Array of pointers so each port name can be initialized in the constructor to 'd0', 'd1', and so on (instead of 'port_0', 'port_1', etc.)
-                                        // mapping is done as (*mux_object.d[index])(signal_to_bind_the_port) instead of mux_object.d[index](signal_to_bind_the_port)
-                                        // see https://stackoverflow.com/questions/35425052/how-to-initialize-a-systemc-port-name-which-is-an-array/35535730#35535730
+        // Array of pointers so each port name can be initialized in the constructor to 'd0', 'd1', and so on (instead of 'port_0', 'port_1', etc.)
+        // mapping is done as (*mux_object.d[index])(signal_to_bind_the_port) instead of mux_object.d[index](signal_to_bind_the_port)
+        // see https://stackoverflow.com/questions/35425052/how-to-initialize-a-systemc-port-name-which-is-an-array/35535730#35535730
     sc_in<sel_t>            sel{"sel"}; // Selection input [0, N-1]
     sc_out<data_t>          y{"y"};     // Data output
 
@@ -298,9 +342,9 @@ public:
 };
 
 template <unsigned int N = 2,
-          unsigned int W = 1,
-          MUX_SEL_INVALID_BEH_t SEL_INVALID_BEH = MUX_BEH_SEL_INVALID_ZEROES,
-          MUX_CONV_SEL_XORZ_t   SEL_XORZ_CONV = MUX_CONV_SEL_XORZ_FIRST>
+         unsigned int W = 1,
+         MUX_SEL_INVALID_BEH_t SEL_INVALID_BEH = MUX_BEH_SEL_INVALID_ZEROES,
+         MUX_CONV_SEL_XORZ_t   SEL_XORZ_CONV = MUX_CONV_SEL_XORZ_FIRST>
 class SyscMuxT_pv : public ::sc_core::sc_module {
 public:
     static_assert(N >= 2, "SyscMuxT DESIGN ERROR: N must be >=2");
@@ -311,8 +355,8 @@ public:
     typedef  sc_lv<log2_N_> sel_t;
 
     sc_vector<sc_in<data_t>> d;         // Data input
-                                        // sc_vector of ports; name can be initialized in the constructor to 'd_0', 'd_1', and so on (instead of 'port_0', 'port_1', etc.)
-                                        // see https://stackoverflow.com/questions/35425052/how-to-initialize-a-systemc-port-name-which-is-an-array/35535730#35535730
+        // sc_vector of ports; name can be initialized in the constructor to 'd_0', 'd_1', and so on (instead of 'port_0', 'port_1', etc.)
+        // see https://stackoverflow.com/questions/35425052/how-to-initialize-a-systemc-port-name-which-is-an-array/35535730#35535730
     sc_in<sel_t>            sel{"sel"}; // Selection input [0, N-1]
     sc_out<data_t>          y{"y"};     // Data output
 
