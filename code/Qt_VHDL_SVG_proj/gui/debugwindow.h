@@ -31,12 +31,8 @@ class DebugWindow : public QWidget
 {
     Q_OBJECT
 public:
-    /**
-     * @brief Constructs a DebugWindow object.
-     * @param openTrigger The QAction object to trigger opening the debug window.
-     * @param parent The parent widget.
-     */
-    explicit DebugWindow(QAction *openTrigger, QWidget *parent = nullptr);
+
+    static DebugWindow* getInstance(QAction *openTrigger = nullptr, QWidget *parent = nullptr);
 
     /**
      * @brief Adds a debug message to the window.
@@ -57,6 +53,10 @@ protected:
     void scrollDown();
 
 private:
+    explicit DebugWindow(QAction *openTrigger, QWidget *parent = nullptr);
+    static DebugWindow* instance;
+
+
     unsigned int messageCount;  /**< The number of messages currently displayed. */
     bool autoScrollEnabled;     /**< Flag indicating whether auto-scrolling is enabled. */
 

@@ -61,7 +61,7 @@ void SvgParser::parse_svg(QString svg_file)
     parse_by_group(root.element, root, 0);
 
     // Output found groups
-    qDebug() << "Found " << groups_number << " groups:";
+    DebugWindow::getInstance()->addMessage("Found " + QString::number(groups_number) + " groups:");
 
     file.close();
 }

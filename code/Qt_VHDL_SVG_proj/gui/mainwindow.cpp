@@ -11,7 +11,8 @@ MainWindow::MainWindow(QWidget *parent) :
     setWindowTitle(tr("SIMULATOR"));
 
     //Setup the debug interface
-    debugWindow = new DebugWindow(ui->actionOpenDebugWindow, this);
+    debugWindow = DebugWindow::getInstance(ui->actionOpenDebugWindow, this);
+
 
 #ifdef DEBUG
     for(int i=0;i<150;i++)

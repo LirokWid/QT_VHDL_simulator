@@ -2,6 +2,8 @@
 #include "debugwindow.h"
 #include "params.h"
 
+DebugWindow* DebugWindow::instance = nullptr;
+
 
 DebugWindow::DebugWindow(QAction *openTrigger, QWidget *parent) :
     QWidget(parent),
@@ -38,6 +40,14 @@ DebugWindow::DebugWindow(QAction *openTrigger, QWidget *parent) :
     connect(clearButton, &QPushButton::clicked, this, &DebugWindow::clearMessages);
     connect(autoScrollBox, &QCheckBox::stateChanged, this, &DebugWindow::autoScrollHandle);
     connect(scrollBar, &QScrollBar::valueChanged, this, &DebugWindow::scrollBarModifiedHandle);
+}
+
+DebugWindow* DebugWindow::getInstance(QAction *openTrigger, QWidget *parent)
+{
+    if (instance == nullptr) {
+        instance = new DebugWindow(openTrigger, parent);
+    }
+    return instance;
 }
 
 
