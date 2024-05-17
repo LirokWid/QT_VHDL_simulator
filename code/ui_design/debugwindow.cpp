@@ -64,6 +64,7 @@ void DebugWindow::addMessage(const QString &message, Severity severity /* = Seve
         break;
     default: // Info
         color = "white";
+        strSeverity = "";
         break;
     }
 
@@ -82,6 +83,7 @@ void DebugWindow::addMessage(const QString &message, Severity severity /* = Seve
     }
 
     textEdit->append(formattedMessage);
+    qDebug().noquote() << strSeverity << message;
     ++messageCount;
     autoScrollIfEnabled();
 }
