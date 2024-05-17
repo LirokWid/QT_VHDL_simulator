@@ -39,7 +39,7 @@ MainWindow::MainWindow(QWidget *parent) :
     svgHandler = new SvgHandler(simulationState, svgWidget, this);
 
 #ifdef DEBUG
-    svgHandler->changeSvg(TEMP_SVG_PATH);//debug
+    svgHandler->loadSvg(TEMP_SVG_PATH);//debug
 #endif
 
     //Setup the tree view

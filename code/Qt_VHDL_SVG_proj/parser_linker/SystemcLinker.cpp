@@ -8,7 +8,8 @@
  * It will then get the components list from the SvgParser instance
  * It will then call the link_components function to link the components
  */
-SystemcLinker::SystemcLinker(QString svg_file) : SvgParser(svg_file)
+SystemcLinker::SystemcLinker(QString svg_file) :
+    SvgParser(svg_file)
 {
     s_components_list components = all_components;
 

@@ -76,6 +76,6 @@ void FilesTreeView::handleFileDoubleClicked(const QModelIndex &index)
     else
     {
         //Load the svg file into the svg widget
-        svgHandler->changeSvg(filePath);
+        svgHandler->loadSvg(filePath);
     }
 }

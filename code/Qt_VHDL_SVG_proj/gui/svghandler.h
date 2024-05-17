@@ -9,6 +9,9 @@
 #include "svgwidget.h"
 #include "simulationstate.h"
 
+#include "SystemcLinker.h"
+
+
 /**
  * @brief The SvgHandling class provides functionality to handle SVG files.
  */
@@ -25,10 +28,10 @@ public:
     explicit SvgHandler(SimulationState *simulationState, SvgWidget *svgWidget, QObject *parent = nullptr);
 
     /**
-     * @brief changeSvg
+     * @brief loadSvg
      * @param filePath
      */
-    bool changeSvg(const QString &filePath);
+    bool loadSvg(const QString &filePath);
     bool clearSvg();
 
 protected:
@@ -53,6 +56,10 @@ private:
     QFileInfo *fileInfo;
     QTemporaryDir tempDir; /**< The temporary directory for storing SVG files. */
     QString getTempFilePath() const;
+
+    SystemcLinker *linker;
+
+    bool loadAndParse(QString svgPath);
 };
 
 #endif // SVGHANDLER_H

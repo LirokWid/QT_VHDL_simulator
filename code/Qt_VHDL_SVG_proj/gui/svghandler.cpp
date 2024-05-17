@@ -1,6 +1,8 @@
 #include "svghandler.h"
-
 #include "mainwindow.h"
+
+#include "SystemcLinker.h"
+
 SvgHandler::SvgHandler(SimulationState *simulationState, SvgWidget *svgWidget, QObject *parent) :
     QObject(parent),
     simulationState(simulationState),
@@ -14,7 +16,7 @@ SvgHandler::SvgHandler(SimulationState *simulationState, SvgWidget *svgWidget, Q
 
 
 
-bool SvgHandler::changeSvg(const QString &filePath)
+bool SvgHandler::loadSvg(const QString &filePath)
 {
     if (!tempDir.isValid())
     {
@@ -34,12 +36,20 @@ bool SvgHandler::changeSvg(const QString &filePath)
 
     if (copySvgToTemp(filePath, tempFilePath))
     {
+        static_cast<MainWindow *>(parent())->showDebugWindow(); //temp
 
-        svgWidget->loadSvg(tempFilePath);
-        static_cast<MainWindow *>(parent())->showDebugWindow();
-        return true;
+        return loadAndParse(tempFilePath);
+
     }
     return false;
+}
+
+bool SvgHandler::loadAndParse(QString svgPath)
+{
+    //Load and parse the new svg
+    svgWidget->loadSvg(svgPath);
+    linker = new SystemcLinker(svgPath);
+    return true;
 }
 
 bool SvgHandler::clearSvg()

@@ -1,15 +1,19 @@
 #include "SvgParser.h"
+#include "debugwindow.h"
 
 SvgParser::SvgParser(QString svg_file)
 {
     log_buffer = "";
     root.level = 0;
 
+
     if (svg_file.isEmpty())
     {
         qDebug() << "Error: Empty file name";
+
         return;
     }
+
     this->svg_file = svg_file;
     parse_svg(this->svg_file);
 
