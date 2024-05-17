@@ -27,12 +27,26 @@ QMAKE_INCDIR += \
 HEADERS += \
     $$files("parser_linker/*.h") \
     $$files("systemc_modules/*.h") \
-    $$files("gui/*.h")
+    gui/debugwindow.h \
+    gui/filestreeview.h \
+    gui/mainwindow.h \
+    gui/params.h \
+    gui/simulationstate.h \
+    gui/svghandler.h \
+    gui/svgwidget.h \
+    gui/view.h
 
 SOURCES += \
     $$files("parser_linker/*.cpp") \
     $$files("systemc_modules/*.cpp") \
-    $$files("gui/*.cpp") \
+    gui/debugwindow.cpp \
+    gui/filestreeview.cpp \
+    gui/mainwindow.cpp \
+    gui/simulationstate.cpp \
+    gui/svghandler.cpp \
+    gui/svgwidget.cpp \
+    gui/ui_svg_item.cpp \
+    gui/view.cpp \
     main.cpp
 
 

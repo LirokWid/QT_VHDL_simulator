@@ -1,51 +1,121 @@
 #include "mainwindow.h"
 
-//#include "ui_mainwindow.h"
-#include <QMessageBox>
-#include <QTreeView>
-#include <QFileDialog>
-#include <QFileSystemModel>
-#include <QSplitter>
+#include "params.h"
 
-
-
-MainWindow::MainWindow(QWidget *parent)
-    : QMainWindow(parent)
-    , ui(new Ui::MainWindow)
+MainWindow::MainWindow(QWidget *parent) :
+    QMainWindow(parent),
+    ui(new Ui::MainWindow)
 {
-    model = new QFileSystemModel(this);
-    model->setRootPath("C:\\Users\\BJRODIER\\Documents");
+    //Setup ui
     ui->setupUi(this);
+    setWindowTitle(tr("SIMULATOR"));
 
-    //connect(ui->bStartSim, SIGNAL(clicked()), this, SLOT(receiver_bStartSim_clicked()));
-    //ui->bStartSim->setEnabled(true);
-    //emit ui->bStartSim->clicked();
+    //Setup the debug interface
+    debugWindow = new DebugWindow(ui->actionOpenDebugWindow, this);
+
+#ifdef DEBUG
+    for(int i=0;i<150;i++)
+    {
+        debugWindow->addMessage("test " + QString::number(i));
+    }
+    debugWindow->addMessage("Error text",Severity::Error);
+    debugWindow->addMessage("Warning text",Severity::Warning);
+    debugWindow->addMessage("Success text",Severity::Success);
+    debugWindow->addMessage("Debug text",Severity::Debug);
+    debugWindow->addMessage("Info text",Severity::Info);
+
+#endif
+
+
+    //Setup the simulation state and label
+    simulationState = new SimulationState();
+    stateLabel = ui->label;
+    connect(simulationState, &SimulationState::stateChanged, this, &MainWindow::updateStateLabel);
+
+    //Setup the svg view and handler for svg files management
+    svgWidget = new SvgWidget();
+    ui->svgLayout->addWidget(svgWidget);
+
+    svgHandler = new SvgHandler(simulationState, svgWidget, this);
+
+#ifdef DEBUG
+    svgHandler->changeSvg(TEMP_SVG_PATH);//debug
+#endif
+
+    //Setup the tree view
+    filesTreeView = new FilesTreeView(ui->folder_btn, ui->treeView, svgHandler, simulationState, this);
+
+    //Setup the svg file close button
+    connect(ui->closeFile, &QPushButton::clicked, this, &MainWindow::closeSvg);
+
+    //Force resize the splitter
+    setSplitterToLeft(ui->mainSplitter, 201);
 }
 
 MainWindow::~MainWindow()
 {
-    //delete ui;
+    delete debugWindow;
+    delete ui;
 }
 
-/*
-void MainWindow::receiver_bStartSim_clicked()
-{
-    QMessageBox msgBox;
 
-    msgBox.setText("Simulation started");
-    msgBox.exec();
+void MainWindow::on_stop_clicked()
+{
+#ifdef DEBUG
+    static unsigned int i;
+    if (i%2)
+        debugWindow->addMessage("PshBtn ssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssss " + QString::number(i++),Severity::Error);
+    else
+        debugWindow->addMessage("PshBtn " + QString::number(i++),Severity::Warning);
+#endif
 }
 
-*/
-
-void MainWindow::on_pushButton_clicked()
+void MainWindow::closeSvg()
 {
-    QString directory = "C:\\Users\\BJRODIER\\Documents";
-    qDebug() << directory;
-    if (!directory.isEmpty())
-    {
-        ui->treeView->setModel(model);
-        ui->treeView->setRootIndex(model->index(directory));
+    //Clear the svg widget
+    svgHandler->clearSvg();
+    qDebug()<<"svg cleared";
+}
+
+void MainWindow::loadSvgFileFromPath(QString path)
+{
+    //Load the svg file into the svg widget
+    svgWidget->loadSvg(path);
+    qDebug()<<"svg loaded from path: "<<path;
+}
+
+void MainWindow::showDebugWindow()
+{
+    debugWindow->openWindow();
+}
+
+void MainWindow::updateStateLabel(SimulationState::State state)
+{
+    switch (state) {
+    case SimulationState::IDLE:
+        stateLabel->setText("Idle");
+        break;
+    case SimulationState::IDLE_SVG_LOADED:
+        stateLabel->setText("Idle (SVG Loaded)");
+        break;
+    case SimulationState::RUNNING:
+        stateLabel->setText("Running");
+        break;
+    default:
+        stateLabel->setText("Unknown State");
+        break;
     }
 }
 
+void MainWindow::setSplitterToLeft(QSplitter *splitter, int leftSize)
+{
+    // Set a minimum size for the left widget
+    splitter->widget(0)->setMinimumSize(leftSize, 0);
+
+    // Calculate the size for the left and right widgets
+    QList<int> sizes;
+    sizes << leftSize << splitter->size().width() - leftSize;
+
+    // Set the sizes
+    splitter->setSizes(sizes);
+}

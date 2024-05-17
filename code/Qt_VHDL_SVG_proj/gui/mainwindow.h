@@ -2,43 +2,48 @@
 #define MAINWINDOW_H
 
 #include <QMainWindow>
+#include <QSvgWidget>
 #include "ui_mainwindow.h"
 
-#include <QGraphicsSvgItem>
+#include "svgwidget.h"
+#include "filestreeview.h"
+#include "simulationstate.h"
+#include "svghandler.h"
+#include "debugwindow.h"
 
-
-#include <QMainWindow>
-#include <QFileSystemModel>
-#include <QFileDialog>
-#include <QTreeView>
+#include "view.h"
 
 QT_BEGIN_NAMESPACE
-namespace Ui { class MainWindow; }
+namespace Ui {
+class MainWindow;
+}
 QT_END_NAMESPACE
 
 class MainWindow : public QMainWindow
 {
     Q_OBJECT
+
 public:
-    explicit MainWindow(QWidget *parent = nullptr);
+    MainWindow(QWidget *parent = nullptr);
+    void loadSvgFileFromPath(QString path);
+    void showDebugWindow();
+
     ~MainWindow();
 
-
-public slots:
-
-
-signals:
-
 private slots:
-
-
-    void on_pushButton_clicked();
+    void on_stop_clicked(); //temp debug svgwidget
+    void closeSvg();
+    void updateStateLabel(SimulationState::State state);
 
 private:
     Ui::MainWindow *ui;
+    SvgWidget *svgWidget;
+    FilesTreeView *filesTreeView;
+    SimulationState *simulationState;
+    QLabel *stateLabel;
+    SvgHandler *svgHandler;
+    DebugWindow *debugWindow;
 
-    QTreeView *treeView;
-    QFileSystemModel *model;
+    void setSplitterToLeft(QSplitter *splitter, int leftSize);
 };
-
 #endif // MAINWINDOW_H
