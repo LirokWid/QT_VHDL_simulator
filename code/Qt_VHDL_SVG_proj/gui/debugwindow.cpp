@@ -8,7 +8,6 @@ DebugWindow* DebugWindow::instance = nullptr;
 DebugWindow::DebugWindow(QAction *openTrigger, QWidget *parent) :
     QWidget(parent),
     messageCount(0),
-    autoScrollEnabled(true),
     openTrigger(openTrigger)
 {
     /** ui setup ********************************************************************/
@@ -28,10 +27,31 @@ DebugWindow::DebugWindow(QAction *openTrigger, QWidget *parent) :
 
     autoScrollBox = new QCheckBox(tr("Autoscroll"), this);
     autoScrollBox->setChecked(true);
-
     hLayout->addWidget(autoScrollBox, 0, Qt::AlignLeft);
+
     QPushButton *clearButton = new QPushButton(tr("Clear"), this);
     hLayout->addWidget(clearButton, 0, Qt::AlignRight);
+
+
+    infoCheckBox = new QCheckBox("Show Info", this);
+    infoCheckBox->setChecked(true);
+    hLayout->addWidget(infoCheckBox);
+
+    successCheckBox = new QCheckBox("Show Success", this);
+    successCheckBox->setChecked(true);
+    hLayout->addWidget(successCheckBox);
+
+    debugCheckBox = new QCheckBox("Show debug", this);
+    debugCheckBox->setChecked(true);
+    hLayout->addWidget(debugCheckBox);
+
+    warningCheckBox = new QCheckBox("Show Warning", this);
+    warningCheckBox->setChecked(true);
+    hLayout->addWidget(warningCheckBox);
+
+    errorCheckBox = new QCheckBox("Show Error", this);
+    errorCheckBox->setChecked(true);
+    hLayout->addWidget(errorCheckBox);
 
     vLayout->addLayout(hLayout);
     /********************************************************************************/
@@ -40,6 +60,14 @@ DebugWindow::DebugWindow(QAction *openTrigger, QWidget *parent) :
     connect(clearButton, &QPushButton::clicked, this, &DebugWindow::clearMessages);
     connect(autoScrollBox, &QCheckBox::stateChanged, this, &DebugWindow::autoScrollHandle);
     connect(scrollBar, &QScrollBar::valueChanged, this, &DebugWindow::scrollBarModifiedHandle);
+
+    connect(infoCheckBox, &QCheckBox::stateChanged, this, &DebugWindow::filterMessages);
+    connect(successCheckBox, &QCheckBox::stateChanged, this, &DebugWindow::filterMessages);
+    connect(debugCheckBox, &QCheckBox::stateChanged, this, &DebugWindow::filterMessages);
+    connect(warningCheckBox, &QCheckBox::stateChanged, this, &DebugWindow::filterMessages);
+    connect(errorCheckBox, &QCheckBox::stateChanged, this, &DebugWindow::filterMessages);
+
+    autoScrollIfEnabled();
 }
 
 DebugWindow* DebugWindow::getInstance(QAction *openTrigger, QWidget *parent)
@@ -50,25 +78,98 @@ DebugWindow* DebugWindow::getInstance(QAction *openTrigger, QWidget *parent)
     return instance;
 }
 
-
-void DebugWindow::addMessage(const QString &message, Severity severity /* = Severity::Info */)
+bool DebugWindow::shouldAppend(Severity severity)
 {
+    bool shouldAppend = false;
+    switch (severity)
+    {
+    case Debug:
+        shouldAppend = debugCheckBox->isChecked();
+        break;
+    case Success:
+        shouldAppend = successCheckBox->isChecked();
+        break;
+    case Warning:
+        shouldAppend = warningCheckBox->isChecked();
+        break;
+    case Error:
+        shouldAppend = errorCheckBox->isChecked();
+        break;
+    default: // Info
+        shouldAppend = infoCheckBox->isChecked();
+        break;
+    }
+    return shouldAppend;
+}
+void DebugWindow::filterMessages()
+{
+    textEdit->clear();
+    for (int i = 0; i < messages.size(); ++i)
+    {
+        if (shouldAppend(severities[i]))
+        {
+            QString color, strSeverity;
+            switch (severities[i])
+            {
+            case Debug:
+                color = "gray";
+                strSeverity = "Debug: ";
+                break;
+            case Success:
+                color = "green";
+                strSeverity = "Success: ";
+                break;
+            case Warning:
+                color = "orange";
+                strSeverity = "Warning: ";
+                break;
+            case Error:
+                color = "red";
+                strSeverity = "ERROR: ";
+                break;
+            default: // Info
+                color = "white";
+                strSeverity = "";
+                break;
+            }
+
+            QString formattedMessage = QString("<font color=\"%1\">%2</font>")
+                                           .arg(color, strSeverity + messages[i]);
+
+            textEdit->append(formattedMessage);
+        }
+    }
+}
+
+void DebugWindow::addMessage(const QString &message, Severity severity /* = Info */)
+{
+    if (messages.size() >= MAX_DEBUG_MESSAGES_NB)
+    {
+        messages.removeFirst();
+        severities.removeFirst();
+        --messageCount;
+    }
+
+    messages.append(message);
+    severities.append(severity);
+    ++messageCount;
+
     QString color, strSeverity;
     switch (severity)
     {
-    case Severity::Debug:
+    case Debug:
         color = "gray";
         strSeverity = "Debug: ";
         break;
-    case Severity::Success:
+    case Success:
         color = "green";
         strSeverity = "Success: ";
         break;
-    case Severity::Warning:
+    case Warning:
         color = "orange";
         strSeverity = "Warning: ";
         break;
-    case Severity::Error:
+    case Error:
         color = "red";
         strSeverity = "ERROR: ";
         break;
@@ -81,22 +182,42 @@ void DebugWindow::addMessage(const QString &message, Severity severity /* = Seve
     QString formattedMessage = QString("<font color=\"%1\">%2</font>")
                                    .arg(color, strSeverity + message);
 
-    if(messageCount >= MAX_DEBUG_MESSAGES_NB)
+
+    if (shouldAppend(severity))
     {
-        QTextCursor cursor = textEdit->textCursor();
-        cursor.movePosition(QTextCursor::Start);
-        cursor.select(QTextCursor::BlockUnderCursor);
-        cursor.removeSelectedText();
-        cursor.deleteChar();
-        cursor.movePosition(QTextCursor::End);
-        --messageCount;
+        textEdit->append(formattedMessage);
     }
 
-    textEdit->append(formattedMessage);
     qDebug().noquote() << strSeverity << message;
-    ++messageCount;
     autoScrollIfEnabled();
 }
+
+void DebugWindow::addDebug(const QString &message)
+{
+    addMessage(message,Debug);
+}
+
+void DebugWindow::addSuccess(const QString &message)
+{
+    addMessage(message,Success);
+}
+
+void DebugWindow::addWaring(const QString &message)
+{
+    addMessage(message,Warning);
+}
+
+void DebugWindow::addError(const QString &message)
+{
+    addMessage(message,Error);
+}
+
+void DebugWindow::addInfo(const QString &message)
+{
+    addMessage(message,Info);
+}
+
+
 
 void DebugWindow::autoScrollIfEnabled()
 {

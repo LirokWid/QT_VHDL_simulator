@@ -13,18 +13,6 @@
 #include <QAction>
 
 /**
- * @brief The Severity enum
- */
-enum class Severity {
-    Info,
-    Success,
-    Warning,
-    Error,
-    Debug
-};
-
-
-/**
  * @brief The DebugWindow class provides a widget for displaying debug messages.
  */
 class DebugWindow : public QWidget
@@ -32,14 +20,54 @@ class DebugWindow : public QWidget
     Q_OBJECT
 public:
 
+    /**
+     * @brief The Severity enum
+     */
+    enum Severity
+    {
+        Info,
+        Success,
+        Warning,
+        Error,
+        Debug
+    };
+
     static DebugWindow* getInstance(QAction *openTrigger = nullptr, QWidget *parent = nullptr);
 
     /**
-     * @brief Adds a debug message to the window.
+     * @brief Adds a message to the debug window.
      * @param message The debug message to be added.
      * @param severity The severity of the message.
      */
-    void addMessage(const QString& message, Severity severity = Severity::Info);
+    void addMessage(const QString& message, Severity severity = Info);
+
+    /**
+     * @brief addDebug
+     * @param message
+     */
+    void addDebug(const QString& message);
+
+    /**
+     * @brief addSuccess
+     * @param message
+     */
+    void addSuccess(const QString& message);
+
+    /**
+     * @brief addWaring
+     * @param message
+     */
+    void addWaring(const QString& message);
+    /**
+     * @brief addError
+     * @param message
+     */
+    void addError(const QString& message);
+    /**
+     * @brief addInfo
+     * @param message
+     */
+    void addInfo(const QString& message);
 
     /**
      * @brief Opens the debug window.
@@ -56,15 +84,27 @@ private:
     explicit DebugWindow(QAction *openTrigger, QWidget *parent = nullptr);
     static DebugWindow* instance;
 
-
     unsigned int messageCount;  /**< The number of messages currently displayed. */
-    bool autoScrollEnabled;     /**< Flag indicating whether auto-scrolling is enabled. */
+    QList<QString> messages;
+    QList<Severity> severities;
+
+    bool autoScrollEnabled = true;     /**< Flag indicating whether auto-scrolling is enabled. */
+    QCheckBox *autoScrollBox;   /**< Checkbox for enabling/disabling auto-scrolling. */
+    QScrollBar *scrollBar;      /**< Scrollbar for the QTextEdit widget. */
 
     QAction *openTrigger;       /**< The QAction that triggers opening the debug window. */
     QTextEdit *textEdit;        /**< The QTextEdit widget for displaying debug messages. */
-    QList<QString> messages;    /**< List of debug messages. */
-    QCheckBox *autoScrollBox;   /**< Checkbox for enabling/disabling auto-scrolling. */
-    QScrollBar *scrollBar;      /**< Scrollbar for the QTextEdit widget. */
+
+    QCheckBox *infoCheckBox;
+    QCheckBox *successCheckBox;
+    QCheckBox *warningCheckBox;
+    QCheckBox *errorCheckBox;
+    QCheckBox *debugCheckBox;
+
+
+    void filterMessages();
+
+    bool shouldAppend(Severity severity);
 
     /**
      * @brief Scrolls to the bottom if auto-scrolling is enabled.
