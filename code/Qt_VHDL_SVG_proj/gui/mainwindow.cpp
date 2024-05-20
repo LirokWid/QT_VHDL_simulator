@@ -19,11 +19,11 @@ MainWindow::MainWindow(QWidget *parent) :
     {
         debugWindow->addMessage("test " + QString::number(i));
     }
-    debugWindow->addMessage("Error text",Severity::Error);
-    debugWindow->addMessage("Warning text",Severity::Warning);
-    debugWindow->addMessage("Success text",Severity::Success);
-    debugWindow->addMessage("Debug text",Severity::Debug);
-    debugWindow->addMessage("Info text",Severity::Info);
+    debugWindow->addMessage("Error text", DebugWindow::Error);
+    debugWindow->addMessage("Warning text", DebugWindow::Warning);
+    debugWindow->addMessage("Success text", DebugWindow::Success);
+    debugWindow->addMessage("Debug text", DebugWindow::Debug);
+    debugWindow->addMessage("Info text", DebugWindow::Info);
 
 #endif
 
@@ -65,9 +65,9 @@ void MainWindow::on_stop_clicked()
 #ifdef DEBUG
     static unsigned int i;
     if (i%2)
-        debugWindow->addMessage("PshBtn ssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssss " + QString::number(i++),Severity::Error);
+        debugWindow->addMessage("PshBtn ssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssss " + QString::number(i++),DebugWindow::Error);
     else
-        debugWindow->addMessage("PshBtn " + QString::number(i++),Severity::Warning);
+        debugWindow->addMessage("PshBtn " + QString::number(i++),DebugWindow::Warning);
 #endif
 }
 

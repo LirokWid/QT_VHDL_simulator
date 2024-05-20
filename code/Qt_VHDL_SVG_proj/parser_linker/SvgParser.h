@@ -18,6 +18,8 @@
 #include <QString>
 #include <QDomDocument>
 
+#include "debugwindow.h"
+
 #define DEBUG
 
 #define DEFAULT_WIDTH 1
@@ -221,16 +223,7 @@ private:
 
     const QString custom_attribute = CUSTOM_ATTRIBUTE; ///< Custom attribute prefix.
 
-    /*
-    const QString component_ID = "ID";           ///< Component ID attribute name.
-    const QString component_type = "type";       ///< Component type attribute name.
-    const QString component_graphic = "graphic"; ///< Component graphic attribute name.
-    const QString component_input = "input";     ///< Component input attribute name.
-    const QString component_output = "output";   ///< Component output attribute name.
-    const QString component_sel = "sel";         ///< Component selection attribute name.
-    const QString undefined = "undefined";       ///< Undefined attribute value.
-    const QString not_found = "not_found";       ///< Not found attribute value.
-    */
+    DebugWindow *debug;
 
     QString log_buffer; ///< Buffer for log messages.
     /**

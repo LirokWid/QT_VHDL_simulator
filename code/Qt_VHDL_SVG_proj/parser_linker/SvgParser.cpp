@@ -6,10 +6,12 @@ SvgParser::SvgParser(QString svg_file)
     log_buffer = "";
     root.level = 0;
 
+    debug = DebugWindow::getInstance();
+
 
     if (svg_file.isEmpty())
     {
-        qDebug() << "Error: Empty file name";
+        debug->addError("Empty file name");
 
         return;
     }
@@ -43,12 +45,12 @@ void SvgParser::parse_svg(QString svg_file)
         }
         if (!doc.setContent(&file))
         {
-            qDebug() << "Failed to parse SVG file as XML.";
+            debug->addError("Failed to parse SVG file as XML.");
         }
     }
     catch (const std::exception &e)
     {
-        qDebug() << "Error: " << e.what();
+        debug->addError(e.what());
         return;
     }
 
@@ -61,7 +63,7 @@ void SvgParser::parse_svg(QString svg_file)
     parse_by_group(root.element, root, 0);
 
     // Output found groups
-    DebugWindow::getInstance()->addMessage("Found " + QString::number(groups_number) + " groups:");
+    DebugWindow::getInstance()->addDebug("Found " + QString::number(groups_number) + " groups:");
 
     file.close();
 }
@@ -127,16 +129,16 @@ void SvgParser::generate_tree(const s_tree_node &node, const QString &prefix)
 
 void SvgParser::print_tree_in_log(QString buffer)
 {
-    qDebug() << "SVG Groups Tree:";
+    debug->addInfo( "SVG Groups Tree:");
     QStringList lines = buffer.split("\n", Qt::SkipEmptyParts);
 
     // Print log content from first line to last line
     for (int i = 0; i < lines.size(); ++i)
     {
-        qDebug().noquote().nospace() << lines[i];
+        debug->addInfo(lines[i]);
     }
 
-    qDebug() << "End of SVG Groups Tree";
+    debug->addInfo("End of SVG Groups Tree");
     // reset the log buffer
     buffer = "";
 }
@@ -146,7 +148,7 @@ void SvgParser::parse_components(s_tree_node &node)
     // Parse the current node's element
     parse_element(node);
 
-    qDebug() << "Parsing links for node: " << node.infos.type << " at level " << node.level;
+    debug->addInfo("Parsing links for node: " + node.infos.type + " at level " + QString::number(node.level));
 
     // Recursively call parse_tree_nodes()
     for (s_tree_node &child : node.children)
@@ -254,7 +256,7 @@ void SvgParser::parse_element(s_tree_node &node)
         // We should only have one svg element
         if (parsed_data->has_been_parsed)
         {
-            qDebug() << "Error: Main element tried parsing again";
+            debug->addError("Main element tried parsing again");
             return;
         }
 
@@ -280,104 +282,9 @@ void SvgParser::parse_element(s_tree_node &node)
     else
     {
 #ifdef DEBUG
-        qDebug() << "Error: Unknown element type";
+        debug->addError("Unknown element type");
 #endif
     }
-
-    // For every element in a node
-    // Find if the element is a component
-    // If it is, add it to the list of components
-    /*
-
-    for (int i = 0; node_xml_data.isNull(); node_xml_data.nextSiblingElement())
-    { // For each node in the group
-        int breakpoint = 0;
-        ++breakpoint;
-
-        qDebug() << "Parsing node " << breakpoint;
-
-        // FIXME: SIGSEGV here
-        QDomElement element = node_xml_data.childNodes().item(i).toElement();
-
-        // Get the element type by comparing to the list of predefined types
-
-        // Node is a text containing the label U1, U2, etc
-        if (element.hasAttribute(attr(label)))
-        {
-            parsed_data->label = element.attribute(attr(label));
-            qDebug() << "ID:" << parsed_data->label;
-        }
-
-        // Node is a text containing the type
-        else if (element.hasAttribute(attr(type)))
-        {
-            parsed_data->type = element.attribute(attr(type));
-            qDebug() << "Type:" << parsed_data->type;
-        }
-
-        // Node is a text containing the graphic
-        else if (element.hasAttribute(attr(graphic)))
-        { // Do nothing yet for the graphic
-            qDebug() << "Graphic";
-        }
-
-        // Node is an input
-        else if (element.hasAttribute(attr(input)))
-        {
-            s_io new_input;
-            new_input.name = element.attribute(attr(input));
-            // The input width should be contained in the main group attr sim:width=10,10
-            // We need to get the width and height of the main group
-            // And overide if the input has a width attribute
-            // Get already parsed widht
-            if (element.hasAttribute(attr_name_for_str("width")))
-            {
-                new_input.width = element.attribute(attr_name_for_str("width")).toInt();
-                qDebug() << "Input width overidden by attribute";
-            }
-            else
-            {
-                if (parsed_data->component_in_width != 0)
-                {
-                    new_input.width = parsed_data->component_in_width;
-                }
-                else
-                {
-                    new_input.width = 0;
-                    parsed_data->is_parse_error = true;
-                    parsed_data->error_messages.push_back("No width attribute found for input");
-                }
-            }
-        }
-
-        // Node is an output
-        else if (element.hasAttribute(attr(output)))
-        {
-            s_io new_output;
-            new_output.name = element.attribute(attr(output));
-            // Same as for input
-            if (element.hasAttribute(attr_name_for_str("width")))
-            {
-                new_output.width = element.attribute(attr_name_for_str("width")).toInt();
-                qDebug() << "Input width overidden by attribute";
-            }
-            else
-            {
-                if (parsed_data->component_in_width != 0)
-                {
-                    new_output.width = parsed_data->component_out_width;
-                }
-                else
-                {
-                    new_output.width = 0;
-                    parsed_data->is_parse_error = true;
-                    parsed_data->error_messages.push_back("No width attribute found for input");
-                }
-            }
-        }
-    }
-*/
-
 }
 
 void SvgParser::parse_one_element(const QDomElement svg_group_xml, s_elements &elements)
@@ -430,19 +337,30 @@ void SvgParser::parse_one_element(const QDomElement svg_group_xml, s_elements &e
     get_list_of_outputs_name_and_width(str_outputs, new_element.outputs);
 
 #ifdef DEBUG
-    qDebug() << "Device:" << new_element.device;
-    qDebug() << "Name:" << new_element.name;
-    qDebug() << "Label:" << new_element.label;
+    debug->addDebug("Device:" + new_element.device);
+    debug->addDebug("Name:" + new_element.name);
+    debug->addDebug("Label:" + new_element.label);
     for (auto &input : new_element.inputs)
     {
-        qDebug() << "Input: " << input.name <<"connected to " << input.connected_to << "width:" << input.width;
+        debug->addDebug("Input: " + input.name +"connected to " + input.connected_to + "width:" + QString::number(input.width));
     }
     for (auto &output : new_element.outputs)
     {
-        qDebug() << "Output:" << output.name << "width:" << output.width;
+        debug->addDebug("Output:" + output.name + "width:" + QString::number(output.width));
     }
-    qDebug() << "Error:" << new_element.error.is_parse_error;
-    qDebug();
+
+    if(new_element.error.is_parse_error)
+    {
+        for(auto &errorMessage:new_element.error.error_messages)
+        {
+            debug->addError(errorMessage);
+        }
+    }
+    else
+    {
+        debug->addSuccess(new_element.name + " parsed");
+    }
+
 #endif
 
     elements.elements_list.push_back(new_element);
@@ -710,7 +628,7 @@ void SvgParser::list_matching_attr_with_value(const QDomElement elem_to_look_int
         {
             if (child.attribute(attr_name) == attr_value)
             {
-                // qDebug() << child.attribute(attr_name) << "==" << attr_value;
+                // debug->add child.attribute(attr_name) << "==" << attr_value;
                 found_elements.append(child);
             }
         }
