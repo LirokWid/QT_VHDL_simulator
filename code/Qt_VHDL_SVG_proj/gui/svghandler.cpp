@@ -2,11 +2,13 @@
 #include "mainwindow.h"
 
 #include "SystemcLinker.h"
+#include "elementsdisplay.h"
 
-SvgHandler::SvgHandler(SimulationState *simulationState, SvgWidget *svgWidget, QObject *parent) :
+SvgHandler::SvgHandler(ElementsDisplay *display, SimulationState *simulationState, SvgWidget *svgWidget, QObject *parent) :
     QObject(parent),
     simulationState(simulationState),
-    svgWidget(svgWidget)
+    svgWidget(svgWidget),
+    display(display)
 {
     if (!tempDir.isValid())
     {
@@ -49,6 +51,8 @@ bool SvgHandler::loadAndParse(QString svgPath)
     //Load and parse the new svg
     svgWidget->loadSvg(svgPath);
     linker = new SystemcLinker(svgPath);
+    display->loadTree(linker->get_components_list());
+
     return true;
 }
 

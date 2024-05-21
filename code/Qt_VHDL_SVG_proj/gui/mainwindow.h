@@ -10,6 +10,7 @@
 #include "simulationstate.h"
 #include "svghandler.h"
 #include "debugwindow.h"
+#include "elementsdisplay.h"
 
 #include "view.h"
 
@@ -43,6 +44,7 @@ private:
     QLabel *stateLabel;
     SvgHandler *svgHandler;
     DebugWindow *debugWindow;
+    ElementsDisplay *elementsTreeView;
 
     void setSplitterToLeft(QSplitter *splitter, int leftSize);
 };

@@ -1,5 +1,6 @@
 #include "mainwindow.h"
 
+#include "elementsdisplay.h"
 #include "params.h"
 
 MainWindow::MainWindow(QWidget *parent) :
@@ -15,36 +16,35 @@ MainWindow::MainWindow(QWidget *parent) :
 
 
 #ifdef DEBUG
-    for(int i=0;i<150;i++)
-    {
-        debugWindow->addMessage("test " + QString::number(i));
-    }
-    debugWindow->addMessage("Error text", DebugWindow::Error);
+
+    debugWindow->addMessage("Error text",   DebugWindow::Error);
     debugWindow->addMessage("Warning text", DebugWindow::Warning);
     debugWindow->addMessage("Success text", DebugWindow::Success);
-    debugWindow->addMessage("Debug text", DebugWindow::Debug);
-    debugWindow->addMessage("Info text", DebugWindow::Info);
+    debugWindow->addMessage("Debug text",   DebugWindow::Debug);
+    debugWindow->addMessage("Info text",    DebugWindow::Info);
 
 #endif
-
 
     //Setup the simulation state and label
     simulationState = new SimulationState();
     stateLabel = ui->label;
     connect(simulationState, &SimulationState::stateChanged, this, &MainWindow::updateStateLabel);
 
+    //Setup the element tree view
+    elementsTreeView = new ElementsDisplay(ui->componentsTreeWidget, this);
+
+    //Setup the folders tree view
+    filesTreeView = new FilesTreeView(ui->folder_btn, ui->fileTreeView, svgHandler, simulationState, this);
+
     //Setup the svg view and handler for svg files management
     svgWidget = new SvgWidget();
     ui->svgLayout->addWidget(svgWidget);
 
-    svgHandler = new SvgHandler(simulationState, svgWidget, this);
+    svgHandler = new SvgHandler(elementsTreeView, simulationState, svgWidget, this);
 
 #ifdef DEBUG
     svgHandler->loadSvg(TEMP_SVG_PATH);//debug
 #endif
-
-    //Setup the tree view
-    filesTreeView = new FilesTreeView(ui->folder_btn, ui->treeView, svgHandler, simulationState, this);
 
     //Setup the svg file close button
     connect(ui->closeFile, &QPushButton::clicked, this, &MainWindow::closeSvg);

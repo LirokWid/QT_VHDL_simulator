@@ -28,18 +28,21 @@ HEADERS += \
     $$files("parser_linker/*.h") \
     $$files("systemc_modules/*.h") \
     gui/debugwindow.h \
+    gui/elementsdisplay.h \
     gui/filestreeview.h \
     gui/mainwindow.h \
     gui/params.h \
     gui/simulationstate.h \
     gui/svghandler.h \
     gui/svgwidget.h \
-    gui/view.h
+    gui/view.h \
+    parser_linker/ComponentsStruct.h
 
 SOURCES += \
     $$files("parser_linker/*.cpp") \
     $$files("systemc_modules/*.cpp") \
     gui/debugwindow.cpp \
+    gui/elementsdisplay.cpp \
     gui/filestreeview.cpp \
     gui/mainwindow.cpp \
     gui/simulationstate.cpp \
@@ -47,7 +50,7 @@ SOURCES += \
     gui/svgwidget.cpp \
     gui/ui_svg_item.cpp \
     gui/view.cpp \
-    main.cpp
+    main.cpp \
 
 
 RESOURCES += \

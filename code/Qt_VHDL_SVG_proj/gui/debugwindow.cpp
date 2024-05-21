@@ -226,7 +226,7 @@ void DebugWindow::addInfo(const QString &message)
 
 void DebugWindow::autoScrollIfEnabled()
 {
-    if(autoScrollEnabled)
+    if (autoScrollEnabled)
     {
         textEdit->ensureCursorVisible();
         scrollBar->setValue(scrollBar->maximum());

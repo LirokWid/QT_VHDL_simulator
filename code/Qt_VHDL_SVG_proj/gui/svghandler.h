@@ -8,6 +8,7 @@
 
 #include "svgwidget.h"
 #include "simulationstate.h"
+#include "elementsdisplay.h"
 
 #include "SystemcLinker.h"
 
@@ -25,7 +26,7 @@ public:
      * @param simulationState The SimulationState object for managing the state of the application.
      * @param parent The parent object.
      */
-    explicit SvgHandler(SimulationState *simulationState, SvgWidget *svgWidget, QObject *parent = nullptr);
+    explicit SvgHandler(ElementsDisplay *display, SimulationState *simulationState, SvgWidget *svgWidget, QObject *parent = nullptr);
 
     /**
      * @brief loadSvg
@@ -56,8 +57,8 @@ private:
     QFileInfo *fileInfo;
     QTemporaryDir tempDir; /**< The temporary directory for storing SVG files. */
     QString getTempFilePath() const;
-
     SystemcLinker *linker;
+    ElementsDisplay *display;
 
     bool loadAndParse(QString svgPath);
 };
