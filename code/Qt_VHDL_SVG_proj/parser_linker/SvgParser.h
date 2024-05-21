@@ -18,6 +18,8 @@
 #include <QString>
 #include <QDomDocument>
 
+#include "ComponentsStruct.h"
+
 #include "debugwindow.h"
 
 #define DEBUG
@@ -119,101 +121,6 @@ protected:
 
     int groups_number; ///< Number of groups.
     s_tree_node root;  ///< Root node of the tree.
-
-    typedef enum I_O
-    {
-        INPUT,    ///< Input type.
-        OUTPUT,   ///< Output type.
-        UNDEFINED ///< Undefined type.
-    } e_IO_type;
-
-    struct s_parse_error
-    {
-        bool is_parse_error;           ///< Flag indicating parsing error.
-        QList<QString> error_messages; ///< Error message.
-    };
-
-
-    //TODO : Merge s_outputs_list and s_inputs_list
-    
-    struct s_element_io
-    {
-        QString name;         ///< List of names.
-        int width;            ///< List of widths.
-        QString connected_to; ///< List of connected to.
-    };
-
-    /**
-     * @brief Struct for storing I/Os information.
-     */
-    struct s_sim_I_O
-    {
-        QString name;         ///< Name of the component.
-        int width;            ///< Width of the component.
-        e_IO_type type;       ///< Type of the I/O
-        QString connected_to; ///< Connected to (if output)
-        s_parse_error error;  ///< error
-    };
-
-    /**
-     * @brief Struct for storing all the I/Os
-     * */
-    struct s_sim_I_Os
-    {
-        QList<s_sim_I_O> i_os; ///< List of I/Os
-        s_parse_error error;   ///< error
-    };
-
-    /**
-     * @brief Struct for storing wire information.
-     */
-    struct s_sim_wire
-    {
-        QString name;         ///< wire name
-        int width;            ///< wire width
-        QString connected_to; ///< connected to
-        s_parse_error error;  ///< error
-    };
-
-    /**
-     * @brief Struct for storing all the wires
-     */
-    struct s_sim_wires
-    {
-        QList<s_sim_wire> wires; ///< List of wires
-        s_parse_error error;     ///< error
-    };
-
-    /**
-     * @brief Struct for storing element IO information.
-     */
-    struct s_element
-    {
-        QString name;                      ///< Name of the element.
-        QString device;                   ///< Label of the element.
-        QString label;                   ///< Type of the element.
-        QList<s_element_io> inputs;     ///< Vector of inputs.
-        QList<s_element_io> outputs;   ///< Vector of outputs.
-        int inputs_number;            ///< Number of inputs.
-        int outputs_number;          ///< Number of outputs.
-        s_parse_error error;        ///< Error
-    };
-
-    struct s_elements
-    {
-        QList<s_element> elements_list; ///< List of elements.
-        s_parse_error error;             ///< Error
-    };
-
-    /**
-     * @brief Struct for storing components list.
-     */
-    struct s_components_list
-    {
-        s_elements      elements;           ///< List of elements.
-        s_sim_I_Os      simulation_IOs;     ///< List of simulation IO.
-        s_sim_wires     simulation_wires;   ///< List of simulation wires.
-    };
 
     s_components_list all_components; ///< All components private variable.
 
