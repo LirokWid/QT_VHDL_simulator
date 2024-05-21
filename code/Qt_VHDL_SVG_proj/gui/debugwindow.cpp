@@ -2,6 +2,8 @@
 #include "debugwindow.h"
 #include "params.h"
 
+#include <QLabel>
+
 DebugWindow* DebugWindow::instance = nullptr;
 
 
@@ -14,58 +16,61 @@ DebugWindow::DebugWindow(QAction *openTrigger, QWidget *parent) :
     setWindowTitle("Debug Window");
     setWindowFlags(Qt::Window);
 
-    QVBoxLayout *vLayout = new QVBoxLayout(this);
+    QVBoxLayout *mainLayout = new QVBoxLayout(this);
 
     textEdit = new QTextEdit(this);
     textEdit->setStyleSheet("QTextEdit { background-color: #212121; color: white; }");
     scrollBar = textEdit->verticalScrollBar();
     textEdit->setReadOnly(true);
-    vLayout->addWidget(textEdit);
+    mainLayout->addWidget(textEdit);
 
 
-    QHBoxLayout *hLayout = new QHBoxLayout(this);
+    QHBoxLayout *checkBoxLayout = new QHBoxLayout(this);
 
     autoScrollBox = new QCheckBox(tr("Autoscroll"), this);
     autoScrollBox->setChecked(true);
-    hLayout->addWidget(autoScrollBox, 0, Qt::AlignLeft);
+    checkBoxLayout->addWidget(autoScrollBox, 0, Qt::AlignLeft);
 
     QPushButton *clearButton = new QPushButton(tr("Clear"), this);
-    hLayout->addWidget(clearButton, 0, Qt::AlignRight);
+    checkBoxLayout->addWidget(clearButton, 0, Qt::AlignLeft);
 
+    // Spacer item to push severity checkboxes to the right
+    QSpacerItem *spacer = new QSpacerItem(10, 10, QSizePolicy::Expanding, QSizePolicy::Minimum);
+    checkBoxLayout->addItem(spacer);
 
     infoCheckBox = new QCheckBox("Show Info", this);
     infoCheckBox->setChecked(true);
-    hLayout->addWidget(infoCheckBox);
+    checkBoxLayout->addWidget(infoCheckBox, 0, Qt::AlignRight);
 
     successCheckBox = new QCheckBox("Show Success", this);
     successCheckBox->setChecked(true);
-    hLayout->addWidget(successCheckBox);
+    checkBoxLayout->addWidget(successCheckBox, 0, Qt::AlignRight);
 
     debugCheckBox = new QCheckBox("Show debug", this);
     debugCheckBox->setChecked(true);
-    hLayout->addWidget(debugCheckBox);
+    checkBoxLayout->addWidget(debugCheckBox, 0, Qt::AlignRight);
 
     warningCheckBox = new QCheckBox("Show Warning", this);
     warningCheckBox->setChecked(true);
-    hLayout->addWidget(warningCheckBox);
+    checkBoxLayout->addWidget(warningCheckBox, 0, Qt::AlignRight);
 
     errorCheckBox = new QCheckBox("Show Error", this);
     errorCheckBox->setChecked(true);
-    hLayout->addWidget(errorCheckBox);
+    checkBoxLayout->addWidget(errorCheckBox, 0, Qt::AlignRight);
 
-    vLayout->addLayout(hLayout);
+    mainLayout->addLayout(checkBoxLayout);
     /********************************************************************************/
 
-    connect(this->openTrigger, &QAction::triggered, this, &DebugWindow::openWindow);
-    connect(clearButton, &QPushButton::clicked, this, &DebugWindow::clearMessages);
-    connect(autoScrollBox, &QCheckBox::stateChanged, this, &DebugWindow::autoScrollHandle);
-    connect(scrollBar, &QScrollBar::valueChanged, this, &DebugWindow::scrollBarModifiedHandle);
+    connect(this->openTrigger,  &QAction::triggered,        this, &DebugWindow::openWindow);
+    connect(clearButton,        &QPushButton::clicked,      this, &DebugWindow::clearMessages);
+    connect(autoScrollBox,      &QCheckBox::stateChanged,   this, &DebugWindow::autoScrollHandle);
+    connect(scrollBar,          &QScrollBar::valueChanged,  this, &DebugWindow::scrollBarModifiedHandle);
 
-    connect(infoCheckBox, &QCheckBox::stateChanged, this, &DebugWindow::filterMessages);
-    connect(successCheckBox, &QCheckBox::stateChanged, this, &DebugWindow::filterMessages);
-    connect(debugCheckBox, &QCheckBox::stateChanged, this, &DebugWindow::filterMessages);
-    connect(warningCheckBox, &QCheckBox::stateChanged, this, &DebugWindow::filterMessages);
-    connect(errorCheckBox, &QCheckBox::stateChanged, this, &DebugWindow::filterMessages);
+    connect(infoCheckBox,       &QCheckBox::stateChanged,   this, &DebugWindow::filterMessages);
+    connect(successCheckBox,    &QCheckBox::stateChanged,   this, &DebugWindow::filterMessages);
+    connect(debugCheckBox,      &QCheckBox::stateChanged,   this, &DebugWindow::filterMessages);
+    connect(warningCheckBox,    &QCheckBox::stateChanged,   this, &DebugWindow::filterMessages);
+    connect(errorCheckBox,      &QCheckBox::stateChanged,   this, &DebugWindow::filterMessages);
 
     autoScrollIfEnabled();
 }
