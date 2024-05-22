@@ -29,6 +29,13 @@ public:
     explicit SvgHandler(ElementsDisplay *display, SimulationState *simulationState, SvgWidget *svgWidget, QObject *parent = nullptr);
 
     /**
+     * @brief Destructs the SvgHandling object.
+     */
+    ~SvgHandler();
+
+
+
+    /**
      * @brief loadSvg
      * @param filePath
      */

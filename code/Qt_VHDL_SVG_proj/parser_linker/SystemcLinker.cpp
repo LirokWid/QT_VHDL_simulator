@@ -1,5 +1,7 @@
 #include "SystemcLinker.h"
 
+#include "ComponentsStruct.h"
+
 /*
  * @brief SystemcLinker::SystemcLinker
  * @param svg_file
@@ -18,21 +20,31 @@ SystemcLinker::SystemcLinker(QString svg_file) :
     {
         create_sysc_module(elem);
     }
-
 }
 
 SystemcLinker::~SystemcLinker()
 {
 }
 
+bool SystemcLinker::getGlobalParsingError()
+{
+    bool error = false;
+
+    error |= all_components.elements.error.is_parse_error;
+    error |= all_components.simulation_IOs.error.is_parse_error;
+    error |= all_components.simulation_wires.error.is_parse_error;
+
+    return error;
+}
+
 
 void SystemcLinker::create_sysc_module(const s_element& elem)
 {
     //SC_MODULE()
+    //TODO
 }
+
 /*
-
-
 void Svg_linker::link_components()
 {
     QList<component> components = parser_instance->get_all_components();

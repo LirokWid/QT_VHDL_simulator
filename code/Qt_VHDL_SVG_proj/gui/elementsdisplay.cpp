@@ -6,26 +6,24 @@ ElementsDisplay::ElementsDisplay(QTreeWidget *treeWidget, QWidget *parent)
     : QWidget(parent)
 {
     this->treeWidget = treeWidget;
-    setupUi();
+    idleUi();
 }
 
 ElementsDisplay::~ElementsDisplay(){}
 
 void ElementsDisplay::loadTree(const s_components_list &components)
 {
-    clearTree();
+    treeWidget->clear();
+    treeWidget->setColumnCount(2);
+    treeWidget->setHeaderLabels(QStringList() << "Property" << "Value");
     populateTree(components);
 }
 
-void ElementsDisplay::setupUi()
-{
-    treeWidget->setColumnCount(2);
-    treeWidget->setHeaderLabels(QStringList() << "Property" << "Value");
-}
 
 void ElementsDisplay::clearTree()
 {
     treeWidget->clear();
+    idleUi();
 }
 
 void ElementsDisplay::populateTree(const s_components_list &components)
@@ -71,5 +69,14 @@ void ElementsDisplay::populateTree(const s_components_list &components)
     }
 
     treeWidget->addTopLevelItem(rootItem);
-    treeWidget->expandAll();
+    //treeWidget->expandAll();
+}
+
+void ElementsDisplay::idleUi()
+{
+    treeWidget->setColumnCount(1);
+    treeWidget->setHeaderLabels(QStringList() << tr("Parser info"));
+    QTreeWidgetItem *rootItem = new QTreeWidgetItem(treeWidget);
+    rootItem->setText(0, "Ready to parse SVG file.");
+    treeWidget->addTopLevelItem(rootItem);
 }

@@ -6,7 +6,6 @@
  * It is responsible for launching the graphical interface which will then start the simulation.
  */
 
-
 #define GRAPHICAL
 
 #ifdef GRAPHICAL

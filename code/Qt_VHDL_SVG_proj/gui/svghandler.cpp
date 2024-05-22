@@ -16,13 +16,15 @@ SvgHandler::SvgHandler(ElementsDisplay *display, SimulationState *simulationStat
     }
 }
 
-
+SvgHandler::~SvgHandler()
+{
+}
 
 bool SvgHandler::loadSvg(const QString &filePath)
 {
     if (!tempDir.isValid())
     {
-        return false;
+        DebugWindow::getInstance()->addMessage("Failed to create temporary directory.", DebugWindow::Error);
     }
 
     if (SimulationState::RUNNING == simulationState->getState())
@@ -40,7 +42,12 @@ bool SvgHandler::loadSvg(const QString &filePath)
     {
         static_cast<MainWindow *>(parent())->showDebugWindow(); //temp
 
-        return loadAndParse(tempFilePath);
+
+        int success = loadAndParse(tempFilePath);
+        if (!success)
+        {
+            QMessageBox::critical(nullptr, tr("Error"), tr("An error was find in the SVG file. Please check the file attributes."));
+        }
 
     }
     return false;
@@ -48,10 +55,12 @@ bool SvgHandler::loadSvg(const QString &filePath)
 
 bool SvgHandler::loadAndParse(QString svgPath)
 {
-    //Load and parse the new svg
-    svgWidget->loadSvg(svgPath);
-    linker = new SystemcLinker(svgPath);
-    display->loadTree(linker->get_components_list());
+
+    svgWidget->loadSvg(svgPath);                        //Load the svg temp image to the svg widget
+    linker = new SystemcLinker(svgPath);                //Parse the svg file
+    linker->getGlobalParsingError();                    //Check if there is any parsing error
+    QMessageBox::critical(nullptr, tr("Error"), tr("There was an error parsing the file, check the attributes."));
+    display->loadTree(linker->get_components_list());   //Display the parsed data in the elements tree view
 
     return true;
 }
@@ -67,6 +76,10 @@ bool SvgHandler::clearSvg()
     {
         deleteTempSvg(tempFilePath);
         svgWidget->clearSvg();
+        display->clearTree();
+
+        // Emit signal to indicate SVG file is cleared
+        simulationState->setState(SimulationState::IDLE);
 
         return true;
     }
@@ -106,7 +119,6 @@ void SvgHandler::deleteTempSvg(const QString &tempFilePath)
     if (!tempFilePath.isEmpty())
     {
         QFile::remove(tempFilePath);
-        // Emit signal to indicate SVG file is cleared
-        simulationState->setState(SimulationState::IDLE);
+        tempDir.remove();
     }
 }

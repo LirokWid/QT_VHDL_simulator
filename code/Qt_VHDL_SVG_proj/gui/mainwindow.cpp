@@ -43,7 +43,7 @@ MainWindow::MainWindow(QWidget *parent) :
     svgHandler = new SvgHandler(elementsTreeView, simulationState, svgWidget, this);
 
 #ifdef DEBUG
-    svgHandler->loadSvg(TEMP_SVG_PATH);//debug
+    //svgHandler->loadSvg(TEMP_SVG_PATH);//debug
 #endif
 
     //Setup the svg file close button
@@ -92,19 +92,20 @@ void MainWindow::showDebugWindow()
 
 void MainWindow::updateStateLabel(SimulationState::State state)
 {
-    switch (state) {
-    case SimulationState::IDLE:
-        stateLabel->setText("Idle");
-        break;
-    case SimulationState::IDLE_SVG_LOADED:
-        stateLabel->setText("Idle (SVG Loaded)");
-        break;
-    case SimulationState::RUNNING:
-        stateLabel->setText("Running");
-        break;
-    default:
-        stateLabel->setText("Unknown State");
-        break;
+    switch (state)
+    {
+        case SimulationState::IDLE:
+            stateLabel->setText("Idle");
+            break;
+        case SimulationState::IDLE_SVG_LOADED:
+            stateLabel->setText("Idle (SVG Loaded)");
+            break;
+        case SimulationState::RUNNING:
+            stateLabel->setText("Running");
+            break;
+        default:
+            stateLabel->setText("Unknown State");
+            break;
     }
 }
 
@@ -120,3 +121,9 @@ void MainWindow::setSplitterToLeft(QSplitter *splitter, int leftSize)
     // Set the sizes
     splitter->setSizes(sizes);
 }
+
+void MainWindow::on_minus_clicked()
+{
+    svgHandler->loadSvg(TEMP_SVG_PATH);//debug
+}
+

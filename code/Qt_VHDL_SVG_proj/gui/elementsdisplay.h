@@ -20,11 +20,11 @@ public:
     ~ElementsDisplay();
 
     void loadTree(const s_components_list &components);
+    void clearTree();
 
 private:
-    void setupUi();
     void populateTree(const s_components_list &components);
-    void clearTree();
+    void idleUi();
 
     s_components_list *components;
     QVBoxLayout *mainLayout;
