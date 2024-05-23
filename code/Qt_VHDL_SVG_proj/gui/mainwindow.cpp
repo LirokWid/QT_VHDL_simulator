@@ -2,6 +2,9 @@
 
 #include "elementsdisplay.h"
 #include "params.h"
+#include "system/eventfilter.h" //temp debug
+
+
 
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
@@ -11,8 +14,11 @@ MainWindow::MainWindow(QWidget *parent) :
     ui->setupUi(this);
     setWindowTitle(tr("SIMULATOR"));
 
+    EventFilter* myFilter = new EventFilter();
+    this->installEventFilter(myFilter);
+
     //Setup the debug interface
-    debugWindow = DebugWindow::getInstance(ui->actionOpenDebugWindow, this);
+    debugWindow = DebugWindow::getInstance(ui->actionOpenDebugWindow);
 
 
 #ifdef DEBUG
@@ -31,10 +37,10 @@ MainWindow::MainWindow(QWidget *parent) :
     connect(simulationState, &SimulationState::stateChanged, this, &MainWindow::updateStateLabel);
 
     //Setup the element tree view
-    elementsTreeView = new ElementsDisplay(ui->componentsTreeWidget, this);
+    elementsTreeView = new ElementsDisplay(ui->componentsTreeWidget);
 
     //Setup the folders tree view
-    filesTreeView = new FilesTreeView(ui->folder_btn, ui->fileTreeView, svgHandler, simulationState, this);
+    filesTreeView = new FilesTreeView(ui->folder_btn, ui->fileTreeView, svgHandler, simulationState);
 
     //Setup the svg view and handler for svg files management
     svgWidget = new SvgWidget();
