@@ -36,7 +36,8 @@ HEADERS += \
     gui/svghandler.h \
     gui/svgwidget.h \
     gui/view.h \
-    parser_linker/ComponentsStruct.h
+    parser_linker/ComponentsStruct.h \
+    system/eventfilter.h
 
 SOURCES += \
     $$files("parser_linker/*.cpp") \
@@ -51,6 +52,7 @@ SOURCES += \
     gui/ui_svg_item.cpp \
     gui/view.cpp \
     main.cpp \
+    system/eventfilter.cpp
 
 
 RESOURCES += \
