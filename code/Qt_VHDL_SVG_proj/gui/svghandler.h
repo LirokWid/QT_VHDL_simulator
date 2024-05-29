@@ -49,7 +49,7 @@ protected:
      * @param tempFilePath The path of the temporary SVG file.
      * @return True if the copy operation succeeds; otherwise, false.
      */
-    bool copySvgToTemp(const QString &sourceFilePath, QString &tempFilePath);
+    bool copySvgToTemp(const QString &sourceFilePath);
 
     /**
      * @brief Deletes the temporary SVG file.

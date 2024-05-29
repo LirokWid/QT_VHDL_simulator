@@ -14,6 +14,9 @@ SvgHandler::SvgHandler(ElementsDisplay *display, SimulationState *simulationStat
     {
         QMessageBox::critical(nullptr, tr("Error"), tr("Failed to create temporary directory."));
     }
+
+    DebugWindow::getInstance()->addDebug("SvgHandler created.");
+    DebugWindow::getInstance()->addDebug("Temp directory created: " + tempDir.path() + "/");
 }
 
 SvgHandler::~SvgHandler()
@@ -22,11 +25,6 @@ SvgHandler::~SvgHandler()
 
 bool SvgHandler::loadSvg(const QString &filePath)
 {
-    if (!tempDir.isValid())
-    {
-        DebugWindow::getInstance()->addMessage("Failed to create temporary directory.", DebugWindow::Error);
-    }
-
     if (SimulationState::RUNNING == simulationState->getState())
     {
         QMessageBox::information(nullptr, tr("Information"), tr("Simulation is running. Please stop the simulation before loading a new SVG file."));
@@ -35,16 +33,18 @@ bool SvgHandler::loadSvg(const QString &filePath)
 
     if (SimulationState::IDLE_SVG_LOADED == simulationState->getState())
     { // Clear the previous SVG file it was loaded
-        deleteTempSvg(tempDir.path() + "/" + QFileInfo(filePath).fileName());
+        deleteTempSvg(tempFilePath);
     }
 
-    if (copySvgToTemp(filePath, tempFilePath))
+    if (copySvgToTemp(filePath))
     {
-        static_cast<MainWindow *>(parent())->showDebugWindow(); //temp
+        //static_cast<MainWindow *>(parent())->showDebugWindow(); //temp
 
-
-        int success = loadAndParse(tempFilePath);
-        if (!success)
+        if (loadAndParse(tempFilePath))
+        {
+            return true;
+        }
+        else
         {
             QMessageBox::critical(nullptr, tr("Error"), tr("An error was find in the SVG file. Please check the file attributes."));
         }
@@ -56,10 +56,12 @@ bool SvgHandler::loadSvg(const QString &filePath)
 bool SvgHandler::loadAndParse(QString svgPath)
 {
 
+
     svgWidget->loadSvg(svgPath);                        //Load the svg temp image to the svg widget
+    //Delete linker if it already exists
     linker = new SystemcLinker(svgPath);                //Parse the svg file
     linker->getGlobalParsingError();                    //Check if there is any parsing error
-    QMessageBox::critical(nullptr, tr("Error"), tr("There was an error parsing the file, check the attributes."));
+    //QMessageBox::critical(nullptr, tr("Error"), tr("There was an error parsing the file, check the attributes."));
     display->loadTree(linker->get_components_list());   //Display the parsed data in the elements tree view
 
     return true;
@@ -74,9 +76,9 @@ bool SvgHandler::clearSvg()
     }
     if (SimulationState::IDLE_SVG_LOADED == simulationState->getState())
     {
-        deleteTempSvg(tempFilePath);
         svgWidget->clearSvg();
         display->clearTree();
+        deleteTempSvg(tempFilePath);
 
         // Emit signal to indicate SVG file is cleared
         simulationState->setState(SimulationState::IDLE);
@@ -91,26 +93,26 @@ QString SvgHandler::getTempFilePath() const
     return tempFilePath;
 }
 
-bool SvgHandler::copySvgToTemp(const QString &sourceFilePath, QString &tempFilePath)
+bool SvgHandler::copySvgToTemp(const QString &sourceFilePath)
 {
     if (!tempDir.isValid())
     {
+        DebugWindow::getInstance()->addError("Temp directory is not valid.");
         return false;
     }
 
     QFileInfo fileInfo(sourceFilePath);
     if (fileInfo.isFile() && fileInfo.suffix().toLower() == "svg")
     {
-        tempFilePath = tempDir.path() + "/" + fileInfo.fileName();
-        bool success = QFile::copy(sourceFilePath, tempFilePath);
-        if (success)
+        this->tempFilePath = tempDir.path() + "/temp.svg";
+
+        if (QFile::copy(sourceFilePath, tempFilePath))
         {
             // Emit signal to indicate SVG file is loaded
             simulationState->setState(SimulationState::IDLE_SVG_LOADED);
+            return true;
         }
-        return success;
     }
-
     return false;
 }
 
@@ -118,7 +120,17 @@ void SvgHandler::deleteTempSvg(const QString &tempFilePath)
 {
     if (!tempFilePath.isEmpty())
     {
-        QFile::remove(tempFilePath);
-        tempDir.remove();
+        QFile fileInfo(tempFilePath);
+        fileInfo.setPermissions(QFile::ReadOther | QFile::WriteOther); //File has to be writable to be removed
+
+        if(fileInfo.remove())
+        {
+            this->tempFilePath = "";
+            DebugWindow::getInstance()->addDebug("Temp SVG file removed.");
+        }
+        else
+        {
+            DebugWindow::getInstance()->addError("Failed to remove temp SVG file.");
+        }
     }
 }
