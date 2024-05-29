@@ -23,13 +23,20 @@ public:
     void clearTree();
 
 private:
-    void populateTree(const s_components_list &components);
-    void idleUi();
+
 
     s_components_list *components;
     QVBoxLayout *mainLayout;
     QTreeView *place;
     QTreeWidget *treeWidget;
+
+    void addStateIcon(QTreeWidgetItem *item, bool error);
+    void addProperty(QTreeWidgetItem *parent, const QString &property, const QString &value);
+    void populateTree(const s_components_list &components);
+    void addElements(QTreeWidgetItem *parent, const s_elements &elements);
+    void idleUi();
+    void addSimulationIOs(QTreeWidgetItem *parent, const s_sim_I_Os &simIOs);
+    void addSimulationWires(QTreeWidgetItem *parent, const s_sim_wires &wires);
 };
 
 #endif // ELEMENTSDISPLAY_H
