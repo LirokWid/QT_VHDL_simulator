@@ -14,8 +14,8 @@ ElementsDisplay::~ElementsDisplay(){}
 void ElementsDisplay::loadTree(const s_components_list &components)
 {
     treeWidget->clear();
-    treeWidget->setColumnCount(2);
-    treeWidget->setHeaderLabels(QStringList() << "Property" << "Value");
+    treeWidget->setColumnCount(3);
+    treeWidget->setHeaderLabels(QStringList() << "Property" << "Value" << "State");
     populateTree(components);
 }
 
