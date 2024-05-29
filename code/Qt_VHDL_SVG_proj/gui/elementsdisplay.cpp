@@ -76,7 +76,7 @@ void ElementsDisplay::populateTree(const s_components_list &components)
     }
     */
     treeWidget->addTopLevelItem(rootItem);
-    //treeWidget->expandAll();
+    treeWidget->expandToDepth(1);
 }
 
 void ElementsDisplay::addElements(QTreeWidgetItem *parent, const s_elements &elements)
@@ -141,6 +141,11 @@ void ElementsDisplay::addSimulationWires(QTreeWidgetItem *parent, const s_sim_wi
         addProperty(wireItem, "Width", QString::number(wire.width));
         addProperty(wireItem, "Connected To", wire.connected_to);
         addStateIcon(wireItem, wire.error.is_parse_error);
+
+        if (wire.error.is_parse_error)
+        {
+            setTextColor(wireItem, Qt::red);
+        }
     }
 }
 
@@ -155,6 +160,13 @@ void ElementsDisplay::addStateIcon(QTreeWidgetItem *item, bool error)
 {
     QIcon icon = error ? QIcon(":/icons/error.png") : QIcon(":/icons/ok.png");
     item->setIcon(2, icon);
+}
+
+void ElementsDisplay::setTextColor(QTreeWidgetItem *item, const QColor &color)
+{
+    for (int i = 0; i < item->columnCount(); ++i) {
+        item->setForeground(i, QBrush(color));
+    }
 }
 
 void ElementsDisplay::idleUi()

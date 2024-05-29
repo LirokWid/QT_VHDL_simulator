@@ -37,6 +37,7 @@ private:
     void idleUi();
     void addSimulationIOs(QTreeWidgetItem *parent, const s_sim_I_Os &simIOs);
     void addSimulationWires(QTreeWidgetItem *parent, const s_sim_wires &wires);
+    void setTextColor(QTreeWidgetItem *item, const QColor &color);
 };
 
 #endif // ELEMENTSDISPLAY_H
