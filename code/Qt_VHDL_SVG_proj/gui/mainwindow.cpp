@@ -130,6 +130,17 @@ void MainWindow::setSplitterToLeft(QSplitter *splitter, int leftSize)
 
 void MainWindow::on_minus_clicked()
 {
+}
+
+
+void MainWindow::on_pushButton_clicked()
+{
     svgHandler->loadSvg(TEMP_SVG_PATH);//debug
+}
+
+
+void MainWindow::on_pushButton_2_clicked()
+{
+    svgHandler->loadSvg(TEMP_SVG_ER_PATH);//debug
 }
 
