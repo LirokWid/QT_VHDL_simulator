@@ -4,11 +4,12 @@
 #include "SystemcLinker.h"
 #include "elementsdisplay.h"
 
-SvgHandler::SvgHandler(ElementsDisplay *display, SimulationState *simulationState, SvgWidget *svgWidget, QObject *parent) :
+SvgHandler::SvgHandler(ElementsDisplay *display, QHBoxLayout *displayTitle, SimulationState *simulationState, SvgWidget *svgWidget, QObject *parent) :
     QObject(parent),
     simulationState(simulationState),
     svgWidget(svgWidget),
-    display(display)
+    display(display),
+    displayTitle(displayTitle)
 {
     if (!tempDir.isValid())
     {
@@ -39,29 +40,41 @@ bool SvgHandler::loadSvg(const QString &filePath)
     if (copySvgToTemp(filePath))
     {
         //static_cast<MainWindow *>(parent())->showDebugWindow(); //temp
-
         if (loadAndParse(tempFilePath))
         {
+            //Change the file name on the main window title
+            QFileInfo fileInfo(filePath);
+            static_cast<MainWindow *>(parent())->setWindowTitle(tr("SystemC Parser - ") + fileInfo.absoluteFilePath());
             return true;
         }
         else
         {
+            DebugWindow::getInstance()->addError(tr("An error was find in the SVG file. Please check the file attributes."));
             QMessageBox::critical(nullptr, tr("Error"), tr("An error was find in the SVG file. Please check the file attributes."));
         }
-
+    }
+    else
+    {
+        DebugWindow::getInstance()->addError(tr("Failed to copy the SVG file to the temporary directory."));
+        QMessageBox::critical(nullptr, tr("Error"), tr("Failed to copy the SVG file to the temporary directory."));
     }
     return false;
 }
 
 bool SvgHandler::loadAndParse(QString svgPath)
 {
-
-
     svgWidget->loadSvg(svgPath);                        //Load the svg temp image to the svg widget
-    //Delete linker if it already exists
+    if (linker)
+    {//Delete linker if it already exists
+        delete linker;
+    }
     linker = new SystemcLinker(svgPath);                //Parse the svg file
-    linker->getGlobalParsingError();                    //Check if there is any parsing error
-    //QMessageBox::critical(nullptr, tr("Error"), tr("There was an error parsing the file, check the attributes."));
+    bool is_error = linker->getGlobalParsingError();        //Check if there is any parsing error
+    if (is_error)
+    {
+        QMessageBox::critical(nullptr, tr("Error"), tr("There was an error parsing the file, check the attributes."));
+        parent()->
+    }
     display->loadTree(linker->get_components_list());   //Display the parsed data in the elements tree view
 
     return true;

@@ -26,7 +26,7 @@ public:
      * @param simulationState The SimulationState object for managing the state of the application.
      * @param parent The parent object.
      */
-    explicit SvgHandler(ElementsDisplay *display, SimulationState *simulationState, SvgWidget *svgWidget, QObject *parent = nullptr);
+    explicit SvgHandler(ElementsDisplay *display, QHBoxLayout *displayTitle, SimulationState *simulationState, SvgWidget *svgWidget, QObject *parent = nullptr);
 
     /**
      * @brief Destructs the SvgHandling object.
@@ -61,11 +61,11 @@ private:
     QString tempFilePath;
     SimulationState *simulationState; /**< The SimulationState object for managing the state of the application. */
     SvgWidget *svgWidget;
-    QFileInfo *fileInfo;
     QTemporaryDir tempDir; /**< The temporary directory for storing SVG files. */
     QString getTempFilePath() const;
     SystemcLinker *linker;
     ElementsDisplay *display;
+    QHBoxLayout *displayTitle;
 
     bool loadAndParse(QString svgPath);
 };
