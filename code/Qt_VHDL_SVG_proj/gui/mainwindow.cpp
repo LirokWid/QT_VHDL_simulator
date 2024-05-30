@@ -46,7 +46,7 @@ MainWindow::MainWindow(QWidget *parent) :
     svgWidget = new SvgWidget();
     ui->svgLayout->addWidget(svgWidget);
 
-    svgHandler = new SvgHandler(elementsTreeView, simulationState, svgWidget, this);
+    svgHandler = new SvgH   andler(elementsTreeView, ui->componentsTreeTitleLayout, simulationState, svgWidget, this);
 
 #ifdef DEBUG
     //svgHandler->loadSvg(TEMP_SVG_PATH);//debug
