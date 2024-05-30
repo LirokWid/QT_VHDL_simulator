@@ -1,0 +1,92 @@
+\doxysection{sc\+\_\+reg.\+h}
+\hypertarget{sc__reg_8h_source}{}\label{sc__reg_8h_source}\index{C:/Users/BJRODIER/Documents/QT\_REPO/QT\_VHDL\_simulator/code/Qt\_VHDL\_SVG\_proj/systemc\_modules/sc\_reg.h@{C:/Users/BJRODIER/Documents/QT\_REPO/QT\_VHDL\_simulator/code/Qt\_VHDL\_SVG\_proj/systemc\_modules/sc\_reg.h}}
+\mbox{\hyperlink{sc__reg_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ }
+\DoxyCodeLine{00017\ \textcolor{preprocessor}{\#ifndef\ SC\_REG\_H}}
+\DoxyCodeLine{00018\ \textcolor{preprocessor}{\#define\ SC\_REG\_H}}
+\DoxyCodeLine{00019\ }
+\DoxyCodeLine{00020\ \textcolor{preprocessor}{\#include\ <systemc.h>}}
+\DoxyCodeLine{00021\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{sc__flexint_8h}{sc\_flexint.h}}"{}}}
+\DoxyCodeLine{00022\ }
+\DoxyCodeLine{00023\ }
+\DoxyCodeLine{00029\ \textcolor{keyword}{template}\ <\textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{int}\ W\ =\ 1,\ \textcolor{keywordtype}{bool}\ CLKEDGE\ =\ DEFAULT\_CLKEDGE,\ flex\textcolor{keywordtype}{int}erface\_t\ FLEXINT\ =\ DEFAULT\_FLEXINT>}
+\DoxyCodeLine{00030\ \textcolor{keyword}{class\ }\mbox{\hyperlink{class_sysc_reg}{SyscReg}}\ :\ \textcolor{keyword}{public}\ \mbox{\hyperlink{class_sysc_flex_int}{SyscFlexInt}}<CLKEDGE,\ FLEXINT>}
+\DoxyCodeLine{00031\ \{}
+\DoxyCodeLine{00032\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00033\ \ \ \ \ \textcolor{keyword}{typedef}\ \ \mbox{\hyperlink{class_sysc_add__pv}{sc\_lv<W>}}\ \ \ \ \ \ \ \mbox{\hyperlink{class_sysc_reg_af937a041b6745fafdeba8263f4bb6e9f}{data\_t}};}
+\DoxyCodeLine{00034\ }
+\DoxyCodeLine{00035\ \ \ \ \ \textcolor{comment}{//\ -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/\ \ \ \ \ \ Ports\ \ \ \ \ \ -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{00036\ \ \ \ \ \textcolor{comment}{//\ Provided\ by\ base\ module\ scFlexModuleT}}
+\DoxyCodeLine{00037\ \ \ \ \ \textcolor{comment}{//\ sc\_in\_clk\ \ \ \ \ \ \ \ \ clock\{"{}clock"{}\};\ \ \ \ //\ Clock\ input\ (FLEXINT:\ custom\ active\ edge)}}
+\DoxyCodeLine{00038\ \ \ \ \ \textcolor{comment}{//\ sc\_in<rst\_t>\ \ \ \ \ \ reset\{"{}reset"{}\};\ \ \ \ //\ Asynchronous\ reset\ input\ (FLEXINT:\ possibly\ unmapped,\ custom\ active\ level)}}
+\DoxyCodeLine{00039\ \ \ \ \ \textcolor{comment}{//\ sc\_in<ena\_t>\ \ \ \ \ \ enable\{"{}enable"{}\};\ \ //\ Synchronous\ enable\ input\ (FLEXINT:\ possibly\ unmapped,\ custom\ active\ level)}}
+\DoxyCodeLine{00040\ \ \ \ \ \mbox{\hyperlink{class_sysc_add__pv}{sc\_in<data\_t>}}\ \ \mbox{\hyperlink{class_sysc_reg_a687df064e5e7f754f36025b5dd12a2f6}{d}}\{\textcolor{stringliteral}{"{}d"{}}\};\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Data\ input}}
+\DoxyCodeLine{00041\ \ \ \ \ \mbox{\hyperlink{class_sysc_add__pv}{sc\_out<data\_t>}}\ \mbox{\hyperlink{class_sysc_reg_ab62943bab60dbcaf12a16ef884eba02c}{q}}\{\textcolor{stringliteral}{"{}q"{}}\};\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Data\ output}}
+\DoxyCodeLine{00042\ }
+\DoxyCodeLine{00043\ \ \ \ \ \textcolor{keyword}{typedef}\ \mbox{\hyperlink{class_sysc_add__pv}{SyscFlexInt<CLKEDGE,\ FLEXINT>}}\ \mbox{\hyperlink{class_sysc_reg_a931034a1733fc6016d5c536092f01aae}{BASE\_MODULE}};}
+\DoxyCodeLine{00044\ }
+\DoxyCodeLine{00045\ \ \ \ \ \textcolor{keyword}{typedef}\ \mbox{\hyperlink{class_sysc_add__pv}{SyscReg<W,CLKEDGE,\ FLEXINT>}}\ \mbox{\hyperlink{class_sysc_reg_aad29213c977649b2d8c1897dba3658c9}{SC\_CURRENT\_USER\_MODULE}};}
+\DoxyCodeLine{00046\ \ \ \ \ \mbox{\hyperlink{class_sysc_reg_adfa01824bbde6e956c5cefba82157d86}{SyscReg}}(::sc\_core::sc\_module\_name\ name)\ :\ \mbox{\hyperlink{class_sysc_flex_int}{SyscFlexInt}}<\mbox{\hyperlink{class_sysc_add__pv}{CLKEDGE}},\ \mbox{\hyperlink{class_sysc_add__pv}{FLEXINT}}>(name)}
+\DoxyCodeLine{00047\ \ \ \ \ \{}
+\DoxyCodeLine{00048\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_sysc_add__pv}{SC\_THREAD}}(\mbox{\hyperlink{class_sysc_reg_a35ebd0b803aa4dc8625dd308121cfbde}{react}});}
+\DoxyCodeLine{00049\ \ \ \ \ \ \ \ \ this-\/>\mbox{\hyperlink{class_sysc_flex_int_a622ae04aec700b0d95f75366f71e652b}{doSensitive}}();}
+\DoxyCodeLine{00050\ \ \ \ \ \}}
+\DoxyCodeLine{00051\ }
+\DoxyCodeLine{00052\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_sysc_reg_a35ebd0b803aa4dc8625dd308121cfbde}{react}}\ ()}
+\DoxyCodeLine{00053\ \ \ \ \ \{}
+\DoxyCodeLine{00054\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{while}(1)}
+\DoxyCodeLine{00055\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00056\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (this-\/>\mbox{\hyperlink{class_sysc_flex_int_ac6a67618dd12f1a1ff6f7d983d80051e}{bResetAction}}())}
+\DoxyCodeLine{00057\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00058\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_sysc_reg_ab62943bab60dbcaf12a16ef884eba02c}{q}}.write(0);}
+\DoxyCodeLine{00059\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00060\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}\ (this-\/>\mbox{\hyperlink{class_sysc_flex_int_a582ffcf573058676f904d750977578f4}{bEnableAction}}())}
+\DoxyCodeLine{00061\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00062\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_sysc_reg_ab62943bab60dbcaf12a16ef884eba02c}{q}}.write(\mbox{\hyperlink{class_sysc_reg_a687df064e5e7f754f36025b5dd12a2f6}{d}}.read());}
+\DoxyCodeLine{00063\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00064\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_sysc_add__pv}{wait}}();}
+\DoxyCodeLine{00065\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00066\ \ \ \ \ \}}
+\DoxyCodeLine{00067\ \};}
+\DoxyCodeLine{00068\ }
+\DoxyCodeLine{00074\ \textcolor{keyword}{template}\ <\textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{int}\ W\ =\ 1,\ \textcolor{keywordtype}{bool}\ CLKEDGE\ =\ DEFAULT\_CLKEDGE,\ flex\textcolor{keywordtype}{int}erface\_t\ FLEXINT\ =\ DEFAULT\_FLEXINT>}
+\DoxyCodeLine{00075\ \textcolor{keyword}{class\ }\mbox{\hyperlink{class_sysc_cnt}{SyscCnt}}\ :\ \textcolor{keyword}{public}\ \mbox{\hyperlink{class_sysc_flex_int}{SyscFlexInt}}<CLKEDGE,\ FLEXINT>}
+\DoxyCodeLine{00076\ \{}
+\DoxyCodeLine{00077\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00078\ \ \ \ \ \textcolor{keyword}{typedef}\ \ \mbox{\hyperlink{class_sysc_add__pv}{sc\_lv<W>}}\ \ \ \ \ \ \ \mbox{\hyperlink{class_sysc_cnt_a05bce77cc4d21015cc319de1d73b8d09}{data\_t}};}
+\DoxyCodeLine{00079\ \ \ \ \ \textcolor{comment}{//\ -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/\ \ \ \ \ \ Ports\ \ \ \ \ \ -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{00080\ \ \ \ \ \textcolor{comment}{//\ Provided\ by\ base\ module\ scFlexModuleT}}
+\DoxyCodeLine{00081\ \ \ \ \ \textcolor{comment}{//\ sc\_in\_clk\ \ \ \ \ \ \ \ \ clock\{"{}clock"{}\};\ \ \ \ //\ Clock\ input\ (FLEXINT:\ custom\ active\ edge)}}
+\DoxyCodeLine{00082\ \ \ \ \ \textcolor{comment}{//\ sc\_in<rst\_t>\ \ \ \ \ \ reset\{"{}reset"{}\};\ \ \ \ //\ Asynchronous\ reset\ input\ (FLEXINT:\ possibly\ unmapped,\ custom\ active\ level)}}
+\DoxyCodeLine{00083\ \ \ \ \ \textcolor{comment}{//\ sc\_in<ena\_t>\ \ \ \ \ \ enable\{"{}enable"{}\};\ \ //\ Synchronous\ enable\ input\ (FLEXINT:\ possibly\ unmapped,\ custom\ active\ level)}}
+\DoxyCodeLine{00084\ \ \ \ \ \mbox{\hyperlink{class_sysc_add__pv}{sc\_out<data\_t>}}\ \mbox{\hyperlink{class_sysc_cnt_a2d045ec31aff68864dd4d33dc2594c35}{q}}\{\textcolor{stringliteral}{"{}q"{}}\};\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Data\ output}}
+\DoxyCodeLine{00085\ }
+\DoxyCodeLine{00086\ \ \ \ \ \textcolor{keyword}{typedef}\ \mbox{\hyperlink{class_sysc_add__pv}{SyscFlexInt<CLKEDGE,\ FLEXINT>}}\ \mbox{\hyperlink{class_sysc_cnt_a8ad207d7dadee8733f555bc189e4c6ea}{BASE\_MODULE}};}
+\DoxyCodeLine{00087\ \ \ \ \ \textcolor{keyword}{typedef}\ \mbox{\hyperlink{class_sysc_add__pv}{SyscCnt<W,CLKEDGE,\ FLEXINT>}}\ \mbox{\hyperlink{class_sysc_cnt_a8b1819f1e830e7a7ee82dbfdec9d107b}{SC\_CURRENT\_USER\_MODULE}};}
+\DoxyCodeLine{00088\ \ \ \ \ \mbox{\hyperlink{class_sysc_cnt_a3db4bcea92c0fb52a20050f08df55cde}{SyscCnt}}(::sc\_core::sc\_module\_name\ name)\ :\ \mbox{\hyperlink{class_sysc_flex_int}{SyscFlexInt}}<\mbox{\hyperlink{class_sysc_add__pv}{CLKEDGE}},\ \mbox{\hyperlink{class_sysc_add__pv}{FLEXINT}}>(name)}
+\DoxyCodeLine{00089\ \ \ \ \ \{}
+\DoxyCodeLine{00090\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_sysc_add__pv}{SC\_THREAD}}(\mbox{\hyperlink{class_sysc_cnt_a9d09203c5a948158fe6b1303801aaef2}{react}});}
+\DoxyCodeLine{00091\ \ \ \ \ \ \ \ \ this-\/>\mbox{\hyperlink{class_sysc_flex_int_a622ae04aec700b0d95f75366f71e652b}{doSensitive}}();}
+\DoxyCodeLine{00092\ \ \ \ \ \}}
+\DoxyCodeLine{00093\ }
+\DoxyCodeLine{00094\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_sysc_cnt_a9d09203c5a948158fe6b1303801aaef2}{react}}\ ()}
+\DoxyCodeLine{00095\ \ \ \ \ \{}
+\DoxyCodeLine{00096\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{while}(1)}
+\DoxyCodeLine{00097\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00098\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (this-\/>\mbox{\hyperlink{class_sysc_flex_int_ac6a67618dd12f1a1ff6f7d983d80051e}{bResetAction}}())}
+\DoxyCodeLine{00099\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00100\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_sysc_cnt_a2d045ec31aff68864dd4d33dc2594c35}{q}}.write(0);}
+\DoxyCodeLine{00101\ \ \ \ \ \ \ \ \ \ \ \ \ \}\ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}\ (this-\/>\mbox{\hyperlink{class_sysc_flex_int_a582ffcf573058676f904d750977578f4}{bEnableAction}}())}
+\DoxyCodeLine{00102\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00103\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_sysc_cnt_a2d045ec31aff68864dd4d33dc2594c35}{q}}.write((\mbox{\hyperlink{class_sysc_add__pv}{sc\_uint<W>}})\mbox{\hyperlink{class_sysc_cnt_a2d045ec31aff68864dd4d33dc2594c35}{q}}.read()\ +\ 1);}
+\DoxyCodeLine{00104\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00105\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_sysc_add__pv}{wait}}();}
+\DoxyCodeLine{00106\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00107\ \ \ \ \ \}}
+\DoxyCodeLine{00108\ \};}
+\DoxyCodeLine{00109\ }
+\DoxyCodeLine{00110\ }
+\DoxyCodeLine{00111\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{//\ SC\_REG\_H}}
+
+\end{DoxyCode}

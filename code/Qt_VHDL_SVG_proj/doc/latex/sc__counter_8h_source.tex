@@ -1,0 +1,62 @@
+\doxysection{sc\+\_\+counter.\+h}
+\hypertarget{sc__counter_8h_source}{}\label{sc__counter_8h_source}\index{C:/Users/BJRODIER/Documents/QT\_REPO/QT\_VHDL\_simulator/code/Qt\_VHDL\_SVG\_proj/systemc\_modules/sc\_counter.h@{C:/Users/BJRODIER/Documents/QT\_REPO/QT\_VHDL\_simulator/code/Qt\_VHDL\_SVG\_proj/systemc\_modules/sc\_counter.h}}
+\mbox{\hyperlink{sc__counter_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#ifndef\ SC\_COUNTER\_H}}
+\DoxyCodeLine{00002\ \textcolor{preprocessor}{\#define\ SC\_COUNTER\_H}}
+\DoxyCodeLine{00003\ }
+\DoxyCodeLine{00004\ \textcolor{preprocessor}{\#include\ <systemc.h>}}
+\DoxyCodeLine{00005\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{sc__config_8h}{sc\_config.h}}"{}}}
+\DoxyCodeLine{00006\ \textcolor{comment}{//\#include\ "{}sc\_reg.h"{}}}
+\DoxyCodeLine{00007\ \textcolor{comment}{//\#include\ "{}sc\_flexint.h"{}}}
+\DoxyCodeLine{00008\ }
+\DoxyCodeLine{00009\ \mbox{\hyperlink{sc__counter_8h_af38e40d8cd39282960c67c35a63e392e}{SC\_MODULE}}(\mbox{\hyperlink{class_sysc_add__pv}{scCounter}})}
+\DoxyCodeLine{00010\ \{}
+\DoxyCodeLine{00011\ \ \ \ \ \textcolor{comment}{//\ -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/\ \ \ \ \ \ Ports\ \ \ \ \ \ -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{00012\ \ \ \ \ \mbox{\hyperlink{class_sysc_add__pv}{sc\_in\_clk}}\ \ \ \ \ \ \ \ \ \ \ clock\{\textcolor{stringliteral}{"{}clock"{}}\};\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Falling-\/edge\ active\ clock\ input}}
+\DoxyCodeLine{00013\ \ \ \ \ \mbox{\hyperlink{class_sysc_add__pv}{sc\_in<bool>}}\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_sysc_add__pv}{reset\_i}}\{\textcolor{stringliteral}{"{}reset\_i"{}}\};\ \ \ \ \ \textcolor{comment}{//\ Active-\/high\ synchronous\ reset\ input}}
+\DoxyCodeLine{00014\ \ \ \ \ \mbox{\hyperlink{class_sysc_add__pv}{sc\_in<bool>}}\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_sysc_add__pv}{enable\_i}}\{\textcolor{stringliteral}{"{}enable\_i"{}}\};\ \ \ \textcolor{comment}{//\ Active-\/high\ enable\ input}}
+\DoxyCodeLine{00015\ \ \ \ \ \mbox{\hyperlink{class_sysc_add__pv}{sc\_out<sc\_lv<32>}}>\ \ \ \mbox{\hyperlink{class_sysc_add__pv}{q\_o}}\{\textcolor{stringliteral}{"{}q\_o"{}}\};\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ 32\ bit\ data\ output}}
+\DoxyCodeLine{00016\ }
+\DoxyCodeLine{00017\ \ \ \ \ \textcolor{comment}{//\ -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/\ Local\ variables\ -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{00018\ \ \ \ \ \textcolor{keywordtype}{bool}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ rst\_level;\ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Module\ parameter\ (aka\ "{}VHDL\ generic"{})}}
+\DoxyCodeLine{00019\ \ \ \ \ \textcolor{keywordtype}{bool}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ ena\_level;\ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Module\ parameter\ (aka\ "{}VHDL\ generic"{})}}
+\DoxyCodeLine{00020\ }
+\DoxyCodeLine{00021\ \ \ \ \ \textcolor{comment}{//\ Constructor\ for\ the\ scRegister}}
+\DoxyCodeLine{00022\ \ \ \ \ SC\_CTOR(\mbox{\hyperlink{class_sysc_add__pv}{scCounter}})}
+\DoxyCodeLine{00023\ \ \ \ \ \{}
+\DoxyCodeLine{00024\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_sysc_add__pv}{SC\_THREAD}}(\mbox{\hyperlink{class_sysc_add__pv}{doCount}});}
+\DoxyCodeLine{00025\ \ \ \ \ \ \ \ \ rst\_level\ =\ \mbox{\hyperlink{sc__config_8cpp_aebb09933de1d68f92fbae8866c91df6b}{sc\_getRstActLevel}}();}
+\DoxyCodeLine{00026\ \ \ \ \ \ \ \ \ ena\_level\ =\ \mbox{\hyperlink{sc__config_8cpp_ad1ec236fcf636edda90e65289da76df8}{sc\_getEnaActLevel}}();}
+\DoxyCodeLine{00027\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_sysc_add__pv}{sensitive}}\ <<\ \mbox{\hyperlink{class_sysc_add__pv}{reset\_i}};}
+\DoxyCodeLine{00028\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\mbox{\hyperlink{sc__config_8cpp_a9fa8e3a406e94f63d746393a379900ec}{sc\_getClkActEdge}}())}
+\DoxyCodeLine{00029\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00030\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_sysc_add__pv}{sensitive}}\ <<\ clock.pos();}
+\DoxyCodeLine{00031\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00032\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{00033\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00034\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_sysc_add__pv}{sensitive}}\ <<\ clock.neg();}
+\DoxyCodeLine{00035\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00036\ \ \ \ \ \}}
+\DoxyCodeLine{00037\ }
+\DoxyCodeLine{00038\ \ \ \ \ \textcolor{comment}{//\ Actual\ scCounter\ logic}}
+\DoxyCodeLine{00039\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_sysc_add__pv}{doCount}}\ ()}
+\DoxyCodeLine{00040\ \ \ \ \ \{}
+\DoxyCodeLine{00041\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{while}(1)}
+\DoxyCodeLine{00042\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00043\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(\mbox{\hyperlink{class_sysc_add__pv}{reset\_i}}.read()\ ==\ rst\_level)}
+\DoxyCodeLine{00044\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00045\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_sysc_add__pv}{q\_o}}.write(0);}
+\DoxyCodeLine{00046\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00047\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}(\mbox{\hyperlink{class_sysc_add__pv}{enable\_i}}.read()\ ==\ ena\_level)}
+\DoxyCodeLine{00048\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00049\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_sysc_add__pv}{q\_o}}.write(\mbox{\hyperlink{class_sysc_add__pv}{q\_o}}.read().to\_int64()+1);}
+\DoxyCodeLine{00050\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00051\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_sysc_add__pv}{wait}}();}
+\DoxyCodeLine{00052\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00053\ \ \ \ \ \}}
+\DoxyCodeLine{00054\ \};}
+\DoxyCodeLine{00055\ }
+\DoxyCodeLine{00272\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{//\ SC\_COUNTER\_H}}
+
+\end{DoxyCode}

@@ -15,42 +15,9 @@ Inherited by \fBSystemcLinker\fP\&.
 
 .in +1c
 .ti -1c
-.RI "struct \fBs_components_list\fP"
-.br
-.RI "Struct for storing components list\&. "
-.ti -1c
-.RI "struct \fBs_element\fP"
-.br
-.RI "Struct for storing element IO information\&. "
-.ti -1c
-.RI "struct \fBs_element_io\fP"
-.br
-.ti -1c
-.RI "struct \fBs_elements\fP"
-.br
-.ti -1c
 .RI "struct \fBs_io\fP"
 .br
 .RI "Struct for storing input/output information\&. "
-.ti -1c
-.RI "struct \fBs_parse_error\fP"
-.br
-.ti -1c
-.RI "struct \fBs_sim_I_O\fP"
-.br
-.RI "Struct for storing I/Os information\&. "
-.ti -1c
-.RI "struct \fBs_sim_I_Os\fP"
-.br
-.RI "Struct for storing all the I/Os\&. "
-.ti -1c
-.RI "struct \fBs_sim_wire\fP"
-.br
-.RI "Struct for storing wire information\&. "
-.ti -1c
-.RI "struct \fBs_sim_wires\fP"
-.br
-.RI "Struct for storing all the wires\&. "
 .ti -1c
 .RI "struct \fBs_tree_node\fP"
 .br
@@ -89,18 +56,12 @@ Inherited by \fBSystemcLinker\fP\&.
 .ti -1c
 .RI "enum \fBe_states\fP { \fBTO_BE_FOUND\fP }"
 .br
-.ti -1c
-.RI "enum \fBI_O\fP { \fBINPUT\fP, \fBOUTPUT\fP, \fBUNDEFINED\fP }"
-.br
-.ti -1c
-.RI "\fBtypedef\fP \fBenum\fP \fBSvgParser::I_O\fP \fBe_IO_type\fP"
-.br
 .in -1c
 .SS "Protected Attributes"
 
 .in +1c
 .ti -1c
-.RI "int \fBgroups_number\fP"
+.RI "\fBint\fP \fBgroups_number\fP"
 .br
 .RI "Number of groups\&. "
 .ti -1c
@@ -140,7 +101,7 @@ Inherited by \fBSystemcLinker\fP\&.
 .br
 .RI "Parse SVG file\&. "
 .ti -1c
-.RI "\fBvoid\fP \fBparse_by_group\fP (\fBconst\fP \fBQDomNode\fP &\fBnode\fP, \fBs_tree_node\fP &\fBparentNode\fP, int level)"
+.RI "\fBvoid\fP \fBparse_by_group\fP (\fBconst\fP \fBQDomNode\fP &\fBnode\fP, \fBs_tree_node\fP &\fBparentNode\fP, \fBint\fP level)"
 .br
 .RI "Parse by group\&. "
 .ti -1c
@@ -164,11 +125,11 @@ Inherited by \fBSystemcLinker\fP\&.
 .br
 .RI "Parse simulation IO\&. "
 .ti -1c
-.RI "int \fBget_list_of_outputs_name_and_width\fP (\fBQString\fP \fBoutputs_string\fP, \fBQList\fP< \fBs_element_io\fP > &\fBoutputs_list\fP)"
+.RI "\fBint\fP \fBget_list_of_outputs_name_and_width\fP (\fBQString\fP \fBoutputs_string\fP, \fBQList\fP< \fBs_element_io\fP > &\fBoutputs_list\fP)"
 .br
 .RI "Get a list of outputs name, width for sim:outputs attributes\&. "
 .ti -1c
-.RI "int \fBget_list_of_inputs_name_and_width\fP (\fBQString\fP \fBoutputs_string\fP, \fBQList\fP< \fBs_element_io\fP > &\fBinputs_list\fP)"
+.RI "\fBint\fP \fBget_list_of_inputs_name_and_width\fP (\fBQString\fP \fBoutputs_string\fP, \fBQList\fP< \fBs_element_io\fP > &\fBinputs_list\fP)"
 .br
 .RI "Get a list of outputs name, width for sim:outputs attributes\&. "
 .ti -1c
@@ -184,11 +145,11 @@ Inherited by \fBSystemcLinker\fP\&.
 .br
 .RI "Find elements with attribute\&. "
 .ti -1c
-.RI "\fBvoid\fP \fBadd_error_message\fP (\fBs_parse_error\fP &\fBerror\fP, \fBconst\fP \fBQString\fP &\fBerrorMessage\fP)"
+.RI "\fBvoid\fP \fBadd_error_message\fP (\fBs_parse_error\fP &error, \fBconst\fP \fBQString\fP &\fBerrorMessage\fP)"
 .br
 .RI "Attach an error message to a structure\&. "
 .ti -1c
-.RI "int \fBlist_matching_attr\fP (\fBconst\fP \fBQDomElement\fP \fBelem_to_look_into\fP, \fBconst\fP \fBQString\fP \fBattr_name\fP, \fBQList\fP< \fBQDomElement\fP > &\fBfound_elements\fP)"
+.RI "\fBint\fP \fBlist_matching_attr\fP (\fBconst\fP \fBQDomElement\fP \fBelem_to_look_into\fP, \fBconst\fP \fBQString\fP \fBattr_name\fP, \fBQList\fP< \fBQDomElement\fP > &\fBfound_elements\fP)"
 .br
 .RI "list_matching_attr "
 .in -1c
@@ -204,6 +165,9 @@ Inherited by \fBSystemcLinker\fP\&.
 .br
 .RI "Custom attribute prefix\&. "
 .ti -1c
+.RI "\fBDebugWindow\fP * \fBdebug\fP"
+.br
+.ti -1c
 .RI "\fBQString\fP \fBlog_buffer\fP"
 .br
 .RI "Buffer for log messages\&. "
@@ -213,10 +177,6 @@ Inherited by \fBSystemcLinker\fP\&.
 The \fBSvgParser\fP class\&. 
 
 This class parses an SVG file and extracts electrical links from Qt_attr attributes of SVG elements\&. 
-.SH "Member Typedef Documentation"
-.PP 
-.SS "\fBtypedef\fP \fBenum\fP \fBSvgParser::I_O\fP \fBSvgParser::e_IO_type\fP\fR [protected]\fP"
-
 .SH "Member Enumeration Documentation"
 .PP 
 .SS "\fBenum\fP \fBSvgParser::e_returns\fP\fR [protected]\fP"
@@ -277,20 +237,6 @@ Selection attribute type\&.
 .TP
 \fB\fIwire \fP\fP
 Wire attribute type\&. 
-.SS "\fBenum\fP \fBSvgParser::I_O\fP\fR [protected]\fP"
-
-.PP
-\fBEnumerator\fP
-.in +1c
-.TP
-\fB\fIINPUT \fP\fP
-Input type\&. 
-.TP
-\fB\fIOUTPUT \fP\fP
-Output type\&. 
-.TP
-\fB\fIUNDEFINED \fP\fP
-Undefined type\&. 
 .SH "Constructor & Destructor Documentation"
 .PP 
 .SS "SvgParser::SvgParser (\fBQString\fP svg_file)"
@@ -398,7 +344,7 @@ Get group header\&.
 .RE
 .PP
 
-.SS "int SvgParser::get_list_of_inputs_name_and_width (\fBQString\fP outputs_string, \fBQList\fP< \fBs_element_io\fP > & inputs_list)\fR [private]\fP"
+.SS "\fBint\fP SvgParser::get_list_of_inputs_name_and_width (\fBQString\fP outputs_string, \fBQList\fP< \fBs_element_io\fP > & inputs_list)\fR [private]\fP"
 
 .PP
 Get a list of outputs name, width for sim:outputs attributes\&. 
@@ -416,7 +362,7 @@ Number of outputs found if success, -1 if error
 .RE
 .PP
 
-.SS "int SvgParser::get_list_of_outputs_name_and_width (\fBQString\fP outputs_string, \fBQList\fP< \fBs_element_io\fP > & outputs_list)\fR [private]\fP"
+.SS "\fBint\fP SvgParser::get_list_of_outputs_name_and_width (\fBQString\fP outputs_string, \fBQList\fP< \fBs_element_io\fP > & outputs_list)\fR [private]\fP"
 
 .PP
 Get a list of outputs name, width for sim:outputs attributes\&. 
@@ -445,7 +391,7 @@ List attributes\&.
 .RE
 .PP
 
-.SS "int SvgParser::list_matching_attr (\fBconst\fP \fBQDomElement\fP elem_to_look_into, \fBconst\fP \fBQString\fP attr_name, \fBQList\fP< \fBQDomElement\fP > & found_elements)\fR [private]\fP"
+.SS "\fBint\fP SvgParser::list_matching_attr (\fBconst\fP \fBQDomElement\fP elem_to_look_into, \fBconst\fP \fBQString\fP attr_name, \fBQList\fP< \fBQDomElement\fP > & found_elements)\fR [private]\fP"
 
 .PP
 list_matching_attr 
@@ -482,7 +428,7 @@ Find elements with attribute\&.
 .RE
 .PP
 
-.SS "\fBvoid\fP SvgParser::parse_by_group (\fBconst\fP \fBQDomNode\fP & node, \fBs_tree_node\fP & parentNode, int level)\fR [private]\fP"
+.SS "\fBvoid\fP SvgParser::parse_by_group (\fBconst\fP \fBQDomNode\fP & node, \fBs_tree_node\fP & parentNode, \fBint\fP level)\fR [private]\fP"
 
 .PP
 Parse by group\&. 
@@ -600,7 +546,9 @@ All components private variable\&.
 
 .PP
 Custom attribute prefix\&. 
-.SS "int SvgParser::groups_number\fR [protected]\fP"
+.SS "\fBDebugWindow\fP* SvgParser::debug\fR [private]\fP"
+
+.SS "\fBint\fP SvgParser::groups_number\fR [protected]\fP"
 
 .PP
 Number of groups\&. 

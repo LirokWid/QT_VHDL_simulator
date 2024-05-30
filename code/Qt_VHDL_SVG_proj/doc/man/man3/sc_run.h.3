@@ -1,8 +1,9 @@
-.TH "C:/Users/BJRODIER/Documents/QT_REPO/QT_VHDL_simulator/code/old_ui_project/qt-sc/sc_run.h" 3 "VHDL simulator" \" -*- nroff -*-
+.TH "C:/Users/BJRODIER/Documents/QT_REPO/QT_VHDL_simulator/code/Qt_VHDL_SVG_proj/systemc_modules/sc_run.h" 3 "VHDL simulator" \" -*- nroff -*-
 .ad l
 .nh
 .SH NAME
-C:/Users/BJRODIER/Documents/QT_REPO/QT_VHDL_simulator/code/old_ui_project/qt-sc/sc_run.h
+C:/Users/BJRODIER/Documents/QT_REPO/QT_VHDL_simulator/code/Qt_VHDL_SVG_proj/systemc_modules/sc_run.h \- SystemC simulation control interface\&.  
+
 .SH SYNOPSIS
 .br
 .PP
@@ -56,16 +57,16 @@ C:/Users/BJRODIER/Documents/QT_REPO/QT_VHDL_simulator/code/old_ui_project/qt-sc/
 
 .in +1c
 .ti -1c
-.RI "int \fBsc_StartTransactionFromUI\fP ()"
+.RI "\fBint\fP \fBsc_StartTransactionFromUI\fP ()"
 .br
 .ti -1c
-.RI "int \fBsc_EndTransactionFromUI\fP ()"
+.RI "\fBint\fP \fBsc_EndTransactionFromUI\fP ()"
 .br
 .ti -1c
-.RI "int \fBsc_NewStateFromUI\fP (int \fBnewState\fP=\fBSC_ST_COMMAND_RUN\fP)"
+.RI "\fBint\fP \fBsc_NewStateFromUI\fP (\fBint\fP \fBnewState\fP=\fBSC_ST_COMMAND_RUN\fP)"
 .br
 .ti -1c
-.RI "int \fBsc_getRunResultFromUI\fP (\fBvoid\fP)"
+.RI "\fBint\fP \fBsc_getRunResultFromUI\fP (\fBvoid\fP)"
 .br
 .ti -1c
 .RI "\fBvoid\fP \fBsc_setRunFromUI\fP (\fBsc_thread_run_t\fP *\fBtheRun\fP)"
@@ -80,21 +81,30 @@ C:/Users/BJRODIER/Documents/QT_REPO/QT_VHDL_simulator/code/old_ui_project/qt-sc/
 .RI "std::vector< std::string > \fBsc_getReportFromUI\fP ()"
 .br
 .ti -1c
-.RI "\fBvoid\fP \fBsc_NotifyUIFromSC\fP (int \fBnewState\fP=\fBSC_ST_RESPONSE_STOP\fP)"
+.RI "\fBvoid\fP \fBsc_NotifyUIFromSC\fP (\fBint\fP \fBnewState\fP=\fBSC_ST_RESPONSE_STOP\fP)"
 .br
 .ti -1c
-.RI "int \fBsc_waitStateChange\fP (\fBvoid\fP)"
+.RI "\fBint\fP \fBsc_waitStateChange\fP (\fBvoid\fP)"
 .br
 .ti -1c
-.RI "\fBvoid\fP \fBsc_setRunResult\fP (int \fBtheResult\fP)"
+.RI "\fBvoid\fP \fBsc_setRunResult\fP (\fBint\fP \fBtheResult\fP)"
 .br
 .ti -1c
-.RI "\fBvoid\fP \fBsc_setReportFromSC\fP (std::vector< std::string > &rep)"
+.RI "\fBvoid\fP \fBsc_setReportFromSC\fP (std::vector< std::string > &\fBrep\fP)"
 .br
 .ti -1c
 .RI "\fBvoid\fP \fBsc_setHierarchyFromSC\fP (std::vector< std::string > &\fBhier\fP)"
 .br
 .in -1c
+.SH "Detailed Description"
+.PP 
+SystemC simulation control interface\&. 
+
+This file contains the SystemC simulation control interface\&.
+.PP
+The interface provides a way to control the simulation execution from a separate thread\&. The simulation control interface is used to start and stop the simulation, and to get the simulation results\&.
+.PP
+The interface is implemented using a SystemC thread that waits for commands from a separate thread\&. The SystemC thread is controlled by the simulation control interface functions\&. 
 .SH "Macro Definition Documentation"
 .PP 
 .SS "#\fBdefine\fP SC_ST_COMMAND_EXIT   1"
@@ -117,17 +127,17 @@ C:/Users/BJRODIER/Documents/QT_REPO/QT_VHDL_simulator/code/old_ui_project/qt-sc/
 
 .SH "Function Documentation"
 .PP 
-.SS "int sc_EndTransactionFromUI ()"
+.SS "\fBint\fP sc_EndTransactionFromUI ()"
 
 .SS "std::vector< std::string > sc_getHierarchyFromUI ()"
 
 .SS "std::vector< std::string > sc_getReportFromUI ()"
 
-.SS "int sc_getRunResultFromUI (\fBvoid\fP)"
+.SS "\fBint\fP sc_getRunResultFromUI (\fBvoid\fP)"
 
-.SS "int sc_NewStateFromUI (int newState = \fR\fBSC_ST_COMMAND_RUN\fP\fP)"
+.SS "\fBint\fP sc_NewStateFromUI (\fBint\fP newState = \fR\fBSC_ST_COMMAND_RUN\fP\fP)"
 
-.SS "\fBvoid\fP sc_NotifyUIFromSC (int newState = \fR\fBSC_ST_RESPONSE_STOP\fP\fP)"
+.SS "\fBvoid\fP sc_NotifyUIFromSC (\fBint\fP newState = \fR\fBSC_ST_RESPONSE_STOP\fP\fP)"
 
 .SS "\fBvoid\fP sc_setHierarchyFromSC (std::vector< std::string > & hier)"
 
@@ -135,13 +145,13 @@ C:/Users/BJRODIER/Documents/QT_REPO/QT_VHDL_simulator/code/old_ui_project/qt-sc/
 
 .SS "\fBvoid\fP sc_setRunFromUI (\fBsc_thread_run_t\fP * theRun)"
 
-.SS "\fBvoid\fP sc_setRunResult (int theResult)"
+.SS "\fBvoid\fP sc_setRunResult (\fBint\fP theResult)"
 
 .SS "\fBvoid\fP sc_setTraceListFromUI (std::vector< std::string > & tl)"
 
-.SS "int sc_StartTransactionFromUI ()"
+.SS "\fBint\fP sc_StartTransactionFromUI ()"
 
-.SS "int sc_waitStateChange (\fBvoid\fP)"
+.SS "\fBint\fP sc_waitStateChange (\fBvoid\fP)"
 
 .SH "Author"
 .PP 

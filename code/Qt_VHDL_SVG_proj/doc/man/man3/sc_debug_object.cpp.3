@@ -1,21 +1,21 @@
-.TH "C:/Users/BJRODIER/Documents/QT_REPO/QT_VHDL_simulator/code/old_ui_project/qt-sc/sc_debug_object.cpp" 3 "VHDL simulator" \" -*- nroff -*-
+.TH "C:/Users/BJRODIER/Documents/QT_REPO/QT_VHDL_simulator/code/Qt_VHDL_SVG_proj/systemc_modules/sc_debug_object.cpp" 3 "VHDL simulator" \" -*- nroff -*-
 .ad l
 .nh
 .SH NAME
-C:/Users/BJRODIER/Documents/QT_REPO/QT_VHDL_simulator/code/old_ui_project/qt-sc/sc_debug_object.cpp
+C:/Users/BJRODIER/Documents/QT_REPO/QT_VHDL_simulator/code/Qt_VHDL_SVG_proj/systemc_modules/sc_debug_object.cpp
 .SH SYNOPSIS
 .br
 .PP
-\fR#include <sstream>\fP
-.br
 \fR#include 'sc_debug_object\&.h'\fP
+.br
+\fR#include <sstream>\fP
 .br
 
 .SS "Macros"
 
 .in +1c
 .ti -1c
-.RI "#\fBdefine\fP \fBCLASSIFY_INFO\fP(\fBsztype\fP)       cout << 'DEBUG :: \fBobject\fP ' << this\->obj\->name() << '(' << \fBthis\fP\->obj\->kind() << ') classified \fBas\fP ' << sztype << endl"
+.RI "#\fBdefine\fP \fBCLASSIFY_INFO\fP(\fBsztype\fP)   \fBcout\fP <<'DEBUG :: \fBobject\fP ' << this\->obj\->name() << '(' << \fBthis\fP\->obj\->\fBkind\fP() << ') classified \fBas\fP ' << sztype << \fBendl\fP"
 .br
 .ti -1c
 .RI "#\fBdefine\fP \fBCLASSIFY_OBJECT\fP(\fBtyp\fP,  \fBsck\fP,  \fBsztype\fP)"
@@ -29,7 +29,7 @@ C:/Users/BJRODIER/Documents/QT_REPO/QT_VHDL_simulator/code/old_ui_project/qt-sc/
 .in -1c
 .SH "Macro Definition Documentation"
 .PP 
-.SS "#\fBdefine\fP CLASSIFY_INFO(\fBsztype\fP)       cout << 'DEBUG :: \fBobject\fP ' << this\->obj\->name() << '(' << \fBthis\fP\->obj\->kind() << ') classified \fBas\fP ' << sztype << endl"
+.SS "#\fBdefine\fP CLASSIFY_INFO(\fBsztype\fP)   \fBcout\fP <<'DEBUG :: \fBobject\fP ' << this\->obj\->name() << '(' << \fBthis\fP\->obj\->\fBkind\fP() << ') classified \fBas\fP ' << sztype << \fBendl\fP"
 
 .SS "#\fBdefine\fP CLASSIFY_OBJECT(\fBtyp\fP, \fBsck\fP, \fBsztype\fP)"
 \fBValue:\fP.PP
@@ -38,22 +38,22 @@ C:/Users/BJRODIER/Documents/QT_REPO/QT_VHDL_simulator/code/old_ui_project/qt-sc/
         this\->sc_kind = sck; \\
         /* CLASSIFY_INFO(sztype); */ \\
         return; \\
-    }
+}
 .fi
 
 .SS "#\fBdefine\fP REPORT_VALUE_AS(\fBtyp\fP)"
 \fBValue:\fP.PP
 .nf
-    if (nullptr != dynamic_cast<typ *>(obj)) { \\
+if (nullptr != dynamic_cast<typ *>(obj)) { \\
         ss << (dynamic_cast<typ *>(obj))\->read(); \\
         return ss\&.str(); \\
-    }
+}
 .fi
 
 .SS "#\fBdefine\fP REPORTALL_VALUE_AS(\fBtyp\fP)"
 \fBValue:\fP.PP
 .nf
-    REPORT_VALUE_AS(sc_signal<typ>) \\
+REPORT_VALUE_AS(sc_signal<typ>) \\
     REPORT_VALUE_AS(sc_in<typ>) \\
     REPORT_VALUE_AS(sc_out<typ>) \\
     REPORT_VALUE_AS(sc_inout<typ>)

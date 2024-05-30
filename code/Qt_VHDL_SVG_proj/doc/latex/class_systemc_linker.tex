@@ -11,8 +11,7 @@ The svg\+\_\+linker class This class will generate the systemC link between the 
 
 
 
-Inheritance diagram for Systemc\+Linker\+:
-\nopagebreak
+Inheritance diagram for Systemc\+Linker\+:\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
@@ -35,6 +34,8 @@ Collaboration diagram for Systemc\+Linker\+:
 \mbox{\hyperlink{class_systemc_linker_a2cd2b69dc972d94869341bc638f43a9b}{Systemc\+Linker}} (\mbox{\hyperlink{class_sysc_add__pv}{QString}} \mbox{\hyperlink{class_svg_parser_afe8534e237ea4ef6823f92d31f3b2d55}{svg\+\_\+file}})
 \item 
 \mbox{\hyperlink{class_systemc_linker_a19e1731dd9e26756fc394fcde4952c5e}{\texorpdfstring{$\sim$}{\string~}\+Systemc\+Linker}} ()
+\item 
+\mbox{\hyperlink{class_sysc_add__pv}{bool}} \mbox{\hyperlink{class_systemc_linker_a6546f4c2a45b038b2bfcc52023f669a5}{get\+Global\+Parsing\+Error}} ()
 \end{DoxyCompactItemize}
 \doxysubsection*{Public Member Functions inherited from \mbox{\hyperlink{class_svg_parser}{Svg\+Parser}}}
 \begin{DoxyCompactItemize}
@@ -43,14 +44,14 @@ Collaboration diagram for Systemc\+Linker\+:
 \begin{DoxyCompactList}\small\item\em \doxylink{class_svg_parser}{Svg\+Parser} constructor. \end{DoxyCompactList}\item 
 \mbox{\hyperlink{class_svg_parser_a4f02bb9c4f12ea90e819239adceec2ef}{\texorpdfstring{$\sim$}{\string~}\+Svg\+Parser}} ()
 \begin{DoxyCompactList}\small\item\em \doxylink{class_svg_parser}{Svg\+Parser} destructor. \end{DoxyCompactList}\item 
-\mbox{\hyperlink{class_sysc_add__pv}{const}} \mbox{\hyperlink{struct_svg_parser_1_1s__components__list}{s\+\_\+components\+\_\+list}} \& \mbox{\hyperlink{class_svg_parser_a5b9fbf0fb9ed24a0a8139be7fb3b213e}{get\+\_\+components\+\_\+list}} () \mbox{\hyperlink{class_sysc_add__pv}{const}}
+\mbox{\hyperlink{class_sysc_add__pv}{const}} \mbox{\hyperlink{structs__components__list}{s\+\_\+components\+\_\+list}} \& \mbox{\hyperlink{class_svg_parser_a5b9fbf0fb9ed24a0a8139be7fb3b213e}{get\+\_\+components\+\_\+list}} () \mbox{\hyperlink{class_sysc_add__pv}{const}}
 \end{DoxyCompactItemize}
 \doxysubsubsection*{Private Member Functions}
 \begin{DoxyCompactItemize}
 \item 
 \mbox{\hyperlink{class_sysc_add__pv}{void}} \mbox{\hyperlink{class_systemc_linker_ac795c2a65f039bb1e2a4f80dc564e845}{link\+\_\+components}} ()
 \item 
-\mbox{\hyperlink{class_sysc_add__pv}{void}} \mbox{\hyperlink{class_systemc_linker_a35ebb5ecbdda63b9cdc8cd413d1fbc0a}{create\+\_\+sysc\+\_\+module}} (\mbox{\hyperlink{class_sysc_add__pv}{const}} \mbox{\hyperlink{struct_svg_parser_1_1s__element}{s\+\_\+element}} \&elem)
+\mbox{\hyperlink{class_sysc_add__pv}{void}} \mbox{\hyperlink{class_systemc_linker_a35ebb5ecbdda63b9cdc8cd413d1fbc0a}{create\+\_\+sysc\+\_\+module}} (\mbox{\hyperlink{class_sysc_add__pv}{const}} \mbox{\hyperlink{structs__element}{s\+\_\+element}} \&\mbox{\hyperlink{class_sysc_add__pv}{elem}})
 \end{DoxyCompactItemize}
 \doxysubsubsection*{Additional Inherited Members}
 \doxysubsection*{Protected Types inherited from \mbox{\hyperlink{class_svg_parser}{Svg\+Parser}}}
@@ -77,22 +78,15 @@ enum \mbox{\hyperlink{class_svg_parser_a7e2b269495f661cb35ff248c5e910da0}{e\+\_\
 \begin{DoxyCompactList}\small\item\em Enumeration for return codes. \end{DoxyCompactList}\item 
 enum \mbox{\hyperlink{class_svg_parser_a3d9eb960ab5134b22a28c33ed12068c0}{e\+\_\+states}} \{ \mbox{\hyperlink{class_svg_parser_a3d9eb960ab5134b22a28c33ed12068c0aa1db35d65fe2cc7d0b50df099b781b9a}{TO\+\_\+\+BE\+\_\+\+FOUND}}
  \}
-\item 
-enum \mbox{\hyperlink{class_svg_parser_ac8fe796a6c6559b77c72025f6da4c2cb}{I\+\_\+O}} \{ \mbox{\hyperlink{class_svg_parser_ac8fe796a6c6559b77c72025f6da4c2cba6f8f5af8f2174e5f81c4aea7604fe91c}{INPUT}}
-, \mbox{\hyperlink{class_svg_parser_ac8fe796a6c6559b77c72025f6da4c2cbac0a16a46f7125e7ad2d363fff69eb616}{OUTPUT}}
-, \mbox{\hyperlink{class_svg_parser_ac8fe796a6c6559b77c72025f6da4c2cba1e6b030cce8595264bbae60d912f5e94}{UNDEFINED}}
- \}
-\item 
-\mbox{\hyperlink{class_sysc_add__pv}{typedef}} \mbox{\hyperlink{class_sysc_add__pv}{enum}} \mbox{\hyperlink{class_svg_parser_ac8fe796a6c6559b77c72025f6da4c2cb}{Svg\+Parser\+::\+I\+\_\+O}} \mbox{\hyperlink{class_svg_parser_a04a249e4a72a11be24788702a2f0c4a2}{e\+\_\+\+IO\+\_\+type}}
 \end{DoxyCompactItemize}
 \doxysubsection*{Protected Attributes inherited from \mbox{\hyperlink{class_svg_parser}{Svg\+Parser}}}
 \begin{DoxyCompactItemize}
 \item 
-int \mbox{\hyperlink{class_svg_parser_a3f28b52f36daba1e190bfb9df9edfdb6}{groups\+\_\+number}}
+\mbox{\hyperlink{class_sysc_add__pv}{int}} \mbox{\hyperlink{class_svg_parser_a3f28b52f36daba1e190bfb9df9edfdb6}{groups\+\_\+number}}
 \begin{DoxyCompactList}\small\item\em Number of groups. \end{DoxyCompactList}\item 
 \mbox{\hyperlink{struct_svg_parser_1_1s__tree__node}{s\+\_\+tree\+\_\+node}} \mbox{\hyperlink{class_svg_parser_aab62b63b54d4ad90f0f02843634878ca}{root}}
 \begin{DoxyCompactList}\small\item\em Root node of the tree. \end{DoxyCompactList}\item 
-\mbox{\hyperlink{struct_svg_parser_1_1s__components__list}{s\+\_\+components\+\_\+list}} \mbox{\hyperlink{class_svg_parser_af7db32b6cbb2304d3aa6b542accb3950}{all\+\_\+components}}
+\mbox{\hyperlink{structs__components__list}{s\+\_\+components\+\_\+list}} \mbox{\hyperlink{class_svg_parser_af7db32b6cbb2304d3aa6b542accb3950}{all\+\_\+components}}
 \begin{DoxyCompactList}\small\item\em All components private variable. \end{DoxyCompactList}\end{DoxyCompactItemize}
 
 
@@ -106,8 +100,7 @@ The svg\+\_\+linker class This class will generate the systemC link between the 
 \doxysubsubsection{\texorpdfstring{SystemcLinker()}{SystemcLinker()}}
 {\footnotesize\ttfamily Systemc\+Linker\+::\+Systemc\+Linker (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_sysc_add__pv}{QString}}}]{svg\+\_\+file }\end{DoxyParamCaption})}
 
-Here is the call graph for this function\+:
-\nopagebreak
+Here is the call graph for this function\+:\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
@@ -127,14 +120,27 @@ Here is the call graph for this function\+:
 \index{SystemcLinker@{SystemcLinker}!create\_sysc\_module@{create\_sysc\_module}}
 \index{create\_sysc\_module@{create\_sysc\_module}!SystemcLinker@{SystemcLinker}}
 \doxysubsubsection{\texorpdfstring{create\_sysc\_module()}{create\_sysc\_module()}}
-{\footnotesize\ttfamily \mbox{\hyperlink{class_sysc_add__pv}{void}} Systemc\+Linker\+::create\+\_\+sysc\+\_\+module (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_sysc_add__pv}{const}} \mbox{\hyperlink{struct_svg_parser_1_1s__element}{s\+\_\+element}} \&}]{elem }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+{\footnotesize\ttfamily \mbox{\hyperlink{class_sysc_add__pv}{void}} Systemc\+Linker\+::create\+\_\+sysc\+\_\+module (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_sysc_add__pv}{const}} \mbox{\hyperlink{structs__element}{s\+\_\+element}} \&}]{elem }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_systemc_linker_a35ebb5ecbdda63b9cdc8cd413d1fbc0a_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{class_systemc_linker_a6546f4c2a45b038b2bfcc52023f669a5}\label{class_systemc_linker_a6546f4c2a45b038b2bfcc52023f669a5} 
+\index{SystemcLinker@{SystemcLinker}!getGlobalParsingError@{getGlobalParsingError}}
+\index{getGlobalParsingError@{getGlobalParsingError}!SystemcLinker@{SystemcLinker}}
+\doxysubsubsection{\texorpdfstring{getGlobalParsingError()}{getGlobalParsingError()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{class_sysc_add__pv}{bool}} Systemc\+Linker\+::get\+Global\+Parsing\+Error (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
 
 Here is the caller graph for this function\+:
 \nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
-\includegraphics[width=350pt]{class_systemc_linker_a35ebb5ecbdda63b9cdc8cd413d1fbc0a_icgraph}
+\includegraphics[width=350pt]{class_systemc_linker_a6546f4c2a45b038b2bfcc52023f669a5_icgraph}
 \end{center}
 \end{figure}
 \Hypertarget{class_systemc_linker_ac795c2a65f039bb1e2a4f80dc564e845}\label{class_systemc_linker_ac795c2a65f039bb1e2a4f80dc564e845} 
@@ -147,5 +153,5 @@ Here is the caller graph for this function\+:
 
 The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
 \item 
-parser\+\_\+linker/\mbox{\hyperlink{_systemc_linker_8h}{Systemc\+Linker.\+h}}\item 
-parser\+\_\+linker/\mbox{\hyperlink{_systemc_linker_8cpp}{Systemc\+Linker.\+cpp}}\end{DoxyCompactItemize}
+C\+:/\+Users/\+BJRODIER/\+Documents/\+QT\+\_\+\+REPO/\+QT\+\_\+\+VHDL\+\_\+simulator/code/\+Qt\+\_\+\+VHDL\+\_\+\+SVG\+\_\+proj/parser\+\_\+linker/\mbox{\hyperlink{_systemc_linker_8h}{Systemc\+Linker.\+h}}\item 
+C\+:/\+Users/\+BJRODIER/\+Documents/\+QT\+\_\+\+REPO/\+QT\+\_\+\+VHDL\+\_\+simulator/code/\+Qt\+\_\+\+VHDL\+\_\+\+SVG\+\_\+proj/parser\+\_\+linker/\mbox{\hyperlink{_systemc_linker_8cpp}{Systemc\+Linker.\+cpp}}\end{DoxyCompactItemize}

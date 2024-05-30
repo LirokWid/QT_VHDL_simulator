@@ -1,0 +1,116 @@
+\doxysection{sc\+\_\+terminals.\+h}
+\hypertarget{sc__terminals_8h_source}{}\label{sc__terminals_8h_source}\index{C:/Users/BJRODIER/Documents/QT\_REPO/QT\_VHDL\_simulator/code/Qt\_VHDL\_SVG\_proj/systemc\_modules/sc\_terminals.h@{C:/Users/BJRODIER/Documents/QT\_REPO/QT\_VHDL\_simulator/code/Qt\_VHDL\_SVG\_proj/systemc\_modules/sc\_terminals.h}}
+\mbox{\hyperlink{sc__terminals_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#ifndef\ SC\_TERMINALS\_H}}
+\DoxyCodeLine{00002\ \textcolor{preprocessor}{\#define\ SC\_TERMINALS\_H}}
+\DoxyCodeLine{00003\ }
+\DoxyCodeLine{00004\ \textcolor{preprocessor}{\#include\ <systemc.h>}}
+\DoxyCodeLine{00005\ }
+\DoxyCodeLine{00006\ }
+\DoxyCodeLine{00007\ \textcolor{keyword}{template}\ <\textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{int}\ W\ =\ 1>}
+\DoxyCodeLine{00008\ \textcolor{keyword}{class\ }\mbox{\hyperlink{class_sysc_terminal}{SyscTerminal}}\ :\ \textcolor{keyword}{public}\ ::sc\_core::sc\_module\ \{}
+\DoxyCodeLine{00009\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00010\ \ \ \ \ \textcolor{keyword}{static\_assert}(\mbox{\hyperlink{class_sysc_add__pv}{W}}\ >=\ 1,\ \textcolor{stringliteral}{"{}SyscTerminal\ DESIGN\ ERROR:\ W\ must\ be\ >=\ 1"{}});}
+\DoxyCodeLine{00011\ }
+\DoxyCodeLine{00012\ \ \ \ \ \textcolor{keyword}{typedef}\ \ \mbox{\hyperlink{class_sysc_add__pv}{sc\_lv<W>}}\ \ \ \ \ \ \ \mbox{\hyperlink{class_sysc_terminal_a562ee169e7af660cbf4dde3ce140e000}{data\_t}};}
+\DoxyCodeLine{00013\ }
+\DoxyCodeLine{00014\ \ \ \ \ \textcolor{keyword}{typedef}\ \mbox{\hyperlink{class_sysc_add__pv}{SyscTerminal<W>}}\ \mbox{\hyperlink{class_sysc_terminal_a31a687c9c9b9f5bd047c076f99da4bdd}{SC\_CURRENT\_USER\_MODULE}};}
+\DoxyCodeLine{00015\ \ \ \ \ \mbox{\hyperlink{class_sysc_terminal_ad3f3b60d30847e319213ca62d1b5e84c}{SyscTerminal}}(::sc\_core::sc\_module\_name\ name)\ :\ ::sc\_core::sc\_module(name)}
+\DoxyCodeLine{00016\ \ \ \ \ \ \ \textcolor{comment}{//,\ terminal\_in\_(nullptr),\ terminal\_out\_(nullptr)}}
+\DoxyCodeLine{00017\ \ \ \ \ \{}
+\DoxyCodeLine{00018\ \ \ \ \ \}}
+\DoxyCodeLine{00019\ }
+\DoxyCodeLine{00020\ \ \ \ \ \textcolor{comment}{/*}}
+\DoxyCodeLine{00021\ \textcolor{comment}{\ \ \ \ \string~SyscTerminal()}}
+\DoxyCodeLine{00022\ \textcolor{comment}{\ \ \ \ \{}}
+\DoxyCodeLine{00023\ \textcolor{comment}{\ \ \ \ \ \ \ \ if\ (terminal\_in\_\ !=\ nullptr)\ \{}}
+\DoxyCodeLine{00024\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ delete\ terminal\_in\_;}}
+\DoxyCodeLine{00025\ \textcolor{comment}{\ \ \ \ \ \ \ \ \}}}
+\DoxyCodeLine{00026\ \textcolor{comment}{\ \ \ \ \ \ \ \ if\ (terminal\_out\_\ !=\ nullptr)\ \{}}
+\DoxyCodeLine{00027\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ delete\ terminal\_out\_;}}
+\DoxyCodeLine{00028\ \textcolor{comment}{\ \ \ \ \ \ \ \ \}}}
+\DoxyCodeLine{00029\ \textcolor{comment}{\ \ \ \ \}}}
+\DoxyCodeLine{00030\ \textcolor{comment}{}}
+\DoxyCodeLine{00031\ \textcolor{comment}{\ \ \ \ sc\_in<data\_t>\ *terminal\_in()\ \{\ return\ terminal\_in\_;\ \};}}
+\DoxyCodeLine{00032\ \textcolor{comment}{\ \ \ \ sc\_out<data\_t>\ *terminal\_out()\ \{\ return\ terminal\_out\_;\ \};}}
+\DoxyCodeLine{00033\ \textcolor{comment}{\ \ \ \ */}}
+\DoxyCodeLine{00034\ }
+\DoxyCodeLine{00035\ \textcolor{keyword}{protected}:}
+\DoxyCodeLine{00036\ \ \ \ \ \textcolor{comment}{//sc\_in<data\_t>\ *terminal\_in\_;}}
+\DoxyCodeLine{00037\ \ \ \ \ \textcolor{comment}{//sc\_out<data\_t>\ *terminal\_out\_;}}
+\DoxyCodeLine{00038\ }
+\DoxyCodeLine{00039\ \};}
+\DoxyCodeLine{00040\ }
+\DoxyCodeLine{00041\ \textcolor{keyword}{template}\ <\textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{int}\ W\ =\ 1>}
+\DoxyCodeLine{00042\ \textcolor{keyword}{class\ }\mbox{\hyperlink{class_sysc_in}{SyscIn}}\ :\ \textcolor{keyword}{public}\ \mbox{\hyperlink{class_sysc_terminal}{SyscTerminal}}<W>\ \{}
+\DoxyCodeLine{00043\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00044\ \ \ \ \ \textcolor{keyword}{static\_assert}(\mbox{\hyperlink{class_sysc_add__pv}{W}}\ >=\ 1,\ \textcolor{stringliteral}{"{}SyscIn\ DESIGN\ ERROR:\ W\ must\ be\ >=1"{}});}
+\DoxyCodeLine{00045\ }
+\DoxyCodeLine{00046\ \ \ \ \ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{class_sysc_in_a6ef168883f0cd16151c1d374910c3fd3}{m\_high\_usteps}},\ \mbox{\hyperlink{class_sysc_in_adda3b68f372e82af223800e93909949c}{m\_low\_usteps}},\ \mbox{\hyperlink{class_sysc_in_a1899f644628fb9fb9312a6dc7d1e26fd}{m\_init\_usteps}};}
+\DoxyCodeLine{00047\ \ \ \ \ \mbox{\hyperlink{class_sysc_add__pv}{sc\_logic}}\ \mbox{\hyperlink{class_sysc_in_a93cb5fdf92607658e12a872ec3aa92fb}{m\_init\_value}};}
+\DoxyCodeLine{00048\ }
+\DoxyCodeLine{00049\ \ \ \ \ \textcolor{keyword}{typedef}\ \mbox{\hyperlink{class_sysc_add__pv}{SyscTerminal<W>}}\ \mbox{\hyperlink{class_sysc_in_a3d6713f3b55f144947b4cb5c5339ee1b}{BASE\_MODULE}};}
+\DoxyCodeLine{00050\ \ \ \ \ \textcolor{keyword}{typedef}\ \mbox{\hyperlink{class_sysc_add__pv}{SyscIn<W>}}\ \mbox{\hyperlink{class_sysc_in_a0a001f539d54f525bece83cf607bd414}{SC\_CURRENT\_USER\_MODULE}};}
+\DoxyCodeLine{00051\ }
+\DoxyCodeLine{00052\ \ \ \ \ \mbox{\hyperlink{class_sysc_add__pv}{sc\_out<typename\ BASE\_MODULE::data\_t>}}\ \mbox{\hyperlink{class_sysc_in_a2df6ca7431de67e2ea09a33fec262be8}{terminal}}\{\textcolor{stringliteral}{"{}terminal"{}}\};}
+\DoxyCodeLine{00053\ }
+\DoxyCodeLine{00054\ \ \ \ \ \mbox{\hyperlink{class_sysc_in_a6664d7d48ad2efbd49413eeca51dc4ae}{SyscIn}}(::sc\_core::sc\_module\_name\ name)\ :\ \mbox{\hyperlink{class_sysc_terminal}{SyscTerminal}}<\mbox{\hyperlink{class_sysc_add__pv}{W}}>(name),}
+\DoxyCodeLine{00055\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_sysc_in_a6ef168883f0cd16151c1d374910c3fd3}{m\_high\_usteps}}(2),\ \mbox{\hyperlink{class_sysc_in_adda3b68f372e82af223800e93909949c}{m\_low\_usteps}}(2),\ \mbox{\hyperlink{class_sysc_in_a1899f644628fb9fb9312a6dc7d1e26fd}{m\_init\_usteps}}(2),\ \mbox{\hyperlink{class_sysc_in_a93cb5fdf92607658e12a872ec3aa92fb}{m\_init\_value}}(\mbox{\hyperlink{class_sysc_add__pv}{SC\_LOGIC\_0}})}
+\DoxyCodeLine{00056\ \ \ \ \ \ \ \textcolor{comment}{//,\ terminal("{}terminal"{})}}
+\DoxyCodeLine{00057\ \ \ \ \ \{}
+\DoxyCodeLine{00058\ \ \ \ \ \ \ \ \ \textcolor{comment}{//BASE\_MODULE::terminal\_out\_\ =\ new\ sc\_out<typename\ BASE\_MODULE::data\_t>("{}terminal"{});}}
+\DoxyCodeLine{00059\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_sysc_add__pv}{SC\_THREAD}}(\mbox{\hyperlink{class_sysc_in_ad406f983c857da1c03bf46212bbe38cb}{Thread}});}
+\DoxyCodeLine{00060\ \ \ \ \ \}}
+\DoxyCodeLine{00061\ }
+\DoxyCodeLine{00062\ \ \ \ \ \mbox{\hyperlink{class_sysc_in_a6045975299473ebf7d8d2b12f0d90670}{SyscIn}}(\textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{class_sysc_add__pv}{high\_usteps}},\ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{class_sysc_add__pv}{low\_usteps}},\ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{class_sysc_add__pv}{init\_usteps}},}
+\DoxyCodeLine{00063\ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_sysc_add__pv}{sc\_logic}}\ \mbox{\hyperlink{class_sysc_add__pv}{init\_value}},\ ::sc\_core::sc\_module\_name\ name)\ :\ \mbox{\hyperlink{class_sysc_terminal}{SyscTerminal}}<\mbox{\hyperlink{class_sysc_add__pv}{W}}>(name),}
+\DoxyCodeLine{00064\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_sysc_in_a6ef168883f0cd16151c1d374910c3fd3}{m\_high\_usteps}}(\mbox{\hyperlink{class_sysc_add__pv}{high\_usteps}}),\ \mbox{\hyperlink{class_sysc_in_adda3b68f372e82af223800e93909949c}{m\_low\_usteps}}(\mbox{\hyperlink{class_sysc_add__pv}{low\_usteps}}),\ \mbox{\hyperlink{class_sysc_in_a1899f644628fb9fb9312a6dc7d1e26fd}{m\_init\_usteps}}(\mbox{\hyperlink{class_sysc_add__pv}{init\_usteps}})\ ,\ \mbox{\hyperlink{class_sysc_in_a93cb5fdf92607658e12a872ec3aa92fb}{m\_init\_value}}(\mbox{\hyperlink{class_sysc_add__pv}{init\_value}})}
+\DoxyCodeLine{00065\ \ \ \ \ \ \ \textcolor{comment}{//,\ terminal("{}terminal"{})}}
+\DoxyCodeLine{00066\ \ \ \ \ \{}
+\DoxyCodeLine{00067\ \ \ \ \ \ \ \ \ \textcolor{comment}{//BASE\_MODULE::terminal\_out\_\ =\ new\ sc\_out<typename\ BASE\_MODULE::data\_t>("{}terminal"{});}}
+\DoxyCodeLine{00068\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_sysc_add__pv}{SC\_THREAD}}(\mbox{\hyperlink{class_sysc_in_ad406f983c857da1c03bf46212bbe38cb}{Thread}});}
+\DoxyCodeLine{00069\ \ \ \ \ \}}
+\DoxyCodeLine{00070\ }
+\DoxyCodeLine{00071\ \ \ \ \ \textcolor{comment}{//\ @TODO:\ Insert\ a\ list\ of\ pairs\ (value,\ time)\ before\ the\ simulation\ is\ started}}
+\DoxyCodeLine{00072\ \ \ \ \ \textcolor{comment}{//\ to\ generate\ an\ arbitray\ waveform\ (W-\/bits\ wide)}}
+\DoxyCodeLine{00073\ }
+\DoxyCodeLine{00074\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_sysc_in_ad406f983c857da1c03bf46212bbe38cb}{Thread}}\ ()\ \{}
+\DoxyCodeLine{00075\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\mbox{\hyperlink{class_sysc_in_a1899f644628fb9fb9312a6dc7d1e26fd}{m\_init\_usteps}}\ >\ 0)\ \{}
+\DoxyCodeLine{00076\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//BASE\_MODULE::terminal\_out()-\/>write(typename\ BASE\_MODULE::data\_t(m\_init\_value));}}
+\DoxyCodeLine{00077\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_sysc_in_a2df6ca7431de67e2ea09a33fec262be8}{terminal}}.write(\textcolor{keyword}{typename}\ \mbox{\hyperlink{class_sysc_terminal_a562ee169e7af660cbf4dde3ce140e000}{BASE\_MODULE::data\_t}}(\mbox{\hyperlink{class_sysc_in_a93cb5fdf92607658e12a872ec3aa92fb}{m\_init\_value}}));}
+\DoxyCodeLine{00078\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_sysc_add__pv}{wait}}(\mbox{\hyperlink{class_sysc_in_a1899f644628fb9fb9312a6dc7d1e26fd}{m\_init\_usteps}});}
+\DoxyCodeLine{00079\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_sysc_in_a93cb5fdf92607658e12a872ec3aa92fb}{m\_init\_value}}\ =\ (\mbox{\hyperlink{class_sysc_in_a93cb5fdf92607658e12a872ec3aa92fb}{m\_init\_value}}\ ==\ \mbox{\hyperlink{class_sysc_add__pv}{SC\_LOGIC\_0}}?\ \mbox{\hyperlink{class_sysc_add__pv}{SC\_LOGIC\_1}}\ :\ \mbox{\hyperlink{class_sysc_add__pv}{SC\_LOGIC\_0}});}
+\DoxyCodeLine{00080\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00081\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{while}\ (1)\ \{}
+\DoxyCodeLine{00082\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//BASE\_MODULE::terminal\_out()-\/>write(typename\ BASE\_MODULE::data\_t(m\_init\_value));}}
+\DoxyCodeLine{00083\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_sysc_in_a2df6ca7431de67e2ea09a33fec262be8}{terminal}}.write(\textcolor{keyword}{typename}\ \mbox{\hyperlink{class_sysc_terminal_a562ee169e7af660cbf4dde3ce140e000}{BASE\_MODULE::data\_t}}(\mbox{\hyperlink{class_sysc_in_a93cb5fdf92607658e12a872ec3aa92fb}{m\_init\_value}}));}
+\DoxyCodeLine{00084\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_sysc_add__pv}{wait}}(\mbox{\hyperlink{class_sysc_in_a93cb5fdf92607658e12a872ec3aa92fb}{m\_init\_value}}\ ==\ \mbox{\hyperlink{class_sysc_add__pv}{SC\_LOGIC\_0}}?\ \mbox{\hyperlink{class_sysc_in_adda3b68f372e82af223800e93909949c}{m\_low\_usteps}}\ :\ \mbox{\hyperlink{class_sysc_in_a6ef168883f0cd16151c1d374910c3fd3}{m\_high\_usteps}});}
+\DoxyCodeLine{00085\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_sysc_in_a93cb5fdf92607658e12a872ec3aa92fb}{m\_init\_value}}\ =\ (\mbox{\hyperlink{class_sysc_in_a93cb5fdf92607658e12a872ec3aa92fb}{m\_init\_value}}\ ==\ \mbox{\hyperlink{class_sysc_add__pv}{SC\_LOGIC\_0}}?\ \mbox{\hyperlink{class_sysc_add__pv}{SC\_LOGIC\_1}}\ :\ \mbox{\hyperlink{class_sysc_add__pv}{SC\_LOGIC\_0}});}
+\DoxyCodeLine{00086\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00087\ \ \ \ \ \}}
+\DoxyCodeLine{00088\ \};}
+\DoxyCodeLine{00089\ }
+\DoxyCodeLine{00090\ \textcolor{keyword}{template}\ <\textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{int}\ W\ =\ 1>}
+\DoxyCodeLine{00091\ \textcolor{keyword}{class\ }\mbox{\hyperlink{class_sysc_out}{SyscOut}}\ :\ \textcolor{keyword}{public}\ \mbox{\hyperlink{class_sysc_terminal}{SyscTerminal}}<W>\ \{}
+\DoxyCodeLine{00092\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00093\ \ \ \ \ \textcolor{keyword}{static\_assert}(\mbox{\hyperlink{class_sysc_add__pv}{W}}\ >=\ 1,\ \textcolor{stringliteral}{"{}SyscOut\ DESIGN\ ERROR:\ W\ must\ be\ >=1"{}});}
+\DoxyCodeLine{00094\ }
+\DoxyCodeLine{00095\ \ \ \ \ \textcolor{keyword}{typedef}\ \ \mbox{\hyperlink{class_sysc_add__pv}{sc\_lv<W>}}\ \ \ \ \ \ \ \mbox{\hyperlink{class_sysc_out_a68bb659ccdf8c3821584857ab32d241a}{data\_t}};}
+\DoxyCodeLine{00096\ }
+\DoxyCodeLine{00097\ \ \ \ \ \textcolor{keyword}{typedef}\ \mbox{\hyperlink{class_sysc_add__pv}{SyscTerminal<W>}}\ \mbox{\hyperlink{class_sysc_out_abb2b1a0929a350c624a75726e0c72d95}{BASE\_MODULE}};}
+\DoxyCodeLine{00098\ \ \ \ \ \textcolor{keyword}{typedef}\ \mbox{\hyperlink{class_sysc_add__pv}{SyscOut<W>}}\ \mbox{\hyperlink{class_sysc_out_ac764704b244345ba316388898e6f09ab}{SC\_CURRENT\_USER\_MODULE}};}
+\DoxyCodeLine{00099\ }
+\DoxyCodeLine{00100\ \ \ \ \ \mbox{\hyperlink{class_sysc_add__pv}{sc\_in<typename\ BASE\_MODULE::data\_t>}}\ \mbox{\hyperlink{class_sysc_out_a82b1af1dc3dd9ccb6c716ecc2e80751e}{terminal}}\{\textcolor{stringliteral}{"{}terminal"{}}\};}
+\DoxyCodeLine{00101\ }
+\DoxyCodeLine{00102\ \ \ \ \ \mbox{\hyperlink{class_sysc_out_a79b0f5c9888c873c488b08dcf43a2661}{SyscOut}}(::sc\_core::sc\_module\_name\ name)\ :\ \mbox{\hyperlink{class_sysc_terminal}{SyscTerminal}}<\mbox{\hyperlink{class_sysc_add__pv}{W}}>(name),\ \mbox{\hyperlink{class_sysc_out_a82b1af1dc3dd9ccb6c716ecc2e80751e}{terminal}}(\textcolor{stringliteral}{"{}terminal"{}})}
+\DoxyCodeLine{00103\ \ \ \ \ \{}
+\DoxyCodeLine{00104\ \ \ \ \ \ \ \ \ \textcolor{comment}{//BASE\_MODULE::terminal\_in\_\ =\ new\ sc\_in<typename\ BASE\_MODULE::data\_t>("{}terminal"{});}}
+\DoxyCodeLine{00105\ \ \ \ \ \}}
+\DoxyCodeLine{00106\ }
+\DoxyCodeLine{00107\ \ \ \ \ \textcolor{comment}{//\ @TODO:\ What's\ the\ purpose\ of\ an\ output\ terminal?}}
+\DoxyCodeLine{00108\ \};}
+\DoxyCodeLine{00109\ }
+\DoxyCodeLine{00110\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{//\ SC\_TERMINALS\_H}}
+
+\end{DoxyCode}

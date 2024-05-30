@@ -20,6 +20,9 @@ Inherits \fBSvgParser\fP\&.
 .ti -1c
 .RI "\fB~SystemcLinker\fP ()"
 .br
+.ti -1c
+.RI "\fBbool\fP \fBgetGlobalParsingError\fP ()"
+.br
 .in -1c
 
 Public Member Functions inherited from \fBSvgParser\fP
@@ -43,7 +46,7 @@ Public Member Functions inherited from \fBSvgParser\fP
 .RI "\fBvoid\fP \fBlink_components\fP ()"
 .br
 .ti -1c
-.RI "\fBvoid\fP \fBcreate_sysc_module\fP (\fBconst\fP \fBs_element\fP &elem)"
+.RI "\fBvoid\fP \fBcreate_sysc_module\fP (\fBconst\fP \fBs_element\fP &\fBelem\fP)"
 .br
 .in -1c
 .SS "Additional Inherited Members"
@@ -62,18 +65,12 @@ Protected Types inherited from \fBSvgParser\fP
 .ti -1c
 .RI "enum \fBe_states\fP { \fBTO_BE_FOUND\fP }"
 .br
-.ti -1c
-.RI "enum \fBI_O\fP { \fBINPUT\fP, \fBOUTPUT\fP, \fBUNDEFINED\fP }"
-.br
-.ti -1c
-.RI "\fBtypedef\fP \fBenum\fP \fBSvgParser::I_O\fP \fBe_IO_type\fP"
-.br
 .in -1c
 
 Protected Attributes inherited from \fBSvgParser\fP
 .in +1c
 .ti -1c
-.RI "int \fBgroups_number\fP"
+.RI "\fBint\fP \fBgroups_number\fP"
 .br
 .RI "Number of groups\&. "
 .ti -1c
@@ -97,6 +94,8 @@ The svg_linker class This class will generate the systemC link between the diffe
 .SH "Member Function Documentation"
 .PP 
 .SS "\fBvoid\fP SystemcLinker::create_sysc_module (\fBconst\fP \fBs_element\fP & elem)\fR [private]\fP"
+
+.SS "\fBbool\fP SystemcLinker::getGlobalParsingError ()"
 
 .SS "\fBvoid\fP SystemcLinker::link_components ()\fR [private]\fP"
 

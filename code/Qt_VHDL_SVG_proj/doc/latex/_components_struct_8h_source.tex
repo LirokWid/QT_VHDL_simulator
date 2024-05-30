@@ -1,0 +1,99 @@
+\doxysection{Components\+Struct.\+h}
+\hypertarget{_components_struct_8h_source}{}\label{_components_struct_8h_source}\index{C:/Users/BJRODIER/Documents/QT\_REPO/QT\_VHDL\_simulator/code/Qt\_VHDL\_SVG\_proj/parser\_linker/ComponentsStruct.h@{C:/Users/BJRODIER/Documents/QT\_REPO/QT\_VHDL\_simulator/code/Qt\_VHDL\_SVG\_proj/parser\_linker/ComponentsStruct.h}}
+\mbox{\hyperlink{_components_struct_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{comment}{//\ ComponentsStructs.h}}
+\DoxyCodeLine{00002\ }
+\DoxyCodeLine{00003\ \textcolor{preprocessor}{\#ifndef\ COMPONENTSSTRUCTS\_H}}
+\DoxyCodeLine{00004\ \textcolor{preprocessor}{\#define\ COMPONENTSSTRUCTS\_H}}
+\DoxyCodeLine{00005\ }
+\DoxyCodeLine{00006\ \textcolor{preprocessor}{\#include\ <QString>}}
+\DoxyCodeLine{00007\ \textcolor{preprocessor}{\#include\ <QList>}}
+\DoxyCodeLine{00008\ }
+\DoxyCodeLine{00009\ \textcolor{comment}{//\ Enum\ for\ I/O\ type}}
+\DoxyCodeLine{00010\ \textcolor{keyword}{typedef}\ \textcolor{keyword}{enum}\ \mbox{\hyperlink{_components_struct_8h_ad59cdc6dfe08d36bd6fa64f7c0ae3742}{I\_O}}}
+\DoxyCodeLine{00011\ \{}
+\DoxyCodeLine{00012\ \ \ \ \ \mbox{\hyperlink{_components_struct_8h_ad59cdc6dfe08d36bd6fa64f7c0ae3742ae310c909d76b003d016bef8bdf16936a}{INPUT}},\ \ \ \ }
+\DoxyCodeLine{00013\ \ \ \ \ \mbox{\hyperlink{_components_struct_8h_ad59cdc6dfe08d36bd6fa64f7c0ae3742a2ab08d3e103968f5f4f26b66a52e99d6}{OUTPUT}},\ \ \ }
+\DoxyCodeLine{00014\ \ \ \ \ \mbox{\hyperlink{_components_struct_8h_ad59cdc6dfe08d36bd6fa64f7c0ae3742a605159e8a4c32319fd69b5d151369d93}{UNDEFINED}}\ }
+\DoxyCodeLine{00015\ \}\ \mbox{\hyperlink{_components_struct_8h_accc340ca8ab253e93ed5b9c8326ba3f2}{e\_IO\_type}};}
+\DoxyCodeLine{00016\ }
+\DoxyCodeLine{00017\ \textcolor{comment}{//\ Struct\ for\ parsing\ errors}}
+\DoxyCodeLine{00018\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structs__parse__error}{s\_parse\_error}}}
+\DoxyCodeLine{00019\ \{}
+\DoxyCodeLine{00020\ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{structs__parse__error_afaa124ad2102359f4380f3b1b83a6386}{is\_parse\_error}};\ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00021\ \ \ \ \ QList<QString>\ \mbox{\hyperlink{structs__parse__error_aaf78376eb137d4b3b0070e4aa5919706}{error\_messages}};\ }
+\DoxyCodeLine{00022\ \};}
+\DoxyCodeLine{00023\ }
+\DoxyCodeLine{00024\ \textcolor{comment}{//\ Struct\ for\ element\ I/O\ information}}
+\DoxyCodeLine{00025\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structs__element__io}{s\_element\_io}}}
+\DoxyCodeLine{00026\ \{}
+\DoxyCodeLine{00027\ \ \ \ \ QString\ \mbox{\hyperlink{structs__element__io_acca86c620c913ed29e7f6298cb2a2edf}{name}};\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00028\ \ \ \ \ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{structs__element__io_ace4d00a845d9cd6331130940df8df544}{width}};\ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00029\ \ \ \ \ QString\ \mbox{\hyperlink{structs__element__io_a81d4169eacbe9a5fb88a2fa1e87ffbf9}{connected\_to}};\ }
+\DoxyCodeLine{00030\ \};}
+\DoxyCodeLine{00031\ }
+\DoxyCodeLine{00032\ \textcolor{comment}{//\ Struct\ for\ simulation\ I/O\ information}}
+\DoxyCodeLine{00033\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structs__sim___i___o}{s\_sim\_I\_O}}}
+\DoxyCodeLine{00034\ \{}
+\DoxyCodeLine{00035\ \ \ \ \ QString\ \mbox{\hyperlink{structs__sim___i___o_ae0ad7aad4cbdc2d51f18ee9b7546c33a}{name}};\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00036\ \ \ \ \ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{structs__sim___i___o_a635d5c02dd9659ef1201497f3bf9c61e}{width}};\ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00037\ \ \ \ \ \mbox{\hyperlink{_components_struct_8h_accc340ca8ab253e93ed5b9c8326ba3f2}{e\_IO\_type}}\ \mbox{\hyperlink{structs__sim___i___o_aee4c9af7078cf785105bf2ffa5237444}{type}};\ \ \ \ \ \ \ }
+\DoxyCodeLine{00038\ \ \ \ \ QString\ \mbox{\hyperlink{structs__sim___i___o_a4e1a51f814e73c7b85ad050278a65978}{connected\_to}};\ }
+\DoxyCodeLine{00039\ \ \ \ \ \mbox{\hyperlink{structs__parse__error}{s\_parse\_error}}\ \mbox{\hyperlink{structs__sim___i___o_afcaf95c0f9dbfc8cab8a7112c20c18cf}{error}};\ \ }
+\DoxyCodeLine{00040\ \};}
+\DoxyCodeLine{00041\ }
+\DoxyCodeLine{00042\ \textcolor{comment}{//\ Struct\ for\ storing\ all\ the\ simulation\ I/Os}}
+\DoxyCodeLine{00043\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structs__sim___i___os}{s\_sim\_I\_Os}}}
+\DoxyCodeLine{00044\ \{}
+\DoxyCodeLine{00045\ \ \ \ \ QList<s\_sim\_I\_O>\ \mbox{\hyperlink{structs__sim___i___os_a608c773c313e3ebc6cf2331633adce45}{i\_os}};\ }
+\DoxyCodeLine{00046\ \ \ \ \ \mbox{\hyperlink{structs__parse__error}{s\_parse\_error}}\ \mbox{\hyperlink{structs__sim___i___os_af0120096058198557b51603ce5644f24}{error}};\ \ \ }
+\DoxyCodeLine{00047\ \};}
+\DoxyCodeLine{00048\ }
+\DoxyCodeLine{00049\ \textcolor{comment}{//\ Struct\ for\ storing\ wire\ information}}
+\DoxyCodeLine{00050\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structs__sim__wire}{s\_sim\_wire}}}
+\DoxyCodeLine{00051\ \{}
+\DoxyCodeLine{00052\ \ \ \ \ QString\ \mbox{\hyperlink{structs__sim__wire_a7407391f2ef72f5b98204f4cc502c6c0}{name}};\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00053\ \ \ \ \ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{structs__sim__wire_ac3136006e077afc117f6a0649f50d1e5}{width}};\ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00054\ \ \ \ \ QString\ \mbox{\hyperlink{structs__sim__wire_a7c70d6803cbe0355333f5d7dc5e5391e}{connected\_to}};\ }
+\DoxyCodeLine{00055\ \ \ \ \ \mbox{\hyperlink{structs__parse__error}{s\_parse\_error}}\ \mbox{\hyperlink{structs__sim__wire_a969d33d44429d62791666e7881a7719b}{error}};\ \ }
+\DoxyCodeLine{00056\ \};}
+\DoxyCodeLine{00057\ }
+\DoxyCodeLine{00058\ \textcolor{comment}{//\ Struct\ for\ storing\ all\ the\ wires}}
+\DoxyCodeLine{00059\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structs__sim__wires}{s\_sim\_wires}}}
+\DoxyCodeLine{00060\ \{}
+\DoxyCodeLine{00061\ \ \ \ \ QList<s\_sim\_wire>\ \mbox{\hyperlink{structs__sim__wires_a7556bf28b245037ab201d38a6228e039}{wires}};\ }
+\DoxyCodeLine{00062\ \ \ \ \ \mbox{\hyperlink{structs__parse__error}{s\_parse\_error}}\ \mbox{\hyperlink{structs__sim__wires_aae0770f720e687ebcfc189c1d8c02f83}{error}};\ \ \ \ \ }
+\DoxyCodeLine{00063\ \};}
+\DoxyCodeLine{00064\ }
+\DoxyCodeLine{00065\ \textcolor{comment}{//\ Struct\ for\ storing\ element\ information}}
+\DoxyCodeLine{00066\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structs__element}{s\_element}}}
+\DoxyCodeLine{00067\ \{}
+\DoxyCodeLine{00068\ \ \ \ \ QString\ \mbox{\hyperlink{structs__element_af7e066a4aedb4944b36b0ce9e8a2f404}{name}};\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00069\ \ \ \ \ QString\ \mbox{\hyperlink{structs__element_a83026c34421bb372466e4cb77ca054bf}{device}};\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00070\ \ \ \ \ QString\ \mbox{\hyperlink{structs__element_a0c90d780ce2a4a869659d0002f561a3f}{label}};\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00071\ \ \ \ \ QList<s\_element\_io>\ \mbox{\hyperlink{structs__element_abec11dbedc8819587561a97c0ad411ac}{inputs}};\ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00072\ \ \ \ \ QList<s\_element\_io>\ \mbox{\hyperlink{structs__element_a260e95585e070ef8e2fc947c96f851a5}{outputs}};\ \ \ \ \ \ \ }
+\DoxyCodeLine{00073\ \ \ \ \ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{structs__element_a352d589898c0c54fdd461c3e59ef2952}{inputs\_number}};\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00074\ \ \ \ \ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{structs__element_a8b952576c5579916d9f496e651778690}{outputs\_number}};\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00075\ \ \ \ \ \mbox{\hyperlink{structs__parse__error}{s\_parse\_error}}\ \mbox{\hyperlink{structs__element_a9e4fad4711b18cfa5b5c8b56e62fd009}{error}};\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00076\ \};}
+\DoxyCodeLine{00077\ }
+\DoxyCodeLine{00078\ \textcolor{comment}{//\ Struct\ for\ storing\ all\ elements}}
+\DoxyCodeLine{00079\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structs__elements}{s\_elements}}}
+\DoxyCodeLine{00080\ \{}
+\DoxyCodeLine{00081\ \ \ \ \ QList<s\_element>\ \mbox{\hyperlink{structs__elements_abfb7a538a0ca3080cbae09a05fe10f7e}{elements\_list}};\ }
+\DoxyCodeLine{00082\ \ \ \ \ \mbox{\hyperlink{structs__parse__error}{s\_parse\_error}}\ \mbox{\hyperlink{structs__elements_a23ed4c97e9067736ee08702a63b06867}{error}};\ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00083\ \};}
+\DoxyCodeLine{00084\ }
+\DoxyCodeLine{00085\ \textcolor{comment}{//\ Struct\ for\ storing\ components\ list}}
+\DoxyCodeLine{00086\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structs__components__list}{s\_components\_list}}}
+\DoxyCodeLine{00087\ \{}
+\DoxyCodeLine{00088\ \ \ \ \ \mbox{\hyperlink{structs__elements}{s\_elements}}\ \mbox{\hyperlink{structs__components__list_aa936f0e2a4ffb631492a586acd850b91}{elements}};\ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00089\ \ \ \ \ \mbox{\hyperlink{structs__sim___i___os}{s\_sim\_I\_Os}}\ \mbox{\hyperlink{structs__components__list_a34add88f37b662c09d963f1a2ddfcf7d}{simulation\_IOs}};\ \ \ \ }
+\DoxyCodeLine{00090\ \ \ \ \ \mbox{\hyperlink{structs__sim__wires}{s\_sim\_wires}}\ \mbox{\hyperlink{structs__components__list_a1109383fa361b821c1d94f989801819b}{simulation\_wires}};\ }
+\DoxyCodeLine{00091\ \};}
+\DoxyCodeLine{00092\ }
+\DoxyCodeLine{00093\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{//\ COMPONENTSSTRUCTS\_H}}
+
+\end{DoxyCode}

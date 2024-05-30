@@ -1,0 +1,283 @@
+\doxysection{sc\+\_\+gates\+\_\+pv.\+h}
+\hypertarget{sc__gates__pv_8h_source}{}\label{sc__gates__pv_8h_source}\index{C:/Users/BJRODIER/Documents/QT\_REPO/QT\_VHDL\_simulator/code/Qt\_VHDL\_SVG\_proj/systemc\_modules/sc\_gates\_pv.h@{C:/Users/BJRODIER/Documents/QT\_REPO/QT\_VHDL\_simulator/code/Qt\_VHDL\_SVG\_proj/systemc\_modules/sc\_gates\_pv.h}}
+\mbox{\hyperlink{sc__gates__pv_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#ifndef\ SC\_GATES\_PV\_H}}
+\DoxyCodeLine{00002\ \textcolor{preprocessor}{\#define\ SC\_GATES\_PV\_H}}
+\DoxyCodeLine{00003\ }
+\DoxyCodeLine{00004\ \textcolor{preprocessor}{\#include\ <QtXml>}}
+\DoxyCodeLine{00005\ \textcolor{comment}{//\#include\ <QDomNodeList>}}
+\DoxyCodeLine{00006\ \textcolor{preprocessor}{\#include\ <systemc.h>}}
+\DoxyCodeLine{00007\ }
+\DoxyCodeLine{00014\ \textcolor{keyword}{template}\ <\textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{int}\ N\ =\ 2,\ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{int}\ W\ =\ 1>}
+\DoxyCodeLine{00015\ \textcolor{keyword}{class\ }\mbox{\hyperlink{class_sysc_logic_gate__pv}{SyscLogicGate\_pv}}\ :\ \textcolor{keyword}{public}\ ::sc\_core::sc\_module}
+\DoxyCodeLine{00016\ \{}
+\DoxyCodeLine{00017\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00018\ \ \ \ \ \textcolor{keyword}{static\_assert}(\mbox{\hyperlink{class_sysc_add__pv}{N}}\ >=\ 2,\ \textcolor{stringliteral}{"{}SyscLogicGate\_pv\ DESIGN\ ERROR:\ N\ must\ be\ >=\ 2"{}});}
+\DoxyCodeLine{00019\ \ \ \ \ \textcolor{keyword}{static\_assert}(\mbox{\hyperlink{class_sysc_add__pv}{W}}\ >=\ 1,\ \textcolor{stringliteral}{"{}SyscLogicGate\_pv\ DESIGN\ ERROR:\ W\ must\ be\ >=\ 1"{}});}
+\DoxyCodeLine{00020\ }
+\DoxyCodeLine{00021\ \ \ \ \ \textcolor{keyword}{typedef}\ \ \mbox{\hyperlink{class_sysc_add__pv}{sc\_lv<W>}}\ \ \ \ \ \ \ \ \mbox{\hyperlink{class_sysc_logic_gate__pv_a3d1e2ec06d184e244058c0fda3ba5565}{data\_t}};}
+\DoxyCodeLine{00022\ }
+\DoxyCodeLine{00029\ \ \ \ \ \mbox{\hyperlink{class_sysc_add__pv}{sc\_vector<sc\_in<data\_t>}}>\ \mbox{\hyperlink{class_sysc_logic_gate__pv_a15e2888096c96af630d6bd60f82122bf}{d}};}
+\DoxyCodeLine{00030\ }
+\DoxyCodeLine{00031\ \ \ \ \ \textcolor{comment}{//\ Data\ output}}
+\DoxyCodeLine{00032\ \ \ \ \ \mbox{\hyperlink{class_sysc_add__pv}{sc\_out<data\_t>}}\ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_sysc_logic_gate__pv_a9e8368d8627e69b2dd95ee5215c0aa0f}{y}}\{\textcolor{stringliteral}{"{}y"{}}\};}
+\DoxyCodeLine{00033\ }
+\DoxyCodeLine{00034\ \ \ \ \ \textcolor{keyword}{typedef}\ \mbox{\hyperlink{class_sysc_add__pv}{SyscLogicGate\_pv<N,W>}}\ \mbox{\hyperlink{class_sysc_logic_gate__pv_a84ebbf9e79421ae47e7dee60358e4bec}{SC\_CURRENT\_USER\_MODULE}};}
+\DoxyCodeLine{00035\ \ \ \ \ \mbox{\hyperlink{class_sysc_add__pv}{SyscLogicGate\_pv<N,W>}}(::sc\_core::sc\_module\_name\ name)\ :\ ::sc\_core::sc\_module(name),\ \mbox{\hyperlink{class_sysc_logic_gate__pv_a15e2888096c96af630d6bd60f82122bf}{d}}(\textcolor{stringliteral}{"{}d"{}},\ \mbox{\hyperlink{class_sysc_add__pv}{N}})\ \{}
+\DoxyCodeLine{00036\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_sysc_add__pv}{SC\_METHOD}}(\mbox{\hyperlink{class_sysc_logic_gate__pv_a11f7e54f2956c836cd80476cc547cf2e}{combinational}});}
+\DoxyCodeLine{00037\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{class_sysc_add__pv}{i}}=0;\ \mbox{\hyperlink{class_sysc_add__pv}{i}}\ <\ \mbox{\hyperlink{class_sysc_add__pv}{N}};\ \mbox{\hyperlink{class_sysc_add__pv}{i}}++)}
+\DoxyCodeLine{00038\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00039\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_sysc_add__pv}{sensitive}}\ <<\ \mbox{\hyperlink{class_sysc_logic_gate__pv_a15e2888096c96af630d6bd60f82122bf}{d}}[\mbox{\hyperlink{class_sysc_add__pv}{i}}];}
+\DoxyCodeLine{00040\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00041\ \ \ \ \ \}}
+\DoxyCodeLine{00042\ }
+\DoxyCodeLine{00043\ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_sysc_logic_gate__pv_a11f7e54f2956c836cd80476cc547cf2e}{combinational}}\ ()\ \{}
+\DoxyCodeLine{00044\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_sysc_logic_gate__pv_a3d1e2ec06d184e244058c0fda3ba5565}{data\_t}}\ \mbox{\hyperlink{class_sysc_add__pv}{result}}(\mbox{\hyperlink{class_sysc_add__pv}{SC\_LOGIC\_X}});}
+\DoxyCodeLine{00045\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_sysc_logic_gate__pv_a9e8368d8627e69b2dd95ee5215c0aa0f}{y}}.write(\mbox{\hyperlink{class_sysc_add__pv}{result}});}
+\DoxyCodeLine{00046\ \ \ \ \ \}}
+\DoxyCodeLine{00047\ }
+\DoxyCodeLine{00048\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{class_sysc_logic_gate__pv_a085cba6bc6d680b71d173d4adc1bbe92}{find}}(\mbox{\hyperlink{class_sysc_add__pv}{QString}}\ \textcolor{keywordtype}{id},\ \mbox{\hyperlink{class_sysc_add__pv}{QDomNodeList}}\ children)\ \{}
+\DoxyCodeLine{00049\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{int}\ \mbox{\hyperlink{class_sysc_add__pv}{i}}\ =\ 0;\ \mbox{\hyperlink{class_sysc_add__pv}{i}}\ <\ children.size();\ \mbox{\hyperlink{class_sysc_add__pv}{i}}++)\ \{}
+\DoxyCodeLine{00050\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_sysc_add__pv}{QDomElement}}\ \mbox{\hyperlink{class_sysc_add__pv}{child}}\ =\ children.at(\mbox{\hyperlink{class_sysc_add__pv}{i}}).toElement();}
+\DoxyCodeLine{00051\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\mbox{\hyperlink{class_sysc_add__pv}{child}}.attribute(\textcolor{stringliteral}{"{}id"{}}).toUpper()\ ==\ \textcolor{keywordtype}{id})\ \{}
+\DoxyCodeLine{00052\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{true};}
+\DoxyCodeLine{00053\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00054\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00055\ \ \ \ \ \}}
+\DoxyCodeLine{00056\ }
+\DoxyCodeLine{00057\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{class_sysc_logic_gate__pv_a24ac085fa31a0d61def50cf5d182980f}{getNInputs}}(\mbox{\hyperlink{class_sysc_add__pv}{QString}}\ \mbox{\hyperlink{class_sysc_add__pv}{gate}},\ \textcolor{keywordtype}{bool}\ \&\mbox{\hyperlink{class_sysc_add__pv}{ok}})\ \{}
+\DoxyCodeLine{00058\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{class_sysc_add__pv}{res}}\ =\ -\/1;}
+\DoxyCodeLine{00059\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_sysc_add__pv}{ok}}\ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00060\ \ \ \ \ \ \ \ \ (\mbox{\hyperlink{class_sysc_add__pv}{void}})\mbox{\hyperlink{class_sysc_add__pv}{gate}};}
+\DoxyCodeLine{00061\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Some\ code\ here\ to\ extract\ n\ from\ gate:}}
+\DoxyCodeLine{00062\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Gates\ with\ single-\/bit\ ports\ -\/>\ and\ (=\ and2),\ and2,\ andn,\ nand,\ ...\ both\ lowercase\ and\ uppercase}}
+\DoxyCodeLine{00063\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ \ \ \ \ \ \ \ number\ of\ inputs\ (N)\ -\/>\ \ 2\ \ \ \ \ \ \ \ \ \ \ \ \ \ 2\ \ \ \ \ n\ \ \ \ \ 2}}
+\DoxyCodeLine{00064\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ \ \ \ \ \ \ \ \ \ bits\ per\ input\ (W)\ -\/>\ \ 1\ \ \ \ \ \ \ \ \ \ \ \ \ \ 1\ \ \ \ \ 1\ \ \ \ \ 1}}
+\DoxyCodeLine{00065\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Gates\ with\ w-\/bit\ ports\ -\/>\ and\_w\ (=\ and2\_w),\ and2\_w,\ andn\_w,\ nand\_w,\ ...\ both\ lowercase\ and\ uppercase}}
+\DoxyCodeLine{00066\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ \ \ number\ of\ inputs\ (N)\ -\/>\ \ 2\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ 2\ \ \ \ \ \ n\ \ \ \ \ \ \ 2}}
+\DoxyCodeLine{00067\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ \ \ \ \ bits\ per\ input\ (W)\ -\/>\ \ w\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ w\ \ \ \ \ \ w\ \ \ \ \ \ \ w}}
+\DoxyCodeLine{00068\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ ...}}
+\DoxyCodeLine{00069\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ In\ the\ end:}}
+\DoxyCodeLine{00070\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ a)\ any\ non-\/numerical\ string\ ended\ by\ a\ number:\ XXXXXXXnnnn}}
+\DoxyCodeLine{00071\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ b)\ any\ non-\/numerical\ string\ ended\ by\ a\ two\ numbers\ separated\ by\ \_:\ XXXXXXXnnnn\_wwww}}
+\DoxyCodeLine{00072\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Resort\ to\ Qt\ Regular\ Expression\ x\ for\ help\ about\ extracting\ this}}
+\DoxyCodeLine{00073\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{class_sysc_add__pv}{res}};}
+\DoxyCodeLine{00074\ \ \ \ \ \}}
+\DoxyCodeLine{00075\ }
+\DoxyCodeLine{00076\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{class_sysc_logic_gate__pv_af14c9734483166093d5955fb12e09c29}{getWInputs}}(\mbox{\hyperlink{class_sysc_add__pv}{QString}}\ \mbox{\hyperlink{class_sysc_add__pv}{gate}},\ \textcolor{keywordtype}{bool}\ \&\mbox{\hyperlink{class_sysc_add__pv}{ok}})\ \{}
+\DoxyCodeLine{00077\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{class_sysc_add__pv}{res}}\ =\ -\/1;}
+\DoxyCodeLine{00078\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_sysc_add__pv}{ok}}\ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00079\ \ \ \ \ \ \ \ \ (\mbox{\hyperlink{class_sysc_add__pv}{void}})\mbox{\hyperlink{class_sysc_add__pv}{gate}};}
+\DoxyCodeLine{00080\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Some\ code\ here\ to\ extract\ w\ from\ gate:}}
+\DoxyCodeLine{00081\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Gates\ with\ single-\/bit\ ports\ -\/>\ and\ (=\ and2),\ and2,\ andn,\ nand,\ ...\ both\ lowercase\ and\ uppercase}}
+\DoxyCodeLine{00082\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ \ \ \ \ \ \ \ number\ of\ inputs\ (N)\ -\/>\ \ 2\ \ \ \ \ \ \ \ \ \ \ \ \ \ 2\ \ \ \ \ n\ \ \ \ \ 2}}
+\DoxyCodeLine{00083\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ \ \ \ \ \ \ \ \ \ bits\ per\ input\ (W)\ -\/>\ \ 1\ \ \ \ \ \ \ \ \ \ \ \ \ \ 1\ \ \ \ \ 1\ \ \ \ \ 1}}
+\DoxyCodeLine{00084\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Gates\ with\ w-\/bit\ ports\ -\/>\ and\_w\ (=\ and2\_w),\ and2\_w,\ andn\_w,\ nand\_w,\ ...\ both\ lowercase\ and\ uppercase}}
+\DoxyCodeLine{00085\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ \ \ number\ of\ inputs\ (N)\ -\/>\ \ 2\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ 2\ \ \ \ \ \ n\ \ \ \ \ \ \ 2}}
+\DoxyCodeLine{00086\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ \ \ \ \ bits\ per\ input\ (W)\ -\/>\ \ w\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ w\ \ \ \ \ \ w\ \ \ \ \ \ \ w}}
+\DoxyCodeLine{00087\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ ...}}
+\DoxyCodeLine{00088\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ In\ the\ end:}}
+\DoxyCodeLine{00089\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ a)\ any\ non-\/numerical\ string\ ended\ by\ a\ number:\ XXXXXXXnnnn}}
+\DoxyCodeLine{00090\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ b)\ any\ non-\/numerical\ string\ ended\ by\ a\ two\ numbers\ separated\ by\ \_:\ XXXXXXXnnnn\_wwww}}
+\DoxyCodeLine{00091\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Resort\ to\ Qt\ Regular\ Expression\ x\ for\ help\ about\ extracting\ this}}
+\DoxyCodeLine{00092\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{class_sysc_add__pv}{res}};}
+\DoxyCodeLine{00093\ \ \ \ \ \}}
+\DoxyCodeLine{00094\ }
+\DoxyCodeLine{00095\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{class_sysc_logic_gate__pv_a5ac83cb846f1f3bb72bf3712dfe5b8ea}{validate}}(\mbox{\hyperlink{class_sysc_add__pv}{QString}}\ \mbox{\hyperlink{class_sysc_add__pv}{gate}},\ \mbox{\hyperlink{class_sysc_add__pv}{QString}}\ \textcolor{keywordtype}{id},\ \mbox{\hyperlink{class_sysc_add__pv}{QDomElement}}\ \mbox{\hyperlink{class_sysc_add__pv}{gElement}})\ \{}
+\DoxyCodeLine{00096\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_sysc_add__pv}{QDomNodeList}}\ children\ =\ \mbox{\hyperlink{class_sysc_add__pv}{gElement}}.elementsByTagName(\textcolor{stringliteral}{"{}id"{}});}
+\DoxyCodeLine{00097\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{class_sysc_add__pv}{ninputs\_ok}};}
+\DoxyCodeLine{00098\ }
+\DoxyCodeLine{00099\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ To\ validate\ the\ logic\ gate\ is\ in\ the\ catalog,\ only\ the\ number\ of\ inputs\ is\ required}}
+\DoxyCodeLine{00100\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ (the\ bits/input\ is\ irrelevant\ at\ this\ moment)}}
+\DoxyCodeLine{00101\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{class_sysc_add__pv}{ninputs}}\ =\ \mbox{\hyperlink{class_sysc_logic_gate__pv_a24ac085fa31a0d61def50cf5d182980f}{getNInputs}}(\textcolor{keywordtype}{id},\ \mbox{\hyperlink{class_sysc_add__pv}{ninputs\_ok}});}
+\DoxyCodeLine{00102\ }
+\DoxyCodeLine{00103\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ vvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvv}}
+\DoxyCodeLine{00104\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Rework\ this\ part\ to\ accept:\ and,\ and\_wide,\ and2,\ and2\_wide,\ ...,}}
+\DoxyCodeLine{00105\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ AND2,\ ANDn,\ AND2\_WIDE,\ ANDn\_WIDE,\ (lowercase,\ uppercase,\ camelcase)}}
+\DoxyCodeLine{00106\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Being\ n\ the\ number\ of\ inputs\ (D\_0,\ D\_1,\ ...,\ D\_n-\/1)}}
+\DoxyCodeLine{00107\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Y\ is\ the\ output}}
+\DoxyCodeLine{00108\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ @remark:\ Be\ very\ "{}picky"{}\ here,\ reject\ *anything\ that\ doesn't\ match\ perfectly}}
+\DoxyCodeLine{00109\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!\textcolor{keywordtype}{id}.\mbox{\hyperlink{class_sysc_add__pv}{toUpper}}().\mbox{\hyperlink{class_sysc_add__pv}{startsWith}}(\mbox{\hyperlink{class_sysc_add__pv}{gate}}))\ \{}
+\DoxyCodeLine{00110\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00111\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00112\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!\mbox{\hyperlink{class_sysc_add__pv}{ninputs\_ok}})\ \{}
+\DoxyCodeLine{00113\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00114\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00115\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ \string^\string^\string^\string^\string^\string^\string^\string^\string^\string^\string^\string^\string^\string^\string^\string^\string^\string^\string^\string^\string^\string^\string^\string^\string^\string^\string^\string^\string^\string^\string^\string^\string^\string^\string^\string^\string^\string^\string^\string^\string^\string^\string^\string^\string^\string^\string^\string^\string^\string^\string^\string^\string^\string^\string^\string^\string^\string^\string^\string^}}
+\DoxyCodeLine{00116\ }
+\DoxyCodeLine{00117\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!\mbox{\hyperlink{class_sysc_logic_gate__pv_a085cba6bc6d680b71d173d4adc1bbe92}{find}}(\textcolor{stringliteral}{"{}y"{}},\ children))\ \{}
+\DoxyCodeLine{00118\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00119\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00120\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keyword}{auto}\ \mbox{\hyperlink{class_sysc_add__pv}{i}}\ =\ 0;\ \mbox{\hyperlink{class_sysc_add__pv}{i}}\ <\ \mbox{\hyperlink{class_sysc_add__pv}{ninputs}};\ \mbox{\hyperlink{class_sysc_add__pv}{i}}++)\ \{}
+\DoxyCodeLine{00121\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ For\ the\ SyscLogicGate\ class\ and\ its\ derivatives,}}
+\DoxyCodeLine{00122\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ it\ should\ be\ "{}d"{}\ below\ (not\ "{}d\_"{})}}
+\DoxyCodeLine{00123\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!\mbox{\hyperlink{class_sysc_logic_gate__pv_a085cba6bc6d680b71d173d4adc1bbe92}{find}}(\textcolor{stringliteral}{"{}d\_"{}}\ +\ \mbox{\hyperlink{class_sysc_add__pv_a57417948111cea94689e3dbc33fd51d1}{QString::number}}(\mbox{\hyperlink{class_sysc_add__pv}{i}}),\ children))\ \{}
+\DoxyCodeLine{00124\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00125\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00126\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00127\ }
+\DoxyCodeLine{00128\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{true};}
+\DoxyCodeLine{00129\ \ \ \ \ \}}
+\DoxyCodeLine{00130\ \};}
+\DoxyCodeLine{00131\ }
+\DoxyCodeLine{00132\ \textcolor{keyword}{template}\ <\textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{class_sysc_add__pv}{N}}\ =\ 2,}
+\DoxyCodeLine{00133\ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{class_sysc_add__pv}{W}}\ =\ 1>}
+\DoxyCodeLine{00134\ \textcolor{keyword}{class\ }\mbox{\hyperlink{class_sysc_and__pv}{SyscAnd\_pv}}\ :\ \textcolor{keyword}{public}\ \mbox{\hyperlink{class_sysc_logic_gate__pv}{SyscLogicGate\_pv}}<N,W>\ \{}
+\DoxyCodeLine{00135\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00136\ \ \ \ \ \textcolor{keyword}{static\_assert}(\mbox{\hyperlink{class_sysc_add__pv}{N}}\ >=\ 2,\ \textcolor{stringliteral}{"{}SyscAnd\_pv\ DESIGN\ ERROR:\ N\ must\ be\ >=\ 2"{}});}
+\DoxyCodeLine{00137\ \ \ \ \ \textcolor{keyword}{static\_assert}(\mbox{\hyperlink{class_sysc_add__pv}{W}}\ >=\ 1,\ \textcolor{stringliteral}{"{}SyscAnd\_pv\ DESIGN\ ERROR:\ W\ must\ be\ >=\ 1"{}});}
+\DoxyCodeLine{00138\ \ \ \ \ \textcolor{keyword}{typedef}\ \mbox{\hyperlink{class_sysc_add__pv}{SyscLogicGate\_pv<N,W>}}\ \mbox{\hyperlink{class_sysc_and__pv_aa34001f23a73a11acffabf9cff0f796e}{BASE\_MODULE}};}
+\DoxyCodeLine{00139\ \ \ \ \ \textcolor{keyword}{typedef}\ \mbox{\hyperlink{class_sysc_add__pv}{SyscAnd\_pv<N,W>}}\ \mbox{\hyperlink{class_sysc_and__pv_a427ff0de38cc825bb590c01c7619e6ba}{SC\_CURRENT\_USER\_MODULE}};}
+\DoxyCodeLine{00140\ \ \ \ \ \mbox{\hyperlink{class_sysc_add__pv}{SyscAnd\_pv<N,W>}}(::sc\_core::sc\_module\_name\ name)\ :\ \mbox{\hyperlink{class_sysc_logic_gate__pv}{SyscLogicGate\_pv}}<\mbox{\hyperlink{class_sysc_add__pv}{N}},\mbox{\hyperlink{class_sysc_add__pv}{W}}>(name)\ \{}
+\DoxyCodeLine{00141\ \ \ \ \ \}}
+\DoxyCodeLine{00142\ }
+\DoxyCodeLine{00143\ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_sysc_and__pv_afcc0789dcb8808ff4e5f4d82155eca9d}{combinational}}\ ()\ \{}
+\DoxyCodeLine{00144\ \ \ \ \ \ \ \ \ \textcolor{keyword}{auto}\ \mbox{\hyperlink{class_sysc_add__pv}{i}}\ =\ \mbox{\hyperlink{class_sysc_add__pv}{N}}-\/1;}
+\DoxyCodeLine{00145\ \ \ \ \ \ \ \ \ \textcolor{keyword}{auto}\ \mbox{\hyperlink{class_sysc_add__pv}{result}}\ =\ \mbox{\hyperlink{class_sysc_logic_gate__pv_a15e2888096c96af630d6bd60f82122bf}{BASE\_MODULE::d}}[0].read();}
+\DoxyCodeLine{00146\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (;\ \mbox{\hyperlink{class_sysc_add__pv}{i}}\ >\ 0;\ \mbox{\hyperlink{class_sysc_add__pv}{i}}-\/-\/)\ \{}
+\DoxyCodeLine{00147\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{auto}\ \mbox{\hyperlink{class_sysc_add__pv}{operand}}\ =\ \mbox{\hyperlink{class_sysc_logic_gate__pv_a15e2888096c96af630d6bd60f82122bf}{BASE\_MODULE::d}}[\mbox{\hyperlink{class_sysc_add__pv}{i}}].read();}
+\DoxyCodeLine{00148\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_sysc_add__pv}{result}}\ \&=\ \mbox{\hyperlink{class_sysc_add__pv}{operand}};}
+\DoxyCodeLine{00149\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00150\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_sysc_logic_gate__pv_a9e8368d8627e69b2dd95ee5215c0aa0f}{BASE\_MODULE::y}}.write(\mbox{\hyperlink{class_sysc_add__pv}{result}});}
+\DoxyCodeLine{00151\ \ \ \ \ \}}
+\DoxyCodeLine{00152\ }
+\DoxyCodeLine{00153\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{class_sysc_and__pv_a612920ff78b975b0b48a34eb2dd1b8d9}{validate}}(\mbox{\hyperlink{class_sysc_add__pv}{QString}}\ \textcolor{keywordtype}{id},\ \mbox{\hyperlink{class_sysc_add__pv}{QDomElement}}\ \mbox{\hyperlink{class_sysc_add__pv}{gElement}})\ \{}
+\DoxyCodeLine{00154\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{class_sysc_logic_gate__pv_a5ac83cb846f1f3bb72bf3712dfe5b8ea}{SyscLogicGate\_pv<>::validate}}(\textcolor{stringliteral}{"{}AND"{}},\ \textcolor{keywordtype}{id},\ \mbox{\hyperlink{class_sysc_add__pv}{gElement}});}
+\DoxyCodeLine{00155\ \ \ \ \ \}}
+\DoxyCodeLine{00156\ }
+\DoxyCodeLine{00157\ \};}
+\DoxyCodeLine{00158\ }
+\DoxyCodeLine{00159\ \textcolor{keyword}{template}\ <\textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{class_sysc_add__pv}{N}}\ =\ 2,}
+\DoxyCodeLine{00160\ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{class_sysc_add__pv}{W}}\ =\ 1>}
+\DoxyCodeLine{00161\ \textcolor{keyword}{class\ }\mbox{\hyperlink{class_sysc_nand__pv}{SyscNand\_pv}}\ :\ \textcolor{keyword}{public}\ \mbox{\hyperlink{class_sysc_logic_gate__pv}{SyscLogicGate\_pv}}<N,W>\ \{}
+\DoxyCodeLine{00162\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00163\ \ \ \ \ \textcolor{keyword}{static\_assert}(\mbox{\hyperlink{class_sysc_add__pv}{N}}\ >=\ 2,\ \textcolor{stringliteral}{"{}SyscNand\_pv\ DESIGN\ ERROR:\ N\ must\ be\ >=\ 2"{}});}
+\DoxyCodeLine{00164\ \ \ \ \ \textcolor{keyword}{static\_assert}(\mbox{\hyperlink{class_sysc_add__pv}{W}}\ >=\ 1,\ \textcolor{stringliteral}{"{}SyscNand\_pv\ DESIGN\ ERROR:\ W\ must\ be\ >=\ 1"{}});}
+\DoxyCodeLine{00165\ \ \ \ \ \textcolor{keyword}{typedef}\ \mbox{\hyperlink{class_sysc_add__pv}{SyscLogicGate\_pv<N,W>}}\ \mbox{\hyperlink{class_sysc_nand__pv_ac09b1aa48e3173966b0fa90d576082ea}{BASE\_MODULE}};}
+\DoxyCodeLine{00166\ \ \ \ \ \textcolor{keyword}{typedef}\ \mbox{\hyperlink{class_sysc_add__pv}{SyscNand\_pv<N,W>}}\ \mbox{\hyperlink{class_sysc_nand__pv_a24697edb3bf49072073e800681d06bd6}{SC\_CURRENT\_USER\_MODULE}};}
+\DoxyCodeLine{00167\ \ \ \ \ \mbox{\hyperlink{class_sysc_add__pv}{SyscNand\_pv<N,W>}}(::sc\_core::sc\_module\_name\ name)\ :\ \mbox{\hyperlink{class_sysc_logic_gate__pv}{SyscLogicGate\_pv}}<\mbox{\hyperlink{class_sysc_add__pv}{N}},\mbox{\hyperlink{class_sysc_add__pv}{W}}>(name)\ \{}
+\DoxyCodeLine{00168\ \ \ \ \ \}}
+\DoxyCodeLine{00169\ }
+\DoxyCodeLine{00170\ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_sysc_nand__pv_adcabff06d08d52175b84bc60cce5b3fc}{combinational}}\ ()\ \{}
+\DoxyCodeLine{00171\ \ \ \ \ \ \ \ \ \textcolor{keyword}{auto}\ \mbox{\hyperlink{class_sysc_add__pv}{i}}\ =\ \mbox{\hyperlink{class_sysc_add__pv}{N}}-\/1;}
+\DoxyCodeLine{00172\ \ \ \ \ \ \ \ \ \textcolor{keyword}{auto}\ \mbox{\hyperlink{class_sysc_add__pv}{result}}\ =\ \mbox{\hyperlink{class_sysc_logic_gate__pv_a15e2888096c96af630d6bd60f82122bf}{BASE\_MODULE::d}}[0].read();}
+\DoxyCodeLine{00173\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (;\ \mbox{\hyperlink{class_sysc_add__pv}{i}}\ >\ 0;\ \mbox{\hyperlink{class_sysc_add__pv}{i}}-\/-\/)\ \{}
+\DoxyCodeLine{00174\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{auto}\ \mbox{\hyperlink{class_sysc_add__pv}{operand}}\ =\ \mbox{\hyperlink{class_sysc_logic_gate__pv_a15e2888096c96af630d6bd60f82122bf}{BASE\_MODULE::d}}[\mbox{\hyperlink{class_sysc_add__pv}{i}}].read();}
+\DoxyCodeLine{00175\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_sysc_add__pv}{result}}\ \&=\ \mbox{\hyperlink{class_sysc_add__pv}{operand}};}
+\DoxyCodeLine{00176\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00177\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_sysc_logic_gate__pv_a9e8368d8627e69b2dd95ee5215c0aa0f}{BASE\_MODULE::y}}.write(\string~\mbox{\hyperlink{class_sysc_add__pv}{result}});}
+\DoxyCodeLine{00178\ \ \ \ \ \}}
+\DoxyCodeLine{00179\ }
+\DoxyCodeLine{00180\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{class_sysc_nand__pv_a166b34d9dbe6dee9671eb193c7ed08be}{validate}}(\mbox{\hyperlink{class_sysc_add__pv}{QString}}\ \textcolor{keywordtype}{id},\ \mbox{\hyperlink{class_sysc_add__pv}{QDomElement}}\ \mbox{\hyperlink{class_sysc_add__pv}{gElement}})\ \{}
+\DoxyCodeLine{00181\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{class_sysc_logic_gate__pv_a5ac83cb846f1f3bb72bf3712dfe5b8ea}{SyscLogicGate\_pv<>::validate}}(\textcolor{stringliteral}{"{}NAND"{}},\ \textcolor{keywordtype}{id},\ \mbox{\hyperlink{class_sysc_add__pv}{gElement}});}
+\DoxyCodeLine{00182\ \ \ \ \ \}}
+\DoxyCodeLine{00183\ \};}
+\DoxyCodeLine{00184\ }
+\DoxyCodeLine{00185\ \textcolor{keyword}{template}\ <\textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{class_sysc_add__pv}{N}}\ =\ 2,}
+\DoxyCodeLine{00186\ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{class_sysc_add__pv}{W}}\ =\ 1>}
+\DoxyCodeLine{00187\ \textcolor{keyword}{class\ }\mbox{\hyperlink{class_sysc_or__pv}{SyscOr\_pv}}\ :\ \textcolor{keyword}{public}\ \mbox{\hyperlink{class_sysc_logic_gate__pv}{SyscLogicGate\_pv}}<N,W>\ \{}
+\DoxyCodeLine{00188\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00189\ \ \ \ \ \textcolor{keyword}{static\_assert}(\mbox{\hyperlink{class_sysc_add__pv}{N}}\ >=\ 2,\ \textcolor{stringliteral}{"{}SyscOr\_pv\ DESIGN\ ERROR:\ N\ must\ be\ >=\ 2"{}});}
+\DoxyCodeLine{00190\ \ \ \ \ \textcolor{keyword}{static\_assert}(\mbox{\hyperlink{class_sysc_add__pv}{W}}\ >=\ 1,\ \textcolor{stringliteral}{"{}SyscOr\_pv\ DESIGN\ ERROR:\ W\ must\ be\ >=\ 1"{}});}
+\DoxyCodeLine{00191\ \ \ \ \ \textcolor{keyword}{typedef}\ \mbox{\hyperlink{class_sysc_add__pv}{SyscLogicGate\_pv<N,W>}}\ \mbox{\hyperlink{class_sysc_or__pv_a31d33bf927d7aa5788c08c451a0390ee}{BASE\_MODULE}};}
+\DoxyCodeLine{00192\ \ \ \ \ \textcolor{keyword}{typedef}\ \mbox{\hyperlink{class_sysc_add__pv}{SyscOr\_pv<N,W>}}\ \mbox{\hyperlink{class_sysc_or__pv_aa97f03fafa0e3937e74e34b14afbfb2c}{SC\_CURRENT\_USER\_MODULE}};}
+\DoxyCodeLine{00193\ \ \ \ \ \mbox{\hyperlink{class_sysc_add__pv}{SyscOr\_pv<N,W>}}(::sc\_core::sc\_module\_name\ name)\ :\ \mbox{\hyperlink{class_sysc_logic_gate__pv}{SyscLogicGate\_pv}}<\mbox{\hyperlink{class_sysc_add__pv}{N}},\mbox{\hyperlink{class_sysc_add__pv}{W}}>(name)\ \{}
+\DoxyCodeLine{00194\ \ \ \ \ \}}
+\DoxyCodeLine{00195\ }
+\DoxyCodeLine{00196\ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_sysc_or__pv_ac7698340c99184d199ab15e8ba5fa39b}{combinational}}\ ()\ \{}
+\DoxyCodeLine{00197\ \ \ \ \ \ \ \ \ \textcolor{keyword}{auto}\ \mbox{\hyperlink{class_sysc_add__pv}{i}}\ =\ \mbox{\hyperlink{class_sysc_add__pv}{N}}-\/1;}
+\DoxyCodeLine{00198\ \ \ \ \ \ \ \ \ \textcolor{keyword}{auto}\ \mbox{\hyperlink{class_sysc_add__pv}{result}}\ =\ \mbox{\hyperlink{class_sysc_logic_gate__pv_a15e2888096c96af630d6bd60f82122bf}{BASE\_MODULE::d}}[0].read();}
+\DoxyCodeLine{00199\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (;\ \mbox{\hyperlink{class_sysc_add__pv}{i}}\ >\ 0;\ \mbox{\hyperlink{class_sysc_add__pv}{i}}-\/-\/)\ \{}
+\DoxyCodeLine{00200\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{auto}\ \mbox{\hyperlink{class_sysc_add__pv}{operand}}\ =\ \mbox{\hyperlink{class_sysc_logic_gate__pv_a15e2888096c96af630d6bd60f82122bf}{BASE\_MODULE::d}}[\mbox{\hyperlink{class_sysc_add__pv}{i}}].read();}
+\DoxyCodeLine{00201\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_sysc_add__pv}{result}}\ |=\ \mbox{\hyperlink{class_sysc_add__pv}{operand}};}
+\DoxyCodeLine{00202\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00203\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_sysc_logic_gate__pv_a9e8368d8627e69b2dd95ee5215c0aa0f}{BASE\_MODULE::y}}.write(\mbox{\hyperlink{class_sysc_add__pv}{result}});}
+\DoxyCodeLine{00204\ \ \ \ \ \}}
+\DoxyCodeLine{00205\ }
+\DoxyCodeLine{00206\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{class_sysc_or__pv_a3555656a37da16ae45d0fa51827e3ab9}{validate}}(\mbox{\hyperlink{class_sysc_add__pv}{QString}}\ \textcolor{keywordtype}{id},\ \mbox{\hyperlink{class_sysc_add__pv}{QDomElement}}\ \mbox{\hyperlink{class_sysc_add__pv}{gElement}})\ \{}
+\DoxyCodeLine{00207\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{class_sysc_logic_gate__pv_a5ac83cb846f1f3bb72bf3712dfe5b8ea}{SyscLogicGate\_pv<>::validate}}(\textcolor{stringliteral}{"{}OR"{}},\ \textcolor{keywordtype}{id},\ \mbox{\hyperlink{class_sysc_add__pv}{gElement}});}
+\DoxyCodeLine{00208\ \ \ \ \ \}}
+\DoxyCodeLine{00209\ \};}
+\DoxyCodeLine{00210\ }
+\DoxyCodeLine{00211\ \textcolor{keyword}{template}\ <\textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{class_sysc_add__pv}{N}}\ =\ 2,}
+\DoxyCodeLine{00212\ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{class_sysc_add__pv}{W}}\ =\ 1>}
+\DoxyCodeLine{00213\ \textcolor{keyword}{class\ }\mbox{\hyperlink{class_sysc_nor__pv}{SyscNor\_pv}}\ :\ \textcolor{keyword}{public}\ \mbox{\hyperlink{class_sysc_logic_gate__pv}{SyscLogicGate\_pv}}<N,W>\ \{}
+\DoxyCodeLine{00214\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00215\ \ \ \ \ \textcolor{keyword}{static\_assert}(\mbox{\hyperlink{class_sysc_add__pv}{N}}\ >=\ 2,\ \textcolor{stringliteral}{"{}SyscNor\_pv\ DESIGN\ ERROR:\ N\ must\ be\ >=\ 2"{}});}
+\DoxyCodeLine{00216\ \ \ \ \ \textcolor{keyword}{static\_assert}(\mbox{\hyperlink{class_sysc_add__pv}{W}}\ >=\ 1,\ \textcolor{stringliteral}{"{}SyscNor\_pv\ DESIGN\ ERROR:\ W\ must\ be\ >=\ 1"{}});}
+\DoxyCodeLine{00217\ \ \ \ \ \textcolor{keyword}{typedef}\ \mbox{\hyperlink{class_sysc_add__pv}{SyscLogicGate\_pv<N,W>}}\ \mbox{\hyperlink{class_sysc_nor__pv_a5a3cf926871635897c0b9a73743e855f}{BASE\_MODULE}};}
+\DoxyCodeLine{00218\ \ \ \ \ \textcolor{keyword}{typedef}\ \mbox{\hyperlink{class_sysc_add__pv}{SyscNor\_pv<N,W>}}\ \mbox{\hyperlink{class_sysc_nor__pv_a30662e89a9c0d0412a535bc58451d55b}{SC\_CURRENT\_USER\_MODULE}};}
+\DoxyCodeLine{00219\ \ \ \ \ \mbox{\hyperlink{class_sysc_add__pv}{SyscNor\_pv<N,W>}}(::sc\_core::sc\_module\_name\ name)\ :\ \mbox{\hyperlink{class_sysc_logic_gate__pv}{SyscLogicGate\_pv}}<\mbox{\hyperlink{class_sysc_add__pv}{N}},\mbox{\hyperlink{class_sysc_add__pv}{W}}>(name)\ \{}
+\DoxyCodeLine{00220\ \ \ \ \ \}}
+\DoxyCodeLine{00221\ }
+\DoxyCodeLine{00222\ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_sysc_nor__pv_a91616be01eb47298dca52b8922ea6e47}{combinational}}\ ()\ \{}
+\DoxyCodeLine{00223\ \ \ \ \ \ \ \ \ \textcolor{keyword}{auto}\ \mbox{\hyperlink{class_sysc_add__pv}{i}}\ =\ \mbox{\hyperlink{class_sysc_add__pv}{N}}-\/1;}
+\DoxyCodeLine{00224\ \ \ \ \ \ \ \ \ \textcolor{keyword}{auto}\ \mbox{\hyperlink{class_sysc_add__pv}{result}}\ =\ \mbox{\hyperlink{class_sysc_logic_gate__pv_a15e2888096c96af630d6bd60f82122bf}{BASE\_MODULE::d}}[0].read();}
+\DoxyCodeLine{00225\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (;\ \mbox{\hyperlink{class_sysc_add__pv}{i}}\ >\ 0;\ \mbox{\hyperlink{class_sysc_add__pv}{i}}-\/-\/)\ \{}
+\DoxyCodeLine{00226\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{auto}\ \mbox{\hyperlink{class_sysc_add__pv}{operand}}\ =\ \mbox{\hyperlink{class_sysc_logic_gate__pv_a15e2888096c96af630d6bd60f82122bf}{BASE\_MODULE::d}}[\mbox{\hyperlink{class_sysc_add__pv}{i}}].read();}
+\DoxyCodeLine{00227\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_sysc_add__pv}{result}}\ |=\ \mbox{\hyperlink{class_sysc_add__pv}{operand}};}
+\DoxyCodeLine{00228\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00229\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_sysc_logic_gate__pv_a9e8368d8627e69b2dd95ee5215c0aa0f}{BASE\_MODULE::y}}.write(\string~\mbox{\hyperlink{class_sysc_add__pv}{result}});}
+\DoxyCodeLine{00230\ \ \ \ \ \}}
+\DoxyCodeLine{00231\ }
+\DoxyCodeLine{00232\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{class_sysc_nor__pv_a8ec9579db70c581e4938ced8ef484d34}{validate}}(\mbox{\hyperlink{class_sysc_add__pv}{QString}}\ \textcolor{keywordtype}{id},\ \mbox{\hyperlink{class_sysc_add__pv}{QDomElement}}\ \mbox{\hyperlink{class_sysc_add__pv}{gElement}})\ \{}
+\DoxyCodeLine{00233\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{class_sysc_logic_gate__pv_a5ac83cb846f1f3bb72bf3712dfe5b8ea}{SyscLogicGate\_pv<>::validate}}(\textcolor{stringliteral}{"{}NOR"{}},\ \textcolor{keywordtype}{id},\ \mbox{\hyperlink{class_sysc_add__pv}{gElement}});}
+\DoxyCodeLine{00234\ \ \ \ \ \}}
+\DoxyCodeLine{00235\ \};}
+\DoxyCodeLine{00236\ }
+\DoxyCodeLine{00237\ \textcolor{keyword}{template}\ <\textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{class_sysc_add__pv}{N}}\ =\ 2,}
+\DoxyCodeLine{00238\ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{class_sysc_add__pv}{W}}\ =\ 1>}
+\DoxyCodeLine{00239\ \textcolor{keyword}{class\ }\mbox{\hyperlink{class_sysc_xor__pv}{SyscXor\_pv}}\ :\ \textcolor{keyword}{public}\ \mbox{\hyperlink{class_sysc_logic_gate__pv}{SyscLogicGate\_pv}}<N,W>\ \{}
+\DoxyCodeLine{00240\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00241\ \ \ \ \ \textcolor{keyword}{static\_assert}(\mbox{\hyperlink{class_sysc_add__pv}{N}}\ >=\ 2,\ \textcolor{stringliteral}{"{}SyscXor\_pv\ DESIGN\ ERROR:\ N\ must\ be\ >=\ 2"{}});}
+\DoxyCodeLine{00242\ \ \ \ \ \textcolor{keyword}{static\_assert}(\mbox{\hyperlink{class_sysc_add__pv}{W}}\ >=\ 1,\ \textcolor{stringliteral}{"{}SyscXor\_pv\ DESIGN\ ERROR:\ W\ must\ be\ >=\ 1"{}});}
+\DoxyCodeLine{00243\ \ \ \ \ \textcolor{keyword}{typedef}\ \mbox{\hyperlink{class_sysc_add__pv}{SyscLogicGate\_pv<N,W>}}\ \mbox{\hyperlink{class_sysc_xor__pv_ada6e0fb05f6275c1be63e9ad3d7a6143}{BASE\_MODULE}};}
+\DoxyCodeLine{00244\ \ \ \ \ \textcolor{keyword}{typedef}\ \mbox{\hyperlink{class_sysc_add__pv}{SyscXor\_pv<N,W>}}\ \mbox{\hyperlink{class_sysc_xor__pv_a4ef01869a786194f57a19d604f6a1891}{SC\_CURRENT\_USER\_MODULE}};}
+\DoxyCodeLine{00245\ \ \ \ \ \mbox{\hyperlink{class_sysc_add__pv}{SyscXor\_pv<N,W>}}(::sc\_core::sc\_module\_name\ name)\ :\ \mbox{\hyperlink{class_sysc_logic_gate__pv}{SyscLogicGate\_pv}}<\mbox{\hyperlink{class_sysc_add__pv}{N}},\mbox{\hyperlink{class_sysc_add__pv}{W}}>(name)\ \{}
+\DoxyCodeLine{00246\ \ \ \ \ \}}
+\DoxyCodeLine{00247\ }
+\DoxyCodeLine{00248\ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_sysc_xor__pv_a6411563a74bb4015d46e07f1a7a16813}{combinational}}\ ()\ \{}
+\DoxyCodeLine{00249\ \ \ \ \ \ \ \ \ \textcolor{keyword}{auto}\ \mbox{\hyperlink{class_sysc_add__pv}{i}}\ =\ \mbox{\hyperlink{class_sysc_add__pv}{N}}-\/1;}
+\DoxyCodeLine{00250\ \ \ \ \ \ \ \ \ \textcolor{keyword}{auto}\ \mbox{\hyperlink{class_sysc_add__pv}{result}}\ =\ \mbox{\hyperlink{class_sysc_logic_gate__pv_a15e2888096c96af630d6bd60f82122bf}{BASE\_MODULE::d}}[0].read();}
+\DoxyCodeLine{00251\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (;\ \mbox{\hyperlink{class_sysc_add__pv}{i}}\ >\ 0;\ \mbox{\hyperlink{class_sysc_add__pv}{i}}-\/-\/)\ \{}
+\DoxyCodeLine{00252\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{auto}\ \mbox{\hyperlink{class_sysc_add__pv}{operand}}\ =\ \mbox{\hyperlink{class_sysc_logic_gate__pv_a15e2888096c96af630d6bd60f82122bf}{BASE\_MODULE::d}}[\mbox{\hyperlink{class_sysc_add__pv}{i}}].read();}
+\DoxyCodeLine{00253\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_sysc_add__pv}{result}}\ \string^=\ \mbox{\hyperlink{class_sysc_add__pv}{operand}};}
+\DoxyCodeLine{00254\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00255\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_sysc_logic_gate__pv_a9e8368d8627e69b2dd95ee5215c0aa0f}{BASE\_MODULE::y}}.write(\mbox{\hyperlink{class_sysc_add__pv}{result}});}
+\DoxyCodeLine{00256\ \ \ \ \ \}}
+\DoxyCodeLine{00257\ }
+\DoxyCodeLine{00258\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{class_sysc_xor__pv_a345fd4cd813de51034b37314a4608db7}{validate}}(\mbox{\hyperlink{class_sysc_add__pv}{QString}}\ \textcolor{keywordtype}{id},\ \mbox{\hyperlink{class_sysc_add__pv}{QDomElement}}\ \mbox{\hyperlink{class_sysc_add__pv}{gElement}})\ \{}
+\DoxyCodeLine{00259\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{class_sysc_logic_gate__pv_a5ac83cb846f1f3bb72bf3712dfe5b8ea}{SyscLogicGate\_pv<>::validate}}(\textcolor{stringliteral}{"{}XOR"{}},\ \textcolor{keywordtype}{id},\ \mbox{\hyperlink{class_sysc_add__pv}{gElement}});}
+\DoxyCodeLine{00260\ \ \ \ \ \}}
+\DoxyCodeLine{00261\ \};}
+\DoxyCodeLine{00262\ }
+\DoxyCodeLine{00263\ \textcolor{keyword}{template}\ <\textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{class_sysc_add__pv}{N}}\ =\ 2,}
+\DoxyCodeLine{00264\ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{class_sysc_add__pv}{W}}\ =\ 1>}
+\DoxyCodeLine{00265\ \textcolor{keyword}{class\ }\mbox{\hyperlink{class_sysc_xnor__pv}{SyscXnor\_pv}}\ :\ \textcolor{keyword}{public}\ \mbox{\hyperlink{class_sysc_logic_gate__pv}{SyscLogicGate\_pv}}<N,W>\ \{}
+\DoxyCodeLine{00266\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00267\ \ \ \ \ \textcolor{keyword}{static\_assert}(\mbox{\hyperlink{class_sysc_add__pv}{N}}\ >=\ 2,\ \textcolor{stringliteral}{"{}SyscXnor\_pv\ DESIGN\ ERROR:\ N\ must\ be\ >=\ 2"{}});}
+\DoxyCodeLine{00268\ \ \ \ \ \textcolor{keyword}{static\_assert}(\mbox{\hyperlink{class_sysc_add__pv}{W}}\ >=\ 1,\ \textcolor{stringliteral}{"{}SyscXnor\_pv\ DESIGN\ ERROR:\ W\ must\ be\ >=\ 1"{}});}
+\DoxyCodeLine{00269\ \ \ \ \ \textcolor{keyword}{typedef}\ \mbox{\hyperlink{class_sysc_add__pv}{SyscLogicGate\_pv<N,W>}}\ \mbox{\hyperlink{class_sysc_xnor__pv_aef5a74ae319db151e31dda55a83e9e72}{BASE\_MODULE}};}
+\DoxyCodeLine{00270\ \ \ \ \ \textcolor{keyword}{typedef}\ \mbox{\hyperlink{class_sysc_add__pv}{SyscXnor\_pv<N,W>}}\ \mbox{\hyperlink{class_sysc_xnor__pv_a1222cae385aee65dfe5d26bb4144e375}{SC\_CURRENT\_USER\_MODULE}};}
+\DoxyCodeLine{00271\ \ \ \ \ \mbox{\hyperlink{class_sysc_add__pv}{SyscXnor\_pv<N,W>}}(::sc\_core::sc\_module\_name\ name)\ :\ \mbox{\hyperlink{class_sysc_logic_gate__pv}{SyscLogicGate\_pv}}<\mbox{\hyperlink{class_sysc_add__pv}{N}},\mbox{\hyperlink{class_sysc_add__pv}{W}}>(name)\ \{}
+\DoxyCodeLine{00272\ \ \ \ \ \}}
+\DoxyCodeLine{00273\ }
+\DoxyCodeLine{00274\ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_sysc_xnor__pv_aee39caa9c9c0056c24970a08e0c13ecf}{combinational}}\ ()\ \{}
+\DoxyCodeLine{00275\ \ \ \ \ \ \ \ \ \textcolor{keyword}{auto}\ \mbox{\hyperlink{class_sysc_add__pv}{i}}\ =\ \mbox{\hyperlink{class_sysc_add__pv}{N}}-\/1;}
+\DoxyCodeLine{00276\ \ \ \ \ \ \ \ \ \textcolor{keyword}{auto}\ \mbox{\hyperlink{class_sysc_add__pv}{result}}\ =\ \mbox{\hyperlink{class_sysc_logic_gate__pv_a15e2888096c96af630d6bd60f82122bf}{BASE\_MODULE::d}}[0].read();}
+\DoxyCodeLine{00277\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (;\ \mbox{\hyperlink{class_sysc_add__pv}{i}}\ >\ 0;\ \mbox{\hyperlink{class_sysc_add__pv}{i}}-\/-\/)\ \{}
+\DoxyCodeLine{00278\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{auto}\ \mbox{\hyperlink{class_sysc_add__pv}{operand}}\ =\ \mbox{\hyperlink{class_sysc_logic_gate__pv_a15e2888096c96af630d6bd60f82122bf}{BASE\_MODULE::d}}[\mbox{\hyperlink{class_sysc_add__pv}{i}}].read();}
+\DoxyCodeLine{00279\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_sysc_add__pv}{result}}\ \string^=\ \mbox{\hyperlink{class_sysc_add__pv}{operand}};}
+\DoxyCodeLine{00280\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00281\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_sysc_logic_gate__pv_a9e8368d8627e69b2dd95ee5215c0aa0f}{BASE\_MODULE::y}}.write(\string~\mbox{\hyperlink{class_sysc_add__pv}{result}});}
+\DoxyCodeLine{00282\ \ \ \ \ \}}
+\DoxyCodeLine{00283\ }
+\DoxyCodeLine{00284\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{class_sysc_xnor__pv_a657b3fb3606973445cb7d1ebcddf52a9}{validate}}(\mbox{\hyperlink{class_sysc_add__pv}{QString}}\ \textcolor{keywordtype}{id},\ \mbox{\hyperlink{class_sysc_add__pv}{QDomElement}}\ \mbox{\hyperlink{class_sysc_add__pv}{gElement}})\ \{}
+\DoxyCodeLine{00285\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{class_sysc_logic_gate__pv_a5ac83cb846f1f3bb72bf3712dfe5b8ea}{SyscLogicGate\_pv<>::validate}}(\textcolor{stringliteral}{"{}XNOR"{}},\ \textcolor{keywordtype}{id},\ \mbox{\hyperlink{class_sysc_add__pv}{gElement}});}
+\DoxyCodeLine{00286\ \ \ \ \ \}}
+\DoxyCodeLine{00287\ \};}
+\DoxyCodeLine{00288\ }
+\DoxyCodeLine{00289\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{//\ SC\_GATES\_PV\_H}}
+
+\end{DoxyCode}

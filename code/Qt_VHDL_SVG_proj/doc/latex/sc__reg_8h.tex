@@ -1,0 +1,38 @@
+\doxysection{C\+:/\+Users/\+BJRODIER/\+Documents/\+QT\+\_\+\+REPO/\+QT\+\_\+\+VHDL\+\_\+simulator/code/\+Qt\+\_\+\+VHDL\+\_\+\+SVG\+\_\+proj/systemc\+\_\+modules/sc\+\_\+reg.h File Reference}
+\hypertarget{sc__reg_8h}{}\label{sc__reg_8h}\index{C:/Users/BJRODIER/Documents/QT\_REPO/QT\_VHDL\_simulator/code/Qt\_VHDL\_SVG\_proj/systemc\_modules/sc\_reg.h@{C:/Users/BJRODIER/Documents/QT\_REPO/QT\_VHDL\_simulator/code/Qt\_VHDL\_SVG\_proj/systemc\_modules/sc\_reg.h}}
+
+
+SystemC module that implements a register and a counter.  
+
+
+{\ttfamily \#include $<$systemc.\+h$>$}\newline
+{\ttfamily \#include "{}sc\+\_\+flexint.\+h"{}}\newline
+Include dependency graph for sc\+\_\+reg.\+h\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=307pt]{sc__reg_8h__incl}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+class \mbox{\hyperlink{class_sysc_reg}{Sysc\+Reg$<$ W, CLKEDGE, FLEXINT $>$}}
+\begin{DoxyCompactList}\small\item\em The \doxylink{class_sysc_reg}{Sysc\+Reg} class. \end{DoxyCompactList}\item 
+class \mbox{\hyperlink{class_sysc_cnt}{Sysc\+Cnt$<$ W, CLKEDGE, FLEXINT $>$}}
+\begin{DoxyCompactList}\small\item\em The \doxylink{class_sysc_cnt}{Sysc\+Cnt} class. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+SystemC module that implements a register and a counter. 
+
+This file contains the definition of the SystemC modules \doxylink{class_sysc_reg}{Sysc\+Reg} and \doxylink{class_sysc_cnt}{Sysc\+Cnt}. The \doxylink{class_sysc_reg}{Sysc\+Reg} module implements a register with a single data input and output. The register is synchronous, \doxylink{class_sysc_add__pv_a57417948111cea94689e3dbc33fd51d1}{i.\+e}., the output is updated on the rising edge of the clock signal. The \doxylink{class_sysc_cnt}{Sysc\+Cnt} module implements a counter with a single data output.
+
+Both modules are implemented as template classes that can be instantiated with the following parameters\+:
+\begin{DoxyItemize}
+\item W\+: width of the data bus (default is 1)
+\item CLKEDGE\+: boolean value that specifies the clock edge to use (true for rising edge, false for falling edge). Default value is true.
+\end{DoxyItemize}
+
+The \doxylink{class_sysc_reg}{Sysc\+Reg} and \doxylink{class_sysc_cnt}{Sysc\+Cnt} modules are derived from the \doxylink{class_sysc_flex_int}{Sysc\+Flex\+Int} module, which provides a flexible interface for the reset and enable signals of a module. The reset and enable signals can be active high or active low, and can be synchronous or asynchronous. The module can be configured to use the reset and enable signals or not, and can be configured to use the rising edge or falling edge of the clock signal. 

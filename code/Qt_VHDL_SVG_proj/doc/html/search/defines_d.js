@@ -1,5 +1,6 @@
 var searchData=
 [
-  ['report_5fvalue_5fas_0',['REPORT_VALUE_AS',['../sc__debug__object_8cpp.html#a1bc63fbdbebfb6c885fe9aa4ebe61c48',1,'sc_debug_object.cpp']]],
-  ['reportall_5fvalue_5fas_1',['REPORTALL_VALUE_AS',['../sc__debug__object_8cpp.html#a4de8b91d4d2683760658bf92a33e2940',1,'sc_debug_object.cpp']]]
+  ['win32_0',['WIN32',['../moc__predefs_8h.html#a6402e8b8594280624585b8fd643bfb65',1,'moc_predefs.h']]],
+  ['win64_1',['WIN64',['../moc__predefs_8h.html#a951ed972d2606d55ee009c69fe06672a',1,'moc_predefs.h']]],
+  ['winnt_2',['WINNT',['../moc__predefs_8h.html#a3e2be49a2ed02cf3eaf2b8ff2ff76afd',1,'moc_predefs.h']]]
 ];

@@ -1,0 +1,85 @@
+\doxysection{debugwindow.\+h}
+\hypertarget{debugwindow_8h_source}{}\label{debugwindow_8h_source}\index{C:/Users/BJRODIER/Documents/QT\_REPO/QT\_VHDL\_simulator/code/Qt\_VHDL\_SVG\_proj/gui/debugwindow.h@{C:/Users/BJRODIER/Documents/QT\_REPO/QT\_VHDL\_simulator/code/Qt\_VHDL\_SVG\_proj/gui/debugwindow.h}}
+\mbox{\hyperlink{debugwindow_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#ifndef\ DEBUGWINDOW\_H}}
+\DoxyCodeLine{00002\ \textcolor{preprocessor}{\#define\ DEBUGWINDOW\_H}}
+\DoxyCodeLine{00003\ }
+\DoxyCodeLine{00004\ \textcolor{preprocessor}{\#include\ <QMouseEvent>}}
+\DoxyCodeLine{00005\ \textcolor{preprocessor}{\#include\ <QPushButton>}}
+\DoxyCodeLine{00006\ \textcolor{preprocessor}{\#include\ <QScrollBar>}}
+\DoxyCodeLine{00007\ \textcolor{preprocessor}{\#include\ <QWidget>}}
+\DoxyCodeLine{00008\ \textcolor{preprocessor}{\#include\ <QTextEdit>}}
+\DoxyCodeLine{00009\ \textcolor{preprocessor}{\#include\ <QCheckBox>}}
+\DoxyCodeLine{00010\ \textcolor{preprocessor}{\#include\ <QVBoxLayout>}}
+\DoxyCodeLine{00011\ \textcolor{preprocessor}{\#include\ <QFile>}}
+\DoxyCodeLine{00012\ \textcolor{preprocessor}{\#include\ <QTextStream>}}
+\DoxyCodeLine{00013\ \textcolor{preprocessor}{\#include\ <QAction>}}
+\DoxyCodeLine{00014\ }
+\DoxyCodeLine{00018\ \textcolor{keyword}{class\ }\mbox{\hyperlink{class_debug_window}{DebugWindow}}\ :\ \textcolor{keyword}{public}\ QWidget}
+\DoxyCodeLine{00019\ \{}
+\DoxyCodeLine{00020\ \ \ \ \ Q\_OBJECT}
+\DoxyCodeLine{00021\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00022\ }
+\DoxyCodeLine{00026\ \ \ \ \ \textcolor{keyword}{enum}\ \mbox{\hyperlink{class_debug_window_a33bf4ade296a556751ab60f4bf708687}{Severity}}}
+\DoxyCodeLine{00027\ \ \ \ \ \{}
+\DoxyCodeLine{00028\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_debug_window_a33bf4ade296a556751ab60f4bf708687a0c9dc2c949aab886144195d1fc77b271}{Info}},}
+\DoxyCodeLine{00029\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_debug_window_a33bf4ade296a556751ab60f4bf708687afa0e595987d6f253489f0e991805d58a}{Success}},}
+\DoxyCodeLine{00030\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_debug_window_a33bf4ade296a556751ab60f4bf708687ab1cee88985e5f08cf7e7960843dd8a23}{Warning}},}
+\DoxyCodeLine{00031\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_debug_window_a33bf4ade296a556751ab60f4bf708687a0666557715fbacd02d9c14400aaf3a5a}{Error}},}
+\DoxyCodeLine{00032\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_debug_window_a33bf4ade296a556751ab60f4bf708687a4df737d44f0dcf97a36478acae599229}{Debug}}}
+\DoxyCodeLine{00033\ \ \ \ \ \};}
+\DoxyCodeLine{00034\ }
+\DoxyCodeLine{00035\ \ \ \ \ \textcolor{keyword}{static}\ \mbox{\hyperlink{class_debug_window}{DebugWindow}}*\ \mbox{\hyperlink{class_debug_window_a5ba835047d84a98c021769c739f97987}{getInstance}}(QAction\ *\mbox{\hyperlink{class_debug_window_aa73f551d177c477273334a4b4058b820}{openTrigger}}\ =\ \textcolor{keyword}{nullptr},\ QWidget\ *parent\ =\ \textcolor{keyword}{nullptr});}
+\DoxyCodeLine{00036\ }
+\DoxyCodeLine{00042\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_debug_window_a638637ec877daa6d6d3e59e8ff8b0115}{addMessage}}(\textcolor{keyword}{const}\ QString\&\ message,\ \mbox{\hyperlink{class_debug_window_a33bf4ade296a556751ab60f4bf708687}{Severity}}\ severity\ =\ \mbox{\hyperlink{class_debug_window_a33bf4ade296a556751ab60f4bf708687a0c9dc2c949aab886144195d1fc77b271}{Info}});}
+\DoxyCodeLine{00043\ }
+\DoxyCodeLine{00048\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_debug_window_a6f7155cb556bfe374951c8cbb551101d}{addDebug}}(\textcolor{keyword}{const}\ QString\&\ message);}
+\DoxyCodeLine{00049\ }
+\DoxyCodeLine{00054\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_debug_window_a2de2b730afd600c8320b23458e942693}{addSuccess}}(\textcolor{keyword}{const}\ QString\&\ message);}
+\DoxyCodeLine{00055\ }
+\DoxyCodeLine{00060\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_debug_window_aa1f5baf793d9f22f57e1b526091deb71}{addWaring}}(\textcolor{keyword}{const}\ QString\&\ message);}
+\DoxyCodeLine{00065\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_debug_window_a2fe990bcdd7d03688af2edecf597b664}{addError}}(\textcolor{keyword}{const}\ QString\&\ message);}
+\DoxyCodeLine{00070\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_debug_window_ac72cfb1a308041545ca6e329f57b3ff4}{addInfo}}(\textcolor{keyword}{const}\ QString\&\ message);}
+\DoxyCodeLine{00071\ }
+\DoxyCodeLine{00075\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_debug_window_af85306ef99b671a8a9b4178e9c91b0ca}{openWindow}}();}
+\DoxyCodeLine{00076\ }
+\DoxyCodeLine{00077\ \textcolor{keyword}{protected}:}
+\DoxyCodeLine{00081\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_debug_window_a6975da7863a4e488532986a4ba7c3602}{scrollDown}}();}
+\DoxyCodeLine{00082\ }
+\DoxyCodeLine{00083\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00084\ \ \ \ \ \textcolor{keyword}{explicit}\ \mbox{\hyperlink{class_debug_window_a04e1785770a6bd545edae69cfa71a78c}{DebugWindow}}(QAction\ *\mbox{\hyperlink{class_debug_window_aa73f551d177c477273334a4b4058b820}{openTrigger}},\ QWidget\ *parent\ =\ \textcolor{keyword}{nullptr});}
+\DoxyCodeLine{00085\ \ \ \ \ \textcolor{keyword}{static}\ \mbox{\hyperlink{class_debug_window}{DebugWindow}}*\ \mbox{\hyperlink{class_debug_window_a8634b4cb8c8b6a6136b3f076143e5bfd}{instance}};}
+\DoxyCodeLine{00086\ }
+\DoxyCodeLine{00087\ \ \ \ \ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{class_debug_window_a53ec9f9d0a5df9e3ed44d4ba7533321f}{messageCount}};\ \ }
+\DoxyCodeLine{00088\ \ \ \ \ QList<QString>\ \mbox{\hyperlink{class_debug_window_ac9729ae6681e278652c69497a2f3b427}{messages}};}
+\DoxyCodeLine{00089\ \ \ \ \ QList<Severity>\ \mbox{\hyperlink{class_debug_window_aa9e300f6b6b67e683f3ea5ae5e160055}{severities}};}
+\DoxyCodeLine{00090\ }
+\DoxyCodeLine{00091\ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{class_debug_window_afaea2d58368423804f5afa2e408d4a32}{autoScrollEnabled}}\ =\ \textcolor{keyword}{true};\ \ \ \ \ }
+\DoxyCodeLine{00092\ \ \ \ \ QCheckBox\ *\mbox{\hyperlink{class_debug_window_a21bb8869b0ae11eb4c3e5a2761a6d30a}{autoScrollBox}};\ \ \ }
+\DoxyCodeLine{00093\ \ \ \ \ QScrollBar\ *\mbox{\hyperlink{class_debug_window_a60ba459f2b419c0409e1a827224f2eca}{scrollBar}};\ \ \ \ \ \ }
+\DoxyCodeLine{00095\ \ \ \ \ QAction\ *\mbox{\hyperlink{class_debug_window_aa73f551d177c477273334a4b4058b820}{openTrigger}};\ \ \ \ \ \ \ }
+\DoxyCodeLine{00096\ \ \ \ \ QTextEdit\ *\mbox{\hyperlink{class_debug_window_a8fc1ad65ca54f42ba9aa4646398de0bd}{textEdit}};\ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00098\ \ \ \ \ QCheckBox\ *\mbox{\hyperlink{class_debug_window_a61430ea14af8b28e6963c393757d5d43}{infoCheckBox}};}
+\DoxyCodeLine{00099\ \ \ \ \ QCheckBox\ *\mbox{\hyperlink{class_debug_window_a5a2c7c95e5dceedf9b8fef5f8316c5c3}{successCheckBox}};}
+\DoxyCodeLine{00100\ \ \ \ \ QCheckBox\ *\mbox{\hyperlink{class_debug_window_a15d5e5ee96abfd6c713ad9229c02fbc6}{warningCheckBox}};}
+\DoxyCodeLine{00101\ \ \ \ \ QCheckBox\ *\mbox{\hyperlink{class_debug_window_a9938a16e18aa80b0fd37bbe1f92e8fec}{errorCheckBox}};}
+\DoxyCodeLine{00102\ \ \ \ \ QCheckBox\ *\mbox{\hyperlink{class_debug_window_a9f2aaea8ee59cf262e8576b9d53d6daa}{debugCheckBox}};}
+\DoxyCodeLine{00103\ }
+\DoxyCodeLine{00104\ }
+\DoxyCodeLine{00105\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_debug_window_a9bf6dfb0bc70b45d744f415a9b54e9a6}{filterMessages}}();}
+\DoxyCodeLine{00106\ }
+\DoxyCodeLine{00107\ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{class_debug_window_ae25124a9af52d7f8fc6d27e01ebaad3f}{shouldAppend}}(\mbox{\hyperlink{class_debug_window_a33bf4ade296a556751ab60f4bf708687}{Severity}}\ severity);}
+\DoxyCodeLine{00108\ }
+\DoxyCodeLine{00112\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_debug_window_a8bb8b144c17d5fb67788829801dcd879}{autoScrollIfEnabled}}();}
+\DoxyCodeLine{00113\ }
+\DoxyCodeLine{00118\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_debug_window_a6a5cb97a174ef6a5131f5b3f13c6ceb7}{autoScrollHandle}}(\textcolor{keywordtype}{int}\ state);}
+\DoxyCodeLine{00119\ }
+\DoxyCodeLine{00123\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_debug_window_a49e3f657d73a25f10daf7ae224fc33b8}{scrollBarModifiedHandle}}();}
+\DoxyCodeLine{00124\ }
+\DoxyCodeLine{00128\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_debug_window_a06f5cfbe62ec88b98e1314212b6fef8c}{clearMessages}}();}
+\DoxyCodeLine{00129\ \};}
+\DoxyCodeLine{00130\ }
+\DoxyCodeLine{00131\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{//\ DEBUGWINDOW\_H}}
+
+\end{DoxyCode}

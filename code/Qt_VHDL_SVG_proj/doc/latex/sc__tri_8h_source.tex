@@ -1,0 +1,60 @@
+\doxysection{sc\+\_\+tri.\+h}
+\hypertarget{sc__tri_8h_source}{}\label{sc__tri_8h_source}\index{C:/Users/BJRODIER/Documents/QT\_REPO/QT\_VHDL\_simulator/code/Qt\_VHDL\_SVG\_proj/systemc\_modules/sc\_tri.h@{C:/Users/BJRODIER/Documents/QT\_REPO/QT\_VHDL\_simulator/code/Qt\_VHDL\_SVG\_proj/systemc\_modules/sc\_tri.h}}
+\mbox{\hyperlink{sc__tri_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#ifndef\ SC\_TRI\_H}}
+\DoxyCodeLine{00002\ \textcolor{preprocessor}{\#define\ SC\_TRI\_H}}
+\DoxyCodeLine{00003\ }
+\DoxyCodeLine{00004\ \textcolor{preprocessor}{\#include\ <iostream>}}
+\DoxyCodeLine{00005\ \textcolor{preprocessor}{\#include\ <string>}}
+\DoxyCodeLine{00006\ \textcolor{preprocessor}{\#include\ <systemc.h>}}
+\DoxyCodeLine{00007\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{sc__gates_8h}{sc\_gates.h}}"{}}}
+\DoxyCodeLine{00008\ }
+\DoxyCodeLine{00012\ \textcolor{keyword}{typedef}\ \textcolor{keyword}{enum}\ \mbox{\hyperlink{sc__tri_8h_ad53884ff2bd47498551ec5bed9928625}{TRI\_CONV\_CTL\_XORZ\_e}}\ \{}
+\DoxyCodeLine{00013\ \ \ \ \ \mbox{\hyperlink{sc__tri_8h_ad53884ff2bd47498551ec5bed9928625a622d05277f582e14841309ab4cc33bc6}{TRI\_CONV\_CTL\_XORZ\_X}},\ \ }
+\DoxyCodeLine{00014\ \ \ \ \ \mbox{\hyperlink{sc__tri_8h_ad53884ff2bd47498551ec5bed9928625a3b3f94f35664e48d48234aa6e97a766a}{TRI\_CONV\_CTL\_XORZ\_Z}},\ \ }
+\DoxyCodeLine{00015\ \ \ \ \ \mbox{\hyperlink{sc__tri_8h_ad53884ff2bd47498551ec5bed9928625a299bd92fe394816487f38c5ad9ac6e99}{TRI\_CONV\_CTL\_XORZ\_D}}\ \ \ }
+\DoxyCodeLine{00016\ \}\ \mbox{\hyperlink{sc__tri_8h_a9937463df09dcd91aa2fc25a7f1f875d}{TRI\_CONV\_CTL\_XORZ\_t}};}
+\DoxyCodeLine{00017\ }
+\DoxyCodeLine{00018\ \textcolor{keyword}{template}\ <\textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{int}\ W\ =\ 1,\ TRI\_CONV\_CTL\_XORZ\_t\ TRI\_XORZ\_CONV\ =\ TRI\_CONV\_CTL\_XORZ\_X>}
+\DoxyCodeLine{00019\ \textcolor{keyword}{class\ }\mbox{\hyperlink{class_sysc_tri}{SyscTri}}\ :\ \textcolor{keyword}{public}\ \mbox{\hyperlink{class_sysc_logic_gate}{SyscLogicGate}}<1,W>\ \{}
+\DoxyCodeLine{00020\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00021\ \ \ \ \ \textcolor{keyword}{static\_assert}(\mbox{\hyperlink{class_sysc_add__pv}{W}}\ >=\ 1,\ \textcolor{stringliteral}{"{}SyscTri\ DESIGN\ ERROR:\ W\ must\ be\ >=\ 1"{}});}
+\DoxyCodeLine{00022\ \ \ \ \ \textcolor{keyword}{typedef}\ \ \mbox{\hyperlink{class_sysc_add__pv}{sc\_lv<1>}}\ \ \ \ \ \ \ \mbox{\hyperlink{class_sysc_tri_afcc86d101245caebd9f42d0955de50e1}{ctl\_t}};}
+\DoxyCodeLine{00023\ \ \ \ \ \mbox{\hyperlink{class_sysc_add__pv}{sc\_in<ctl\_t>}}\ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_sysc_tri_abbb18f9e1ceb022f2000f29dd381850e}{ctl}}\{\textcolor{stringliteral}{"{}ctl"{}}\};\ \textcolor{comment}{//\ Control\ input\ (0/1)}}
+\DoxyCodeLine{00024\ }
+\DoxyCodeLine{00025\ \ \ \ \ \textcolor{keyword}{typedef}\ \mbox{\hyperlink{class_sysc_add__pv}{SyscLogicGate<1,W>}}\ \mbox{\hyperlink{class_sysc_tri_a019bba46dd9ef3600c24e614d447ea28}{BASE\_MODULE}};}
+\DoxyCodeLine{00026\ \ \ \ \ \textcolor{keyword}{typedef}\ \mbox{\hyperlink{class_sysc_add__pv}{SyscTri<W,TRI\_XORZ\_CONV>}}\ \mbox{\hyperlink{class_sysc_tri_a59de1a18821c09892b5a9e7bb315c0f7}{SC\_CURRENT\_USER\_MODULE}};}
+\DoxyCodeLine{00027\ \ \ \ \ \mbox{\hyperlink{class_sysc_tri_a4586060607076ec39385d38a24cfac22}{SyscTri}}(::sc\_core::sc\_module\_name\ name)\ :\ \mbox{\hyperlink{class_sysc_logic_gate}{SyscLogicGate}}<1,\mbox{\hyperlink{class_sysc_add__pv}{W}}>(name)\ \{}
+\DoxyCodeLine{00028\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_sysc_add__pv_a57417948111cea94689e3dbc33fd51d1}{BASE\_MODULE::sensitive}}\ <<\ \mbox{\hyperlink{class_sysc_tri_abbb18f9e1ceb022f2000f29dd381850e}{ctl}};}
+\DoxyCodeLine{00029\ \ \ \ \ \}}
+\DoxyCodeLine{00030\ }
+\DoxyCodeLine{00031\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{inline}\ \textcolor{keyword}{const}\ \mbox{\hyperlink{class_sysc_add__pv}{sc\_lv<1>}}\ \mbox{\hyperlink{class_sysc_tri_a0d6f3d2ca02bd334a889cf9ed2928720}{y\_is\_d}}\{\mbox{\hyperlink{class_sysc_add__pv_a57417948111cea94689e3dbc33fd51d1}{::sc\_dt::SC\_LOGIC\_1}}\};}
+\DoxyCodeLine{00032\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{inline}\ \textcolor{keyword}{const}\ \textcolor{keyword}{typename}\ \mbox{\hyperlink{class_sysc_logic_gate_a91018bb6775e921681f4b9298f27ffd1}{BASE\_MODULE::data\_t}}\ \mbox{\hyperlink{class_sysc_tri_acef88ed66fe530a7c28eaec4cba099b9}{allx}}\{\mbox{\hyperlink{class_sysc_add__pv_a57417948111cea94689e3dbc33fd51d1}{::sc\_dt::SC\_LOGIC\_X}}\};}
+\DoxyCodeLine{00033\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keyword}{inline}\ \textcolor{keyword}{const}\ \textcolor{keyword}{typename}\ \mbox{\hyperlink{class_sysc_logic_gate_a91018bb6775e921681f4b9298f27ffd1}{BASE\_MODULE::data\_t}}\ \mbox{\hyperlink{class_sysc_tri_a41271112f9187984f6108ac33f341846}{allz}}\{\mbox{\hyperlink{class_sysc_add__pv_a57417948111cea94689e3dbc33fd51d1}{::sc\_dt::SC\_LOGIC\_Z}}\};}
+\DoxyCodeLine{00034\ }
+\DoxyCodeLine{00035\ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_sysc_tri_a4951556912751842322320108be4e3d9}{combinational}}\ ()\ \{}
+\DoxyCodeLine{00036\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\mbox{\hyperlink{class_sysc_tri_abbb18f9e1ceb022f2000f29dd381850e}{ctl}}.read().is\_01())\ \{}
+\DoxyCodeLine{00037\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\mbox{\hyperlink{class_sysc_tri_abbb18f9e1ceb022f2000f29dd381850e}{ctl}}.read()\ ==\ \mbox{\hyperlink{class_sysc_tri_a0d6f3d2ca02bd334a889cf9ed2928720}{y\_is\_d}})\ \{}
+\DoxyCodeLine{00038\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_sysc_logic_gate__pv_a9e8368d8627e69b2dd95ee5215c0aa0f}{BASE\_MODULE::y}}.write(\mbox{\hyperlink{class_sysc_logic_gate__pv_a15e2888096c96af630d6bd60f82122bf}{BASE\_MODULE::d}}.\mbox{\hyperlink{class_sysc_add__pv}{read}}());}
+\DoxyCodeLine{00039\ \ \ \ \ \ \ \ \ \ \ \ \ \}\ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{00040\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_sysc_logic_gate__pv_a9e8368d8627e69b2dd95ee5215c0aa0f}{BASE\_MODULE::y}}.write(\mbox{\hyperlink{class_sysc_tri_a41271112f9187984f6108ac33f341846}{allz}});}
+\DoxyCodeLine{00041\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00042\ \ \ \ \ \ \ \ \ \}\ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{00043\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{switch}\ (\mbox{\hyperlink{class_sysc_add__pv}{TRI\_XORZ\_CONV}})\ \{}
+\DoxyCodeLine{00044\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ \mbox{\hyperlink{sc__tri_8h_ad53884ff2bd47498551ec5bed9928625a622d05277f582e14841309ab4cc33bc6}{TRI\_CONV\_CTL\_XORZ\_X}}:}
+\DoxyCodeLine{00045\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_sysc_logic_gate__pv_a9e8368d8627e69b2dd95ee5215c0aa0f}{BASE\_MODULE::y}}.write(\mbox{\hyperlink{class_sysc_tri_acef88ed66fe530a7c28eaec4cba099b9}{allx}});}
+\DoxyCodeLine{00046\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00047\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ \mbox{\hyperlink{sc__tri_8h_ad53884ff2bd47498551ec5bed9928625a3b3f94f35664e48d48234aa6e97a766a}{TRI\_CONV\_CTL\_XORZ\_Z}}:}
+\DoxyCodeLine{00048\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_sysc_logic_gate__pv_a9e8368d8627e69b2dd95ee5215c0aa0f}{BASE\_MODULE::y}}.write(\mbox{\hyperlink{class_sysc_tri_a41271112f9187984f6108ac33f341846}{allz}});}
+\DoxyCodeLine{00049\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00050\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{default}:\ \textcolor{comment}{//\ TRI\_CONV\_CTL\_XORZ\_D}}
+\DoxyCodeLine{00051\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_sysc_logic_gate__pv_a9e8368d8627e69b2dd95ee5215c0aa0f}{BASE\_MODULE::y}}.write(\mbox{\hyperlink{class_sysc_logic_gate__pv_a15e2888096c96af630d6bd60f82122bf}{BASE\_MODULE::d}}.\mbox{\hyperlink{class_sysc_add__pv}{read}}());}
+\DoxyCodeLine{00052\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00053\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00054\ \ \ \ \ \}}
+\DoxyCodeLine{00055\ \};}
+\DoxyCodeLine{00056\ }
+\DoxyCodeLine{00057\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{//\ SC\_TRI\_H}}
+
+\end{DoxyCode}

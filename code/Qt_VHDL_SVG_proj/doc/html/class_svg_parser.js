@@ -1,18 +1,8 @@
 var class_svg_parser =
 [
-    [ "s_components_list", "struct_svg_parser_1_1s__components__list.html", "struct_svg_parser_1_1s__components__list" ],
-    [ "s_element", "struct_svg_parser_1_1s__element.html", "struct_svg_parser_1_1s__element" ],
-    [ "s_element_io", "struct_svg_parser_1_1s__element__io.html", "struct_svg_parser_1_1s__element__io" ],
-    [ "s_elements", "struct_svg_parser_1_1s__elements.html", "struct_svg_parser_1_1s__elements" ],
     [ "s_io", "struct_svg_parser_1_1s__io.html", "struct_svg_parser_1_1s__io" ],
-    [ "s_parse_error", "struct_svg_parser_1_1s__parse__error.html", "struct_svg_parser_1_1s__parse__error" ],
-    [ "s_sim_I_O", "struct_svg_parser_1_1s__sim___i___o.html", "struct_svg_parser_1_1s__sim___i___o" ],
-    [ "s_sim_I_Os", "struct_svg_parser_1_1s__sim___i___os.html", "struct_svg_parser_1_1s__sim___i___os" ],
-    [ "s_sim_wire", "struct_svg_parser_1_1s__sim__wire.html", "struct_svg_parser_1_1s__sim__wire" ],
-    [ "s_sim_wires", "struct_svg_parser_1_1s__sim__wires.html", "struct_svg_parser_1_1s__sim__wires" ],
     [ "s_tree_node", "struct_svg_parser_1_1s__tree__node.html", "struct_svg_parser_1_1s__tree__node" ],
     [ "s_tree_node_info", "struct_svg_parser_1_1s__tree__node__info.html", "struct_svg_parser_1_1s__tree__node__info" ],
-    [ "e_IO_type", "class_svg_parser.html#a04a249e4a72a11be24788702a2f0c4a2", null ],
     [ "e_returns", "class_svg_parser.html#a7e2b269495f661cb35ff248c5e910da0", [
       [ "SUCCESS", "class_svg_parser.html#a7e2b269495f661cb35ff248c5e910da0ac4a77e49f4b7d3bd70bdc7b34346fe8e", null ],
       [ "FILE_NOT_FOUND", "class_svg_parser.html#a7e2b269495f661cb35ff248c5e910da0a2fe6acb6dc51ced00d2382501a011530", null ],
@@ -31,11 +21,6 @@ var class_svg_parser =
       [ "outputs", "class_svg_parser.html#a1a6610dfc34ac22dc62e08f5ec06fd7da9225761ee04ec312c4ed69a477c4126a", null ],
       [ "sel", "class_svg_parser.html#a1a6610dfc34ac22dc62e08f5ec06fd7dab7045e7d8b939af168cafa3d3c11428e", null ],
       [ "wire", "class_svg_parser.html#a1a6610dfc34ac22dc62e08f5ec06fd7daf1f6e118c2bb50fa283a5faab8a90d1a", null ]
-    ] ],
-    [ "I_O", "class_svg_parser.html#ac8fe796a6c6559b77c72025f6da4c2cb", [
-      [ "INPUT", "class_svg_parser.html#ac8fe796a6c6559b77c72025f6da4c2cba6f8f5af8f2174e5f81c4aea7604fe91c", null ],
-      [ "OUTPUT", "class_svg_parser.html#ac8fe796a6c6559b77c72025f6da4c2cbac0a16a46f7125e7ad2d363fff69eb616", null ],
-      [ "UNDEFINED", "class_svg_parser.html#ac8fe796a6c6559b77c72025f6da4c2cba1e6b030cce8595264bbae60d912f5e94", null ]
     ] ],
     [ "SvgParser", "class_svg_parser.html#a08ab30a33d6e990de56d3f961758688c", null ],
     [ "~SvgParser", "class_svg_parser.html#a4f02bb9c4f12ea90e819239adceec2ef", null ],
@@ -61,6 +46,7 @@ var class_svg_parser =
     [ "print_tree_in_log", "class_svg_parser.html#a0159a93dd3f520b3674448c9b438711e", null ],
     [ "all_components", "class_svg_parser.html#af7db32b6cbb2304d3aa6b542accb3950", null ],
     [ "custom_attribute", "class_svg_parser.html#a744a14989c558dc574520c0175e82ad1", null ],
+    [ "debug", "class_svg_parser.html#ab311857ba7397fe3f87ac3de72e02bb8", null ],
     [ "groups_number", "class_svg_parser.html#a3f28b52f36daba1e190bfb9df9edfdb6", null ],
     [ "log_buffer", "class_svg_parser.html#a5deab3df2249e89e2fa12ffdb85b64a9", null ],
     [ "root", "class_svg_parser.html#aab62b63b54d4ad90f0f02843634878ca", null ],

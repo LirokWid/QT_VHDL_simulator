@@ -1,0 +1,169 @@
+.TH "SvgHandler" 3 "VHDL simulator" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+SvgHandler \- The SvgHandling class provides functionality to handle SVG files\&.  
+
+.SH SYNOPSIS
+.br
+.PP
+.PP
+\fR#include <svghandler\&.h>\fP
+.PP
+Inherits QObject\&.
+.SS "Public Member Functions"
+
+.in +1c
+.ti -1c
+.RI "\fBSvgHandler\fP (\fBElementsDisplay\fP *\fBdisplay\fP, \fBSimulationState\fP *\fBsimulationState\fP, \fBSvgWidget\fP *\fBsvgWidget\fP, QObject *\fBparent\fP=\fBnullptr\fP)"
+.br
+.RI "Constructs a SvgHandling object\&. "
+.ti -1c
+.RI "\fB~SvgHandler\fP ()"
+.br
+.RI "Destructs the SvgHandling object\&. "
+.ti -1c
+.RI "\fBbool\fP \fBloadSvg\fP (\fBconst\fP \fBQString\fP &\fBfilePath\fP)"
+.br
+.RI "loadSvg "
+.ti -1c
+.RI "\fBbool\fP \fBclearSvg\fP ()"
+.br
+.in -1c
+.SS "Protected Member Functions"
+
+.in +1c
+.ti -1c
+.RI "\fBbool\fP \fBcopySvgToTemp\fP (\fBconst\fP \fBQString\fP &\fBsourceFilePath\fP)"
+.br
+.RI "Copies the SVG file to a temporary directory\&. "
+.ti -1c
+.RI "\fBvoid\fP \fBdeleteTempSvg\fP (\fBconst\fP \fBQString\fP &\fBtempFilePath\fP)"
+.br
+.RI "Deletes the temporary SVG file\&. "
+.in -1c
+.SS "Private Member Functions"
+
+.in +1c
+.ti -1c
+.RI "\fBQString\fP \fBgetTempFilePath\fP () \fBconst\fP"
+.br
+.ti -1c
+.RI "\fBbool\fP \fBloadAndParse\fP (\fBQString\fP \fBsvgPath\fP)"
+.br
+.in -1c
+.SS "Private Attributes"
+
+.in +1c
+.ti -1c
+.RI "\fBQString\fP \fBtempFilePath\fP"
+.br
+.ti -1c
+.RI "\fBSimulationState\fP * \fBsimulationState\fP"
+.br
+.ti -1c
+.RI "\fBSvgWidget\fP * \fBsvgWidget\fP"
+.br
+.ti -1c
+.RI "\fBQFileInfo\fP * \fBfileInfo\fP"
+.br
+.ti -1c
+.RI "\fBQTemporaryDir\fP \fBtempDir\fP"
+.br
+.ti -1c
+.RI "\fBSystemcLinker\fP * \fBlinker\fP"
+.br
+.ti -1c
+.RI "\fBElementsDisplay\fP * \fBdisplay\fP"
+.br
+.in -1c
+.SH "Detailed Description"
+.PP 
+The SvgHandling class provides functionality to handle SVG files\&. 
+.SH "Constructor & Destructor Documentation"
+.PP 
+.SS "SvgHandler::SvgHandler (\fBElementsDisplay\fP * display, \fBSimulationState\fP * simulationState, \fBSvgWidget\fP * svgWidget, QObject * parent = \fR\fBnullptr\fP\fP)\fR [explicit]\fP"
+
+.PP
+Constructs a SvgHandling object\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIsimulationState\fP The \fBSimulationState\fP object for managing the state of the application\&. 
+.br
+\fIparent\fP The parent object\&. 
+.RE
+.PP
+
+.SS "SvgHandler::~SvgHandler ()"
+
+.PP
+Destructs the SvgHandling object\&. 
+.SH "Member Function Documentation"
+.PP 
+.SS "\fBbool\fP SvgHandler::clearSvg ()"
+
+.SS "\fBbool\fP SvgHandler::copySvgToTemp (\fBconst\fP \fBQString\fP & sourceFilePath)\fR [protected]\fP"
+
+.PP
+Copies the SVG file to a temporary directory\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIsourceFilePath\fP The path of the source SVG file\&. 
+.br
+\fItempFilePath\fP The path of the temporary SVG file\&. 
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+True if the copy operation succeeds; otherwise, false\&. 
+.RE
+.PP
+
+.SS "\fBvoid\fP SvgHandler::deleteTempSvg (\fBconst\fP \fBQString\fP & tempFilePath)\fR [protected]\fP"
+
+.PP
+Deletes the temporary SVG file\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fItempFilePath\fP The path of the temporary SVG file\&. 
+.RE
+.PP
+
+.SS "\fBQString\fP SvgHandler::getTempFilePath () const\fR [private]\fP"
+
+.SS "\fBbool\fP SvgHandler::loadAndParse (\fBQString\fP svgPath)\fR [private]\fP"
+
+.SS "\fBbool\fP SvgHandler::loadSvg (\fBconst\fP \fBQString\fP & filePath)"
+
+.PP
+loadSvg 
+.PP
+\fBParameters\fP
+.RS 4
+\fIfilePath\fP 
+.RE
+.PP
+
+.SH "Member Data Documentation"
+.PP 
+.SS "\fBElementsDisplay\fP* SvgHandler::display\fR [private]\fP"
+
+.SS "\fBQFileInfo\fP* SvgHandler::fileInfo\fR [private]\fP"
+
+.SS "\fBSystemcLinker\fP* SvgHandler::linker\fR [private]\fP"
+
+.SS "\fBSimulationState\fP* SvgHandler::simulationState\fR [private]\fP"
+The \fBSimulationState\fP object for managing the state of the application\&. 
+.SS "\fBSvgWidget\fP* SvgHandler::svgWidget\fR [private]\fP"
+
+.SS "\fBQTemporaryDir\fP SvgHandler::tempDir\fR [private]\fP"
+The temporary directory for storing SVG files\&. 
+.SS "\fBQString\fP SvgHandler::tempFilePath\fR [private]\fP"
+
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for VHDL simulator from the source code\&.

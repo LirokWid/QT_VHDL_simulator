@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=11"/>
 <meta name="generator" content="Doxygen 1.10.0"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>VHDL simulator: C:/Users/BJRODIER/Documents/QT_REPO/QT_VHDL_simulator/code/old_ui_project/qt-sc/sc_qt_adaptor.h Source File</title>
+<title>VHDL simulator: C:/Users/BJRODIER/Documents/QT_REPO/QT_VHDL_simulator/code/Qt_VHDL_SVG_proj/systemc_modules/sc_qt_adaptor.h Source File</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -103,51 +103,48 @@ $(function(){initNavTree('sc__qt__adaptor_8h_source.html',''); initResizable(); 
 <a href="sc__qt__adaptor_8h.html">Go to the documentation of this file.</a><div class="fragment"><div class="line"><a id="l00001" name="l00001"></a><span class="lineno">    1</span><span class="preprocessor">#ifndef SC_QT_ADAPTOR_H</span></div>
 <div class="line"><a id="l00002" name="l00002"></a><span class="lineno">    2</span><span class="preprocessor">#define SC_QT_ADAPTOR_H</span></div>
 <div class="line"><a id="l00003" name="l00003"></a><span class="lineno">    3</span> </div>
-<div class="line"><a id="l00004" name="l00004"></a><span class="lineno">    4</span><span class="preprocessor">#include &lt;<a class="code" href="systemc_8h.html">systemc.h</a>&gt;</span></div>
+<div class="line"><a id="l00004" name="l00004"></a><span class="lineno">    4</span><span class="preprocessor">#include &lt;systemc.h&gt;</span></div>
 <div class="line"><a id="l00005" name="l00005"></a><span class="lineno">    5</span><span class="preprocessor">#include &quot;<a class="code" href="sc__debug__object_8h.html">sc_debug_object.h</a>&quot;</span></div>
 <div class="line"><a id="l00006" name="l00006"></a><span class="lineno">    6</span> </div>
 <div class="line"><a id="l00007" name="l00007"></a><span class="lineno">    7</span> </div>
-<div class="foldopen" id="foldopen00008" data-start="{" data-end="}">
-<div class="line"><a id="l00008" name="l00008"></a><span class="lineno"><a class="line" href="sc__qt__adaptor_8h.html#a23e953024d41bb0b032cff08a744a20d">    8</a></span><a class="code hl_define" href="sc__module_8h.html#a0e65c5055705b9e5f558d3f0ec28a120">SC_MODULE</a> (scQtAdaptor) {</div>
-<div class="line"><a id="l00009" name="l00009"></a><span class="lineno">    9</span> </div>
-<div class="line"><a id="l00010" name="l00010"></a><span class="lineno">   10</span>    <a class="code hl_define" href="sc__module_8h.html#a6d981485fe8c8c7ea1a42fcd4487e6a1">SC_CTOR</a>(scQtAdaptor) {</div>
-<div class="line"><a id="l00011" name="l00011"></a><span class="lineno">   11</span>        <a class="code hl_define" href="sc__module_8h.html#a78f626bc71b853c1f8618e74ec6f0512">SC_THREAD</a>(AdaptorThread);</div>
-<div class="line"><a id="l00012" name="l00012"></a><span class="lineno">   12</span>    }</div>
-<div class="line"><a id="l00013" name="l00013"></a><span class="lineno">   13</span> </div>
-<div class="line"><a id="l00014" name="l00014"></a><span class="lineno">   14</span>    ~scQtAdaptor () {</div>
-<div class="line"><a id="l00015" name="l00015"></a><span class="lineno">   15</span>    }</div>
-<div class="line"><a id="l00016" name="l00016"></a><span class="lineno">   16</span> </div>
-<div class="line"><a id="l00017" name="l00017"></a><span class="lineno">   17</span>    <span class="keywordtype">void</span> AdaptorThread ();</div>
-<div class="line"><a id="l00018" name="l00018"></a><span class="lineno">   18</span> </div>
-<div class="line"><a id="l00019" name="l00019"></a><span class="lineno">   19</span>    <span class="keyword">virtual</span> <span class="keyword">const</span> <span class="keywordtype">char</span>* kind()<span class="keyword"> const </span>{ <span class="keywordflow">return</span> <span class="stringliteral">&quot;sc_trace_adaptor&quot;</span>; }</div>
-<div class="line"><a id="l00020" name="l00020"></a><span class="lineno">   20</span>    <span class="keywordtype">void</span> end_of_elaboration();</div>
-<div class="line"><a id="l00021" name="l00021"></a><span class="lineno">   21</span>    <span class="keywordtype">void</span> hierarchy();</div>
-<div class="line"><a id="l00022" name="l00022"></a><span class="lineno">   22</span>    <span class="keywordtype">void</span> report(<a class="code hl_class" href="classsc__core_1_1sc__time.html">sc_time</a> &amp;now);</div>
-<div class="line"><a id="l00023" name="l00023"></a><span class="lineno">   23</span> </div>
-<div class="line"><a id="l00024" name="l00024"></a><span class="lineno">   24</span><span class="keyword">private</span>:</div>
-<div class="line"><a id="l00025" name="l00025"></a><span class="lineno">   25</span> </div>
-<div class="line"><a id="l00026" name="l00026"></a><span class="lineno">   26</span>    <span class="keywordtype">void</span> register_object(<a class="code hl_class" href="classdebug__object.html">debug_object</a> &amp;obj);</div>
-<div class="line"><a id="l00027" name="l00027"></a><span class="lineno">   27</span>    <span class="keywordtype">void</span> trace_module (<a class="code hl_class" href="classsc__core_1_1sc__module.html">sc_module</a> *module);</div>
-<div class="line"><a id="l00028" name="l00028"></a><span class="lineno">   28</span>    std::vector&lt;debug_object&gt; m_hierarchy_objects;</div>
-<div class="line"><a id="l00029" name="l00029"></a><span class="lineno">   29</span>    std::vector&lt;debug_object&gt; m_traceable_objects;</div>
-<div class="line"><a id="l00030" name="l00030"></a><span class="lineno">   30</span>};</div>
+<div class="line"><a id="l00008" name="l00008"></a><span class="lineno">    8</span> </div>
+<div class="foldopen" id="foldopen00009" data-start="{" data-end="}">
+<div class="line"><a id="l00009" name="l00009"></a><span class="lineno"><a class="line" href="sc__qt__adaptor_8h.html#a23e953024d41bb0b032cff08a744a20d">    9</a></span><a class="code hl_function" href="sc__qt__adaptor_8h.html#a23e953024d41bb0b032cff08a744a20d">SC_MODULE</a> (<a class="code hl_class" href="class_sysc_add__pv.html">scQtAdaptor</a>) {</div>
+<div class="line"><a id="l00010" name="l00010"></a><span class="lineno">   10</span> </div>
+<div class="line"><a id="l00011" name="l00011"></a><span class="lineno">   11</span>    SC_CTOR(<a class="code hl_class" href="class_sysc_add__pv.html">scQtAdaptor</a>)</div>
+<div class="line"><a id="l00012" name="l00012"></a><span class="lineno">   12</span>    {</div>
+<div class="line"><a id="l00013" name="l00013"></a><span class="lineno">   13</span>        <a class="code hl_class" href="class_sysc_add__pv.html">SC_THREAD</a>(<a class="code hl_class" href="class_sysc_add__pv.html">AdaptorThread</a>);</div>
+<div class="line"><a id="l00014" name="l00014"></a><span class="lineno">   14</span>    }</div>
+<div class="line"><a id="l00015" name="l00015"></a><span class="lineno">   15</span> </div>
+<div class="line"><a id="l00016" name="l00016"></a><span class="lineno">   16</span>    <a class="code hl_class" href="class_sysc_add__pv.html">~scQtAdaptor</a> (){}</div>
+<div class="line"><a id="l00017" name="l00017"></a><span class="lineno">   17</span> </div>
+<div class="line"><a id="l00018" name="l00018"></a><span class="lineno">   18</span>    <span class="keywordtype">void</span> <a class="code hl_class" href="class_sysc_add__pv.html">AdaptorThread</a>();</div>
+<div class="line"><a id="l00019" name="l00019"></a><span class="lineno">   19</span> </div>
+<div class="line"><a id="l00020" name="l00020"></a><span class="lineno">   20</span>    <span class="keyword">virtual</span> <span class="keyword">const</span> <span class="keywordtype">char</span>* <a class="code hl_class" href="class_sysc_add__pv.html">kind</a>()<span class="keyword"> const </span>{ <span class="keywordflow">return</span> <span class="stringliteral">&quot;sc_trace_adaptor&quot;</span>; }</div>
+<div class="line"><a id="l00021" name="l00021"></a><span class="lineno">   21</span>    <span class="keywordtype">void</span> <a class="code hl_class" href="class_sysc_add__pv.html">end_of_elaboration</a>();</div>
+<div class="line"><a id="l00022" name="l00022"></a><span class="lineno">   22</span>    <span class="keywordtype">void</span> hierarchy();</div>
+<div class="line"><a id="l00023" name="l00023"></a><span class="lineno">   23</span>    <span class="keywordtype">void</span> report(<a class="code hl_class" href="class_sysc_add__pv.html">sc_time</a> &amp;<a class="code hl_class" href="class_sysc_add__pv.html">now</a>);</div>
+<div class="line"><a id="l00024" name="l00024"></a><span class="lineno">   24</span> </div>
+<div class="line"><a id="l00025" name="l00025"></a><span class="lineno">   25</span><span class="keyword">private</span>:</div>
+<div class="line"><a id="l00026" name="l00026"></a><span class="lineno">   26</span> </div>
+<div class="line"><a id="l00027" name="l00027"></a><span class="lineno">   27</span>    <span class="keywordtype">void</span> <a class="code hl_class" href="class_sysc_add__pv.html">register_object</a>(<a class="code hl_class" href="classdebug__object.html">debug_object</a> &amp;obj);</div>
+<div class="line"><a id="l00028" name="l00028"></a><span class="lineno">   28</span>    <span class="keywordtype">void</span> <a class="code hl_class" href="class_sysc_add__pv.html">trace_module</a> (sc_module *<a class="code hl_class" href="class_sysc_add__pv.html">module</a>);</div>
+<div class="line"><a id="l00029" name="l00029"></a><span class="lineno">   29</span>    std::vector&lt;debug_object&gt; <a class="code hl_class" href="class_sysc_add__pv.html">m_hierarchy_objects</a>;</div>
+<div class="line"><a id="l00030" name="l00030"></a><span class="lineno">   30</span>    std::vector&lt;debug_object&gt; <a class="code hl_class" href="class_sysc_add__pv.html">m_traceable_objects</a>;</div>
+<div class="line"><a id="l00031" name="l00031"></a><span class="lineno">   31</span>};</div>
 </div>
-<div class="line"><a id="l00031" name="l00031"></a><span class="lineno">   31</span> </div>
-<div class="line"><a id="l00032" name="l00032"></a><span class="lineno">   32</span><span class="preprocessor">#endif </span><span class="comment">// SC_QT_ADAPTOR_H</span></div>
-<div class="ttc" id="aclassdebug__object_html"><div class="ttname"><a href="classdebug__object.html">debug_object</a></div><div class="ttdef"><b>Definition</b> sc_debug_object.h:8</div></div>
-<div class="ttc" id="aclasssc__core_1_1sc__module_html"><div class="ttname"><a href="classsc__core_1_1sc__module.html">sc_core::sc_module</a></div><div class="ttdef"><b>Definition</b> sc_module.h:81</div></div>
-<div class="ttc" id="aclasssc__core_1_1sc__time_html"><div class="ttname"><a href="classsc__core_1_1sc__time.html">sc_core::sc_time</a></div><div class="ttdef"><b>Definition</b> sc_time.h:79</div></div>
+<div class="line"><a id="l00032" name="l00032"></a><span class="lineno">   32</span> </div>
+<div class="line"><a id="l00033" name="l00033"></a><span class="lineno">   33</span><span class="preprocessor">#endif </span><span class="comment">// SC_QT_ADAPTOR_H</span></div>
+<div class="ttc" id="aclass_sysc_add__pv_html"><div class="ttname"><a href="class_sysc_add__pv.html">SyscAdd_pv</a></div><div class="ttdef"><b>Definition</b> sc_arith.h:38</div></div>
+<div class="ttc" id="aclassdebug__object_html"><div class="ttname"><a href="classdebug__object.html">debug_object</a></div><div class="ttdef"><b>Definition</b> sc_debug_object.h:10</div></div>
 <div class="ttc" id="asc__debug__object_8h_html"><div class="ttname"><a href="sc__debug__object_8h.html">sc_debug_object.h</a></div></div>
-<div class="ttc" id="asc__module_8h_html_a0e65c5055705b9e5f558d3f0ec28a120"><div class="ttname"><a href="sc__module_8h.html#a0e65c5055705b9e5f558d3f0ec28a120">SC_MODULE</a></div><div class="ttdeci">#define SC_MODULE(user_module_name)</div><div class="ttdef"><b>Definition</b> sc_module.h:396</div></div>
-<div class="ttc" id="asc__module_8h_html_a6d981485fe8c8c7ea1a42fcd4487e6a1"><div class="ttname"><a href="sc__module_8h.html#a6d981485fe8c8c7ea1a42fcd4487e6a1">SC_CTOR</a></div><div class="ttdeci">#define SC_CTOR(user_module_name)</div><div class="ttdef"><b>Definition</b> sc_module.h:399</div></div>
-<div class="ttc" id="asc__module_8h_html_a78f626bc71b853c1f8618e74ec6f0512"><div class="ttname"><a href="sc__module_8h.html#a78f626bc71b853c1f8618e74ec6f0512">SC_THREAD</a></div><div class="ttdeci">#define SC_THREAD(func)</div><div class="ttdef"><b>Definition</b> sc_module.h:460</div></div>
-<div class="ttc" id="asystemc_8h_html"><div class="ttname"><a href="systemc_8h.html">systemc.h</a></div></div>
+<div class="ttc" id="asc__qt__adaptor_8h_html_a23e953024d41bb0b032cff08a744a20d"><div class="ttname"><a href="sc__qt__adaptor_8h.html#a23e953024d41bb0b032cff08a744a20d">SC_MODULE</a></div><div class="ttdeci">SC_MODULE(scQtAdaptor)</div><div class="ttdef"><b>Definition</b> sc_qt_adaptor.h:9</div></div>
 </div><!-- fragment --></div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
-    <li class="navelem"><a class="el" href="dir_7effeb24e53c3818d57b520fb3c0cbf7.html">old_ui_project</a></li><li class="navelem"><a class="el" href="dir_5781825977ac693c996cd00101051130.html">qt-sc</a></li><li class="navelem"><a class="el" href="sc__qt__adaptor_8h.html">sc_qt_adaptor.h</a></li>
+    <li class="navelem"><a class="el" href="dir_0af52483e74d32ed6e37ab7ab10dfbf6.html">systemc_modules</a></li><li class="navelem"><a class="el" href="sc__qt__adaptor_8h.html">sc_qt_adaptor.h</a></li>
     <li class="footer">Generated by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.10.0 </li>
   </ul>
 </div>

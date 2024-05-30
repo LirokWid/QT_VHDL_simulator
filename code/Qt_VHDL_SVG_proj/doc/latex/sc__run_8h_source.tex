@@ -1,55 +1,57 @@
 \doxysection{sc\+\_\+run.\+h}
-\hypertarget{sc__run_8h_source}{}\label{sc__run_8h_source}\index{C:/Users/BJRODIER/Documents/QT\_REPO/QT\_VHDL\_simulator/code/old\_ui\_project/qt-\/sc/sc\_run.h@{C:/Users/BJRODIER/Documents/QT\_REPO/QT\_VHDL\_simulator/code/old\_ui\_project/qt-\/sc/sc\_run.h}}
+\hypertarget{sc__run_8h_source}{}\label{sc__run_8h_source}\index{C:/Users/BJRODIER/Documents/QT\_REPO/QT\_VHDL\_simulator/code/Qt\_VHDL\_SVG\_proj/systemc\_modules/sc\_run.h@{C:/Users/BJRODIER/Documents/QT\_REPO/QT\_VHDL\_simulator/code/Qt\_VHDL\_SVG\_proj/systemc\_modules/sc\_run.h}}
 \mbox{\hyperlink{sc__run_8h}{Go to the documentation of this file.}}
 \begin{DoxyCode}{0}
-\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#ifndef\ SC\_RUN\_H}}
-\DoxyCodeLine{00002\ \textcolor{preprocessor}{\#define\ SC\_RUN\_H}}
-\DoxyCodeLine{00003\ \textcolor{preprocessor}{\#include\ <pthread.h>}}
-\DoxyCodeLine{00004\ \textcolor{preprocessor}{\#include\ <vector>}}
-\DoxyCodeLine{00005\ \textcolor{preprocessor}{\#include\ <string>}}
-\DoxyCodeLine{00006\ }
-\DoxyCodeLine{00007\ \textcolor{preprocessor}{\#define\ SC\_ST\_COMMAND\_RUN\ \ \ \ \ \ \ \ \ \ \ \ 0\ \ \ \ \ \ \ }\textcolor{comment}{//\ Used\ by\ UI\ to\ run\ a\ simulation\ microstep}}
-\DoxyCodeLine{00008\ \textcolor{preprocessor}{\#define\ SC\_ST\_COMMAND\_EXIT\ \ \ \ \ \ \ \ \ \ \ 1\ \ \ \ \ \ \ }\textcolor{comment}{//\ Used\ by\ UI\ to\ finish\ the\ simulation\ (sc\_stop)}}
-\DoxyCodeLine{00009\ \textcolor{preprocessor}{\#define\ SC\_ST\_RESPONSE\_STOP\ \ \ \ \ \ \ \ \ \ 99\ \ \ \ \ \ }\textcolor{comment}{//\ Used\ by\ SystemC\ to\ signal\ it\ is\ waiting\ for\ the\ UI}}
-\DoxyCodeLine{00010\ \textcolor{preprocessor}{\#define\ SC\_ST\_RESPONSE\_FINISHED\ \ \ \ \ \ 100\ \ \ \ \ }\textcolor{comment}{//\ Used\ by\ SystemC\ to\ signal\ it\ has\ finished}}
-\DoxyCodeLine{00011\ \textcolor{preprocessor}{\#define\ SC\_ST\_RESPONSE\_ABORTED\ \ \ \ \ \ \ 101\ \ \ \ \ }\textcolor{comment}{//\ Used\ by\ SystemC\ to\ signal\ an\ internal\ error}}
-\DoxyCodeLine{00012\ }
-\DoxyCodeLine{00013\ \textcolor{preprocessor}{\#define\ SC\_ST\_MAXCOMMAND\ \ \ \ 50\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }\textcolor{comment}{//\ No\ commands\ (SC\_ST\_COMMAND\_XXX\ above\ this\ value)}}
-\DoxyCodeLine{00014\ \textcolor{preprocessor}{\#define\ SC\_ST\_MINRESPONSE\ \ \ 60\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }\textcolor{comment}{//\ No\ responses\ (SC\_ST\_RESPONSE\_XXX\ below\ this\ value)}}
-\DoxyCodeLine{00015\ }
+\DoxyCodeLine{00001\ }
+\DoxyCodeLine{00014\ \textcolor{preprocessor}{\#ifndef\ SC\_RUN\_H}}
+\DoxyCodeLine{00015\ \textcolor{preprocessor}{\#define\ SC\_RUN\_H}}
 \DoxyCodeLine{00016\ }
-\DoxyCodeLine{00017\ \textcolor{keyword}{typedef}\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structsc__thread__run__s}{sc\_thread\_run\_s}}\ \{}
-\DoxyCodeLine{00018\ \ \ \ \ \textcolor{keywordtype}{int}\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structsc__thread__run__s_af363ea375288375757b273d4ca3804f7}{state}};\ \ \ \ \ \ \textcolor{comment}{//\ One\ of\ the\ \#define's\ SC\_ST\_XXX\ values}}
-\DoxyCodeLine{00019\ \ \ \ \ std::vector<std::string>\ \mbox{\hyperlink{structsc__thread__run__s_a9713d2d0c2cadc1f55fd7545795fd33f}{hierarchy}};}
-\DoxyCodeLine{00020\ \ \ \ \ std::vector<std::string>\ \mbox{\hyperlink{structsc__thread__run__s_a14d06c636c39cc3726cefe5bcda642af}{tracelist}};}
-\DoxyCodeLine{00021\ \ \ \ \ std::vector<std::string>\ \mbox{\hyperlink{structsc__thread__run__s_ae3154cef26492d4228317c929b663a5e}{report}};}
-\DoxyCodeLine{00022\ \ \ \ \ pthread\_mutex\_t\ \mbox{\hyperlink{structsc__thread__run__s_a053a5ad064e6f23b0b801f725f3aef05}{run\_mutex}};\ \ \textcolor{comment}{//\ Mutex\ to\ control\ the\ execution\ of\ the\ SystemC\ thread}}
-\DoxyCodeLine{00023\ \ \ \ \ pthread\_mutex\_t\ \mbox{\hyperlink{structsc__thread__run__s_ade35a27653fda8886c936beb3c48c1cf}{condvar\_mutex}};\ \ \textcolor{comment}{//\ Mutex\ for\ the\ condition\ variable}}
-\DoxyCodeLine{00024\ \ \ \ \ pthread\_cond\_t\ \ \mbox{\hyperlink{structsc__thread__run__s_afd3056372909dbcf1c8be5cb0384ffe3}{condvar}};\ \ \ \ \textcolor{comment}{//\ Condition\ variable\ that\ controls\ SystemC\ thread\ execution}}
-\DoxyCodeLine{00025\ \}\ \mbox{\hyperlink{sc__run_8h_adebbc9e9b3c7bb4a35969e4bb0a4cb23}{sc\_thread\_run\_t}};}
+\DoxyCodeLine{00017\ \textcolor{preprocessor}{\#include\ <pthread.h>}}
+\DoxyCodeLine{00018\ \textcolor{preprocessor}{\#include\ <vector>}}
+\DoxyCodeLine{00019\ \textcolor{preprocessor}{\#include\ <string>}}
+\DoxyCodeLine{00020\ }
+\DoxyCodeLine{00021\ \textcolor{preprocessor}{\#define\ SC\_ST\_COMMAND\_RUN\ \ \ \ \ \ \ \ \ \ \ 0\ \ \ \ \ \ \ }\textcolor{comment}{//\ Used\ by\ UI\ to\ run\ a\ simulation\ microstep}}
+\DoxyCodeLine{00022\ \textcolor{preprocessor}{\#define\ SC\_ST\_COMMAND\_EXIT\ \ \ \ \ \ \ \ \ \ 1\ \ \ \ \ \ \ }\textcolor{comment}{//\ Used\ by\ UI\ to\ finish\ the\ simulation\ (sc\_stop)}}
+\DoxyCodeLine{00023\ \textcolor{preprocessor}{\#define\ SC\_ST\_RESPONSE\_STOP\ \ \ \ \ \ \ \ \ 99\ \ \ \ \ \ }\textcolor{comment}{//\ Used\ by\ SystemC\ to\ signal\ it\ is\ waiting\ for\ the\ UI}}
+\DoxyCodeLine{00024\ \textcolor{preprocessor}{\#define\ SC\_ST\_RESPONSE\_FINISHED\ \ \ \ \ 100\ \ \ \ \ }\textcolor{comment}{//\ Used\ by\ SystemC\ to\ signal\ it\ has\ finished}}
+\DoxyCodeLine{00025\ \textcolor{preprocessor}{\#define\ SC\_ST\_RESPONSE\_ABORTED\ \ \ \ \ \ 101\ \ \ \ \ }\textcolor{comment}{//\ Used\ by\ SystemC\ to\ signal\ an\ internal\ error}}
 \DoxyCodeLine{00026\ }
-\DoxyCodeLine{00027\ \textcolor{comment}{/*}}
-\DoxyCodeLine{00028\ \textcolor{comment}{\ *\ To\ be\ called\ from\ UI\ simulation\ control\ thread}}
-\DoxyCodeLine{00029\ \textcolor{comment}{\ */}}
-\DoxyCodeLine{00030\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{sc__run_8h_a88d94bb20f574f3ffe50bfeadbe0fcca}{sc\_StartTransactionFromUI}}();}
-\DoxyCodeLine{00031\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{sc__run_8h_a97ddb5654fcbf57f1ccd03f4089b8b68}{sc\_EndTransactionFromUI}}();}
-\DoxyCodeLine{00032\ }
-\DoxyCodeLine{00033\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{sc__run_8h_a934f77bbe8d8f0a18e574300aab0affd}{sc\_NewStateFromUI}}(\textcolor{keywordtype}{int}\ newState\ =\ \mbox{\hyperlink{sc__run_8h_a876d976a8266cc3701fc096a873f16b8}{SC\_ST\_COMMAND\_RUN}});}
-\DoxyCodeLine{00034\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{sc__run_8h_a6cafc89a80ee6aa97a3901232093f0e0}{sc\_getRunResultFromUI}}(\textcolor{keywordtype}{void});}
-\DoxyCodeLine{00035\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{sc__run_8h_a17b4724516e64b2c1a59dbad38a7fde4}{sc\_setRunFromUI}}(\mbox{\hyperlink{structsc__thread__run__s}{sc\_thread\_run\_t}}\ *theRun);}
-\DoxyCodeLine{00036\ std::vector<std::string>\ \mbox{\hyperlink{sc__run_8h_a3af559217a1ee40d187556c6a596fb1f}{sc\_getHierarchyFromUI}}();}
-\DoxyCodeLine{00037\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{sc__run_8h_a3fff069d8e6f79f491eefe68b1bf835a}{sc\_setTraceListFromUI}}(std::vector<std::string>\ \&tl);}
-\DoxyCodeLine{00038\ std::vector<std::string>\ \mbox{\hyperlink{sc__run_8h_a1f18f36705b0f93f55ecd98530014316}{sc\_getReportFromUI}}();}
-\DoxyCodeLine{00039\ }
-\DoxyCodeLine{00040\ \textcolor{comment}{/*}}
-\DoxyCodeLine{00041\ \textcolor{comment}{\ *\ To\ be\ called\ from\ SystemC\ simulation\ thread}}
-\DoxyCodeLine{00042\ \textcolor{comment}{\ */}}
-\DoxyCodeLine{00043\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{sc__run_8h_af6815a8aa2dc8ffec05c4a255dd10d77}{sc\_NotifyUIFromSC}}(\textcolor{keywordtype}{int}\ newState\ =\ \mbox{\hyperlink{sc__run_8h_a9e6353c986975f486942e3d65e7cae70}{SC\_ST\_RESPONSE\_STOP}});}
-\DoxyCodeLine{00044\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{sc__run_8h_a4daac93c60822b29517f9b03611aebdf}{sc\_waitStateChange}}(\textcolor{keywordtype}{void});}
-\DoxyCodeLine{00045\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{sc__run_8h_ae14f5f56f79b389bfe2008c7890113ee}{sc\_setRunResult}}(\textcolor{keywordtype}{int}\ theResult);}
-\DoxyCodeLine{00046\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{sc__run_8h_a77e8a1346195855b38188f67c09c047f}{sc\_setReportFromSC}}(std::vector<std::string>\ \&rep);}
-\DoxyCodeLine{00047\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{sc__run_8h_a60b48c41c6f4d77b58001c96e2a0c460}{sc\_setHierarchyFromSC}}(std::vector<std::string>\ \&hier);}
-\DoxyCodeLine{00048\ }
-\DoxyCodeLine{00049\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{//\ SC\_RUN\_H}}
+\DoxyCodeLine{00027\ \textcolor{preprocessor}{\#define\ SC\_ST\_MAXCOMMAND\ \ \ \ \ \ \ \ \ \ \ \ 50\ \ \ \ \ \ }\textcolor{comment}{//\ No\ commands\ (SC\_ST\_COMMAND\_XXX\ above\ this\ value)}}
+\DoxyCodeLine{00028\ \textcolor{preprocessor}{\#define\ SC\_ST\_MINRESPONSE\ \ \ \ \ \ \ \ \ \ \ 60\ \ \ \ \ \ }\textcolor{comment}{//\ No\ responses\ (SC\_ST\_RESPONSE\_XXX\ below\ this\ value)}}
+\DoxyCodeLine{00029\ }
+\DoxyCodeLine{00030\ }
+\DoxyCodeLine{00031\ \textcolor{keyword}{typedef}\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structsc__thread__run__s}{sc\_thread\_run\_s}}}
+\DoxyCodeLine{00032\ \{}
+\DoxyCodeLine{00033\ \ \ \ \ \textcolor{keywordtype}{int}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structsc__thread__run__s_af363ea375288375757b273d4ca3804f7}{state}};\ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ One\ of\ the\ \#define's\ SC\_ST\_XXX\ values}}
+\DoxyCodeLine{00034\ \ \ \ \ std::vector<std::string>\ \ \ \ \mbox{\hyperlink{structsc__thread__run__s_a9713d2d0c2cadc1f55fd7545795fd33f}{hierarchy}};\ \ \ \ \ \ \textcolor{comment}{//\ Hierarchy\ of\ the\ SystemC\ module}}
+\DoxyCodeLine{00035\ \ \ \ \ std::vector<std::string>\ \ \ \ \mbox{\hyperlink{structsc__thread__run__s_a14d06c636c39cc3726cefe5bcda642af}{tracelist}};\ \ \ \ \ \ \textcolor{comment}{//\ List\ of\ signals\ to\ trace}}
+\DoxyCodeLine{00036\ \ \ \ \ std::vector<std::string>\ \ \ \ \mbox{\hyperlink{structsc__thread__run__s_ae3154cef26492d4228317c929b663a5e}{report}};\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Report\ of\ the\ simulation}}
+\DoxyCodeLine{00037\ \ \ \ \ \mbox{\hyperlink{class_sysc_add__pv}{pthread\_mutex\_t}}\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structsc__thread__run__s_a053a5ad064e6f23b0b801f725f3aef05}{run\_mutex}};\ \ \ \ \ \ \textcolor{comment}{//\ Mutex\ to\ control\ the\ execution\ of\ the\ SystemC\ thread}}
+\DoxyCodeLine{00038\ \ \ \ \ \mbox{\hyperlink{class_sysc_add__pv}{pthread\_mutex\_t}}\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structsc__thread__run__s_ade35a27653fda8886c936beb3c48c1cf}{condvar\_mutex}};\ \ \textcolor{comment}{//\ Mutex\ for\ the\ condition\ variable}}
+\DoxyCodeLine{00039\ \ \ \ \ \mbox{\hyperlink{class_sysc_add__pv}{pthread\_cond\_t}}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structsc__thread__run__s_afd3056372909dbcf1c8be5cb0384ffe3}{condvar}};\ \ \ \ \ \ \ \ \textcolor{comment}{//\ Condition\ variable\ that\ controls\ SystemC\ thread\ execution}}
+\DoxyCodeLine{00040\ \}\ \mbox{\hyperlink{sc__run_8h_adebbc9e9b3c7bb4a35969e4bb0a4cb23}{sc\_thread\_run\_t}};}
+\DoxyCodeLine{00041\ }
+\DoxyCodeLine{00042\ \textcolor{comment}{/*}}
+\DoxyCodeLine{00043\ \textcolor{comment}{\ *\ To\ be\ called\ from\ UI\ simulation\ control\ thread}}
+\DoxyCodeLine{00044\ \textcolor{comment}{\ */}}
+\DoxyCodeLine{00045\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{sc__run_8h_a88d94bb20f574f3ffe50bfeadbe0fcca}{sc\_StartTransactionFromUI}}();}
+\DoxyCodeLine{00046\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{sc__run_8h_a97ddb5654fcbf57f1ccd03f4089b8b68}{sc\_EndTransactionFromUI}}();}
+\DoxyCodeLine{00047\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{sc__run_8h_a934f77bbe8d8f0a18e574300aab0affd}{sc\_NewStateFromUI}}(\textcolor{keywordtype}{int}\ \mbox{\hyperlink{class_sysc_add__pv}{newState}}\ =\ \mbox{\hyperlink{sc__run_8h_a876d976a8266cc3701fc096a873f16b8}{SC\_ST\_COMMAND\_RUN}});}
+\DoxyCodeLine{00048\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{sc__run_8h_a6cafc89a80ee6aa97a3901232093f0e0}{sc\_getRunResultFromUI}}(\textcolor{keywordtype}{void});}
+\DoxyCodeLine{00049\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{sc__run_8h_a17b4724516e64b2c1a59dbad38a7fde4}{sc\_setRunFromUI}}(\mbox{\hyperlink{structsc__thread__run__s}{sc\_thread\_run\_t}}\ *\mbox{\hyperlink{class_sysc_add__pv}{theRun}});}
+\DoxyCodeLine{00050\ std::vector<std::string>\ \mbox{\hyperlink{sc__run_8h_a3af559217a1ee40d187556c6a596fb1f}{sc\_getHierarchyFromUI}}();}
+\DoxyCodeLine{00051\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{sc__run_8h_a3fff069d8e6f79f491eefe68b1bf835a}{sc\_setTraceListFromUI}}(std::vector<std::string>\ \&\mbox{\hyperlink{class_sysc_add__pv}{tl}});}
+\DoxyCodeLine{00052\ std::vector<std::string>\ \mbox{\hyperlink{sc__run_8h_a1f18f36705b0f93f55ecd98530014316}{sc\_getReportFromUI}}();}
+\DoxyCodeLine{00053\ }
+\DoxyCodeLine{00054\ \textcolor{comment}{/*}}
+\DoxyCodeLine{00055\ \textcolor{comment}{\ *\ To\ be\ called\ from\ SystemC\ simulation\ thread}}
+\DoxyCodeLine{00056\ \textcolor{comment}{\ */}}
+\DoxyCodeLine{00057\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{sc__run_8h_af6815a8aa2dc8ffec05c4a255dd10d77}{sc\_NotifyUIFromSC}}(\textcolor{keywordtype}{int}\ \mbox{\hyperlink{class_sysc_add__pv}{newState}}\ =\ \mbox{\hyperlink{sc__run_8h_a9e6353c986975f486942e3d65e7cae70}{SC\_ST\_RESPONSE\_STOP}});}
+\DoxyCodeLine{00058\ \textcolor{keywordtype}{int}\ \ \mbox{\hyperlink{sc__run_8h_a4daac93c60822b29517f9b03611aebdf}{sc\_waitStateChange}}(\textcolor{keywordtype}{void});}
+\DoxyCodeLine{00059\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{sc__run_8h_ae14f5f56f79b389bfe2008c7890113ee}{sc\_setRunResult}}(\textcolor{keywordtype}{int}\ \mbox{\hyperlink{class_sysc_add__pv}{theResult}});}
+\DoxyCodeLine{00060\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{sc__run_8h_a77e8a1346195855b38188f67c09c047f}{sc\_setReportFromSC}}(std::vector<std::string>\ \&\mbox{\hyperlink{class_sysc_add__pv}{rep}});}
+\DoxyCodeLine{00061\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{sc__run_8h_a60b48c41c6f4d77b58001c96e2a0c460}{sc\_setHierarchyFromSC}}(std::vector<std::string>\ \&\mbox{\hyperlink{class_sysc_add__pv}{hier}});}
+\DoxyCodeLine{00062\ }
+\DoxyCodeLine{00063\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{//\ SC\_RUN\_H}}
 
 \end{DoxyCode}

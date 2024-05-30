@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['lockable_5ftype_0',['lockable_type',['../classsc__core_1_1sc__scoped__lock.html#aa0372401b86ca9c680b6a0b3ca587648',1,'sc_core::sc_scoped_lock']]]
+  ['tri_5fconv_5fctl_5fxorz_5ft_0',['TRI_CONV_CTL_XORZ_t',['../sc__tri_8h.html#a9937463df09dcd91aa2fc25a7f1f875d',1,'sc_tri.h']]]
 ];
