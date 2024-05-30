@@ -56,15 +56,16 @@ SOURCES += \
 
 
 RESOURCES += \
-    $$files("svg/*.svg")
+    $$files("svg/*.svg") \
+    ressources.qrc
 
 FORMS += \
     $$files("forms/*.ui")
 
 
 # SystemC
-#SYSTEMC_INSTALL_PREFIX=C:/Qt/SystemC
-SYSTEMC_INSTALL_PREFIX=S:/Qt/SystemC
+SYSTEMC_INSTALL_PREFIX=C:/Qt/SystemC
+#SYSTEMC_INSTALL_PREFIX=S:/Qt/SystemC
 LIBS        += -L$$SYSTEMC_INSTALL_PREFIX/lib/ -lsystemc
 INCLUDEPATH +=   $$SYSTEMC_INSTALL_PREFIX/include
 
