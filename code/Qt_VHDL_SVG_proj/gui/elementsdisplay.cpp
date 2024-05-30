@@ -36,45 +36,7 @@ void ElementsDisplay::populateTree(const s_components_list &components)
     addElements(rootItem, components.elements);
     addSimulationIOs(rootItem, components.simulation_IOs);
     addSimulationWires(rootItem, components.simulation_wires);
-    /*
-    // Elements
-    QTreeWidgetItem *elementsItem = new QTreeWidgetItem(rootItem);
-    elementsItem->setText(0, "Elements");
 
-    for (const auto &element : components.elements.elements_list)
-    {
-        QTreeWidgetItem *elementItem = new QTreeWidgetItem(elementsItem);
-        elementItem->setText(0, element.name);
-        elementItem->addChild(new QTreeWidgetItem(QStringList() << "Device" << element.device));
-        elementItem->addChild(new QTreeWidgetItem(QStringList() << "Label" << element.label));
-        elementItem->addChild(new QTreeWidgetItem(QStringList() << "Inputs Number" << QString::number(element.inputs_number)));
-        elementItem->addChild(new QTreeWidgetItem(QStringList() << "Outputs Number" << QString::number(element.outputs_number)));
-        // ... Add inputs and outputs in similar way
-    }
-
-    // Simulation I/Os
-    QTreeWidgetItem *simIOsItem = new QTreeWidgetItem(rootItem);
-    simIOsItem->setText(0, "Simulation I/Os");
-    for (const auto &simIO : components.simulation_IOs.i_os)
-    {
-        QTreeWidgetItem *simIOItem = new QTreeWidgetItem(simIOsItem);
-        simIOItem->setText(0, simIO.name);
-        simIOItem->addChild(new QTreeWidgetItem(QStringList() << "Width" << QString::number(simIO.width)));
-        simIOItem->addChild(new QTreeWidgetItem(QStringList() << "Type" << QString::number(simIO.type)));
-        simIOItem->addChild(new QTreeWidgetItem(QStringList() << "Connected To" << simIO.connected_to));
-    }
-
-    // Simulation Wires
-    QTreeWidgetItem *simWiresItem = new QTreeWidgetItem(rootItem);
-    simWiresItem->setText(0, "Simulation Wires");
-    for (const auto &wire : components.simulation_wires.wires)
-    {
-        QTreeWidgetItem *wireItem = new QTreeWidgetItem(simWiresItem);
-        wireItem->setText(0, wire.name);
-        wireItem->addChild(new QTreeWidgetItem(QStringList() << "Width" << QString::number(wire.width)));
-        wireItem->addChild(new QTreeWidgetItem(QStringList() << "Connected To" << wire.connected_to));
-    }
-    */
     treeWidget->addTopLevelItem(rootItem);
     treeWidget->expandToDepth(1);
 }
@@ -93,7 +55,10 @@ void ElementsDisplay::addElements(QTreeWidgetItem *parent, const s_elements &ele
         addProperty(elementItem, "Inputs Number", QString::number(element.inputs_number));
         addProperty(elementItem, "Outputs Number", QString::number(element.outputs_number));
         addStateIcon(elementItem, element.error.is_parse_error);
-        // Add inputs and outputs similarly if needed
+        if (element.error.is_parse_error)
+        {
+            setTextColor(elementItem, Qt::red);
+        }
     }
     //add main error ? TODO
 }
@@ -126,6 +91,10 @@ void ElementsDisplay::addSimulationIOs(QTreeWidgetItem *parent, const s_sim_I_Os
         }
         addProperty(simIOItem, "Connected To", simIO.connected_to);
         addStateIcon(simIOItem, simIO.error.is_parse_error);
+        if (simIO.error.is_parse_error)
+        {
+            setTextColor(simIOItem, Qt::red);
+        }
     }
 }
 
