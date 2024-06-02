@@ -7,6 +7,8 @@ ElementsDisplay::ElementsDisplay(QTreeWidget *treeWidget, QWidget *parent)
     treeWidget(treeWidget)
 {
     idleUi();
+
+    connect(treeWidget, &QTreeWidget::itemClicked, this, &ElementsDisplay::handleItemClicked);
 }
 
 ElementsDisplay::~ElementsDisplay(){}
@@ -145,4 +147,13 @@ void ElementsDisplay::idleUi()
     QTreeWidgetItem *rootItem = new QTreeWidgetItem(treeWidget);
     rootItem->setText(0, "Ready to parse SVG file.");
     treeWidget->addTopLevelItem(rootItem);
+}
+
+void ElementsDisplay::handleItemClicked(QTreeWidgetItem *item, int column)
+{
+    Q_UNUSED(column);
+    if (item)
+    {
+        emit elementClicked(item->text(0));  // Emitting the signal with the item's text
+    }
 }

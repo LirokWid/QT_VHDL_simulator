@@ -20,6 +20,9 @@ public:
     void clearScene();
     void setZoom(int value);
 
+public slots:
+    void highlightItem(const QString &value);
+
 private slots:
     void zoomChanged(int value);
 

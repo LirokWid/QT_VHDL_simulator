@@ -18,6 +18,10 @@ SvgHandler::SvgHandler(QWidget *componentsWidget, SimulationState *simulationSta
     //Setup the element tree view from the widget passed from mainwindow
     display = new ElementsDisplay(componentsWidget->findChild<QTreeWidget*>("componentsTreeWidget"));
 
+    // Connect the signal from ElementsDisplay to the slot in SvgWidget
+    connect(display, &ElementsDisplay::elementClicked, svgWidget, &SvgWidget::highlightItem);
+
+
     //Get the label to display the global parsing error
     parseState = componentsWidget->findChild<QLabel*>("componentsInfoState");
     parseState->setText("clear");
@@ -161,3 +165,4 @@ void SvgHandler::deleteTempSvg(const QString &tempFilePath)
         }
     }
 }
+

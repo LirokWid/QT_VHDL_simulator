@@ -84,3 +84,9 @@ void SvgWidget::wheelEvent(QWheelEvent *event)
         QWidget::wheelEvent(event);
     }
 }
+
+void SvgWidget::highlightItem(const QString &value)
+{
+    qDebug() << "SVG item updated with value:" << value;
+
+}
