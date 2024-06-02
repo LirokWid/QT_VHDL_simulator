@@ -298,6 +298,7 @@ void SvgParser::parse_one_element(const QDomElement svg_group_xml, s_elements &e
      */
     s_element new_element;
     new_element.error.is_parse_error = false;
+    new_element.inputs_number = 0;
 
     // Get the device type
     new_element.device = svg_group_xml.attribute(ATTR_FOR_STR("device"));
@@ -332,9 +333,11 @@ void SvgParser::parse_one_element(const QDomElement svg_group_xml, s_elements &e
     // Get the inputs and outputs
     QString str_inputs = svg_group_xml.attribute(ATTR_FOR_STR("inputs"));
     get_list_of_inputs_name_and_width(str_inputs, new_element.inputs);
+    new_element.inputs_number = new_element.inputs.count();
 
     QString str_outputs = svg_group_xml.attribute(ATTR_FOR_STR("outputs"));
     get_list_of_outputs_name_and_width(str_outputs, new_element.outputs);
+    new_element.outputs_number = new_element.outputs.count();
 
 #ifdef DEBUG
     debug->addDebug("Device:" + new_element.device);

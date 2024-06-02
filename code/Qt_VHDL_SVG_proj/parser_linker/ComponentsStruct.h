@@ -17,8 +17,8 @@ typedef enum I_O
 // Struct for parsing errors
 struct s_parse_error
 {
-    bool is_parse_error;           ///< Flag indicating parsing error.
-    QList<QString> error_messages; ///< Error messages.
+    bool is_parse_error = false;           ///< Flag indicating parsing error.
+    QList<QString> error_messages;          ///< Error messages.
 };
 
 // Struct for element I/O information
