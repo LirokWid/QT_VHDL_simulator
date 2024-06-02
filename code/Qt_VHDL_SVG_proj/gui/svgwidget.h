@@ -5,6 +5,7 @@
 #include <QGraphicsView>
 #include <QGraphicsSvgItem>
 #include <QSlider>
+#include <QDomDocument>
 
 
 
@@ -21,7 +22,7 @@ public:
     void setZoom(int value);
 
 public slots:
-    void highlightItem(const QString &value);
+    void highlightItemSlot(const QString &value);
 
 private slots:
     void zoomChanged(int value);
@@ -33,6 +34,7 @@ private:
     QGraphicsView *graphicsView;
     QGraphicsSvgItem *svgItem;
     QSlider *zoomSlider;
+    QString fileLocation;
 
     //mouse events
     QPoint lastMousePos;
@@ -40,6 +42,9 @@ private:
 
     int zoomValue = BASE_ZOOM;
 
+    bool changeSvgElementColorToRed(const QString &filePath, const QString &elementLabel);
+
+    bool changeElementColorRecursive(QDomElement &element, const QString &elementLabel);
 };
 
 #endif // SVGWIDGET_H

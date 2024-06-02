@@ -5,6 +5,8 @@
 #include <QGraphicsSvgItem>
 #include <QWheelEvent>
 #include <QScrollBar>
+#include <QDomDocument>
+#include "debugwindow.h"
 
 #define min(X, Y) (((X) < (Y)) ? (X) : (Y))
 #define max(X, Y) (((X) > (Y)) ? (X) : (Y))
@@ -33,6 +35,7 @@ SvgWidget::SvgWidget(QWidget *parent)
 
 void SvgWidget::loadSvg(const QString& filePath)
 {
+    this->fileLocation = filePath;
     clearScene();
     svgItem = new QGraphicsSvgItem(filePath);
     graphicsView->scene()->addItem(svgItem);
@@ -84,9 +87,66 @@ void SvgWidget::wheelEvent(QWheelEvent *event)
         QWidget::wheelEvent(event);
     }
 }
+bool SvgWidget::changeElementColorRecursive(QDomElement &element, const QString &elementLabel) {
+    if (element.hasAttribute("inkscape:label") && element.attribute("inkscape:label") == elementLabel) {
+        element.setAttribute("fill", "red");
+        return true;
+    }
 
-void SvgWidget::highlightItem(const QString &value)
+    QDomNodeList children = element.childNodes();
+    for (int i = 0; i < children.count(); ++i) {
+        QDomElement childElement = children.at(i).toElement();
+        if (!childElement.isNull() && changeElementColorRecursive(childElement, elementLabel)) {
+            return true;
+        }
+    }
+    return false;
+}
+
+bool SvgWidget::changeSvgElementColorToRed(const QString &filePath, const QString &elementLabel)
 {
-    qDebug() << "SVG item updated with value:" << value;
+    QFile file(filePath);
+    file.setPermissions(QFile::ReadOther | QFile::WriteOther); //File has to be writable to be modified
 
+    if (!file.open(QIODevice::ReadOnly | QIODevice::Text)) {
+        qWarning() << "Cannot open file for reading:" << filePath;
+        qWarning() << "File error:" << file.errorString();
+        return false;
+    }
+
+    QDomDocument doc;
+    if (!doc.setContent(&file)) {
+        qWarning() << "Failed to parse SVG content.";
+        file.close();
+        return false;
+    }
+    file.close();
+
+    QDomElement root = doc.documentElement();
+    bool elementFound = changeElementColorRecursive(root, elementLabel);
+
+    if (!elementFound) {
+        qWarning() << "Element with label" << elementLabel << "not found.";
+        return false;
+    }
+
+    if (!file.open(QIODevice::WriteOnly | QIODevice::Text)) {
+        qWarning() << "Cannot open file for writing:" << filePath;
+        qWarning() << "File error:" << file.errorString();
+    }
+
+    QTextStream stream(&file);
+    stream << doc.toString();
+    file.close();
+
+    return true;
+}
+
+void SvgWidget::highlightItemSlot(const QString &value)
+{
+    DebugWindow::getInstance()->addDebug("highlithing " + value);
+    if(changeSvgElementColorToRed(fileLocation, value))
+    {
+        loadSvg(fileLocation);
+    }
 }

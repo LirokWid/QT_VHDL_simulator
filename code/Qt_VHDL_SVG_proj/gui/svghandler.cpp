@@ -19,7 +19,7 @@ SvgHandler::SvgHandler(QWidget *componentsWidget, SimulationState *simulationSta
     display = new ElementsDisplay(componentsWidget->findChild<QTreeWidget*>("componentsTreeWidget"));
 
     // Connect the signal from ElementsDisplay to the slot in SvgWidget
-    connect(display, &ElementsDisplay::elementClicked, svgWidget, &SvgWidget::highlightItem);
+    connect(display, &ElementsDisplay::elementClicked, svgWidget, &SvgWidget::highlightItemSlot);
 
 
     //Get the label to display the global parsing error
