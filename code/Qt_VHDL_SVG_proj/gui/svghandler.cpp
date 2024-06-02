@@ -4,17 +4,23 @@
 #include "SystemcLinker.h"
 #include "elementsdisplay.h"
 
-SvgHandler::SvgHandler(ElementsDisplay *display, QHBoxLayout *displayTitle, SimulationState *simulationState, SvgWidget *svgWidget, QObject *parent) :
+SvgHandler::SvgHandler(QWidget *componentsWidget, SimulationState *simulationState, SvgWidget *svgWidget, QObject *parent) :
     QObject(parent),
     simulationState(simulationState),
     svgWidget(svgWidget),
-    display(display),
-    displayTitle(displayTitle)
+    componentsWidget(componentsWidget)
 {
     if (!tempDir.isValid())
     {
         QMessageBox::critical(nullptr, tr("Error"), tr("Failed to create temporary directory."));
     }
+
+    //Setup the element tree view from the widget passed from mainwindow
+    display = new ElementsDisplay(componentsWidget->findChild<QTreeWidget*>("componentsTreeWidget"));
+
+    //Get the label to display the global parsing error
+    parseState = componentsWidget->findChild<QLabel*>("componentsInfoState");
+    parseState->setText("clear");
 
     DebugWindow::getInstance()->addDebug("SvgHandler created.");
     DebugWindow::getInstance()->addDebug("Temp directory created: " + tempDir.path() + "/");
@@ -31,34 +37,37 @@ bool SvgHandler::loadSvg(const QString &filePath)
         QMessageBox::information(nullptr, tr("Information"), tr("Simulation is running. Please stop the simulation before loading a new SVG file."));
         return false;
     }
-
-    if (SimulationState::IDLE_SVG_LOADED == simulationState->getState())
-    { // Clear the previous SVG file it was loaded
-        deleteTempSvg(tempFilePath);
-    }
-
-    if (copySvgToTemp(filePath))
+    else
     {
-        //static_cast<MainWindow *>(parent())->showDebugWindow(); //temp
-        if (loadAndParse(tempFilePath))
+        if (SimulationState::IDLE_SVG_LOADED == simulationState->getState())
+        { // Clear the previous SVG file it was loaded
+            deleteTempSvg(tempFilePath);
+        }
+
+        if (copySvgToTemp(filePath))
         {
-            //Change the file name on the main window title
-            QFileInfo fileInfo(filePath);
-            static_cast<MainWindow *>(parent())->setWindowTitle(tr("SystemC Parser - ") + fileInfo.absoluteFilePath());
-            return true;
+            //static_cast<MainWindow *>(parent())->showDebugWindow(); //temp
+            if (loadAndParse(tempFilePath))
+            {//load the copied svg file to display, widget, ..
+                //Change the file name on the main window title
+                QFileInfo fileInfo(filePath);
+                static_cast<MainWindow *>(parent())->setWindowTitle(tr("SystemC Parser - ") + fileInfo.absoluteFilePath());
+                return true;
+            }
+            else
+            {
+                const QString msg = "An error was find in the SVG file. Please check the components attributes.";
+                DebugWindow::getInstance()->addError(msg);
+                QMessageBox::critical(nullptr, tr("Error"), msg);
+            }
         }
         else
         {
-            DebugWindow::getInstance()->addError(tr("An error was find in the SVG file. Please check the file attributes."));
-            QMessageBox::critical(nullptr, tr("Error"), tr("An error was find in the SVG file. Please check the file attributes."));
+            DebugWindow::getInstance()->addError(tr("Failed to copy the SVG file to the temporary directory."));
+            QMessageBox::critical(nullptr, tr("Error"), tr("Failed to copy the SVG file to the temporary directory."));
         }
+        return false;
     }
-    else
-    {
-        DebugWindow::getInstance()->addError(tr("Failed to copy the SVG file to the temporary directory."));
-        QMessageBox::critical(nullptr, tr("Error"), tr("Failed to copy the SVG file to the temporary directory."));
-    }
-    return false;
 }
 
 bool SvgHandler::loadAndParse(QString svgPath)
@@ -66,14 +75,18 @@ bool SvgHandler::loadAndParse(QString svgPath)
     svgWidget->loadSvg(svgPath);                        //Load the svg temp image to the svg widget
     if (linker)
     {//Delete linker if it already exists
-        delete linker;
+        //delete linker;
     }
-    linker = new SystemcLinker(svgPath);                //Parse the svg file
+    linker = new SystemcLinker(svgPath);                    //Parse the svg file
     bool is_error = linker->getGlobalParsingError();        //Check if there is any parsing error
     if (is_error)
     {
         QMessageBox::critical(nullptr, tr("Error"), tr("There was an error parsing the file, check the attributes."));
-        parent()->
+        parseState->setText("parse error");
+    }
+    else
+    {
+        parseState->setText("parsed");
     }
     display->loadTree(linker->get_components_list());   //Display the parsed data in the elements tree view
 
@@ -92,6 +105,7 @@ bool SvgHandler::clearSvg()
         svgWidget->clearSvg();
         display->clearTree();
         deleteTempSvg(tempFilePath);
+        parseState->setText("clear");
 
         // Emit signal to indicate SVG file is cleared
         simulationState->setState(SimulationState::IDLE);
