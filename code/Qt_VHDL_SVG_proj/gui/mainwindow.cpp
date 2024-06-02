@@ -1,6 +1,5 @@
 #include "mainwindow.h"
 
-#include "elementsdisplay.h"
 #include "params.h"
 #include "system/eventfilter.h" //temp debug
 
@@ -36,9 +35,6 @@ MainWindow::MainWindow(QWidget *parent) :
     stateLabel = ui->label;
     connect(simulationState, &SimulationState::stateChanged, this, &MainWindow::updateStateLabel);
 
-    //Setup the element tree view
-    elementsTreeView = new ElementsDisplay(ui->componentsTreeWidget);
-
     //Setup the folders tree view
     filesTreeView = new FilesTreeView(ui->folder_btn, ui->fileTreeView, svgHandler, simulationState);
 
@@ -46,7 +42,7 @@ MainWindow::MainWindow(QWidget *parent) :
     svgWidget = new SvgWidget();
     ui->svgLayout->addWidget(svgWidget);
 
-    svgHandler = new SvgH   andler(elementsTreeView, ui->componentsTreeTitleLayout, simulationState, svgWidget, this);
+    svgHandler = new SvgHandler(ui->componentsInfoContainer, simulationState, svgWidget, this);
 
 #ifdef DEBUG
     //svgHandler->loadSvg(TEMP_SVG_PATH);//debug
