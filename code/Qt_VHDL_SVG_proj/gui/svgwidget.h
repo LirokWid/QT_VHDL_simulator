@@ -42,9 +42,9 @@ private:
 
     int zoomValue = BASE_ZOOM;
 
-    bool changeSvgElementColorToRed(const QString &filePath, const QString &elementLabel);
 
-    bool changeElementColorRecursive(QDomElement &element, const QString &elementLabel);
+    QRectF calculateBoundingBoxRecursive(const QDomElement &element, const QString &elementLabel, QRectF &boundingBox);
+    bool wrapElementWithRedSquare(const QString &filePath, const QString &elementLabel);
 };
 
 #endif // SVGWIDGET_H
