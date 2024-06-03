@@ -109,7 +109,7 @@ bool SvgWidget::changeElementStyle(const QString &filePath, const QString &eleme
 
     QDomElement root = doc.documentElement();
     bool modified = false;
-    recursivelyModifyElementStyle(root, elementLabel, modified, false);
+    recursivelyModifyElementStyle(root, elementLabel, modified, true);
 
     if (modified) {
         if (!file.open(QIODevice::WriteOnly | QIODevice::Text)) {
