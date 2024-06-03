@@ -31,6 +31,29 @@ protected:
     void wheelEvent(QWheelEvent *event) override;
 
 private:
+
+    struct s_style_lists
+    {
+        struct s_style
+        {
+            struct
+            {
+                QString name;
+                QString value;
+            } def, on;
+        };
+        QList<s_style> styles;
+    };
+
+    const s_style_lists styles_to_modify =
+        {
+        QList<s_style_lists::s_style>
+        {
+            {{"stroke", "#000000"}, {"stroke", "#ff0000"}}, // Stroke color
+            {{"color", "black"}, {"color", "red"}}          // Text color
+        }
+    };
+
     QGraphicsView *graphicsView;
     QGraphicsSvgItem *svgItem;
     QSlider *zoomSlider;
@@ -45,6 +68,10 @@ private:
 
     bool changeStrokeColorRecursive(QDomElement &element, const QString &elementLabel);
     bool changeElementStrokeColor(const QString &filePath, const QString &elementLabel);
+    QString toggleStyleValue(const QString &currentValue, const QString &defaultValue, const QString &onValue);
+    bool changeStyleRecursive(QDomElement &element, const QString &elementLabel);
+    bool changeElementStyle(const QString &filePath, const QString &elementLabel);
+    void recursivelyModifyElementStyle(QDomElement &element, const QString &elementLabel, bool &modified, bool applyToAllChildren);
 };
 
 #endif // SVGWIDGET_H

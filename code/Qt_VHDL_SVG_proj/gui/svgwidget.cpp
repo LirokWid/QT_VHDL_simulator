@@ -7,6 +7,7 @@
 #include <QScrollBar>
 #include <QDomDocument>
 #include "debugwindow.h"
+#include <QRegularExpression>
 
 #define min(X, Y) (((X) < (Y)) ? (X) : (Y))
 #define max(X, Y) (((X) > (Y)) ? (X) : (Y))
@@ -88,86 +89,98 @@ void SvgWidget::wheelEvent(QWheelEvent *event)
     }
 }
 
-// Helper function to recursively find the element by inkscape:label and change its stroke color
-bool SvgWidget::changeStrokeColorRecursive(QDomElement &element, const QString &elementLabel)
-{
-    bool elementFound = false;
-
-    if (element.hasAttribute("inkscape:label") && element.attribute("inkscape:label") == elementLabel) {
-        QString style = element.attribute("style");
-        QString newStyle;
-
-        if (style.contains("stroke:#000000")) {
-            newStyle = style.replace("stroke:#000000", "stroke:#ff0000");
-        } else if (style.contains("stroke:#ff0000")) {
-            newStyle = style.replace("stroke:#ff0000", "stroke:#000000");
-        } else {
-            // Add stroke property if not present
-            newStyle = style + ";stroke:#ff0000";
-        }
-
-        element.setAttribute("style", newStyle);
-        elementFound = true;
-    }
-
-    QDomNodeList children = element.childNodes();
-    for (int i = 0; i < children.count(); ++i) {
-        QDomElement childElement = children.at(i).toElement();
-        if (!childElement.isNull()) {
-            if (changeStrokeColorRecursive(childElement, elementLabel)) {
-                elementFound = true;
-            }
-        }
-    }
-
-    return elementFound;
-}
-
-
-bool SvgWidget::changeElementStrokeColor(const QString &filePath, const QString &elementLabel)
+bool SvgWidget::changeElementStyle(const QString &filePath, const QString &elementLabel)
 {
     QFile file(filePath);
     file.setPermissions(QFile::ReadOther | QFile::WriteOther); //File has to be writable to be modified
 
     if (!file.open(QIODevice::ReadOnly | QIODevice::Text)) {
-        qWarning() << "Cannot open file for reading:" << filePath;
-        qWarning() << "File error:" << file.errorString();
+        qDebug() << "Cannot open file for reading:" << file.errorString();
         return false;
     }
 
     QDomDocument doc;
     if (!doc.setContent(&file)) {
-        qWarning() << "Failed to parse SVG content.";
+        qDebug() << "Failed to parse the file.";
         file.close();
         return false;
     }
     file.close();
 
     QDomElement root = doc.documentElement();
-    bool elementFound = changeStrokeColorRecursive(root, elementLabel);
+    bool modified = false;
+    recursivelyModifyElementStyle(root, elementLabel, modified, false);
 
-    if (!elementFound) {
-        qWarning() << "Element with label" << elementLabel << "not found.";
-        return false;
+    if (modified) {
+        if (!file.open(QIODevice::WriteOnly | QIODevice::Text)) {
+            qDebug() << "Cannot open file for writing:" << file.errorString();
+            return false;
+        }
+        QTextStream out(&file);
+        doc.save(out, 4); // Indentation level of 4 spaces
+        file.close();
+    } else {
+        qDebug() << "Element with label" << elementLabel << "not found.";
     }
 
-    if (!file.open(QIODevice::WriteOnly | QIODevice::Text)) {
-        qWarning() << "Cannot open file for writing:" << filePath;
-        qWarning() << "File error:" << file.errorString();
-        return false;
+    return modified;
+}
+
+void SvgWidget::recursivelyModifyElementStyle(QDomElement &element, const QString &elementLabel, bool &modified, bool applyToAllChildren)
+{
+    if (element.hasAttribute("inkscape:label") && element.attribute("inkscape:label") == elementLabel) {
+        applyToAllChildren = true;
     }
 
-    QTextStream stream(&file);
-    stream << doc.toString();
-    file.close();
+    if (applyToAllChildren) {
+        QString style = element.attribute("style");
 
-    return true;
+        for (const auto &stylePair : styles_to_modify.styles) {
+            QString currentStyleValue = "";
+
+            // Check if style attribute exists
+            QRegularExpression re(stylePair.def.name + ":\\s*([^;]+)");
+            QRegularExpressionMatch match = re.match(style);
+            if (match.hasMatch()) {
+                currentStyleValue = match.captured(1);
+            }
+
+            // Toggle the style value
+            QString newValue;
+            if (currentStyleValue == stylePair.def.value) {
+                newValue = stylePair.on.value;
+            } else {
+                newValue = stylePair.def.value;
+            }
+
+            if (match.hasMatch()) {
+                style.replace(re, stylePair.def.name + ": " + newValue);
+            } else {
+                if (!style.isEmpty()) {
+                    style.append("; ");
+                }
+                style.append(stylePair.def.name + ": " + newValue);
+            }
+        }
+
+        element.setAttribute("style", style);
+        modified = true;
+    }
+
+    QDomNode childNode = element.firstChild();
+    while (!childNode.isNull()) {
+        if (childNode.isElement()) {
+            QDomElement childElement = childNode.toElement();
+            recursivelyModifyElementStyle(childElement, elementLabel, modified, applyToAllChildren);
+        }
+        childNode = childNode.nextSibling();
+    }
 }
 
 void SvgWidget::highlightItemSlot(const QString &value)
 {
     DebugWindow::getInstance()->addDebug("highlithing " + value);
-    if(changeElementStrokeColor(fileLocation, value))
+    if(changeElementStyle(fileLocation, value))
     {
         loadSvg(fileLocation);
         qDebug() << "Highlighted successfully.";
