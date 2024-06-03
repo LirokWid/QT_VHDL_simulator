@@ -88,35 +88,47 @@ void SvgWidget::wheelEvent(QWheelEvent *event)
     }
 }
 
-QRectF SvgWidget::calculateBoundingBoxRecursive(const QDomElement &element, const QString &elementLabel, QRectF &boundingBox) {
-    if (element.hasAttribute("inkscape:label")
-        && element.attribute("inkscape:label") == elementLabel)
-    {
-        QRectF elementBox(element.attribute("x").toDouble(),
-                          element.attribute("y").toDouble(),
-                          element.attribute("width").toDouble(),
-                          element.attribute("height").toDouble());
-        boundingBox = boundingBox.united(elementBox);
+// Helper function to recursively find the element by inkscape:label and change its stroke color
+bool SvgWidget::changeStrokeColorRecursive(QDomElement &element, const QString &elementLabel)
+{
+    bool elementFound = false;
+
+    if (element.hasAttribute("inkscape:label") && element.attribute("inkscape:label") == elementLabel) {
+        QString style = element.attribute("style");
+        QString newStyle;
+
+        if (style.contains("stroke:#000000")) {
+            newStyle = style.replace("stroke:#000000", "stroke:#ff0000");
+        } else if (style.contains("stroke:#ff0000")) {
+            newStyle = style.replace("stroke:#ff0000", "stroke:#000000");
+        } else {
+            // Add stroke property if not present
+            newStyle = style + ";stroke:#ff0000";
+        }
+
+        element.setAttribute("style", newStyle);
+        elementFound = true;
     }
 
     QDomNodeList children = element.childNodes();
-    for (int i = 0; i < children.count(); ++i)
-    {
+    for (int i = 0; i < children.count(); ++i) {
         QDomElement childElement = children.at(i).toElement();
-        if (!childElement.isNull())
-        {
-            calculateBoundingBoxRecursive(childElement, elementLabel, boundingBox);
+        if (!childElement.isNull()) {
+            if (changeStrokeColorRecursive(childElement, elementLabel)) {
+                elementFound = true;
+            }
         }
     }
 
-    return boundingBox;
+    return elementFound;
 }
 
 
-bool SvgWidget::wrapElementWithRedSquare(const QString &filePath, const QString &elementLabel)
+bool SvgWidget::changeElementStrokeColor(const QString &filePath, const QString &elementLabel)
 {
     QFile file(filePath);
     file.setPermissions(QFile::ReadOther | QFile::WriteOther); //File has to be writable to be modified
+
     if (!file.open(QIODevice::ReadOnly | QIODevice::Text)) {
         qWarning() << "Cannot open file for reading:" << filePath;
         qWarning() << "File error:" << file.errorString();
@@ -132,38 +144,12 @@ bool SvgWidget::wrapElementWithRedSquare(const QString &filePath, const QString 
     file.close();
 
     QDomElement root = doc.documentElement();
+    bool elementFound = changeStrokeColorRecursive(root, elementLabel);
 
-    // Check for existing red square and remove it if it exists
-    QDomNodeList rectList = root.elementsByTagName("rect");
-    for (int i = 0; i < rectList.count(); ++i) {
-        QDomElement rect = rectList.at(i).toElement();
-        if (rect.hasAttribute("data-label") && rect.attribute("data-label") == elementLabel) {
-            root.removeChild(rect);
-            qDebug() << "Existing red square removed.";
-            break;
-        }
-    }
-
-    QRectF boundingBox;
-    calculateBoundingBoxRecursive(root, elementLabel, boundingBox);
-
-    if (boundingBox.isNull()) {
-        qWarning() << "Element with label" << elementLabel << "not found or has no bounding box.";
+    if (!elementFound) {
+        qWarning() << "Element with label" << elementLabel << "not found.";
         return false;
     }
-
-    // Create a new rectangle element to wrap the target element
-    QDomElement rectangle = doc.createElement("rect");
-    rectangle.setAttribute("x", boundingBox.x());
-    rectangle.setAttribute("y", boundingBox.y());
-    rectangle.setAttribute("width", boundingBox.width());
-    rectangle.setAttribute("height", boundingBox.height());
-    rectangle.setAttribute("stroke", "red");
-    rectangle.setAttribute("fill", "none");
-    rectangle.setAttribute("data-label", elementLabel); // Custom attribute to identify the red square
-
-    // Insert the rectangle as the first child of the root element
-    root.insertBefore(rectangle, root.firstChild());
 
     if (!file.open(QIODevice::WriteOnly | QIODevice::Text)) {
         qWarning() << "Cannot open file for writing:" << filePath;
@@ -181,10 +167,10 @@ bool SvgWidget::wrapElementWithRedSquare(const QString &filePath, const QString 
 void SvgWidget::highlightItemSlot(const QString &value)
 {
     DebugWindow::getInstance()->addDebug("highlithing " + value);
-    if(wrapElementWithRedSquare(fileLocation, value))
+    if(changeElementStrokeColor(fileLocation, value))
     {
         loadSvg(fileLocation);
-        qDebug() << "Red square added successfully.";
+        qDebug() << "Highlighted successfully.";
     }
     else
     {

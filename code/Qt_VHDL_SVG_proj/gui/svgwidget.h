@@ -43,8 +43,8 @@ private:
     int zoomValue = BASE_ZOOM;
 
 
-    QRectF calculateBoundingBoxRecursive(const QDomElement &element, const QString &elementLabel, QRectF &boundingBox);
-    bool wrapElementWithRedSquare(const QString &filePath, const QString &elementLabel);
+    bool changeStrokeColorRecursive(QDomElement &element, const QString &elementLabel);
+    bool changeElementStrokeColor(const QString &filePath, const QString &elementLabel);
 };
 
 #endif // SVGWIDGET_H
