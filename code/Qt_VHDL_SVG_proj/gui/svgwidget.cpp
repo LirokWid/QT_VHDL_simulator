@@ -40,7 +40,7 @@ void SvgWidget::loadSvg(const QString& filePath)
     clearScene();
     svgItem = new QGraphicsSvgItem(filePath);
     graphicsView->scene()->addItem(svgItem);
-    int height = graphicsView->scene()->height();
+    //int height = graphicsView->scene()->height();     // not used
     graphicsView->fitInView(svgItem, Qt::KeepAspectRatio);
     setZoom(50);
 }
@@ -94,69 +94,104 @@ bool SvgWidget::changeElementStyle(const QString &filePath, const QString &eleme
     QFile file(filePath);
     file.setPermissions(QFile::ReadOther | QFile::WriteOther); //File has to be writable to be modified
 
-    if (!file.open(QIODevice::ReadOnly | QIODevice::Text)) {
+    if (!file.open(QIODevice::ReadOnly | QIODevice::Text))
+    {
         qDebug() << "Cannot open file for reading:" << file.errorString();
         return false;
     }
 
     QDomDocument doc;
-    if (!doc.setContent(&file)) {
+    if (!doc.setContent(&file))
+    {
         qDebug() << "Failed to parse the file.";
         file.close();
         return false;
     }
     file.close();
 
-    QDomElement root = doc.documentElement();
+    QDomElement element = doc.documentElement();
     bool modified = false;
-    recursivelyModifyElementStyle(root, elementLabel, modified, true);
+    bool mainElemModified = false;
 
-    if (modified) {
-        if (!file.open(QIODevice::WriteOnly | QIODevice::Text)) {
+
+    while(!mainElemModified)
+    {
+        QDomNode childNode = element.firstChild();
+        while (!childNode.isNull())
+        {
+            if (childNode.isElement())
+            {
+                QDomElement childElement = childNode.toElement();
+                modifyElementStyle(childElement, elementLabel, mainElemModified, modified, false);
+            }
+            childNode = childNode.nextSibling();
+        }
+        //modifyElementStyle(root, elementLabel, mainElemModified, modified, false);
+    }
+
+    if (modified)
+    {
+        if (!file.open(QIODevice::WriteOnly | QIODevice::Text))
+        {
             qDebug() << "Cannot open file for writing:" << file.errorString();
             return false;
         }
         QTextStream out(&file);
         doc.save(out, 4); // Indentation level of 4 spaces
         file.close();
-    } else {
+    }
+    else
+    {
         qDebug() << "Element with label" << elementLabel << "not found.";
     }
 
     return modified;
 }
-
-void SvgWidget::recursivelyModifyElementStyle(QDomElement &element, const QString &elementLabel, bool &modified, bool applyToAllChildren)
+/*
+void SvgWidget::modifyElementStyle(QDomElement &element, const QString &elementLabel, bool &mainElemModified, bool &modified, bool applyToAllChildren)
 {
-    if (element.hasAttribute("inkscape:label") && element.attribute("inkscape:label") == elementLabel) {
+
+    if (( element.hasAttribute("inkscape:label") && element.attribute("inkscape:label") == elementLabel))
+        //|| modified)
+    {
         applyToAllChildren = true;
     }
 
-    if (applyToAllChildren) {
+    if (applyToAllChildren)
+    {// Togle the style for the current element
         QString style = element.attribute("style");
 
-        for (const auto &stylePair : styles_to_modify.styles) {
+        for (const auto &stylePair : styles_to_modify.styles)
+        {
             QString currentStyleValue = "";
 
             // Check if style attribute exists
             QRegularExpression re(stylePair.def.name + ":\\s*([^;]+)");
             QRegularExpressionMatch match = re.match(style);
-            if (match.hasMatch()) {
+            if (match.hasMatch())
+            {
                 currentStyleValue = match.captured(1);
             }
 
             // Toggle the style value
             QString newValue;
-            if (currentStyleValue == stylePair.def.value) {
+            if (currentStyleValue == stylePair.def.value)
+            {
                 newValue = stylePair.on.value;
-            } else {
+            }
+            else
+            {
                 newValue = stylePair.def.value;
             }
 
-            if (match.hasMatch()) {
+            if (match.hasMatch())
+            {
                 style.replace(re, stylePair.def.name + ": " + newValue);
-            } else {
-                if (!style.isEmpty()) {
+            }
+            else
+            {
+                if (!style.isEmpty())
+                {
                     style.append("; ");
                 }
                 style.append(stylePair.def.name + ": " + newValue);
@@ -168,14 +203,90 @@ void SvgWidget::recursivelyModifyElementStyle(QDomElement &element, const QStrin
     }
 
     QDomNode childNode = element.firstChild();
-    while (!childNode.isNull()) {
-        if (childNode.isElement()) {
+    while (!childNode.isNull())
+    {
+        if (childNode.isElement())
+        {
             QDomElement childElement = childNode.toElement();
-            recursivelyModifyElementStyle(childElement, elementLabel, modified, applyToAllChildren);
+            modifyElementStyle(childElement, elementLabel, mainElemModified, modified, applyToAllChildren);
         }
         childNode = childNode.nextSibling();
     }
 }
+*/
+
+void SvgWidget::modifyElementStyle(QDomElement &element, const QString &elementLabel, bool &mainElemModified, bool &modified, bool applyToAllChildren)
+{
+
+    if (( element.hasAttribute("inkscape:label") && element.attribute("inkscape:label") == elementLabel))
+    //|| modified)
+    {
+        applyToAllChildren = true;
+    }
+
+    if (applyToAllChildren)
+    {// Togle the style for the current element
+        QString style = element.attribute("style");
+
+        for (const auto &stylePair : styles_to_modify.styles)
+        {
+            QString currentStyleValue = "";
+
+            // Check if style attribute exists
+            QRegularExpression re(stylePair.def.name + ":\\s*([^;]+)");
+            QRegularExpressionMatch match = re.match(style);
+            if (match.hasMatch())
+            {
+                currentStyleValue = match.captured(1);
+            }
+
+            // Toggle the style value
+            QString newValue;
+            if (currentStyleValue == stylePair.def.value)
+            {
+                newValue = stylePair.on.value;
+            }
+            else
+            {
+                newValue = stylePair.def.value;
+            }
+
+            if (match.hasMatch())
+            {
+                style.replace(re, stylePair.def.name + ": " + newValue);
+            }
+            else
+            {
+                if (!style.isEmpty())
+                {
+                    style.append("; ");
+                }
+                style.append(stylePair.def.name + ": " + newValue);
+            }
+        }
+
+        element.setAttribute("style", style);
+        modified = true;
+    }
+
+    if(mainElemModified != modified)
+    {//We found the parent elem containing the label
+        mainElemModified = true;
+
+        //Recursively apply the style to all the children
+        QDomNode childNode = element.firstChild();
+        while (!childNode.isNull())
+        {
+            if (childNode.isElement())
+            {
+                QDomElement childElement = childNode.toElement();
+                modifyElementStyle(childElement, elementLabel, mainElemModified, modified, applyToAllChildren);
+            }
+            childNode = childNode.nextSibling();
+        }
+    }
+}
+
 
 void SvgWidget::highlightItemSlot(const QString &value)
 {

@@ -71,7 +71,7 @@ private:
     QString toggleStyleValue(const QString &currentValue, const QString &defaultValue, const QString &onValue);
     bool changeStyleRecursive(QDomElement &element, const QString &elementLabel);
     bool changeElementStyle(const QString &filePath, const QString &elementLabel);
-    void recursivelyModifyElementStyle(QDomElement &element, const QString &elementLabel, bool &modified, bool applyToAllChildren);
+    void modifyElementStyle(QDomElement &element, const QString &elementLabel, bool &mainElemModified, bool &modified, bool applyToAllChildren);
 };
 
 #endif // SVGWIDGET_H
