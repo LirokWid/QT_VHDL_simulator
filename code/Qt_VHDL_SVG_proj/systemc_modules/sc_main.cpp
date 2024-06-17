@@ -1,4 +1,5 @@
 #include <pthread.h>
+#include <qDebug>
 #include <systemc.h>
 #include "sc_main.h"
 
@@ -81,6 +82,7 @@ void *scSimMain(void *args)
 
 int sc_main (int argc, char *argv[])
 {
+    qDebug() << "scMain entered";
     return 0;
 }
 

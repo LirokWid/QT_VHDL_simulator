@@ -72,6 +72,8 @@ private:
     bool changeStyleRecursive(QDomElement &element, const QString &elementLabel);
     bool changeElementStyle(const QString &filePath, const QString &elementLabel);
     void modifyElementStyle(QDomElement &element, const QString &elementLabel, bool &mainElemModified, bool &modified, bool applyToAllChildren);
+    QList<QDomElement> locateElemFromName(QDomElement &root, const QString elemName);
+    void recursiveElemColoring(QDomElement &element, const QString &elementLabel, bool &mainElemModified, bool &modified, bool applyToAllChildren);
 };
 
 #endif // SVGWIDGET_H
