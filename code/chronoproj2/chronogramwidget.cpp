@@ -140,7 +140,7 @@ void ChronogramWidget::paintEvent(QPaintEvent *event)
                 int rectHeight = seriesHeight - 20; // Adjust the height as needed
 
                 // Determine color based on value
-                QColor rectColor = (value > 0) ? Qt::green : Qt::red;
+                QColor rectColor = (value > 0) ? Qt::green : Qt::black;
 
                 // Draw filled rectangle
                 painter.fillRect(rectX, rectY, rectWidth, rectHeight, rectColor);
@@ -236,7 +236,6 @@ void ChronogramWidget::calculateGlobalMinMax()
 
 double ChronogramWidget::mapValueToHeight(double value, double minHeight, double maxHeight)
 {
-    // Map value to height within given bounds
     return minHeight + (maxHeight - minHeight) * (value / 255.0); // Example mapping for 8-bit values
 }
 

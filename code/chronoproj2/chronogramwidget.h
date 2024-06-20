@@ -11,6 +11,7 @@ class ChronogramWidget : public QWidget
 
 public:
     explicit ChronogramWidget(QWidget *parent = nullptr);
+
     ChronogramWidget(const QVector<QVector<int>>& intDataArrays,
                      const QVector<QVector<float>>& floatDataArrays,
                      const QVector<QVector<bool>>& boolDataArrays,

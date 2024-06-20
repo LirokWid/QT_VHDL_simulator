@@ -1,6 +1,9 @@
 #include "chronogramwidget.h"
 #include "mainwindow.h"
+#include "mutitypeschrono.h"
 #include "ui_mainwindow.h"
+
+#include <QHBoxLayout>
 
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
@@ -9,7 +12,6 @@ MainWindow::MainWindow(QWidget *parent)
     ui->setupUi(this);
 
     // Créer une instance de ChronogramWidget
-    ChronogramWidget *chronogramWidget = new ChronogramWidget(this);
 
     // Exemple de données à ajouter
     QVector<int> intDataArray = {0, 1, 0, 1, 1, 0, 1, 0, 1, 0};
@@ -18,11 +20,25 @@ MainWindow::MainWindow(QWidget *parent)
     QString varName = "Example Variable";
 
     // Ajouter les données à ChronogramWidget
-    chronogramWidget->addSeries(intDataArray, floatDataArray, boolDataArray, varName);
+
+    ChronogramWidget *chronogramWidget1 = new ChronogramWidget();
+    chronogramWidget1->addSeries(intDataArray,floatDataArray,boolDataArray,varName);
+
+    ChronogramWidget *chronogramWidget2 = new ChronogramWidget();
+    chronogramWidget2->addSeries(intDataArray,floatDataArray,boolDataArray,varName);
+
+    QVBoxLayout *layout = new QVBoxLayout();
 
 
+    //layout->addWidget(chronogramWidget1);
+    //layout->addWidget(chronogramWidget2);
 
-    setCentralWidget(chronogramWidget);
+    MutiTypesChrono *multiTypesChrono = new MutiTypesChrono();
+
+    layout->addWidget(multiTypesChrono);
+    //ui->centralwidget->setLayout(layout);
+    ui->centralwidget->setLayout(layout);
+
 }
 
 MainWindow::~MainWindow()

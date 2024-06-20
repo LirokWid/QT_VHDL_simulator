@@ -14,11 +14,13 @@ CONFIG += c++17
 SOURCES += \
     chronogramwidget.cpp \
     main.cpp \
-    mainwindow.cpp
+    mainwindow.cpp \
+    mutitypeschrono.cpp
 
 HEADERS += \
     chronogramwidget.h \
-    mainwindow.h
+    mainwindow.h \
+    mutitypeschrono.h
 
 FORMS += \
     mainwindow.ui
