@@ -4,6 +4,7 @@
 #include "ui_mainwindow.h"
 
 #include <QHBoxLayout>
+#include <QResizeEvent>
 
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)

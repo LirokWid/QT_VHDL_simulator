@@ -4,6 +4,7 @@
 #include <QWidget>
 #include <QVector>
 #include <QSlider>
+#include <QResizeEvent>
 
 class ChronogramWidget : public QWidget
 {
