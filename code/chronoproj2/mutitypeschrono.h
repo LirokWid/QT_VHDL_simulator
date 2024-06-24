@@ -19,23 +19,24 @@ public:
 
 protected:
     void paintEvent(QPaintEvent* event) override;
+    void resizeEvent(QResizeEvent *event) override;
 
 private:
     const int maxStep = 10;
 
-    int width, height;
+    int widgetWidth, widgetHeight;
     int currentOffset = 0;
 
-    const int visibleRange = 10; // Number of points visible at a time
     const int fixedGraphWidth = 600; // Fixed width for the graph area
-
 
     QSlider *slider;
     QVBoxLayout *Vlayout;
     void drawBackScale(QPainter *painter);
-    QVector<QPointF> dataPoints;
+    QVector<bool> boolDataPoints;
 
     void updateSliderRange();
+    int calculateVisibleRange() const; // New method to calculate visible range
+    void initializeBoolDataPoints(); // New method to initialize boolean data points
 };
 
 #endif // MUTITYPESCHRONO_H
