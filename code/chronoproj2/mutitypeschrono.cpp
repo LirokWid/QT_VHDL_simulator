@@ -4,6 +4,21 @@
 #include <QPainter>
 #include <QPushButton>
 
+/*
+ *
+ *
+ok - fit button
+ok¿- dragging
+drag zoom clic droit
+ok - décaler les valeurs de 1
+affficher moins en ordonnées si beaucoup de chiffres affichés
+ajouter fenetre au survol donnant info sur le point
+ *
+ *
+ *
+ */
+
+
 MutiTypesChrono::MutiTypesChrono(QWidget *parent)
     : QWidget(parent)
 {
@@ -41,9 +56,9 @@ MutiTypesChrono::MutiTypesChrono(QWidget *parent)
     buttonLayout->addStretch(1);
 
 
-    connect(plusButton, &QPushButton::clicked, this, &MutiTypesChrono::handlePlusButton);
-    connect(minusButton, &QPushButton::clicked, this, &MutiTypesChrono::handleMinusButton);
-    connect(fitButton, &QPushButton::clicked, this, &MutiTypesChrono::handleFitButton);
+    connect(plusButton  , &QPushButton::clicked, this, &MutiTypesChrono::handlePlusButton);
+    connect(minusButton , &QPushButton::clicked, this, &MutiTypesChrono::handleMinusButton);
+    connect(fitButton   , &QPushButton::clicked, this, &MutiTypesChrono::handleFitButton);
 
 
     Vlayout = new QVBoxLayout(this);
@@ -137,7 +152,6 @@ void MutiTypesChrono::paintEvent(QPaintEvent* event)
 
     int height = QWidget::height();
     int width = QWidget::width();
-    const int label_margin = 20;
 
     painter.setBrush(Qt::white);
     painter.setPen(Qt::white);
@@ -168,29 +182,33 @@ void MutiTypesChrono::paintEvent(QPaintEvent* event)
 
     painter.setPen(Qt::green);
 
-    // Draw boolean data points as a square wave with vertical lines between changes
+    // Draw boolean data points as a square signal with vertical lines between changes
     if (!boolDataPoints.isEmpty())
     {
         int startIndex = currentOffset;
         int endIndex = qMin(startIndex + visibleRange, boolDataPoints.size());
-
-        double yScale = static_cast<double>(graphHeight);
 
         // Draw initial point
         double xPrev = margin;
         double yPrev = boolDataPoints[startIndex] ? margin : height - margin;
         painter.drawEllipse(QPointF(xPrev, yPrev), 3, 3);
 
-        for (int i = startIndex + 1; i < endIndex; ++i) {
+        for (int i = startIndex + 1; i < endIndex; ++i)
+        {
             double x = margin + (i - startIndex) * xScale;
             double y = boolDataPoints[i] ? margin : height - margin;
-            painter.drawEllipse(QPointF(x, y), 3, 3);
+            painter.drawEllipse(QPointF(x, y), 2, 2);
 
             // Draw vertical line if boolean value changes
-            if (boolDataPoints[i] != boolDataPoints[i - 1]) {
-                painter.drawLine(QPointF(xPrev, yPrev), QPointF(xPrev, y));
-                painter.drawLine(QPointF(xPrev, y), QPointF(x, y));
-            } else {
+            if (boolDataPoints[i] != boolDataPoints[i - 1])
+            {
+                // Draw horizontal then vertical line
+                painter.drawLine(QPointF(xPrev, yPrev), QPointF(x, yPrev));
+                painter.drawLine(QPointF(x    , yPrev), QPointF(x    , y));
+            }
+            else
+            {
+                // Draw horizontal line
                 painter.drawLine(QPointF(xPrev, yPrev), QPointF(x, y));
             }
 
@@ -204,6 +222,17 @@ void MutiTypesChrono::paintEvent(QPaintEvent* event)
             painter.drawLine(QPointF(xPrev, yPrev), QPointF(xPrev, boolDataPoints[endIndex - 1] ? margin : height - margin));
         }
     }
+    // Draw the zoom rectangle if dragging
+    if (isDragging)
+    {
+        QPen pen;
+        pen.setColor(Qt::white);
+        pen.setStyle(Qt::DashLine);
+        painter.setPen(pen);
+        painter.setBrush(QBrush(Qt::transparent));
+        QRect zoomRect(dragStartPoint, dragEndPoint);
+        painter.drawRect(zoomRect);
+    }
 }
 
 void MutiTypesChrono::resizeEvent(QResizeEvent *event)
@@ -213,4 +242,70 @@ void MutiTypesChrono::resizeEvent(QResizeEvent *event)
     qDebug() << "width :" << width;
     updateSliderRange(); // Update the slider range when resized
     update(); // Repaint the widget
+}
+
+void MutiTypesChrono::mousePressEvent(QMouseEvent *event)
+{
+    if (event->button() == Qt::LeftButton)
+    {
+        isDragging = true;
+        dragStartPoint = event->pos();
+        dragEndPoint = dragStartPoint;
+        update();
+    }
+}
+
+void MutiTypesChrono::mouseMoveEvent(QMouseEvent *event)
+{
+    if (isDragging)
+    {
+        dragEndPoint = event->pos();
+        update();
+    }
+}
+
+void MutiTypesChrono::mouseReleaseEvent(QMouseEvent *event)
+{// TODO update to handle integer values for y axis
+    if (event->button() == Qt::LeftButton && isDragging)
+    {
+        isDragging = false;
+        dragEndPoint = event->pos();
+
+        int startIndex = qMin(dragStartPoint.x(), dragEndPoint.x());
+        int endIndex = qMax(dragStartPoint.x(), dragEndPoint.x());
+
+        int graphWidth = width() - 2 * margin;
+
+        // Calculate the new visible range based on the zoom area
+        int newStartIndex = startIndex - margin;
+        int newEndIndex = endIndex - margin;
+
+        int dragWidth = newEndIndex - newStartIndex;
+
+        qDebug() << "Drag start: " << newStartIndex << " End: " << newEndIndex;
+
+        int startStepIndex = (newStartIndex / stepPixelSize) + 1;
+        int endStepIndex = newEndIndex / stepPixelSize;
+
+        if (startStepIndex < 0)
+            startStepIndex = 0;
+        if (endStepIndex > boolDataPoints.size())
+            endStepIndex = boolDataPoints.size();
+
+        int stepsToDisplay = endStepIndex - startStepIndex;
+        qDebug() << "Start step: " << startStepIndex << " End step: " << endStepIndex;
+
+        if (stepsToDisplay >= 2)            // Drag width is at least 2 steps
+        {
+            visibleRange = stepsToDisplay;
+            currentOffset = startStepIndex;
+            stepPixelSize = (width() - 2 * margin) / visibleRange;
+            updateSliderRange();
+            update();
+        }
+        else
+        {
+            update();
+        }
+    }
 }
