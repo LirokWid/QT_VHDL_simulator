@@ -2,27 +2,20 @@
 #include <QVBoxLayout>
 #include <QSlider>
 #include <QPainter>
+#include <QPushButton>
 
 MutiTypesChrono::MutiTypesChrono(QWidget *parent)
     : QWidget(parent)
 {
-    slider = new QSlider(Qt::Horizontal, this);
-
     setMinimumSize(800, 200);
     setAutoFillBackground(true);
 
     QPalette palette = this->palette();
     palette.setColor(QPalette::Window, QColor(20, 20, 20));
     this->setPalette(palette);
+
+    slider = new QSlider(Qt::Horizontal, this);
     slider->setRange(0, 100);
-
-    Vlayout = new QVBoxLayout(this);
-
-    // Add margin to the layout to lower the slider
-    Vlayout->setContentsMargins(30, 0, 30, 0); // Adjust bottom margin as needed
-    Vlayout->addStretch(1);
-    Vlayout->addWidget(slider);
-
     connect(slider, &QSlider::valueChanged, this, [=](int value)
             {
                 currentOffset = value;
@@ -30,14 +23,52 @@ MutiTypesChrono::MutiTypesChrono(QWidget *parent)
                 update();
             });
 
-    initializeBoolDataPoints();
+    // Widen and shrink graph area buttons
+    buttonLayout = new QHBoxLayout();
 
+    minusButton = new QPushButton("-", this);
+    plusButton = new QPushButton("+", this);
+    fitButton = new QPushButton("fit", this);
+
+    //Set the size of the buttons
+    minusButton->setFixedSize(25, 30);
+    plusButton->setFixedSize(25, 30);
+    fitButton->setFixedSize(25, 30);
+
+    buttonLayout->addWidget(minusButton);
+    buttonLayout->addWidget(plusButton);
+    buttonLayout->addWidget(fitButton);
+    buttonLayout->addStretch(1);
+
+
+    connect(plusButton, &QPushButton::clicked, this, &MutiTypesChrono::handlePlusButton);
+    connect(minusButton, &QPushButton::clicked, this, &MutiTypesChrono::handleMinusButton);
+    connect(fitButton, &QPushButton::clicked, this, &MutiTypesChrono::handleFitButton);
+
+
+    Vlayout = new QVBoxLayout(this);
+    Vlayout->setContentsMargins(30, 0, 30, 0);  // TODO parametrize the margins
+    Vlayout->addLayout(buttonLayout);
+    Vlayout->addStretch(1);
+    Vlayout->addWidget(slider);
+
+
+
+
+    initializeBoolDataPoints(); // Temp debug
     updateSliderRange();
+}
+
+void MutiTypesChrono::addPoint(bool point)
+{
+    boolDataPoints.append(point);
+    updateSliderRange();
+    update();
 }
 
 void MutiTypesChrono::updateSliderRange()
 {
-    int visibleRange = calculateVisibleRange();
+    calculateVisibleRange();
     if (boolDataPoints.size() > visibleRange)
     {
         slider->setRange(0, boolDataPoints.size() - visibleRange);
@@ -48,10 +79,11 @@ void MutiTypesChrono::updateSliderRange()
     }
 }
 
-int MutiTypesChrono::calculateVisibleRange() const
+void MutiTypesChrono::calculateVisibleRange()
 {
-    int margin = 30; // The margin used in the paintEvent method
-    return (width() - 2 * margin) / (fixedGraphWidth / 10);
+    this->visibleRange = (width() - 2 * margin) / stepPixelSize;
+
+    qDebug() << "Range changed to: " << this->visibleRange;
 }
 
 void MutiTypesChrono::initializeBoolDataPoints()
@@ -62,11 +94,46 @@ void MutiTypesChrono::initializeBoolDataPoints()
     }
 }
 
+void MutiTypesChrono::handlePlusButton()
+{
+    if (visibleRange < boolDataPoints.size() - 1)
+    {
+        visibleRange++;
+        stepPixelSize = (width() - 2 * margin) / visibleRange;
+        updateSliderRange();
+        update();
+    }
+}
+
+void MutiTypesChrono::handleMinusButton()
+{
+    if (visibleRange > 2)
+    {
+        visibleRange--;
+        stepPixelSize = (width() - 2 * margin) / visibleRange;
+        updateSliderRange();
+        update();
+    }
+}
+
+void MutiTypesChrono::handleFitButton()
+{
+    if (boolDataPoints.size() > 2)
+    {
+        visibleRange = boolDataPoints.size();
+        stepPixelSize = (width() - 2 * margin) / visibleRange;
+        updateSliderRange();
+        update();
+    }
+}
+
 void MutiTypesChrono::paintEvent(QPaintEvent* event)
 {
     QWidget::paintEvent(event);
     QPainter painter(this);
     painter.setRenderHint(QPainter::Antialiasing);
+
+    calculateVisibleRange();
 
     int height = QWidget::height();
     int width = QWidget::width();
@@ -76,7 +143,6 @@ void MutiTypesChrono::paintEvent(QPaintEvent* event)
     painter.setPen(Qt::white);
 
     // Draw axes
-    int margin = 40;
     int graphHeight = height - 2 * margin;
     int graphWidth = width - 2 * margin;
 
@@ -89,7 +155,6 @@ void MutiTypesChrono::paintEvent(QPaintEvent* event)
     painter.drawLine(margin, height - margin, width - margin, height - margin);
 
     // Draw ticks and labels for x-axis
-    int visibleRange = calculateVisibleRange();
     double xScale = static_cast<double>(graphWidth) / visibleRange;
     for (int i = 0; i <= visibleRange; ++i)
     {
@@ -97,6 +162,9 @@ void MutiTypesChrono::paintEvent(QPaintEvent* event)
         painter.drawLine(x, height - margin, x, height - margin + 5);
         painter.drawText(x - 10, height - margin + 15, 20, 10, Qt::AlignCenter, QString::number(currentOffset + i));
     }
+
+    // Draw current number of data points
+    painter.drawText(width - 100, margin - 10, 100, 20, Qt::AlignLeft, "Data Points: " + QString::number(boolDataPoints.size()));
 
     painter.setPen(Qt::green);
 
