@@ -1,6 +1,7 @@
 #include "chronogramwidget.h"
 #include "mainwindow.h"
 #include "mutitypeschrono.h"
+#include "secondwindow.h"
 #include "ui_mainwindow.h"
 
 #include <QHBoxLayout>
@@ -12,6 +13,7 @@ MainWindow::MainWindow(QWidget *parent)
 {
     ui->setupUi(this);
 
+    /* Old code
     // Créer une instance de ChronogramWidget
 
     // Exemple de données à ajouter
@@ -27,22 +29,22 @@ MainWindow::MainWindow(QWidget *parent)
 
     ChronogramWidget *chronogramWidget2 = new ChronogramWidget();
     chronogramWidget2->addSeries(intDataArray,floatDataArray,boolDataArray,varName);
+    */
 
     QVBoxLayout *layout = new QVBoxLayout();
-
-
-    //layout->addWidget(chronogramWidget1);
-    //layout->addWidget(chronogramWidget2);
-
-    MutiTypesChrono *multiTypesChrono = new MutiTypesChrono();
+    multiTypesChrono = new MutiTypesChrono();
 
     layout->addWidget(multiTypesChrono);
-    //ui->centralwidget->setLayout(layout);
     ui->centralwidget->setLayout(layout);
 
+
+    secondWindow = new SecondWindow(multiTypesChrono);
+    secondWindow->show();
 }
 
 MainWindow::~MainWindow()
 {
     delete ui;
+    delete secondWindow;
+    delete multiTypesChrono;
 }

@@ -1,6 +1,9 @@
 #ifndef MAINWINDOW_H
 #define MAINWINDOW_H
 
+#include "mutitypeschrono.h"
+#include "secondwindow.h"
+
 #include <QMainWindow>
 
 QT_BEGIN_NAMESPACE
@@ -19,5 +22,8 @@ public:
 
 private:
     Ui::MainWindow *ui;
+    MutiTypesChrono *multiTypesChrono;
+    SecondWindow *secondWindow;
+
 };
 #endif // MAINWINDOW_H

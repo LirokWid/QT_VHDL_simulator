@@ -15,12 +15,14 @@ SOURCES += \
     chronogramwidget.cpp \
     main.cpp \
     mainwindow.cpp \
-    mutitypeschrono.cpp
+    mutitypeschrono.cpp \
+    secondwindow.cpp
 
 HEADERS += \
     chronogramwidget.h \
     mainwindow.h \
-    mutitypeschrono.h
+    mutitypeschrono.h \
+    secondwindow.h
 
 FORMS += \
     mainwindow.ui
