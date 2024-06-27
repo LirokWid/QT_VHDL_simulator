@@ -33,7 +33,7 @@ private:
     int widgetWidth, widgetHeight;
     int currentOffset = 0;
     int visibleRange = 10; // Init value for points seen at the same time
-    int stepPixelSize = 60; // New variable to store the width of a step in pixels
+    int stepPixelNb = 60; // New variable to store the width of a step in pixels
     int margin = 40;
     const int label_margin = 20;
 
@@ -54,6 +54,12 @@ private:
     QPoint dragStartPoint;
     QPoint dragEndPoint;
 
+    bool isRightClicking = false;
+    bool isFirstRightClick = false;
+    QPoint rightClickStartPoint;
+
+    void getStepPixelSize();
+    void updateStepPixelNb();
 private slots:
 
     void handlePlusButton();

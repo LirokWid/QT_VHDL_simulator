@@ -13,6 +13,7 @@ drag zoom clic droit
 ok - décaler les valeurs de 1
 affficher moins en ordonnées si beaucoup de chiffres affichés
 ajouter fenetre au survol donnant info sur le point
+ajouter bandeau stats sur valeurs
  *
  *
  *
@@ -67,11 +68,9 @@ MutiTypesChrono::MutiTypesChrono(QWidget *parent)
     Vlayout->addStretch(1);
     Vlayout->addWidget(slider);
 
-
-
-
     initializeBoolDataPoints(); // Temp debug
     updateSliderRange();
+    //calculateVisibleRange();
 }
 
 void MutiTypesChrono::addPoint(bool point)
@@ -86,17 +85,20 @@ void MutiTypesChrono::updateSliderRange()
     calculateVisibleRange();
     if (boolDataPoints.size() > visibleRange)
     {
+        slider->setVisible(true);
         slider->setRange(0, boolDataPoints.size() - visibleRange);
+        slider->setValue(currentOffset);
     }
     else
     {
+        slider->setVisible(false);
         slider->setRange(0, 0);
     }
 }
 
 void MutiTypesChrono::calculateVisibleRange()
 {
-    this->visibleRange = (width() - 2 * margin) / stepPixelSize;
+    this->visibleRange = (width() - margin) / stepPixelNb;
 
     qDebug() << "Range changed to: " << this->visibleRange;
 }
@@ -109,46 +111,12 @@ void MutiTypesChrono::initializeBoolDataPoints()
     }
 }
 
-void MutiTypesChrono::handlePlusButton()
-{
-    if (visibleRange < boolDataPoints.size() - 1)
-    {
-        visibleRange++;
-        stepPixelSize = (width() - 2 * margin) / visibleRange;
-        updateSliderRange();
-        update();
-    }
-}
-
-void MutiTypesChrono::handleMinusButton()
-{
-    if (visibleRange > 2)
-    {
-        visibleRange--;
-        stepPixelSize = (width() - 2 * margin) / visibleRange;
-        updateSliderRange();
-        update();
-    }
-}
-
-void MutiTypesChrono::handleFitButton()
-{
-    if (boolDataPoints.size() > 2)
-    {
-        visibleRange = boolDataPoints.size();
-        stepPixelSize = (width() - 2 * margin) / visibleRange;
-        updateSliderRange();
-        update();
-    }
-}
-
 void MutiTypesChrono::paintEvent(QPaintEvent* event)
 {
     QWidget::paintEvent(event);
     QPainter painter(this);
     painter.setRenderHint(QPainter::Antialiasing);
 
-    calculateVisibleRange();
 
     int height = QWidget::height();
     int width = QWidget::width();
@@ -186,7 +154,7 @@ void MutiTypesChrono::paintEvent(QPaintEvent* event)
     if (!boolDataPoints.isEmpty())
     {
         int startIndex = currentOffset;
-        int endIndex = qMin(startIndex + visibleRange, boolDataPoints.size());
+        int endIndex = qMin(startIndex + visibleRange + 1, boolDataPoints.size());
 
         // Draw initial point
         double xPrev = margin;
@@ -235,6 +203,44 @@ void MutiTypesChrono::paintEvent(QPaintEvent* event)
     }
 }
 
+void MutiTypesChrono::updateStepPixelNb()
+{
+    stepPixelNb = qRound(static_cast<float>(width() - margin)) / static_cast<float>(visibleRange);
+}
+
+void MutiTypesChrono::handlePlusButton()
+{
+    if (visibleRange < boolDataPoints.size() - 1)
+    {
+        visibleRange++;
+        updateStepPixelNb();
+        updateSliderRange();
+        update();
+    }
+}
+
+void MutiTypesChrono::handleMinusButton()
+{
+    if (visibleRange > 2)
+    {
+        visibleRange--;
+        updateStepPixelNb();
+        updateSliderRange();
+        update();
+    }
+}
+
+void MutiTypesChrono::handleFitButton()
+{
+    if (boolDataPoints.size() > 2)
+    {
+        visibleRange = boolDataPoints.size();
+        updateStepPixelNb();
+        updateSliderRange();
+        update();
+    }
+}
+
 void MutiTypesChrono::resizeEvent(QResizeEvent *event)
 {
     QWidget::resizeEvent(event);
@@ -253,6 +259,12 @@ void MutiTypesChrono::mousePressEvent(QMouseEvent *event)
         dragEndPoint = dragStartPoint;
         update();
     }
+
+    if(event->button() == Qt::RightButton)
+    {
+        isRightClicking = true;
+        rightClickStartPoint = event->pos();
+    }
 }
 
 void MutiTypesChrono::mouseMoveEvent(QMouseEvent *event)
@@ -260,6 +272,31 @@ void MutiTypesChrono::mouseMoveEvent(QMouseEvent *event)
     if (isDragging)
     {
         dragEndPoint = event->pos();
+        update();
+    }
+
+    if (isRightClicking)
+    {
+        static int savedOffset;
+
+        if (isFirstRightClick == false)
+        {
+            isFirstRightClick = true;
+            savedOffset = currentOffset;
+        }
+
+        int range = rightClickStartPoint.x() - event->pos().x();
+        int newPosition = savedOffset + static_cast<int>(range / stepPixelNb);
+
+        if (newPosition < 0)
+            newPosition = 0;
+        if (newPosition + visibleRange > boolDataPoints.size())
+            newPosition = boolDataPoints.size() - visibleRange;
+
+        qDebug() << "Right draging to " << newPosition;
+
+        currentOffset = newPosition;
+        updateSliderRange();
         update();
     }
 }
@@ -284,8 +321,8 @@ void MutiTypesChrono::mouseReleaseEvent(QMouseEvent *event)
 
         qDebug() << "Drag start: " << newStartIndex << " End: " << newEndIndex;
 
-        int startStepIndex = (newStartIndex / stepPixelSize) + 1;
-        int endStepIndex = newEndIndex / stepPixelSize;
+        int startStepIndex = (newStartIndex / stepPixelNb) + 1;
+        int endStepIndex = newEndIndex / stepPixelNb;
 
         if (startStepIndex < 0)
             startStepIndex = 0;
@@ -299,7 +336,7 @@ void MutiTypesChrono::mouseReleaseEvent(QMouseEvent *event)
         {
             visibleRange = stepsToDisplay;
             currentOffset = startStepIndex;
-            stepPixelSize = (width() - 2 * margin) / visibleRange;
+            stepPixelNb = (width() - 2 * margin) / visibleRange;
             updateSliderRange();
             update();
         }
@@ -307,5 +344,11 @@ void MutiTypesChrono::mouseReleaseEvent(QMouseEvent *event)
         {
             update();
         }
+    }
+
+    if (event->button() == Qt::RightButton && isRightClicking)
+    {
+        isRightClicking = false;
+        isFirstRightClick = false;
     }
 }
