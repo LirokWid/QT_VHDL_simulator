@@ -6,14 +6,17 @@
 
 /*
  *
- *
+ *                         TODO                            *
 ok - fit button
-ok¿- dragging
-drag zoom clic droit
+ok - drag zoom clic droit
 ok - décaler les valeurs de 1
-affficher moins en ordonnées si beaucoup de chiffres affichés
+affficher moins de chiffres en ordonnées si beaucoup de chiffres affichés
 ajouter fenetre au survol donnant info sur le point
 ajouter bandeau stats sur valeurs
+ajouter boutons x axis
+parametriser les marges et couleurs
+Que faire si pixel step < 1 ?
+le - ne fonctionne pas à tout les coups
  *
  *
  *
@@ -68,9 +71,8 @@ MutiTypesChrono::MutiTypesChrono(QWidget *parent)
     Vlayout->addStretch(1);
     Vlayout->addWidget(slider);
 
-    initializeBoolDataPoints(); // Temp debug
+    initializeBoolDataPoints(50); // Temp debug
     updateSliderRange();
-    //calculateVisibleRange();
 }
 
 void MutiTypesChrono::addPoint(bool point)
@@ -103,9 +105,9 @@ void MutiTypesChrono::calculateVisibleRange()
     qDebug() << "Range changed to: " << this->visibleRange;
 }
 
-void MutiTypesChrono::initializeBoolDataPoints()
+void MutiTypesChrono::initializeBoolDataPoints(int nbPoints)
 {
-    for (int i = 0; i < 50; ++i)
+    for (int i = 0; i < nbPoints; ++i)
     {
         boolDataPoints.append(rand() % 2); // Random boolean values
     }
@@ -117,6 +119,13 @@ void MutiTypesChrono::paintEvent(QPaintEvent* event)
     QPainter painter(this);
     painter.setRenderHint(QPainter::Antialiasing);
 
+    // Define constants for margins and labels
+    const int labelMargin = 10; // Assuming label_margin is a constant
+    const int tickSize = 5;
+    const int textOffset = 10;
+    const int textWidth = 30;
+    const int textHeight = 10;
+    const int xLabelDensity = 1;
 
     int height = QWidget::height();
     int width = QWidget::width();
@@ -125,28 +134,40 @@ void MutiTypesChrono::paintEvent(QPaintEvent* event)
     painter.setPen(Qt::white);
 
     // Draw axes
-    int graphHeight = height - 2 * margin;
-    int graphWidth = width - 2 * margin;
+    int graphHeight = height - margin;
+    int graphWidth = width - margin;
 
     // Draw y-axis
     painter.drawLine(margin, margin, margin, height - margin);
-    painter.drawText(margin - 30 - label_margin , margin - 10, 30, 10, Qt::AlignRight, "1"); // High state
-    painter.drawText(margin - 30 - label_margin , height - margin - 10, 30, 10, Qt::AlignRight, "0"); // Low state
+    painter.drawText(margin - textWidth - labelMargin, margin - textOffset, textWidth, textHeight, Qt::AlignRight, "1"); // High state
+    painter.drawText(margin - textWidth - labelMargin, height - margin - textOffset, textWidth, textHeight, Qt::AlignRight, "0"); // Low state
 
     // Draw x-axis
     painter.drawLine(margin, height - margin, width - margin, height - margin);
 
     // Draw ticks and labels for x-axis
     double xScale = static_cast<double>(graphWidth) / visibleRange;
+
+    int labelInterval = (stepPixelNb < textWidth + 2 * xLabelDensity) ? (textWidth + 2 * xLabelDensity) / stepPixelNb + 1 : 1;
+
     for (int i = 0; i <= visibleRange; ++i)
     {
         int x = margin + i * xScale;
-        painter.drawLine(x, height - margin, x, height - margin + 5);
-        painter.drawText(x - 10, height - margin + 15, 20, 10, Qt::AlignCenter, QString::number(currentOffset + i));
+        painter.drawLine(x, height - margin, x, height - margin + tickSize);
+
+        // Display label if within interval
+        if (i % labelInterval == 0)
+        {
+            painter.drawText(
+                x - textOffset, height - margin + textOffset,   // x, y
+                textWidth, textHeight,                          // width, height
+                Qt::AlignCenter,                                // alignment
+                QString::number(currentOffset + i));            // value
+        }
     }
 
     // Draw current number of data points
-    painter.drawText(width - 100, margin - 10, 100, 20, Qt::AlignLeft, "Data Points: " + QString::number(boolDataPoints.size()));
+    painter.drawText(width - 100, margin - textOffset, 100, 20, Qt::AlignLeft, "Data Points: " + QString::number(boolDataPoints.size()));
 
     painter.setPen(Qt::green);
 
@@ -172,7 +193,7 @@ void MutiTypesChrono::paintEvent(QPaintEvent* event)
             {
                 // Draw horizontal then vertical line
                 painter.drawLine(QPointF(xPrev, yPrev), QPointF(x, yPrev));
-                painter.drawLine(QPointF(x    , yPrev), QPointF(x    , y));
+                painter.drawLine(QPointF(x, yPrev), QPointF(x, y));
             }
             else
             {
@@ -190,6 +211,7 @@ void MutiTypesChrono::paintEvent(QPaintEvent* event)
             painter.drawLine(QPointF(xPrev, yPrev), QPointF(xPrev, boolDataPoints[endIndex - 1] ? margin : height - margin));
         }
     }
+
     // Draw the zoom rectangle if dragging
     if (isDragging)
     {

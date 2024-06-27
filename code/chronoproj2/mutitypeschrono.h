@@ -60,6 +60,7 @@ private:
 
     void getStepPixelSize();
     void updateStepPixelNb();
+    void initializeBoolDataPoints(int nbPoints);
 private slots:
 
     void handlePlusButton();
