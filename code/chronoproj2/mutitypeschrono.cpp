@@ -17,6 +17,7 @@ ajouter boutons x axis
 parametriser les marges et couleurs
 Que faire si pixel step < 1 ?
 le - ne fonctionne pas à tout les coups
+Si en mode fit, drag la window stretch le graphe ?
  *
  *
  *
@@ -127,18 +128,26 @@ void MutiTypesChrono::paintEvent(QPaintEvent* event)
     const int textHeight = 10;
     const int xLabelDensity = 1;
 
+    const int marginRight = 40;
+    const int marginLeft = 40;
+    const int marginTop = 40;
+    const int marginBottom = 40;
+
+    const QColor axisColor = Qt::white;
+
     int height = QWidget::height();
     int width = QWidget::width();
 
-    painter.setBrush(Qt::white);
-    painter.setPen(Qt::white);
+    painter.setBrush(axisColor);
+    painter.setPen(axisColor);
 
-    // Draw axes
-    int graphHeight = height - margin;
-    int graphWidth = width - margin;
+    int graphHeight = height - marginTop - marginBottom;
+    int graphWidth = width - marginLeft - marginRight;
+
+    /*      Draw axes       */
 
     // Draw y-axis
-    painter.drawLine(margin, margin, margin, height - margin);
+    painter.drawLine(margin, margin, margin, height - margin);      // Line
     painter.drawText(margin - textWidth - labelMargin, margin - textOffset, textWidth, textHeight, Qt::AlignRight, "1"); // High state
     painter.drawText(margin - textWidth - labelMargin, height - margin - textOffset, textWidth, textHeight, Qt::AlignRight, "0"); // Low state
 
@@ -167,9 +176,14 @@ void MutiTypesChrono::paintEvent(QPaintEvent* event)
     }
 
     // Draw current number of data points
-    painter.drawText(width - 100, margin - textOffset, 100, 20, Qt::AlignLeft, "Data Points: " + QString::number(boolDataPoints.size()));
+    painter.drawText(
+        width - marginRight, margin - textOffset,
+        textWidth, textHeight,
+        Qt::AlignLeft,
+        "Data Points: " + QString::number(boolDataPoints.size())
+        );
 
-    painter.setPen(Qt::green);
+    painter.setPen(Qt::red);
 
     // Draw boolean data points as a square signal with vertical lines between changes
     if (!boolDataPoints.isEmpty())
@@ -287,6 +301,13 @@ void MutiTypesChrono::mousePressEvent(QMouseEvent *event)
         isRightClicking = true;
         rightClickStartPoint = event->pos();
     }
+
+    /*          DEBUG                       */
+    if(event->button() == Qt::MiddleButton)
+    {
+        qDebug() << "x: " << event->pos().x() << "y: " << event->pos().y();
+    }
+    //////////////////////////////////////////
 }
 
 void MutiTypesChrono::mouseMoveEvent(QMouseEvent *event)
