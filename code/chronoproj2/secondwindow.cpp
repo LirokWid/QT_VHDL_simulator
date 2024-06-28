@@ -1,6 +1,6 @@
 #include "secondwindow.h"
 
-SecondWindow::SecondWindow(MutiTypesChrono *chronoWidget, QWidget *parent)
+SecondWindow::SecondWindow(MultiTypesChrono *chronoWidget, QWidget *parent)
     : QWidget(parent), chronoWidget(chronoWidget)
 {
     trueButton = new QPushButton("Add True", this);

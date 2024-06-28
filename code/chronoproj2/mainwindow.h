@@ -1,7 +1,7 @@
 #ifndef MAINWINDOW_H
 #define MAINWINDOW_H
 
-#include "mutitypeschrono.h"
+#include "multitypeschrono.h"
 #include "secondwindow.h"
 
 #include <QMainWindow>
@@ -22,7 +22,7 @@ public:
 
 private:
     Ui::MainWindow *ui;
-    MutiTypesChrono *multiTypesChrono;
+    MultiTypesChrono *multiTypesChrono;
     SecondWindow *secondWindow;
 
 };

@@ -12,12 +12,12 @@
 #include <QPushButton>
 
 
-class MutiTypesChrono : public QWidget
+class MultiTypesChrono : public QWidget
 {
     Q_OBJECT
-public:
-    MutiTypesChrono(QWidget *parent = nullptr);
 
+public:
+    MultiTypesChrono(QWidget *parent = nullptr);
     void addPoint(bool point);
 
 protected:
@@ -28,14 +28,33 @@ protected:
     void mouseReleaseEvent(QMouseEvent *event) override;
 
 private:
+    // Constants the graph
+    const int labelOffset = 15;
+    const int tickSize = 5;
+    const int textOffset = 10;
+    const int textWidth = 30;
+    const int textHeight = 10;
+    const int xLabelDensity = 1;
 
-    const int maxStep = 10;
-    int widgetWidth, widgetHeight;
+    const int marginLeft = 40;
+    const int marginTop = 50;
+    const int marginBottom = 50;
+
+    const int textRectPadding = 5;
+    const int textRectRadius = 2;
+
+    int visibleRange = 10;
+    const int pointRadius = 2;
+    const int minDisplayedSteps = 2;
+
+    const QColor backgrounColor = Qt::black;
+    const QColor axisColor = Qt::green;
+    const QColor graphColor = Qt::red;
+    const QColor rectBorderColor = Qt::red;
+
+
     int currentOffset = 0;
-    int visibleRange = 10; // Init value for points seen at the same time
-    int stepPixelNb = 60; // New variable to store the width of a step in pixels
-    int margin = 40;
-    const int label_margin = 20;
+    double stepPixelNb = 60.f;
 
     QSlider *slider;
     QVBoxLayout *Vlayout;
@@ -47,8 +66,8 @@ private:
     QHBoxLayout *buttonLayout;
 
     void updateSliderRange();
-    void calculateVisibleRange(); // New method to calculate visible range
-    void initializeBoolDataPoints(); // New method to initialize boolean data points
+    void calculateVisibleRange();
+    void initializeBoolDataPoints();
 
     bool isDragging = false;
     QPoint dragStartPoint;
@@ -59,10 +78,12 @@ private:
     QPoint rightClickStartPoint;
 
     void getStepPixelSize();
-    void updateStepPixelNb();
+    void calculateStepPixelNb();
     void initializeBoolDataPoints(int nbPoints);
-private slots:
+    void drawText(QPainter &painter, const QString &text, int x, int y);
+    void drawTextInBox(QPainter &painter, const QString &text, int x, int y);
 
+private slots:
     void handlePlusButton();
     void handleMinusButton();
     void handleFitButton();

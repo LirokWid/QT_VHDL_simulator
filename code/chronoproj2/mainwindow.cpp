@@ -1,6 +1,6 @@
 #include "chronogramwidget.h"
 #include "mainwindow.h"
-#include "mutitypeschrono.h"
+#include "multitypeschrono.h"
 #include "secondwindow.h"
 #include "ui_mainwindow.h"
 
@@ -32,7 +32,7 @@ MainWindow::MainWindow(QWidget *parent)
     */
 
     QVBoxLayout *layout = new QVBoxLayout();
-    multiTypesChrono = new MutiTypesChrono();
+    multiTypesChrono = new MultiTypesChrono();
 
     layout->addWidget(multiTypesChrono);
     ui->centralwidget->setLayout(layout);

@@ -4,16 +4,16 @@
 #include <QWidget>
 #include <QPushButton>
 #include <QVBoxLayout>
-#include "mutitypeschrono.h"
+#include "multitypeschrono.h"
 
 class SecondWindow : public QWidget
 {
     Q_OBJECT
 public:
-    explicit SecondWindow(MutiTypesChrono *chronoWidget, QWidget *parent = nullptr);
+    explicit SecondWindow(MultiTypesChrono *chronoWidget, QWidget *parent = nullptr);
 
 private:
-    MutiTypesChrono *chronoWidget;
+    MultiTypesChrono *chronoWidget;
 
     QPushButton *trueButton;
     QPushButton *falseButton;
