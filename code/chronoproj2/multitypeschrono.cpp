@@ -4,22 +4,6 @@
 #include <QPainter>
 #include <QPushButton>
 
-/*
- *
- *                         TODO                            *
-ok - fit button
-ok - drag zoom clic droit
-ok - décaler les valeurs de 1
-affficher moins de chiffres en ordonnées si beaucoup de chiffres affichés
-ajouter fenetre au survol donnant info sur le point
-ok - ajouter bandeau stats sur valeurs
-ajouter boutons x axis
-ok -parametriser les marges et couleurs
- *
- *
- *
- */
-
 
 MultiTypesChrono::MultiTypesChrono(QWidget *parent)
     : QWidget(parent)
