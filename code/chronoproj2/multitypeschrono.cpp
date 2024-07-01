@@ -24,6 +24,10 @@ MultiTypesChrono::MultiTypesChrono(QWidget *parent)
                 update();
             });
 
+    popupLabel = new QLabel(this);
+    popupLabel->setStyleSheet("QLabel { background-color: rgba(255, 255, 255, 180); border: 2px solid black; padding: 3px; border-radius: 3px; }");
+    popupLabel->setVisible(false);
+
     // Widen and shrink graph area buttons
     buttonLayout = new QHBoxLayout();
 
@@ -50,6 +54,8 @@ MultiTypesChrono::MultiTypesChrono(QWidget *parent)
     Vlayout->addLayout(buttonLayout);
     Vlayout->addStretch(1);
     Vlayout->addWidget(slider);
+
+    this->setMouseTracking(true);
 
     initializeBoolDataPoints(50); // Temp debug to dislay random values
     updateSliderRange();
@@ -289,6 +295,45 @@ void MultiTypesChrono::resizeEvent(QResizeEvent *event)
     update(); // Repaint the widget
 }
 
+void MultiTypesChrono::showPopupAtCursor(QPoint cursorPos)
+{
+    int height = QWidget::height();
+    int width = QWidget::width();
+    int x = cursorPos.x();
+    int y = cursorPos.y();
+
+    for (int i = 0; i <= visibleRange-1; ++i)
+    {
+        int pointX = marginLeft + static_cast<int>(i * stepPixelNb);
+        int pointY = boolDataPoints[currentOffset + i] ? marginTop : height - marginBottom;
+
+        if (qAbs(pointX - x) < popupDisplayRadius && qAbs(pointY - y) < popupDisplayRadius)
+        {
+            QString coords = QString("step: %1, val: %2")
+                                 .arg(currentOffset + i)
+                                 .arg(boolDataPoints[currentOffset + i]);
+            popupLabel->setText(coords);
+            popupLabel->move(x + 10, y + 10);
+            popupLabel->setVisible(true);
+            return;
+        }
+    }
+
+    popupLabel->setVisible(false);
+}
+
+int MultiTypesChrono::getStepFromX(int x)
+{
+    int closest_step = ((x - marginLeft + stepPixelNb / 2) / stepPixelNb) + currentOffset;
+
+    if (closest_step < 0)
+        closest_step = 0;
+    if (closest_step > boolDataPoints.size())
+        closest_step = boolDataPoints.size();
+
+    return closest_step;
+}
+
 void MultiTypesChrono::mousePressEvent(QMouseEvent *event)
 {
     if (event->button() == Qt::LeftButton)
@@ -339,12 +384,14 @@ void MultiTypesChrono::mouseMoveEvent(QMouseEvent *event)
         if (newPosition + visibleRange > boolDataPoints.size())
             newPosition = boolDataPoints.size() - visibleRange;
 
-        qDebug() << "Right draging to " << newPosition;
+        qDebug() << "Right dragging to " << newPosition;
 
         currentOffset = newPosition;
         updateSliderRange();
         update();
     }
+
+    showPopupAtCursor(event->pos());
 }
 
 void MultiTypesChrono::mouseReleaseEvent(QMouseEvent *event)
@@ -393,4 +440,10 @@ void MultiTypesChrono::mouseReleaseEvent(QMouseEvent *event)
         isRightClicking = false;
         isFirstRightClick = false;
     }
+}
+
+void MultiTypesChrono::leaveEvent(QEvent *event)
+{
+    QWidget::leaveEvent(event);
+    popupLabel->setVisible(false);
 }

@@ -10,6 +10,7 @@
 #include <QVector>
 #include <QDebug>
 #include <QPushButton>
+#include <QLabel>
 
 /**
  * @class MultiTypesChrono
@@ -63,6 +64,12 @@ protected:
      */
     void mouseReleaseEvent(QMouseEvent *event) override;
 
+    /**
+     * @brief Handles the mouse going out of the widget
+     * @param event The mouse leaving event
+     */
+    void leaveEvent(QEvent *event) override;
+
 private:
     // Constants for the graph layout
     const int labelOffset = 15; ///< Offset for the axis labels.
@@ -83,10 +90,12 @@ private:
     const int pointRadius = 2; ///< Radius of the data points.
     const int minDisplayedSteps = 2; ///< Minimum number of displayed steps.
 
+    const int popupDisplayRadius = 15; ///< popup visible if close to the point
+
     const QColor backgrounColor = Qt::black; ///< Background color of the graph.
-    const QColor axisColor = Qt::green; ///< Color of the graph axes.
-    const QColor graphColor = Qt::red; ///< Color of the graph line.
-    const QColor rectBorderColor = Qt::red; ///< Color of the border for text rectangles.
+    const QColor axisColor = Qt::white; ///< Color of the graph axes.
+    const QColor graphColor = Qt::blue; ///< Color of the graph line.
+    const QColor rectBorderColor = Qt::white; ///< Color of the border for text rectangles.
 
     int currentOffset = 0; ///< Current offset of the graph.
     double stepPixelNb = 60.f; ///< Number of pixels per step.
@@ -97,7 +106,8 @@ private:
     QPushButton *plusButton; ///< Button to increase the visible range.
     QPushButton *minusButton; ///< Button to decrease the visible range.
     QPushButton *fitButton; ///< Button to fit the graph to the data points.
-    QHBoxLayout *buttonLayout; ///< Horizontal layout for the buttons.
+    QHBoxLayout *buttonLayout; ///< Horizontal layout for the buttons.    
+    QLabel *popupLabel;
 
     /**
      * @brief Draws the background scale of the graph.
@@ -144,6 +154,12 @@ private:
      */
     void drawTextInBox(QPainter &painter, const QString &text, int x, int y);
 
+    /**
+     * @brief Draws a popup to display a point coordinates
+     * @param cursorPos position to show
+     */
+    void showPopupAtCursor(QPoint cursorPos);
+
     bool isDragging = false; ///< Flag indicating if the graph is being dragged.
     QPoint dragStartPoint; ///< Starting point of the drag.
     QPoint dragEndPoint; ///< Ending point of the drag.
@@ -152,6 +168,7 @@ private:
     bool isFirstRightClick = false; ///< Flag indicating if it's the first right mouse click.
     QPoint rightClickStartPoint; ///< Starting point of the right mouse click.
 
+    int getStepFromX(int x);
 private slots:
     /**
      * @brief Slot to handle the plus button click event.
