@@ -8,6 +8,47 @@
 MultiTypesChrono::MultiTypesChrono(QWidget *parent)
     : QWidget(parent)
 {
+    initializeBoolDataPoints(50); // Temp debug to dislay random values
+    initGraph();
+}
+
+MultiTypesChrono::MultiTypesChrono(int tempBoolSize, QWidget *parent)
+    : QWidget(parent)
+{
+    initializeBoolDataPoints(tempBoolSize); // Temp debug to dislay random values
+    initGraph();
+}
+
+MultiTypesChrono::MultiTypesChrono(QVector<bool> boolStartList, QWidget *parent)
+    : QWidget(parent)
+{
+    boolDataPoints = boolStartList;
+    initGraph();
+}
+
+MultiTypesChrono::MultiTypesChrono(QVector<int> intStartList, QWidget *parent)
+    : QWidget(parent)
+{
+
+    initGraph();
+}
+
+MultiTypesChrono::MultiTypesChrono(QVector<float> floatStartList, QWidget *parent)
+    : QWidget(parent)
+{
+
+    initGraph();
+}
+
+MultiTypesChrono::MultiTypesChrono(QVector<double> doubleStartList, QWidget *parent)
+    : QWidget(parent)
+{
+
+    initGraph();
+}
+
+void MultiTypesChrono::initGraph()
+{
     setMinimumSize(800, 200);
     setAutoFillBackground(true);
 
@@ -57,7 +98,6 @@ MultiTypesChrono::MultiTypesChrono(QWidget *parent)
 
     this->setMouseTracking(true);
 
-    initializeBoolDataPoints(50); // Temp debug to dislay random values
     updateSliderRange();
 }
 

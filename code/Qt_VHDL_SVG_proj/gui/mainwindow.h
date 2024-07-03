@@ -11,7 +11,7 @@
 #include "svghandler.h"
 #include "debugwindow.h"
 
-#include "chronogramwidget.h"
+#include "multitypeschrono.h"
 #include "view.h"
 
 QT_BEGIN_NAMESPACE
@@ -38,7 +38,6 @@ private slots:
     void updateStateLabel(SimulationState::State state);
 
     void on_pushButton_clicked();
-
     void on_pushButton_2_clicked();
 
 private:
@@ -49,7 +48,7 @@ private:
     QLabel *stateLabel;
     SvgHandler *svgHandler;
     DebugWindow *debugWindow;
-    ChronogramWidget *chronoWidget;
+    MultiTypesChrono *chronoWidget;
 
     void setSplitterToLeft(QSplitter *splitter, int leftSize);
 };

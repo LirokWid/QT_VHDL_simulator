@@ -98,7 +98,8 @@ void scQtWorker::doStart(void)
     pthread_attr_setdetachstate(&attr, PTHREAD_CREATE_JOINABLE);
     pthread_create_result = pthread_create(&m_scThreadHandle, &attr, scSimMain, nullptr);
     pthread_attr_destroy(&attr);
-    if (pthread_create_result) {
+    if (pthread_create_result)
+    {
         pthread_cond_destroy(&m_RunParams.condvar);
         pthread_mutex_destroy(&m_RunParams.run_mutex);
         pthread_mutex_destroy(&m_RunParams.condvar_mutex);

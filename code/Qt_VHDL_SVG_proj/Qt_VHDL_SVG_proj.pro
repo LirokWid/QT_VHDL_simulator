@@ -32,6 +32,7 @@ HEADERS += \
     gui/elementsdisplay.h \
     gui/filestreeview.h \
     gui/mainwindow.h \
+    gui/multitypeschrono.h \
     gui/params.h \
     gui/simulationstate.h \
     gui/svghandler.h \
@@ -48,6 +49,7 @@ SOURCES += \
     gui/elementsdisplay.cpp \
     gui/filestreeview.cpp \
     gui/mainwindow.cpp \
+    gui/multitypeschrono.cpp \
     gui/simulationstate.cpp \
     gui/svghandler.cpp \
     gui/svgwidget.cpp \
@@ -66,8 +68,8 @@ FORMS += \
 
 
 # SystemC
-#SYSTEMC_INSTALL_PREFIX=C:/Qt/SystemC
-SYSTEMC_INSTALL_PREFIX=S:/Qt/SystemC
+SYSTEMC_INSTALL_PREFIX=C:/Qt/SystemC
+#SYSTEMC_INSTALL_PREFIX=S:/Qt/SystemC
 LIBS        += -L$$SYSTEMC_INSTALL_PREFIX/lib/ -lsystemc
 INCLUDEPATH +=   $$SYSTEMC_INSTALL_PREFIX/include
 

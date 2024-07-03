@@ -26,12 +26,18 @@ public:
      * @param parent The parent widget.
      */
     MultiTypesChrono(QWidget *parent = nullptr);
+    MultiTypesChrono(int tempBoolSize, QWidget *parent = nullptr);
+    MultiTypesChrono(QVector<bool> boolStartList, QWidget *parent = nullptr);
+    MultiTypesChrono(QVector<int> intStartList, QWidget *parent = nullptr);
+    MultiTypesChrono(QVector<float> floatStartList, QWidget *parent = nullptr);
+    MultiTypesChrono(QVector<double> doubleStartList, QWidget *parent = nullptr);
 
     /**
      * @brief Adds a boolean data point to the graph.
      * @param point The boolean data point to be added.
      */
     void addPoint(bool point);
+
 
 protected:
     /**
@@ -94,7 +100,7 @@ private:
 
     const QColor backgrounColor = Qt::black; ///< Background color of the graph.
     const QColor axisColor = Qt::white; ///< Color of the graph axes.
-    const QColor graphColor = Qt::blue; ///< Color of the graph line.
+    const QColor graphColor = Qt::red; ///< Color of the graph line.
     const QColor rectBorderColor = Qt::white; ///< Color of the border for text rectangles.
 
     int currentOffset = 0; ///< Current offset of the graph.
@@ -169,6 +175,7 @@ private:
     QPoint rightClickStartPoint; ///< Starting point of the right mouse click.
 
     int getStepFromX(int x);
+    void initGraph();
 private slots:
     /**
      * @brief Slot to handle the plus button click event.
