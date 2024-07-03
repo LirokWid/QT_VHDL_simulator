@@ -1,5 +1,6 @@
 #include "mainwindow.h"
 
+#include "chronogramwidget.h"
 #include "params.h"
 #include "system/eventfilter.h" //temp debug
 
@@ -43,6 +44,10 @@ MainWindow::MainWindow(QWidget *parent) :
     ui->svgLayout->addWidget(svgWidget);
 
     svgHandler = new SvgHandler(ui->componentsInfoContainer, simulationState, svgWidget, this);
+
+    QVector<bool> chroArray = {false,false,false,true,true,false,true,false,true,true,true};
+    chronoWidget = new ChronogramWidget(chroArray,"varName");
+    ui->tab_chrono->layout()->addWidget(chronoWidget);
 
 #ifdef DEBUG
     //svgHandler->loadSvg(TEMP_SVG_PATH);//debug

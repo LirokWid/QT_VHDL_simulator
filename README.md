@@ -6,6 +6,9 @@ QT_VHDL_simulator
  - Graphical part
     - UI design
     - UI programing -> interface the design buttons with actual sim functions
+    - Debug window support
+    - 
+    
 
 - Simulation program
     - Add Svg parsing control to the gui

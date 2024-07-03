@@ -11,6 +11,7 @@
 #include "svghandler.h"
 #include "debugwindow.h"
 
+#include "chronogramwidget.h"
 #include "view.h"
 
 QT_BEGIN_NAMESPACE
@@ -48,6 +49,7 @@ private:
     QLabel *stateLabel;
     SvgHandler *svgHandler;
     DebugWindow *debugWindow;
+    ChronogramWidget *chronoWidget;
 
     void setSplitterToLeft(QSplitter *splitter, int leftSize);
 };
