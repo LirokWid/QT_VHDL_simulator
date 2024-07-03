@@ -39,6 +39,7 @@ HEADERS += \
     gui/svgwidget.h \
     gui/view.h \
     parser_linker/ComponentsStruct.h \
+    system/app_threading.h \
     system/eventfilter.h
 
 SOURCES += \
@@ -56,6 +57,7 @@ SOURCES += \
     gui/ui_svg_item.cpp \
     gui/view.cpp \
     main.cpp \
+    system/app_threading.cpp \
     system/eventfilter.cpp
 
 

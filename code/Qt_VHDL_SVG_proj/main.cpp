@@ -6,12 +6,16 @@
  * It is responsible for launching the graphical interface which will then start the simulation.
  */
 
-#define GRAPHICAL
 
-#ifdef GRAPHICAL
+
+
+#define GRAPHICAL_THREADING
+//#define GRAPHICAL_NO_THREAD
+//#define GRAPHICAL_OLD
+
+#ifdef GRAPHICAL_THREADING
 
 #include "mainwindow.h"
-
 #include <QApplication>
 
 int main(int argc, char *argv[])
@@ -23,8 +27,25 @@ int main(int argc, char *argv[])
     return a.exec();
 }
 
-#else
+#endif
 
+#ifdef GRAPHICAL_NO_THREAD
+
+#include "mainwindow.h"
+#include <QApplication>
+
+int main(int argc, char *argv[])
+{
+    QApplication a(argc, argv);
+    MainWindow w;
+
+    w.show();
+    return a.exec();
+}
+
+#endif
+
+#ifdef GRAPHICAL_OLD
 #include <QCoreApplication>
 #include <QFile>
 #include <QXmlStreamReader>
