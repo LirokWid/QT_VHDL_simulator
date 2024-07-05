@@ -39,8 +39,9 @@ HEADERS += \
     gui/svgwidget.h \
     gui/view.h \
     parser_linker/ComponentsStruct.h \
-    system/app_threading.h \
-    system/eventfilter.h
+    simulation/simulationworker.h \
+    system/eventfilter.h \
+    system/threadmanager.h
 
 SOURCES += \
     $$files("parser_linker/*.cpp") \
@@ -57,8 +58,9 @@ SOURCES += \
     gui/ui_svg_item.cpp \
     gui/view.cpp \
     main.cpp \
-    system/app_threading.cpp \
-    system/eventfilter.cpp
+    simulation/simulationworker.cpp \
+    system/eventfilter.cpp \
+    system/threadmanager.cpp
 
 
 RESOURCES += \
@@ -70,8 +72,8 @@ FORMS += \
 
 
 # SystemC
-SYSTEMC_INSTALL_PREFIX=C:/Qt/SystemC
-#SYSTEMC_INSTALL_PREFIX=S:/Qt/SystemC
+#SYSTEMC_INSTALL_PREFIX=C:/Qt/SystemC
+SYSTEMC_INSTALL_PREFIX=S:/Qt/SystemC
 LIBS        += -L$$SYSTEMC_INSTALL_PREFIX/lib/ -lsystemc
 INCLUDEPATH +=   $$SYSTEMC_INSTALL_PREFIX/include
 
