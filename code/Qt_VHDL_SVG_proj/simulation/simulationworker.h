@@ -22,6 +22,7 @@ signals:
 
 private:
     bool m_running = false;
+    void buildSimulation();
 };
 
 #endif // SIMULATIONWORKER_H
