@@ -62,6 +62,25 @@ MainWindow::MainWindow(QWidget *parent) :
     //Setup threading which keep ui running during simulation
     threadManager = new ThreadManager;
     connect(threadManager, &ThreadManager::resultReady, this, &MainWindow::updateGui);
+
+    // Connect signals and slots
+    //connect(startButton, &QPushButton::clicked, this, &MainWindow::on_minus_clicked);
+    connect(threadManager, &ThreadManager::resultReady, this, [this](const QString &result)
+        {
+            updateGui(result);
+        });
+    connect(threadManager, &ThreadManager::workStarted, this, [this]()
+        {
+            updateGui("Work started...");
+        });
+    connect(threadManager, &ThreadManager::workFinished, this, [this]()
+        {
+            updateGui("Work finished.");
+        });
+    connect(threadManager, &ThreadManager::threadBusy, this, [this]()
+        {
+            updateGui("Thread is busy, please wait...");
+        });
 }
 
 MainWindow::~MainWindow()

@@ -7,20 +7,21 @@ class SimulationWorker : public QObject {
     Q_OBJECT
 
 public:
-    SimulationWorker(QObject *parent = nullptr);
+    explicit SimulationWorker(QObject *parent = nullptr);
 
-    bool getIsActive() const;
+    void doWork();
 
 public slots:
-    void doWork();
-    void reset();
+    void process();
+    void stop();
 
 signals:
     void resultReady(const QString &result);
-    void simulationEnded();
+    void workFinished();
+    void workStarted();
 
 private:
-    bool isActive = false;
+    bool m_running = false;
 };
 
 #endif // SIMULATIONWORKER_H

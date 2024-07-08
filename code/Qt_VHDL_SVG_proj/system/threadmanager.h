@@ -9,19 +9,23 @@ class ThreadManager : public QObject {
     Q_OBJECT
 
 public:
-    ThreadManager(QObject *parent = nullptr);
+    explicit ThreadManager(QObject *parent = nullptr);
     ~ThreadManager();
-    void startWork();
-    void stopWork();
-    void resetWorker();
 
 signals:
     void resultReady(const QString &result);
-    void simulationEnded();
+    void workStarted();
+    void workFinished();
+    void threadBusy();
+
+public slots:
+    void startWork();
+    void handleWorkFinished();
 
 private:
     QThread *thread;
     SimulationWorker *worker;
+    bool isBusy;
 };
 
 #endif // THREADMANAGER_H

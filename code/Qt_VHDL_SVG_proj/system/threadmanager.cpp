@@ -2,50 +2,49 @@
 #include "qdebug.h"
 
 ThreadManager::ThreadManager(QObject *parent)
-    : QObject(parent), thread(new QThread), worker(new SimulationWorker)
+    : QObject(parent), worker(new SimulationWorker)
 {
 
+    isBusy = false;
+    thread = new QThread();
+    worker = new SimulationWorker();
     worker->moveToThread(thread);
 
-    //connect(thread, &QThread::started, worker, &SimulationWorker::doWork);
+
     connect(worker, &SimulationWorker::resultReady, this, &ThreadManager::resultReady);
-    connect(worker, &SimulationWorker::simulationEnded, worker, &SimulationWorker::reset);
+    connect(worker, &SimulationWorker::workStarted, this, &ThreadManager::workStarted);
+    connect(worker, &SimulationWorker::workFinished, this, &ThreadManager::handleWorkFinished);
+    //connect(worker, &SimulationWorker::workFinished, thread, &QThread::quit);
+
+    //connect(thread, &QThread::started, worker, &SimulationWorker::doWork);
+    //connect(worker, &SimulationWorker::resultReady, this, &ThreadManager::resultReady);
+    //connect(worker, &SimulationWorker::simulationEnded, this, &ThreadManager::resetWorker);
     thread->start();
 }
 
 ThreadManager::~ThreadManager()
 {
-    stopWork();
+    thread->quit();
+    thread->wait();
     delete worker;
-    delete thread;
 }
 
 void ThreadManager::startWork()
 {
-    if (!worker->getIsActive())
+    if (isBusy)
     {
-        worker->doWork();
+        emit threadBusy();
     }
     else
     {
-        qDebug() << "thread already running!";
+        isBusy = true;
+        QMetaObject::invokeMethod(worker, "process");// Thread safe call
     }
 }
 
-void ThreadManager::stopWork()
-{
-    if (thread->isRunning())
-    {
-        thread->quit();
-        thread->wait();
-    }
-    else
-    {
-        qDebug() << "sim already stopped";
-    }
-}
 
-void ThreadManager::resetWorker()
+void ThreadManager::handleWorkFinished()
 {
-    worker->reset();
+    isBusy = false;
+    emit workFinished();
 }
