@@ -3,6 +3,7 @@
 
 #include <QMainWindow>
 #include <QSvgWidget>
+#include <system/threadmanager.h>
 #include "ui_mainwindow.h"
 
 #include "svgwidget.h"
@@ -50,6 +51,10 @@ private:
     DebugWindow *debugWindow;
     MultiTypesChrono *chronoWidget;
 
+    ThreadManager *threadManager;
+
     void setSplitterToLeft(QSplitter *splitter, int leftSize);
+    void updateGui(const QString &message);
+
 };
 #endif // MAINWINDOW_H

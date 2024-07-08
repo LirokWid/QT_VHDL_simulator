@@ -3,7 +3,9 @@
 #include "multitypeschrono.h"
 #include "params.h"
 #include "system/eventfilter.h" //temp debug
+#include "system/threadmanager.h"
 
+#include <QThread>
 
 
 MainWindow::MainWindow(QWidget *parent) :
@@ -22,13 +24,11 @@ MainWindow::MainWindow(QWidget *parent) :
 
 
 #ifdef DEBUG
-
     debugWindow->addMessage("Error text",   DebugWindow::Error);
     debugWindow->addMessage("Warning text", DebugWindow::Warning);
     debugWindow->addMessage("Success text", DebugWindow::Success);
     debugWindow->addMessage("Debug text",   DebugWindow::Debug);
     debugWindow->addMessage("Info text",    DebugWindow::Info);
-
 #endif
 
     //Setup the simulation state and label
@@ -45,6 +45,7 @@ MainWindow::MainWindow(QWidget *parent) :
 
     svgHandler = new SvgHandler(ui->componentsInfoContainer, simulationState, svgWidget, this);
 
+    //Debug, should be dynamically added whith simulation result
     chronoWidget = new MultiTypesChrono(100);
     ui->tabWidget->addTab(chronoWidget, "Chronogram");
 
@@ -57,6 +58,29 @@ MainWindow::MainWindow(QWidget *parent) :
 
     //Force resize the splitter
     setSplitterToLeft(ui->mainSplitter, 201);
+
+    //Setup threading which keep ui running during simulation
+    threadManager = new ThreadManager;
+    connect(threadManager, &ThreadManager::resultReady, this, &MainWindow::updateGui);
+
+    // Connect signals and slots
+    //connect(startButton, &QPushButton::clicked, this, &MainWindow::on_minus_clicked);
+    connect(threadManager, &ThreadManager::resultReady, this, [this](const QString &result)
+        {
+            updateGui(result);
+        });
+    connect(threadManager, &ThreadManager::workStarted, this, [this]()
+        {
+            updateGui("Work started...");
+        });
+    connect(threadManager, &ThreadManager::workFinished, this, [this]()
+        {
+            updateGui("Work finished.");
+        });
+    connect(threadManager, &ThreadManager::threadBusy, this, [this]()
+        {
+            updateGui("Thread is busy, please wait...");
+        });
 }
 
 MainWindow::~MainWindow()
@@ -65,13 +89,17 @@ MainWindow::~MainWindow()
     delete ui;
 }
 
+void MainWindow::updateGui(const QString &message)
+{
+    ui->minus->setText(message);
+}
 
 void MainWindow::on_stop_clicked()
 {
 #ifdef DEBUG
     static unsigned int i;
     if (i%2)
-        debugWindow->addMessage("PshBtn ssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssssss " + QString::number(i++),DebugWindow::Error);
+        debugWindow->addMessage("PshBtn error " + QString::number(i++),DebugWindow::Error);
     else
         debugWindow->addMessage("PshBtn " + QString::number(i++),DebugWindow::Warning);
 #endif
@@ -100,18 +128,18 @@ void MainWindow::updateStateLabel(SimulationState::State state)
 {
     switch (state)
     {
-        case SimulationState::IDLE:
-            stateLabel->setText("Idle");
-            break;
-        case SimulationState::IDLE_SVG_LOADED:
-            stateLabel->setText("Idle (SVG Loaded)");
-            break;
-        case SimulationState::RUNNING:
-            stateLabel->setText("Running");
-            break;
-        default:
-            stateLabel->setText("Unknown State");
-            break;
+    case SimulationState::IDLE:
+        stateLabel->setText("Idle");
+        break;
+    case SimulationState::IDLE_SVG_LOADED:
+        stateLabel->setText("Idle (SVG Loaded)");
+        break;
+    case SimulationState::RUNNING:
+        stateLabel->setText("Running");
+        break;
+    default:
+        stateLabel->setText("Unknown State");
+        break;
     }
 }
 
@@ -129,7 +157,8 @@ void MainWindow::setSplitterToLeft(QSplitter *splitter, int leftSize)
 }
 
 void MainWindow::on_minus_clicked()
-{
+{//Debug, ask for simulation to start, should use method to lauch simulation instead
+    threadManager->startWork();
 }
 
 
