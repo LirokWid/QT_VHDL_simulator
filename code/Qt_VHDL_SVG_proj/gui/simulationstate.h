@@ -17,9 +17,9 @@ public:
      * @brief The State enum represents different states of the simulation.
      */
     enum State {
-        IDLE, /**< The simulation is idle. */
-        IDLE_SVG_LOADED, /**< The simulation is idle with an SVG file loaded. */
-        RUNNING /**< The simulation is running. */
+        IDLE,               /**< The simulation is idle. */
+        IDLE_SVG_LOADED,    /**< The simulation is idle with an SVG file loaded. */
+        RUNNING             /**< The simulation is running. */
     };
 
     /**
@@ -60,10 +60,10 @@ private:
     SimulationState& operator=(const SimulationState&) = delete;
 
     static SimulationState* m_instance; /**< The singleton instance of the SimulationState. */
-    static QMutex m_mutex; /**< Mutex to protect singleton instance creation. */
+    static QMutex m_mutex;              /**< Mutex to protect singleton instance creation. */
 
-    mutable QMutex m_stateMutex; /**< Mutex to protect state access. */
-    State currentState; /**< The current state of the simulation. */
+    mutable QMutex m_stateMutex;        /**< Mutex to protect state access. */
+    State currentState;                 /**< The current state of the simulation. */
 };
 
 #endif // SIMULATIONSTATE_H

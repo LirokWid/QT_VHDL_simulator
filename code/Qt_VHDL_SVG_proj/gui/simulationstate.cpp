@@ -11,9 +11,11 @@ SimulationState::SimulationState(QObject *parent) :
 
 SimulationState* SimulationState::instance()
 {
-    if (!m_instance) {
+    if (!m_instance)
+    {
         QMutexLocker locker(&m_mutex);
-        if (!m_instance) {
+        if (!m_instance)
+        {
             m_instance = new SimulationState();
         }
     }
