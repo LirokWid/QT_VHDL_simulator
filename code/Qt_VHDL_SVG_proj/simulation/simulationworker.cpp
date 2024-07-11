@@ -16,6 +16,7 @@ void SimulationWorker::doWork()
         QThread::sleep(1); // Placeholder for the actual simulation work
         emit resultReady(QString("Step %1 completed").arg(i + 1));
     }
+
     emit resultReady("Simulation completed");
     QThread::sleep(2);
 }
@@ -34,4 +35,9 @@ void SimulationWorker::process()
 void SimulationWorker::stop()
 {
     m_running = false;
+}
+
+void SimulationWorker::buildSimulation()
+{
+
 }
