@@ -13,13 +13,6 @@
 SystemcLinker::SystemcLinker(QString svg_file) :
     SvgParser(svg_file)
 {
-    s_components_list components = all_components;
-
-    //First, create the module which will be simulated by SystemC
-    for(s_element& elem  : (components.elements.elements_list))
-    {
-        create_sysc_module(elem);
-    }
 }
 
 SystemcLinker::~SystemcLinker()
@@ -44,16 +37,3 @@ void SystemcLinker::create_sysc_module(const s_element& elem)
     //TODO
 }
 
-/*
-void Svg_linker::link_components()
-{
-    QList<component> components = parser_instance->get_all_components();
-    for (auto &comp : components)
-    {
-        if (comp.type == "component")
-        {
-            std::cout << "Component: " << comp.name << std::endl;
-        }
-    }
-}
-*/

@@ -29,7 +29,6 @@ public:
         QPushButton *folderButton,
         QTreeView *treeView,
         SvgHandler *svgHandler,
-        SimulationState *simulationState,
         QWidget *parent = nullptr);
 
     ~FilesTreeView();

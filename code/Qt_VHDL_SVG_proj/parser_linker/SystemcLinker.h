@@ -24,7 +24,6 @@ public:
 
 private:
     //SvgLinkParser::s_components_list components;
-    void link_components();
 
     void create_sysc_module(const s_element& elem);
 

@@ -32,12 +32,12 @@ MainWindow::MainWindow(QWidget *parent) :
 #endif
 
     //Setup the simulation state and label
-    simulationState = new SimulationState();
+    simulationState = SimulationState::instance();
     stateLabel = ui->label;
     connect(simulationState, &SimulationState::stateChanged, this, &MainWindow::updateStateLabel);
 
     //Setup the folders tree view
-    filesTreeView = new FilesTreeView(ui->folder_btn, ui->fileTreeView, svgHandler, simulationState);
+    filesTreeView = new FilesTreeView(ui->folder_btn, ui->fileTreeView, svgHandler);
 
     //Setup the svg view and handler for svg files management
     svgWidget = new SvgWidget();

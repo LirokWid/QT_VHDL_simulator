@@ -2,18 +2,15 @@
 #include <QPushButton>
 #include <QFileDialog>
 
-FilesTreeView::FilesTreeView(
-    QPushButton *folderButton,
-    QTreeView *treeView,
-    SvgHandler *svgHandler,
-    SimulationState *simulationState,
-    QWidget *parent
-    ) :
+FilesTreeView::FilesTreeView(QPushButton *folderButton,
+                             QTreeView *treeView,
+                             SvgHandler *svgHandler,
+                             QWidget *parent) :
     QWidget(parent),
     folderButton(folderButton),
-    treeView(treeView),
-    simulationState(simulationState)
+    treeView(treeView)
 {
+    simulationState = SimulationState::instance();
     //Set up the svg widget
     this->svgHandler = svgHandler;
 

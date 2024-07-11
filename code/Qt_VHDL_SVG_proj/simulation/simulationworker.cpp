@@ -1,5 +1,7 @@
 #include "simulationworker.h"
 #include <QThread>
+//#include "SystemcLinker.h" // to change to another thing
+
 
 SimulationWorker::SimulationWorker(QObject *parent)
     : QObject(parent)
@@ -8,12 +10,23 @@ SimulationWorker::SimulationWorker(QObject *parent)
     // Initialization if needed
 }
 
-void SimulationWorker::doWork()
+void SimulationWorker::doWork(WorkType workType)
 {
-    m_running = true;
-    for (int i = 0; i < 5; ++i)
+    switch(workType)
     {
-        QThread::sleep(1); // Placeholder for the actual simulation work
+    case WorkType::LINK:
+        //Call linker class to link the components
+        //linker = new SystemcLinker();
+
+        break;
+    case WorkType::SIMULATE:
+        break;
+    }
+
+    m_running = true;
+    for (int i = 0; i < 100; ++i)
+    {
+        QThread::msleep(25); // Placeholder for the actual simulation work
         emit resultReady(QString("Step %1 completed").arg(i + 1));
     }
 
@@ -21,13 +34,13 @@ void SimulationWorker::doWork()
     QThread::sleep(2);
 }
 
-void SimulationWorker::process()
+void SimulationWorker::process(WorkType workType)
 {
     if (m_running) return;
 
     m_running = true;
     emit workStarted();
-    doWork();
+    doWork(workType);
     m_running = false;
     emit workFinished();
 }

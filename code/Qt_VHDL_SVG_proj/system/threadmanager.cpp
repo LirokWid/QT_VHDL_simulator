@@ -38,7 +38,7 @@ void ThreadManager::startWork()
     else
     {
         isBusy = true;
-        QMetaObject::invokeMethod(worker, "process");// Thread safe call
+        QMetaObject::invokeMethod(worker, "process",SimulationWorker::WorkType::LINK);// Thread safe call
     }
 }
 

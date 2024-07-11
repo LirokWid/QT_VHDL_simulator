@@ -2,6 +2,10 @@
 #define SIMULATIONWORKER_H
 
 #include <QObject>
+#include "ComponentsStruct.h"
+#include "SystemcLinker.h"
+#include "simulationstate.h"
+
 
 class SimulationWorker : public QObject {
     Q_OBJECT
@@ -9,10 +13,14 @@ class SimulationWorker : public QObject {
 public:
     explicit SimulationWorker(QObject *parent = nullptr);
 
-    void doWork();
+    enum class WorkType {
+        LINK,
+        SIMULATE
+    };
+    void doWork(WorkType type);
 
 public slots:
-    void process();
+    void process(WorkType workType);
     void stop();
 
 signals:
@@ -23,6 +31,10 @@ signals:
 private:
     bool m_running = false;
     void buildSimulation();
+
+    SystemcLinker *linker;
+
+
 };
 
 #endif // SIMULATIONWORKER_H
