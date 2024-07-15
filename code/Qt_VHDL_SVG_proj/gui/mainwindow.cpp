@@ -3,7 +3,7 @@
 #include "multitypeschrono.h"
 #include "params.h"
 #include "system/eventfilter.h" //temp debug
-#include "system/threadmanager.h"
+#include "system/simulationmanager.h"
 
 #include <QThread>
 
@@ -16,25 +16,30 @@ MainWindow::MainWindow(QWidget *parent) :
     ui->setupUi(this);
     setWindowTitle(tr("SIMULATOR"));
 
+    //Debug, show current process when pressing space
     EventFilter* myFilter = new EventFilter();
     this->installEventFilter(myFilter);
 
     //Setup the debug interface
     debugWindow = DebugWindow::getInstance(ui->actionOpenDebugWindow);
 
+    //Setup the application state manager and ui label
+    state = SimulationState::instance();
+    stateLabel = ui->label;
+    connect(state, &SimulationState::stateChanged, this, [this]()
+    {
+        stateLabel->setText(state->getStateStr());
+    });
+
 
 #ifdef DEBUG
+    //Show differents display formats on the debug window
     debugWindow->addMessage("Error text",   DebugWindow::Error);
     debugWindow->addMessage("Warning text", DebugWindow::Warning);
     debugWindow->addMessage("Success text", DebugWindow::Success);
     debugWindow->addMessage("Debug text",   DebugWindow::Debug);
     debugWindow->addMessage("Info text",    DebugWindow::Info);
 #endif
-
-    //Setup the simulation state and label
-    simulationState = SimulationState::instance();
-    stateLabel = ui->label;
-    connect(simulationState, &SimulationState::stateChanged, this, &MainWindow::updateStateLabel);
 
     //Setup the folders tree view
     filesTreeView = new FilesTreeView(ui->folder_btn, ui->fileTreeView, svgHandler);
@@ -43,15 +48,11 @@ MainWindow::MainWindow(QWidget *parent) :
     svgWidget = new SvgWidget();
     ui->svgLayout->addWidget(svgWidget);
 
-    svgHandler = new SvgHandler(ui->componentsInfoContainer, simulationState, svgWidget, this);
+    svgHandler = new SvgHandler(ui->componentsInfoContainer, state, svgWidget, this);
 
     //Debug, should be dynamically added whith simulation result
     chronoWidget = new MultiTypesChrono(100);
     ui->tabWidget->addTab(chronoWidget, "Chronogram");
-
-#ifdef DEBUG
-    //svgHandler->loadSvg(TEMP_SVG_PATH);//debug
-#endif
 
     //Setup the svg file close button
     connect(ui->closeFile, &QPushButton::clicked, this, &MainWindow::closeSvg);
@@ -59,28 +60,36 @@ MainWindow::MainWindow(QWidget *parent) :
     //Force resize the splitter
     setSplitterToLeft(ui->mainSplitter, 201);
 
+    //Debug, load svg buttons
+    connect(ui->loadNormalBtn, &QPushButton::clicked, this, &MainWindow::loadNormal_clicked);
+    connect(ui->loadErrorBtn, &QPushButton::clicked, this, &MainWindow::loadError_clicked);
+
     //Setup threading which keep ui running during simulation
-    threadManager = new ThreadManager;
-    connect(threadManager, &ThreadManager::resultReady, this, &MainWindow::updateGui);
+    simManager = new SimulationManager;
 
     // Connect signals and slots
     //connect(startButton, &QPushButton::clicked, this, &MainWindow::on_minus_clicked);
-    connect(threadManager, &ThreadManager::resultReady, this, [this](const QString &result)
+    connect(simManager, &SimulationManager::resultReady, this, [this](const QString &result)
         {
             updateGui(result);
         });
-    connect(threadManager, &ThreadManager::workStarted, this, [this]()
+    connect(simManager, &SimulationManager::workStarted, this, [this]()
         {
             updateGui("Work started...");
         });
-    connect(threadManager, &ThreadManager::workFinished, this, [this]()
+    connect(simManager, &SimulationManager::workFinished, this, [this]()
         {
             updateGui("Work finished.");
         });
-    connect(threadManager, &ThreadManager::threadBusy, this, [this]()
+    connect(simManager, &SimulationManager::threadBusy, this, [this]()
         {
             updateGui("Thread is busy, please wait...");
         });
+
+    connect(ui->start_sim, &QPushButton::clicked, this, &MainWindow::startSimulation);
+    connect(ui->stop_sim, &QPushButton::clicked, this, &MainWindow::stopSimulation);
+
+    debugWindow->addDebug("UI initialized");
 }
 
 MainWindow::~MainWindow()
@@ -91,7 +100,17 @@ MainWindow::~MainWindow()
 
 void MainWindow::updateGui(const QString &message)
 {
-    ui->minus->setText(message);
+    ui->minus_sim->setText(message);
+}
+
+void MainWindow::startSimulation()
+{
+    simManager->lauchSimulation();
+}
+
+void MainWindow::stopSimulation()
+{
+    simManager->stopSimulation();
 }
 
 void MainWindow::on_stop_clicked()
@@ -124,25 +143,6 @@ void MainWindow::showDebugWindow()
     debugWindow->openWindow();
 }
 
-void MainWindow::updateStateLabel(SimulationState::State state)
-{
-    switch (state)
-    {
-    case SimulationState::IDLE:
-        stateLabel->setText("Idle");
-        break;
-    case SimulationState::IDLE_SVG_LOADED:
-        stateLabel->setText("Idle (SVG Loaded)");
-        break;
-    case SimulationState::RUNNING:
-        stateLabel->setText("Running");
-        break;
-    default:
-        stateLabel->setText("Unknown State");
-        break;
-    }
-}
-
 void MainWindow::setSplitterToLeft(QSplitter *splitter, int leftSize)
 {
     // Set a minimum size for the left widget
@@ -156,20 +156,13 @@ void MainWindow::setSplitterToLeft(QSplitter *splitter, int leftSize)
     splitter->setSizes(sizes);
 }
 
-void MainWindow::on_minus_clicked()
-{//Debug, ask for simulation to start, should use method to lauch simulation instead
-    threadManager->startWork();
-}
-
-
-void MainWindow::on_pushButton_clicked()
-{
+void MainWindow::loadNormal_clicked()
+{// debug
     svgHandler->loadSvg(TEMP_SVG_PATH);//debug
 }
 
-
-void MainWindow::on_pushButton_2_clicked()
-{
+void MainWindow::loadError_clicked()
+{// debug
     svgHandler->loadSvg(TEMP_SVG_ER_PATH);//debug
 }
 

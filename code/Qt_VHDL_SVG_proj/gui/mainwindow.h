@@ -3,7 +3,7 @@
 
 #include <QMainWindow>
 #include <QSvgWidget>
-#include <system/threadmanager.h>
+#include <system/simulationmanager.h>
 #include "ui_mainwindow.h"
 
 #include "svgwidget.h"
@@ -36,25 +36,25 @@ private slots:
     void on_stop_clicked(); //temp debug svgwidget
     void on_minus_clicked(); //temp debug svgwidget
     void closeSvg();
-    void updateStateLabel(SimulationState::State state);
-
-    void on_pushButton_clicked();
-    void on_pushButton_2_clicked();
+    void loadNormal_clicked();
+    void loadError_clicked();
 
 private:
     Ui::MainWindow *ui;
     SvgWidget *svgWidget;
     FilesTreeView *filesTreeView;
-    SimulationState *simulationState;
+    SimulationState *state;
     QLabel *stateLabel;
     SvgHandler *svgHandler;
     DebugWindow *debugWindow;
     MultiTypesChrono *chronoWidget;
 
-    ThreadManager *threadManager;
+    SimulationManager *simManager;
 
     void setSplitterToLeft(QSplitter *splitter, int leftSize);
     void updateGui(const QString &message);
 
+    void startSimulation();
+    void stopSimulation();
 };
 #endif // MAINWINDOW_H
