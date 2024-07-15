@@ -28,6 +28,26 @@ SimulationState::State SimulationState::getState() const
     return currentState;
 }
 
+QString SimulationState::getStateStr() const
+{
+    QMutexLocker locker(&m_stateMutex);
+    switch (currentState)
+    {
+    case SimulationState::IDLE:
+        return "Idle";
+        break;
+    case SimulationState::IDLE_SVG_LOADED:
+       return"Idle (SVG Loaded)";
+        break;
+    case SimulationState::RUNNING:
+        return"Running";
+        break;
+    default:
+        return "Unknown State";
+        break;
+    }
+}
+
 void SimulationState::setState(State state)
 {
     {

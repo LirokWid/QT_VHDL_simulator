@@ -17,7 +17,7 @@ void SimulationWorker::doWork(WorkType workType)
     case WorkType::LINK:
         //Call linker class to link the components
         //linker = new SystemcLinker();
-
+        buildSimulation();
         break;
     case WorkType::SIMULATE:
         break;

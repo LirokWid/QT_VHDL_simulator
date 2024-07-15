@@ -41,7 +41,7 @@ HEADERS += \
     parser_linker/ComponentsStruct.h \
     simulation/simulationworker.h \
     system/eventfilter.h \
-    system/threadmanager.h
+    system/simulationmanager.h
 
 SOURCES += \
     $$files("parser_linker/*.cpp") \
@@ -60,7 +60,7 @@ SOURCES += \
     main.cpp \
     simulation/simulationworker.cpp \
     system/eventfilter.cpp \
-    system/threadmanager.cpp
+    system/simulationmanager.cpp
 
 
 RESOURCES += \
@@ -72,8 +72,8 @@ FORMS += \
 
 
 # SystemC
-SYSTEMC_INSTALL_PREFIX=C:/Qt/SystemC
-#SYSTEMC_INSTALL_PREFIX=S:/Qt/SystemC
+#SYSTEMC_INSTALL_PREFIX=C:/Qt/SystemC
+SYSTEMC_INSTALL_PREFIX=S:/Qt/SystemC
 LIBS        += -L$$SYSTEMC_INSTALL_PREFIX/lib/ -lsystemc
 INCLUDEPATH +=   $$SYSTEMC_INSTALL_PREFIX/include
 

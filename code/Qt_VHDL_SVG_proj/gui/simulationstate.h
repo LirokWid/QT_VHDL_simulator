@@ -34,6 +34,11 @@ public:
      */
     State getState() const;
 
+    /**
+     * @brief Gets the current state of the simulation as string
+     * @return The current state of the simulation as string.
+     */
+    QString getStateStr() const;
 public slots:
     /**
      * @brief Sets the state of the simulation.
