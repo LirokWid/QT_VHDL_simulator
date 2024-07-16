@@ -88,6 +88,8 @@ MainWindow::MainWindow(QWidget *parent) :
 
     connect(ui->start_sim, &QPushButton::clicked, this, &MainWindow::startSimulation);
     connect(ui->stop_sim, &QPushButton::clicked, this, &MainWindow::stopSimulation);
+    //connect(ui->minus_sim, &QPushButton::clicked, this, &MainWindow::);
+    //onnect(ui->plus_sim, &QPushButton::clicked, this, &MainWindow::);
 
     debugWindow->addDebug("UI initialized");
 }
@@ -113,6 +115,7 @@ void MainWindow::stopSimulation()
     simManager->stopSimulation();
 }
 
+/*
 void MainWindow::on_stop_clicked()
 {
 #ifdef DEBUG
@@ -123,6 +126,7 @@ void MainWindow::on_stop_clicked()
         debugWindow->addMessage("PshBtn " + QString::number(i++),DebugWindow::Warning);
 #endif
 }
+*/
 
 void MainWindow::closeSvg()
 {

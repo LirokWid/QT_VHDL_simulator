@@ -6,11 +6,8 @@ SimulationManager::SimulationManager(QObject *parent)
 
     state = SimulationState::instance();
     isBusy = false;
-    simThread = new QThread();
 
-    qDebug() << "Simulation thread created at " << &simThread;
-    worker = new SimulationWorker();
-    worker->moveToThread(simThread);
+
 
 
     connect(worker, &SimulationWorker::resultReady, this, &SimulationManager::resultReady);
@@ -18,7 +15,7 @@ SimulationManager::SimulationManager(QObject *parent)
     connect(worker, &SimulationWorker::workFinished, this, &SimulationManager::handleWorkFinished);
 
 
-    simThread->start();
+    //simThread->start();
 }
 
 SimulationManager::~SimulationManager()
@@ -31,8 +28,9 @@ SimulationManager::~SimulationManager()
 void SimulationManager::lauchSimulation()
 {
     if (state->getState() == SimulationState::IDLE_SVG_LOADED)
-    {
-        startWork();
+    {// TODO cancel simulation if parsing is incorect
+        startThread();
+        worker->simulationStart();
         state->setState(SimulationState::RUNNING);
     }
     else
@@ -45,8 +43,7 @@ void SimulationManager::stopSimulation()
 {
     if (state->getState() == SimulationState::RUNNING)
     {
-        //resetSvgUi();
-        //stopWork();
+        stopThread();
         state->setState(SimulationState::IDLE_SVG_LOADED);
     }
     else
@@ -67,9 +64,37 @@ void SimulationManager::startWork()
     }
 }
 
+bool SimulationManager::startThread()
+{
+    if (simThread != nullptr)
+    {
+        simThread = new QThread();
+        worker = new SimulationWorker();
+        worker->moveToThread(simThread);
+        qDebug() << "Simulation thread created at " << &simThread;
+        return true;
+    }
+    else
+    {
+        qDebug() << "Tried creating thread but one already exist";
+        return false;
+    }
+    return false;
+}
+
+void SimulationManager::stopThread()
+{
+    if (simThread != nullptr)
+    {
+        simThread->quit();
+        simThread->wait();
+        delete worker;
+    }
+}
+
 
 void SimulationManager::handleWorkFinished()
 {
     isBusy = false;
-    emit workFinished();
+    stopThread();
 }

@@ -32,6 +32,9 @@ private:
     bool isBusy;
 
     void startWork();
+    bool startThread();
+    void stopThread();
+
 };
 
 #endif // SIMULATIONMANAGER_H

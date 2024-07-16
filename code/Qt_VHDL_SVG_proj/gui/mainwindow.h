@@ -33,8 +33,6 @@ public:
     ~MainWindow();
 
 private slots:
-    void on_stop_clicked(); //temp debug svgwidget
-    void on_minus_clicked(); //temp debug svgwidget
     void closeSvg();
     void loadNormal_clicked();
     void loadError_clicked();
@@ -48,7 +46,6 @@ private:
     SvgHandler *svgHandler;
     DebugWindow *debugWindow;
     MultiTypesChrono *chronoWidget;
-
     SimulationManager *simManager;
 
     void setSplitterToLeft(QSplitter *splitter, int leftSize);

@@ -89,12 +89,12 @@ private:
     QList<QString> messages;
     QList<Severity> severities;
 
-    bool autoScrollEnabled = true;     /**< Flag indicating whether auto-scrolling is enabled. */
-    QCheckBox *autoScrollBox;   /**< Checkbox for enabling/disabling auto-scrolling. */
-    QScrollBar *scrollBar;      /**< Scrollbar for the QTextEdit widget. */
+    bool autoScrollEnabled = true;  /**< Flag indicating whether auto-scrolling is enabled. */
+    QCheckBox *autoScrollBox;       /**< Checkbox for enabling/disabling auto-scrolling. */
+    QScrollBar *scrollBar;          /**< Scrollbar for the QTextEdit widget. */
 
-    QAction *openTrigger;       /**< The QAction that triggers opening the debug window. */
-    QTextEdit *textEdit;        /**< The QTextEdit widget for displaying debug messages. */
+    QAction *openTrigger;           /**< The QAction that triggers opening the debug window. */
+    QTextEdit *textEdit;            /**< The QTextEdit widget for displaying debug messages. */
 
     QCheckBox *infoCheckBox;
     QCheckBox *successCheckBox;

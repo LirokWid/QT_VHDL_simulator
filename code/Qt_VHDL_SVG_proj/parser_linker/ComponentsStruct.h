@@ -44,6 +44,10 @@ struct s_sim_I_Os
 {
     QList<s_sim_I_O> i_os; ///< List of I/Os.
     s_parse_error error;   ///< Error.
+    bool isEmpty() const
+    {
+        return i_os.isEmpty();
+    }
 };
 
 // Struct for storing wire information
@@ -60,6 +64,10 @@ struct s_sim_wires
 {
     QList<s_sim_wire> wires; ///< List of wires.
     s_parse_error error;     ///< Error.
+    bool isEmpty() const
+    {
+        return wires.isEmpty();
+    }
 };
 
 // Struct for storing element information
@@ -80,6 +88,10 @@ struct s_elements
 {
     QList<s_element> elements_list; ///< List of elements.
     s_parse_error error;            ///< Error.
+    bool isEmpty() const
+    {
+        return elements_list.isEmpty();
+    }
 };
 
 // Struct for storing components list
@@ -88,6 +100,13 @@ struct s_components_list
     s_elements elements;          ///< List of elements.
     s_sim_I_Os simulation_IOs;    ///< List of simulation I/Os.
     s_sim_wires simulation_wires; ///< List of simulation wires.
+
+    bool isEmpty() const
+    {
+        return elements.isEmpty() &&
+               simulation_IOs.isEmpty() &&
+               simulation_wires.isEmpty();
+    }
 };
 
 #endif // COMPONENTSSTRUCTS_H
