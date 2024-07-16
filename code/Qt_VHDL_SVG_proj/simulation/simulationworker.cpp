@@ -1,6 +1,7 @@
 #include "simulationworker.h"
 #include "svghandler.h"
 #include <QThread>
+#include <systemC/systemcbuilder.h>
 //#include "SystemcLinker.h" // to change to another thing
 
 
@@ -28,6 +29,9 @@ void SimulationWorker::simulationStart()
     //Faut récupérer l'instance de svg handler
     //1. Analyse parsed file and create system-c simulation
     m_components = SvgHandler::getComponentsList();
+
+    //SystemCBuilder builder = new SystemCBuilder(m_components);
+
     if (!m_components.isEmpty())
     {
         for (const auto& elem : m_components.elements.elements_list)

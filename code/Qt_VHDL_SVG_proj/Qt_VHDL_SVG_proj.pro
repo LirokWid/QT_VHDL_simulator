@@ -26,7 +26,7 @@ QMAKE_INCDIR += \
 
 HEADERS += \
     $$files("parser_linker/*.h") \
-    $$files("systemc_modules/*.h") \
+    $$files("systemC/systemc_modules/*.h") \
     gui/chronogramwidget.h \
     gui/debugwindow.h \
     gui/elementsdisplay.h \
@@ -41,11 +41,13 @@ HEADERS += \
     parser_linker/ComponentsStruct.h \
     simulation/simulationworker.h \
     system/eventfilter.h \
-    system/simulationmanager.h
+    system/simulationmanager.h \
+    systemC/SystemCModule.h \
+    systemC/systemcbuilder.h
 
 SOURCES += \
     $$files("parser_linker/*.cpp") \
-    $$files("systemc_modules/*.cpp") \
+    $$files("systemC/systemc_modules/*.cpp") \
     gui/chronogramwidget.cpp \
     gui/debugwindow.cpp \
     gui/elementsdisplay.cpp \
@@ -60,7 +62,8 @@ SOURCES += \
     main.cpp \
     simulation/simulationworker.cpp \
     system/eventfilter.cpp \
-    system/simulationmanager.cpp
+    system/simulationmanager.cpp \
+    systemC/systemcbuilder.cpp
 
 
 RESOURCES += \
