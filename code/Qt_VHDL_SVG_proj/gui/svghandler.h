@@ -44,7 +44,18 @@ public:
      * @param filePath
      */
     bool loadSvg(const QString &filePath);
+
+    /**
+     * @brief clearSvg
+     * @return cleared or not
+     */
     bool clearSvg();
+
+    /**
+     * @brief getComponentsList
+     * @return
+     */
+    static s_components_list getComponentsList();
 
 protected:
     /**
@@ -72,6 +83,8 @@ private:
     QWidget *componentsWidget;
     ElementsDisplay *display;
     QLabel *parseState;
+    static QMutex s_components_mutex; // Mutex to protect access to s_components_list
+    static SvgHandler *s_lastInstance;
 
 
     bool loadAndParse(QString svgPath);

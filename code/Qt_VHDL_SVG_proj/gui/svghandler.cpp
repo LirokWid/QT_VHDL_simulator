@@ -4,12 +4,18 @@
 #include "SystemcLinker.h"
 #include "elementsdisplay.h"
 
+SvgHandler *SvgHandler::s_lastInstance = nullptr;
+QMutex SvgHandler::s_components_mutex;
+
+
 SvgHandler::SvgHandler(QWidget *componentsWidget, SimulationState *simulationState, SvgWidget *svgWidget, QObject *parent) :
     QObject(parent),
     simulationState(simulationState),
     svgWidget(svgWidget),
     componentsWidget(componentsWidget)
 {
+    s_lastInstance = this; // Set this instance as the last created instance
+
     if (!tempDir.isValid())
     {
         QMessageBox::critical(nullptr, tr("Error"), tr("Failed to create temporary directory."));
@@ -32,6 +38,10 @@ SvgHandler::SvgHandler(QWidget *componentsWidget, SimulationState *simulationSta
 
 SvgHandler::~SvgHandler()
 {
+    if (s_lastInstance == this)
+    {
+        s_lastInstance = nullptr;
+    }
 }
 
 bool SvgHandler::loadSvg(const QString &filePath)
@@ -117,6 +127,19 @@ bool SvgHandler::clearSvg()
         return true;
     }
     return false;
+}
+
+s_components_list SvgHandler::getComponentsList()
+{// Automatically gets last parsed components list
+    QMutexLocker locker(&s_components_mutex);
+    if (s_lastInstance)
+    {
+        return s_lastInstance->linker->get_components_list();
+    }
+    else
+    {
+        return s_components_list();
+    }
 }
 
 QString SvgHandler::getTempFilePath() const
