@@ -77,6 +77,8 @@ DebugWindow::DebugWindow(QAction *openTrigger, QWidget *parent) :
 
 DebugWindow* DebugWindow::getInstance(QAction *openTrigger, QWidget *parent)
 {
+    static QMutex mutex;
+    QMutexLocker locker(&mutex);
     if (instance == nullptr) {
         instance = new DebugWindow(openTrigger, parent);
     }
@@ -108,6 +110,7 @@ bool DebugWindow::shouldAppend(Severity severity)
 }
 void DebugWindow::filterMessages()
 {
+    QMutexLocker locker(&mutex);
     textEdit->clear();
     for (int i = 0; i < messages.size(); ++i)
     {
@@ -148,6 +151,8 @@ void DebugWindow::filterMessages()
 
 void DebugWindow::addMessage(const QString &message, Severity severity /* = Info */)
 {
+    QMutexLocker locker(&mutex);
+
     if (messages.size() >= MAX_DEBUG_MESSAGES_NB)
     {
         messages.removeFirst();
@@ -222,8 +227,6 @@ void DebugWindow::addInfo(const QString &message)
     addMessage(message,Info);
 }
 
-
-
 void DebugWindow::autoScrollIfEnabled()
 {
     if (autoScrollEnabled)
@@ -259,6 +262,7 @@ void DebugWindow::openWindow()
 
 void DebugWindow::clearMessages()
 {
+    QMutexLocker locker(&mutex);
     textEdit->clear();
     messageCount = 0;
 }

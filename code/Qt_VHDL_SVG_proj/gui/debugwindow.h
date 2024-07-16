@@ -11,6 +11,7 @@
 #include <QFile>
 #include <QTextStream>
 #include <QAction>
+#include <QMutex>
 
 /**
  * @brief The DebugWindow class provides a widget for displaying debug messages.
@@ -100,6 +101,8 @@ private:
     QCheckBox *warningCheckBox;
     QCheckBox *errorCheckBox;
     QCheckBox *debugCheckBox;
+
+    QMutex mutex;
 
 
     void filterMessages();
