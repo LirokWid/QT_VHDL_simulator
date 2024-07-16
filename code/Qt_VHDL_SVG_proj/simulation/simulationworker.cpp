@@ -1,4 +1,5 @@
 #include "simulationworker.h"
+#include "svghandler.h"
 #include <QThread>
 //#include "SystemcLinker.h" // to change to another thing
 
@@ -12,18 +13,6 @@ SimulationWorker::SimulationWorker(QObject *parent)
 
 void SimulationWorker::doWork(WorkType workType)
 {
-    switch(workType)
-    {
-    case WorkType::LINK:
-        //Call linker class to link the components
-        //linker = new SystemcLinker();
-        buildSimulation();
-        break;
-    case WorkType::SIMULATE:
-        break;
-    }
-
-    m_running = true;
     for (int i = 0; i < 100; ++i)
     {
         QThread::msleep(25); // Placeholder for the actual simulation work
@@ -34,6 +23,39 @@ void SimulationWorker::doWork(WorkType workType)
     QThread::sleep(2);
 }
 
+void SimulationWorker::simulationStart()
+{
+    //Faut récupérer l'instance de svg handler
+    //1. Analyse parsed file and create system-c simulation
+    m_components = SvgHandler::getComponentsList();
+    if (!m_components.isEmpty())
+    {
+        for (const auto& elem : m_components.elements.elements_list)
+        {
+            qDebug() << elem.name;
+        }
+        for (const auto& elem : m_components.simulation_IOs.i_os)
+        {
+            qDebug() << elem.name;
+        }
+        for (const auto& elem : m_components.simulation_wires.wires)
+        {
+            qDebug() << elem.name;
+        }
+    }
+    else
+    {
+        qDebug() << "Simulation aborted, empty component list";
+        simulationStop();
+    }
+    simulationStop();
+}
+
+void SimulationWorker::simulationStop()
+{
+    m_running = false;
+    emit workFinished();
+}
 void SimulationWorker::process(WorkType workType)
 {
     if (m_running) return;

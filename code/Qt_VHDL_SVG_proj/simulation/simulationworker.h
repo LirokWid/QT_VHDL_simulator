@@ -19,6 +19,8 @@ public:
     };
     void doWork(WorkType type);
 
+    void simulationStart();
+    void simulationStop();
 public slots:
     void process(WorkType workType);
     void stop();
@@ -33,6 +35,8 @@ private:
     void buildSimulation();
 
     SystemcLinker *linker;
+
+    s_components_list m_components;
 
 
 };
