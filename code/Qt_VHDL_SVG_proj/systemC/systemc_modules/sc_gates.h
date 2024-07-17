@@ -54,6 +54,72 @@ public:
     }
 };
 
+/**
+ * @brief The SyscLogicGate::sc_core::sc_module class
+ * @details A generic SystemC module that implements a logic gate with N inputs and 1 output.
+ * The gate is combinational, i.e., the output is updated whenever any of the inputs changes.
+ */
+class SyscLogicGateRT : public ::sc_core::sc_module
+{
+public:
+
+    typedef  sc_lv<128>       data_t;
+
+    /**
+     * Data input(s)
+     * Array of pointers so each port name can be initialized in the constructor to 'd0', 'd1', and so on (instead of 'port_0', 'port_1', etc.)
+     * mapping is done as (*mux_object.d[index])(signal_to_bind_the_port) instead of mux_object.d[index](signal_to_bind_the_port)
+     * see https://stackoverflow.com/questions/35425052/how-to-initialize-a-systemc-port-name-which-is-an-array/35535730#35535730
+     */
+    //sc_in<data_t>  *d[N];
+    std::vector<sc_in<data_t> *>  d;
+
+    // Data output
+    //sc_out<data_t> y{"y"};
+    sc_out<data_t> y{"y"};
+
+    unsigned int _N;
+    unsigned int _W;
+
+    typedef SyscLogicGateRT SC_CURRENT_USER_MODULE;
+    SyscLogicGateRT(::sc_core::sc_module_name name, unsigned int N = 2, unsigned int W = 1)
+        : ::sc_core::sc_module(name)
+        , _N(N)
+        , _W(W)
+    {
+        //assert(N >= 1, "SyscLogicGate DESIGN ERROR: N must be >= 1");
+        //assert(W >= 1, "SyscLogicGate DESIGN ERROR: W must be >= 1");
+        SC_METHOD(combinational);
+        /*
+        if(1 == N)
+        {
+            d[0] = new sc_in<sc_lv<W>>("d");
+            sensitive << *d[0];
+        }
+        else
+        {
+            for(unsigned int i=0; i < N; i++)
+            {
+                d[i] = new sc_in<data_t>(("d" + std::to_string(i)).c_str());
+                sensitive << *d[i];
+            }
+        }
+        */
+        for(unsigned int i=0; i < N; i++)
+        {
+            d.push_back(new sc_in<data_t>(("d" + std::to_string(i)).c_str()));
+            sensitive << *d[i];
+        }
+    }
+
+    virtual void combinational()
+    {
+        data_t result(SC_LOGIC_X);
+        y.write(result);
+    }
+};
+
+
 
 /**
  * @brief The SyscAnd class

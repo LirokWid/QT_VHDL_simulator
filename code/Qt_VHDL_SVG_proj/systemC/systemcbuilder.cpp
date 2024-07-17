@@ -1,4 +1,5 @@
 #include "systemcbuilder.h"
+#include "systemC/systemc_modules/sc_gates.h"
 #include "systemC/systemc_modules/sc_mux.h"
 
 SystemCBuilder::SystemCBuilder(s_components_list *components) :
@@ -39,82 +40,51 @@ void SystemCBuilder::buildSystemCSim(const s_components_list& components)
         // 1.Find which module to use
         device devType  = deviceFinder(elem.device);
 
-        const int inputs_number = static_cast<unsigned int>(elem.inputs_number);
+        int inputs_number = static_cast<unsigned int>(elem.inputs_number);
         sc_module* module = nullptr;
+
+        /** TOFIX
+         *
+         * The modules are currently not instanciables because of the template classes they use
+         * We should switch to a constructor instanciation instead of a template one
+         * The problem is also sc_signals that are templates and can´t have dynamic width values (W)
+         *
+         */
 
         switch (devType)
         {
         case MULTIPLEXER_DEVICE:
-            if (inputs_number == 2)
-            {
-                module = createMuxModule<2, DEBUGDEFAULTWITDTH, DEBUGDEFAULTWITDTH>(elem.name);
-            }
-            else if (inputs_number == 4)
-            {
-                module = createMuxModule<4, DEBUGDEFAULTWITDTH, DEBUGDEFAULTWITDTH>(elem.name);
-            }
+            module = new SyscLogicGateRT(elem.name.toStdString().c_str(), inputs_number, DEBUGDEFAULTWITDTH);
+            // createMuxModule<2, DEBUGDEFAULTWITDTH, DEBUGDEFAULTWITDTH>(elem.name);
             break;
+
         case AND_GATE_DEVICE:
-            if (inputs_number == 2)
-            {
-                module = createGateModule<SyscAnd, 2, DEBUGDEFAULTWITDTH>(elem.name);
-            }
-            else if (inputs_number == 4)
-            {
-                module = createGateModule<SyscAnd, 4, DEBUGDEFAULTWITDTH>(elem.name);
-            }
+            module = new SyscLogicGateRT(elem.name.toStdString().c_str(), inputs_number, DEBUGDEFAULTWITDTH);
+            // SyscAnd<2, DEBUGDEFAULTWITDTH, DEBUGDEFAULTWITDTH>(elem.name);
             break;
+
         case OR_GATE_DEVICE:
-            if (inputs_number == 2)
-            {
-                module = createGateModule<SyscOr, 2, DEBUGDEFAULTWITDTH>(elem.name);
-            }
-            else if (inputs_number == 4)
-            {
-                module = createGateModule<SyscOr, 4, DEBUGDEFAULTWITDTH>(elem.name);
-            }
+            module = new SyscLogicGateRT(elem.name.toStdString().c_str(), inputs_number, DEBUGDEFAULTWITDTH);
+            // ...
             break;
+
         case NAND_GATE_DEVICE:
-            if (inputs_number == 2)
-            {
-                module = createGateModule<SyscNand, 2, DEBUGDEFAULTWITDTH>(elem.name);
-            }
-            else if (inputs_number == 4)
-            {
-                module = createGateModule<SyscNand, 4, DEBUGDEFAULTWITDTH>(elem.name);
-            }
+            module = new SyscLogicGateRT(elem.name.toStdString().c_str(), inputs_number, DEBUGDEFAULTWITDTH);
             break;
+
         case NOR_GATE_DEVICE:
-            if (inputs_number == 2)
-            {
-                module = createGateModule<SyscNor, 2, DEBUGDEFAULTWITDTH>(elem.name);
-            }
-            else if (inputs_number == 4)
-            {
-                module = createGateModule<SyscNor, 4, DEBUGDEFAULTWITDTH>(elem.name);
-            }
+            module = new SyscLogicGateRT(elem.name.toStdString().c_str(), inputs_number, DEBUGDEFAULTWITDTH);
             break;
+
         case XOR_GATE_DEVICE:
-            if (inputs_number == 2)
-            {
-                module = createGateModule<SyscXor, 2, DEBUGDEFAULTWITDTH>(elem.name);
-            }
-            else if (inputs_number == 4)
-            {
-                module = createGateModule<SyscXor, 4, DEBUGDEFAULTWITDTH>(elem.name);
-            }
+            module = new SyscLogicGateRT(elem.name.toStdString().c_str(), inputs_number, DEBUGDEFAULTWITDTH);
             break;
+
         case XNOR_GATE_DEVICE:
-            if (inputs_number == 2)
-            {
-                module = createGateModule<SyscXnor, 2, DEBUGDEFAULTWITDTH>(elem.name);
-            }
-            else if (inputs_number == 4)
-            {
-                module = createGateModule<SyscXnor, 4, DEBUGDEFAULTWITDTH>(elem.name);
-            }
+            module = new SyscLogicGateRT(elem.name.toStdString().c_str(), inputs_number, DEBUGDEFAULTWITDTH);
             break;
         // Handle other device types...
+
         default:
             break;
         }
@@ -130,13 +100,13 @@ device SystemCBuilder::deviceFinder(QString deviceName)
 {
     // Predefined lists of device names
     // TODO : has to be update to every device names
-    const QStringList multiplexerDevices = {"mux2_1", "mux4_1"};
-    const QStringList andGateDevices = {"and2", "and4"};
-    const QStringList orGateDevices = {"or2", "or4"};
-    const QStringList nandGateDevices = {"nand2", "nand4"};
-    const QStringList norGateDevices = {"nor2", "nor4"};
-    const QStringList xorGateDevices = {"xor2", "xor4"};
-    const QStringList xnorGateDevices = {"xnor2", "xnor4"};
+    const QStringList multiplexerDevices    = {"mux2_1", "mux4_1"};
+    const QStringList andGateDevices        = {"and2", "and4"};
+    const QStringList orGateDevices         = {"or2", "or4"};
+    const QStringList nandGateDevices       = {"nand2", "nand4"};
+    const QStringList norGateDevices        = {"nor2", "nor4"};
+    const QStringList xorGateDevices        = {"xor2", "xor4"};
+    const QStringList xnorGateDevices       = {"xnor2", "xnor4"};
 
     if (multiplexerDevices.contains(deviceName))
     {

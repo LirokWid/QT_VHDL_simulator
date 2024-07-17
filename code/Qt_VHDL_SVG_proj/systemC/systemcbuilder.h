@@ -3,8 +3,8 @@
 
 #include "ComponentsStruct.h"
 #include "debugwindow.h"
-#include "/systemC/systemc_modules/sc_gates.h" // Include your gates header
-#include "/systemC/systemc_modules/sc_mux.h"
+#include "systemC/systemc_modules/sc_gates.h"
+#include "systemC/systemc_modules/sc_mux.h"
 
 typedef enum e_device
 {
@@ -40,6 +40,7 @@ private:
     device deviceFinder(QString name);
 
 
+    void createModule(device, const s_element &);
 };
 
 #endif // SYSTEMCBUILDER_H
