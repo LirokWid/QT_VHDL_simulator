@@ -1,6 +1,7 @@
 #include "systemcbuilder.h"
 #include "systemC/systemc_modules/sc_gates.h"
 #include "systemC/systemc_modules/sc_mux.h"
+#include "systemC/systemc_modules/sc_terminals.h"
 
 SystemCBuilder::SystemCBuilder(s_components_list *components) :
     components(components)
@@ -17,6 +18,7 @@ SystemCBuilder::SystemCBuilder(s_components_list *components) :
 
 }
 
+/*  Trying to use templates to create modules // Not working
 // Function to create SystemC module
 template <unsigned int N, unsigned int W, unsigned int SELW>
 SyscMux<N, W, SELW>* SystemCBuilder::createMuxModule(const QString& name)
@@ -29,65 +31,39 @@ GateType<N, W>* SystemCBuilder::createGateModule(const QString& name)
 {
     return new GateType<N, W>(name.toStdString().c_str());
 }
+*/
 
 void SystemCBuilder::buildSystemCSim(const s_components_list& components)
 {
     // Elements module creation
-    const int DEBUGDEFAULTWITDTH = 1;
-
     for (const s_element &elem : components.elements.elements_list)
     {
-        // 1.Find which module to use
-        device devType  = deviceFinder(elem.device);
-
-        int inputs_number = static_cast<unsigned int>(elem.inputs_number);
-        sc_module* module = nullptr;
-
-        /** TOFIX
-         *
-         * The modules are currently not instanciables because of the template classes they use
-         * We should switch to a constructor instanciation instead of a template one
-         * The problem is also sc_signals that are templates and can´t have dynamic width values (W)
-         *
-         */
-
-        switch (devType)
+        sc_module* module = createModule(deviceFinder(elem.device), elem);
+        if (module != nullptr)
         {
-        case MULTIPLEXER_DEVICE:
-            module = new SyscLogicGateRT(elem.name.toStdString().c_str(), inputs_number, DEBUGDEFAULTWITDTH);
-            // createMuxModule<2, DEBUGDEFAULTWITDTH, DEBUGDEFAULTWITDTH>(elem.name);
-            break;
-
-        case AND_GATE_DEVICE:
-            module = new SyscLogicGateRT(elem.name.toStdString().c_str(), inputs_number, DEBUGDEFAULTWITDTH);
-            // SyscAnd<2, DEBUGDEFAULTWITDTH, DEBUGDEFAULTWITDTH>(elem.name);
-            break;
-
-        case OR_GATE_DEVICE:
-            module = new SyscLogicGateRT(elem.name.toStdString().c_str(), inputs_number, DEBUGDEFAULTWITDTH);
-            // ...
-            break;
-
-        case NAND_GATE_DEVICE:
-            module = new SyscLogicGateRT(elem.name.toStdString().c_str(), inputs_number, DEBUGDEFAULTWITDTH);
-            break;
-
-        case NOR_GATE_DEVICE:
-            module = new SyscLogicGateRT(elem.name.toStdString().c_str(), inputs_number, DEBUGDEFAULTWITDTH);
-            break;
-
-        case XOR_GATE_DEVICE:
-            module = new SyscLogicGateRT(elem.name.toStdString().c_str(), inputs_number, DEBUGDEFAULTWITDTH);
-            break;
-
-        case XNOR_GATE_DEVICE:
-            module = new SyscLogicGateRT(elem.name.toStdString().c_str(), inputs_number, DEBUGDEFAULTWITDTH);
-            break;
-        // Handle other device types...
-
-        default:
-            break;
+            modules.push_back(module);
         }
+    }
+
+    // IOs creation TODO
+    for (const s_sim_I_O &io : components.simulation_IOs.i_os)
+    {
+        if(io.type == "input")
+        {
+            // 1.Find which module to use
+            sc_module* module = createSysC_IO(io);
+        }
+        else if(io.type == "output")
+        {
+            sc_module* module = createSysC_IO(io);
+        }
+        else
+        {
+            debug->addError("IO type not recognized");
+        }
+
+
+
 
         if (module != nullptr)
         {
@@ -142,6 +118,59 @@ device SystemCBuilder::deviceFinder(QString deviceName)
     }
 
     return DEFAULT_DEVICE;
+}
+
+sc_module* SystemCBuilder::createModule(device devType, const s_element &element)
+{
+    const int DEFAULT_WIDTH = 1;
+
+    int inputs_number = static_cast<unsigned int>(element.inputs_number);
+
+    /** /!\ TOFIX /!\
+     *
+     * The modules are currently not instanciables because of the template classes they use
+     * We should switch to a constructor instanciation instead of a template one
+     * The problem is also sc_signals that are templates and can´t have dynamic width values (W)
+     *
+     */
+
+    switch (devType)
+    {
+    case MULTIPLEXER_DEVICE:
+        return new SyscLogicGateRT(element.name.toStdString().c_str(), inputs_number, DEFAULT_WIDTH);
+        // createMuxModule<2, DEBUGDEFAULTWITDTH, DEBUGDEFAULTWITDTH>(elem.name);
+        break;
+
+    case AND_GATE_DEVICE:
+        return new SyscLogicGateRT(element.name.toStdString().c_str(), inputs_number, DEFAULT_WIDTH);
+        // SyscAnd<2, DEBUGDEFAULTWITDTH, DEBUGDEFAULTWITDTH>(elem.name);
+        break;
+
+    case OR_GATE_DEVICE:
+        return new SyscLogicGateRT(element.name.toStdString().c_str(), inputs_number, DEFAULT_WIDTH);
+        // ...
+        break;
+
+    case NAND_GATE_DEVICE:
+        return new SyscLogicGateRT(element.name.toStdString().c_str(), inputs_number, DEFAULT_WIDTH);
+        break;
+
+    case NOR_GATE_DEVICE:
+        return new SyscLogicGateRT(element.name.toStdString().c_str(), inputs_number, DEFAULT_WIDTH);
+        break;
+
+    case XOR_GATE_DEVICE:
+        return new SyscLogicGateRT(element.name.toStdString().c_str(), inputs_number, DEFAULT_WIDTH);
+        break;
+
+    case XNOR_GATE_DEVICE:
+        return new SyscLogicGateRT(element.name.toStdString().c_str(), inputs_number, DEFAULT_WIDTH);
+        break;
+        // Handle other device types...
+
+    default:
+        break;
+    }
 }
 
 
