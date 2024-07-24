@@ -26,8 +26,7 @@ QMAKE_INCDIR += \
 
 HEADERS += \
     $$files("parser_linker/*.h") \
-    $$files("systemC/systemc_modules/*.h") \
-    gui/chronogramwidget.h \
+    #$$files("systemC/systemc_modules/*.h") \
     gui/debugwindow.h \
     gui/elementsdisplay.h \
     gui/filestreeview.h \
@@ -46,8 +45,7 @@ HEADERS += \
 
 SOURCES += \
     $$files("parser_linker/*.cpp") \
-    $$files("systemC/systemc_modules/*.cpp") \
-    gui/chronogramwidget.cpp \
+    #$$files("systemC/systemc_modules/*.cpp") \
     gui/debugwindow.cpp \
     gui/elementsdisplay.cpp \
     gui/filestreeview.cpp \
