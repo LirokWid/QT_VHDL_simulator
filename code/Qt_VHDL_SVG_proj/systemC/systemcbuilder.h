@@ -3,8 +3,9 @@
 
 #include "ComponentsStruct.h"
 #include "debugwindow.h"
-#include "systemC/systemc_modules/sc_gates.h"
-#include "systemC/systemc_modules/sc_mux.h"
+#include <systemc.h>
+//#include "systemC/systemc_modules/sc_gates.h"
+//#include "systemC/systemc_modules/sc_mux.h"
 
 typedef enum e_device
 {
@@ -25,8 +26,8 @@ public:
     SystemCBuilder(s_components_list *components);
 
 private:
-    template <unsigned int N, unsigned int W, unsigned int SELW>
-    SyscMux<N, W, SELW>* createMuxModule(const QString& name);
+    //template <unsigned int N, unsigned int W, unsigned int SELW>
+    //SyscMux<N, W, SELW>* createMuxModule(const QString& name);
 
     template <template <unsigned int, unsigned int> class GateType, unsigned int N, unsigned int W>
     GateType<N, W>* createGateModule(const QString& name);

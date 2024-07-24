@@ -1,7 +1,7 @@
 #include "systemcbuilder.h"
-#include "systemC/systemc_modules/sc_gates.h"
-#include "systemC/systemc_modules/sc_mux.h"
-#include "systemC/systemc_modules/sc_terminals.h"
+//#include "systemC/systemc_modules/sc_gates.h"
+//#include "systemC/systemc_modules/sc_mux.h"
+//#include "systemC/systemc_modules/sc_terminals.h"
 
 SystemCBuilder::SystemCBuilder(s_components_list *components) :
     components(components)
@@ -150,7 +150,7 @@ sc_module* SystemCBuilder::createSysC_Module(device devType, const s_element &el
      * The problem is also sc_signals that are templates and can´t have dynamic width values (W)
      *
      */
-
+/*
     switch (devType)
     {
     case MULTIPLEXER_DEVICE:
@@ -188,6 +188,7 @@ sc_module* SystemCBuilder::createSysC_Module(device devType, const s_element &el
     default:
         break;
     }
+*/
 }
 
 
