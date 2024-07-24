@@ -22,28 +22,20 @@ class MultiTypesChrono : public QWidget
     Q_OBJECT
 
 public:
-    /**
-     * @brief Constructor for MultiTypesChrono.
-     * @param parent The parent widget.
-     */
-    MultiTypesChrono(QWidget *parent = nullptr);
-    MultiTypesChrono(int tempBoolSize, QWidget *parent = nullptr);
-    MultiTypesChrono(QVector<bool> boolStartList, QWidget *parent = nullptr);
-    MultiTypesChrono(QVector<int> intStartList, QWidget *parent = nullptr);
-    MultiTypesChrono(QVector<float> floatStartList, QWidget *parent = nullptr);
-    MultiTypesChrono(QVector<double> doubleStartList, QWidget *parent = nullptr);
 
     /**
-     * @brief Adds a boolean data point to the graph.
-     * @param point The boolean data point to be added.
+     * @brief MultiTypesChrono
+     * @param boolStartList
+     * @param parent
      */
-    void addPoint(bool point);
+    MultiTypesChrono(QVector<T> startList, QWidget *parent = nullptr);
+
 
     /**
      * @brief Adds an integer data point to the graph.
-     * @param point The integer data point to be added.
+     * @param point The data point to add.
      */
-    void addPoint(int point);
+    void addPoint(T point);
 
 protected:
     /**
@@ -112,26 +104,45 @@ private:
     int currentOffset = 0; ///< Current offset of the graph.
     double stepPixelNb = 60.f; ///< Number of pixels per step.
 
-    typedef enum e_initType
+    enum e_initType
     {
         BOOL,
         INT,
         FLOAT,
-        DOUBLE
+        DOUBLE,
+        ERROR
     };
 
     e_initType initType;
 
     QSlider *slider; ///< Slider for navigating through the data points.
     QVBoxLayout *Vlayout; ///< Vertical layout for the widget.
-    QVector<bool> boolDataPoints; ///< Vector of boolean data points.
-    QVector<int> intDataPoints; ///< Vector of integer data points.
+
+    //To store the data points (old way)
+    //QVector<bool> boolDataPoints; ///< Vector of boolean data points.
+    //QVector<int> intDataPoints; ///< Vector of integer data points.
+    QVector<T> dataPoints; ///< Vector of data points.
+
+    int dataMax;
+    int dataMin;
+    int nbPoints;
+    int height;
+    int width;
 
     QPushButton *plusButton; ///< Button to increase the visible range.
     QPushButton *minusButton; ///< Button to decrease the visible range.
     QPushButton *fitButton; ///< Button to fit the graph to the data points.
     QHBoxLayout *buttonLayout; ///< Horizontal layout for the buttons.    
     QLabel *popupLabel;
+
+    bool isDragging = false; ///< Flag indicating if the graph is being dragged.
+    QPoint dragStartPoint; ///< Starting point of the drag.
+    QPoint dragEndPoint; ///< Ending point of the drag.
+
+    bool isRightClicking = false; ///< Flag indicating if the right mouse button is being clicked.
+    bool isFirstRightClick = false; ///< Flag indicating if it's the first right mouse click.
+    QPoint rightClickStartPoint; ///< Starting point of the right mouse click.
+
 
     /**
      * @brief Draws the background scale of the graph.
@@ -184,21 +195,35 @@ private:
      */
     void showPopupAtCursor(QPoint cursorPos);
 
-    bool isDragging = false; ///< Flag indicating if the graph is being dragged.
-    QPoint dragStartPoint; ///< Starting point of the drag.
-    QPoint dragEndPoint; ///< Ending point of the drag.
 
-    bool isRightClicking = false; ///< Flag indicating if the right mouse button is being clicked.
-    bool isFirstRightClick = false; ///< Flag indicating if it's the first right mouse click.
-    QPoint rightClickStartPoint; ///< Starting point of the right mouse click.
-
+    /**
+     * @brief convert a pixel number in a step number
+     * @param x the pixel x coordinate
+     * @return the step corresponding to the x coordinate
+     */
     int getStepFromX(int x);
+
+    /**
+     * @brief Initializes the graph with its graphical settings and buttons
+     */
     void initGraph();
 
-    template<typename T>
     T getMax(const QVector<T> &vec);
-    template<typename T>
     T getMin(const QVector<T> &vec);
+
+    void getMinMaxSize();
+
+    QString getTypeString(e_initType type);
+
+
+
+
+
+    void drawBoolData(QPainter *painter);
+
+    void drawData(QPainter *painter);
+
+    double calculatePointHeight(T point);
 
 private slots:
     /**
