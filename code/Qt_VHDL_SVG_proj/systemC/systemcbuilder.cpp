@@ -38,7 +38,7 @@ void SystemCBuilder::buildSystemCSim(const s_components_list& components)
     // Elements module creation
     for (const s_element &elem : components.elements.elements_list)
     {
-        sc_module* module = createModule(deviceFinder(elem.device), elem);
+        sc_module* module = createSysC_Module(deviceFinder(elem.device), elem);
         if (module != nullptr)
         {
             modules.push_back(module);
@@ -48,14 +48,15 @@ void SystemCBuilder::buildSystemCSim(const s_components_list& components)
     // IOs creation TODO
     for (const s_sim_I_O &io : components.simulation_IOs.i_os)
     {
-        if(io.type == "input")
+        sc_module* module = nullptr;
+        if(io.type == INPUT)
         {
             // 1.Find which module to use
-            sc_module* module = createSysC_IO(io);
+            module = nullptr;//createSysC_IO_input(io);
         }
-        else if(io.type == "output")
+        else if(io.type == OUTPUT)
         {
-            sc_module* module = createSysC_IO(io);
+            module = nullptr; //createSysC_IO_output(io);
         }
         else
         {
@@ -63,13 +64,29 @@ void SystemCBuilder::buildSystemCSim(const s_components_list& components)
         }
 
 
-
-
         if (module != nullptr)
         {
             modules.push_back(module);
         }
     }
+
+    //Wire creation
+    for (const s_sim_wire &wire : components.simulation_wires.wires)
+    {
+        sc_module* module = nullptr;
+        module = nullptr; //createSysC_wire(wire);
+        if (module != nullptr)
+        {
+            modules.push_back(module);
+        }
+    }
+
+    //Link all components
+    for (const auto &module : modules)
+    {
+        //createSysC_Links(module);
+    }
+
 }
 
 device SystemCBuilder::deviceFinder(QString deviceName)
@@ -120,7 +137,7 @@ device SystemCBuilder::deviceFinder(QString deviceName)
     return DEFAULT_DEVICE;
 }
 
-sc_module* SystemCBuilder::createModule(device devType, const s_element &element)
+sc_module* SystemCBuilder::createSysC_Module(device devType, const s_element &element)
 {
     const int DEFAULT_WIDTH = 1;
 

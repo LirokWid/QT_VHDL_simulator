@@ -40,7 +40,7 @@ private:
     device deviceFinder(QString name);
 
 
-    sc_module* createModule(device, const s_element &);
+    sc_module* createSysC_Module(device, const s_element &);
 };
 
 #endif // SYSTEMCBUILDER_H
