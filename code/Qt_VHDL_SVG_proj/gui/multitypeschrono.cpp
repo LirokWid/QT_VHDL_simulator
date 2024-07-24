@@ -4,45 +4,57 @@
 #include <QPainter>
 #include <QPushButton>
 
-
-MultiTypesChrono::MultiTypesChrono(QWidget *parent)
+template <typename T>
+MultiTypesChrono<T>::MultiTypesChrono(QWidget *parent)
     : QWidget(parent)
 {
+    initType = BOOL;
+
     initializeBoolDataPoints(50); // Temp debug to dislay random values
     initGraph();
 }
 
-MultiTypesChrono::MultiTypesChrono(int tempBoolSize, QWidget *parent)
+template <typename T>
+MultiTypesChrono<T>::MultiTypesChrono(int tempBoolSize, QWidget *parent)
     : QWidget(parent)
 {
+    initType = INT;
     initializeBoolDataPoints(tempBoolSize); // Temp debug to dislay random values
     initGraph();
 }
 
-MultiTypesChrono::MultiTypesChrono(QVector<bool> boolStartList, QWidget *parent)
+template <typename T>
+MultiTypesChrono<T>::MultiTypesChrono(QVector<bool> boolStartList, QWidget *parent)
     : QWidget(parent)
 {
+    initType = BOOL;
     boolDataPoints = boolStartList;
     initGraph();
 }
 
-MultiTypesChrono::MultiTypesChrono(QVector<int> intStartList, QWidget *parent)
+template <typename T>
+MultiTypesChrono<T>::MultiTypesChrono(QVector<int> intStartList, QWidget *parent)
     : QWidget(parent)
 {
+    initType = INT;
+    intDataPoints = intStartList;
+    initGraph();
+}
+
+template <typename T>
+MultiTypesChrono<T>::MultiTypesChrono(QVector<float> floatStartList, QWidget *parent)
+    : QWidget(parent)
+{
+    initType = FLOAT;
 
     initGraph();
 }
 
-MultiTypesChrono::MultiTypesChrono(QVector<float> floatStartList, QWidget *parent)
+template <typename T>
+MultiTypesChrono<T>::MultiTypesChrono(QVector<double> doubleStartList, QWidget *parent)
     : QWidget(parent)
 {
-
-    initGraph();
-}
-
-MultiTypesChrono::MultiTypesChrono(QVector<double> doubleStartList, QWidget *parent)
-    : QWidget(parent)
-{
+    initType = DOUBLE;
 
     initGraph();
 }
@@ -65,30 +77,29 @@ void MultiTypesChrono::initGraph()
                 update();
             });
 
-    popupLabel = new QLabel(this);
-    popupLabel->setStyleSheet("QLabel { background-color: rgba(255, 255, 255, 180); border: 2px solid black; padding: 3px; border-radius: 3px; }");
-    popupLabel->setVisible(false);
-
     // Widen and shrink graph area buttons
-    buttonLayout = new QHBoxLayout();
+    plusButton = new QPushButton("+", this);
+    connect(plusButton, &QPushButton::clicked, this, &MultiTypesChrono::handlePlusButton);
+    plusButton->setFixedSize(25, 30);
 
     minusButton = new QPushButton("-", this);
-    plusButton = new QPushButton("+", this);
-    fitButton = new QPushButton("fit", this);
-
-    //Set the size of the buttons
+    connect(minusButton, &QPushButton::clicked, this, &MultiTypesChrono::handleMinusButton);
     minusButton->setFixedSize(25, 30);
-    plusButton->setFixedSize(25, 30);
+
+    fitButton = new QPushButton("fit", this);
+    connect(fitButton, &QPushButton::clicked, this, &MultiTypesChrono::handleFitButton);
     fitButton->setFixedSize(25, 30);
 
-    buttonLayout->addWidget(minusButton);
+    buttonLayout = new QHBoxLayout();
     buttonLayout->addWidget(plusButton);
+    buttonLayout->addWidget(minusButton);
     buttonLayout->addWidget(fitButton);
     buttonLayout->addStretch(1);
 
-    connect(plusButton  , &QPushButton::clicked, this, &MultiTypesChrono::handlePlusButton);
-    connect(minusButton , &QPushButton::clicked, this, &MultiTypesChrono::handleMinusButton);
-    connect(fitButton   , &QPushButton::clicked, this, &MultiTypesChrono::handleFitButton);
+    // Popup displaying point information
+    popupLabel = new QLabel(this);
+    popupLabel->setStyleSheet("QLabel { background-color: rgba(255, 255, 255, 180); border: 2px solid black; padding: 3px; border-radius: 3px; }");
+    popupLabel->setVisible(false);
 
     Vlayout = new QVBoxLayout(this);
     Vlayout->setContentsMargins(30, 0, 30, 0);  // TODO parametrize the margins
@@ -103,7 +114,8 @@ void MultiTypesChrono::initGraph()
 
 void MultiTypesChrono::paintEvent(QPaintEvent* event)
 {
-    QWidget::paintEvent(event);
+    Q_UNUSED(event);
+
     QPainter painter(this);
     painter.setRenderHint(QPainter::Antialiasing);
 
@@ -120,11 +132,29 @@ void MultiTypesChrono::paintEvent(QPaintEvent* event)
 
     /*      Draw axes       */
     // Draw y-axis
-    painter.drawLine(topLeft, bottomLeft);      // y-axis line
-    // y-axis max value label
-    drawText(painter, "1", marginLeft - labelOffset, marginTop);
-    // y-axis min value label
-    drawText(painter, "0", marginLeft - labelOffset, height - marginBottom);
+    painter.drawLine(topLeft, bottomLeft);
+
+    switch (initType)
+    {
+    case BOOL:
+        // y-axis max value label
+        drawText(painter, "1", marginLeft - labelOffset, marginTop);
+        // y-axis min value label
+        drawText(painter, "0", marginLeft - labelOffset, height - marginBottom);
+        break;
+    case INT:
+    case FLOAT:
+    case DOUBLE:
+        // y-axis max value label
+        drawText(painter, getMax(), marginLeft - labelOffset, marginTop);
+        // y-axis min value label
+        drawText(painter, "0", marginLeft - labelOffset, height - marginBottom);
+        break;
+
+    default:
+        break;
+    }
+
 
     // Draw x-axis
     painter.drawLine(bottomLeft, bottomRight);
@@ -214,10 +244,20 @@ void MultiTypesChrono::paintEvent(QPaintEvent* event)
 
 void MultiTypesChrono::addPoint(bool point)
 {
+    Q_ASSERT(initType == BOOL);
     boolDataPoints.append(point);
     updateSliderRange();
     update();
 }
+
+void MultiTypesChrono::addPoint(int point)
+{
+    Q_ASSERT(initType == INT);
+    intDataPoints.append(point);
+    updateSliderRange();
+    update();
+}
+
 
 void MultiTypesChrono::initializeBoolDataPoints(int nbPoints)
 {
@@ -486,4 +526,18 @@ void MultiTypesChrono::leaveEvent(QEvent *event)
 {
     QWidget::leaveEvent(event);
     popupLabel->setVisible(false);
+}
+
+template <typename T>
+T MultiTypesChrono::getMax(const QVector<T> &vec)
+{
+    Q_ASSERT(!vec.isEmpty());
+    return *std::max_element(vec.begin(), vec.end());
+}
+
+template <typename T>
+T MultiTypesChrono::getMin(const QVector<T> &vec)
+{
+    Q_ASSERT(!vec.isEmpty());
+    return *std::min_element(vec.begin(), vec.end());
 }

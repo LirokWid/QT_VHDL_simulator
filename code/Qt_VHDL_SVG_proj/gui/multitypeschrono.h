@@ -14,8 +14,9 @@
 
 /**
  * @class MultiTypesChrono
- * @brief A QWidget-based class for visualizing boolean data points on a graph.
+ * @brief A QWidget-based class for visualizing multi types of data points on a graph.
  */
+template <typename T>
 class MultiTypesChrono : public QWidget
 {
     Q_OBJECT
@@ -38,6 +39,11 @@ public:
      */
     void addPoint(bool point);
 
+    /**
+     * @brief Adds an integer data point to the graph.
+     * @param point The integer data point to be added.
+     */
+    void addPoint(int point);
 
 protected:
     /**
@@ -106,9 +112,21 @@ private:
     int currentOffset = 0; ///< Current offset of the graph.
     double stepPixelNb = 60.f; ///< Number of pixels per step.
 
+    typedef enum e_initType
+    {
+        BOOL,
+        INT,
+        FLOAT,
+        DOUBLE
+    };
+
+    e_initType initType;
+
     QSlider *slider; ///< Slider for navigating through the data points.
     QVBoxLayout *Vlayout; ///< Vertical layout for the widget.
     QVector<bool> boolDataPoints; ///< Vector of boolean data points.
+    QVector<int> intDataPoints; ///< Vector of integer data points.
+
     QPushButton *plusButton; ///< Button to increase the visible range.
     QPushButton *minusButton; ///< Button to decrease the visible range.
     QPushButton *fitButton; ///< Button to fit the graph to the data points.
@@ -176,6 +194,12 @@ private:
 
     int getStepFromX(int x);
     void initGraph();
+
+    template<typename T>
+    T getMax(const QVector<T> &vec);
+    template<typename T>
+    T getMin(const QVector<T> &vec);
+
 private slots:
     /**
      * @brief Slot to handle the plus button click event.
