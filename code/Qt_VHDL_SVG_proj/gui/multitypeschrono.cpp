@@ -4,32 +4,69 @@
 #include <QPainter>
 #include <QPushButton>
 
+//@todo Add y axis steps if needed
+//add 0 line if needed
+// correct the popup value visibility
+
 template <typename T>
-MultiTypesChrono<T>::MultiTypesChrono(QVector<T> startList, QWidget *parent)
-    : QWidget(parent)
+QVector<double> convertToDoubleVector(const QVector<T>& inputVector)
 {
-    if (typeid(T) == typeid(bool))
+    QVector<double> doubleVector;
+    doubleVector.reserve(inputVector.size()); // Reserve space to avoid multiple allocations
+
+    for (const T& value : inputVector)
     {
-        initType = BOOL;
-    }
-    else if (typeid(T) == typeid(int))
-    {
-        initType = INT;
-    }
-    else if (typeid(T) == typeid(float))
-    {
-        initType = FLOAT;
-    }
-    else if (typeid(T) == typeid(double))
-    {
-        initType = DOUBLE;
-    }
-    else
-    {
-        initType = ERROR;
+        if constexpr (std::is_arithmetic_v<T>)
+        {
+            doubleVector.append(static_cast<double>(value));
+        }
+        else
+        {
+            qDebug() << "Type cannot be converted to double.";
+        }
     }
 
-    Q_ASSERT(initType != ERROR);
+    return doubleVector;
+}
+
+
+MultiTypesChrono::MultiTypesChrono(QVector<bool> startList, QWidget *parent)
+    : QWidget(parent)
+{
+    initType = BOOL;
+
+    dataPoints = convertToDoubleVector(startList);
+
+    getMinMaxSize();
+    initGraph();
+}
+
+MultiTypesChrono::MultiTypesChrono(QVector<int> startList, QWidget *parent)
+    : QWidget(parent)
+{
+    initType = INT;
+
+    dataPoints = convertToDoubleVector(startList);
+
+    getMinMaxSize();
+    initGraph();
+}
+
+MultiTypesChrono::MultiTypesChrono(QVector<float> startList, QWidget *parent)
+    : QWidget(parent)
+{
+    initType = FLOAT;
+
+    dataPoints = convertToDoubleVector(startList);
+
+    getMinMaxSize();
+    initGraph();
+}
+
+MultiTypesChrono::MultiTypesChrono(QVector<double> startList, QWidget *parent)
+    : QWidget(parent)
+{
+    initType = DOUBLE;
 
     dataPoints = startList;
 
@@ -37,8 +74,7 @@ MultiTypesChrono<T>::MultiTypesChrono(QVector<T> startList, QWidget *parent)
     initGraph();
 }
 
-template <typename T>
-void MultiTypesChrono<T>::initGraph()
+void MultiTypesChrono::initGraph()
 {
     setMinimumSize(800, 200);
     setAutoFillBackground(true);
@@ -58,15 +94,15 @@ void MultiTypesChrono<T>::initGraph()
 
     // Widen and shrink graph area buttons
     plusButton = new QPushButton("+", this);
-    connect(plusButton, &QPushButton::clicked, this, &MultiTypesChrono<T>::handlePlusButton);
+    connect(plusButton, &QPushButton::clicked, this, &MultiTypesChrono::handlePlusButton);
     plusButton->setFixedSize(25, 30);
 
     minusButton = new QPushButton("-", this);
-    connect(minusButton, &QPushButton::clicked, this, &MultiTypesChrono<T>::handleMinusButton);
+    connect(minusButton, &QPushButton::clicked, this, &MultiTypesChrono::handleMinusButton);
     minusButton->setFixedSize(25, 30);
 
     fitButton = new QPushButton("fit", this);
-    connect(fitButton, &QPushButton::clicked, this, &MultiTypesChrono<T>::handleFitButton);
+    connect(fitButton, &QPushButton::clicked, this, &MultiTypesChrono::handleFitButton);
     fitButton->setFixedSize(25, 30);
 
     buttonLayout = new QHBoxLayout();
@@ -91,8 +127,7 @@ void MultiTypesChrono<T>::initGraph()
     updateSliderRange();
 }
 
-template <typename T>
-void MultiTypesChrono<T>::paintEvent(QPaintEvent* event)
+void MultiTypesChrono::paintEvent(QPaintEvent* event)
 {
     Q_UNUSED(event);
 
@@ -147,7 +182,7 @@ void MultiTypesChrono<T>::paintEvent(QPaintEvent* event)
 
     /*      Draw data points stats       */
     // Draw current number of data points
-    QString statsStr = "Data Points: " + QString::number(nbPoints);
+    QString statsStr = "Type : "+ getTypeString(initType) +" | Data Points: " + QString::number(nbPoints);
     drawTextInBox(
         painter,
         statsStr,
@@ -159,11 +194,11 @@ void MultiTypesChrono<T>::paintEvent(QPaintEvent* event)
 
     if (initType == BOOL)
     {
-        drawBoolData(painter);
+        drawBoolData(&painter);
     }
     else
     {
-        drawData(painter);
+        drawData(&painter);
     }
 
 
@@ -180,8 +215,7 @@ void MultiTypesChrono<T>::paintEvent(QPaintEvent* event)
     }
 }
 
-template<typename T>
-void MultiTypesChrono<T>::drawBoolData(QPainter *painter)
+void MultiTypesChrono::drawBoolData(QPainter *painter)
 {
     if (nbPoints != 0)
     {
@@ -220,8 +254,7 @@ void MultiTypesChrono<T>::drawBoolData(QPainter *painter)
     }
 }
 
-template<typename T>
-void MultiTypesChrono<T>::drawData(QPainter *painter)
+void MultiTypesChrono::drawData(QPainter *painter)
 {
     if (nbPoints != 0)
     {
@@ -230,11 +263,7 @@ void MultiTypesChrono<T>::drawData(QPainter *painter)
 
         // Draw first point
         double xPrev = marginLeft;
-
-        double yTop = marginTop;
-        double yBottom = height - marginBottom;
-
-        double yPrev = (dataPoints[startIndex] - dataMin) * (yTop - yBottom) / (dataMax - dataMin) + yBottom;
+        double yPrev = calculatePointHeight(dataPoints[startIndex]);
 
         //double yPrev = dataPoints[startIndex] ? marginTop : height - marginBottom;
         painter->drawEllipse(QPointF(xPrev, yPrev), pointRadius, pointRadius);
@@ -242,19 +271,14 @@ void MultiTypesChrono<T>::drawData(QPainter *painter)
         for (int i = startIndex + 1; i < endIndex; ++i)
         {
             double x = marginLeft + (i - startIndex) * stepPixelNb;
-            double y = dataPoints[i] ? marginTop : height - marginBottom;
+            double y =calculatePointHeight(dataPoints[i]);
+
+            //Draw point
             painter->drawEllipse(QPointF(x, y), pointRadius, pointRadius);
 
-            // If value changes
-            if (dataPoints[i] != dataPoints[i - 1])
-            {// Draw horizontal then vertical line
-                painter->drawLine(QPointF(xPrev, yPrev), QPointF(x, yPrev));
-                painter->drawLine(QPointF(x, yPrev), QPointF(x, y));
-            }
-            else
-            {// Draw horizontal line
-                painter->drawLine(QPointF(xPrev, yPrev), QPointF(x, y));
-            }
+            // Draw line connecting with the last point
+            painter->drawLine(QPointF(xPrev, yPrev), QPointF(x, y));
+
             xPrev = x;
             yPrev = y;
         }
@@ -266,15 +290,13 @@ void MultiTypesChrono<T>::drawData(QPainter *painter)
     }
 }
 
-template <typename T>
-double MultiTypesChrono<T>::calculatePointHeight(T point)
+double MultiTypesChrono::calculatePointHeight(double point)
 {
-    return (point - dataMin) * (marginTop - marginBottom) / (dataMax - dataMin) + marginBottom;
+    return (point - dataMin) * (marginTop - (height - marginBottom)) / (dataMax - dataMin) + (height - marginBottom);
 }
 
 
-template <typename T>
-void MultiTypesChrono<T>::addPoint(T point)
+void MultiTypesChrono::addPoint(double point)
 {
     dataPoints.append(point);
     updateSliderRange();
@@ -282,8 +304,7 @@ void MultiTypesChrono<T>::addPoint(T point)
 }
 
 
-template <typename T>
-void MultiTypesChrono<T>::initializeBoolDataPoints(int nbPoints)
+void MultiTypesChrono::initializeBoolDataPoints(int nbPoints)
 {
     for (int i = 0; i < nbPoints; ++i)
     {
@@ -291,8 +312,7 @@ void MultiTypesChrono<T>::initializeBoolDataPoints(int nbPoints)
     }
 }
 
-template <typename T>
-void MultiTypesChrono<T>::drawText(QPainter& painter, const QString& text, int x, int y)
+void MultiTypesChrono::drawText(QPainter& painter, const QString& text, int x, int y)
 {
     QRect boundingRect = painter.boundingRect(QRect(), Qt::AlignCenter, text);
     boundingRect.moveTo(
@@ -301,8 +321,7 @@ void MultiTypesChrono<T>::drawText(QPainter& painter, const QString& text, int x
     painter.drawText(boundingRect, Qt::AlignCenter, text);
 }
 
-template <typename T>
-void MultiTypesChrono<T>::drawTextInBox(QPainter& painter, const QString& text, int x, int y)
+void MultiTypesChrono::drawTextInBox(QPainter& painter, const QString& text, int x, int y)
 {    
     // Save the current pen
     QPen oldPen = painter.pen();
@@ -331,28 +350,25 @@ void MultiTypesChrono<T>::drawTextInBox(QPainter& painter, const QString& text, 
     painter.setPen(oldPen);
 }
 
-template <typename T>
-void MultiTypesChrono<T>::calculateVisibleRange()
+void MultiTypesChrono::calculateVisibleRange()
 {
-    this->visibleRange = (width() - marginLeft) / stepPixelNb;
+    this->visibleRange = (QWidget::width() - marginLeft) / stepPixelNb;
 
     qDebug() << "Range changed to: " << this->visibleRange;
 }
 
-template <typename T>
-void MultiTypesChrono<T>::calculateStepPixelNb()
+void MultiTypesChrono::calculateStepPixelNb()
 {
-    stepPixelNb = static_cast<double>((width() - marginLeft)) / static_cast<double>(visibleRange);
+    stepPixelNb = static_cast<double>((QWidget::width() - marginLeft)) / static_cast<double>(visibleRange);
 }
 
-template <typename T>
-void MultiTypesChrono<T>::updateSliderRange()
+void MultiTypesChrono::updateSliderRange()
 {
     calculateStepPixelNb();
-    if (boolDataPoints.size() > visibleRange)
+    if (dataPoints.size() > visibleRange)
     {
         slider->setVisible(true);
-        slider->setRange(0, boolDataPoints.size() - visibleRange);
+        slider->setRange(0, dataPoints.size() - visibleRange);
         slider->setValue(currentOffset);
     }
     else
@@ -362,10 +378,9 @@ void MultiTypesChrono<T>::updateSliderRange()
     }
 }
 
-template <typename T>
-void MultiTypesChrono<T>::handlePlusButton()
+void MultiTypesChrono::handlePlusButton()
 {
-    if (visibleRange < boolDataPoints.size() - 1)
+    if (visibleRange < dataPoints.size() - 1)
     {
         visibleRange++;
         calculateStepPixelNb();
@@ -374,8 +389,7 @@ void MultiTypesChrono<T>::handlePlusButton()
     }
 }
 
-template <typename T>
-void MultiTypesChrono<T>::handleMinusButton()
+void MultiTypesChrono::handleMinusButton()
 {
     if (visibleRange > minDisplayedSteps)
     {
@@ -386,30 +400,25 @@ void MultiTypesChrono<T>::handleMinusButton()
     }
 }
 
-template <typename T>
-void MultiTypesChrono<T>::handleFitButton()
+void MultiTypesChrono::handleFitButton()
 {
-    if (boolDataPoints.size() > 2)
+    if (dataPoints.size() > 2)
     {
-        visibleRange = boolDataPoints.size();
+        visibleRange = dataPoints.size();
         calculateStepPixelNb();
         updateSliderRange();
         update();
     }
 }
 
-template <typename T>
-void MultiTypesChrono<T>::resizeEvent(QResizeEvent *event)
+void MultiTypesChrono::resizeEvent(QResizeEvent *event)
 {
     QWidget::resizeEvent(event);
-    int width = this->width();
-    qDebug() << "width :" << width;
     updateSliderRange(); // Update the slider range when resized
     update(); // Repaint the widget
 }
 
-template <typename T>
-void MultiTypesChrono<T>::showPopupAtCursor(QPoint cursorPos)
+void MultiTypesChrono::showPopupAtCursor(QPoint cursorPos)
 {
     int height = QWidget::height();
     int width = QWidget::width();
@@ -419,13 +428,13 @@ void MultiTypesChrono<T>::showPopupAtCursor(QPoint cursorPos)
     for (int i = 0; i <= visibleRange-1; ++i)
     {
         int pointX = marginLeft + static_cast<int>(i * stepPixelNb);
-        int pointY = boolDataPoints[currentOffset + i] ? marginTop : height - marginBottom;
+        int pointY = dataPoints[currentOffset + i] ? marginTop : height - marginBottom;
 
         if (qAbs(pointX - x) < popupDisplayRadius && qAbs(pointY - y) < popupDisplayRadius)
         {
             QString coords = QString("step: %1, val: %2")
                                  .arg(currentOffset + i)
-                                 .arg(boolDataPoints[currentOffset + i]);
+                                 .arg(dataPoints[currentOffset + i]);
             popupLabel->setText(coords);
             popupLabel->move(x + 10, y + 10);
             popupLabel->setVisible(true);
@@ -436,21 +445,19 @@ void MultiTypesChrono<T>::showPopupAtCursor(QPoint cursorPos)
     popupLabel->setVisible(false);
 }
 
-template <typename T>
-int MultiTypesChrono<T>::getStepFromX(int x)
+int MultiTypesChrono::getStepFromX(int x)
 {
     int closest_step = ((x - marginLeft + stepPixelNb / 2) / stepPixelNb) + currentOffset;
 
     if (closest_step < 0)
         closest_step = 0;
-    if (closest_step > boolDataPoints.size())
-        closest_step = boolDataPoints.size();
+    if (closest_step > dataPoints.size())
+        closest_step = dataPoints.size();
 
     return closest_step;
 }
 
-template <typename T>
-void MultiTypesChrono<T>::mousePressEvent(QMouseEvent *event)
+void MultiTypesChrono::mousePressEvent(QMouseEvent *event)
 {
     if (event->button() == Qt::LeftButton)
     {
@@ -474,8 +481,7 @@ void MultiTypesChrono<T>::mousePressEvent(QMouseEvent *event)
     //////////////////////////////////////////
 }
 
-template <typename T>
-void MultiTypesChrono<T>::mouseMoveEvent(QMouseEvent *event)
+void MultiTypesChrono::mouseMoveEvent(QMouseEvent *event)
 {
     if (isDragging)
     {
@@ -498,8 +504,8 @@ void MultiTypesChrono<T>::mouseMoveEvent(QMouseEvent *event)
 
         if (newPosition < 0)
             newPosition = 0;
-        if (newPosition + visibleRange > boolDataPoints.size())
-            newPosition = boolDataPoints.size() - visibleRange;
+        if (newPosition + visibleRange > dataPoints.size())
+            newPosition = dataPoints.size() - visibleRange;
 
         qDebug() << "Right dragging to " << newPosition;
 
@@ -511,8 +517,7 @@ void MultiTypesChrono<T>::mouseMoveEvent(QMouseEvent *event)
     showPopupAtCursor(event->pos());
 }
 
-template <typename T>
-void MultiTypesChrono<T>::mouseReleaseEvent(QMouseEvent *event)
+void MultiTypesChrono::mouseReleaseEvent(QMouseEvent *event)
 {// TODO update to handle integer values for y axis
     if (event->button() == Qt::LeftButton && isDragging)
     {
@@ -533,8 +538,8 @@ void MultiTypesChrono<T>::mouseReleaseEvent(QMouseEvent *event)
 
         if (startStepIndex < 0)
             startStepIndex = 0;
-        if (endStepIndex > boolDataPoints.size())
-            endStepIndex = boolDataPoints.size();
+        if (endStepIndex > dataPoints.size())
+            endStepIndex = dataPoints.size();
 
         int stepsToDisplay = endStepIndex - startStepIndex;
         qDebug() << "Start step: " << startStepIndex << " End step: " << endStepIndex;
@@ -560,30 +565,27 @@ void MultiTypesChrono<T>::mouseReleaseEvent(QMouseEvent *event)
     }
 }
 
-template <typename T>
-void MultiTypesChrono<T>::leaveEvent(QEvent *event)
+void MultiTypesChrono::leaveEvent(QEvent *event)
 {
     QWidget::leaveEvent(event);
     popupLabel->setVisible(false);
 }
 
 
-template <typename T>
-T MultiTypesChrono<T>::getMax(const QVector<T> &vec)
+double MultiTypesChrono::getMax(const QVector<double> &vec)
 {
     Q_ASSERT(!vec.isEmpty());
     return *std::max_element(vec.begin(), vec.end());
 }
 
-template <typename T>
-T MultiTypesChrono<T>::getMin(const QVector<T> &vec)
+double MultiTypesChrono::getMin(const QVector<double> &vec)
 {
     Q_ASSERT(!vec.isEmpty());
     return *std::min_element(vec.begin(), vec.end());
 }
 
-template<typename T>
-void MultiTypesChrono<T>::getMinMaxSize()
+
+void MultiTypesChrono::getMinMaxSize()
 {
     if (initType == BOOL)
     {
@@ -598,8 +600,7 @@ void MultiTypesChrono<T>::getMinMaxSize()
     nbPoints = dataPoints.size();
 }
 
-template<typename T>
-QString MultiTypesChrono<T>::getTypeString(e_initType type)
+QString MultiTypesChrono::getTypeString(e_initType type)
 {
     switch (type)
     {

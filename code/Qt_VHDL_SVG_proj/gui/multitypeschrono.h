@@ -16,7 +16,6 @@
  * @class MultiTypesChrono
  * @brief A QWidget-based class for visualizing multi types of data points on a graph.
  */
-template <typename T>
 class MultiTypesChrono : public QWidget
 {
     Q_OBJECT
@@ -28,14 +27,17 @@ public:
      * @param boolStartList
      * @param parent
      */
-    MultiTypesChrono(QVector<T> startList, QWidget *parent = nullptr);
-
+    MultiTypesChrono(QVector<bool> startList, QWidget *parent = nullptr);
+    MultiTypesChrono(QVector<int> startList, QWidget *parent = nullptr);
+    MultiTypesChrono(QVector<float> startList, QWidget *parent = nullptr);
+    MultiTypesChrono(QVector<double> startList, QWidget *parent = nullptr);
 
     /**
      * @brief Adds an integer data point to the graph.
      * @param point The data point to add.
      */
-    void addPoint(T point);
+    void addPoint(double point);
+
 
 protected:
     /**
@@ -118,10 +120,10 @@ private:
     QSlider *slider; ///< Slider for navigating through the data points.
     QVBoxLayout *Vlayout; ///< Vertical layout for the widget.
 
-    //To store the data points (old way)
-    //QVector<bool> boolDataPoints; ///< Vector of boolean data points.
+    //To store the data points
+    //QVector<double> boolDataPoints; ///< Vector of boolean data points.
     //QVector<int> intDataPoints; ///< Vector of integer data points.
-    QVector<T> dataPoints; ///< Vector of data points.
+    QVector<double> dataPoints; ///< Vector of data points.
 
     int dataMax;
     int dataMin;
@@ -208,8 +210,8 @@ private:
      */
     void initGraph();
 
-    T getMax(const QVector<T> &vec);
-    T getMin(const QVector<T> &vec);
+    double getMax(const QVector<double> &vec);
+    double getMin(const QVector<double> &vec);
 
     void getMinMaxSize();
 
@@ -223,7 +225,7 @@ private:
 
     void drawData(QPainter *painter);
 
-    double calculatePointHeight(T point);
+    double calculatePointHeight(double point);
 
 private slots:
     /**

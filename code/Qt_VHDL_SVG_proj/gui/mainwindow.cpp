@@ -50,8 +50,25 @@ MainWindow::MainWindow(QWidget *parent) :
 
     svgHandler = new SvgHandler(ui->componentsInfoContainer, state, svgWidget, this);
 
+    ///////////////////////////////////
+    QVector<double> sineWave;
+    int totalPoints = 45;  // 3 periods * 15 points per period
+    double step = (6 * M_PI) / (totalPoints - 1);  // Step size
+
+    for (int i = 0; i < totalPoints; ++i) {
+        double x = i * step;  // Calculate x value
+        double y = std::sin(x);  // Calculate y value (sine of x)
+        sineWave.append(y);  // Append y to QVector
+    }
+
+    ///////////////////////////////////
+    QVector<int> test;
+    for (int var = 0; var < 10; ++var)
+    {
+        test.append(var*2);
+    }
     //Debug, should be dynamically added whith simulation result
-    chronoWidget = new MultiTypesChrono(100);
+    chronoWidget = new MultiTypesChrono(sineWave);
     ui->tabWidget->addTab(chronoWidget, "Chronogram");
 
     //Setup the svg file close button
