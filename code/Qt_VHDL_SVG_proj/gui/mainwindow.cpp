@@ -52,12 +52,13 @@ MainWindow::MainWindow(QWidget *parent) :
 
     ///////////////////////////////////
     QVector<double> sineWave;
-    int totalPoints = 45;  // 3 periods * 15 points per period
+    int totalPoints = 300;  // 3 periods * 15 points per period
     double step = (6 * M_PI) / (totalPoints - 1);  // Step size
 
-    for (int i = 0; i < totalPoints; ++i) {
+    for (int i = 0; i < totalPoints; ++i)
+    {
         double x = i * step;  // Calculate x value
-        double y = std::sin(x);  // Calculate y value (sine of x)
+        double y = std::sin(x)*10;  // Calculate y value (sine of x)
         sineWave.append(y);  // Append y to QVector
     }
 
