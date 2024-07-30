@@ -84,6 +84,8 @@ private:
     const int textWidth = 30; ///< Width of the text labels.
     const int textHeight = 10; ///< Height of the text labels.
     const int xLabelDensity = 1; ///< Density of the x-axis labels.
+    const int yLabelDensity = 1; ///< Density of the y-axis labels.
+
 
     const int marginLeft = 40; ///< Left margin of the graph.
     const int marginTop = 50; ///< Top margin of the graph.
@@ -92,7 +94,12 @@ private:
     const int textRectPadding = 5; ///< Padding inside the text rectangles.
     const int textRectRadius = 2; ///< Radius for the rounded corners of the text rectangles.
 
-    int visibleRange = 10; ///< Range of visible data points.
+    int visibleRange_X = 10; ///< Range of visible X data points.
+    int visibleRange_Y = 10; ///< Range of visible Y data points.
+    int yAxisCurrentMax;
+    int yAxisCurrentMin;
+
+
     const int pointRadius = 2; ///< Radius of the data points.
     const int minDisplayedSteps = 2; ///< Minimum number of displayed steps.
 
@@ -103,8 +110,13 @@ private:
     const QColor graphColor = Qt::red; ///< Color of the graph line.
     const QColor rectBorderColor = Qt::white; ///< Color of the border for text rectangles.
 
-    int currentOffset = 0; ///< Current offset of the graph.
-    double stepPixelNb = 60.f; ///< Number of pixels per step.
+    int offset_X = 0;   ///< Current offset of the graph.
+    int offset_Y = 0;   ///< Current offset of the graph
+
+    int Y_dataRange;
+
+    double stepPixelNb_X = 60.f; ///< Number of pixels per step.
+    double stepPixelNb_Y = 30.f; ///< Number of pixels per step.
 
     enum e_initType
     {
@@ -171,7 +183,7 @@ private:
     /**
      * @brief Calculates the number of pixels per step.
      */
-    void calculateStepPixelNb();
+    void calculatePixelPerStep();
 
     /**
      * @brief Draws text on the graph.
@@ -217,16 +229,17 @@ private:
 
     QString getTypeString(e_initType type);
 
-
-
-
-
     void drawBoolData(QPainter *painter);
 
     void drawData(QPainter *painter);
 
     double calculatePointHeight(double point);
 
+    void drawXaxis(const QPoint leftPoint, const QPoint rightPoint, QPainter *painter);
+    void drawYaxis(const QPoint topPoint, const QPoint bottomPoint, QPainter *painter);
+
+    int getZeroPxHeight();
+    void getYcurrentMinMax();
 private slots:
     /**
      * @brief Slot to handle the plus button click event.

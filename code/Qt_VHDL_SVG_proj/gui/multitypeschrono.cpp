@@ -87,7 +87,7 @@ void MultiTypesChrono::initGraph()
     slider->setRange(0, 100);
     connect(slider, &QSlider::valueChanged, this, [=](int value)
             {
-                currentOffset = value;
+                offset_X = value;
                 qDebug() << "Slider value changed to " << value;
                 update();
             });
@@ -146,39 +146,9 @@ void MultiTypesChrono::paintEvent(QPaintEvent* event)
     painter.setPen(axisColor);
 
     /*      Draw axes       */
-    // Draw y-axis
-    painter.drawLine(topLeft, bottomLeft);
+    drawYaxis(topLeft, bottomLeft, &painter);
+    drawXaxis(topLeft, bottomLeft, &painter);
 
-
-    // y-axis max value label
-    drawText(painter, QString::number(dataMax), marginLeft - labelOffset, marginTop);
-    // y-axis min value label
-    drawText(painter, QString::number(dataMin), marginLeft - labelOffset, height - marginBottom);
-
-
-    // Draw x-axis
-    painter.drawLine(bottomLeft, bottomRight);
-    // Draw ticks and labels for x-axis
-    int labelInterval = (stepPixelNb < textWidth + 2 * xLabelDensity) ? (textWidth + 2 * xLabelDensity) / stepPixelNb + 1 : 1;
-
-    for (int i = 0; i <= visibleRange; ++i)
-    {
-        int x = marginLeft + static_cast<int>(i * stepPixelNb);
-
-        //Draw tick
-        painter.drawLine(x, height - marginBottom - tickSize/2,
-                         x, height - marginBottom + tickSize);
-
-        // Display x-axis number labels with density depending on the numbers to display
-        if (i % labelInterval == 0)
-        {
-            drawText(
-                painter,
-                QString::number(currentOffset + i),
-                x, height - marginBottom + tickSize + textOffset);
-        }
-    }
-    //////////////////////////
 
     /*      Draw data points stats       */
     // Draw current number of data points
@@ -219,8 +189,8 @@ void MultiTypesChrono::drawBoolData(QPainter *painter)
 {
     if (nbPoints != 0)
     {
-        int startIndex = currentOffset;
-        int endIndex = qMin(startIndex + visibleRange + 1, nbPoints);
+        int startIndex = offset_X;
+        int endIndex = qMin(startIndex + visibleRange_X + 1, nbPoints);
 
         // Draw first point
         double xPrev = marginLeft;
@@ -229,7 +199,7 @@ void MultiTypesChrono::drawBoolData(QPainter *painter)
 
         for (int i = startIndex + 1; i < endIndex; ++i)
         {
-            double x = marginLeft + (i - startIndex) * stepPixelNb;
+            double x = marginLeft + (i - startIndex) * stepPixelNb_X;
             double y = dataPoints[i] ? marginTop : height - marginBottom;
             painter->drawEllipse(QPointF(x, y), pointRadius, pointRadius);
 
@@ -249,7 +219,7 @@ void MultiTypesChrono::drawBoolData(QPainter *painter)
         if (endIndex < nbPoints)
         {
             //Draw horizontal line to show there is more data right
-            painter->drawLine(QPointF(xPrev, yPrev), QPointF(xPrev + stepPixelNb, yPrev));
+            painter->drawLine(QPointF(xPrev, yPrev), QPointF(xPrev + stepPixelNb_X, yPrev));
         }
     }
 }
@@ -258,8 +228,8 @@ void MultiTypesChrono::drawData(QPainter *painter)
 {
     if (nbPoints != 0)
     {
-        int startIndex = currentOffset;
-        int endIndex = qMin(startIndex + visibleRange + 1, nbPoints);
+        int startIndex = offset_X;
+        int endIndex = qMin(startIndex + visibleRange_X + 1, nbPoints);
 
         // Draw first point
         double xPrev = marginLeft;
@@ -270,7 +240,7 @@ void MultiTypesChrono::drawData(QPainter *painter)
 
         for (int i = startIndex + 1; i < endIndex; ++i)
         {
-            double x = marginLeft + (i - startIndex) * stepPixelNb;
+            double x = marginLeft + (i - startIndex) * stepPixelNb_X;
             double y =calculatePointHeight(dataPoints[i]);
 
             //Draw point
@@ -285,7 +255,7 @@ void MultiTypesChrono::drawData(QPainter *painter)
         if (endIndex < nbPoints)
         {
             //Draw horizontal line to show there is more data right
-            painter->drawLine(QPointF(xPrev, yPrev), QPointF(xPrev + stepPixelNb, yPrev));
+            painter->drawLine(QPointF(xPrev, yPrev), QPointF(xPrev + stepPixelNb_X, yPrev));
         }
     }
 }
@@ -293,6 +263,92 @@ void MultiTypesChrono::drawData(QPainter *painter)
 double MultiTypesChrono::calculatePointHeight(double point)
 {
     return (point - dataMin) * (marginTop - (height - marginBottom)) / (dataMax - dataMin) + (height - marginBottom);
+}
+
+int MultiTypesChrono::getZeroPxHeight()
+{
+    int zeroOffset = qAbs(dataMin);
+    return zeroOffset * stepPixelNb_Y + marginBottom;
+}
+
+void MultiTypesChrono::getYcurrentMinMax()
+{
+    Y_dataRange = (dataMin + visibleRange_Y + offset_Y) - (dataMin + offset_Y);
+    yAxisCurrentMin = dataMin + offset_Y;
+    yAxisCurrentMax = yAxisCurrentMin + offset_Y;
+}
+
+void MultiTypesChrono::drawXaxis(const QPoint leftPoint, const QPoint rightPoint, QPainter *painter)
+{
+    int zeroHeight;
+    getYcurrentMinMax();
+    if (yAxisCurrentMax <= 0 && yAxisCurrentMin >= 0)
+    {// 0 in range, display the line
+        zeroHeight = getZeroPxHeight() + marginTop;
+        painter->drawLine(QPoint(marginLeft,zeroHeight), QPoint(width, zeroHeight));
+    }
+    else
+    {// Trace value to the bottom, no axis displayed
+        zeroHeight = leftPoint.y();
+    }
+
+    // Draw ticks and labels for x-axis
+    int labelInterval = (stepPixelNb_X < textWidth + 2 * xLabelDensity) ? (textWidth + 2 * xLabelDensity) / stepPixelNb_X + 1 : 1;
+
+    for (int i = 0; i <= visibleRange_X; ++i)
+    {
+        int x = marginLeft + static_cast<int>(i * stepPixelNb_X);
+
+        //Draw tick
+        painter->drawLine(x, zeroHeight - marginBottom - tickSize/2,
+                         x, zeroHeight - marginBottom + tickSize);
+
+        // Display x-axis number labels with density depending on the numbers to display
+        if (i % labelInterval == 0)
+        {
+            drawText(
+                *painter,
+                QString::number(offset_X + i),
+                x, height - marginBottom + tickSize + textOffset);
+        }
+    }
+}
+
+void MultiTypesChrono::drawYaxis(const QPoint topPoint, const QPoint bottomPoint, QPainter *painter)
+{
+    int yRange = dataMax - dataMin;
+
+    // Draw axis
+    painter->drawLine(topPoint, bottomPoint);
+    // y-axis max value label
+    drawText(*painter, QString::number(dataMax), marginLeft - labelOffset, marginTop);
+    // y-axis min value label
+    drawText(*painter, QString::number(dataMin), marginLeft - labelOffset, height - marginBottom);
+    // Draw ticks
+    double step = static_cast<double>((bottomPoint.y() - topPoint.y())) / static_cast<double>(yRange);
+    int labelInterval = (step < textWidth + 2 * yLabelDensity) ? (textWidth + 2 * yLabelDensity) / step + 1 : 1;
+
+    for (int i = 0; i < yRange; ++i)
+    {
+        int y = bottomPoint.y() - static_cast<int>(i * step);
+
+        //Draw tick
+        painter->drawLine(
+            bottomPoint.x() - tickSize,     y,
+            bottomPoint.x() + tickSize/2,   y
+            );
+
+        // Draw y-axis number labels with density depending on the numbers to display
+        if (i % labelInterval == 0)
+        {
+            drawText(
+                *painter,
+                QString::number(dataMin + i),
+                bottomPoint.x() - tickSize - textOffset, y
+            );
+        }
+    }
+
 }
 
 
@@ -352,24 +408,24 @@ void MultiTypesChrono::drawTextInBox(QPainter& painter, const QString& text, int
 
 void MultiTypesChrono::calculateVisibleRange()
 {
-    this->visibleRange = (QWidget::width() - marginLeft) / stepPixelNb;
-
-    qDebug() << "Range changed to: " << this->visibleRange;
+    this->visibleRange_X = (QWidget::width() - marginLeft) / stepPixelNb_X;
+    qDebug() << "Range changed to: " << this->visibleRange_X;
 }
 
-void MultiTypesChrono::calculateStepPixelNb()
+void MultiTypesChrono::calculatePixelPerStep()
 {
-    stepPixelNb = static_cast<double>((QWidget::width() - marginLeft)) / static_cast<double>(visibleRange);
+    stepPixelNb_X = static_cast<double>((QWidget::width() - marginLeft)) / static_cast<double>(visibleRange_X);
+    stepPixelNb_Y = static_cast<double>((QWidget::height() - marginTop - marginBottom)) / static_cast<double>(visibleRange_Y);
 }
 
 void MultiTypesChrono::updateSliderRange()
 {
-    calculateStepPixelNb();
-    if (dataPoints.size() > visibleRange)
+    calculatePixelPerStep();
+    if (dataPoints.size() > visibleRange_X)
     {
         slider->setVisible(true);
-        slider->setRange(0, dataPoints.size() - visibleRange);
-        slider->setValue(currentOffset);
+        slider->setRange(0, dataPoints.size() - visibleRange_X);
+        slider->setValue(offset_X);
     }
     else
     {
@@ -380,10 +436,10 @@ void MultiTypesChrono::updateSliderRange()
 
 void MultiTypesChrono::handlePlusButton()
 {
-    if (visibleRange < dataPoints.size() - 1)
+    if (visibleRange_X < dataPoints.size() - 1)
     {
-        visibleRange++;
-        calculateStepPixelNb();
+        visibleRange_X++;
+        calculatePixelPerStep();
         updateSliderRange();
         update();
     }
@@ -391,10 +447,10 @@ void MultiTypesChrono::handlePlusButton()
 
 void MultiTypesChrono::handleMinusButton()
 {
-    if (visibleRange > minDisplayedSteps)
+    if (visibleRange_X > minDisplayedSteps)
     {
-        visibleRange--;
-        calculateStepPixelNb();
+        visibleRange_X--;
+        calculatePixelPerStep();
         updateSliderRange();
         update();
     }
@@ -404,8 +460,8 @@ void MultiTypesChrono::handleFitButton()
 {
     if (dataPoints.size() > 2)
     {
-        visibleRange = dataPoints.size();
-        calculateStepPixelNb();
+        visibleRange_X = dataPoints.size();
+        calculatePixelPerStep();
         updateSliderRange();
         update();
     }
@@ -425,16 +481,16 @@ void MultiTypesChrono::showPopupAtCursor(QPoint cursorPos)
     int x = cursorPos.x();
     int y = cursorPos.y();
 
-    for (int i = 0; i <= visibleRange-1; ++i)
+    for (int i = 0; i <= visibleRange_X-1; ++i)
     {
-        int pointX = marginLeft + static_cast<int>(i * stepPixelNb);
-        int pointY = dataPoints[currentOffset + i] ? marginTop : height - marginBottom;
+        int pointX = marginLeft + static_cast<int>(i * stepPixelNb_X);
+        int pointY = dataPoints[offset_X + i] ? marginTop : height - marginBottom;
 
         if (qAbs(pointX - x) < popupDisplayRadius && qAbs(pointY - y) < popupDisplayRadius)
         {
             QString coords = QString("step: %1, val: %2")
-                                 .arg(currentOffset + i)
-                                 .arg(dataPoints[currentOffset + i]);
+                                 .arg(offset_X + i)
+                                 .arg(dataPoints[offset_X + i]);
             popupLabel->setText(coords);
             popupLabel->move(x + 10, y + 10);
             popupLabel->setVisible(true);
@@ -447,7 +503,7 @@ void MultiTypesChrono::showPopupAtCursor(QPoint cursorPos)
 
 int MultiTypesChrono::getStepFromX(int x)
 {
-    int closest_step = ((x - marginLeft + stepPixelNb / 2) / stepPixelNb) + currentOffset;
+    int closest_step = ((x - marginLeft + stepPixelNb_X / 2) / stepPixelNb_X) + offset_X;
 
     if (closest_step < 0)
         closest_step = 0;
@@ -496,20 +552,20 @@ void MultiTypesChrono::mouseMoveEvent(QMouseEvent *event)
         if (isFirstRightClick == false)
         {
             isFirstRightClick = true;
-            savedOffset = currentOffset;
+            savedOffset = offset_X;
         }
 
         int range = rightClickStartPoint.x() - event->pos().x();
-        int newPosition = savedOffset + static_cast<int>(range / stepPixelNb);
+        int newPosition = savedOffset + static_cast<int>(range / stepPixelNb_X);
 
         if (newPosition < 0)
             newPosition = 0;
-        if (newPosition + visibleRange > dataPoints.size())
-            newPosition = dataPoints.size() - visibleRange;
+        if (newPosition + visibleRange_X > dataPoints.size())
+            newPosition = dataPoints.size() - visibleRange_X;
 
         qDebug() << "Right dragging to " << newPosition;
 
-        currentOffset = newPosition;
+        offset_X = newPosition;
         updateSliderRange();
         update();
     }
@@ -533,8 +589,8 @@ void MultiTypesChrono::mouseReleaseEvent(QMouseEvent *event)
 
         qDebug() << "Drag start: " << newStartIndex << " End: " << newEndIndex;
 
-        int startStepIndex = (newStartIndex / stepPixelNb);
-        int endStepIndex   = (newEndIndex / stepPixelNb) + 1; //+1 to show have a bigger viewing window
+        int startStepIndex = (newStartIndex / stepPixelNb_X);
+        int endStepIndex   = (newEndIndex / stepPixelNb_X) + 1; //+1 to show have a bigger viewing window
 
         if (startStepIndex < 0)
             startStepIndex = 0;
@@ -546,9 +602,9 @@ void MultiTypesChrono::mouseReleaseEvent(QMouseEvent *event)
 
         if (stepsToDisplay >= minDisplayedSteps)            // Drag width is at least 2 steps
         {
-            visibleRange = stepsToDisplay;
-            currentOffset = startStepIndex;
-            calculateStepPixelNb();
+            visibleRange_X = stepsToDisplay;
+            offset_X = startStepIndex;
+            calculatePixelPerStep();
             updateSliderRange();
             update();
         }
@@ -594,8 +650,8 @@ void MultiTypesChrono::getMinMaxSize()
     }
     else
     {
-        dataMax = getMax(dataPoints);
-        dataMin = getMin(dataPoints);
+        dataMax = qCeil(getMax(dataPoints));
+        dataMin = qFloor(getMin(dataPoints));
     }
     nbPoints = dataPoints.size();
 }
