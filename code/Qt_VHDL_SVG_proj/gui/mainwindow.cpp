@@ -63,6 +63,25 @@ MainWindow::MainWindow(QWidget *parent) :
     }
 
     ///////////////////////////////////
+    ///    ///////////////////////////////////
+    QVector<double> triWave;
+    totalPoints = 300;
+    int period = 30;
+    double amplitude = 15.f;
+    double phase = 0.15f;
+
+
+    triWave.reserve(totalPoints);  // Pre-allocate memory for efficiency
+
+    double periodFactor = 2.0 * M_PI / period;  // Convert period to radians
+    for (int i = 0; i < totalPoints; ++i)
+    {
+        double x = (i + phase) * periodFactor;
+        double y = amplitude * (2.0 * fabs(fmod(x / M_PI, 2.0) - 1.0) - 1.0);  // Triangle wave formula
+        triWave.append(y);  // Append y to QVector
+    }
+
+    ///////////////////////////////////
     QVector<int> test;
     for (int var = 0; var < 10; ++var)
     {
@@ -70,7 +89,11 @@ MainWindow::MainWindow(QWidget *parent) :
     }
     //Debug, should be dynamically added whith simulation result
     chronoWidget = new MultiTypesChrono(sineWave);
-    ui->tabWidget->addTab(chronoWidget, "Chronogram");
+    ui->tabWidget->addTab(chronoWidget, "Sinus");
+
+    MultiTypesChrono *chronoWidget2 = new MultiTypesChrono(triWave);
+    ui->tabWidget->addTab(chronoWidget2, "Triangle");
+
 
     //Setup the svg file close button
     connect(ui->closeFile, &QPushButton::clicked, this, &MainWindow::closeSvg);

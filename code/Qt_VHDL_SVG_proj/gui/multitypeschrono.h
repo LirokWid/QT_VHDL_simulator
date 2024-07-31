@@ -129,7 +129,8 @@ private:
 
     e_initType initType;
 
-    QSlider *slider; ///< Slider for navigating through the data points.
+    QSlider *slider_X; ///< Slider for navigating through the data points.
+    QSlider *slider_Y; ///< Slider for navigating through the data points.
     QVBoxLayout *Vlayout; ///< Vertical layout for the widget.
 
     //To store the data points
@@ -143,10 +144,37 @@ private:
     int height;
     int width;
 
-    QPushButton *plusButton; ///< Button to increase the visible range.
-    QPushButton *minusButton; ///< Button to decrease the visible range.
-    QPushButton *fitButton; ///< Button to fit the graph to the data points.
-    QHBoxLayout *buttonLayout; ///< Horizontal layout for the buttons.    
+    QPushButton *plusButton_X;  ///< Button to increase the visible range.
+    QPushButton *minusButton_X; ///< Button to decrease the visible range.
+    QPushButton *fitButton_X;   ///< Button to fit the graph to the data points.
+
+    QPushButton *plusButton_Y;  ///< Button to increase the visible range.
+    QPushButton *minusButton_Y; ///< Button to decrease the visible range.
+    QPushButton *fitButton_Y;   ///< Button to fit the graph to the data points.
+
+    QHBoxLayout *buttonLayout_X; ///< Horizontal layout for the buttons.
+    QVBoxLayout *buttonLayout_Y; ///< Horizontal layout for the buttons.
+
+    QString buttonStyle = R"(
+    QPushButton {
+        background-color:#ededed;
+        border-radius:5px;
+        border:1px solid #000000;
+        color:#222222;
+        font-family:Arial;
+        font-size:15px;
+        font-weight:bold;
+        padding:3px 6px;
+        text-decoration:none;
+    }
+    QPushButton:hover {
+        background-color:#bababa;
+    }
+    QPushButton:active {
+        position:relative;
+        top:1px;
+    }
+    )"; ///< Style
     QLabel *popupLabel;
 
     bool isDragging = false; ///< Flag indicating if the graph is being dragged.
@@ -167,7 +195,7 @@ private:
     /**
      * @brief Updates the range of the slider based on the data points.
      */
-    void updateSliderRange();
+    void updateSliderRanges();
 
     /**
      * @brief Calculates the visible range of the graph.
@@ -242,19 +270,34 @@ private:
     void getYcurrentMinMax();
 private slots:
     /**
-     * @brief Slot to handle the plus button click event.
+     * @brief Slot to handle the slider value change event.
      */
-    void handlePlusButton();
+    void handlePlusButton_X();
 
     /**
      * @brief Slot to handle the minus button click event.
      */
-    void handleMinusButton();
+    void handleMinusButton_X();
 
     /**
      * @brief Slot to handle the fit button click event.
      */
-    void handleFitButton();
+    void handleFitButton_X();
+
+    /**
+     * @brief Slot to handle the plus button click event.
+     */
+    void handlePlusButton_Y();
+
+    /**
+     * @brief Slot to handle the minus button click event.
+     */
+    void handleMinusButton_Y();
+
+    /**
+     * @brief Slot to handle the fit button click event.
+     */
+    void handleFitButton_Y();
 };
 
 #endif // MULTITYPESCHRONO_H
