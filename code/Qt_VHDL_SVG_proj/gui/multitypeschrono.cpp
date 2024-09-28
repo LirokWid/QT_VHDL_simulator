@@ -1,34 +1,47 @@
+#include "debugwindow.h"
 #include "multitypeschrono.h"
 #include <QVBoxLayout>
 #include <QSlider>
 #include <QPainter>
 #include <QPushButton>
 
-//@todo Add y axis steps if needed
-//add 0 line if needed
-// correct the popup value visibility
 
-template <typename T>
-QVector<double> convertToDoubleVector(const QVector<T>& inputVector)
+// Constructors for single values
+MultiTypesChrono::MultiTypesChrono(bool startValue, QWidget *parent)
+    : QWidget(parent)
 {
-    QVector<double> doubleVector;
-    doubleVector.reserve(inputVector.size()); // Reserve space to avoid multiple allocations
-
-    for (const T& value : inputVector)
-    {
-        if constexpr (std::is_arithmetic_v<T>)
-        {
-            doubleVector.append(static_cast<double>(value));
-        }
-        else
-        {
-            qDebug() << "Type cannot be converted to double.";
-        }
-    }
-
-    return doubleVector;
+    initType = BOOL;
+    dataPoints.append(static_cast<double>(startValue)); // Convert to double
+    getMinMaxSize();
+    initGraph();
 }
 
+MultiTypesChrono::MultiTypesChrono(int startValue, QWidget *parent)
+    : QWidget(parent)
+{
+    initType = INT;
+    dataPoints.append(static_cast<double>(startValue)); // Convert to double
+    getMinMaxSize();
+    initGraph();
+}
+
+MultiTypesChrono::MultiTypesChrono(float startValue, QWidget *parent)
+    : QWidget(parent)
+{
+    initType = FLOAT;
+    dataPoints.append(static_cast<double>(startValue)); // Convert to double
+    getMinMaxSize();
+    initGraph();
+}
+
+MultiTypesChrono::MultiTypesChrono(double startValue, QWidget *parent)
+    : QWidget(parent)
+{
+    initType = DOUBLE;
+    dataPoints.append(startValue); // Directly append double value
+    getMinMaxSize();
+    initGraph();
+}
 
 MultiTypesChrono::MultiTypesChrono(QVector<bool> startList, QWidget *parent)
     : QWidget(parent)
@@ -74,13 +87,14 @@ MultiTypesChrono::MultiTypesChrono(QVector<double> startList, QWidget *parent)
     initGraph();
 }
 
+
 void MultiTypesChrono::initGraph()
 {
     setMinimumSize(800, 200);
     setAutoFillBackground(true);
 
     QPalette palette = this->palette();
-    palette.setColor(QPalette::Window, backgrounColor);
+    palette.setColor(QPalette::Window, backgroundColor);
     this->setPalette(palette);
 
     slider = new QSlider(Qt::Horizontal, this);
@@ -111,9 +125,10 @@ void MultiTypesChrono::initGraph()
     buttonLayout->addWidget(fitButton);
     buttonLayout->addStretch(1);
 
-    // Popup displaying point information
+    // Popup displaying points information
     popupLabel = new QLabel(this);
     popupLabel->setStyleSheet("QLabel { background-color: rgba(255, 255, 255, 180); border: 2px solid black; padding: 3px; border-radius: 3px; }");
+    popupLabel->setFixedHeight(40);
     popupLabel->setVisible(false);
 
     Vlayout = new QVBoxLayout(this);
@@ -147,6 +162,7 @@ void MultiTypesChrono::paintEvent(QPaintEvent* event)
 
     /*      Draw axes       */
     drawYaxis(topLeft, bottomLeft, &painter);
+
     drawXaxis(topLeft, bottomLeft, &painter);
 
 
@@ -170,7 +186,6 @@ void MultiTypesChrono::paintEvent(QPaintEvent* event)
     {
         drawData(&painter);
     }
-
 
     // Draw the zoom rectangle if zoom-dragging
     if (isDragging)
@@ -233,15 +248,14 @@ void MultiTypesChrono::drawData(QPainter *painter)
 
         // Draw first point
         double xPrev = marginLeft;
-        double yPrev = calculatePointHeight(dataPoints[startIndex]);
+        double yPrev = pointHeightForValue(dataPoints[startIndex]);
 
-        //double yPrev = dataPoints[startIndex] ? marginTop : height - marginBottom;
         painter->drawEllipse(QPointF(xPrev, yPrev), pointRadius, pointRadius);
 
         for (int i = startIndex + 1; i < endIndex; ++i)
         {
             double x = marginLeft + (i - startIndex) * stepPixelNb_X;
-            double y =calculatePointHeight(dataPoints[i]);
+            double y = pointHeightForValue(dataPoints[i]);
 
             //Draw point
             painter->drawEllipse(QPointF(x, y), pointRadius, pointRadius);
@@ -260,7 +274,7 @@ void MultiTypesChrono::drawData(QPainter *painter)
     }
 }
 
-double MultiTypesChrono::calculatePointHeight(double point)
+double MultiTypesChrono::pointHeightForValue(double point)
 {
     return (point - dataMin) * (marginTop - (height - marginBottom)) / (dataMax - dataMin) + (height - marginBottom);
 }
@@ -280,36 +294,69 @@ void MultiTypesChrono::getYcurrentMinMax()
 
 void MultiTypesChrono::drawXaxis(const QPoint leftPoint, const QPoint rightPoint, QPainter *painter)
 {
-    int zeroHeight;
+    enum e_xAxisHeight
+    {
+        TOP,
+        MIDDLE,
+        BOTTOM
+    };
+    e_xAxisHeight axis;
+
+    int zeroHeight = pointHeightForValue(0);
     getYcurrentMinMax();
-    if (yAxisCurrentMax <= 0 && yAxisCurrentMin >= 0)
-    {// 0 in range, display the line
-        zeroHeight = getZeroPxHeight() + marginTop;
-        painter->drawLine(QPoint(marginLeft,zeroHeight), QPoint(width, zeroHeight));
+
+    if ((dataMin <= 0) && (dataMax >= 0))
+    {
+        axis = MIDDLE;
+    }
+    else if (dataMin <= 0)
+    {
+        axis = TOP;
     }
     else
-    {// Trace value to the bottom, no axis displayed
-        zeroHeight = leftPoint.y();
+    {
+        axis = BOTTOM;
     }
+
+    if(axis == MIDDLE)
+    {
+        painter->drawLine(QPoint(marginLeft-textOffset, zeroHeight), QPoint(width, zeroHeight));
+    }
+
 
     // Draw ticks and labels for x-axis
     int labelInterval = (stepPixelNb_X < textWidth + 2 * xLabelDensity) ? (textWidth + 2 * xLabelDensity) / stepPixelNb_X + 1 : 1;
 
-    for (int i = 0; i <= visibleRange_X; ++i)
+    for (int i = 1; i <= visibleRange_X; ++i) //Do not draw the first value on the y axis
     {
         int x = marginLeft + static_cast<int>(i * stepPixelNb_X);
-
-        //Draw tick
-        painter->drawLine(x, zeroHeight - marginBottom - tickSize/2,
-                         x, zeroHeight - marginBottom + tickSize);
-
-        // Display x-axis number labels with density depending on the numbers to display
+        // Display x-axis numbers and ticks with density depending on the numbers to display
         if (i % labelInterval == 0)
-        {
-            drawText(
-                *painter,
-                QString::number(offset_X + i),
-                x, height - marginBottom + tickSize + textOffset);
+        { 
+            if (axis == MIDDLE)
+            {
+                //Draw ticks on the x axis
+                painter->drawLine(x, zeroHeight - tickSize,
+                                  x, zeroHeight + tickSize);
+                drawText(
+                    *painter,
+                    QString::number(offset_X + i),
+                    x, zeroHeight + tickSize + textOffset);
+            }
+            if (axis == TOP)
+            {
+                drawText(
+                    *painter,
+                    QString::number(offset_X + i),
+                    x, marginTop - tickSize - textOffset);
+            }
+            if (axis == BOTTOM)
+            {
+                drawText(
+                    *painter,
+                    QString::number(offset_X + i),
+                    x, height - marginBottom + tickSize + textOffset);
+            }
         }
     }
 }
@@ -332,15 +379,14 @@ void MultiTypesChrono::drawYaxis(const QPoint topPoint, const QPoint bottomPoint
     {
         int y = bottomPoint.y() - static_cast<int>(i * step);
 
-        //Draw tick
-        painter->drawLine(
-            bottomPoint.x() - tickSize,     y,
-            bottomPoint.x() + tickSize/2,   y
-            );
-
         // Draw y-axis number labels with density depending on the numbers to display
         if (i % labelInterval == 0)
         {
+            //Draw tick
+            painter->drawLine(
+                bottomPoint.x() - tickSize,     y,
+                bottomPoint.x() + tickSize/2,   y
+                );
             drawText(
                 *painter,
                 QString::number(dataMin + i),
@@ -348,15 +394,6 @@ void MultiTypesChrono::drawYaxis(const QPoint topPoint, const QPoint bottomPoint
             );
         }
     }
-
-}
-
-
-void MultiTypesChrono::addPoint(double point)
-{
-    dataPoints.append(point);
-    updateSliderRange();
-    update();
 }
 
 
@@ -484,15 +521,22 @@ void MultiTypesChrono::showPopupAtCursor(QPoint cursorPos)
     for (int i = 0; i <= visibleRange_X-1; ++i)
     {
         int pointX = marginLeft + static_cast<int>(i * stepPixelNb_X);
-        int pointY = dataPoints[offset_X + i] ? marginTop : height - marginBottom;
+        int pointY;
+        if(initType == BOOL)
+        {
+            pointY = dataPoints[offset_X + i] ? marginTop : height - marginBottom;
+        }else{
+            pointY = pointHeightForValue(dataPoints[offset_X + i]);
+        }
 
         if (qAbs(pointX - x) < popupDisplayRadius && qAbs(pointY - y) < popupDisplayRadius)
-        {
-            QString coords = QString("step: %1, val: %2")
+        {// Display if in display radius
+            QString coords = QString("step: %1\nval: %2")
                                  .arg(offset_X + i)
                                  .arg(dataPoints[offset_X + i]);
             popupLabel->setText(coords);
             popupLabel->move(x + 10, y + 10);
+            popupLabel->setStyleSheet("QLabel { background-color: rgba(255, 255, 255, 180); border: 2px solid black; padding: 3px; border-radius: 3px; }");
             popupLabel->setVisible(true);
             return;
         }
@@ -625,6 +669,11 @@ void MultiTypesChrono::leaveEvent(QEvent *event)
 {
     QWidget::leaveEvent(event);
     popupLabel->setVisible(false);
+}
+
+MultiTypesChrono::e_initType MultiTypesChrono::getDataType() const
+{
+    return initType;
 }
 
 
