@@ -43,7 +43,7 @@
 /**
  * @brief The SvgParser class
  *
- * This class parses an SVG file and extracts electrical links from Qt_attr attributes of SVG elements.
+ * This class parses an SVG file and extracts electrical links from attributes of SVG elements.
  */
 class SvgParser
 {
@@ -133,32 +133,44 @@ private:
     DebugWindow *debug;
 
     QString log_buffer; ///< Buffer for log messages.
-    /**
-     * @brief Get the attribute name for a given type.
-     * @param type The type of the attribute.
-     * @return The attribute name.
-     */
-    QString attr(e_types type);
 
     /**
-     * @brief Get the attribute name for a given string.
-     * @param attr The attribute string.
-     * @return The attribute name.
+     * @brief Gets the custom attribute name for a specific component type.
+     *
+     * Returns the attribute name corresponding to the provided component type.
+     *
+     * @param type The type of the component.
+     * @return The custom attribute name for the given component type.
+     */
+    QString attr(e_types type);
+    
+    /**
+     * @brief Constructs a custom attribute name.
+     *
+     * Generates a custom attribute name by prepending a defined namespace to the input string.
+     *
+     * @param attr The input attribute name.
+     * @return The full custom attribute name.
      */
     QString attr_name_for_str(QString attr);
 
     /**
-     * @brief parse one group element containing a component.
-     * @param svg_group_xml
-     * @param element_io
+     * @brief
+     * Parses a single SVG element and extracts information related to the device type, name, label,
+     * inputs, and outputs. Adds the parsed element to the provided list of elements.
+     *
+     * @param svg_group_xml The QDomElement representing the SVG element to be parsed.
+     * @param elements Reference to the structure where parsed elements will be stored.
      */
     void parse_one_element(const QDomElement svg_group_xml, s_elements &elements);
 
     /**
-     * @brief Parse an element from an xml group tag:
+     * @brief Parses an individual element in the SVG file.
+     *
+     * Processes a specific element in the SVG file to extract its attributes and component information.
      * It can ether parse a <svg> or a <g> tag.
      *
-     * @param node The tree node to parse.
+     * @param node The tree node corresponding to the element being parsed.
      */
     void parse_element(s_tree_node &node);
 
@@ -170,88 +182,121 @@ private:
 
     /**
      * @brief Parse SVG file.
+     * Opens the SVG file and processes its content, parsing the file into groups and building a tree structure of the elements.
      * @param svg_file The SVG file to parse.
      */
     void parse_svg(QString svg_file);
 
     /**
-     * @brief Parse by group.
-     * @param node The XML node to parse.
-     * @param parentNode The parent node.
-     * @param level The level of the node in the tree.
+     * @brief Recursively parses the SVG document by group.
+     *
+     * Finds all group (<g>) elements in the SVG file, storing them in a tree structure.
+     *
+     * @param node The current XML node being processed.
+     * @param parentNode The parent node in the tree structure.
+     * @param level The depth level of the current node in the tree.
      */
     void parse_by_group(const QDomNode &node, s_tree_node &parentNode, int level);
 
     /**
-     * @brief Get group header.
-     * @param element The XML element.
-     * @param info The node information.
+     * @brief Extracts group header information from a DOM element.
+     *
+     * Parses a group element (<g>) in the SVG file to retrieve its attributes (e.g., device type, width).
+     *
+     * @param element The current DOM element being processed.
+     * @param infos The structure to store the extracted information.
      */
     void get_group_header(const QDomElement &element, s_tree_node_info &info);
 
     /**
-     * @brief Generate tree.
-     * @param node The tree node.
-     * @param prefix The prefix for formatting.
+     * @brief Generates a tree structure from parsed SVG groups.
+     *
+     * Outputs a visual representation of the tree structure of SVG elements, including their tag names and IDs.
+     *
+     * @param node The current node in the tree structure.
+     * @param prefix The prefix used to format the tree structure display.
      */
     void generate_tree(const s_tree_node &node, const QString &prefix);
 
     /**
-     * @brief Print tree in log.
-     * @param log_buffer The log buffer.
+     * @brief Prints the generated tree structure to the log.
+     * Outputs the parsed tree structure of SVG elements to the log window.
+     *
+     * @param buffer The accumulated log content representing the SVG groups tree.
      */
     void print_tree_in_log(QString log_buffer);
 
     /**
-     * @brief Parse links.
-     * @param node The tree node.
+     * @brief Parses the components of the SVG file.
+     * Recursively processes the tree nodes and extracts component information from each element.
+     *
+     * @param node The current node in the tree structure being parsed.
      */
     void parse_components(s_tree_node &node);
 
     /**
      * @brief Parse simulation IO.
-     * @param svg_group_xml The SVG group XML.
-     * @param parsed_IOs The parsed IOs.
+     * Parses simulation inputs and outputs (IOs) from the given SVG element. Adds the parsed IOs
+     * to the provided list, distinguishing between inputs and outputs based on the attributes in the XML.
+     *
+     * @param svg_group_xml The QDomElement representing the SVG element that contains simulation IOs.
+     * @param parsed_IOs Reference to the structure where parsed IOs will be stored.
      */
     void parse_simulation_IOs(const QDomElement svg_group_xml, s_sim_I_Os &parsed_IOs);
 
     /**
-     * @brief Get a list of outputs name, width for sim:outputs attributes
-     * @param outputs_string
-     * @param out_struct
-     * @return Number of outputs found if success, -1 if error
+     * @brief Parse outputs from string
+     * Parses a list of output names and their corresponding widths from a string formatted as
+     * 'name:width,name:width'. Adds the parsed outputs to the provided list.
+     *
+     * @param outputs_string A QString containing the outputs in 'name:width' format.
+     * @param outputs_list Reference to the list where parsed outputs will be stored.
+     * @return The number of outputs parsed, or an error code if the format is invalid.
      */
     int get_list_of_outputs_name_and_width(QString outputs_string, QList<s_element_io> &outputs_list);
 
     /**
-     * @brief Get a list of outputs name, width for sim:outputs attributes
-     * @param outputs_string
-     * @param out_struct
-     * @return Number of outputs found if success, -1 if error
+     * @brief Parse inputs from string
+     * Parses a list of input names, their corresponding widths, and connected components from
+     * a string formatted as 'name:width:connected_to,name:width:connected_to'. Adds the parsed inputs to the provided list.
+     *
+     * @param inputs_string A QString containing the inputs in 'name:width:connected_to' format.
+     * @param inputs_list Reference to the list where parsed inputs will be stored.
+     * @return The number of inputs parsed, or an error code if the format is invalid.
      */
     int get_list_of_inputs_name_and_width(QString outputs_string, QList<s_element_io> &inputs_list);
     
     /**
      * @brief Get attribute value if it exist
-     * @param xml The XML element to check
-     * @param str_to_get The string to get fron the attribute
-     * @param attr_name The attribute name
+     * Checks if the specified XML element contains the given attribute and, if found, retrieves
+     * the attribute's value.
+     *
+     * @param xml The QDomElement to check.
+     * @param str_to_get Reference to the QString where the attribute value will be stored.
+     * @param attr_name The name of the attribute to check for.
+     * @return True if the attribute is found, false otherwise.
      */
     bool check_and_get_attr(const QDomElement &xml, QString &str_to_get, QString attr_name);
 
     /**
      * @brief Parse simulation wires.
-     * @param svg_group_xml The SVG group XML.
-     * @param parsed_wires The parsed wires.
+     * Parses the wires in the simulation from the given SVG element, extracting connection and name
+     * information. Adds the parsed wires to the provided structure.
+     *
+     * @param svg_group_xml The QDomElement representing the SVG element that contains simulation wires.
+     * @param parsed_wires Reference to the structure where parsed wires will be stored.
      */
     void parse_simulation_wires(const QDomElement svg_group_xml, s_sim_wires &parsed_wires);
 
     /**
      * @brief Find elements with attribute.
-     * @param elem_to_look_into The element to search into.
-     * @param attr_name The attribute name.
-     * @param attr_value The attribute value.
-     * @param found_elements The list of found elements.
+     * Searches the given XML element for child elements that contain a specific attribute with a
+     * matching value. Adds any matching elements to the provided list.
+     *
+     * @param elem_to_look_into The QDomElement to search within.
+     * @param attr_name The name of the attribute to match.
+     * @param attr_value The value of the attribute to match.
+     * @param found_elements Reference to the list where found elements will be stored.
      */
     void list_matching_attr_with_value(
         const QDomElement elem_to_look_into,
@@ -261,29 +306,38 @@ private:
 
     /**
      * @brief Attach an error message to a structure.
-     * @param sim_IO The simulation IO structure.
-     * @param errorMessage The error message.
+     * Adds an error message to the given error structure. Marks the structure as having a parse error.
+     *
+     * @param error The structure where the error message will be added.
+     * @param errorMessage The error message to be added.
      */
     void add_error_message(s_parse_error &error, const QString &errorMessage);
 
     /**
-     * @brief list_matching_attr
-     * @param elem_to_look_into
-     * @param attr_name
-     * @param found_elements
-     * @return number of elements found
+     * @brief list matching attribute
+     * Searches the given XML element for child elements that contain a specific attribute. Adds
+     * any matching elements to the provided list.
+     *
+     * @param elem_to_look_into The QDomElement to search within.
+     * @param attr_name The name of the attribute to match.
+     * @param found_elements Reference to the list where found elements will be stored.
+     * @return The number of matching elements found.
      */
     int list_matching_attr(const QDomElement elem_to_look_into, const QString attr_name, QList<QDomElement> &found_elements);
 
 public:
     /**
-     * @brief SvgParser constructor.
-     * @param svg_file The file path of the SVG file to parse.
+     * @brief Constructor for SvgParser class
+     * Initializes the parsing process by loading the SVG file, generating a tree structure,
+     * and extracting component information.
+     *
+     * @param svg_file The path to the SVG file to be parsed.
      */
     SvgParser(QString svg_file);
 
     /**
      * @brief SvgParser destructor.
+     * Cleans up resources used by the parser.
      */
     ~SvgParser();
 

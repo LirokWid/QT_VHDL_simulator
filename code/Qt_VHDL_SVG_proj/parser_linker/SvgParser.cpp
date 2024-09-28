@@ -256,7 +256,7 @@ void SvgParser::parse_element(s_tree_node &node)
         // We should only have one svg element
         if (parsed_data->has_been_parsed)
         {
-            debug->addError("Main element tried parsing again");
+            debug->addError("Main element parsed again");
             return;
         }
 
