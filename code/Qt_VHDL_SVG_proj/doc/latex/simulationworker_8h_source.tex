@@ -1,0 +1,50 @@
+\doxysection{simulationworker.\+h}
+\hypertarget{simulationworker_8h_source}{}\label{simulationworker_8h_source}\index{S:/code/QT\_VHDL\_simulator/code/Qt\_VHDL\_SVG\_proj/simulation/simulationworker.h@{S:/code/QT\_VHDL\_simulator/code/Qt\_VHDL\_SVG\_proj/simulation/simulationworker.h}}
+\mbox{\hyperlink{simulationworker_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#ifndef\ SIMULATIONWORKER\_H}}
+\DoxyCodeLine{00002\ \textcolor{preprocessor}{\#define\ SIMULATIONWORKER\_H}}
+\DoxyCodeLine{00003\ }
+\DoxyCodeLine{00004\ \textcolor{preprocessor}{\#include\ <QObject>}}
+\DoxyCodeLine{00005\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_components_struct_8h}{ComponentsStruct.h}}"{}}}
+\DoxyCodeLine{00006\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_svg_parse_manager_8h}{SvgParseManager.h}}"{}}}
+\DoxyCodeLine{00007\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{simulationstate_8h}{simulationstate.h}}"{}}}
+\DoxyCodeLine{00008\ }
+\DoxyCodeLine{00009\ }
+\DoxyCodeLine{00010\ \textcolor{keyword}{class\ }\mbox{\hyperlink{class_simulation_worker}{SimulationWorker}}\ :\ \textcolor{keyword}{public}\ QObject\ \{}
+\DoxyCodeLine{00011\ \ \ \ \ Q\_OBJECT}
+\DoxyCodeLine{00012\ }
+\DoxyCodeLine{00013\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00014\ \ \ \ \ \textcolor{keyword}{explicit}\ \mbox{\hyperlink{class_simulation_worker}{SimulationWorker}}(QObject\ *parent\ =\ \textcolor{keyword}{nullptr});}
+\DoxyCodeLine{00015\ }
+\DoxyCodeLine{00016\ \ \ \ \ \textcolor{keyword}{enum\ class}\ \mbox{\hyperlink{class_simulation_worker_a718e975b12aed4781d29cfde913d39e0}{WorkType}}\ \{}
+\DoxyCodeLine{00017\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_simulation_worker_a718e975b12aed4781d29cfde913d39e0a58c0a0e97e6d2f615bc264c2775fda44}{LINK}},}
+\DoxyCodeLine{00018\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_simulation_worker_a718e975b12aed4781d29cfde913d39e0a2d76c2c2373adde3dfb950eb5ca53eea}{SIMULATE}}}
+\DoxyCodeLine{00019\ \ \ \ \ \};}
+\DoxyCodeLine{00020\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_simulation_worker_aaf40ac711f39ccaf437faa8ce6ce5215}{doWork}}(\mbox{\hyperlink{class_simulation_worker_a718e975b12aed4781d29cfde913d39e0}{WorkType}}\ type);}
+\DoxyCodeLine{00021\ }
+\DoxyCodeLine{00022\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_simulation_worker_a677fefdae2689861410f62d083eb5a96}{simulationStart}}();}
+\DoxyCodeLine{00023\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_simulation_worker_a283185d1b670ef6384f25aa0bbaac65b}{simulationStop}}();}
+\DoxyCodeLine{00024\ \textcolor{keyword}{public}\ slots:}
+\DoxyCodeLine{00025\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_simulation_worker_a4bb5f4b866582e1dbcf6e0e56ea63069}{process}}(\mbox{\hyperlink{class_simulation_worker_a718e975b12aed4781d29cfde913d39e0}{WorkType}}\ workType);}
+\DoxyCodeLine{00026\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_simulation_worker_ae3cb35b1be33645c279bf89b872bdd6c}{stop}}();}
+\DoxyCodeLine{00027\ }
+\DoxyCodeLine{00028\ signals:}
+\DoxyCodeLine{00029\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_simulation_worker_ad79c5402c17c7dfa0f4171a26ccb960b}{resultReady}}(\textcolor{keyword}{const}\ QString\ \&result);}
+\DoxyCodeLine{00030\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_simulation_worker_aafdb93093aca0cf3773c12037674064a}{workFinished}}();}
+\DoxyCodeLine{00031\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_simulation_worker_afbff083a8c2cbe20c6e6e24234e538f4}{workStarted}}();}
+\DoxyCodeLine{00032\ }
+\DoxyCodeLine{00033\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00034\ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{class_simulation_worker_a841a65b272a5bc5c760096b706e32d80}{m\_running}}\ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00035\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_simulation_worker_a3d43665346de95c9d4f56cad58fe8172}{buildSimulation}}();}
+\DoxyCodeLine{00036\ }
+\DoxyCodeLine{00037\ \ \ \ \ \mbox{\hyperlink{class_svg_parse_manager}{SvgParseManager}}\ *\mbox{\hyperlink{class_simulation_worker_ac498e01fe9a670d4f3aaa476c80f9f75}{linker}};}
+\DoxyCodeLine{00038\ }
+\DoxyCodeLine{00039\ \ \ \ \ \mbox{\hyperlink{structs__components__list}{s\_components\_list}}\ \mbox{\hyperlink{class_simulation_worker_aa7a1361a1351986934b5d72b08223054}{m\_components}};}
+\DoxyCodeLine{00040\ }
+\DoxyCodeLine{00041\ }
+\DoxyCodeLine{00042\ \};}
+\DoxyCodeLine{00043\ }
+\DoxyCodeLine{00044\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{//\ SIMULATIONWORKER\_H}}
+
+\end{DoxyCode}

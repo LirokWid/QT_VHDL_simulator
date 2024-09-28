@@ -8,6 +8,8 @@ var class_elements_display =
     [ "addSimulationWires", "class_elements_display.html#a62464ab93a6a0d855c7791a2cefdcea1", null ],
     [ "addStateIcon", "class_elements_display.html#ab4001f4fe4617f94025efe738dc9e03e", null ],
     [ "clearTree", "class_elements_display.html#a8967090f5c142dc7d15c1023f0efa766", null ],
+    [ "elementClicked", "class_elements_display.html#aa4779302c650fde3262fcceff8f0052d", null ],
+    [ "handleItemClicked", "class_elements_display.html#a20bbeae503d1df210cb4e062d11d5635", null ],
     [ "idleUi", "class_elements_display.html#a5dda75f3025b68d0bf0be7f61917937d", null ],
     [ "loadTree", "class_elements_display.html#ad6e512961dd4f640f6a9c5443fe11d37", null ],
     [ "populateTree", "class_elements_display.html#a27c288550e6c8cba6671acdf4c0929f3", null ],

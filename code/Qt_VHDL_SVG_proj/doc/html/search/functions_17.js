@@ -4,7 +4,9 @@ var searchData=
   ['_7efilestreeview_1',['~FilesTreeView',['../class_files_tree_view.html#a6a5fa7539fc1b5ac0aa52b9e8dfcf4d1',1,'FilesTreeView']]],
   ['_7emainwindow_2',['~MainWindow',['../class_main_window.html#ae98d00a93bc118200eeef9f9bba1dba7',1,'MainWindow']]],
   ['_7escqtworker_3',['~scQtWorker',['../classsc_qt_worker.html#ad22b00f7cdeaa27f1fb680192696bed7',1,'scQtWorker']]],
-  ['_7esvghandler_4',['~SvgHandler',['../class_svg_handler.html#a8076d6fca7fbc1cc21f5075c9fc98934',1,'SvgHandler']]],
-  ['_7esvgparser_5',['~SvgParser',['../class_svg_parser.html#a4f02bb9c4f12ea90e819239adceec2ef',1,'SvgParser']]],
-  ['_7esystemclinker_6',['~SystemcLinker',['../class_systemc_linker.html#a19e1731dd9e26756fc394fcde4952c5e',1,'SystemcLinker']]]
+  ['_7esimulationmanager_4',['~SimulationManager',['../class_simulation_manager.html#a7e7d91e87e35cb25fb13f5e439257488',1,'SimulationManager']]],
+  ['_7esvghandler_5',['~SvgHandler',['../class_svg_handler.html#a8076d6fca7fbc1cc21f5075c9fc98934',1,'SvgHandler']]],
+  ['_7esvgparser_6',['~SvgParser',['../class_svg_parser.html#a4f02bb9c4f12ea90e819239adceec2ef',1,'SvgParser']]],
+  ['_7esysctcomb_7',['~SyscTComb',['../class_sysc_t_comb.html#a08c7f66e126d26c193144120313d9a49',1,'SyscTComb']]],
+  ['_7esystemclinker_8',['~SystemcLinker',['../class_systemc_linker.html#a19e1731dd9e26756fc394fcde4952c5e',1,'SystemcLinker']]]
 ];

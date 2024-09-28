@@ -1,5 +1,5 @@
-\doxysection{C\+:/\+Users/\+BJRODIER/\+Documents/\+QT\+\_\+\+REPO/\+QT\+\_\+\+VHDL\+\_\+simulator/code/\+Qt\+\_\+\+VHDL\+\_\+\+SVG\+\_\+proj/gui/svgwidget.cpp File Reference}
-\hypertarget{svgwidget_8cpp}{}\label{svgwidget_8cpp}\index{C:/Users/BJRODIER/Documents/QT\_REPO/QT\_VHDL\_simulator/code/Qt\_VHDL\_SVG\_proj/gui/svgwidget.cpp@{C:/Users/BJRODIER/Documents/QT\_REPO/QT\_VHDL\_simulator/code/Qt\_VHDL\_SVG\_proj/gui/svgwidget.cpp}}
+\doxysection{S\+:/code/\+QT\+\_\+\+VHDL\+\_\+simulator/code/\+Qt\+\_\+\+VHDL\+\_\+\+SVG\+\_\+proj/gui/svgwidget.cpp File Reference}
+\hypertarget{svgwidget_8cpp}{}\label{svgwidget_8cpp}\index{S:/code/QT\_VHDL\_simulator/code/Qt\_VHDL\_SVG\_proj/gui/svgwidget.cpp@{S:/code/QT\_VHDL\_simulator/code/Qt\_VHDL\_SVG\_proj/gui/svgwidget.cpp}}
 {\ttfamily \#include "{}svgwidget.\+h"{}}\newline
 {\ttfamily \#include $<$QVBox\+Layout$>$}\newline
 {\ttfamily \#include $<$QGraphics\+Scene$>$}\newline
@@ -7,8 +7,10 @@
 {\ttfamily \#include $<$QGraphics\+Svg\+Item$>$}\newline
 {\ttfamily \#include $<$QWheel\+Event$>$}\newline
 {\ttfamily \#include $<$QScroll\+Bar$>$}\newline
-Include dependency graph for svgwidget.\+cpp\+:
-\nopagebreak
+{\ttfamily \#include $<$QDom\+Document$>$}\newline
+{\ttfamily \#include "{}debugwindow.\+h"{}}\newline
+{\ttfamily \#include $<$QRegular\+Expression$>$}\newline
+Include dependency graph for svgwidget.\+cpp\+:\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
@@ -18,9 +20,9 @@ Include dependency graph for svgwidget.\+cpp\+:
 \doxysubsubsection*{Macros}
 \begin{DoxyCompactItemize}
 \item 
-\#\mbox{\hyperlink{class_sysc_add__pv}{define}} \mbox{\hyperlink{svgwidget_8cpp_a8195a86b6d75b9a3939505e8bb50021e}{min}}(\mbox{\hyperlink{class_sysc_add__pv}{X}},  \mbox{\hyperlink{class_sysc_add__pv}{Y}})~(((\mbox{\hyperlink{class_sysc_add__pv}{X}}) $<$ (\mbox{\hyperlink{class_sysc_add__pv}{Y}})) ? (\mbox{\hyperlink{class_sysc_add__pv}{X}}) \+: (\mbox{\hyperlink{class_sysc_add__pv}{Y}}))
+\#\mbox{\hyperlink{class_sysc_t_and}{define}} \mbox{\hyperlink{svgwidget_8cpp_a8195a86b6d75b9a3939505e8bb50021e}{min}}(\mbox{\hyperlink{class_sysc_t_and}{X}},  \mbox{\hyperlink{class_sysc_t_and}{Y}})~(((\mbox{\hyperlink{class_sysc_t_and}{X}}) $<$ (\mbox{\hyperlink{class_sysc_t_and}{Y}})) ? (\mbox{\hyperlink{class_sysc_t_and}{X}}) \+: (\mbox{\hyperlink{class_sysc_t_and}{Y}}))
 \item 
-\#\mbox{\hyperlink{class_sysc_add__pv}{define}} \mbox{\hyperlink{svgwidget_8cpp_ab95f7757e11b270d27b95ec0d8e798b5}{max}}(\mbox{\hyperlink{class_sysc_add__pv}{X}},  \mbox{\hyperlink{class_sysc_add__pv}{Y}})~(((\mbox{\hyperlink{class_sysc_add__pv}{X}}) $>$ (\mbox{\hyperlink{class_sysc_add__pv}{Y}})) ? (\mbox{\hyperlink{class_sysc_add__pv}{X}}) \+: (\mbox{\hyperlink{class_sysc_add__pv}{Y}}))
+\#\mbox{\hyperlink{class_sysc_t_and}{define}} \mbox{\hyperlink{svgwidget_8cpp_ab95f7757e11b270d27b95ec0d8e798b5}{max}}(\mbox{\hyperlink{class_sysc_t_and}{X}},  \mbox{\hyperlink{class_sysc_t_and}{Y}})~(((\mbox{\hyperlink{class_sysc_t_and}{X}}) $>$ (\mbox{\hyperlink{class_sysc_t_and}{Y}})) ? (\mbox{\hyperlink{class_sysc_t_and}{X}}) \+: (\mbox{\hyperlink{class_sysc_t_and}{Y}}))
 \end{DoxyCompactItemize}
 
 
@@ -29,11 +31,11 @@ Include dependency graph for svgwidget.\+cpp\+:
 \index{svgwidget.cpp@{svgwidget.cpp}!max@{max}}
 \index{max@{max}!svgwidget.cpp@{svgwidget.cpp}}
 \doxysubsubsection{\texorpdfstring{max}{max}}
-{\footnotesize\ttfamily \#\mbox{\hyperlink{class_sysc_add__pv}{define}} max(\begin{DoxyParamCaption}\item[{}]{\mbox{\hyperlink{class_sysc_add__pv}{X}},  }\item[{}]{\mbox{\hyperlink{class_sysc_add__pv}{Y}} }\end{DoxyParamCaption})~(((\mbox{\hyperlink{class_sysc_add__pv}{X}}) $>$ (\mbox{\hyperlink{class_sysc_add__pv}{Y}})) ? (\mbox{\hyperlink{class_sysc_add__pv}{X}}) \+: (\mbox{\hyperlink{class_sysc_add__pv}{Y}}))}
+{\footnotesize\ttfamily \#\mbox{\hyperlink{class_sysc_t_and}{define}} max(\begin{DoxyParamCaption}\item[{}]{\mbox{\hyperlink{class_sysc_t_and}{X}},  }\item[{}]{\mbox{\hyperlink{class_sysc_t_and}{Y}} }\end{DoxyParamCaption})~(((\mbox{\hyperlink{class_sysc_t_and}{X}}) $>$ (\mbox{\hyperlink{class_sysc_t_and}{Y}})) ? (\mbox{\hyperlink{class_sysc_t_and}{X}}) \+: (\mbox{\hyperlink{class_sysc_t_and}{Y}}))}
 
 \Hypertarget{svgwidget_8cpp_a8195a86b6d75b9a3939505e8bb50021e}\label{svgwidget_8cpp_a8195a86b6d75b9a3939505e8bb50021e} 
 \index{svgwidget.cpp@{svgwidget.cpp}!min@{min}}
 \index{min@{min}!svgwidget.cpp@{svgwidget.cpp}}
 \doxysubsubsection{\texorpdfstring{min}{min}}
-{\footnotesize\ttfamily \#\mbox{\hyperlink{class_sysc_add__pv}{define}} min(\begin{DoxyParamCaption}\item[{}]{\mbox{\hyperlink{class_sysc_add__pv}{X}},  }\item[{}]{\mbox{\hyperlink{class_sysc_add__pv}{Y}} }\end{DoxyParamCaption})~(((\mbox{\hyperlink{class_sysc_add__pv}{X}}) $<$ (\mbox{\hyperlink{class_sysc_add__pv}{Y}})) ? (\mbox{\hyperlink{class_sysc_add__pv}{X}}) \+: (\mbox{\hyperlink{class_sysc_add__pv}{Y}}))}
+{\footnotesize\ttfamily \#\mbox{\hyperlink{class_sysc_t_and}{define}} min(\begin{DoxyParamCaption}\item[{}]{\mbox{\hyperlink{class_sysc_t_and}{X}},  }\item[{}]{\mbox{\hyperlink{class_sysc_t_and}{Y}} }\end{DoxyParamCaption})~(((\mbox{\hyperlink{class_sysc_t_and}{X}}) $<$ (\mbox{\hyperlink{class_sysc_t_and}{Y}})) ? (\mbox{\hyperlink{class_sysc_t_and}{X}}) \+: (\mbox{\hyperlink{class_sysc_t_and}{Y}}))}
 

@@ -8,7 +8,7 @@ DebugWindow \- The \fBDebugWindow\fP class provides a widget for displaying debu
 .br
 .PP
 .PP
-\fR#include <debugwindow\&.h>\fP
+\fC#include <debugwindow\&.h>\fP
 .PP
 Inherits QWidget\&.
 .SS "Public Types"
@@ -35,9 +35,9 @@ Inherits QWidget\&.
 .br
 .RI "addSuccess "
 .ti -1c
-.RI "\fBvoid\fP \fBaddWaring\fP (\fBconst\fP \fBQString\fP &\fBmessage\fP)"
+.RI "\fBvoid\fP \fBaddWarning\fP (\fBconst\fP \fBQString\fP &\fBmessage\fP)"
 .br
-.RI "addWaring "
+.RI "addWarning "
 .ti -1c
 .RI "\fBvoid\fP \fBaddError\fP (\fBconst\fP \fBQString\fP &\fBmessage\fP)"
 .br
@@ -46,6 +46,9 @@ Inherits QWidget\&.
 .RI "\fBvoid\fP \fBaddInfo\fP (\fBconst\fP \fBQString\fP &\fBmessage\fP)"
 .br
 .RI "addInfo "
+.ti -1c
+.RI "template<\fBtypename\fP \fBT\fP > \fBvoid\fP \fBaddPoint\fP (\fBT\fP \fBpoint\fP)"
+.br
 .ti -1c
 .RI "\fBvoid\fP \fBopenWindow\fP ()"
 .br
@@ -137,6 +140,9 @@ Inherits QWidget\&.
 .ti -1c
 .RI "\fBQCheckBox\fP * \fBdebugCheckBox\fP"
 .br
+.ti -1c
+.RI "\fBQMutex\fP \fBmutex\fP"
+.br
 .in -1c
 .SS "Static Private Attributes"
 
@@ -169,7 +175,7 @@ The Severity enum\&.
 \fB\fIDebug \fP\fP
 .SH "Constructor & Destructor Documentation"
 .PP 
-.SS "DebugWindow::DebugWindow (\fBQAction\fP * openTrigger, QWidget * parent = \fR\fBnullptr\fP\fP)\fR [explicit]\fP, \fR [private]\fP"
+.SS "DebugWindow::DebugWindow (\fBQAction\fP * openTrigger, QWidget * parent = \fC\fBnullptr\fP\fP)\fC [explicit]\fP, \fC [private]\fP"
 ui setup
 .SH "Member Function Documentation"
 .PP 
@@ -206,7 +212,7 @@ addInfo
 .RE
 .PP
 
-.SS "\fBvoid\fP DebugWindow::addMessage (\fBconst\fP \fBQString\fP & message, \fBSeverity\fP severity = \fR\fBInfo\fP\fP)"
+.SS "\fBvoid\fP DebugWindow::addMessage (\fBconst\fP \fBQString\fP & message, \fBSeverity\fP severity = \fC\fBInfo\fP\fP)"
 
 .PP
 Adds a message to the debug window\&. 
@@ -219,6 +225,8 @@ Adds a message to the debug window\&.
 .RE
 .PP
 
+.SS "template<\fBtypename\fP \fBT\fP > \fBvoid\fP DebugWindow::addPoint (\fBT\fP point)"
+
 .SS "\fBvoid\fP DebugWindow::addSuccess (\fBconst\fP \fBQString\fP & message)"
 
 .PP
@@ -230,10 +238,10 @@ addSuccess
 .RE
 .PP
 
-.SS "\fBvoid\fP DebugWindow::addWaring (\fBconst\fP \fBQString\fP & message)"
+.SS "\fBvoid\fP DebugWindow::addWarning (\fBconst\fP \fBQString\fP & message)"
 
 .PP
-addWaring 
+addWarning 
 .PP
 \fBParameters\fP
 .RS 4
@@ -241,7 +249,7 @@ addWaring
 .RE
 .PP
 
-.SS "\fBvoid\fP DebugWindow::autoScrollHandle (\fBint\fP state)\fR [private]\fP"
+.SS "\fBvoid\fP DebugWindow::autoScrollHandle (\fBint\fP state)\fC [private]\fP"
 
 .PP
 Handles the state change of the auto-scroll checkbox\&. 
@@ -252,61 +260,63 @@ Handles the state change of the auto-scroll checkbox\&.
 .RE
 .PP
 
-.SS "\fBvoid\fP DebugWindow::autoScrollIfEnabled ()\fR [private]\fP"
+.SS "\fBvoid\fP DebugWindow::autoScrollIfEnabled ()\fC [private]\fP"
 
 .PP
 Scrolls to the bottom if auto-scrolling is enabled\&. 
-.SS "\fBvoid\fP DebugWindow::clearMessages ()\fR [private]\fP"
+.SS "\fBvoid\fP DebugWindow::clearMessages ()\fC [private]\fP"
 
 .PP
 Clears all messages from the debug window\&. 
-.SS "\fBvoid\fP DebugWindow::filterMessages ()\fR [private]\fP"
+.SS "\fBvoid\fP DebugWindow::filterMessages ()\fC [private]\fP"
 
-.SS "\fBDebugWindow\fP * DebugWindow::getInstance (\fBQAction\fP * openTrigger = \fR\fBnullptr\fP\fP, QWidget * parent = \fR\fBnullptr\fP\fP)\fR [static]\fP"
+.SS "\fBDebugWindow\fP * DebugWindow::getInstance (\fBQAction\fP * openTrigger = \fC\fBnullptr\fP\fP, QWidget * parent = \fC\fBnullptr\fP\fP)\fC [static]\fP"
 
 .SS "\fBvoid\fP DebugWindow::openWindow ()"
 
 .PP
 Opens the debug window\&. 
-.SS "\fBvoid\fP DebugWindow::scrollBarModifiedHandle ()\fR [private]\fP"
+.SS "\fBvoid\fP DebugWindow::scrollBarModifiedHandle ()\fC [private]\fP"
 
 .PP
 Handles the scrollbar value change event\&. 
-.SS "\fBvoid\fP DebugWindow::scrollDown ()\fR [protected]\fP"
+.SS "\fBvoid\fP DebugWindow::scrollDown ()\fC [protected]\fP"
 
 .PP
 Scrolls down to show the latest message\&. 
-.SS "\fBbool\fP DebugWindow::shouldAppend (\fBSeverity\fP severity)\fR [private]\fP"
+.SS "\fBbool\fP DebugWindow::shouldAppend (\fBSeverity\fP severity)\fC [private]\fP"
 
 .SH "Member Data Documentation"
 .PP 
-.SS "\fBQCheckBox\fP* DebugWindow::autoScrollBox\fR [private]\fP"
+.SS "\fBQCheckBox\fP* DebugWindow::autoScrollBox\fC [private]\fP"
 Checkbox for enabling/disabling auto-scrolling\&. 
-.SS "\fBbool\fP DebugWindow::autoScrollEnabled = \fBtrue\fP\fR [private]\fP"
+.SS "\fBbool\fP DebugWindow::autoScrollEnabled = \fBtrue\fP\fC [private]\fP"
 Flag indicating whether auto-scrolling is enabled\&. 
-.SS "\fBQCheckBox\fP* DebugWindow::debugCheckBox\fR [private]\fP"
+.SS "\fBQCheckBox\fP* DebugWindow::debugCheckBox\fC [private]\fP"
 
-.SS "\fBQCheckBox\fP* DebugWindow::errorCheckBox\fR [private]\fP"
+.SS "\fBQCheckBox\fP* DebugWindow::errorCheckBox\fC [private]\fP"
 
-.SS "\fBQCheckBox\fP* DebugWindow::infoCheckBox\fR [private]\fP"
+.SS "\fBQCheckBox\fP* DebugWindow::infoCheckBox\fC [private]\fP"
 
-.SS "\fBDebugWindow\fP * DebugWindow::instance = \fBnullptr\fP\fR [static]\fP, \fR [private]\fP"
+.SS "\fBDebugWindow\fP * DebugWindow::instance = \fBnullptr\fP\fC [static]\fP, \fC [private]\fP"
 
-.SS "\fBunsigned\fP \fBint\fP DebugWindow::messageCount\fR [private]\fP"
+.SS "\fBunsigned\fP \fBint\fP DebugWindow::messageCount\fC [private]\fP"
 The number of messages currently displayed\&. 
-.SS "\fBQList\fP<\fBQString\fP> DebugWindow::messages\fR [private]\fP"
+.SS "\fBQList\fP<\fBQString\fP> DebugWindow::messages\fC [private]\fP"
 
-.SS "\fBQAction\fP* DebugWindow::openTrigger\fR [private]\fP"
+.SS "\fBQMutex\fP DebugWindow::mutex\fC [private]\fP"
+
+.SS "\fBQAction\fP* DebugWindow::openTrigger\fC [private]\fP"
 The QAction that triggers opening the debug window\&. 
-.SS "\fBQScrollBar\fP* DebugWindow::scrollBar\fR [private]\fP"
+.SS "\fBQScrollBar\fP* DebugWindow::scrollBar\fC [private]\fP"
 Scrollbar for the QTextEdit widget\&. 
-.SS "\fBQList\fP<\fBSeverity\fP> DebugWindow::severities\fR [private]\fP"
+.SS "\fBQList\fP<\fBSeverity\fP> DebugWindow::severities\fC [private]\fP"
 
-.SS "\fBQCheckBox\fP* DebugWindow::successCheckBox\fR [private]\fP"
+.SS "\fBQCheckBox\fP* DebugWindow::successCheckBox\fC [private]\fP"
 
-.SS "\fBQTextEdit\fP* DebugWindow::textEdit\fR [private]\fP"
+.SS "\fBQTextEdit\fP* DebugWindow::textEdit\fC [private]\fP"
 The QTextEdit widget for displaying debug messages\&. 
-.SS "\fBQCheckBox\fP* DebugWindow::warningCheckBox\fR [private]\fP"
+.SS "\fBQCheckBox\fP* DebugWindow::warningCheckBox\fC [private]\fP"
 
 
 .SH "Author"

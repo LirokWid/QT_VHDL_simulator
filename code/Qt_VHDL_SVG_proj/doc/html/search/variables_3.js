@@ -1,14 +1,22 @@
 var searchData=
 [
-  ['element_0',['element',['../struct_svg_parser_1_1s__tree__node.html#a28318e54241d0b49391f754f82906f1a',1,'SvgParser::s_tree_node']]],
-  ['elements_1',['elements',['../structs__components__list.html#aa936f0e2a4ffb631492a586acd850b91',1,'s_components_list']]],
-  ['elements_5flist_2',['elements_list',['../structs__elements.html#abfb7a538a0ca3080cbae09a05fe10f7e',1,'s_elements']]],
-  ['elementstreeview_3',['elementsTreeView',['../class_main_window.html#a12247172a5dc99fda9b1f5fe921c7912',1,'MainWindow']]],
-  ['ena_5fact_5flevel_4',['ena_act_level',['../structsc__thread__config__s.html#a6b7dc152459afbb5e2f8f4c73dd2c0dd',1,'sc_thread_config_s']]],
-  ['ena_5fdefbind_5',['ena_defbind',['../class_sysc_flex_int.html#a104170f01d9d7d15388f3162368c2230',1,'SyscFlexInt']]],
-  ['ena_5flevel_6',['ena_level',['../class_sysc_flex_int.html#a344867cc899517f82551bbbd3f3b9576',1,'SyscFlexInt']]],
-  ['enable_7',['enable',['../class_sysc_flex_int.html#a62d49c19c366a2506a142b2d6bd49305',1,'SyscFlexInt']]],
-  ['error_8',['error',['../structs__sim___i___o.html#afcaf95c0f9dbfc8cab8a7112c20c18cf',1,'s_sim_I_O::error'],['../structs__sim___i___os.html#af0120096058198557b51603ce5644f24',1,'s_sim_I_Os::error'],['../structs__sim__wire.html#a969d33d44429d62791666e7881a7719b',1,'s_sim_wire::error'],['../structs__sim__wires.html#aae0770f720e687ebcfc189c1d8c02f83',1,'s_sim_wires::error'],['../structs__element.html#a9e4fad4711b18cfa5b5c8b56e62fd009',1,'s_element::error'],['../structs__elements.html#a23ed4c97e9067736ee08702a63b06867',1,'s_elements::error']]],
-  ['error_5fmessages_9',['error_messages',['../structs__parse__error.html#aaf78376eb137d4b3b0070e4aa5919706',1,'s_parse_error::error_messages'],['../struct_svg_parser_1_1s__tree__node__info.html#a94c0347e90b467aee8917004b2e2e499',1,'SvgParser::s_tree_node_info::error_messages']]],
-  ['errorcheckbox_10',['errorCheckBox',['../class_debug_window.html#a9938a16e18aa80b0fd37bbe1f92e8fec',1,'DebugWindow']]]
+  ['children_0',['children',['../struct_svg_parser_1_1s__tree__node.html#ae2aa064273d7ee4d6b919ef122033c93',1,'SvgParser::s_tree_node']]],
+  ['chronowidgetbool_1',['chronoWidgetBool',['../class_main_window.html#a4503788fa82c67aac7b27d9ec0c0d08b',1,'MainWindow']]],
+  ['chronowidgetramp_2',['chronoWidgetRamp',['../class_main_window.html#afff2e5655e0d8dc6e0f2004cd34185d9',1,'MainWindow']]],
+  ['chronowidgetsine_3',['chronoWidgetSine',['../class_main_window.html#a007a71252274a030822cd961fef5f19a',1,'MainWindow']]],
+  ['chronowidgetsum_4',['chronoWidgetSum',['../class_main_window.html#ae8463007c2ffa11fc031aad0f077901f',1,'MainWindow']]],
+  ['clk_5fact_5fedge_5',['clk_act_edge',['../structsc__thread__config__s.html#a98248ca075a093c6e7f3dce50626eec4',1,'sc_thread_config_s']]],
+  ['clk_5fperiod_6',['clk_period',['../structsc__thread__config__s.html#a3efe9a8bf6e30b3e30912982daecd6a8',1,'sc_thread_config_s']]],
+  ['clk_5fsemiperiod_5fmicrosteps_7',['clk_semiperiod_microsteps',['../structsc__thread__config__s.html#a965bec3240e5e96e76cc7d408d038240',1,'sc_thread_config_s']]],
+  ['clock_8',['clock',['../class_sysc_flex_int.html#a1e4fd4a2887ce1f04ed69ad3310d82e3',1,'SyscFlexInt']]],
+  ['component_5fin_5fwidth_9',['component_in_width',['../struct_svg_parser_1_1s__tree__node__info.html#adaa7f6a91d38fc49a556c40b3b86a043',1,'SvgParser::s_tree_node_info']]],
+  ['component_5fout_5fwidth_10',['component_out_width',['../struct_svg_parser_1_1s__tree__node__info.html#adf05346de3ed6cd936ea7beaee1c241b',1,'SvgParser::s_tree_node_info']]],
+  ['components_11',['components',['../class_elements_display.html#a72b7fc0c7c2c71c21d7098e00b94342f',1,'ElementsDisplay::components'],['../class_system_c_builder.html#a942c93db19935d2c21a65ed45fedb5a6',1,'SystemCBuilder::components']]],
+  ['componentswidget_12',['componentsWidget',['../class_svg_handler.html#a1cd49d8224474e2aeb462fb8c540c1c7',1,'SvgHandler']]],
+  ['condvar_13',['condvar',['../structsc__thread__run__s.html#afd3056372909dbcf1c8be5cb0384ffe3',1,'sc_thread_run_s']]],
+  ['condvar_5fmutex_14',['condvar_mutex',['../structsc__thread__run__s.html#ade35a27653fda8886c936beb3c48c1cf',1,'sc_thread_run_s']]],
+  ['connected_5fto_15',['connected_to',['../structs__element__io.html#a81d4169eacbe9a5fb88a2fa1e87ffbf9',1,'s_element_io::connected_to'],['../structs__sim___i___o.html#a4e1a51f814e73c7b85ad050278a65978',1,'s_sim_I_O::connected_to'],['../structs__sim__wire.html#a7c70d6803cbe0355333f5d7dc5e5391e',1,'s_sim_wire::connected_to']]],
+  ['ctl_16',['ctl',['../class_sysc_tri.html#abbb18f9e1ceb022f2000f29dd381850e',1,'SyscTri']]],
+  ['currentstate_17',['currentState',['../class_simulation_state.html#a99366f30dc913dead50cf0b031d6a7bd',1,'SimulationState']]],
+  ['custom_5fattribute_18',['custom_attribute',['../class_svg_parser.html#a744a14989c558dc574520c0175e82ad1',1,'SvgParser']]]
 ];

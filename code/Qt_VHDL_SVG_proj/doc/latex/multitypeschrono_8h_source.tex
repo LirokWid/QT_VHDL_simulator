@@ -1,0 +1,279 @@
+\doxysection{multitypeschrono.\+h}
+\hypertarget{multitypeschrono_8h_source}{}\label{multitypeschrono_8h_source}\index{S:/code/QT\_VHDL\_simulator/code/Qt\_VHDL\_SVG\_proj/gui/multitypeschrono.h@{S:/code/QT\_VHDL\_simulator/code/Qt\_VHDL\_SVG\_proj/gui/multitypeschrono.h}}
+\mbox{\hyperlink{multitypeschrono_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#ifndef\ MULTITYPESCHRONO\_H}}
+\DoxyCodeLine{00002\ \textcolor{preprocessor}{\#define\ MULTITYPESCHRONO\_H}}
+\DoxyCodeLine{00003\ }
+\DoxyCodeLine{00004\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{debugwindow_8h}{debugwindow.h}}"{}}}
+\DoxyCodeLine{00005\ }
+\DoxyCodeLine{00006\ \textcolor{preprocessor}{\#include\ <QApplication>}}
+\DoxyCodeLine{00007\ \textcolor{preprocessor}{\#include\ <QSlider>}}
+\DoxyCodeLine{00008\ \textcolor{preprocessor}{\#include\ <QVBoxLayout>}}
+\DoxyCodeLine{00009\ \textcolor{preprocessor}{\#include\ <QWidget>}}
+\DoxyCodeLine{00010\ \textcolor{preprocessor}{\#include\ <QPainter>}}
+\DoxyCodeLine{00011\ \textcolor{preprocessor}{\#include\ <QPaintEvent>}}
+\DoxyCodeLine{00012\ \textcolor{preprocessor}{\#include\ <QVector>}}
+\DoxyCodeLine{00013\ \textcolor{preprocessor}{\#include\ <QDebug>}}
+\DoxyCodeLine{00014\ \textcolor{preprocessor}{\#include\ <QPushButton>}}
+\DoxyCodeLine{00015\ \textcolor{preprocessor}{\#include\ <QLabel>}}
+\DoxyCodeLine{00016\ }
+\DoxyCodeLine{00037\ \textcolor{keyword}{class\ }\mbox{\hyperlink{class_multi_types_chrono}{MultiTypesChrono}}\ :\ \textcolor{keyword}{public}\ QWidget}
+\DoxyCodeLine{00038\ \{}
+\DoxyCodeLine{00039\ \ \ \ \ Q\_OBJECT}
+\DoxyCodeLine{00040\ }
+\DoxyCodeLine{00041\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00042\ }
+\DoxyCodeLine{00048\ \ \ \ \ \mbox{\hyperlink{class_multi_types_chrono}{MultiTypesChrono}}(\textcolor{keywordtype}{bool}\ startValue,\ QWidget\ *parent);}
+\DoxyCodeLine{00049\ }
+\DoxyCodeLine{00055\ \ \ \ \ \mbox{\hyperlink{class_multi_types_chrono}{MultiTypesChrono}}(\textcolor{keywordtype}{int}\ startValue,\ QWidget\ *parent);}
+\DoxyCodeLine{00056\ }
+\DoxyCodeLine{00062\ \ \ \ \ \mbox{\hyperlink{class_multi_types_chrono}{MultiTypesChrono}}(\textcolor{keywordtype}{float}\ startValue,\ QWidget\ *parent);}
+\DoxyCodeLine{00063\ }
+\DoxyCodeLine{00069\ \ \ \ \ \mbox{\hyperlink{class_multi_types_chrono}{MultiTypesChrono}}(\textcolor{keywordtype}{double}\ startValue,\ QWidget\ *parent);}
+\DoxyCodeLine{00070\ }
+\DoxyCodeLine{00076\ \ \ \ \ \mbox{\hyperlink{class_multi_types_chrono}{MultiTypesChrono}}(QVector<bool>\ startList,\ QWidget\ *parent\ =\ \textcolor{keyword}{nullptr});}
+\DoxyCodeLine{00077\ }
+\DoxyCodeLine{00083\ \ \ \ \ \mbox{\hyperlink{class_multi_types_chrono}{MultiTypesChrono}}(QVector<int>\ startList,\ QWidget\ *parent\ =\ \textcolor{keyword}{nullptr});}
+\DoxyCodeLine{00084\ }
+\DoxyCodeLine{00090\ \ \ \ \ \mbox{\hyperlink{class_multi_types_chrono}{MultiTypesChrono}}(QVector<float>\ startList,\ QWidget\ *parent\ =\ \textcolor{keyword}{nullptr});}
+\DoxyCodeLine{00091\ }
+\DoxyCodeLine{00097\ \ \ \ \ \mbox{\hyperlink{class_multi_types_chrono}{MultiTypesChrono}}(QVector<double>\ startList,\ QWidget\ *parent\ =\ \textcolor{keyword}{nullptr});}
+\DoxyCodeLine{00098\ }
+\DoxyCodeLine{00099\ \ \ \ \ \textcolor{keyword}{enum}\ \mbox{\hyperlink{class_multi_types_chrono_ac44c4df1a0409c3c5bd137a5ad2dd0e7}{e\_initType}}}
+\DoxyCodeLine{00100\ \ \ \ \ \{}
+\DoxyCodeLine{00101\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_multi_types_chrono_ac44c4df1a0409c3c5bd137a5ad2dd0e7a08ee1a2ad12baa605fd5b07bb4bd16f3}{BOOL}},}
+\DoxyCodeLine{00102\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_multi_types_chrono_ac44c4df1a0409c3c5bd137a5ad2dd0e7ae542d2e37713bd9d353097bf0869339a}{INT}},}
+\DoxyCodeLine{00103\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_multi_types_chrono_ac44c4df1a0409c3c5bd137a5ad2dd0e7af7cd8b30685a58318a23d9c961fcb3e5}{FLOAT}},}
+\DoxyCodeLine{00104\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_multi_types_chrono_ac44c4df1a0409c3c5bd137a5ad2dd0e7a66c45bd81724ed856cd96bf4fc14f31a}{DOUBLE}},}
+\DoxyCodeLine{00105\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_multi_types_chrono_ac44c4df1a0409c3c5bd137a5ad2dd0e7ae8b48dcc11afb39fcab95ffba47f6fdb}{ERROR}}}
+\DoxyCodeLine{00106\ \ \ \ \ \};}
+\DoxyCodeLine{00107\ }
+\DoxyCodeLine{00108\ }
+\DoxyCodeLine{00115\ \ \ \ \ \textcolor{keyword}{template}\ <\textcolor{keyword}{typename}\ T>}
+\DoxyCodeLine{00116\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_multi_types_chrono_ae1aacb015e028956bc4107e1b500cce1}{addPoint}}(\textcolor{keyword}{const}\ T\&\ point);}
+\DoxyCodeLine{00117\ }
+\DoxyCodeLine{00124\ \ \ \ \ \textcolor{keyword}{template}\ <\textcolor{keyword}{typename}\ T>}
+\DoxyCodeLine{00125\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_multi_types_chrono_ae1aacb015e028956bc4107e1b500cce1}{addPoint}}(\textcolor{keyword}{const}\ QVector<T>\&\ points);}
+\DoxyCodeLine{00126\ }
+\DoxyCodeLine{00127\ }
+\DoxyCodeLine{00132\ \ \ \ \ \mbox{\hyperlink{class_multi_types_chrono_ac44c4df1a0409c3c5bd137a5ad2dd0e7}{e\_initType}}\ \mbox{\hyperlink{class_multi_types_chrono_ac7ca022c05dee7b83cb8fbf7bc124c39}{getDataType}}()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00133\ }
+\DoxyCodeLine{00134\ \textcolor{keyword}{protected}:}
+\DoxyCodeLine{00139\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_multi_types_chrono_acf748076f0440be47f02b3ca9ec3a215}{paintEvent}}(QPaintEvent*\ event)\ \textcolor{keyword}{override};}
+\DoxyCodeLine{00140\ }
+\DoxyCodeLine{00145\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_multi_types_chrono_a931d987383b76b3d614ddc14b006755c}{resizeEvent}}(QResizeEvent\ *event)\ \textcolor{keyword}{override};}
+\DoxyCodeLine{00146\ }
+\DoxyCodeLine{00151\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_multi_types_chrono_a8bff7a51271035230e53bbc5d4c71e45}{mousePressEvent}}(QMouseEvent\ *event)\ \textcolor{keyword}{override};}
+\DoxyCodeLine{00152\ }
+\DoxyCodeLine{00157\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_multi_types_chrono_ae8addc2de9b2266e0360d5dee2f550ed}{mouseMoveEvent}}(QMouseEvent\ *event)\ \textcolor{keyword}{override};}
+\DoxyCodeLine{00158\ }
+\DoxyCodeLine{00163\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_multi_types_chrono_af341e4d1b010a6f5feebda526ecccea3}{mouseReleaseEvent}}(QMouseEvent\ *event)\ \textcolor{keyword}{override};}
+\DoxyCodeLine{00164\ }
+\DoxyCodeLine{00169\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_multi_types_chrono_a40e992b8574b7b67dd3bf3ed0a8c84f6}{leaveEvent}}(QEvent\ *event)\ \textcolor{keyword}{override};}
+\DoxyCodeLine{00170\ }
+\DoxyCodeLine{00171\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00172\ \ \ \ \ \textcolor{comment}{//\ Constants\ for\ the\ graph\ display\ layout\ and\ colours}}
+\DoxyCodeLine{00173\ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{class_multi_types_chrono_a3fb65e45f0e0c7fb0705ca2e4a3dfa82}{labelOffset}}\ =\ 15;\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00174\ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{class_multi_types_chrono_a6d0b1494bf6d50cfadd32836a6db9f9a}{tickSize}}\ =\ 5;\ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00175\ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{class_multi_types_chrono_afacecc0a29cd55eefd82a3a1f116079d}{textOffset}}\ =\ 10;\ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00176\ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{class_multi_types_chrono_ae386b064b07f0a4e808fdb723e1fb774}{textWidth}}\ =\ 30;\ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00177\ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{class_multi_types_chrono_a80b01604aedfe4821df1a414fcc88fc2}{textHeight}}\ =\ 10;\ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00178\ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{class_multi_types_chrono_acc47bfc5aac87c0d543592f50137749f}{xLabelDensity}}\ =\ 1;\ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00179\ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{class_multi_types_chrono_a119e318b1fef3fe7eaf8f8fca03e88b9}{yLabelDensity}}\ =\ 1;\ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00180\ }
+\DoxyCodeLine{00181\ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{class_multi_types_chrono_a0379f860d4ccca54a9439ae6cdc2ef93}{marginLeft}}\ =\ 40;\ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00182\ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{class_multi_types_chrono_a87b0e90d09981ec2015339ac547dda01}{marginTop}}\ =\ 50;\ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00183\ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{class_multi_types_chrono_a7036bd954c274195caf584a92000030b}{marginBottom}}\ =\ 50;\ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00184\ }
+\DoxyCodeLine{00185\ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{class_multi_types_chrono_a056e22f08296f487c5dee01b5944a6e8}{textRectPadding}}\ =\ 5;\ \ \ \ \ \ }
+\DoxyCodeLine{00186\ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{class_multi_types_chrono_ac443dd715f618d8f2d1749d082464968}{textRectRadius}}\ =\ 2;\ \ \ \ \ \ \ }
+\DoxyCodeLine{00187\ }
+\DoxyCodeLine{00188\ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{class_multi_types_chrono_a050ea2ca691f3d628eaa43de438b6986}{pointRadius}}\ =\ 2;\ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00189\ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{class_multi_types_chrono_a7dac42f6942beb1fbb7d94944870a6ee}{minDisplayedSteps}}\ =\ 2;\ \ \ \ }
+\DoxyCodeLine{00190\ }
+\DoxyCodeLine{00191\ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{class_multi_types_chrono_a8ba4d2f447078309ffe8a9e6bf1c832f}{popupDisplayRadius}}\ =\ 15;\ \ }
+\DoxyCodeLine{00192\ }
+\DoxyCodeLine{00193\ \ \ \ \ \textcolor{keyword}{const}\ QColor\ \mbox{\hyperlink{class_multi_types_chrono_a9b12782ba7a7a9e93aa27bea2b31b338}{backgroundColor}}\ =\ Qt::black;\ \ \ }
+\DoxyCodeLine{00194\ \ \ \ \ \textcolor{keyword}{const}\ QColor\ \mbox{\hyperlink{class_multi_types_chrono_a01922d6f99c933e96aff7914de3bee7e}{axisColor}}\ =\ Qt::white;\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00195\ \ \ \ \ \textcolor{keyword}{const}\ QColor\ \mbox{\hyperlink{class_multi_types_chrono_a4a6b13a2cf7ee8bdbc01bf4fbb395245}{graphColor}}\ =\ Qt::red;\ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00196\ \ \ \ \ \textcolor{keyword}{const}\ QColor\ \mbox{\hyperlink{class_multi_types_chrono_a3fba6672ddc337c339854690999733d3}{rectBorderColor}}\ =\ Qt::white;\ \ \ }
+\DoxyCodeLine{00198\ }
+\DoxyCodeLine{00199\ \ \ \ \ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{class_multi_types_chrono_a48698239893d1b4e6b307b604798b7a5}{visibleRange\_X}}\ =\ 10;\ }
+\DoxyCodeLine{00200\ \ \ \ \ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{class_multi_types_chrono_a9a2f1969421e0aecd63d30a1473c6d60}{visibleRange\_Y}}\ =\ 10;\ }
+\DoxyCodeLine{00201\ \ \ \ \ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{class_multi_types_chrono_a6537ad9de1ea5f2b29ce657227496108}{yAxisCurrentMax}};}
+\DoxyCodeLine{00202\ \ \ \ \ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{class_multi_types_chrono_a3d6db1364086272044888f361a074a2f}{yAxisCurrentMin}};}
+\DoxyCodeLine{00203\ }
+\DoxyCodeLine{00204\ \ \ \ \ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{class_multi_types_chrono_aafa6564c4197e21a905a7575b1670978}{offset\_X}}\ =\ 0;\ \ \ }
+\DoxyCodeLine{00205\ \ \ \ \ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{class_multi_types_chrono_a5c94266d57090f33df95adc0d10c8805}{offset\_Y}}\ =\ 0;\ \ \ }
+\DoxyCodeLine{00206\ }
+\DoxyCodeLine{00207\ \ \ \ \ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{class_multi_types_chrono_aa1c193f58eeb56f990908817715007ce}{Y\_dataRange}};}
+\DoxyCodeLine{00208\ }
+\DoxyCodeLine{00209\ \ \ \ \ \textcolor{keywordtype}{double}\ \mbox{\hyperlink{class_multi_types_chrono_a98783687742c8aae9acdf0af6e579415}{stepPixelNb\_X}}\ =\ 60.f;\ }
+\DoxyCodeLine{00210\ \ \ \ \ \textcolor{keywordtype}{double}\ \mbox{\hyperlink{class_multi_types_chrono_aebbf6ef6edb800b27d60f29b5b773121}{stepPixelNb\_Y}}\ =\ 30.f;\ }
+\DoxyCodeLine{00211\ }
+\DoxyCodeLine{00212\ \ \ \ \ \mbox{\hyperlink{class_multi_types_chrono_ac44c4df1a0409c3c5bd137a5ad2dd0e7}{e\_initType}}\ \mbox{\hyperlink{class_multi_types_chrono_a889859c81fc22319f9ab4bc125f18420}{initType}};\ }
+\DoxyCodeLine{00213\ }
+\DoxyCodeLine{00214\ \ \ \ \ QSlider\ *\mbox{\hyperlink{class_multi_types_chrono_a5737dd9cf32d15926c1a2c2cc7e0590d}{slider}};\ }
+\DoxyCodeLine{00215\ \ \ \ \ QVBoxLayout\ *\mbox{\hyperlink{class_multi_types_chrono_a10121c7d6e3a7bb96497d9341987256c}{Vlayout}};\ }
+\DoxyCodeLine{00216\ }
+\DoxyCodeLine{00217\ \ \ \ \ \textcolor{comment}{//To\ store\ the\ data\ points}}
+\DoxyCodeLine{00218\ \ \ \ \ QVector<double>\ \mbox{\hyperlink{class_multi_types_chrono_ae6493f3ca243f4d74f5b25fac7c6e3b1}{dataPoints}};\ }
+\DoxyCodeLine{00219\ }
+\DoxyCodeLine{00220\ \ \ \ \ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{class_multi_types_chrono_aca73ab87c3d40964aa04dfe563269e2c}{dataMax}};}
+\DoxyCodeLine{00221\ \ \ \ \ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{class_multi_types_chrono_a023c72bf89ae1e89c5c2b9de77440714}{dataMin}};}
+\DoxyCodeLine{00222\ \ \ \ \ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{class_multi_types_chrono_aa8dbaf7ce948d42d45ba1c7e5b5b3765}{nbPoints}};}
+\DoxyCodeLine{00223\ \ \ \ \ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{class_multi_types_chrono_a8abe97ff37fddfc75dda0172d74172cc}{height}};}
+\DoxyCodeLine{00224\ \ \ \ \ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{class_multi_types_chrono_a299b669dfc594ee021e28e4c950bdf47}{width}};}
+\DoxyCodeLine{00225\ }
+\DoxyCodeLine{00226\ \ \ \ \ QPushButton\ *\mbox{\hyperlink{class_multi_types_chrono_ae1d9cde4a8d732fce2397a9f23f63e43}{plusButton}};\ }
+\DoxyCodeLine{00227\ \ \ \ \ QPushButton\ *\mbox{\hyperlink{class_multi_types_chrono_a113862dc1b442c4b84e7918c2151e186}{minusButton}};\ }
+\DoxyCodeLine{00228\ \ \ \ \ QPushButton\ *\mbox{\hyperlink{class_multi_types_chrono_aa6a8d81fb716dff943c5d0f0437e42f9}{fitButton}};\ }
+\DoxyCodeLine{00229\ \ \ \ \ QHBoxLayout\ *\mbox{\hyperlink{class_multi_types_chrono_a4164f653fbc1285f039014b93f3818ab}{buttonLayout}};\ }
+\DoxyCodeLine{00230\ \ \ \ \ QLabel\ *\mbox{\hyperlink{class_multi_types_chrono_a579246625a86944bd79fc5836d890d17}{popupLabel}};}
+\DoxyCodeLine{00231\ }
+\DoxyCodeLine{00232\ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{class_multi_types_chrono_aece86022397a3e867b920b068a1a8796}{isDragging}}\ =\ \textcolor{keyword}{false};\ }
+\DoxyCodeLine{00233\ \ \ \ \ QPoint\ \mbox{\hyperlink{class_multi_types_chrono_af7d2d1584c0900f6f47dafd6a1c15fdc}{dragStartPoint}};\ }
+\DoxyCodeLine{00234\ \ \ \ \ QPoint\ \mbox{\hyperlink{class_multi_types_chrono_acebe6dc46c0e9fc3ccdf0b11358c00e3}{dragEndPoint}};\ }
+\DoxyCodeLine{00235\ }
+\DoxyCodeLine{00236\ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{class_multi_types_chrono_a5c1a45adbbb956645b39b8514b223ba6}{isRightClicking}}\ =\ \textcolor{keyword}{false};\ }
+\DoxyCodeLine{00237\ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{class_multi_types_chrono_ac759a645945df39da00261802bd28eba}{isFirstRightClick}}\ =\ \textcolor{keyword}{false};\ }
+\DoxyCodeLine{00238\ \ \ \ \ QPoint\ \mbox{\hyperlink{class_multi_types_chrono_a72becbcdc89e7fc3a20e221465e42744}{rightClickStartPoint}};\ }
+\DoxyCodeLine{00239\ }
+\DoxyCodeLine{00246\ \ \ \ \ \textcolor{keyword}{template}\ <\textcolor{keyword}{typename}\ T>}
+\DoxyCodeLine{00247\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_multi_types_chrono_a9984ef9b23ced118af43690705b17d64}{appendPoint}}(\textcolor{keyword}{const}\ T\&\ point);}
+\DoxyCodeLine{00248\ }
+\DoxyCodeLine{00253\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_multi_types_chrono_ad03ea3280f010939cad219268132464d}{drawBackScale}}(QPainter\ *painter);}
+\DoxyCodeLine{00254\ }
+\DoxyCodeLine{00258\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_multi_types_chrono_a55fcfe87b7680cae7489aa9781ae15f4}{updateSliderRange}}();}
+\DoxyCodeLine{00259\ }
+\DoxyCodeLine{00263\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_multi_types_chrono_a415cb4b6edf92350ce99e96a1258c162}{calculateVisibleRange}}();}
+\DoxyCodeLine{00264\ }
+\DoxyCodeLine{00269\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_multi_types_chrono_a9badfa98b221893a5ecc639439a03680}{initializeBoolDataPoints}}(\textcolor{keywordtype}{int}\ \mbox{\hyperlink{class_multi_types_chrono_aa8dbaf7ce948d42d45ba1c7e5b5b3765}{nbPoints}});}
+\DoxyCodeLine{00270\ }
+\DoxyCodeLine{00274\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_multi_types_chrono_aabc3e3973ae3d4e0d59d90a01c56051a}{calculatePixelPerStep}}();}
+\DoxyCodeLine{00275\ }
+\DoxyCodeLine{00283\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_multi_types_chrono_aabbf3befb542a4ce3a2ce1695bcd7059}{drawText}}(QPainter\ \&painter,\ \textcolor{keyword}{const}\ QString\ \&text,\ \textcolor{keywordtype}{int}\ x,\ \textcolor{keywordtype}{int}\ y);}
+\DoxyCodeLine{00284\ }
+\DoxyCodeLine{00292\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_multi_types_chrono_aa72697774e7d7cc6e03ff446e5cdccb4}{drawTextInBox}}(QPainter\ \&painter,\ \textcolor{keyword}{const}\ QString\ \&text,\ \textcolor{keywordtype}{int}\ x,\ \textcolor{keywordtype}{int}\ y);}
+\DoxyCodeLine{00293\ }
+\DoxyCodeLine{00298\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_multi_types_chrono_a4296e38df440d6f843bfa2c46b7d33aa}{showPopupAtCursor}}(QPoint\ cursorPos);}
+\DoxyCodeLine{00299\ }
+\DoxyCodeLine{00300\ }
+\DoxyCodeLine{00306\ \ \ \ \ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{class_multi_types_chrono_a7a51fd58a28565fbd9475bf78c7380cf}{getStepFromX}}(\textcolor{keywordtype}{int}\ x);}
+\DoxyCodeLine{00307\ }
+\DoxyCodeLine{00311\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_multi_types_chrono_a79d367965b9ba562b1aca1e7fbf85710}{initGraph}}();}
+\DoxyCodeLine{00312\ }
+\DoxyCodeLine{00318\ \ \ \ \ \textcolor{keywordtype}{double}\ \mbox{\hyperlink{class_multi_types_chrono_abf3b4c4b7766566f3461f6f7edb34dcb}{getMax}}(\textcolor{keyword}{const}\ QVector<double>\ \&vec);}
+\DoxyCodeLine{00319\ }
+\DoxyCodeLine{00325\ \ \ \ \ \textcolor{keywordtype}{double}\ \mbox{\hyperlink{class_multi_types_chrono_a064589826aab91c7435205f378e1e107}{getMin}}(\textcolor{keyword}{const}\ QVector<double>\ \&vec);}
+\DoxyCodeLine{00326\ }
+\DoxyCodeLine{00333\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_multi_types_chrono_ae906bf8e087228efbcd29a65c97e3687}{getMinMaxSize}}();}
+\DoxyCodeLine{00334\ }
+\DoxyCodeLine{00340\ \ \ \ \ QString\ \mbox{\hyperlink{class_multi_types_chrono_ac611ff73a47f0c9f760796b39e238a94}{getTypeString}}(\mbox{\hyperlink{class_multi_types_chrono_ac44c4df1a0409c3c5bd137a5ad2dd0e7}{e\_initType}}\ type);}
+\DoxyCodeLine{00341\ }
+\DoxyCodeLine{00349\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_multi_types_chrono_accbe35d48b4cd3f5e09b3ed6e1bfc0bc}{drawBoolData}}(QPainter\ *painter);}
+\DoxyCodeLine{00350\ }
+\DoxyCodeLine{00358\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_multi_types_chrono_a569a556b2b36278d0c2fb228526c465b}{drawData}}(QPainter\ *painter);}
+\DoxyCodeLine{00359\ }
+\DoxyCodeLine{00365\ \ \ \ \ \textcolor{keywordtype}{double}\ \mbox{\hyperlink{class_multi_types_chrono_a0e8d640f7f2bca709964ec3b2597b01c}{pointHeightForValue}}(\textcolor{keywordtype}{double}\ point);}
+\DoxyCodeLine{00366\ }
+\DoxyCodeLine{00373\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_multi_types_chrono_a749fec4e64990962ec6f3d8edafdd6d5}{drawXaxis}}(\textcolor{keyword}{const}\ QPoint\ leftPoint,\ \textcolor{keyword}{const}\ QPoint\ rightPoint,\ QPainter\ *painter);}
+\DoxyCodeLine{00374\ }
+\DoxyCodeLine{00381\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_multi_types_chrono_aa9cf11ac73bd9e3dabbc02d5fc229443}{drawYaxis}}(\textcolor{keyword}{const}\ QPoint\ topPoint,\ \textcolor{keyword}{const}\ QPoint\ bottomPoint,\ QPainter\ *painter);}
+\DoxyCodeLine{00382\ }
+\DoxyCodeLine{00387\ \ \ \ \ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{class_multi_types_chrono_ad7dfdb38694536ded99bb26557aad6d2}{getZeroPxHeight}}();}
+\DoxyCodeLine{00388\ }
+\DoxyCodeLine{00395\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_multi_types_chrono_ae3387fbdad38fe4df8bc7e24b1923adf}{getYcurrentMinMax}}();}
+\DoxyCodeLine{00396\ \textcolor{keyword}{private}\ slots:}
+\DoxyCodeLine{00400\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_multi_types_chrono_a72c446ea3c1ccf56fd9a843f2c460f84}{handlePlusButton}}();}
+\DoxyCodeLine{00401\ }
+\DoxyCodeLine{00405\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_multi_types_chrono_a3740c8fc0a1388344dfe3a923c9e8599}{handleMinusButton}}();}
+\DoxyCodeLine{00406\ }
+\DoxyCodeLine{00410\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_multi_types_chrono_a3769a48cf4b626cb8b1c1448736c1a0a}{handleFitButton}}();}
+\DoxyCodeLine{00411\ \};}
+\DoxyCodeLine{00412\ }
+\DoxyCodeLine{00424\ \textcolor{keyword}{template}\ <\textcolor{keyword}{typename}\ T>}
+\DoxyCodeLine{00425\ QVector<double>\ \mbox{\hyperlink{multitypeschrono_8h_a4145f600aeb535a46cfeec6acdfa3f9f}{convertToDoubleVector}}(\textcolor{keyword}{const}\ QVector<T>\&\ inputVector)}
+\DoxyCodeLine{00426\ \{}
+\DoxyCodeLine{00427\ \ \ \ \ QVector<double>\ doubleVector;}
+\DoxyCodeLine{00428\ \ \ \ \ doubleVector.reserve(inputVector.size());\ \textcolor{comment}{//\ Reserve\ space\ to\ avoid\ multiple\ allocations}}
+\DoxyCodeLine{00429\ }
+\DoxyCodeLine{00430\ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keyword}{const}\ T\&\ value\ :\ inputVector)}
+\DoxyCodeLine{00431\ \ \ \ \ \{}
+\DoxyCodeLine{00432\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ \textcolor{keyword}{constexpr}\ (std::is\_arithmetic\_v<T>)\ \textcolor{comment}{//\ Check\ if\ T\ is\ an\ arithmetic\ type}}
+\DoxyCodeLine{00433\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00434\ \ \ \ \ \ \ \ \ \ \ \ \ doubleVector.append(\textcolor{keyword}{static\_cast<}\textcolor{keywordtype}{double}\textcolor{keyword}{>}(value));}
+\DoxyCodeLine{00435\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00436\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{00437\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00438\ \ \ \ \ \ \ \ \ \ \ \ \ qDebug()\ <<\ \textcolor{stringliteral}{"{}Type\ cannot\ be\ converted\ to\ double."{}};}
+\DoxyCodeLine{00439\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00440\ \ \ \ \ \}}
+\DoxyCodeLine{00441\ }
+\DoxyCodeLine{00442\ \ \ \ \ \textcolor{keywordflow}{return}\ doubleVector;}
+\DoxyCodeLine{00443\ \}}
+\DoxyCodeLine{00444\ }
+\DoxyCodeLine{00445\ \textcolor{keyword}{template}\ <\textcolor{keyword}{typename}\ T>}
+\DoxyCodeLine{00446\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_multi_types_chrono_ae1aacb015e028956bc4107e1b500cce1}{MultiTypesChrono::addPoint}}(\textcolor{keyword}{const}\ T\&\ point)}
+\DoxyCodeLine{00447\ \{}
+\DoxyCodeLine{00448\ \ \ \ \ \mbox{\hyperlink{class_multi_types_chrono_a9984ef9b23ced118af43690705b17d64}{appendPoint}}(point);}
+\DoxyCodeLine{00449\ \}}
+\DoxyCodeLine{00450\ }
+\DoxyCodeLine{00451\ \textcolor{keyword}{template}\ <\textcolor{keyword}{typename}\ T>}
+\DoxyCodeLine{00452\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_multi_types_chrono_ae1aacb015e028956bc4107e1b500cce1}{MultiTypesChrono::addPoint}}(\textcolor{keyword}{const}\ QVector<T>\&\ points)}
+\DoxyCodeLine{00453\ \{}
+\DoxyCodeLine{00454\ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keyword}{const}\ T\&\ point\ :\ points)}
+\DoxyCodeLine{00455\ \ \ \ \ \{}
+\DoxyCodeLine{00456\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_multi_types_chrono_a9984ef9b23ced118af43690705b17d64}{appendPoint}}(point);}
+\DoxyCodeLine{00457\ \ \ \ \ \}}
+\DoxyCodeLine{00458\ \}}
+\DoxyCodeLine{00459\ }
+\DoxyCodeLine{00460\ \textcolor{keyword}{template}\ <\textcolor{keyword}{typename}\ T>}
+\DoxyCodeLine{00461\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_multi_types_chrono_a9984ef9b23ced118af43690705b17d64}{MultiTypesChrono::appendPoint}}(\textcolor{keyword}{const}\ T\&\ point)}
+\DoxyCodeLine{00462\ \{}
+\DoxyCodeLine{00463\ \ \ \ \ \textcolor{keywordtype}{bool}\ validType\ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00464\ \ \ \ \ \textcolor{keywordtype}{bool}\ warningType\ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00465\ }
+\DoxyCodeLine{00466\ \ \ \ \ \textcolor{keywordflow}{if}\ \textcolor{keyword}{constexpr}\ (std::is\_same<T,\ bool>::value)}
+\DoxyCodeLine{00467\ \ \ \ \ \{\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00468\ \ \ \ \ \ \ \ \ validType\ =\ (\mbox{\hyperlink{class_multi_types_chrono_a889859c81fc22319f9ab4bc125f18420}{initType}}\ ==\ \mbox{\hyperlink{class_multi_types_chrono_ac44c4df1a0409c3c5bd137a5ad2dd0e7a08ee1a2ad12baa605fd5b07bb4bd16f3}{BOOL}});}
+\DoxyCodeLine{00469\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (validType)}
+\DoxyCodeLine{00470\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_multi_types_chrono_ae6493f3ca243f4d74f5b25fac7c6e3b1}{dataPoints}}.append(\textcolor{keyword}{static\_cast<}\textcolor{keywordtype}{double}\textcolor{keyword}{>}(point));}
+\DoxyCodeLine{00471\ \ \ \ \ \}}
+\DoxyCodeLine{00472\ \ \ \ \ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}\ \textcolor{keyword}{constexpr}\ (std::is\_same<T,\ int>::value)}
+\DoxyCodeLine{00473\ \ \ \ \ \{}
+\DoxyCodeLine{00474\ \ \ \ \ \ \ \ \ validType\ =\ (\mbox{\hyperlink{class_multi_types_chrono_a889859c81fc22319f9ab4bc125f18420}{initType}}\ ==\ \mbox{\hyperlink{class_multi_types_chrono_ac44c4df1a0409c3c5bd137a5ad2dd0e7ae542d2e37713bd9d353097bf0869339a}{INT}});}
+\DoxyCodeLine{00475\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (validType)}
+\DoxyCodeLine{00476\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_multi_types_chrono_ae6493f3ca243f4d74f5b25fac7c6e3b1}{dataPoints}}.append(\textcolor{keyword}{static\_cast<}\textcolor{keywordtype}{double}\textcolor{keyword}{>}(point));}
+\DoxyCodeLine{00477\ \ \ \ \ \}}
+\DoxyCodeLine{00478\ \ \ \ \ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}\ \textcolor{keyword}{constexpr}\ (std::is\_same<T,\ float>::value)}
+\DoxyCodeLine{00479\ \ \ \ \ \{}
+\DoxyCodeLine{00480\ \ \ \ \ \ \ \ \ validType\ =\ (\mbox{\hyperlink{class_multi_types_chrono_a889859c81fc22319f9ab4bc125f18420}{initType}}\ ==\ \mbox{\hyperlink{class_multi_types_chrono_ac44c4df1a0409c3c5bd137a5ad2dd0e7af7cd8b30685a58318a23d9c961fcb3e5}{FLOAT}});}
+\DoxyCodeLine{00481\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (validType)}
+\DoxyCodeLine{00482\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_multi_types_chrono_ae6493f3ca243f4d74f5b25fac7c6e3b1}{dataPoints}}.append(\textcolor{keyword}{static\_cast<}\textcolor{keywordtype}{double}\textcolor{keyword}{>}(point));}
+\DoxyCodeLine{00483\ \ \ \ \ \}}
+\DoxyCodeLine{00484\ \ \ \ \ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}\ \textcolor{keyword}{constexpr}\ (std::is\_same<T,\ double>::value)}
+\DoxyCodeLine{00485\ \ \ \ \ \{}
+\DoxyCodeLine{00486\ \ \ \ \ \ \ \ \ validType\ =\ (\mbox{\hyperlink{class_multi_types_chrono_a889859c81fc22319f9ab4bc125f18420}{initType}}\ ==\ \mbox{\hyperlink{class_multi_types_chrono_ac44c4df1a0409c3c5bd137a5ad2dd0e7a66c45bd81724ed856cd96bf4fc14f31a}{DOUBLE}});}
+\DoxyCodeLine{00487\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (validType)}
+\DoxyCodeLine{00488\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_multi_types_chrono_ae6493f3ca243f4d74f5b25fac7c6e3b1}{dataPoints}}.append(point);}
+\DoxyCodeLine{00489\ \ \ \ \ \}}
+\DoxyCodeLine{00490\ }
+\DoxyCodeLine{00491\ \ \ \ \ \textcolor{comment}{//\ Common\ update\ logic}}
+\DoxyCodeLine{00492\ \ \ \ \ \textcolor{keywordflow}{if}\ (validType)}
+\DoxyCodeLine{00493\ \ \ \ \ \{}
+\DoxyCodeLine{00494\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_multi_types_chrono_a55fcfe87b7680cae7489aa9781ae15f4}{updateSliderRange}}();}
+\DoxyCodeLine{00495\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_multi_types_chrono_ae906bf8e087228efbcd29a65c97e3687}{getMinMaxSize}}();}
+\DoxyCodeLine{00496\ \ \ \ \ \ \ \ \ update();}
+\DoxyCodeLine{00497\ \ \ \ \ \}}
+\DoxyCodeLine{00498\ \ \ \ \ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{00499\ \ \ \ \ \{}
+\DoxyCodeLine{00500\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_debug_window_a5ba835047d84a98c021769c739f97987}{DebugWindow::getInstance}}()-\/>\mbox{\hyperlink{class_debug_window_a2fe990bcdd7d03688af2edecf597b664}{addError}}(\textcolor{stringliteral}{"{}Wrong\ type\ used,\ graph\ type\ is\ "{}}\ +\ \mbox{\hyperlink{class_multi_types_chrono_ac611ff73a47f0c9f760796b39e238a94}{getTypeString}}(\mbox{\hyperlink{class_multi_types_chrono_a889859c81fc22319f9ab4bc125f18420}{initType}})\ +\ \textcolor{stringliteral}{"{}.\ Input\ is\ of\ type\ "{}}\ +\ \textcolor{keyword}{typeid}(T).name());}
+\DoxyCodeLine{00501\ \ \ \ \ \}}
+\DoxyCodeLine{00502\ \}}
+\DoxyCodeLine{00503\ }
+\DoxyCodeLine{00504\ }
+\DoxyCodeLine{00505\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{//\ MULTITYPESCHRONO\_H}}
+
+\end{DoxyCode}

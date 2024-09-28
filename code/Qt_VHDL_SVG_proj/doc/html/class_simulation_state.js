@@ -6,8 +6,12 @@ var class_simulation_state =
       [ "RUNNING", "class_simulation_state.html#a8a98584c8487f5e66e329dfcfd6338e3aa18b7bc85cd4db8637ed699904fe99ba", null ]
     ] ],
     [ "SimulationState", "class_simulation_state.html#a89f6470c6efdaf6d8d84b6267805b0b2", null ],
+    [ "SimulationState", "class_simulation_state.html#a4bf04730566ed6665800a75c003816ec", null ],
     [ "getState", "class_simulation_state.html#abb5e6e706dc00d0ad5adf1b75bf64b3c", null ],
+    [ "getStateStr", "class_simulation_state.html#a89408a8a30db6b7544536466332feb12", null ],
+    [ "operator=", "class_simulation_state.html#a32040c4dd60847cf4746d63ee45d7540", null ],
     [ "setState", "class_simulation_state.html#a622eba3a5708209467b89c66bbf09d7f", null ],
     [ "stateChanged", "class_simulation_state.html#a7f1f8f158ef2f363f84b40097225779b", null ],
-    [ "currentState", "class_simulation_state.html#a99366f30dc913dead50cf0b031d6a7bd", null ]
+    [ "currentState", "class_simulation_state.html#a99366f30dc913dead50cf0b031d6a7bd", null ],
+    [ "m_stateMutex", "class_simulation_state.html#a9cf20401bc76918f934c81cdfcaf7f4e", null ]
 ];

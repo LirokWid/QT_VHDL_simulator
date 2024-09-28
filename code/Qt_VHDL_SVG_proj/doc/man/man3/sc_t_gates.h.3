@@ -1,0 +1,61 @@
+.TH "S:/code/QT_VHDL_simulator/code/Qt_VHDL_SVG_proj/systemC/sc_t_gates.h" 3 "VHDL simulator" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+S:/code/QT_VHDL_simulator/code/Qt_VHDL_SVG_proj/systemC/sc_t_gates.h
+.SH SYNOPSIS
+.br
+.PP
+\fC#include <systemc\&.h>\fP
+.br
+\fC#include <stdio\&.h>\fP
+.br
+
+.SS "Classes"
+
+.in +1c
+.ti -1c
+.RI "class \fBSyscTComb< W >\fP"
+.br
+.RI "The SyscTComb::sc_core::sc_module template class\&. "
+.ti -1c
+.RI "class \fBSyscTAnd< W >\fP"
+.br
+.in -1c
+.SS "Macros"
+
+.in +1c
+.ti -1c
+.RI "#\fBdefine\fP \fBABORT_IF_NULL_PTR\fP(\fBptr\fP)"
+.br
+.ti -1c
+.RI "#\fBdefine\fP \fBABORT_CAUSE\fP(\fBmsg\fP)"
+.br
+.in -1c
+.SH "Macro Definition Documentation"
+.PP 
+.SS "#\fBdefine\fP ABORT_CAUSE(\fBmsg\fP)"
+\fBValue:\fP.PP
+.nf
+    {\\
+        char buffer[1024];\\
+        snprintf(buffer, sizeof(buffer), "%s:%d", __FILE__, __LINE__);\\
+        SC_REPORT_ERROR(buffer, msg);\\
+        sc_core::sc_abort(); \\
+    }
+.fi
+
+.SS "#\fBdefine\fP ABORT_IF_NULL_PTR(\fBptr\fP)"
+\fBValue:\fP.PP
+.nf
+    if (ptr == nullptr) {\\
+        char buffer[1024];\\
+        snprintf(buffer, sizeof(buffer), "%s:%d", __FILE__, __LINE__);\\
+        SC_REPORT_ERROR(buffer, "Memory allocation failed");\\
+        sc_core::sc_abort(); \\
+    }
+.fi
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for VHDL simulator from the source code\&.

@@ -1,0 +1,67 @@
+\doxysection{S\+:/code/\+QT\+\_\+\+VHDL\+\_\+simulator/code/\+Qt\+\_\+\+VHDL\+\_\+\+SVG\+\_\+proj/system\+C/sc\+\_\+t\+\_\+gates.h File Reference}
+\hypertarget{sc__t__gates_8h}{}\label{sc__t__gates_8h}\index{S:/code/QT\_VHDL\_simulator/code/Qt\_VHDL\_SVG\_proj/systemC/sc\_t\_gates.h@{S:/code/QT\_VHDL\_simulator/code/Qt\_VHDL\_SVG\_proj/systemC/sc\_t\_gates.h}}
+{\ttfamily \#include $<$systemc.\+h$>$}\newline
+{\ttfamily \#include $<$stdio.\+h$>$}\newline
+Include dependency graph for sc\+\_\+t\+\_\+gates.\+h\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=224pt]{sc__t__gates_8h__incl}
+\end{center}
+\end{figure}
+This graph shows which files directly or indirectly include this file\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=224pt]{sc__t__gates_8h__dep__incl}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+class \mbox{\hyperlink{class_sysc_t_comb}{Sysc\+TComb$<$ W $>$}}
+\begin{DoxyCompactList}\small\item\em The Sysc\+TComb\+::sc\+\_\+core\+::sc\+\_\+module template class. \end{DoxyCompactList}\item 
+class \mbox{\hyperlink{class_sysc_t_and}{Sysc\+TAnd$<$ W $>$}}
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#\mbox{\hyperlink{class_sysc_t_and}{define}} \mbox{\hyperlink{sc__t__gates_8h_a09e8eb171590c3a625421b12c39c6961}{ABORT\+\_\+\+IF\+\_\+\+NULL\+\_\+\+PTR}}(\mbox{\hyperlink{class_sysc_t_and}{ptr}})
+\item 
+\#\mbox{\hyperlink{class_sysc_t_and}{define}} \mbox{\hyperlink{sc__t__gates_8h_a86349cee0cda1453cef1afb1a309929d}{ABORT\+\_\+\+CAUSE}}(\mbox{\hyperlink{class_sysc_t_and}{msg}})
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Macro Definition Documentation}
+\Hypertarget{sc__t__gates_8h_a86349cee0cda1453cef1afb1a309929d}\label{sc__t__gates_8h_a86349cee0cda1453cef1afb1a309929d} 
+\index{sc\_t\_gates.h@{sc\_t\_gates.h}!ABORT\_CAUSE@{ABORT\_CAUSE}}
+\index{ABORT\_CAUSE@{ABORT\_CAUSE}!sc\_t\_gates.h@{sc\_t\_gates.h}}
+\doxysubsubsection{\texorpdfstring{ABORT\_CAUSE}{ABORT\_CAUSE}}
+{\footnotesize\ttfamily \#\mbox{\hyperlink{class_sysc_t_and}{define}} ABORT\+\_\+\+CAUSE(\begin{DoxyParamCaption}\item[{}]{\mbox{\hyperlink{class_sysc_t_and}{msg}} }\end{DoxyParamCaption})}
+
+{\bfseries Value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\ \ \ \ \{\(\backslash\)}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \textcolor{keywordtype}{char}\ \mbox{\hyperlink{class_sysc_t_and}{buffer}}[1024];\mbox{\hyperlink{class_sysc_t_and}{\(\backslash\)}}}
+\DoxyCodeLine{\mbox{\hyperlink{class_sysc_t_and}{\ \ \ \ \ \ \ \ snprintf}}(\mbox{\hyperlink{class_sysc_t_and}{buffer}},\ \textcolor{keyword}{sizeof}(\mbox{\hyperlink{class_sysc_t_and}{buffer}}),\ \textcolor{stringliteral}{"{}\%s:\%d"{}},\ \mbox{\hyperlink{class_sysc_t_and}{\_\_FILE\_\_}},\ \mbox{\hyperlink{class_sysc_t_and}{\_\_LINE\_\_}});\mbox{\hyperlink{class_sysc_t_and}{\(\backslash\)}}}
+\DoxyCodeLine{\mbox{\hyperlink{class_sysc_t_and}{\ \ \ \ \ \ \ \ SC\_REPORT\_ERROR}}(\mbox{\hyperlink{class_sysc_t_and}{buffer}},\ \mbox{\hyperlink{class_sysc_t_and}{msg}});\mbox{\hyperlink{class_sysc_t_and_a1c3a6c18242880ceec6b31abc38f33a7}{\(\backslash\)}}}
+\DoxyCodeLine{\mbox{\hyperlink{class_sysc_t_and_a1c3a6c18242880ceec6b31abc38f33a7}{\ \ \ \ \ \ \ \ sc\_core::sc\_abort}}();\ \(\backslash\)}
+\DoxyCodeLine{\ \ \ \ \}}
+
+\end{DoxyCode}
+\Hypertarget{sc__t__gates_8h_a09e8eb171590c3a625421b12c39c6961}\label{sc__t__gates_8h_a09e8eb171590c3a625421b12c39c6961} 
+\index{sc\_t\_gates.h@{sc\_t\_gates.h}!ABORT\_IF\_NULL\_PTR@{ABORT\_IF\_NULL\_PTR}}
+\index{ABORT\_IF\_NULL\_PTR@{ABORT\_IF\_NULL\_PTR}!sc\_t\_gates.h@{sc\_t\_gates.h}}
+\doxysubsubsection{\texorpdfstring{ABORT\_IF\_NULL\_PTR}{ABORT\_IF\_NULL\_PTR}}
+{\footnotesize\ttfamily \#\mbox{\hyperlink{class_sysc_t_and}{define}} ABORT\+\_\+\+IF\+\_\+\+NULL\+\_\+\+PTR(\begin{DoxyParamCaption}\item[{}]{\mbox{\hyperlink{class_sysc_t_and}{ptr}} }\end{DoxyParamCaption})}
+
+{\bfseries Value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\ \ \ \ \textcolor{keywordflow}{if}\ (\mbox{\hyperlink{class_sysc_t_and}{ptr}}\ ==\ \textcolor{keyword}{nullptr})\ \{\(\backslash\)}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \textcolor{keywordtype}{char}\ \mbox{\hyperlink{class_sysc_t_and}{buffer}}[1024];\mbox{\hyperlink{class_sysc_t_and}{\(\backslash\)}}}
+\DoxyCodeLine{\mbox{\hyperlink{class_sysc_t_and}{\ \ \ \ \ \ \ \ snprintf}}(\mbox{\hyperlink{class_sysc_t_and}{buffer}},\ \textcolor{keyword}{sizeof}(\mbox{\hyperlink{class_sysc_t_and}{buffer}}),\ \textcolor{stringliteral}{"{}\%s:\%d"{}},\ \mbox{\hyperlink{class_sysc_t_and}{\_\_FILE\_\_}},\ \mbox{\hyperlink{class_sysc_t_and}{\_\_LINE\_\_}});\mbox{\hyperlink{class_sysc_t_and}{\(\backslash\)}}}
+\DoxyCodeLine{\mbox{\hyperlink{class_sysc_t_and}{\ \ \ \ \ \ \ \ SC\_REPORT\_ERROR}}(\mbox{\hyperlink{class_sysc_t_and}{buffer}},\ \textcolor{stringliteral}{"{}Memory\ allocation\ failed"{}});\mbox{\hyperlink{class_sysc_t_and_a1c3a6c18242880ceec6b31abc38f33a7}{\(\backslash\)}}}
+\DoxyCodeLine{\mbox{\hyperlink{class_sysc_t_and_a1c3a6c18242880ceec6b31abc38f33a7}{\ \ \ \ \ \ \ \ sc\_core::sc\_abort}}();\ \(\backslash\)}
+\DoxyCodeLine{\ \ \ \ \}}
+
+\end{DoxyCode}

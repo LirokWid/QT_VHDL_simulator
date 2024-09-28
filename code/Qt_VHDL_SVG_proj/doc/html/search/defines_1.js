@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['attr_5ffor_5fstr_0',['ATTR_FOR_STR',['../_svg_parser_8h.html#a635091ec9db7559befaf64a41cbaab98',1,'SvgParser.h']]]
+  ['base_5fzoom_0',['BASE_ZOOM',['../svgwidget_8h.html#a33309e9dbc926aeb8148428e6ee80f79',1,'svgwidget.h']]]
 ];

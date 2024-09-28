@@ -1,8 +1,12 @@
 var searchData=
 [
-  ['to_5fbe_5ffound_0',['TO_BE_FOUND',['../class_svg_parser.html#a3d9eb960ab5134b22a28c33ed12068c0aa1db35d65fe2cc7d0b50df099b781b9a',1,'SvgParser']]],
-  ['tri_5fconv_5fctl_5fxorz_5fd_1',['TRI_CONV_CTL_XORZ_D',['../sc__tri_8h.html#ad53884ff2bd47498551ec5bed9928625a299bd92fe394816487f38c5ad9ac6e99',1,'sc_tri.h']]],
-  ['tri_5fconv_5fctl_5fxorz_5fx_2',['TRI_CONV_CTL_XORZ_X',['../sc__tri_8h.html#ad53884ff2bd47498551ec5bed9928625a622d05277f582e14841309ab4cc33bc6',1,'sc_tri.h']]],
-  ['tri_5fconv_5fctl_5fxorz_5fz_3',['TRI_CONV_CTL_XORZ_Z',['../sc__tri_8h.html#ad53884ff2bd47498551ec5bed9928625a3b3f94f35664e48d48234aa6e97a766a',1,'sc_tri.h']]],
-  ['type_4',['type',['../class_svg_parser.html#a1a6610dfc34ac22dc62e08f5ec06fd7da8e103b8a5b699f7a2bc8e1d910d91c98',1,'SvgParser']]]
+  ['obj_5fkind_5fadaptor_0',['OBJ_KIND_ADAPTOR',['../classdebug__object.html#abe26a8979f83e43e70431a686bc182cba250b21a6cc2859b2f8f0b0e6ef4e9f6e',1,'debug_object']]],
+  ['obj_5fkind_5fclock_1',['OBJ_KIND_CLOCK',['../classdebug__object.html#abe26a8979f83e43e70431a686bc182cbab02bf6465224f9489fb786e425ebfad1',1,'debug_object']]],
+  ['obj_5fkind_5fmodule_2',['OBJ_KIND_MODULE',['../classdebug__object.html#abe26a8979f83e43e70431a686bc182cbab237687e19b39a434cf3138014758e8f',1,'debug_object']]],
+  ['obj_5fkind_5fother_3',['OBJ_KIND_OTHER',['../classdebug__object.html#abe26a8979f83e43e70431a686bc182cba8df60486b2b7edfd9fb288873a171f6c',1,'debug_object']]],
+  ['obj_5fkind_5fport_4',['OBJ_KIND_PORT',['../classdebug__object.html#abe26a8979f83e43e70431a686bc182cba918503a949d98145d3b8eaa70b028704',1,'debug_object']]],
+  ['obj_5fkind_5fsignal_5',['OBJ_KIND_SIGNAL',['../classdebug__object.html#abe26a8979f83e43e70431a686bc182cba1d0411d6e108f7de07436e87d6bcfd0f',1,'debug_object']]],
+  ['or_5fgate_5fdevice_6',['OR_GATE_DEVICE',['../systemcbuilder_8h.html#a34e7849fe05c1d5ca079a182a26a64bbacb7b50aef9f3a8983857d558a85738c6',1,'systemcbuilder.h']]],
+  ['output_7',['output',['../class_svg_parser.html#a1a6610dfc34ac22dc62e08f5ec06fd7da9cadd1d7a353abcfd077f71353006635',1,'SvgParser::output'],['../_components_struct_8h.html#ad59cdc6dfe08d36bd6fa64f7c0ae3742a2ab08d3e103968f5f4f26b66a52e99d6',1,'OUTPUT:&#160;ComponentsStruct.h']]],
+  ['outputs_8',['outputs',['../class_svg_parser.html#a1a6610dfc34ac22dc62e08f5ec06fd7da9225761ee04ec312c4ed69a477c4126a',1,'SvgParser']]]
 ];

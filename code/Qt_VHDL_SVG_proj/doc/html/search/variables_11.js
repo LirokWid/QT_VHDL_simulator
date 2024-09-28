@@ -1,6 +1,26 @@
 var searchData=
 [
-  ['ui_0',['ui',['../class_main_window.html#a35466a70ed47252a0191168126a352a5',1,'MainWindow']]],
-  ['use_5fena_1',['use_ena',['../class_sysc_flex_int.html#a0996f532f7f16d38b66dd3fc9c43d710',1,'SyscFlexInt']]],
-  ['use_5frst_2',['use_rst',['../class_sysc_flex_int.html#a3a6875691201096880a125f877defc72',1,'SyscFlexInt']]]
+  ['s_5fcomponents_5fmutex_0',['s_components_mutex',['../class_svg_handler.html#a056f333acef4377c1c87d1ca69e7799a',1,'SvgHandler']]],
+  ['s_5flastinstance_1',['s_lastInstance',['../class_svg_handler.html#a6774b5470777929d267babaf9ba4b423',1,'SvgHandler']]],
+  ['sc_5fkind_2',['sc_kind',['../classdebug__object.html#a0d222b031832eef96bf734fb66685000',1,'debug_object']]],
+  ['scrollbar_3',['scrollBar',['../class_debug_window.html#a60ba459f2b419c0409e1a827224f2eca',1,'DebugWindow']]],
+  ['sel_4',['sel',['../class_sysc_mux_t.html#af433cf4a30e17abeaf09a50738080297',1,'SyscMuxT::sel'],['../class_sysc_mux_t__pv.html#ab7588d3b426bfa2c300bd729562fe811',1,'SyscMuxT_pv::sel']]],
+  ['severities_5',['severities',['../class_debug_window.html#aa9e300f6b6b67e683f3ea5ae5e160055',1,'DebugWindow']]],
+  ['simmanager_6',['simManager',['../class_main_window.html#a9641ad91cd4d5f3961bd6ebc8549f354',1,'MainWindow']]],
+  ['simthread_7',['simThread',['../class_simulation_manager.html#aead0fd572830a296194023ac1b90982c',1,'SimulationManager']]],
+  ['simulation_5fios_8',['simulation_IOs',['../structs__components__list.html#a34add88f37b662c09d963f1a2ddfcf7d',1,'s_components_list']]],
+  ['simulation_5fwires_9',['simulation_wires',['../structs__components__list.html#a1109383fa361b821c1d94f989801819b',1,'s_components_list']]],
+  ['simulationstate_10',['simulationstate',['../class_files_tree_view.html#ab94ab2beb2522f68e23bc9ea006ba625',1,'FilesTreeView::simulationState'],['../class_svg_handler.html#a81d776043b4ff4ea2fc406e6285064c2',1,'SvgHandler::simulationState']]],
+  ['slider_11',['slider',['../class_multi_types_chrono.html#a5737dd9cf32d15926c1a2c2cc7e0590d',1,'MultiTypesChrono']]],
+  ['state_12',['state',['../class_main_window.html#a98639df8055e17e1ae1773fca4905033',1,'MainWindow::state'],['../class_simulation_manager.html#a6e6c137fc06ac863c86e93432e70222d',1,'SimulationManager::state'],['../structsc__thread__run__s.html#af363ea375288375757b273d4ca3804f7',1,'sc_thread_run_s::state']]],
+  ['statelabel_13',['stateLabel',['../class_main_window.html#a95a9cebf8aca42eb60edbc39821abb26',1,'MainWindow']]],
+  ['steppixelnb_5fx_14',['stepPixelNb_X',['../class_multi_types_chrono.html#a98783687742c8aae9acdf0af6e579415',1,'MultiTypesChrono']]],
+  ['steppixelnb_5fy_15',['stepPixelNb_Y',['../class_multi_types_chrono.html#aebbf6ef6edb800b27d60f29b5b773121',1,'MultiTypesChrono']]],
+  ['styles_16',['styles',['../struct_svg_widget_1_1s__style__lists.html#a9d99cc0741bcba4c4f172fa0fd178d9f',1,'SvgWidget::s_style_lists']]],
+  ['styles_5fto_5fmodify_17',['styles_to_modify',['../class_svg_widget.html#ad248732d6dea14187eb2d059ca406706',1,'SvgWidget']]],
+  ['successcheckbox_18',['successCheckBox',['../class_debug_window.html#a5a2c7c95e5dceedf9b8fef5f8316c5c3',1,'DebugWindow']]],
+  ['svg_5ffile_19',['svg_file',['../class_svg_parser.html#afe8534e237ea4ef6823f92d31f3b2d55',1,'SvgParser']]],
+  ['svghandler_20',['svghandler',['../class_files_tree_view.html#a10ab5c803640e32d5e012e94df7838e4',1,'FilesTreeView::svgHandler'],['../class_main_window.html#a0758ed539418c2618b586118098534d7',1,'MainWindow::svgHandler']]],
+  ['svgitem_21',['svgItem',['../class_svg_widget.html#a28719fc922dce47f289baaa90482c2c8',1,'SvgWidget']]],
+  ['svgwidget_22',['svgwidget',['../class_files_tree_view.html#ac1b97dfecb25415765196a39d34c7de1',1,'FilesTreeView::svgWidget'],['../class_main_window.html#a8d36724371bc3b14c93dac4853576800',1,'MainWindow::svgWidget'],['../class_svg_handler.html#a584cd661760537c626bc9cfdd3c5e552',1,'SvgHandler::svgWidget']]]
 ];

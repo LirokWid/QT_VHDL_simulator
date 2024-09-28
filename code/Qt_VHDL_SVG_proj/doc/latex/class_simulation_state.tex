@@ -2,7 +2,7 @@
 \hypertarget{class_simulation_state}{}\label{class_simulation_state}\index{SimulationState@{SimulationState}}
 
 
-The \doxylink{class_simulation_state}{Simulation\+State} class manages the state of the simulation.  
+The \doxylink{class_simulation_state}{Simulation\+State} class manages the state of the simulation. It is thread safe.  
 
 
 
@@ -11,8 +11,7 @@ The \doxylink{class_simulation_state}{Simulation\+State} class manages the state
 
 
 
-Inheritance diagram for Simulation\+State\+:
-\nopagebreak
+Inheritance diagram for Simulation\+State\+:\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
@@ -21,12 +20,11 @@ Inheritance diagram for Simulation\+State\+:
 \end{figure}
 
 
-Collaboration diagram for Simulation\+State\+:
-\nopagebreak
+Collaboration diagram for Simulation\+State\+:\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
-\includegraphics[width=165pt]{class_simulation_state__coll__graph}
+\includegraphics[width=236pt]{class_simulation_state__coll__graph}
 \end{center}
 \end{figure}
 \doxysubsubsection*{Public Types}
@@ -40,36 +38,59 @@ enum \mbox{\hyperlink{class_simulation_state_a8a98584c8487f5e66e329dfcfd6338e3}{
 \doxysubsubsection*{Public Slots}
 \begin{DoxyCompactItemize}
 \item 
-\mbox{\hyperlink{class_sysc_add__pv}{void}} \mbox{\hyperlink{class_simulation_state_a622eba3a5708209467b89c66bbf09d7f}{set\+State}} (\mbox{\hyperlink{class_simulation_state_a8a98584c8487f5e66e329dfcfd6338e3}{State}} state)
+\mbox{\hyperlink{class_sysc_t_and}{void}} \mbox{\hyperlink{class_simulation_state_a622eba3a5708209467b89c66bbf09d7f}{set\+State}} (\mbox{\hyperlink{class_simulation_state_a8a98584c8487f5e66e329dfcfd6338e3}{State}} state)
 \begin{DoxyCompactList}\small\item\em Sets the state of the simulation. \end{DoxyCompactList}\end{DoxyCompactItemize}
 \doxysubsubsection*{Signals}
 \begin{DoxyCompactItemize}
 \item 
-\mbox{\hyperlink{class_sysc_add__pv}{void}} \mbox{\hyperlink{class_simulation_state_a7f1f8f158ef2f363f84b40097225779b}{state\+Changed}} (\mbox{\hyperlink{class_simulation_state_a8a98584c8487f5e66e329dfcfd6338e3}{State}} \mbox{\hyperlink{class_sysc_add__pv}{new\+State}})
+\mbox{\hyperlink{class_sysc_t_and}{void}} \mbox{\hyperlink{class_simulation_state_a7f1f8f158ef2f363f84b40097225779b}{state\+Changed}} (\mbox{\hyperlink{class_simulation_state_a8a98584c8487f5e66e329dfcfd6338e3}{State}} \mbox{\hyperlink{class_sysc_t_and}{new\+State}})
 \begin{DoxyCompactList}\small\item\em Signal emitted when the state of the simulation changes. \end{DoxyCompactList}\end{DoxyCompactItemize}
 \doxysubsubsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
-\mbox{\hyperlink{class_simulation_state_a89f6470c6efdaf6d8d84b6267805b0b2}{Simulation\+State}} (QObject \texorpdfstring{$\ast$}{*}\mbox{\hyperlink{class_sysc_add__pv}{parent}}=\mbox{\hyperlink{class_sysc_add__pv}{nullptr}})
+\mbox{\hyperlink{class_simulation_state_a8a98584c8487f5e66e329dfcfd6338e3}{State}} \mbox{\hyperlink{class_simulation_state_abb5e6e706dc00d0ad5adf1b75bf64b3c}{get\+State}} () \mbox{\hyperlink{class_sysc_t_and}{const}}
+\begin{DoxyCompactList}\small\item\em Gets the current state of the simulation. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{class_sysc_t_and}{QString}} \mbox{\hyperlink{class_simulation_state_a89408a8a30db6b7544536466332feb12}{get\+State\+Str}} () \mbox{\hyperlink{class_sysc_t_and}{const}}
+\begin{DoxyCompactList}\small\item\em Gets the current state of the simulation as string. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Static Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_sysc_t_and}{static}} \mbox{\hyperlink{class_simulation_state}{Simulation\+State}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{class_simulation_state_accefc61d0dd728057f805230258f48f2}{instance}} ()
+\begin{DoxyCompactList}\small\item\em Gets the singleton instance of the \doxylink{class_simulation_state}{Simulation\+State}. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Private Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_simulation_state_a89f6470c6efdaf6d8d84b6267805b0b2}{Simulation\+State}} (QObject \texorpdfstring{$\ast$}{*}\mbox{\hyperlink{class_sysc_t_and}{parent}}=\mbox{\hyperlink{class_sysc_t_and}{nullptr}})
 \begin{DoxyCompactList}\small\item\em Constructs a \doxylink{class_simulation_state}{Simulation\+State} object. \end{DoxyCompactList}\item 
-\mbox{\hyperlink{class_simulation_state_a8a98584c8487f5e66e329dfcfd6338e3}{State}} \mbox{\hyperlink{class_simulation_state_abb5e6e706dc00d0ad5adf1b75bf64b3c}{get\+State}} () \mbox{\hyperlink{class_sysc_add__pv}{const}}
-\begin{DoxyCompactList}\small\item\em Gets the current state of the simulation. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\mbox{\hyperlink{class_simulation_state_a4bf04730566ed6665800a75c003816ec}{Simulation\+State}} (\mbox{\hyperlink{class_sysc_t_and}{const}} \mbox{\hyperlink{class_simulation_state}{Simulation\+State}} \&)=\mbox{\hyperlink{class_sysc_t_and}{delete}}
+\item 
+\mbox{\hyperlink{class_simulation_state}{Simulation\+State}} \& \mbox{\hyperlink{class_simulation_state_a32040c4dd60847cf4746d63ee45d7540}{operator=}} (\mbox{\hyperlink{class_sysc_t_and}{const}} \mbox{\hyperlink{class_simulation_state}{Simulation\+State}} \&)=\mbox{\hyperlink{class_sysc_t_and}{delete}}
+\end{DoxyCompactItemize}
 \doxysubsubsection*{Private Attributes}
 \begin{DoxyCompactItemize}
 \item 
+\mbox{\hyperlink{class_sysc_t_and}{QMutex}} \mbox{\hyperlink{class_simulation_state_a9cf20401bc76918f934c81cdfcaf7f4e}{m\+\_\+state\+Mutex}}
+\item 
 \mbox{\hyperlink{class_simulation_state_a8a98584c8487f5e66e329dfcfd6338e3}{State}} \mbox{\hyperlink{class_simulation_state_a99366f30dc913dead50cf0b031d6a7bd}{current\+State}}
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Static Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_sysc_t_and}{static}} \mbox{\hyperlink{class_simulation_state}{Simulation\+State}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{class_simulation_state_a93fef32c9ac5a6feaf700befe18d2b2d}{m\+\_\+instance}} = \mbox{\hyperlink{class_sysc_t_and}{nullptr}}
+\item 
+\mbox{\hyperlink{class_sysc_t_and}{static}} \mbox{\hyperlink{class_sysc_t_and}{QMutex}} \mbox{\hyperlink{class_simulation_state_ad12e6b38dc3886d5cd2b20c27dfa4e1e}{m\+\_\+mutex}}
 \end{DoxyCompactItemize}
 
 
 \doxysubsection{Detailed Description}
-The \doxylink{class_simulation_state}{Simulation\+State} class manages the state of the simulation. 
+The \doxylink{class_simulation_state}{Simulation\+State} class manages the state of the simulation. It is thread safe. 
 
 \doxysubsection{Member Enumeration Documentation}
 \Hypertarget{class_simulation_state_a8a98584c8487f5e66e329dfcfd6338e3}\label{class_simulation_state_a8a98584c8487f5e66e329dfcfd6338e3} 
 \index{SimulationState@{SimulationState}!State@{State}}
 \index{State@{State}!SimulationState@{SimulationState}}
 \doxysubsubsection{\texorpdfstring{State}{State}}
-{\footnotesize\ttfamily \mbox{\hyperlink{class_sysc_add__pv}{enum}} \mbox{\hyperlink{class_simulation_state_a8a98584c8487f5e66e329dfcfd6338e3}{Simulation\+State\+::\+State}}}
+{\footnotesize\ttfamily \mbox{\hyperlink{class_sysc_t_and}{enum}} \mbox{\hyperlink{class_simulation_state_a8a98584c8487f5e66e329dfcfd6338e3}{Simulation\+State\+::\+State}}}
 
 
 
@@ -95,8 +116,8 @@ RUNNING&The simulation is running. \\
 \Hypertarget{class_simulation_state_a89f6470c6efdaf6d8d84b6267805b0b2}\label{class_simulation_state_a89f6470c6efdaf6d8d84b6267805b0b2} 
 \index{SimulationState@{SimulationState}!SimulationState@{SimulationState}}
 \index{SimulationState@{SimulationState}!SimulationState@{SimulationState}}
-\doxysubsubsection{\texorpdfstring{SimulationState()}{SimulationState()}}
-{\footnotesize\ttfamily Simulation\+State\+::\+Simulation\+State (\begin{DoxyParamCaption}\item[{QObject \texorpdfstring{$\ast$}{*}}]{parent = {\ttfamily \mbox{\hyperlink{class_sysc_add__pv}{nullptr}}} }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [explicit]}}
+\doxysubsubsection{\texorpdfstring{SimulationState()}{SimulationState()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily Simulation\+State\+::\+Simulation\+State (\begin{DoxyParamCaption}\item[{QObject \texorpdfstring{$\ast$}{*}}]{parent = {\ttfamily \mbox{\hyperlink{class_sysc_t_and}{nullptr}}} }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [explicit]}, {\ttfamily [private]}}
 
 
 
@@ -107,6 +128,12 @@ Constructs a \doxylink{class_simulation_state}{Simulation\+State} object.
 {\em parent} & The parent object. \\
 \hline
 \end{DoxyParams}
+\Hypertarget{class_simulation_state_a4bf04730566ed6665800a75c003816ec}\label{class_simulation_state_a4bf04730566ed6665800a75c003816ec} 
+\index{SimulationState@{SimulationState}!SimulationState@{SimulationState}}
+\index{SimulationState@{SimulationState}!SimulationState@{SimulationState}}
+\doxysubsubsection{\texorpdfstring{SimulationState()}{SimulationState()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily Simulation\+State\+::\+Simulation\+State (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_sysc_t_and}{const}} \mbox{\hyperlink{class_simulation_state}{Simulation\+State}} \&}]{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}, {\ttfamily [delete]}}
+
 
 
 \doxysubsection{Member Function Documentation}
@@ -123,19 +150,64 @@ Gets the current state of the simulation.
 \begin{DoxyReturn}{Returns}
 The current state of the simulation. 
 \end{DoxyReturn}
-Here is the caller graph for this function\+:
-\nopagebreak
+Here is the caller graph for this function\+:\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
 \includegraphics[width=350pt]{class_simulation_state_abb5e6e706dc00d0ad5adf1b75bf64b3c_icgraph}
 \end{center}
 \end{figure}
+\Hypertarget{class_simulation_state_a89408a8a30db6b7544536466332feb12}\label{class_simulation_state_a89408a8a30db6b7544536466332feb12} 
+\index{SimulationState@{SimulationState}!getStateStr@{getStateStr}}
+\index{getStateStr@{getStateStr}!SimulationState@{SimulationState}}
+\doxysubsubsection{\texorpdfstring{getStateStr()}{getStateStr()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{class_sysc_t_and}{QString}} Simulation\+State\+::get\+State\+Str (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const}
+
+
+
+Gets the current state of the simulation as string. 
+
+\begin{DoxyReturn}{Returns}
+The current state of the simulation as string. 
+\end{DoxyReturn}
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_simulation_state_a89408a8a30db6b7544536466332feb12_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{class_simulation_state_accefc61d0dd728057f805230258f48f2}\label{class_simulation_state_accefc61d0dd728057f805230258f48f2} 
+\index{SimulationState@{SimulationState}!instance@{instance}}
+\index{instance@{instance}!SimulationState@{SimulationState}}
+\doxysubsubsection{\texorpdfstring{instance()}{instance()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{class_simulation_state}{Simulation\+State}} \texorpdfstring{$\ast$}{*} Simulation\+State\+::instance (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Gets the singleton instance of the \doxylink{class_simulation_state}{Simulation\+State}. 
+
+\begin{DoxyReturn}{Returns}
+The singleton instance of the \doxylink{class_simulation_state}{Simulation\+State}. 
+\end{DoxyReturn}
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_simulation_state_accefc61d0dd728057f805230258f48f2_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{class_simulation_state_a32040c4dd60847cf4746d63ee45d7540}\label{class_simulation_state_a32040c4dd60847cf4746d63ee45d7540} 
+\index{SimulationState@{SimulationState}!operator=@{operator=}}
+\index{operator=@{operator=}!SimulationState@{SimulationState}}
+\doxysubsubsection{\texorpdfstring{operator=()}{operator=()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{class_simulation_state}{Simulation\+State}} \& Simulation\+State\+::operator= (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_sysc_t_and}{const}} \mbox{\hyperlink{class_simulation_state}{Simulation\+State}} \&}]{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}, {\ttfamily [delete]}}
+
 \Hypertarget{class_simulation_state_a622eba3a5708209467b89c66bbf09d7f}\label{class_simulation_state_a622eba3a5708209467b89c66bbf09d7f} 
 \index{SimulationState@{SimulationState}!setState@{setState}}
 \index{setState@{setState}!SimulationState@{SimulationState}}
 \doxysubsubsection{\texorpdfstring{setState}{setState}}
-{\footnotesize\ttfamily \mbox{\hyperlink{class_sysc_add__pv}{void}} Simulation\+State\+::set\+State (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_simulation_state_a8a98584c8487f5e66e329dfcfd6338e3}{State}}}]{state }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [slot]}}
+{\footnotesize\ttfamily \mbox{\hyperlink{class_sysc_t_and}{void}} Simulation\+State\+::set\+State (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_simulation_state_a8a98584c8487f5e66e329dfcfd6338e3}{State}}}]{state }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [slot]}}
 
 
 
@@ -146,16 +218,14 @@ Sets the state of the simulation.
 {\em state} & The new state of the simulation. \\
 \hline
 \end{DoxyParams}
-Here is the call graph for this function\+:
-\nopagebreak
+Here is the call graph for this function\+:\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
 \includegraphics[width=350pt]{class_simulation_state_a622eba3a5708209467b89c66bbf09d7f_cgraph}
 \end{center}
 \end{figure}
-Here is the caller graph for this function\+:
-\nopagebreak
+Here is the caller graph for this function\+:\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
@@ -166,7 +236,7 @@ Here is the caller graph for this function\+:
 \index{SimulationState@{SimulationState}!stateChanged@{stateChanged}}
 \index{stateChanged@{stateChanged}!SimulationState@{SimulationState}}
 \doxysubsubsection{\texorpdfstring{stateChanged}{stateChanged}}
-{\footnotesize\ttfamily \mbox{\hyperlink{class_sysc_add__pv}{void}} Simulation\+State\+::state\+Changed (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_simulation_state_a8a98584c8487f5e66e329dfcfd6338e3}{State}}}]{new\+State }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [signal]}}
+{\footnotesize\ttfamily \mbox{\hyperlink{class_sysc_t_and}{void}} Simulation\+State\+::state\+Changed (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_simulation_state_a8a98584c8487f5e66e329dfcfd6338e3}{State}}}]{new\+State }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [signal]}}
 
 
 
@@ -177,8 +247,7 @@ Signal emitted when the state of the simulation changes.
 {\em new\+State} & The new state of the simulation. \\
 \hline
 \end{DoxyParams}
-Here is the caller graph for this function\+:
-\nopagebreak
+Here is the caller graph for this function\+:\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
@@ -194,10 +263,27 @@ Here is the caller graph for this function\+:
 \doxysubsubsection{\texorpdfstring{currentState}{currentState}}
 {\footnotesize\ttfamily \mbox{\hyperlink{class_simulation_state_a8a98584c8487f5e66e329dfcfd6338e3}{State}} Simulation\+State\+::current\+State\hspace{0.3cm}{\ttfamily [private]}}
 
-The current state of the simulation. 
+The current state of the simulation. \Hypertarget{class_simulation_state_a93fef32c9ac5a6feaf700befe18d2b2d}\label{class_simulation_state_a93fef32c9ac5a6feaf700befe18d2b2d} 
+\index{SimulationState@{SimulationState}!m\_instance@{m\_instance}}
+\index{m\_instance@{m\_instance}!SimulationState@{SimulationState}}
+\doxysubsubsection{\texorpdfstring{m\_instance}{m\_instance}}
+{\footnotesize\ttfamily \mbox{\hyperlink{class_simulation_state}{Simulation\+State}} \texorpdfstring{$\ast$}{*} Simulation\+State\+::m\+\_\+instance = \mbox{\hyperlink{class_sysc_t_and}{nullptr}}\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [private]}}
+
+The singleton instance of the \doxylink{class_simulation_state}{Simulation\+State}. \Hypertarget{class_simulation_state_ad12e6b38dc3886d5cd2b20c27dfa4e1e}\label{class_simulation_state_ad12e6b38dc3886d5cd2b20c27dfa4e1e} 
+\index{SimulationState@{SimulationState}!m\_mutex@{m\_mutex}}
+\index{m\_mutex@{m\_mutex}!SimulationState@{SimulationState}}
+\doxysubsubsection{\texorpdfstring{m\_mutex}{m\_mutex}}
+{\footnotesize\ttfamily \mbox{\hyperlink{class_sysc_t_and}{QMutex}} Simulation\+State\+::m\+\_\+mutex\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [private]}}
+
+Mutex to protect singleton instance creation. \Hypertarget{class_simulation_state_a9cf20401bc76918f934c81cdfcaf7f4e}\label{class_simulation_state_a9cf20401bc76918f934c81cdfcaf7f4e} 
+\index{SimulationState@{SimulationState}!m\_stateMutex@{m\_stateMutex}}
+\index{m\_stateMutex@{m\_stateMutex}!SimulationState@{SimulationState}}
+\doxysubsubsection{\texorpdfstring{m\_stateMutex}{m\_stateMutex}}
+{\footnotesize\ttfamily \mbox{\hyperlink{class_sysc_t_and}{QMutex}} Simulation\+State\+::m\+\_\+state\+Mutex\hspace{0.3cm}{\ttfamily [mutable]}, {\ttfamily [private]}}
+
+Mutex to protect state access. 
 
 The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
 \item 
-C\+:/\+Users/\+BJRODIER/\+Documents/\+QT\+\_\+\+REPO/\+QT\+\_\+\+VHDL\+\_\+simulator/code/\+Qt\+\_\+\+VHDL\+\_\+\+SVG\+\_\+proj/gui/\mbox{\hyperlink{simulationstate_8h}{simulationstate.\+h}}\item 
-C\+:/\+Users/\+BJRODIER/\+Documents/\+QT\+\_\+\+REPO/\+QT\+\_\+\+VHDL\+\_\+simulator/code/\+Qt\+\_\+\+VHDL\+\_\+\+SVG\+\_\+proj/build/debug/\mbox{\hyperlink{moc__simulationstate_8cpp}{moc\+\_\+simulationstate.\+cpp}}\item 
-C\+:/\+Users/\+BJRODIER/\+Documents/\+QT\+\_\+\+REPO/\+QT\+\_\+\+VHDL\+\_\+simulator/code/\+Qt\+\_\+\+VHDL\+\_\+\+SVG\+\_\+proj/gui/\mbox{\hyperlink{simulationstate_8cpp}{simulationstate.\+cpp}}\end{DoxyCompactItemize}
+S\+:/code/\+QT\+\_\+\+VHDL\+\_\+simulator/code/\+Qt\+\_\+\+VHDL\+\_\+\+SVG\+\_\+proj/gui/\mbox{\hyperlink{simulationstate_8h}{simulationstate.\+h}}\item 
+S\+:/code/\+QT\+\_\+\+VHDL\+\_\+simulator/code/\+Qt\+\_\+\+VHDL\+\_\+\+SVG\+\_\+proj/gui/\mbox{\hyperlink{simulationstate_8cpp}{simulationstate.\+cpp}}\end{DoxyCompactItemize}

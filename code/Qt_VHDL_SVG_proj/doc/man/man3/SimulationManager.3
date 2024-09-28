@@ -1,0 +1,122 @@
+.TH "SimulationManager" 3 "VHDL simulator" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+SimulationManager
+.SH SYNOPSIS
+.br
+.PP
+.PP
+\fC#include <simulationmanager\&.h>\fP
+.PP
+Inherits QObject\&.
+.SS "Public Slots"
+
+.in +1c
+.ti -1c
+.RI "\fBvoid\fP \fBhandleWorkFinished\fP ()"
+.br
+.in -1c
+.SS "Signals"
+
+.in +1c
+.ti -1c
+.RI "\fBvoid\fP \fBresultReady\fP (\fBconst\fP \fBQString\fP &\fBresult\fP)"
+.br
+.ti -1c
+.RI "\fBvoid\fP \fBworkStarted\fP ()"
+.br
+.ti -1c
+.RI "\fBvoid\fP \fBworkFinished\fP ()"
+.br
+.ti -1c
+.RI "\fBvoid\fP \fBthreadBusy\fP ()"
+.br
+.in -1c
+.SS "Public Member Functions"
+
+.in +1c
+.ti -1c
+.RI "\fBSimulationManager\fP (QObject *\fBparent\fP=\fBnullptr\fP)"
+.br
+.ti -1c
+.RI "\fB~SimulationManager\fP ()"
+.br
+.ti -1c
+.RI "\fBvoid\fP \fBlauchSimulation\fP ()"
+.br
+.ti -1c
+.RI "\fBvoid\fP \fBstopSimulation\fP ()"
+.br
+.in -1c
+.SS "Private Member Functions"
+
+.in +1c
+.ti -1c
+.RI "\fBvoid\fP \fBstartWork\fP ()"
+.br
+.ti -1c
+.RI "\fBbool\fP \fBstartThread\fP ()"
+.br
+.ti -1c
+.RI "\fBvoid\fP \fBstopThread\fP ()"
+.br
+.in -1c
+.SS "Private Attributes"
+
+.in +1c
+.ti -1c
+.RI "\fBSimulationState\fP * \fBstate\fP"
+.br
+.ti -1c
+.RI "\fBQThread\fP * \fBsimThread\fP"
+.br
+.ti -1c
+.RI "\fBSimulationWorker\fP * \fBworker\fP"
+.br
+.ti -1c
+.RI "\fBbool\fP \fBisBusy\fP"
+.br
+.in -1c
+.SH "Constructor & Destructor Documentation"
+.PP 
+.SS "SimulationManager::SimulationManager (QObject * parent = \fC\fBnullptr\fP\fP)\fC [explicit]\fP"
+
+.SS "SimulationManager::~SimulationManager ()"
+
+.SH "Member Function Documentation"
+.PP 
+.SS "\fBvoid\fP SimulationManager::handleWorkFinished ()\fC [slot]\fP"
+
+.SS "\fBvoid\fP SimulationManager::lauchSimulation ()"
+
+.SS "\fBvoid\fP SimulationManager::resultReady (\fBconst\fP \fBQString\fP & result)\fC [signal]\fP"
+
+.SS "\fBbool\fP SimulationManager::startThread ()\fC [private]\fP"
+
+.SS "\fBvoid\fP SimulationManager::startWork ()\fC [private]\fP"
+
+.SS "\fBvoid\fP SimulationManager::stopSimulation ()"
+
+.SS "\fBvoid\fP SimulationManager::stopThread ()\fC [private]\fP"
+
+.SS "\fBvoid\fP SimulationManager::threadBusy ()\fC [signal]\fP"
+
+.SS "\fBvoid\fP SimulationManager::workFinished ()\fC [signal]\fP"
+
+.SS "\fBvoid\fP SimulationManager::workStarted ()\fC [signal]\fP"
+
+.SH "Member Data Documentation"
+.PP 
+.SS "\fBbool\fP SimulationManager::isBusy\fC [private]\fP"
+
+.SS "\fBQThread\fP* SimulationManager::simThread\fC [private]\fP"
+
+.SS "\fBSimulationState\fP* SimulationManager::state\fC [private]\fP"
+
+.SS "\fBSimulationWorker\fP* SimulationManager::worker\fC [private]\fP"
+
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for VHDL simulator from the source code\&.

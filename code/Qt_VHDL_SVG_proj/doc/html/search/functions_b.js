@@ -1,6 +1,11 @@
 var searchData=
 [
-  ['main_0',['main',['../main_8cpp.html#a0ddf1224851353fc92bfbff6f499fa97',1,'main.cpp']]],
+  ['main_0',['main',['../main_8cpp.html#a0ddf1224851353fc92bfbff6f499fa97',1,'main(int argc, char *argv[]):&#160;main.cpp'],['../notmain_8cpp.html#a0ddf1224851353fc92bfbff6f499fa97',1,'main(int argc, char *argv[]):&#160;notmain.cpp']]],
   ['mainwindow_1',['MainWindow',['../class_main_window.html#a996c5a2b6f77944776856f08ec30858d',1,'MainWindow']]],
-  ['message_2',['Message',['../classsc_qt_worker.html#ae08004907b8c16e3a21e5eb1a8bc60b2',1,'scQtWorker']]]
+  ['message_2',['Message',['../classsc_qt_worker.html#ae08004907b8c16e3a21e5eb1a8bc60b2',1,'scQtWorker']]],
+  ['modifyelementstyle_3',['modifyElementStyle',['../class_svg_widget.html#ab996c509f752e1271dcdce98b4d79201',1,'SvgWidget']]],
+  ['mousemoveevent_4',['mouseMoveEvent',['../class_multi_types_chrono.html#ae8addc2de9b2266e0360d5dee2f550ed',1,'MultiTypesChrono']]],
+  ['mousepressevent_5',['mousePressEvent',['../class_multi_types_chrono.html#a8bff7a51271035230e53bbc5d4c71e45',1,'MultiTypesChrono']]],
+  ['mousereleaseevent_6',['mouseReleaseEvent',['../class_multi_types_chrono.html#af341e4d1b010a6f5feebda526ecccea3',1,'MultiTypesChrono']]],
+  ['multitypeschrono_7',['multitypeschrono',['../class_multi_types_chrono.html#a1a0b17f0f8a743d3850f98d1cc6cd965',1,'MultiTypesChrono::MultiTypesChrono(bool startValue, QWidget *parent)'],['../class_multi_types_chrono.html#a0390cbf3acf063c32adf42a1e667337e',1,'MultiTypesChrono::MultiTypesChrono(int startValue, QWidget *parent)'],['../class_multi_types_chrono.html#a58d7e346484a23201569edd45314b735',1,'MultiTypesChrono::MultiTypesChrono(float startValue, QWidget *parent)'],['../class_multi_types_chrono.html#a9c96756563fd65753c4bc0752326d036',1,'MultiTypesChrono::MultiTypesChrono(double startValue, QWidget *parent)'],['../class_multi_types_chrono.html#ac29793525c2a904b6bcf2b6480e31ed7',1,'MultiTypesChrono::MultiTypesChrono(QVector&lt; bool &gt; startList, QWidget *parent=nullptr)'],['../class_multi_types_chrono.html#a281ffaeb7cdf245b5d6b048aabd3ecb9',1,'MultiTypesChrono::MultiTypesChrono(QVector&lt; int &gt; startList, QWidget *parent=nullptr)'],['../class_multi_types_chrono.html#a4be0a3b0aa9a4ea71683e535c4084f21',1,'MultiTypesChrono::MultiTypesChrono(QVector&lt; float &gt; startList, QWidget *parent=nullptr)'],['../class_multi_types_chrono.html#af72a73e12a7bae8a9be8a7afb28ae8d4',1,'MultiTypesChrono::MultiTypesChrono(QVector&lt; double &gt; startList, QWidget *parent=nullptr)']]]
 ];

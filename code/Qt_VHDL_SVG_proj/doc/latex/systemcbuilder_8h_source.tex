@@ -1,0 +1,53 @@
+\doxysection{systemcbuilder.\+h}
+\hypertarget{systemcbuilder_8h_source}{}\label{systemcbuilder_8h_source}\index{S:/code/QT\_VHDL\_simulator/code/Qt\_VHDL\_SVG\_proj/systemC/systemcbuilder.h@{S:/code/QT\_VHDL\_simulator/code/Qt\_VHDL\_SVG\_proj/systemC/systemcbuilder.h}}
+\mbox{\hyperlink{systemcbuilder_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#ifndef\ SYSTEMCBUILDER\_H}}
+\DoxyCodeLine{00002\ \textcolor{preprocessor}{\#define\ SYSTEMCBUILDER\_H}}
+\DoxyCodeLine{00003\ }
+\DoxyCodeLine{00004\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_components_struct_8h}{ComponentsStruct.h}}"{}}}
+\DoxyCodeLine{00005\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{debugwindow_8h}{debugwindow.h}}"{}}}
+\DoxyCodeLine{00006\ \textcolor{preprocessor}{\#include\ <systemc.h>}}
+\DoxyCodeLine{00007\ \textcolor{comment}{//\#include\ "{}systemC/systemc\_modules/sc\_gates.h"{}}}
+\DoxyCodeLine{00008\ \textcolor{comment}{//\#include\ "{}systemC/systemc\_modules/sc\_mux.h"{}}}
+\DoxyCodeLine{00009\ }
+\DoxyCodeLine{00010\ \textcolor{keyword}{typedef}\ \textcolor{keyword}{enum}\ \mbox{\hyperlink{systemcbuilder_8h_a34e7849fe05c1d5ca079a182a26a64bb}{e\_device}}}
+\DoxyCodeLine{00011\ \{}
+\DoxyCodeLine{00012\ \ \ \ \ \mbox{\hyperlink{systemcbuilder_8h_a34e7849fe05c1d5ca079a182a26a64bbaf690828b73adb7ff6408cc32f4495c31}{MULTIPLEXER\_DEVICE}},}
+\DoxyCodeLine{00013\ \ \ \ \ \mbox{\hyperlink{systemcbuilder_8h_a34e7849fe05c1d5ca079a182a26a64bbab8c5b901066935c56352f331d3143a25}{AND\_GATE\_DEVICE}},}
+\DoxyCodeLine{00014\ \ \ \ \ \mbox{\hyperlink{systemcbuilder_8h_a34e7849fe05c1d5ca079a182a26a64bbacb7b50aef9f3a8983857d558a85738c6}{OR\_GATE\_DEVICE}},}
+\DoxyCodeLine{00015\ \ \ \ \ \mbox{\hyperlink{systemcbuilder_8h_a34e7849fe05c1d5ca079a182a26a64bbac09304c1fb57a48773e67de826bd52a4}{NAND\_GATE\_DEVICE}},}
+\DoxyCodeLine{00016\ \ \ \ \ \mbox{\hyperlink{systemcbuilder_8h_a34e7849fe05c1d5ca079a182a26a64bba75403567cce6ca71d3c0bb4c4d9d5863}{NOR\_GATE\_DEVICE}},}
+\DoxyCodeLine{00017\ \ \ \ \ \mbox{\hyperlink{systemcbuilder_8h_a34e7849fe05c1d5ca079a182a26a64bba6da1d12a20ea2d4eac3b04135cef2515}{XOR\_GATE\_DEVICE}},}
+\DoxyCodeLine{00018\ \ \ \ \ \mbox{\hyperlink{systemcbuilder_8h_a34e7849fe05c1d5ca079a182a26a64bba29aedcf43e76dd7a3a2a0c9b3cb430a6}{XNOR\_GATE\_DEVICE}},}
+\DoxyCodeLine{00019\ \ \ \ \ \mbox{\hyperlink{systemcbuilder_8h_a34e7849fe05c1d5ca079a182a26a64bba5b8ef3a28995190cf5c371b0bbf963b1}{COUNTER\_DEVICE}},}
+\DoxyCodeLine{00020\ \ \ \ \ \mbox{\hyperlink{systemcbuilder_8h_a34e7849fe05c1d5ca079a182a26a64bbad29b7225edcc3b967ceaed29285f91f6}{DEFAULT\_DEVICE}}}
+\DoxyCodeLine{00021\ \}\mbox{\hyperlink{systemcbuilder_8h_a7b4feffd8bd0cdfd1faf6dbfad70ee2c}{device}};}
+\DoxyCodeLine{00022\ }
+\DoxyCodeLine{00023\ \textcolor{keyword}{class\ }\mbox{\hyperlink{class_system_c_builder}{SystemCBuilder}}}
+\DoxyCodeLine{00024\ \{}
+\DoxyCodeLine{00025\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00026\ \ \ \ \ \mbox{\hyperlink{class_system_c_builder}{SystemCBuilder}}(\mbox{\hyperlink{structs__components__list}{s\_components\_list}}\ *\mbox{\hyperlink{class_system_c_builder_a942c93db19935d2c21a65ed45fedb5a6}{components}});}
+\DoxyCodeLine{00027\ }
+\DoxyCodeLine{00028\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00029\ \ \ \ \ \textcolor{comment}{//template\ <unsigned\ int\ N,\ unsigned\ int\ W,\ unsigned\ int\ SELW>}}
+\DoxyCodeLine{00030\ \ \ \ \ \textcolor{comment}{//SyscMux<N,\ W,\ SELW>*\ createMuxModule(const\ QString\&\ name);}}
+\DoxyCodeLine{00031\ }
+\DoxyCodeLine{00032\ \ \ \ \ \textcolor{keyword}{template}\ <\textcolor{keyword}{template}\ <\textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{int},\ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{int}>\ \textcolor{keyword}{class\ }\mbox{\hyperlink{class_sysc_t_and}{GateType}},\ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{int}\ N,\ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{int}\ W>}
+\DoxyCodeLine{00033\ \ \ \ \ \mbox{\hyperlink{class_sysc_t_and}{GateType<N,\ W>}}*\ \mbox{\hyperlink{class_system_c_builder_a419dd1c3c4331c1da33fa68f7a8c7c0e}{createGateModule}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{class_sysc_t_and}{QString}}\&\ name);}
+\DoxyCodeLine{00034\ }
+\DoxyCodeLine{00035\ \ \ \ \ \mbox{\hyperlink{class_debug_window}{DebugWindow}}\ *\mbox{\hyperlink{class_system_c_builder_a3d89b6a59ac263f094cf5e2db3f790af}{debug}}\ =\ \mbox{\hyperlink{class_debug_window_a5ba835047d84a98c021769c739f97987}{DebugWindow::getInstance}}();}
+\DoxyCodeLine{00036\ \ \ \ \ \mbox{\hyperlink{structs__components__list}{s\_components\_list}}\ *\mbox{\hyperlink{class_system_c_builder_a942c93db19935d2c21a65ed45fedb5a6}{components}};}
+\DoxyCodeLine{00037\ \ \ \ \ \mbox{\hyperlink{class_sysc_t_and}{QVector<sc\_module*>}}\ \mbox{\hyperlink{class_system_c_builder_a948c93e8d85c558b5695ae8931d3a151}{modules}};}
+\DoxyCodeLine{00038\ }
+\DoxyCodeLine{00039\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_system_c_builder_aa6066c8c5f1d542acb6e95a54753dbb2}{buildSystemCSim}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{structs__components__list}{s\_components\_list}}\&\ \mbox{\hyperlink{class_system_c_builder_a942c93db19935d2c21a65ed45fedb5a6}{components}});}
+\DoxyCodeLine{00040\ }
+\DoxyCodeLine{00041\ \ \ \ \ \mbox{\hyperlink{systemcbuilder_8h_a7b4feffd8bd0cdfd1faf6dbfad70ee2c}{device}}\ \mbox{\hyperlink{class_system_c_builder_ac9670bd9c8e259b439823ae51e7428ca}{deviceFinder}}(\mbox{\hyperlink{class_sysc_t_and}{QString}}\ name);}
+\DoxyCodeLine{00042\ }
+\DoxyCodeLine{00043\ }
+\DoxyCodeLine{00044\ \ \ \ \ sc\_module*\ \mbox{\hyperlink{class_system_c_builder_aba6b94949f8cf86435edea3a9d5843b2}{createSysC\_Module}}(\mbox{\hyperlink{systemcbuilder_8h_a7b4feffd8bd0cdfd1faf6dbfad70ee2c}{device}},\ \textcolor{keyword}{const}\ \mbox{\hyperlink{structs__element}{s\_element}}\ \&);}
+\DoxyCodeLine{00045\ \};}
+\DoxyCodeLine{00046\ }
+\DoxyCodeLine{00047\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{//\ SYSTEMCBUILDER\_H}}
+
+\end{DoxyCode}

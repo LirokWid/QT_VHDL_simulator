@@ -7,14 +7,14 @@ SyscMuxT< N, W, SEL_INVALID_BEH, SEL_XORZ_CONV >
 .br
 .PP
 .PP
-\fR#include <sc_mux\&.h>\fP
+\fC#include <sc_mux\&.h>\fP
 .PP
 Inherits sc_core::sc_module\&.
 .SS "Public Types"
 
 .in +1c
 .ti -1c
-.RI "\fBtypedef\fP \fBsc_lv\fP< \fBW\fP > \fBdata_t\fP"
+.RI "\fBtypedef\fP \fBsc_lv\fP< W > \fBdata_t\fP"
 .br
 .ti -1c
 .RI "\fBtypedef\fP \fBsc_lv\fP< \fBlog2_N_\fP > \fBsel_t\fP"
@@ -34,7 +34,7 @@ Inherits sc_core::sc_module\&.
 
 .in +1c
 .ti -1c
-.RI "\fBsc_in\fP< \fBdata_t\fP > * \fBd\fP [\fBN\fP]"
+.RI "\fBsc_in\fP< \fBdata_t\fP > * \fBd\fP [N]"
 .br
 .ti -1c
 .RI "\fBsc_in\fP< \fBsel_t\fP > \fBsel\fP {'sel'}"
@@ -47,7 +47,7 @@ Inherits sc_core::sc_module\&.
 
 .in +1c
 .ti -1c
-.RI "\fBstatic\fP \fBconst\fP \fBunsigned\fP \fBint\fP \fBlog2_N_\fP = \fBstatic_cast\fP<\fBint\fP>(\fBceil\fP(\fBlog\fP(\fBN\fP)))"
+.RI "\fBstatic\fP \fBconst\fP \fBunsigned\fP \fBint\fP \fBlog2_N_\fP = \fBstatic_cast\fP<\fBint\fP>(\fBceil\fP(\fBlog\fP(N)))"
 .br
 .ti -1c
 .RI "\fBstatic\fP \fBconst\fP \fBdata_t\fP \fBall0\fP {\fB::sc_dt::SC_LOGIC_0\fP}"
@@ -58,29 +58,29 @@ Inherits sc_core::sc_module\&.
 .in -1c
 .SH "Member Typedef Documentation"
 .PP 
-.SS "template<\fBunsigned\fP \fBint\fP N = 2, \fBunsigned\fP \fBint\fP W = 1, \fBMUX_SEL_INVALID_BEH_t\fP SEL_INVALID_BEH = MUX_BEH_SEL_INVALID_ZEROES, \fBMUX_CONV_SEL_XORZ_t\fP SEL_XORZ_CONV = MUX_CONV_SEL_XORZ_FIRST> \fBtypedef\fP \fBsc_lv\fP<\fBW\fP> \fBSyscMuxT\fP< \fBN\fP, \fBW\fP, \fBSEL_INVALID_BEH\fP, \fBSEL_XORZ_CONV\fP >::data_t"
+.SS "template<\fBunsigned\fP \fBint\fP N = 2, \fBunsigned\fP \fBint\fP W = 1, \fBMUX_SEL_INVALID_BEH_t\fP SEL_INVALID_BEH = MUX_BEH_SEL_INVALID_ZEROES, \fBMUX_CONV_SEL_XORZ_t\fP SEL_XORZ_CONV = MUX_CONV_SEL_XORZ_FIRST> \fBtypedef\fP \fBsc_lv\fP<W> \fBSyscMuxT\fP< N, W, \fBSEL_INVALID_BEH\fP, \fBSEL_XORZ_CONV\fP >::data_t"
 
-.SS "template<\fBunsigned\fP \fBint\fP N = 2, \fBunsigned\fP \fBint\fP W = 1, \fBMUX_SEL_INVALID_BEH_t\fP SEL_INVALID_BEH = MUX_BEH_SEL_INVALID_ZEROES, \fBMUX_CONV_SEL_XORZ_t\fP SEL_XORZ_CONV = MUX_CONV_SEL_XORZ_FIRST> \fBtypedef\fP \fBsc_lv\fP<\fBlog2_N_\fP> \fBSyscMuxT\fP< \fBN\fP, \fBW\fP, \fBSEL_INVALID_BEH\fP, \fBSEL_XORZ_CONV\fP >::sel_t"
+.SS "template<\fBunsigned\fP \fBint\fP N = 2, \fBunsigned\fP \fBint\fP W = 1, \fBMUX_SEL_INVALID_BEH_t\fP SEL_INVALID_BEH = MUX_BEH_SEL_INVALID_ZEROES, \fBMUX_CONV_SEL_XORZ_t\fP SEL_XORZ_CONV = MUX_CONV_SEL_XORZ_FIRST> \fBtypedef\fP \fBsc_lv\fP<\fBlog2_N_\fP> \fBSyscMuxT\fP< N, W, \fBSEL_INVALID_BEH\fP, \fBSEL_XORZ_CONV\fP >::sel_t"
 
 .SH "Member Function Documentation"
 .PP 
-.SS "template<\fBunsigned\fP \fBint\fP N = 2, \fBunsigned\fP \fBint\fP W = 1, \fBMUX_SEL_INVALID_BEH_t\fP SEL_INVALID_BEH = MUX_BEH_SEL_INVALID_ZEROES, \fBMUX_CONV_SEL_XORZ_t\fP SEL_XORZ_CONV = MUX_CONV_SEL_XORZ_FIRST> \fBvoid\fP \fBSyscMuxT\fP< \fBN\fP, \fBW\fP, \fBSEL_INVALID_BEH\fP, \fBSEL_XORZ_CONV\fP >::combinational ()\fR [inline]\fP"
+.SS "template<\fBunsigned\fP \fBint\fP N = 2, \fBunsigned\fP \fBint\fP W = 1, \fBMUX_SEL_INVALID_BEH_t\fP SEL_INVALID_BEH = MUX_BEH_SEL_INVALID_ZEROES, \fBMUX_CONV_SEL_XORZ_t\fP SEL_XORZ_CONV = MUX_CONV_SEL_XORZ_FIRST> \fBvoid\fP \fBSyscMuxT\fP< N, W, \fBSEL_INVALID_BEH\fP, \fBSEL_XORZ_CONV\fP >::combinational ()\fC [inline]\fP"
 
-.SS "template<\fBunsigned\fP \fBint\fP N = 2, \fBunsigned\fP \fBint\fP W = 1, \fBMUX_SEL_INVALID_BEH_t\fP SEL_INVALID_BEH = MUX_BEH_SEL_INVALID_ZEROES, \fBMUX_CONV_SEL_XORZ_t\fP SEL_XORZ_CONV = MUX_CONV_SEL_XORZ_FIRST> \fBSyscMuxT\fP< \fBN\fP, \fBW\fP, \fBSEL_INVALID_BEH\fP, \fBSEL_XORZ_CONV\fP >::SC_CTOR (\fBSyscMuxT\fP< \fBN\fP, \fBW\fP, \fBSEL_INVALID_BEH\fP, \fBSEL_XORZ_CONV\fP >)\fR [inline]\fP"
+.SS "template<\fBunsigned\fP \fBint\fP N = 2, \fBunsigned\fP \fBint\fP W = 1, \fBMUX_SEL_INVALID_BEH_t\fP SEL_INVALID_BEH = MUX_BEH_SEL_INVALID_ZEROES, \fBMUX_CONV_SEL_XORZ_t\fP SEL_XORZ_CONV = MUX_CONV_SEL_XORZ_FIRST> \fBSyscMuxT\fP< N, W, \fBSEL_INVALID_BEH\fP, \fBSEL_XORZ_CONV\fP >::SC_CTOR (\fBSyscMuxT\fP< N, W, \fBSEL_INVALID_BEH\fP, \fBSEL_XORZ_CONV\fP >)\fC [inline]\fP"
 
 .SH "Member Data Documentation"
 .PP 
-.SS "template<\fBunsigned\fP \fBint\fP N = 2, \fBunsigned\fP \fBint\fP W = 1, \fBMUX_SEL_INVALID_BEH_t\fP SEL_INVALID_BEH = MUX_BEH_SEL_INVALID_ZEROES, \fBMUX_CONV_SEL_XORZ_t\fP SEL_XORZ_CONV = MUX_CONV_SEL_XORZ_FIRST> \fBconst\fP \fBdata_t\fP \fBSyscMuxT\fP< \fBN\fP, \fBW\fP, \fBSEL_INVALID_BEH\fP, \fBSEL_XORZ_CONV\fP >::all0 {\fB::sc_dt::SC_LOGIC_0\fP}\fR [inline]\fP, \fR [static]\fP"
+.SS "template<\fBunsigned\fP \fBint\fP N = 2, \fBunsigned\fP \fBint\fP W = 1, \fBMUX_SEL_INVALID_BEH_t\fP SEL_INVALID_BEH = MUX_BEH_SEL_INVALID_ZEROES, \fBMUX_CONV_SEL_XORZ_t\fP SEL_XORZ_CONV = MUX_CONV_SEL_XORZ_FIRST> \fBconst\fP \fBdata_t\fP \fBSyscMuxT\fP< N, W, \fBSEL_INVALID_BEH\fP, \fBSEL_XORZ_CONV\fP >::all0 {\fB::sc_dt::SC_LOGIC_0\fP}\fC [inline]\fP, \fC [static]\fP"
 
-.SS "template<\fBunsigned\fP \fBint\fP N = 2, \fBunsigned\fP \fBint\fP W = 1, \fBMUX_SEL_INVALID_BEH_t\fP SEL_INVALID_BEH = MUX_BEH_SEL_INVALID_ZEROES, \fBMUX_CONV_SEL_XORZ_t\fP SEL_XORZ_CONV = MUX_CONV_SEL_XORZ_FIRST> \fBconst\fP \fBdata_t\fP \fBSyscMuxT\fP< \fBN\fP, \fBW\fP, \fBSEL_INVALID_BEH\fP, \fBSEL_XORZ_CONV\fP >::all1 {\fB::sc_dt::SC_LOGIC_1\fP}\fR [inline]\fP, \fR [static]\fP"
+.SS "template<\fBunsigned\fP \fBint\fP N = 2, \fBunsigned\fP \fBint\fP W = 1, \fBMUX_SEL_INVALID_BEH_t\fP SEL_INVALID_BEH = MUX_BEH_SEL_INVALID_ZEROES, \fBMUX_CONV_SEL_XORZ_t\fP SEL_XORZ_CONV = MUX_CONV_SEL_XORZ_FIRST> \fBconst\fP \fBdata_t\fP \fBSyscMuxT\fP< N, W, \fBSEL_INVALID_BEH\fP, \fBSEL_XORZ_CONV\fP >::all1 {\fB::sc_dt::SC_LOGIC_1\fP}\fC [inline]\fP, \fC [static]\fP"
 
-.SS "template<\fBunsigned\fP \fBint\fP N = 2, \fBunsigned\fP \fBint\fP W = 1, \fBMUX_SEL_INVALID_BEH_t\fP SEL_INVALID_BEH = MUX_BEH_SEL_INVALID_ZEROES, \fBMUX_CONV_SEL_XORZ_t\fP SEL_XORZ_CONV = MUX_CONV_SEL_XORZ_FIRST> \fBsc_in\fP<\fBdata_t\fP>* \fBSyscMuxT\fP< \fBN\fP, \fBW\fP, \fBSEL_INVALID_BEH\fP, \fBSEL_XORZ_CONV\fP >::d[\fBN\fP]"
+.SS "template<\fBunsigned\fP \fBint\fP N = 2, \fBunsigned\fP \fBint\fP W = 1, \fBMUX_SEL_INVALID_BEH_t\fP SEL_INVALID_BEH = MUX_BEH_SEL_INVALID_ZEROES, \fBMUX_CONV_SEL_XORZ_t\fP SEL_XORZ_CONV = MUX_CONV_SEL_XORZ_FIRST> \fBsc_in\fP<\fBdata_t\fP>* \fBSyscMuxT\fP< N, W, \fBSEL_INVALID_BEH\fP, \fBSEL_XORZ_CONV\fP >::d[N]"
 
-.SS "template<\fBunsigned\fP \fBint\fP N = 2, \fBunsigned\fP \fBint\fP W = 1, \fBMUX_SEL_INVALID_BEH_t\fP SEL_INVALID_BEH = MUX_BEH_SEL_INVALID_ZEROES, \fBMUX_CONV_SEL_XORZ_t\fP SEL_XORZ_CONV = MUX_CONV_SEL_XORZ_FIRST> \fBconst\fP \fBunsigned\fP \fBint\fP \fBSyscMuxT\fP< \fBN\fP, \fBW\fP, \fBSEL_INVALID_BEH\fP, \fBSEL_XORZ_CONV\fP >::log2_N_ = \fBstatic_cast\fP<\fBint\fP>(\fBceil\fP(\fBlog\fP(\fBN\fP)))\fR [inline]\fP, \fR [static]\fP"
+.SS "template<\fBunsigned\fP \fBint\fP N = 2, \fBunsigned\fP \fBint\fP W = 1, \fBMUX_SEL_INVALID_BEH_t\fP SEL_INVALID_BEH = MUX_BEH_SEL_INVALID_ZEROES, \fBMUX_CONV_SEL_XORZ_t\fP SEL_XORZ_CONV = MUX_CONV_SEL_XORZ_FIRST> \fBconst\fP \fBunsigned\fP \fBint\fP \fBSyscMuxT\fP< N, W, \fBSEL_INVALID_BEH\fP, \fBSEL_XORZ_CONV\fP >::log2_N_ = \fBstatic_cast\fP<\fBint\fP>(\fBceil\fP(\fBlog\fP(N)))\fC [inline]\fP, \fC [static]\fP"
 
-.SS "template<\fBunsigned\fP \fBint\fP N = 2, \fBunsigned\fP \fBint\fP W = 1, \fBMUX_SEL_INVALID_BEH_t\fP SEL_INVALID_BEH = MUX_BEH_SEL_INVALID_ZEROES, \fBMUX_CONV_SEL_XORZ_t\fP SEL_XORZ_CONV = MUX_CONV_SEL_XORZ_FIRST> \fBsc_in\fP<\fBsel_t\fP> \fBSyscMuxT\fP< \fBN\fP, \fBW\fP, \fBSEL_INVALID_BEH\fP, \fBSEL_XORZ_CONV\fP >::sel {'sel'}"
+.SS "template<\fBunsigned\fP \fBint\fP N = 2, \fBunsigned\fP \fBint\fP W = 1, \fBMUX_SEL_INVALID_BEH_t\fP SEL_INVALID_BEH = MUX_BEH_SEL_INVALID_ZEROES, \fBMUX_CONV_SEL_XORZ_t\fP SEL_XORZ_CONV = MUX_CONV_SEL_XORZ_FIRST> \fBsc_in\fP<\fBsel_t\fP> \fBSyscMuxT\fP< N, W, \fBSEL_INVALID_BEH\fP, \fBSEL_XORZ_CONV\fP >::sel {'sel'}"
 
-.SS "template<\fBunsigned\fP \fBint\fP N = 2, \fBunsigned\fP \fBint\fP W = 1, \fBMUX_SEL_INVALID_BEH_t\fP SEL_INVALID_BEH = MUX_BEH_SEL_INVALID_ZEROES, \fBMUX_CONV_SEL_XORZ_t\fP SEL_XORZ_CONV = MUX_CONV_SEL_XORZ_FIRST> \fBsc_out\fP<\fBdata_t\fP> \fBSyscMuxT\fP< \fBN\fP, \fBW\fP, \fBSEL_INVALID_BEH\fP, \fBSEL_XORZ_CONV\fP >::y {'y'}"
+.SS "template<\fBunsigned\fP \fBint\fP N = 2, \fBunsigned\fP \fBint\fP W = 1, \fBMUX_SEL_INVALID_BEH_t\fP SEL_INVALID_BEH = MUX_BEH_SEL_INVALID_ZEROES, \fBMUX_CONV_SEL_XORZ_t\fP SEL_XORZ_CONV = MUX_CONV_SEL_XORZ_FIRST> \fBsc_out\fP<\fBdata_t\fP> \fBSyscMuxT\fP< N, W, \fBSEL_INVALID_BEH\fP, \fBSEL_XORZ_CONV\fP >::y {'y'}"
 
 
 .SH "Author"

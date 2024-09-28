@@ -2,13 +2,13 @@
 .ad l
 .nh
 .SH NAME
-SimulationState \- The \fBSimulationState\fP class manages the state of the simulation\&.  
+SimulationState \- The \fBSimulationState\fP class manages the state of the simulation\&. It is thread safe\&.  
 
 .SH SYNOPSIS
 .br
 .PP
 .PP
-\fR#include <simulationstate\&.h>\fP
+\fC#include <simulationstate\&.h>\fP
 .PP
 Inherits QObject\&.
 .SS "Public Types"
@@ -39,24 +39,59 @@ Inherits QObject\&.
 
 .in +1c
 .ti -1c
+.RI "\fBState\fP \fBgetState\fP () \fBconst\fP"
+.br
+.RI "Gets the current state of the simulation\&. "
+.ti -1c
+.RI "\fBQString\fP \fBgetStateStr\fP () \fBconst\fP"
+.br
+.RI "Gets the current state of the simulation as string\&. "
+.in -1c
+.SS "Static Public Member Functions"
+
+.in +1c
+.ti -1c
+.RI "\fBstatic\fP \fBSimulationState\fP * \fBinstance\fP ()"
+.br
+.RI "Gets the singleton instance of the \fBSimulationState\fP\&. "
+.in -1c
+.SS "Private Member Functions"
+
+.in +1c
+.ti -1c
 .RI "\fBSimulationState\fP (QObject *\fBparent\fP=\fBnullptr\fP)"
 .br
 .RI "Constructs a \fBSimulationState\fP object\&. "
 .ti -1c
-.RI "\fBState\fP \fBgetState\fP () \fBconst\fP"
+.RI "\fBSimulationState\fP (\fBconst\fP \fBSimulationState\fP &)=\fBdelete\fP"
 .br
-.RI "Gets the current state of the simulation\&. "
+.ti -1c
+.RI "\fBSimulationState\fP & \fBoperator=\fP (\fBconst\fP \fBSimulationState\fP &)=\fBdelete\fP"
+.br
 .in -1c
 .SS "Private Attributes"
 
 .in +1c
 .ti -1c
+.RI "\fBQMutex\fP \fBm_stateMutex\fP"
+.br
+.ti -1c
 .RI "\fBState\fP \fBcurrentState\fP"
+.br
+.in -1c
+.SS "Static Private Attributes"
+
+.in +1c
+.ti -1c
+.RI "\fBstatic\fP \fBSimulationState\fP * \fBm_instance\fP = \fBnullptr\fP"
+.br
+.ti -1c
+.RI "\fBstatic\fP \fBQMutex\fP \fBm_mutex\fP"
 .br
 .in -1c
 .SH "Detailed Description"
 .PP 
-The \fBSimulationState\fP class manages the state of the simulation\&. 
+The \fBSimulationState\fP class manages the state of the simulation\&. It is thread safe\&. 
 .SH "Member Enumeration Documentation"
 .PP 
 .SS "\fBenum\fP \fBSimulationState::State\fP"
@@ -77,7 +112,7 @@ The simulation is idle with an SVG file loaded\&.
 The simulation is running\&. 
 .SH "Constructor & Destructor Documentation"
 .PP 
-.SS "SimulationState::SimulationState (QObject * parent = \fR\fBnullptr\fP\fP)\fR [explicit]\fP"
+.SS "SimulationState::SimulationState (QObject * parent = \fC\fBnullptr\fP\fP)\fC [explicit]\fP, \fC [private]\fP"
 
 .PP
 Constructs a \fBSimulationState\fP object\&. 
@@ -87,6 +122,8 @@ Constructs a \fBSimulationState\fP object\&.
 \fIparent\fP The parent object\&. 
 .RE
 .PP
+
+.SS "SimulationState::SimulationState (\fBconst\fP \fBSimulationState\fP &)\fC [private]\fP, \fC [delete]\fP"
 
 .SH "Member Function Documentation"
 .PP 
@@ -101,7 +138,31 @@ The current state of the simulation\&.
 .RE
 .PP
 
-.SS "\fBvoid\fP SimulationState::setState (\fBState\fP state)\fR [slot]\fP"
+.SS "\fBQString\fP SimulationState::getStateStr () const"
+
+.PP
+Gets the current state of the simulation as string\&. 
+.PP
+\fBReturns\fP
+.RS 4
+The current state of the simulation as string\&. 
+.RE
+.PP
+
+.SS "\fBSimulationState\fP * SimulationState::instance ()\fC [static]\fP"
+
+.PP
+Gets the singleton instance of the \fBSimulationState\fP\&. 
+.PP
+\fBReturns\fP
+.RS 4
+The singleton instance of the \fBSimulationState\fP\&. 
+.RE
+.PP
+
+.SS "\fBSimulationState\fP & SimulationState::operator= (\fBconst\fP \fBSimulationState\fP &)\fC [private]\fP, \fC [delete]\fP"
+
+.SS "\fBvoid\fP SimulationState::setState (\fBState\fP state)\fC [slot]\fP"
 
 .PP
 Sets the state of the simulation\&. 
@@ -112,7 +173,7 @@ Sets the state of the simulation\&.
 .RE
 .PP
 
-.SS "\fBvoid\fP SimulationState::stateChanged (\fBState\fP newState)\fR [signal]\fP"
+.SS "\fBvoid\fP SimulationState::stateChanged (\fBState\fP newState)\fC [signal]\fP"
 
 .PP
 Signal emitted when the state of the simulation changes\&. 
@@ -125,8 +186,14 @@ Signal emitted when the state of the simulation changes\&.
 
 .SH "Member Data Documentation"
 .PP 
-.SS "\fBState\fP SimulationState::currentState\fR [private]\fP"
+.SS "\fBState\fP SimulationState::currentState\fC [private]\fP"
 The current state of the simulation\&. 
+.SS "\fBSimulationState\fP * SimulationState::m_instance = \fBnullptr\fP\fC [static]\fP, \fC [private]\fP"
+The singleton instance of the \fBSimulationState\fP\&. 
+.SS "\fBQMutex\fP SimulationState::m_mutex\fC [static]\fP, \fC [private]\fP"
+Mutex to protect singleton instance creation\&. 
+.SS "\fBQMutex\fP SimulationState::m_stateMutex\fC [mutable]\fP, \fC [private]\fP"
+Mutex to protect state access\&. 
 
 .SH "Author"
 .PP 

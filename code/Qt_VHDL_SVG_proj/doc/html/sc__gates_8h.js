@@ -1,6 +1,7 @@
 var sc__gates_8h =
 [
     [ "SyscLogicGate< N, W >", "class_sysc_logic_gate.html", "class_sysc_logic_gate" ],
+    [ "SyscLogicGateRT", "class_sysc_logic_gate_r_t.html", "class_sysc_logic_gate_r_t" ],
     [ "SyscAnd< N, W >", "class_sysc_and.html", "class_sysc_and" ],
     [ "SyscNand< N, W >", "class_sysc_nand.html", "class_sysc_nand" ],
     [ "SyscOr< N, W >", "class_sysc_or.html", "class_sysc_or" ],

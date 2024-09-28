@@ -1,5 +1,6 @@
 var searchData=
 [
-  ['y_0',['y',['../class_sysc_logic_gate.html#aa30cdd2acd9b9fad37a543d5548f8318',1,'SyscLogicGate::y'],['../class_sysc_logic_gate__pv.html#a9e8368d8627e69b2dd95ee5215c0aa0f',1,'SyscLogicGate_pv::y'],['../class_sysc_mux_t.html#a0817fa0303a1ff5482a7d821ecff824b',1,'SyscMuxT::y'],['../class_sysc_mux_t__pv.html#a1910d74c9ee66d1397bf924231bb5619',1,'SyscMuxT_pv::y']]],
-  ['y_5fis_5fd_1',['y_is_d',['../class_sysc_tri.html#a0d6f3d2ca02bd334a889cf9ed2928720',1,'SyscTri']]]
+  ['xlabeldensity_0',['xLabelDensity',['../class_multi_types_chrono.html#acc47bfc5aac87c0d543592f50137749f',1,'MultiTypesChrono']]],
+  ['xnor_5fgate_5fdevice_1',['XNOR_GATE_DEVICE',['../systemcbuilder_8h.html#a34e7849fe05c1d5ca079a182a26a64bba29aedcf43e76dd7a3a2a0c9b3cb430a6',1,'systemcbuilder.h']]],
+  ['xor_5fgate_5fdevice_2',['XOR_GATE_DEVICE',['../systemcbuilder_8h.html#a34e7849fe05c1d5ca079a182a26a64bba6da1d12a20ea2d4eac3b04135cef2515',1,'systemcbuilder.h']]]
 ];

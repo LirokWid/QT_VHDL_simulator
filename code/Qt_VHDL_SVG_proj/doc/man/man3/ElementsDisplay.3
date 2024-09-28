@@ -2,29 +2,50 @@
 .ad l
 .nh
 .SH NAME
-ElementsDisplay
+ElementsDisplay \- A widget that displays parsed information from an SVG file in a tree structure\&.  
+
 .SH SYNOPSIS
 .br
 .PP
 .PP
-\fR#include <elementsdisplay\&.h>\fP
+\fC#include <elementsdisplay\&.h>\fP
 .PP
 Inherits QWidget\&.
+.SS "Signals"
+
+.in +1c
+.ti -1c
+.RI "\fBvoid\fP \fBelementClicked\fP (\fBconst\fP \fBQString\fP &value)"
+.br
+.RI "Signal emitted when an element in the tree is clicked\&. "
+.in -1c
 .SS "Public Member Functions"
 
 .in +1c
 .ti -1c
 .RI "\fBElementsDisplay\fP (\fBQTreeWidget\fP *\fBtreeWidget\fP, QWidget *\fBparent\fP=\fBnullptr\fP)"
 .br
+.RI "Constructor for \fBElementsDisplay\fP\&. "
 .ti -1c
 .RI "\fB~ElementsDisplay\fP ()"
 .br
+.RI "Destructor for \fBElementsDisplay\fP\&. "
 .ti -1c
 .RI "\fBvoid\fP \fBloadTree\fP (\fBconst\fP \fBs_components_list\fP &\fBcomponents\fP)"
 .br
+.RI "Loads the parsed data into the tree widget\&. "
 .ti -1c
 .RI "\fBvoid\fP \fBclearTree\fP ()"
 .br
+.RI "Clears the tree widget\&. "
+.in -1c
+.SS "Private Slots"
+
+.in +1c
+.ti -1c
+.RI "\fBvoid\fP \fBhandleItemClicked\fP (\fBQTreeWidgetItem\fP *\fBitem\fP, \fBint\fP \fBcolumn\fP)"
+.br
+.RI "Handles item click events in the tree\&. "
 .in -1c
 .SS "Private Member Functions"
 
@@ -32,27 +53,35 @@ Inherits QWidget\&.
 .ti -1c
 .RI "\fBvoid\fP \fBaddStateIcon\fP (\fBQTreeWidgetItem\fP *\fBitem\fP, \fBbool\fP error)"
 .br
+.RI "Adds an error state icon to a tree item\&. "
 .ti -1c
-.RI "\fBvoid\fP \fBaddProperty\fP (\fBQTreeWidgetItem\fP *\fBparent\fP, \fBconst\fP \fBQString\fP &\fBproperty\fP, \fBconst\fP \fBQString\fP &\fBvalue\fP)"
+.RI "\fBvoid\fP \fBaddProperty\fP (\fBQTreeWidgetItem\fP *\fBparent\fP, \fBconst\fP \fBQString\fP &\fBproperty\fP, \fBconst\fP \fBQString\fP &value)"
 .br
+.RI "Adds a property and its value as child items to a tree item\&. "
 .ti -1c
 .RI "\fBvoid\fP \fBpopulateTree\fP (\fBconst\fP \fBs_components_list\fP &\fBcomponents\fP)"
 .br
+.RI "Populates the tree widget with components data\&. "
 .ti -1c
 .RI "\fBvoid\fP \fBaddElements\fP (\fBQTreeWidgetItem\fP *\fBparent\fP, \fBconst\fP \fBs_elements\fP &elements)"
 .br
+.RI "Adds elements data to a tree item\&. "
 .ti -1c
 .RI "\fBvoid\fP \fBidleUi\fP ()"
 .br
+.RI "Resets the UI to an idle state\&. "
 .ti -1c
 .RI "\fBvoid\fP \fBaddSimulationIOs\fP (\fBQTreeWidgetItem\fP *\fBparent\fP, \fBconst\fP \fBs_sim_I_Os\fP &\fBsimIOs\fP)"
 .br
+.RI "Adds simulation I/Os to a tree item\&. "
 .ti -1c
 .RI "\fBvoid\fP \fBaddSimulationWires\fP (\fBQTreeWidgetItem\fP *\fBparent\fP, \fBconst\fP \fBs_sim_wires\fP &wires)"
 .br
+.RI "Adds simulation wires to a tree item\&. "
 .ti -1c
 .RI "\fBvoid\fP \fBsetTextColor\fP (\fBQTreeWidgetItem\fP *\fBitem\fP, \fBconst\fP \fBQColor\fP &\fBcolor\fP)"
 .br
+.RI "Sets the text color of a tree item\&. "
 .in -1c
 .SS "Private Attributes"
 
@@ -60,54 +89,198 @@ Inherits QWidget\&.
 .ti -1c
 .RI "\fBs_components_list\fP * \fBcomponents\fP"
 .br
+.RI "A pointer to the structure containing the parsed components\&. "
 .ti -1c
 .RI "\fBQVBoxLayout\fP * \fBmainLayout\fP"
 .br
+.RI "The main layout for the widget\&. "
 .ti -1c
 .RI "\fBQTreeView\fP * \fBplace\fP"
 .br
+.RI "The QTreeView to place additional elements (if any)\&. "
 .ti -1c
 .RI "\fBQTreeWidget\fP * \fBtreeWidget\fP"
 .br
+.RI "The QTreeWidget that displays the elements\&. "
 .in -1c
+.SH "Detailed Description"
+.PP 
+A widget that displays parsed information from an SVG file in a tree structure\&. 
+
+This class manages the display of components, simulation I/Os, and simulation wires from an SVG file\&. It organizes the data in a QTreeWidget and supports interaction via mouse clicks to signal element selections\&. 
 .SH "Constructor & Destructor Documentation"
 .PP 
-.SS "ElementsDisplay::ElementsDisplay (\fBQTreeWidget\fP * treeWidget, QWidget * parent = \fR\fBnullptr\fP\fP)\fR [explicit]\fP"
+.SS "ElementsDisplay::ElementsDisplay (\fBQTreeWidget\fP * treeWidget, QWidget * parent = \fC\fBnullptr\fP\fP)\fC [explicit]\fP"
+
+.PP
+Constructor for \fBElementsDisplay\fP\&. Initializes the \fBElementsDisplay\fP widget with a given QTreeWidget and an optional parent widget\&.
+.PP
+\fBParameters\fP
+.RS 4
+\fItreeWidget\fP The QTreeWidget that will be used to display the elements\&. 
+.br
+\fIparent\fP Optional parent widget (default is nullptr)\&. 
+.RE
+.PP
 
 .SS "ElementsDisplay::~ElementsDisplay ()"
 
+.PP
+Destructor for \fBElementsDisplay\fP\&. 
 .SH "Member Function Documentation"
 .PP 
-.SS "\fBvoid\fP ElementsDisplay::addElements (\fBQTreeWidgetItem\fP * parent, \fBconst\fP \fBs_elements\fP & elements)\fR [private]\fP"
+.SS "\fBvoid\fP ElementsDisplay::addElements (\fBQTreeWidgetItem\fP * parent, \fBconst\fP \fBs_elements\fP & elements)\fC [private]\fP"
 
-.SS "\fBvoid\fP ElementsDisplay::addProperty (\fBQTreeWidgetItem\fP * parent, \fBconst\fP \fBQString\fP & property, \fBconst\fP \fBQString\fP & value)\fR [private]\fP"
+.PP
+Adds elements data to a tree item\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIparent\fP The parent tree item under which elements will be added\&. 
+.br
+\fIelements\fP The structure containing elements data\&. 
+.RE
+.PP
 
-.SS "\fBvoid\fP ElementsDisplay::addSimulationIOs (\fBQTreeWidgetItem\fP * parent, \fBconst\fP \fBs_sim_I_Os\fP & simIOs)\fR [private]\fP"
+.SS "\fBvoid\fP ElementsDisplay::addProperty (\fBQTreeWidgetItem\fP * parent, \fBconst\fP \fBQString\fP & property, \fBconst\fP \fBQString\fP & value)\fC [private]\fP"
 
-.SS "\fBvoid\fP ElementsDisplay::addSimulationWires (\fBQTreeWidgetItem\fP * parent, \fBconst\fP \fBs_sim_wires\fP & wires)\fR [private]\fP"
+.PP
+Adds a property and its value as child items to a tree item\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIparent\fP The parent tree item to which the property will be added\&. 
+.br
+\fIproperty\fP The name of the property\&. 
+.br
+\fIvalue\fP The value of the property\&. 
+.RE
+.PP
 
-.SS "\fBvoid\fP ElementsDisplay::addStateIcon (\fBQTreeWidgetItem\fP * item, \fBbool\fP error)\fR [private]\fP"
+.SS "\fBvoid\fP ElementsDisplay::addSimulationIOs (\fBQTreeWidgetItem\fP * parent, \fBconst\fP \fBs_sim_I_Os\fP & simIOs)\fC [private]\fP"
+
+.PP
+Adds simulation I/Os to a tree item\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIparent\fP The parent tree item under which simulation I/Os will be added\&. 
+.br
+\fIsimIOs\fP The structure containing simulation I/Os data\&. 
+.RE
+.PP
+
+.SS "\fBvoid\fP ElementsDisplay::addSimulationWires (\fBQTreeWidgetItem\fP * parent, \fBconst\fP \fBs_sim_wires\fP & wires)\fC [private]\fP"
+
+.PP
+Adds simulation wires to a tree item\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIparent\fP The parent tree item under which simulation wires will be added\&. 
+.br
+\fIwires\fP The structure containing simulation wires data\&. 
+.RE
+.PP
+
+.SS "\fBvoid\fP ElementsDisplay::addStateIcon (\fBQTreeWidgetItem\fP * item, \fBbool\fP error)\fC [private]\fP"
+
+.PP
+Adds an error state icon to a tree item\&. Adds an error or success icon to a given QTreeWidgetItem depending on the error state\&.
+.PP
+\fBParameters\fP
+.RS 4
+\fIitem\fP The tree item to which the icon will be added\&. 
+.br
+\fIerror\fP A boolean indicating whether an error is present (true if there is an error)\&. 
+.RE
+.PP
 
 .SS "\fBvoid\fP ElementsDisplay::clearTree ()"
 
-.SS "\fBvoid\fP ElementsDisplay::idleUi ()\fR [private]\fP"
+.PP
+Clears the tree widget\&. Clears all the data displayed in the tree widget and resets the UI to an idle state\&. 
+.SS "\fBvoid\fP ElementsDisplay::elementClicked (\fBconst\fP \fBQString\fP & value)\fC [signal]\fP"
 
+.PP
+Signal emitted when an element in the tree is clicked\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIvalue\fP The text value of the clicked item in the tree\&. 
+.RE
+.PP
+
+.SS "\fBvoid\fP ElementsDisplay::handleItemClicked (\fBQTreeWidgetItem\fP * item, \fBint\fP column)\fC [private]\fP, \fC [slot]\fP"
+
+.PP
+Handles item click events in the tree\&. Emits the elementClicked signal when an item is clicked, passing the item's text\&.
+.PP
+\fBParameters\fP
+.RS 4
+\fIitem\fP The clicked tree item\&. 
+.br
+\fIcolumn\fP The column of the clicked item\&. 
+.RE
+.PP
+
+.SS "\fBvoid\fP ElementsDisplay::idleUi ()\fC [private]\fP"
+
+.PP
+Resets the UI to an idle state\&. Clears the tree widget and sets up a default message indicating the widget is ready for new data\&. 
 .SS "\fBvoid\fP ElementsDisplay::loadTree (\fBconst\fP \fBs_components_list\fP & components)"
 
-.SS "\fBvoid\fP ElementsDisplay::populateTree (\fBconst\fP \fBs_components_list\fP & components)\fR [private]\fP"
+.PP
+Loads the parsed data into the tree widget\&. Populates the tree widget with components, simulation I/Os, and wires from the parsed SVG file\&.
+.PP
+\fBParameters\fP
+.RS 4
+\fIcomponents\fP A structure containing parsed components, simulation I/Os, and wires\&. 
+.RE
+.PP
 
-.SS "\fBvoid\fP ElementsDisplay::setTextColor (\fBQTreeWidgetItem\fP * item, \fBconst\fP \fBQColor\fP & color)\fR [private]\fP"
+.SS "\fBvoid\fP ElementsDisplay::populateTree (\fBconst\fP \fBs_components_list\fP & components)\fC [private]\fP"
+
+.PP
+Populates the tree widget with components data\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIcomponents\fP The structure containing components to populate the tree\&. 
+.RE
+.PP
+
+.SS "\fBvoid\fP ElementsDisplay::setTextColor (\fBQTreeWidgetItem\fP * item, \fBconst\fP \fBQColor\fP & color)\fC [private]\fP"
+
+.PP
+Sets the text color of a tree item\&. Changes the color of text for all columns in a given tree item\&.
+.PP
+\fBParameters\fP
+.RS 4
+\fIitem\fP The tree item whose text color will be set\&. 
+.br
+\fIcolor\fP The color to apply to the text\&. 
+.RE
+.PP
 
 .SH "Member Data Documentation"
 .PP 
-.SS "\fBs_components_list\fP* ElementsDisplay::components\fR [private]\fP"
+.SS "\fBs_components_list\fP* ElementsDisplay::components\fC [private]\fP"
 
-.SS "\fBQVBoxLayout\fP* ElementsDisplay::mainLayout\fR [private]\fP"
+.PP
+A pointer to the structure containing the parsed components\&. 
+.SS "\fBQVBoxLayout\fP* ElementsDisplay::mainLayout\fC [private]\fP"
 
-.SS "\fBQTreeView\fP* ElementsDisplay::place\fR [private]\fP"
+.PP
+The main layout for the widget\&. 
+.SS "\fBQTreeView\fP* ElementsDisplay::place\fC [private]\fP"
 
-.SS "\fBQTreeWidget\fP* ElementsDisplay::treeWidget\fR [private]\fP"
+.PP
+The QTreeView to place additional elements (if any)\&. 
+.SS "\fBQTreeWidget\fP* ElementsDisplay::treeWidget\fC [private]\fP"
 
+.PP
+The QTreeWidget that displays the elements\&. 
 
 .SH "Author"
 .PP 

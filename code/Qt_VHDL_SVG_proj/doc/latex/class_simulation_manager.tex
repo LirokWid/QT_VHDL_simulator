@@ -1,0 +1,281 @@
+\doxysection{Simulation\+Manager Class Reference}
+\hypertarget{class_simulation_manager}{}\label{class_simulation_manager}\index{SimulationManager@{SimulationManager}}
+
+
+{\ttfamily \#include $<$simulationmanager.\+h$>$}
+
+
+
+Inheritance diagram for Simulation\+Manager\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=179pt]{class_simulation_manager__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for Simulation\+Manager\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_simulation_manager__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Slots}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_sysc_t_and}{void}} \mbox{\hyperlink{class_simulation_manager_afac1f917cbf2ca570f5651914e608350}{handle\+Work\+Finished}} ()
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Signals}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_sysc_t_and}{void}} \mbox{\hyperlink{class_simulation_manager_ac2d25859000c7c5e89be88a4e2345198}{result\+Ready}} (\mbox{\hyperlink{class_sysc_t_and}{const}} \mbox{\hyperlink{class_sysc_t_and}{QString}} \&\mbox{\hyperlink{class_sysc_t_and}{result}})
+\item 
+\mbox{\hyperlink{class_sysc_t_and}{void}} \mbox{\hyperlink{class_simulation_manager_ab295e426d0898c5a54faf53bb9fb13cd}{work\+Started}} ()
+\item 
+\mbox{\hyperlink{class_sysc_t_and}{void}} \mbox{\hyperlink{class_simulation_manager_ac2ff12cccf80674b3e68826d2363b2e6}{work\+Finished}} ()
+\item 
+\mbox{\hyperlink{class_sysc_t_and}{void}} \mbox{\hyperlink{class_simulation_manager_a0590af69e2ebfe1fc604b6d61e3b2c0b}{thread\+Busy}} ()
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_simulation_manager_a496688bc7d55dc165fd7b164be15b98e}{Simulation\+Manager}} (QObject \texorpdfstring{$\ast$}{*}\mbox{\hyperlink{class_sysc_t_and}{parent}}=\mbox{\hyperlink{class_sysc_t_and}{nullptr}})
+\item 
+\mbox{\hyperlink{class_simulation_manager_a7e7d91e87e35cb25fb13f5e439257488}{\texorpdfstring{$\sim$}{\string~}\+Simulation\+Manager}} ()
+\item 
+\mbox{\hyperlink{class_sysc_t_and}{void}} \mbox{\hyperlink{class_simulation_manager_a231756c6f46f20d28e9d317f690b9449}{lauch\+Simulation}} ()
+\item 
+\mbox{\hyperlink{class_sysc_t_and}{void}} \mbox{\hyperlink{class_simulation_manager_aace7834454cc9af4cb9de595a5062b15}{stop\+Simulation}} ()
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Private Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_sysc_t_and}{void}} \mbox{\hyperlink{class_simulation_manager_a24e8e429975abd1a987199161e801135}{start\+Work}} ()
+\item 
+\mbox{\hyperlink{class_sysc_t_and}{bool}} \mbox{\hyperlink{class_simulation_manager_a5c5f6483fc155c6deafcab1722ed424f}{start\+Thread}} ()
+\item 
+\mbox{\hyperlink{class_sysc_t_and}{void}} \mbox{\hyperlink{class_simulation_manager_aef9a5d2129f24abe2c8c8bae4ea60acb}{stop\+Thread}} ()
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_simulation_state}{Simulation\+State}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{class_simulation_manager_a6e6c137fc06ac863c86e93432e70222d}{state}}
+\item 
+\mbox{\hyperlink{class_sysc_t_and}{QThread}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{class_simulation_manager_aead0fd572830a296194023ac1b90982c}{sim\+Thread}}
+\item 
+\mbox{\hyperlink{class_simulation_worker}{Simulation\+Worker}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{class_simulation_manager_ab782e01b97ee2f676a7aa6095b218236}{worker}}
+\item 
+\mbox{\hyperlink{class_sysc_t_and}{bool}} \mbox{\hyperlink{class_simulation_manager_a3556ce55e0bad66001d2190354088187}{is\+Busy}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{class_simulation_manager_a496688bc7d55dc165fd7b164be15b98e}\label{class_simulation_manager_a496688bc7d55dc165fd7b164be15b98e} 
+\index{SimulationManager@{SimulationManager}!SimulationManager@{SimulationManager}}
+\index{SimulationManager@{SimulationManager}!SimulationManager@{SimulationManager}}
+\doxysubsubsection{\texorpdfstring{SimulationManager()}{SimulationManager()}}
+{\footnotesize\ttfamily Simulation\+Manager\+::\+Simulation\+Manager (\begin{DoxyParamCaption}\item[{QObject \texorpdfstring{$\ast$}{*}}]{parent = {\ttfamily \mbox{\hyperlink{class_sysc_t_and}{nullptr}}} }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [explicit]}}
+
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_simulation_manager_a496688bc7d55dc165fd7b164be15b98e_cgraph}
+\end{center}
+\end{figure}
+\Hypertarget{class_simulation_manager_a7e7d91e87e35cb25fb13f5e439257488}\label{class_simulation_manager_a7e7d91e87e35cb25fb13f5e439257488} 
+\index{SimulationManager@{SimulationManager}!````~SimulationManager@{\texorpdfstring{$\sim$}{\string~}SimulationManager}}
+\index{````~SimulationManager@{\texorpdfstring{$\sim$}{\string~}SimulationManager}!SimulationManager@{SimulationManager}}
+\doxysubsubsection{\texorpdfstring{\texorpdfstring{$\sim$}{\string~}SimulationManager()}{\string~SimulationManager()}}
+{\footnotesize\ttfamily Simulation\+Manager\+::\texorpdfstring{$\sim$}{\string~}\+Simulation\+Manager (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{class_simulation_manager_afac1f917cbf2ca570f5651914e608350}\label{class_simulation_manager_afac1f917cbf2ca570f5651914e608350} 
+\index{SimulationManager@{SimulationManager}!handleWorkFinished@{handleWorkFinished}}
+\index{handleWorkFinished@{handleWorkFinished}!SimulationManager@{SimulationManager}}
+\doxysubsubsection{\texorpdfstring{handleWorkFinished}{handleWorkFinished}}
+{\footnotesize\ttfamily \mbox{\hyperlink{class_sysc_t_and}{void}} Simulation\+Manager\+::handle\+Work\+Finished (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [slot]}}
+
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=327pt]{class_simulation_manager_afac1f917cbf2ca570f5651914e608350_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=327pt]{class_simulation_manager_afac1f917cbf2ca570f5651914e608350_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{class_simulation_manager_a231756c6f46f20d28e9d317f690b9449}\label{class_simulation_manager_a231756c6f46f20d28e9d317f690b9449} 
+\index{SimulationManager@{SimulationManager}!lauchSimulation@{lauchSimulation}}
+\index{lauchSimulation@{lauchSimulation}!SimulationManager@{SimulationManager}}
+\doxysubsubsection{\texorpdfstring{lauchSimulation()}{lauchSimulation()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{class_sysc_t_and}{void}} Simulation\+Manager\+::lauch\+Simulation (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_simulation_manager_a231756c6f46f20d28e9d317f690b9449_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_simulation_manager_a231756c6f46f20d28e9d317f690b9449_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{class_simulation_manager_ac2d25859000c7c5e89be88a4e2345198}\label{class_simulation_manager_ac2d25859000c7c5e89be88a4e2345198} 
+\index{SimulationManager@{SimulationManager}!resultReady@{resultReady}}
+\index{resultReady@{resultReady}!SimulationManager@{SimulationManager}}
+\doxysubsubsection{\texorpdfstring{resultReady}{resultReady}}
+{\footnotesize\ttfamily \mbox{\hyperlink{class_sysc_t_and}{void}} Simulation\+Manager\+::result\+Ready (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_sysc_t_and}{const}} \mbox{\hyperlink{class_sysc_t_and}{QString}} \&}]{result }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [signal]}}
+
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_simulation_manager_ac2d25859000c7c5e89be88a4e2345198_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{class_simulation_manager_a5c5f6483fc155c6deafcab1722ed424f}\label{class_simulation_manager_a5c5f6483fc155c6deafcab1722ed424f} 
+\index{SimulationManager@{SimulationManager}!startThread@{startThread}}
+\index{startThread@{startThread}!SimulationManager@{SimulationManager}}
+\doxysubsubsection{\texorpdfstring{startThread()}{startThread()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{class_sysc_t_and}{bool}} Simulation\+Manager\+::start\+Thread (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_simulation_manager_a5c5f6483fc155c6deafcab1722ed424f_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{class_simulation_manager_a24e8e429975abd1a987199161e801135}\label{class_simulation_manager_a24e8e429975abd1a987199161e801135} 
+\index{SimulationManager@{SimulationManager}!startWork@{startWork}}
+\index{startWork@{startWork}!SimulationManager@{SimulationManager}}
+\doxysubsubsection{\texorpdfstring{startWork()}{startWork()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{class_sysc_t_and}{void}} Simulation\+Manager\+::start\+Work (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=327pt]{class_simulation_manager_a24e8e429975abd1a987199161e801135_cgraph}
+\end{center}
+\end{figure}
+\Hypertarget{class_simulation_manager_aace7834454cc9af4cb9de595a5062b15}\label{class_simulation_manager_aace7834454cc9af4cb9de595a5062b15} 
+\index{SimulationManager@{SimulationManager}!stopSimulation@{stopSimulation}}
+\index{stopSimulation@{stopSimulation}!SimulationManager@{SimulationManager}}
+\doxysubsubsection{\texorpdfstring{stopSimulation()}{stopSimulation()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{class_sysc_t_and}{void}} Simulation\+Manager\+::stop\+Simulation (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+Here is the call graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_simulation_manager_aace7834454cc9af4cb9de595a5062b15_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_simulation_manager_aace7834454cc9af4cb9de595a5062b15_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{class_simulation_manager_aef9a5d2129f24abe2c8c8bae4ea60acb}\label{class_simulation_manager_aef9a5d2129f24abe2c8c8bae4ea60acb} 
+\index{SimulationManager@{SimulationManager}!stopThread@{stopThread}}
+\index{stopThread@{stopThread}!SimulationManager@{SimulationManager}}
+\doxysubsubsection{\texorpdfstring{stopThread()}{stopThread()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{class_sysc_t_and}{void}} Simulation\+Manager\+::stop\+Thread (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_simulation_manager_aef9a5d2129f24abe2c8c8bae4ea60acb_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{class_simulation_manager_a0590af69e2ebfe1fc604b6d61e3b2c0b}\label{class_simulation_manager_a0590af69e2ebfe1fc604b6d61e3b2c0b} 
+\index{SimulationManager@{SimulationManager}!threadBusy@{threadBusy}}
+\index{threadBusy@{threadBusy}!SimulationManager@{SimulationManager}}
+\doxysubsubsection{\texorpdfstring{threadBusy}{threadBusy}}
+{\footnotesize\ttfamily \mbox{\hyperlink{class_sysc_t_and}{void}} Simulation\+Manager\+::thread\+Busy (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [signal]}}
+
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_simulation_manager_a0590af69e2ebfe1fc604b6d61e3b2c0b_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{class_simulation_manager_ac2ff12cccf80674b3e68826d2363b2e6}\label{class_simulation_manager_ac2ff12cccf80674b3e68826d2363b2e6} 
+\index{SimulationManager@{SimulationManager}!workFinished@{workFinished}}
+\index{workFinished@{workFinished}!SimulationManager@{SimulationManager}}
+\doxysubsubsection{\texorpdfstring{workFinished}{workFinished}}
+{\footnotesize\ttfamily \mbox{\hyperlink{class_sysc_t_and}{void}} Simulation\+Manager\+::work\+Finished (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [signal]}}
+
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_simulation_manager_ac2ff12cccf80674b3e68826d2363b2e6_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{class_simulation_manager_ab295e426d0898c5a54faf53bb9fb13cd}\label{class_simulation_manager_ab295e426d0898c5a54faf53bb9fb13cd} 
+\index{SimulationManager@{SimulationManager}!workStarted@{workStarted}}
+\index{workStarted@{workStarted}!SimulationManager@{SimulationManager}}
+\doxysubsubsection{\texorpdfstring{workStarted}{workStarted}}
+{\footnotesize\ttfamily \mbox{\hyperlink{class_sysc_t_and}{void}} Simulation\+Manager\+::work\+Started (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [signal]}}
+
+Here is the caller graph for this function\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_simulation_manager_ab295e426d0898c5a54faf53bb9fb13cd_icgraph}
+\end{center}
+\end{figure}
+
+
+\doxysubsection{Member Data Documentation}
+\Hypertarget{class_simulation_manager_a3556ce55e0bad66001d2190354088187}\label{class_simulation_manager_a3556ce55e0bad66001d2190354088187} 
+\index{SimulationManager@{SimulationManager}!isBusy@{isBusy}}
+\index{isBusy@{isBusy}!SimulationManager@{SimulationManager}}
+\doxysubsubsection{\texorpdfstring{isBusy}{isBusy}}
+{\footnotesize\ttfamily \mbox{\hyperlink{class_sysc_t_and}{bool}} Simulation\+Manager\+::is\+Busy\hspace{0.3cm}{\ttfamily [private]}}
+
+\Hypertarget{class_simulation_manager_aead0fd572830a296194023ac1b90982c}\label{class_simulation_manager_aead0fd572830a296194023ac1b90982c} 
+\index{SimulationManager@{SimulationManager}!simThread@{simThread}}
+\index{simThread@{simThread}!SimulationManager@{SimulationManager}}
+\doxysubsubsection{\texorpdfstring{simThread}{simThread}}
+{\footnotesize\ttfamily \mbox{\hyperlink{class_sysc_t_and}{QThread}}\texorpdfstring{$\ast$}{*} Simulation\+Manager\+::sim\+Thread\hspace{0.3cm}{\ttfamily [private]}}
+
+\Hypertarget{class_simulation_manager_a6e6c137fc06ac863c86e93432e70222d}\label{class_simulation_manager_a6e6c137fc06ac863c86e93432e70222d} 
+\index{SimulationManager@{SimulationManager}!state@{state}}
+\index{state@{state}!SimulationManager@{SimulationManager}}
+\doxysubsubsection{\texorpdfstring{state}{state}}
+{\footnotesize\ttfamily \mbox{\hyperlink{class_simulation_state}{Simulation\+State}}\texorpdfstring{$\ast$}{*} Simulation\+Manager\+::state\hspace{0.3cm}{\ttfamily [private]}}
+
+\Hypertarget{class_simulation_manager_ab782e01b97ee2f676a7aa6095b218236}\label{class_simulation_manager_ab782e01b97ee2f676a7aa6095b218236} 
+\index{SimulationManager@{SimulationManager}!worker@{worker}}
+\index{worker@{worker}!SimulationManager@{SimulationManager}}
+\doxysubsubsection{\texorpdfstring{worker}{worker}}
+{\footnotesize\ttfamily \mbox{\hyperlink{class_simulation_worker}{Simulation\+Worker}}\texorpdfstring{$\ast$}{*} Simulation\+Manager\+::worker\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+S\+:/code/\+QT\+\_\+\+VHDL\+\_\+simulator/code/\+Qt\+\_\+\+VHDL\+\_\+\+SVG\+\_\+proj/system/\mbox{\hyperlink{simulationmanager_8h}{simulationmanager.\+h}}\item 
+S\+:/code/\+QT\+\_\+\+VHDL\+\_\+simulator/code/\+Qt\+\_\+\+VHDL\+\_\+\+SVG\+\_\+proj/system/\mbox{\hyperlink{simulationmanager_8cpp}{simulationmanager.\+cpp}}\end{DoxyCompactItemize}

@@ -1,5 +1,7 @@
 var searchData=
 [
-  ['y_0',['y',['../class_sysc_logic_gate.html#aa30cdd2acd9b9fad37a543d5548f8318',1,'SyscLogicGate::y'],['../class_sysc_logic_gate__pv.html#a9e8368d8627e69b2dd95ee5215c0aa0f',1,'SyscLogicGate_pv::y'],['../class_sysc_mux_t.html#a0817fa0303a1ff5482a7d821ecff824b',1,'SyscMuxT::y'],['../class_sysc_mux_t__pv.html#a1910d74c9ee66d1397bf924231bb5619',1,'SyscMuxT_pv::y']]],
-  ['y_5fis_5fd_1',['y_is_d',['../class_sysc_tri.html#a0d6f3d2ca02bd334a889cf9ed2928720',1,'SyscTri']]]
+  ['value_0',['value',['../struct_svg_widget_1_1s__style__lists_1_1s__style.html#a94eb94ee7772fd3be2d93fc2535f299e',1,'SvgWidget::s_style_lists::s_style']]],
+  ['visiblerange_5fx_1',['visibleRange_X',['../class_multi_types_chrono.html#a48698239893d1b4e6b307b604798b7a5',1,'MultiTypesChrono']]],
+  ['visiblerange_5fy_2',['visibleRange_Y',['../class_multi_types_chrono.html#a9a2f1969421e0aecd63d30a1473c6d60',1,'MultiTypesChrono']]],
+  ['vlayout_3',['Vlayout',['../class_multi_types_chrono.html#a10121c7d6e3a7bb96497d9341987256c',1,'MultiTypesChrono']]]
 ];

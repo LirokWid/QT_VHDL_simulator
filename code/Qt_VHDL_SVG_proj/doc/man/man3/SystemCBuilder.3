@@ -1,0 +1,74 @@
+.TH "SystemCBuilder" 3 "VHDL simulator" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+SystemCBuilder
+.SH SYNOPSIS
+.br
+.PP
+.PP
+\fC#include <systemcbuilder\&.h>\fP
+.SS "Public Member Functions"
+
+.in +1c
+.ti -1c
+.RI "\fBSystemCBuilder\fP (\fBs_components_list\fP *\fBcomponents\fP)"
+.br
+.in -1c
+.SS "Private Member Functions"
+
+.in +1c
+.ti -1c
+.RI "template<\fBtemplate\fP< \fBunsigned\fP \fBint\fP, \fBunsigned\fP \fBint\fP > \fBclass\fP GateType, \fBunsigned\fP \fBint\fP N, \fBunsigned\fP \fBint\fP W> \fBGateType\fP< N, W > * \fBcreateGateModule\fP (\fBconst\fP \fBQString\fP &name)"
+.br
+.ti -1c
+.RI "\fBvoid\fP \fBbuildSystemCSim\fP (\fBconst\fP \fBs_components_list\fP &\fBcomponents\fP)"
+.br
+.ti -1c
+.RI "\fBdevice\fP \fBdeviceFinder\fP (\fBQString\fP name)"
+.br
+.ti -1c
+.RI "sc_module * \fBcreateSysC_Module\fP (\fBdevice\fP, \fBconst\fP \fBs_element\fP &)"
+.br
+.in -1c
+.SS "Private Attributes"
+
+.in +1c
+.ti -1c
+.RI "\fBDebugWindow\fP * \fBdebug\fP = \fBDebugWindow::getInstance\fP()"
+.br
+.ti -1c
+.RI "\fBs_components_list\fP * \fBcomponents\fP"
+.br
+.ti -1c
+.RI "\fBQVector\fP< sc_module * > \fBmodules\fP"
+.br
+.in -1c
+.SH "Constructor & Destructor Documentation"
+.PP 
+.SS "SystemCBuilder::SystemCBuilder (\fBs_components_list\fP * components)"
+
+.SH "Member Function Documentation"
+.PP 
+.SS "\fBvoid\fP SystemCBuilder::buildSystemCSim (\fBconst\fP \fBs_components_list\fP & components)\fC [private]\fP"
+
+.SS "template<\fBtemplate\fP< \fBunsigned\fP \fBint\fP, \fBunsigned\fP \fBint\fP > \fBclass\fP GateType, \fBunsigned\fP \fBint\fP N, \fBunsigned\fP \fBint\fP W> \fBGateType\fP< N, W > * SystemCBuilder::createGateModule (\fBconst\fP \fBQString\fP & name)\fC [private]\fP"
+
+.SS "sc_module * SystemCBuilder::createSysC_Module (\fBdevice\fP devType, \fBconst\fP \fBs_element\fP & element)\fC [private]\fP"
+/!\\ TOFIX /!\\
+.PP
+The modules are currently not instanciables because of the template classes they use We should switch to a constructor instanciation instead of a template one The problem is also sc_signals that are templates and can´t have dynamic width values (W)
+.SS "\fBdevice\fP SystemCBuilder::deviceFinder (\fBQString\fP name)\fC [private]\fP"
+
+.SH "Member Data Documentation"
+.PP 
+.SS "\fBs_components_list\fP* SystemCBuilder::components\fC [private]\fP"
+
+.SS "\fBDebugWindow\fP* SystemCBuilder::debug = \fBDebugWindow::getInstance\fP()\fC [private]\fP"
+
+.SS "\fBQVector\fP<sc_module*> SystemCBuilder::modules\fC [private]\fP"
+
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for VHDL simulator from the source code\&.

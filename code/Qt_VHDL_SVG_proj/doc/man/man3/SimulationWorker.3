@@ -1,0 +1,125 @@
+.TH "SimulationWorker" 3 "VHDL simulator" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+SimulationWorker
+.SH SYNOPSIS
+.br
+.PP
+.PP
+\fC#include <simulationworker\&.h>\fP
+.PP
+Inherits QObject\&.
+.SS "Public Types"
+
+.in +1c
+.ti -1c
+.RI "enum class \fBWorkType\fP { \fBLINK\fP, \fBSIMULATE\fP }"
+.br
+.in -1c
+.SS "Public Slots"
+
+.in +1c
+.ti -1c
+.RI "\fBvoid\fP \fBprocess\fP (\fBWorkType\fP \fBworkType\fP)"
+.br
+.ti -1c
+.RI "\fBvoid\fP \fBstop\fP ()"
+.br
+.in -1c
+.SS "Signals"
+
+.in +1c
+.ti -1c
+.RI "\fBvoid\fP \fBresultReady\fP (\fBconst\fP \fBQString\fP &\fBresult\fP)"
+.br
+.ti -1c
+.RI "\fBvoid\fP \fBworkFinished\fP ()"
+.br
+.ti -1c
+.RI "\fBvoid\fP \fBworkStarted\fP ()"
+.br
+.in -1c
+.SS "Public Member Functions"
+
+.in +1c
+.ti -1c
+.RI "\fBSimulationWorker\fP (QObject *\fBparent\fP=\fBnullptr\fP)"
+.br
+.ti -1c
+.RI "\fBvoid\fP \fBdoWork\fP (\fBWorkType\fP type)"
+.br
+.ti -1c
+.RI "\fBvoid\fP \fBsimulationStart\fP ()"
+.br
+.ti -1c
+.RI "\fBvoid\fP \fBsimulationStop\fP ()"
+.br
+.in -1c
+.SS "Private Member Functions"
+
+.in +1c
+.ti -1c
+.RI "\fBvoid\fP \fBbuildSimulation\fP ()"
+.br
+.in -1c
+.SS "Private Attributes"
+
+.in +1c
+.ti -1c
+.RI "\fBbool\fP \fBm_running\fP = \fBfalse\fP"
+.br
+.ti -1c
+.RI "\fBSvgParseManager\fP * \fBlinker\fP"
+.br
+.ti -1c
+.RI "\fBs_components_list\fP \fBm_components\fP"
+.br
+.in -1c
+.SH "Member Enumeration Documentation"
+.PP 
+.SS "\fBenum\fP \fBclass\fP \fBSimulationWorker::WorkType\fP\fC [strong]\fP"
+
+.PP
+\fBEnumerator\fP
+.in +1c
+.TP
+\fB\fILINK \fP\fP
+.TP
+\fB\fISIMULATE \fP\fP
+.SH "Constructor & Destructor Documentation"
+.PP 
+.SS "SimulationWorker::SimulationWorker (QObject * parent = \fC\fBnullptr\fP\fP)\fC [explicit]\fP"
+
+.SH "Member Function Documentation"
+.PP 
+.SS "\fBvoid\fP SimulationWorker::buildSimulation ()\fC [private]\fP"
+
+.SS "\fBvoid\fP SimulationWorker::doWork (\fBWorkType\fP type)"
+
+.SS "\fBvoid\fP SimulationWorker::process (\fBWorkType\fP workType)\fC [slot]\fP"
+
+.SS "\fBvoid\fP SimulationWorker::resultReady (\fBconst\fP \fBQString\fP & result)\fC [signal]\fP"
+
+.SS "\fBvoid\fP SimulationWorker::simulationStart ()"
+
+.SS "\fBvoid\fP SimulationWorker::simulationStop ()"
+
+.SS "\fBvoid\fP SimulationWorker::stop ()\fC [slot]\fP"
+
+.SS "\fBvoid\fP SimulationWorker::workFinished ()\fC [signal]\fP"
+
+.SS "\fBvoid\fP SimulationWorker::workStarted ()\fC [signal]\fP"
+
+.SH "Member Data Documentation"
+.PP 
+.SS "\fBSvgParseManager\fP* SimulationWorker::linker\fC [private]\fP"
+
+.SS "\fBs_components_list\fP SimulationWorker::m_components\fC [private]\fP"
+
+.SS "\fBbool\fP SimulationWorker::m_running = \fBfalse\fP\fC [private]\fP"
+
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for VHDL simulator from the source code\&.

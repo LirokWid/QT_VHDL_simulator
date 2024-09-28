@@ -8,9 +8,9 @@ SvgParser \- The \fBSvgParser\fP class\&.
 .br
 .PP
 .PP
-\fR#include <SvgParser\&.h>\fP
+\fC#include <SvgParser\&.h>\fP
 .PP
-Inherited by \fBSystemcLinker\fP\&.
+Inherited by \fBSvgParseManager\fP\&.
 .SS "Classes"
 
 .in +1c
@@ -33,11 +33,11 @@ Inherited by \fBSystemcLinker\fP\&.
 .ti -1c
 .RI "\fBSvgParser\fP (\fBQString\fP \fBsvg_file\fP)"
 .br
-.RI "\fBSvgParser\fP constructor\&. "
+.RI "Constructor for \fBSvgParser\fP class Initializes the parsing process by loading the SVG file, generating a tree structure, and extracting component information\&. "
 .ti -1c
 .RI "\fB~SvgParser\fP ()"
 .br
-.RI "\fBSvgParser\fP destructor\&. "
+.RI "\fBSvgParser\fP destructor\&. Cleans up resources used by the parser\&. "
 .ti -1c
 .RI "\fBconst\fP \fBs_components_list\fP & \fBget_components_list\fP () \fBconst\fP"
 .br
@@ -79,19 +79,19 @@ Inherited by \fBSystemcLinker\fP\&.
 .ti -1c
 .RI "\fBQString\fP \fBattr\fP (\fBe_types\fP \fBtype\fP)"
 .br
-.RI "Get the attribute name for a given type\&. "
+.RI "Gets the custom attribute name for a specific component type\&. "
 .ti -1c
 .RI "\fBQString\fP \fBattr_name_for_str\fP (\fBQString\fP \fBattr\fP)"
 .br
-.RI "Get the attribute name for a given string\&. "
+.RI "Constructs a custom attribute name\&. "
 .ti -1c
 .RI "\fBvoid\fP \fBparse_one_element\fP (\fBconst\fP \fBQDomElement\fP \fBsvg_group_xml\fP, \fBs_elements\fP &elements)"
 .br
-.RI "parse one group element containing a component\&. "
+.RI "Parses a single SVG element and extracts information related to the device type, name, label, inputs, and outputs\&. Adds the parsed element to the provided list of elements\&. "
 .ti -1c
 .RI "\fBvoid\fP \fBparse_element\fP (\fBs_tree_node\fP &\fBnode\fP)"
 .br
-.RI "Parse an element from an xml group tag: It can ether parse a <svg> or a <g> tag\&. "
+.RI "Parses an individual element in the SVG file\&. "
 .ti -1c
 .RI "\fBvoid\fP \fBlist_attributes\fP (\fBconst\fP \fBQList\fP< \fBQDomElement\fP > &elements)"
 .br
@@ -99,59 +99,59 @@ Inherited by \fBSystemcLinker\fP\&.
 .ti -1c
 .RI "\fBvoid\fP \fBparse_svg\fP (\fBQString\fP \fBsvg_file\fP)"
 .br
-.RI "Parse SVG file\&. "
+.RI "Parse SVG file\&. Opens the SVG file and processes its content, parsing the file into groups and building a tree structure of the elements\&. "
 .ti -1c
 .RI "\fBvoid\fP \fBparse_by_group\fP (\fBconst\fP \fBQDomNode\fP &\fBnode\fP, \fBs_tree_node\fP &\fBparentNode\fP, \fBint\fP level)"
 .br
-.RI "Parse by group\&. "
+.RI "Recursively parses the SVG document by group\&. "
 .ti -1c
 .RI "\fBvoid\fP \fBget_group_header\fP (\fBconst\fP \fBQDomElement\fP &element, \fBs_tree_node_info\fP &\fBinfo\fP)"
 .br
-.RI "Get group header\&. "
+.RI "Extracts group header information from a DOM element\&. "
 .ti -1c
 .RI "\fBvoid\fP \fBgenerate_tree\fP (\fBconst\fP \fBs_tree_node\fP &\fBnode\fP, \fBconst\fP \fBQString\fP &\fBprefix\fP)"
 .br
-.RI "Generate tree\&. "
+.RI "Generates a tree structure from parsed SVG groups\&. "
 .ti -1c
 .RI "\fBvoid\fP \fBprint_tree_in_log\fP (\fBQString\fP \fBlog_buffer\fP)"
 .br
-.RI "Print tree in log\&. "
+.RI "Prints the generated tree structure to the log\&. Outputs the parsed tree structure of SVG elements to the log window\&. "
 .ti -1c
 .RI "\fBvoid\fP \fBparse_components\fP (\fBs_tree_node\fP &\fBnode\fP)"
 .br
-.RI "Parse links\&. "
+.RI "Parses the components of the SVG file\&. Recursively processes the tree nodes and extracts component information from each element\&. "
 .ti -1c
 .RI "\fBvoid\fP \fBparse_simulation_IOs\fP (\fBconst\fP \fBQDomElement\fP \fBsvg_group_xml\fP, \fBs_sim_I_Os\fP &\fBparsed_IOs\fP)"
 .br
-.RI "Parse simulation IO\&. "
+.RI "Parse simulation IO\&. Parses simulation inputs and outputs (IOs) from the given SVG element\&. Adds the parsed IOs to the provided list, distinguishing between inputs and outputs based on the attributes in the XML\&. "
 .ti -1c
 .RI "\fBint\fP \fBget_list_of_outputs_name_and_width\fP (\fBQString\fP \fBoutputs_string\fP, \fBQList\fP< \fBs_element_io\fP > &\fBoutputs_list\fP)"
 .br
-.RI "Get a list of outputs name, width for sim:outputs attributes\&. "
+.RI "Parse outputs from string Parses a list of output names and their corresponding widths from a string formatted as 'name:width,name:width'\&. Adds the parsed outputs to the provided list\&. "
 .ti -1c
 .RI "\fBint\fP \fBget_list_of_inputs_name_and_width\fP (\fBQString\fP \fBoutputs_string\fP, \fBQList\fP< \fBs_element_io\fP > &\fBinputs_list\fP)"
 .br
-.RI "Get a list of outputs name, width for sim:outputs attributes\&. "
+.RI "Parse inputs from string Parses a list of input names, their corresponding widths, and connected components from a string formatted as 'name:width:connected_to,name:width:connected_to'\&. Adds the parsed inputs to the provided list\&. "
 .ti -1c
 .RI "\fBbool\fP \fBcheck_and_get_attr\fP (\fBconst\fP \fBQDomElement\fP &\fBxml\fP, \fBQString\fP &\fBstr_to_get\fP, \fBQString\fP \fBattr_name\fP)"
 .br
-.RI "Get attribute value if it exist\&. "
+.RI "Get attribute value if it exist Checks if the specified XML element contains the given attribute and, if found, retrieves the attribute's value\&. "
 .ti -1c
 .RI "\fBvoid\fP \fBparse_simulation_wires\fP (\fBconst\fP \fBQDomElement\fP \fBsvg_group_xml\fP, \fBs_sim_wires\fP &\fBparsed_wires\fP)"
 .br
-.RI "Parse simulation wires\&. "
+.RI "Parse simulation wires\&. Parses the wires in the simulation from the given SVG element, extracting connection and name information\&. Adds the parsed wires to the provided structure\&. "
 .ti -1c
 .RI "\fBvoid\fP \fBlist_matching_attr_with_value\fP (\fBconst\fP \fBQDomElement\fP \fBelem_to_look_into\fP, \fBconst\fP \fBQString\fP \fBattr_name\fP, \fBconst\fP \fBQString\fP \fBattr_value\fP, \fBQList\fP< \fBQDomElement\fP > &\fBfound_elements\fP)"
 .br
-.RI "Find elements with attribute\&. "
+.RI "Find elements with attribute\&. Searches the given XML element for child elements that contain a specific attribute with a matching value\&. Adds any matching elements to the provided list\&. "
 .ti -1c
 .RI "\fBvoid\fP \fBadd_error_message\fP (\fBs_parse_error\fP &error, \fBconst\fP \fBQString\fP &\fBerrorMessage\fP)"
 .br
-.RI "Attach an error message to a structure\&. "
+.RI "Attach an error message to a structure\&. Adds an error message to the given error structure\&. Marks the structure as having a parse error\&. "
 .ti -1c
 .RI "\fBint\fP \fBlist_matching_attr\fP (\fBconst\fP \fBQDomElement\fP \fBelem_to_look_into\fP, \fBconst\fP \fBQString\fP \fBattr_name\fP, \fBQList\fP< \fBQDomElement\fP > &\fBfound_elements\fP)"
 .br
-.RI "list_matching_attr "
+.RI "list matching attribute Searches the given XML element for child elements that contain a specific attribute\&. Adds any matching elements to the provided list\&. "
 .in -1c
 .SS "Private Attributes"
 
@@ -176,10 +176,10 @@ Inherited by \fBSystemcLinker\fP\&.
 .PP 
 The \fBSvgParser\fP class\&. 
 
-This class parses an SVG file and extracts electrical links from Qt_attr attributes of SVG elements\&. 
+This class parses an SVG file and extracts electrical links from attributes of SVG elements\&. 
 .SH "Member Enumeration Documentation"
 .PP 
-.SS "\fBenum\fP \fBSvgParser::e_returns\fP\fR [protected]\fP"
+.SS "\fBenum\fP \fBSvgParser::e_returns\fP\fC [protected]\fP"
 
 .PP
 Enumeration for return codes\&. 
@@ -195,7 +195,7 @@ File not found return code\&.
 .TP
 \fB\fIINVALID_ARGUMENT \fP\fP
 Invalid argument return code\&. 
-.SS "\fBenum\fP \fBSvgParser::e_states\fP\fR [protected]\fP"
+.SS "\fBenum\fP \fBSvgParser::e_states\fP\fC [protected]\fP"
 
 .PP
 \fBEnumerator\fP
@@ -203,7 +203,7 @@ Invalid argument return code\&.
 .TP
 \fB\fITO_BE_FOUND \fP\fP
 To be found state\&. 
-.SS "\fBenum\fP \fBSvgParser::e_types\fP\fR [protected]\fP"
+.SS "\fBenum\fP \fBSvgParser::e_types\fP\fC [protected]\fP"
 
 .PP
 Enumeration for the names of the type attribute\&. 
@@ -242,145 +242,150 @@ Wire attribute type\&.
 .SS "SvgParser::SvgParser (\fBQString\fP svg_file)"
 
 .PP
-\fBSvgParser\fP constructor\&. 
+Constructor for \fBSvgParser\fP class Initializes the parsing process by loading the SVG file, generating a tree structure, and extracting component information\&. 
 .PP
 \fBParameters\fP
 .RS 4
-\fIsvg_file\fP The file path of the SVG file to parse\&. 
+\fIsvg_file\fP The path to the SVG file to be parsed\&. 
 .RE
 .PP
 
 .SS "SvgParser::~SvgParser ()"
 
 .PP
-\fBSvgParser\fP destructor\&. 
+\fBSvgParser\fP destructor\&. Cleans up resources used by the parser\&. 
 .SH "Member Function Documentation"
 .PP 
-.SS "\fBvoid\fP SvgParser::add_error_message (\fBs_parse_error\fP & error, \fBconst\fP \fBQString\fP & errorMessage)\fR [private]\fP"
+.SS "\fBvoid\fP SvgParser::add_error_message (\fBs_parse_error\fP & error, \fBconst\fP \fBQString\fP & errorMessage)\fC [private]\fP"
 
 .PP
-Attach an error message to a structure\&. 
+Attach an error message to a structure\&. Adds an error message to the given error structure\&. Marks the structure as having a parse error\&. 
 .PP
 \fBParameters\fP
 .RS 4
-\fIsim_IO\fP The simulation IO structure\&. 
+\fIerror\fP The structure where the error message will be added\&. 
 .br
-\fIerrorMessage\fP The error message\&. 
+\fIerrorMessage\fP The error message to be added\&. 
 .RE
 .PP
 
-.SS "\fBQString\fP SvgParser::attr (\fBe_types\fP type)\fR [private]\fP"
+.SS "\fBQString\fP SvgParser::attr (\fBe_types\fP type)\fC [private]\fP"
 
 .PP
-Get the attribute name for a given type\&. 
+Gets the custom attribute name for a specific component type\&. Returns the attribute name corresponding to the provided component type\&.
 .PP
 \fBParameters\fP
 .RS 4
-\fItype\fP The type of the attribute\&. 
+\fItype\fP The type of the component\&. 
 .RE
 .PP
 \fBReturns\fP
 .RS 4
-The attribute name\&. 
+The custom attribute name for the given component type\&. 
 .RE
 .PP
 
-.SS "\fBQString\fP SvgParser::attr_name_for_str (\fBQString\fP attr)\fR [private]\fP"
+.SS "\fBQString\fP SvgParser::attr_name_for_str (\fBQString\fP attr)\fC [private]\fP"
 
 .PP
-Get the attribute name for a given string\&. 
+Constructs a custom attribute name\&. Generates a custom attribute name by prepending a defined namespace to the input string\&.
 .PP
 \fBParameters\fP
 .RS 4
-\fIattr\fP The attribute string\&. 
+\fIattr\fP The input attribute name\&. 
 .RE
 .PP
 \fBReturns\fP
 .RS 4
-The attribute name\&. 
+The full custom attribute name\&. 
 .RE
 .PP
 
-.SS "\fBbool\fP SvgParser::check_and_get_attr (\fBconst\fP \fBQDomElement\fP & xml, \fBQString\fP & str_to_get, \fBQString\fP attr_name)\fR [private]\fP"
+.SS "\fBbool\fP SvgParser::check_and_get_attr (\fBconst\fP \fBQDomElement\fP & xml, \fBQString\fP & str_to_get, \fBQString\fP attr_name)\fC [private]\fP"
 
 .PP
-Get attribute value if it exist\&. 
+Get attribute value if it exist Checks if the specified XML element contains the given attribute and, if found, retrieves the attribute's value\&. 
 .PP
 \fBParameters\fP
 .RS 4
-\fIxml\fP The XML element to check 
+\fIxml\fP The QDomElement to check\&. 
 .br
-\fIstr_to_get\fP The string to get fron the attribute 
+\fIstr_to_get\fP Reference to the QString where the attribute value will be stored\&. 
 .br
-\fIattr_name\fP The attribute name 
-.RE
-.PP
-
-.SS "\fBvoid\fP SvgParser::generate_tree (\fBconst\fP \fBs_tree_node\fP & node, \fBconst\fP \fBQString\fP & prefix)\fR [private]\fP"
-
-.PP
-Generate tree\&. 
-.PP
-\fBParameters\fP
-.RS 4
-\fInode\fP The tree node\&. 
-.br
-\fIprefix\fP The prefix for formatting\&. 
-.RE
-.PP
-
-.SS "\fBconst\fP \fBs_components_list\fP & SvgParser::get_components_list () const\fR [inline]\fP"
-
-.SS "\fBvoid\fP SvgParser::get_group_header (\fBconst\fP \fBQDomElement\fP & element, \fBs_tree_node_info\fP & info)\fR [private]\fP"
-
-.PP
-Get group header\&. 
-.PP
-\fBParameters\fP
-.RS 4
-\fIelement\fP The XML element\&. 
-.br
-\fIinfo\fP The node information\&. 
-.RE
-.PP
-
-.SS "\fBint\fP SvgParser::get_list_of_inputs_name_and_width (\fBQString\fP outputs_string, \fBQList\fP< \fBs_element_io\fP > & inputs_list)\fR [private]\fP"
-
-.PP
-Get a list of outputs name, width for sim:outputs attributes\&. 
-.PP
-\fBParameters\fP
-.RS 4
-\fIoutputs_string\fP 
-.br
-\fIout_struct\fP 
+\fIattr_name\fP The name of the attribute to check for\&. 
 .RE
 .PP
 \fBReturns\fP
 .RS 4
-Number of outputs found if success, -1 if error 
+True if the attribute is found, false otherwise\&. 
 .RE
 .PP
 
-.SS "\fBint\fP SvgParser::get_list_of_outputs_name_and_width (\fBQString\fP outputs_string, \fBQList\fP< \fBs_element_io\fP > & outputs_list)\fR [private]\fP"
+.SS "\fBvoid\fP SvgParser::generate_tree (\fBconst\fP \fBs_tree_node\fP & node, \fBconst\fP \fBQString\fP & prefix)\fC [private]\fP"
 
 .PP
-Get a list of outputs name, width for sim:outputs attributes\&. 
+Generates a tree structure from parsed SVG groups\&. Outputs a visual representation of the tree structure of SVG elements, including their tag names and IDs\&.
 .PP
 \fBParameters\fP
 .RS 4
-\fIoutputs_string\fP 
+\fInode\fP The current node in the tree structure\&. 
 .br
-\fIout_struct\fP 
+\fIprefix\fP The prefix used to format the tree structure display\&. 
+.RE
+.PP
+
+.SS "\fBconst\fP \fBs_components_list\fP & SvgParser::get_components_list () const\fC [inline]\fP"
+
+.SS "\fBvoid\fP SvgParser::get_group_header (\fBconst\fP \fBQDomElement\fP & element, \fBs_tree_node_info\fP & info)\fC [private]\fP"
+
+.PP
+Extracts group header information from a DOM element\&. Parses a group element (<g>) in the SVG file to retrieve its attributes (\fBe\&.g\fP\&., device type, width)\&.
+.PP
+\fBParameters\fP
+.RS 4
+\fIelement\fP The current DOM element being processed\&. 
+.br
+\fIinfos\fP The structure to store the extracted information\&. 
+.RE
+.PP
+
+.SS "\fBint\fP SvgParser::get_list_of_inputs_name_and_width (\fBQString\fP outputs_string, \fBQList\fP< \fBs_element_io\fP > & inputs_list)\fC [private]\fP"
+
+.PP
+Parse inputs from string Parses a list of input names, their corresponding widths, and connected components from a string formatted as 'name:width:connected_to,name:width:connected_to'\&. Adds the parsed inputs to the provided list\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIinputs_string\fP A QString containing the inputs in 'name:width:connected_to' format\&. 
+.br
+\fIinputs_list\fP Reference to the list where parsed inputs will be stored\&. 
 .RE
 .PP
 \fBReturns\fP
 .RS 4
-Number of outputs found if success, -1 if error 
+The number of inputs parsed, or an error code if the format is invalid\&. 
 .RE
 .PP
 
-.SS "\fBvoid\fP SvgParser::list_attributes (\fBconst\fP \fBQList\fP< \fBQDomElement\fP > & elements)\fR [private]\fP"
+.SS "\fBint\fP SvgParser::get_list_of_outputs_name_and_width (\fBQString\fP outputs_string, \fBQList\fP< \fBs_element_io\fP > & outputs_list)\fC [private]\fP"
+
+.PP
+Parse outputs from string Parses a list of output names and their corresponding widths from a string formatted as 'name:width,name:width'\&. Adds the parsed outputs to the provided list\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIoutputs_string\fP A QString containing the outputs in 'name:width' format\&. 
+.br
+\fIoutputs_list\fP Reference to the list where parsed outputs will be stored\&. 
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+The number of outputs parsed, or an error code if the format is invalid\&. 
+.RE
+.PP
+
+.SS "\fBvoid\fP SvgParser::list_attributes (\fBconst\fP \fBQList\fP< \fBQDomElement\fP > & elements)\fC [private]\fP"
 
 .PP
 List attributes\&. 
@@ -391,90 +396,90 @@ List attributes\&.
 .RE
 .PP
 
-.SS "\fBint\fP SvgParser::list_matching_attr (\fBconst\fP \fBQDomElement\fP elem_to_look_into, \fBconst\fP \fBQString\fP attr_name, \fBQList\fP< \fBQDomElement\fP > & found_elements)\fR [private]\fP"
+.SS "\fBint\fP SvgParser::list_matching_attr (\fBconst\fP \fBQDomElement\fP elem_to_look_into, \fBconst\fP \fBQString\fP attr_name, \fBQList\fP< \fBQDomElement\fP > & found_elements)\fC [private]\fP"
 
 .PP
-list_matching_attr 
+list matching attribute Searches the given XML element for child elements that contain a specific attribute\&. Adds any matching elements to the provided list\&. 
 .PP
 \fBParameters\fP
 .RS 4
-\fIelem_to_look_into\fP 
+\fIelem_to_look_into\fP The QDomElement to search within\&. 
 .br
-\fIattr_name\fP 
+\fIattr_name\fP The name of the attribute to match\&. 
 .br
-\fIfound_elements\fP 
+\fIfound_elements\fP Reference to the list where found elements will be stored\&. 
 .RE
 .PP
 \fBReturns\fP
 .RS 4
-number of elements found 
+The number of matching elements found\&. 
 .RE
 .PP
 
-.SS "\fBvoid\fP SvgParser::list_matching_attr_with_value (\fBconst\fP \fBQDomElement\fP elem_to_look_into, \fBconst\fP \fBQString\fP attr_name, \fBconst\fP \fBQString\fP attr_value, \fBQList\fP< \fBQDomElement\fP > & found_elements)\fR [private]\fP"
+.SS "\fBvoid\fP SvgParser::list_matching_attr_with_value (\fBconst\fP \fBQDomElement\fP elem_to_look_into, \fBconst\fP \fBQString\fP attr_name, \fBconst\fP \fBQString\fP attr_value, \fBQList\fP< \fBQDomElement\fP > & found_elements)\fC [private]\fP"
 
 .PP
-Find elements with attribute\&. 
+Find elements with attribute\&. Searches the given XML element for child elements that contain a specific attribute with a matching value\&. Adds any matching elements to the provided list\&. 
 .PP
 \fBParameters\fP
 .RS 4
-\fIelem_to_look_into\fP The element to search into\&. 
+\fIelem_to_look_into\fP The QDomElement to search within\&. 
 .br
-\fIattr_name\fP The attribute name\&. 
+\fIattr_name\fP The name of the attribute to match\&. 
 .br
-\fIattr_value\fP The attribute value\&. 
+\fIattr_value\fP The value of the attribute to match\&. 
 .br
-\fIfound_elements\fP The list of found elements\&. 
+\fIfound_elements\fP Reference to the list where found elements will be stored\&. 
 .RE
 .PP
 
-.SS "\fBvoid\fP SvgParser::parse_by_group (\fBconst\fP \fBQDomNode\fP & node, \fBs_tree_node\fP & parentNode, \fBint\fP level)\fR [private]\fP"
+.SS "\fBvoid\fP SvgParser::parse_by_group (\fBconst\fP \fBQDomNode\fP & node, \fBs_tree_node\fP & parentNode, \fBint\fP level)\fC [private]\fP"
 
 .PP
-Parse by group\&. 
+Recursively parses the SVG document by group\&. Finds all group (<g>) elements in the SVG file, storing them in a tree structure\&.
 .PP
 \fBParameters\fP
 .RS 4
-\fInode\fP The XML node to parse\&. 
+\fInode\fP The current XML node being processed\&. 
 .br
-\fIparentNode\fP The parent node\&. 
+\fIparentNode\fP The parent node in the tree structure\&. 
 .br
-\fIlevel\fP The level of the node in the tree\&. 
+\fIlevel\fP The depth level of the current node in the tree\&. 
 .RE
 .PP
 
-.SS "\fBvoid\fP SvgParser::parse_components (\fBs_tree_node\fP & node)\fR [private]\fP"
+.SS "\fBvoid\fP SvgParser::parse_components (\fBs_tree_node\fP & node)\fC [private]\fP"
 
 .PP
-Parse links\&. 
+Parses the components of the SVG file\&. Recursively processes the tree nodes and extracts component information from each element\&. 
 .PP
 \fBParameters\fP
 .RS 4
-\fInode\fP The tree node\&. 
+\fInode\fP The current node in the tree structure being parsed\&. 
 .RE
 .PP
 
-.SS "\fBvoid\fP SvgParser::parse_element (\fBs_tree_node\fP & node)\fR [private]\fP"
+.SS "\fBvoid\fP SvgParser::parse_element (\fBs_tree_node\fP & node)\fC [private]\fP"
 
 .PP
-Parse an element from an xml group tag: It can ether parse a <svg> or a <g> tag\&. 
+Parses an individual element in the SVG file\&. Processes a specific element in the SVG file to extract its attributes and component information\&. It can ether parse a <svg> or a <g> tag\&.
 .PP
 \fBParameters\fP
 .RS 4
-\fInode\fP The tree node to parse\&. 
+\fInode\fP The tree node corresponding to the element being parsed\&. 
 .RE
 .PP
 
-.SS "\fBvoid\fP SvgParser::parse_one_element (\fBconst\fP \fBQDomElement\fP svg_group_xml, \fBs_elements\fP & elements)\fR [private]\fP"
+.SS "\fBvoid\fP SvgParser::parse_one_element (\fBconst\fP \fBQDomElement\fP svg_group_xml, \fBs_elements\fP & elements)\fC [private]\fP"
 
 .PP
-parse one group element containing a component\&. 
+Parses a single SVG element and extracts information related to the device type, name, label, inputs, and outputs\&. Adds the parsed element to the provided list of elements\&. 
 .PP
 \fBParameters\fP
 .RS 4
-\fIsvg_group_xml\fP 
+\fIsvg_group_xml\fP The QDomElement representing the SVG element to be parsed\&. 
 .br
-\fIelement_io\fP 
+\fIelements\fP Reference to the structure where parsed elements will be stored\&. 
 .RE
 .PP
 On an element, we should have the following attributes:
@@ -488,36 +493,36 @@ inputs: the list of inputs -> d0:1:IN0,d1:1:IN1 (d0:1:IN0 means input 0, width 1
 outputs: the list of outputs -> d0:1,d1:1
 .PP
 
-.SS "\fBvoid\fP SvgParser::parse_simulation_IOs (\fBconst\fP \fBQDomElement\fP svg_group_xml, \fBs_sim_I_Os\fP & parsed_IOs)\fR [private]\fP"
+.SS "\fBvoid\fP SvgParser::parse_simulation_IOs (\fBconst\fP \fBQDomElement\fP svg_group_xml, \fBs_sim_I_Os\fP & parsed_IOs)\fC [private]\fP"
 
 .PP
-Parse simulation IO\&. 
+Parse simulation IO\&. Parses simulation inputs and outputs (IOs) from the given SVG element\&. Adds the parsed IOs to the provided list, distinguishing between inputs and outputs based on the attributes in the XML\&. 
 .PP
 \fBParameters\fP
 .RS 4
-\fIsvg_group_xml\fP The SVG group XML\&. 
+\fIsvg_group_xml\fP The QDomElement representing the SVG element that contains simulation IOs\&. 
 .br
-\fIparsed_IOs\fP The parsed IOs\&. 
+\fIparsed_IOs\fP Reference to the structure where parsed IOs will be stored\&. 
 .RE
 .PP
 
-.SS "\fBvoid\fP SvgParser::parse_simulation_wires (\fBconst\fP \fBQDomElement\fP svg_group_xml, \fBs_sim_wires\fP & parsed_wires)\fR [private]\fP"
+.SS "\fBvoid\fP SvgParser::parse_simulation_wires (\fBconst\fP \fBQDomElement\fP svg_group_xml, \fBs_sim_wires\fP & parsed_wires)\fC [private]\fP"
 
 .PP
-Parse simulation wires\&. 
+Parse simulation wires\&. Parses the wires in the simulation from the given SVG element, extracting connection and name information\&. Adds the parsed wires to the provided structure\&. 
 .PP
 \fBParameters\fP
 .RS 4
-\fIsvg_group_xml\fP The SVG group XML\&. 
+\fIsvg_group_xml\fP The QDomElement representing the SVG element that contains simulation wires\&. 
 .br
-\fIparsed_wires\fP The parsed wires\&. 
+\fIparsed_wires\fP Reference to the structure where parsed wires will be stored\&. 
 .RE
 .PP
 
-.SS "\fBvoid\fP SvgParser::parse_svg (\fBQString\fP svg_file)\fR [private]\fP"
+.SS "\fBvoid\fP SvgParser::parse_svg (\fBQString\fP svg_file)\fC [private]\fP"
 
 .PP
-Parse SVG file\&. 
+Parse SVG file\&. Opens the SVG file and processes its content, parsing the file into groups and building a tree structure of the elements\&. 
 .PP
 \fBParameters\fP
 .RS 4
@@ -525,42 +530,42 @@ Parse SVG file\&.
 .RE
 .PP
 
-.SS "\fBvoid\fP SvgParser::print_tree_in_log (\fBQString\fP log_buffer)\fR [private]\fP"
+.SS "\fBvoid\fP SvgParser::print_tree_in_log (\fBQString\fP log_buffer)\fC [private]\fP"
 
 .PP
-Print tree in log\&. 
+Prints the generated tree structure to the log\&. Outputs the parsed tree structure of SVG elements to the log window\&. 
 .PP
 \fBParameters\fP
 .RS 4
-\fIlog_buffer\fP The log buffer\&. 
+\fIbuffer\fP The accumulated log content representing the SVG groups tree\&. 
 .RE
 .PP
 
 .SH "Member Data Documentation"
 .PP 
-.SS "\fBs_components_list\fP SvgParser::all_components\fR [protected]\fP"
+.SS "\fBs_components_list\fP SvgParser::all_components\fC [protected]\fP"
 
 .PP
 All components private variable\&. 
-.SS "\fBconst\fP \fBQString\fP SvgParser::custom_attribute = \fBCUSTOM_ATTRIBUTE\fP\fR [private]\fP"
+.SS "\fBconst\fP \fBQString\fP SvgParser::custom_attribute = \fBCUSTOM_ATTRIBUTE\fP\fC [private]\fP"
 
 .PP
 Custom attribute prefix\&. 
-.SS "\fBDebugWindow\fP* SvgParser::debug\fR [private]\fP"
+.SS "\fBDebugWindow\fP* SvgParser::debug\fC [private]\fP"
 
-.SS "\fBint\fP SvgParser::groups_number\fR [protected]\fP"
+.SS "\fBint\fP SvgParser::groups_number\fC [protected]\fP"
 
 .PP
 Number of groups\&. 
-.SS "\fBQString\fP SvgParser::log_buffer\fR [private]\fP"
+.SS "\fBQString\fP SvgParser::log_buffer\fC [private]\fP"
 
 .PP
 Buffer for log messages\&. 
-.SS "\fBs_tree_node\fP SvgParser::root\fR [protected]\fP"
+.SS "\fBs_tree_node\fP SvgParser::root\fC [protected]\fP"
 
 .PP
 Root node of the tree\&. 
-.SS "\fBQString\fP SvgParser::svg_file\fR [private]\fP"
+.SS "\fBQString\fP SvgParser::svg_file\fC [private]\fP"
 
 .PP
 File name of the SVG file\&. 

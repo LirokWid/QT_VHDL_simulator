@@ -1,5 +1,5 @@
 \doxysection{svghandler.\+h}
-\hypertarget{svghandler_8h_source}{}\label{svghandler_8h_source}\index{C:/Users/BJRODIER/Documents/QT\_REPO/QT\_VHDL\_simulator/code/Qt\_VHDL\_SVG\_proj/gui/svghandler.h@{C:/Users/BJRODIER/Documents/QT\_REPO/QT\_VHDL\_simulator/code/Qt\_VHDL\_SVG\_proj/gui/svghandler.h}}
+\hypertarget{svghandler_8h_source}{}\label{svghandler_8h_source}\index{S:/code/QT\_VHDL\_simulator/code/Qt\_VHDL\_SVG\_proj/gui/svghandler.h@{S:/code/QT\_VHDL\_simulator/code/Qt\_VHDL\_SVG\_proj/gui/svghandler.h}}
 \mbox{\hyperlink{svghandler_8h}{Go to the documentation of this file.}}
 \begin{DoxyCode}{0}
 \DoxyCodeLine{00001\ \textcolor{preprocessor}{\#ifndef\ SVGHANDLER\_H}}
@@ -14,7 +14,7 @@
 \DoxyCodeLine{00010\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{simulationstate_8h}{simulationstate.h}}"{}}}
 \DoxyCodeLine{00011\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{elementsdisplay_8h}{elementsdisplay.h}}"{}}}
 \DoxyCodeLine{00012\ }
-\DoxyCodeLine{00013\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_systemc_linker_8h}{SystemcLinker.h}}"{}}}
+\DoxyCodeLine{00013\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{_svg_parse_manager_8h}{SvgParseManager.h}}"{}}}
 \DoxyCodeLine{00014\ }
 \DoxyCodeLine{00015\ }
 \DoxyCodeLine{00019\ \textcolor{keyword}{class\ }\mbox{\hyperlink{class_svg_handler}{SvgHandler}}\ :\ \textcolor{keyword}{public}\ QObject}
@@ -22,33 +22,45 @@
 \DoxyCodeLine{00021\ \ \ \ \ Q\_OBJECT}
 \DoxyCodeLine{00022\ }
 \DoxyCodeLine{00023\ \textcolor{keyword}{public}:}
-\DoxyCodeLine{00029\ \ \ \ \ \textcolor{keyword}{explicit}\ \mbox{\hyperlink{class_svg_handler_a5ff2221fb3f4d086ef21cfd35f0a6103}{SvgHandler}}(\mbox{\hyperlink{class_elements_display}{ElementsDisplay}}\ *\mbox{\hyperlink{class_svg_handler_a85a1734b8d4cc3d344a28f072539f80a}{display}},\ \mbox{\hyperlink{class_simulation_state}{SimulationState}}\ *\mbox{\hyperlink{class_svg_handler_a81d776043b4ff4ea2fc406e6285064c2}{simulationState}},\ \mbox{\hyperlink{class_svg_widget}{SvgWidget}}\ *\mbox{\hyperlink{class_svg_handler_a584cd661760537c626bc9cfdd3c5e552}{svgWidget}},\ QObject\ *parent\ =\ \textcolor{keyword}{nullptr});}
-\DoxyCodeLine{00030\ }
-\DoxyCodeLine{00034\ \ \ \ \ \mbox{\hyperlink{class_svg_handler_a8076d6fca7fbc1cc21f5075c9fc98934}{\string~SvgHandler}}();}
-\DoxyCodeLine{00035\ }
-\DoxyCodeLine{00036\ }
-\DoxyCodeLine{00037\ }
-\DoxyCodeLine{00042\ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{class_svg_handler_a8853b165f837a2e467d1401824d888f1}{loadSvg}}(\textcolor{keyword}{const}\ QString\ \&filePath);}
-\DoxyCodeLine{00043\ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{class_svg_handler_a9a8cf601dbf895709636d4f5830668be}{clearSvg}}();}
-\DoxyCodeLine{00044\ }
-\DoxyCodeLine{00045\ \textcolor{keyword}{protected}:}
-\DoxyCodeLine{00052\ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{class_svg_handler_a0869d84e63174245c136c7595fe57835}{copySvgToTemp}}(\textcolor{keyword}{const}\ QString\ \&sourceFilePath);}
+\DoxyCodeLine{00029\ \ \ \ \ \textcolor{keyword}{explicit}\ \mbox{\hyperlink{class_svg_handler}{SvgHandler}}(}
+\DoxyCodeLine{00030\ \ \ \ \ \ \ \ \ QWidget\ *\mbox{\hyperlink{class_svg_handler_a1cd49d8224474e2aeb462fb8c540c1c7}{componentsWidget}},}
+\DoxyCodeLine{00031\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_simulation_state}{SimulationState}}\ *\mbox{\hyperlink{class_svg_handler_a81d776043b4ff4ea2fc406e6285064c2}{simulationState}},}
+\DoxyCodeLine{00032\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_svg_widget}{SvgWidget}}\ *\mbox{\hyperlink{class_svg_handler_a584cd661760537c626bc9cfdd3c5e552}{svgWidget}},}
+\DoxyCodeLine{00033\ \ \ \ \ \ \ \ \ QObject\ *parent\ =\ \textcolor{keyword}{nullptr});}
+\DoxyCodeLine{00034\ }
+\DoxyCodeLine{00038\ \ \ \ \ \mbox{\hyperlink{class_svg_handler_a8076d6fca7fbc1cc21f5075c9fc98934}{\string~SvgHandler}}();}
+\DoxyCodeLine{00039\ }
+\DoxyCodeLine{00040\ }
+\DoxyCodeLine{00041\ }
+\DoxyCodeLine{00046\ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{class_svg_handler_a8853b165f837a2e467d1401824d888f1}{loadSvg}}(\textcolor{keyword}{const}\ QString\ \&filePath);}
+\DoxyCodeLine{00047\ }
+\DoxyCodeLine{00052\ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{class_svg_handler_a9a8cf601dbf895709636d4f5830668be}{clearSvg}}();}
 \DoxyCodeLine{00053\ }
-\DoxyCodeLine{00058\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_svg_handler_ac719a31c5bba9f2ca6fbbc13957c1426}{deleteTempSvg}}(\textcolor{keyword}{const}\ QString\ \&\mbox{\hyperlink{class_svg_handler_a3acb26d2181ecf7cb5743b62c1298271}{tempFilePath}});}
+\DoxyCodeLine{00058\ \ \ \ \ \textcolor{keyword}{static}\ \mbox{\hyperlink{structs__components__list}{s\_components\_list}}\ \mbox{\hyperlink{class_svg_handler_a62e6dd27a8dfdb9130946e1ad20655e0}{getComponentsList}}();}
 \DoxyCodeLine{00059\ }
-\DoxyCodeLine{00060\ \textcolor{keyword}{private}:}
-\DoxyCodeLine{00061\ \ \ \ \ QString\ \mbox{\hyperlink{class_svg_handler_a3acb26d2181ecf7cb5743b62c1298271}{tempFilePath}};}
-\DoxyCodeLine{00062\ \ \ \ \ \mbox{\hyperlink{class_simulation_state}{SimulationState}}\ *\mbox{\hyperlink{class_svg_handler_a81d776043b4ff4ea2fc406e6285064c2}{simulationState}};\ }
-\DoxyCodeLine{00063\ \ \ \ \ \mbox{\hyperlink{class_svg_widget}{SvgWidget}}\ *\mbox{\hyperlink{class_svg_handler_a584cd661760537c626bc9cfdd3c5e552}{svgWidget}};}
-\DoxyCodeLine{00064\ \ \ \ \ QFileInfo\ *\mbox{\hyperlink{class_svg_handler_ab3444ccffc5baf99d6fb5e55be06712c}{fileInfo}};}
-\DoxyCodeLine{00065\ \ \ \ \ QTemporaryDir\ \mbox{\hyperlink{class_svg_handler_a5f90a7bd8a43f1b6308281db51b29fcc}{tempDir}};\ }
-\DoxyCodeLine{00066\ \ \ \ \ QString\ \mbox{\hyperlink{class_svg_handler_a6f19876721d6aa8d355fb2bf792b7edc}{getTempFilePath}}()\ \textcolor{keyword}{const};}
-\DoxyCodeLine{00067\ \ \ \ \ \mbox{\hyperlink{class_systemc_linker}{SystemcLinker}}\ *\mbox{\hyperlink{class_svg_handler_aa69096e7428afbe4e5a95db149ba68b0}{linker}};}
-\DoxyCodeLine{00068\ \ \ \ \ \mbox{\hyperlink{class_elements_display}{ElementsDisplay}}\ *\mbox{\hyperlink{class_svg_handler_a85a1734b8d4cc3d344a28f072539f80a}{display}};}
-\DoxyCodeLine{00069\ }
-\DoxyCodeLine{00070\ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{class_svg_handler_a847a2fb62d4156c705b39e7c58d390bb}{loadAndParse}}(QString\ svgPath);}
-\DoxyCodeLine{00071\ \};}
-\DoxyCodeLine{00072\ }
-\DoxyCodeLine{00073\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{//\ SVGHANDLER\_H}}
+\DoxyCodeLine{00060\ \textcolor{keyword}{protected}:}
+\DoxyCodeLine{00067\ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{class_svg_handler_a0869d84e63174245c136c7595fe57835}{copySvgToTemp}}(\textcolor{keyword}{const}\ QString\ \&sourceFilePath);}
+\DoxyCodeLine{00068\ }
+\DoxyCodeLine{00073\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_svg_handler_ac719a31c5bba9f2ca6fbbc13957c1426}{deleteTempSvg}}(\textcolor{keyword}{const}\ QString\ \&\mbox{\hyperlink{class_svg_handler_a3acb26d2181ecf7cb5743b62c1298271}{tempFilePath}});}
+\DoxyCodeLine{00074\ }
+\DoxyCodeLine{00075\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00076\ \ \ \ \ QString\ \mbox{\hyperlink{class_svg_handler_a3acb26d2181ecf7cb5743b62c1298271}{tempFilePath}};}
+\DoxyCodeLine{00077\ \ \ \ \ \mbox{\hyperlink{class_simulation_state}{SimulationState}}\ *\mbox{\hyperlink{class_svg_handler_a81d776043b4ff4ea2fc406e6285064c2}{simulationState}};\ }
+\DoxyCodeLine{00078\ \ \ \ \ \mbox{\hyperlink{class_svg_widget}{SvgWidget}}\ *\mbox{\hyperlink{class_svg_handler_a584cd661760537c626bc9cfdd3c5e552}{svgWidget}};}
+\DoxyCodeLine{00079\ \ \ \ \ QTemporaryDir\ \mbox{\hyperlink{class_svg_handler_a5f90a7bd8a43f1b6308281db51b29fcc}{tempDir}};\ }
+\DoxyCodeLine{00080\ \ \ \ \ QString\ \mbox{\hyperlink{class_svg_handler_a6f19876721d6aa8d355fb2bf792b7edc}{getTempFilePath}}()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00081\ \ \ \ \ \mbox{\hyperlink{class_svg_parse_manager}{SvgParseManager}}\ *\mbox{\hyperlink{class_svg_handler_a34fce320efb8091350fbaced0002a236}{linker}};}
+\DoxyCodeLine{00082\ \ \ \ \ QHBoxLayout\ *\mbox{\hyperlink{class_svg_handler_a0007ab788e797a35ef0749c308f69ee4}{displayTitle}};}
+\DoxyCodeLine{00083\ \ \ \ \ QWidget\ *\mbox{\hyperlink{class_svg_handler_a1cd49d8224474e2aeb462fb8c540c1c7}{componentsWidget}};}
+\DoxyCodeLine{00084\ \ \ \ \ \mbox{\hyperlink{class_elements_display}{ElementsDisplay}}\ *\mbox{\hyperlink{class_svg_handler_a85a1734b8d4cc3d344a28f072539f80a}{display}};}
+\DoxyCodeLine{00085\ \ \ \ \ QLabel\ *\mbox{\hyperlink{class_svg_handler_a4d6621ef57994a02e2650116ffac34e9}{parseState}};}
+\DoxyCodeLine{00086\ \ \ \ \ \textcolor{keyword}{static}\ QMutex\ \mbox{\hyperlink{class_svg_handler_a056f333acef4377c1c87d1ca69e7799a}{s\_components\_mutex}};\ \textcolor{comment}{//\ Mutex\ to\ protect\ access\ to\ s\_components\_list}}
+\DoxyCodeLine{00087\ \ \ \ \ \textcolor{keyword}{static}\ \mbox{\hyperlink{class_svg_handler}{SvgHandler}}\ *\mbox{\hyperlink{class_svg_handler_a6774b5470777929d267babaf9ba4b423}{s\_lastInstance}};}
+\DoxyCodeLine{00088\ }
+\DoxyCodeLine{00089\ }
+\DoxyCodeLine{00090\ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{class_svg_handler_a847a2fb62d4156c705b39e7c58d390bb}{loadAndParse}}(QString\ svgPath);}
+\DoxyCodeLine{00091\ \};}
+\DoxyCodeLine{00092\ }
+\DoxyCodeLine{00093\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{//\ SVGHANDLER\_H}}
 
 \end{DoxyCode}

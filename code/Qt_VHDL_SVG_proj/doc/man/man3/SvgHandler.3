@@ -8,14 +8,14 @@ SvgHandler \- The SvgHandling class provides functionality to handle SVG files\&
 .br
 .PP
 .PP
-\fR#include <svghandler\&.h>\fP
+\fC#include <svghandler\&.h>\fP
 .PP
 Inherits QObject\&.
 .SS "Public Member Functions"
 
 .in +1c
 .ti -1c
-.RI "\fBSvgHandler\fP (\fBElementsDisplay\fP *\fBdisplay\fP, \fBSimulationState\fP *\fBsimulationState\fP, \fBSvgWidget\fP *\fBsvgWidget\fP, QObject *\fBparent\fP=\fBnullptr\fP)"
+.RI "\fBSvgHandler\fP (QWidget *\fBcomponentsWidget\fP, \fBSimulationState\fP *\fBsimulationState\fP, \fBSvgWidget\fP *\fBsvgWidget\fP, QObject *\fBparent\fP=\fBnullptr\fP)"
 .br
 .RI "Constructs a SvgHandling object\&. "
 .ti -1c
@@ -29,6 +29,15 @@ Inherits QObject\&.
 .ti -1c
 .RI "\fBbool\fP \fBclearSvg\fP ()"
 .br
+.RI "clearSvg "
+.in -1c
+.SS "Static Public Member Functions"
+
+.in +1c
+.ti -1c
+.RI "\fBstatic\fP \fBs_components_list\fP \fBgetComponentsList\fP ()"
+.br
+.RI "getComponentsList "
 .in -1c
 .SS "Protected Member Functions"
 
@@ -65,16 +74,32 @@ Inherits QObject\&.
 .RI "\fBSvgWidget\fP * \fBsvgWidget\fP"
 .br
 .ti -1c
-.RI "\fBQFileInfo\fP * \fBfileInfo\fP"
-.br
-.ti -1c
 .RI "\fBQTemporaryDir\fP \fBtempDir\fP"
 .br
 .ti -1c
-.RI "\fBSystemcLinker\fP * \fBlinker\fP"
+.RI "\fBSvgParseManager\fP * \fBlinker\fP"
+.br
+.ti -1c
+.RI "\fBQHBoxLayout\fP * \fBdisplayTitle\fP"
+.br
+.ti -1c
+.RI "QWidget * \fBcomponentsWidget\fP"
 .br
 .ti -1c
 .RI "\fBElementsDisplay\fP * \fBdisplay\fP"
+.br
+.ti -1c
+.RI "\fBQLabel\fP * \fBparseState\fP"
+.br
+.in -1c
+.SS "Static Private Attributes"
+
+.in +1c
+.ti -1c
+.RI "\fBstatic\fP \fBQMutex\fP \fBs_components_mutex\fP"
+.br
+.ti -1c
+.RI "\fBstatic\fP \fBSvgHandler\fP * \fBs_lastInstance\fP = \fBnullptr\fP"
 .br
 .in -1c
 .SH "Detailed Description"
@@ -82,7 +107,7 @@ Inherits QObject\&.
 The SvgHandling class provides functionality to handle SVG files\&. 
 .SH "Constructor & Destructor Documentation"
 .PP 
-.SS "SvgHandler::SvgHandler (\fBElementsDisplay\fP * display, \fBSimulationState\fP * simulationState, \fBSvgWidget\fP * svgWidget, QObject * parent = \fR\fBnullptr\fP\fP)\fR [explicit]\fP"
+.SS "SvgHandler::SvgHandler (QWidget * componentsWidget, \fBSimulationState\fP * simulationState, \fBSvgWidget\fP * svgWidget, QObject * parent = \fC\fBnullptr\fP\fP)\fC [explicit]\fP"
 
 .PP
 Constructs a SvgHandling object\&. 
@@ -103,7 +128,16 @@ Destructs the SvgHandling object\&.
 .PP 
 .SS "\fBbool\fP SvgHandler::clearSvg ()"
 
-.SS "\fBbool\fP SvgHandler::copySvgToTemp (\fBconst\fP \fBQString\fP & sourceFilePath)\fR [protected]\fP"
+.PP
+clearSvg 
+.PP
+\fBReturns\fP
+.RS 4
+cleared or not 
+.RE
+.PP
+
+.SS "\fBbool\fP SvgHandler::copySvgToTemp (\fBconst\fP \fBQString\fP & sourceFilePath)\fC [protected]\fP"
 
 .PP
 Copies the SVG file to a temporary directory\&. 
@@ -121,7 +155,7 @@ True if the copy operation succeeds; otherwise, false\&.
 .RE
 .PP
 
-.SS "\fBvoid\fP SvgHandler::deleteTempSvg (\fBconst\fP \fBQString\fP & tempFilePath)\fR [protected]\fP"
+.SS "\fBvoid\fP SvgHandler::deleteTempSvg (\fBconst\fP \fBQString\fP & tempFilePath)\fC [protected]\fP"
 
 .PP
 Deletes the temporary SVG file\&. 
@@ -132,9 +166,20 @@ Deletes the temporary SVG file\&.
 .RE
 .PP
 
-.SS "\fBQString\fP SvgHandler::getTempFilePath () const\fR [private]\fP"
+.SS "\fBs_components_list\fP SvgHandler::getComponentsList ()\fC [static]\fP"
 
-.SS "\fBbool\fP SvgHandler::loadAndParse (\fBQString\fP svgPath)\fR [private]\fP"
+.PP
+getComponentsList 
+.PP
+\fBReturns\fP
+.RS 4
+
+.RE
+.PP
+
+.SS "\fBQString\fP SvgHandler::getTempFilePath () const\fC [private]\fP"
+
+.SS "\fBbool\fP SvgHandler::loadAndParse (\fBQString\fP svgPath)\fC [private]\fP"
 
 .SS "\fBbool\fP SvgHandler::loadSvg (\fBconst\fP \fBQString\fP & filePath)"
 
@@ -149,19 +194,27 @@ loadSvg
 
 .SH "Member Data Documentation"
 .PP 
-.SS "\fBElementsDisplay\fP* SvgHandler::display\fR [private]\fP"
+.SS "QWidget* SvgHandler::componentsWidget\fC [private]\fP"
 
-.SS "\fBQFileInfo\fP* SvgHandler::fileInfo\fR [private]\fP"
+.SS "\fBElementsDisplay\fP* SvgHandler::display\fC [private]\fP"
 
-.SS "\fBSystemcLinker\fP* SvgHandler::linker\fR [private]\fP"
+.SS "\fBQHBoxLayout\fP* SvgHandler::displayTitle\fC [private]\fP"
 
-.SS "\fBSimulationState\fP* SvgHandler::simulationState\fR [private]\fP"
+.SS "\fBSvgParseManager\fP* SvgHandler::linker\fC [private]\fP"
+
+.SS "\fBQLabel\fP* SvgHandler::parseState\fC [private]\fP"
+
+.SS "\fBQMutex\fP SvgHandler::s_components_mutex\fC [static]\fP, \fC [private]\fP"
+
+.SS "\fBSvgHandler\fP * SvgHandler::s_lastInstance = \fBnullptr\fP\fC [static]\fP, \fC [private]\fP"
+
+.SS "\fBSimulationState\fP* SvgHandler::simulationState\fC [private]\fP"
 The \fBSimulationState\fP object for managing the state of the application\&. 
-.SS "\fBSvgWidget\fP* SvgHandler::svgWidget\fR [private]\fP"
+.SS "\fBSvgWidget\fP* SvgHandler::svgWidget\fC [private]\fP"
 
-.SS "\fBQTemporaryDir\fP SvgHandler::tempDir\fR [private]\fP"
+.SS "\fBQTemporaryDir\fP SvgHandler::tempDir\fC [private]\fP"
 The temporary directory for storing SVG files\&. 
-.SS "\fBQString\fP SvgHandler::tempFilePath\fR [private]\fP"
+.SS "\fBQString\fP SvgHandler::tempFilePath\fC [private]\fP"
 
 
 .SH "Author"

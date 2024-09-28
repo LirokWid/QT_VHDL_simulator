@@ -1,0 +1,109 @@
+\doxysection{sc\+\_\+t\+\_\+gates.\+h}
+\hypertarget{sc__t__gates_8h_source}{}\label{sc__t__gates_8h_source}\index{S:/code/QT\_VHDL\_simulator/code/Qt\_VHDL\_SVG\_proj/systemC/sc\_t\_gates.h@{S:/code/QT\_VHDL\_simulator/code/Qt\_VHDL\_SVG\_proj/systemC/sc\_t\_gates.h}}
+\mbox{\hyperlink{sc__t__gates_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#ifndef\ SC\_T\_GATES\_H}}
+\DoxyCodeLine{00002\ \textcolor{preprocessor}{\#define\ SC\_T\_GATES\_H}}
+\DoxyCodeLine{00003\ }
+\DoxyCodeLine{00004\ \textcolor{preprocessor}{\#include\ <systemc.h>}}
+\DoxyCodeLine{00005\ \textcolor{preprocessor}{\#include\ <stdio.h>}}
+\DoxyCodeLine{00006\ }
+\DoxyCodeLine{00007\ \textcolor{preprocessor}{\#undef\ \ ABORT\_IF\_NULL\_PTR}}
+\DoxyCodeLine{00008\ \textcolor{preprocessor}{\#define\ ABORT\_IF\_NULL\_PTR(ptr)\ \ \(\backslash\)}}
+\DoxyCodeLine{00009\ \textcolor{preprocessor}{\ \ \ \ if\ (ptr\ ==\ nullptr)\ \{\(\backslash\)}}
+\DoxyCodeLine{00010\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ char\ buffer[1024];\(\backslash\)}}
+\DoxyCodeLine{00011\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ snprintf(buffer,\ sizeof(buffer),\ "{}\%s:\%d"{},\ \_\_FILE\_\_,\ \_\_LINE\_\_);\(\backslash\)}}
+\DoxyCodeLine{00012\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ SC\_REPORT\_ERROR(buffer,\ "{}Memory\ allocation\ failed"{});\(\backslash\)}}
+\DoxyCodeLine{00013\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ sc\_core::sc\_abort();\ \(\backslash\)}}
+\DoxyCodeLine{00014\ \textcolor{preprocessor}{\ \ \ \ \}}}
+\DoxyCodeLine{00015\ }
+\DoxyCodeLine{00016\ \textcolor{preprocessor}{\#define\ ABORT\_CAUSE(msg)\ \ \(\backslash\)}}
+\DoxyCodeLine{00017\ \textcolor{preprocessor}{\ \ \ \ \{\(\backslash\)}}
+\DoxyCodeLine{00018\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ char\ buffer[1024];\(\backslash\)}}
+\DoxyCodeLine{00019\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ snprintf(buffer,\ sizeof(buffer),\ "{}\%s:\%d"{},\ \_\_FILE\_\_,\ \_\_LINE\_\_);\(\backslash\)}}
+\DoxyCodeLine{00020\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ SC\_REPORT\_ERROR(buffer,\ msg);\(\backslash\)}}
+\DoxyCodeLine{00021\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ sc\_core::sc\_abort();\ \(\backslash\)}}
+\DoxyCodeLine{00022\ \textcolor{preprocessor}{\ \ \ \ \}}}
+\DoxyCodeLine{00023\ }
+\DoxyCodeLine{00030\ \textcolor{keyword}{template}<\textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{int}\ W\ =\ 1>}
+\DoxyCodeLine{00031\ \textcolor{keyword}{class\ }\mbox{\hyperlink{class_sysc_t_comb}{SyscTComb}}\ :\ \textcolor{keyword}{public}\ ::sc\_core::sc\_module}
+\DoxyCodeLine{00032\ \{}
+\DoxyCodeLine{00033\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00034\ \ \ \ \ \textcolor{keyword}{static\_assert}(W\ >=\ 1,\ \textcolor{stringliteral}{"{}SyscTComb\ DESIGN\ ERROR:\ W\ must\ be\ >=\ 1"{}});}
+\DoxyCodeLine{00035\ \ \ \ \ \textcolor{keyword}{static\_assert}(W\ <=\ 4,\ \textcolor{stringliteral}{"{}SyscTComb\ DESIGN\ ERROR:\ W\ must\ be\ <=\ 4"{}});}
+\DoxyCodeLine{00036\ }
+\DoxyCodeLine{00037\ \ \ \ \ \textcolor{keyword}{typedef}\ \ \mbox{\hyperlink{class_sysc_t_and}{sc\_lv<W>}}\ \ \ \ \ \ \ \mbox{\hyperlink{class_sysc_t_comb_a8fe54ad7b9e60b41cb30ec6ce78958ab}{data\_t}};}
+\DoxyCodeLine{00038\ }
+\DoxyCodeLine{00043\ \ \ \ \ \mbox{\hyperlink{class_sysc_t_and}{sc\_out<data\_t>}}\ \mbox{\hyperlink{class_sysc_t_comb_a5ffb1b7cdaf436bc34c9ede3783b1f0a}{y}}\{\textcolor{stringliteral}{"{}y"{}}\};}
+\DoxyCodeLine{00044\ }
+\DoxyCodeLine{00051\ \ \ \ \ \mbox{\hyperlink{class_sysc_t_and}{sc\_in<data\_t>}}\ **\mbox{\hyperlink{class_sysc_t_comb_a5e80b28028a3938a114222be8c69eeb5}{d}};}
+\DoxyCodeLine{00052\ }
+\DoxyCodeLine{00053\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00054\ }
+\DoxyCodeLine{00055\ \ \ \ \ \textcolor{keyword}{typedef}\ \mbox{\hyperlink{class_sysc_t_and}{SyscTComb<W>}}\ \mbox{\hyperlink{class_sysc_t_comb_a2d317d3f27b094fa611847d62241de23}{SC\_CURRENT\_USER\_MODULE}};}
+\DoxyCodeLine{00056\ \ \ \ \ \mbox{\hyperlink{class_sysc_t_comb_a1382260e50473e64d00f6b95365721d8}{SyscTComb}}(\textcolor{keyword}{const}\ \textcolor{keywordtype}{char}\ *name,\ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{int}\ N\ =\ 2)}
+\DoxyCodeLine{00057\ \ \ \ \ \ \ \ \ :\ ::sc\_core::sc\_module(name),\ \mbox{\hyperlink{class_sysc_t_comb_a9402e100ba9385bed3b8ad0fb421a102}{m\_N}}(N)}
+\DoxyCodeLine{00058\ \ \ \ \ \{}
+\DoxyCodeLine{00059\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_sysc_t_and}{SC\_METHOD}}(\mbox{\hyperlink{class_sysc_t_comb_aef8975c171c98ccccb4fa23f7312b10d}{combinational}});}
+\DoxyCodeLine{00060\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (N\ <\ 2)\ \{}
+\DoxyCodeLine{00061\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{sc__t__gates_8h_a86349cee0cda1453cef1afb1a309929d}{ABORT\_CAUSE}}(\textcolor{stringliteral}{"{}Combinational\ circuit\ with\ N\ <\ 2"{}});}
+\DoxyCodeLine{00062\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00063\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_sysc_t_comb_a5e80b28028a3938a114222be8c69eeb5}{d}}\ =\ \textcolor{keyword}{new}\ \mbox{\hyperlink{class_sysc_t_and}{sc\_in<data\_t>}}\ *[N];}
+\DoxyCodeLine{00064\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{sc__t__gates_8h_a09e8eb171590c3a625421b12c39c6961}{ABORT\_IF\_NULL\_PTR}}(\mbox{\hyperlink{class_sysc_t_comb_a5e80b28028a3938a114222be8c69eeb5}{d}});}
+\DoxyCodeLine{00065\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}(\mbox{\hyperlink{class_sysc_t_and}{uint32\_t}}\ \mbox{\hyperlink{class_sysc_t_and}{i}}=0;\ \mbox{\hyperlink{class_sysc_t_and}{i}}\ <\ N;\ \mbox{\hyperlink{class_sysc_t_and}{i}}++)}
+\DoxyCodeLine{00066\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00067\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_sysc_t_comb_a5e80b28028a3938a114222be8c69eeb5}{d}}[\mbox{\hyperlink{class_sysc_t_and}{i}}]\ =\ \textcolor{keyword}{new}\ \mbox{\hyperlink{class_sysc_t_and}{sc\_in<data\_t>}}((\textcolor{stringliteral}{"{}d"{}}\ +\ std::to\_string(\mbox{\hyperlink{class_sysc_t_and}{i}})).\mbox{\hyperlink{class_sysc_t_and}{c\_str}}());}
+\DoxyCodeLine{00068\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{sc__t__gates_8h_a09e8eb171590c3a625421b12c39c6961}{ABORT\_IF\_NULL\_PTR}}(\mbox{\hyperlink{class_sysc_t_comb_a5e80b28028a3938a114222be8c69eeb5}{d}}[\mbox{\hyperlink{class_sysc_t_and}{i}}]);}
+\DoxyCodeLine{00069\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_sysc_t_and}{sensitive}}\ <<\ *\mbox{\hyperlink{class_sysc_t_comb_a5e80b28028a3938a114222be8c69eeb5}{d}}[\mbox{\hyperlink{class_sysc_t_and}{i}}];}
+\DoxyCodeLine{00070\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00071\ \ \ \ \ \}}
+\DoxyCodeLine{00072\ }
+\DoxyCodeLine{00073\ \ \ \ \ \mbox{\hyperlink{class_sysc_t_comb_a08c7f66e126d26c193144120313d9a49}{\string~SyscTComb}}()}
+\DoxyCodeLine{00074\ \ \ \ \ \{}
+\DoxyCodeLine{00075\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\mbox{\hyperlink{class_sysc_t_comb_a5e80b28028a3938a114222be8c69eeb5}{d}}\ !=\ \textcolor{keyword}{nullptr})\ \{}
+\DoxyCodeLine{00076\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}(\mbox{\hyperlink{class_sysc_t_and}{uint32\_t}}\ \mbox{\hyperlink{class_sysc_t_and}{i}}=0;\ \mbox{\hyperlink{class_sysc_t_and}{i}}\ <\ \mbox{\hyperlink{class_sysc_t_comb_a9402e100ba9385bed3b8ad0fb421a102}{m\_N}};\ \mbox{\hyperlink{class_sysc_t_and}{i}}++)}
+\DoxyCodeLine{00077\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00078\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (\mbox{\hyperlink{class_sysc_t_comb_a5e80b28028a3938a114222be8c69eeb5}{d}}[\mbox{\hyperlink{class_sysc_t_and}{i}}]\ !=\ \textcolor{keyword}{nullptr})\ \{}
+\DoxyCodeLine{00079\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{delete}\ \mbox{\hyperlink{class_sysc_t_comb_a5e80b28028a3938a114222be8c69eeb5}{d}}[\mbox{\hyperlink{class_sysc_t_and}{i}}];}
+\DoxyCodeLine{00080\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00081\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00082\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{delete}\ \mbox{\hyperlink{class_sysc_t_comb_a5e80b28028a3938a114222be8c69eeb5}{d}};}
+\DoxyCodeLine{00083\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00084\ \ \ \ \ \}}
+\DoxyCodeLine{00085\ }
+\DoxyCodeLine{00086\ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_sysc_t_comb_aef8975c171c98ccccb4fa23f7312b10d}{combinational}}()}
+\DoxyCodeLine{00087\ \ \ \ \ \{}
+\DoxyCodeLine{00088\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_sysc_t_comb_a8fe54ad7b9e60b41cb30ec6ce78958ab}{data\_t}}\ \mbox{\hyperlink{class_sysc_t_and}{result}}(\mbox{\hyperlink{class_sysc_t_and}{SC\_LOGIC\_X}});}
+\DoxyCodeLine{00089\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_sysc_t_comb_a5ffb1b7cdaf436bc34c9ede3783b1f0a}{y}}.write(\mbox{\hyperlink{class_sysc_t_and}{result}});}
+\DoxyCodeLine{00090\ \ \ \ \ \}}
+\DoxyCodeLine{00091\ }
+\DoxyCodeLine{00092\ \textcolor{keyword}{protected}:}
+\DoxyCodeLine{00093\ \ \ \ \ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{class_sysc_t_comb_a9402e100ba9385bed3b8ad0fb421a102}{m\_N}};}
+\DoxyCodeLine{00094\ \};}
+\DoxyCodeLine{00095\ }
+\DoxyCodeLine{00096\ }
+\DoxyCodeLine{00097\ \textcolor{keyword}{template}<\textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{int}\ W\ =\ 1>}
+\DoxyCodeLine{00098\ \textcolor{keyword}{class\ }\mbox{\hyperlink{class_sysc_t_and}{SyscTAnd}}\ :\ \textcolor{keyword}{public}\ \mbox{\hyperlink{class_sysc_t_comb}{SyscTComb}}<W>}
+\DoxyCodeLine{00099\ \{}
+\DoxyCodeLine{00100\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00101\ }
+\DoxyCodeLine{00102\ \ \ \ \ \textcolor{keyword}{typedef}\ \mbox{\hyperlink{class_sysc_t_and}{SyscTComb<W>}}\ \mbox{\hyperlink{class_sysc_t_and_ac454dba92e26aed57d8092b73e5cd922}{BASE\_MODULE}};}
+\DoxyCodeLine{00103\ \ \ \ \ \textcolor{keyword}{typedef}\ \mbox{\hyperlink{class_sysc_t_and}{SyscTAnd<W>}}\ \ \mbox{\hyperlink{class_sysc_t_and_ad2354801eee0fcc9322143fd23fa271d}{SC\_CURRENT\_USER\_MODULE}};}
+\DoxyCodeLine{00104\ \ \ \ \ \mbox{\hyperlink{class_sysc_t_and_a1c3a6c18242880ceec6b31abc38f33a7}{SyscTAnd}}(\textcolor{keyword}{const}\ \textcolor{keywordtype}{char}\ *name,\ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{int}\ N\ =\ 2)}
+\DoxyCodeLine{00105\ \ \ \ \ \ \ \ \ :\ \mbox{\hyperlink{class_sysc_t_comb}{SyscTComb}}<W>(name,\ N)}
+\DoxyCodeLine{00106\ \ \ \ \ \{}
+\DoxyCodeLine{00107\ \ \ \ \ \}}
+\DoxyCodeLine{00108\ }
+\DoxyCodeLine{00109\ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_sysc_t_and_abeb018b47b7eb384a912bf264a8c0cc3}{combinational}}()}
+\DoxyCodeLine{00110\ \ \ \ \ \{}
+\DoxyCodeLine{00111\ \ \ \ \ \ \ \ \ \textcolor{keyword}{auto}\ \mbox{\hyperlink{class_sysc_t_and}{result}}\ =\ \mbox{\hyperlink{class_sysc_t_comb_a5e80b28028a3938a114222be8c69eeb5}{BASE\_MODULE::d}}[0]-\/>read();}
+\DoxyCodeLine{00112\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{class_sysc_t_and}{i}}\ =\ 1;\ \mbox{\hyperlink{class_sysc_t_and}{i}}\ <\ \mbox{\hyperlink{class_sysc_t_comb_a9402e100ba9385bed3b8ad0fb421a102}{BASE\_MODULE::m\_N}};\ \mbox{\hyperlink{class_sysc_t_and}{i}}++)\ \{}
+\DoxyCodeLine{00113\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_sysc_t_and}{result}}\ \&=\ \mbox{\hyperlink{class_sysc_t_comb_a5e80b28028a3938a114222be8c69eeb5}{BASE\_MODULE::d}}[\mbox{\hyperlink{class_sysc_t_and}{i}}]-\/>read();}
+\DoxyCodeLine{00114\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00115\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_sysc_t_comb_a5ffb1b7cdaf436bc34c9ede3783b1f0a}{BASE\_MODULE::y}}.write(\mbox{\hyperlink{class_sysc_t_and}{result}});}
+\DoxyCodeLine{00116\ \ \ \ \ \}}
+\DoxyCodeLine{00117\ \};}
+\DoxyCodeLine{00118\ }
+\DoxyCodeLine{00119\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{//\ SC\_T\_GATES\_H}}
+
+\end{DoxyCode}

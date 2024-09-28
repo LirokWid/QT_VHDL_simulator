@@ -1,5 +1,4 @@
 var dir_4fef79e7177ba769987a8da36c892c5f =
 [
-    [ "debug", "dir_11438dfaef374996fbdac15175d35d6d.html", "dir_11438dfaef374996fbdac15175d35d6d" ],
-    [ "ui_mainwindow.h", "ui__mainwindow_8h.html", "ui__mainwindow_8h" ]
+    [ "Desktop_Qt_6_2_2_MinGW_64_bit-Debug", "dir_7ba3c552a047804c40c91fd5dcb25813.html", "dir_7ba3c552a047804c40c91fd5dcb25813" ]
 ];

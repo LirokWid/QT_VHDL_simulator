@@ -1,19 +1,5 @@
 var annotated_dup =
 [
-    [ "QT_WARNING_DISABLE_DEPRECATED", "namespace_q_t___w_a_r_n_i_n_g___d_i_s_a_b_l_e___d_e_p_r_e_c_a_t_e_d.html", [
-      [ "qt_meta_stringdata_CLASSDebugWindowENDCLASS_t", "struct_q_t___w_a_r_n_i_n_g___d_i_s_a_b_l_e___d_e_p_r_e_c_a_t_e_d_1_1qt__meta__stringdata___c_l_a9fa632076c4a4b3570d7346fb1fd405e.html", "struct_q_t___w_a_r_n_i_n_g___d_i_s_a_b_l_e___d_e_p_r_e_c_a_t_e_d_1_1qt__meta__stringdata___c_l_a9fa632076c4a4b3570d7346fb1fd405e" ],
-      [ "qt_meta_stringdata_CLASSElementsDisplayENDCLASS_t", "struct_q_t___w_a_r_n_i_n_g___d_i_s_a_b_l_e___d_e_p_r_e_c_a_t_e_d_1_1qt__meta__stringdata___c_l_a58b21bea04e20ce651ec064eda417f44.html", "struct_q_t___w_a_r_n_i_n_g___d_i_s_a_b_l_e___d_e_p_r_e_c_a_t_e_d_1_1qt__meta__stringdata___c_l_a58b21bea04e20ce651ec064eda417f44" ],
-      [ "qt_meta_stringdata_CLASSEventFilterENDCLASS_t", "struct_q_t___w_a_r_n_i_n_g___d_i_s_a_b_l_e___d_e_p_r_e_c_a_t_e_d_1_1qt__meta__stringdata___c_l_a4886fc6e7c1d147817113b82479f8d63.html", "struct_q_t___w_a_r_n_i_n_g___d_i_s_a_b_l_e___d_e_p_r_e_c_a_t_e_d_1_1qt__meta__stringdata___c_l_a4886fc6e7c1d147817113b82479f8d63" ],
-      [ "qt_meta_stringdata_CLASSFilesTreeViewENDCLASS_t", "struct_q_t___w_a_r_n_i_n_g___d_i_s_a_b_l_e___d_e_p_r_e_c_a_t_e_d_1_1qt__meta__stringdata___c_l_a115973602e5d5a641e84627ba398e417.html", "struct_q_t___w_a_r_n_i_n_g___d_i_s_a_b_l_e___d_e_p_r_e_c_a_t_e_d_1_1qt__meta__stringdata___c_l_a115973602e5d5a641e84627ba398e417" ],
-      [ "qt_meta_stringdata_CLASSMainWindowENDCLASS_t", "struct_q_t___w_a_r_n_i_n_g___d_i_s_a_b_l_e___d_e_p_r_e_c_a_t_e_d_1_1qt__meta__stringdata___c_l_aa48c4f7148681482a19d10736c6999b5.html", "struct_q_t___w_a_r_n_i_n_g___d_i_s_a_b_l_e___d_e_p_r_e_c_a_t_e_d_1_1qt__meta__stringdata___c_l_aa48c4f7148681482a19d10736c6999b5" ],
-      [ "qt_meta_stringdata_CLASSscQtWorkerENDCLASS_t", "struct_q_t___w_a_r_n_i_n_g___d_i_s_a_b_l_e___d_e_p_r_e_c_a_t_e_d_1_1qt__meta__stringdata___c_l_aa72526487eacc6f2778277ddf557f8f3.html", "struct_q_t___w_a_r_n_i_n_g___d_i_s_a_b_l_e___d_e_p_r_e_c_a_t_e_d_1_1qt__meta__stringdata___c_l_aa72526487eacc6f2778277ddf557f8f3" ],
-      [ "qt_meta_stringdata_CLASSSimulationStateENDCLASS_t", "struct_q_t___w_a_r_n_i_n_g___d_i_s_a_b_l_e___d_e_p_r_e_c_a_t_e_d_1_1qt__meta__stringdata___c_l_adb864b9aa207b476b805a4914f61e2f2.html", "struct_q_t___w_a_r_n_i_n_g___d_i_s_a_b_l_e___d_e_p_r_e_c_a_t_e_d_1_1qt__meta__stringdata___c_l_adb864b9aa207b476b805a4914f61e2f2" ],
-      [ "qt_meta_stringdata_CLASSSvgHandlerENDCLASS_t", "struct_q_t___w_a_r_n_i_n_g___d_i_s_a_b_l_e___d_e_p_r_e_c_a_t_e_d_1_1qt__meta__stringdata___c_l_a4e9b2718c92c375f9bb63eb05398dff0.html", "struct_q_t___w_a_r_n_i_n_g___d_i_s_a_b_l_e___d_e_p_r_e_c_a_t_e_d_1_1qt__meta__stringdata___c_l_a4e9b2718c92c375f9bb63eb05398dff0" ],
-      [ "qt_meta_stringdata_CLASSSvgWidgetENDCLASS_t", "struct_q_t___w_a_r_n_i_n_g___d_i_s_a_b_l_e___d_e_p_r_e_c_a_t_e_d_1_1qt__meta__stringdata___c_l_a28d4461f11ebd1a346c3e1e7066a7186.html", "struct_q_t___w_a_r_n_i_n_g___d_i_s_a_b_l_e___d_e_p_r_e_c_a_t_e_d_1_1qt__meta__stringdata___c_l_a28d4461f11ebd1a346c3e1e7066a7186" ]
-    ] ],
-    [ "Ui", "namespace_ui.html", [
-      [ "MainWindow", "class_ui_1_1_main_window.html", null ]
-    ] ],
     [ "debug_object", "classdebug__object.html", "classdebug__object" ],
     [ "DebugWindow", "class_debug_window.html", "class_debug_window" ],
     [ "ElementsDisplay", "class_elements_display.html", "class_elements_display" ],
@@ -22,6 +8,7 @@ var annotated_dup =
     [ "is_boolean", "structis__boolean.html", null ],
     [ "is_boolean< bool >", "structis__boolean_3_01bool_01_4.html", null ],
     [ "MainWindow", "class_main_window.html", "class_main_window" ],
+    [ "MultiTypesChrono", "class_multi_types_chrono.html", "class_multi_types_chrono" ],
     [ "s_components_list", "structs__components__list.html", "structs__components__list" ],
     [ "s_element", "structs__element.html", "structs__element" ],
     [ "s_element_io", "structs__element__io.html", "structs__element__io" ],
@@ -31,11 +18,17 @@ var annotated_dup =
     [ "s_sim_I_Os", "structs__sim___i___os.html", "structs__sim___i___os" ],
     [ "s_sim_wire", "structs__sim__wire.html", "structs__sim__wire" ],
     [ "s_sim_wires", "structs__sim__wires.html", "structs__sim__wires" ],
+    [ "s_style", "structs__style.html", null ],
     [ "sc_thread_config_s", "structsc__thread__config__s.html", "structsc__thread__config__s" ],
     [ "sc_thread_run_s", "structsc__thread__run__s.html", "structsc__thread__run__s" ],
     [ "scQtWorker", "classsc_qt_worker.html", "classsc_qt_worker" ],
+    [ "SimulationManager", "class_simulation_manager.html", "class_simulation_manager" ],
     [ "SimulationState", "class_simulation_state.html", "class_simulation_state" ],
+    [ "SimulationWorker", "class_simulation_worker.html", "class_simulation_worker" ],
+    [ "svgComp_s", "structsvg_comp__s.html", "structsvg_comp__s" ],
+    [ "svgConn_s", "structsvg_conn__s.html", "structsvg_conn__s" ],
     [ "SvgHandler", "class_svg_handler.html", "class_svg_handler" ],
+    [ "SvgParseManager", "class_svg_parse_manager.html", "class_svg_parse_manager" ],
     [ "SvgParser", "class_svg_parser.html", "class_svg_parser" ],
     [ "SvgWidget", "class_svg_widget.html", "class_svg_widget" ],
     [ "SyscAdd", "class_sysc_add.html", "class_sysc_add" ],
@@ -47,6 +40,7 @@ var annotated_dup =
     [ "SyscIn", "class_sysc_in.html", "class_sysc_in" ],
     [ "SyscLogicGate", "class_sysc_logic_gate.html", "class_sysc_logic_gate" ],
     [ "SyscLogicGate_pv", "class_sysc_logic_gate__pv.html", "class_sysc_logic_gate__pv" ],
+    [ "SyscLogicGateRT", "class_sysc_logic_gate_r_t.html", "class_sysc_logic_gate_r_t" ],
     [ "SyscMuxT", "class_sysc_mux_t.html", "class_sysc_mux_t" ],
     [ "SyscMuxT_pv", "class_sysc_mux_t__pv.html", "class_sysc_mux_t__pv" ],
     [ "SyscNand", "class_sysc_nand.html", "class_sysc_nand" ],
@@ -59,12 +53,13 @@ var annotated_dup =
     [ "SyscReg", "class_sysc_reg.html", "class_sysc_reg" ],
     [ "SyscSub", "class_sysc_sub.html", "class_sysc_sub" ],
     [ "SyscSub_pv", "class_sysc_sub__pv.html", "class_sysc_sub__pv" ],
+    [ "SyscTAnd", "class_sysc_t_and.html", "class_sysc_t_and" ],
+    [ "SyscTComb", "class_sysc_t_comb.html", "class_sysc_t_comb" ],
     [ "SyscTerminal", "class_sysc_terminal.html", "class_sysc_terminal" ],
     [ "SyscTri", "class_sysc_tri.html", "class_sysc_tri" ],
     [ "SyscXnor", "class_sysc_xnor.html", "class_sysc_xnor" ],
     [ "SyscXnor_pv", "class_sysc_xnor__pv.html", "class_sysc_xnor__pv" ],
     [ "SyscXor", "class_sysc_xor.html", "class_sysc_xor" ],
     [ "SyscXor_pv", "class_sysc_xor__pv.html", "class_sysc_xor__pv" ],
-    [ "SystemcLinker", "class_systemc_linker.html", "class_systemc_linker" ],
-    [ "Ui_MainWindow", "class_ui___main_window.html", "class_ui___main_window" ]
+    [ "SystemCBuilder", "class_system_c_builder.html", "class_system_c_builder" ]
 ];

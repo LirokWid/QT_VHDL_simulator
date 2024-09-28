@@ -2,32 +2,53 @@
 .ad l
 .nh
 .SH NAME
-SvgWidget
+SvgWidget \- The \fBSvgWidget\fP class allows for loading, viewing, and interacting with SVG files using Qt's graphics framework\&.  
+
 .SH SYNOPSIS
 .br
 .PP
 .PP
-\fR#include <svgwidget\&.h>\fP
+\fC#include <svgwidget\&.h>\fP
 .PP
 Inherits QWidget\&.
+.SS "Classes"
+
+.in +1c
+.ti -1c
+.RI "struct \fBs_style_lists\fP"
+.br
+.in -1c
+.SS "Public Slots"
+
+.in +1c
+.ti -1c
+.RI "\fBvoid\fP \fBhighlightItemSlot\fP (\fBconst\fP \fBQString\fP &value)"
+.br
+.RI "Highlights a specific item in the SVG based on its label\&. "
+.in -1c
 .SS "Public Member Functions"
 
 .in +1c
 .ti -1c
 .RI "\fBSvgWidget\fP (QWidget *\fBparent\fP=\fBnullptr\fP)"
 .br
+.RI "Constructs the \fBSvgWidget\fP object\&. "
 .ti -1c
 .RI "\fBvoid\fP \fBloadSvg\fP (\fBconst\fP \fBQString\fP &\fBfilePath\fP)"
 .br
+.RI "Loads an SVG file and displays it within the widget\&. "
 .ti -1c
 .RI "\fBvoid\fP \fBclearSvg\fP ()"
 .br
+.RI "Clears the currently loaded SVG from the scene\&. "
 .ti -1c
 .RI "\fBvoid\fP \fBclearScene\fP ()"
 .br
+.RI "Clears the current QGraphicsScene\&. "
 .ti -1c
-.RI "\fBvoid\fP \fBsetZoom\fP (\fBint\fP \fBvalue\fP)"
+.RI "\fBvoid\fP \fBsetZoom\fP (\fBint\fP value)"
 .br
+.RI "Sets the zoom level for viewing the SVG\&. "
 .in -1c
 .SS "Protected Member Functions"
 
@@ -35,17 +56,59 @@ Inherits QWidget\&.
 .ti -1c
 .RI "\fBvoid\fP \fBwheelEvent\fP (\fBQWheelEvent\fP *\fBevent\fP) \fBoverride\fP"
 .br
+.RI "Handles mouse wheel events to zoom in and out when the control key is held\&. "
 .in -1c
 .SS "Private Slots"
 
 .in +1c
 .ti -1c
-.RI "\fBvoid\fP \fBzoomChanged\fP (\fBint\fP \fBvalue\fP)"
+.RI "\fBvoid\fP \fBzoomChanged\fP (\fBint\fP value)"
 .br
+.RI "Slot that handles zoom changes when the zoom slider is adjusted\&. "
+.in -1c
+.SS "Private Member Functions"
+
+.in +1c
+.ti -1c
+.RI "\fBbool\fP \fBchangeStrokeColorRecursive\fP (\fBQDomElement\fP &element, \fBconst\fP \fBQString\fP &\fBelementLabel\fP)"
+.br
+.RI "Recursively changes the stroke color of elements in the SVG\&. "
+.ti -1c
+.RI "\fBbool\fP \fBchangeElementStrokeColor\fP (\fBconst\fP \fBQString\fP &\fBfilePath\fP, \fBconst\fP \fBQString\fP &\fBelementLabel\fP)"
+.br
+.RI "Modifies the stroke color of a specific element in the SVG\&. "
+.ti -1c
+.RI "\fBQString\fP \fBtoggleStyleValue\fP (\fBconst\fP \fBQString\fP &\fBcurrentValue\fP, \fBconst\fP \fBQString\fP &\fBdefaultValue\fP, \fBconst\fP \fBQString\fP &\fBonValue\fP)"
+.br
+.RI "Toggles the style value between default and 'on' states\&. "
+.ti -1c
+.RI "\fBbool\fP \fBchangeStyleRecursive\fP (\fBQDomElement\fP &element, \fBconst\fP \fBQString\fP &\fBelementLabel\fP)"
+.br
+.RI "Recursively modifies styles of elements in the SVG\&. "
+.ti -1c
+.RI "\fBbool\fP \fBchangeElementStyle\fP (\fBconst\fP \fBQString\fP &\fBfilePath\fP, \fBconst\fP \fBQString\fP &\fBelementLabel\fP)"
+.br
+.RI "Modifies the style of a specific element in the SVG\&. "
+.ti -1c
+.RI "\fBvoid\fP \fBmodifyElementStyle\fP (\fBQDomElement\fP &element, \fBconst\fP \fBQString\fP &\fBelementLabel\fP, \fBbool\fP &\fBmainElemModified\fP, \fBbool\fP &\fBmodified\fP, \fBbool\fP \fBapplyToAllChildren\fP)"
+.br
+.RI "Modifies the style of an element and its children\&. "
+.ti -1c
+.RI "\fBvoid\fP \fBrecursiveElemColoring\fP (\fBQDomElement\fP &element, \fBconst\fP \fBQString\fP &\fBelementLabel\fP, \fBbool\fP &\fBmainElemModified\fP, \fBbool\fP &\fBmodified\fP, \fBbool\fP \fBapplyToAllChildren\fP)"
+.br
+.RI "Recursively applies color modifications to elements\&. "
+.ti -1c
+.RI "\fBQList\fP< \fBQDomElement\fP > \fBlocateElemFromName\fP (\fBQDomElement\fP &root, \fBconst\fP \fBQString\fP \fBelemName\fP)"
+.br
+.RI "Locates elements in the SVG by name\&. "
 .in -1c
 .SS "Private Attributes"
 
 .in +1c
+.ti -1c
+.RI "\fBconst\fP \fBs_style_lists\fP \fBstyles_to_modify\fP"
+.br
+.RI "List of styles to modify in the SVG elements\&. "
 .ti -1c
 .RI "\fBQGraphicsView\fP * \fBgraphicsView\fP"
 .br
@@ -54,6 +117,9 @@ Inherits QWidget\&.
 .br
 .ti -1c
 .RI "\fBQSlider\fP * \fBzoomSlider\fP"
+.br
+.ti -1c
+.RI "\fBQString\fP \fBfileLocation\fP"
 .br
 .ti -1c
 .RI "\fBQPoint\fP \fBlastMousePos\fP"
@@ -65,38 +131,268 @@ Inherits QWidget\&.
 .RI "\fBint\fP \fBzoomValue\fP = \fBBASE_ZOOM\fP"
 .br
 .in -1c
+.SH "Detailed Description"
+.PP 
+The \fBSvgWidget\fP class allows for loading, viewing, and interacting with SVG files using Qt's graphics framework\&. 
+
+The class provides functions to load an SVG, apply zoom, highlight elements, and modify styles of specific elements in the SVG\&. 
 .SH "Constructor & Destructor Documentation"
 .PP 
-.SS "SvgWidget::SvgWidget (QWidget * parent = \fR\fBnullptr\fP\fP)\fR [explicit]\fP"
+.SS "SvgWidget::SvgWidget (QWidget * parent = \fC\fBnullptr\fP\fP)\fC [explicit]\fP"
+
+.PP
+Constructs the \fBSvgWidget\fP object\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIparent\fP The parent widget, defaults to nullptr\&. 
+.RE
+.PP
 
 .SH "Member Function Documentation"
 .PP 
+.SS "\fBbool\fP SvgWidget::changeElementStrokeColor (\fBconst\fP \fBQString\fP & filePath, \fBconst\fP \fBQString\fP & elementLabel)\fC [private]\fP"
+
+.PP
+Modifies the stroke color of a specific element in the SVG\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIfilePath\fP The path to the SVG file\&. 
+.br
+\fIelementLabel\fP The label of the element to modify\&. 
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+True if the element was successfully modified, false otherwise\&. 
+.RE
+.PP
+
+.SS "\fBbool\fP SvgWidget::changeElementStyle (\fBconst\fP \fBQString\fP & filePath, \fBconst\fP \fBQString\fP & elementLabel)\fC [private]\fP"
+
+.PP
+Modifies the style of a specific element in the SVG\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIfilePath\fP The path to the SVG file\&. 
+.br
+\fIelementLabel\fP The label of the element to modify\&. 
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+True if the element was successfully modified, false otherwise\&. 
+.RE
+.PP
+
+.SS "\fBbool\fP SvgWidget::changeStrokeColorRecursive (\fBQDomElement\fP & element, \fBconst\fP \fBQString\fP & elementLabel)\fC [private]\fP"
+
+.PP
+Recursively changes the stroke color of elements in the SVG\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIelement\fP The root element of the SVG\&. 
+.br
+\fIelementLabel\fP The label of the element to modify\&. 
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+True if successful, false otherwise\&. 
+.RE
+.PP
+
+.SS "\fBbool\fP SvgWidget::changeStyleRecursive (\fBQDomElement\fP & element, \fBconst\fP \fBQString\fP & elementLabel)\fC [private]\fP"
+
+.PP
+Recursively modifies styles of elements in the SVG\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIelement\fP The root element of the SVG\&. 
+.br
+\fIelementLabel\fP The label of the element to modify\&. 
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+True if the style was successfully modified, false otherwise\&. 
+.RE
+.PP
+
 .SS "\fBvoid\fP SvgWidget::clearScene ()"
 
+.PP
+Clears the current QGraphicsScene\&. 
 .SS "\fBvoid\fP SvgWidget::clearSvg ()"
+
+.PP
+Clears the currently loaded SVG from the scene\&. 
+.SS "\fBvoid\fP SvgWidget::highlightItemSlot (\fBconst\fP \fBQString\fP & value)\fC [slot]\fP"
+
+.PP
+Highlights a specific item in the SVG based on its label\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIvalue\fP The label of the item to be highlighted\&. 
+.RE
+.PP
 
 .SS "\fBvoid\fP SvgWidget::loadSvg (\fBconst\fP \fBQString\fP & filePath)"
 
+.PP
+Loads an SVG file and displays it within the widget\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIfilePath\fP The path to the SVG file to be loaded\&. 
+.RE
+.PP
+
+.SS "\fBQList\fP< \fBQDomElement\fP > SvgWidget::locateElemFromName (\fBQDomElement\fP & root, \fBconst\fP \fBQString\fP elemName)\fC [private]\fP"
+
+.PP
+Locates elements in the SVG by name\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIroot\fP The root element of the SVG\&. 
+.br
+\fIelemName\fP The name of the element to locate\&. 
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+A list of matching QDomElement objects\&. 
+.RE
+.PP
+
+.SS "\fBvoid\fP SvgWidget::modifyElementStyle (\fBQDomElement\fP & element, \fBconst\fP \fBQString\fP & elementLabel, \fBbool\fP & mainElemModified, \fBbool\fP & modified, \fBbool\fP applyToAllChildren)\fC [private]\fP"
+
+.PP
+Modifies the style of an element and its children\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIelement\fP The element to modify\&. 
+.br
+\fIelementLabel\fP The label of the element\&. 
+.br
+\fImainElemModified\fP Reference to a flag indicating if the main element has been modified\&. 
+.br
+\fImodified\fP Reference to a flag indicating if any modifications were made\&. 
+.br
+\fIapplyToAllChildren\fP Flag indicating whether to apply the modification to all children\&. 
+.RE
+.PP
+
+.SS "\fBvoid\fP SvgWidget::recursiveElemColoring (\fBQDomElement\fP & element, \fBconst\fP \fBQString\fP & elementLabel, \fBbool\fP & mainElemModified, \fBbool\fP & modified, \fBbool\fP applyToAllChildren)\fC [private]\fP"
+
+.PP
+Recursively applies color modifications to elements\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIelement\fP The root element of the SVG\&. 
+.br
+\fIelementLabel\fP The label of the element to modify\&. 
+.br
+\fImainElemModified\fP Reference to a flag indicating if the main element has been modified\&. 
+.br
+\fImodified\fP Reference to a flag indicating if any modifications were made\&. 
+.br
+\fIapplyToAllChildren\fP Flag indicating whether to apply the modification to all children\&. 
+.RE
+.PP
+
 .SS "\fBvoid\fP SvgWidget::setZoom (\fBint\fP value)"
 
-.SS "\fBvoid\fP SvgWidget::wheelEvent (\fBQWheelEvent\fP * event)\fR [override]\fP, \fR [protected]\fP"
+.PP
+Sets the zoom level for viewing the SVG\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIvalue\fP The new zoom value (from 1 to 100)\&. 
+.RE
+.PP
 
-.SS "\fBvoid\fP SvgWidget::zoomChanged (\fBint\fP value)\fR [private]\fP, \fR [slot]\fP"
+.SS "\fBQString\fP SvgWidget::toggleStyleValue (\fBconst\fP \fBQString\fP & currentValue, \fBconst\fP \fBQString\fP & defaultValue, \fBconst\fP \fBQString\fP & onValue)\fC [private]\fP"
+
+.PP
+Toggles the style value between default and 'on' states\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIcurrentValue\fP The current value of the style\&. 
+.br
+\fIdefaultValue\fP The default value of the style\&. 
+.br
+\fIonValue\fP The 'on' value of the style\&. 
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+The toggled value\&. 
+.RE
+.PP
+
+.SS "\fBvoid\fP SvgWidget::wheelEvent (\fBQWheelEvent\fP * event)\fC [override]\fP, \fC [protected]\fP"
+
+.PP
+Handles mouse wheel events to zoom in and out when the control key is held\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIevent\fP The wheel event\&. 
+.RE
+.PP
+
+.SS "\fBvoid\fP SvgWidget::zoomChanged (\fBint\fP value)\fC [private]\fP, \fC [slot]\fP"
+
+.PP
+Slot that handles zoom changes when the zoom slider is adjusted\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIvalue\fP The new zoom level\&. 
+.RE
+.PP
 
 .SH "Member Data Documentation"
 .PP 
-.SS "\fBQGraphicsView\fP* SvgWidget::graphicsView\fR [private]\fP"
+.SS "\fBQString\fP SvgWidget::fileLocation\fC [private]\fP"
+The location of the currently loaded SVG file\&. 
+.SS "\fBQGraphicsView\fP* SvgWidget::graphicsView\fC [private]\fP"
+The QGraphicsView used to display the SVG\&. 
+.SS "\fBQPoint\fP SvgWidget::lastMousePos\fC [private]\fP"
+The last recorded mouse position for panning\&. 
+.SS "\fBbool\fP SvgWidget::panning\fC [private]\fP"
+Boolean indicating whether the view is in panning mode\&. 
+.SS "\fBconst\fP \fBs_style_lists\fP SvgWidget::styles_to_modify\fC [private]\fP"
+\fBInitial value:\fP.PP
+.nf
+=
+        {
+            QList<s_style_lists::s_style>
+            {
+                {{"stroke", "#000000"}, {"stroke", "#ff0000"}}, 
+                {{"color", "black"}, {"color", "red"}}           
+            }
+        }
+.fi
 
-.SS "\fBQPoint\fP SvgWidget::lastMousePos\fR [private]\fP"
-
-.SS "\fBbool\fP SvgWidget::panning\fR [private]\fP"
-
-.SS "\fBQGraphicsSvgItem\fP* SvgWidget::svgItem\fR [private]\fP"
-
-.SS "\fBQSlider\fP* SvgWidget::zoomSlider\fR [private]\fP"
-
-.SS "\fBint\fP SvgWidget::zoomValue = \fBBASE_ZOOM\fP\fR [private]\fP"
-
+.PP
+List of styles to modify in the SVG elements\&. 
+.SS "\fBQGraphicsSvgItem\fP* SvgWidget::svgItem\fC [private]\fP"
+The QGraphicsSvgItem representing the SVG in the scene\&. 
+.SS "\fBQSlider\fP* SvgWidget::zoomSlider\fC [private]\fP"
+The zoom slider used to control the zoom level\&. 
+.SS "\fBint\fP SvgWidget::zoomValue = \fBBASE_ZOOM\fP\fC [private]\fP"
+The current zoom value\&. 
 
 .SH "Author"
 .PP 

@@ -1,0 +1,1086 @@
+.TH "MultiTypesChrono" 3 "VHDL simulator" \" -*- nroff -*-
+.ad l
+.nh
+.SH NAME
+MultiTypesChrono \- A custom Qt widget for visualizing and interacting with time-series data of various numeric types\&.  
+
+.SH SYNOPSIS
+.br
+.PP
+.PP
+\fC#include <multitypeschrono\&.h>\fP
+.PP
+Inherits QWidget\&.
+.SS "Public Types"
+
+.in +1c
+.ti -1c
+.RI "enum \fBe_initType\fP { \fBBOOL\fP, \fBINT\fP, \fBFLOAT\fP, \fBDOUBLE\fP, \fBERROR\fP }"
+.br
+.in -1c
+.SS "Public Member Functions"
+
+.in +1c
+.ti -1c
+.RI "\fBMultiTypesChrono\fP (\fBbool\fP \fBstartValue\fP, QWidget *\fBparent\fP)"
+.br
+.RI "Constructor for a single boolean value\&. "
+.ti -1c
+.RI "\fBMultiTypesChrono\fP (\fBint\fP \fBstartValue\fP, QWidget *\fBparent\fP)"
+.br
+.RI "Constructor for a single integer value\&. "
+.ti -1c
+.RI "\fBMultiTypesChrono\fP (\fBfloat\fP \fBstartValue\fP, QWidget *\fBparent\fP)"
+.br
+.RI "Constructor for a single float value\&. "
+.ti -1c
+.RI "\fBMultiTypesChrono\fP (\fBdouble\fP \fBstartValue\fP, QWidget *\fBparent\fP)"
+.br
+.RI "Constructor for a single double value\&. "
+.ti -1c
+.RI "\fBMultiTypesChrono\fP (\fBQVector\fP< \fBbool\fP > \fBstartList\fP, QWidget *\fBparent\fP=\fBnullptr\fP)"
+.br
+.RI "Constructor for bool data\&. "
+.ti -1c
+.RI "\fBMultiTypesChrono\fP (\fBQVector\fP< \fBint\fP > \fBstartList\fP, QWidget *\fBparent\fP=\fBnullptr\fP)"
+.br
+.RI "Constructor for int data\&. "
+.ti -1c
+.RI "\fBMultiTypesChrono\fP (\fBQVector\fP< \fBfloat\fP > \fBstartList\fP, QWidget *\fBparent\fP=\fBnullptr\fP)"
+.br
+.RI "Constructor for float data\&. "
+.ti -1c
+.RI "\fBMultiTypesChrono\fP (\fBQVector\fP< \fBdouble\fP > \fBstartList\fP, QWidget *\fBparent\fP=\fBnullptr\fP)"
+.br
+.RI "Constructor for double data\&. "
+.ti -1c
+.RI "template<\fBtypename\fP \fBT\fP > \fBvoid\fP \fBaddPoint\fP (\fBconst\fP \fBT\fP &\fBpoint\fP)"
+.br
+.RI "Adds a single data point of the specified type to the graph\&. "
+.ti -1c
+.RI "template<\fBtypename\fP \fBT\fP > \fBvoid\fP \fBaddPoint\fP (\fBconst\fP \fBQVector\fP< \fBT\fP > &\fBpoints\fP)"
+.br
+.RI "Adds multiple data points to the graph\&. "
+.ti -1c
+.RI "\fBe_initType\fP \fBgetDataType\fP () \fBconst\fP"
+.br
+.RI "Return the type of data in use by the chronogram\&. "
+.in -1c
+.SS "Protected Member Functions"
+
+.in +1c
+.ti -1c
+.RI "\fBvoid\fP \fBpaintEvent\fP (\fBQPaintEvent\fP *\fBevent\fP) \fBoverride\fP"
+.br
+.RI "Handles the paint event to draw the graph\&. "
+.ti -1c
+.RI "\fBvoid\fP \fBresizeEvent\fP (\fBQResizeEvent\fP *\fBevent\fP) \fBoverride\fP"
+.br
+.RI "Handles the resize event to adjust the graph layout\&. "
+.ti -1c
+.RI "\fBvoid\fP \fBmousePressEvent\fP (\fBQMouseEvent\fP *\fBevent\fP) \fBoverride\fP"
+.br
+.RI "Handles the mouse press event for dragging and zooming\&. "
+.ti -1c
+.RI "\fBvoid\fP \fBmouseMoveEvent\fP (\fBQMouseEvent\fP *\fBevent\fP) \fBoverride\fP"
+.br
+.RI "Handles the mouse move event for dragging and zooming\&. "
+.ti -1c
+.RI "\fBvoid\fP \fBmouseReleaseEvent\fP (\fBQMouseEvent\fP *\fBevent\fP) \fBoverride\fP"
+.br
+.RI "Handles the mouse release event for dragging and zooming\&. "
+.ti -1c
+.RI "\fBvoid\fP \fBleaveEvent\fP (\fBQEvent\fP *\fBevent\fP) \fBoverride\fP"
+.br
+.RI "Handles the mouse going out of the widget\&. "
+.in -1c
+.SS "Private Slots"
+
+.in +1c
+.ti -1c
+.RI "\fBvoid\fP \fBhandlePlusButton\fP ()"
+.br
+.RI "Slot to handle the plus button click event\&. "
+.ti -1c
+.RI "\fBvoid\fP \fBhandleMinusButton\fP ()"
+.br
+.RI "Slot to handle the minus button click event\&. "
+.ti -1c
+.RI "\fBvoid\fP \fBhandleFitButton\fP ()"
+.br
+.RI "Slot to handle the fit button click event\&. "
+.in -1c
+.SS "Private Member Functions"
+
+.in +1c
+.ti -1c
+.RI "template<\fBtypename\fP \fBT\fP > \fBvoid\fP \fBappendPoint\fP (\fBconst\fP \fBT\fP &\fBpoint\fP)"
+.br
+.RI "Appends a data point of the specified type\&. "
+.ti -1c
+.RI "\fBvoid\fP \fBdrawBackScale\fP (\fBQPainter\fP *\fBpainter\fP)"
+.br
+.RI "Draws the backFground scale of the graph\&. "
+.ti -1c
+.RI "\fBvoid\fP \fBupdateSliderRange\fP ()"
+.br
+.RI "Updates the range of the slider based on the data points\&. "
+.ti -1c
+.RI "\fBvoid\fP \fBcalculateVisibleRange\fP ()"
+.br
+.RI "Calculates the visible range of the graph\&. "
+.ti -1c
+.RI "\fBvoid\fP \fBinitializeBoolDataPoints\fP (\fBint\fP \fBnbPoints\fP)"
+.br
+.RI "Initializes the boolean data points with a specified number of points\&. "
+.ti -1c
+.RI "\fBvoid\fP \fBcalculatePixelPerStep\fP ()"
+.br
+.RI "Calculates the number of pixels per step\&. "
+.ti -1c
+.RI "\fBvoid\fP \fBdrawText\fP (\fBQPainter\fP &\fBpainter\fP, \fBconst\fP \fBQString\fP &\fBtext\fP, \fBint\fP \fBx\fP, \fBint\fP y)"
+.br
+.RI "Draws text on the graph\&. "
+.ti -1c
+.RI "\fBvoid\fP \fBdrawTextInBox\fP (\fBQPainter\fP &\fBpainter\fP, \fBconst\fP \fBQString\fP &\fBtext\fP, \fBint\fP \fBx\fP, \fBint\fP y)"
+.br
+.RI "Draws text inside a rectangle on the graph\&. "
+.ti -1c
+.RI "\fBvoid\fP \fBshowPopupAtCursor\fP (\fBQPoint\fP \fBcursorPos\fP)"
+.br
+.RI "Draws a popup to display a point coordinates\&. "
+.ti -1c
+.RI "\fBint\fP \fBgetStepFromX\fP (\fBint\fP \fBx\fP)"
+.br
+.RI "convert a pixel number in a step number "
+.ti -1c
+.RI "\fBvoid\fP \fBinitGraph\fP ()"
+.br
+.RI "Initializes the graph with its graphical settings and buttons\&. "
+.ti -1c
+.RI "\fBdouble\fP \fBgetMax\fP (\fBconst\fP \fBQVector\fP< \fBdouble\fP > &\fBvec\fP)"
+.br
+.RI "Gets the maximum value from a QVector of double\&. "
+.ti -1c
+.RI "\fBdouble\fP \fBgetMin\fP (\fBconst\fP \fBQVector\fP< \fBdouble\fP > &\fBvec\fP)"
+.br
+.RI "Gets the minimum value from a QVector of double\&. "
+.ti -1c
+.RI "\fBvoid\fP \fBgetMinMaxSize\fP ()"
+.br
+.RI "Calculates and updates the minimum and maximum sizes for the data points\&. "
+.ti -1c
+.RI "\fBQString\fP \fBgetTypeString\fP (\fBe_initType\fP type)"
+.br
+.RI "Converts the initialization type to a corresponding string\&. "
+.ti -1c
+.RI "\fBvoid\fP \fBdrawBoolData\fP (\fBQPainter\fP *\fBpainter\fP)"
+.br
+.RI "Draws the boolean data points on the graph\&. "
+.ti -1c
+.RI "\fBvoid\fP \fBdrawData\fP (\fBQPainter\fP *\fBpainter\fP)"
+.br
+.RI "Draws the data points on the graph\&. "
+.ti -1c
+.RI "\fBdouble\fP \fBpointHeightForValue\fP (\fBdouble\fP \fBpoint\fP)"
+.br
+.RI "Calculates the height in pixels for a specific data point\&. "
+.ti -1c
+.RI "\fBvoid\fP \fBdrawXaxis\fP (\fBconst\fP \fBQPoint\fP \fBleftPoint\fP, \fBconst\fP \fBQPoint\fP \fBrightPoint\fP, \fBQPainter\fP *\fBpainter\fP)"
+.br
+.RI "Draws the X-axis on the graph\&. "
+.ti -1c
+.RI "\fBvoid\fP \fBdrawYaxis\fP (\fBconst\fP \fBQPoint\fP \fBtopPoint\fP, \fBconst\fP \fBQPoint\fP \fBbottomPoint\fP, \fBQPainter\fP *\fBpainter\fP)"
+.br
+.RI "Draws the Y-axis on the graph\&. "
+.ti -1c
+.RI "\fBint\fP \fBgetZeroPxHeight\fP ()"
+.br
+.RI "Gets the height of the zero pixel position on the graph\&. "
+.ti -1c
+.RI "\fBvoid\fP \fBgetYcurrentMinMax\fP ()"
+.br
+.RI "Updates the current minimum and maximum values for the Y-axis based on data\&. "
+.in -1c
+.SS "Private Attributes"
+
+.in +1c
+.ti -1c
+.RI "\fBconst\fP \fBint\fP \fBlabelOffset\fP = 15"
+.br
+.RI "Offset for the axis labels\&. "
+.ti -1c
+.RI "\fBconst\fP \fBint\fP \fBtickSize\fP = 5"
+.br
+.RI "Size of the axis ticks\&. "
+.ti -1c
+.RI "\fBconst\fP \fBint\fP \fBtextOffset\fP = 10"
+.br
+.RI "Offset for the text labels\&. "
+.ti -1c
+.RI "\fBconst\fP \fBint\fP \fBtextWidth\fP = 30"
+.br
+.RI "Width of the text labels\&. "
+.ti -1c
+.RI "\fBconst\fP \fBint\fP \fBtextHeight\fP = 10"
+.br
+.RI "Height of the text labels\&. "
+.ti -1c
+.RI "\fBconst\fP \fBint\fP \fBxLabelDensity\fP = 1"
+.br
+.RI "Density of the x-axis labels\&. "
+.ti -1c
+.RI "\fBconst\fP \fBint\fP \fByLabelDensity\fP = 1"
+.br
+.RI "Density of the y-axis labels\&. "
+.ti -1c
+.RI "\fBconst\fP \fBint\fP \fBmarginLeft\fP = 40"
+.br
+.RI "Left margin of the graph\&. "
+.ti -1c
+.RI "\fBconst\fP \fBint\fP \fBmarginTop\fP = 50"
+.br
+.RI "Top margin of the graph\&. "
+.ti -1c
+.RI "\fBconst\fP \fBint\fP \fBmarginBottom\fP = 50"
+.br
+.RI "Bottom margin of the graph\&. "
+.ti -1c
+.RI "\fBconst\fP \fBint\fP \fBtextRectPadding\fP = 5"
+.br
+.RI "Padding inside the text rectangles\&. "
+.ti -1c
+.RI "\fBconst\fP \fBint\fP \fBtextRectRadius\fP = 2"
+.br
+.RI "Radius for the rounded corners of the text rectangles\&. "
+.ti -1c
+.RI "\fBconst\fP \fBint\fP \fBpointRadius\fP = 2"
+.br
+.RI "Radius of the data points\&. "
+.ti -1c
+.RI "\fBconst\fP \fBint\fP \fBminDisplayedSteps\fP = 2"
+.br
+.RI "Minimum number of displayed steps\&. "
+.ti -1c
+.RI "\fBconst\fP \fBint\fP \fBpopupDisplayRadius\fP = 15"
+.br
+.RI "popup visibility distance from point "
+.ti -1c
+.RI "\fBconst\fP \fBQColor\fP \fBbackgroundColor\fP = \fBQt::black\fP"
+.br
+.RI "Background color of the graph\&. "
+.ti -1c
+.RI "\fBconst\fP \fBQColor\fP \fBaxisColor\fP = \fBQt::white\fP"
+.br
+.RI "Color of the graph axes\&. "
+.ti -1c
+.RI "\fBconst\fP \fBQColor\fP \fBgraphColor\fP = \fBQt::red\fP"
+.br
+.RI "Color of the graph line\&. "
+.ti -1c
+.RI "\fBconst\fP \fBQColor\fP \fBrectBorderColor\fP = \fBQt::white\fP"
+.br
+.RI "Color of the borders of text rectangles\&. "
+.ti -1c
+.RI "\fBint\fP \fBvisibleRange_X\fP = 10"
+.br
+.RI "Range of visible X data points\&. "
+.ti -1c
+.RI "\fBint\fP \fBvisibleRange_Y\fP = 10"
+.br
+.RI "Range of visible Y data points\&. "
+.ti -1c
+.RI "\fBint\fP \fByAxisCurrentMax\fP"
+.br
+.ti -1c
+.RI "\fBint\fP \fByAxisCurrentMin\fP"
+.br
+.ti -1c
+.RI "\fBint\fP \fBoffset_X\fP = 0"
+.br
+.RI "Current offset of the graph\&. "
+.ti -1c
+.RI "\fBint\fP \fBoffset_Y\fP = 0"
+.br
+.RI "Current offset of the graph\&. "
+.ti -1c
+.RI "\fBint\fP \fBY_dataRange\fP"
+.br
+.ti -1c
+.RI "\fBdouble\fP \fBstepPixelNb_X\fP = 60\&.\fBf\fP"
+.br
+.RI "Number of pixels per step\&. "
+.ti -1c
+.RI "\fBdouble\fP \fBstepPixelNb_Y\fP = 30\&.\fBf\fP"
+.br
+.RI "Number of pixels per step\&. "
+.ti -1c
+.RI "\fBe_initType\fP \fBinitType\fP"
+.br
+.RI "Stores the type of the data (BOOL, INT, FLOAT, DOUBLE)\&. "
+.ti -1c
+.RI "\fBQSlider\fP * \fBslider\fP"
+.br
+.RI "Slider for navigating through the data points\&. "
+.ti -1c
+.RI "\fBQVBoxLayout\fP * \fBVlayout\fP"
+.br
+.RI "Vertical layout for the widget\&. "
+.ti -1c
+.RI "\fBQVector\fP< \fBdouble\fP > \fBdataPoints\fP"
+.br
+.RI "Vector of data points\&. "
+.ti -1c
+.RI "\fBint\fP \fBdataMax\fP"
+.br
+.ti -1c
+.RI "\fBint\fP \fBdataMin\fP"
+.br
+.ti -1c
+.RI "\fBint\fP \fBnbPoints\fP"
+.br
+.ti -1c
+.RI "\fBint\fP \fBheight\fP"
+.br
+.ti -1c
+.RI "\fBint\fP \fBwidth\fP"
+.br
+.ti -1c
+.RI "\fBQPushButton\fP * \fBplusButton\fP"
+.br
+.RI "Button to increase the visible range\&. "
+.ti -1c
+.RI "\fBQPushButton\fP * \fBminusButton\fP"
+.br
+.RI "Button to decrease the visible range\&. "
+.ti -1c
+.RI "\fBQPushButton\fP * \fBfitButton\fP"
+.br
+.RI "Button to fit the graph to the data points\&. "
+.ti -1c
+.RI "\fBQHBoxLayout\fP * \fBbuttonLayout\fP"
+.br
+.RI "Horizontal layout for the buttons\&. 
+.br
+ "
+.ti -1c
+.RI "\fBQLabel\fP * \fBpopupLabel\fP"
+.br
+.ti -1c
+.RI "\fBbool\fP \fBisDragging\fP = \fBfalse\fP"
+.br
+.RI "Flag indicating if the graph is being dragged\&. "
+.ti -1c
+.RI "\fBQPoint\fP \fBdragStartPoint\fP"
+.br
+.RI "Starting point of the drag\&. "
+.ti -1c
+.RI "\fBQPoint\fP \fBdragEndPoint\fP"
+.br
+.RI "Ending point of the drag\&. "
+.ti -1c
+.RI "\fBbool\fP \fBisRightClicking\fP = \fBfalse\fP"
+.br
+.RI "Flag indicating if the right mouse button is being clicked\&. "
+.ti -1c
+.RI "\fBbool\fP \fBisFirstRightClick\fP = \fBfalse\fP"
+.br
+.RI "Flag indicating if it's the first right mouse click\&. "
+.ti -1c
+.RI "\fBQPoint\fP \fBrightClickStartPoint\fP"
+.br
+.RI "Starting point of the right mouse click\&. "
+.in -1c
+.SH "Detailed Description"
+.PP 
+A custom Qt widget for visualizing and interacting with time-series data of various numeric types\&. 
+
+This widget supports displaying boolean, integer, float, and double data in a graphical format\&. It allows users to zoom, pan, and fit data to view a specified range of values effectively\&. The widget features dynamic data point updates, popup information display on mouse hover, and adjustable visible range through a slider control\&.
+.PP
+\fBTemplate Parameters\fP
+.RS 4
+\fIT\fP The type of data to be visualized\&. Supported types include bool, int, float, and double\&.
+.RE
+.PP
+The widget includes the following features:
+.IP "\(bu" 2
+Graphical rendering of data points with interactive features\&.
+.IP "\(bu" 2
+Customizable y-axis and x-axis scaling and labeling\&.
+.IP "\(bu" 2
+Display of statistics such as the type of data and the number of data points\&.
+.IP "\(bu" 2
+Ability to dynamically adjust the visible range of data through buttons and a slider\&.
+.IP "\(bu" 2
+Popup display that shows the step index and value of the data point under the mouse cursor\&.
+.PP
+.PP
+\fBNote\fP
+.RS 4
+Some features may require further enhancement, such as adding y-axis steps and visibility corrections 
+.RE
+.PP
+
+.SH "Member Enumeration Documentation"
+.PP 
+.SS "\fBenum\fP \fBMultiTypesChrono::e_initType\fP"
+
+.PP
+\fBEnumerator\fP
+.in +1c
+.TP
+\fB\fIBOOL \fP\fP
+.TP
+\fB\fIINT \fP\fP
+.TP
+\fB\fIFLOAT \fP\fP
+.TP
+\fB\fIDOUBLE \fP\fP
+.TP
+\fB\fIERROR \fP\fP
+.SH "Constructor & Destructor Documentation"
+.PP 
+.SS "MultiTypesChrono::MultiTypesChrono (\fBbool\fP startValue, QWidget * parent)"
+
+.PP
+Constructor for a single boolean value\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIstartValue\fP A boolean value to initialize the graph with\&. 
+.br
+\fIparent\fP The parent widget, default is nullptr\&. 
+.RE
+.PP
+
+.SS "MultiTypesChrono::MultiTypesChrono (\fBint\fP startValue, QWidget * parent)"
+
+.PP
+Constructor for a single integer value\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIstartValue\fP An integer value to initialize the graph with\&. 
+.br
+\fIparent\fP The parent widget, default is nullptr\&. 
+.RE
+.PP
+
+.SS "MultiTypesChrono::MultiTypesChrono (\fBfloat\fP startValue, QWidget * parent)"
+
+.PP
+Constructor for a single float value\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIstartValue\fP A float value to initialize the graph with\&. 
+.br
+\fIparent\fP The parent widget, default is nullptr\&. 
+.RE
+.PP
+
+.SS "MultiTypesChrono::MultiTypesChrono (\fBdouble\fP startValue, QWidget * parent)"
+
+.PP
+Constructor for a single double value\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIstartValue\fP A double value to initialize the graph with\&. 
+.br
+\fIparent\fP The parent widget, default is nullptr\&. 
+.RE
+.PP
+
+.SS "MultiTypesChrono::MultiTypesChrono (\fBQVector\fP< \fBbool\fP > startList, QWidget * parent = \fC\fBnullptr\fP\fP)"
+
+.PP
+Constructor for bool data\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIstartList\fP A QVector of bool values to initialize the graph with\&. 
+.br
+\fIparent\fP The parent widget, default is nullptr\&. 
+.RE
+.PP
+
+.SS "MultiTypesChrono::MultiTypesChrono (\fBQVector\fP< \fBint\fP > startList, QWidget * parent = \fC\fBnullptr\fP\fP)"
+
+.PP
+Constructor for int data\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIstartList\fP A QVector of int values to initialize the graph with\&. 
+.br
+\fIparent\fP The parent widget, default is nullptr\&. 
+.RE
+.PP
+
+.SS "MultiTypesChrono::MultiTypesChrono (\fBQVector\fP< \fBfloat\fP > startList, QWidget * parent = \fC\fBnullptr\fP\fP)"
+
+.PP
+Constructor for float data\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIstartList\fP A QVector of float values to initialize the graph with\&. 
+.br
+\fIparent\fP The parent widget, default is nullptr\&. 
+.RE
+.PP
+
+.SS "MultiTypesChrono::MultiTypesChrono (\fBQVector\fP< \fBdouble\fP > startList, QWidget * parent = \fC\fBnullptr\fP\fP)"
+
+.PP
+Constructor for double data\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIstartList\fP A QVector of double values to initialize the graph with\&. 
+.br
+\fIparent\fP The parent widget, default is nullptr\&. 
+.RE
+.PP
+
+.SH "Member Function Documentation"
+.PP 
+.SS "template<\fBtypename\fP \fBT\fP > \fBvoid\fP MultiTypesChrono::addPoint (\fBconst\fP \fBQVector\fP< \fBT\fP > & points)"
+
+.PP
+Adds multiple data points to the graph\&. Takes a QVector of data points and adds them to the dataPoints vector\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIpoints\fP A QVector of data points to add\&. 
+.RE
+.PP
+
+.SS "template<\fBtypename\fP \fBT\fP > \fBvoid\fP MultiTypesChrono::addPoint (\fBconst\fP \fBT\fP & point)"
+
+.PP
+Adds a single data point of the specified type to the graph\&. The point is converted to double and added to the dataPoints vector\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIpoint\fP The data point to add\&. It can be of type \fCbool\fP, \fCint\fP, \fCfloat\fP, or \fCdouble\fP\&. 
+.RE
+.PP
+
+.SS "template<\fBtypename\fP \fBT\fP > \fBvoid\fP MultiTypesChrono::appendPoint (\fBconst\fP \fBT\fP & point)\fC [private]\fP"
+
+.PP
+Appends a data point of the specified type\&. Converts the data point to double and appends it to the dataPoints vector\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIpoint\fP The data point to append\&. 
+.RE
+.PP
+
+.SS "\fBvoid\fP MultiTypesChrono::calculatePixelPerStep ()\fC [private]\fP"
+
+.PP
+Calculates the number of pixels per step\&. 
+.SS "\fBvoid\fP MultiTypesChrono::calculateVisibleRange ()\fC [private]\fP"
+
+.PP
+Calculates the visible range of the graph\&. 
+.SS "\fBvoid\fP MultiTypesChrono::drawBackScale (\fBQPainter\fP * painter)\fC [private]\fP"
+
+.PP
+Draws the backFground scale of the graph\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIpainter\fP The QPainter used for drawing\&. 
+.RE
+.PP
+
+.SS "\fBvoid\fP MultiTypesChrono::drawBoolData (\fBQPainter\fP * painter)\fC [private]\fP"
+
+.PP
+Draws the boolean data points on the graph\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIpainter\fP The QPainter used for rendering the boolean data\&.
+.RE
+.PP
+This function visually draws boolean data points on the graph using the designated painter\&. 
+.SS "\fBvoid\fP MultiTypesChrono::drawData (\fBQPainter\fP * painter)\fC [private]\fP"
+
+.PP
+Draws the data points on the graph\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIpainter\fP The QPainter used for rendering the data points\&.
+.RE
+.PP
+This function handles the rendering of various data points onto the graph, considering their type and scaling\&. 
+.SS "\fBvoid\fP MultiTypesChrono::drawText (\fBQPainter\fP & painter, \fBconst\fP \fBQString\fP & text, \fBint\fP x, \fBint\fP y)\fC [private]\fP"
+
+.PP
+Draws text on the graph\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIpainter\fP The QPainter used for drawing\&. 
+.br
+\fItext\fP The text to draw\&. 
+.br
+\fIx\fP The x-coordinate of the text position\&. 
+.br
+\fIy\fP The y-coordinate of the text position\&. 
+.RE
+.PP
+
+.SS "\fBvoid\fP MultiTypesChrono::drawTextInBox (\fBQPainter\fP & painter, \fBconst\fP \fBQString\fP & text, \fBint\fP x, \fBint\fP y)\fC [private]\fP"
+
+.PP
+Draws text inside a rectangle on the graph\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIpainter\fP The QPainter used for drawing\&. 
+.br
+\fItext\fP The text to draw\&. 
+.br
+\fIx\fP The x-coordinate of the rectangle position\&. 
+.br
+\fIy\fP The y-coordinate of the rectangle position\&. 
+.RE
+.PP
+
+.SS "\fBvoid\fP MultiTypesChrono::drawXaxis (\fBconst\fP \fBQPoint\fP leftPoint, \fBconst\fP \fBQPoint\fP rightPoint, \fBQPainter\fP * painter)\fC [private]\fP"
+
+.PP
+Draws the X-axis on the graph\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIleftPoint\fP The left endpoint of the X-axis\&. 
+.br
+\fIrightPoint\fP The right endpoint of the X-axis\&. 
+.br
+\fIpainter\fP The QPainter used for rendering the X-axis\&. 
+.RE
+.PP
+
+.SS "\fBvoid\fP MultiTypesChrono::drawYaxis (\fBconst\fP \fBQPoint\fP topPoint, \fBconst\fP \fBQPoint\fP bottomPoint, \fBQPainter\fP * painter)\fC [private]\fP"
+
+.PP
+Draws the Y-axis on the graph\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fItopPoint\fP The top endpoint of the Y-axis\&. 
+.br
+\fIbottomPoint\fP The bottom endpoint of the Y-axis\&. 
+.br
+\fIpainter\fP The QPainter used for rendering the Y-axis\&. 
+.RE
+.PP
+
+.SS "\fBMultiTypesChrono::e_initType\fP MultiTypesChrono::getDataType () const"
+
+.PP
+Return the type of data in use by the chronogram\&. 
+.PP
+\fBReturns\fP
+.RS 4
+The graph's type of data 
+.RE
+.PP
+
+.SS "\fBdouble\fP MultiTypesChrono::getMax (\fBconst\fP \fBQVector\fP< \fBdouble\fP > & vec)\fC [private]\fP"
+
+.PP
+Gets the maximum value from a QVector of double\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIvec\fP The QVector from which to find the maximum value\&. 
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+The maximum value found in the QVector\&. 
+.RE
+.PP
+
+.SS "\fBdouble\fP MultiTypesChrono::getMin (\fBconst\fP \fBQVector\fP< \fBdouble\fP > & vec)\fC [private]\fP"
+
+.PP
+Gets the minimum value from a QVector of double\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIvec\fP The QVector from which to find the minimum value\&. 
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+The minimum value found in the QVector\&. 
+.RE
+.PP
+
+.SS "\fBvoid\fP MultiTypesChrono::getMinMaxSize ()\fC [private]\fP"
+
+.PP
+Calculates and updates the minimum and maximum sizes for the data points\&. This function analyzes the data points to determine their minimum and maximum values and sets the respective attributes accordingly\&. 
+.SS "\fBint\fP MultiTypesChrono::getStepFromX (\fBint\fP x)\fC [private]\fP"
+
+.PP
+convert a pixel number in a step number 
+.PP
+\fBParameters\fP
+.RS 4
+\fIx\fP the pixel x coordinate 
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+the step corresponding to the x coordinate 
+.RE
+.PP
+
+.SS "\fBQString\fP MultiTypesChrono::getTypeString (\fBe_initType\fP type)\fC [private]\fP"
+
+.PP
+Converts the initialization type to a corresponding string\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fItype\fP The initialization type to convert\&. 
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+A QString representing the type, such as 'bool', 'int', 'float', or 'double'\&. 
+.RE
+.PP
+
+.SS "\fBvoid\fP MultiTypesChrono::getYcurrentMinMax ()\fC [private]\fP"
+
+.PP
+Updates the current minimum and maximum values for the Y-axis based on data\&. This function recalculates the Y-axis limits based on the data points currently being visualized, ensuring that the graph accurately represents the data range\&. 
+.SS "\fBint\fP MultiTypesChrono::getZeroPxHeight ()\fC [private]\fP"
+
+.PP
+Gets the height of the zero pixel position on the graph\&. 
+.PP
+\fBReturns\fP
+.RS 4
+The height of the zero pixel position in pixels\&. 
+.RE
+.PP
+
+.SS "\fBvoid\fP MultiTypesChrono::handleFitButton ()\fC [private]\fP, \fC [slot]\fP"
+
+.PP
+Slot to handle the fit button click event\&. 
+.SS "\fBvoid\fP MultiTypesChrono::handleMinusButton ()\fC [private]\fP, \fC [slot]\fP"
+
+.PP
+Slot to handle the minus button click event\&. 
+.SS "\fBvoid\fP MultiTypesChrono::handlePlusButton ()\fC [private]\fP, \fC [slot]\fP"
+
+.PP
+Slot to handle the plus button click event\&. 
+.SS "\fBvoid\fP MultiTypesChrono::initGraph ()\fC [private]\fP"
+
+.PP
+Initializes the graph with its graphical settings and buttons\&. 
+.SS "\fBvoid\fP MultiTypesChrono::initializeBoolDataPoints (\fBint\fP nbPoints)\fC [private]\fP"
+
+.PP
+Initializes the boolean data points with a specified number of points\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fInbPoints\fP The number of points to initialize\&. 
+.RE
+.PP
+
+.SS "\fBvoid\fP MultiTypesChrono::leaveEvent (\fBQEvent\fP * event)\fC [override]\fP, \fC [protected]\fP"
+
+.PP
+Handles the mouse going out of the widget\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIevent\fP The mouse leaving event 
+.RE
+.PP
+
+.SS "\fBvoid\fP MultiTypesChrono::mouseMoveEvent (\fBQMouseEvent\fP * event)\fC [override]\fP, \fC [protected]\fP"
+
+.PP
+Handles the mouse move event for dragging and zooming\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIevent\fP The mouse move event\&. 
+.RE
+.PP
+
+.SS "\fBvoid\fP MultiTypesChrono::mousePressEvent (\fBQMouseEvent\fP * event)\fC [override]\fP, \fC [protected]\fP"
+
+.PP
+Handles the mouse press event for dragging and zooming\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIevent\fP The mouse press event\&. 
+.RE
+.PP
+
+.SS "\fBvoid\fP MultiTypesChrono::mouseReleaseEvent (\fBQMouseEvent\fP * event)\fC [override]\fP, \fC [protected]\fP"
+
+.PP
+Handles the mouse release event for dragging and zooming\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIevent\fP The mouse release event\&. 
+.RE
+.PP
+
+.SS "\fBvoid\fP MultiTypesChrono::paintEvent (\fBQPaintEvent\fP * event)\fC [override]\fP, \fC [protected]\fP"
+
+.PP
+Handles the paint event to draw the graph\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIevent\fP The paint event\&. 
+.RE
+.PP
+
+.SS "\fBdouble\fP MultiTypesChrono::pointHeightForValue (\fBdouble\fP point)\fC [private]\fP"
+
+.PP
+Calculates the height in pixels for a specific data point\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIpoint\fP The data point for which to calculate the height\&. 
+.RE
+.PP
+\fBReturns\fP
+.RS 4
+The calculated height in pixels for the given data point\&. 
+.RE
+.PP
+
+.SS "\fBvoid\fP MultiTypesChrono::resizeEvent (\fBQResizeEvent\fP * event)\fC [override]\fP, \fC [protected]\fP"
+
+.PP
+Handles the resize event to adjust the graph layout\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIevent\fP The resize event\&. 
+.RE
+.PP
+
+.SS "\fBvoid\fP MultiTypesChrono::showPopupAtCursor (\fBQPoint\fP cursorPos)\fC [private]\fP"
+
+.PP
+Draws a popup to display a point coordinates\&. 
+.PP
+\fBParameters\fP
+.RS 4
+\fIcursorPos\fP position to show 
+.RE
+.PP
+
+.SS "\fBvoid\fP MultiTypesChrono::updateSliderRange ()\fC [private]\fP"
+
+.PP
+Updates the range of the slider based on the data points\&. 
+.SH "Member Data Documentation"
+.PP 
+.SS "\fBconst\fP \fBQColor\fP MultiTypesChrono::axisColor = \fBQt::white\fP\fC [private]\fP"
+
+.PP
+Color of the graph axes\&. 
+.SS "\fBconst\fP \fBQColor\fP MultiTypesChrono::backgroundColor = \fBQt::black\fP\fC [private]\fP"
+
+.PP
+Background color of the graph\&. 
+.SS "\fBQHBoxLayout\fP* MultiTypesChrono::buttonLayout\fC [private]\fP"
+
+.PP
+Horizontal layout for the buttons\&. 
+.br
+ 
+.SS "\fBint\fP MultiTypesChrono::dataMax\fC [private]\fP"
+
+.SS "\fBint\fP MultiTypesChrono::dataMin\fC [private]\fP"
+
+.SS "\fBQVector\fP<\fBdouble\fP> MultiTypesChrono::dataPoints\fC [private]\fP"
+
+.PP
+Vector of data points\&. 
+.SS "\fBQPoint\fP MultiTypesChrono::dragEndPoint\fC [private]\fP"
+
+.PP
+Ending point of the drag\&. 
+.SS "\fBQPoint\fP MultiTypesChrono::dragStartPoint\fC [private]\fP"
+
+.PP
+Starting point of the drag\&. 
+.SS "\fBQPushButton\fP* MultiTypesChrono::fitButton\fC [private]\fP"
+
+.PP
+Button to fit the graph to the data points\&. 
+.SS "\fBconst\fP \fBQColor\fP MultiTypesChrono::graphColor = \fBQt::red\fP\fC [private]\fP"
+
+.PP
+Color of the graph line\&. 
+.SS "\fBint\fP MultiTypesChrono::height\fC [private]\fP"
+
+.SS "\fBe_initType\fP MultiTypesChrono::initType\fC [private]\fP"
+
+.PP
+Stores the type of the data (BOOL, INT, FLOAT, DOUBLE)\&. 
+.SS "\fBbool\fP MultiTypesChrono::isDragging = \fBfalse\fP\fC [private]\fP"
+
+.PP
+Flag indicating if the graph is being dragged\&. 
+.SS "\fBbool\fP MultiTypesChrono::isFirstRightClick = \fBfalse\fP\fC [private]\fP"
+
+.PP
+Flag indicating if it's the first right mouse click\&. 
+.SS "\fBbool\fP MultiTypesChrono::isRightClicking = \fBfalse\fP\fC [private]\fP"
+
+.PP
+Flag indicating if the right mouse button is being clicked\&. 
+.SS "\fBconst\fP \fBint\fP MultiTypesChrono::labelOffset = 15\fC [private]\fP"
+
+.PP
+Offset for the axis labels\&. 
+.SS "\fBconst\fP \fBint\fP MultiTypesChrono::marginBottom = 50\fC [private]\fP"
+
+.PP
+Bottom margin of the graph\&. 
+.SS "\fBconst\fP \fBint\fP MultiTypesChrono::marginLeft = 40\fC [private]\fP"
+
+.PP
+Left margin of the graph\&. 
+.SS "\fBconst\fP \fBint\fP MultiTypesChrono::marginTop = 50\fC [private]\fP"
+
+.PP
+Top margin of the graph\&. 
+.SS "\fBconst\fP \fBint\fP MultiTypesChrono::minDisplayedSteps = 2\fC [private]\fP"
+
+.PP
+Minimum number of displayed steps\&. 
+.SS "\fBQPushButton\fP* MultiTypesChrono::minusButton\fC [private]\fP"
+
+.PP
+Button to decrease the visible range\&. 
+.SS "\fBint\fP MultiTypesChrono::nbPoints\fC [private]\fP"
+
+.SS "\fBint\fP MultiTypesChrono::offset_X = 0\fC [private]\fP"
+
+.PP
+Current offset of the graph\&. 
+.SS "\fBint\fP MultiTypesChrono::offset_Y = 0\fC [private]\fP"
+
+.PP
+Current offset of the graph\&. 
+.SS "\fBQPushButton\fP* MultiTypesChrono::plusButton\fC [private]\fP"
+
+.PP
+Button to increase the visible range\&. 
+.SS "\fBconst\fP \fBint\fP MultiTypesChrono::pointRadius = 2\fC [private]\fP"
+
+.PP
+Radius of the data points\&. 
+.SS "\fBconst\fP \fBint\fP MultiTypesChrono::popupDisplayRadius = 15\fC [private]\fP"
+
+.PP
+popup visibility distance from point 
+.SS "\fBQLabel\fP* MultiTypesChrono::popupLabel\fC [private]\fP"
+
+.SS "\fBconst\fP \fBQColor\fP MultiTypesChrono::rectBorderColor = \fBQt::white\fP\fC [private]\fP"
+
+.PP
+Color of the borders of text rectangles\&. 
+.SS "\fBQPoint\fP MultiTypesChrono::rightClickStartPoint\fC [private]\fP"
+
+.PP
+Starting point of the right mouse click\&. 
+.SS "\fBQSlider\fP* MultiTypesChrono::slider\fC [private]\fP"
+
+.PP
+Slider for navigating through the data points\&. 
+.SS "\fBdouble\fP MultiTypesChrono::stepPixelNb_X = 60\&.\fBf\fP\fC [private]\fP"
+
+.PP
+Number of pixels per step\&. 
+.SS "\fBdouble\fP MultiTypesChrono::stepPixelNb_Y = 30\&.\fBf\fP\fC [private]\fP"
+
+.PP
+Number of pixels per step\&. 
+.SS "\fBconst\fP \fBint\fP MultiTypesChrono::textHeight = 10\fC [private]\fP"
+
+.PP
+Height of the text labels\&. 
+.SS "\fBconst\fP \fBint\fP MultiTypesChrono::textOffset = 10\fC [private]\fP"
+
+.PP
+Offset for the text labels\&. 
+.SS "\fBconst\fP \fBint\fP MultiTypesChrono::textRectPadding = 5\fC [private]\fP"
+
+.PP
+Padding inside the text rectangles\&. 
+.SS "\fBconst\fP \fBint\fP MultiTypesChrono::textRectRadius = 2\fC [private]\fP"
+
+.PP
+Radius for the rounded corners of the text rectangles\&. 
+.SS "\fBconst\fP \fBint\fP MultiTypesChrono::textWidth = 30\fC [private]\fP"
+
+.PP
+Width of the text labels\&. 
+.SS "\fBconst\fP \fBint\fP MultiTypesChrono::tickSize = 5\fC [private]\fP"
+
+.PP
+Size of the axis ticks\&. 
+.SS "\fBint\fP MultiTypesChrono::visibleRange_X = 10\fC [private]\fP"
+
+.PP
+Range of visible X data points\&. 
+.SS "\fBint\fP MultiTypesChrono::visibleRange_Y = 10\fC [private]\fP"
+
+.PP
+Range of visible Y data points\&. 
+.SS "\fBQVBoxLayout\fP* MultiTypesChrono::Vlayout\fC [private]\fP"
+
+.PP
+Vertical layout for the widget\&. 
+.SS "\fBint\fP MultiTypesChrono::width\fC [private]\fP"
+
+.SS "\fBconst\fP \fBint\fP MultiTypesChrono::xLabelDensity = 1\fC [private]\fP"
+
+.PP
+Density of the x-axis labels\&. 
+.SS "\fBint\fP MultiTypesChrono::Y_dataRange\fC [private]\fP"
+
+.SS "\fBint\fP MultiTypesChrono::yAxisCurrentMax\fC [private]\fP"
+
+.SS "\fBint\fP MultiTypesChrono::yAxisCurrentMin\fC [private]\fP"
+
+.SS "\fBconst\fP \fBint\fP MultiTypesChrono::yLabelDensity = 1\fC [private]\fP"
+
+.PP
+Density of the y-axis labels\&. 
+
+.SH "Author"
+.PP 
+Generated automatically by Doxygen for VHDL simulator from the source code\&.

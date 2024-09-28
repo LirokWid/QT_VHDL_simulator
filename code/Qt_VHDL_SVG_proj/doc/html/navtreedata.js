@@ -25,7 +25,6 @@
 var NAVTREE =
 [
   [ "VHDL simulator", "index.html", [
-    [ "TODOs", "md__c_1_2_users_2_b_j_r_o_d_i_e_r_2_documents_2_q_t___r_e_p_o_2_q_t___v_h_d_l__simulator_2code_284b23e958f5ebd2b8c7eb2ad5ab1a575.html", null ],
     [ "Namespaces", "namespaces.html", [
       [ "Namespace List", "namespaces.html", "namespaces_dup" ]
     ] ],
@@ -35,7 +34,7 @@ var NAVTREE =
       [ "Class Hierarchy", "hierarchy.html", "hierarchy" ],
       [ "Class Members", "functions.html", [
         [ "All", "functions.html", "functions_dup" ],
-        [ "Functions", "functions_func.html", null ],
+        [ "Functions", "functions_func.html", "functions_func" ],
         [ "Variables", "functions_vars.html", "functions_vars" ],
         [ "Typedefs", "functions_type.html", null ],
         [ "Enumerations", "functions_enum.html", null ],
@@ -45,12 +44,12 @@ var NAVTREE =
     [ "Files", "files.html", [
       [ "File List", "files.html", "files_dup" ],
       [ "File Members", "globals.html", [
-        [ "All", "globals.html", "globals_dup" ],
+        [ "All", "globals.html", null ],
         [ "Functions", "globals_func.html", null ],
         [ "Typedefs", "globals_type.html", null ],
         [ "Enumerations", "globals_enum.html", null ],
         [ "Enumerator", "globals_eval.html", null ],
-        [ "Macros", "globals_defs.html", "globals_defs" ]
+        [ "Macros", "globals_defs.html", null ]
       ] ]
     ] ]
   ] ]
@@ -59,11 +58,10 @@ var NAVTREE =
 var NAVTREEINDEX =
 [
 "_components_struct_8h.html",
-"class_sysc_in.html#a93cb5fdf92607658e12a872ec3aa92fb",
-"functions_t.html",
-"moc__predefs_8h.html#a5e816b71154141be2784accabcdc0ead",
-"moc__predefs_8h.html#aecf8ca9049a43aa4fc14e8feea7ccccc",
-"struct_q_t___w_a_r_n_i_n_g___d_i_s_a_b_l_e___d_e_p_r_e_c_a_t_e_d_1_1qt__meta__stringdata___c_l_a4e9b2718c92c375f9bb63eb05398dff0.html#ae1b9350817e15b0af118c2d5db6b7b62"
+"class_simulation_worker.html#a4bb5f4b866582e1dbcf6e0e56ea63069",
+"class_sysc_sub.html#a96a62eda0bb65fa51d18e63ec5268e51",
+"notmain_8cpp.html#aed4d9f28ccc4e007c7a6df4f66b8c837aaaad24511a4602a1f64b81a493db1809",
+"structsc__thread__run__s.html#ade35a27653fda8886c936beb3c48c1cf"
 ];
 
 var SYNCONMSG = 'click to disable panel synchronisation';

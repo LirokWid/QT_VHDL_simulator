@@ -7,7 +7,7 @@ MainWindow
 .br
 .PP
 .PP
-\fR#include <mainwindow\&.h>\fP
+\fC#include <mainwindow\&.h>\fP
 .PP
 Inherits QMainWindow\&.
 .SS "Public Member Functions"
@@ -30,22 +30,16 @@ Inherits QMainWindow\&.
 
 .in +1c
 .ti -1c
-.RI "\fBvoid\fP \fBon_stop_clicked\fP ()"
-.br
-.ti -1c
-.RI "\fBvoid\fP \fBon_minus_clicked\fP ()"
-.br
-.ti -1c
 .RI "\fBvoid\fP \fBcloseSvg\fP ()"
 .br
 .ti -1c
-.RI "\fBvoid\fP \fBupdateStateLabel\fP (\fBSimulationState::State\fP state)"
+.RI "\fBvoid\fP \fBloadNormal_clicked\fP ()"
+.br
+.ti -1c
+.RI "\fBvoid\fP \fBloadError_clicked\fP ()"
 .br
 .ti -1c
 .RI "\fBvoid\fP \fBon_pushButton_clicked\fP ()"
-.br
-.ti -1c
-.RI "\fBvoid\fP \fBon_pushButton_2_clicked\fP ()"
 .br
 .in -1c
 .SS "Private Member Functions"
@@ -54,12 +48,21 @@ Inherits QMainWindow\&.
 .ti -1c
 .RI "\fBvoid\fP \fBsetSplitterToLeft\fP (\fBQSplitter\fP *\fBsplitter\fP, \fBint\fP \fBleftSize\fP)"
 .br
+.ti -1c
+.RI "\fBvoid\fP \fBupdateGui\fP (\fBconst\fP \fBQString\fP &\fBmessage\fP)"
+.br
+.ti -1c
+.RI "\fBvoid\fP \fBstartSimulation\fP ()"
+.br
+.ti -1c
+.RI "\fBvoid\fP \fBstopSimulation\fP ()"
+.br
 .in -1c
 .SS "Private Attributes"
 
 .in +1c
 .ti -1c
-.RI "\fBUi::MainWindow\fP * \fBui\fP"
+.RI "Ui::MainWindow * \fBui\fP"
 .br
 .ti -1c
 .RI "\fBSvgWidget\fP * \fBsvgWidget\fP"
@@ -68,7 +71,7 @@ Inherits QMainWindow\&.
 .RI "\fBFilesTreeView\fP * \fBfilesTreeView\fP"
 .br
 .ti -1c
-.RI "\fBSimulationState\fP * \fBsimulationState\fP"
+.RI "\fBSimulationState\fP * \fBstate\fP"
 .br
 .ti -1c
 .RI "\fBQLabel\fP * \fBstateLabel\fP"
@@ -80,52 +83,74 @@ Inherits QMainWindow\&.
 .RI "\fBDebugWindow\fP * \fBdebugWindow\fP"
 .br
 .ti -1c
-.RI "\fBElementsDisplay\fP * \fBelementsTreeView\fP"
+.RI "\fBMultiTypesChrono\fP * \fBchronoWidgetSine\fP"
+.br
+.ti -1c
+.RI "\fBMultiTypesChrono\fP * \fBchronoWidgetRamp\fP"
+.br
+.ti -1c
+.RI "\fBMultiTypesChrono\fP * \fBchronoWidgetBool\fP"
+.br
+.ti -1c
+.RI "\fBMultiTypesChrono\fP * \fBchronoWidgetSum\fP"
+.br
+.ti -1c
+.RI "\fBSimulationManager\fP * \fBsimManager\fP"
 .br
 .in -1c
 .SH "Constructor & Destructor Documentation"
 .PP 
-.SS "MainWindow::MainWindow (QWidget * parent = \fR\fBnullptr\fP\fP)"
+.SS "MainWindow::MainWindow (QWidget * parent = \fC\fBnullptr\fP\fP)"
 
 .SS "MainWindow::~MainWindow ()"
 
 .SH "Member Function Documentation"
 .PP 
-.SS "\fBvoid\fP MainWindow::closeSvg ()\fR [private]\fP, \fR [slot]\fP"
+.SS "\fBvoid\fP MainWindow::closeSvg ()\fC [private]\fP, \fC [slot]\fP"
+
+.SS "\fBvoid\fP MainWindow::loadError_clicked ()\fC [private]\fP, \fC [slot]\fP"
+
+.SS "\fBvoid\fP MainWindow::loadNormal_clicked ()\fC [private]\fP, \fC [slot]\fP"
 
 .SS "\fBvoid\fP MainWindow::loadSvgFileFromPath (\fBQString\fP path)"
 
-.SS "\fBvoid\fP MainWindow::on_minus_clicked ()\fR [private]\fP, \fR [slot]\fP"
+.SS "\fBvoid\fP MainWindow::on_pushButton_clicked ()\fC [private]\fP, \fC [slot]\fP"
 
-.SS "\fBvoid\fP MainWindow::on_pushButton_2_clicked ()\fR [private]\fP, \fR [slot]\fP"
-
-.SS "\fBvoid\fP MainWindow::on_pushButton_clicked ()\fR [private]\fP, \fR [slot]\fP"
-
-.SS "\fBvoid\fP MainWindow::on_stop_clicked ()\fR [private]\fP, \fR [slot]\fP"
-
-.SS "\fBvoid\fP MainWindow::setSplitterToLeft (\fBQSplitter\fP * splitter, \fBint\fP leftSize)\fR [private]\fP"
+.SS "\fBvoid\fP MainWindow::setSplitterToLeft (\fBQSplitter\fP * splitter, \fBint\fP leftSize)\fC [private]\fP"
 
 .SS "\fBvoid\fP MainWindow::showDebugWindow ()"
 
-.SS "\fBvoid\fP MainWindow::updateStateLabel (\fBSimulationState::State\fP state)\fR [private]\fP, \fR [slot]\fP"
+.SS "\fBvoid\fP MainWindow::startSimulation ()\fC [private]\fP"
+
+.SS "\fBvoid\fP MainWindow::stopSimulation ()\fC [private]\fP"
+
+.SS "\fBvoid\fP MainWindow::updateGui (\fBconst\fP \fBQString\fP & message)\fC [private]\fP"
 
 .SH "Member Data Documentation"
 .PP 
-.SS "\fBDebugWindow\fP* MainWindow::debugWindow\fR [private]\fP"
+.SS "\fBMultiTypesChrono\fP* MainWindow::chronoWidgetBool\fC [private]\fP"
 
-.SS "\fBElementsDisplay\fP* MainWindow::elementsTreeView\fR [private]\fP"
+.SS "\fBMultiTypesChrono\fP* MainWindow::chronoWidgetRamp\fC [private]\fP"
 
-.SS "\fBFilesTreeView\fP* MainWindow::filesTreeView\fR [private]\fP"
+.SS "\fBMultiTypesChrono\fP* MainWindow::chronoWidgetSine\fC [private]\fP"
 
-.SS "\fBSimulationState\fP* MainWindow::simulationState\fR [private]\fP"
+.SS "\fBMultiTypesChrono\fP* MainWindow::chronoWidgetSum\fC [private]\fP"
 
-.SS "\fBQLabel\fP* MainWindow::stateLabel\fR [private]\fP"
+.SS "\fBDebugWindow\fP* MainWindow::debugWindow\fC [private]\fP"
 
-.SS "\fBSvgHandler\fP* MainWindow::svgHandler\fR [private]\fP"
+.SS "\fBFilesTreeView\fP* MainWindow::filesTreeView\fC [private]\fP"
 
-.SS "\fBSvgWidget\fP* MainWindow::svgWidget\fR [private]\fP"
+.SS "\fBSimulationManager\fP* MainWindow::simManager\fC [private]\fP"
 
-.SS "\fBUi::MainWindow\fP* MainWindow::ui\fR [private]\fP"
+.SS "\fBSimulationState\fP* MainWindow::state\fC [private]\fP"
+
+.SS "\fBQLabel\fP* MainWindow::stateLabel\fC [private]\fP"
+
+.SS "\fBSvgHandler\fP* MainWindow::svgHandler\fC [private]\fP"
+
+.SS "\fBSvgWidget\fP* MainWindow::svgWidget\fC [private]\fP"
+
+.SS "Ui::MainWindow* MainWindow::ui\fC [private]\fP"
 
 
 .SH "Author"

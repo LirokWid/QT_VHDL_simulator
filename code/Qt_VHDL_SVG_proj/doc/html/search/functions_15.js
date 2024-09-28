@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['wheelevent_0',['wheelEvent',['../class_svg_widget.html#a9dd300afc35b1fcd960930df5fa1e366',1,'SvgWidget']]]
+  ['zoomchanged_0',['zoomChanged',['../class_svg_widget.html#ac360bc1e5bd10995daae7a7896d159a9',1,'SvgWidget']]]
 ];
