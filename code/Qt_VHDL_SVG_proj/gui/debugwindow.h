@@ -55,10 +55,10 @@ public:
     void addSuccess(const QString& message);
 
     /**
-     * @brief addWaring
+     * @brief addWarning
      * @param message
      */
-    void addWaring(const QString& message);
+    void addWarning(const QString& message);
     /**
      * @brief addError
      * @param message

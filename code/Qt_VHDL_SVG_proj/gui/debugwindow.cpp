@@ -212,7 +212,7 @@ void DebugWindow::addSuccess(const QString &message)
     addMessage(message,Success);
 }
 
-void DebugWindow::addWaring(const QString &message)
+void DebugWindow::addWarning(const QString &message)
 {
     addMessage(message,Warning);
 }
