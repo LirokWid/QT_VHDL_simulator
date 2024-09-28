@@ -97,27 +97,36 @@ void MultiTypesChrono::initGraph()
     palette.setColor(QPalette::Window, backgroundColor);
     this->setPalette(palette);
 
-    slider = new QSlider(Qt::Horizontal, this);
-    slider->setRange(0, 100);
-    connect(slider, &QSlider::valueChanged, this, [=](int value)
-            {
-                offset_X = value;
-                qDebug() << "Slider value changed to " << value;
-                update();
-            });
+    // Sliders to move the graph
+    slider_X = new QSlider(Qt::Horizontal, this);
+    slider_X->setRange(0, 100);
+    connect(slider_X, &QSlider::valueChanged, this, [=](int value)
+    {
+        offset_X = value;
+        update();
+    });
+
+    slider_Y = new QSlider(Qt::Vertical, this);
+    slider_Y->setRange(0, 100);
+    connect(slider_Y, &QSlider::valueChanged, this, [=](int value)
+    {
+        offset_Y = value;
+        update();
+    });
 
     // Widen and shrink graph area buttons
-    plusButton = new QPushButton("+", this);
-    connect(plusButton, &QPushButton::clicked, this, &MultiTypesChrono::handlePlusButton);
-    plusButton->setFixedSize(25, 30);
+    // X axis
+    plusButton_X = new QPushButton("+", this);
+    connect(plusButton_X, &QPushButton::clicked, this, &MultiTypesChrono::handlePlusButton_X);
+    plusButton_X->setFixedSize(25, 30);
 
-    minusButton = new QPushButton("-", this);
-    connect(minusButton, &QPushButton::clicked, this, &MultiTypesChrono::handleMinusButton);
-    minusButton->setFixedSize(25, 30);
+    minusButton_X = new QPushButton("-", this);
+    connect(minusButton_X, &QPushButton::clicked, this, &MultiTypesChrono::handleMinusButton_X);
+    minusButton_X->setFixedSize(25, 30);
 
-    fitButton = new QPushButton("fit", this);
-    connect(fitButton, &QPushButton::clicked, this, &MultiTypesChrono::handleFitButton);
-    fitButton->setFixedSize(25, 30);
+    fitButton_X = new QPushButton("fit", this);
+    connect(fitButton_X, &QPushButton::clicked, this, &MultiTypesChrono::handleFitButton_X);
+    fitButton_X->setFixedSize(25, 30);
 
     buttonLayout = new QHBoxLayout();
     buttonLayout->addWidget(plusButton);
@@ -132,14 +141,16 @@ void MultiTypesChrono::initGraph()
     popupLabel->setVisible(false);
 
     Vlayout = new QVBoxLayout(this);
-    Vlayout->setContentsMargins(30, 0, 30, 0);  // TODO parametrize the margins
-    Vlayout->addLayout(buttonLayout);
+    Vlayout->setContentsMargins(0, 0, 0, 0);
+    Vlayout->addLayout(buttonLayout_X);
+    Vlayout->addLayout(buttonLayout_Y);
+    Vlayout->addWidget(slider_Y);
     Vlayout->addStretch(1);
-    Vlayout->addWidget(slider);
+    Vlayout->addWidget(slider_X);
 
     this->setMouseTracking(true);
 
-    updateSliderRange();
+    updateSliderRanges();
 }
 
 void MultiTypesChrono::paintEvent(QPaintEvent* event)
@@ -455,66 +466,115 @@ void MultiTypesChrono::calculatePixelPerStep()
     stepPixelNb_Y = static_cast<double>((QWidget::height() - marginTop - marginBottom)) / static_cast<double>(visibleRange_Y);
 }
 
-void MultiTypesChrono::updateSliderRange()
+void MultiTypesChrono::updateSliderRanges()
 {
     calculatePixelPerStep();
+
+    // X-axis slider
     if (dataPoints.size() > visibleRange_X)
     {
-        slider->setVisible(true);
-        slider->setRange(0, dataPoints.size() - visibleRange_X);
-        slider->setValue(offset_X);
+        slider_X->setVisible(true);
+        slider_X->setRange(0, dataPoints.size() - visibleRange_X);
+        slider_X->setValue(offset_X);
     }
     else
     {
-        slider->setVisible(false);
-        slider->setRange(0, 0);
+        slider_X->setVisible(false);
+        slider_X->setRange(0, 0);
+    }
+
+    // Y-axis slider
+    if (dataPoints.size() > visibleRange_Y)
+    {// TODO Change this ! data point won't work
+        slider_Y->setVisible(true);
+        slider_Y->setRange(0, dataPoints.size() - visibleRange_Y);
+        slider_Y->setValue(offset_Y);
+    }
+    else
+    {
+        slider_Y->setVisible(false);
+        slider_Y->setRange(0, 0);
     }
 }
 
-void MultiTypesChrono::handlePlusButton()
+void MultiTypesChrono::handlePlusButton_X()
 {
     if (visibleRange_X < dataPoints.size() - 1)
     {
         visibleRange_X++;
         calculatePixelPerStep();
-        updateSliderRange();
+        updateSliderRanges();
         update();
     }
 }
 
-void MultiTypesChrono::handleMinusButton()
+void MultiTypesChrono::handleMinusButton_X()
 {
     if (visibleRange_X > minDisplayedSteps)
     {
         visibleRange_X--;
         calculatePixelPerStep();
-        updateSliderRange();
+        updateSliderRanges();
         update();
     }
 }
 
-void MultiTypesChrono::handleFitButton()
+void MultiTypesChrono::handleFitButton_X()
 {
     if (dataPoints.size() > 2)
     {
         visibleRange_X = dataPoints.size();
         calculatePixelPerStep();
-        updateSliderRange();
+        updateSliderRanges();
+        update();
+    }
+}
+
+void MultiTypesChrono::handlePlusButton_Y()
+{// TODO: UPDATE Y AXIS SIZE LIMIT
+    if (visibleRange_Y < dataPoints.size() - 1)
+    {
+        visibleRange_Y++;
+        calculatePixelPerStep();
+        updateSliderRanges();
+        update();
+    }
+}
+
+void MultiTypesChrono::handleMinusButton_Y()
+{
+    if (visibleRange_Y > minDisplayedSteps)
+    {
+        visibleRange_Y--;
+        calculatePixelPerStep();
+        updateSliderRanges();
+        update();
+    }
+}
+
+void MultiTypesChrono::handleFitButton_Y()
+{
+    if (dataPoints.size() > 2)
+    {
+        visibleRange_Y = dataPoints.size();
+        calculatePixelPerStep();
+        updateSliderRanges();
         update();
     }
 }
 
 void MultiTypesChrono::resizeEvent(QResizeEvent *event)
 {
+    height = QWidget::height();
+    width = QWidget::width();
     QWidget::resizeEvent(event);
-    updateSliderRange(); // Update the slider range when resized
+    updateSliderRanges(); // Update the slider range when resized
     update(); // Repaint the widget
 }
 
 void MultiTypesChrono::showPopupAtCursor(QPoint cursorPos)
 {
-    int height = QWidget::height();
-    int width = QWidget::width();
+
     int x = cursorPos.x();
     int y = cursorPos.y();
 
@@ -610,7 +670,7 @@ void MultiTypesChrono::mouseMoveEvent(QMouseEvent *event)
         qDebug() << "Right dragging to " << newPosition;
 
         offset_X = newPosition;
-        updateSliderRange();
+        updateSliderRanges();
         update();
     }
 
@@ -649,7 +709,7 @@ void MultiTypesChrono::mouseReleaseEvent(QMouseEvent *event)
             visibleRange_X = stepsToDisplay;
             offset_X = startStepIndex;
             calculatePixelPerStep();
-            updateSliderRange();
+            updateSliderRanges();
             update();
         }
         else
