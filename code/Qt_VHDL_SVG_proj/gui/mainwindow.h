@@ -13,7 +13,6 @@
 #include "debugwindow.h"
 
 #include "multitypeschrono.h"
-#include "view.h"
 
 QT_BEGIN_NAMESPACE
 namespace Ui {
@@ -37,6 +36,8 @@ private slots:
     void loadNormal_clicked();
     void loadError_clicked();
 
+    void on_pushButton_clicked();
+
 private:
     Ui::MainWindow *ui;
     SvgWidget *svgWidget;
@@ -45,7 +46,11 @@ private:
     QLabel *stateLabel;
     SvgHandler *svgHandler;
     DebugWindow *debugWindow;
-    MultiTypesChrono *chronoWidget;
+    MultiTypesChrono *chronoWidgetSine;
+    MultiTypesChrono *chronoWidgetRamp;
+    MultiTypesChrono *chronoWidgetBool;
+    MultiTypesChrono *chronoWidgetSum;
+
     SimulationManager *simManager;
 
     void setSplitterToLeft(QSplitter *splitter, int leftSize);

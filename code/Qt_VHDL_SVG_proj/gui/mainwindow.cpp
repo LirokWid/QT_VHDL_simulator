@@ -63,14 +63,53 @@ MainWindow::MainWindow(QWidget *parent) :
     }
 
     ///////////////////////////////////
-    QVector<int> test;
-    for (int var = 0; var < 10; ++var)
+    QVector<int> ramp;
+    for (int var = 0; var < totalPoints; ++var)
     {
-        test.append(var*2);
+        ramp.append(var);
     }
-    //Debug, should be dynamically added whith simulation result
-    chronoWidget = new MultiTypesChrono(sineWave);
-    ui->tabWidget->addTab(chronoWidget, "Chronogram");
+
+    QVector<bool> square;
+    for (int i = 0; i < totalPoints; ++i)
+    {
+        double y = rand() % 2;
+        square.append(y);  // Append y to QVector
+    }
+
+    int steps = 300;
+    double frequency1 = 1.0; // Frequency of the first sine wave
+    double frequency2 = 2.0; // Frequency of the second sine wave
+    double offset = 10;
+    double samplingRate = 100.0; // Sampling rate
+
+    QVector<double> sineSumValues;
+
+    // Generate the summed sine values
+    for (int i = 0; i < steps; ++i) {
+        double time = i / samplingRate; // Time value
+        double sine1 = std::sin(2 * M_PI * frequency1 * time); // First sine wave
+        double sine2 = std::sin(2 * M_PI * frequency2 * time); // Second sine wave
+
+        // Add the two sine waves together
+        double sineSum = sine1 + sine2 + offset;
+
+        // Append the summed value to the QVector
+        sineSumValues.append(sineSum);
+    }
+
+    //Debug, should be dynamically added whith simulation results
+    chronoWidgetSine = new MultiTypesChrono(sineWave);
+    ui->tabWidget->addTab(chronoWidgetSine, "Sine");
+    chronoWidgetRamp = new MultiTypesChrono(ramp);
+    ui->tabWidget->addTab(chronoWidgetRamp, "ramp");
+    chronoWidgetBool = new MultiTypesChrono(square);
+    ui->tabWidget->addTab(chronoWidgetBool, "square");
+    chronoWidgetSum = new MultiTypesChrono(sineSumValues);
+    ui->tabWidget->addTab(chronoWidgetSum, "2Sine");
+    ///////////////////////////////////
+
+    //Setup threading which keep ui running during simulation
+    simManager = new SimulationManager;
 
     //Setup the svg file close button
     connect(ui->closeFile, &QPushButton::clicked, this, &MainWindow::closeSvg);
@@ -81,9 +120,6 @@ MainWindow::MainWindow(QWidget *parent) :
     //Debug, load svg buttons
     connect(ui->loadNormalBtn, &QPushButton::clicked, this, &MainWindow::loadNormal_clicked);
     connect(ui->loadErrorBtn, &QPushButton::clicked, this, &MainWindow::loadError_clicked);
-
-    //Setup threading which keep ui running during simulation
-    simManager = new SimulationManager;
 
     // Connect signals and slots
     //connect(startButton, &QPushButton::clicked, this, &MainWindow::on_minus_clicked);
@@ -133,18 +169,6 @@ void MainWindow::stopSimulation()
     simManager->stopSimulation();
 }
 
-/*
-void MainWindow::on_stop_clicked()
-{
-#ifdef DEBUG
-    static unsigned int i;
-    if (i%2)
-        debugWindow->addMessage("PshBtn error " + QString::number(i++),DebugWindow::Error);
-    else
-        debugWindow->addMessage("PshBtn " + QString::number(i++),DebugWindow::Warning);
-#endif
-}
-*/
 
 void MainWindow::closeSvg()
 {
@@ -186,5 +210,12 @@ void MainWindow::loadNormal_clicked()
 void MainWindow::loadError_clicked()
 {// debug
     svgHandler->loadSvg(TEMP_SVG_ER_PATH);//debug
+}
+
+
+void MainWindow::on_pushButton_clicked()
+{
+    double val = 2;
+    chronoWidgetSine->addPoint(val);
 }
 

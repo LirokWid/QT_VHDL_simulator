@@ -1,7 +1,7 @@
 #include "svghandler.h"
 #include "mainwindow.h"
 
-#include "SystemcLinker.h"
+#include "SvgParseManager.h"
 #include "elementsdisplay.h"
 
 SvgHandler *SvgHandler::s_lastInstance = nullptr;
@@ -26,7 +26,6 @@ SvgHandler::SvgHandler(QWidget *componentsWidget, SimulationState *simulationSta
 
     // Connect the signal from ElementsDisplay to the slot in SvgWidget
     connect(display, &ElementsDisplay::elementClicked, svgWidget, &SvgWidget::highlightItemSlot);
-
 
     //Get the label to display the global parsing error
     parseState = componentsWidget->findChild<QLabel*>("componentsInfoState");
@@ -60,10 +59,10 @@ bool SvgHandler::loadSvg(const QString &filePath)
 
         if (copySvgToTemp(filePath))
         {
-            //static_cast<MainWindow *>(parent())->showDebugWindow(); //temp
+            //static_cast<MainWindow *>(parent())->showDebugWindow(); //To make the DebugWindow visible
             if (loadAndParse(tempFilePath))
-            {//load the copied svg file to display, widget, ..
-                //Change the file name on the main window title
+            {//loads the copied svg file to display, widget, ..
+                //Change the application title to the name of the SVG file
                 QFileInfo fileInfo(filePath);
                 static_cast<MainWindow *>(parent())->setWindowTitle(tr("SystemC Parser - ") + fileInfo.absoluteFilePath());
                 return true;
@@ -91,7 +90,7 @@ bool SvgHandler::loadAndParse(QString svgPath)
     {//Delete linker if it already exists
         //delete linker;
     }
-    linker = new SystemcLinker(svgPath);                    //Parse the svg file
+    linker = new SvgParseManager(svgPath);                    //Parse the svg file
     bool is_error = linker->getGlobalParsingError();        //Check if there is any parsing error
     if (is_error)
     {
@@ -111,17 +110,25 @@ bool SvgHandler::clearSvg()
 {
     if (SimulationState::RUNNING == simulationState->getState())
     {
-        QMessageBox::information(nullptr, tr("Information"), tr("Simulation is running. Please stop the simulation before clearing the SVG file."));
+        QString msg = "Simulation is running. Please stop the simulation before clearing the SVG file.";
+        DebugWindow::getInstance()->addError(msg);
+
+        QMessageBox::information(nullptr, tr("Information"), msg);
+        return false;
+    }
+    if (SimulationState::IDLE == simulationState->getState())
+    {
+        DebugWindow::getInstance()->addDebug("Can't change state of the application as it is already idle");
         return false;
     }
     if (SimulationState::IDLE_SVG_LOADED == simulationState->getState())
-    {
+    {//Clear all objects from current SVG
         svgWidget->clearSvg();
         display->clearTree();
         deleteTempSvg(tempFilePath);
         parseState->setText("clear");
 
-        // Emit signal to indicate SVG file is cleared
+        // Emit signal to indicate SVG file is cleared and change app state
         simulationState->setState(SimulationState::IDLE);
 
         return true;

@@ -6,9 +6,6 @@
  * It is responsible for launching the graphical interface which will then start the simulation.
  */
 
-
-
-
 #define GRAPHICAL_THREADING
 //#define GRAPHICAL_NO_THREAD
 //#define GRAPHICAL_OLD
@@ -28,6 +25,11 @@ int main(int argc, char *argv[])
 }
 
 #endif
+
+
+
+
+
 
 #ifdef GRAPHICAL_NO_THREAD
 

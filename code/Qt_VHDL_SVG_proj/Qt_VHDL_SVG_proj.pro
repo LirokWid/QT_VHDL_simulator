@@ -8,11 +8,6 @@ greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 CONFIG += c++17 cmdline
 CONFIG += gnu++17
 
-# You can make your code fail to compile if it uses deprecated APIs.
-# In order to do so, uncomment the following line.
-#DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000    # disables all the APIs deprecated before Qt 6.0.0
-
-
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin
 else: unix:!android: target.path = /opt/$${TARGET}/bin
@@ -36,7 +31,6 @@ HEADERS += \
     gui/simulationstate.h \
     gui/svghandler.h \
     gui/svgwidget.h \
-    gui/view.h \
     parser_linker/ComponentsStruct.h \
     simulation/simulationworker.h \
     system/eventfilter.h \
@@ -54,8 +48,6 @@ SOURCES += \
     gui/simulationstate.cpp \
     gui/svghandler.cpp \
     gui/svgwidget.cpp \
-    gui/ui_svg_item.cpp \
-    gui/view.cpp \
     main.cpp \
     simulation/simulationworker.cpp \
     system/eventfilter.cpp \
@@ -72,13 +64,8 @@ FORMS += \
 
 
 # SystemC
-SYSTEMC_INSTALL_PREFIX=C:/Qt/SystemC
-#SYSTEMC_INSTALL_PREFIX=S:/Qt/SystemC
+#SYSTEMC_INSTALL_PREFIX=C:/Qt/SystemC
+SYSTEMC_INSTALL_PREFIX=S:/Qt/SystemC
+
 LIBS        += -L$$SYSTEMC_INSTALL_PREFIX/lib/ -lsystemc
 INCLUDEPATH +=   $$SYSTEMC_INSTALL_PREFIX/include
-
-#win32:CONFIG(release, debug|release):    LIBS += -L$$PWD/../../../../../../../Qt/SystemC/lib/ -lsystemc
-#else:win32:CONFIG(debug, debug|release): LIBS += -L$$PWD/../../../../../../../Qt/SystemC/lib/ -lsystemcd
-
-#INCLUDEPATH += $$PWD/../../../../../../../Qt/SystemC/include
-#DEPENDPATH  += $$PWD/../../../../../../../Qt/SystemC/include
