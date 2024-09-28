@@ -3,7 +3,7 @@
 
 #include <QObject>
 #include "ComponentsStruct.h"
-#include "SystemcLinker.h"
+#include "SvgParseManager.h"
 #include "simulationstate.h"
 
 
@@ -34,7 +34,7 @@ private:
     bool m_running = false;
     void buildSimulation();
 
-    SystemcLinker *linker;
+    SvgParseManager *linker;
 
     s_components_list m_components;
 

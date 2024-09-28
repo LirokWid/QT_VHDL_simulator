@@ -10,7 +10,7 @@
 #include "simulationstate.h"
 #include "elementsdisplay.h"
 
-#include "SystemcLinker.h"
+#include "SvgParseManager.h"
 
 
 /**
@@ -78,7 +78,7 @@ private:
     SvgWidget *svgWidget;
     QTemporaryDir tempDir; /**< The temporary directory for storing SVG files. */
     QString getTempFilePath() const;
-    SystemcLinker *linker;
+    SvgParseManager *linker;
     QHBoxLayout *displayTitle;
     QWidget *componentsWidget;
     ElementsDisplay *display;
